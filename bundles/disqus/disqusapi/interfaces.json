@@ -1,0 +1,714 @@
+{
+  "reactions": {
+    "restore": {
+      "required": [
+        "reaction",
+        "forum"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "list": {
+      "required": [
+        "forum"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "details": {
+      "required": [
+        "reaction",
+        "forum"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "remove": {
+      "required": [
+        "reaction",
+        "forum"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    }
+  },
+  "exports": {
+    "exportForum": {
+      "required": [
+        "forum"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    }
+  },
+  "users": {
+    "listActiveForums": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listActiveThreads": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "listFollowing": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listForums": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "unfollow": {
+      "required": [],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listPosts": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "details": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listFollowers": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "follow": {
+      "required": [],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listActivity": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listMostActiveForums": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    }
+  },
+  "imports": {
+    "list": {
+      "required": [
+        "forum"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "details": {
+      "required": [
+        "group"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    }
+  },
+  "posts": {
+    "restore": {
+      "required": [
+        "post"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "spam": {
+      "required": [
+        "post"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "unhighlight": {
+      "required": [
+        "post"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listPopular": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "create": {
+      "required": [
+        "message"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "list": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "remove": {
+      "required": [
+        "post"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "getContext": {
+      "required": [
+        "post"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "vote": {
+      "required": [
+        "vote",
+        "post"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "details": {
+      "required": [
+        "post"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "report": {
+      "required": [
+        "post"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "highlight": {
+      "required": [
+        "post"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "approve": {
+      "required": [
+        "post"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    }
+  },
+  "blacklists": {
+    "add": {
+      "required": [
+        "forum"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "list": {
+      "required": [
+        "forum"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "remove": {
+      "required": [
+        "forum"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    }
+  },
+  "reports": {
+    "domains": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "ips": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "threads": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "users": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    }
+  },
+  "whitelists": {
+    "add": {
+      "required": [
+        "forum"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "list": {
+      "required": [
+        "forum"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "remove": {
+      "required": [
+        "forum"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    }
+  },
+  "applications": {
+    "listUsage": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    }
+  },
+  "trends": {
+    "listThreads": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    }
+  },
+  "threads": {
+    "restore": {
+      "required": [
+        "thread"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "vote": {
+      "required": [
+        "vote",
+        "thread"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "open": {
+      "required": [
+        "thread"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "create": {
+      "required": [
+        "forum",
+        "title"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "list": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "listMostLiked": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "listHot": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "update": {
+      "required": [
+        "thread"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listSimilar": {
+      "required": [
+        "thread"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "details": {
+      "required": [
+        "thread"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listByDate": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "listPosts": {
+      "required": [
+        "thread"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "close": {
+      "required": [
+        "thread"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "remove": {
+      "required": [
+        "thread"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listPopular": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    }
+  },
+  "forums": {
+    "create": {
+      "required": [
+        "website",
+        "name",
+        "short_name"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listCategories": {
+      "required": [
+        "forum"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listThreads": {
+      "required": [
+        "forum"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "listUsers": {
+      "required": [
+        "forum"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listMostLikedUsers": {
+      "required": [
+        "forum"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "details": {
+      "required": [
+        "forum"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "listPosts": {
+      "required": [
+        "forum"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "listModerators": {
+      "required": [
+        "forum"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    }
+  },
+  "categories": {
+    "listPosts": {
+      "required": [
+        "category"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "listThreads": {
+      "required": [
+        "category"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp",
+        "rss"
+      ]
+    },
+    "create": {
+      "required": [
+        "forum",
+        "title"
+      ],
+      "method": "POST",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "list": {
+      "required": [],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    },
+    "details": {
+      "required": [
+        "category"
+      ],
+      "method": "GET",
+      "formats": [
+        "json",
+        "jsonp"
+      ]
+    }
+  }
+}
