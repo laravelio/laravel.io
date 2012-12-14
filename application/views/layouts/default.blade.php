@@ -31,7 +31,7 @@
     </head>
     <body>
 
-    	<div class="tags _tag_dropdown">
+        <div class="tags _tag_dropdown">
             <div class="row">
                 <div class="eight columns">
                     <!-- All tags ever used -->
@@ -61,17 +61,17 @@
         
         <article>   
             {{ $content ?: '' }}
-		</article>
+        </article>
   
         <footer>
             &copy; 2012 laravel.io
         </footer>      
-		
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
         <script src="{{ URL::to_asset('js/plugins.js') }}"></script>
         <script src="{{ URL::to_asset('js/script.js') }}"></script>
 
         <div id="disqus"></div>
-	</body>
+    </body>
 </html>

@@ -19,9 +19,14 @@ class TopicPresenter extends Presentable
         return HTML::link_to_action('topics@show', $this->title, array($this->id, Str::slug($this->title)), $attributes);
     }
 
-    public function published_date()
+    public function short_published_date()
     {
         return date('d-m-y', strtotime($this->created_at));
+    }
+
+    public function long_published_date()
+    {
+        return date('M jS, Y', strtotime($this->created_at));
     }
 
     public function author()
