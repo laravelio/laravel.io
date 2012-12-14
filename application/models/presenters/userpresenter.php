@@ -1,18 +1,18 @@
 <?php
 
-class UserPresenter extends Presenter
+class UserPresenter extends Presentable
 {
-	public $resource_name = 'user';
+    public $resource_name = 'user';
 
-	public function image($size = 80)
-	{
-		if(!$this->email)
-		{
-			return false;
-		}
+    public function image($size = 80)
+    {
+        if(!$this->email)
+        {
+            return false;
+        }
 
-		return Gravitas\API::url($this->email, $size);
-	}
+        return Gravitas\API::url($this->email, $size);
+    }
 
     public function twitter_link($attributes = array())
     {
