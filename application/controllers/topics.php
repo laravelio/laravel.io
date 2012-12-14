@@ -22,7 +22,7 @@ class Topics_Controller extends Base_Controller
             return Response::error('404');
         }
 
-        $this->layout->page_title = "Topic for " . $topic->published_date . " - " . $topic->title;
+        $this->layout->page_title = sprintf("Topic for %s - %s", $topic->published_date, $topic->title);
 
         $this->layout->content = View::make('topics.show')->with('topic', $topic);
     }
@@ -37,7 +37,7 @@ class Topics_Controller extends Base_Controller
             return Response::error('404');
         }
 
-        $this->layout->page_title = "Topics by tag: " . $tag->name;
+        $this->layout->page_title = sprintf("Topics by tag: %s", $tag->name);
 
         $this->layout->content = View::make('topics.tag')->with('tag', $tag);
     }
