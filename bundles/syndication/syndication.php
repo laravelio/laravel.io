@@ -31,7 +31,7 @@ class Syndication
                 {
                     if($index == 0)
                     {
-                        $feed->setChannelElement('updated', date(DATE_ATOM , strtotime($feed_row['date'])));
+                        $feed->setChannelElement('pubDate', date(DATE_ATOM , strtotime($feed_row['date'])));
                     }
 
                     $new_item = $feed->createNewItem();
