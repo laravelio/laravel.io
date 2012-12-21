@@ -6,7 +6,7 @@ class Topics_Controller extends Base_Controller
     public function get_index()
     {
         $recent_topics = TopicPresenter::recent(100);
-        
+
         $this->layout->page_title = "Welcome";
 
         $this->layout->content = View::make('topics.index')->with('recent_topics', $recent_topics);
@@ -16,7 +16,7 @@ class Topics_Controller extends Base_Controller
     public function get_show($topic_id = null, $slug = null)
     {
         $topic = TopicPresenter::find_published($topic_id);
-        
+
         if(is_null($topic))
         {
             return Response::error('404');
