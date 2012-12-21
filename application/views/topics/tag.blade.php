@@ -6,9 +6,11 @@
 <ul class="latest">
     @foreach($recent_topics as $topic)
     	<li>
-    		<time>{{ $topic->published_date }} -</time> 
+    		<time>{{ $topic->published_date }} -</time>
     		<span>{{ HTML::image($topic->author->image(16)) }} {{ $topic->author->name }} - </span>
             {{ $topic->link }}
     	</li>
     @endforeach
 </ul>
+
+@render('global.books')
