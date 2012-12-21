@@ -10,6 +10,8 @@
         <meta name="viewport" content="width=device-width, user-scalable=no" >
         
         <title>{{ $page_title . ' - ' ?: '' }}Laravel.IO</title>
+        
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ URL::to('rss') }}">        
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ URL::to_asset('css/normalize.css') }}">
@@ -64,7 +66,7 @@
         </article>
   
         <footer>
-            &copy; 2012 laravel.io
+            &copy; 2012 laravel.io | <a href="{{ URL::to('rss') }}">RSS</a>
         </footer>      
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
