@@ -537,6 +537,7 @@ a:hover
     display: block;
     position: relative;
     height: 200px;
+    overflow: hidden;
 }
 
 .words {
