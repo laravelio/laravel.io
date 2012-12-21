@@ -60,7 +60,15 @@ return array(
 	*/
 
 	'connections' => array(
-
+		'mysql' => array(
+			'driver'   => 'mysql',
+			'host'     => 'localhost',
+			'database' => '',
+			'username' => '',
+			'password' => '',
+			'charset'  => 'utf8',
+			'prefix'   => '',
+		)
 	),
 
 	/*

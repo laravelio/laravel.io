@@ -6,11 +6,18 @@
 
 <hr>
 
+@render('global.books')
+
+<section class="recent-topics">
+    <p>DATE</p>
+    <p>RECENT TOPICS</p>
+</section>
+
 <ul class="latest">
     @foreach($recent_topics as $topic)
         <li>
-            <time>{{ $topic->short_published_date }} -</time> 
-            
+            <time>{{ $topic->short_published_date }} -</time>
+
             @if($topic->author)
                 <span>{{ HTML::image($topic->author->image(16)) }} {{ $topic->author->twitter_link }}
             @endif

@@ -107,8 +107,8 @@ article, .row
     background-color: #fff;
     background-clip: padding-box;
     -webkit-background-clip: padding-box;
-    
-   
+
+
 }
 
 footer
@@ -187,7 +187,7 @@ code
     top:0px;
     right:0px;
     background-image:url(../img/arrow-right.png);
- 
+
 }
 
 
@@ -200,7 +200,7 @@ article aside
     border-top:1px solid #cccccc;
 }
 
-ul 
+ul
 {
     margin: 0;
     padding: 5px 0;
@@ -503,6 +503,84 @@ a:hover
     *zoom: 1;
 }
 
+/** RECENT TOPICS **/
+.recent-topics {
+    display: block;
+    position: relative;
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    margin: 0 0 10px 0;
+}
+
+.recent-topics p {
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    color: #f0523f;
+}
+
+.recent-topics p:first-child {
+    padding-right: 60px;
+}
+
+/** BOOKS SECTION **/
+
+.books-with-border {
+    display: block;
+    position: relative;
+    height: 200px;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 30px;
+}
+
+.books {
+    display: block;
+    position: relative;
+    height: 200px;
+}
+
+.words {
+    display: block;
+    position: relative;
+    width: 250px;
+    float: left;
+}
+
+.words h1 {
+    text-align: left;
+}
+
+.words p {
+    color: #aaa;
+    font-style: oblique;
+}
+
+.book {
+    display: block;
+    position: relative;
+    width: 200px;
+    float: right;
+}
+
+.book .title, .book .author {
+    font-size: 12px;
+    text-align: center;
+}
+
+.book .title {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.book .author {
+    font-style: oblique;
+}
+
+.book img {
+    display: block;
+    margin: 0 auto;
+}
+
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    Theses examples override the primary ('mobile first') styles.
@@ -510,7 +588,7 @@ a:hover
    ========================================================================== */
 
 @media only screen and (min-width: 35em) {
-  
+
 body
 {
     background-color: #f0523f;
@@ -544,7 +622,7 @@ body
 
 .tags h5
 {
-    text-align: left; 
+    text-align: left;
 }
 
 .tags input
