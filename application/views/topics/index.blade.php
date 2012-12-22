@@ -9,7 +9,6 @@
 @render('global.books')
 
 <section class="recent-topics">
-    <p>DATE</p>
     <p>RECENT TOPICS</p>
 </section>
 

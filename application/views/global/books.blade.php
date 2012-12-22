@@ -1,12 +1,12 @@
-@if( Uri::current() == '/' )
-<section class="books">
+@if(Uri::current() == '/')
+    <section class="books">
 @else
-<section class="books-with-border">
+    <section class="books-with-border">
 @endif
 
     <div class="words">
-        <h1>Laravel Books</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio officiis reprehenderit praesentium quas quo harum dolores magnam voluptate voluptas.</p>
+        <h1>Just Getting Started?</h1>
+        <p>Sometimes you just want simple walkthroughs to assist you in learning a new framework. Follow along in building a simple application and explore many of Laravel's most powerful features with these books.</p>
     </div>
 
     <div class="book">
