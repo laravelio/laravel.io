@@ -36,7 +36,7 @@ return array(
 
 	'feed_data' => function()
 	{
-        $topics = Topic::recent(30);
+        $topics = TopicPresenter::recent(30);
 
         if(!$topics)
         {
