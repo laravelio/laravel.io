@@ -12,5 +12,3 @@
     	</li>
     @endforeach
 </ul>
-
-@render('global.books')

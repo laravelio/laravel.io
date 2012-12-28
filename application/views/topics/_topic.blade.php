@@ -8,9 +8,12 @@
 
 <hr>
 
+
+
 {{ $topic->body }}
 
 @if($topic->tags)
+
     <aside>
         <ul>
             @foreach($topic->tags as $tag)
@@ -18,4 +21,6 @@
             @endforeach
         </ul>
     </aside>
+
 @endif
+
