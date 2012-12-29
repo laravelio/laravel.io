@@ -23,9 +23,9 @@
 
 $environments = array(
 
-    'local'      => array('http://localhost*', '*.dev', '*.local'),
     'production' => array('*.io'),
-    
+    'local'      => array('http://localhost*', '*.dev', '*.local'),
+
 );
 
 // --------------------------------------------------------------
@@ -67,7 +67,7 @@ chdir(__DIR__);
 // --------------------------------------------------------------
 if ( ! defined('DS'))
 {
-	define('DS', DIRECTORY_SEPARATOR);
+    define('DS', DIRECTORY_SEPARATOR);
 }
 
 // --------------------------------------------------------------
@@ -80,35 +80,35 @@ $GLOBALS['laravel_paths']['base'] = __DIR__.DS;
 // --------------------------------------------------------------
 foreach ($paths as $name => $path)
 {
-	if ( ! isset($GLOBALS['laravel_paths'][$name]))
-	{
-		$GLOBALS['laravel_paths'][$name] = realpath($path).DS;
-	}
+    if ( ! isset($GLOBALS['laravel_paths'][$name]))
+    {
+        $GLOBALS['laravel_paths'][$name] = realpath($path).DS;
+    }
 }
 
 /**
  * A global path helper function.
- * 
+ *
  * <code>
  *     $storage = path('storage');
  * </code>
- * 
+ *
  * @param  string  $path
  * @return string
  */
 function path($path)
 {
-	return $GLOBALS['laravel_paths'][$path];
+    return $GLOBALS['laravel_paths'][$path];
 }
 
 /**
  * A global path setter function.
- * 
+ *
  * @param  string  $path
  * @param  string  $value
  * @return void
  */
 function set_path($path, $value)
 {
-	$GLOBALS['laravel_paths'][$path] = $value;
+    $GLOBALS['laravel_paths'][$path] = $value;
 }

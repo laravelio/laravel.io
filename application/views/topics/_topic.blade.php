@@ -1,7 +1,7 @@
 <h2>{{ $topic->title }}</h2>
 
 <hr>
-    
+
 <div class="postinformation">
     <time>{{ $topic->long_published_date }} </time> - {{ HTML::image($topic->author->image(16)) }} {{ $topic->author->twitter_link }} <!-- - <a href="#disqus_thread">Loading comments...</a>-->
 </div>
@@ -10,7 +10,8 @@
 
 {{ $topic->body }}
 
-@if($topic->tags)
+@if(count($topic->tags))
+
     <aside>
         <ul>
             @foreach($topic->tags as $tag)
@@ -18,4 +19,5 @@
             @endforeach
         </ul>
     </aside>
+
 @endif
