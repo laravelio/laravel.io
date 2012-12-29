@@ -530,6 +530,7 @@ a:hover
     display: block;
     position: relative;
     height: 200px;
+    width: 100%;
     padding-top: 20px;
     border-bottom: 1px solid #CCC;
     border-top: 1px solid #CCC;

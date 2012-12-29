@@ -6,7 +6,7 @@
 
 <hr>
 
-@render('global.books')
+@render('layouts._featured_books')
 
 <section class="recent-topics">
     <p>RECENT TOPICS</p>

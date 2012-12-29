@@ -10,7 +10,7 @@
 
 {{ $topic->body }}
 
-@if($topic->tags)
+@if(count($topic->tags))
 
     <aside>
         <ul>

@@ -8,6 +8,6 @@
     <a href="{{ $topic->next->url }}" class="arrow right"></a>
 @endif
 
-@render('global.books')
+@render('layouts._featured_books')
 
 @render('layouts._disqus_comments')
