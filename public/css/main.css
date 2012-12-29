@@ -98,6 +98,10 @@ body
     background-color: #fff;
 }
 
+article {
+    overflow: hidden;
+}
+
 article, .row
 {
     position: relative;
