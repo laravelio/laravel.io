@@ -98,6 +98,10 @@ body
     background-color: #fff;
 }
 
+article {
+    overflow: hidden;
+}
+
 article, .row
 {
     position: relative;
@@ -107,8 +111,6 @@ article, .row
     background-color: #fff;
     background-clip: padding-box;
     -webkit-background-clip: padding-box;
-
-
 }
 
 footer
@@ -187,17 +189,16 @@ code
     top:0px;
     right:0px;
     background-image:url(../img/arrow-right.png);
-
 }
-
-
 
 /* Article footer */
 
 article aside
 {
+    display: block;
+    width: 100%;
     padding:13px 0 10px 0;
-    border-top:1px solid #cccccc;
+    float: left;
 }
 
 ul
@@ -529,14 +530,18 @@ a:hover
     display: block;
     position: relative;
     height: 200px;
+    padding-top: 20px;
     border-bottom: 1px solid #CCC;
+    border-top: 1px solid #CCC;
     margin-bottom: 30px;
+    float: left;
 }
 
 .books {
     display: block;
     position: relative;
     height: 200px;
+    width: 100%;
     overflow: hidden;
 }
 
