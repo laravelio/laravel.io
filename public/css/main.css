@@ -120,6 +120,7 @@ footer
     background-color: #4c4c4c;
     color:#fff;
     font-size:11px;
+    height: 14px;
 }
 
 .row:last-child
@@ -230,7 +231,6 @@ ul li a:hover
     background-color: #4C4C4C;
     color:white;
 }
-
 
 /* Latest posts */
 
@@ -584,6 +584,68 @@ a:hover
 .book img {
     display: block;
     margin: 0 auto;
+}
+
+
+/** COPY **/
+
+.copy {
+    float: left;
+}
+
+/** SOCIAL ICONS **/
+
+.social {
+    margin: 0;
+    padding: 0;
+    float: right;
+    margin-top: -5px; /** <-- need to fix this **/
+}
+
+.social ul {
+    display: block;
+    position: relative;
+    padding: 0;
+    margin:0;
+    list-style-type:none;
+}
+
+.social ul li {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.social ul li a {
+    background: url(../img/social.png) no-repeat top left;
+    display: block;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+}
+
+.social ul li a.twitter {
+    background-position: -116px 0;
+}
+.social ul li a.twitter:hover {
+    background-position: -145px 0;
+}
+
+.social ul li a.github {
+    background-position: 0 0;
+}
+.social ul li a.github:hover {
+    background-position: -29px 0;
+}
+
+.social ul li a.rss {
+    background-position: -58px 0;
+}
+.social ul li a.rss:hover {
+    background-position: -87px 0;
 }
 
 /* ==========================================================================
