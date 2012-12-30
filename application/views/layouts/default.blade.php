@@ -66,7 +66,14 @@
         </article>
 
         <footer>
-            <div class="copy">&copy; 2012 laravel.io</div> @render('global.social')
+            <div class="copy">&copy; 2012 laravel.io</div>
+            <div class="social">
+                <ul>
+                    <li><a href="https://twitter.com/LaravelIO" class="twitter" target="_blank">Twitter</a></li>
+                    <li><a href="https://github.com/ShawnMcCool/laravel-io" class="github" target="_blank">Github</a></li>
+                    <li><a href="{{ URL::to('rss') }}" class="rss" target="_blank">Rss</a></li>
+                </ul>
+            </div>
         </footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
