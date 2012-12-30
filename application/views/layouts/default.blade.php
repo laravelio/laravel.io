@@ -8,10 +8,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, user-scalable=no" >
-        
+
         <title>{{ $page_title . ' - ' ?: '' }}Laravel.IO</title>
-        
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ URL::to('rss') }}">        
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ URL::to('rss') }}">
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ URL::to_asset('css/normalize.css') }}">
@@ -47,28 +47,28 @@
                         <li><a href="#">Tag 342</a></li>
                     </ul>
                 </div>
-                
+
                 <!-- We could either do a search or think of a cool way of displaying all old topics -->
                 <div class="four columns">
                     <h5>Search for topics</h5>
                     <input type="text" placeholder="search..."/>
-                </div>   
+                </div>
             </div>
         </div>
-        
+
         <header class="row">
             <!-- <a id="showhide" href="#"><img src="{{ URL::to_asset('img/mag-glass.png') }}"></a> -->
             <a href="{{ URL::to_action('topics@index') }}"><img src="{{ URL::to_asset('img/laravel-io-logo.png') }}"></a>
         </header>
-        
-        <article>   
+
+        <article>
             {{ $content ?: '' }}
         </article>
-  
+
         <footer>
-            &copy; 2012 laravel.io | <a href="{{ URL::to('rss') }}">RSS</a>
-        </footer>      
-        
+            <div class="copy">&copy; 2012 laravel.io</div> @render('global.social')
+        </footer>
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
         <script src="{{ URL::to_asset('js/plugins.js') }}"></script>
