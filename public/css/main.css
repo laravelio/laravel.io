@@ -307,6 +307,7 @@ h2 a:hover
    border-top:1px solid #ccc;
 }
 
+
 /* Text - Body text */
 p, article li
 {
@@ -336,7 +337,7 @@ a:hover
     height:43px;
     border-top:2px solid #4c4c4c;
     border-bottom:2px solid #4c4c4c;
-    margin:0 0 0 0;
+    margin:0 0 15px 0;
 }
 
 .previous
@@ -359,6 +360,21 @@ a:hover
     position: absolute;
     right:0px;
     top:10px;
+}
+
+/* Post list styling */
+
+.post li
+{
+    float:none;
+    padding:0;
+    margin:0;
+}
+
+.post ol
+{
+    margin: 0;
+    padding: 0 0 0 22px;
 }
 
 /* ==========================================================================
