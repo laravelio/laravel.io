@@ -7,7 +7,7 @@
 {{ $topic->body }}
 
 
-<div class="postnavigation">
+<div class="postnavigation clearfix">
 @if($topic->previous)
     <a href="{{ $topic->previous->url }}" class="previous">Previous topic</a>
 @endif
@@ -19,7 +19,7 @@
 
 @if(count($topic->tags))
 
-    <aside>
+    <aside class="tags">
         <ul>
             @foreach($topic->tags as $tag)
                 <li>{{ $tag->link }}</li>

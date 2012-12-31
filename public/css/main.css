@@ -99,7 +99,7 @@ body
 }
 
 
-article, .row
+.row, #holder
 {
     position: relative;
     margin: auto;
@@ -336,7 +336,7 @@ a:hover
     height:43px;
     border-top:2px solid #4c4c4c;
     border-bottom:2px solid #4c4c4c;
-    margin:0 0 30px 0;
+    margin:0 0 0 0;
 }
 
 .previous
@@ -359,71 +359,6 @@ a:hover
     position: absolute;
     right:0px;
     top:10px;
-}
-
-/* Tag slider */
-
-.tags
-{
-    position: relative;
-    display: none;
-    padding:0 0 15px 0;
-    background-color: #4C4C4C;
-}
-
-.tags .row
-{
-    background-color: #4C4C4C;
-}
-
-.tags h5
-{
-    margin: 0px;
-    padding: 10px 0;
-    color:white;
-    text-align: center;
-    font-weight: bold;
-    font-size:14px;
-}
-
-.tags ul
-{
-    margin: 0 auto 35px auto;
-}
-
-.tags input
-{
-    display: block;
-    margin: 0 auto 15px auto;
-    padding:5px;
-    border:0;
-    -webkit-border-radius:5px;
-    border-radius: 5px;
-    font-size:13px;
-}
-
-.tags li a:hover
-{
-    background-color: white;
-    color:#4C4C4C;
-}
-
-#showhide
-{
-    position: absolute;
-    top:0px;
-    right:25px;
-    display: block;
-    padding:2px 0 7px 0;
-    width:30px;
-    -webkit-border-radius:0 0 3px 3px;
-    border-radius:0 0 3px 3px;
-    background-color: #4C4C4C;
-}
-
-#showhide:hover
-{
-    background-color: #f0523f;
 }
 
 /* ==========================================================================
@@ -676,6 +611,8 @@ a:hover
     background-position: -87px 0;
 }
 
+
+
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.
    Theses examples override the primary ('mobile first') styles.
@@ -691,7 +628,8 @@ body
 
 #holder, .row
 {
-    width:960px;
+    width:100%;
+    padding:0;
     margin: auto;
 }
 
@@ -731,14 +669,9 @@ aside
     border-left:1px solid #4c4c4c;
 }
 
-.tags h5
+.tags
 {
-    text-align: left;
-}
-
-.tags input
-{
-    margin: 0;
+    border:none;
 }
 
 .latest span
@@ -748,6 +681,13 @@ aside
 
 
     /* Style adjustments for viewports that meet the condition */
+}
+
+@media only screen and (min-width: 960px) {
+#holder, .row
+{
+    width:960px;
+}
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
