@@ -1,7 +1,7 @@
 <h2>{{ $topic->title }}</h2>
 
 <div class="postinformation">
-    <time>{{ $topic->long_published_date }} </time> - {{ HTML::image($topic->author->image(16)) }} {{ $topic->author->twitter_link }} - <a href="#disqus_thread">Loading comments...</a>
+    <time>{{ $topic->long_published_date }} </time> - {{ HTML::image($topic->author->image(16)) }} {{ $topic->author->twitter_link }}
 </div>
 
 <div class="post">
