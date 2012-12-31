@@ -99,7 +99,7 @@ body
 }
 
 
-article, .row
+.row, #holder
 {
     position: relative;
     margin: auto;
@@ -138,8 +138,8 @@ aside
 /* Header */
 header
 {
-    text-align: center;
     background-color: #f0523f;
+    text-align: center;
 }
 
 header a
@@ -161,36 +161,6 @@ code
     display: block;
     padding: 5px;
     font-size:12px;
-}
-
-/* Article navigation */
-
-.arrow
-{
-    position: absolute;
-    display: block;
-    width:40px;
-    height:70px;
-    background-color: #4c4c4c;
-}
-
-.arrow:hover
-{
-    background-color: #f0523f;
-}
-
-.arrow.left
-{
-    top:0px;
-    left:-0px;
-    background-image:url(../img/arrow-left.png);
-}
-
-.arrow.right
-{
-    top:0px;
-    right:0px;
-    background-image:url(../img/arrow-right.png);
 }
 
 /* Article footer */
@@ -277,13 +247,13 @@ h1,h2,h3,h4,h5
 /* Text - Post header */
 
 h1, h2
-{
-    font-family: Share;
-    font-weight: 400;
-    text-transform: uppercase;  
+{  
     margin: 0;
     padding:12px 0 0 0;
+    text-transform: uppercase;
+    font-weight: 400;
     font-size:28px;
+    font-family: Share;
 }
 
 h2 a
@@ -300,20 +270,21 @@ h2 a:hover
 
 .postinformation
 {
-   color:#999;
    margin:5px 0 0 0;
    padding:10px 0 15px 0;
-   font-size:13px;
    border-top:1px solid #ccc;
+   color:#999;
+   font-size:13px;
 }
+
 
 /* Text - Body text */
 p, article li
 {
+    padding:0 0 0 0;
     color:#4C4C4C;
     font-size:13px;
     line-height: 22px;
-    padding:0 0 0 0;
 }
 
 a, p a
@@ -332,99 +303,343 @@ a:hover
 .postnavigation
 {
     position: relative;
+    margin:0 0 15px 0;
     width:100%;
     height:43px;
     border-top:2px solid #4c4c4c;
     border-bottom:2px solid #4c4c4c;
-    margin:0 0 30px 0;
 }
 
 .previous
 {
-    font-family: Share;
+    position: absolute;
+    top:10px;
+    left:0px;
+    text-transform: uppercase;
     font-weight: 400;
     font-size:18px;
-    text-transform: uppercase;
-    position: absolute;
-    left:0px;
-    top:10px;
+    font-family: Share;
 }
 
 .next
 {
-    font-family: Share;
+    position: absolute;
+    top:10px;
+    right:0px;
+    text-transform: uppercase;
     font-weight: 400;
     font-size:18px;
-    text-transform: uppercase;
-    position: absolute;
-    right:0px;
-    top:10px;
+    font-family: Share;
 }
 
-/* Tag slider */
+/* Post list styling */
+
+.post li
+{
+    float:none;
+    margin:0;
+    padding:0;
+}
+
+.post ol
+{
+    margin: 0;
+    padding: 0 0 0 22px;
+}
+
+
+/** RECENT TOPICS **/
+.recent-topics {
+    position: relative;
+    display: block;
+    margin: 30px 0 10px 0;
+    padding:10px 0 7px 0;
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #CCC;
+    color: #f0523f;
+    font-weight: 400;
+    font-size:18px;
+    font-family: Share;
+}
+
+.recent-topics p:first-child {
+    padding-right: 60px;
+}
+
+/** BOOKS SECTION **/
+
+.books-with-border {
+    position: relative;
+    display: block;
+}
+
+.books {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+
+}
+
+.words {
+    position: relative;
+    display: block;
+    float: left;
+}
+
+.words h1 {
+    padding:20px 0 0 0;
+    color:#4C4C4C;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size:20px;
+    font-family: Share;
+}
+
+.words p {
+    color: #4C4C4C;
+    font-style: oblique;
+}
+
+.book {
+    position: relative;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin:0 5% 0 0;
+    width:45%;
+}
+
+.book .title, .book .author {
+    font-size: 12px;
+}
+
+.book .title {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.book .author {
+    font-style: oblique;
+}
+
+
+/** COPY **/
+
+.copy {
+    float: left;
+}
+
+/** SOCIAL ICONS **/
+
+.social {
+    margin: 0;
+    padding:4px 0 0 0;
+    width:100%;
+    height: 30px;
+    background-color: #4c4c4c;
+}
+
+.social ul {
+    position: relative;
+    float:right;
+    margin:auto;
+    padding: 0;
+    list-style-type:none;
+}
+
+.social ul li {
+    display: inline;
+    overflow: hidden;
+    width: 24px;
+    height: 24px;
+    text-indent: 100%;
+    white-space: nowrap;
+}
+
+.social ul li a {
+    display: block;
+    overflow: hidden;
+    width: 24px;
+    height: 24px;
+    background: url(../img/social.png) no-repeat top left;
+}
+
+.social ul li a.twitter {
+    background-position: -116px 0;
+}
+.social ul li a.twitter:hover {
+    background-position: -145px 0;
+}
+
+.social ul li a.github {
+    background-position: 0 0;
+}
+.social ul li a.github:hover {
+    background-position: -29px 0;
+}
+
+.social ul li a.rss {
+    background-position: -58px 0;
+}
+.social ul li a.rss:hover {
+    background-position: -87px 0;
+}
+
+
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+
+body
+{
+    background-color: #fff;
+}
+
+#holder, .row
+{
+    margin: auto;
+    padding:0;
+    width:100%;
+}
+
+header
+{
+    margin:0 0 15px 0;
+    padding:0 0 5px  0;
+    width:100%;
+    background-color: #f0523f;
+}
+
+header a
+{
+    padding:0 0 10px 0;
+}
+
+footer
+{
+    margin:50px 0 0 0;
+    padding:10px 0;
+    width:100%;
+}
+
+article
+{
+    float:left;
+    padding:0 3%;
+    width:64%;
+}
+
+aside
+{
+    display: block;
+    float:left;
+    padding:0 0 0 2%;
+    width:27%;
+    border-left:1px solid #4c4c4c;
+}
 
 .tags
 {
-    position: relative;
-    display: none;
-    padding:0 0 15px 0;
-    background-color: #4C4C4C;
+    border:none;
 }
 
-.tags .row
+.latest span
 {
-    background-color: #4C4C4C;
+    display: inline;
 }
 
-.tags h5
-{
-    margin: 0px;
-    padding: 10px 0;
-    color:white;
-    text-align: center;
-    font-weight: bold;
-    font-size:14px;
+
+    /* Style adjustments for viewports that meet the condition */
 }
 
-.tags ul
+@media only screen and (min-width: 960px) {
+#holder, .row
 {
-    margin: 0 auto 35px auto;
+    width:960px;
+}
 }
 
-.tags input
-{
-    display: block;
-    margin: 0 auto 15px auto;
-    padding:5px;
-    border:0;
-    -webkit-border-radius:5px;
-    border-radius: 5px;
-    font-size:13px;
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        box-shadow: none !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
 }
 
-.tags li a:hover
-{
-    background-color: white;
-    color:#4C4C4C;
-}
 
-#showhide
-{
-    position: absolute;
-    top:0px;
-    right:25px;
-    display: block;
-    padding:2px 0 7px 0;
-    width:30px;
-    -webkit-border-radius:0 0 3px 3px;
-    border-radius:0 0 3px 3px;
-    background-color: #4C4C4C;
-}
-
-#showhide:hover
-{
-    background-color: #f0523f;
-}
 
 /* ==========================================================================
    Helper classes
@@ -535,294 +750,4 @@ a:hover
 
 .clearfix {
     *zoom: 1;
-}
-
-/** RECENT TOPICS **/
-.recent-topics {
-    font-family: Share;
-    font-weight: 400;
-    font-size:18px;
-    position: relative;
-    display: block;
-    margin: 30px 0 10px 0;
-    padding:10px 0 7px 0;
-    border-top: 1px solid #CCC;
-    border-bottom: 1px solid #CCC;
-    color: #f0523f;
-}
-
-.recent-topics p:first-child {
-    padding-right: 60px;
-}
-
-/** BOOKS SECTION **/
-
-.books-with-border {
-    position: relative;
-    display: block;
-}
-
-.books {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    width: 100%;
-
-}
-
-.words {
-    position: relative;
-    display: block;
-    float: left;
-}
-
-.words h1 {
-    font-family: Share;
-    font-weight: 400;
-    text-align: left;
-    color:#4C4C4C;
-    font-size:20px;
-    padding:20px 0 0 0;
-    text-transform: uppercase;
-}
-
-.words p {
-    color: #4C4C4C;
-    font-style: oblique;
-}
-
-.book {
-    position: relative;
-    display: block;
-    float: left;
-    width:45%;
-    overflow: hidden;
-    margin:0 5% 0 0;
-}
-
-.book .title, .book .author {
-    font-size: 12px;
-}
-
-.book .title {
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-.book .author {
-    font-style: oblique;
-}
-
-
-/** COPY **/
-
-.copy {
-    float: left;
-}
-
-/** SOCIAL ICONS **/
-
-.social {
-    background-color: #4c4c4c;
-    width:100%;
-    margin: 0;
-    height: 30px;
-    padding:4px 0 0 0;
-}
-
-.social ul {
-    float:right;
-    position: relative;
-    margin:auto;
-    padding: 0;
-    list-style-type:none;
-}
-
-.social ul li {
-    display: inline;
-    overflow: hidden;
-    width: 24px;
-    height: 24px;
-    text-indent: 100%;
-    white-space: nowrap;
-}
-
-.social ul li a {
-    display: block;
-    overflow: hidden;
-    width: 24px;
-    height: 24px;
-    background: url(../img/social.png) no-repeat top left;
-}
-
-.social ul li a.twitter {
-    background-position: -116px 0;
-}
-.social ul li a.twitter:hover {
-    background-position: -145px 0;
-}
-
-.social ul li a.github {
-    background-position: 0 0;
-}
-.social ul li a.github:hover {
-    background-position: -29px 0;
-}
-
-.social ul li a.rss {
-    background-position: -58px 0;
-}
-.social ul li a.rss:hover {
-    background-position: -87px 0;
-}
-
-/* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   Theses examples override the primary ('mobile first') styles.
-   Modify as content requires.
-   ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-
-body
-{
-    background-color: #fff;
-}
-
-#holder, .row
-{
-    width:960px;
-    margin: auto;
-}
-
-header
-{
-    width:100%;
-    padding:0 0 5px  0;
-    margin:0 0 15px 0;
-    background-color: #f0523f;
-}
-
-header a
-{
-    padding:0 0 10px 0;
-}
-
-footer
-{
-    margin:50px 0 0 0;
-    padding:10px 0;
-    width:100%;
-}
-
-article
-{
-    width:64%;
-    padding:0 3%;
-    float:left;
-}
-
-aside
-{
-    display: block;
-    width:27%;
-    padding:0 0 0 2%;
-    float:left;
-    border-left:1px solid #4c4c4c;
-}
-
-.tags h5
-{
-    text-align: left;
-}
-
-.tags input
-{
-    margin: 0;
-}
-
-.latest span
-{
-    display: inline;
-}
-
-
-    /* Style adjustments for viewports that meet the condition */
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-       only screen and (min-resolution: 144dpi) {
-    /* Style adjustments for high resolution devices */
-}
-
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid required HTTP connection: h5bp.com/r
-   ========================================================================== */
-
-@media print {
-    * {
-        background: transparent !important;
-        box-shadow: none !important;
-        color: #000 !important; /* Black prints faster: h5bp.com/s */
-        text-shadow: none !important;
-    }
-
-    a,
-    a:visited {
-        text-decoration: underline;
-    }
-
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    /*
-     * Don't show links for images, or javascript/internal links
-     */
-
-    .ir a:after,
-    a[href^="javascript:"]:after,
-    a[href^="#"]:after {
-        content: "";
-    }
-
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    thead {
-        display: table-header-group; /* h5bp.com/t */
-    }
-
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
-
-    img {
-        max-width: 100% !important;
-    }
-
-    @page {
-        margin: 0.5cm;
-    }
-
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
 }

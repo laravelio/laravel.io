@@ -1,13 +1,15 @@
 <h2>{{ $topic->title }}</h2>
 
 <div class="postinformation">
-    <time>{{ $topic->long_published_date }} </time> - {{ HTML::image($topic->author->image(16)) }} {{ $topic->author->twitter_link }} - <a href="#disqus_thread">Loading comments...</a>
+    <time>{{ $topic->long_published_date }} </time> - {{ HTML::image($topic->author->image(16)) }} {{ $topic->author->twitter_link }}
 </div>
 
-{{ $topic->body }}
+<div class="post">
+    {{ $topic->body }}
+</div>
 
 
-<div class="postnavigation">
+<div class="postnavigation clearfix">
 @if($topic->previous)
     <a href="{{ $topic->previous->url }}" class="previous">Previous topic</a>
 @endif
@@ -19,7 +21,7 @@
 
 @if(count($topic->tags))
 
-    <aside>
+    <aside class="tags">
         <ul>
             @foreach($topic->tags as $tag)
                 <li>{{ $tag->link }}</li>
