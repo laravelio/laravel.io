@@ -4,12 +4,8 @@
 
 <p>Join us here or on twitter {{ HTML::link('http://twitter.com/laravelio', '@laravelio') }} to participate in a global study group where we focus on two digestible topics per week.</p>
 
-<hr>
-
-@render('layouts._featured_books')
-
 <section class="recent-topics">
-    <p>RECENT TOPICS</p>
+RECENT TOPICS
 </section>
 
 <ul class="latest">

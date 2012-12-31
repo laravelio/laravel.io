@@ -105,7 +105,6 @@ article, .row
     margin: auto;
     padding:0 5%;
     width:90%;
-    background-color: #fff;
     background-clip: padding-box;
     -webkit-background-clip: padding-box;
 }
@@ -116,12 +115,16 @@ footer
     margin: auto;
     padding:10px 5%;
     width:90%;
+    height: 14px;
     background-color: #4c4c4c;
     color:#fff;
     font-size:11px;
-    height: 14px;
 }
 
+aside
+{
+    display: none;
+}
 .row:last-child
 {
     border:none;
@@ -136,18 +139,19 @@ footer
 header
 {
     text-align: center;
+    background-color: #f0523f;
 }
 
 header a
 {
     display: inline-block;
     margin: auto;
-    padding:0 0 25px 0;
+    
 }
 
 pre
 {
-    padding: 8px;
+   
     -webkit-border-radius:5px;
     border-radius: 5px;
 }
@@ -194,16 +198,16 @@ code
 article aside
 {
     display: block;
-    width: 100%;
     padding:13px 0 10px 0;
+    width: 100%;
 }
 
 ul
 {
     margin: 0;
     padding: 5px 0;
-    list-style-type: none;
     min-height: 20px;
+    list-style-type: none;
 }
 
 ul li
@@ -238,17 +242,17 @@ ul li a:hover
 
 .latest li
 {
-    font-size:15px;
-    line-height: 30px;
     float:none;
     color:#999;
+    font-size:15px;
+    line-height: 30px;
 }
 
 .latest li a
 {
-    color:#f0523f;
     display: inline;
     background: none;
+    color:#f0523f;
 }
 
 .latest li a:hover
@@ -256,6 +260,7 @@ ul li a:hover
     background: none;
     color:#4C4C4C;
 }
+
 
 .latest span
 {
@@ -271,19 +276,14 @@ h1,h2,h3,h4,h5
 
 /* Text - Post header */
 
-h1
+h1, h2
 {
-    font-size:24px;
+    font-family: Share;
+    font-weight: 400;
+    text-transform: uppercase;  
     margin: 0;
-    text-align: center;
-}
-
-h2
-{
-    font-size:24px;
-    margin: 0;
-    padding:0 35px;
-    text-align: center;
+    padding:12px 0 0 0;
+    font-size:28px;
 }
 
 h2 a
@@ -301,8 +301,10 @@ h2 a:hover
 .postinformation
 {
    color:#999;
-   text-align: center;
+   margin:5px 0 0 0;
+   padding:10px 0 15px 0;
    font-size:13px;
+   border-top:1px solid #ccc;
 }
 
 /* Text - Body text */
@@ -311,6 +313,7 @@ p, article li
     color:#4C4C4C;
     font-size:13px;
     line-height: 22px;
+    padding:0 0 0 0;
 }
 
 a, p a
@@ -322,6 +325,40 @@ a, p a
 a:hover
 {
     color:#4C4C4C;
+}
+
+/* Text - Post navigation */
+
+.postnavigation
+{
+    position: relative;
+    width:100%;
+    height:43px;
+    border-top:2px solid #4c4c4c;
+    border-bottom:2px solid #4c4c4c;
+    margin:0 0 30px 0;
+}
+
+.previous
+{
+    font-family: Share;
+    font-weight: 400;
+    font-size:18px;
+    text-transform: uppercase;
+    position: absolute;
+    left:0px;
+    top:10px;
+}
+
+.next
+{
+    font-family: Share;
+    font-weight: 400;
+    font-size:18px;
+    text-transform: uppercase;
+    position: absolute;
+    right:0px;
+    top:10px;
 }
 
 /* Tag slider */
@@ -344,9 +381,9 @@ a:hover
     margin: 0px;
     padding: 10px 0;
     color:white;
+    text-align: center;
     font-weight: bold;
     font-size:14px;
-    text-align: center;
 }
 
 .tags ul
@@ -386,7 +423,7 @@ a:hover
 
 #showhide:hover
 {
-    background-color: #f0523f
+    background-color: #f0523f;
 }
 
 /* ==========================================================================
@@ -502,17 +539,15 @@ a:hover
 
 /** RECENT TOPICS **/
 .recent-topics {
-    display: block;
+    font-family: Share;
+    font-weight: 400;
+    font-size:18px;
     position: relative;
+    display: block;
+    margin: 30px 0 10px 0;
+    padding:10px 0 7px 0;
     border-top: 1px solid #CCC;
     border-bottom: 1px solid #CCC;
-    margin: 0 0 10px 0;
-}
-
-.recent-topics p {
-    display: inline-block;
-    position: relative;
-    font-weight: bold;
     color: #f0523f;
 }
 
@@ -523,51 +558,50 @@ a:hover
 /** BOOKS SECTION **/
 
 .books-with-border {
-    display: block;
     position: relative;
-    height: 200px;
-    width: 100%;
-    padding-top: 20px;
-    border-bottom: 1px solid #CCC;
-    border-top: 1px solid #CCC;
-    margin-bottom: 30px;
-    float: left;
+    display: block;
 }
 
 .books {
-    display: block;
     position: relative;
-    height: 200px;
-    width: 100%;
+    display: block;
     overflow: hidden;
+    width: 100%;
+
 }
 
 .words {
-    display: block;
     position: relative;
-    width: 250px;
+    display: block;
     float: left;
 }
 
 .words h1 {
+    font-family: Share;
+    font-weight: 400;
     text-align: left;
+    color:#4C4C4C;
+    font-size:20px;
+    padding:20px 0 0 0;
+    text-transform: uppercase;
 }
 
 .words p {
-    color: #aaa;
+    color: #4C4C4C;
     font-style: oblique;
 }
 
 .book {
-    display: block;
     position: relative;
-    width: 200px;
-    float: right;
+    display: block;
+    float: left;
+    width:45%;
+    overflow: hidden;
+    margin:0 5% 0 0;
 }
 
 .book .title, .book .author {
     font-size: 12px;
-    text-align: center;
 }
 
 .book .title {
@@ -577,11 +611,6 @@ a:hover
 
 .book .author {
     font-style: oblique;
-}
-
-.book img {
-    display: block;
-    margin: 0 auto;
 }
 
 
@@ -594,35 +623,36 @@ a:hover
 /** SOCIAL ICONS **/
 
 .social {
+    background-color: #4c4c4c;
+    width:100%;
     margin: 0;
-    padding: 0;
-    float: right;
-    margin-top: -5px; /** <-- need to fix this **/
+    height: 30px;
+    padding:4px 0 0 0;
 }
 
 .social ul {
-    display: block;
+    float:right;
     position: relative;
+    margin:auto;
     padding: 0;
-    margin:0;
     list-style-type:none;
 }
 
 .social ul li {
-    display: inline-block;
+    display: inline;
+    overflow: hidden;
     width: 24px;
     height: 24px;
     text-indent: 100%;
     white-space: nowrap;
-    overflow: hidden;
 }
 
 .social ul li a {
-    background: url(../img/social.png) no-repeat top left;
     display: block;
+    overflow: hidden;
     width: 24px;
     height: 24px;
-    overflow: hidden;
+    background: url(../img/social.png) no-repeat top left;
 }
 
 .social ul li a.twitter {
@@ -656,33 +686,49 @@ a:hover
 
 body
 {
+    background-color: #fff;
+}
+
+#holder, .row
+{
+    width:960px;
+    margin: auto;
+}
+
+header
+{
+    width:100%;
+    padding:0 0 5px  0;
+    margin:0 0 15px 0;
     background-color: #f0523f;
 }
-  article, .row, footer
-    {
-        padding:0 25px;
-        width:700px;
-    }
 
-    footer
-    {
-        padding:10px 25px;
-    }
-
-
-.columns
+header a
 {
+    padding:0 0 10px 0;
+}
+
+footer
+{
+    margin:50px 0 0 0;
+    padding:10px 0;
+    width:100%;
+}
+
+article
+{
+    width:64%;
+    padding:0 3%;
     float:left;
 }
 
-.four
+aside
 {
-    width:40%;
-}
-
-.eight
-{
-    width:60%;
+    display: block;
+    width:27%;
+    padding:0 0 0 2%;
+    float:left;
+    border-left:1px solid #4c4c4c;
 }
 
 .tags h5
@@ -700,20 +746,6 @@ body
     display: inline;
 }
 
-
-.arrow.left
-{
-    left:-40px;
-    -webkit-border-radius: 5px 0 0 5px ;
-    border-radius: 5px 0 0 5px ;
-}
-
-.arrow.right
-{
-    right:-40px;
-    -webkit-border-radius:  0 5px 5px 0 ;
-    border-radius: 0 5px 5px 0 ;
-}
 
     /* Style adjustments for viewports that meet the condition */
 }

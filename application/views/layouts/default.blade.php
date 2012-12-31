@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="{{ URL::to_asset('css/normalize.css') }}">
         <link rel="stylesheet" href="{{ URL::to_asset('css/main.css') }}">
         <link rel="stylesheet" href="{{ URL::to_asset('css/prettify.css') }}">
+        <link href='http://fonts.googleapis.com/css?family=Share:400,700' rel='stylesheet' type='text/css'>
 
         <script src="{{ URL::to_asset('js/vendor/modernizr-2.6.2.min.js') }}"></script>
         <script type="text/javascript">
@@ -33,48 +34,40 @@
     </head>
     <body>
 
-        <div class="tags _tag_dropdown">
+        <div class="social">
             <div class="row">
-                <div class="eight columns">
-                    <!-- All tags ever used -->
-                    <h5>The magic tag cloud</h5>
-
-                    <ul>
-                        <li><a href="#">Tag 342</a></li>
-                        <li><a href="#">Tag 342</a></li>
-                        <li><a href="#">Tag 342</a></li>
-                        <li><a href="#">Tag 342</a></li>
-                        <li><a href="#">Tag 342</a></li>
-                    </ul>
-                </div>
-
-                <!-- We could either do a search or think of a cool way of displaying all old topics -->
-                <div class="four columns">
-                    <h5>Search for topics</h5>
-                    <input type="text" placeholder="search..."/>
-                </div>
-            </div>
-        </div>
-
-        <header class="row">
-            <!-- <a id="showhide" href="#"><img src="{{ URL::to_asset('img/mag-glass.png') }}"></a> -->
-            <a href="{{ URL::to_action('topics@index') }}"><img src="{{ URL::to_asset('img/laravel-io-logo.png') }}"></a>
-        </header>
-
-        <article>
-            {{ $content ?: '' }}
-        </article>
-
-        <footer>
-            <div class="copy">&copy; 2012 laravel.io</div>
-            <div class="social">
-                <ul>
+              <ul>
                     <li><a href="https://twitter.com/LaravelIO" class="twitter" target="_blank">Twitter</a></li>
                     <li><a href="https://github.com/ShawnMcCool/laravel-io" class="github" target="_blank">Github</a></li>
                     <li><a href="{{ URL::to('rss') }}" class="rss" target="_blank">Rss</a></li>
                 </ul>
-            </div>
-        </footer>
+            </div>      
+        </div>
+
+         <header>
+            <!-- <a id="showhide" href="#"><img src="{{ URL::to_asset('img/mag-glass.png') }}"></a> -->
+            <a href="{{ URL::to_action('topics@index') }}"><img src="{{ URL::to_asset('img/laravel-io-logo.png') }}"></a>
+        </header>
+    
+    <section id="holder" class="row clearfix">
+        
+        <article>
+            {{ $content ?: '' }}
+        </article>
+
+        <aside>
+                @render('layouts._featured_books')
+        </aside>
+
+    </section>
+ 
+
+ <footer>
+    <div class="row">
+&copy; Laravel-io 2012-2013
+    </div>
+</footer>
+       
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
