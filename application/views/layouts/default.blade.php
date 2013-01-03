@@ -36,21 +36,22 @@
 
         <div class="social">
             <div class="row">
-              <ul>
+                <a href="http://forums.laravel.com">Forums</a>
+                <ul>
                     <li><a href="https://twitter.com/LaravelIO" class="twitter" target="_blank">Twitter</a></li>
                     <li><a href="https://github.com/ShawnMcCool/laravel-io" class="github" target="_blank">Github</a></li>
                     <li><a href="{{ URL::to('rss') }}" class="rss" target="_blank">Rss</a></li>
                 </ul>
-            </div>      
+            </div>
         </div>
 
          <header>
             <!-- <a id="showhide" href="#"><img src="{{ URL::to_asset('img/mag-glass.png') }}"></a> -->
             <a href="{{ URL::to_action('topics@index') }}"><img src="{{ URL::to_asset('img/laravel-io-logo.png') }}"></a>
         </header>
-    
+
     <section id="holder" class="row clearfix">
-        
+
         <article>
             {{ $content ?: '' }}
         </article>
@@ -60,14 +61,14 @@
         </aside>
 
     </section>
- 
+
 
  <footer>
     <div class="row">
 &copy; Laravel-io 2012-2013
     </div>
 </footer>
-       
+
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
