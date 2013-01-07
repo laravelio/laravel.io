@@ -33,17 +33,21 @@
         </script>
     </head>
     <body>
-
-        <div class="social">
+        <div class="topbar">
             <div class="row">
-                <a href="http://forums.laravel.com">Forums</a>
+                <nav>
                 <ul>
+                    <li><a href="http://forums.laravel.com">Forums</a></li>
+                </ul>
+            </nav>
+                <ul class="social">
                     <li><a href="https://twitter.com/LaravelIO" class="twitter" target="_blank">Twitter</a></li>
                     <li><a href="https://github.com/ShawnMcCool/laravel-io" class="github" target="_blank">Github</a></li>
                     <li><a href="{{ URL::to('rss') }}" class="rss" target="_blank">Rss</a></li>
                 </ul>
             </div>
         </div>
+  
 
          <header>
             <!-- <a id="showhide" href="#"><img src="{{ URL::to_asset('img/mag-glass.png') }}"></a> -->
