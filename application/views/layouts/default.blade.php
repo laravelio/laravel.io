@@ -51,7 +51,7 @@
 
          <header>
             <!-- <a id="showhide" href="#"><img src="{{ URL::to_asset('img/mag-glass.png') }}"></a> -->
-            <a href="{{ URL::to_action('topics@index') }}"><img src="{{ URL::to_asset('img/laravel-io-logo.png') }}"></a>
+            <a href="{{ URL::to_action('topics@index') }}"><img alt="Laravel: Ins and Outs" src="{{ URL::to_asset('img/laravel-io-logo.png') }}"></a>
         </header>
 
     <section id="holder" class="row clearfix">
