@@ -61,25 +61,6 @@ return array(
 
     'connections' => array(
 
-        'development' => array(
-            'driver'   => 'mysql',
-            'host'     => 'localhost',
-            'database' => 'laravelio_development',
-            'username' => 'root',
-            'password' => 'root',
-            'charset'  => 'utf8',
-            'prefix'   => '',
-        ),
-
-        'production' => array(
-            'driver'   => 'mysql',
-            'host'     => 'localhost',
-            'database' => 'laravelio_production',
-            'username' => 'laravelio',
-            'password' => 'Fu783ohu',
-            'charset'  => 'utf8',
-            'prefix'   => '',
-        ),
     ),
 
     /*
