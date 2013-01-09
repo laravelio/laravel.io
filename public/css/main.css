@@ -372,14 +372,14 @@ a:hover
 }
 
 .words {
-    color:#4C4C4C;
+    color: #4C4C4C;
 }
 
 .words h1 {
     text-align: left;
     text-transform: uppercase;
     font-weight: 400;
-    font-size:20px;
+    font-size: 20px;
     font-family: Share;
 }
 
@@ -388,27 +388,26 @@ a:hover
 }
 
 .book {
-    float:left;
-    width:50%;
+    float: left;
+    width: 50%;
 }
 
 .book img {
-    width:100%;
+    width: 100%;
 }
 
 .book .title, .book .author {
     font-size: 12px;
-    display:block;text-align:center;
+    display: block;
+    text-align: center;
 }
 
 .book .title {
     font-weight: bold;
-    margin:0 10px 0 10px;
 }
 
 .book .author {
     font-style: oblique;
-    margin:0 10px 0 10px;
 }
 
 
