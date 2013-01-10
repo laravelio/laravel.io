@@ -1,8 +1,4 @@
-@if(Uri::current() == '/')
-    <section class="books">
-@else
-    <section class="books-with-border">
-@endif
+<section class="books clearfix">
 
     <div class="words">
         <h1>Just Getting Started?</h1>
@@ -11,7 +7,7 @@
 
      <div class="book" target="_blank">
         <a href="http://www.packtpub.com/laravel-php-starter/book">
-            <img src="{{ URL::to_asset('img/book-laravel-starter-shawn-mccool.jpg') }}">
+            <img alt="Laravel Starter" src="{{ URL::to_asset('img/book-laravel-starter-shawn-mccool.jpg') }}">
             <div class="title">Laravel Starter</div>
             <div class="author">by Shawn McCool</div>
         </a>
@@ -19,12 +15,10 @@
 
     <div class="book">
         <a href="https://leanpub.com/codehappy" target="_blank">
-            <img src="{{ URL::to_asset('img/book-laravel-code-happy-dayle-rees.jpg') }}">
-            <div class="title">Laravel: Code Happy</div>
+            <img alt="Laravel: Code Happy" src="{{ URL::to_asset('img/book-laravel-code-happy-dayle-rees.jpg') }}">
+            <div class="title">Code Happy</div>
             <div class="author">by Dayle Rees</div>
         </a>
     </div>
-
-   
 
 </section>

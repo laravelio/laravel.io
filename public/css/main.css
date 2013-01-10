@@ -368,55 +368,41 @@ a:hover
 
 /** BOOKS SECTION **/
 
-.books-with-border {
-    position: relative;
-    display: block;
-}
-
 .books {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    width: 100%;
-
 }
 
 .words {
-    position: relative;
-    display: block;
-    float: left;
+    color: #4C4C4C;
 }
 
 .words h1 {
-    padding:20px 0 0 0;
-    color:#4C4C4C;
     text-align: left;
     text-transform: uppercase;
     font-weight: 400;
-    font-size:20px;
+    font-size: 20px;
     font-family: Share;
 }
 
 .words p {
-    color: #4C4C4C;
     font-style: oblique;
 }
 
 .book {
-    position: relative;
-    display: block;
     float: left;
-    overflow: hidden;
-    margin:0 5% 0 0;
-    width:45%;
+    width: 50%;
+}
+
+.book img {
+    width: 100%;
 }
 
 .book .title, .book .author {
     font-size: 12px;
+    display: block;
+    text-align: center;
 }
 
 .book .title {
-    margin-top: 10px;
     font-weight: bold;
 }
 
