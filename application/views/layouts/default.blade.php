@@ -37,7 +37,7 @@
             <div class="row">
                 <nav>
                 <ul>
-                    <li><a href="http://forums.laravel.com">Forums</a></li>
+                    <li><a href="http://forums.laravel.io">Forums</a></li>
                 </ul>
             </nav>
                 <ul class="social">
