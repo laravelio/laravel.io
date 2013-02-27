@@ -38,6 +38,7 @@
                 <nav>
                 <ul>
                     <li><a href="http://forums.laravel.io">Forums</a></li>
+                    <li><a href="http://wiki.laravel.io">Wiki</a></li>
                 </ul>
             </nav>
                 <ul class="social">
@@ -47,7 +48,7 @@
                 </ul>
             </div>
         </div>
-  
+
 
          <header>
             <!-- <a id="showhide" href="#"><img src="{{ URL::to_asset('img/mag-glass.png') }}"></a> -->
