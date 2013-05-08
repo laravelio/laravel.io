@@ -499,7 +499,13 @@ nav li a:hover
     background-position: -87px 0;
 }
 
+.laraconlogo {
+    text-align: center;
+}
 
+.laraconlogo img {
+    width: 80%;
+}
 
 /* ==========================================================================
    EXAMPLE Media Queries for Responsive Design.

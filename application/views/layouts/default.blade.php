@@ -62,7 +62,12 @@
         </article>
 
         <aside>
-                @render('layouts._featured_books')
+            <p class="laraconlogo">
+                <a href="http://laracon.eu/">
+                    <img src="http://laracon.eu/img/laracon-logo.png" alt="Larcon 2013 Amsterdam">
+                </a>
+            </p>
+            @render('layouts._featured_books')
         </aside>
 
     </section>
