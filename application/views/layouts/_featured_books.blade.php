@@ -1,7 +1,7 @@
 <section class="books clearfix">
 
-    <div class="words">
-        <h1>Just Getting Started?</h1>
+    <div>
+        <h1>Getting Started?</h1>
         <p>Sometimes you just want simple walkthroughs to assist you in learning a new framework. Follow along in building a simple application and explore many of Laravel's most powerful features with these books.</p>
     </div>
 
