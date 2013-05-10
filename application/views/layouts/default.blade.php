@@ -77,18 +77,19 @@
     </section>
 
 
- <footer>
-    <div class="row">
-&copy; Laravel-io 2012-2013
-    </div>
-</footer>
+    <footer>
+        <div class="row">
+            &copy; Laravel-io 2012-2013
+        </div>
+    </footer>
 
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
-        <script src="{{ URL::to_asset('js/plugins.js') }}"></script>
-        <script src="{{ URL::to_asset('js/script.js') }}"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+    <script src="{{ URL::to_asset('js/plugins.js') }}"></script>
+    <script src="{{ URL::to_asset('js/script.js') }}"></script>
 
-        <div id="disqus"></div>
+    <div id="disqus"></div>
+
     </body>
 </html>
