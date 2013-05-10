@@ -39,6 +39,7 @@
                 <ul>
                     <li><a href="http://forums.laravel.io">Forums</a></li>
                     <li><a href="http://wiki.laravel.io">Wiki</a></li>
+                    <li><a href="http://irclogs.laravel.io">IRC Logs</a></li>
                 </ul>
             </nav>
                 <ul class="social">
