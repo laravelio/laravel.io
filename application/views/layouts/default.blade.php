@@ -39,8 +39,7 @@
                 <ul>
                     <li><a href="http://laravel.io">Blog</a></li>
                     <li><a href="http://forums.laravel.io">Forums</a></li>
-                    <li><a href="http://laravel.io/irc">Join #Laravel Chat</a></li>
-                    <li><a href="http://irclogs.laravel.io">View Chat Logs</a></li>
+                    <li><a href="http://laravel.io/irc">#Laravel Chat</a></li>
                     <li><a href="http://wiki.laravel.io">Wiki</a></li>
                 </ul>
             </nav>
