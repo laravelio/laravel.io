@@ -7,7 +7,7 @@
 
      <div class="book" target="_blank">
         <a href="https://leanpub.com/laravel-testing-decoded">
-            <img alt="Laravel Testing Decoded" src="{{ URL::to_asset('img/book-laravel-testing-decoded-jeffrey-way.jpg') }}">
+            <img alt="Laravel Testing Decoded" src="{{ URL::to_asset('img/book-laravel-testing-decoded-jeffrey-way.png') }}">
             <div class="title">Laravel Testing Decoded</div>
             <div class="author">by Jeffrey Way</div>
         </a>
