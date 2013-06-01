@@ -6,10 +6,10 @@
     </div>
 
      <div class="book" target="_blank">
-        <a href="http://www.packtpub.com/laravel-php-starter/book">
-            <img alt="Laravel Starter" src="{{ URL::to_asset('img/book-laravel-starter-shawn-mccool.jpg') }}">
-            <div class="title">Laravel Starter</div>
-            <div class="author">by Shawn McCool</div>
+        <a href="https://leanpub.com/laravel-testing-decoded">
+            <img alt="Laravel Testing Decoded" src="{{ URL::to_asset('img/book-laravel-testing-decoded-jeffrey-way.jpg') }}">
+            <div class="title">Laravel Testing Decoded</div>
+            <div class="author">by Jeffrey Way</div>
         </a>
     </div>
 
