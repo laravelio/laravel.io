@@ -14,9 +14,9 @@
     </div>
 
     <div class="book">
-        <a href="https://leanpub.com/codehappy" target="_blank">
-            <img alt="Laravel: Code Happy" src="{{ URL::to_asset('img/book-laravel-code-happy-dayle-rees.jpg') }}">
-            <div class="title">Code Happy</div>
+        <a href="https://leanpub.com/codebright" target="_blank">
+            <img alt="Laravel: Code Bright" src="{{ URL::to_asset('img/book-laravel-code-bright-dayle-rees.jpg') }}">
+            <div class="title">Code Bright</div>
             <div class="author">by Dayle Rees</div>
         </a>
     </div>
