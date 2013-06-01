@@ -4,6 +4,7 @@ Route::get('/', 'topics@index');
 Route::get('topic/(:any)/(:any?)', 'topics@show');
 Route::get('tag/(:any)', 'topics@tag');
 Route::get('rss', 'topics@rss');
+Route::get('irc', 'irc@index');
 
 /*
 |--------------------------------------------------------------------------
