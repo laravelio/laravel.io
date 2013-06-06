@@ -16,7 +16,7 @@
                 <time>{{ $topic->short_published_date }} -</time>
 
                 @if($topic->author)
-                    <span>{{ HTML::image($topic->author->image(16)) }} {{ $topic->author->twitter_link }}
+                    <span>{{ HTML::image($topic->author->image(16)) }}
                 @endif
 
                 - </span>
