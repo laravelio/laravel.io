@@ -37,10 +37,10 @@
             <div class="row">
                 <nav>
                 <ul>
-                    <li><a href="http://laravel.io">Blog</a></li>
+                    <li><a href="http://laravel.io">Laravel.io</a></li>
                     <li><a href="http://forums.laravel.io">Forums</a></li>
-                    <li><a href="http://laravel.io/irc">#Laravel Chat</a></li>
                     <li><a href="http://wiki.laravel.io">Wiki</a></li>
+                    <li><a href="http://laravel.io/irc">Chat</a></li>
                 </ul>
             </nav>
                 <ul class="social">
