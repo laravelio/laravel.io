@@ -20,6 +20,8 @@
             <div class="author">by Dayle Rees</div>
         </a>
     </div>
+    
+    <div class="clearfix"></div>
 
     <div class="book">
         <a href="https://leanpub.com/laravel" target="_blank">
