@@ -23,7 +23,7 @@
 
     <div class="book">
         <a href="https://leanpub.com/laravel" target="_blank">
-            <img alt="Laravel: Code Bright" src="{{ URL::to_asset('img/book-laravel-from-apprentice-to-artisan.jpg') }}">
+            <img alt="Laravel: From Apprentice To Artisan" src="{{ URL::to_asset('img/book-laravel-from-apprentice-to-artisan.jpg') }}">
             <div class="title">Laravel: From Apprentice To Artisan</div>
             <div class="author">by Taylor Otwell</div>
         </a>
