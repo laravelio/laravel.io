@@ -2,6 +2,7 @@
 
 use Validator, Eloquent;
 use Lio\Core\Exceptions\NoValidationRulesFoundException;
+use Lio\Core\Exceptions\NoValidatorInstantiatedException;
 
 class EloquentBaseModel extends Eloquent
 {
@@ -10,8 +11,8 @@ class EloquentBaseModel extends Eloquent
 
     public function isValid()
     {
-        if ( ! isset($this->validationRules) or empty($this->validationRules)) {
-            throw new NoValidationRulesFoundException('no validation rules found in class ' . get_called_class());
+        if ( ! $this->validationRules) {
+            throw new NoValidationRulesFoundException('No validation rules found in class ' . get_called_class());
         }
 
         $this->validator = Validator::make($this->getAttributes(), $this->getPreparedRules());
@@ -21,34 +22,30 @@ class EloquentBaseModel extends Eloquent
 
     public function getErrors()
     {
+        if ( ! $this->validator) {
+            throw new NoValidatorInstantiatedException;
+        }
+
         return $this->validator->errors();
     }
 
     protected function getPreparedRules()
     {
-        if ( ! $this->validationRules) {
-            return [];
-        }
-
-        $preparedRules = $this->replaceIdsIfExists($this->validationRules);
-
-        return $preparedRules;
+        return $this->replaceIdsIfExists($this->validationRules);
     }
 
     protected function replaceIdsIfExists($rules)
     {
-        $preparedRules = [];
+        $newRules = [];
 
         foreach ($rules as $key => $rule) {
-            if (false !== strpos($rule, "<id>")) {
-                if ($this->exists) {
-                    $rule = str_replace("<id>", $this->getAttribute($this->primaryKey), $rule);
-                } else {
-                    $rule = str_replace("<id>", "", $rule);
-                }
+            if (str_contains($rule, '<id>')) {
+                $replacement = $this->exists ? $this->getAttribute($this->primaryKey) : '';
+
+                $rule = str_replace('<id>', $replacement, $rule);
             }
 
-            $preparedRules[$key] = $rule;
+            array_set($newRules, $key, $rule)
         }
 
         return $preparedRules;
