@@ -1,1 +1,1 @@
-{{ $contact }}
+{{ $content }}

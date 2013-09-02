@@ -115,7 +115,6 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
-		'Lio\ServiceProviders\Markdown',
 	),
 
 	/*
