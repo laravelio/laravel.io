@@ -10,7 +10,7 @@ class Role extends EloquentBaseModel; {
     protected $fillable = ['name', 'description'];
 
     protected $validationRules = [
-        'name' => 'required|exists:roles,<id>',
+        'name' => 'required|exists:roles,<name>',
     ];
 
     public function users()
