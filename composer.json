@@ -3,6 +3,7 @@
     "require": {
         "laravel/framework": "4.0.*",
         "dflydev/markdown": "1.0.*@dev",
+        "lusitanian/oauth": "~0.2",
         "mccool/laravel-auto-presenter": "*"
     },
     "autoload": {
