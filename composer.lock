@@ -3,8 +3,56 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c87c60d6300500f80a9d06e3d0718f3f",
+    "hash": "d7ec06d71310b5a1b2983cebced5e53e",
     "packages": [
+        {
+            "name": "artdarek/oauth-4-laravel",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/artdarek/oauth-4-laravel.git",
+                "reference": "8702f9bdab942c2accb0d7ff718459c39f99ea5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/artdarek/oauth-4-laravel/zipball/8702f9bdab942c2accb0d7ff718459c39f99ea5e",
+                "reference": "8702f9bdab942c2accb0d7ff718459c39f99ea5e",
+                "shasum": ""
+            },
+            "require": {
+                "lusitanian/oauth": "dev-master",
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "illuminate/support": "4.0.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Artdarek\\OAuth": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Artdarek",
+                    "email": "artdarek@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "OAuth Service Provider for Laravel 4",
+            "homepage": "https://github.com/artdarek/oauth-4-laravel",
+            "keywords": [
+                "Lusitanian",
+                "laravel",
+                "oauth",
+                "php"
+            ],
+            "time": "2013-08-29 12:25:11"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "1.0.1",
@@ -1935,7 +1983,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "dflydev/markdown": 20,
-        "lusitanian/oauth": 20
+        "artdarek/oauth-4-laravel": 20
     },
     "platform": [
 
