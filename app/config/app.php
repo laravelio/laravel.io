@@ -116,6 +116,7 @@ return array(
 
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
+		'Lio\ServiceProviders\GitHub',
 		'Lio\ServiceProviders\Markdown',
 	),
 
@@ -183,6 +184,7 @@ return array(
 		'View'        => 'Illuminate\Support\Facades\View',
 
 		'OAuth'       => 'Artdarek\OAuth\Facade\OAuth',
+		'GitHub'      => 'Lio\GitHub\GitHubFacade',
 	),
 
 );
