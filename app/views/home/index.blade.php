@@ -1,1 +1,1 @@
-home view
+Hello!
