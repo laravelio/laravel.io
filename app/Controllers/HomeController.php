@@ -4,6 +4,6 @@ class HomeController extends BaseController
 {
 	public function getIndex()
 	{
-		return $this->view('home.index');
+		$this->view('home.index');
 	}
 }

@@ -28,7 +28,7 @@ $app->redirectIfTrailingSlash();
 
 $env = $app->detectEnvironment(array(
 	'local'      => ['quantal64'],
-    'production' => ['heybigname.com'],
+    'production' => ['laravel.io'],
 ));
 
 /*
