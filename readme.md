@@ -2,15 +2,15 @@
 
 This is the Laravel.IO community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
 
-# Requirements
+### Requirements
 
 1. PHP 5.4
 
-# Recommended
+### Recommended
 
 1. Vagrant
 
-# Local Installation
+### Local Installation
 
 Here are the steps for installation on a local machine using the officially endorsed workflow.
 
@@ -20,14 +20,14 @@ Here are the steps for installation on a local machine using the officially endo
 4. run the install vagrant script
 5. ssh into the vagrant box and run the update environment script
 
-# Workflow
+### Workflow
 
 When you'd like to work on the application, run vagrant up. When you're finished, run vagrant suspend.
 
 When you'd like to access the database, connect to host app.local port 3306 using the user/password root/password.
 
-# Troubleshooting
+### Troubleshooting
 
-*I'm getting an error about running a 64bit VM on a 32bit machine*
+**I'm getting an error about running a 64bit VM on a 32bit machine**
 
 You probably don't have hardware virtualization support enabled in your computer's BIOS.
