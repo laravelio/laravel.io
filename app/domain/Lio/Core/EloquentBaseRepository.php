@@ -1,5 +1,6 @@
 <?php namespace Lio\Core;
 
+use Illuminate\Database\Eloquent\Model;
 use Lio\Core\Exceptions\EntityNotFoundException;
 
 abstract class EloquentBaseRepository
@@ -52,9 +53,9 @@ abstract class EloquentBaseRepository
         return $this->model->newInstance($attributes);
     }
 
-    public function store($data)
+    public function save($data)
     {
-        if ($data instanceOf \Eloquent) {
+        if ($data instanceOf Model) {
             $this->storeEloquentModel($data);
         } elseif (is_array($data)) {
             $this->storeArray($data);

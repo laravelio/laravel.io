@@ -11,8 +11,8 @@ abstract class EloquentBaseModel extends Eloquent
 
     public function isValid()
     {
-        if ( ! $this->validationRules) {
-            throw new NoValidationRulesFoundException('No validation rules found in class ' . get_called_class());
+        if ( ! isset($this->validationRules)) {
+            throw new NoValidationRulesFoundException('no validation rule array defined in class ' . get_called_class());
         }
 
         $this->validator = Validator::make($this->getAttributes(), $this->getPreparedRules());

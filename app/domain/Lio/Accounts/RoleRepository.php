@@ -8,4 +8,9 @@ class RoleRepository extends EloquentBaseRepository
     {
         $this->model = $model;
     }
+
+    public function getRoleList()
+    {
+        return $this->model->lists('name', 'id');
+    }
 }

@@ -2,19 +2,24 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Lio\Core\EloquentBaseModel;
 use GitHub;
 use Eloquent;
 
-class User extends Eloquent implements UserInterface, RemindableInterface
+class User extends EloquentBaseModel implements UserInterface, RemindableInterface
 {
     const STATE_ACTIVE  = 1;
     const STATE_BLOCKED = 2;
 
     protected $table    = 'users';
     protected $hidden   = ['github_id'];
-    protected $fillable = ['email', 'name', 'github_url', 'github_id'];
+    protected $fillable = ['email', 'name', 'github_url', 'github_id', 'is_banned'];
 
-    protected $rolesCache;
+    public $presenter = 'Lio\Accounts\UserPresenter';
+
+    protected $validationRules = [];
+
+    private $rolesCache;
 
     // Roles
     public function roles()
@@ -46,10 +51,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         $roleList = \App::make('Lio\Accounts\RoleRepository')->getRoleList();
 
         foreach ((array) $roleNames as $allowedRole) {
+            // validate that the role exists
             if ( ! in_array($allowedRole, $roleList)) {
                 throw new InvalidRoleException("Unidentified role: {$allowedRole}");
             }
 
+            // validate that the user has the role
             if ( ! $this->roleCollectionHasRole($allowedRole)) {
                 return false;
             }
