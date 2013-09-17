@@ -1,5 +1,7 @@
 <?php
 
-Route::get('/', 'Controllers\Home@getIndex');
+Route::get('/', 'Controllers\HomeController@getIndex');
 
-Route::controller('oauth', 'Controllers\Oauth');
+Route::get('login', 'Controllers\AuthController@getLogin');
+Route::get('logout', 'Controllers\AuthController@getLogout');
+Route::get('oauth', 'Controllers\AuthController@getOauth');

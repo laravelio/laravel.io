@@ -1,6 +1,6 @@
 <?php namespace Controllers;
 
-class Home extends Base
+class HomeController extends BaseController
 {
 	public function getIndex()
 	{

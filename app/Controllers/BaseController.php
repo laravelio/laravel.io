@@ -2,7 +2,7 @@
 
 use Controller, View, Redirect;
 
-class Base extends Controller
+class BaseController extends Controller
 {
     protected $layout = 'layouts.default';
 

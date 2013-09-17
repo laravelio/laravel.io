@@ -3,7 +3,7 @@
 use Lio\Blog\Post;
 use Lio\Blog\Category;
 
-class Posts extends Base
+class PostsController extends BaseController
 {
     public function getIndex()
     {

@@ -48,7 +48,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'heybigname_production',
+			'database'  => 'lio_development',
 			'username'  => 'root',
 			'password'  => 'password',
 			'charset'   => 'utf8',

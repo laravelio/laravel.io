@@ -41,7 +41,7 @@ Vagrant::Config.run do |config|
             },
             "databases" => {
                 "create" => [
-                    "sterling_development", "lio_development"
+                    "lio_development"
                 ]
             },
             "sites" => ["default"]
