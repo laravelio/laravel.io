@@ -28,20 +28,8 @@ Now, we must install the oauth configuration.
     <?php
 
     return [
-        /*
-        |--------------------------------------------------------------------------
-        | oAuth Config
-        |--------------------------------------------------------------------------
-        */
-
-        /**
-         * Storage
-         */
         'storage' => 'Session',
 
-        /**
-         * Consumers
-         */
         'consumers' => [
             'GitHub' => [
                 'client_id'     => '',
