@@ -7,7 +7,7 @@ Vagrant::Config.run do |config|
 
     config.vm.network :hostonly, "10.10.10.10"
 
-    config.vm.share_folder("vagrant-root", "/vagrant", ".", :extra => 'dmode=777,fmode=777')
+    config.vm.share_folder("vagrant-root", "/vagrant", ".", :mount_options => ["dmode=777","fmode=777"])
 
     config.vm.provision :chef_solo do |chef|
 
