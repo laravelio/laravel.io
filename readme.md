@@ -15,16 +15,24 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 Here are the steps for installation on a local machine using the officially endorsed workflow.
 
 1. install Vagrant, Chef and VirtualBox from their websites. NOT from package managers. If you install any of these from package managers, please do not ask for help or support when things break, which will VERY likely happen.
-2. add "10.10.10.10 app.local" to your HOSTS file
+2. add "10.10.10.10 app.local" to your HOSTS file. Instructions below for Linux.
+    echo "10.10.10.10 app.local" | sudo tee -a /etc/hosts
 3. clone down this repository
+    git clone git@github.com:ShawnMcCool/laravel-io.git
 4. run the install vagrant script
-5. ssh into the vagrant box (vagrant ssh), cd /vagrant, and run the update environment script
+    bash ./install_vagrant.sh
+5. ssh into the vagrant box and run the update environment script
+    vagrant ssh
+    cd /vagrant
+    bash ./update_environment.sh
 
 Now, we must install the oauth configuration.
 
 1. ssh into the vagrant box (vagrant ssh) and cd /vagrant
 2. create the configuration file below at app/config/packages/artdarek/oauth-4-laravel/config.php
-3. if you haven't already, create an application in your github account called something like "Laravel IO Development" and add your GH application's client id and secret to this config file. The application's callback URL needs to be: http://app.local/login
+3. Create an application in your github account called something like "Laravel IO Development" and add your GH application's client id and secret to this config file. Your GitHub Application should be set up as follows:
+    a. Full URL: http://app.local
+    b. Callback URL: http://app.local/login
 
 ```PHP
 <?php
