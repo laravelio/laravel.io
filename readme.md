@@ -69,6 +69,8 @@ Access the application at the URL: http://app.local/ (the trailing front-slash t
 
 When you'd like to access the database, connect to host app.local port 3306 using the user/password root/password.
 
+After pulling down changes, ssh into the vagrant box and run the update_environment.sh script.
+
 ### Troubleshooting
 
 **I'm getting an error about running a 64bit VM on a 32bit machine**

@@ -45,9 +45,9 @@ abstract class EloquentBaseModel extends Eloquent
                 $rule = str_replace('<id>', $replacement, $rule);
             }
 
-            array_set($newRules, $key, $rule)
+            array_set($newRules, $key, $rule);
         }
 
-        return $preparedRules;
+        return $newRules;
     }
 }

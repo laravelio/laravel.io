@@ -1,6 +1,7 @@
 <?php namespace Controllers;
 
 use Lio\Blog\PostRepository;
+use Lio\Blog\CategoryRepository;
 
 class PostsController extends BaseController
 {

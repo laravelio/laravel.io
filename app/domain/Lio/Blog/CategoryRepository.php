@@ -2,9 +2,9 @@
 
 use Lio\Core\EloquentBaseRepository;
 
-class PostRepository extends EloquentBaseRepository
+class CategoryRepository extends EloquentBaseRepository
 {
-    public function __construct(Post $model)
+    public function __construct(Category $model)
     {
         $this->model = $model;
     }

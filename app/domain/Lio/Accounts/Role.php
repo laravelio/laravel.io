@@ -2,11 +2,10 @@
 
 use Lio\Core\EloquentBaseModel;
 
-class Role extends EloquentBaseModel; {
+class Role extends EloquentBaseModel
+{
+    protected $table = 'roles';
 
-    protected $table      = 'roles';
-    protected $softDelete = true;
-    
     protected $fillable = ['name', 'description'];
 
     protected $validationRules = [
@@ -17,5 +16,4 @@ class Role extends EloquentBaseModel; {
     {
         $this->belongsToMany('Lio\Accounts\User');
     }
-
 }
