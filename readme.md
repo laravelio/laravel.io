@@ -1,21 +1,33 @@
-## Laravel PHP Framework
+## Laravel.IO Community Portal
 
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework)
+This is the Laravel.IO community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+# Requirements
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+1. PHP 5.4
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+# Recommended
 
-## Official Documentation
+1. Vagrant
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+# Local Installation
 
-### Contributing To Laravel
+Here are the steps for installation on a local machine using the officially endorsed workflow.
 
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+1. install Vagrant, Chef and VirtualBox from their websites. NOT from package managers. If you install any of these from package managers, please do not ask for help or support when things break, which will VERY likely happen.
+2. add "10.10.10.10 app.local" to your HOSTS file
+3. clone down this repository
+4. run the install vagrant script
+5. ssh into the vagrant box and run the update environment script
 
-### License
+# Workflow
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+When you'd like to work on the application, run vagrant up. When you're finished, run vagrant suspend.
+
+When you'd like to access the database, connect to host app.local port 3306 using the user/password root/password.
+
+# Troubleshooting
+
+*I'm getting an error about running a 64bit VM on a 32bit machine*
+
+You probably don't have hardware virtualization support enabled in your computer's BIOS.

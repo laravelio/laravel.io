@@ -10,8 +10,10 @@ fi
 # have to run this before any laravel code is run
 php ./composer.phar dump-autoload
 
-# delete compiled cache
-rm bootstrap/compiled.php
+# delete compiled classes file
+if [ ! -n bootstrap/compiled.php ]; then
+    rm bootstrap/compiled.php
+fi
 
 # bring up the maintenance site
 if [ `hostname -s` != "quantal64" ]; then
@@ -39,5 +41,3 @@ if [ `hostname -s` != "quantal64" ]; then
 fi
 
 exit 0
-
-
