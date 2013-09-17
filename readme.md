@@ -30,7 +30,9 @@ Here are the steps for installation on a local machine using the officially endo
 5. ssh into the vagrant box and run the update environment script
     ```
     vagrant ssh
+
     cd /vagrant
+
     bash ./update_environment.sh
     ```
 
@@ -40,6 +42,7 @@ Now, we must install the oauth configuration.
 2. create the configuration file below at app/config/packages/artdarek/oauth-4-laravel/config.php
 3. Create an application in your github account called something like "Laravel IO Development" and add your GH application's client id and secret to this config file. Your GitHub Application should be set up as follows:
     a. Full URL: http://app.local
+
     b. Callback URL: http://app.local/login
 
 ```PHP
