@@ -18,7 +18,7 @@ Here are the steps for installation on a local machine using the officially endo
 2. add "10.10.10.10 app.local" to your HOSTS file. Instructions below for Linux.
     echo "10.10.10.10 app.local" | sudo tee -a /etc/hosts
 3. clone down this repository
-    git clone git@github.com:ShawnMcCool/laravel-io.git
+    git clone git@github.com:LaravelIO/laravel-io.git
 4. run the install vagrant script
     bash ./install_vagrant.sh
 5. ssh into the vagrant box and run the update environment script
