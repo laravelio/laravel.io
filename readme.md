@@ -16,30 +16,23 @@ Here are the steps for installation on a local machine using the officially endo
 
 1. install Vagrant, Chef and VirtualBox from their websites. NOT from package managers. If you install any of these from package managers, please do not ask for help or support when things break, which will VERY likely happen. Additionl information can be found here: https://github.com/ShawnMcCool/vagrant-chef
 2. add "10.10.10.10 app.local" to your HOSTS file. Instructions below for Linux.
-
-```
-echo "10.10.10.10 app.local" | sudo tee -a /etc/hosts
-```
-
+    ```
+    echo "10.10.10.10 app.local" | sudo tee -a /etc/hosts
+    ```
 3. clone down this repository
-
-```
-git clone git@github.com:LaravelIO/laravel-io.git
-```
-
+    ```
+    git clone git@github.com:LaravelIO/laravel-io.git
+    ```
 4. run the install vagrant script
-
-```
-bash ./install_vagrant.sh
-```
-
+    ```
+    bash ./install_vagrant.sh
+    ```
 5. ssh into the vagrant box and run the update environment script
-
-```
-vagrant ssh
-cd /vagrant
-bash ./update_environment.sh
-```
+    ```
+    vagrant ssh
+    cd /vagrant
+    bash ./update_environment.sh
+    ```
 
 Now, we must install the oauth configuration.
 
