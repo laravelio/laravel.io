@@ -1,27 +1,35 @@
 <?php namespace Controllers;
 
-use Lio\Blog\Post;
-use Lio\Blog\Category;
+use Lio\Blog\PostRepository;
 
 class PostsController extends BaseController
 {
+    private $posts;
+    private $categories;
+
+    public function __construct(PostRepository $posts, CategoryRepository $categories)
+    {
+        $this->posts = $posts;
+        $this->categories = $categories;
+    }
+
     public function getIndex()
     {
-        $posts = Post::orderBy('published_at', 'desc')->where('show_in_index', '=', 1)->get();
-        $navCategories = Category::all();
+        $posts = $this->posts->getAll();
+        $navCategories = $this->categories->getAll();;
 
-        return $this->view('posts.index', compact('posts', 'navCategories'));
+        $this->view('posts.index', compact('posts', 'navCategories'));
     }
 
     public function getShow($post)
     {
-        return $this->view('posts.show', compact('post'));
+        $this->view('posts.show', compact('post'));
     }
 
     public function getCategory($category)
     {
-        $navCategories = Category::all();
+        $navCategories = $this->categories->getAll();
 
-        return $this->view('posts.category', compact('category', 'navCategories'));
+        $this->view('posts.category', compact('category', 'navCategories'));
     }
 }

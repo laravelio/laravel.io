@@ -1,29 +1,36 @@
 <?php namespace Controllers;
 
-use Lio\Accounts\User;
+use Lio\Accounts\UserRepository;
 use GitHub;
-use Auth, Input, Log, Redirect;
+use Auth, Input, Log;
 
 class AuthController extends BaseController
 {
+    private $users;
+
+    public function __construct(UserRepository $users)
+    {
+        $this->users = $users;
+    }
+
     public function getLogin()
     {
         if (Input::has('code')) {
-            $user = User::getByOauthCode(Input::get('code'));
+            $user = $this->users->getByOauthCode(Input::get('code'));
 
             Auth::login($user);
 
-            return Redirect::to('');
+            return $this->redirectAction('Controllers\HomeController@getIndex');
         }
 
         // redirect to GitHub for oauth approval
-        return Redirect::to((string) GitHub::getAuthorizationUri());
+        return $this->redirectTo((string) GitHub::getAuthorizationUri());
     }
 
     public function getLogout()
     {
         Auth::logout();
 
-        return Redirect::to('');
+        return $this->redirectAction('Controllers\HomeController@getIndex');
     }
 }

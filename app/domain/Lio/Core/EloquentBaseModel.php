@@ -4,7 +4,7 @@ use Validator, Eloquent;
 use Lio\Core\Exceptions\NoValidationRulesFoundException;
 use Lio\Core\Exceptions\NoValidatorInstantiatedException;
 
-class EloquentBaseModel extends Eloquent
+abstract class EloquentBaseModel extends Eloquent
 {
     protected $validationRules = [];
     protected $validator;

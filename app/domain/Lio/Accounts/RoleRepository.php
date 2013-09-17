@@ -2,11 +2,10 @@
 
 use Lio\Core\EloquentBaseRepository;
 
-class RoleRepository extends EloquentBaseRepository {
-
-    public function __construct(Role $role)
+class RoleRepository extends EloquentBaseRepository
+{
+    public function __construct(Role $model)
     {
-        $this->hasModel($role);
+        $this->model = $model;
     }
-
 }

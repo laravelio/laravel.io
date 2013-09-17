@@ -25,9 +25,7 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-    if ( ! Session::has('oauth_access_token')) return false;
-
-
+    if (Auth::guest()) return false;
 });
 
 
@@ -58,4 +56,14 @@ Route::filter('csrf', function()
     if (Session::token() != Input::get('_token')) {
         throw new Illuminate\Session\TokenMismatchException;
     }
+});
+
+Route::filter('has_role', function($route, $request, $parameters) {
+    $allowedRoles = explode(',', $parameters);
+
+    if (Auth::check() and Auth::user()->hasRoles($allowedRoles)) {
+        return;
+    }
+
+    throw new Lio\Core\Exceptions\NotAuthorizedException(Auth::user()->name . ' does not have the required role(s): ' . $parameters);
 });

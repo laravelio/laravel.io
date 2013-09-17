@@ -18,6 +18,11 @@ class BaseController extends Controller
         $this->layout->content = View::make($path, $data);
     }
 
+    protected function redirectTo($url, $statusCode = 302)
+    {
+        return Redirect::to($url, $statusCode);
+    }
+
     protected function redirectAction($action, $data = [])
     {
         return Redirect::action($action, $data);

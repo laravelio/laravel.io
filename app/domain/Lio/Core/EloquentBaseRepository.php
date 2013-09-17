@@ -2,7 +2,7 @@
 
 use Lio\Core\Exceptions\EntityNotFoundException;
 
-class EloquentBaseRepository
+abstract class EloquentBaseRepository
 {
     protected $model;
 
