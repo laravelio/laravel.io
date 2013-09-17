@@ -18,7 +18,9 @@ class AuthController extends BaseController
         if (Input::has('code')) {
             $user = $this->users->getByOauthCode(Input::get('code'));
 
-            Auth::login($user);
+            if ( ! $user->is_banned) {
+                Auth::login($user);
+            }
 
             return $this->redirectAction('Controllers\HomeController@getIndex');
         }
