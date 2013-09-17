@@ -1,4 +1,4 @@
-<?php namesapce Lio\Accounts;
+<?php namespace Lio\Accounts;
 
 use Lio\Core\EloquentBaseRepository;
 

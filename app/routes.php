@@ -9,7 +9,12 @@ Route::get('oauth', 'Controllers\AuthController@getOauth');
 Route::controller('posts', 'Controllers\PostsController');
 
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {
+
     Route::group(['before' => 'has_role:manage_posts'], function() {
         Route::controller('posts', 'Controllers\Admin\PostsController');
+    });
+
+    Route::group(['before' => 'has_role:manage_users'], function() {
+        Route::controller('users', 'Controllers\Admin\UsersController');
     });
 });
