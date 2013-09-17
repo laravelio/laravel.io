@@ -25,19 +25,21 @@ Now, we must install the oauth configuration.
 1. ssh into the vagrant box (vagrant ssh) and cd /vagrant
 2. create the configuration file at app/config/packages/artdarek/oauth-4-laravel/config.php
 
-    <?php
+```PHP
+<?php
 
-    return [
-        'storage' => 'Session',
+return [
+    'storage' => 'Session',
 
-        'consumers' => [
-            'GitHub' => [
-                'client_id'     => '',
-                'client_secret' => '',
-                'scope'         => ['user'],
-            ],
+    'consumers' => [
+        'GitHub' => [
+            'client_id'     => '',
+            'client_secret' => '',
+            'scope'         => ['user'],
         ],
-    ];
+    ],
+];
+```
 
 3. if you haven't already, create an application in your github account called something like "Laravel IO Development" and add your GH application's client id and secret to this config file.
 
