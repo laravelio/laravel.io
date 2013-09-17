@@ -46,6 +46,8 @@ return [
 
 When you'd like to work on the application, run vagrant up. When you're finished, run vagrant suspend.
 
+Access the application at the URL: http://app.local/ (the trailing front-slash tends to be required for .local tlds in most browsers).
+
 When you'd like to access the database, connect to host app.local port 3306 using the user/password root/password.
 
 ### Troubleshooting
