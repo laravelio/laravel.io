@@ -7,5 +7,3 @@ public/.sass-cache
 tags
 app/tests/_log/*
 app/tests/_data/*
-app/storage/work/*
-app/storage/matcher/*
