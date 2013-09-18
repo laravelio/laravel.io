@@ -7,7 +7,7 @@ Vagrant::Config.run do |config|
 
     config.vm.network :hostonly, "10.10.10.10"
 
-    config.vm.share_folder("vagrant-root", "/vagrant", ".", :mount_options => ["dmode=777","fmode=777"])
+    config.vm.share_folder("vagrant-root", "/vagrant", ".", :owner => "vagrant", :group => "www-data")
 
     config.vm.provision :chef_solo do |chef|
 
@@ -47,12 +47,5 @@ Vagrant::Config.run do |config|
             "sites" => ["default"]
         })
 
-    end
-end
-
-Vagrant::Config.run do |config|
-    # permissions for the application's storage folder
-    config.vm.provision :shell do |shell|
-        shell.inline = "chmod 777 -R /vagrant/app/storage"
     end
 end

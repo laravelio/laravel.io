@@ -5,10 +5,11 @@ use Lio\Core\EloquentBaseModel;
 class Paste extends EloquentBaseModel {
 
     protected $table    = 'pastes';
-    protected $fillable = ['content'];
+    protected $fillable = ['description', 'code', 'author_id', 'parent_id'];
+    protected $with     = ['comments'];
 
     protected $validationRules = [
-        'content' => 'required',
+        'code' => 'required',
     ];
 
     public function comments()
@@ -16,4 +17,8 @@ class Paste extends EloquentBaseModel {
         return $this->hasMany('Lio\Bin\Comment');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo('Lio\Bin\Paste', 'parent_id');
+    }
 }

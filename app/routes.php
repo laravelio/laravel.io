@@ -7,6 +7,7 @@ Route::get('logout', 'Controllers\AuthController@getLogout');
 Route::get('oauth', 'Controllers\AuthController@getOauth');
 
 Route::controller('posts', 'Controllers\PostsController');
+Route::controller('pastes', 'Controllers\PastesController');
 
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {
 

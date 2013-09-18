@@ -5,11 +5,11 @@ use Lio\Core\EloquentBaseModel;
 class Comment extends EloquentBaseModel {
 
     protected $table    = 'paste_comments';
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['comment', 'author_id'];
 
     protected $validatorRules = [
-        'title'   => 'required',
-        'content' => 'required',
+        'comment'   => 'required',
+        'author_id' => 'required|exists:users,id',
     ];
 
     public function paste()
