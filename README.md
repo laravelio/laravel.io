@@ -71,6 +71,10 @@ When you'd like to access the database, connect to host app.local port 3306 usin
 
 After pulling down changes, ssh into the vagrant box and run the update_environment.sh script.
 
+### Contribution
+
+Please consult [The Vision Document](VISION.md) which contains contribution standards and an outline of the general vision of the application.
+
 ### Troubleshooting
 
 **I'm getting an error about running a 64bit VM on a 32bit machine**
