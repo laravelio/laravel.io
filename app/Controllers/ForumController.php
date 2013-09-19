@@ -24,4 +24,24 @@ class ForumController extends BaseController
 
         $this->view('forum.category', compact('forumCategory'));
     }
+
+    public function getThread($thread)
+    {
+        dd($thread);
+    }
+
+    public function postThread($thread)
+    {
+
+    }
+
+    public function getCreateThread()
+    {
+
+    }
+
+    public function postCreateThread()
+    {
+
+    }
 }
