@@ -38,8 +38,8 @@ class BaseController extends Controller
         return Redirect::back()->withInput()->with($data);
     }
 
-    protected function redirectIntended($defaultAction = null)
+    protected function redirectIntended($default = null)
     {
-        return Redirect::intended($defaultAction);
+        return Redirect::intended($default);
     }
 }

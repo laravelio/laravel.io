@@ -11,6 +11,7 @@
 </head>
 <body>
 
+@include('layouts._flash')
 @include('layouts._top_nav')
 <!-- Load Content -->
 {{ $content }}

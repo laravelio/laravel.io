@@ -5,8 +5,7 @@ use Lio\Core\FormBase;
 class ThreadForm extends FormBase
 {
     protected $validationRules = [
-        'title'     => 'required|min:10',
-        'body'      => 'required',
-        'author_id' => 'required|exists:users,id',
+        'title' => 'required|min:10',
+        'body'  => 'required',
     ];
 }

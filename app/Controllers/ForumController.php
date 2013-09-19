@@ -1,15 +1,20 @@
 <?php namespace Controllers;
 
 use Lio\Forum\ForumCategoryRepository;
-use App;
+use Lio\Comments\CommentRepository;
+use App, Auth, Input;
 
 class ForumController extends BaseController
 {
     private $categories;
+    private $comments;
 
-    public function __construct(ForumCategoryRepository $categories)
+    public function __construct(ForumCategoryRepository $categories, CommentRepository $comments)
     {
         $this->categories = $categories;
+        $this->comments   = $comments;
+
+        $this->beforeFilter('auth', ['only' => ['getCreateThread', 'postCreateThread', 'postThread']]);
     }
 
     public function getIndex()
@@ -53,6 +58,18 @@ class ForumController extends BaseController
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
-        die('cat');
+        $comment = $this->comments->getNew([
+            'title'     => Input::get('title'),
+            'body'      => Input::get('body'),
+            'author_id' => Auth::user()->id,
+        ]);
+
+        if ( ! $comment->isValid()) {
+            return $this->redirectBack(['errors' => $comment->getErrors()]);
+        }
+
+        $category->rootThreads()->save($comment);
+
+        die('saved');
     }
 }

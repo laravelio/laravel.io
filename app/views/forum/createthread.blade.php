@@ -12,6 +12,7 @@
                 <div class="small-1 columns">
                     {{ Form::label('title', 'Title') }}
                     {{ Form::text('title') }}
+                    {{ $errors->first('title', '<small class="error">:message</small>') }}
                 </div>
             </div>
 
@@ -19,6 +20,7 @@
                 <div class="small-1 columns">
                     {{ Form::label('body', 'Thread') }}
                     {{ Form::textarea('body') }}
+                    {{ $errors->first('body', '<small class="error">:message</small>') }}
                 </div>
             </div>
         </fieldset>

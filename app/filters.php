@@ -25,7 +25,7 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-    if (Auth::guest()) return false;
+    if (Auth::guest()) return Redirect::action('Controllers\AuthController@getSignup');
 });
 
 

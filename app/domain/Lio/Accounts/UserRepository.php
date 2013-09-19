@@ -10,32 +10,18 @@ class UserRepository extends EloquentBaseRepository
         $this->model = $model;
     }
 
-    public function getByOauthCode($code)
+    public function getByGithubId($id)
     {
-        // retreive the oauth token
-        $oauthTokenObject = GitHub::requestAccessToken($code);
+        return $this->model->where('github_id', '=', $id)->first();
+    }
 
-        // acquire the relevant user information
-        $githubUser = json_decode(GitHub::request('user'), true);
-        list($githubEmail) = json_decode(GitHub::request('user/emails'), true);
-        $githubUser['email'] = $githubEmail;
-
-        // create or update / the user
-        $user = User::where('github_id', '=', $githubUser['id'])->first();
-
-        if ( ! $user) {
-            $user = new User;
-        }
-
+    public function updateFromGithubData($user, $githubUser)
+    {
         $user->fill([
             'name'               => $githubUser['name'],
             'email'              => $githubUser['email'],
             'github_id'          => $githubUser['id'],
             'github_url'         => $githubUser['html_url'],
         ]);
-
-        $user->save();
-
-        return $user;
     }
 }
