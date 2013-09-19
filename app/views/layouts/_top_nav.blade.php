@@ -17,7 +17,7 @@
             </li>
 
             <li>
-                <a href="#">Forum</a>
+                <a href="{{ action('Controllers\ForumController@getIndex') }}">Forum</a>
             </li>
 
             <li>
