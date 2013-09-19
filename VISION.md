@@ -49,8 +49,13 @@ Special care must be taken when removing pastes that have forked children. The a
 ### Pastebin Hashing
 The Pastebin is not considered to be a secure way to store data. I see no reason to attempt to make it such. The hashids library should probably be used for this.
 
-### News / Articles Distinction
-News and articles should be distinguished in the front-end. The algorithms that distinguish them in the back-end is unimportant. Articles
+### User Profile Page
+
+Every authenticated user will have a profile page. This page shows any articles that the user has made and can double as a blog page for that user.
+
+### Posts
+
+All authenticated users have the ability to create their own posts. These posts can be tagged. The tagged posts can be viewed at the user's profile page.
 
 ### Article Use
 1. user navigates to the articles section of the site

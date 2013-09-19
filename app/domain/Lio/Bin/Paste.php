@@ -12,11 +12,6 @@ class Paste extends EloquentBaseModel {
         'code' => 'required',
     ];
 
-    public function comments()
-    {
-        return $this->hasMany('Lio\Bin\Comment');
-    }
-
     public function parent()
     {
         return $this->belongsTo('Lio\Bin\Paste', 'parent_id');
