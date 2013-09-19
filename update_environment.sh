@@ -26,9 +26,11 @@ php ./composer.phar install --no-scripts
 # migrate and seed both databases
 if [ `hostname -s` != "quantal64" ]; then
     php artisan migrate --env=production
+    php artisan migrate --package=mccool/laravel-slugs --env=production
     php artisan db:seed --env=production
 else
     php artisan migrate --env=local
+    php artisan migrate --package=mccool/laravel-slugs --env=local
     php artisan db:seed --env=local
 fi
 

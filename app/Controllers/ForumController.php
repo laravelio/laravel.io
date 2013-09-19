@@ -34,7 +34,7 @@ class ForumController extends BaseController
     public function getThread($categorySlug)
     {
         $thread = App::make('slugModel');
-
+        $thread->load(['owner', 'children']);
 
         $this->view('forum.thread', compact('thread'));
     }

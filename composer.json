@@ -4,7 +4,8 @@
         "laravel/framework": "4.0.*",
         "dflydev/markdown": "1.0.*@dev",
         "artdarek/oauth-4-laravel": "dev-master",
-        "mccool/laravel-auto-presenter": "*"
+        "mccool/laravel-auto-presenter": "dev-master",
+        "mccool/laravel-slugs": "dev-master"
     },
     "autoload": {
         "classmap": [

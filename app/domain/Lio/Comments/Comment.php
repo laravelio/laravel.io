@@ -9,6 +9,8 @@ class Comment extends EloquentBaseModel implements SlugInterface
     protected $table    = 'comments';
     protected $fillable = ['title', 'body', 'author_id', 'parent_id'];
 
+    public $presenter = 'Lio\Comments\CommentPresenter';
+
     protected $validatorRules = [
         'body'      => 'required',
         'author_id' => 'required|exists:users,id',

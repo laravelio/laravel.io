@@ -7,8 +7,9 @@
 @if($category->rootThreads->count() > 0)
     <ul>
         @foreach($category->rootThreads as $thread)
+        {{ $thread->forumThreadUrl }}
             <li>
-                {{ $thread->title }}
+                <a href="{{ $thread->forumThreadUrl }}">{{ $thread->title }}</a>
             </li>
         @endforeach
     </ul>

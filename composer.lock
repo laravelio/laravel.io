@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d7ec06d71310b5a1b2983cebced5e53e",
+    "hash": "529e813884745715d1076c78b982dd29",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -442,35 +442,30 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "dev-master",
+            "version": "2.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "8f119eea05d61ef85396201ae5e5df49bdc2f29f"
+                "reference": "814e53d0c538a995e3a36452710d4c039f6c2723"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/8f119eea05d61ef85396201ae5e5df49bdc2f29f",
-                "reference": "8f119eea05d61ef85396201ae5e5df49bdc2f29f",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/814e53d0c538a995e3a36452710d4c039f6c2723",
+                "reference": "814e53d0c538a995e3a36452710d4c039f6c2723",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": "2.4.*@beta",
+                "doctrine/common": "~2.4",
                 "php": ">=5.3.2"
             },
             "require-dev": {
                 "phpunit/phpunit": "3.7.*",
-                "symfony/console": "2.*"
+                "symfony/console": "~2.0"
             },
             "suggest": {
                 "symfony/console": "Allows use of the command line interface"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.5.x-dev"
-                }
-            },
             "autoload": {
                 "psr-0": {
                     "Doctrine\\DBAL\\": "lib/"
@@ -508,7 +503,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-09-15 19:03:20"
+            "time": "2013-09-08 07:51:49"
         },
         {
             "name": "doctrine/inflector",
@@ -731,12 +726,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "9857193607b53373c078eb591771779d9f3812d8"
+                "reference": "11d3e9850dc6139850d5e81c71067ae2d7a894d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/9857193607b53373c078eb591771779d9f3812d8",
-                "reference": "9857193607b53373c078eb591771779d9f3812d8",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/11d3e9850dc6139850d5e81c71067ae2d7a894d9",
+                "reference": "11d3e9850dc6139850d5e81c71067ae2d7a894d9",
                 "shasum": ""
             },
             "require": {
@@ -835,7 +830,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-09-16 14:07:09"
+            "time": "2013-09-19 15:35:06"
         },
         {
             "name": "lusitanian/oauth",
@@ -948,6 +943,47 @@
                 "presenter"
             ],
             "time": "2013-09-10 13:24:32"
+        },
+        {
+            "name": "mccool/laravel-slugs",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ShawnMcCool/laravel-slugs.git",
+                "reference": "a510ca45813f2c59b47e97e6542085b7ed70b9dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ShawnMcCool/laravel-slugs/zipball/a510ca45813f2c59b47e97e6542085b7ed70b9dd",
+                "reference": "a510ca45813f2c59b47e97e6542085b7ed70b9dd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.0.x",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "McCool\\LaravelSlugs": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shawn McCool",
+                    "email": "shawn@heybigname.com"
+                }
+            ],
+            "description": "Automatic slug system for Laravel 4.",
+            "keywords": [
+                "laravel",
+                "slug"
+            ],
+            "time": "2013-09-19 18:07:29"
         },
         {
             "name": "monolog/monolog",
@@ -1985,7 +2021,9 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "dflydev/markdown": 20,
-        "artdarek/oauth-4-laravel": 20
+        "artdarek/oauth-4-laravel": 20,
+        "mccool/laravel-auto-presenter": 20,
+        "mccool/laravel-slugs": 20
     },
     "platform": [
 

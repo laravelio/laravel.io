@@ -19,7 +19,7 @@ class ForumCategoryRepository extends EloquentBaseRepository
 
     public function requireCategoryPageBySlug($slug)
     {
-        $model = $this->model->where('slug', '=', $slug)->first();
+        $model = $this->model->with(['rootThreads', 'rootThreads.slug', 'rootThreads.mostRecentChild', 'rootThreads.mostRecentChild.author'])->where('slug', '=', $slug)->first();
 
         if ( ! $model) {
             throw new EntityNotFoundException("Could not find forum category: {$slug}");
