@@ -2,9 +2,9 @@
 
 use Lio\Core\EloquentBaseRepository;
 
-class CategoryRepository extends EloquentBaseRepository
+class TagRepository extends EloquentBaseRepository
 {
-    public function __construct(Category $model)
+    public function __construct(Tag $model)
     {
         $this->model = $model;
     }
