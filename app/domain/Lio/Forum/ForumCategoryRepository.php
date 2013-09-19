@@ -32,4 +32,9 @@ class ForumCategoryRepository extends EloquentBaseRepository
     {
         return new ThreadForm;
     }
+
+    public function getReplyForm()
+    {
+        return new ReplyForm;
+    }
 }

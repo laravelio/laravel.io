@@ -16,7 +16,7 @@ class CreateCommentsTable extends Migration {
 
 			$t->increments('id');
 
-			$t->string('title');
+			$t->string('title')->nullable();
 			$t->text('body');
 
 			$t->string('owner_type');

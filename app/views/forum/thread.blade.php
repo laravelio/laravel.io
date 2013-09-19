@@ -3,4 +3,41 @@
     {{ $thread->body }}
 </p>
 
-<h3>Reply</h3>
+<ul>
+@foreach($thread->children as $child)
+    <li>
+        {{ $child->author->name }}
+
+        <p>
+            {{ $child->body }}
+        </p>
+    </li>
+@endforeach
+</ul>
+
+<div class="row">
+    <div class="small-12 columns">
+
+        {{ Form::open() }}
+
+            <fieldset>
+                <legend>Reply</legend>
+
+                <div class="row">
+                    <div class="small-1 columns">
+                        {{ Form::textarea('body') }}
+                        {{ $errors->first('body', '<small class="error">:message</small>') }}
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    {{ Form::button('Reply', ['type' => 'submit']) }}
+                </div>
+            </div>
+
+        {{ Form::close() }}
+
+    </div>
+</div>

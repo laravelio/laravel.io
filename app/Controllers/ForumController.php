@@ -34,14 +34,37 @@ class ForumController extends BaseController
     public function getThread($categorySlug)
     {
         $thread = App::make('slugModel');
-        $thread->load(['owner', 'children']);
+        $thread->load(['owner', 'children', 'children.author']);
 
         $this->view('forum.thread', compact('thread'));
     }
 
-    public function postThread($thread)
+    public function postThread($categorySlug)
     {
+        $thread = App::make('slugModel');
 
+        $category = $this->categories->requireCategoryPageBySlug($categorySlug);
+
+        $form = $this->categories->getReplyForm();
+
+        if ( ! $form->isValid()) {
+            return $this->redirectBack(['errors' => $form->getErrors()]);
+        }
+
+        $comment = $this->comments->getNew([
+            'title'     => Input::get('title'),
+            'body'      => Input::get('body'),
+            'author_id' => Auth::user()->id,
+            'parent_id' => $thread->id,
+        ]);
+
+        if ( ! $comment->isValid()) {
+            return $this->redirectBack(['errors' => $comment->getErrors()]);
+        }
+
+        $thread->children()->save($comment);
+
+        return $this->redirectAction('Controllers\ForumController@getThread', [$categorySlug, $thread->slug->slug]);
     }
 
     public function getCreateThread($categorySlug)
@@ -73,6 +96,8 @@ class ForumController extends BaseController
 
         $category->rootThreads()->save($comment);
 
-        return $this->redirectAction('Controllers\ForumController@getThread', [$categorySlug, $comment->slug]);
+        $commentSlug = $comment->slug()->first()->slug;
+
+        return $this->redirectAction('Controllers\ForumController@getThread', [$categorySlug, $commentSlug]);
     }
 }
