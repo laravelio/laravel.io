@@ -15,6 +15,10 @@ class CreateCommentsTable extends Migration {
 			$t->create();
 
 			$t->increments('id');
+
+			$t->string('title');
+			$t->text('body');
+
 			$t->string('owner_type');
 			$t->integer('owner_id');
 
