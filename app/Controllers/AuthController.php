@@ -2,7 +2,7 @@
 
 use Lio\Accounts\UserRepository;
 use GitHub;
-use Auth, Input, Log;
+use Auth, Input, Session;
 
 class AuthController extends BaseController
 {
@@ -16,16 +16,9 @@ class AuthController extends BaseController
     public function getLogin()
     {
         if (Input::has('code')) {
-            $user = $this->users->getByOauthCode(Input::get('code'));
-
-            if ( ! $user->is_banned) {
-                Auth::login($user);
-            }
-
-            return $this->redirectAction('Controllers\HomeController@getIndex');
+            return $this->processCode(Input::get('code'));
         }
 
-        // redirect to GitHub for oauth approval
         return $this->redirectTo((string) GitHub::getAuthorizationUri());
     }
 
@@ -34,5 +27,58 @@ class AuthController extends BaseController
         Auth::logout();
 
         return $this->redirectAction('Controllers\HomeController@getIndex');
+    }
+
+    public function getSignup()
+    {
+        $this->view('auth.signup');
+    }
+
+    public function getSignupConfirm()
+    {
+        if ( ! Session::has('signupGithubData')) {
+            return $this->redirectAction('Controllers\AuthController@getLogin');
+        }
+
+        $this->view('auth.signupconfirm', ['githubUser' => Session::get('signupGithubData')]);
+    }
+
+    private function processCode($code)
+    {
+        $githubUser = GitHub::getUserDataByCode(Input::get('code'));
+
+        $user = $this->users->getByGithubId($githubUser['id']);
+
+        if ($user) {
+            if ( ! $user->is_banned) {
+                $this->users->updateFromGithubData($user, $githubUser);
+                $this->users->save($user);
+
+                Auth::login($user);
+                return $this->redirectIntended(action('Controllers\HomeController@getIndex'));
+            }
+
+            return $this->redirectAction('Controllers\HomeController@getIndex');
+        }
+
+        if (Session::has('signupGithubData')) {
+            return $this->createUser($githubUser);
+        }
+
+        Session::put('signupGithubData', $githubUser);
+        return $this->redirectAction('Controllers\AuthController@getSignupConfirm');
+    }
+
+    private function createUser($githubUser)
+    {
+        $user = $this->users->getNew();
+        $this->users->updateFromGithubData($user, $githubUser);
+        $this->users->save($user);
+
+        Session::forget('signupGithubData');
+
+        Auth::login($user);
+
+        return $this->redirectIntended(action('Controllers\HomeController@getIndex'));
     }
 }

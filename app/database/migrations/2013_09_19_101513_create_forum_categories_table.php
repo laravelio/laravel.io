@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePasteCommentsTable extends Migration {
+class CreateForumCategoriesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,12 +11,14 @@ class CreatePasteCommentsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('paste_comments', function($t) {
+		Schema::table('forum_categories', function($t) {
 			$t->create();
 
 			$t->increments('id');
-			$t->integer('author_id');
-			$t->text('comment');
+			$t->string('title');
+			$t->text('description');
+			$t->integer('show_in_index')->defaults(0);
+			$t->integer('child_count')->defaults(0);
 
 			$t->timestamps();
 		});
@@ -29,6 +31,7 @@ class CreatePasteCommentsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('paste_comments');
+		Schema::drop('forum_categories');
 	}
+
 }

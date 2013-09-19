@@ -1,4 +1,4 @@
-<?php namespace Lio\Bin;
+<?php namespace Lio\Comments;
 
 use Lio\Core\EloquentBaseRepository;
 
