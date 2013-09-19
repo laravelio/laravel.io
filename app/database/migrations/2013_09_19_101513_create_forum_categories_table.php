@@ -18,7 +18,7 @@ class CreateForumCategoriesTable extends Migration {
 			$t->string('title');
 			$t->text('description');
 			$t->integer('show_in_index')->defaults(0);
-			$t->integer('comment_count')->defaults(0);
+			$t->integer('child_count')->defaults(0);
 
 			$t->timestamps();
 		});

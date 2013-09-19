@@ -27,8 +27,20 @@ class Comment extends EloquentBaseModel
         return $this->belongsTo('Lio\Comments\Comment', 'parent_id');
     }
 
+    public function children()
+    {
+        return $this->hasMany('Lio\Comments\Comment', 'parent_id');
+    }
+
     public function mostRecentChild()
     {
         return $this->hasOne('Lio\Comments\Comment', 'most_recent_child_id');
+    }
+
+    public function updateChildCount()
+    {
+        if ($this->exists) {
+            $this->child_count = $this->children()->count();
+        }
     }
 }

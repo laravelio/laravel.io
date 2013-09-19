@@ -17,4 +17,18 @@ class ForumCategory extends EloquentBaseModel
     {
         return $this->morphMany('Lio\Comments\Comment', 'owner')->where('comments.parent_id', '=', 0);
     }
+
+    public function setMostRecentChild(Comment $comment)
+    {
+        $this->most_recent_child_id = $comment->id;
+        $this->updateChildCount();
+        $this->save();
+    }
+
+    private function updateChildCount()
+    {
+        if ($this->exists) {
+            $this->child_count = $this->rootThreads()->count();
+        }
+    }
 }
