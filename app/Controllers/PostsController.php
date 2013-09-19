@@ -27,6 +27,16 @@ class PostsController extends BaseController
         $this->view('posts.show', compact('post'));
     }
 
+    public function getCreate()
+    {
+        $this->view('posts.create');
+    }
+
+    public function postStore()
+    {
+        
+    }
+
     public function getTag($tag)
     {
         $navTags = $this->tags->getAll();
