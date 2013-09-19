@@ -1,28 +1,29 @@
 <?php namespace Controllers;
 
 use Lio\Forum\ForumCategoryRepository;
+use App;
 
 class ForumController extends BaseController
 {
-    private $forumCategories;
+    private $categories;
 
-    public function __construct(ForumCategoryRepository $forumCategories)
+    public function __construct(ForumCategoryRepository $categories)
     {
-        $this->forumCategories = $forumCategories;
+        $this->categories = $categories;
     }
 
     public function getIndex()
     {
-        $forumCategories = $this->forumCategories->getForumIndex();
+        $categories = $this->categories->getForumIndex();
 
-        $this->view('forum.index', compact('forumCategories'));
+        $this->view('forum.index', compact('categories'));
     }
 
-    public function category($categorySlug)
+    public function getCategory($categorySlug)
     {
-        $forumCategory = $this->forumCategories->getCategoryPageBySlug($categorySlug);
+        $category = $this->categories->requireCategoryPageBySlug($categorySlug);
 
-        $this->view('forum.category', compact('forumCategory'));
+        $this->view('forum.category', compact('category'));
     }
 
     public function getThread($thread)
@@ -35,13 +36,23 @@ class ForumController extends BaseController
 
     }
 
-    public function getCreateThread()
+    public function getCreateThread($categorySlug)
     {
+        $category = $this->categories->requireCategoryPageBySlug($categorySlug);
 
+        $this->view('forum.createthread', compact('category'));
     }
 
-    public function postCreateThread()
+    public function postCreateThread($categorySlug)
     {
+        $category = $this->categories->requireCategoryPageBySlug($categorySlug);
 
+        $form = $this->categories->getThreadForm();
+
+        if ( ! $form->isValid()) {
+            return $this->redirectBack(['errors' => $form->getErrors()]);
+        }
+
+        die('cat');
     }
 }

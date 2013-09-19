@@ -7,7 +7,14 @@ class ForumCategory extends EloquentBaseModel
     protected $table    = 'forum_categories';
     protected $fillable = ['title', 'description', 'show_in_index'];
 
+    public $presenter = 'Lio\Forum\ForumCategoryPresenter';
+
     protected $validatorRules = [
         'title' => 'required'
     ];
+
+    public function rootThreads()
+    {
+        return $this->morphMany('Lio\Comments\Comment', 'owner')->where('comments.parent_id', '=', 0);
+    }
 }

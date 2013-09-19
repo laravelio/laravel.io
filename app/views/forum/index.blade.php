@@ -10,9 +10,9 @@
 </p>
 
 <ul>
-    @foreach($forumCategories as $category)
+    @foreach($categories as $category)
         <li>
-            <a href="#">{{ $category->title }}</a>
+            <a href="{{ $category->categoryIndexUrl }}">{{ $category->title }}</a>
         </li>
     @endforeach
 </ul>

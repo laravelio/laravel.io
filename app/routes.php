@@ -10,8 +10,11 @@ Route::controller('articles', 'Controllers\PostsController');
 Route::controller('pastes', 'Controllers\PastesController');
 
 // forum
+Route::get('forum', 'Controllers\ForumController@getIndex');
+Route::get('forum/{forumCategory}', 'Controllers\ForumController@getCategory');
+Route::get('forum/{forumCategory}/create-thread', 'Controllers\ForumController@getCreateThread');
+Route::post('forum/{forumCategory}/create-thread', 'Controllers\ForumController@postCreateThread');
 Route::get('forum/{forumCategory}/{slug}', ['before' => 'handle_slug', 'uses' => 'Controllers\ForumController@getThread']);
-Route::controller('forum', 'Controllers\ForumController');
 
 // admin
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {

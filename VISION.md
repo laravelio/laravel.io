@@ -2,7 +2,7 @@
 
 **Dear Team,**
 
-I have built this document using absolutes in language. This document is intended to be authoritative. That doesn’t mean that the data contained within is intended to be final. To the contrary, I have built this document to give us a place to formalize and evolve our thoughts. The content contained within defines the initial launch of the Laravel.IO site. I have decided to put 30 minutes per day into the application, and the work that you’ve seen from me over the paste 3 days has been the result of this discipline. I hope that you too will find a schedule that enables this application to be built and maintained.
+I have built this document using absolutes in language. This document is intended to be authoritative. That doesn’t mean that the data contained within is intended to be final. To the contrary, I have built this document to give us a place to formalize and evolve our thoughts. The content contained within defines the initial launch of the Laravel.IO site. I have decided to put 30 minutes per day into the application, and the work that you’ve seen from me over the past 3 days has been the result of this discipline. I hope that you too will find a schedule that enables this application to be built and maintained.
 
 We have the opportunity to create a somewhat unprecedented system. A system that is designed solely to enable our community. As software designers, engineers and architects, we have within our power the capacity to create something truly remarkable. I hope that each of us can take this idea to heart and build something that we’re truly proud of.
 
@@ -70,7 +70,6 @@ All authenticated users have the ability to create their own articles. These art
 2. user is presented with a list of articles that can be sorted by popularity or recentness. each article is summarized and shows small thumbnails of the images that have been attached to the article by the author. If a video is present within the article, it is indicated here. If audio is present within the article, it is indicated here. All article lists are paginated.
 3. user can choose a tag from a side-menu
 4. the tag view continues to show the same side-menu with an active state on the selected tag, the content of the page shows a list of articles that can be sorted by popularity or recentness
-5. disqus is used for comments on all articles
 
 ### Site-wide Slug Policy
 Slugs should be unified site-wide and presented with reasonable URLs. An example of a good slug might be: http://laravel.io/post/the-art-of-eating-cats-and-dogs_Mitchell-van-Wijngaarden
