@@ -73,7 +73,6 @@ class ForumController extends BaseController
 
         $category->rootThreads()->save($comment);
 
-        die('comment created');
-        return $this->redirectAction('Controllers\ForumController@getThread', [$comment->slug]);
+        return $this->redirectAction('Controllers\ForumController@getThread', [$categorySlug, $comment->slug]);
     }
 }
