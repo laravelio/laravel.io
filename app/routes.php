@@ -6,8 +6,9 @@ Route::get('login', 'Controllers\AuthController@getLogin');
 Route::get('logout', 'Controllers\AuthController@getLogout');
 Route::get('oauth', 'Controllers\AuthController@getOauth');
 
-Route::controller('posts', 'Controllers\PostsController');
+Route::controller('articles', 'Controllers\PostsController');
 Route::controller('pastes', 'Controllers\PastesController');
+Route::controller('forum', 'Controllers\ForumController');
 
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {
 

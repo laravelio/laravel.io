@@ -14,12 +14,21 @@ class ForumCategorySeeder extends Seeder
     private function createForumCategories()
     {
         $categories = [
-            'Laravel 4.x Help' => 'This forum is the place to find community support for Laravel 4.x.',
-            'Laravel 3.x Help' => 'This forum is the place to find community support for Laravel 3.x.',
+            [
+                'title'         => 'Laravel 4.x Help',
+                'slug'          => 'laravel4-help',
+                'description'   => 'This forum is the place to find community support for Laravel 4.x.',
+                'show_in_index' => 1,
+            ], [
+                'title'         => 'Laravel 3.x Help',
+                'slug'          => 'laravel3-help',
+                'description'   => 'This forum is the place to find community support for Laravel 3.x.',
+                'show_in_index' => 1,
+            ]
         ];
 
-        foreach ($categories as $title => $description) {
-            ForumCategory::create(compact('title', 'description'));
+        foreach ($categories as $category) {
+            ForumCategory::create($category);
         }
     }
 }

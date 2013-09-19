@@ -118,6 +118,7 @@ return array(
 		'Artdarek\OAuth\OAuthServiceProvider',
 		'Lio\ServiceProviders\GitHub',
 		'Lio\ServiceProviders\Markdown',
+		'Lio\ServiceProviders\Comment',
 	),
 
 	/*

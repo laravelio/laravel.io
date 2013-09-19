@@ -2,7 +2,7 @@
 
 use Lio\Forum\ForumCategoryRepository;
 
-class PastesController extends BaseController
+class ForumController extends BaseController
 {
     private $forumCategories;
 
@@ -16,5 +16,12 @@ class PastesController extends BaseController
         $forumCategories = $this->forumCategories->getForumIndex();
 
         $this->view('forum.index', compact('forumCategories'));
+    }
+
+    public function category($categorySlug)
+    {
+        $forumCategory = $this->forumCategories->getCategoryPageBySlug($categorySlug);
+
+        $this->view('forum.category', compact('forumCategory'));
     }
 }
