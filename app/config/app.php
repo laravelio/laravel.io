@@ -115,7 +115,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
-		'McCool\LaravelSlugs\LaravelSlugsServiceProvider',
+		// 'McCool\LaravelSlugs\LaravelSlugsServiceProvider',
+
 		'Artdarek\OAuth\OAuthServiceProvider',
 		'Lio\ServiceProviders\GitHub',
 		'Lio\ServiceProviders\Markdown',

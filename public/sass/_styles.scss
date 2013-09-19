@@ -1,0 +1,126 @@
+$lioRed:            #F0523F;
+$lioGrey:           lighten(#383636, 10%);
+$topbar-bg:         $lioGrey;
+
+header {
+    background-color: $lioGrey;
+    // padding: 100px 0;
+    // border-bottom: 2px solid lighten($lioGrey, 20%);
+    padding: 0 2em;
+    position: relative;
+}
+
+.top-bar {
+    padding-right: 30px;
+    border-bottom: 3px solid $lioRed;
+    margin-bottom: 0;
+    .logo {
+        width: 64px;
+    }
+}
+
+.main-nav {
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    a {
+        height: 87px;
+    }
+    a:hover {
+        color: $lioRed;
+    }
+}
+
+.login {
+    background-color: transparent !important;
+    position: relative;
+
+    top: -3px;
+    a {
+        color: #eee !important;
+    }
+}
+
+.hero-section {
+    background-color: $lioRed;
+    border-bottom: 2px solid #fff;
+    clear: both;
+    float: left;
+    width: 100%;
+    .description {
+        width: 40%;
+        float: left;
+        color: #fff;
+        padding: 4% 5% 5%;
+        h1 {
+            color: #fff;
+        }
+    }
+    .posts {
+        float: left;
+        color: #fff;
+        width: 60%;
+        padding: 4% 5% 2% 5%;
+
+    }
+}
+
+.hero-section-dark {
+    background-color: darken($lioRed, 3%);
+}
+
+.hero-section-darker {
+    background-color: darken($lioRed, 6%);
+}
+
+
+// Post
+
+.post {
+    padding: 0 0 13px 0;
+    margin: 0 0 13px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+    h3 {
+        font-size:20px;
+        font-weight: 500;
+        color:white;
+        margin: 0;
+        padding: 0;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+    }
+
+    h3 a {
+        color:white;
+    }
+
+    h3 a:hover {
+        color: $lioGrey;
+        text-shadow:none;
+    }
+
+    .meta {
+        margin:0;
+    }
+
+    .meta i {
+        padding: 0 3px 0 0;
+    }
+
+    .meta li {
+        font-size:13px;
+        display: inline;
+        padding: 0 10px 0 0;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+    }
+
+    .meta li a {
+        color:white;
+    }
+
+    .meta li a:hover {
+        color:$lioGrey;
+    }
+}
+
+.post:last-child {
+    border:none;
+}

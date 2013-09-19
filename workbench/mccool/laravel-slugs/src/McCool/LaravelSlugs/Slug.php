@@ -19,4 +19,9 @@ class Slug extends Eloquent
             ->where('primary', '=', 1)
             ->first();
     }
+
+    public function getByString($slug)
+    {
+        return static::where('slug', '=', $slug)->first();
+    }
 }

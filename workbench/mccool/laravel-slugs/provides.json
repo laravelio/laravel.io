@@ -1,4 +1,3 @@
-
 {
   "providers": [
         "McCool\LaravelSlugs\LaravelSlugsServiceProvider"

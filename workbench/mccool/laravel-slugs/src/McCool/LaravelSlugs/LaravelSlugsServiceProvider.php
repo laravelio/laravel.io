@@ -23,7 +23,9 @@ class LaravelSlugsServiceProvider extends ServiceProvider
             }
         });
 
-		Route::filter('handle_slug', function($route, $request) {
+        $app = $this->app;
+
+		Route::filter('handle_slug', function($route, $request) use ($app) {
 		    $action     = $route->getAction();
 		    $parameters = $route->getParameters();
 
@@ -31,7 +33,7 @@ class LaravelSlugsServiceProvider extends ServiceProvider
 		    $slug = $slugModel->getByString($parameters['slug']);
 
 		    if ( ! $slug) {
-		    	throw new SlugNotFoundException("Could not find the slug {$parameters[slug]}.");
+		    	throw new SlugNotFoundException("Could not find the slug {$parameters['slug']}.");
 		    }
 
 		    // redirect from historical slug to primary
@@ -44,9 +46,15 @@ class LaravelSlugsServiceProvider extends ServiceProvider
 		    }
 
 		    $parameters['slug'] = $slug->model;
+
+            $app['slugModel'] = $slug->model;
+
 		    $route->setParameters($parameters);
 		});
 	}
 
-	public function register() {}
+	public function register()
+    {
+
+    }
 }
