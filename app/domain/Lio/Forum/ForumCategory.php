@@ -1,6 +1,7 @@
 <?php namespace Lio\Forum;
 
 use Lio\Core\EloquentBaseModel;
+use Lio\Comments\Comment;
 
 class ForumCategory extends EloquentBaseModel
 {
@@ -15,7 +16,12 @@ class ForumCategory extends EloquentBaseModel
 
     public function rootThreads()
     {
-        return $this->morphMany('Lio\Comments\Comment', 'owner')->where('comments.parent_id', '=', 0);
+        return $this->morphMany('Lio\Comments\Comment', 'owner')->whereNull('comments.parent_id');
+    }
+
+    public function mostRecentChild()
+    {
+        return $this->belongsTo('Lio\Comments\Comment', 'most_recent_child_id');
     }
 
     public function setMostRecentChild(Comment $comment)

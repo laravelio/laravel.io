@@ -13,6 +13,11 @@
     @foreach($categories as $category)
         <li>
             <a href="{{ $category->categoryIndexUrl }}">{{ $category->title }}</a>
+            <span>thread count {{ $category->child_count }}</span>
+
+            @if($category->mostRecentChild)
+                Newest Thread: {{ $category->mostRecentChild->title }} by {{ $category->mostRecentChild->author->name }}
+            @endif
         </li>
     @endforeach
 </ul>

@@ -12,7 +12,9 @@ class ForumCategoryRepository extends EloquentBaseRepository
 
     public function getForumIndex()
     {
-        return $this->model->where('show_in_index', '=', 1)->get();
+        return $this->model->with(['mostRecentChild', 'mostRecentChild.author'])
+                           ->where('show_in_index', '=', 1)
+                           ->get();
     }
 
     public function requireCategoryPageBySlug($slug)

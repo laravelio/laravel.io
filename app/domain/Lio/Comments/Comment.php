@@ -1,8 +1,10 @@
 <?php namespace Lio\Comments;
 
+use McCool\LaravelSlugs\SlugInterface;
 use Lio\Core\EloquentBaseModel;
+use Str;
 
-class Comment extends EloquentBaseModel
+class Comment extends EloquentBaseModel implements SlugInterface
 {
     protected $table    = 'comments';
     protected $fillable = ['title', 'body', 'author_id', 'parent_id'];
@@ -19,7 +21,7 @@ class Comment extends EloquentBaseModel
 
     public function author()
     {
-        return $this->belongsTo('author');
+        return $this->belongsTo('Lio\Accounts\User', 'author_id');
     }
 
     public function parent()
@@ -42,5 +44,26 @@ class Comment extends EloquentBaseModel
         if ($this->exists) {
             $this->child_count = $this->children()->count();
         }
+    }
+
+    // SlugInterface
+    public function slug()
+    {
+        return $this->morphOne('McCool\LaravelSlugs\Slug', 'owner');
+    }
+
+    public function getSlugString()
+    {
+        if ($this->owner_type == 'Lio\Forum\ForumCategory') {
+            return $this->getForumPostSlugString();
+        }
+    }
+    //
+
+    private function getForumPostSlugString()
+    {
+        $date = date("m-d-Y", strtotime($this->created_at));
+
+        return Str::slug("{$date} - {$this->title}");
     }
 }

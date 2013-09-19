@@ -8,14 +8,14 @@ class CommentObserver
         $this->processParentComment($comment);
     }
 
-    private processForumComment($comment)
+    private function processForumComment($comment)
     {
         if ($comment->owner_type == 'Lio\Forum\ForumCategory') {
             $comment->owner->setMostRecentChild($comment);
         }
     }
 
-    private processParentComment($comment)
+    private function processParentComment($comment)
     {
         if ($comment->parent) {
             $comment->parent->updateChildCount();

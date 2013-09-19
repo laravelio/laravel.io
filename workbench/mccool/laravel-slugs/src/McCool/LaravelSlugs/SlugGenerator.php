@@ -29,7 +29,7 @@ class SlugGenerator
 
     protected function slugHasntChanged()
     {
-        return $this->model->slug->slug == $this->model->createSlugString();
+        return $this->model->slug->slug == $this->model->getSlugString();
     }
 
     protected function archiveSlug()
@@ -42,7 +42,7 @@ class SlugGenerator
 
     protected function generateSlug()
     {
-        $slugString = $this->getUniqueSlugString($this->model->createSlugString());
+        $slugString = $this->getUniqueSlugString($this->model->getSlugString());
 
         $this->removeHistoricalSlug($slugString);
 
@@ -78,6 +78,6 @@ class SlugGenerator
 
     protected function removeHistoricalSlug($slugString)
     {
-        $historicalSlug = Slug::where('slug', '=', $slug)->where('primary', '=', 0)->delete();
+        $historicalSlug = Slug::where('slug', '=', $slugString)->where('primary', '=', 0)->delete();
     }
 }

@@ -12,7 +12,7 @@ class AddMostRecentPostFieldToForumCategories extends Migration {
 	public function up()
 	{
 		Schema::table('forum_categories', function($t) {
-			$t->integer('most_recent_comment_id')->nullable();
+			$t->integer('most_recent_child_id')->nullable();
 		});
 	}
 
@@ -24,7 +24,7 @@ class AddMostRecentPostFieldToForumCategories extends Migration {
 	public function down()
 	{
 		Schema::table('forum_categories', function($t) {
-			$t->dropColumn('most_recent_comment_id');
+			$t->dropColumn('most_recent_child_id');
 		});
 	}
 
