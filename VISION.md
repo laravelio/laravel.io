@@ -30,6 +30,14 @@ Examples of tags that I believe are relevant:
 
 These are pretty much pulled straight from the documentation. [http://laravel.com/docs](http://laravel.com/docs)
 
+### Comments
+
+Comments are unified across the entire site. Comments are powered by an internal comment system driven by polymorphic relationships. Comments are used on pastes, articles and as a core building block of the forum.
+
+### Forum
+
+The new forum is a simplified and custom built forum that utilizes ForumCategory models which relate to Comment models.
+
 ### Pastebin Use
 1. user navigates to laravel.io/bin (to be replaced with a subdomain, later)
 2. user pastes their code
@@ -53,9 +61,9 @@ The Pastebin is not considered to be a secure way to store data. I see no reason
 
 Every authenticated user will have a profile page. This page shows any articles that the user has made and can double as a blog page for that user.
 
-### Posts
+### Articles
 
-All authenticated users have the ability to create their own posts. These posts can be tagged. The tagged posts can be viewed at the user's profile page.
+All authenticated users have the ability to create their own articles. These articles can be tagged. The tagged articles can be viewed at the user's profile page.
 
 ### Article Use
 1. user navigates to the articles section of the site

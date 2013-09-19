@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommentCategoriesTable extends Migration {
+class CreateForumCategoriesTable extends Migration {
 
 	/**
 	 * Run the migrations.
