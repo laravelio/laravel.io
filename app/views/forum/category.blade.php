@@ -9,6 +9,7 @@
         @foreach($category->rootThreads as $thread)
             <li>
                 <a href="{{ $thread->forumThreadUrl }}">{{ $thread->title }}</a> - {{ $thread->author->name }} - {{ $thread->created_at }}
+                {{ $thread->child_count }}
                 @if($thread->mostRecentChild)
                 	<span>Most Recent Reply at {{ $thread->mostRecentChild->created_at }} by {{ $thread->mostRecentChild->author->name }}</span>
                 @endif
