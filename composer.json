@@ -5,7 +5,8 @@
         "dflydev/markdown": "1.0.*@dev",
         "artdarek/oauth-4-laravel": "dev-master",
         "mccool/laravel-auto-presenter": "dev-master",
-        "mccool/laravel-slugs": "dev-master"
+        "mccool/laravel-slugs": "dev-master",
+        "juy/profiler": "dev-master"
     },
     "autoload": {
         "classmap": [

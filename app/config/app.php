@@ -116,8 +116,9 @@ return array(
 
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
 		'McCool\LaravelSlugs\LaravelSlugsServiceProvider',
-
+		'Juy\Profiler\Providers\ProfilerServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
+
 		'Lio\ServiceProviders\GitHub',
 		'Lio\ServiceProviders\Markdown',
 		'Lio\ServiceProviders\Comment',
@@ -186,8 +187,9 @@ return array(
 		'Validator'   => 'Illuminate\Support\Facades\Validator',
 		'View'        => 'Illuminate\Support\Facades\View',
 
-		'OAuth'       => 'Artdarek\OAuth\Facade\OAuth',
-		'GitHub'      => 'Lio\GitHub\GitHubFacade',
+		'Profiler' => 'Juy\Profiler\Facades\Profiler',
+		'OAuth'    => 'Artdarek\OAuth\Facade\OAuth',
+		'GitHub'   => 'Lio\GitHub\GitHubFacade',
 	),
 
 );

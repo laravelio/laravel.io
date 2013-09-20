@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "529e813884745715d1076c78b982dd29",
+    "hash": "1f7b9edd3ecab17b14a08b9038f22763",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -721,17 +721,63 @@
             "time": "2013-04-30 19:58:08"
         },
         {
+            "name": "juy/profiler",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/juy/profiler.git",
+                "reference": "07963d0121ec697433bb84cd0cae77185047e62b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/juy/profiler/zipball/07963d0121ec697433bb84cd0cae77185047e62b",
+                "reference": "07963d0121ec697433bb84cd0cae77185047e62b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~4",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Juy\\Profiler": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sevdin Filiz",
+                    "email": "angelside@users.sourceforge.net",
+                    "homepage": "http://juysoft.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A profiler for Laravel 4.",
+            "homepage": "http://github.com/juy/profiler",
+            "keywords": [
+                "anbu",
+                "debug bar",
+                "laravel",
+                "profiler"
+            ],
+            "time": "2013-09-20 11:01:58"
+        },
+        {
             "name": "laravel/framework",
             "version": "4.0.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "11d3e9850dc6139850d5e81c71067ae2d7a894d9"
+                "reference": "7836868e0125e29ed6255f27727c2933105991ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/11d3e9850dc6139850d5e81c71067ae2d7a894d9",
-                "reference": "11d3e9850dc6139850d5e81c71067ae2d7a894d9",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/7836868e0125e29ed6255f27727c2933105991ec",
+                "reference": "7836868e0125e29ed6255f27727c2933105991ec",
                 "shasum": ""
             },
             "require": {
@@ -830,7 +876,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-09-19 15:35:06"
+            "time": "2013-09-19 20:04:12"
         },
         {
             "name": "lusitanian/oauth",
@@ -838,12 +884,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Lusitanian/PHPoAuthLib.git",
-                "reference": "565b59f220ed28fd725e4ce9460de0b97df1bf32"
+                "reference": "5d04257a83da9fd6ef254abe9030b4263816f5ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/565b59f220ed28fd725e4ce9460de0b97df1bf32",
-                "reference": "565b59f220ed28fd725e4ce9460de0b97df1bf32",
+                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/5d04257a83da9fd6ef254abe9030b4263816f5ca",
+                "reference": "5d04257a83da9fd6ef254abe9030b4263816f5ca",
                 "shasum": ""
             },
             "require": {
@@ -893,7 +939,7 @@
                 "oauth",
                 "security"
             ],
-            "time": "2013-09-06 15:10:44"
+            "time": "2013-09-20 03:55:55"
         },
         {
             "name": "mccool/laravel-auto-presenter",
@@ -2023,7 +2069,8 @@
         "dflydev/markdown": 20,
         "artdarek/oauth-4-laravel": 20,
         "mccool/laravel-auto-presenter": 20,
-        "mccool/laravel-slugs": 20
+        "mccool/laravel-slugs": 20,
+        "juy/profiler": 20
     },
     "platform": [
 
