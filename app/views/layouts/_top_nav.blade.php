@@ -21,7 +21,7 @@
             </li>
 
             <li>
-                <a href="#">Chat</a>
+                <a href="{{ action('Controllers\ChatController@getIndex') }}">Chat</a>
             </li>
         </ul>
 

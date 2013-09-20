@@ -2,6 +2,7 @@
 
 Route::get('/', 'Controllers\HomeController@getIndex');
 
+// authentication
 Route::get('login', 'Controllers\AuthController@getLogin');
 Route::get('signup', 'Controllers\AuthController@getSignup');
 Route::get('signup-confirm', 'Controllers\AuthController@getSignupConfirm');
@@ -9,8 +10,8 @@ Route::post('signup-confirm', 'Controllers\AuthController@postSignupConfirm');
 Route::get('logout', 'Controllers\AuthController@getLogout');
 Route::get('oauth', 'Controllers\AuthController@getOauth');
 
-Route::controller('articles', 'Controllers\PostsController');
-Route::controller('pastes', 'Controllers\PastesController');
+// chat
+Route::get('chat', 'Controllers\ChatController@getIndex');
 
 // forum
 Route::get('forum', 'Controllers\ForumController@getIndex');
