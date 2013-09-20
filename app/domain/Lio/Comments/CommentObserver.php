@@ -18,7 +18,7 @@ class CommentObserver
     private function processParentComment($comment)
     {
         if ($comment->parent) {
-            $comment->parent->updateChildCount();
+            $comment->parent->setMostRecentChild($comment);
         }
     }
 }
