@@ -1,24 +1,24 @@
-<h1><a href="{{ $thread->owner->categoryIndexUrl }}">Forum Category {{ $thread->owner->title }}</a></h1>
+<h1><a href="{{ $category->categoryIndexUrl }}">Forum Category {{ $category->title }}</a></h1>
 
-<p>{{ $thread->owner->description }}</p>
+<p>{{ $category->description }}</p>
 
 <hr/>
 
-<h2>{{ $thread->title }}</h2>
-<p>
-    {{ $thread->body }}
-</p>
-
 <ul>
-@foreach($thread->children as $child)
-    <li>
-        {{ $child->author->name }}
+    @foreach($comments as $comment)
+        <li>
+            @if($comment->id == $thread->id)
+                <h2>{{ $comment->title }}</h2>
+            @endif
+            <p>
+                {{ $comment->body }}
 
-        <p>
-            {{ $child->body }}
-        </p>
-    </li>
-@endforeach
+                <span>- {{ $comment->author->name }}</span>
+            </p>
+        </li>
+    @endforeach
+
+    {{ $comments->links() }}
 </ul>
 
 <div class="row">

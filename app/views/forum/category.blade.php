@@ -4,9 +4,9 @@
 
 <a href="{{ action('Controllers\ForumController@getCreateThread', [$category->slug]) }}">Create a Thread</a>
 
-@if($category->rootThreads->count() > 0)
+@if($threads->count() > 0)
     <ul>
-        @foreach($category->rootThreads as $thread)
+        @foreach($threads as $thread)
             <li>
                 <a href="{{ $thread->forumThreadUrl }}">{{ $thread->title }}</a> - {{ $thread->author->name }} - {{ $thread->created_at }}
                 {{ $thread->child_count }}
@@ -16,6 +16,8 @@
             </li>
         @endforeach
     </ul>
+
+    {{ $threads->links() }}
 @else
     There are no posts, yet.
 @endif

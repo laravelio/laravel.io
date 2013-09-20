@@ -26,24 +26,26 @@ class ForumController extends BaseController
 
     public function getCategory($categorySlug)
     {
-        $category = $this->categories->requireCategoryPageBySlug($categorySlug);
+        $category = $this->categories->requireCategoryBySlug($categorySlug);
+        $threads  = $this->comments->getForumThreadsByCategoryPaginated($category);
 
-        $this->view('forum.category', compact('category'));
+        $this->view('forum.category', compact('category', 'threads'));
     }
 
     public function getThread($categorySlug)
     {
         $thread = App::make('slugModel');
-        $thread->load(['owner', 'children', 'children.author']);
+        $category = $thread->owner;
+        $comments = $this->comments->getThreadCommentsPaginated($thread);
 
-        $this->view('forum.thread', compact('thread'));
+        $this->view('forum.thread', compact('thread', 'category', 'comments'));
     }
 
     public function postThread($categorySlug)
     {
         $thread = App::make('slugModel');
 
-        $category = $this->categories->requireCategoryPageBySlug($categorySlug);
+        $category = $this->categories->requireCategoryBySlug($categorySlug);
 
         $form = $this->categories->getReplyForm();
 
@@ -69,14 +71,14 @@ class ForumController extends BaseController
 
     public function getCreateThread($categorySlug)
     {
-        $category = $this->categories->requireCategoryPageBySlug($categorySlug);
+        $category = $this->categories->requireCategoryBySlug($categorySlug);
 
         $this->view('forum.createthread', compact('category'));
     }
 
     public function postCreateThread($categorySlug)
     {
-        $category = $this->categories->requireCategoryPageBySlug($categorySlug);
+        $category = $this->categories->requireCategoryBySlug($categorySlug);
 
         $form = $this->categories->getThreadForm();
 
