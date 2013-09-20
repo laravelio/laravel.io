@@ -12,7 +12,9 @@ class CommentObserver
     {
         if ($comment->owner_type == 'Lio\Forum\ForumCategory') {
             $comment->owner->setMostRecentChild($comment);
+            $comment->setCategorySlug();
         }
+
     }
 
     private function processParentComment($comment)

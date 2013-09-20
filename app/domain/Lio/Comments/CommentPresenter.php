@@ -9,7 +9,7 @@ class CommentPresenter extends BasePresenter
         $comment = $this->resource;
 
         $commentSlug = $comment->slug->slug;
-        $forumSlug = $comment->owner->slug;
+        $forumSlug = $comment->category_slug;
 
         return action('Controllers\ForumController@getThread', [$forumSlug, $commentSlug]);
     }

@@ -1,3 +1,9 @@
+<h1><a href="{{ $thread->owner->categoryIndexUrl }}">Forum Category {{ $thread->owner->title }}</a></h1>
+
+<p>{{ $thread->owner->description }}</p>
+
+<hr/>
+
 <h2>{{ $thread->title }}</h2>
 <p>
     {{ $thread->body }}

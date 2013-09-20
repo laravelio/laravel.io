@@ -7,8 +7,9 @@ use Str;
 class Comment extends EloquentBaseModel implements SlugInterface
 {
     protected $table    = 'comments';
-    protected $fillable = ['title', 'body', 'author_id', 'parent_id'];
-
+    protected $fillable = ['title', 'body', 'author_id', 'parent_id', 'category_slug'];
+    protected $with     = ['author'];
+    
     public $presenter = 'Lio\Comments\CommentPresenter';
 
     protected $validatorRules = [
@@ -53,6 +54,12 @@ class Comment extends EloquentBaseModel implements SlugInterface
         if ($this->exists) {
             $this->child_count = $this->children()->count();
         }
+    }
+
+    public function setCategorySlug()
+    {
+        $this->category_slug = $this->owner->slug;
+        $this->save();
     }
 
     // SlugInterface
