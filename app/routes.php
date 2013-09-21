@@ -10,6 +10,9 @@ Route::post('signup-confirm', 'Controllers\AuthController@postSignupConfirm');
 Route::get('logout', 'Controllers\AuthController@getLogout');
 Route::get('oauth', 'Controllers\AuthController@getOauth');
 
+// user dashboard
+Route::get('dashboard', 'Controllers\DashboardController@getIndex');
+
 // chat
 Route::get('chat', 'Controllers\ChatController@getIndex');
 
@@ -26,10 +29,12 @@ Route::post('forum/{forumCategory}/{slug}', ['before' => 'handle_slug', 'uses' =
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {
 
     Route::group(['before' => 'has_role:admin_posts'], function() {
-        Route::controller('posts', 'Controllers\Admin\PostsController');
+        
     });
 
     Route::group(['before' => 'has_role:admin_users'], function() {
-        Route::controller('users', 'Controllers\Admin\UsersController');
+    	Route::get('users', 'Controllers\Admin\UsersController@getIndex');
+        Route::get('edit/{user}', 'Controllers\Admin\UsersController@getEdit');
+        Route::post('edit/{user}', 'Controllers\Admin\UsersController@postEdit');
     });
 });

@@ -27,7 +27,7 @@
 
         <ul class="right login">
             @if(Auth::check())
-                <li><a href="#">{{ Auth::user()->name }}</a></li>
+                <li><a href="{{ action('Controllers\DashboardController@getIndex') }}">{{ Auth::user()->name }}'s Dashboard</a></li>
             @else
                 <li><a href="{{ action('Controllers\AuthController@getLogin') }}">Login with GitHub</a></li>
             @endif
