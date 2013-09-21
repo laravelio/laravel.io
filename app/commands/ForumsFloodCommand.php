@@ -46,9 +46,25 @@ class ForumsFloodCommand extends Command {
 			exit;
 		}
 
-		$generator = new \Lio\Forum\ForumDataGenerator(App::make('faker'), new \Lio\Forum\ForumCategoryRepository(new \Lio\Forum\ForumCategory));
-		$generator->generate($count);
+		// set up generator
+		$generator = new \Lio\Forum\ForumDataGenerator(
+			App::make('faker'),
+			App::make('Lio\Forum\ForumCategoryRepository'),
+			App::make('Lio\Comments\CommentRepository'),
+			App::make('Lio\Accounts\UserRepository'));
+
+		// yup
+		set_time_limit(0);
+		ini_set('memory_limit','512M');
+
+		try {
+			$generator->generate($count);
+		} catch (Exception $e) {
+			$this->error('Fatal Exception: ' . $e->getMessage());
+			exit;
+		}
 		
+		echo "\n";
 		$this->info('Generation Complete');
 		$this->info("{$count} threads successfully added.");
 	}

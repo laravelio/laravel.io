@@ -24,7 +24,6 @@ Route::post('forum/{forumCategory}/create-thread', 'Controllers\ForumController@
 Route::get('forum/{forumCategory}/{slug}', ['before' => 'handle_slug', 'uses' => 'Controllers\ForumController@getThread']);
 Route::post('forum/{forumCategory}/{slug}', ['before' => 'handle_slug', 'uses' => 'Controllers\ForumController@postThread']);
 
-
 // admin
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {
 

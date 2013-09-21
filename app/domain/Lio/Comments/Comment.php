@@ -7,7 +7,7 @@ use Str;
 class Comment extends EloquentBaseModel implements SlugInterface
 {
     protected $table    = 'comments';
-    protected $fillable = ['title', 'body', 'author_id', 'parent_id', 'category_slug'];
+    protected $fillable = ['title', 'body', 'author_id', 'parent_id', 'category_slug', 'owner_id', 'owner_type'];
     protected $with     = ['author'];
     
     public $presenter = 'Lio\Comments\CommentPresenter';
@@ -56,12 +56,6 @@ class Comment extends EloquentBaseModel implements SlugInterface
         }
     }
 
-    public function setCategorySlug()
-    {
-        $this->category_slug = $this->owner->slug;
-        $this->save();
-    }
-
     // SlugInterface
     public function slug()
     {
@@ -78,6 +72,10 @@ class Comment extends EloquentBaseModel implements SlugInterface
 
     private function getForumPostSlugString()
     {
+        if (empty($this->title)) {
+            return '';
+        }
+        
         $date = date("m-d-Y", strtotime($this->created_at));
 
         return Str::slug("{$date} - {$this->title}");

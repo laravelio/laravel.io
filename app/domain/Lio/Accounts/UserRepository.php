@@ -15,13 +15,18 @@ class UserRepository extends EloquentBaseRepository
         return $this->model->where('github_id', '=', $id)->first();
     }
 
+    public function getFirstX($count)
+    {
+        return $this->model->take($count)->get();
+    }
+
     public function updateFromGithubData($user, $githubUser)
     {
         $user->fill([
-            'name'               => $githubUser['name'],
-            'email'              => $githubUser['email'],
-            'github_id'          => $githubUser['id'],
-            'github_url'         => $githubUser['html_url'],
+            'name'       => $githubUser['name'],
+            'email'      => $githubUser['email'],
+            'github_id'  => $githubUser['id'],
+            'github_url' => $githubUser['html_url'],
         ]);
     }
 }

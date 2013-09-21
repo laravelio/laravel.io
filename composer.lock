@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a3574205fd7a25c3827ebff2fb906911",
+    "hash": "46ff28ce6c1de19b451a8339a7ff675f",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -59,12 +59,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mtdowling/ClassPreloader.git",
-                "reference": "1.0.1"
+                "reference": "1a50f7945b725ff2c60f234e51407d1d6e7c77c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mtdowling/ClassPreloader/zipball/1.0.1",
-                "reference": "1.0.1",
+                "url": "https://api.github.com/repos/mtdowling/ClassPreloader/zipball/1a50f7945b725ff2c60f234e51407d1d6e7c77c5",
+                "reference": "1a50f7945b725ff2c60f234e51407d1d6e7c77c5",
                 "shasum": ""
             },
             "require": {
@@ -165,12 +165,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "v1.1.2"
+                "reference": "40db0c96985aab2822edbc4848b3bd2429e02670"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/v1.1.2",
-                "reference": "v1.1.2",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/40db0c96985aab2822edbc4848b3bd2429e02670",
+                "reference": "40db0c96985aab2822edbc4848b3bd2429e02670",
                 "shasum": ""
             },
             "require": {
@@ -287,7 +287,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -353,7 +353,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -559,7 +559,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -636,12 +636,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "1.0.7"
+                "reference": "12e144c788b275e5869ac15eda7bd0ae5da775bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/1.0.7",
-                "reference": "1.0.7",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/12e144c788b275e5869ac15eda7bd0ae5da775bd",
+                "reference": "12e144c788b275e5869ac15eda7bd0ae5da775bd",
                 "shasum": ""
             },
             "require": {
@@ -708,7 +708,7 @@
             "authors": [
                 {
                     "name": "Anthony Ferrara",
-                    "email": "ircmaxell@ircmaxell.com",
+                    "email": "ircmaxell@php.net",
                     "homepage": "http://blog.ircmaxell.com"
                 }
             ],
@@ -996,12 +996,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ShawnMcCool/laravel-slugs.git",
-                "reference": "a510ca45813f2c59b47e97e6542085b7ed70b9dd"
+                "reference": "9ed39fa91f1bf4bc6f6b344f2c79b3c366086300"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ShawnMcCool/laravel-slugs/zipball/a510ca45813f2c59b47e97e6542085b7ed70b9dd",
-                "reference": "a510ca45813f2c59b47e97e6542085b7ed70b9dd",
+                "url": "https://api.github.com/repos/ShawnMcCool/laravel-slugs/zipball/9ed39fa91f1bf4bc6f6b344f2c79b3c366086300",
+                "reference": "9ed39fa91f1bf4bc6f6b344f2c79b3c366086300",
                 "shasum": ""
             },
             "require": {
@@ -1029,7 +1029,7 @@
                 "laravel",
                 "slug"
             ],
-            "time": "2013-09-19 18:07:29"
+            "time": "2013-09-21 10:00:05"
         },
         {
             "name": "monolog/monolog",
@@ -1278,13 +1278,13 @@
             "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-fig/log",
-                "reference": "1.0.0"
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/php-fig/log/archive/1.0.0.zip",
-                "reference": "1.0.0",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
                 "shasum": ""
             },
             "type": "library",
@@ -2065,12 +2065,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "7a8eb6f1cf58ab2ce8b7b192539887eefd6dfa20"
+                "reference": "8662d5d0b4699b5f68b367e7dc771f178b2dd0c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/7a8eb6f1cf58ab2ce8b7b192539887eefd6dfa20",
-                "reference": "7a8eb6f1cf58ab2ce8b7b192539887eefd6dfa20",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/8662d5d0b4699b5f68b367e7dc771f178b2dd0c6",
+                "reference": "8662d5d0b4699b5f68b367e7dc771f178b2dd0c6",
                 "shasum": ""
             },
             "require": {
@@ -2103,7 +2103,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2013-09-20 20:54:40"
+            "time": "2013-09-21 08:15:01"
         }
     ],
     "aliases": [
@@ -2113,9 +2113,9 @@
     "stability-flags": {
         "dflydev/markdown": 20,
         "artdarek/oauth-4-laravel": 20,
+        "juy/profiler": 20,
         "mccool/laravel-auto-presenter": 20,
         "mccool/laravel-slugs": 20,
-        "juy/profiler": 20,
         "fzaninotto/faker": 20
     },
     "platform": [

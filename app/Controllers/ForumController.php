@@ -54,10 +54,9 @@ class ForumController extends BaseController
         }
 
         $comment = $this->comments->getNew([
-            'title'     => Input::get('title'),
-            'body'      => Input::get('body'),
-            'author_id' => Auth::user()->id,
-            'parent_id' => $thread->id,
+            'body'          => Input::get('body'),
+            'author_id'     => Auth::user()->id,
+            'parent_id'     => $thread->id,
         ]);
 
         if ( ! $comment->isValid()) {
@@ -87,9 +86,10 @@ class ForumController extends BaseController
         }
 
         $comment = $this->comments->getNew([
-            'title'     => Input::get('title'),
-            'body'      => Input::get('body'),
-            'author_id' => Auth::user()->id,
+            'title'         => Input::get('title'),
+            'body'          => Input::get('body'),
+            'author_id'     => Auth::user()->id,
+            'category_slug' => $category->slug,
         ]);
 
         if ( ! $comment->isValid()) {

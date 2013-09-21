@@ -29,6 +29,11 @@ abstract class EloquentBaseModel extends Eloquent
         return $this->validator->errors();
     }
 
+    public function clearRelationsCache()
+    {
+        $this->relations = array();
+    }
+
     protected function getPreparedRules()
     {
         return $this->replaceIdsIfExists($this->validationRules);
