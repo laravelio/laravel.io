@@ -83,3 +83,5 @@ Please consult [The Vision Document](VISION.md) which contains contribution stan
 **I'm getting an error about running a 64bit VM on a 32bit machine**
 
 You probably don't have hardware virtualization support enabled in your computer's BIOS.
+
+
