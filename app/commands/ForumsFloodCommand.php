@@ -46,8 +46,7 @@ class ForumsFloodCommand extends Command {
 			exit;
 		}
 
-		$generator = new Lio\Forum\ForumDataGenerator;
-
+		$generator = new \Lio\Forum\ForumDataGenerator(App::make('faker'), new \Lio\Forum\ForumCategoryRepository(new \Lio\Forum\ForumCategory));
 		$generator->generate($count);
 		
 		$this->info('Generation Complete');
