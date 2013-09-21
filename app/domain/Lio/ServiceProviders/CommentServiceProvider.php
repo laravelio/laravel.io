@@ -2,7 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class Comment extends ServiceProvider
+class CommentServiceProvider extends ServiceProvider
 {
     public function register() {}
 

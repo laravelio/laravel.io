@@ -119,9 +119,9 @@ return array(
 		'Juy\Profiler\Providers\ProfilerServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
 
-		'Lio\ServiceProviders\GitHub',
-		'Lio\ServiceProviders\Markdown',
-		'Lio\ServiceProviders\Comment',
+		'Lio\ServiceProviders\GitHubServiceProvider',
+		'Lio\ServiceProviders\MarkdownServiceProvider',
+		'Lio\ServiceProviders\CommentServiceProvider',
 	),
 
 	/*

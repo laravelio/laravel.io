@@ -6,7 +6,9 @@
         "artdarek/oauth-4-laravel": "dev-master",
         "mccool/laravel-auto-presenter": "dev-master",
         "mccool/laravel-slugs": "dev-master",
-        "juy/profiler": "dev-master"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "1.2.*@dev"
     },
     "autoload": {
         "classmap": [

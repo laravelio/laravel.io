@@ -4,7 +4,7 @@ use Illuminate\Support\ServiceProvider;
 
 use Event, App;
 
-class Markdown extends ServiceProvider
+class MarkdownServiceProvider extends ServiceProvider
 {
     protected $defer = true;
 

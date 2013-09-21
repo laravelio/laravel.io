@@ -2,7 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class GitHub extends ServiceProvider
+class GitHubServiceProvider extends ServiceProvider
 {
     protected $defer = true;
 

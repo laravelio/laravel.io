@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1f7b9edd3ecab17b14a08b9038f22763",
+    "hash": "a3574205fd7a25c3827ebff2fb906911",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -2059,7 +2059,52 @@
         }
     ],
     "packages-dev": [
-
+        {
+            "name": "fzaninotto/faker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "7a8eb6f1cf58ab2ce8b7b192539887eefd6dfa20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/7a8eb6f1cf58ab2ce8b7b192539887eefd6dfa20",
+                "reference": "7a8eb6f1cf58ab2ce8b7b192539887eefd6dfa20",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Faker": "src/",
+                    "Faker\\PHPUnit": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2013-09-20 20:54:40"
+        }
     ],
     "aliases": [
 
@@ -2070,7 +2115,8 @@
         "artdarek/oauth-4-laravel": 20,
         "mccool/laravel-auto-presenter": 20,
         "mccool/laravel-slugs": 20,
-        "juy/profiler": 20
+        "juy/profiler": 20,
+        "fzaninotto/faker": 20
     },
     "platform": [
 
