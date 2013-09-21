@@ -8,7 +8,10 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 
 ### Recommended
 
-1. Vagrant
+1. Vagrant - Our entire workflow is built into a Vagrant setup. Those looking to
+   contribute to the project should use the Vagrant configuration for a number
+   of reasons. These include ease of configuration and ensuring that the
+   environments used are compatible.
 
 ### Local Installation
 
