@@ -1,4 +1,4 @@
-<?php namespace Lio\Blog;
+<?php namespace Lio\Tags;
 
 use Lio\Core\EloquentBaseRepository;
 
