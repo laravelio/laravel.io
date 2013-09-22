@@ -1,1 +1,0 @@
-admin posts index
