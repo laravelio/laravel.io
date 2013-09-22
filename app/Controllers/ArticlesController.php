@@ -1,7 +1,7 @@
 <?php namespace Controllers;
 
 use Lio\Articles\ArticleRepository;
-use Lio\Articles\TagRepository;
+use Lio\Tags\TagRepository;
 
 class ArticlesController extends BaseController
 {
@@ -17,8 +17,17 @@ class ArticlesController extends BaseController
     public function getIndex()
     {
         $articles = $this->articles->getAll();
-        $navTags  = $this->tags->getAll();
 
-        $this->view('articles.index', compact('articles', 'navTags'));
+        $this->view('articles.index', compact('articles'));
+    }
+
+    public function getCompose()
+    {
+        $this->view('articles.compose');
+    }
+
+    public function postCompose()
+    {
+
     }
 }

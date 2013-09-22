@@ -8,7 +8,7 @@ class PastesController extends BaseController
 
     public function __construct(PasteRepository $pastes)
     {
-        $this->pastes   = $pastes;
+        $this->pastes = $pastes;
     }
 
     public function getIndex()

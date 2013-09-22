@@ -13,7 +13,7 @@
     <section class="top-bar-section">
         <ul class="left main-nav">
             <li>
-                <a href="#">Blog</a>
+                <a href="{{ action('Controllers\ArticlesController@getIndex') }}">Articles</a>
             </li>
 
             <li>

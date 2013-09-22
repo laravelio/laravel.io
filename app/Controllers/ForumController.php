@@ -13,8 +13,6 @@ class ForumController extends BaseController
     {
         $this->categories = $categories;
         $this->comments   = $comments;
-
-        $this->beforeFilter('auth', ['only' => ['getCreateThread', 'postCreateThread', 'postThread']]);
     }
 
     public function getIndex()
