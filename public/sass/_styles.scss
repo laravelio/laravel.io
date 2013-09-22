@@ -12,7 +12,6 @@ header {
 
 .top-bar {
     padding-right: 30px;
-    border-bottom: 3px solid $lioRed;
     margin-bottom: 0;
     .logo {
         width: 64px;
@@ -64,11 +63,11 @@ header {
     }
 }
 
-.hero-section-dark {
+.hero-section .dark {
     background-color: darken($lioRed, 3%);
 }
 
-.hero-section-darker {
+.hero-section .darker {
     background-color: darken($lioRed, 6%);
 }
 
@@ -96,31 +95,153 @@ header {
         color: $lioGrey;
         text-shadow:none;
     }
+}
 
-    .meta {
-        margin:0;
-    }
+.post:last-child {
+    border:none;
+}
+
+// Meta
+.meta {
+    margin:0;
 
     .meta i {
         padding: 0 3px 0 0;
     }
 
-    .meta li {
+    li {
         font-size:13px;
         display: inline;
         padding: 0 10px 0 0;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
     }
 
-    .meta li a {
+    li a {
         color:white;
     }
 
-    .meta li a:hover {
+    li a:hover {
         color:$lioGrey;
     }
 }
 
-.post:last-child {
+// Articles
+
+#articles {
+    width:70%;
+    padding: 2% 2% 2% 4%;
+    max-width: 900px;
+    float: left;
+}
+
+// Article
+article
+{
+    margin-bottom: 30px;
+    margin-top: 30px;
+
+    h1 {
+        font-weight: 300;
+        color:#373737;
+        font-size:3em;
+        margin: 0 0 .3em 0;
+    }
+
+    h2 {
+        font-weight: 400;
+        color:#373737;
+        font-size:2em;
+        margin: 0 0 .3em 0;
+    }
+
+    h3 {
+        font-weight: 300;
+        color:#373737;
+        font-size:1.3em;
+        margin: 0 0 .3em 0;
+    }
+
+    p {
+        font-weight: 300;
+        color:#373737;
+        font-size:1.1em;
+        line-height: 2;
+    }
+
+    p a {
+        color:#aaa;
+    }
+
+    p a:hover {
+        color:#373737;
+    }
+
+    .more {
+        position: relative;
+        display: block;
+        border-bottom: 1px solid #dbdbdb;
+        text-align: center;
+    }
+
+    .more span {
+        z-index: 500;
+        font-weight: 300;
+        padding: 0.3rem 1.3rem;
+        background:white;
+        position: relative;
+        top:0.4rem;
+        font-size: .8em;
+        color:#373737;
+    }
+
+    .more:hover span {
+        border:1px solid #dbdbdb;
+    }
+
+    .meta li {
+        text-shadow: none;
+    }
+}
+
+// Tags
+#sidebar {
+    width:25%;
+    padding: 2%;
+    float: left;
+    border-right: 1px solid #dbdbdb;
+}
+
+// Categories
+#categories {
+    ul, li {
+        padding: 0;
+        list-style-type: none;
+    }
+
+    li a {
+        font-size:.9em;
+        display: block;
+        padding: 8px 10px;
+        color:$lioGrey;
+        border-bottom: 1px solid #dbdbdb;
+    }
+
+    li a:hover {
+        color:white;
+        background: $lioGrey;
+    }
+}
+
+// Buttons
+.button {
+    text-align: center;
+    background: $lioRed;
+    padding: 10px;
     border:none;
+}
+
+.button {
+    &.full {
+        width: 100%;
+    }
 }
