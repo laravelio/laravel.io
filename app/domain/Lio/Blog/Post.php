@@ -20,8 +20,8 @@ class Post extends EloquentBaseModel
         return $this->belongsTo('Lio\Accounts\User', 'author_id');
     }
 
-    public function categories()
+    public function tags()
     {
-        return $this->belongsToMany('Lio\Blog\Category', 'category_post');
+        return $this->belongsToMany('Lio\Blog\Tag', 'post_tag');
     }
 }

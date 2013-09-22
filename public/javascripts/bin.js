@@ -1,12 +1,16 @@
 // drag and drop file api stuff
-function handleFileSelect(evt) {
-  evt.stopPropagation();
-  evt.preventDefault();
+function handleFileSelect(e) {
+  e.stopPropagation();
+  e.preventDefault();
 
-  var files = evt.dataTransfer.files;
+  var files = e.dataTransfer.files;
 
-  $.each(files, function() {
+  $.each(files, function() {    
     var file = this;
+
+    // if ( ! file.type.match('text.*')) {
+    //   continue;
+    // }
 
     var reader = new FileReader();
 
@@ -20,10 +24,10 @@ function handleFileSelect(evt) {
   });
 }
 
-function handleDragOver(evt) {
-  evt.stopPropagation();
-  evt.preventDefault();
-  evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+function handleDragOver(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
 }
 
 function bindDragAndDrop() {
