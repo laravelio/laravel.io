@@ -7,7 +7,7 @@
   <title>Laravel.IO - The Official Laravel Framework Community Portal</title>
   <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('stylesheets/app.css') }}">
-  <script src="asset('javascripts/vendor/custom.modernizr.js') }}"></script>
+  <script src="{{ asset('javascripts/vendor/custom.modernizr.js') }}"></script>
 </head>
 <body>
 
@@ -16,5 +16,8 @@
 
   {{ $content }}
 
+  @section('scripts')
+  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  @show
 </body>
 </html>

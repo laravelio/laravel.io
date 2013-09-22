@@ -22,4 +22,9 @@ class PastesController extends BaseController
     {
         $this->view('pastes.show', compact('paste'));
     }
+
+    public function getCreate()
+    {
+        $this->view('pastes.create');
+    }
 }

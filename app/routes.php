@@ -16,9 +16,11 @@ Route::get('dashboard', 'Controllers\DashboardController@getIndex');
 // user profile
 Route::get('user/{userSlug}', 'Controllers\UsersController@getProfile');
 
-
 // chat
 Route::get('chat', 'Controllers\ChatController@getIndex');
+
+// pastes
+Route::get('bin', 'Controllers\PastesController@getCreate');
 
 // forum
 Route::get('forum', 'Controllers\ForumController@getIndex');
