@@ -57,6 +57,7 @@ class ForumController extends BaseController
             'body'          => Input::get('body'),
             'author_id'     => Auth::user()->id,
             'parent_id'     => $thread->id,
+            'type'          => Comment::TYPE_FORUM,
         ]);
 
         if ( ! $comment->isValid()) {
@@ -90,6 +91,7 @@ class ForumController extends BaseController
             'body'          => Input::get('body'),
             'author_id'     => Auth::user()->id,
             'category_slug' => $category->slug,
+            'type'          => Comment::TYPE_FORUM,
         ]);
 
         if ( ! $comment->isValid()) {

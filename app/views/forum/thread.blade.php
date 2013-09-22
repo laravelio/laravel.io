@@ -13,7 +13,7 @@
             <p>
                 {{ $comment->body }}
 
-                <span>- {{ $comment->author->name }}</span>
+                <span>- <a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></span>
             </p>
         </li>
     @endforeach

@@ -20,4 +20,9 @@ class UserPresenter extends BasePresenter
 
         return implode(', ', $roleArray);
     }
+
+    public function profileUrl()
+    {
+        return action('Controllers\UsersController@getProfile', [$this->resource->name]);
+    }
 }

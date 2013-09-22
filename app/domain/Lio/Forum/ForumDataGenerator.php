@@ -47,6 +47,7 @@ class ForumDataGenerator
             'owner_id'      => $category->id,
             'owner_type'    => 'Lio\Forum\ForumCategory',
             'category_slug' => $category->slug,
+            'type'          => Comment::TYPE_FORUM,
         ]);
 
         $thread->save();
@@ -67,6 +68,7 @@ class ForumDataGenerator
 	            'body'      => $this->generator->text,
 	            'author_id' => $user->id,
 	            'parent_id' => $thread->id,
+	            'type'      => Comment::TYPE_FORUM,
 	        ]);
 
 	        $comment->save();

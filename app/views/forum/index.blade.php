@@ -16,7 +16,7 @@
             <span>thread count {{ $category->child_count }}</span>
 
             @if($category->mostRecentChild)
-                Newest Thread: {{ $category->mostRecentChild->title }} by {{ $category->mostRecentChild->author->name }}
+                Newest Thread: <a href="{{ $category->mostRecentChild->forumThreadUrl }}">{{ $category->mostRecentChild->title }}</a> by <a href="{{ $category->mostRecentChild->author->profileUrl }}">{{ $category->mostRecentChild->author->name }}</a>
             @endif
         </li>
     @endforeach

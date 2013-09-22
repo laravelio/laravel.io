@@ -13,6 +13,10 @@ Route::get('oauth', 'Controllers\AuthController@getOauth');
 // user dashboard
 Route::get('dashboard', 'Controllers\DashboardController@getIndex');
 
+// user profile
+Route::get('user/{userSlug}', 'Controllers\UsersController@getProfile');
+
+
 // chat
 Route::get('chat', 'Controllers\ChatController@getIndex');
 

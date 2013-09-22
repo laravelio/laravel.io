@@ -13,7 +13,7 @@ class User extends EloquentBaseModel implements UserInterface, RemindableInterfa
 
     protected $table    = 'users';
     protected $hidden   = ['github_id'];
-    protected $fillable = ['email', 'name', 'github_url', 'github_id', 'is_banned'];
+    protected $fillable = ['email', 'name', 'github_url', 'github_id', 'image_url', 'is_banned'];
 
     public $presenter = 'Lio\Accounts\UserPresenter';
 
@@ -97,5 +97,16 @@ class User extends EloquentBaseModel implements UserInterface, RemindableInterfa
     public function getReminderEmail()
     {
         return $this->email;
+    }
+
+    // Forum
+    public function forumPosts()
+    {
+        return $this->hasMany('Lio\Comments\Comment', 'author_id')->where('type', '=', \Lio\Comments\Comment::TYPE_FORUM)->orderBy('created_at', 'desc');
+    }
+
+    public function mostRecentFiveForumPosts()
+    {
+        return $this->forumPosts()->take(5);
     }
 }

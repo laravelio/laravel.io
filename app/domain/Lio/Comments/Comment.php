@@ -7,7 +7,7 @@ use Str;
 class Comment extends EloquentBaseModel implements SlugInterface
 {
     protected $table    = 'comments';
-    protected $fillable = ['title', 'body', 'author_id', 'parent_id', 'category_slug', 'owner_id', 'owner_type'];
+    protected $fillable = ['title', 'body', 'author_id', 'parent_id', 'category_slug', 'owner_id', 'owner_type', 'type'];
     protected $with     = ['author'];
     
     public $presenter = 'Lio\Comments\CommentPresenter';
@@ -16,6 +16,10 @@ class Comment extends EloquentBaseModel implements SlugInterface
         'body'      => 'required',
         'author_id' => 'required|exists:users,id',
     ];
+
+    const TYPE_FORUM   = 0;
+    const TYPE_PASTE   = 1;
+    const TYPE_ARTICLE = 2;
 
     public function owner()
     {
