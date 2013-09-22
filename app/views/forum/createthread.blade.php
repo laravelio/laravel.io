@@ -1,12 +1,12 @@
 
 <div class="row">
     <div class="small-12 columns">
-        <h2>Create Thread in {{ $category->title }}</h2>
+        <h2>Category {{ $category->title }}</h2>
 
         {{ Form::open() }}
 
             <fieldset>
-                <legend>Ban</legend>
+                <legend>Create Thread</legend>
 
                 <div class="row">
                     <div class="small-1 columns">

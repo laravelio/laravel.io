@@ -5,8 +5,6 @@
         {{ Form::open() }}
 
             <fieldset>
-                <legend>Ban</legend>
-
                 <div class="row">
                     <div class="small-1 columns">
                         {{ Form::label('title', 'Title') }}
