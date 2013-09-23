@@ -21,6 +21,12 @@ class User extends EloquentBaseModel implements UserInterface, RemindableInterfa
 
     private $rolesCache;
 
+    // Articles
+    public function articles()
+    {
+        return $this->hasMany('Lio\Articles\Article', 'author_id');
+    }
+
     // Roles
     public function roles()
     {

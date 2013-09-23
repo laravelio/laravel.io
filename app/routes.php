@@ -12,6 +12,7 @@ Route::get('oauth', 'Controllers\AuthController@getOauth');
 
 // user dashboard
 Route::get('dashboard', ['before' => 'auth', 'uses' => 'Controllers\DashboardController@getIndex']);
+Route::get('dashboard/articles', ['before' => 'auth', 'uses' => 'Controllers\ArticlesController@getDashboard']);
 
 // user profile
 Route::get('user/{userSlug}', ['before' => 'auth', 'uses' => 'Controllers\UsersController@getProfile']);
@@ -24,8 +25,11 @@ Route::get('bin', 'Controllers\PastesController@getCreate');
 
 // articles
 Route::get('articles', 'Controllers\ArticlesController@getIndex');
+Route::get('article/{slug}', ['before' => 'handle_slug', 'uses' => 'Controllers\ArticlesController@getShow']);
 Route::get('articles/compose', ['before' => 'auth', 'uses' => 'Controllers\ArticlesController@getCompose']);
 Route::post('articles/compose', ['before' => 'auth', 'uses' => 'Controllers\ArticlesController@postCompose']);
+Route::get('articles/edit/{article}', ['before' => 'auth', 'uses' => 'Controllers\ArticlesController@getEdit']);
+Route::post('articles/edit/{article}', ['before' => 'auth', 'uses' => 'Controllers\ArticlesController@postEdit']);
 
 // forum
 Route::get('forum', 'Controllers\ForumController@getIndex');

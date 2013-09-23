@@ -1,8 +1,8 @@
 <div class="row">
     <div class="small-12 columns">
-        <h2>Compose Article</h2>
+        <h2>Edit Article</h2>
 
-        {{ Form::open() }}
+        {{ Form::model($article->resource) }}
 
         @include('articles._article_form')
 
