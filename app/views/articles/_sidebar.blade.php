@@ -1,15 +1,15 @@
 <div id="categories">
     <h4>Categories</h4>
     <ul>
-        <li><a href="#">All Articles</a></li>
-        <li><a href="#">Installation / Configuration</a></li>
-        <li><a href="#">Authentication / Security</a></li>
-        <li><a href="#">Requests / Input</a></li>
-        <li><a href="#">Session / Cache</a></li>
-        <li><a href="#">Database / Eloquent</a></li>
-        <li><a href="#">Architecture / IoC</a></li>
-        <li><a href="#">Views / Templates / Forms</a></li>
-        <li><a href="#">Mail / Queues</a></li>
+        <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}">All Articles</a></li>
+        <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=installation,configuration">Installation / Configuration</a></li>
+        <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=authentication,security">Authentication / Security</a></li>
+        <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=requests,input">Requests / Input</a></li>
+        <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=session,cache">Session / Cache</a></li>
+        <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=database,eloquent">Database / Eloquent</a></li>
+        <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=architecture,ioc">Architecture / IoC</a></li>
+        <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=views,blade,forms">Views / Blade / Forms</a></li>
+        <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=mail,queues">Mail / Queues</a></li>
     </ul>
 </div>
 
