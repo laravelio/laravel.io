@@ -33,4 +33,13 @@ class CommentRepository extends EloquentBaseRepository
 							->orderBy('created_at', 'asc')
 							->paginate($perPage);
     }
+
+    public function getFeaturedForumThreads($count = 3)
+    {
+        return $this->model->with(['slug'])
+                           ->where('owner_type', '=', 'Lio\Forum\ForumCategory')
+                           ->orderBy('created_at', 'desc')
+                           ->take($count)
+                           ->get();
+    }
 }

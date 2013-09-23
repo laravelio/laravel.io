@@ -20,9 +20,9 @@
         </p>
     </div>
     <div class="posts">
-        @include('home._post')
-        @include('home._post')
-        @include('home._post')
+        @foreach($threads as $thread)
+            @include('forum._small_summary')
+        @endforeach
     </div>
 </section>
 

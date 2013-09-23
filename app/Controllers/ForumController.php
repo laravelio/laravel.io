@@ -2,6 +2,7 @@
 
 use Lio\Forum\ForumCategoryRepository;
 use Lio\Comments\CommentRepository;
+use Lio\Comments\Comment;
 use App, Auth, Input;
 
 class ForumController extends BaseController

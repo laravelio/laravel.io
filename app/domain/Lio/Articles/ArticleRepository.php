@@ -13,7 +13,7 @@ class ArticleRepository extends EloquentBaseRepository
 
     public function getFeaturedArticles($count = 3)
     {
-        return $this->model->with(['author'])
+        return $this->model->with(['author', 'slug'])
                            ->where('status', '=', Article::STATUS_PUBLISHED)
                            ->orderBy('published_at', 'desc')
                            ->take(3)

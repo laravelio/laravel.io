@@ -26,7 +26,8 @@ class ArticlesController extends BaseController
     public function getShow()
     {
         $article = App::make('slugModel');
-        dd($article);
+
+        $this->view('articles.show', compact('article'));
     }
 
     public function getDashboard()
