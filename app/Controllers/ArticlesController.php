@@ -17,7 +17,8 @@ class ArticlesController extends BaseController
 
     public function getIndex()
     {
-        $articles = $this->articles->getAll();
+        $tags     = $this->tags->getAllTagsBySlug(Input::get('tags'));
+        $articles = $this->articles->getAllPublishedByTagsPaginated($tags);
 
         $this->view('articles.index', compact('articles'));
     }

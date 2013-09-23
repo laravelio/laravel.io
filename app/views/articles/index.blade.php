@@ -9,7 +9,11 @@
         <h2>Articles</h2>
 
         @if($articles->count() > 0)
-            @include('articles._summary');
+            @foreach($articles as $article)
+                @include('articles._summary')
+            @endforeach
+
+            {{ $articles->links() }}
         @else
             <div class="">
                 There are currently no articles for the selected category.

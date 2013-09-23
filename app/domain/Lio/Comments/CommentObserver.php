@@ -13,7 +13,6 @@ class CommentObserver
         if ($comment->owner_type == 'Lio\Forum\ForumCategory') {
             $comment->owner->setMostRecentChild($comment);
         }
-
     }
 
     private function processParentComment($comment)

@@ -9,6 +9,21 @@ class TagRepository extends EloquentBaseRepository
         $this->model = $model;
     }
 
+    public function getAllTagsBySlug($slugString)
+    {
+        if (is_null($slugString)) {
+            return null;
+        }
+
+        if (stristr($slugString, ',')) {
+            $slugSlugs = explode(',', $slugString);
+        } else {
+            $slugSlugs = (array) $slugString;
+        }
+
+        return $this->model->whereIn('slug', (array) $slugSlugs)->get();
+    }
+
     public function getTagIdList()
     {
         return $this->model->lists('id');

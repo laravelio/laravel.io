@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTagsTable extends Migration {
+class AddCommentCounterCacheToArticles extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,12 +11,8 @@ class CreateTagsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('tags', function($t) {
-			$t->create();
-
-			$t->increments('id');
-			$t->string('name');
-			$t->string('slug');
+		Schema::table('articles', function($t) {
+			$t->integer('comment_count')->defaults(0);
 		});
 	}
 
@@ -27,7 +23,9 @@ class CreateTagsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('tags');
+		Schema::table('articles', function($t) {
+			$t->dropColumn('comment_count');
+		});
 	}
 
 }
