@@ -1,10 +1,10 @@
 <article>
-    <h2>{{ $article->title }}</h2>
+    <h2><a class="more" href="{{ $article->showUrl }}">{{ $article->title }}</a></h2>
         <ul class="meta">
-            <li><i class="icon-time"></i> 2 Days ago</li>
+            <li><i class="icon-time"></i> {{ $article->published_ago }}</li>
             <li><i class="icon-user"></i> {{ $article->author->name }}</li>
-            <li><i class="icon-comments"></i> 3 Comments</li>
+            <li><i class="icon-comments"></i> {{ $article->comment_count_label }}</li>
         </ul>
-    <p>The goal of this project is to enlist a number of experience Laravel developers who can help write articles about the common questions that come up in the Laravel support community settings (such as IRC and the forums).</p>
-    <a class="more" href="article.html"><span>Read more</span></a>
+    <p>{{ $article->summary }}</p>
+    <a class="more" href="{{ $article->showUrl }}"><span>Read more</span></a>
 </article>

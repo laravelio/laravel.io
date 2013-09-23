@@ -2,7 +2,7 @@
 
 use Lio\Articles\ArticleRepository;
 use Lio\Tags\TagRepository;
-use Auth, Input;
+use App, Auth, Input;
 
 class ArticlesController extends BaseController
 {
@@ -81,6 +81,30 @@ class ArticlesController extends BaseController
 
     public function postEdit($articleId)
     {
+        $article = $this->articles->requireById($articleId);
 
+        $form = $this->articles->getArticleForm();
+
+        if ( ! $form->isValid()) {
+            return $this->redirectBack(['errors' => $form->getErrors()]);
+        }
+
+        $article->fill(Input::only('title', 'content', 'status'));
+
+        if ( ! $article->isValid()) {
+            return $this->redirectBack(['errors' => $article->getErrors()]);
+        }
+
+        $this->articles->save($article);
+
+        $article->tags = Input::get('tags');
+
+        $articleSlug = $article->slug()->first();
+
+        if ($article->isPublished()) {
+            return $this->redirectAction('Controllers\ArticlesController@getShow', [$articleSlug->slug]);
+        } else {
+            return $this->redirectAction('Controllers\ArticlesController@getDashboard');
+        }
     }
 }

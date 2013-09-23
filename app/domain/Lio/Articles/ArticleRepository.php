@@ -13,7 +13,7 @@ class ArticleRepository extends EloquentBaseRepository
 
     public function getAllPublishedByTagsPaginated($tags, $perPage = 10)
     {
-        return $this->getAllPublishedByTagsQuery($tags)->paginate($perPage);
+        return $this->getAllPublishedByTagsQuery($tags)->paginate($perPage, ['articles.*']);
     }
 
     public function getAllPublishedByTagsQuery($tags)
@@ -33,7 +33,7 @@ class ArticleRepository extends EloquentBaseRepository
 
     public function getArticlesByAuthorPaginated(User $author, $perPage = 20)
     {
-        return $this->getArticlesByAuthor($author)->paginate($perPage, 'articles.*');
+        return $this->getArticlesByAuthor($author)->paginate($perPage);
     }
 
     public function getArticlesByAuthor(User $author)

@@ -8,11 +8,13 @@ class Article extends EloquentBaseModel implements SlugInterface
     protected $table    = 'articles';
     protected $with     = ['author'];
     protected $fillable = ['author_id', 'title', 'content', 'status', 'published_at'];
+    protected $dates    = ['published_at'];
 
-    public $presenter   = 'Lio\Articles\ArticlePresenter';
+    public $presenter = 'Lio\Articles\ArticlePresenter';
 
     const STATUS_DRAFT     = 0;
     const STATUS_PUBLISHED = 1;
+
 
     protected $validationRules = [
         'author_id' => 'required|exists:users,id',
