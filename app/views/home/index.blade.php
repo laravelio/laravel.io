@@ -6,9 +6,9 @@
         </p>
     </div>
     <div class="posts">
-        @include('home._post')
-        @include('home._post')
-        @include('home._post')
+        @foreach($articles as $article)
+            @include('articles._small_summary')
+        @endforeach
     </div>
 </section>
 

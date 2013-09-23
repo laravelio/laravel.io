@@ -11,6 +11,15 @@ class ArticleRepository extends EloquentBaseRepository
         $this->model = $model;
     }
 
+    public function getFeaturedArticles($count = 3)
+    {
+        return $this->model->with(['author'])
+                           ->where('status', '=', Article::STATUS_PUBLISHED)
+                           ->orderBy('published_at', 'desc')
+                           ->take(3)
+                           ->get();
+    }
+
     public function getAllPublishedByTagsPaginated($tags, $perPage = 10)
     {
         return $this->getAllPublishedByTagsQuery($tags)->paginate($perPage, ['articles.*']);
