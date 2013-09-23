@@ -66,7 +66,7 @@ class ArticlesController extends BaseController
         if ($article->isPublished()) {
             return $this->redirectAction('Controllers\ArticlesController@getShow', [$articleSlug]);
         } else {
-            return $this->redirectAction('Controllers\DashboardController@getArticles');
+            return $this->redirectAction('Controllers\ArticlesController@getDashboard');
         }
     }
 

@@ -20,7 +20,7 @@
         <div class="">
             {{ Form::label('status', 'Status') }}
             {{ Form::select('status', [0 => 'Draft', 1 => 'Published']) }}
-            {{ $errors->first('title', '<small class="error">:message</small>') }}
+            {{ $errors->first('status', '<small class="error">:message</small>') }}
         </div>
     </div>
 </fieldset>
@@ -29,7 +29,7 @@
     <h3>tags</h3>
     <ul>
         @foreach($tags as $tag)
-            <li>{{ Form::checkbox("tags[{$tag->id}]", 1, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span></li>
+            <li>{{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span></li>
         @endforeach
     </ul>
 @endif

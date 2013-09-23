@@ -8,4 +8,9 @@ class TagRepository extends EloquentBaseRepository
     {
         $this->model = $model;
     }
+
+    public function getTagIdList()
+    {
+        return $this->model->lists('id');
+    }
 }

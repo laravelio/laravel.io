@@ -31,9 +31,22 @@ class Article extends EloquentBaseModel implements SlugInterface
         return $this->belongsToMany('Lio\Tags\Tag', 'article_tag', 'article_id', 'tag_id');
     }
 
-    public function setTagsAttribute($tags)
+    public function setTagsAttribute($tagIds)
     {
+        $tagRepository = \App::make('\Lio\Tags\TagRepository');
+        $allTagIds = $tagRepository->getTagIdList();
 
+        $tagsToSync = [];
+
+        foreach ($tagIds as $tagId) {
+            if (in_array($tagId, $allTagIds)) {
+                $tagsToSync[] = $tagId;
+            }
+        }
+
+        if (empty($tagsToSync)) return;
+
+        $this->tags()->sync($tagsToSync);
     }
 
     public function hasTag($tagId)

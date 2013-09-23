@@ -10,5 +10,5 @@
         @endforeach
     </ul>
 @else
-    You haven't yet written any articles. <a href="{{ action('Controllers\ArticleController@getCompose') }}">Remedy This</a>
+    You haven't yet written any articles. <a href="{{ action('Controllers\ArticlesController@getCompose') }}">Remedy This</a>
 @endif
