@@ -23,7 +23,9 @@ class ArticlesController extends BaseController
 
     public function getCompose()
     {
-        $this->view('articles.compose');
+        $tags = $this->tags->getAll();
+
+        $this->view('articles.compose', compact('tags'));
     }
 
     public function postCompose()

@@ -17,7 +17,7 @@
 
                 @foreach ($roles as $role)
                     <div class="row">
-                        <div class="small-1 columns">
+                        <div class="">
                             <span class="right">{{ Form::checkbox('roles[]', $role->id, $user->hasRole($role->name), ['id' => "role_{$role->id}"]) }}</span>
                         </div>
                         <div class="small-11 columns">
@@ -46,7 +46,7 @@
                 <legend>Ban</legend>
 
                 <div class="row">
-                    <div class="small-1 columns">
+                    <div class="">
                         <span class="right">User is banned: {{ Form::checkbox('is_banned', 1, $user->is_banned == 1) }}</span>
                         <p>
                             When a user is banned, they'll be unable to log into the site using their GitHub account. This option should mostly be unnecessary.

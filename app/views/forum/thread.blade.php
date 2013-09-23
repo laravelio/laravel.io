@@ -30,7 +30,7 @@
                 <legend>Reply</legend>
 
                 <div class="row">
-                    <div class="small-1 columns">
+                    <div class="">
                         {{ Form::textarea('body') }}
                         {{ $errors->first('body', '<small class="error">:message</small>') }}
                     </div>

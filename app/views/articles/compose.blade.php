@@ -6,7 +6,7 @@
 
             <fieldset>
                 <div class="row">
-                    <div class="small-1 columns">
+                    <div class="">
                         {{ Form::label('title', 'Title') }}
                         {{ Form::text('title') }}
                         {{ $errors->first('title', '<small class="error">:message</small>') }}
@@ -14,13 +14,24 @@
                 </div>
 
                 <div class="row">
-                    <div class="small-1 columns">
+                    <div class="">
                         {{ Form::label('content', 'Content') }}
-                        {{ Form::textarea('content') }}
+                        <div id="markdown_editor"></div>
+                        {{ Form::textarea('content', null, ['id' => '_markdown_textarea', 'style' => 'display: none;']) }}
                         {{ $errors->first('content', '<small class="error">:message</small>') }}
                     </div>
                 </div>
             </fieldset>
+
+
+            @if($tags->count() > 0)
+                <h3>tags</h3>
+                <ul>
+                    @foreach($tags as $tag)
+                        <li>{{ Form::checkbox('tags[. $tag->id .]', 1) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span></li>
+                    @endforeach
+                </ul>
+            @endif
 
             <div class="row">
                 <div class="large-12 columns">
@@ -32,3 +43,5 @@
 
     </div>
 </div>
+
+@include('layouts._markdown_editor')
