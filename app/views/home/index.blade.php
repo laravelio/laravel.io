@@ -25,3 +25,15 @@
         @include('home._post')
     </div>
 </section>
+
+<secion class="hero-section darker">
+    <div class="description">
+        <h1>Help Cases</h1>
+        <p class="lead">
+            We have no idea what will go here.
+        </p>
+    </div>
+    <div class="posts">
+
+    </div>
+</section>
