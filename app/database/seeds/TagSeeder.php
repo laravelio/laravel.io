@@ -32,6 +32,7 @@ class TagSeeder extends Seeder
             'validation'     => 'related to the validation of data',
             'mail'           => 'anything related to compiling and sending email',
             'queues'         => 'all things related to queues',
+            'news'           => 'appropriate for articles that are about an occurance',
         ];
 
         foreach ($tags as $name => $description) {
