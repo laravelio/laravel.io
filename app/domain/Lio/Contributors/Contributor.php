@@ -17,4 +17,15 @@ class Contributor extends EloquentBaseModel
     {
         return $this->belongsTo('Lio\Accounts\User', 'user_id');
     }
+
+    public function setGithubIdAttribute($githubId)
+    {
+        $userRepository = \App::make('Lio\Accounts\UserRepository');
+
+        $user = $userRepository->getByGithubId($id);
+
+        if ( ! $user) return;
+
+        $this->attributes['user_id'] = $user->id;
+    }
 }

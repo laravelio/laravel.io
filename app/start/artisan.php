@@ -12,3 +12,4 @@
 */
 
 Artisan::add(new ForumsFloodCommand);
+Artisan::add(new ContributorsImportCommand);

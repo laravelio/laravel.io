@@ -8,4 +8,9 @@ class ContributorRepository extends EloquentBaseRepository
     {
         $this->model = $model;
     }
+
+    public function getByGitHubId($githubId)
+    {
+        return $this->model->where('github_id', '=', $githubId)->first();
+    }
 }
