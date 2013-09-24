@@ -4,9 +4,9 @@
     @foreach($contributors as $contributor)
         <li>
             @if($contributor->user)
-                @render('contributors._card', ['user' => $contributor->user, 'count' => $contributor->contribution_count])
+                @include('contributors._member_card')
             @else
-                @render('contributors._card', ['user' => $contributor, 'count' => $contributor->contribution_count])
+                @include('contributors._nonmember_card')
             @endif
         </li>
     @endforeach

@@ -37,7 +37,7 @@ class ContributorsImportCommand extends Command {
 	 */
 	public function fire()
 	{
-		$importer = new \Lio\Contributors\ContributorImporter;
+		$importer = App::make('Lio\Contributors\ContributorImporter');
 
 		$importer->import();
 	}

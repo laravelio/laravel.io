@@ -1,0 +1,1 @@
+Member: {{ $contributor->user->name }} {{ $contributor->user->image_url }} {{ $contributor->contribution_count }}

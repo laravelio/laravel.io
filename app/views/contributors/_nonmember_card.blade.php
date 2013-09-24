@@ -1,0 +1,1 @@
+Nonmember: {{ $contributor->name }} {{ $contributor->avatar_url }} {{ $contributor->contribution_count }}

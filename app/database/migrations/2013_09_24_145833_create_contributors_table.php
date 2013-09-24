@@ -16,11 +16,11 @@ class CreateContributorsTable extends Migration {
 
 			$t->increments('id');
 			$t->integer('user_id')->nullable();
-			$t->integer('github_id');
+			$t->string('github_id');
 			$t->string('name');
 			$t->string('avatar_url');
 			$t->string('github_url');
-			$t->integer('contributions_count')->defaults(0);
+			$t->integer('contribution_count')->defaults(0);
 
 			$t->timestamps();
 		});
