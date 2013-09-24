@@ -18,6 +18,9 @@ Route::get('dashboard/articles', ['before' => 'auth', 'uses' => 'Controllers\Art
 Route::get('user/{userSlug}', ['before' => 'auth', 'uses' => 'Controllers\UsersController@getProfile']);
 
 // chat
+Route::get('contributors', 'Controllers\ContributorsController@getIndex');
+
+// chat
 Route::get('chat', 'Controllers\ChatController@getIndex');
 
 // pastes
