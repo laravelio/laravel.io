@@ -13,13 +13,40 @@ class ContributorImporter
         $this->contributors = $contributors;
     }
 
-    public function import()
+    public function import(array $repos)
     {
-        $records = $this->getContributors();
+        $contributors = [];
 
-        foreach ($records as $record) {
-            $this->addOrUpdateContributor($record);
+        foreach ($repos as $repo) {
+            $contributors = array_merge($contributors, (array) $this->getRepoContributors($repo));
         }
+
+        $contributors = $this->combineContributorRecords($contributors);
+
+        foreach ($contributors as $contributor) {
+            $this->addOrUpdateContributor($contributor);
+        }
+    }
+
+    private function combineContributorRecords(array $contributors)
+    {
+        $combined = [];
+
+        foreach ($contributors as $contributor) {
+            $combinedIds = array_pluck($combined, 'id');
+
+            $key = array_search($contributor->id, $combinedIds);
+
+            if ($key) {
+                $combined[$key]->contributions += $contributor->contributions;
+                continue;
+            }
+
+            $combined[] = $contributor;
+        }
+
+
+        return $combined;
     }
 
     private function addOrUpdateContributor($record)
@@ -41,9 +68,9 @@ class ContributorImporter
         $this->contributors->save($contributor);
     }
 
-    private function getContributors()
+    private function getRepoContributors($repo)
     {
-        $json = file_get_contents('https://api.github.com/repos/LaravelIO/laravel-io/contributors');
+        $json = file_get_contents("https://api.github.com/repos/{$repo}/contributors");
 
         if (empty($json)) return [];
 
