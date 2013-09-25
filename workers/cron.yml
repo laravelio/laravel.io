@@ -5,4 +5,4 @@ ContributorImport:
         - 'contributors:import'
     interval:
         minute:  0
-        hour:    13
+        hour:    23
