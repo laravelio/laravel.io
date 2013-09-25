@@ -17,7 +17,7 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 
 Here are the steps for installation on a local machine using the officially endorsed workflow.
 
-1. install Vagrant, Chef and VirtualBox from their websites. NOT from package managers. If you install any of these from package managers, please do not ask for help or support when things break, which will VERY likely happen. Additionl information can be found here: https://github.com/ShawnMcCool/vagrant-chef
+1. install Vagrant, Chef and VirtualBox from their websites. NOT from package managers. If you install any of these from package managers, please do not ask for help or support when things break, which will VERY likely happen. Additional information can be found here: https://github.com/ShawnMcCool/vagrant-chef
 2. add "10.10.10.10 app.local" to your HOSTS file. Instructions below for Linux.
     ```
     echo "10.10.10.10 app.local" | sudo tee -a /etc/hosts
