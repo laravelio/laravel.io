@@ -1,6 +1,14 @@
-//
-// Foundation Variables
-//
+/* ==========================================================================
+   Custom settings
+   ========================================================================== */
+
+$lioRed:            #F0523F;
+$lioGrey:           lighten(#383636, 10%);
+$topbar-bg:         $lioGrey;
+
+/* ==========================================================================
+   Foundation settings
+   ========================================================================== */
 
 // The default font-size is set to 100% of the browser style sheet (usually 16px)
 // for compatibility with browser-based text zoom or user-set defaults.
@@ -51,8 +59,6 @@ $em-base: 16 !default;
 
 $default-float: left;
 
-$lioRed:            #F0523F;
-$lioGrey:           #383636;
 
 // $body-bg: #fff;
 // $body-font-color: #222;

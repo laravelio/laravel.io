@@ -1,0 +1,23 @@
+/* ==========================================================================
+   CATEGORIES
+   ========================================================================== */
+
+#categories {
+    ul, li {
+        padding: 0;
+        list-style-type: none;
+    }
+
+    li a {
+        font-size:.9em;
+        display: block;
+        padding: 8px 10px;
+        color:$lioGrey;
+        border-bottom: 1px solid #dbdbdb;
+    }
+
+    li a:hover {
+        color:white;
+        background: $lioGrey;
+    }
+}
