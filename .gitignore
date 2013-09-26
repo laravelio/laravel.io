@@ -4,7 +4,6 @@
 .vagrant
 .idea
 public/.sass-cache
-public/stylesheets
 tags
 app/tests/_log/*
 app/tests/_data/*
