@@ -31,7 +31,7 @@ abstract class EloquentBaseModel extends Eloquent
 
     public function clearRelationsCache()
     {
-        $this->relations = array();
+        $this->relations = [];
     }
 
     protected function getPreparedRules()
