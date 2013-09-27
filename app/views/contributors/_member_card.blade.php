@@ -1,1 +1,5 @@
-Member: {{ $contributor->user->name }} {{ $contributor->user->image_url }} {{ $contributor->contribution_count }}
+<div class="contributor member">
+	<h2>{{ $contributor->name }}</h2>
+	<img src="{{ $contributor->avatar_url }}" alt="{{ $contributor->name }}">
+	<p>Count: {{ $contributor->contribution_count }}</p>
+</div>
