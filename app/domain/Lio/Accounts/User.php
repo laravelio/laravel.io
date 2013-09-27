@@ -11,9 +11,10 @@ class User extends EloquentBaseModel implements UserInterface, RemindableInterfa
     const STATE_ACTIVE  = 1;
     const STATE_BLOCKED = 2;
 
-    protected $table    = 'users';
-    protected $hidden   = ['github_id'];
-    protected $fillable = ['email', 'name', 'github_url', 'github_id', 'image_url', 'is_banned'];
+    protected $table      = 'users';
+    protected $hidden     = ['github_id'];
+    protected $fillable   = ['email', 'name', 'github_url', 'github_id', 'image_url', 'is_banned'];
+    protected $softDelete = true;
 
     public $presenter = 'Lio\Accounts\UserPresenter';
 

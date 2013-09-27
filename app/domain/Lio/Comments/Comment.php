@@ -6,10 +6,11 @@ use Str;
 
 class Comment extends EloquentBaseModel implements SlugInterface
 {
-    protected $table    = 'comments';
-    protected $fillable = ['title', 'body', 'author_id', 'parent_id', 'category_slug', 'owner_id', 'owner_type', 'type'];
-    protected $with     = ['author'];
-    
+    protected $table      = 'comments';
+    protected $fillable   = ['title', 'body', 'author_id', 'parent_id', 'category_slug', 'owner_id', 'owner_type', 'type'];
+    protected $with       = ['author'];
+    protected $softDelete = true;
+
     public $presenter = 'Lio\Comments\CommentPresenter';
 
     protected $validatorRules = [
@@ -52,7 +53,7 @@ class Comment extends EloquentBaseModel implements SlugInterface
         $this->updateChildCount();
         $this->save();
     }
-    
+
     public function updateChildCount()
     {
         if ($this->exists) {
@@ -79,7 +80,7 @@ class Comment extends EloquentBaseModel implements SlugInterface
         if (empty($this->title)) {
             return '';
         }
-        
+
         $date = date("m-d-Y", strtotime($this->created_at));
 
         return Str::slug("{$date} - {$this->title}");

@@ -5,10 +5,11 @@ use Lio\Core\EloquentBaseModel;
 
 class Article extends EloquentBaseModel implements SlugInterface
 {
-    protected $table    = 'articles';
-    protected $with     = ['author'];
-    protected $fillable = ['author_id', 'title', 'content', 'status', 'published_at'];
-    protected $dates    = ['published_at'];
+    protected $table      = 'articles';
+    protected $with       = ['author'];
+    protected $fillable   = ['author_id', 'title', 'content', 'status', 'published_at'];
+    protected $dates      = ['published_at'];
+    protected $softDelete = true;
 
     public $presenter = 'Lio\Articles\ArticlePresenter';
 
