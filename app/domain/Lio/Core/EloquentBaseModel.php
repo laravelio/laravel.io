@@ -8,6 +8,7 @@ abstract class EloquentBaseModel extends Eloquent
 {
     protected $validationRules = [];
     protected $validator;
+		protected $softDelete = true;
 
     public function isValid()
     {
