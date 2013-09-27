@@ -47,8 +47,7 @@ Now, we must install the oauth configuration.
     a. Full URL: http://app.local
 
     b. Callback URL: http://app.local/login
-2. SSH into the vagrant box (`vagrant ssh`) and `cd /vagrant`
-3. Create the configuration file below at ***app/config/packages/artdarek/oauth-4-laravel/config.php***
+2. Create the configuration file below at ***app/config/packages/artdarek/oauth-4-laravel/config.php***
 
 ```PHP
 <?php
