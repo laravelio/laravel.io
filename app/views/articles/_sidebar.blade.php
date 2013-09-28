@@ -1,4 +1,4 @@
-<div id="categories">
+<div id="categories" class="categories">
     <h4>Categories</h4>
     <ul>
         <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}">All Articles</a></li>

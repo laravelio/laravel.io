@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-    <section id="articles">
+    <section id="articles" class="articles">
         <h2>Articles</h2>
 
         @if($articles->count() > 0)

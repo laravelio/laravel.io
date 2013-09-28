@@ -2,7 +2,8 @@
    CATEGORIES
    ========================================================================== */
 
-#categories {
+.categories {
+
     ul, li {
         padding: 0;
         list-style-type: none;
@@ -14,10 +15,10 @@
         padding: 8px 10px;
         color:$lioGrey;
         border-bottom: 1px solid #dbdbdb;
+        &:hover {
+            color:white;
+            background: $lioGrey;
+        }
     }
 
-    li a:hover {
-        color:white;
-        background: $lioGrey;
-    }
 }

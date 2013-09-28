@@ -17,14 +17,13 @@
 
     h3 a {
         color:white;
+        &:hover {
+            color: $lioGrey;
+            text-shadow:none;
+        }
     }
 
-    h3 a:hover {
-        color: $lioGrey;
-        text-shadow:none;
+    &:last-child {
+        border:none;
     }
-}
-
-.post:last-child {
-    border:none;
 }
