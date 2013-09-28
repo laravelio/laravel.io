@@ -7240,62 +7240,62 @@ a.th {
    Articles
    ========================================================================== */
 /* line 5, ../scss/modules/_articles.scss */
-#articles {
+.articles {
   width: 70%;
   padding: 2% 2% 2% 4%;
   max-width: 900px;
   float: left;
 }
 
-/* line 13, ../scss/modules/_articles.scss */
+/* line 12, ../scss/modules/_articles.scss */
 article {
   margin-bottom: 30px;
   margin-top: 30px;
 }
-/* line 17, ../scss/modules/_articles.scss */
+/* line 16, ../scss/modules/_articles.scss */
 article h1 {
   font-weight: 300;
   color: #373737;
   font-size: 3em;
   margin: 0 0 .3em 0;
 }
-/* line 24, ../scss/modules/_articles.scss */
+/* line 23, ../scss/modules/_articles.scss */
 article h2 {
   font-weight: 400;
   color: #373737;
   font-size: 2em;
   margin: 0 0 .3em 0;
 }
-/* line 31, ../scss/modules/_articles.scss */
+/* line 30, ../scss/modules/_articles.scss */
 article h3 {
   font-weight: 300;
   color: #373737;
   font-size: 1.3em;
   margin: 0 0 .3em 0;
 }
-/* line 38, ../scss/modules/_articles.scss */
+/* line 37, ../scss/modules/_articles.scss */
 article p {
   font-weight: 300;
   color: #373737;
   font-size: 1.1em;
   line-height: 2;
 }
-/* line 45, ../scss/modules/_articles.scss */
+/* line 44, ../scss/modules/_articles.scss */
 article p a {
   color: #aaa;
 }
-/* line 49, ../scss/modules/_articles.scss */
+/* line 46, ../scss/modules/_articles.scss */
 article p a:hover {
   color: #373737;
 }
-/* line 53, ../scss/modules/_articles.scss */
+/* line 51, ../scss/modules/_articles.scss */
 article .more {
   position: relative;
   display: block;
   border-bottom: 1px solid #dbdbdb;
   text-align: center;
 }
-/* line 60, ../scss/modules/_articles.scss */
+/* line 58, ../scss/modules/_articles.scss */
 article .more span {
   z-index: 500;
   font-weight: 300;
@@ -7306,11 +7306,11 @@ article .more span {
   font-size: .8em;
   color: #373737;
 }
-/* line 71, ../scss/modules/_articles.scss */
-article .more:hover span {
+/* line 67, ../scss/modules/_articles.scss */
+article .more span:hover span {
   border: 1px solid #dbdbdb;
 }
-/* line 75, ../scss/modules/_articles.scss */
+/* line 71, ../scss/modules/_articles.scss */
 article .meta li {
   text-shadow: none;
 }
@@ -7334,21 +7334,21 @@ article .meta li {
 /* ==========================================================================
    CATEGORIES
    ========================================================================== */
-/* line 6, ../scss/modules/_categories.scss */
-#categories ul, #categories li {
+/* line 7, ../scss/modules/_categories.scss */
+.categories ul, .categories li {
   padding: 0;
   list-style-type: none;
 }
-/* line 11, ../scss/modules/_categories.scss */
-#categories li a {
+/* line 12, ../scss/modules/_categories.scss */
+.categories li a {
   font-size: .9em;
   display: block;
   padding: 8px 10px;
   color: #524f4f;
   border-bottom: 1px solid #dbdbdb;
 }
-/* line 19, ../scss/modules/_categories.scss */
-#categories li a:hover {
+/* line 18, ../scss/modules/_categories.scss */
+.categories li a:hover {
   color: white;
   background: #524f4f;
 }
@@ -7385,7 +7385,7 @@ header {
 .main-nav a {
   height: 87px;
 }
-/* line 27, ../scss/modules/_header.scss */
+/* line 26, ../scss/modules/_header.scss */
 .main-nav a:hover {
   color: #f0523f;
 }
@@ -7396,7 +7396,7 @@ header {
   position: relative;
   top: -3px;
 }
-/* line 37, ../scss/modules/_header.scss */
+/* line 36, ../scss/modules/_header.scss */
 .login a {
   color: #eee !important;
 }
@@ -7463,7 +7463,7 @@ header {
 .meta li a {
   color: white;
 }
-/* line 23, ../scss/modules/_meta.scss */
+/* line 21, ../scss/modules/_meta.scss */
 .meta li a:hover {
   color: #524f4f;
 }
@@ -7490,13 +7490,12 @@ header {
 .post h3 a {
   color: white;
 }
-/* line 22, ../scss/modules/_post.scss */
+/* line 20, ../scss/modules/_post.scss */
 .post h3 a:hover {
   color: #524f4f;
   text-shadow: none;
 }
-
-/* line 28, ../scss/modules/_post.scss */
+/* line 26, ../scss/modules/_post.scss */
 .post:last-child {
   border: none;
 }
@@ -7504,8 +7503,8 @@ header {
 /* ==========================================================================
    TAGS
    ========================================================================== */
-/* line 5, ../scss/modules/_tags.scss */
-#sidebar {
+/* line 5, ../scss/modules/_sidebar.scss */
+.sidebar {
   width: 25%;
   padding: 2%;
   float: left;
