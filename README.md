@@ -74,6 +74,13 @@ When you'd like to access the database, connect to host app.local port 3306 usin
 
 After pulling down changes, ssh into the vagrant box and run the update_environment.sh script.
 
+### Frontend 
+
+Because we keep the generated / minified css out of the repository, we must have a workflow for compiling the styles.
+* Install the latest NodeJS
+* Then, go to /public folder and run "npm install"
+* Finally, run "compass watch" in your /public folder and the minified css will be generated.
+
 ### Contribution
 
 Please consult [The Vision Document](VISION.md) which contains contribution standards and an outline of the general vision of the application.
