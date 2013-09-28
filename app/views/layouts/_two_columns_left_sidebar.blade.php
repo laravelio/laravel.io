@@ -1,4 +1,4 @@
-<section id="sidebar" class="sidebar">
+<section class="sidebar">
 	@section('sidebar')
 	@show
 </section>
