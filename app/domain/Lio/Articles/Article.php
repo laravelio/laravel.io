@@ -84,4 +84,16 @@ class Article extends EloquentBaseModel implements SlugInterface
 
         return \Str::slug("{$date} {$title} {$authorName}");
     }
+
+    public function save(array $options = array())
+    {
+        if($this->status == static::STATUS_PUBLISHED && empty($this->published_at)) {
+            $this->published_at = $this->freshTimestamp();
+        }
+        else if($this->status == static::STATUS_DRAFT && $this->published_at) {
+            $this->published_at = null;
+        }
+
+        return parent::save($options);
+    }
 }
