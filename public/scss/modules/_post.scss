@@ -22,8 +22,8 @@
             text-shadow:none;
         }
     }
-}
 
-.post:last-child {
-    border:none;
+    &:last-child {
+        border:none;
+    }
 }
