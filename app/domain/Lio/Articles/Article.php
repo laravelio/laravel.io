@@ -90,9 +90,6 @@ class Article extends EloquentBaseModel implements SlugInterface
         if($this->status == static::STATUS_PUBLISHED && empty($this->published_at)) {
             $this->published_at = $this->freshTimestamp();
         }
-        else if($this->status == static::STATUS_DRAFT && $this->published_at) {
-            $this->published_at = null;
-        }
 
         return parent::save($options);
     }
