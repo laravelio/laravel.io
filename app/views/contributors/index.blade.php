@@ -1,10 +1,8 @@
 <div class="contributors">
-
 	<h1>Contributors</h1>
-
 	<ul>
 	    @foreach($contributors as $contributor)
-	        <li>
+	        <li class="small-6 large-3 columns">
 	            @if($contributor->user)
 	                @include('contributors._member_card')
 	            @else
@@ -13,5 +11,4 @@
 	        </li>
 	    @endforeach
 	</ul>
-
 </div>
