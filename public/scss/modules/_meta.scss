@@ -18,9 +18,8 @@
 
     li a {
         color:white;
-    }
-
-    li a:hover {
-        color:$lioGrey;
+        &:hover {
+            color:$lioGrey;
+        }
     }
 }

@@ -9,8 +9,7 @@
     float: left;
 }
 
-article
-{
+article {
     margin-bottom: 30px;
     margin-top: 30px;
 
@@ -44,10 +43,9 @@ article
 
     p a {
         color:#aaa;
-    }
-
-    p a:hover {
-        color:#373737;
+        &:hover {
+            color:#373737;
+        }
     }
 
     .more {
@@ -66,12 +64,10 @@ article
         top:0.4rem;
         font-size: .8em;
         color:#373737;
+        &:hover span {
+            border:1px solid #dbdbdb;
+        }
     }
-
-    .more:hover span {
-        border:1px solid #dbdbdb;
-    }
-
     .meta li {
         text-shadow: none;
     }
