@@ -1,14 +1,119 @@
 /* ==========================================================================
-   HEADER
+   HEADER NAVIGATION
    ========================================================================== */
 
-header {
+// MOBILE STYLES ////////////////////////////////////////////////////////////
+
+.top-navigation {
+    @include outer-container;
+    font-family: $helvetica;
     background-color: $lioGrey;
-    // padding: 100px 0;
-    // border-bottom: 2px solid lighten($lioGrey, 20%);
-    padding: 0 2em;
     position: relative;
 }
+
+.top-navigation-logo {
+    float:left;
+    text-align: center;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+}
+
+.top-navigation-items {
+    float:left;
+    margin: 2.25rem 0 0 0.25rem;
+    list-style: none;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-size:0.8rem;    
+    padding:0;
+    li {
+        display: inline-block;
+        margin:0 0.5rem;
+        a {
+            color:#eee;
+            text-decoration: none;
+            &:hover {
+                color: $lioRed;
+            }            
+        }
+    }
+}
+
+.top-navigation-signin-desktop {
+    display: none;
+}    
+
+.top-navigation-signin-mobile {
+    text-align: center;
+    list-style: none;
+    margin:0;
+    padding:0;
+    background: darken($lioGrey, 10%);
+    li {
+        padding: 0.5rem 0;
+        font-size:0.9rem;
+        a {
+            color:#bbb;
+            text-decoration: none;
+            &:hover {
+                color: $lioRed;
+            }    
+        }
+    }
+}
+
+
+
+// BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 480px) {
+
+    .top-navigation-signin-mobile {
+        display: none;
+    }
+    .top-navigation-signin-desktop {
+        display: inline-block;
+        text-align: right;
+        list-style: none;
+        float:right;
+        padding:0;
+        margin: 1.75rem 1rem 0 0;
+        font-size:0.8rem; 
+        li {
+            padding: 0.5rem 0;
+            font-size:0.9rem;
+            a {
+                color:#fff;
+                text-decoration: none;
+                &:hover {
+                    color: $lioRed;
+                }    
+            }
+        }    
+    }    
+}
+.dashboard-word {
+    display: none;
+}
+
+// BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 768px) {
+    .dashboard-word {
+        display: inline-block;
+    }    
+}
+
+// BREAKPOINT 3 (1280) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1280px) {
+
+}
+
+
+
+/*
+
+
 
 .top-bar {
     padding-right: 30px;
@@ -37,3 +142,4 @@ header {
         color: #eee !important;
     }
 }
+*/
