@@ -19,7 +19,8 @@
                 <div class="row">
                     <div class="">
                         {{ Form::label('body', 'Thread') }}
-                        {{ Form::textarea('body') }}
+                        <div id="markdown_editor"></div>
+                        {{ Form::textarea('body', null, ['id' => '_markdown_textarea', 'style' => 'display: none;']) }}
                         {{ $errors->first('body', '<small class="error">:message</small>') }}
                     </div>
                 </div>
@@ -35,3 +36,5 @@
 
     </div>
 </div>
+
+@include('layouts._markdown_editor')
