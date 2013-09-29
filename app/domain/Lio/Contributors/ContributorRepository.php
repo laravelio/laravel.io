@@ -16,6 +16,6 @@ class ContributorRepository extends EloquentBaseRepository
 
     public function getAllByContributionsPaginated($perPage = 40)
     {
-        return $this->model->orderBy('contributions_count', 'desc')->paginate($perPage);
+        return $this->model->orderBy('contribution_count', 'desc')->paginate($perPage);
     }
 }
