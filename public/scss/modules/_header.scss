@@ -97,7 +97,18 @@
 // BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 768px) {
+
+    .top-navigation-logo {
+        padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    }
+    .top-navigation-items {
+        margin: 2.25rem 0 0 0.75rem;
+    }
+    .top-navigation-signin-desktop { 
+        margin: 1.75rem 2rem 0 0;
+    }
     .dashboard-word {
         display: inline-block;
-    }    
+    } 
+
 }
