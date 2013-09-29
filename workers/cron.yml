@@ -6,3 +6,12 @@ ContributorImport:
     interval:
         minute:  0
         hour:    23
+
+DatabaseBackup:
+    type:   cron
+    script: htdocs/artisan
+    args:
+        - 'db:backup --s3-bucket=laravelio --s3-path=backups --gzip --cleanup'
+    interval:
+        minute:  0
+        hour:    4
