@@ -7423,20 +7423,40 @@ header {
 .hero-section .description h1 {
   color: #fff;
 }
-/* line 20, ../scss/modules/_hero-section.scss */
+/* line 19, ../scss/modules/_hero-section.scss */
+.hero-section .description a {
+  color: #fff;
+  text-decoration: underline;
+}
+/* line 22, ../scss/modules/_hero-section.scss */
+.hero-section .description a:hover {
+  color: #524f4f;
+  text-shadow: none;
+}
+/* line 28, ../scss/modules/_hero-section.scss */
 .hero-section .posts {
   float: left;
   color: #fff;
   width: 60%;
   padding: 4% 5% 2% 5%;
 }
+/* line 33, ../scss/modules/_hero-section.scss */
+.hero-section .posts a {
+  color: #fff;
+  text-decoration: underline;
+}
+/* line 36, ../scss/modules/_hero-section.scss */
+.hero-section .posts a:hover {
+  color: #524f4f;
+  text-shadow: none;
+}
 
-/* line 29, ../scss/modules/_hero-section.scss */
+/* line 44, ../scss/modules/_hero-section.scss */
 .hero-section .dark {
   background-color: #ef4531;
 }
 
-/* line 33, ../scss/modules/_hero-section.scss */
+/* line 48, ../scss/modules/_hero-section.scss */
 .hero-section .darker {
   background-color: #ee3823;
 }

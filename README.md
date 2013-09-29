@@ -5,6 +5,10 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 ### Requirements
 
 1. PHP 5.4
+2. Vagrant
+3. Chef
+4. Virtualbox
+5. NodeJS
 
 ### Recommended
 
@@ -80,7 +84,7 @@ After pulling down changes, ssh into the vagrant box and run the update_environm
 Because we keep the generated / minified css out of the repository, we must have a workflow for compiling the styles.
 * Install the latest NodeJS
 * Then, go to /public folder and run "npm install"
-* Finally, run "compass watch" in your /public folder and the minified css will be generated and also your filesystem will watch for file changes (and overwrites the .css). You can also run "compass compile" as a single one-time command to generate the css.
+* Finally, run "compass watch" in your /public folder and the minified css will be generated and also your filesystem will watch for file changes (and overwrites the .css). You can also run "compass compile" as a single one-time command to generate the css and don't watch the filesystem.
 
 ### Contribution
 
