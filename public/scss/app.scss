@@ -12,15 +12,15 @@
    Vendor
    ========================================================================== */
 @import "vendor/normalize/normalize";
-@import "vendor/foundation/foundation";
 @import "vendor/bourbon/bourbon";
 @import "vendor/neat/neat";
-
 
 /* ==========================================================================
    Components from other frameworks
    ========================================================================== */
-// @import "vendor/component/component";
+@import "vendor/foundation/global";
+@import "vendor/foundation/grid";
+@import "vendor/foundation/top-bar";
 
 /* ==========================================================================
    Modules
