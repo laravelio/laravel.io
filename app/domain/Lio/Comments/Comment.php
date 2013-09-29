@@ -69,7 +69,7 @@ class Comment extends EloquentBaseModel implements SlugInterface
 
     public function getSlugString()
     {
-        if ($this->owner_type == 'Lio\Forum\ForumCategory') {
+        if ($this->type == static::TYPE_FORUM && is_null($this->parent_id)) {
             return $this->getForumPostSlugString();
         }
     }

@@ -1,8 +1,6 @@
 
 <div class="row">
     <div class="small-12 columns">
-        <h2>Category {{ $category->title }}</h2>
-
         {{ Form::open() }}
 
             <fieldset>

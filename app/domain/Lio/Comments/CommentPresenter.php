@@ -6,12 +6,11 @@ class CommentPresenter extends BasePresenter
 {
     public function forumThreadUrl()
     {
-        $comment = $this->resource;
+        $slug = $this->resource->slug;
 
-        $commentSlug = $comment->slug->slug;
-        $forumSlug   = $comment->category_slug;
+        if ( ! $slug) return '';
 
-        return action('Controllers\ForumController@getThread', [$forumSlug, $commentSlug]);
+        return action('Controllers\ForumController@getThread', [$slug->slug]);
     }
 
     public function child_count_label()

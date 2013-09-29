@@ -1,9 +1,3 @@
-<h1><a href="{{ $category->categoryIndexUrl }}">Forum Category {{ $category->title }}</a></h1>
-
-<p>{{ $category->description }}</p>
-
-<hr/>
-
 <ul>
     @foreach($comments as $comment)
         <li>

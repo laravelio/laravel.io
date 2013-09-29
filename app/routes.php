@@ -36,11 +36,10 @@ Route::post('articles/edit/{article}', ['before' => 'auth', 'uses' => 'Controlle
 
 // forum
 Route::get('forum', 'Controllers\ForumController@getIndex');
-Route::get('forum/{forumCategory}', 'Controllers\ForumController@getCategory');
 Route::get('forum/create-thread', ['before' => 'auth', 'uses' => 'Controllers\ForumController@getCreateThread']);
 Route::post('forum/create-thread', ['before' => 'auth', 'uses' => 'Controllers\ForumController@postCreateThread']);
-Route::get('forum/{forumCategory}/{slug}', ['before' => 'handle_slug', 'uses' => 'Controllers\ForumController@getThread']);
-Route::post('forum/{forumCategory}/{slug}', ['before' => 'auth|handle_slug', 'uses' => 'Controllers\ForumController@postThread']);
+Route::get('forum/{slug}', ['before' => 'handle_slug', 'uses' => 'Controllers\ForumController@getThread']);
+Route::post('forum/{slug}', ['before' => 'auth|handle_slug', 'uses' => 'Controllers\ForumController@postThread']);
 
 // admin
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {

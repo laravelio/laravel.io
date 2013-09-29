@@ -17,14 +17,14 @@
 
 <secion class="hero-section dark">
     <div class="description">
-        <h1>Forum Posts</h1>
+        <h1>Forum Threads</h1>
         <p class="lead">
             Discuss development related topics, ask for, and provide help.
         </p>
     </div>
     <div class="posts">
         @foreach($threads as $thread)
-            @include('forum._small_summary')
+            @include('forum._home_summary')
         @endforeach
     </div>
 </section>
