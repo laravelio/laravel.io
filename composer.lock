@@ -1105,12 +1105,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ShawnMcCool/database-backup.git",
-                "reference": "c80212cebb38cdec792d5970b239050a638c7f4f"
+                "reference": "66c8522757dd6bd2e50ee92976d9fd2d191528ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ShawnMcCool/database-backup/zipball/c80212cebb38cdec792d5970b239050a638c7f4f",
-                "reference": "c80212cebb38cdec792d5970b239050a638c7f4f",
+                "url": "https://api.github.com/repos/ShawnMcCool/database-backup/zipball/66c8522757dd6bd2e50ee92976d9fd2d191528ae",
+                "reference": "66c8522757dd6bd2e50ee92976d9fd2d191528ae",
                 "shasum": ""
             },
             "require": {
@@ -1142,7 +1142,7 @@
                 }
             ],
             "description": "A framework-agnostic driver-based database backup package with a Laravel add-on.",
-            "time": "2013-09-27 13:04:36"
+            "time": "2013-09-29 09:25:05"
         },
         {
             "name": "mccool/laravel-auto-presenter",
