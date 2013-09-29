@@ -1,0 +1,50 @@
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+
+.hero-section {
+    background-color: $lioRed;
+    border-bottom: 2px solid #fff;
+    clear: both;
+    float: left;
+    width: 100%;
+    .description {
+        width: 40%;
+        float: left;
+        color: #fff;
+        padding: 4% 5% 5%;
+        h1 {
+            color: #fff;
+        }
+        a {
+            color:#fff;
+            text-decoration: underline;
+            &:hover {
+                color: $lioGrey;
+                text-shadow:none;
+            }            
+        }
+    }
+    .posts {
+        float: left;
+        color: #fff;
+        width: 60%;
+        padding: 4% 5% 2% 5%;
+        a {
+            color:#fff;
+            text-decoration: underline;
+            &:hover {
+                color: $lioGrey;
+                text-shadow:none;
+            }            
+        }
+    }
+}
+
+.hero-section .dark {
+    background-color: darken($lioRed, 3%);
+}
+
+.hero-section .darker {
+    background-color: darken($lioRed, 6%);
+}

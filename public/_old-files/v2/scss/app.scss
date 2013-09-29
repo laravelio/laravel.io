@@ -1,9 +1,4 @@
 /* ==========================================================================
-   Neat helpers
-   ========================================================================== */
-@import "vendor/neat/neat-helpers";
-
-/* ==========================================================================
    Settings
    ========================================================================== */
 @import "settings";
@@ -11,16 +6,13 @@
 /* ==========================================================================
    Vendor
    ========================================================================== */
-@import "vendor/normalize/normalize";
-@import "vendor/foundation/foundation";
-@import "vendor/bourbon/bourbon";
-@import "vendor/neat/neat";
-
+@import "vendor/normalize";
+@import "foundation";
 
 /* ==========================================================================
-   Components from other frameworks
+   Components
    ========================================================================== */
-// @import "vendor/component/component";
+@import "vendor/foundation-components";
 
 /* ==========================================================================
    Modules
@@ -34,4 +26,3 @@
 @import "modules/meta";
 @import "modules/post";
 @import "modules/sidebar";
-

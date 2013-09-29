@@ -1,0 +1,115 @@
+//
+// Dropdown Button Variables
+//
+$include-html-button-classes: $include-html-classes !default;
+
+// We use these to set the color of the pip in dropdown buttons
+$dropdown-button-pip-color: #fff !default;
+$dropdown-button-pip-color-alt: #333 !default;
+
+// We use these to style tiny dropdown buttons
+$dropdown-button-padding-tny: $button-tny * 5 !default;
+$dropdown-button-pip-size-tny: $button-tny !default;
+$dropdown-button-pip-opposite-tny: $button-tny * 2 !default;
+$dropdown-button-pip-top-tny: -$button-tny / 2 + em-calc(1) !default;
+
+// We use these to style small dropdown buttons
+$dropdown-button-padding-sml: $button-sml * 5 !default;
+$dropdown-button-pip-size-sml: $button-sml !default;
+$dropdown-button-pip-opposite-sml: $button-sml * 2 !default;
+$dropdown-button-pip-top-sml: -$button-sml / 2 + em-calc(1) !default;
+
+// We use these to style medium dropdown buttons
+$dropdown-button-padding-med: $button-med * 4 + em-calc(3) !default;
+$dropdown-button-pip-size-med: $button-med - em-calc(3) !default;
+$dropdown-button-pip-opposite-med: $button-med * 2 !default;
+$dropdown-button-pip-top-med: -$button-med / 2 + em-calc(2) !default;
+
+// We use these to style large dropdown buttons
+$dropdown-button-padding-lrg: $button-lrg * 4 !default;
+$dropdown-button-pip-size-lrg: $button-lrg - em-calc(6) !default;
+$dropdown-button-pip-opposite-lrg: $button-lrg + em-calc(12) !default;
+$dropdown-button-pip-top-lrg: -$button-lrg / 2 + em-calc(3) !default;
+
+//
+// Dropdown Button Mixin
+//
+
+// We use this mixin to build off of the button mixin and add dropdown button styles
+@mixin dropdown-button($padding:medium, $pip-color:#fff, $base-style:true) {
+
+  // We add in base styles, but they can be negated by setting to 'false'.
+  @if $base-style {
+    position: relative;
+
+    // This creates the base styles for the triangle pip
+    &:before {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      display: block;
+      border-style: solid;
+      border-color: $dropdown-button-pip-color transparent transparent transparent;
+      top: 50%;
+    }
+  }
+
+  // If we're dealing with tiny buttons, use these styles
+  @if $padding == tiny {
+    padding-#{$opposite-direction}: $dropdown-button-padding-tny;
+    &:before {
+      border-width: $dropdown-button-pip-size-tny;
+      #{$opposite-direction}: $dropdown-button-pip-opposite-tny;
+      margin-top: $dropdown-button-pip-top-tny;
+    }
+  }
+
+  // If we're dealing with small buttons, use these styles
+  @if $padding == small {
+    padding-#{$opposite-direction}: $dropdown-button-padding-sml;
+    &:before {
+      border-width: $dropdown-button-pip-size-sml;
+      #{$opposite-direction}: $dropdown-button-pip-opposite-sml;
+      margin-top: $dropdown-button-pip-top-sml;
+    }
+  }
+
+  // If we're dealing with default (medium) buttons, use these styles
+  @if $padding == medium {
+    padding-#{$opposite-direction}: $dropdown-button-padding-med;
+    &:before {
+      border-width: $dropdown-button-pip-size-med;
+      #{$opposite-direction}: $dropdown-button-pip-opposite-med;
+      margin-top: $dropdown-button-pip-top-med;
+    }
+  }
+
+  // If we're dealing with large buttons, use these styles
+  @if $padding == large {
+    padding-#{$opposite-direction}: $dropdown-button-padding-lrg;
+    &:before {
+      border-width: $dropdown-button-pip-size-lrg;
+      #{$opposite-direction}: $dropdown-button-pip-opposite-lrg;
+      margin-top: $dropdown-button-pip-top-lrg;
+    }
+  }
+
+  // We can control the pip color. We didn't use logic in this case, just set it and forget it.
+  @if $pip-color {
+    &:before { border-color: $pip-color transparent transparent transparent; }
+  }
+}
+
+
+@if $include-html-button-classes {
+
+  /* Dropdown Button */
+  .dropdown.button { @include dropdown-button;
+    &.tiny { @include dropdown-button(tiny,$base-style:false); }
+    &.small { @include dropdown-button(small,$base-style:false); }
+    &.large { @include dropdown-button(large,$base-style:false); }
+    &.secondary:before { border-color: $dropdown-button-pip-color-alt transparent transparent transparent; }
+  }
+
+}
