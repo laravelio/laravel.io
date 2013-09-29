@@ -1,5 +1,5 @@
 /* ==========================================================================
-   HEADER NAVIGATION
+   HEADER NAVIGATION (mobile first module)
    ========================================================================== */
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
@@ -61,8 +61,6 @@
     }
 }
 
-
-
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 480px) {
@@ -76,13 +74,13 @@
         list-style: none;
         float:right;
         padding:0;
-        margin: 1.75rem 1rem 0 0;
+        margin: 1.70rem 1rem 0 0;
         font-size:0.8rem; 
         li {
             padding: 0.5rem 0;
             font-size:0.9rem;
             a {
-                color:#fff;
+                color:#bbb;
                 text-decoration: none;
                 &:hover {
                     color: $lioRed;
@@ -90,56 +88,27 @@
             }
         }    
     }    
+    .dashboard-word {
+        display: none;
+    }
 }
-.dashboard-word {
-    display: none;
-}
+
 
 // BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 768px) {
+
+    .top-navigation-logo {
+        padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    }
+    .top-navigation-items {
+        margin: 2.25rem 0 0 0.75rem;
+    }
+    .top-navigation-signin-desktop { 
+        margin: 1.75rem 2rem 0 0;
+    }
     .dashboard-word {
         display: inline-block;
-    }    
-}
-
-// BREAKPOINT 3 (1280) ////////////////////////////////////////////////////////////
-
-@media only screen and (min-width: 1280px) {
+    } 
 
 }
-
-
-
-/*
-
-
-
-.top-bar {
-    padding-right: 30px;
-    margin-bottom: 0;
-    .logo {
-        width: 64px;
-    }
-}
-
-.main-nav {
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-    a {
-        height: 87px;
-        &:hover {
-            color: $lioRed;
-        }
-    }
-}
-
-.login {
-    background-color: transparent !important;
-    position: relative;
-    top: -3px;
-    a {
-        color: #eee !important;
-    }
-}
-*/

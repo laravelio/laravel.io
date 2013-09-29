@@ -25,7 +25,7 @@
         </ul>
         <ul class="top-navigation-signin-desktop">
             @if(Auth::check())
-                <li><a href="{{ action('Controllers\DashboardController@getIndex') }}">{{ Auth::user()->name }}'s <span class="dashboard-word">Dashboard</span></a></li>
+                <li><a href="{{ action('Controllers\DashboardController@getIndex') }}">{{ Auth::user()->name }}<span class="dashboard-word">'s Dashboard</span></a></li>
             @else
                 <li><a href="{{ action('Controllers\AuthController@getLogin') }}">Login with GitHub</a></li>
             @endif  
