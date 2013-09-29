@@ -1,0 +1,1 @@
+_thread_summary.blade.php

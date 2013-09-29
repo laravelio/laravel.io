@@ -18,9 +18,8 @@ class ForumController extends BaseController
 
     public function getIndex()
     {
-        $categories = $this->categories->getForumIndex();
-
-        $this->view('forum.index', compact('categories'));
+        $threads = $this->comments->getForumThreadsByTagsPaginated();
+        $this->view('forum.index', compact('threads'));
     }
 
     public function getCategory($categorySlug)
@@ -68,11 +67,9 @@ class ForumController extends BaseController
         return $this->redirectAction('Controllers\ForumController@getThread', [$categorySlug, $thread->slug->slug]);
     }
 
-    public function getCreateThread($categorySlug)
+    public function getCreateThread()
     {
-        $category = $this->categories->requireCategoryBySlug($categorySlug);
-
-        $this->view('forum.createthread', compact('category'));
+        $this->view('forum.createthread');
     }
 
     public function postCreateThread($categorySlug)

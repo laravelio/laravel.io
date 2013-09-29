@@ -1,23 +1,23 @@
-<h1>Forum</h1>
+@extends('layouts._two_columns_left_sidebar')
 
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</p>
+@section('sidebar')
+    @include('forum._sidebar')
+@stop
 
-<ul>
-    @foreach($categories as $category)
-        <li>
-            <a href="{{ $category->categoryIndexUrl }}">{{ $category->title }}</a>
-            <span>thread count {{ $category->child_count }}</span>
+@section('content')
+    <section class="threads">
+        <h2>Threads</h2>
 
-            @if($category->mostRecentChild)
-                Newest Thread: <a href="{{ $category->mostRecentChild->forumThreadUrl }}">{{ $category->mostRecentChild->title }}</a> by <a href="{{ $category->mostRecentChild->author->profileUrl }}">{{ $category->mostRecentChild->author->name }}</a>
-            @endif
-        </li>
-    @endforeach
-</ul>
+        @if($threads->count() > 0)
+            @foreach($threads as $thread)
+                @include('forum._thread_summary')
+            @endforeach
+
+            {{ $threads->links() }}
+        @else
+            <div class="">
+                There are currently no threads for the selected category.
+            </div>
+        @endif
+    </section>
+@stop

@@ -4,7 +4,7 @@
         <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}">All Articles</a></li>
         <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=installation,configuration">Installation / Configuration</a></li>
         <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=authentication,security">Authentication / Security</a></li>
-        <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=requests,input">Requests / Input</a></li>
+        <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=requests,input">Requests / Input / Responses</a></li>
         <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=session,cache">Session / Cache</a></li>
         <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=database,eloquent">Database / Eloquent</a></li>
         <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=architecture,ioc">Architecture / IoC</a></li>
