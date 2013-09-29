@@ -61,8 +61,6 @@
     }
 }
 
-
-
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 480px) {
@@ -90,10 +88,11 @@
             }
         }    
     }    
+    .dashboard-word {
+        display: none;
+    }
 }
-.dashboard-word {
-    display: none;
-}
+
 
 // BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
 
@@ -101,10 +100,4 @@
     .dashboard-word {
         display: inline-block;
     }    
-}
-
-// BREAKPOINT 3 (1280) ////////////////////////////////////////////////////////////
-
-@media only screen and (min-width: 1280px) {
-
 }
