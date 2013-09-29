@@ -10,7 +10,7 @@
             @include('articles._small_summary')
         @endforeach
         <p>
-            <a href="{{ action('Controllers\ArticlesController@getDashboard') }}">See all articles</a>
+            <a href="{{ action('Controllers\ArticlesController@getIndex') }}">See all articles</a>
         </p>
     </div>
 </section>
