@@ -53,6 +53,6 @@ end
 Vagrant::Config.run do |config|
     # permissions for the application's storage folder
     config.vm.provision :shell do |shell|
-        shell.inline = "bash /vagrant/vagrant-chef/scripts/shell.sh"
+        shell.inline = "sudo bash /vagrant/vagrant-chef/scripts/shell.sh"
     end
 end

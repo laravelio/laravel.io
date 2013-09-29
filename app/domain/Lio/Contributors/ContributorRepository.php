@@ -13,4 +13,9 @@ class ContributorRepository extends EloquentBaseRepository
     {
         return $this->model->where('github_id', '=', $githubId)->first();
     }
+
+    public function getAllByContributionsPaginated($perPage = 40)
+    {
+        return $this->model->orderBy('contributions_count', 'desc')->paginate($perPage);
+    }
 }
