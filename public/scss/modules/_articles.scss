@@ -2,11 +2,13 @@
    Articles
    ========================================================================== */
 
+// MOBILE STYLES ////////////////////////////////////////////////////////////
+
 .articles {
-    width:70%;
-    padding: 2% 2% 2% 4%;
+    @include span-columns(12);
+    @include omega();
+    padding: 2%;
     max-width: 900px;
-    float: left;
 }
 
 article {
@@ -71,4 +73,41 @@ article {
     .meta li {
         text-shadow: none;
     }
+}
+
+
+// BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 480px) {
+
+    .module {}
+
+}
+
+
+// BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 768px) {
+
+    .articles {
+        @include span-columns(9);
+        @include omega();
+        max-width: 900px;
+    }
+}
+
+
+// BREAKPOINT 3 (1024) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1024px) {
+
+    .module {}
+}
+
+
+// BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1440px) {
+
+    .module {}
 }
