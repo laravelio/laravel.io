@@ -22,6 +22,20 @@
                         {{ $errors->first('body', '<small class="error">:message</small>') }}
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="">
+                        @if($tags->count() > 0)
+                            <h3>tags</h3>
+                            <ul>
+                                @foreach($tags as $tag)
+                                    <li>{{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span></li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+                </div>
+
             </fieldset>
 
             <div class="row">

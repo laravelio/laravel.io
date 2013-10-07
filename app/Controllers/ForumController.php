@@ -1,8 +1,9 @@
 <?php namespace Controllers;
 
-use Lio\Forum\ForumCategoryRepository;
 use Lio\Comments\CommentRepository;
 use Lio\Comments\Comment;
+use Lio\Tags\TagRepository;
+use Lio\Forum\ForumCategoryRepository;
 use App, Auth, Input;
 
 class ForumController extends BaseController
@@ -10,10 +11,11 @@ class ForumController extends BaseController
     private $categories;
     private $comments;
 
-    public function __construct(ForumCategoryRepository $categories, CommentRepository $comments)
+    public function __construct(CommentRepository $comments, TagRepository $tags, ForumCategoryRepository $categories)
     {
+        $this->comments = $comments;
         $this->categories = $categories;
-        $this->comments   = $comments;
+        $this->tags     = $tags;
     }
 
     public function getIndex()
@@ -57,7 +59,9 @@ class ForumController extends BaseController
 
     public function getCreateThread()
     {
-        $this->view('forum.createthread');
+        $tags = $this->tags->getAll();
+
+        $this->view('forum.createthread', compact('tags'));
     }
 
     public function postCreateThread()
