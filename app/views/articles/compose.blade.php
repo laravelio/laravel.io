@@ -10,5 +10,3 @@
 
     </div>
 </div>
-
-@include('layouts._markdown_editor')
