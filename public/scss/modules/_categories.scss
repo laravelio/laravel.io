@@ -13,11 +13,12 @@
         font-size:.9em;
         display: block;
         padding: 8px 10px;
-        color:$lioGrey;
+        color: $secondary-color;
         border-bottom: 1px solid #dbdbdb;
+        text-decoration: none;
         &:hover {
             color:white;
-            background: $lioGrey;
+            background: $secondary-color;
         }
     }
 

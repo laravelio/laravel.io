@@ -5,8 +5,8 @@
 @stop
 
 @section('content')
-    <section class="threads">
-        <h2>Threads</h2>
+    <section class="articles">
+        <h1>Forum</h1>
 
         @if($threads->count() > 0)
             @foreach($threads as $thread)

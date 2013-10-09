@@ -13,7 +13,7 @@
     </ul>
 </div>
 
-<div id="new">
+<div class="new-post">
     <h4>Write an Article</h4>
     <p>We rely on community members to provide the resources that you see here. You can be a hero. Contribute your knowledge.</p>
     <a class="button full" href="{{ action('Controllers\ArticlesController@getCompose') }}">Write an Article</a>

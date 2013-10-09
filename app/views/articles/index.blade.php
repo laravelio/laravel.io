@@ -6,7 +6,7 @@
 
 @section('content')
     <section class="articles">
-        <h2>Articles</h2>
+        <h1>Articles</h1>
 
         @if($articles->count() > 0)
             @foreach($articles as $article)

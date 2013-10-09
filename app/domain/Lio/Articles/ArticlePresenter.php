@@ -23,7 +23,7 @@ class ArticlePresenter extends BasePresenter
 
     public function summary()
     {
-        return \Str::words($this->resource->content, 200);
+        return \Str::words($this->resource->content, 70);
     }
 
     public function published_at()

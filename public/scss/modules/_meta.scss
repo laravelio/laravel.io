@@ -3,17 +3,17 @@
    ========================================================================== */
 
 .meta {
-    margin:0;
+    margin:0 0 1em;
+    padding: 0;
+    font-size: $small-print-size;
 
     .meta i {
         padding: 0 3px 0 0;
     }
 
     li {
-        font-size:13px;
         display: inline;
-        padding: 0 10px 0 0;
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+        margin: 0 2em 0 0;
     }
 
     li a {

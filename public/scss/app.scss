@@ -7,6 +7,7 @@
    Settings
    ========================================================================== */
 @import "settings";
+@import "elements";
 
 /* ==========================================================================
    Vendor
@@ -14,18 +15,13 @@
 @import "vendor/normalize/normalize";
 @import "vendor/bourbon/bourbon";
 @import "vendor/neat/neat";
-
-/* ==========================================================================
-   Components from other frameworks (to be removed)
-   ========================================================================== */
-@import "vendor/foundation/global";
-@import "vendor/foundation/grid";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,700,300);
+@import "vendor/typeplate/typeplate";
 
 /* ==========================================================================
    Modules
    ========================================================================== */
 @import "modules/articles";
-@import "modules/buttons";
 @import "modules/categories";
 @import "modules/contributors";
 @import "modules/header";

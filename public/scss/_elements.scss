@@ -1,24 +1,31 @@
 /* ==========================================================================
-   Grid settings
+   Anchors
    ========================================================================== */
-
-$column: 70px;
-$gutter: 30px;
-$grid-columns: 12;
-$max-width: 100%;
+a {
+  text-decoration: none;
+  color: $primary-color;
+}
 
 /* ==========================================================================
-   Visual grid settings
+   Buttons
    ========================================================================== */
-$visual-grid: false;
-$visual-grid-color: gray;
+.button {
+    text-align: center;
+    background: $primary-color;
+    padding: 10px;
+    border:none;
+    color: #fff;
+}
+
+.button {
+    &.full {
+        width: 100%;
+    }
+}
 
 /* ==========================================================================
-   Custom settings
+   Buttons
    ========================================================================== */
-$lioRed:            #F0523F;
-$lioGrey:           #444;
-$topbar-bg:         $lioGrey;
-
-$primary-color:     $lioRed;
-$secondary-color:   $lioGrey;
+h1, h2, h3 {
+    font-weight: 400;
+}

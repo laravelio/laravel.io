@@ -6,8 +6,7 @@
 
 .top-navigation {
     @include outer-container;
-    font-family: $helvetica;
-    background-color: $lioGrey;
+    background-color: $secondary-color;
     position: relative;
 }
 
@@ -23,31 +22,31 @@
     list-style: none;
     text-transform: uppercase;
     letter-spacing: 0.09em;
-    font-size:0.8rem;    
+    font-size:0.8rem;
     padding:0;
     li {
         display: inline-block;
-        margin:0 0.5rem;
+        margin:0 1rem;
         a {
             color:#eee;
             text-decoration: none;
             &:hover {
-                color: $lioRed;
-            }            
+                color: $primary-color;
+            }
         }
     }
 }
 
 .top-navigation-signin-desktop {
     display: none;
-}    
+}
 
 .top-navigation-signin-mobile {
     text-align: center;
     list-style: none;
     margin:0;
     padding:0;
-    background: darken($lioGrey, 10%);
+    background: darken($secondary-color, 10%);
     li {
         padding: 0.5rem 0;
         font-size:0.9rem;
@@ -55,8 +54,8 @@
             color:#bbb;
             text-decoration: none;
             &:hover {
-                color: $lioRed;
-            }    
+                color: $primary-color;
+            }
         }
     }
 }
@@ -75,7 +74,7 @@
         float:right;
         padding:0;
         margin: 1.70rem 1rem 0 0;
-        font-size:0.8rem; 
+        font-size:0.8rem;
         li {
             padding: 0.5rem 0;
             font-size:0.9rem;
@@ -83,11 +82,11 @@
                 color:#bbb;
                 text-decoration: none;
                 &:hover {
-                    color: $lioRed;
-                }    
+                    color: $primary-color;
+                }
             }
-        }    
-    }    
+        }
+    }
     .dashboard-word {
         display: none;
     }
@@ -104,11 +103,11 @@
     .top-navigation-items {
         margin: 2.25rem 0 0 0.75rem;
     }
-    .top-navigation-signin-desktop { 
+    .top-navigation-signin-desktop {
         margin: 1.75rem 2rem 0 0;
     }
     .dashboard-word {
         display: inline-block;
-    } 
+    }
 
 }
