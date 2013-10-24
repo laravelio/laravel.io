@@ -13,14 +13,18 @@ class ForumController extends BaseController
 
     public function __construct(CommentRepository $comments, TagRepository $tags, ForumCategoryRepository $categories)
     {
-        $this->comments = $comments;
+        $this->comments   = $comments;
         $this->categories = $categories;
-        $this->tags     = $tags;
+        $this->tags       = $tags;
     }
 
     public function getIndex()
     {
-        $threads = $this->comments->getForumThreadsByTagsPaginated();
+        $tags = $this->tags->getAllTagsBySlug(Input::get('tags'));      
+
+        $threads = $this->comments->getForumThreadsByTagsPaginated($tags, 20);
+        $threads->appends(['tags' => Input::get('tags')]);
+
         $this->view('forum.index', compact('threads'));
     }
 

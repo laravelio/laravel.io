@@ -16,7 +16,7 @@
                 @include('forum._thread_summary')
             @endforeach
 
-            {{ $threads->links() }}
+            {{ str_replace('%2C', ',', $threads->links()) }}
         @else
             <div class="">
                 There are currently no threads for the selected category.
