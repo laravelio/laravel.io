@@ -13,4 +13,9 @@ class Tag extends EloquentBaseModel
         'name' => 'required',
         'slug' => 'required',
     ];
+
+    public function newCollection(array $models = array())
+    {
+        return new TagCollection($models);
+    }
 }

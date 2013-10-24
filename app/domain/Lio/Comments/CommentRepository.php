@@ -21,7 +21,8 @@ class CommentRepository extends EloquentBaseRepository
             $query->whereIn('comment_tag.tag_id', $tags->lists('id'));            
         }
 
-        $query->groupBy('comments.id');
+        $query->groupBy('comments.id')
+            ->orderBy('created_at', 'desc');
 
         return $query->paginate($perPage, ['comments.*']);
     }
@@ -29,24 +30,34 @@ class CommentRepository extends EloquentBaseRepository
     public function getThreadCommentsPaginated(Comment $thread, $perPage = 20)
     {
     	return $this->model->where(function($q) use ($thread) {
-								$q->where(function($q) use ($thread) {
-									$q->where('id', '=', $thread->id);
-								});
+    					$q->where(function($q) use ($thread) {
+    						$q->where('id', '=', $thread->id);
+    					});
 
-								$q->orWhere(function($q) use ($thread) {
-									$q->where('parent_id', '=', $thread->id);
-								});
-							})
-							->orderBy('created_at', 'asc')
-							->paginate($perPage);
+    					$q->orWhere(function($q) use ($thread) {
+    						$q->where('parent_id', '=', $thread->id);
+    					});
+    				})
+    				->orderBy('created_at', 'asc')
+    				->paginate($perPage);
     }
 
     public function getFeaturedForumThreads($count = 3)
     {
         return $this->model->with(['slug', 'tags'])
-                           ->where('owner_type', '=', 'Lio\Forum\ForumCategory')
-                           ->orderBy('created_at', 'desc')
-                           ->take($count)
-                           ->get();
+                   ->where('owner_type', '=', 'Lio\Forum\ForumCategory')
+                   ->orderBy('created_at', 'desc')
+                   ->take($count)
+                   ->get();
+    }
+
+    public function getForumReplyForm()
+    {
+        return new ForumReplyForm;
+    }
+
+    public function getForumCreateForm()
+    {
+        return new ForumCreateForm;
     }
 }

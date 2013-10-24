@@ -123,7 +123,6 @@ return array(
 		'Lio\ServiceProviders\GitHubServiceProvider',
 		'Lio\ServiceProviders\MarkdownServiceProvider',
 		'Lio\ServiceProviders\CommentServiceProvider',
-		'Lio\ServiceProviders\FakerServiceProvider',
 	),
 
 	/*

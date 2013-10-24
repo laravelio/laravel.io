@@ -13,21 +13,18 @@
             @endif
             <div class="comment">
                 @if($comment->id == $thread->id)
-
-
                     <p>{{ $comment->body }}</p>
-                        <ul class="meta">
-                            <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
-                            <li><i class="icon-user"></i><a href="{{ $comment->author->profileUrl }}"> {{ $comment->author->name }}</a></li>
-                        </ul>
-                        <ul class="tags">
-                        @foreach($comment->tags as $tag)
-                            <li><a href="">{{ $tag->name }} |</a></li>
-                        @endforeach
+
+                    <ul class="meta">
+                        <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
+                        <li><i class="icon-user"></i><a href="{{ $comment->author->profileUrl }}"> {{ $comment->author->name }}</a></li>
                     </ul>
+
+                    Tags: <span class="tags">{{ $comment->tags->getTagList() }}</span>
                 @else
                     <p>{{ $comment->body }}</p>
-                    <ul class="meta">
+
+z                    <ul class="meta">
                         <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
                         <li><i class="icon-user"></i> <a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></li>
                     </ul>

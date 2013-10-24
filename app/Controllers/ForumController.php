@@ -3,7 +3,6 @@
 use Lio\Comments\CommentRepository;
 use Lio\Comments\Comment;
 use Lio\Tags\TagRepository;
-use Lio\Forum\ForumCategoryRepository;
 use App, Auth, Input;
 
 class ForumController extends BaseController
@@ -11,11 +10,10 @@ class ForumController extends BaseController
     private $categories;
     private $comments;
 
-    public function __construct(CommentRepository $comments, TagRepository $tags, ForumCategoryRepository $categories)
+    public function __construct(CommentRepository $comments, TagRepository $tags)
     {
-        $this->comments   = $comments;
-        $this->categories = $categories;
-        $this->tags       = $tags;
+        $this->comments = $comments;
+        $this->tags     = $tags;
     }
 
     public function getIndex()
@@ -40,7 +38,7 @@ class ForumController extends BaseController
     {
         $thread = App::make('slugModel');
 
-        $form = $this->categories->getReplyForm();
+        $form = $this->comments->getForumReplyForm();
 
         if ( ! $form->isValid()) {
             return $this->redirectBack(['errors' => $form->getErrors()]);
@@ -70,7 +68,7 @@ class ForumController extends BaseController
 
     public function postCreateThread()
     {
-        $form = $this->categories->getThreadForm();
+        $form = $this->comments->getForumCreateForm();
 
         if ( ! $form->isValid()) {
             return $this->redirectBack(['errors' => $form->getErrors()]);

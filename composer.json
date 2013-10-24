@@ -10,7 +10,6 @@
         "mccool/database-backup": "dev-master"
     },
     "require-dev": {
-        "fzaninotto/faker": "1.2.*@dev"
     },
     "autoload": {
         "classmap": [
