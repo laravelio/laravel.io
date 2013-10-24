@@ -10,6 +10,7 @@
         <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=architecture,ioc">Architecture / IoC</a></li>
         <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=views,blade,forms">Views / Blade / Forms</a></li>
         <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=mail,queues">Mail / Queues</a></li>
+        <li><a href="{{ action('Controllers\ArticlesController@getIndex') }}?tags=laravelio">Laravel.io Site and Community</a></li>
     </ul>
 </div>
 

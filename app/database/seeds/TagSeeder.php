@@ -33,6 +33,7 @@ class TagSeeder extends Seeder
             'mail'           => 'anything related to compiling and sending email',
             'queues'         => 'all things related to queues',
             'news'           => 'appropriate for articles that are about an occurance',
+            'laravelio'      => 'directly relates to Laravel.io site and community',
         ];
 
         foreach ($tags as $name => $description) {
