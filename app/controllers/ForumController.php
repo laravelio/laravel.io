@@ -1,9 +1,8 @@
-<?php namespace Controllers;
+<?php
 
 use Lio\Comments\CommentRepository;
 use Lio\Comments\Comment;
 use Lio\Tags\TagRepository;
-use App, Auth, Input;
 
 class ForumController extends BaseController
 {

@@ -1,4 +1,4 @@
-<?php namespace Controllers;
+<?php
 
 use Lio\Articles\ArticleRepository;
 use Lio\Comments\CommentRepository;

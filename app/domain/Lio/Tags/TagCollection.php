@@ -9,7 +9,7 @@ class TagCollection extends \Illuminate\Database\Eloquent\Collection
         $tagLinks = [];
 
         foreach ($this->items as $item) {
-            $tagLinks[] = HTML::link(action('Controllers\ForumController@getIndex') . '?tags=' . $item->slug, $item->name);
+            $tagLinks[] = HTML::link(action('ForumController@getIndex') . '?tags=' . $item->slug, $item->name);
         }
         
         return implode(', ', $tagLinks);

@@ -1,4 +1,4 @@
-<?php namespace Controllers;
+<?php
 
 use Lio\Bin\PasteRepository;
 

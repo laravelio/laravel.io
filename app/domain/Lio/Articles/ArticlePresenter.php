@@ -38,13 +38,13 @@ class ArticlePresenter extends BasePresenter
 
     public function editUrl()
     {
-        return action('Controllers\ArticlesController@getEdit', [$this->resource->id]);
+        return action('ArticlesController@getEdit', [$this->resource->id]);
     }
 
     public function showUrl()
     {
         if ( ! $this->resource->slug) return '';
 
-        return action('Controllers\ArticlesController@getShow', [$this->resource->slug->slug]);
+        return action('ArticlesController@getShow', [$this->resource->slug->slug]);
     }
 }

@@ -10,7 +10,7 @@ class CommentPresenter extends BasePresenter
 
         if ( ! $slug) return '';
 
-        return action('Controllers\ForumController@getThread', [$slug->slug]);
+        return action('ForumController@getThread', [$slug->slug]);
     }
 
     public function child_count_label()

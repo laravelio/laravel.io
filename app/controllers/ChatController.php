@@ -1,4 +1,4 @@
-<?php namespace Controllers;
+<?php
 
 class ChatController extends BaseController
 {

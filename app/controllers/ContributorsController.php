@@ -1,7 +1,6 @@
-<?php namespace Controllers;
+<?php
 
 use Lio\Contributors\ContributorRepository;
-use GitHub;
 
 class ContributorsController extends BaseController
 {

@@ -8,7 +8,7 @@
 	{{-- look at how much I don't give a crap --}}
 	<?Session::put('userLazilyOptsOutOfAuthOnChat', 1)?>
 	<p>
-		Before you use chat, it'd be best if you logged into Laravel.IO. The signup process is a painless authentication with GitHub, you don't actually have to enter anything. <a href="{{ action('Controllers\AuthController@getLogin') }}">Authenticate with GitHub</a>
+		Before you use chat, it'd be best if you logged into Laravel.IO. The signup process is a painless authentication with GitHub, you don't actually have to enter anything. <a href="{{ action('AuthController@getLogin') }}">Authenticate with GitHub</a>
 	</p>
 
 	<p>

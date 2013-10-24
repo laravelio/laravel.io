@@ -1,6 +1,4 @@
-<?php namespace Controllers;
-
-use Auth;
+<?php
 
 class DashboardController extends BaseController
 {

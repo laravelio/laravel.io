@@ -1,8 +1,7 @@
-<?php namespace Controllers;
+<?php
 
 use Lio\Articles\ArticleRepository;
 use Lio\Tags\TagRepository;
-use App, Auth, Input;
 
 class ArticlesController extends BaseController
 {
@@ -99,11 +98,13 @@ class ArticlesController extends BaseController
 
         $this->articles->save($article);
 
-        $article->tags = Input::get('tags');
+        // store tags
+        $tags = $this->tags->getTagsByIds(Input::get('tags'));
+        $article->tags()->sync($tags->lists('id'));
 
-        $articleSlug = $article->slug()->first();
 
         if ($article->isPublished()) {
+            $articleSlug = $article->slug()->first();
             return $this->redirectAction('Controllers\ArticlesController@getShow', [$articleSlug->slug]);
         } else {
             return $this->redirectAction('Controllers\ArticlesController@getDashboard');

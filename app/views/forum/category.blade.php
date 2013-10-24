@@ -2,7 +2,7 @@
 
 <p>{{ $category->description }}</p>
 
-<a href="{{ action('Controllers\ForumController@getCreateThread', [$category->slug]) }}">Create a Thread</a>
+<a href="{{ action('ForumController@getCreateThread', [$category->slug]) }}">Create a Thread</a>
 
 @if($threads->count() > 0)
     <ul>

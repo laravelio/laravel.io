@@ -2,7 +2,7 @@
     <div class="description">
         <h1>Articles</h1>
         <p class="lead">
-            Find articles that cover a wide-array of Laravel and web-development related topics written by community members. <a href="{{ action('Controllers\ArticlesController@getCompose') }}">Write your own</a> to help improve the resource.
+            Find articles that cover a wide-array of Laravel and web-development related topics written by community members. <a href="{{ action('ArticlesController@getCompose') }}">Write your own</a> to help improve the resource.
         </p>
     </div>
     <div class="posts">
@@ -10,7 +10,7 @@
             @include('articles._small_summary')
         @endforeach
         <p>
-            <a href="{{ action('Controllers\ArticlesController@getIndex') }}">See all articles</a>
+            <a href="{{ action('ArticlesController@getIndex') }}">See all articles</a>
         </p>
     </div>
 </section>

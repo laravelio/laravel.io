@@ -1,8 +1,6 @@
-<?php namespace Controllers;
+<?php 
 
 use Lio\Accounts\UserRepository;
-use GitHub;
-use Auth, Input, Session;
 
 class AuthController extends BaseController
 {

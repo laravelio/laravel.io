@@ -23,6 +23,6 @@ class UserPresenter extends BasePresenter
 
     public function profileUrl()
     {
-        return action('Controllers\UsersController@getProfile', [$this->resource->name]);
+        return action('UsersController@getProfile', [$this->resource->name]);
     }
 }
