@@ -21,7 +21,9 @@ class CommentRepository extends EloquentBaseRepository
             $query->whereIn('comment_tag.tag_id', $tags->lists('id'));            
         }
 
-        return $query->paginate($perPage);
+        $query->groupBy('comments.id');
+
+        return $query->paginate($perPage, ['comments.*']);
     }
 
     public function getThreadCommentsPaginated(Comment $thread, $perPage = 20)
