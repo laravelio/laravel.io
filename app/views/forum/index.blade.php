@@ -7,8 +7,11 @@
 @section('content')
     <section class="forum">
         <h1>Forum</h1>
+
         @if(Input::has('tags'))
-            <h2>Posts tagged with {{ Input::get('tags') }}</h2>
+            <h2>Threads tagged with {{ Input::get('tags') }}.</h2>
+        @else
+            <h2>All Threads</h2>
         @endif
 
         @if($threads->count() > 0)
