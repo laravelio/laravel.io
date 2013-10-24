@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-<div class="row">
+<div class="row forum">
     <div class="small-12 columns comments">
         @foreach($comments as $comment)
             <div class="comment">

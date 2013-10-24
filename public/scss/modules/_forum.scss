@@ -36,7 +36,9 @@ article {
 
 @media only screen and (min-width: 480px) {
 
-    .module {}
+    .forum {
+        @include span-columns(9);
+    }
 
 }
 

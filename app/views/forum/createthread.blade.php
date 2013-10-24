@@ -1,4 +1,11 @@
-<div class="row">
+@extends('layouts._two_columns_left_sidebar')
+
+@section('sidebar')
+    @include('forum._sidebar')
+@stop
+
+@section('content')
+<div class="row forum">
     <div class="small-12 columns form">
         {{ Form::open() }}
             <fieldset>
@@ -27,7 +34,12 @@
                             {{ $errors->first('tags', '<small class="error">:message</small>') }}
                             <ul class="tags">
                                 @foreach($tags as $tag)
-                                    <li>{{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span></li>
+                                    <li>
+                                        <label>
+                                        {{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span>
+                                        </label>
+                                    </li>
+
                                 @endforeach
                             </ul>
                         @endif
@@ -43,5 +55,6 @@
 
     </div>
 </div>
+@stop
 
 @include('layouts._markdown_editor')
