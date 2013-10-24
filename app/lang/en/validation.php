@@ -75,7 +75,12 @@ return array(
 	|
 	*/
 
-	'custom' => array(),
+	'custom' => [
+		'tags' => [
+			'required' => 'You must choose at least one tag.',
+			'max_tags' => 'You may not use more than 3 tags.',
+		],
+	],
 
 	/*
 	|--------------------------------------------------------------------------

@@ -27,6 +27,7 @@
                     <div class="">
                         @if($tags->count() > 0)
                             <h3>tags</h3>
+                            {{ $errors->first('tags', '<small class="error">:message</small>') }}
                             <ul>
                                 @foreach($tags as $tag)
                                     <li>{{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span></li>

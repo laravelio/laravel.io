@@ -13,7 +13,7 @@ class CommentRepository extends EloquentBaseRepository
     public function getForumThreadsByTagsPaginated($tags = [], $perPage = 20)
     {
 
-        return $this->model->with(['slug', 'mostRecentChild'])->paginate($perPage);
+        return $this->model->with(['slug', 'mostRecentChild', 'tags'])->paginate($perPage);
     }
 
     public function getThreadCommentsPaginated(Comment $thread, $perPage = 20)
@@ -33,7 +33,7 @@ class CommentRepository extends EloquentBaseRepository
 
     public function getFeaturedForumThreads($count = 3)
     {
-        return $this->model->with(['slug'])
+        return $this->model->with(['slug', 'tags'])
                            ->where('owner_type', '=', 'Lio\Forum\ForumCategory')
                            ->orderBy('created_at', 'desc')
                            ->take($count)
