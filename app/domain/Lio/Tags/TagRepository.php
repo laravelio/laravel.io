@@ -1,6 +1,7 @@
 <?php namespace Lio\Tags;
 
 use Lio\Core\EloquentBaseRepository;
+use Illuminate\Support\Collection;
 
 class TagRepository extends EloquentBaseRepository
 {
@@ -12,7 +13,7 @@ class TagRepository extends EloquentBaseRepository
     public function getAllTagsBySlug($slugString)
     {
         if (is_null($slugString)) {
-            return null;
+            return new Collection;
         }
 
         if (stristr($slugString, ',')) {

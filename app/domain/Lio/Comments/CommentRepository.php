@@ -2,6 +2,7 @@
 
 use Lio\Core\EloquentBaseRepository;
 use Lio\Forum\ForumCategory;
+use Illuminate\Support\Collection;
 
 class CommentRepository extends EloquentBaseRepository
 {
@@ -10,10 +11,17 @@ class CommentRepository extends EloquentBaseRepository
         $this->model = $model;
     }
 
-    public function getForumThreadsByTagsPaginated($tags = [], $perPage = 20)
+    public function getForumThreadsByTagsPaginated(Collection $tags, $perPage = 20)
     {
+        $query = $this->model->with(['slug', 'mostRecentChild', 'tags'])
+            ->where('type', '=', COMMENT::TYPE_FORUM)
+            ->join('comment_tag', 'comments.id', '=', 'comment_tag.comment_id');
 
-        return $this->model->with(['slug', 'mostRecentChild', 'tags'])->paginate($perPage);
+        if ($tags->count() > 0) {
+            $query->whereIn('comment_tag.tag_id', $tags->lists('id'));            
+        }
+
+        return $query->paginate($perPage);
     }
 
     public function getThreadCommentsPaginated(Comment $thread, $perPage = 20)
