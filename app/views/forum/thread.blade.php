@@ -4,11 +4,19 @@
             @if($comment->id == $thread->id)
                 <h2>{{ $comment->title }}</h2>
             @endif
+
             <p>
                 {{ $comment->body }}
 
                 <span>- <a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></span>
             </p>
+
+            @if($comment->tags)
+                Tags: 
+                @foreach($comment->tags as $tag)
+                    <a href="">{{ $tag->name }}</a>
+                @endforeach
+            @endif
         </li>
     @endforeach
 

@@ -86,7 +86,8 @@ class ForumController extends BaseController
         $this->comments->save($comment);
 
         // store tags
-        dd(Input::get('tags'));
+        $tags = $this->tags->getTagsByIds(Input::get('tags'));
+        $comment->tags()->sync($tags->lists('id'));
 
         // load new slug
         $commentSlug = $comment->slug()->first()->slug;
