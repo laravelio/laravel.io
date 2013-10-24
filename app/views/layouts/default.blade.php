@@ -18,7 +18,9 @@
   @include('layouts._flash')
   @include('layouts._top_nav')
 
-  {{ $content }}
+    <div class="flexbox">
+        {{ $content }}
+    </div>
 
   @section('scripts')
   	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
