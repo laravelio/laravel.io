@@ -1,9 +1,9 @@
-<?php namespace Controllers\Admin;
+<?php namespace Admin;
 
 use Lio\Accounts\User;
 use Lio\Accounts\UserRepository;
 use Lio\Accounts\RoleRepository;
-use Controllers\BaseController;
+use BaseController;
 use Input;
 
 class UsersController extends BaseController
@@ -48,6 +48,6 @@ class UsersController extends BaseController
         $this->users->save($user);
         $user->roles = Input::get('roles');
 
-        return $this->redirectAction('Controllers\Admin\UsersController@getIndex', ['success' => 'The user has been saved.']);
+        return $this->redirectAction('Admin\UsersController@getIndex', ['success' => 'The user has been saved.']);
     }
 }

@@ -24,7 +24,7 @@ class AuthController extends BaseController
     {
         Auth::logout();
 
-        return $this->redirectAction('Controllers\HomeController@getIndex');
+        return $this->redirectAction('HomeController@getIndex');
     }
 
     public function getSignup()
@@ -35,7 +35,7 @@ class AuthController extends BaseController
     public function getSignupConfirm()
     {
         if ( ! Session::has('signupGithubData')) {
-            return $this->redirectAction('Controllers\AuthController@getLogin');
+            return $this->redirectAction('AuthController@getLogin');
         }
 
         $this->view('auth.signupconfirm', ['githubUser' => Session::get('signupGithubData')]);
@@ -53,10 +53,10 @@ class AuthController extends BaseController
                 $this->users->save($user);
 
                 Auth::login($user);
-                return $this->redirectIntended(action('Controllers\HomeController@getIndex'));
+                return $this->redirectIntended(action('HomeController@getIndex'));
             }
 
-            return $this->redirectAction('Controllers\HomeController@getIndex');
+            return $this->redirectAction('HomeController@getIndex');
         }
 
         if (Session::has('signupGithubData')) {
@@ -64,7 +64,7 @@ class AuthController extends BaseController
         }
 
         Session::put('signupGithubData', $githubUser);
-        return $this->redirectAction('Controllers\AuthController@getSignupConfirm');
+        return $this->redirectAction('AuthController@getSignupConfirm');
     }
 
     private function createUser($githubUser)
@@ -77,6 +77,6 @@ class AuthController extends BaseController
 
         Auth::login($user);
 
-        return $this->redirectIntended(action('Controllers\HomeController@getIndex'));
+        return $this->redirectIntended(action('HomeController@getIndex'));
     }
 }

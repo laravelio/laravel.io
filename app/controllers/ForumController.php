@@ -55,7 +55,7 @@ class ForumController extends BaseController
 
         $thread->children()->save($comment);
 
-        return $this->redirectAction('Controllers\ForumController@getThread', [$thread->slug->slug]);
+        return $this->redirectAction('ForumController@getThread', [$thread->slug->slug]);
     }
 
     public function getCreateThread()
@@ -93,6 +93,6 @@ class ForumController extends BaseController
         // load new slug
         $commentSlug = $comment->slug()->first()->slug;
 
-        return $this->redirectAction('Controllers\ForumController@getThread', [$commentSlug]);
+        return $this->redirectAction('ForumController@getThread', [$commentSlug]);
     }
 }

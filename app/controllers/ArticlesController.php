@@ -66,9 +66,9 @@ class ArticlesController extends BaseController
 
         if ($article->isPublished()) {
             $articleSlug = $article->slug()->first();
-            return $this->redirectAction('Controllers\ArticlesController@getShow', [$articleSlug]);
+            return $this->redirectAction('ArticlesController@getShow', [$articleSlug]);
         } else {
-            return $this->redirectAction('Controllers\ArticlesController@getDashboard');
+            return $this->redirectAction('ArticlesController@getDashboard');
         }
     }
 
@@ -105,9 +105,9 @@ class ArticlesController extends BaseController
 
         if ($article->isPublished()) {
             $articleSlug = $article->slug()->first();
-            return $this->redirectAction('Controllers\ArticlesController@getShow', [$articleSlug->slug]);
+            return $this->redirectAction('ArticlesController@getShow', [$articleSlug->slug]);
         } else {
-            return $this->redirectAction('Controllers\ArticlesController@getDashboard');
+            return $this->redirectAction('ArticlesController@getDashboard');
         }
     }
 }
