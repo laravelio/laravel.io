@@ -1,15 +1,13 @@
-
 <div class="row">
-    <div class="small-12 columns">
+    <div class="small-12 columns form">
         {{ Form::open() }}
-
             <fieldset>
                 <legend>Create Thread</legend>
 
                 <div class="row">
                     <div class="">
                         {{ Form::label('title', 'Title') }}
-                        {{ Form::text('title') }}
+                        {{ Form::text('title', null, ['placeholder' => 'Title']) }}
                         {{ $errors->first('title', '<small class="error">:message</small>') }}
                     </div>
                 </div>
@@ -24,27 +22,25 @@
                 </div>
 
                 <div class="row">
-                    <div class="">
                         @if($tags->count() > 0)
                             <h3>tags</h3>
                             {{ $errors->first('tags', '<small class="error">:message</small>') }}
-                            <ul>
+                            <ul class="tags">
                                 @foreach($tags as $tag)
                                     <li>{{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span></li>
                                 @endforeach
                             </ul>
                         @endif
-                    </div>
                 </div>
+
+
 
             </fieldset>
-
+        <div class="small-12 columns">
             <div class="row">
-                <div class="large-12 columns">
-                    {{ Form::button('Save', ['type' => 'submit']) }}
-                </div>
+                {{ Form::button('Save', ['type' => 'submit', 'class' => 'button']) }}
             </div>
-
+        </div>
         {{ Form::close() }}
 
     </div>
