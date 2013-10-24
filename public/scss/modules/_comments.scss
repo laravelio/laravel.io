@@ -1,0 +1,63 @@
+/* ==========================================================================
+   FORUM
+   ========================================================================== */
+
+// MOBILE STYLES ////////////////////////////////////////////////////////////
+
+.comments {
+    list-style-type: none;
+    margin: 0;
+    padding: 20px;
+
+    .comment {
+
+        padding: 10px;
+
+        h2 {
+            font-size:20px;
+            @extend .gamma;
+            border-bottom: 1px solid #eee;
+            padding: 0 0 8px 0;
+        }
+
+        &:nth-child(2n) {
+            background: #eee;
+        }
+
+        p {
+            font-size:14px;
+        }
+    }
+}
+
+
+// BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 480px) {
+
+    .module {}
+
+}
+
+
+// BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 768px) {
+
+}
+
+
+// BREAKPOINT 3 (1024) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1024px) {
+
+    .module {}
+}
+
+
+// BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1440px) {
+
+    .module {}
+}

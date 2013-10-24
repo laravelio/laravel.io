@@ -1,27 +1,26 @@
-<ul>
-    @foreach($comments as $comment)
-        <li>
-            @if($comment->id == $thread->id)
-                <h2>{{ $comment->title }}</h2>
-            @endif
+<div class="row">
+    <div class="small-12 columns comments">
+        @foreach($comments as $comment)
+            <div class="comment">
+                @if($comment->id == $thread->id)
+                    <h2>{{ $comment->title }}</h2>
+                    @foreach($comment->tags as $tag)
+                        <a href="">{{ $tag->name }}</a>
+                    @endforeach
+                    <p>{{ $comment->body }}</p>
+                    <span class="meta"><a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></span>
+                    <h3>Replies</h3>
+                @else
+                    <p>{{ $comment->body }}</p>
+                    <span class="meta"><a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></span>
+                @endif
 
-            <p>
-                {{ $comment->body }}
+            </div>
+        @endforeach
+    </div>
+</div>
 
-                <span>- <a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></span>
-            </p>
-
-            @if($comment->tags)
-                Tags: 
-                @foreach($comment->tags as $tag)
-                    <a href="">{{ $tag->name }}</a>
-                @endforeach
-            @endif
-        </li>
-    @endforeach
-
-    {{ $comments->links() }}
-</ul>
+{{ $comments->links() }}
 
 <div class="row">
     <div class="small-12 columns form">
@@ -32,19 +31,14 @@
                 <legend>Reply</legend>
 
                 <div class="row">
-                    <div class="">
+                    <div>
                         <div id="markdown_editor"></div>
                         {{ Form::textarea('body', null, ['id' => '_markdown_textarea', 'style' => 'display: none;']) }}
                         {{ $errors->first('body', '<small class="error">:message</small>') }}
+                        {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
                     </div>
                 </div>
             </fieldset>
-
-            <div class="row">
-                <div class="large-12 columns">
-                    {{ Form::button('Reply', ['type' => 'submit']) }}
-                </div>
-            </div>
 
         {{ Form::close() }}
     </div>
