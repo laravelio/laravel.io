@@ -1,3 +1,10 @@
+@extends('layouts._two_columns_left_sidebar')
+
+@section('sidebar')
+    @include('forum._sidebar')
+@stop
+
+@section('content')
 <div class="row">
     <div class="small-12 columns comments">
         @foreach($comments as $comment)
@@ -22,31 +29,30 @@
 
             </div>
         @endforeach
-    </div>
-</div>
 
-{{ $comments->links() }}
+    {{ $comments->links() }}
 
-<div class="row">
-    <div class="small-12 columns form">
+    <div class="row">
+        <div class="small-12 columns form">
 
-        {{ Form::open() }}
+            {{ Form::open() }}
 
-            <fieldset>
-                <legend>Reply</legend>
+                <fieldset>
+                    <legend>Reply</legend>
 
-                <div class="row">
-                    <div>
-                        <div id="markdown_editor"></div>
-                        {{ Form::textarea('body', null, ['id' => '_markdown_textarea', 'style' => 'display: none;']) }}
-                        {{ $errors->first('body', '<small class="error">:message</small>') }}
-                        {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
+                    <div class="row">
+                        <div>
+                            <div id="markdown_editor"></div>
+                            {{ Form::textarea('body', null, ['id' => '_markdown_textarea', 'style' => 'display: none;']) }}
+                            {{ $errors->first('body', '<small class="error">:message</small>') }}
+                            {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
+                        </div>
                     </div>
-                </div>
-            </fieldset>
+                </fieldset>
 
-        {{ Form::close() }}
-    </div>
+            {{ Form::close() }}
+        </div>
 </div>
+@stop
 
 @include('layouts._markdown_editor')
