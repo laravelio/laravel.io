@@ -42,6 +42,11 @@ class Comment extends EloquentBaseModel implements SlugInterface
         return $this->hasMany('Lio\Comments\Comment', 'parent_id');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('Lio\Tags\Tag', 'article_tag', 'article_id', 'tag_id');
+    }
+
     public function mostRecentChild()
     {
         return $this->belongsTo('Lio\Comments\Comment', 'most_recent_child_id');

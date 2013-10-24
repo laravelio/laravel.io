@@ -85,6 +85,10 @@ class ForumController extends BaseController
 
         $this->comments->save($comment);
 
+        // store tags
+        dd(Input::get('tags'));
+
+        // load new slug
         $commentSlug = $comment->slug()->first()->slug;
 
         return $this->redirectAction('Controllers\ForumController@getThread', [$commentSlug]);

@@ -117,7 +117,7 @@ return array(
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
 		'McCool\LaravelSlugs\LaravelSlugsServiceProvider',
 		'McCool\DatabaseBackup\ServiceProviders\LaravelServiceProvider',
-		'Juy\Profiler\Providers\ProfilerServiceProvider',
+		//'Juy\Profiler\Providers\ProfilerServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
 
 		'Lio\ServiceProviders\GitHubServiceProvider',
