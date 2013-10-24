@@ -1,17 +1,13 @@
 /* ==========================================================================
-   SIDEBAR
+   FORUM
    ========================================================================== */
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.sidebar {
-    padding: 2%;
-    @include span-columns(12);
-}
-
-.new-post {
-    font-size: 80%;
-    margin: 2rem 0;
+.form {
+    fieldset {
+        border: none;
+    }
 }
 
 
@@ -19,6 +15,7 @@
 
 @media only screen and (min-width: 480px) {
 
+    .module {}
 
 }
 
@@ -27,9 +24,7 @@
 
 @media only screen and (min-width: 768px) {
 
-    .sidebar {
-    	@include span-columns(3);
-    }
+
 }
 
 
@@ -37,6 +32,7 @@
 
 @media only screen and (min-width: 1024px) {
 
+    .module {}
 }
 
 
@@ -44,4 +40,5 @@
 
 @media only screen and (min-width: 1440px) {
 
+    .module {}
 }
