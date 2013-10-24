@@ -1,17 +1,34 @@
 /* ==========================================================================
-   SIDEBAR
+   FORUM
    ========================================================================== */
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.sidebar {
-    padding: 2%;
+.forum {
     @include span-columns(12);
+    @include omega();
+    padding: 2%;
+    max-width: 900px;
+
+    h2 {
+        font-size:14px;
+        padding: 0 0 0 3px;
+    }
 }
 
-.new-post {
-    font-size: 80%;
+article {
     margin: 2rem 0;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
+    h1 {
+        font-size: 12px;
+        @extend .gamma;
+    }
+
+    h3
+    {
+        font-size:18px;
+    }
 }
 
 
@@ -19,6 +36,7 @@
 
 @media only screen and (min-width: 480px) {
 
+    .module {}
 
 }
 
@@ -27,8 +45,10 @@
 
 @media only screen and (min-width: 768px) {
 
-    .sidebar {
-    	@include span-columns(3);
+    .forum {
+        @include span-columns(9);
+        @include omega();
+        max-width: 900px;
     }
 }
 
@@ -37,6 +57,7 @@
 
 @media only screen and (min-width: 1024px) {
 
+    .module {}
 }
 
 
@@ -44,4 +65,5 @@
 
 @media only screen and (min-width: 1440px) {
 
+    .module {}
 }

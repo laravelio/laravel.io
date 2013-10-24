@@ -5,8 +5,11 @@
 @stop
 
 @section('content')
-    <section class="articles">
+    <section class="forum">
         <h1>Forum</h1>
+        @if(Input::has('tags'))
+            <h2>Posts tagged with {{ Input::get('tags') }}</h2>
+        @endif
 
         @if($threads->count() > 0)
             @foreach($threads as $thread)
