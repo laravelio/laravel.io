@@ -61,11 +61,12 @@ class ArticlesController extends BaseController
 
         $this->articles->save($article);
 
-        $article->tags = Input::get('tags');
-
-        $articleSlug = $article->slug()->first();
+        // store tags
+        $tags = $this->tags->getTagsByIds(Input::get('tags'));
+        $article->tags()->sync($tags->lists('id'));
 
         if ($article->isPublished()) {
+            $articleSlug = $article->slug()->first();
             return $this->redirectAction('Controllers\ArticlesController@getShow', [$articleSlug]);
         } else {
             return $this->redirectAction('Controllers\ArticlesController@getDashboard');
