@@ -13,6 +13,20 @@
         margin: 15px 0 0 0;
     }
 
+        h2 {
+            font-size:20px;
+            @extend .gamma;
+            border-bottom: 1px solid #eee;
+            padding: 0 0 13px 0;
+        }
+
+        h3 {
+            font-size:20px;
+            @extend .gamma;
+            border-bottom: 1px solid #eee;
+            padding: 0 0 8px 0;
+        }
+
     legend {
         display: block;
         width: 100%;
@@ -20,7 +34,40 @@
         margin: 0;
         font-size:20px;
         @extend .gamma;
-        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        border-top:1px solid #eee;
+    }
+
+    .tags {
+        margin:0;
+        padding: 0;
+
+        li {
+            display: inline-block;
+            float: left;
+            padding: 4px;
+            font-size:15px;
+        }
+    }
+
+    label {
+        display: block;
+        font-size:15px;
+        padding: 6px 0;
+    }
+
+    input[type=text] {
+        display: block;
+        width: 100%;
+        border: none;
+        background: #000;
+        color:white;
+        padding: 10px;
+        font-size:15px;
+    }
+
+    input[type=textarea] {
+        font-size:15px;
     }
 }
 
