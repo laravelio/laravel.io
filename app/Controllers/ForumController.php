@@ -22,7 +22,7 @@ class ForumController extends BaseController
     {
         $tags = $this->tags->getAllTagsBySlug(Input::get('tags'));      
 
-        $threads = $this->comments->getForumThreadsByTagsPaginated($tags, 1);
+        $threads = $this->comments->getForumThreadsByTagsPaginated($tags, 20);
         $threads->appends(['tags' => Input::get('tags')]);
 
         $this->view('forum.index', compact('threads'));
