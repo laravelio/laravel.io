@@ -26,7 +26,7 @@
             padding: 0 0 8px 0;
         }
 
-        &:nth-child(2n) {
+        &:nth-child(odd) {
             background: #eee;
         }
 

@@ -8,9 +8,12 @@
 <div class="row forum">
     <div class="small-12 columns comments">
         @foreach($comments as $comment)
+            @if($comment->id == $thread->id)
+                <h1>{{ $comment->title }}</h1>
+            @endif
             <div class="comment">
                 @if($comment->id == $thread->id)
-                    <h2>{{ $comment->title }}</h2>
+
 
                     <p>{{ $comment->body }}</p>
                         <ul class="meta">
