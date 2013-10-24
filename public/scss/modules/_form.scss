@@ -24,7 +24,7 @@
             font-size:20px;
             @extend .gamma;
             border-bottom: 1px solid #eee;
-            padding: 0 0 8px 0;
+            padding: 20px 0 13px 0;
         }
 
     legend {
@@ -41,6 +41,7 @@
     .tags {
         margin:0;
         padding: 0;
+        @include clearfix;
 
         li {
             display: inline-block;

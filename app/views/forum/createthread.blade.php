@@ -23,7 +23,7 @@
 
                 <div class="row">
                         @if($tags->count() > 0)
-                            <h3>tags</h3>
+                            <h3>Describe your post with 3 tags</h3>
                             {{ $errors->first('tags', '<small class="error">:message</small>') }}
                             <ul class="tags">
                                 @foreach($tags as $tag)
@@ -33,14 +33,12 @@
                         @endif
                 </div>
 
-
+                <div class="row">
+                    {{ Form::button('Save', ['type' => 'submit', 'class' => 'button']) }}
+                </div>
 
             </fieldset>
-        <div class="small-12 columns">
-            <div class="row">
-                {{ Form::button('Save', ['type' => 'submit', 'class' => 'button']) }}
-            </div>
-        </div>
+
         {{ Form::close() }}
 
     </div>
