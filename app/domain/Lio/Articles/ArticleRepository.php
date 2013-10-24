@@ -33,7 +33,7 @@ class ArticleRepository extends EloquentBaseRepository
                              ->orderBy('published_at', 'desc')
                              ->groupBy('articles.id');
 
-        if ($tags) {
+        if ($tags->count() > 0) {
             $query->whereIn('article_tag.tag_id', $tags->lists('id'));
         }
 
