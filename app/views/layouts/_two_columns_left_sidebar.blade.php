@@ -3,5 +3,7 @@
 	@show
 </section>
 
-@section('content')
-@show
+<section class="content">
+    @section('content')
+    @show
+</section>
