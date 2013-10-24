@@ -8,6 +8,20 @@
     fieldset {
         border: none;
     }
+
+    .button {
+        margin: 15px 0 0 0;
+    }
+
+    legend {
+        display: block;
+        width: 100%;
+        padding: 13px 0;
+        margin: 0;
+        font-size:20px;
+        @extend .gamma;
+        border-top: 1px solid #eee;
+    }
 }
 
 

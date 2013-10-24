@@ -7,13 +7,19 @@
 .comments {
     list-style-type: none;
     margin: 0;
-    padding: 20px;
 
     .comment {
 
-        padding: 10px;
+        padding: 30px;
 
         h2 {
+            font-size:20px;
+            @extend .gamma;
+            border-bottom: 1px solid #eee;
+            padding: 0 0 13px 0;
+        }
+
+        h3 {
             font-size:20px;
             @extend .gamma;
             border-bottom: 1px solid #eee;
@@ -26,6 +32,13 @@
 
         p {
             font-size:14px;
+        }
+
+        li a {
+            color:$lioRed;
+            &:hover {
+                color:$lioGrey;
+            }
         }
     }
 }

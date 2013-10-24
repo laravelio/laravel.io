@@ -8,11 +8,16 @@
                         <a href="">{{ $tag->name }}</a>
                     @endforeach
                     <p>{{ $comment->body }}</p>
-                    <span class="meta"><a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></span>
-                    <h3>Replies</h3>
+                        <ul class="meta">
+                            <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
+                            <li><i class="icon-user"></i><a href="{{ $comment->author->profileUrl }}"> {{ $comment->author->name }}</a></li>
+                        </ul>
                 @else
                     <p>{{ $comment->body }}</p>
-                    <span class="meta"><a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></span>
+                    <ul class="meta">
+                        <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
+                        <li><i class="icon-user"></i> <a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></li>
+                    </ul>
                 @endif
 
             </div>
