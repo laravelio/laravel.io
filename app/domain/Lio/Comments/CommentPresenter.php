@@ -13,6 +13,15 @@ class CommentPresenter extends BasePresenter
         return action('ForumController@getThread', [$slug->slug]);
     }
 
+    public function commentUrl()
+    {
+        $slug = $this->resource->parent->slug;
+
+        if ( ! $slug) return '';
+
+        return action('ForumController@getThread', [$slug->slug]);
+    }
+
     public function child_count_label()
     {
         if ($this->resource->child_count == 0) {

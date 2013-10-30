@@ -66,6 +66,11 @@ class Comment extends EloquentBaseModel implements SlugInterface
         }
     }
 
+    public function isMainComment()
+    {
+        if(! $this->parent_id) return true;
+    }
+
     // SlugInterface
     public function slug()
     {
