@@ -16,7 +16,7 @@
                     @if($comment->id == $thread->id)
                         <h1>{{ $comment->title }}</h1>
                         <div class="tags">Tags:  {{ $comment->tags->getTagList() }}</div>
-                        <p>{{ $comment->body }}</p>
+                        {{ $comment->body }}
 
                         <ul class="meta">
                             <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
@@ -25,7 +25,7 @@
 
 
                     @else
-                        <p>{{ $comment->body }}</p>
+                        {{ $comment->body }}
                           <ul class="meta">
                             <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
                             <li><i class="icon-user"></i> <a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></li>
