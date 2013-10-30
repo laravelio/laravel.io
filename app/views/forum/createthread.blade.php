@@ -36,10 +36,9 @@
                                 @foreach($tags as $tag)
                                     <li>
                                         <label>
-                                        {{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span>
-                                        </label>
+                                            {{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span>
+                                        </label> - {{ $tag->description }}
                                     </li>
-
                                 @endforeach
                             </ul>
                         @endif
