@@ -5,7 +5,7 @@
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
 .forum {
-    @include span-columns(12);
+    @include outer-container;
     @include omega();
     padding: 0 0 2% 0;
     max-width: 900px;

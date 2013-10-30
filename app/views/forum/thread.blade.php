@@ -9,25 +9,29 @@
     <div class="small-12 columns comments">
         @foreach($comments as $comment)
             <div class="comment">
-                @if($comment->id == $thread->id)
-                    <h1>{{ $comment->title }}</h1>
-                    <div class="tags">Tags:  {{ $comment->tags->getTagList() }}</div>
-                    <p>{{ $comment->body }}</p>
+                <div class="user">
+                    {{ $comment->author->thumbnail  }}
+                </div>
+                <div class="content">
+                    @if($comment->id == $thread->id)
+                        <h1>{{ $comment->title }}</h1>
+                        <div class="tags">Tags:  {{ $comment->tags->getTagList() }}</div>
+                        <p>{{ $comment->body }}</p>
 
-                    <ul class="meta">
-                        <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
-                        <li><i class="icon-user"></i><a href="{{ $comment->author->profileUrl }}"> {{ $comment->author->name }}</a></li>
-                    </ul>
+                        <ul class="meta">
+                            <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
+                            <li><i class="icon-user"></i><a href="{{ $comment->author->profileUrl }}"> {{ $comment->author->name }}</a></li>
+                        </ul>
 
 
-                @else
-                    <p>{{ $comment->body }}</p>
-                      <ul class="meta">
-                        <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
-                        <li><i class="icon-user"></i> <a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></li>
-                    </ul>
-                @endif
-
+                    @else
+                        <p>{{ $comment->body }}</p>
+                          <ul class="meta">
+                            <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
+                            <li><i class="icon-user"></i> <a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></li>
+                        </ul>
+                    @endif
+                </div>
             </div>
         @endforeach
 

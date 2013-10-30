@@ -25,4 +25,9 @@ class UserPresenter extends BasePresenter
     {
         return action('UsersController@getProfile', [$this->resource->name]);
     }
+
+    public function thumbnail()
+    {
+        return \HTML::image($this->image_url);
+    }
 }
