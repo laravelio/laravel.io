@@ -11,8 +11,6 @@
 
     .comment {
 
-        padding: 23px 20px 10px 20px;
-
         h2 {
             font-size:20px;
             @extend .gamma;
@@ -68,6 +66,11 @@
             .user {
                 display: block;
                 @include span-columns(1.5);
+
+            &:img {
+                width:80px;
+                height: 80px;
+            }
 
             }
 
