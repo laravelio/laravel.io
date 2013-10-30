@@ -1,6 +1,7 @@
 <?php namespace Lio\Comments;
 
 use McCool\LaravelAutoPresenter\BasePresenter;
+use App;
 
 class CommentPresenter extends BasePresenter
 {
@@ -37,5 +38,10 @@ class CommentPresenter extends BasePresenter
     public function created_ago()
     {
         return $this->resource->created_at->diffForHumans();
+    }
+
+    public function body()
+    {
+        return App::make('markdown.parser')->transformMarkdown($this->resource->body);
     }
 }

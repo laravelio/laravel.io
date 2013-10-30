@@ -7,10 +7,10 @@
         <li><a href="{{ action('ForumController@getIndex') }}?tags=requests,input">Requests / Input / Responses</a></li>
         <li><a href="{{ action('ForumController@getIndex') }}?tags=session,cache">Session / Cache</a></li>
         <li><a href="{{ action('ForumController@getIndex') }}?tags=database,eloquent">Database / Eloquent</a></li>
-        <li><a href="{{ action('ForumController@getIndex') }}?tags=packages,ioc">Packages / IoC</a></li>
+        <li><a href="{{ action('ForumController@getIndex') }}?tags=packages,ioc">Packages / IoC </a></li>
         <li><a href="{{ action('ForumController@getIndex') }}?tags=views,blade,forms">Views / Blade / Forms</a></li>
         <li><a href="{{ action('ForumController@getIndex') }}?tags=mail,queues">Mail / Queues</a></li>
-        <li><a href="{{ action('ArticlesController@getIndex') }}?tags=meetups">Meetups / Local Communities</a></li>
+        <li><a href="{{ action('ArticlesController@getIndex') }}?tags=meetups">Local Community Meetups</a></li>
         <li><a href="{{ action('ForumController@getIndex') }}?tags=laravelio">Laravel.io Site and Community</a></li>
     </ul>
 </div>
