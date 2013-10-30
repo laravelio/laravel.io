@@ -1,13 +1,13 @@
 <?php namespace Lio\Articles;
 
 use McCool\LaravelAutoPresenter\BasePresenter;
-use App;
+use \Michelf\MarkdownExtra;
 
 class ArticlePresenter extends BasePresenter
 {
     public function content()
     {
-        return App::make('markdown.parser')->transformMarkdown($this->resource->content);
+        return MarkdownExtra::defaultTransform($this->resource->content);
     }
 
     public function comment_count_label()
