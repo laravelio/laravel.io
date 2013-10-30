@@ -14,9 +14,9 @@ class RoleSeeder extends Seeder
     private function createRoles()
     {
         $roles = [
-            'admin_posts' => 'publish posts',
-            'admin_users' => 'manage user roles and accounts',
-            'write_posts' => 'write posts',
+            'admin_articles' => 'manage articles',
+            'admin_forum'    => 'manage the forum',
+            'admin_users'    => 'manage user roles and accounts',
         ];
 
         foreach ($roles as $role => $description) {
