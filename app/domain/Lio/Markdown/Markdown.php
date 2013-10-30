@@ -8,10 +8,11 @@ class Markdown extends MarkdownExtra
     {
         $parsedContent = parent::transform($content);
 
-        $parsedContent = str_replace('<p><code>', '<pre><code>', $parsedContent);
-        $parsedContent = str_replace('</code></p>', '</code></pre>', $parsedContent);
+        // $parsedContent = str_replace('<p><code>', '<pre><code>', $parsedContent);
+        // $parsedContent = str_replace('</code></p>', '</code></pre>', $parsedContent);
 
-        $parsedContent = str_replace('<pre><code>', '<pre class="prettyprint"><code>', $parsedContent);
+        // $parsedContent = str_replace('<pre><code>', '<pre class="prettyprint"><code>', $parsedContent);
+        $parsedContent = str_replace('<code>', '<code class="prettyprint">', $parsedContent);
 
         return $parsedContent;
     }
