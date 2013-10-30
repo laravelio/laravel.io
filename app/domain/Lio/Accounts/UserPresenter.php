@@ -1,5 +1,6 @@
 <?php namespace Lio\Accounts;
 
+use HTML;
 use McCool\LaravelAutoPresenter\BasePresenter;
 
 class UserPresenter extends BasePresenter
@@ -28,6 +29,11 @@ class UserPresenter extends BasePresenter
 
     public function thumbnail()
     {
-        return \HTML::image($this->image_url);
+        return HTML::image($this->image_url);
+    }
+
+    public function imageMedium()
+    {
+        return HTML::image($this->image_url . "&size=300");
     }
 }
