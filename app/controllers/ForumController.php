@@ -95,4 +95,12 @@ class ForumController extends BaseController
 
         return $this->redirectAction('ForumController@getThread', [$commentSlug]);
     }
+
+    public function getEditThread($threadId)
+    {
+        $thread = $this->comments->requireForumThreadById($threadId);
+        $tags = $this->tags->getAllForForum();
+
+        $this->view('forum.editthread', compact('thread', 'tags'));
+    }
 }

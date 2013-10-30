@@ -60,4 +60,15 @@ class CommentRepository extends EloquentBaseRepository
     {
         return new ForumCreateForm;
     }
+
+    public function requireForumThreadById($id)
+    {
+        $model = $this->model->where('id', '=', $id)->where('type', '=', COMMENT::TYPE_FORUM)->first();
+
+        if ( ! $model) {
+            throw new EntityNotFoundException;
+        }
+
+        return $model;
+    }
 }
