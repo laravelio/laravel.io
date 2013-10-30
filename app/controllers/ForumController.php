@@ -17,7 +17,7 @@ class ForumController extends BaseController
 
     public function getIndex()
     {
-        $tags = $this->tags->getAllTagsBySlug(Input::get('tags'));      
+        $tags = $this->tags->getAllTagsBySlug(Input::get('tags'));
 
         $threads = $this->comments->getForumThreadsByTagsPaginated($tags, 20);
         $threads->appends(['tags' => Input::get('tags')]);
@@ -28,7 +28,7 @@ class ForumController extends BaseController
     public function getThread()
     {
         $thread   = App::make('slugModel');
-        $comments = $this->comments->getThreadCommentsPaginated($thread);
+        $comments = $this->comments->getThreadCommentsPaginated($thread, 5);
 
         $this->view('forum.thread', compact('thread', 'comments'));
     }

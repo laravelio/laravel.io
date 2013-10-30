@@ -3,6 +3,8 @@
 use McCool\LaravelAutoPresenter\BasePresenter;
 use App;
 
+use Str;
+
 class CommentPresenter extends BasePresenter
 {
     public function forumThreadUrl()
@@ -43,5 +45,11 @@ class CommentPresenter extends BasePresenter
     public function body()
     {
         return App::make('markdown')->transform($this->resource->body);
+    }
+
+    public function bodySummary()
+    {
+        $body = MarkdownExtra::defaultTransform($this->resource->body);
+        return Str::words($body, 50);
     }
 }

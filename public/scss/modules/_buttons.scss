@@ -14,4 +14,8 @@
     &.full {
         width: 100%;
     }
+
+    &:hover {
+        background: $lioGrey;
+    }
 }
