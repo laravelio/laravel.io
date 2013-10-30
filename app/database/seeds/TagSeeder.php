@@ -24,7 +24,6 @@ class TagSeeder extends Seeder
             'cache'          => 'performance caching or any use of Laravel\'s cache system',
             'database'       => 'query-building, connections, drivers',
             'eloquent'       => 'Eloquent modeling, relationships, etc',
-            'architecture'   => 'related to the structure of an application',
             'ioc'            => 'binding to and resolving from the IoC container',
             'views'          => 'related to the rendering of views',
             'blade'          => 'related to Blade templating',
@@ -32,8 +31,9 @@ class TagSeeder extends Seeder
             'validation'     => 'related to the validation of data',
             'mail'           => 'anything related to compiling and sending email',
             'queues'         => 'all things related to queues',
-            'news'           => 'appropriate for articles that are about an occurance',
             'laravelio'      => 'directly relates to Laravel.io site and community',
+            'Packages'       => 'related to creating, discussing, and importing packages',
+            'Meetups'        => 'community meetups and user groups',
         ];
 
         foreach ($commonTags as $name => $description) {
