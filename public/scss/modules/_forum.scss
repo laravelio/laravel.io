@@ -7,7 +7,7 @@
 .forum {
     @include outer-container;
     @include omega();
-    padding: 0 0 2% 0;
+    padding: 2% 0;
     max-width: 900px;
 
     h1 {

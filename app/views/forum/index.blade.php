@@ -9,7 +9,7 @@
         <h1>Forum</h1>
 
         @if(Input::has('tags'))
-            <h2>Threads tagged with {{ Input::get('tags') }}.</h2>
+            <div class="tags">Threads tagged with {{ Input::get('tags') }}.</div>
         @else
             <h2>All Threads</h2>
         @endif
