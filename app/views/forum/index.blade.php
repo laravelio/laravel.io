@@ -11,7 +11,7 @@
         @if(Input::has('tags'))
             <div class="tags">Threads tagged with {{ Input::get('tags') }}.</div>
         @else
-            <h2>All Threads</h2>
+            <div class="tags">All threads</div>
         @endif
 
         @if($threads->count() > 0)

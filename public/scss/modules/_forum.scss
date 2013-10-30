@@ -31,17 +31,15 @@
 }
 
 article {
-    margin: 2rem 0;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 1rem;
-    h1 {
-        font-size: 12px;
-        @extend .gamma;
+    padding:15px 5px;
+    border-top: 1px solid #ccc;
+    h3 {
+        font-size:18px;
     }
 
-    h3
-    {
-        font-size:18px;
+    .meta {
+        padding: 0;
+        margin: 0;
     }
 }
 

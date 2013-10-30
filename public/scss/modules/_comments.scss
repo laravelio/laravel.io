@@ -67,11 +67,10 @@
                 display: block;
                 @include span-columns(1.5);
 
-            &:img {
-                width:80px;
-                height: 80px;
-            }
-
+                img {
+                    width:100%;
+                    height: auto;
+                }
             }
 
             .content {
