@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+
 <div class="row forum">
     <div class="small-12 columns comments">
         @foreach($comments as $comment)
@@ -59,3 +60,4 @@
 @stop
 
 @include('layouts._markdown_editor')
+@include('layouts._code_prettify')

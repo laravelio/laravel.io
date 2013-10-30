@@ -1,7 +1,7 @@
 <?php namespace Lio\Comments;
 
 use McCool\LaravelAutoPresenter\BasePresenter;
-use \Michelf\MarkdownExtra;
+use App;
 
 class CommentPresenter extends BasePresenter
 {
@@ -42,6 +42,6 @@ class CommentPresenter extends BasePresenter
 
     public function body()
     {
-        return MarkdownExtra::defaultTransform($this->resource->body);
+        return App::make('markdown')->transform($this->resource->body);
     }
 }
