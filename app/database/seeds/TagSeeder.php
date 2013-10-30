@@ -13,7 +13,7 @@ class TagSeeder extends Seeder
 
     private function createTags()
     {
-        $tags = [
+        $commonTags = [
             'installation'   => 'framework installation, package installation, application installation',
             'configuration'  => 'framework configuration, web-server configuration, application configuration',
             'authentication' => 'any kind of authentication including: user logins, oauth, etc',
@@ -36,11 +36,27 @@ class TagSeeder extends Seeder
             'laravelio'      => 'directly relates to Laravel.io site and community',
         ];
 
-        foreach ($tags as $name => $description) {
+        foreach ($commonTags as $name => $description) {
             Tag::create([
                 'name'        => $name,
                 'slug'        => $name,
                 'description' => $description,
+                'articles'    => 1,
+                'forum'       => 1,
+            ]);
+        }
+
+        $articleTags = [
+            'news' => 'appropriate for articles that are about an occurance',
+        ];
+
+        foreach ($articleTags as $name => $description) {
+            Tag::create([
+                'name'        => $name,
+                'slug'        => $name,
+                'description' => $description,
+                'articles'    => 1,
+                'forum'       => 0,
             ]);
         }
     }

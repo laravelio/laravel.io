@@ -60,7 +60,7 @@ class ForumController extends BaseController
 
     public function getCreateThread()
     {
-        $tags = $this->tags->getAll();
+        $tags = $this->tags->getAllForForum();
 
         $this->view('forum.createthread', compact('tags'));
     }
