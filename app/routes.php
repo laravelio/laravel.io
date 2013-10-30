@@ -43,6 +43,11 @@ Route::post('forum/{slug}', ['before' => 'auth|handle_slug', 'uses' => 'ForumCon
 
 // admin
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {
+
+    Route::get('/', function() {
+        return Redirect::action('Admin\UsersController@getIndex');
+    });
+
 	// users
     Route::group(['before' => 'has_role:admin_users'], function() {
     	Route::get('users', 'Admin\UsersController@getIndex');

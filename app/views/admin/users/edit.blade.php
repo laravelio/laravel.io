@@ -26,9 +26,9 @@
                                 <p>
                                     If this option is enabled, the user can administer <strong>all</strong> posts on the system. This includes the ability to publish and remove posts at their discretion.
                                 </p>
-                            @elseif ($role->name == 'write_posts')
+                            @elseif ($role->name == 'admin_forum')
                                 <p>
-                                    Selecting this option enables this user to write their own posts. They will not be able to automatically publish it.
+                                    The user can moderate forum posts and in general cause a ruckus.
                                 </p>
                             @elseif ($role->name == 'admin_users')
                                 <p>
