@@ -49,7 +49,7 @@ class CommentPresenter extends BasePresenter
 
     public function bodySummary()
     {
-        $body = MarkdownExtra::defaultTransform($this->resource->body);
-        return Str::words($body, 50);
+        $summary = Str::words($this->resource->body, 50);
+        return App::make('markdown')->transform($summary);
     }
 }
