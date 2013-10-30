@@ -8,6 +8,13 @@
     img {
         float: left
     }
+
+    h1
+    {
+        float: left;
+        padding: 10px;
+        font-size:16px;
+    }
 }
 
 
@@ -16,10 +23,14 @@
     padding: 25px 0 0 0;
 
     h1 {
-        font-size:23px;
+        font-size:18px;
         padding:0 0 25px 0;
         margin: 0;
         font-weight: 600;
+    }
+
+    .comments {
+        padding: 0 0 30px 0;
     }
 
     .comment .content {
