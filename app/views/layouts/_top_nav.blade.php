@@ -13,16 +13,16 @@
             </a>
         </div>
         <ul class="top-navigation-items">
-            <li>
+<!--             <li>
                 <a href="{{ action('ArticlesController@getIndex') }}">Articles</a>
             </li>
-            <li>
+ -->            <li>
                 <a href="{{ action('ForumController@getIndex') }}">Forum</a>
             </li>
-            <li>
+<!--             <li>
                 <a href="{{ action('ChatController@getIndex') }}">Chat</a>
             </li>    
-        </ul>
+ -->        </ul>
         <ul class="top-navigation-signin-desktop">
             @if(Auth::check())
                 <li><a href="{{ action('DashboardController@getIndex') }}">{{ Auth::user()->name }}<span class="dashboard-word">'s Dashboard</span></a></li>
