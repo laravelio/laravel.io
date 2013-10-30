@@ -6,7 +6,8 @@
 
 .user-information {
     img {
-        float: left
+        float: left;
+        width:100%;
     }
 
     h1
@@ -19,8 +20,8 @@
 
 
 .user-content {
-    @include span-columns(9);
-    padding: 25px 0 0 0;
+    @include span-columns(12);
+    padding: 2%;
 
     h1 {
         font-size:18px;
@@ -34,21 +35,28 @@
     }
 
     .comment .content {
+        @include span-columns(12);
         h2
         {
             font-weight: 600;
             font-size:16px;
         }
     }
-
-
 }
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 480px) {
 
-    .module {}
+    .user-content {
+        @include span-columns(9);
+
+        .half
+        {
+            @include span-columns(6);
+            float: left;
+        }
+    }
 
 }
 

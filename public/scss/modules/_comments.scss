@@ -11,6 +11,7 @@
 
     .comment {
 
+        @include clearfix;
         h2 {
             font-size:20px;
             @extend .gamma;

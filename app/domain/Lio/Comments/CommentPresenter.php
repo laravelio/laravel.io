@@ -19,7 +19,8 @@ class CommentPresenter extends BasePresenter
 
         if ( ! $slug) return '';
 
-        return action('ForumController@getThread', [$slug->slug]);
+        $url = action('ForumController@getThread', [$slug->slug]);
+        return $url . "#comment-{$this->id}";
     }
 
     public function child_count_label()

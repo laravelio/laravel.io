@@ -8,7 +8,7 @@
 <div class="row forum">
     <div class="small-12 columns comments">
         @foreach($comments as $comment)
-            <div class="comment">
+            <div class="comment" id="comment-{{ $comment->id }}">
                 <div class="user">
                     {{ $comment->author->thumbnail  }}
                 </div>
@@ -29,6 +29,7 @@
                           <ul class="meta">
                             <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
                             <li><i class="icon-user"></i> <a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></li>
+                            <li><i class="icon-link"></i> <a href="{{ $comment->commentUrl }}">Share</a></li>
                         </ul>
                     @endif
                 </div>
