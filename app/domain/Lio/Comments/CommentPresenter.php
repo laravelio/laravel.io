@@ -37,4 +37,9 @@ class CommentPresenter extends BasePresenter
     {
         return $this->resource->created_at->diffForHumans();
     }
+
+    public function body()
+    {
+        return App::make('markdown.parser')->transformMarkdown($this->resource->body);
+    }
 }
