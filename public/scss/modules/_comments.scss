@@ -11,6 +11,11 @@
 
     .comment {
 
+        img
+        {
+            max-width: 100%;
+        }
+
         @include clearfix;
         h2 {
             font-size:20px;
