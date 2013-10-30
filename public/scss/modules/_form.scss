@@ -43,21 +43,20 @@
     }
 
     .tags {
+        list-style-type: none;
         margin:0;
         padding: 0;
         @include clearfix;
 
         li {
-            display: inline-block;
-            float: left;
-            padding: 4px;
-            font-size:15px;
+            padding: 4px 0 6px 0;
+            font-size:13px;
         }
     }
 
     label {
-        display: block;
-        font-size:15px;
+        font-weight:bold;
+        font-size:14px;
         padding: 6px 0;
         cursor: pointer;
     }

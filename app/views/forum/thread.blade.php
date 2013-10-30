@@ -17,13 +17,10 @@
                         <h1>{{ $comment->title }}</h1>
                         <div class="tags">Tags:  {{ $comment->tags->getTagList() }}</div>
                         {{ $comment->body }}
-
                         <ul class="meta">
                             <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
                             <li><i class="icon-user"></i><a href="{{ $comment->author->profileUrl }}"> {{ $comment->author->name }}</a></li>
                         </ul>
-
-
                     @else
                         {{ $comment->body }}
                           <ul class="meta">

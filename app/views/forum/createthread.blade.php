@@ -36,7 +36,7 @@
                                 @foreach($tags as $tag)
                                     <li>
                                         <label>
-                                            {{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span>
+                                        {{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span>
                                         </label> - {{ $tag->description }}
                                     </li>
                                 @endforeach
@@ -57,3 +57,8 @@
 @stop
 
 @include('layouts._markdown_editor')
+
+@section('scripts')
+    @parent
+    <script src="{{ asset('javascripts/forums.js') }}"></script>
+@stop
