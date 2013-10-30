@@ -1,6 +1,7 @@
 <?php namespace Lio\Comments;
 
 use McCool\LaravelAutoPresenter\BasePresenter;
+use App;
 
 class CommentPresenter extends BasePresenter
 {
