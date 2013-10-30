@@ -5,5 +5,5 @@
 
 @section('styles')
     @parent
-    <link rel="stylesheet" href="{{ asset('javascripts/vendor/google-code-prettify/prettify.css') }}">
+    
 @stop
