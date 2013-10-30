@@ -112,6 +112,16 @@ class User extends EloquentBaseModel implements UserInterface, RemindableInterfa
         return $this->hasMany('Lio\Comments\Comment', 'author_id')->where('type', '=', \Lio\Comments\Comment::TYPE_FORUM)->orderBy('created_at', 'desc');
     }
 
+    public function forumThreads()
+    {
+        return $this->hasMany('Lio\Comments\Comment', 'author_id')->whereNull('parent_id')->where('type', '=', \Lio\Comments\Comment::TYPE_FORUM)->orderBy('created_at', 'desc');
+    }
+
+    public function forumReplies()
+    {
+        return $this->hasMany('Lio\Comments\Comment', 'author_id')->whereNotNull('parent_id')->where('type', '=', \Lio\Comments\Comment::TYPE_FORUM)->orderBy('created_at', 'desc');
+    }
+
     public function mostRecentFiveForumPosts()
     {
         return $this->forumPosts()->take(5);

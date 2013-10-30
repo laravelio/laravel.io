@@ -5,7 +5,9 @@
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
 .user-information {
-    background: red;
+    img {
+        float: left
+    }
 }
 
 
@@ -18,6 +20,14 @@
         padding:0 0 25px 0;
         margin: 0;
         font-weight: 600;
+    }
+
+    .comment .content {
+        h2
+        {
+            font-weight: 600;
+            font-size:16px;
+        }
     }
 
 
