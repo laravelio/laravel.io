@@ -7,10 +7,11 @@
 .comments {
     list-style-type: none;
     margin: 0;
+    @include outer-container;
 
     .comment {
 
-        padding: 23px 20px;
+        padding: 23px 20px 10px 20px;
 
         h2 {
             font-size:20px;
@@ -26,21 +27,32 @@
             padding: 0 0 8px 0;
         }
 
-        &:nth-child(even) {
-            background: #eee;
-        }
-
         p {
             font-size:14px;
         }
 
         .meta {
+            border-top:1px solid #eee;
+            padding: 13px 0 0 0;
+            margin:0;
+
             li a {
                 color:$lioRed;
                 &:hover {
                     color:$lioGrey;
                 }
             }
+        }
+
+        .user {
+            display: none;
+        }
+
+        .content {
+            @include span-columns(12);
+            padding: 20px;
+            border:1px solid #eee;
+            margin: 0 0 15px 0;
         }
     }
 }
@@ -50,7 +62,24 @@
 
 @media only screen and (min-width: 480px) {
 
-    .module {}
+    .comments {
+        .comment {
+
+            .user {
+                display: block;
+                @include span-columns(1.5);
+
+            }
+
+            .content {
+                @include span-columns(10.5);
+                padding: 20px;
+                border:1px solid #eee;
+                margin: 0 0 25px 0;
+            }
+        }
+    }
+
 
 }
 

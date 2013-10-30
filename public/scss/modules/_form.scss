@@ -5,6 +5,9 @@
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
 .form {
+    @include span-columns(12);
+
+
     fieldset {
         border: none;
     }
@@ -35,7 +38,6 @@
         font-size:20px;
         @extend .gamma;
         border-bottom: 1px solid #eee;
-        border-top:1px solid #eee;
     }
 
     .tags {
