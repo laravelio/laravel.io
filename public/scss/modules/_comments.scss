@@ -10,7 +10,7 @@
 
     .comment {
 
-        padding: 30px;
+        padding: 23px 20px;
 
         h2 {
             font-size:20px;
@@ -26,7 +26,7 @@
             padding: 0 0 8px 0;
         }
 
-        &:nth-child(odd) {
+        &:nth-child(even) {
             background: #eee;
         }
 
@@ -34,16 +34,8 @@
             font-size:14px;
         }
 
-        .tags {
-            margin:0;
-            padding: 0;
-
-            li {
-                display: inline;
-            }
-
+        .meta {
             li a {
-                font-size:13px;
                 color:$lioRed;
                 &:hover {
                     color:$lioGrey;
