@@ -8,11 +8,10 @@
 <div class="row forum">
     <div class="small-12 columns comments">
         @foreach($comments as $comment)
-            @if($comment->id == $thread->id)
-                <h1>{{ $comment->title }}</h1>
-            @endif
             <div class="comment">
                 @if($comment->id == $thread->id)
+                    <h1>{{ $comment->title }}</h1>
+                    <div class="tags">Tags:  {{ $comment->tags->getTagList() }}</div>
                     <p>{{ $comment->body }}</p>
 
                     <ul class="meta">
@@ -20,7 +19,7 @@
                         <li><i class="icon-user"></i><a href="{{ $comment->author->profileUrl }}"> {{ $comment->author->name }}</a></li>
                     </ul>
 
-                    Tags: <span class="tags">{{ $comment->tags->getTagList() }}</span>
+
                 @else
                     <p>{{ $comment->body }}</p>
 
