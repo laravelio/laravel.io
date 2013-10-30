@@ -126,4 +126,14 @@ class User extends EloquentBaseModel implements UserInterface, RemindableInterfa
     {
         return $this->forumPosts()->take(5);
     }
+
+    public function getLatestThreadsPaginated($max = 5)
+    {
+        return $this->forumThreads()->paginate($max);
+    }
+
+    public function getLatestRepliesPaginated($max = 5)
+    {
+        return $this->forumReplies()->paginate($max);
+    }
 }

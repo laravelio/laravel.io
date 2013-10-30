@@ -1,23 +1,53 @@
-<h1>{{ $user->name }}</h1>
-<img src="{{ $user->image_url }}"/>
-<a href="{{ $user->github_url }}">GitHub Profile</a>
+@extends('layouts._two_columns_left_sidebar')
 
-<h2>Forum</h2>
+@section('sidebar')
+    @include('users._sidebar')
+@stop
 
-@if($user->mostRecentFiveForumPosts->count() > 0)
-	<ul>
-		@foreach($user->mostRecentFiveForumPosts as $post)
-			<li>
-				@if($post->parent)				
-					<a href="{{ $post->parent->forumThreadUrl }}">reply to: {{ $post->parent->title }}</a>
-				@else
-					title: {{ $post->title }}
-				@endif
+@section('content')
+<section class="user-content">
 
-				<p>
-					{{ Str::words($post->body, 200) }}
-				</p>
-			</li>
-		@endforeach
-	</ul>
+
+@if(count($threads))
+<div class="half">
+    <h1>{{ Auth::user()->name }}'s Latest Threads</h1>
+    <div class="comments">
+        @foreach($threads as $thread)
+            <div class="comment">
+                <div class="content">
+                        <h2>{{ $thread->title }}</h2>
+                        <p>{{ $thread->body }}</p>
+                          <ul class="meta">
+                            <li><i class="icon-time"></i> {{ $thread->created_ago }}</li>
+                            <li><a href="{{ $thread->forumThreadUrl }}"><i class="icon-eye"></i> View Thread</a></li>
+                        </ul>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
 @endif
+
+@if(count($comments))
+<div class="half">
+    <h1>{{ Auth::user()->name }}'s Latest Replies</h1>
+    <div class="comments">
+        @foreach($comments as $comment)
+            <div class="comment">
+                <div class="content">
+                        <h2>RE: {{ $comment->parent->title }}</h2>
+                        <p>{{ $comment->body }}</p>
+                          <ul class="meta">
+                            <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
+                            <li><a href="{{ $comment->commentUrl }}"><i class="icon-eye"></i> View Comment</a></li>
+                        </ul>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+@endif
+
+
+</section>
+@stop

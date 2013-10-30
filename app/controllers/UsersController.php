@@ -14,8 +14,10 @@ class UsersController extends BaseController
     public function getProfile($userName)
     {
         $user = $this->users->requireByName($userName);
-        $user->load(['mostRecentFiveForumPosts', 'mostRecentFiveForumPosts.parent', 'mostRecentFiveForumPosts.slug']);
 
-        $this->view('users.profile', compact('user'));
+        $threads = $user->getLatestThreadsPaginated(5);
+        $comments = $user->getLatestRepliesPaginated(5);
+
+        $this->view('users.profile', compact('user', 'threads', 'comments'));
     }
 }

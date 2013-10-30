@@ -8,7 +8,7 @@
 <section class="user-content">
 
 
-    <h1>{{ Auth::user()->name }}'s Threads</h1>
+    <h1>{{ Auth::user()->name }}'s Latest Threads</h1>
     <div class="comments">
         @foreach($user->forumThreads as $comment)
             <div class="comment">
@@ -24,7 +24,7 @@
         @endforeach
     </div>
 
-    <h1>{{ Auth::user()->name }}'s Replies</h1>
+    <h1>{{ Auth::user()->name }}'s Latest Replies</h1>
     <div class="comments">
         @foreach($user->forumReplies as $comment)
             <div class="comment">
@@ -33,7 +33,7 @@
                         <p>{{ $comment->body }}</p>
                           <ul class="meta">
                             <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
-                            <li><a href="{{ $comment->commentUrl }}#{{ $comment->id }}"><i class="icon-eye"></i> View Comment</a></li>
+                            <li><a href="{{ $comment->commentUrl }}"><i class="icon-eye"></i> View Comment</a></li>
                         </ul>
                 </div>
             </div>
