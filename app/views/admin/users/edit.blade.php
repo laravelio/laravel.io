@@ -22,19 +22,9 @@
                         </div>
                         <div class="small-11 columns">
                             {{ Form::label("role_{$role->id}", $role->name) }}
-                            @if ($role->name == 'admin_posts')
-                                <p>
-                                    If this option is enabled, the user can administer <strong>all</strong> posts on the system. This includes the ability to publish and remove posts at their discretion.
-                                </p>
-                            @elseif ($role->name == 'admin_forum')
-                                <p>
-                                    The user can moderate forum posts and in general cause a ruckus.
-                                </p>
-                            @elseif ($role->name == 'admin_users')
-                                <p>
-                                    When a user has this role, they are able to modify the roles of all other users as well as ban and unban users.
-                                </p>
-                            @endif
+                            <p>
+                                {{ $role->description }}
+                            </p>
                         </div>
                     </div>
                 @endforeach
