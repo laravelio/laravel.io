@@ -15,10 +15,11 @@
 </head>
 <body>
 
-  @include('layouts._flash')
   @include('layouts._top_nav')
 
     <div class="flexbox">
+        @include('layouts._flash')
+        
         {{ $content }}
     </div>
 
