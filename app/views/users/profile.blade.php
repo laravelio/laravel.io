@@ -10,7 +10,7 @@
 
 @if(count($threads))
 <div class="half">
-    <h1>{{ Auth::user()->name }}'s Latest Threads</h1>
+    <h1>{{ $user->name }}'s Latest Threads</h1>
     <div class="comments">
         @foreach($threads as $thread)
             <div class="comment">
@@ -30,7 +30,7 @@
 
 @if(count($comments))
 <div class="half">
-    <h1>{{ Auth::user()->name }}'s Latest Replies</h1>
+    <h1>{{ $user->name }}'s Latest Replies</h1>
     <div class="comments">
         @foreach($comments as $comment)
             <div class="comment">
