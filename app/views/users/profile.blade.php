@@ -16,7 +16,7 @@
             <div class="comment">
                 <div class="content">
                         <h2>{{ $thread->title }}</h2>
-                        <p>{{ $thread->body }}</p>
+                        {{ $thread->bodySummary }}
                           <ul class="meta">
                             <li><i class="icon-time"></i> {{ $thread->created_ago }}</li>
                             <li><a href="{{ $thread->forumThreadUrl }}"><i class="icon-eye"></i> View Thread</a></li>
@@ -36,7 +36,7 @@
             <div class="comment">
                 <div class="content">
                         <h2>RE: {{ $comment->parent->title }}</h2>
-                        <p>{{ $comment->body }}</p>
+                        {{ $comment->bodySummary }}
                           <ul class="meta">
                             <li><i class="icon-time"></i> {{ $comment->created_ago }}</li>
                             <li><a href="{{ $comment->commentUrl }}"><i class="icon-eye"></i> View Comment</a></li>
