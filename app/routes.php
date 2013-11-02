@@ -3,7 +3,7 @@
 Route::get('/', 'HomeController@getIndex');
 
 // authentication
-Route::get('login', 'AuthController@getLogin');
+Route::get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
 Route::get('signup', 'AuthController@getSignup');
 Route::get('signup-confirm', 'AuthController@getSignupConfirm');
 Route::post('signup-confirm', 'AuthController@postSignupConfirm');

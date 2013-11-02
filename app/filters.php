@@ -6,15 +6,10 @@
 |--------------------------------------------------------------------------
 */
 
-App::before(function($request)
-{
-    //
-});
+App::before(function($request) {});
 
-
-App::after(function($request, $response)
-{
-    //
+App::after(function($request, $response) {
+    if (Request::path() != "login") Session::put('url.intended', URL::full());
 });
 
 /*
@@ -23,8 +18,7 @@ App::after(function($request, $response)
 |--------------------------------------------------------------------------
 */
 
-Route::filter('auth', function()
-{
+Route::filter('auth', function() {
     if (Auth::guest()) return Redirect::action('AuthController@getSignup');
 });
 

@@ -15,6 +15,7 @@ class GitHubFacade extends Facade
         $githubData = json_decode(static::request('user'), true);
         list($githubEmail) = json_decode(static::request('user/emails'), true);
         $githubData['email'] = $githubEmail;
+
         return $githubData;
     }
 }

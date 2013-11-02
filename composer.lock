@@ -59,12 +59,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "448c8cbc4d494100904941da744b99343d0057d7"
+                "reference": "204550d00de76f70c8a69444823320354a0898c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/448c8cbc4d494100904941da744b99343d0057d7",
-                "reference": "448c8cbc4d494100904941da744b99343d0057d7",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/204550d00de76f70c8a69444823320354a0898c7",
+                "reference": "204550d00de76f70c8a69444823320354a0898c7",
                 "shasum": ""
             },
             "require": {
@@ -117,7 +117,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2013-10-25 20:11:10"
+            "time": "2013-10-31 19:16:43"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -698,12 +698,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "57e96c16fecc32f07736dc9645fdfe1b0160a07c"
+                "reference": "4e9e345e3212eb44a628a8f1a92416afe726de85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/57e96c16fecc32f07736dc9645fdfe1b0160a07c",
-                "reference": "57e96c16fecc32f07736dc9645fdfe1b0160a07c",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4e9e345e3212eb44a628a8f1a92416afe726de85",
+                "reference": "4e9e345e3212eb44a628a8f1a92416afe726de85",
                 "shasum": ""
             },
             "require": {
@@ -782,7 +782,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2013-10-30 02:57:15"
+            "time": "2013-11-01 22:43:11"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -923,12 +923,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "dfd88c5078dc9cbc846a7f8d40f6b083a3f00e2a"
+                "reference": "2a90190c4d219aa4e1cce642b85f6bd26bbfcb41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/dfd88c5078dc9cbc846a7f8d40f6b083a3f00e2a",
-                "reference": "dfd88c5078dc9cbc846a7f8d40f6b083a3f00e2a",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2a90190c4d219aa4e1cce642b85f6bd26bbfcb41",
+                "reference": "2a90190c4d219aa4e1cce642b85f6bd26bbfcb41",
                 "shasum": ""
             },
             "require": {
@@ -1028,7 +1028,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-10-29 20:05:47"
+            "time": "2013-11-01 22:02:35"
         },
         {
             "name": "lusitanian/oauth",
@@ -1285,12 +1285,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "0f3c054dff866aa687ab07572b731fb2ba32e703"
+                "reference": "7f99ac07d38fd367d1f5f85693ae8433738f7f94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/0f3c054dff866aa687ab07572b731fb2ba32e703",
-                "reference": "0f3c054dff866aa687ab07572b731fb2ba32e703",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/7f99ac07d38fd367d1f5f85693ae8433738f7f94",
+                "reference": "7f99ac07d38fd367d1f5f85693ae8433738f7f94",
                 "shasum": ""
             },
             "require": {
@@ -1340,7 +1340,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-10-28 09:41:17"
+            "time": "2013-10-31 21:38:39"
         },
         {
             "name": "nesbot/carbon",
