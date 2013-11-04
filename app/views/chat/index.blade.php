@@ -12,6 +12,6 @@
 	</p>
 
 	<p>
-		Or, if you can't be arsed to authenticate (just do it) then.. 
+		Or, if you can&#39;t be arsed to authenticate (just do it) then.. 
 	</p>
 @endif
