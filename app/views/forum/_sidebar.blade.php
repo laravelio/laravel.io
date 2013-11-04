@@ -16,7 +16,7 @@
 </div>
 
 <div class="new-post">
-    <h4>Create an Thread</h4>
-    <p>Forum threads are a way to begin a discussion over a specific topic. Is there a topic that you'd like to discuss that you don't see in the forum?</p>
+    <h4>Create a Thread</h4>
+    <p>Forum threads are a way to begin a discussion over a specific topic. Is there a topic that you&#39;d like to discuss that you don&#39;t see in the forum?</p>
     <a class="button full" href="{{ action('ForumController@getCreateThread') }}">Create a Thread</a>
 </div>
