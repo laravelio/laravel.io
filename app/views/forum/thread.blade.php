@@ -39,3 +39,9 @@
 
 @include('layouts._markdown_editor')
 @include('layouts._code_prettify')
+
+
+@section('scripts')
+    @parent
+    <script src="{{ asset('javascripts/forums.js') }}"></script>
+@stop

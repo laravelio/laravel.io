@@ -1,6 +1,15 @@
+@extends('layouts._two_columns_left_sidebar')
+
+@section('sidebar')
+    @include('forum._sidebar')
+@stop
+
+@section('content')
+<div class="row forum">
+    <div class="small-12 columns form">
 {{ Form::model($thread->resource) }}
     <fieldset>
-        <legend>Create Thread</legend>
+        <legend>Edit Thread</legend>
 
         <div class="row">
             <div class="">
@@ -42,6 +51,8 @@
     </fieldset>
 
 {{ Form::close() }}
+
+@stop
 
 @include('layouts._markdown_editor')
 
