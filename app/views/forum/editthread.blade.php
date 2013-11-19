@@ -1,4 +1,5 @@
 {{ Form::model($thread->resource) }}
+
     <fieldset>
         <legend>Create Thread</legend>
 
@@ -20,19 +21,19 @@
         </div>
 
         <div class="row">
-                @if($tags->count() > 0)
-                    <h3>Describe your post with up to 3 tags</h3>
-                    {{ $errors->first('tags', '<small class="error">:message</small>') }}
-                    <ul class="tags">
-                        @foreach($tags as $tag)
-                            <li>
-                                <label>
-                                {{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($thread) ? $thread->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span>
-                                </label> - {{ $tag->description }}
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
+            @if($tags->count() > 0)
+                <h3>Describe your post with up to 3 tags</h3>
+                {{ $errors->first('tags', '<small class="error">:message</small>') }}
+                <ul class="tags">
+                    @foreach($tags as $tag)
+                        <li>
+                            <label>
+                            {{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($thread) ? $thread->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span>
+                            </label> - {{ $tag->description }}
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
 
         <div class="row">

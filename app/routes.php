@@ -39,6 +39,7 @@ Route::get('forum', 'ForumController@getIndex');
 Route::get('forum/create-thread', ['before' => 'auth', 'uses' => 'ForumController@getCreateThread']);
 Route::post('forum/create-thread', ['before' => 'auth', 'uses' => 'ForumController@postCreateThread']);
 Route::get('forum/edit-thread/{threadId}', ['before' => 'auth', 'uses' => 'ForumController@getEditThread']);
+Route::post('forum/edit-thread/{threadId}', ['before' => 'auth', 'uses' => 'ForumController@postEditThread']);
 Route::get('forum/{slug}', ['before' => 'handle_slug', 'uses' => 'ForumController@getThread']);
 Route::post('forum/{slug}', ['before' => 'auth|handle_slug', 'uses' => 'ForumController@postThread']);
 

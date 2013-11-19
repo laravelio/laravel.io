@@ -103,4 +103,36 @@ class ForumController extends BaseController
 
         $this->view('forum.editthread', compact('thread', 'tags'));
     }
+
+    public function postEditThread($threadId)
+    {
+        $comment = $this->comments->requireForumThreadById($threadId);
+
+        // i hate everything about these controllers, it's awful
+        $form = $this->comments->getForumCreateForm();
+
+        if ( ! $form->isValid()) {
+            return $this->redirectBack(['errors' => $form->getErrors()]);
+        }
+
+        $comment->fill([
+            'title'         => Input::get('title'),
+            'body'          => Input::get('body'),
+        ]);
+
+        if ( ! $comment->isValid()) {
+            return $this->redirectBack(['errors' => $comment->getErrors()]);
+        }
+
+        $this->comments->save($comment);
+
+        // store tags
+        $tags = $this->tags->getTagsByIds(Input::get('tags'));
+        $comment->tags()->sync($tags->lists('id'));
+
+        // load new slug
+        $commentSlug = $comment->slug()->first()->slug;
+
+        return $this->redirectAction('ForumController@getThread', [$commentSlug]);
+    }
 }
