@@ -6,4 +6,14 @@ function limitTagCheckboxes()
     });
 }
 
+function moveSidebar()
+{
+    $( "window" ).bind( "resize", function() {
+        if (document.width < '800') {
+            $('.sidebar').insertAfter('section.content');
+        }
+    });
+}
+
 limitTagCheckboxes();
+moveSidebar();

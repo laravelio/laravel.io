@@ -1,9 +1,7 @@
 <?php namespace Lio\Comments;
 
 use McCool\LaravelAutoPresenter\BasePresenter;
-use App;
-
-use Str;
+use App, Input, Str, Request;
 
 class CommentPresenter extends BasePresenter
 {
@@ -18,12 +16,17 @@ class CommentPresenter extends BasePresenter
 
     public function commentUrl()
     {
+        $pagination = null;
         $slug = $this->resource->parent->slug;
 
         if ( ! $slug) return '';
 
+        if( Input::has('page')) {
+            $pagination = '?page=' . Input::get('page');
+        }
+
         $url = action('ForumController@getThread', [$slug->slug]);
-        return $url . "#comment-{$this->id}";
+        return $url . $pagination . "#comment-{$this->id}";
     }
 
     public function child_count_label()
