@@ -22,6 +22,8 @@ class Comment extends EloquentBaseModel implements SlugInterface
     const TYPE_PASTE   = 1;
     const TYPE_ARTICLE = 2;
 
+    const PER_PAGE = 5;
+
     public function owner()
     {
         return $this->morphTo('owner');
@@ -88,6 +90,7 @@ class Comment extends EloquentBaseModel implements SlugInterface
             return $this->getForumPostSlugString();
         }
     }
+
     //
 
     private function getForumPostSlugString()

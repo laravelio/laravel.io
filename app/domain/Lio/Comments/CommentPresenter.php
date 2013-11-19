@@ -21,12 +21,8 @@ class CommentPresenter extends BasePresenter
 
         if ( ! $slug) return '';
 
-        if( Input::has('page')) {
-            $pagination = '?page=' . Input::get('page');
-        }
-
-        $url = action('ForumController@getThread', [$slug->slug]);
-        return $url . $pagination . "#comment-{$this->id}";
+        $url = action('ForumController@getComment', [$slug->slug, $this->id]);
+        return $url;
     }
 
     public function child_count_label()

@@ -28,7 +28,7 @@ class ForumController extends BaseController
     public function getThread()
     {
         $thread   = App::make('slugModel');
-        $comments = $this->comments->getThreadCommentsPaginated($thread, 5);
+        $comments = $this->comments->getThreadCommentsPaginated($thread, Comment::PER_PAGE);
 
         $this->view('forum.thread', compact('thread', 'comments'));
     }
@@ -166,5 +166,22 @@ class ForumController extends BaseController
         $this->comments->save($comment);
 
         return $this->redirectAction('ForumController@getThread', [$comment->parent->slug->slug]);
+    }
+
+    public function getComment($thread, $commentId)
+    {
+        // Holy shit worst code ever made..
+        // LYLAS!
+
+        $perPage = Comment::PER_PAGE;
+        $comment = Comment::find($commentId);
+        $before = Comment::where('parent_id', '=', $comment->parent_id)->where('created_at', '<', $comment->created_at)->count();
+
+        $page = round($before / $perPage, 0, PHP_ROUND_HALF_DOWN) + 1;
+
+        $url = action('ForumController@getThread', [$thread]);
+
+        return Redirect::to($url . '?page=' . $page . '#comment-' . $commentId);
+
     }
 }

@@ -8,12 +8,16 @@ function limitTagCheckboxes()
 
 function moveSidebar()
 {
-    $( "window" ).bind( "resize", function() {
-        if (document.width < '800') {
-            $('.sidebar').insertAfter('section.content');
+    $( window ).bind( "resize", function() {
+        if (document.width < 800) {
+            $('.sidebar').insertAfter('.content');
         }
     });
+
+    if (document.width < 800) {
+            $('.sidebar').insertAfter('.content');
+        }
 }
 
 limitTagCheckboxes();
-moveSidebar();
+// moveSidebar();

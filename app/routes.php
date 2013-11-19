@@ -36,6 +36,8 @@ Route::post('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesC
 
 // forum
 Route::get('forum', 'ForumController@getIndex');
+Route::get('forum/{slug}/comment/{commentId}', 'ForumController@getComment');
+
 Route::get('forum/create-thread', ['before' => 'auth', 'uses' => 'ForumController@getCreateThread']);
 Route::post('forum/create-thread', ['before' => 'auth', 'uses' => 'ForumController@postCreateThread']);
 Route::get('forum/edit-thread/{threadId}', ['before' => 'auth', 'uses' => 'ForumController@getEditThread']);
@@ -44,6 +46,8 @@ Route::get('forum/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'For
 Route::post('forum/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ForumController@postEditComment']);
 Route::get('forum/{slug}', ['before' => 'handle_slug', 'uses' => 'ForumController@getThread']);
 Route::post('forum/{slug}', ['before' => 'auth|handle_slug', 'uses' => 'ForumController@postThread']);
+
+
 
 // admin
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {
