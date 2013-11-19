@@ -99,14 +99,16 @@ class ForumController extends BaseController
     public function getEditThread($threadId)
     {
         $thread = $this->comments->requireForumThreadById($threadId);
-        $tags = $this->tags->getAllForForum();
+        if (Auth::user()->id != $thread->author_id) return Redirect::to('/');
 
+        $tags = $this->tags->getAllForForum();
         $this->view('forum.editthread', compact('thread', 'tags'));
     }
 
     public function postEditThread($threadId)
     {
-        $comment = $this->comments->requireForumThreadById($threadId);
+        $thread = $this->comments->requireForumThreadById($threadId);
+        if (Auth::user()->id != $thread->author_id) return Redirect::to('/');
 
         // i hate everything about these controllers, it's awful
         $form = $this->comments->getForumCreateForm();
@@ -115,24 +117,54 @@ class ForumController extends BaseController
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
+        $thread->fill([
+            'title'         => Input::get('title'),
+            'body'          => Input::get('body'),
+        ]);
+
+        if ( ! $thread->isValid()) {
+            return $this->redirectBack(['errors' => $thread->getErrors()]);
+        }
+
+        $this->comments->save($thread);
+
+        // store tags
+        $tags = $this->tags->getTagsByIds(Input::get('tags'));
+        $thread->tags()->sync($tags->lists('id'));
+
+        // load new slug
+        $threadSlug = $thread->slug()->first()->slug;
+
+        return $this->redirectAction('ForumController@getThread', [$threadSlug]);
+    }
+
+    // oh god it's so bad
+    public function getEditComment($commentId)
+    {
+        $comment = $this->comments->requireForumThreadById($commentId);
+        if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
+        $this->view('forum.editcomment', compact('comment'));
+    }
+
+    public function postEditComment($commentId)
+    {
+        $comment = $this->comments->requireForumThreadById($commentId);
+        if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
+
+        // i hate everything about these controllers, it's awful
+        $form = $this->comments->getForumReplyForm();
+
+        if ( ! $form->isValid()) return $this->redirectBack(['errors' => $form->getErrors()]);
+
         $comment->fill([
             'title'         => Input::get('title'),
             'body'          => Input::get('body'),
         ]);
 
-        if ( ! $comment->isValid()) {
-            return $this->redirectBack(['errors' => $comment->getErrors()]);
-        }
+        if ( ! $comment->isValid()) return $this->redirectBack(['errors' => $comment->getErrors()]);
 
         $this->comments->save($comment);
 
-        // store tags
-        $tags = $this->tags->getTagsByIds(Input::get('tags'));
-        $comment->tags()->sync($tags->lists('id'));
-
-        // load new slug
-        $commentSlug = $comment->slug()->first()->slug;
-
-        return $this->redirectAction('ForumController@getThread', [$commentSlug]);
+        return $this->redirectAction('ForumController@getThread', [$comment->parent->slug->slug]);
     }
 }
