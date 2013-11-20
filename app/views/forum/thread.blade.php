@@ -14,27 +14,31 @@
 
     {{ $comments->links() }}
 
-    <div class="row">
-        <div class="small-12 columns form">
+    @if(Auth::check())
+        <div class="row">
+            <div class="small-12 columns form">
 
-            {{ Form::open() }}
+                {{ Form::open() }}
 
-                <fieldset>
-                    <legend>Reply</legend>
+                    <fieldset>
+                        <legend>Reply</legend>
 
-                    <div class="row">
-                        <div>
-                            <div id="markdown_editor"></div>
-                            {{ Form::textarea('body', null, ['id' => '_markdown_textarea', 'style' => 'display: none;']) }}
-                            {{ $errors->first('body', '<small class="error">:message</small>') }}
-                            {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
+                        <div class="row">
+                            <div>
+                                <div id="markdown_editor"></div>
+                                {{ Form::textarea('body', null, ['id' => '_markdown_textarea', 'style' => 'display: none;']) }}
+                                {{ $errors->first('body', '<small class="error">:message</small>') }}
+                                {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
+                            </div>
                         </div>
-                    </div>
-                </fieldset>
+                    </fieldset>
 
-            {{ Form::close() }}
+                {{ Form::close() }}
+            </div>
         </div>
-</div>
+    @else
+        <a href="{{ action('AuthController@getLogin') }}">Login to reply.</a>
+    @endif
 @stop
 
 @include('layouts._markdown_editor')

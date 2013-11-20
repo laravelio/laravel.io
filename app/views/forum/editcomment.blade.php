@@ -15,7 +15,7 @@
                         <div class="">
                             {{ Form::label('body', 'Thread') }}
                             <div id="markdown_editor"></div>
-                            {{ Form::textarea('body', null, ['id' => '_markdown_textarea', 'style' => 'display: none;']) }}
+                            {{ Form::textarea('body', $comment->resource->body, ['id' => '_markdown_textarea', 'style' => 'display: none;']) }}
                             {{ $errors->first('body', '<small class="error">:message</small>') }}
                         </div>
                     </div>

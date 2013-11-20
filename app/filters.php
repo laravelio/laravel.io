@@ -9,7 +9,7 @@
 App::before(function($request) {});
 
 App::after(function($request, $response) {
-    if (Request::path() != "login") Session::put('url.intended', URL::full());
+    if (Request::path() != "login" && Request::path() != "signup") Session::put('url.intended', URL::full());
 });
 
 /*
@@ -70,6 +70,6 @@ Route::filter('has_role', function($route, $request, $parameters) {
 
 //     $sql = str_replace(['?'], $bindings, $sql);
 
-//     Log::info($sql);
-// }); 
 
+//     Log::info($sql);
+// });

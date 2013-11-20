@@ -6,8 +6,11 @@ use Lio\Tags\TagRepository;
 
 class ForumController extends BaseController
 {
-    private $categories;
-    private $comments;
+    protected $categories;
+    protected $comments;
+
+    protected $threadsPerPage = 20;
+    protected $commentsPerPage = 20;
 
     public function __construct(CommentRepository $comments, TagRepository $tags)
     {
@@ -19,7 +22,7 @@ class ForumController extends BaseController
     {
         $tags = $this->tags->getAllTagsBySlug(Input::get('tags'));
 
-        $threads = $this->comments->getForumThreadsByTagsPaginated($tags, 20);
+        $threads = $this->comments->getForumThreadsByTagsPaginated($tags, $this->threadsPerPage);
         $threads->appends(['tags' => Input::get('tags')]);
 
         $this->view('forum.index', compact('threads'));
@@ -28,7 +31,7 @@ class ForumController extends BaseController
     public function getThread()
     {
         $thread   = App::make('slugModel');
-        $comments = $this->comments->getThreadCommentsPaginated($thread, Comment::PER_PAGE);
+        $comments = $this->comments->getThreadCommentsPaginated($thread, $this->commentsPerPage);
 
         $this->view('forum.thread', compact('thread', 'comments'));
     }
@@ -173,7 +176,7 @@ class ForumController extends BaseController
         // Holy shit worst code ever made..
         // LYLAS!
 
-        $perPage = Comment::PER_PAGE;
+        $perPage = $this->commentsPerPage;
         $comment = Comment::find($commentId);
         $before = Comment::where('parent_id', '=', $comment->parent_id)->where('created_at', '<', $comment->created_at)->count();
 

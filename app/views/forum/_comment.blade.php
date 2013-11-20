@@ -16,9 +16,9 @@
             <li><i class="icon-time"></i>&nbsp;{{ $comment->created_ago }}</li>
             <li><i class="icon-user"></i>&nbsp;<a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></li>
             @if($comment->id == $thread->id)
-                <li><i class="icon-link"></i>&nbsp;<a href="{{ $comment->forumThreadUrl }}">Thread Link</a></li>
+                <li><i class="icon-link"></i>&nbsp;<a href="{{ $comment->forumThreadUrl }}">Link</a></li>
             @else
-                <li><i class="icon-link"></i>&nbsp;<a href="{{ $comment->commentUrl }}">Reply Link</a></li>
+                <li><i class="icon-link"></i>&nbsp;<a href="{{ $comment->commentUrl }}">Link</a></li>
             @endif
 
             @if(Auth::user() && $comment->id == $thread->id && $comment->author_id == Auth::user()->id)
