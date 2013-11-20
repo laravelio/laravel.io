@@ -1,4 +1,4 @@
-<?php namespace Sterling\Markdown;
+<?php namespace Lio\Markdown;
 
 use HTML_To_Markdown;
 
@@ -9,7 +9,7 @@ class HtmlMarkdownConvertor
 
     public function __construct()
     {
-        $this->htmlParser     = new HTML_To_markdown;
+        $this->htmlParser = new HTML_To_markdown;
         $this->htmlParser->set_option('header_style', 'atx');
 
         $this->markdownParser = new \Michelf\MarkdownExtra;

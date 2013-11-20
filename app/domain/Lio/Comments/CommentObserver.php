@@ -4,18 +4,10 @@ class CommentObserver
 {
     public function created($comment)
     {
-        $this->processForumComment($comment);
-        $this->processParentComment($comment);
+        $this->updateForumThreadDetails($comment);
     }
 
-    private function processForumComment($comment)
-    {
-        if ($comment->owner_type == 'Lio\Forum\ForumCategory') {
-            $comment->owner->setMostRecentChild($comment);
-        }
-    }
-
-    private function processParentComment($comment)
+    private function updateForumThreadDetails($comment)
     {
         if ($comment->parent) {
             $comment->parent->setMostRecentChild($comment);

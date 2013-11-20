@@ -1,6 +1,7 @@
 <?php namespace Lio\ServiceProviders;
 
 use Illuminate\Support\ServiceProvider;
+use Event, App;
 
 class MarkdownServiceProvider extends ServiceProvider
 {
@@ -8,13 +9,13 @@ class MarkdownServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton('markdown', function($app) {
-            return new \Lio\Markdown\Markdown;
+        $this->app->singleton('Lio\Markdown\HtmlMarkdownConvertor', function($app) {
+            return new \Lio\Markdown\HtmlMarkdownConvertor;
         });
     }
 
     public function provides()
     {
-        return ['markdown'];
+        return ['Lio\Markdown\HtmlMarkdownConvertor'];
     }
 }

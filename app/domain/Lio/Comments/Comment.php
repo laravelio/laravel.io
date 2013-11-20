@@ -52,6 +52,11 @@ class Comment extends EloquentBaseModel implements SlugInterface
         return $this->belongsTo('Lio\Comments\Comment', 'most_recent_child_id');
     }
 
+    public function setBodyAttribute($content)
+    {
+        $this->attributes['body'] = \App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertHtmlToMarkdown($content);
+    }
+
     public function setMostRecentChild(Comment $comment)
     {
         $this->most_recent_child_id = $comment->id;
@@ -91,14 +96,10 @@ class Comment extends EloquentBaseModel implements SlugInterface
 
     //
 
-    private function getForumPostSlugString()
+    protected function getForumPostSlugString()
     {
-        if (empty($this->title)) {
-            return '';
-        }
-
+        if (empty($this->title)) return '';
         $date = date("m-d-Y", strtotime($this->created_at));
-
         return Str::slug("{$date} - {$this->title}");
     }
 }

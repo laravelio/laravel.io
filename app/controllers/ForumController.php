@@ -42,9 +42,7 @@ class ForumController extends BaseController
 
         $form = $this->comments->getForumReplyForm();
 
-        if ( ! $form->isValid()) {
-            return $this->redirectBack(['errors' => $form->getErrors()]);
-        }
+        if ( ! $form->isValid()) return $this->redirectBack(['errors' => $form->getErrors()]);
 
         $comment = $this->comments->getNew([
             'body'      => Input::get('body'),
@@ -52,9 +50,7 @@ class ForumController extends BaseController
             'type'      => Comment::TYPE_FORUM,
         ]);
 
-        if ( ! $comment->isValid()) {
-            return $this->redirectBack(['errors' => $comment->getErrors()]);
-        }
+        if ( ! $comment->isValid()) return $this->redirectBack(['errors' => $comment->getErrors()]);
 
         $thread->children()->save($comment);
 
@@ -160,8 +156,8 @@ class ForumController extends BaseController
         if ( ! $form->isValid()) return $this->redirectBack(['errors' => $form->getErrors()]);
 
         $comment->fill([
-            'title'         => Input::get('title'),
-            'body'          => Input::get('body'),
+            'title' => Input::get('title'),
+            'body'  => Input::get('body'),
         ]);
 
         if ( ! $comment->isValid()) return $this->redirectBack(['errors' => $comment->getErrors()]);

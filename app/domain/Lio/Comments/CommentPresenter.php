@@ -43,12 +43,12 @@ class CommentPresenter extends BasePresenter
 
     public function body()
     {
-        return App::make('markdown')->transform($this->resource->body);
+        return App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($this->resource->body);
     }
 
     public function bodySummary()
     {
         $summary = Str::words($this->resource->body, 50);
-        return App::make('markdown')->transform($summary);
+        return App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($summary);
     }
 }
