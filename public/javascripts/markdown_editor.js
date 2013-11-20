@@ -5,6 +5,7 @@ function bindRedactor() {
     $('._redactor').redactor({
         buttons: buttons,
         cleanup: true,
+        formattingTags: ['h1', 'h2'],
         changeCallback: function(html) {
             $('input._source').val(html);
         }
