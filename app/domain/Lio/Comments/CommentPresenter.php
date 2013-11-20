@@ -43,7 +43,9 @@ class CommentPresenter extends BasePresenter
 
     public function body()
     {
-        return App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($this->resource->body);
+        $body = $this->resource->body;
+        $body = App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($body);
+        return App::make('Lio\GitHub\GistEmbedFormatter')->format($body);
     }
 
     public function bodySummary()

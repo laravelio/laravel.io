@@ -25,9 +25,7 @@
 
                         <div class="row">
                             <div>
-                                {{ Form::textarea("editor", null, ['id' => "_markdown_textarea", 'class' => '_redactor']) }}
-                                {{ Form::hidden("body", null, ['class' => '_source']) }}
-
+                                {{ Form::textarea("body", null) }}YPPY%$
                                 {{ $errors->first('body', '<small class="error">:message</small>') }}
 
                                 {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
@@ -45,7 +43,6 @@
 
 @include('layouts._markdown_editor')
 @include('layouts._code_prettify')
-
 
 @section('scripts')
     @parent
