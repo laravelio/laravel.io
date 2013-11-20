@@ -1,29 +1,23 @@
-var editor;
+// Redactor
+function bindRedactor() {
+    var buttons = ['bold', 'italic', '|', 'link', '|', 'unorderedlist', 'orderedlist', 'horizontalrule', '|', 'fullscreen'];
 
-function bindMarkdownEditor()
-{
-  editor = new EpicEditor({
-    container: 'markdown_editor',
-    basePath: '/javascripts/vendor/EpicEditor-v0.2.2/',
-    textarea: '_markdown_textarea',
-    clientSideStorage: true,
-    localStorageName: 'laravelio',
-    autogrow: true,
-    file: {
-      name: 'laravelioeditor',
-    },
-    theme: {
-      base: 'themes/base/epiceditor.css',
-      preview: 'themes/preview/preview-dark.css',
-      editor: 'themes/editor/epic-dark.css'
-    }
-  }).load();
-  
-  $('#_markdown_textarea').closest('form').submit(function() {
-    editor.remove('laravelioeditor');
-  });
+    $('._redactor').redactor({
+        buttons: buttons,
+        cleanup: true,
+        changeCallback: function(html) {
+            $('input._source').val(html);
+        }
+    });
+
+    $('._source').each(function() {
+        var editor = $('textarea._redactor');
+        var html = $(this).val();
+
+        editor.redactor('set', html);
+    });
 }
 
 $(function() {
-  bindMarkdownEditor();
+    bindRedactor();
 });
