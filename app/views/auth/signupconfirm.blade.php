@@ -2,7 +2,7 @@
 
 @section('content')
 <section class="auth">
-    <h1>We're going to create an account with this information.</h1>
+    <h1>We&#39;re going to create an account with this information.</h1>
 
     <div class="user">
         <img src="{{ $githubUser['avatar_url'] }}"/>

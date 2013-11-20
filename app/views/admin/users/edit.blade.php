@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="small-12 columns">
         <h2>Editing User {{ $user->name }}</h2>
@@ -39,7 +38,7 @@
                     <div class="">
                         <span class="right">User is banned: {{ Form::checkbox('is_banned', 1, $user->is_banned == 1) }}</span>
                         <p>
-                            When a user is banned, they'll be unable to log into the site using their GitHub account. This option should mostly be unnecessary.
+                            When a user is banned, they&#39;ll be unable to log into the site using their GitHub account. This option should mostly be unnecessary.
                         </p>
                     </div>
                 </div>
