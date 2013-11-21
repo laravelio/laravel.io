@@ -5,54 +5,55 @@
 @stop
 
 @section('content')
-<div class="row forum">
-    <div class="small-12 columns form">
-        {{ Form::open() }}
-            <fieldset>
-                <legend>Create Thread</legend>
+    <div class="row forum">
+        <div class="small-12 columns form">
+            {{ Form::open() }}
+                <fieldset>
+                    <legend>Create Thread</legend>
 
-                <div class="row">
-                    <div class="">
-                        {{ Form::label('title', 'Title') }}
-                        {{ Form::text('title', null, ['placeholder' => 'Title']) }}
-                        {{ $errors->first('title', '<small class="error">:message</small>') }}
+                    <div class="row">
+                        <div class="">
+                            {{ Form::label('title', 'Title') }}
+                            {{ Form::text('title', null, ['placeholder' => 'Title']) }}
+                            {{ $errors->first('title', '<small class="error">:message</small>') }}
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="">
-                        {{ Form::label('body', 'Thread') }}
-                        {{ Form::textarea("body", null) }}
-                        {{ $errors->first('body', '<small class="error">:message</small>') }}
+                    <div class="row">
+                        <div class="">
+                            {{ Form::label('body', 'Thread') }}
+                            {{ Form::textarea("body", null) }}
+                            {{ $errors->first('body', '<small class="error">:message</small>') }}
+                            <small>Paste a <a href="https://gist.github.com">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                        @if($tags->count() > 0)
-                            <h3>Describe your post with up to 3 tags</h3>
-                            {{ $errors->first('tags', '<small class="error">:message</small>') }}
-                            <ul class="tags">
-                                @foreach($tags as $tag)
-                                    <li>
-                                        <label>
-                                        {{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span>
-                                        </label> - {{ $tag->description }}
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endif
-                </div>
+                    <div class="row">
+                            @if($tags->count() > 0)
+                                <h3>Describe your post with up to 3 tags</h3>
+                                {{ $errors->first('tags', '<small class="error">:message</small>') }}
+                                <ul class="tags">
+                                    @foreach($tags as $tag)
+                                        <li>
+                                            <label>
+                                            {{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span>
+                                            </label> - {{ $tag->description }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                    </div>
 
-                <div class="row">
-                    {{ Form::button('Save', ['type' => 'submit', 'class' => 'button']) }}
-                </div>
+                    <div class="row">
+                        {{ Form::button('Save', ['type' => 'submit', 'class' => 'button']) }}
+                    </div>
 
-            </fieldset>
+                </fieldset>
 
-        {{ Form::close() }}
+            {{ Form::close() }}
 
+        </div>
     </div>
-</div>
 @stop
 
 @section('scripts')

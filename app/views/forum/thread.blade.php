@@ -25,10 +25,11 @@
 
                         <div class="row">
                             <div>
-                                {{ Form::textarea("body", null) }}YPPY%$
+                                {{ Form::textarea("body", null) }}
                                 {{ $errors->first('body', '<small class="error">:message</small>') }}
 
                                 {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
+                                <small>Paste a <a href="https://gist.github.com">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
                             </div>
                         </div>
                     </fieldset>
