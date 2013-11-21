@@ -40,7 +40,7 @@ class ForumController extends BaseController
     {
         $thread = App::make('slugModel');
 
-        $form = $this->comments->getForumReplyForm();
+        $form = new \Lio\Comments\ForumReplyForm;
 
         if ( ! $form->isValid()) return $this->redirectBack(['errors' => $form->getErrors()]);
 
@@ -66,7 +66,7 @@ class ForumController extends BaseController
 
     public function postCreateThread()
     {
-        $form = $this->comments->getForumCreateForm();
+        $form = new \Lio\Comments\ForumCreateForm;
 
         if ( ! $form->isValid()) {
             return $this->redirectBack(['errors' => $form->getErrors()]);
@@ -106,11 +106,11 @@ class ForumController extends BaseController
 
     public function postEditThread($threadId)
     {
+        // i hate everything about these controllers, it's awful
         $thread = $this->comments->requireForumThreadById($threadId);
         if (Auth::user()->id != $thread->author_id) return Redirect::to('/');
 
-        // i hate everything about these controllers, it's awful
-        $form = $this->comments->getForumCreateForm();
+        $form = new \Lio\Comments\ForumCreateForm;
 
         if ( ! $form->isValid()) {
             return $this->redirectBack(['errors' => $form->getErrors()]);
@@ -147,11 +147,11 @@ class ForumController extends BaseController
 
     public function postEditComment($commentId)
     {
+        // i hate everything about these controllers, it's awful
         $comment = $this->comments->requireForumThreadById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
 
-        // i hate everything about these controllers, it's awful
-        $form = $this->comments->getForumReplyForm();
+        $form = new \Lio\Comments\ForumReplyForm;
 
         if ( ! $form->isValid()) return $this->redirectBack(['errors' => $form->getErrors()]);
 
