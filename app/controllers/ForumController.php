@@ -181,6 +181,16 @@ class ForumController extends BaseController
         $url = action('ForumController@getThread', [$thread]);
 
         return Redirect::to($url . '?page=' . $page . '#comment-' . $commentId);
+    }
+
+    // does the awful code ever end?
+    public function getDelete($comment)
+    {
+
+    }
+
+    public function postDelete($comment)
+    {
 
     }
 }

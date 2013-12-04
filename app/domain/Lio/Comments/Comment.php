@@ -54,7 +54,7 @@ class Comment extends EloquentBaseModel implements SlugInterface
 
     public function setBodyAttribute($content)
     {
-        $content = str_replace("\n", '<br/>', $content);
+        $content = str_replace("\n", "\n\n", $content);
         $body = \App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertHtmlToMarkdown($content);
         $this->attributes['body'] = $body;
     }
