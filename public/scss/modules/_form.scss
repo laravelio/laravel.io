@@ -49,8 +49,25 @@
         @include clearfix;
 
         li {
+            display: inline;
             padding: 4px 0 6px 0;
             font-size:13px;
+        }
+
+        li a {
+            display: inline-block;
+            padding: 5px 10px;
+                margin: 0 0 3px 0;
+            background: $lioGrey;
+            color:white;
+        }
+
+        li a.active {
+            background: $lioRed;
+        }
+
+        li a.disabled {
+            background: #ccc;
         }
     }
 
