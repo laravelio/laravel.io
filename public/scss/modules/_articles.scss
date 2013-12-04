@@ -9,17 +9,19 @@
     @include omega();
     padding: 2%;
     max-width: 900px;
+
+    article {
+        margin: 0 0 2rem 0;
+        padding: 0;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 1rem;
+        h1 {
+            @extend .gamma;
+        }
+    }
+
 }
 
-article {
-    margin: 0 0 2rem 0;
-    padding: 0;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 1rem;
-    h1 {
-        @extend .gamma;
-    }
-}
 
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
