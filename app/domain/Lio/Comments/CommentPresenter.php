@@ -41,6 +41,11 @@ class CommentPresenter extends BasePresenter
         return $this->resource->created_at->diffForHumans();
     }
 
+    public function updated_ago()
+    {
+        return $this->resource->updated_at->diffForHumans();
+    }
+
     public function body()
     {
         $body = $this->resource->body;
