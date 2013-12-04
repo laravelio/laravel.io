@@ -24,7 +24,7 @@
                             {{ Form::label('body', 'Thread') }}
                             {{ Form::textarea("body", null) }}
                             {{ $errors->first('body', '<small class="error">:message</small>') }}
-                            <small>Paste a <a href="https://gist.github.com">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
+                            <small class="gist">Paste a <a target="_blank" href="https://gist.github.com">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
                         </div>
                     </div>
 

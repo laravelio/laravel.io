@@ -59,6 +59,7 @@
         font-size:14px;
         padding: 6px 0;
         cursor: pointer;
+        display: block;
     }
 
     input[type=text] {
@@ -71,8 +72,32 @@
         font-size:15px;
     }
 
-    input[type=textarea] {
+    textarea {
+        display: block;
+        width: 100%;
+        border: none;
+        background: #000;
+        color:white;
+        padding: 10px;
         font-size:15px;
+    }
+
+    textarea[disabled]
+    {
+        display: block;
+        width: 100%;
+        border: none;
+        background: #ccc;
+        color:white;
+        padding: 10px;
+        font-size:15px;
+        height: 50px;
+        margin: 0 0 20px 0;
+    }
+
+    .gist {
+        padding: 5px 0 0 0;
+        display: block;
     }
 }
 

@@ -1,0 +1,73 @@
+/* ==========================================================================
+   MOBILE FIRST MODULE SKELETON
+   ========================================================================== */
+
+// MOBILE STYLES ////////////////////////////////////////////////////////////
+
+.content {
+    @include clearfix;
+}
+
+footer {
+    width:100%;
+    @include clearfix;
+    border-top:1px solid  $lioGrey;
+    padding: 1.75rem 2rem 0 0;
+    text-align: center;
+    font-size:13px;
+
+    .fortrabbit {
+        display: block;
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-style: italic;
+      color: #333;
+      text-transform: lowercase;
+      font-size:21px;
+    }
+    .fortrabbit:hover {
+      text-decoration: none;
+    }
+    .fortrabbit:hover em {
+      color: red;
+    }
+}
+
+
+// BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 480px) {
+
+    .module {}
+
+}
+
+
+// BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 768px) {
+
+    footer {
+        text-align: right;
+
+        .fortrabbit {
+            display: inline;
+        }
+    }
+}
+
+
+// BREAKPOINT 3 (1024) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1024px) {
+
+    .module {}
+}
+
+
+// BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1440px) {
+
+    .module {}
+}

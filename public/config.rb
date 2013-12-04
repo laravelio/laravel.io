@@ -1,6 +1,6 @@
 # require 'zurb-foundation'
 # Require any additional compass plugins here.
-
+Encoding.default_external = "utf-8"
 
 # Set this to the root of your project when deployed:
 http_path = "/"

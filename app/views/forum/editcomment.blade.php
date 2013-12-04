@@ -7,7 +7,7 @@
 @section('content')
     <div class="row forum">
         <div class="small-12 columns form">
-            {{ Form::open() }}
+            {{ Form::model($comment->resource) }}
                 <fieldset>
                     <legend>Edit Comment</legend>
 

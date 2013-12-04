@@ -46,7 +46,12 @@
             </div>
         </div>
     @else
-        <a href="{{ action('AuthController@getLogin') }}">Login to reply.</a>
+    <div class="row">
+        <div class="small-12 columns form">
+            {{ Form::textarea("body", null, ['disabled']) }}
+            <a class="button" href="{{ action('AuthController@getLogin') }}">Login to reply.</a>
+        </div>
+    </div>
     @endif
 @stop
 
