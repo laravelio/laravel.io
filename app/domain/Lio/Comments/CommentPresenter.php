@@ -44,6 +44,7 @@ class CommentPresenter extends BasePresenter
     public function body()
     {
         $body = $this->resource->body;
+        $body = str_replace("\n", '<br/>', $body);
         $body = App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($body);
         return App::make('Lio\GitHub\GistEmbedFormatter')->format($body);
     }

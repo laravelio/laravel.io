@@ -54,7 +54,9 @@ class Comment extends EloquentBaseModel implements SlugInterface
 
     public function setBodyAttribute($content)
     {
-        $this->attributes['body'] = \App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertHtmlToMarkdown($content);
+        $content = str_replace("\n", '<br/>', $content);
+        $body = \App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertHtmlToMarkdown($content);
+        $this->attributes['body'] = $body;
     }
 
     public function setMostRecentChild(Comment $comment)
