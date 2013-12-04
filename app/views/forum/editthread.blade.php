@@ -29,21 +29,7 @@
             </div>
         </div>
 
-        <div class="row">
-            @if($tags->count() > 0)
-                <h3>Describe your post with up to 3 tags</h3>
-                {{ $errors->first('tags', '<small class="error">:message</small>') }}
-                <ul class="tags">
-                    @foreach($tags as $tag)
-                        <li>
-                            <label>
-                            {{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($thread) ? $thread->hasTag($tag->id) : null) }} <span title="{{ $tag->description }}">{{ $tag->name }}</span>
-                            </label> - {{ $tag->description }}
-                        </li>
-                    @endforeach
-                </ul>
-            @endif
-        </div>
+        @include('forum._tag_chooser')
 
         <div class="row">
             {{ Form::button('Save', ['type' => 'submit', 'class' => 'button']) }}
