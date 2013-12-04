@@ -48,8 +48,7 @@
     @else
     <div class="row">
         <div class="small-12 columns form">
-            {{ Form::textarea("body", null, ['disabled']) }}
-            <a class="button" href="{{ action('AuthController@getLogin') }}">Login to reply.</a>
+            <p class="right">Want to reply to this thread? <a class="button" href="{{ action('AuthController@getLogin') }}">Login with github.</a></p>
         </div>
     </div>
     @endif

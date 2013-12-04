@@ -5,6 +5,8 @@
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
 .pagination {
+    @include clearfix;
+    margin: 0 0 15px 0;
 
     li {
         float: left;
