@@ -52,11 +52,6 @@ class Comment extends EloquentBaseModel implements SlugInterface
         return $this->belongsTo('Lio\Comments\Comment', 'most_recent_child_id');
     }
 
-    public function setBodyAttribute($content)
-    {
-        $this->attributes['body'] = \App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertHtmlToMarkdown($content);
-    }
-
     public function setMostRecentChild(Comment $comment)
     {
         $this->most_recent_child_id = $comment->id;
