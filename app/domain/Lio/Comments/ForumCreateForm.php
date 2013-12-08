@@ -9,7 +9,7 @@ class ForumCreateForm extends FormBase
         'title'           => 'required|min:10',
         'body'            => 'required',
         'tags'            => 'required|max_tags:3',
-        'laravel_version' => 'required',
+        'laravel_version' => 'required|in:0,3,4',
     ];
 
     protected function beforeValidation()

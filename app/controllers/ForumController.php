@@ -74,10 +74,11 @@ class ForumController extends BaseController
         }
 
         $comment = $this->comments->getNew([
-            'title'         => Input::get('title'),
-            'body'          => Input::get('body'),
-            'author_id'     => Auth::user()->id,
-            'type'          => Comment::TYPE_FORUM,
+            'title'           => Input::get('title'),
+            'body'            => Input::get('body'),
+            'author_id'       => Auth::user()->id,
+            'type'            => Comment::TYPE_FORUM,
+            'laravel_version' => Input::get('laravel_version'),
         ]);
 
         if ( ! $comment->isValid()) {
@@ -102,7 +103,9 @@ class ForumController extends BaseController
         if (Auth::user()->id != $thread->author_id) return Redirect::to('/');
 
         $tags = $this->tags->getAllForForum();
-        $this->view('forum.editthread', compact('thread', 'tags'));
+        $versions = \Lio\Comments\Comment::$laravelVersions;
+
+        $this->view('forum.editthread', compact('thread', 'tags', 'versions'));
     }
 
     public function postEditThread($threadId)
@@ -118,8 +121,9 @@ class ForumController extends BaseController
         }
 
         $thread->fill([
-            'title'         => Input::get('title'),
-            'body'          => Input::get('body'),
+            'title'           => Input::get('title'),
+            'body'            => Input::get('body'),
+            'laravel_version' => Input::get('laravel_version'),
         ]);
 
         if ( ! $thread->isValid()) {

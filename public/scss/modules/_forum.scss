@@ -29,6 +29,12 @@
         @include clearfix;
     }
 
+    .version {
+        font-size:13px;
+        padding: 0px 0 10px 0;
+        display: block;
+    }
+
     article {
         padding:22px 5px 7px 5px;
         border-top: 1px solid #ccc;
