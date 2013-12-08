@@ -16,22 +16,22 @@ function showTagDescriptions() {
     var checkedTags = $('._tag input:checked');
     var descriptionArea = $('._tag_descriptions');
     var descriptions = [];
-    var tagHtml = '';
 
     checkedTags.each(function() {
         var tagDescription = $(this).parent().find('._description').text();
         descriptions.push(tagDescription);
     });
 
+    if (descriptions.length == 0) {
+        $('._tag_description_container').hide();
+        return;
+    }
+
+    $('._tag_description_container').show();
     $('._tag_descriptions').text('');
 
     for (var i in descriptions) {
-        tagHtml += "\n<br/>" + descriptions[i];
-    }
-
-    if (tagHtml) {
-        tagHtml = "<strong>This post's content contains...</strong>" + tagHtml;
-        descriptionArea.html(tagHtml);
+        $('._tag_descriptions').append("<li>" + descriptions[i] + "</li>");
     }
 }
 

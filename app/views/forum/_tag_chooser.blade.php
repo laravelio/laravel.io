@@ -9,7 +9,10 @@
                 </li>
             @endforeach
         </ul>
-        <div class="_tag_descriptions">
+        <div class="_tag_description_container">
+            <strong>Tags describe this post as containing...</strong>
+            <ul class="_tag_descriptions">
+            </ul>
         </div>
         <div style="display:none;" class="_tags">
             @foreach($tags as $tag)
