@@ -9,7 +9,7 @@
 App::before(function($request) {});
 
 App::after(function($request, $response) {
-    if (Request::path() != "login" && Request::path() != "signup") Session::put('url.intended', URL::full());
+    if ( ! stristr(Request::path(), 'login') && ! stristr(Request::path(), 'signup')) Session::put('url.intended', URL::full());
 });
 
 /*
@@ -34,8 +34,7 @@ Route::filter('auth.basic', function()
 |--------------------------------------------------------------------------
 */
 
-Route::filter('guest', function()
-{
+Route::filter('guest', function() {
     if (Auth::check()) return Redirect::to('/');
 });
 
@@ -45,8 +44,7 @@ Route::filter('guest', function()
 |--------------------------------------------------------------------------
 */
 
-Route::filter('csrf', function()
-{
+Route::filter('csrf', function() {
     if (Session::token() != Input::get('_token')) {
         throw new Illuminate\Session\TokenMismatchException;
     }
