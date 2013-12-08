@@ -8,9 +8,7 @@ class CommentPresenter extends BasePresenter
     public function forumThreadUrl()
     {
         $slug = $this->resource->slug;
-
         if ( ! $slug) return '';
-
         return action('ForumController@getThread', [$slug->slug]);
     }
 
@@ -18,7 +16,6 @@ class CommentPresenter extends BasePresenter
     {
         $pagination = null;
         $slug = $this->resource->parent->slug;
-
         if ( ! $slug) return '';
 
         $url = action('ForumController@getComment', [$slug->slug, $this->id]);
@@ -49,8 +46,8 @@ class CommentPresenter extends BasePresenter
     public function body()
     {
         $body = $this->resource->body;
-        $body = str_replace("\n", '<br/>', $body);
         $body = App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($body);
+        $body = str_replace("\n\n", '<br/>', $body);
         return App::make('Lio\GitHub\GistEmbedFormatter')->format($body);
     }
 
