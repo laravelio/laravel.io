@@ -9,6 +9,8 @@
                 </li>
             @endforeach
         </ul>
+        <div class="_tag_descriptions">
+        </div>
         <div style="display:none;" class="_tags">
             @foreach($tags as $tag)
                 <div class="_tag" title="{{ $tag->name }}">

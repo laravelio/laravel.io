@@ -12,29 +12,54 @@ function checkForMaximumTags() {
     }
 }
 
-function setTagActiveStatus() {
+function showTagDescriptions() {
+    var checkedTags = $('._tag input:checked');
+    var descriptionArea = $('._tag_descriptions');
+    var descriptions = [];
+    var tagHtml = "<strong>This post's content contains...</strong>";
+
+    checkedTags.each(function() {
+        var tagDescription = $(this).parent().find('._description').text();
+        console.log(tagDescription);
+        descriptions.push(tagDescription);
+    });
+
+    $('._tag_descriptions').text('');
+
+    for (var i in descriptions) {
+        tagHtml += "\n<br/>" + descriptions[i];
+    }
+
+    if (tagHtml) {
+        descriptionArea.html(tagHtml);
+    }
+}
+
+function updateTagDisplay() {
     $('._tag_list ._tag').removeClass('active');
     var tagInputs = $('._tags').find('input');
+
     tagInputs.each(function() {
         var tag = $(this).attr('title');
-        if ($(this).attr('checked') == 'checked') {
+        if ($(this).prop('checked')) {
             $('a._tag[title=' + tag + ']').addClass('active');
         }
     });
 
     checkForMaximumTags();
+    showTagDescriptions();
 }
 
 function toggleTag(tagText) {
     var checkbox = $('._tags ._tag[title=' + tagText + '] input');
 
-    if (checkbox.attr('checked')) {
-        checkbox.removeAttr('checked');
+    if (checkbox.prop('checked')) {
+        checkbox.prop('checked', false);
     } else {
-        checkbox.attr('checked', 'checked');
+        checkbox.prop('checked', true);
     }
 
-    setTagActiveStatus();
+    updateTagDisplay();
 }
 
 function bindTagChooser() {
@@ -47,7 +72,7 @@ function bindTagChooser() {
     });
 
     // set up initial state
-    setTagActiveStatus();
+    updateTagDisplay();
 }
 
 $(function() {
