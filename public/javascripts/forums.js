@@ -16,11 +16,10 @@ function showTagDescriptions() {
     var checkedTags = $('._tag input:checked');
     var descriptionArea = $('._tag_descriptions');
     var descriptions = [];
-    var tagHtml = "<strong>This post's content contains...</strong>";
+    var tagHtml = '';
 
     checkedTags.each(function() {
         var tagDescription = $(this).parent().find('._description').text();
-        console.log(tagDescription);
         descriptions.push(tagDescription);
     });
 
@@ -31,6 +30,7 @@ function showTagDescriptions() {
     }
 
     if (tagHtml) {
+        tagHtml = "<strong>This post's content contains...</strong>" + tagHtml;
         descriptionArea.html(tagHtml);
     }
 }
