@@ -7,8 +7,8 @@
     <div class="user">
         <img src="{{ $githubUser['avatar_url'] }}"/>
         <div class="bio">
-            @if(isset($githubUser['name']))
-                <h2>{{ $githubUser['name'] }}</h2>
+            @if(isset($githubUser['login']))
+                <h2>{{ $githubUser['login'] }}</h2>
             @endif
             @if(isset($githubUser['email']))
                 <h3>{{ $githubUser['email'] }}</h3>
