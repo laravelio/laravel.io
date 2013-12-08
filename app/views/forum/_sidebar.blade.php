@@ -1,7 +1,7 @@
 <div class="categories">
     <h4>Categories</h4>
     <ul>
-        <li><a href="{{ action('ForumController@getIndex') }}">All Threads</a></li>
+        <li>{{ navLink(action('ForumController@getIndex'), 'All Threads') }}</li>
         <li><a href="{{ action('ForumController@getIndex') }}?tags=installation,configuration">Installation / Configuration</a></li>
         <li><a href="{{ action('ForumController@getIndex') }}?tags=authentication,security">Authentication / Security</a></li>
         <li><a href="{{ action('ForumController@getIndex') }}?tags=requests,input">Requests / Input / Responses</a></li>
