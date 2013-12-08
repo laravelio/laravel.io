@@ -7,8 +7,12 @@
     <div class="user">
         <img src="{{ $githubUser['avatar_url'] }}"/>
         <div class="bio">
-            <h2>{{ $githubUser['name'] }}</h2>
-            <h3>{{ $githubUser['email'] }}</h3>
+            @if(isset($githubUser['name']))
+                <h2>{{ $githubUser['name'] }}</h2>
+            @endif
+            @if(isset($githubUser['email']))
+                <h3>{{ $githubUser['email'] }}</h3>
+            @endif
             <a class="button" href="{{ action('AuthController@getLogin') }}">Create My Laravel.IO Account</a>
         </div>
     </div>
