@@ -60,8 +60,9 @@ class ForumController extends BaseController
     public function getCreateThread()
     {
         $tags = $this->tags->getAllForForum();
+        $versions = \Lio\Comments\Comment::$laravelVersions;
 
-        $this->view('forum.createthread', compact('tags'));
+        $this->view('forum.createthread', compact('tags', 'versions'));
     }
 
     public function postCreateThread()

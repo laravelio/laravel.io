@@ -9,6 +9,9 @@
         @if($comment->id == $thread->id)
             <div class="tags">Tags:  {{ $comment->tags->getTagList() }}</div>
         @endif
+        @if($comment->laravel_version > 0)
+            <div class="version">Laravel Version: {{ $comment->laravel_version }}</div>
+        @endif
 
         {{ $comment->body }}
 

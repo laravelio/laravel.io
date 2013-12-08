@@ -6,16 +6,17 @@ use App, Validator;
 class ForumCreateForm extends FormBase
 {
     protected $validationRules = [
-        'title' => 'required|min:10',
-        'body'  => 'required',
-        'tags'  => 'required|max_tags:3',
+        'title'           => 'required|min:10',
+        'body'            => 'required',
+        'tags'            => 'required|max_tags:3',
+        'laravel_version' => 'required',
     ];
 
     protected function beforeValidation()
     {
         Validator::extend('max_tags', function($attribute, $tagIds, $params) {
             $maxCount = $params[0];
-            
+
             $tagRepo = App::make('Lio\Tags\TagRepository');
             $tags = $tagRepo->getTagsByIds($tagIds);
 
