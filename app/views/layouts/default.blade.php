@@ -16,16 +16,13 @@
 <body>
 
   @include('layouts._top_nav')
+  @include('layouts._flash')
 
+  <div class="content">
+     {{ $content }}
+  </div>
 
-        @include('layouts._flash')
-
-        <div class="content">
-           {{ $content }}
-        </div>
-
-        @include('layouts._footer')
-
+  @include('layouts._footer')
 
   @section('scripts')
   	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
