@@ -10,7 +10,7 @@
         <li><a href="{{ action('ForumController@getIndex') }}?tags=packages,ioc">Packages / IoC </a></li>
         <li><a href="{{ action('ForumController@getIndex') }}?tags=views,blade,forms">Views / Blade / Forms</a></li>
         <li><a href="{{ action('ForumController@getIndex') }}?tags=mail,queues">Mail / Queues</a></li>
-        <li><a href="{{ action('ArticlesController@getIndex') }}?tags=meetups">Local Community Meetups</a></li>
+        <li><a href="{{ action('ForumController@getIndex') }}?tags=meetups">Local Community Meetups</a></li>
         <li><a href="{{ action('ForumController@getIndex') }}?tags=laravelio">Laravel.io Site and Community</a></li>
     </ul>
 </div>
