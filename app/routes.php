@@ -44,6 +44,8 @@ Route::get('forum/edit-thread/{threadId}', ['before' => 'auth', 'uses' => 'Forum
 Route::post('forum/edit-thread/{threadId}', ['before' => 'auth', 'uses' => 'ForumController@postEditThread']);
 Route::get('forum/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ForumController@getEditComment']);
 Route::post('forum/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ForumController@postEditComment']);
+Route::get('forum/delete/{commentId}', ['before' => 'auth', 'uses' => 'ForumController@getDelete']);
+Route::post('forum/delete/{commentId}', ['before' => 'auth', 'uses' => 'ForumController@postDelete']);
 Route::get('forum/{slug}', ['before' => 'handle_slug', 'uses' => 'ForumController@getThread']);
 Route::post('forum/{slug}', ['before' => 'auth|handle_slug', 'uses' => 'ForumController@postThread']);
 

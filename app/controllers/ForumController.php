@@ -184,13 +184,18 @@ class ForumController extends BaseController
     }
 
     // does the awful code ever end?
-    public function getDelete($comment)
+    public function getDelete($commentId)
     {
-
+        $comment = $this->comments->requireById($commentId);
+        if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
+        $this->view('forum.delete', compact('comment'));
     }
 
-    public function postDelete($comment)
+    public function postDelete($commentId)
     {
-
+        $comment = $this->comments->requireById($commentId);
+        if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
+        $comment->delete();
+        return Redirect::action('ForumController@getIndex');
     }
 }

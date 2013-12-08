@@ -97,11 +97,19 @@ class Comment extends EloquentBaseModel implements SlugInterface
     }
 
     //
-
     protected function getForumPostSlugString()
     {
         if (empty($this->title)) return '';
         $date = date("m-d-Y", strtotime($this->created_at));
         return Str::slug("{$date} - {$this->title}");
+    }
+
+    //
+    public function delete()
+    {
+        if ($this->exists && $this->isMainComment()) {
+            $this->children()->delete();
+        }
+        parent::delete();
     }
 }
