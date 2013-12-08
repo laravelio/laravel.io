@@ -28,7 +28,7 @@
                         </div>
                     </div>
 
-                    @include('forum._tag_chooser')
+                    @include('forum._tag_chooser', ['comment' => $thread])
 
                     <div class="row">
                         {{ Form::button('Save', ['type' => 'submit', 'class' => 'button']) }}

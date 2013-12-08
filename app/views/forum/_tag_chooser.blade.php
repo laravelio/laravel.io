@@ -12,7 +12,7 @@
         <div style="display:none;" class="_tags">
             @foreach($tags as $tag)
                 <div class="_tag" title="{{ $tag->name }}">
-                    {{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($article) ? $article->hasTag($tag->id) : null) }}
+                    {{ Form::checkbox("tags[{$tag->id}]", $tag->id, isset($comment) ? $comment->hasTag($tag->id) : null, ['title' => $tag->name]) }}
                     <span class="_name">{{ $tag->name }}</span>
                     <span class="_description">{{ $tag->description }}</span>
                 </div>
