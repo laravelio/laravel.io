@@ -18,11 +18,11 @@ class CommentRepository extends EloquentBaseRepository
             ->join('comment_tag', 'comments.id', '=', 'comment_tag.comment_id');
 
         if ($tags->count() > 0) {
-            $query->whereIn('comment_tag.tag_id', $tags->lists('id'));            
+            $query->whereIn('comment_tag.tag_id', $tags->lists('id'));
         }
 
         $query->groupBy('comments.id')
-            ->orderBy('created_at', 'desc');
+            ->orderBy('updated_at', 'desc');
 
         return $query->paginate($perPage, ['comments.*']);
     }
