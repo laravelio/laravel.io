@@ -1,6 +1,7 @@
 <div class="comment" id="comment-{{ $comment->id }}">
     <div class="user">
         <a href="{{ $comment->author->profileUrl }}">{{ $comment->author->thumbnail }}</a>
+        <p><a href="{{ $comment->author->profileUrl }}">{{ $comment->author->name }}</a></p>
     </div>
     <div class="content">
         @if($comment->title)

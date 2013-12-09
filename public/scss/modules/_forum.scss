@@ -24,15 +24,17 @@
 
     .tags {
         font-size:13px;
-        padding: 5px 0 10px 0;
+        padding: 5px 0 0 0;
         display: block;
         @include clearfix;
     }
 
     .version {
         font-size:13px;
+        margin: 0;
         padding: 0px 0 10px 0;
         display: block;
+        font-style: italic;
     }
 
     article {
@@ -49,6 +51,9 @@
             margin: 0;
             padding: 0 0 5px 0;
 
+            a:visited {
+                color:#ccc;
+            }
 
             &:hover a {
                 color:$lioGrey;
