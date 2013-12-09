@@ -1,6 +1,6 @@
 <div class="row">
     @if($tags->count() > 0)
-        <h3>Describe your post with up to 3 tags</h3>
+        <h3>Describe your post by clicking up to 3 tags</h3>
         {{ $errors->first('tags', '<small class="error">:message</small>') }}
         <ul class="tags _tag_list">
             @foreach($tags as $tag)
