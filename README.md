@@ -24,13 +24,12 @@ Here are the steps for installation on a local machine using the officially endo
 1. Install [Vagrant][1], [Chef][2], and [VirtualBox][3] from their websites. **NOT** from package managers. If you install any of these from package managers, please do not ask for help or support when things break, which will VERY likely happen. Additional information can be found here: https://github.com/ShawnMcCool/vagrant-chef
    _Note_: If you are running OS X 10.9 Mavericks, you will need to modify the install.sh file for it to work properly. Run the following in your preferred terminal:
 
-         ```bash
+      
             wget https://github.com/mjdugan14/laravel-io/chef/chef-osx.sh
 
             chmod +x chef-osx.sh
             
             sudo ./chef-osx.sh
-         ```
 
 2. Add "10.10.10.10 app.local" to your HOSTS file. Instructions below for Linux.
     ```
