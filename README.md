@@ -25,7 +25,7 @@ Here are the steps for installation on a local machine using the officially endo
    _Note_: If you are running OS X 10.9 Mavericks, you will need to modify the install.sh file for it to work properly. Run the following in your preferred terminal:
 
       
-            wget https://github.com/mjdugan14/laravel-io/chef/chef-osx.sh
+            wget https://raw.github.com/laravelIO/laravel-io/master/chef/chef-osx.sh
 
             chmod +x chef-osx.sh
             
