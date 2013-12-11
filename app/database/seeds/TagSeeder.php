@@ -16,7 +16,7 @@ class TagSeeder extends Seeder
         $commonTags = [
             'Installation'   => 'framework installation, package installation, application installation',
             'Configuration'  => 'framework configuration, web-server configuration, application configuration',
-            'Authentication' => 'authentication including: user logins, oauth, etc',
+            'Authentication' => 'topics related to authentication, including user logins, oauth, etc',
             'Security'       => 'code safety, user roles and authorization',
             'Requests'       => 'information related to handling requests',
             'Input'          => 'handling user input',
@@ -25,7 +25,7 @@ class TagSeeder extends Seeder
             'Database'       => 'query-building, connections, or drivers',
             'Eloquent'       => 'Eloquent modeling, relationships, etc',
             'Ioc'            => 'binding to and resolving from the IoC container',
-            'Views'          => 'topics relating to the rendering of views',
+            'Views'          => 'topics related to the rendering of views',
             'Blade'          => 'topics related to Blade templating',
             'Forms'          => 'topics related to forms',
             'Validation'     => 'topics related to the validation of data',
@@ -47,7 +47,7 @@ class TagSeeder extends Seeder
         }
 
         $articleTags = [
-            'news' => 'appropriate for articles that are about an occurance',
+            'News' => 'information about an occurance',
         ];
 
         foreach ($articleTags as $name => $description) {
