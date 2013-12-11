@@ -33,7 +33,7 @@
                             {{ Form::label('laravel_version', 'Laravel Version') }}
 
                             @foreach($versions as $value => $version)
-                                {{ $version }} {{ Form::radio('laravel_version', $value) }}
+                                {{ Form::radio('laravel_version', $value) }} {{ $version }}
                             @endforeach
 
                             {{ $errors->first('laravel_version', '<small class="error">:message</small>') }}
