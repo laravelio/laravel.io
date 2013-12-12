@@ -32,4 +32,9 @@
     </div>
 @stop
 
+@section('scripts')
+    @parent
+    <script src="{{ asset('javascripts/vendor/tabby.js') }}"></script>
+    <script src="{{ asset('javascripts/forums.js') }}"></script>
+@stop
 {{-- “What do you think you are, for Chrissake, crazy or somethin'? Well you're not! You're not! You're no crazier than the average asshole out walkin' around on the streets and that's it. ”  --}}

@@ -30,7 +30,7 @@
                                 <legend>Reply</legend>
                                 <div class="row">
                                     <div>
-                                        {{ Form::textarea("body", null) }}
+                                        {{ Form::textarea("body", null, ['class' => '_tab_indent']) }}
                                         {{ $errors->first('body', '<small class="error">:message</small>') }}
 
                                         {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
@@ -57,5 +57,9 @@
 
 @section('scripts')
     @parent
+    <script src="{{ asset('javascripts/vendor/tabby.js') }}"></script>
     <script src="{{ asset('javascripts/forums.js') }}"></script>
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/monokai.min.css">
+    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 @stop

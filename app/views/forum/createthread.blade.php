@@ -56,5 +56,6 @@
 
 @section('scripts')
     @parent
+    <script src="{{ asset('javascripts/vendor/tabby.js') }}"></script>
     <script src="{{ asset('javascripts/forums.js') }}"></script>
 @stop
