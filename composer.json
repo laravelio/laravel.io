@@ -8,7 +8,8 @@
         "mccool/laravel-slugs": "dev-master",
         "mccool/database-backup": "dev-master",
         "michelf/php-markdown": "1.3.*@dev",
-        "nickcernis/html-to-markdown": "dev-master"
+        "nickcernis/html-to-markdown": "dev-master",
+        "misd/linkify": "1.1.*@dev"
     },
     "require-dev": {
         "mockery/mockery": "dev-master",

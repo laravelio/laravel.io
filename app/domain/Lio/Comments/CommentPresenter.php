@@ -46,14 +46,32 @@ class CommentPresenter extends BasePresenter
     public function body()
     {
         $body = $this->resource->body;
-        $body = App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($body);
-        $body = str_replace("\n\n", '<br/>', $body);
-        return App::make('Lio\GitHub\GistEmbedFormatter')->format($body);
+        $body = $this->convertMarkdown($body);
+        $body = $this->convertNewlines($body);
+        $body = $this->formatGists($body);
+        return $body;
     }
 
     public function bodySummary()
     {
         $summary = Str::words($this->resource->body, 50);
         return App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($summary);
+    }
+
+    // ------------------- //
+
+    private function convertMarkdown($content)
+    {
+        return App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($content);
+    }
+
+    private function convertNewlines($content)
+    {
+        return str_replace("\n\n", '<br/>', $content);
+    }
+
+    private function formatGists($content)
+    {
+        return App::make('Lio\GitHub\GistEmbedFormatter')->format($content);
     }
 }
