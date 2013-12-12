@@ -6,6 +6,7 @@ Vagrant::Config.run do |config|
     config.vm.box_url = base_box_url
 
     config.vm.network :hostonly, "10.10.10.10"
+    config.vm.customize ["modifyvm", :id, "--memory", 768]
 
     config.vm.share_folder("vagrant-root", "/vagrant", ".", :mount_options => ['dmode=777','fmode=777', 'uid=1000', 'gid=33'])
 

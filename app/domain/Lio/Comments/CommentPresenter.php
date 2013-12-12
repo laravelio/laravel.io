@@ -49,6 +49,7 @@ class CommentPresenter extends BasePresenter
         $body = $this->convertMarkdown($body);
         $body = $this->convertNewlines($body);
         $body = $this->formatGists($body);
+        $body = $this->linkify($body);
         return $body;
     }
 
@@ -73,5 +74,11 @@ class CommentPresenter extends BasePresenter
     private function formatGists($content)
     {
         return App::make('Lio\GitHub\GistEmbedFormatter')->format($content);
+    }
+
+    private function linkify($content)
+    {
+        $linkify = new \Misd\Linkify\Linkify();
+        return $linkify->process($content);
     }
 }
