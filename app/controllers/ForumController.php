@@ -40,7 +40,7 @@ class ForumController extends BaseController
     {
         $thread = App::make('slugModel');
 
-        $form = new \Lio\Comments\ForumReplyForm;
+        $form = new \Lio\Comments\ReplyForm;
 
         if ( ! $form->isValid()) return $this->redirectBack(['errors' => $form->getErrors()]);
 
@@ -156,7 +156,7 @@ class ForumController extends BaseController
         $comment = $this->comments->requireForumThreadById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
 
-        $form = new \Lio\Comments\ForumReplyForm;
+        $form = new \Lio\Comments\ReplyForm;
 
         if ( ! $form->isValid()) return $this->redirectBack(['errors' => $form->getErrors()]);
 

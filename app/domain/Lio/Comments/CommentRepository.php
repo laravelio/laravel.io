@@ -2,6 +2,7 @@
 
 use Lio\Core\EloquentBaseRepository;
 use Lio\Forum\ForumCategory;
+use Lio\Articles\Article;
 use Illuminate\Support\Collection;
 
 class CommentRepository extends EloquentBaseRepository
@@ -29,17 +30,27 @@ class CommentRepository extends EloquentBaseRepository
 
     public function getThreadCommentsPaginated(Comment $thread, $perPage = 20)
     {
-    	return $this->model->where(function($q) use ($thread) {
-    					$q->where(function($q) use ($thread) {
-    						$q->where('id', '=', $thread->id);
-    					});
+        return $this->model->where(function($q) use ($thread) {
+                        $q->where(function($q) use ($thread) {
+                            $q->where('id', '=', $thread->id);
+                        });
 
-    					$q->orWhere(function($q) use ($thread) {
-    						$q->where('parent_id', '=', $thread->id);
-    					});
-    				})
-    				->orderBy('created_at', 'asc')
-    				->paginate($perPage);
+                        $q->orWhere(function($q) use ($thread) {
+                            $q->where('parent_id', '=', $thread->id);
+                        });
+                    })
+                    ->where('type', '=', Comment::TYPE_FORUM)
+                    ->orderBy('created_at', 'asc')
+                    ->paginate($perPage);
+    }
+
+    public function getArticleCommentsPaginated(Article $article, $perPage = 20)
+    {
+    	return $this->model
+            ->where('owner_id', '=', $article->id)
+            ->where('type', '=', Comment::TYPE_ARTICLE)
+    		->orderBy('created_at', 'asc')
+    		->paginate($perPage);
     }
 
     public function getFeaturedForumThreads($count = 3)
@@ -49,16 +60,6 @@ class CommentRepository extends EloquentBaseRepository
                    ->orderBy('created_at', 'desc')
                    ->take($count)
                    ->get();
-    }
-
-    public function getForumReplyForm()
-    {
-        return new ForumReplyForm;
-    }
-
-    public function getForumCreateForm()
-    {
-        return new ForumCreateForm;
     }
 
     public function requireForumThreadById($id)

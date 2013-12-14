@@ -34,6 +34,11 @@ class Article extends EloquentBaseModel implements SlugInterface
         return $this->belongsToMany('Lio\Tags\Tag', 'article_tag', 'article_id', 'tag_id');
     }
 
+    public function comments()
+    {
+        return $this->morphMany('Lio\Comments\Comment', 'owner');
+    }
+
     public function setTagsAttribute($tagIds)
     {
         $tagRepository = \App::make('\Lio\Tags\TagRepository');
