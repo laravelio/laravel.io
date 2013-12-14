@@ -7,7 +7,7 @@ class Article extends EloquentBaseModel implements SlugInterface
 {
     protected $table      = 'articles';
     protected $with       = ['author'];
-    protected $fillable   = ['author_id', 'title', 'content', 'status', 'published_at'];
+    protected $fillable   = ['author_id', 'title', 'content', 'status', 'laravel_version', 'published_at'];
     protected $dates      = ['published_at'];
     protected $softDelete = true;
 

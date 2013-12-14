@@ -92,7 +92,7 @@ class ArticlesController extends BaseController
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
-        $article->fill(Input::only('title', 'content', 'status'));
+        $article->fill(Input::only('title', 'content', 'status', 'laravel_version'));
 
         if ( ! $article->isValid()) {
             return $this->redirectBack(['errors' => $article->getErrors()]);
