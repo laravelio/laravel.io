@@ -38,9 +38,10 @@ class ArticlesController extends BaseController
 
     public function getCompose()
     {
-        $tags = $this->tags->getAll();
+        $tags = $this->tags->getAllForArticles();
+        $versions = \Lio\Comments\Comment::$laravelVersions;
 
-        $this->view('articles.compose', compact('tags'));
+        $this->view('articles.compose', compact('tags', 'versions'));
     }
 
     public function postCompose()
@@ -51,7 +52,7 @@ class ArticlesController extends BaseController
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
-        $article = $this->articles->getNew(Input::only('title', 'content', 'status'));
+        $article = $this->articles->getNew(Input::only('title', 'content', 'status', 'laravel_version'));
         $article->author_id = Auth::user()->id;
 
         if ( ! $article->isValid()) {
@@ -75,9 +76,10 @@ class ArticlesController extends BaseController
     public function getEdit($articleId)
     {
         $article = $this->articles->requireById($articleId);
-        $tags    = $this->tags->getAll();
+        $tags = $this->tags->getAllForArticles();
+        $versions = \Lio\Comments\Comment::$laravelVersions;
 
-        $this->view('articles.edit', compact('article', 'tags'));
+        $this->view('articles.edit', compact('article', 'tags', 'versions'));
     }
 
     public function postEdit($articleId)

@@ -39,4 +39,9 @@ class TagRepository extends EloquentBaseRepository
     {
         return $this->model->where('forum', '=', 1)->get();
     }
+
+    public function getAllForArticles()
+    {
+        return $this->model->where('articles', '=', 1)->get();
+    }
 }
