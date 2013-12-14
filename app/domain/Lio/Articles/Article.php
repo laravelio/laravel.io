@@ -62,7 +62,6 @@ class Article extends EloquentBaseModel implements SlugInterface
         if ($this->exists and $this->status == static::STATUS_PUBLISHED) {
             return true;
         }
-
         return false;
     }
 
@@ -87,7 +86,7 @@ class Article extends EloquentBaseModel implements SlugInterface
 
     public function save(array $options = array())
     {
-        if($this->status == static::STATUS_PUBLISHED && empty($this->published_at)) {
+        if($this->status == static::STATUS_PUBLISHED && ! $this->published_at) {
             $this->published_at = $this->freshTimestamp();
         }
 
