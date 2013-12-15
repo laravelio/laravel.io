@@ -9,7 +9,7 @@ class AuthController extends BaseController implements GithubAuthenticatorObserv
     public function getLogin()
     {
         if (Input::has('code')) {
-            return App::make('Lio\Github\GithubAuthenticator')->integrateByAuthCode($this, Input::get('code'));
+            return App::make('Lio\Github\GithubAuthenticator')->authByCode($this, Input::get('code'));
         }
         // redirect to the github authentication url
         return $this->redirectTo((string) OAuth::consumer('GitHub')->getAuthorizationUri());

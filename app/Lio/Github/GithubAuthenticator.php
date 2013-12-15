@@ -19,7 +19,7 @@ class GithubAuthenticator
         $this->reader = $reader;
     }
 
-    public function integrateByAuthCode($observer, $code)
+    public function authByCode($observer, $code)
     {
         $githubData = $this->reader->getDataFromCode($code);
         $user = $this->users->getByGithubId($githubData['id']);
@@ -33,11 +33,12 @@ class GithubAuthenticator
 
     private function loginUser($observer, $user, $githubData)
     {
-        if ( ! $user->is_banned) {
-            $user->fill($githubData);
-            $this->users->save($user);
-            return $observer->userFound($user);
+        if ($user->is_banned) {
+            return $observer->userIsBanned($user);
         }
-        return $observer->userIsBanned($user);
+
+        $user->fill($githubData);
+        $this->users->save($user);
+        return $observer->userFound($user);
     }
 }

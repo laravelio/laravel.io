@@ -99,8 +99,8 @@ class WebGuy extends \Codeception\AbstractGuy
      *
      * ``` php
      * <?php
-     * $I->sendAjaxPostRequest('/updateSettings', array('notifications' => true); // POST
-     * $I->sendAjaxGetRequest('/updateSettings', array('notifications' => true); // GET
+     * $I->sendAjaxPostRequest('/updateSettings', array('notifications' => true)); // POST
+     * $I->sendAjaxGetRequest('/updateSettings', array('notifications' => true)); // GET
      *
      * ```
      *
@@ -136,6 +136,40 @@ class WebGuy extends \Codeception\AbstractGuy
      */
     public function sendAjaxGetRequest($uri, $params = null) {
         $this->scenario->addStep(new \Codeception\Step\Action('sendAjaxGetRequest', func_get_args()));
+        if ($this->scenario->running()) {
+            $result = $this->scenario->runStep();
+            return new Maybe($result);
+        }
+        return new Maybe();
+    }
+
+ 
+    /**
+     * This method is generated.
+     * Documentation taken from corresponding module.
+     * ----------------------------------------------
+     *
+     * If your page triggers an ajax request, you can perform it manually.
+     * This action sends an ajax request with specified method and params.
+     *
+     * Example:
+     *
+     * You need to perform an ajax request specifying the HTTP method.
+     *
+     * ``` php
+     * <?php
+     * $I->sendAjaxRequest('PUT', /posts/7', array('title' => 'new title');
+     *
+     * ```
+     *
+     * @param $method
+     * @param $uri
+     * @param $params
+     * @see Codeception\Module\PhpBrowser::sendAjaxRequest()
+     * @return \Codeception\Maybe
+     */
+    public function sendAjaxRequest($method, $uri, $params = null) {
+        $this->scenario->addStep(new \Codeception\Step\Action('sendAjaxRequest', func_get_args()));
         if ($this->scenario->running()) {
             $result = $this->scenario->runStep();
             return new Maybe($result);
@@ -271,8 +305,8 @@ class WebGuy extends \Codeception\AbstractGuy
      * ?>
      * ```
      *
-     * Not recommended this command too be used on regular basis.
-     * If Codeception lacks important Guzzle Client methods implement then and submit patches.
+     * It is not recommended to use this command on a regular basis.
+     * If Codeception lacks important Guzzle Client methods, implement them and submit patches.
      *
      * @param callable $function
      * @see Codeception\Module\PhpBrowser::executeInGuzzle()

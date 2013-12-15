@@ -23,10 +23,10 @@
             "app/controllers",
             "app/database/migrations",
             "app/database/seeds",
-            "app/tests/TestCase.php"
+            "tests/unit/UnitTestCase.php"
         ],
         "psr-0": {
-            "Lio\\": "app/domain/"
+            "Lio\\": "app/"
         }
     },
     "scripts": {
