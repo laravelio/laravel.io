@@ -168,4 +168,24 @@ class ArticlesController extends BaseController
 
         return $this->redirectAction('ArticlesController@getShow', [$article->slug->slug]);
     }
+
+    public function getDeleteComment($articleSlug, $commentId)
+    {
+        $article = App::make('slugModel');
+
+        $comment = $this->comments->requireById($commentId);
+        if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
+        $this->view('articles.deletecomment', compact('comment'));
+    }
+
+    public function postDeleteComment($articleSlug, $commentId)
+    {
+        $article = App::make('slugModel');
+
+        $comment = $this->comments->requireById($commentId);
+        if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
+        $comment->delete();
+
+        return Redirect::action('ArticlesController@getShow', [$article->slug->slug]);
+    }
 }

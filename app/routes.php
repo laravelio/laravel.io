@@ -30,6 +30,8 @@ Route::get('bin', 'PastesController@getCreate');
 Route::get('articles', 'ArticlesController@getIndex');
 Route::get('article/{slug}/edit-comment/{commentId}', ['before' => 'auth|handle_slug', 'uses' => 'ArticlesController@getEditComment']);
 Route::post('article/{slug}/edit-comment/{commentId}', ['before' => 'auth|handle_slug', 'uses' => 'ArticlesController@postEditComment']);
+Route::get('article/{slug}/delete-comment/{commentId}', ['before' => 'auth|handle_slug', 'uses' => 'ArticlesController@getDeleteComment']);
+Route::post('article/{slug}/delete-comment/{commentId}', ['before' => 'auth|handle_slug', 'uses' => 'ArticlesController@postDeleteComment']);
 Route::get('article/{slug}', ['before' => 'handle_slug', 'uses' => 'ArticlesController@getShow']);
 Route::post('article/{slug}', ['before' => 'handle_slug', 'uses' => 'ArticlesController@postShow']);
 Route::get('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@getCompose']);
