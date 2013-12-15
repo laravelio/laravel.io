@@ -23,12 +23,24 @@ body,html {
 
 @media only screen and (min-width: 768px) {
 
+    .holder {
+        @include outer-container;
+    }
+
+    .test {
+        @include span-columns(12);
+        @include row(table);
+    }
+
     .sidebar {
         @include span-columns(4);
-        margin-right:0;
+        padding: 0;
+        vertical-align:top;
     }
 
     .content {
+        @include span-columns(8);
+        @include reset-display;
         @include clearfix;
     }
 }

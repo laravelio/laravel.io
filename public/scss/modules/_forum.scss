@@ -22,19 +22,20 @@
 
     .forum {
 
-        @include span-columns(8 of 12);
-
+        @include span-columns(12);
 
         .header {
             @include clearfix;
-            padding: 22px 0 22px 15px;
+            padding: 19px 0 18px 15px;
             border-bottom:1px solid #cdcdcd;
         }
 
         h1 {
-            font-size:18px;
+            font-size:22px;
             margin: 0;
             float: left;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 800;
         }
 
         .tags {
@@ -49,6 +50,7 @@
 
 
         .topics {
+            @include span-columns(12);
             padding: 15px 0 15px 15px;
 
             .topic {
@@ -60,8 +62,10 @@
                 h3 {
                     margin:0;
                     padding: 0 0 3px 0;
-                    font-size:15px;
+                    font-size:16px;
                     color:$lioGrey;
+                    font-family: 'Source Sans Pro', sans-serif;
+                    font-weight: 400;
                 }
 
                 ul {
@@ -74,6 +78,9 @@
                     float: left;
                     color:#cdcdcd;
                     padding: 0 5px 0 0;
+                    font-family: 'Source Sans Pro', sans-serif;
+                    font-weight: 400;
+                    font-style: italic;
                 }
 
                 .info {
