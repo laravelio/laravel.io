@@ -73,7 +73,7 @@ class CommentPresenter extends BasePresenter
 
     private function formatGists($content)
     {
-        return App::make('Lio\GitHub\GistEmbedFormatter')->format($content);
+        return App::make('Lio\Github\GistEmbedFormatter')->format($content);
     }
 
     private function linkify($content)

@@ -120,7 +120,7 @@ return array(
 		//'Juy\Profiler\Providers\ProfilerServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
 
-		'Lio\ServiceProviders\GitHubServiceProvider',
+		'Lio\ServiceProviders\GithubServiceProvider',
 		'Lio\ServiceProviders\CommentServiceProvider',
 		'Lio\ServiceProviders\MarkdownServiceProvider',
 	),
