@@ -13,5 +13,9 @@ class UserSeeder extends Seeder
 
     private function createUsers()
     {
+        User::create(array(
+            'email' => 'account@account.com',
+            'name' => 'Big Ole User Name',
+        ));
     }
 }

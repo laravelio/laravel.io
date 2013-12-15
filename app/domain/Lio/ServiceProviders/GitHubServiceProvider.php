@@ -8,10 +8,6 @@ class GitHubServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->singleton('github', function($app) {
-            return \OAuth::consumer('GitHub');
-        });
-
         $this->app->singleton('Lio\GitHub\GistEmbedFormatter', function($app) {
             return new \Lio\GitHub\GistEmbedFormatter;
         });

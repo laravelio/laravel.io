@@ -6,7 +6,7 @@ Route::get('/', 'HomeController@getIndex');
 Route::get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
 Route::get('signup', 'AuthController@getSignup');
 Route::get('signup-confirm', 'AuthController@getSignupConfirm');
-Route::post('signup-confirm', 'AuthController@postSignupConfirm');
+Route::get('signup-confirmed', 'AuthController@getSignupConfirmed');
 Route::get('logout', 'AuthController@getLogout');
 Route::get('oauth', 'AuthController@getOauth');
 

@@ -13,7 +13,7 @@
                 @if(isset($githubUser['email']))
                     <h3>{{ $githubUser['email'] }}</h3>
                 @endif
-                <a class="button" href="{{ action('AuthController@getLogin') }}">Create My Laravel.IO Account</a>
+                <a class="button" href="{{ action('AuthController@getSignupConfirmed') }}">Create My Laravel.IO Account</a>
             </div>
         </div>
 

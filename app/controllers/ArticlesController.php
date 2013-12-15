@@ -32,6 +32,7 @@ class ArticlesController extends BaseController
     {
         $article = App::make('slugModel');
         $comments = $this->comments->getArticleCommentsPaginated($article, $this->commentsPerPage);
+
         $this->view('articles.show', compact('article', 'comments'));
     }
 
