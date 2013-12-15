@@ -1,6 +1,6 @@
-<?php namespace Lio\GitHub;
+<?php namespace Lio\Github;
 
-interface GithubAccountIntegratorObserver
+interface GithubAuthenticatorObserver
 {
     public function userFound($user);
     public function userIsBanned($user);

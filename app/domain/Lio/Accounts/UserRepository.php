@@ -35,15 +35,4 @@ class UserRepository extends EloquentBaseRepository
     {
         return $this->model->take($count)->get();
     }
-
-    public function updateFromGithubData($user, $githubUser)
-    {
-        $user->fill([
-            'name'       => $githubUser['login'],
-            'email'      => $githubUser['email'],
-            'github_id'  => $githubUser['id'],
-            'github_url' => $githubUser['html_url'],
-            'image_url'  => $githubUser['avatar_url'],
-        ]);
-    }
 }

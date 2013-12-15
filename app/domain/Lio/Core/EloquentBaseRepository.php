@@ -56,29 +56,29 @@ abstract class EloquentBaseRepository
     public function save($data)
     {
         if ($data instanceOf Model) {
-            $this->storeEloquentModel($data);
+            return $this->storeEloquentModel($data);
         } elseif (is_array($data)) {
-            $this->storeArray($data);
+            return $this->storeArray($data);
         }
     }
 
     public function delete($model)
     {
-        $model->delete();
+        return $model->delete();
     }
 
     protected function storeEloquentModel($model)
     {
         if ($model->getDirty()) {
-            $model->save();
+            return $model->save();
         } else {
-            $model->touch();
+            return $model->touch();
         }
     }
 
     protected function storeArray($data)
     {
         $model = $this->getNew($data);
-        $this->storeEloquentModel($model);
+        return $this->storeEloquentModel($model);
     }
 }

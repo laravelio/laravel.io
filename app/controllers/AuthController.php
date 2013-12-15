@@ -1,57 +1,70 @@
 <?php
 
-use Lio\GitHub\GithubAccountIntegrator;
-use Lio\GitHub\GithubAccountIntegratorObserver;
+use Lio\Github\GithubAuthenticatorObserver;
+use Lio\Accounts\UserCreatorObserver;
 
-class AuthController extends BaseController implements GithubAccountIntegratorObserver
+class AuthController extends BaseController implements GithubAuthenticatorObserver, UserCreatorObserver
 {
+    // authenticate with github
     public function getLogin()
     {
         if (Input::has('code')) {
-            $integrator = new GithubAccountIntegrator($this, App::make('Lio\Accounts\UserRepository'));
-            return $integrator->integrateByAuthCode(Input::get('code'));
+            return App::make('Lio\Github\GithubAuthenticator')->integrateByAuthCode($this, Input::get('code'));
         }
-
         // redirect to the github authentication url
-        Session::forget('signupGithubData');
         return $this->redirectTo((string) OAuth::consumer('GitHub')->getAuthorizationUri());
     }
 
+    // logout
     public function getLogout()
     {
         Auth::logout();
         return $this->redirectAction('HomeController@getIndex');
     }
 
-    public function getSignup()
+    // page that a user sees if they try to do something that requires an authed session
+    public function getLoginRequired()
     {
-        $this->view('auth.signup');
+        $this->view('auth.loginrequired');
     }
 
+    // the confirmation page that shows a user what their new account will look like
     public function getSignupConfirm()
     {
-        if ( ! Session::has('signupGithubData')) {
+        if ( ! Session::has('userGithubData')) {
             return $this->redirectAction('AuthController@getLogin');
         }
 
-        $this->view('auth.signupconfirm', ['githubUser' => Session::get('signupGithubData')]);
+        $this->view('auth.signupconfirm', ['githubUser' => Session::get('userGithubData')]);
     }
 
-    public function getSignupConfirmed()
+    // actually creates the new user account
+    public function postSignupConfirm()
     {
-        if ( ! Session::has('signupGithubData')) {
+        if ( ! Session::has('userGithubData')) {
             return $this->redirectAction('AuthController@getLogin');
         }
-
-        $integrator = new GithubAccountIntegrator($this, App::make('Lio\Accounts\UserRepository'));
-        return $integrator->createAccountFromGithubData(Session::get('signupGithubData'));
+        return App::make('Lio\Accounts\UserCreator')->create($this, Session::get('userGithubData'));
     }
 
-    // github account integration observers
+    // user creator responses
+    public function userValidationError($errors)
+    {
+        return Redirect::to('/');
+    }
+
+    public function userSuccessfullyCreated($user)
+    {
+        Auth::login($user);
+        Session::forget('userGithubData');
+        return $this->redirectIntended(action('HomeController@getIndex'));
+    }
+
+    // github account integration responses
     public function userFound($user)
     {
         Auth::login($user);
-        Session::forget('signupGithubData');
+        Session::forget('userGithubData');
         return $this->redirectIntended(action('HomeController@getIndex'));
     }
 
@@ -62,7 +75,7 @@ class AuthController extends BaseController implements GithubAccountIntegratorOb
 
     public function signupConfirmationRequired($githubData)
     {
-        Session::put('signupGithubData', $githubData);
+        Session::put('userGithubData', $githubData);
         return $this->redirectAction('AuthController@getSignupConfirm');
     }
 }

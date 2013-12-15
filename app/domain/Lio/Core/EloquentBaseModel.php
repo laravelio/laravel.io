@@ -29,9 +29,10 @@ abstract class EloquentBaseModel extends Eloquent
         return $this->validator->errors();
     }
 
-    public function clearRelationsCache()
+    public function save(array $options = array())
     {
-        $this->relations = [];
+        if ( ! $this->isValid()) return false;
+        return parent::save($options);
     }
 
     protected function getPreparedRules()
@@ -55,4 +56,5 @@ abstract class EloquentBaseModel extends Eloquent
 
         return $newRules;
     }
+
 }

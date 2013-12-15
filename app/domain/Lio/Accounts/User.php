@@ -18,7 +18,9 @@ class User extends EloquentBaseModel implements UserInterface, RemindableInterfa
 
     public $presenter = 'Lio\Accounts\UserPresenter';
 
-    protected $validationRules = [];
+    protected $validationRules = [
+        'github_id' => 'unique:users',
+    ];
 
     private $rolesCache;
 

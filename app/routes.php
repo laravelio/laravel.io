@@ -4,9 +4,9 @@ Route::get('/', 'HomeController@getIndex');
 
 // authentication
 Route::get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
-Route::get('signup', 'AuthController@getSignup');
+Route::get('login-required', 'AuthController@getLoginRequired');
 Route::get('signup-confirm', 'AuthController@getSignupConfirm');
-Route::get('signup-confirmed', 'AuthController@getSignupConfirmed');
+Route::post('signup-confirm', 'AuthController@postSignupConfirm');
 Route::get('logout', 'AuthController@getLogout');
 Route::get('oauth', 'AuthController@getOauth');
 

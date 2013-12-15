@@ -1,4 +1,4 @@
-<?php namespace Lio\GitHub;
+<?php namespace Lio\Github;
 
 class GistEmbedFormatter
 {
