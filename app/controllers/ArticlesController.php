@@ -138,15 +138,18 @@ class ArticlesController extends BaseController
         }
     }
 
-    public function getEditComment($commentId)
+    public function getEditComment($articleSlug, $commentId)
     {
+        $article = App::make('slugModel');
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
         $this->view('articles.editcomment', compact('comment'));
     }
 
-    public function postEditComment($commentId)
+    public function postEditComment($articleSlug, $commentId)
     {
+        $article = App::make('slugModel');
+
         // i hate everything about these controllers, it's awful
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
@@ -163,6 +166,6 @@ class ArticlesController extends BaseController
 
         $this->comments->save($comment);
 
-        return $this->redirectAction('ArticlesController@getShow', [$comment->slug->slug]);
+        return $this->redirectAction('ArticlesController@getShow', [$article->slug->slug]);
     }
 }
