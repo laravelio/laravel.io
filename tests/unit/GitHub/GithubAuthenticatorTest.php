@@ -10,7 +10,7 @@ class GithubAuthenticatorTest extends \UnitTestCase
         $this->assertInstanceOf('Lio\Github\GithubAuthenticator', $this->getAuthenticator());
     }
 
-    public function testFoundUserCallsUserFoundObserverMethod()
+    public function testExistingUserCanBeFound()
     {
         // remove the reader from the test
         $reader = m::mock('Lio\Github\GithubUserDataReader');
@@ -38,6 +38,45 @@ class GithubAuthenticatorTest extends \UnitTestCase
         // Our goal here is to ensure that when a non-banned user
         // is found by its Github id, the observer's userFound()
         // method is called
+        $auth->authByCode($observer, 'foo');
+    }
+
+    public function testBannedUsersCantAuthenticate()
+    {
+        $reader = m::mock('Lio\Github\GithubUserDataReader');
+        $reader->shouldReceive('getDataFromCode')->andReturn(['id' => 1]);
+
+        $user = m::mock()->shouldIgnoreMissing();
+        $user->is_banned = 1;
+
+        $users = m::mock('Lio\Accounts\UserRepository')->shouldIgnoreMissing();
+        $users->shouldReceive('getByGithubId')->andReturn($user);
+
+        $auth = $this->getAuthenticator($users, $reader);
+
+        $observer = m::mock();
+        $observer->shouldReceive('userIsBanned')->once();
+
+        // when a banned user is found by its Github id, the
+        // observer's userIsBand() method is called
+        $auth->authByCode($observer, 'foo');
+    }
+
+    public function testUnfoundUserTriggersObserverCorrectly()
+    {
+        $reader = m::mock('Lio\Github\GithubUserDataReader');
+        $reader->shouldReceive('getDataFromCode')->andReturn(['id' => 1]);
+
+        // create a fake user repository, when it's queried for
+        // a user by Github id, give it nothing
+        $users = m::mock('Lio\Accounts\UserRepository')->shouldIgnoreMissing();
+        $users->shouldReceive('getByGithubId')->andReturn(null);
+
+        $auth = $this->getAuthenticator($users, $reader);
+
+        $observer = m::mock();
+        $observer->shouldReceive('userNotFound')->once();
+
         $auth->authByCode($observer, 'foo');
     }
 

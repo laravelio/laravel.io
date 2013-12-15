@@ -7,7 +7,7 @@ use Lio\Accounts\UserRepository;
 *
 * userFound($user)
 * userIsBanned($user)
-* signupConfirmationRequired($githubData)
+* userNotFound($githubData)
 */
 class GithubAuthenticator
 {
@@ -28,7 +28,7 @@ class GithubAuthenticator
             return $this->loginUser($observer, $user, $githubData);
         }
 
-        return $observer->signupConfirmationRequired($githubData);
+        return $observer->userNotFound($githubData);
     }
 
     private function loginUser($observer, $user, $githubData)

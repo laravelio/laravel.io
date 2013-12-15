@@ -73,7 +73,7 @@ class AuthController extends BaseController implements GithubAuthenticatorObserv
         return $this->redirectAction('HomeController@getIndex');
     }
 
-    public function signupConfirmationRequired($githubData)
+    public function userNotFound($githubData)
     {
         Session::put('userGithubData', $githubData);
         return $this->redirectAction('AuthController@getSignupConfirm');
