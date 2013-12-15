@@ -14,10 +14,10 @@
             </a>
         </div>
         <ul class="top-navigation-items">
-<!--             <li>
+            <li>
                 <a href="{{ action('ArticlesController@getIndex') }}">Articles</a>
             </li>
- -->            <li>
+            <li>
                 <a href="{{ action('ForumController@getIndex') }}">Forum</a>
             </li>
 <!--             <li>
