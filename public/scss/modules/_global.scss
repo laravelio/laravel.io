@@ -43,6 +43,10 @@ body,html {
         @include reset-display;
         @include clearfix;
     }
+
+    footer {
+        display: none;
+    }
 }
 
 

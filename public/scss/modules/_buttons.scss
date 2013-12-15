@@ -13,6 +13,14 @@
     &:hover {
         background:$lioGrey;
     }
+
+    &.inverse {
+        background:  $lioGrey;
+
+        &:hover {
+            background: $lioRed;
+        }
+    }
 }
 
 
