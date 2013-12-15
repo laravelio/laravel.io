@@ -27,8 +27,9 @@ class GithubAccountIntegrator
         $githubData = json_decode($github->request('user'), true);
         $emails = json_decode($github->request('user/emails'), true);
         $githubData['email'] = last($emails);
-        $user = $this->users->getByGithubId($githubData['id']);
         // --- end of code that needs to be extracted --- //
+
+        $user = $this->users->getByGithubId($githubData['id']);
 
         if ($user) {
             return $this->loginUser($user, $githubData);

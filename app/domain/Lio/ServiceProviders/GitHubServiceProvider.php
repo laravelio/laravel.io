@@ -15,6 +15,6 @@ class GitHubServiceProvider extends ServiceProvider
 
     public function provides()
     {
-        return ['github', 'Lio\GitHub\GistEmbedFormatter'];
+        return ['Lio\GitHub\GistEmbedFormatter'];
     }
 }
