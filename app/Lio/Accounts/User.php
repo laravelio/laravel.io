@@ -3,7 +3,6 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Lio\Core\EloquentBaseModel;
-use GitHub;
 use Eloquent;
 
 class User extends EloquentBaseModel implements UserInterface, RemindableInterface
