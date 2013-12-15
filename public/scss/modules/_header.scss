@@ -1,95 +1,22 @@
 /* ==========================================================================
-   HEADER NAVIGATION (mobile first module)
+   MOBILE FIRST MODULE SKELETON
    ========================================================================== */
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.top-navigation {
-    @include outer-container;
-    background-color: $secondary-color;
-    position: relative;
-}
-
-.top-navigation-logo {
-    float:left;
-    text-align: center;
-    padding: 0.5rem 0 0.5rem 0.5rem;
-}
-
-.top-navigation-items {
-    float:left;
-    margin: 2.25rem 0 0 0.25rem;
-    list-style: none;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-    font-size:0.8rem;
-    padding:0;
+.user-navigation {
     li {
-        display: inline-block;
-        margin:0 1rem;
-        a {
-            color:#eee;
-            text-decoration: none;
-            &:hover {
-                color: $primary-color;
-            }
-        }
+        display: inline;
     }
 }
 
-.top-navigation-signin-desktop {
-    display: none;
-}
-
-.top-navigation-signin-mobile {
-    text-align: center;
-    list-style: none;
-    margin:0;
-    padding:0;
-    background: darken($secondary-color, 10%);
-    li {
-        padding: 0.5rem 0;
-        font-size:0.9rem;
-        a {
-            color:#bbb;
-            text-decoration: none;
-            &:hover {
-                color: $primary-color;
-            }
-        }
-    }
-}
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 480px) {
 
-    .top-navigation-signin-mobile {
-        display: none;
-    }
-    .top-navigation-signin-desktop {
-        display: inline-block;
-        text-align: right;
-        list-style: none;
-        float:right;
-        padding:0;
-        margin: 1.70rem 1rem 0 0;
-        font-size:0.8rem;
-        li {
-            padding: 0.5rem 0;
-            font-size:0.9rem;
-            a {
-                color:#bbb;
-                text-decoration: none;
-                &:hover {
-                    color: $primary-color;
-                }
-            }
-        }
-    }
-    .dashboard-word {
-        display: none;
-    }
+    .module {}
+
 }
 
 
@@ -97,17 +24,37 @@
 
 @media only screen and (min-width: 768px) {
 
-    .top-navigation-logo {
-        padding: 0.5rem 0.5rem 0.5rem 1.5rem;
-    }
-    .top-navigation-items {
-        margin: 2.25rem 0 0 0.75rem;
-    }
-    .top-navigation-signin-desktop {
-        margin: 1.75rem 2rem 0 0;
-    }
-    .dashboard-word {
-        display: inline-block;
+    body {
+        padding: 25px;
     }
 
+    header {
+        @include clearfix;
+        border-bottom:1px solid #cdcdcd;
+    }
+
+    .user-navigation {
+        float: right;
+    }
+
+    .logo {
+        float: left;
+        padding: 0 0 15px 0;
+    }
+}
+
+
+// BREAKPOINT 3 (1024) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1024px) {
+
+    .module {}
+}
+
+
+// BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1440px) {
+
+    .module {}
 }

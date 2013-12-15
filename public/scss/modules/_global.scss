@@ -4,33 +4,9 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.content {
-    @include clearfix;
-}
-
-footer {
-    width:100%;
-    @include clearfix;
-    border-top:1px solid  $lioGrey;
-    padding: 1.75rem 2rem 1.75rem 0;
-    text-align: center;
+body,html {
+    background: #ebebeb;
     font-size:13px;
-
-    .fortrabbit {
-        display: block;
-      font-family: Georgia, serif;
-      font-weight: bold;
-      font-style: italic;
-      color: #333;
-      text-transform: lowercase;
-      font-size:21px;
-    }
-    .fortrabbit:hover {
-      text-decoration: none;
-    }
-    .fortrabbit:hover em {
-      color: red;
-    }
 }
 
 
@@ -47,12 +23,13 @@ footer {
 
 @media only screen and (min-width: 768px) {
 
-    footer {
-        text-align: right;
+    .sidebar {
+        @include span-columns(4);
+        margin-right:0;
+    }
 
-        .fortrabbit {
-            display: inline;
-        }
+    .content {
+        @include clearfix;
     }
 }
 
