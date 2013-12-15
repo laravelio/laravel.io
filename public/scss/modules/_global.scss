@@ -23,6 +23,10 @@ body,html {
 
 @media only screen and (min-width: 768px) {
 
+    body {
+        padding: 25px;
+    }
+
     .holder {
         @include outer-container;
     }
