@@ -137,4 +137,32 @@ class ArticlesController extends BaseController
             return $this->redirectAction('ArticlesController@getDashboard');
         }
     }
+
+    public function getEditComment($commentId)
+    {
+        $comment = $this->comments->requireById($commentId);
+        if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
+        $this->view('articles.editcomment', compact('comment'));
+    }
+
+    public function postEditComment($commentId)
+    {
+        // i hate everything about these controllers, it's awful
+        $comment = $this->comments->requireById($commentId);
+        if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
+
+        $form = new \Lio\Comments\ReplyForm;
+
+        if ( ! $form->isValid()) return $this->redirectBack(['errors' => $form->getErrors()]);
+
+        $comment->fill([
+            'body' => Input::get('body'),
+        ]);
+
+        if ( ! $comment->isValid()) return $this->redirectBack(['errors' => $comment->getErrors()]);
+
+        $this->comments->save($comment);
+
+        return $this->redirectAction('ArticlesController@getShow', [$comment->slug->slug]);
+    }
 }

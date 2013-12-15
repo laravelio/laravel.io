@@ -176,16 +176,11 @@ class ForumController extends BaseController
     {
         // Holy shit worst code ever made..
         // LYLAS!
-
-        $perPage = $this->commentsPerPage;
-        $comment = Comment::find($commentId);
+        $comment = Comment::findOrFail($commentId);
         $before = Comment::where('parent_id', '=', $comment->parent_id)->where('created_at', '<', $comment->created_at)->count();
+        $page = round($before / $this->commentsPerPage, 0, PHP_ROUND_HALF_DOWN) + 1;
 
-        $page = round($before / $perPage, 0, PHP_ROUND_HALF_DOWN) + 1;
-
-        $url = action('ForumController@getThread', [$thread]);
-
-        return Redirect::to($url . '?page=' . $page . '#comment-' . $commentId);
+        return Redirect::to(action('ForumController@getThread', [$thread]) . '?page=' . $page . '#comment-' . $commentId);
     }
 
     // does the awful code ever end?
