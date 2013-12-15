@@ -5,14 +5,12 @@
 @stop
 
 @section('content')
-    <div class="row forum">
-        <div class="small-12 columns comments">
+    <div class="row articles">
+        <article class="small-12 columns comments">
 
             <h1>{{ $article->title }}</h1>
 
-            <p>
-                {{ $article->content }}
-            </p>
+            {{ $article->content }}
 
             @foreach($comments as $comment)
                 @include('articles._comment')
@@ -46,7 +44,7 @@
                     </div>
                 </div>
             @endif
-        </div>
+        </article>
     </div>
 @stop
 

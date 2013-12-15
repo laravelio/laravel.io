@@ -6,5 +6,6 @@
             <li><i class="icon-comments"></i> {{ $article->comment_count_label }}</li>
         </ul>
     <p>{{ $article->summary }}</p>
-    <a class="more" href="{{ $article->showUrl }}"><span>Read more</span></a>
+
+    <a class="button" href="{{ $article->showUrl }}"><span>Read more</span></a>
 </article>

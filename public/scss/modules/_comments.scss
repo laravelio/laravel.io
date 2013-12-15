@@ -53,6 +53,7 @@
 
             li a {
                 color:$lioRed;
+
                 &:hover {
                     color:$lioGrey;
                 }
@@ -82,7 +83,7 @@
 
             .user {
                 display: block;
-                @include span-columns(1.5);
+                @include span-columns(1.8);
 
                 img {
                     width:100%;
@@ -102,7 +103,7 @@
             }
 
             .content {
-                @include span-columns(10.5);
+                @include span-columns(10.2);
                 padding: 20px;
                 border:1px solid #eee;
                 margin: 0 0 25px 0;
