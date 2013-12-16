@@ -49,6 +49,13 @@ body,html {
     footer {
         display: none;
     }
+
+    // Lets put this here for now
+
+    .gist-data {
+        max-height: 300px;
+        overflow: auto;
+    }
 }
 
 
