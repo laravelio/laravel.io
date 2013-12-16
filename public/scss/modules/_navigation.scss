@@ -22,6 +22,7 @@
 
         nav {
             float: left;
+            padding: 13px 0 0 0;
 
             ul li {
                 display: inline;
@@ -30,8 +31,10 @@
             ul li a {
                 padding: 0 3px 3px 3px;
                 margin: 0 10px;
-                font-size:14px;
-                color:$lioGrey;
+                font-size:16px;
+                color:white;
+                font-family: 'Source Sans Pro', sans-serif;
+                font-weight: 300;
 
                 &:hover {
                     border-bottom:3px solid $lioRed;

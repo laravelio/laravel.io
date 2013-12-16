@@ -4,10 +4,7 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-body,html {
-    background: #ebebeb;
-    font-size:13px;
-}
+.module {}
 
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
@@ -23,32 +20,32 @@ body,html {
 
 @media only screen and (min-width: 768px) {
 
-
-    .holder {
-        @include outer-container;
-    }
-
-    .test {
-
-        @include span-columns(12);
-        @include row(table);
-    }
-
-    .sidebar {
-        @include span-columns(3.5);
-        padding: 0;
-        vertical-align:top;
-    }
-
-    .content {
-        @include span-columns(8.5);
-        @include reset-display;
+    .comment {
         @include clearfix;
+        background: white;
+        padding: 15px;
+        margin: 15px;
+
+        p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin: 0 0 0 15px;
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%;
+        }
     }
 
-    footer {
-        display: none;
-    }
 }
 
 

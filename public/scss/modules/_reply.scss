@@ -4,10 +4,7 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-body,html {
-    background: #ebebeb;
-    font-size:13px;
-}
+.module {}
 
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
@@ -23,31 +20,43 @@ body,html {
 
 @media only screen and (min-width: 768px) {
 
-
-    .holder {
-        @include outer-container;
-    }
-
-    .test {
-
-        @include span-columns(12);
-        @include row(table);
-    }
-
-    .sidebar {
-        @include span-columns(3.5);
-        padding: 0;
-        vertical-align:top;
-    }
-
-    .content {
-        @include span-columns(8.5);
-        @include reset-display;
+    .reply-form {
         @include clearfix;
+        padding: 30px 15px;
+
+        h5 {
+            margin: 0;
+            padding: 0 0 10px 0;
+            font-size:16px;
+            color:$lioGrey;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 400;
+        }
+
+        textarea {
+            width:100%;
+        }
+
+        button {
+            border: none;
+        }
+
+        small {
+            padding: 10px 0;
+            display: block;
+            font-size:12px;
+        }
     }
 
-    footer {
-        display: none;
+    .login-cta
+    {
+        @include clearfix;
+        padding: 30px 15px;
+        text-align: right;
+
+        p {
+            font-size:15px;
+        }
     }
 }
 

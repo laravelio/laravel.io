@@ -31,9 +31,6 @@ class CommentRepository extends EloquentBaseRepository
     public function getThreadCommentsPaginated(Comment $thread, $perPage = 20)
     {
         return $this->model->where(function($q) use ($thread) {
-                        $q->where(function($q) use ($thread) {
-                            $q->where('id', '=', $thread->id);
-                        });
 
                         $q->orWhere(function($q) use ($thread) {
                             $q->where('parent_id', '=', $thread->id);
@@ -41,6 +38,7 @@ class CommentRepository extends EloquentBaseRepository
                     })
                     ->where('type', '=', Comment::TYPE_FORUM)
                     ->orderBy('created_at', 'asc')
+                    ->with('author')
                     ->paginate($perPage);
     }
 

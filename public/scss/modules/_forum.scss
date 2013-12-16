@@ -43,12 +43,25 @@
                 font-family: 'Source Sans Pro', sans-serif;
                 font-weight: 400;
                 font-size:16px;
-                padding: 4px 0 0 7px;
+                padding: 5px 0 0 7px;
                 font-style: italic;
+
+                a {
+                    color:$lioGrey;
+
+                    &:hover {
+                        color:$lioRed;
+                    }
+                }
             }
 
             .button {
                 float: right;
+            }
+
+            img {
+                float: left;
+                height: 35px;
             }
         }
 
@@ -95,7 +108,7 @@
                 ul li {
                     display: inline;
                     float: left;
-                    color:#cdcdcd;
+                    color:#959595;
                     padding: 0 5px 0 0;
                     font-family: 'Source Sans Pro', sans-serif;
                     font-weight: 400;
@@ -117,13 +130,40 @@
                 }
             }
 
-            .thread-summary:nth-child(odd) {
+            .thread-summary {
                 background: white;
             }
         }
 
         .thread {
             padding: 15px;
+            margin: 15px;
+            background: white;
+
+            h2 {
+                padding: 3px 0 15px 0;
+                margin: 0;
+            }
+
+            p {
+                margin: 0;
+                line-height: 1.5;
+            }
+
+            ul, li {
+                margin: 0;
+                padding: 0;
+            }
+
+            li {
+                margin: 0 0 0 15px;
+                line-height: 1.5;
+            }
+
+            img {
+                max-width: 100%;
+            }
+
         }
     }
 }

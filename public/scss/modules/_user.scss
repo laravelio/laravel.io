@@ -20,53 +20,59 @@
 
 @media only screen and (min-width: 768px) {
 
-    .sidebar {
-        border-right:1px solid #cdcdcd;
+    .user {
+        @include clearfix;
+        border-top:1px solid #cdcdcd;
+        padding: 15px 0 0 0;
+        margin: 15px 0 0 0;
 
-        .search {
-            padding: 15px;
-            border-bottom:1px solid #cdcdcd;
-
-            input {
-                width:100%;
-                padding: 10px 13px;
-                border:none;
-            }
+        img {
+            float: left;
+            height: auto;
+            width:50px;
+            display: block;
+            padding: 0 10px 0 0;
         }
 
-        ul {
+        h6 {
             margin:0;
-            padding: 10px 15px;
-        }
-
-        ul li {
-            list-style-type: none;
-            margin: 0;
-            @include clearfix;
-
-            span {
-                float: right;
-                padding: 5px 7px;
-                margin: 5px;
-                background: #cdcdcd;
-                color:$lioGrey;
-                font-size:11px;
-            }
+            padding: 0 0 3px 0;
+            font-size:16px;
+            color:$lioGrey;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 400;
 
             a {
-                display: block;
-                padding: 10px 0;
-                float: left;
                 color:$lioGrey;
-                font-family: 'Source Sans Pro', sans-serif;
-                font-weight: 400;
 
                 &:hover {
                     color:$lioRed;
                 }
             }
         }
+
+        .info {
+            float: left;
+        }
+
+        ul {
+            margin:0;
+            padding: 0;
+        }
+
+        li {
+            display: inline;
+            float: left;
+            color:#959595;
+            padding: 0 5px 0 0;
+            // Something is overwriting this, need to fix it
+            margin: 0 !important;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 400;
+            font-style: italic;
+        }
     }
+
 }
 
 

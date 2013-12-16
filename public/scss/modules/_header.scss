@@ -27,16 +27,19 @@
     header {
         @include clearfix;
         border-bottom:1px solid #cdcdcd;
-        padding: 0 15px;
+        padding: 15px 15px;
+        background: $lioGrey;
     }
 
     .user-navigation {
+        padding: 17px 0 0 0;
         float: right;
     }
 
     .logo {
         float: left;
-        padding: 0 0 15px 0;
+        padding: 15px 0 15px 5px;
+        width:125px;
     }
 }
 
