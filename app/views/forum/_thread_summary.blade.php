@@ -1,12 +1,11 @@
-<article>
-    <div class="title-tags">
+<div class="thread-summary">
+    {{ $thread->author->thumbnail }}
+    <div class="info">
         <h3><a href="{{ $thread->forumThreadUrl }}">{{ $thread->title }}</a></h3>
-        <div class="tags">Tags:  {{ $thread->tags->getTagList() }}</div>
+        <ul class="meta">
+            <li>{{ $thread->created_ago }}</li>
+            <li>By {{ $thread->author->name }}</li>
+        </ul>
     </div>
-
-    <ul class="meta">
-        <li><i class="icon-time"></i> {{ $thread->updated_ago }}</li>
-        <li><i class="icon-user"></i> <a href="{{ $thread->author->profileUrl }}">{{ $thread->author->name }}</a></li>
-        <li><i class="icon-comments"></i> {{ $thread->child_count_label }}</li>
-    </ul>
-</article>
+    <div class="comment-count">{{ $thread->child_count }}</div>
+</div>

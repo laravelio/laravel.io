@@ -18,8 +18,10 @@
   @include('layouts._top_nav')
   @include('layouts._flash')
 
-  <div class="content">
-     {{ $content }}
+  <div class="holder">
+     <div class="test">
+      {{ $content }}
+      </div>
   </div>
 
   @include('layouts._footer')

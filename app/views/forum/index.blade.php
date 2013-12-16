@@ -6,24 +6,28 @@
 
 @section('content')
     <section class="forum">
-        <h1>Forum</h1>
+        <div class="header">
+            <h1>Forum</h1>
+                {{-- Display select tags --}}
+                @if(Input::get('tags'))
+                    <div class="tags">
+                        {{ Input::get('tags') }}
+                    </div>
+                @endif
+            <a class="button" href="{{ action('ForumController@getCreateThread') }}">Add new Post</a>
+        </div>
 
-        @if(Input::has('tags'))
-            <div class="tags">Threads tagged with {{ Input::get('tags') }}.</div>
-        @else
-            <div class="tags">All threads</div>
-        @endif
+        <div class="threads">
+            {{-- Loop over the threads and display the thread summary partial --}}
+            @each('forum._thread_summary', $threads, 'thread')
 
-        @if($threads->count() > 0)
-            @foreach($threads as $thread)
-                @include('forum._thread_summary')
-            @endforeach
-
-            {{ str_replace('%2C', ',', $threads->links()) }}
-        @else
-            <div class="">
-                There are currently no threads for the selected category.
-            </div>
-        @endif
+            {{-- If no comments are found display a message --}}
+            @if(!$threads->count())
+                <div class="empty-state">
+                    <h3>No threads found that are tagged with {{ Input::get('tags') }}</h3>
+                    <a class="button" href="{{ action('ForumController@getCreateThread') }}">Create a new thread</a>
+                </div>
+            @endif
+        </div>
     </section>
 @stop

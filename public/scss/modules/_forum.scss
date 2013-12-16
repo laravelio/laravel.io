@@ -26,34 +26,37 @@
 
         .header {
             @include clearfix;
-            padding: 19px 0 18px 15px;
+            padding: 19px 15px 18px 15px;
             border-bottom:1px solid #cdcdcd;
-        }
 
-        h1 {
-            font-size:22px;
-            margin: 0;
-            float: left;
-            font-family: 'Source Sans Pro', sans-serif;
-            font-weight: 800;
-        }
+            h1 {
+                font-size:22px;
+                margin: 0;
+                float: left;
+                font-family: 'Source Sans Pro', sans-serif;
+                font-weight: 800;
+            }
 
-        .tags {
-            float: right;
-            margin: 0;
-            padding: 5px 0 0 0;
+            .tags {
+                display: block;
+                float: left;
+                font-family: 'Source Sans Pro', sans-serif;
+                font-weight: 400;
+                font-size:16px;
+                padding: 4px 0 0 7px;
+                font-style: italic;
+            }
 
-            li {
-                list-style-type: none;
+            .button {
+                float: right;
             }
         }
 
-
-        .topics {
+        .threads {
             @include span-columns(12);
-            padding: 15px 0 15px 15px;
+            padding: 15px 15px 15px 15px;
 
-            .topic {
+            .thread-summary {
                 width:100%;
                 @include clearfix;
                 padding: 12px 20px 12px 10px;
@@ -74,6 +77,14 @@
                     color:$lioGrey;
                     font-family: 'Source Sans Pro', sans-serif;
                     font-weight: 400;
+
+                    a {
+                        color:$lioGrey;
+
+                        &:hover {
+                            color:$lioRed;
+                        }
+                    }
                 }
 
                 ul {
@@ -96,6 +107,7 @@
                 }
 
                 .comment-count {
+                    min-width:25px;
                     float: right;
                     background: #cdcdcd;
                     padding: 5px;
@@ -105,9 +117,13 @@
                 }
             }
 
-            .topic:nth-child(odd) {
+            .thread-summary:nth-child(odd) {
                 background: white;
             }
+        }
+
+        .thread {
+            padding: 15px;
         }
     }
 }

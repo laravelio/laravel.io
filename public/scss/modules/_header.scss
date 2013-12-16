@@ -27,6 +27,7 @@
     header {
         @include clearfix;
         border-bottom:1px solid #cdcdcd;
+        padding: 0 15px;
     }
 
     .user-navigation {
