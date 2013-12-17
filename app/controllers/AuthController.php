@@ -34,7 +34,6 @@ class AuthController extends BaseController implements GithubAuthenticatorObserv
         if ( ! Session::has('userGithubData')) {
             return $this->redirectAction('AuthController@getLogin');
         }
-
         $this->view('auth.signupconfirm', ['githubUser' => Session::get('userGithubData')]);
     }
 
