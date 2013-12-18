@@ -5,30 +5,22 @@
 @stop
 
 @section('content')
-    <div class="row forum">
-        <div class="small-12 columns form">
-            {{ Form::model($comment->resource) }}
-                <fieldset>
-                    <legend>Edit Comment</legend>
+<div class="header">
+    <h1>Edit Your Comment</h1>
+</div>
 
-                    <div class="row">
-                        <div class="">
-                            {{ Form::label('body', 'Thread') }}
-                            {{ Form::textarea("body", null) }}
-                            {{ $errors->first('body', '<small class="error">:message</small>') }}
-                            <small>Paste a <a href="https://gist.github.com" target="_NEW">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
-                        </div>
-                    </div>
+    <div class="reply-form">
+        {{ Form::model($comment->resource) }}
+            <div class="form-row">
+                <label class="field-title">Comment</label>
+                {{ Form::textarea("body", null, ['class' => '_tab_indent']) }}
+                {{ $errors->first('body', '<small class="error">:message</small>') }}
+                <small>Paste a <a href="https://gist.github.com" target="_NEW">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
+            </div>
 
-                    <div class="row">
-                        {{ Form::button('Save', ['type' => 'submit', 'class' => 'button']) }}
-                    </div>
-
-                </fieldset>
-
-            {{ Form::close() }}
-
-        </div>
+            <div class="form-row">
+                {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
+            </div>
     </div>
 @stop
 

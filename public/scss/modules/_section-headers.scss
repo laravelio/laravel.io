@@ -4,35 +4,44 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.reply-form {
+.header {
     @include clearfix;
-    padding: 30px 15px;
+    padding: 19px 15px 18px 15px;
+    border-bottom:1px solid #cdcdcd;
 
-    h5 {
+    h1 {
+        font-size:22px;
         margin: 0;
-        padding: 0 0 10px 0;
-        font-size:16px;
-        color:$lioGrey;
+        float: left;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 800;
+    }
+
+    .tags {
+        display: block;
+        float: left;
         font-family: 'Source Sans Pro', sans-serif;
         font-weight: 400;
-    }
-}
+        font-size:16px;
+        padding: 5px 0 0 7px;
+        font-style: italic;
 
-.login-cta
-{
-    @include clearfix;
-    padding: 30px 15px;
-    text-align: center;
+        a {
+            color:$lioGrey;
 
-    p {
-        float: none;
-        font-size:15px;
-        display: block;
-        padding: 0 0 7px 0;
+            &:hover {
+                color:$lioRed;
+            }
+        }
     }
 
     .button {
-        float: none;
+        float: right;
+    }
+
+    img {
+        float: left;
+        height: 35px;
     }
 }
 

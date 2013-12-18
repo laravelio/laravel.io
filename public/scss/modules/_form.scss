@@ -4,11 +4,12 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.reply-form {
-    @include clearfix;
-    padding: 30px 15px;
+.form-row {
+    @include span-columns(12);
+    margin: 0 0 15px 0;
 
-    h5 {
+    label.field-title {
+        display: block;
         margin: 0;
         padding: 0 0 10px 0;
         font-size:16px;
@@ -16,23 +17,59 @@
         font-family: 'Source Sans Pro', sans-serif;
         font-weight: 400;
     }
-}
 
-.login-cta
-{
-    @include clearfix;
-    padding: 30px 15px;
-    text-align: center;
-
-    p {
-        float: none;
-        font-size:15px;
-        display: block;
-        padding: 0 0 7px 0;
+    input[type=text] {
+        padding: 15px;
+        border:none;
+        width:100%;
     }
 
-    .button {
-        float: none;
+    textarea {
+       @include span-columns(12);
+       float: none;
+       padding: 15px;
+       border:none;
+    }
+
+    small {
+        display: block;
+    }
+
+    textarea {
+        width:100%;
+    }
+
+    button {
+        border: none;
+    }
+
+    small {
+        padding: 10px 0;
+        display: block;
+        font-size:12px;
+    }
+
+    .version {
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: inline;
+        }
+
+        label {
+            float: left;
+            cursor: pointer;
+        }
+
+        label.selected {
+            background: $lioRed;
+            color:white;
+        }
+
+        input {
+            display: none;
+        }
     }
 }
 

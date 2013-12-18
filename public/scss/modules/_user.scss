@@ -4,8 +4,72 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.module {}
+.user {
+    @include clearfix;
+    border-top:1px solid #cdcdcd;
+    padding: 15px 0 0 0;
+    margin: 15px 0 0 0;
 
+    img {
+        float: left;
+        height: auto;
+        width:50px;
+        display: block;
+        padding: 0 10px 0 0;
+    }
+
+    h6 {
+        margin:0;
+        padding: 0 0 3px 0;
+        font-size:16px;
+        color:$lioGrey;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
+
+        a {
+            color:$lioGrey;
+
+            &:hover {
+                color:$lioRed;
+            }
+        }
+    }
+
+    .info {
+        float: left;
+    }
+
+    ul {
+        margin:0;
+        padding: 0;
+    }
+
+    li {
+        display: inline;
+        float: left;
+        color:#959595;
+        padding: 0 5px 0 0;
+        // Something is overwriting this, need to fix it
+        margin: 0 !important;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
+        font-style: italic;
+    }
+}
+
+.admin-bar {
+    margin: 15px 0 0 0;
+    padding: 15px 0 0 0;
+    border-top:1px solid #cdcdcd;
+
+    ul, li {
+        margin:0 !important;
+    }
+
+    li {
+        display: inline;
+    }
+}
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
 
@@ -20,58 +84,7 @@
 
 @media only screen and (min-width: 768px) {
 
-    .user {
-        @include clearfix;
-        border-top:1px solid #cdcdcd;
-        padding: 15px 0 0 0;
-        margin: 15px 0 0 0;
 
-        img {
-            float: left;
-            height: auto;
-            width:50px;
-            display: block;
-            padding: 0 10px 0 0;
-        }
-
-        h6 {
-            margin:0;
-            padding: 0 0 3px 0;
-            font-size:16px;
-            color:$lioGrey;
-            font-family: 'Source Sans Pro', sans-serif;
-            font-weight: 400;
-
-            a {
-                color:$lioGrey;
-
-                &:hover {
-                    color:$lioRed;
-                }
-            }
-        }
-
-        .info {
-            float: left;
-        }
-
-        ul {
-            margin:0;
-            padding: 0;
-        }
-
-        li {
-            display: inline;
-            float: left;
-            color:#959595;
-            padding: 0 5px 0 0;
-            // Something is overwriting this, need to fix it
-            margin: 0 !important;
-            font-family: 'Source Sans Pro', sans-serif;
-            font-weight: 400;
-            font-style: italic;
-        }
-    }
 
 }
 

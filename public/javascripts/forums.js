@@ -75,6 +75,13 @@ function bindTagChooser() {
     updateTagDisplay();
 }
 
+function versionSelectToTag() {
+    $('.version input').change(function() {
+        $('.version .selected').removeClass('selected');
+        $(this).closest('label').addClass('selected');
+    })
+}
+
 function bindTabby() {
     $('._tab_indent').tabby();
 }
@@ -87,4 +94,5 @@ $(function() {
     bindTagChooser();
     bindTabby();
     focusFirstInput();
+    versionSelectToTag();
 });

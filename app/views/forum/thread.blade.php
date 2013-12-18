@@ -24,6 +24,12 @@
                 </ul>
             </div>
         </div>
+            @if(Auth::user() && $thread->id == $thread->id && $thread->author_id == Auth::user()->id)
+                <div class="admin-bar">
+                    <li><i class="icon-link"></i>&nbsp;<a href="{{ action('ForumController@getEditComment', [$comment->id]) }}">Edit</a></li>
+                    <li><i class="icon-link"></i>&nbsp;<a href="{{ action('ForumController@getDelete', [$comment->id]) }}">Delete</a></li>
+                </div>
+            @endif
     </div>
     <div class="comments">
         @foreach($comments as $comment)
@@ -35,17 +41,21 @@
 
 @if(Auth::check())
     <div class="reply-form">
-        <h5>Reply</h5>
         {{ Form::open() }}
-        {{ Form::textarea("body", null, ['class' => '_tab_indent']) }}
-        {{ $errors->first('body', '<small class="error">:message</small>') }}
-        <small>Paste a <a href="https://gist.github.com" target="_NEW">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
+            <div class="form-row">
+                <label class="field-title">Reply</label>
+                {{ Form::textarea("body", null, ['class' => '_tab_indent']) }}
+                {{ $errors->first('body', '<small class="error">:message</small>') }}
+                <small>Paste a <a href="https://gist.github.com" target="_NEW">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
+            </div>
 
-        {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
+            <div class="form-row">
+                {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
+            </div>
     </div>
 @else
     <div class="login-cta">
-        <p>Want to reply to this thread? <a class="button" href="{{ action('AuthController@getLogin') }}">Login with github.</a></p>
+        <p>Want to reply to this thread?</p> <a class="button" href="{{ action('AuthController@getLogin') }}">Login with github.</a>
     </div>
 @endif
 

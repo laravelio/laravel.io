@@ -4,11 +4,48 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.reply-form {
-    @include clearfix;
-    padding: 30px 15px;
+.tag {
+    display: block;
+    padding: 7px;
+    background: #cdcdcd;
+    text-align: center;
+    margin:0 5px 5px 0;
+    color:#444444;
+    cursor: pointer;
 
-    h5 {
+    &.active {
+        background: $lioRed;
+        color:white;
+    }
+}
+
+.tags {
+
+    margin: 0;
+    padding: 0;
+
+    @include clearfix;
+
+    ._tag_list ul, ._tag_list li {
+        margin: 0;
+        padding: 0;
+    }
+
+    ._tag_list li {
+        display: inline;
+    }
+
+    .tag {
+        float: left;
+    }
+}
+
+._tag_description_container {
+
+    padding: 15px 0 0 0;
+
+    strong {
+        display: block;
         margin: 0;
         padding: 0 0 10px 0;
         font-size:16px;
@@ -16,22 +53,10 @@
         font-family: 'Source Sans Pro', sans-serif;
         font-weight: 400;
     }
-}
 
-.login-cta
-{
-    @include clearfix;
-    padding: 30px 15px;
-    text-align: center;
-
-    p {
-        float: none;
-        font-size:15px;
-        display: block;
-        padding: 0 0 7px 0;
-    }
-
-    .button {
+    li {
+        list-style-type: disc;
+        padding: 5px 0;
         float: none;
     }
 }
