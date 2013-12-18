@@ -7,7 +7,7 @@
   <title>Laravel.IO - The Official Laravel Framework Community Portal</title>
 
   @section('styles')
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('stylesheets/app.css') }}">
   @show
 
@@ -19,8 +19,8 @@
   @include('layouts._flash')
 
   <div class="holder">
-     <div class="test">
-      {{ $content }}
+     <div class="table">
+        {{ $content }}
       </div>
   </div>
 

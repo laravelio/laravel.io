@@ -4,10 +4,27 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.user-navigation {
+header {
+    text-align: center;
+
     li {
         display: inline;
     }
+
+    @include clearfix;
+    border-bottom:1px solid #cdcdcd;
+    padding: 15px 15px;
+    background: $lioGrey;
+}
+
+.user-navigation {
+    padding: 17px 0 0 0;
+}
+
+.logo {
+    padding: 15px 0 15px 5px;
+    margin: auto;
+    width:125px;
 }
 
 
@@ -24,6 +41,12 @@
 
 @media only screen and (min-width: 768px) {
 
+    .logo {
+        float: left;
+        padding: 15px 0 15px 5px;
+        width:125px;
+    }
+
     header {
         @include clearfix;
         border-bottom:1px solid #cdcdcd;
@@ -36,11 +59,6 @@
         float: right;
     }
 
-    .logo {
-        float: left;
-        padding: 15px 0 15px 5px;
-        width:125px;
-    }
 }
 
 

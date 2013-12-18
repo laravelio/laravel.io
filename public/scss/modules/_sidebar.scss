@@ -4,7 +4,54 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.module {}
+.sidebar {
+
+    border-bottom:1px solid #cdcdcd;
+
+    .search {
+        padding: 15px;
+        border-bottom:1px solid #cdcdcd;
+
+        input {
+            width:100%;
+            padding: 10px 13px;
+            border:none;
+        }
+    }
+
+    ul {
+        margin:0;
+        padding: 10px 15px;
+    }
+
+    ul li {
+        list-style-type: none;
+        margin: 0;
+        @include clearfix;
+
+        span {
+            float: right;
+            padding: 5px 7px;
+            margin: 5px;
+            background: #cdcdcd;
+            color:$lioGrey;
+            font-size:11px;
+        }
+
+        a {
+            display: block;
+            padding: 10px 0;
+            float: left;
+            color:$lioGrey;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 400;
+
+            &:hover {
+                color:$lioRed;
+            }
+        }
+    }
+}
 
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
@@ -22,50 +69,7 @@
 
     .sidebar {
         border-right:1px solid #cdcdcd;
-
-        .search {
-            padding: 15px;
-            border-bottom:1px solid #cdcdcd;
-
-            input {
-                width:100%;
-                padding: 10px 13px;
-                border:none;
-            }
-        }
-
-        ul {
-            margin:0;
-            padding: 10px 15px;
-        }
-
-        ul li {
-            list-style-type: none;
-            margin: 0;
-            @include clearfix;
-
-            span {
-                float: right;
-                padding: 5px 7px;
-                margin: 5px;
-                background: #cdcdcd;
-                color:$lioGrey;
-                font-size:11px;
-            }
-
-            a {
-                display: block;
-                padding: 10px 0;
-                float: left;
-                color:$lioGrey;
-                font-family: 'Source Sans Pro', sans-serif;
-                font-weight: 400;
-
-                &:hover {
-                    color:$lioRed;
-                }
-            }
-        }
+        border-bottom:none;
     }
 }
 

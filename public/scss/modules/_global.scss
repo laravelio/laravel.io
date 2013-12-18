@@ -28,8 +28,7 @@ body,html {
         @include outer-container;
     }
 
-    .test {
-
+    .table {
         @include span-columns(12);
         @include row(table);
     }
@@ -63,13 +62,27 @@ body,html {
 
 @media only screen and (min-width: 1024px) {
 
-    .module {}
 }
 
 
 // BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 1440px) {
+    .table {
+        @include span-columns(12);
+        @include row(table);
+    }
 
-    .module {}
+
+    .sidebar {
+        @include span-columns(2);
+        padding: 0;
+        vertical-align:top;
+    }
+
+    .content {
+        @include span-columns(10);
+        @include reset-display;
+        @include clearfix;
+    }
 }

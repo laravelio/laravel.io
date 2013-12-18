@@ -21,9 +21,21 @@
 @media only screen and (min-width: 768px) {
 
     .empty-state {
+
+        text-align: center;
+
         h3 {
             margin: 0;
+            padding: 25px 0 25px 0;
+        }
+
+        p {
             padding: 0 0 15px 0;
+        }
+
+        .fa {
+            padding: 30px 0 0 0;
+            font-size:60px;
         }
     }
 }

@@ -4,7 +4,30 @@
 
     // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-    .module {}
+    nav {
+        ul li {
+            display: inline;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li a {
+            padding: 0 3px 3px 3px;
+            margin: 0 10px;
+            font-size:16px;
+            color:white;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 300;
+
+            &:hover {
+                border-bottom:3px solid $lioRed;
+            }
+
+        }
+    }
 
 
     // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
