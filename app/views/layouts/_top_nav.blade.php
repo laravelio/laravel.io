@@ -7,6 +7,9 @@
     <nav>
         <ul>
             <li>
+                <a href="{{ action('ArticlesController@getIndex') }}">Articles</a>
+            </li>
+            <li>
                 <a href="{{ action('ForumController@getIndex') }}">Forum</a>
             </li>
         </ul>

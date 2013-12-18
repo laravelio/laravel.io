@@ -39,6 +39,12 @@ class Article extends EloquentBaseModel implements SlugInterface
         return $this->morphMany('Lio\Comments\Comment', 'owner');
     }
 
+    public function updateCommentCount()
+    {
+        $this->comment_count = $this->comments()->count();
+        $this->save();
+    }
+
     public function setTagsAttribute($tagIds)
     {
         $tagRepository = \App::make('\Lio\Tags\TagRepository');
