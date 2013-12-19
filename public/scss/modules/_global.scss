@@ -7,6 +7,7 @@
 body,html {
     background: #ebebeb;
     font-size:13px;
+    height: 100%;
 }
 
 .padding {
@@ -33,6 +34,13 @@ body,html {
         @include outer-container;
     }
 
+    .wrapper {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        margin-bottom:-84px;
+    }
+
     .table {
         @include span-columns(12);
         @include row(table);
@@ -48,10 +56,6 @@ body,html {
         @include span-columns(8.5);
         @include reset-display;
         @include clearfix;
-    }
-
-    footer {
-        display: none;
     }
 
     // Lets put this here for now

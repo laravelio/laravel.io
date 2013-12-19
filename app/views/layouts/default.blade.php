@@ -15,6 +15,7 @@
 </head>
 <body>
 
+<div class="wrapper">
   <div class="top-header">
     @include('layouts._top_nav')
   </div>
@@ -26,8 +27,10 @@
         {{ $content }}
       </div>
   </div>
+</div>
 
-  @include('layouts._footer')
+<div class="push"></div>
+@include('layouts._footer')
 
   @section('scripts')
   	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

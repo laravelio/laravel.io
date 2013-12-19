@@ -7,9 +7,11 @@
 .forum {
 
     @include span-columns(12);
+    float: none;
 
     .threads {
         @include span-columns(12);
+        float: none;
         padding: 15px 15px 15px 15px;
 
         .thread-summary {
