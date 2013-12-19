@@ -31,6 +31,9 @@
                 </div>
             @endif
     </div>
+
+
+
     <div class="comments">
         @foreach($comments as $comment)
             @include('forum._comment')

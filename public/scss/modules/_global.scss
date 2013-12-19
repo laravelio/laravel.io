@@ -14,6 +14,7 @@ body,html {
 }
 
 
+
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 480px) {
@@ -72,6 +73,13 @@ body,html {
 // BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 1440px) {
+
+
+    .holder {
+        max-width: 1200px;
+        margin: auto;
+    }
+
     .table {
         @include span-columns(12);
         @include row(table);
@@ -79,13 +87,13 @@ body,html {
 
 
     .sidebar {
-        @include span-columns(2);
+        @include span-columns(2.5);
         padding: 0;
         vertical-align:top;
     }
 
     .content {
-        @include span-columns(10);
+        @include span-columns(9.5);
         @include reset-display;
         @include clearfix;
     }

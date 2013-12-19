@@ -15,7 +15,9 @@
 </head>
 <body>
 
-  @include('layouts._top_nav')
+  <div class="top-header">
+    @include('layouts._top_nav')
+  </div>
 
 
   <div class="holder">

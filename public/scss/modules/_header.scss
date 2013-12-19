@@ -4,28 +4,34 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-header {
-    text-align: center;
 
-    li {
-        display: inline;
+.top-header {
+    background: $lioGrey;
+
+    header {
+        text-align: center;
+
+        li {
+            display: inline;
+        }
+
+        @include clearfix;
+        padding: 15px 15px;
+
     }
 
-    @include clearfix;
-    border-bottom:1px solid #cdcdcd;
-    padding: 15px 15px;
-    background: $lioGrey;
+    .user-navigation {
+        padding: 17px 0 0 0;
+    }
+
+    .logo {
+        padding: 15px 0 15px 5px;
+        margin: auto;
+        width:125px;
+    }
 }
 
-.user-navigation {
-    padding: 17px 0 0 0;
-}
 
-.logo {
-    padding: 15px 0 15px 5px;
-    margin: auto;
-    width:125px;
-}
 
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
@@ -41,24 +47,24 @@ header {
 
 @media only screen and (min-width: 768px) {
 
-    .logo {
-        float: left;
-        padding: 15px 0 15px 5px;
-        width:125px;
-    }
+    .top-header {
+        .logo {
+            float: left;
+            padding: 15px 0 15px 5px;
+            width:125px;
+        }
 
-    header {
-        @include clearfix;
-        border-bottom:1px solid #cdcdcd;
-        padding: 15px 15px;
-        background: $lioGrey;
-    }
+        header {
+            @include clearfix;
+            padding: 15px 15px;
+            background: $lioGrey;
+        }
 
-    .user-navigation {
-        padding: 17px 0 0 0;
-        float: right;
+        .user-navigation {
+            padding: 17px 0 0 0;
+            float: right;
+        }
     }
-
 }
 
 
@@ -74,5 +80,8 @@ header {
 
 @media only screen and (min-width: 1440px) {
 
-    .module {}
+    .top-header header {
+        max-width: 1200px;
+        margin: auto;
+    }
 }

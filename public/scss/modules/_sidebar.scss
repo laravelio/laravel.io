@@ -14,14 +14,14 @@
 
         input {
             width:100%;
-            padding: 10px 13px;
+            padding: 10px 15px;
             border:none;
         }
     }
 
     ul {
         margin:0;
-        padding: 10px 15px;
+        padding: 10px 10px 10px 5px;
     }
 
     ul li {
@@ -30,24 +30,35 @@
         @include clearfix;
 
         span {
-            float: right;
             padding: 5px 7px;
             margin: 5px;
             background: #cdcdcd;
             color:$lioGrey;
             font-size:11px;
+            position: absolute;
+            right:3px;
+            top:1px;
+            text-align: center;
+            min-width: 25px;
         }
 
         a {
+            position: relative;
+            width:100%;
             display: block;
-            padding: 10px 0;
-            float: left;
+            padding: 10px 13px;
             color:$lioGrey;
             font-family: 'Source Sans Pro', sans-serif;
             font-weight: 400;
 
             &:hover {
-                color:$lioRed;
+                background:$lioRed;
+                color:white;
+
+                span {
+                    background: $lioGrey;
+                    color:white;
+                }
             }
         }
     }
