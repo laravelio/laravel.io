@@ -4,6 +4,20 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
+.comments {
+    h6.title {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
+        font-size:14px;
+        display: block;
+        width:70px;
+        background: #cdcdcd;
+        margin: auto;
+        padding: 5px 10px;
+        text-align: center;
+    }
+}
+
 .comment {
     @include clearfix;
     background: white;

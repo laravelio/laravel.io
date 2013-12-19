@@ -30,8 +30,9 @@
 
         </article>
 
-
         <div class="comments">
+            <h6 class="title">replies</h6>
+
             @foreach($comments as $comment)
                 @include('articles._comment')
             @endforeach
