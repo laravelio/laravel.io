@@ -4,24 +4,11 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.button {
-    padding: 5px 10px;
-    text-align: center;
+.alert-box {
+    width:100%;
+    padding: 15px;
     background: $lioRed;
     color:white;
-
-    &:hover {
-        background:#cdcdcd;
-        color:$lioGrey;
-    }
-
-    &.inverse {
-        background:  $lioGrey;
-
-        &:hover {
-            background: $lioRed;
-        }
-    }
 }
 
 
@@ -38,7 +25,7 @@
 
 @media only screen and (min-width: 768px) {
 
-    .module {}
+
 }
 
 

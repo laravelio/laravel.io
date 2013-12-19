@@ -16,9 +16,10 @@
 <body>
 
   @include('layouts._top_nav')
-  @include('layouts._flash')
+
 
   <div class="holder">
+      @include('layouts._flash')
      <div class="table">
         {{ $content }}
       </div>

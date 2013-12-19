@@ -5,12 +5,10 @@
 @stop
 
 @section('content')
-
-    {{ Form::open() }}
         <div class="header">
             <h1>Create Thread</h1>
         </div>
-
+        {{ Form::open() }}
         <section class="padding">
             <div class="form-row">
                 {{ Form::label('title', 'Title', ['class' => 'field-title']) }}
@@ -47,8 +45,8 @@
             <div class="form-row">
                 {{ Form::button('Save', ['type' => 'submit', 'class' => 'button']) }}
             </div>
-        {{ Form::close() }}
         </section>
+        {{ Form::close() }}
 @stop
 
 @section('scripts')

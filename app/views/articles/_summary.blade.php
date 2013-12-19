@@ -1,11 +1,16 @@
-<article>
-    <h1><a class="more" href="{{ $article->showUrl }}">{{ $article->title }}</a></h1>
-        <ul class="meta">
-            <li><i class="icon-time"></i> {{ $article->published_ago }}</li>
-            <li><i class="icon-user"></i> <a href="{{ $article->author->profileUrl }}">{{ $article->author->name }}</a></li>
-            <li><i class="icon-comments"></i> {{ $article->comment_count_label }}</li>
-        </ul>
+<article class="article-summary">
+    <h2><a class="more" href="{{ $article->showUrl }}">{{ $article->title }}</a></h2>
     <p>{{ $article->summary }}</p>
 
     <a class="button" href="{{ $article->showUrl }}"><span>Read more</span></a>
+
+    <div class="user">
+        {{ $article->author->thumbnail }}
+        <div class="info">
+            <h6><a href="{{ $article->forumThreadUrl }}">{{ $article->author->name }}</a></h6>
+            <ul class="meta">
+                <li>{{ $article->published_ago }}</li>
+            </ul>
+        </div>
+    </div>
 </article>

@@ -5,16 +5,14 @@
 @stop
 
 @section('content')
-    <div class="row forum">
-        <div class="small-12 columns form">
-            {{ Form::open() }}
-                <fieldset>
-                    <legend>Compose Article</legend>
-                    @include('articles._article_form')
-                </fieldset>
-            {{ Form::close() }}
-        </div>
+    <div class="header">
+        <h1>Compose Article</h1>
     </div>
+    {{ Form::open() }}
+        <section class="padding">
+            @include('articles._article_form')
+        </section>
+    {{ Form::close() }}
 @stop
 
 @section('scripts')

@@ -4,25 +4,55 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.button {
-    padding: 5px 10px;
-    text-align: center;
-    background: $lioRed;
-    color:white;
 
-    &:hover {
-        background:#cdcdcd;
-        color:$lioGrey;
-    }
+    article {
+        background: white;
+        position: relative;
+        @include clearfix;
+        padding: 15px;
+        margin: 15px;
 
-    &.inverse {
-        background:  $lioGrey;
+        h2 {
+            margin:0;
+            padding: 0 0 3px 0;
+            font-size:18px;
+            color:$lioGrey;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 600;
+            max-width: 90%;
 
-        &:hover {
-            background: $lioRed;
+            a {
+                color:$lioGrey;
+
+                &:hover {
+                    color:$lioRed;
+                }
+            }
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin: 0 0 0 15px;
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%;
         }
     }
-}
+
+    .article-summary {
+        margin: 0 0 15px 0;
+    }
+
 
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
@@ -38,7 +68,7 @@
 
 @media only screen and (min-width: 768px) {
 
-    .module {}
+
 }
 
 

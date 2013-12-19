@@ -93,6 +93,6 @@ function focusFirstInput() {
 $(function() {
     bindTagChooser();
     bindTabby();
-    focusFirstInput();
+    // focusFirstInput();
     versionSelectToTag();
 });

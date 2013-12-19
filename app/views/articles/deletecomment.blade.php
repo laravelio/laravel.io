@@ -5,21 +5,18 @@
 @stop
 
 @section('content')
-    <div class="row forum">
-        <div class="small-12 columns form">
-            {{ Form::model($comment->resource) }}
-                <fieldset>
-                    <legend>Delete Article Comment</legend>
+<div class="header">
+    <h1>Delete Your Article Comment</h1>
+</div>
 
-                    <p>
-                        Are you sure that you want to delete this comment?
-                    </p>
+    <div class="reply-form">
+        {{ Form::model($comment->resource) }}
+            <div class="form-row">
+                <label class="field-title">Are you sure that you want to delete this comment?</label>
+            </div>
 
-                    <div class="row">
-                        {{ Form::button('Delete', ['type' => 'submit', 'class' => 'button']) }}
-                    </div>
-                </fieldset>
-            {{ Form::close() }}
-        </div>
+            <div class="form-row">
+                {{ Form::button('Delete', ['type' => 'submit', 'class' => 'button']) }}
+            </div>
     </div>
 @stop
