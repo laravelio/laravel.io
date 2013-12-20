@@ -9,7 +9,7 @@ class ForumController extends BaseController
     protected $categories;
     protected $comments;
 
-    protected $threadsPerPage = 5;
+    protected $threadsPerPage = 20;
     protected $commentsPerPage = 20;
 
     public function __construct(CommentRepository $comments, TagRepository $tags)
