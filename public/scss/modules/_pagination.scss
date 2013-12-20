@@ -22,13 +22,13 @@
 
     .pagination {
         @include clearfix;
-        padding: 15px;
-        margin: 0 15px 15px 15px;
-        border-bottom:1px solid #cdcdcd;
+        text-align: center;
 
         ul {
             margin:0;
             padding: 0;
+            display: inline-block;
+            margin: auto;
         }
 
         li {
@@ -40,7 +40,8 @@
         li a, .disabled, .active {
             display: inline-block;
             padding: 7px 15px;
-            font-size: 14px;
+            font-size: 13px;
+            color:$lioGrey;
         }
 
         a:hover {
@@ -49,7 +50,7 @@
         }
 
         .active {
-            background: $lioGrey;
+            background: #cdcdcd;
             color:white;
         }
     }
