@@ -44,7 +44,7 @@
                         {{ Form::text('query', null, ['placeholder' => 'search the laravel.io forum'] )}}
                     </div>
                     <div class="form-row">
-                    {{ Form::button('Save', ['type' => 'submit', 'class' => 'button']) }}
+                    {{ Form::button('Go Find Stuff!', ['type' => 'submit', 'class' => 'button']) }}
                     </div>
                 {{ Form::close() }}
             </div>
