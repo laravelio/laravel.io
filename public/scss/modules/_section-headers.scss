@@ -9,6 +9,10 @@
     padding: 19px 15px 18px 15px;
     border-bottom:1px solid #cdcdcd;
 
+    &.double {
+        border-top:1px solid #cdcdcd;
+    }
+
     h1 {
         font-size:22px;
         margin: 0;

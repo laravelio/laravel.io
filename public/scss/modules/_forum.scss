@@ -4,76 +4,76 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
+.threads {
+    @include span-columns(12);
+    float: none;
+    padding: 15px 15px 15px 15px;
+
+    .thread-summary {
+        position: relative;
+        width:100%;
+        @include clearfix;
+        padding: 12px 20px 12px 10px;
+        margin: 0 0 6px 0;
+
+        img {
+            display: none;
+        }
+
+        h3 {
+            margin:0;
+            padding: 0 0 3px 0;
+            font-size:16px;
+            color:$lioGrey;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 400;
+            max-width: 90%;
+
+            a {
+                color:$lioGrey;
+
+                &:hover {
+                    color:$lioRed;
+                }
+            }
+        }
+
+        ul {
+            margin:0;
+            padding: 0;
+        }
+
+        ul li {
+            display: inline;
+            float: left;
+            color:#959595;
+            padding: 0 5px 0 0;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .comment-count {
+            min-width:25px;
+            position: absolute;
+            right:0px;
+            top:0px;
+            background: #cdcdcd;
+            padding: 5px;
+            text-align: center;
+            color:white;
+        }
+    }
+
+    .thread-summary {
+        background: white;
+    }
+}
+
 .forum {
 
     @include span-columns(12);
     float: none;
-
-    .threads {
-        @include span-columns(12);
-        float: none;
-        padding: 15px 15px 15px 15px;
-
-        .thread-summary {
-            position: relative;
-            width:100%;
-            @include clearfix;
-            padding: 12px 20px 12px 10px;
-            margin: 0 0 6px 0;
-
-            img {
-                display: none;
-            }
-
-            h3 {
-                margin:0;
-                padding: 0 0 3px 0;
-                font-size:16px;
-                color:$lioGrey;
-                font-family: 'Source Sans Pro', sans-serif;
-                font-weight: 400;
-                max-width: 90%;
-
-                a {
-                    color:$lioGrey;
-
-                    &:hover {
-                        color:$lioRed;
-                    }
-                }
-            }
-
-            ul {
-                margin:0;
-                padding: 0;
-            }
-
-            ul li {
-                display: inline;
-                float: left;
-                color:#959595;
-                padding: 0 5px 0 0;
-                font-family: 'Source Sans Pro', sans-serif;
-                font-weight: 400;
-                font-style: italic;
-            }
-
-            .comment-count {
-                min-width:25px;
-                position: absolute;
-                right:0px;
-                top:0px;
-                background: #cdcdcd;
-                padding: 5px;
-                text-align: center;
-                color:white;
-            }
-        }
-
-        .thread-summary {
-            background: white;
-        }
-    }
 
     .thread {
         padding: 15px;
@@ -123,9 +123,9 @@
 
 @media only screen and (min-width: 768px) {
 
-    .forum {
         .threads {
             @include span-columns(12);
+                @include clearfix;
             padding: 15px 15px 15px 15px;
 
             .thread-summary {
@@ -157,7 +157,7 @@
                 }
             }
         }
-    }
+
 
 }
 
