@@ -29,5 +29,9 @@
                 </div>
             @endif
         </div>
+
+        <div class="pagination">
+            {{ $threads->links() }}
+        </div>
     </section>
 @stop

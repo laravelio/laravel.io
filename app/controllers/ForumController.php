@@ -198,4 +198,11 @@ class ForumController extends BaseController
         $comment->delete();
         return Redirect::action('ForumController@getIndex');
     }
+
+    public function getSearch()
+    {
+        $query = Input::get('query');
+        $results = App::make('Lio\Comments\ForumSearch')->searchPaginated($query, $this->threadsPerPage);
+        $this->view('forum.search', compact('query', 'results'));
+    }
 }
