@@ -1,7 +1,7 @@
 @extends('layouts._two_columns_left_sidebar')
 
 @section('sidebar')
-    @include('forum._sidebar')
+    @include('forum._sidebar', ['query' => $query])
 @stop
 
 @section('content')
