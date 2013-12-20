@@ -37,9 +37,17 @@
                 {{ $results->links() }}
             </div>
         @else
-            {{ Form::open(['action' => 'ForumController@getSearch', 'method' => 'GET']) }}
-            {{ Form::text('query', null, ['placeholder' => 'search the laravel.io forum'] )}}
-            {{ Form::close() }}
+            <div class="padding">
+                {{ Form::open(['action' => 'ForumController@getSearch', 'method' => 'GET']) }}
+                    <div class="form-row">
+                        {{ Form::label('query', 'Search the laravel.io forum', ['class' => 'field-title']) }}
+                        {{ Form::text('query', null, ['placeholder' => 'search the laravel.io forum'] )}}
+                    </div>
+                    <div class="form-row">
+                    {{ Form::button('Save', ['type' => 'submit', 'class' => 'button']) }}
+                    </div>
+                {{ Form::close() }}
+            </div>
         @endif
     </section>
 @stop
