@@ -1,11 +1,5 @@
 <?php
 
-Route::get('test', function() {
-
-
-    dd($sectionCounts);
-});
-
 Route::get('/', 'HomeController@getIndex');
 
 // authentication

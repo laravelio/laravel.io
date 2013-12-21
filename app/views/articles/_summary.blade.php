@@ -1,7 +1,7 @@
 <article class="article-summary">
     <h2><a class="more" href="{{ $article->showUrl }}">{{ $article->title }}</a></h2>
-    <p>{{ $article->summary }}</p>
-
+    <p>{{ $article->excerpt }}</p>
+    <a href="{{ $article->showUrl }}">Read More</a>
 
     <div class="user">
         {{ $article->author->thumbnail }}

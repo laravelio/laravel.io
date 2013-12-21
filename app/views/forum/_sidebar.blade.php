@@ -10,7 +10,7 @@
         <li>
             <a href="{{ action('ForumController@getIndex') }}{{ $sectionTags ? '?tags=' . $sectionTags : '' }}">{{ $sectionTitle }}
                 @if($sectionCounts[$sectionTags] > 0)
-                    <span>{{ $sectionCounts[$sectionTags] < 10 ? $sectionCounts[$sectionTags] : '9+' }}</span>
+                    <span class="new">{{ $sectionCounts[$sectionTags] < 10 ? $sectionCounts[$sectionTags] : '9+' }}</span>
                 @endif
             </a>
         </li>
