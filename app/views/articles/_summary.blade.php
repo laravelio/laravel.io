@@ -2,7 +2,6 @@
     <h2><a class="more" href="{{ $article->showUrl }}">{{ $article->title }}</a></h2>
     <p>{{ $article->summary }}</p>
 
-    <a class="button" href="{{ $article->showUrl }}"><span>Read more</span></a>
 
     <div class="user">
         {{ $article->author->thumbnail }}

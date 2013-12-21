@@ -70,17 +70,8 @@ body,html {
 // BREAKPOINT 3 (1024) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 1024px) {
-
-}
-
-
-// BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
-
-@media only screen and (min-width: 1440px) {
-
-
     .holder {
-        max-width: 1200px;
+        max-width: 1024px;
         margin: auto;
     }
 
@@ -91,14 +82,23 @@ body,html {
 
 
     .sidebar {
-        @include span-columns(2.5);
+        @include span-columns(3);
         padding: 0;
         vertical-align:top;
     }
 
     .content {
-        @include span-columns(9.5);
+        @include span-columns(9);
         @include reset-display;
         @include clearfix;
     }
+}
+
+
+// BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1440px) {
+
+
+
 }

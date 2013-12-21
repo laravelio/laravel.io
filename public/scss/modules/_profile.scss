@@ -4,34 +4,18 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
+.user-sidebar {
+    padding: 15px;
 
-.top-header {
-    background: $lioGrey;
-
-    header {
-        text-align: center;
-
-        li {
-            display: inline;
-        }
-
-        @include clearfix;
-        padding: 15px 15px;
-
+    img {
+        max-width: 100%;
     }
 
-    .user-navigation {
-        padding: 17px 0 0 0;
-    }
-
-    .logo {
-        padding: 15px 0 15px 5px;
-        margin: auto;
-        width:125px;
+    h1 {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
     }
 }
-
-
 
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
@@ -47,24 +31,7 @@
 
 @media only screen and (min-width: 768px) {
 
-    .top-header {
-        .logo {
-            float: left;
-            padding: 15px 0 15px 5px;
-            width:125px;
-        }
 
-        header {
-            @include clearfix;
-            padding: 15px 15px;
-            background: $lioGrey;
-        }
-
-        .user-navigation {
-            padding: 17px 0 0 0;
-            float: right;
-        }
-    }
 }
 
 
@@ -72,10 +39,7 @@
 
 @media only screen and (min-width: 1024px) {
 
-    .top-header header {
-        max-width: 1024px;
-        margin: auto;
-    }
+    .module {}
 }
 
 
@@ -83,5 +47,5 @@
 
 @media only screen and (min-width: 1440px) {
 
-
+    .module {}
 }
