@@ -5,15 +5,14 @@
 </div>
 
 <ul>
-    <li><a href="{{ action('ForumController@getIndex') }}">All Threads<span>4</span></a></li>
-    <li><a href="{{ action('ForumController@getIndex') }}?tags=installation,configuration">Installation / Configuration<span>4</span></a></li>
-    <li><a href="{{ action('ForumController@getIndex') }}?tags=authentication,security">Authentication / Security<span>4</span></a></li>
-    <li><a href="{{ action('ForumController@getIndex') }}?tags=requests,input">Requests / Input / Responses<span>4</span></a></li>
-    <li><a href="{{ action('ForumController@getIndex') }}?tags=session,cache">Session / Cache<span>4</span></a></li>
-    <li><a href="{{ action('ForumController@getIndex') }}?tags=database,eloquent">Database / Eloquent<span>4</span></a></li>
-    <li><a href="{{ action('ForumController@getIndex') }}?tags=packages,ioc">Packages / IoC <span>4</span></a></li>
-    <li><a href="{{ action('ForumController@getIndex') }}?tags=views,blade,forms">Views / Blade / Forms<span>14</span></a></li>
-    <li><a href="{{ action('ForumController@getIndex') }}?tags=mail,queues">Mail / Queues<span>4</span></a></li>
-    <li><a href="{{ action('ForumController@getIndex') }}?tags=meetups">Local Community Meetups<span>4</span></a></li>
-    <li><a href="{{ action('ForumController@getIndex') }}?tags=laravelio">Laravel.io Site and Community<span>4</span></a></li>
+    {{-- $forumSections is set in the constructor of the ForumController class --}}
+    @foreach($forumSections as $sectionTitle => $sectionTags)
+        <li>
+            <a href="{{ action('ForumController@getIndex') }}{{ $sectionTags ? '?tags=' . $sectionTags : '' }}">{{ $sectionTitle }}
+                @if($sectionCounts[$sectionTags] > 0)
+                    <span>{{ $sectionCounts[$sectionTags] < 10 ? $sectionCounts[$sectionTags] : '9+' }}</span>
+                @endif
+            </a>
+        </li>
+    @endforeach
 </ul>

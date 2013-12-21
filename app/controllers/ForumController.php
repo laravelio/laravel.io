@@ -9,22 +9,24 @@ class ForumController extends BaseController
     protected $categories;
     protected $comments;
 
-    protected $threadsPerPage = 5;
-    protected $commentsPerPage = 5;
+    protected $threadsPerPage = 20;
+    protected $commentsPerPage = 20;
 
     public function __construct(CommentRepository $comments, TagRepository $tags)
     {
         $this->comments = $comments;
         $this->tags     = $tags;
+
+        View::share('forumSections', Config::get('forum.sections'));
+        $this->setNewSectionCounts();
     }
 
     public function getIndex()
     {
         $tags = $this->tags->getAllTagsBySlug(Input::get('tags'));
-
         $threads = $this->comments->getForumThreadsByTagsPaginated($tags, $this->threadsPerPage);
         $threads->appends(['tags' => Input::get('tags')]);
-
+        $this->updateUserLastVisited();
         $this->view('forum.index', compact('threads'));
     }
 
@@ -32,7 +34,6 @@ class ForumController extends BaseController
     {
         $thread   = App::make('slugModel');
         $comments = $this->comments->getThreadCommentsPaginated($thread, $this->commentsPerPage);
-
         $this->view('forum.thread', compact('thread', 'comments'));
     }
 
@@ -51,8 +52,11 @@ class ForumController extends BaseController
         ]);
 
         if ( ! $comment->isValid()) return $this->redirectBack(['errors' => $comment->getErrors()]);
-
         $thread->children()->save($comment);
+
+        // update cache for sidebar counts
+        $timestamps = App::make('Lio\Caching\ForumSectionTimestampFetcher')->cacheSections(Config::get('forum.sections'));
+        Cache::put('forum_sidebar_timestamps', $timestamps, 1440);
 
         return $this->redirectAction('ForumController@getThread', [$thread->slug->slug]);
     }
@@ -93,6 +97,10 @@ class ForumController extends BaseController
 
         // load new slug
         $commentSlug = $comment->slug()->first()->slug;
+
+        // update cache for sidebar counts
+        $timestamps = App::make('Lio\Caching\ForumSectionTimestampFetcher')->cacheSections(Config::get('forum.sections'));
+        Cache::put('forum_sidebar_timestamps', $timestamps, 1440);
 
         return $this->redirectAction('ForumController@getThread', [$commentSlug]);
     }
@@ -204,5 +212,31 @@ class ForumController extends BaseController
         $query = Input::get('query');
         $results = App::make('Lio\Comments\ForumSearch')->searchPaginated($query, $this->threadsPerPage);
         $this->view('forum.search', compact('query', 'results'));
+    }
+
+    private function updateUserLastVisited()
+    {
+        $forumLastVisited = Session::get('forum_last_visited');
+        $tags = Input::get('tags');
+
+        if (is_array($forumLastVisited)) {
+            View::share('last_visited_timestamp', isset($forumLastVisited[$tags]) ? $forumLastVisited[$tags] : 0);
+            $forumLastVisited[$tags] = strtotime('now');
+        } else {
+            View::share('last_visited_timestamp', 0);
+            $forumLastVisited = [$tags => strtotime('now')];
+        }
+
+        Session::put('forum_last_visited', $forumLastVisited);
+    }
+
+    private function setNewSectionCounts()
+    {
+        $timestamps = Cache::rememberForever('forum_sidebar_timestamps', function() {
+            return App::make('Lio\Caching\ForumSectionTimestampFetcher')->cacheSections(Config::get('forum.sections'));
+        });
+        $calculator = new Lio\Caching\UserForumSectionUpdateCountCalculator(Config::get('forum.sections'), Session::get('forum_last_visited'), $timestamps);
+        $sectionCounts = $calculator->getCounts();
+        View::share('sectionCounts', $sectionCounts);
     }
 }

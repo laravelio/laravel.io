@@ -1,5 +1,16 @@
 <?php
 
+Route::get('test', function() {
+    $timestamps = Cache::rememberForever('forum_sidebar_timestamps', function() {
+        return App::make('Lio\Caching\ForumSectionTimestampFetcher')->cacheSections(Config::get('forum.sections'));
+    });
+
+    $calculator = new Lio\Caching\UserForumSectionUpdateCountCalculator(Config::get('forum.sections'), Session::get('forum_last_visited'), $timestamps);
+    $sectionCounts = $calculator->getCounts();
+
+    dd($sectionCounts);
+});
+
 Route::get('/', 'HomeController@getIndex');
 
 // authentication
