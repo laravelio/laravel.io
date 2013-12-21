@@ -22,7 +22,7 @@
             font-family: 'Source Sans Pro', sans-serif;
             font-weight: 300;
 
-            &:hover {
+            &:hover, &.active {
                 border-bottom:3px solid $lioRed;
             }
 
