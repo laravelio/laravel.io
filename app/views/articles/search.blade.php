@@ -24,7 +24,7 @@
                 @else
                     {{-- If no comments are found display a message --}}
                     <div class="empty-state">
-                        <h3>No results found on the forum for "{{ $query }}"</h3>
+                        <h3>No results found in the articles for "{{ $query }}"</h3>
                     </div>
                 @endif
             </div>
