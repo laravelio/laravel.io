@@ -38,6 +38,7 @@ Route::get('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesControlle
 Route::post('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@postCompose']);
 Route::get('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@getEdit']);
 Route::post('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@postEdit']);
+Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum
 Route::get('forum', 'ForumController@getIndex');

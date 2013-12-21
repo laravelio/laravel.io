@@ -11,6 +11,7 @@ class ArticlesController extends BaseController
     private $tags;
     private $comments;
 
+    private $articlesPerPage = 20;
     private $commentsPerPage = 20;
 
     public function __construct(ArticleRepository $articles, TagRepository $tags, CommentRepository $comments)
@@ -188,5 +189,12 @@ class ArticlesController extends BaseController
         $comment->delete();
 
         return Redirect::action('ArticlesController@getShow', [$article->slug->slug]);
+    }
+
+    public function getSearch()
+    {
+        $query = Input::get('query');
+        $results = App::make('Lio\Articles\ArticleSearch')->searchPaginated($query, $this->articlesPerPage);
+        $this->view('articles.search', compact('query', 'results'));
     }
 }

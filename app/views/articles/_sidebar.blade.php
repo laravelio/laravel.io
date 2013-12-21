@@ -1,5 +1,7 @@
 <div class="search">
-    {{ Form::text('search', null, ['placeholder' => 'search the laravel.io forum'] )}}
+    {{ Form::open(['action' => 'ArticlesController@getSearch', 'method' => 'GET']) }}
+    {{ Form::text('query', null, ['placeholder' => 'search the laravel.io articles'] )}}
+    {{ Form::close() }}
 </div>
     <ul>
         <li><a href="{{ action('ArticlesController@getIndex') }}">All Articles</a></li>

@@ -211,6 +211,7 @@ class ForumController extends BaseController
     {
         $query = Input::get('query');
         $results = App::make('Lio\Comments\ForumSearch')->searchPaginated($query, $this->threadsPerPage);
+        $this->updateUserLastVisited();
         $this->view('forum.search', compact('query', 'results'));
     }
 
