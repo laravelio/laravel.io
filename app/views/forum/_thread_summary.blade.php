@@ -1,7 +1,7 @@
 <div class="thread-summary">
     {{ $thread->author->thumbnail }}
     <div class="info">
-        <h3><a href="{{ $thread->forumThreadUrl }}">{{ $thread->title }}</a></h3>
+        <h3><a href="{{ $thread->forumThreadUrl }}">{{ $thread->laravel_version ? $thread->laravel_version . ' ' : '' }}{{ $thread->title }}</a></h3>
         <ul class="meta">
             <li>posted {{ $thread->created_ago }}</li>
             <li>by <a href="{{ $thread->author->profileUrl }}">{{ $thread->author->name }}</a></li>

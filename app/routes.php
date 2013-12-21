@@ -1,12 +1,7 @@
 <?php
 
 Route::get('test', function() {
-    $timestamps = Cache::rememberForever('forum_sidebar_timestamps', function() {
-        return App::make('Lio\Caching\ForumSectionTimestampFetcher')->cacheSections(Config::get('forum.sections'));
-    });
 
-    $calculator = new Lio\Caching\UserForumSectionUpdateCountCalculator(Config::get('forum.sections'), Session::get('forum_last_visited'), $timestamps);
-    $sectionCounts = $calculator->getCounts();
 
     dd($sectionCounts);
 });
@@ -26,7 +21,7 @@ Route::get('dashboard', ['before' => 'auth', 'uses' => 'DashboardController@getI
 Route::get('dashboard/articles', ['before' => 'auth', 'uses' => 'ArticlesController@getDashboard']);
 
 // user profile
-Route::get('user/{userSlug}', ['before' => 'auth', 'uses' => 'UsersController@getProfile']);
+Route::get('user/{userSlug}', 'UsersController@getProfile');
 
 // chat
 Route::get('contributors', 'ContributorsController@getIndex');
