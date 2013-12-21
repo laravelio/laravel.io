@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="thread">
-        <h2>{{ $thread->title }}</h2>
+        <h2>{{ $thread->laravel_version ? $thread->laravel_version . ' ' : '' }}{{ $thread->title }}</h2>
         {{ $thread->body }}
         <div class="user">
             {{ $thread->author->thumbnail }}

@@ -7,7 +7,6 @@
   <title>Laravel.IO - The Official Laravel Framework Community Portal</title>
 
   @section('styles')
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('stylesheets/app.css') }}">
   @show
 
@@ -33,7 +32,7 @@
 @include('layouts._footer')
 
   @section('scripts')
-  	<script src="{{ asset('javascripts/vendor/jquery.js') }}"></script>
+  	<script src="{{ asset('javascripts/vendor/jquery.min.js') }}"></script>
   @show
 </body>
 </html>
