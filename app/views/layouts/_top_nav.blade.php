@@ -7,10 +7,10 @@
     <nav>
         <ul>
             <li>
-                <a class="{{ Request::is('articles') ? 'active' : null }}" href="{{ action('ArticlesController@getIndex') }}">Articles</a>
+                <a class="{{ Request::is('article*') ? 'active' : null }}" href="{{ action('ArticlesController@getIndex') }}">Articles</a>
             </li>
             <li>
-                <a class="{{ Request::is('forum') ? 'active' : null }}" href="{{ action('ForumController@getIndex') }}">Forum</a>
+                <a class="{{ Request::is('forum*') ? 'active' : null }}" href="{{ action('ForumController@getIndex') }}">Forum</a>
             </li>
         </ul>
     </nav>
