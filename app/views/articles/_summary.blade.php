@@ -6,7 +6,7 @@
     <div class="user">
         {{ $article->author->thumbnail }}
         <div class="info">
-            <h6><a href="{{ $article->forumThreadUrl }}">{{ $article->author->name }}</a></h6>
+            <h6><a href="{{ $article->author->profileUrl }}">{{ $article->author->name }}</a></h6>
             <ul class="meta">
                 <li>{{ $article->published_ago }}</li>
             </ul>
