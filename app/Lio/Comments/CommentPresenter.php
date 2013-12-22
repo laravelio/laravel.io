@@ -59,6 +59,16 @@ class CommentPresenter extends BasePresenter
         return App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($summary);
     }
 
+    public function laravel_version()
+    {
+        if ($this->resource->laravel_version == 3) {
+            return '[L3]';
+        }
+        if ($this->resource->laravel_version == 4) {
+            return '[L4]';
+        }
+    }
+
     // ------------------- //
 
     private function convertMarkdown($content)

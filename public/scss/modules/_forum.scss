@@ -1,91 +1,124 @@
 /* ==========================================================================
-   FORUM
+   MOBILE FIRST MODULE SKELETON
    ========================================================================== */
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.forum {
-    @include outer-container;
-    @include omega();
-    padding: 2%;
-    max-width: 900px;
+.threads {
+    @include span-columns(12);
+    float: none;
+    padding: 15px 15px 15px 15px;
 
-    h1 {
-        font-size:23px;
-        padding:0 0 0 0;
-        margin: 0;
-        font-weight: 600;
-    }
-
-    h2 {
-        font-size:14px;
-        padding: 0 0 0 3px;
-    }
-
-    .tags {
-        font-size:13px;
-        padding: 5px 0 0 0;
-        display: block;
+    .thread-summary {
+        position: relative;
+        width:100%;
         @include clearfix;
-    }
+        padding: 12px 20px 12px 10px;
+        margin: 0 0 6px 0;
 
-    .version {
-        font-size:13px;
-        margin: 0;
-        padding: 0px 0 10px 0;
-        display: block;
-        font-style: italic;
-    }
-
-    article {
-        padding:22px 5px 7px 0;
-        border-top: 1px solid #ccc;
-        @include clearfix;
-
-        .title-tags {
-            float: left;
+        img {
+            display: none;
         }
 
         h3 {
+            margin:0;
+            padding: 0 0 3px 0;
             font-size:16px;
-            margin: 0;
-            padding: 0 0 5px 0;
+            color:$lioGrey;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 400;
+            max-width: 90%;
 
-            a:visited {
-                color:#aaa;
-            }
-
-            &:hover a {
+            a {
                 color:$lioGrey;
+
+                &:hover {
+                    color:$lioRed;
+                }
             }
         }
 
-        .meta {
+        ul {
+            margin:0;
             padding: 0;
-            margin: 0;
-            float: right;
+        }
 
-            li a {
-                color:$lioRed;
+        ul li {
+            display: inline;
+            float: left;
+            color:#959595;
+            padding: 0 5px 0 0;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .comment-count {
+            min-width:25px;
+            position: absolute;
+            right:0px;
+            top:0px;
+            background: #cdcdcd;
+            padding: 5px;
+            text-align: center;
+            color:white;
+
+            &.new {
+                background: $lioRed;
             }
         }
     }
 
-    article:last-child {
-        border-bottom: 1px solid #ccc;
+    .thread-summary {
+        background: white;
     }
 }
 
+.forum {
 
+    @include span-columns(12);
+    float: none;
+
+    .thread {
+        padding: 15px;
+        margin: 15px;
+        background: white;
+
+        h2 {
+            padding: 3px 0 15px 0;
+            margin: 0;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 400;
+        }
+
+        p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin: 0 0 0 15px;
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+    }
+}
 
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 480px) {
 
-    .forum {
-        @include span-columns(9);
-    }
+    .module {}
 
 }
 
@@ -94,11 +127,43 @@
 
 @media only screen and (min-width: 768px) {
 
-    .forum {
-        @include span-columns(9);
-        @include omega();
-        max-width: 900px;
-    }
+        .threads {
+            @include span-columns(12);
+            @include clearfix;
+            padding: 15px 15px 15px 15px;
+            float: none;
+
+            .thread-summary {
+                img {
+                    float: left;
+                    height: auto;
+                    width:50px;
+                    display: block;
+                    padding: 0 10px 0 0;
+                }
+
+                h3 {
+                    max-width: 100%;
+                }
+
+                .info {
+                    float: left;
+                }
+
+                .comment-count {
+                    position: relative;
+                    min-width:25px;
+                    float: right;
+                    background: #cdcdcd;
+                    padding: 5px;
+                    margin: 6px 0 0 0;
+                    text-align: center;
+                    color:white;
+                }
+            }
+        }
+
+
 }
 
 

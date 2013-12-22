@@ -1,57 +1,57 @@
 /* ==========================================================================
-   Articles
+   MOBILE FIRST MODULE SKELETON
    ========================================================================== */
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.articles {
-    @include span-columns(12);
-    @include omega();
-    padding: 2%;
-    max-width: 900px;
-
-    h1 {
-        font-size:23px;
-    }
 
     article {
-        margin: 0 0 2rem 0;
-        padding: 0;
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 1rem;
-
-        h1 {
-            font-size:23px;
-            padding:0 0 10px 0;
-            margin: 0;
-            font-weight: 600;
-        }
+        background: white;
+        position: relative;
+        @include clearfix;
+        padding: 15px;
+        margin: 15px;
 
         h2 {
-            font-size:14px;
-            padding: 0 0 0 3px;
-        }
+            margin:0;
+            padding: 0 0 3px 0;
+            font-size:18px;
+            color:$lioGrey;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 600;
+            max-width: 90%;
 
+            a {
+                color:$lioGrey;
 
-        h3 {
-            font-size:20px;
-            @extend .gamma;
-            border-bottom: 1px solid #eee;
-            padding: 0 0 8px 0;
+                &:hover {
+                    color:$lioRed;
+                }
+            }
         }
 
         p {
-            font-size:14px;
-            padding: 0 0 14px 0;
-            margin:0;
+            line-height: 1.5;
         }
 
-        p + p {
-            text-indent: 0;
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin: 0 0 0 15px;
+            line-height: 1.5;
+        }
+
+        img {
+            max-width: 100%;
         }
     }
 
-}
+    .article-summary {
+        margin: 0 0 15px 0;
+    }
 
 
 
@@ -68,11 +68,7 @@
 
 @media only screen and (min-width: 768px) {
 
-    .articles {
-        @include span-columns(9);
-        @include omega();
-        max-width: 900px;
-    }
+
 }
 
 

@@ -75,6 +75,23 @@ function bindTagChooser() {
     updateTagDisplay();
 }
 
+function versionSelectToTag() {
+
+    var versionTags = $('.version').find('input');
+
+    versionTags.each(function() {
+        if ($(this).prop('checked')) {
+            $(this).closest('label').addClass('selected');
+        }
+    });
+
+
+    $('.version input').change(function() {
+        $('.version .selected').removeClass('selected');
+        $(this).closest('label').addClass('selected');
+    })
+}
+
 function bindTabby() {
     $('._tab_indent').tabby();
 }
@@ -82,4 +99,5 @@ function bindTabby() {
 $(function() {
     bindTagChooser();
     bindTabby();
+    versionSelectToTag();
 });

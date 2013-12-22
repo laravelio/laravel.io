@@ -1,0 +1,57 @@
+/* ==========================================================================
+   MOBILE FIRST MODULE SKELETON
+   ========================================================================== */
+
+// MOBILE STYLES ////////////////////////////////////////////////////////////
+
+.module {}
+
+
+// BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 480px) {
+
+    .module {}
+
+}
+
+
+// BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 768px) {
+
+    .empty-state {
+
+        text-align: center;
+
+        h3 {
+            margin: 0;
+            padding: 25px 0 25px 0;
+        }
+
+        p {
+            padding: 0 0 15px 0;
+        }
+
+        .fa {
+            padding: 30px 0 0 0;
+            font-size:60px;
+        }
+    }
+}
+
+
+// BREAKPOINT 3 (1024) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1024px) {
+
+    .module {}
+}
+
+
+// BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1440px) {
+
+    .module {}
+}

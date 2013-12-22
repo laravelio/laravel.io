@@ -1,5 +1,8 @@
-<div class="categories">
-    <h4>Categories</h4>
+<div class="search">
+    {{ Form::open(['action' => 'ArticlesController@getSearch', 'method' => 'GET']) }}
+    {{ Form::text('query', isset($query) ? $query : '', ['placeholder' => 'search the laravel.io articles'] )}}
+    {{ Form::close() }}
+</div>
     <ul>
         <li><a href="{{ action('ArticlesController@getIndex') }}">All Articles</a></li>
         <li><a href="{{ action('ArticlesController@getIndex') }}?tags=news">News</a></li>
@@ -14,9 +17,9 @@
         <li><a href="{{ action('ArticlesController@getIndex') }}?tags=meetups">Meetups / Local Communities</a></li>
         <li><a href="{{ action('ArticlesController@getIndex') }}?tags=laravelio">Laravel.io Site and Community</a></li>
     </ul>
-</div>
 
-<div class="new-post">
+
+<div class="write-article">
     <h4>Write an Article</h4>
     <p>We rely on community members to provide the resources that you see here. You can be a hero. Contribute your knowledge.</p>
     <a class="button full" href="{{ action('ArticlesController@getCompose') }}">Write an Article</a>

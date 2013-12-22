@@ -2,6 +2,7 @@
 
 use McCool\LaravelAutoPresenter\BasePresenter;
 use \Michelf\MarkdownExtra;
+use App, Str;
 
 class ArticlePresenter extends BasePresenter
 {
@@ -21,9 +22,13 @@ class ArticlePresenter extends BasePresenter
         return $this->resource->comment_count . ' Comments';
     }
 
-    public function summary()
+    public function excerpt()
     {
-        return \Str::words($this->resource->content, 70);
+        // kinda a mess but s'ok for now
+        $html = App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($this->resource->content);
+        $text = strip_tags($html);
+        list($excerpt, $dump) = explode("\n\n", $text);
+        return Str::words($excerpt, 200);
     }
 
     public function published_at()

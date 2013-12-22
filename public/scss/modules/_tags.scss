@@ -4,62 +4,69 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.user-information {
-    img {
-        width:100%;
-    }
+.tag {
+    display: block;
+    padding: 7px;
+    background: #cdcdcd;
+    text-align: center;
+    margin:0 5px 5px 0;
+    color:#444444;
+    cursor: pointer;
 
-    h1
-    {
-        padding: 10px 0 0 0;
-        font-size:20px;
-    }
-
-    a
-    {
-        font-size:14px;
+    &.active {
+        background: $lioRed;
+        color:white;
     }
 }
 
+.tags {
 
-.user-content {
-    @include span-columns(12);
-    padding: 2%;
+    margin: 0;
+    padding: 0;
 
-    h1 {
-        font-size:18px;
-        padding:0 0 15px 10px;
+    @include clearfix;
+
+    ._tag_list ul, ._tag_list li {
         margin: 0;
-        font-weight: 600;
+        padding: 0;
     }
 
-    .comments {
-        padding: 0 0 30px 0;
+    ._tag_list li {
+        display: inline;
     }
 
-    .comment .content {
-        @include span-columns(12);
-        h2
-        {
-            font-weight: 600;
-            font-size:16px;
-        }
+    .tag {
+        float: left;
     }
 }
+
+._tag_description_container {
+
+    padding: 15px 0 0 0;
+
+    strong {
+        display: block;
+        margin: 0;
+        padding: 0 0 10px 0;
+        font-size:16px;
+        color:$lioGrey;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
+    }
+
+    li {
+        list-style-type: disc;
+        padding: 5px 0;
+        float: none;
+    }
+}
+
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 480px) {
 
-    .user-content {
-        @include span-columns(9);
-
-        .half
-        {
-            @include span-columns(6);
-            float: left;
-        }
-    }
+    .module {}
 
 }
 
@@ -68,7 +75,7 @@
 
 @media only screen and (min-width: 768px) {
 
-    .module {}
+
 }
 
 

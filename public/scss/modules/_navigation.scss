@@ -1,0 +1,84 @@
+    /* ==========================================================================
+       MOBILE FIRST MODULE SKELETON
+       ========================================================================== */
+
+    // MOBILE STYLES ////////////////////////////////////////////////////////////
+
+    nav {
+        ul li {
+            display: inline;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li a {
+            padding: 0 3px 3px 3px;
+            margin: 0 10px;
+            font-size:16px;
+            color:white;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 300;
+
+            &:hover, &.active {
+                border-bottom:3px solid $lioRed;
+            }
+
+        }
+    }
+
+
+    // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
+
+    @media only screen and (min-width: 480px) {
+
+        .module {}
+
+    }
+
+
+    // BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
+
+    @media only screen and (min-width: 768px) {
+
+        nav {
+            float: left;
+            padding: 23px 0 0 15px;
+
+            ul li {
+                display: inline;
+            }
+
+            ul li a {
+                padding: 0 3px 3px 3px;
+                margin: 0 10px;
+                font-size:16px;
+                color:white;
+                font-family: 'Source Sans Pro', sans-serif;
+                font-weight: 300;
+
+                &:hover {
+                    border-bottom:3px solid $lioRed;
+                }
+
+            }
+        }
+    }
+
+
+    // BREAKPOINT 3 (1024) ////////////////////////////////////////////////////////////
+
+    @media only screen and (min-width: 1024px) {
+
+        .module {}
+    }
+
+
+    // BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
+
+    @media only screen and (min-width: 1440px) {
+
+        .module {}
+    }

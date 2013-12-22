@@ -117,4 +117,9 @@ class Comment extends EloquentBaseModel implements SlugInterface
         }
         parent::delete();
     }
+
+    public function isNewerThan($timestamp)
+    {
+        return strtotime($this->updated_at) > $timestamp;
+    }
 }

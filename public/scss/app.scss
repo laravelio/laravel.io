@@ -16,27 +16,27 @@
 @import "vendor/normalize/normalize";
 @import "vendor/bourbon/bourbon";
 @import "vendor/neat/neat";
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,700,300);
-@import "vendor/typeplate/typeplate";
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700);
+
 
 /* ==========================================================================
    Modules
    ========================================================================== */
-@import "modules/articles";
-@import "modules/categories";
-@import "modules/contributors";
-@import "modules/header";
-@import "modules/hero-section";
-@import "modules/meta";
-@import "modules/post";
-@import "modules/sidebar";
-@import "modules/forum";
-@import "modules/form";
-@import "modules/comments";
-@import "modules/dashboard";
-@import "modules/code";
-@import "modules/alert";
-@import "modules/auth";
-@import "modules/pagination";
-@import "modules/footer";
-@import "modules/buttons";
+@import "modules/_header";
+@import "modules/_navigation";
+@import "modules/_global";
+@import "modules/_forum";
+@import "modules/_buttons";
+@import "modules/_sidebar";
+@import "modules/_empty-state";
+@import "modules/_comments";
+@import "modules/_user";
+@import "modules/_reply";
+@import "modules/_pagination";
+@import "modules/_form";
+@import "modules/_section-headers";
+@import "modules/_tags";
+@import "modules/_articles";
+@import "modules/_alert";
+@import "modules/_footer";
+@import "modules/_profile";

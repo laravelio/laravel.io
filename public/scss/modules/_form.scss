@@ -1,128 +1,83 @@
 /* ==========================================================================
-   FORUM
+   MOBILE FIRST MODULE SKELETON
    ========================================================================== */
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.form {
+.form-row {
     @include span-columns(12);
+    margin: 0 0 15px 0;
 
-
-    fieldset {
-        border: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .button {
-        margin: 15px 0 0 0;
-    }
-
-        h2 {
-            font-size:20px;
-            @extend .gamma;
-            border-bottom: 1px solid #eee;
-            padding: 0 0 13px 0;
-        }
-
-        h3 {
-            font-size:20px;
-            @extend .gamma;
-            border-bottom: 1px solid #eee;
-            padding: 20px 0 13px 0;
-        }
-
-    legend {
+    label.field-title {
         display: block;
-        width: 100%;
-        padding: 13px 0;
         margin: 0;
-        font-size:20px;
-        @extend .gamma;
-        border-bottom: 1px solid #eee;
-    }
-
-    .tags {
-        list-style-type: none;
-        margin:0;
-        padding: 0;
-        @include clearfix;
-
-        li {
-            display: inline;
-            padding: 4px 0 6px 0;
-            font-size:13px;
-        }
-
-        li a {
-            display: inline-block;
-            padding: 5px 10px;
-                margin: 0 0 3px 0;
-            background: $lioGrey;
-            color:white;
-        }
-
-        li a.active {
-            background: $lioRed;
-        }
-
-        li a.disabled {
-            background: #ccc;
-        }
-    }
-
-    label {
-        font-weight:bold;
-        font-size:14px;
-        padding: 6px 0;
-        cursor: pointer;
-        display: block;
+        padding: 0 0 10px 0;
+        font-size:16px;
+        color:$lioGrey;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
     }
 
     input[type=text] {
-        display: block;
-        width: 100%;
-        border: none;
-        background: #000;
-        color:white;
-        padding: 10px;
-        font-size:15px;
+        padding: 15px;
+        border:none;
+        width:100%;
     }
 
     textarea {
+       @include span-columns(12);
+       float: none;
+       padding: 15px;
+       border:none;
+    }
+
+    small {
         display: block;
-        width: 100%;
+    }
+
+    textarea {
+        width:100%;
+    }
+
+    button {
         border: none;
-        background: #000;
-        color:white;
-        padding: 10px;
-        font-size:15px;
     }
 
-    textarea[disabled]
-    {
+    small {
+        padding: 10px 0;
         display: block;
-        width: 100%;
-        border: none;
-        background: #ccc;
+        font-size:12px;
+    }
+
+    .version {
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: inline;
+        }
+
+        label {
+            float: left;
+            cursor: pointer;
+        }
+
+        label.selected {
+            background: $lioRed;
+            color:white;
+        }
+
+        input {
+            display: none;
+        }
+    }
+
+    small.error {
+        width:100%;
+        padding: 5px;
+        background: $lioRed;
         color:white;
-        padding: 10px;
-        font-size:15px;
-        height: 50px;
-        margin: 0 0 20px 0;
     }
-
-    .gist {
-        padding: 5px 0 0 0;
-        display: block;
-    }
-}
-
-.error {
-    background:  $lioRed;
-    display: block;
-    padding: 5px;
-    color:white;
 }
 
 

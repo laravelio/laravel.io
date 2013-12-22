@@ -4,32 +4,7 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.pagination {
-    @include clearfix;
-    margin: 0 0 15px 0;
-
-    li {
-        float: left;
-        margin: 0;
-        list-style-type: none;
-    }
-
-    li a, .disabled, .active {
-        display: inline-block;
-        padding: 7px 15px;
-        font-size: 14px;
-    }
-
-    a:hover {
-        background: $lioRed;
-        color:white;
-    }
-
-    .active {
-        background: $lioRed;
-        color:white;
-    }
-}
+.module {}
 
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
@@ -45,7 +20,41 @@
 
 @media only screen and (min-width: 768px) {
 
-    .module {}
+    .pagination {
+        @include clearfix;
+        text-align: center;
+
+        ul {
+            margin:0;
+            padding: 0;
+            display: inline-block;
+            margin: auto;
+        }
+
+        li {
+            float: left;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        li a, .disabled, .active {
+            display: inline-block;
+            padding: 7px 15px;
+            font-size: 13px;
+            color:$lioGrey;
+        }
+
+        a:hover {
+            background: $lioRed;
+            color:white;
+        }
+
+        .active {
+            background: #cdcdcd;
+            color:white;
+        }
+    }
+
 }
 
 

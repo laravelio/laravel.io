@@ -1,17 +1,83 @@
 /* ==========================================================================
-   SIDEBAR
+   MOBILE FIRST MODULE SKELETON
    ========================================================================== */
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
 .sidebar {
-    padding: 2%;
-    @include span-columns(12);
-}
 
-.new-post {
-    font-size: 80%;
-    margin: 2rem 0;
+    border-bottom:1px solid #cdcdcd;
+
+    .search {
+        padding: 15px;
+        border-bottom:1px solid #cdcdcd;
+
+        input {
+            width:100%;
+            padding: 10px 15px;
+            border:none;
+        }
+    }
+
+    ul {
+        margin:0;
+        padding: 10px 10px 10px 5px;
+    }
+
+    ul li {
+        list-style-type: none;
+        margin: 0;
+        @include clearfix;
+
+        span {
+            padding: 5px 7px;
+            margin: 5px;
+            background: #cdcdcd;
+            color:$lioGrey;
+            font-size:11px;
+            position: absolute;
+            right:3px;
+            top:1px;
+            text-align: center;
+            min-width: 25px;
+        }
+
+        a {
+            position: relative;
+            width:100%;
+            display: block;
+            padding: 10px 13px;
+            color:$lioGrey;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 400;
+
+            &:hover {
+                background:$lioRed;
+                color:white;
+
+                span {
+                    background: $lioGrey;
+                    color:white;
+                }
+            }
+        }
+    }
+
+    .write-article {
+        border-top:1px solid #cdcdcd;
+        padding: 15px;
+
+        h4 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 600;
+            font-size:1.2em;
+            margin: 0;
+        }
+
+        p {
+            padding: 0 0 7px 0;
+        }
+    }
 }
 
 
@@ -19,6 +85,7 @@
 
 @media only screen and (min-width: 480px) {
 
+    .module {}
 
 }
 
@@ -28,7 +95,8 @@
 @media only screen and (min-width: 768px) {
 
     .sidebar {
-    	@include span-columns(3);
+        border-right:1px solid #cdcdcd;
+        border-bottom:none;
     }
 }
 
@@ -37,6 +105,7 @@
 
 @media only screen and (min-width: 1024px) {
 
+    .module {}
 }
 
 
@@ -44,4 +113,5 @@
 
 @media only screen and (min-width: 1440px) {
 
+    .module {}
 }

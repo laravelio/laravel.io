@@ -4,52 +4,65 @@
     @include('forum._sidebar')
 @stop
 
-<style>
-    /* Better styles for embedding GitHub Gists */
-    .gist{font-size:13px;line-height:18px;margin-bottom:20px;width:100%}
-    .gist pre{font-family:Menlo,Monaco,'Bitstream Vera Sans Mono','Courier New',monospace !important}
-    .gist-meta{font-family:Helvetica,Arial,sans-serif;font-size:13px !important}
-    .gist-meta a{color:#26a !important;text-decoration:none}
-    .gist-meta a:hover{color:#0e4071 !important}
-</style>
-
 @section('content')
-    <div class="row forum">
-        <div class="small-12 columns comments">
-            @foreach($comments as $comment)
-                @include('forum._comment')
-            @endforeach
-
-            {{ $comments->links() }}
-
-            @if(Auth::check())
-                <div class="row">
-                    <div class="small-12 columns form">
-                        {{ Form::open() }}
-                            <fieldset>
-                                <legend>Reply</legend>
-                                <div class="row">
-                                    <div>
-                                        {{ Form::textarea("body", null, ['class' => '_tab_indent']) }}
-                                        {{ $errors->first('body', '<small class="error">:message</small>') }}
-
-                                        {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
-                                        <small>Paste a <a href="https://gist.github.com" target="_NEW">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
-                                    </div>
-                                </div>
-                            </fieldset>
-                        {{ Form::close() }}
-                    </div>
-                </div>
-            @else
-                <div class="row">
-                    <div class="small-12 columns form">
-                        <p class="right">Want to reply to this thread? <a class="button" href="{{ action('AuthController@getLogin') }}">Login with github.</a></p>
-                    </div>
-                </div>
-            @endif
+<div class="forum">
+    <div class="header">
+        <h1>Forum</h1>
+        <div class="tags">
+            {{ $thread->tags->getTagList() }}
         </div>
     </div>
+    <div class="thread">
+        <h2>{{ $thread->laravel_version ? $thread->laravel_version . ' ' : '' }}{{ $thread->title }}</h2>
+        {{ $thread->body }}
+        <div class="user">
+            {{ $thread->author->thumbnail }}
+            <div class="info">
+                <h6><a href="{{ $thread->author->profileUrl }}">{{ $thread->author->name }}</a></h6>
+                <ul class="meta">
+                    <li>{{ $thread->created_ago }}</li>
+                </ul>
+            </div>
+        </div>
+
+        @if(Auth::user() && $thread->id == $thread->id && $thread->author_id == Auth::user()->id)
+            <div class="admin-bar">
+                <li><a class="button" href="{{ action('ForumController@getEditThread', [$thread->id]) }}">Edit</a></li>
+                <li><a class="button" href="{{ action('ForumController@getDelete', [$thread->id]) }}">Delete</a></li>
+            </div>
+        @endif
+    </div>
+
+
+
+    <div class="comments">
+        @foreach($comments as $comment)
+            @include('forum._comment')
+        @endforeach
+    </div>
+    {{ $comments->links() }}
+</div>
+
+@if(Auth::check())
+    <div class="reply-form">
+        {{ Form::open() }}
+            <div class="form-row">
+                <label class="field-title">Reply</label>
+                {{ Form::textarea("body", null, ['class' => '_tab_indent']) }}
+                {{ $errors->first('body', '<small class="error">:message</small>') }}
+                <small>Paste a <a href="https://gist.github.com" target="_NEW">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
+            </div>
+
+            <div class="form-row">
+                {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
+            </div>
+    </div>
+@else
+    <div class="login-cta">
+        <p>Want to reply to this thread?</p> <a class="button" href="{{ action('AuthController@getLogin') }}">Login with github.</a>
+    </div>
+@endif
+
 @stop
 
 @include('layouts._markdown_editor')
@@ -59,7 +72,7 @@
     @parent
     <script src="{{ asset('javascripts/vendor/tabby.js') }}"></script>
     <script src="{{ asset('javascripts/forums.js') }}"></script>
-    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/monokai.min.css">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/obsidian.min.css">
     <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 @stop

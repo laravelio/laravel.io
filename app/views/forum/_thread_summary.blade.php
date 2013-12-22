@@ -1,12 +1,11 @@
-<article>
-    <div class="title-tags">
-        <h3><a href="{{ $thread->forumThreadUrl }}">{{ $thread->title }}</a></h3>
-        <div class="tags">Tags:  {{ $thread->tags->getTagList() }}</div>
+<div class="thread-summary">
+    {{ $thread->author->thumbnail }}
+    <div class="info">
+        <h3><a href="{{ $thread->forumThreadUrl }}">{{ $thread->laravel_version ? $thread->laravel_version . ' ' : '' }}{{ $thread->title }}</a></h3>
+        <ul class="meta">
+            <li>posted {{ $thread->created_ago }}</li>
+            <li>by <a href="{{ $thread->author->profileUrl }}">{{ $thread->author->name }}</a></li>
+        </ul>
     </div>
-
-    <ul class="meta">
-        <li><i class="icon-time"></i> {{ $thread->updated_ago }}</li>
-        <li><i class="icon-user"></i> <a href="{{ $thread->author->profileUrl }}">{{ $thread->author->name }}</a></li>
-        <li><i class="icon-comments"></i> {{ $thread->child_count_label }}</li>
-    </ul>
-</article>
+    <div class="comment-count {{ $thread->isNewerThan($last_visited_timestamp) ? 'new' : '' }}">{{ $thread->child_count }}</div>
+</div>

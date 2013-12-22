@@ -1,116 +1,57 @@
 /* ==========================================================================
-   FORUM
+   MOBILE FIRST MODULE SKELETON
    ========================================================================== */
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
 .comments {
-    list-style-type: none;
-    margin: 0;
-    @include outer-container;
+    h6.title {
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
+        font-size:14px;
+        display: block;
+        width:70px;
+        background: #cdcdcd;
+        margin: auto;
+        padding: 5px 10px;
+        text-align: center;
+    }
 
     .comment {
-
-        img
-        {
-            max-width: 100%;
-        }
-
         @include clearfix;
-        h2 {
-            font-size:20px;
-            @extend .gamma;
-            border-bottom: 1px solid #eee;
-            padding: 0 0 13px 0;
-        }
-
-        h3 {
-            font-size:20px;
-            @extend .gamma;
-            border-bottom: 1px solid #eee;
-            padding: 0 0 8px 0;
-        }
+        background: white;
+        padding: 15px;
+        margin: 15px;
 
         p {
-            font-size:14px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        ul, li {
+            margin: 0;
             padding: 0;
-            margin:0;
         }
 
-        ul {
-            margin:0;
-            padding: 0 0 0 20px;
+        li {
+            margin: 0 0 0 15px;
+            line-height: 1.5;
         }
 
-        ul li {
-            font-size:14px;
-        }
-
-        .meta {
-            border-top:1px solid #eee;
-            padding: 13px 0 0 0;
-            margin:13px 0 0 0;
-
-            li a {
-                color:$lioRed;
-
-                &:hover {
-                    color:$lioGrey;
-                }
-            }
-        }
-
-        .user {
-            display: none;
-        }
-
-        .content {
-            @include span-columns(12);
-            padding: 20px;
-            border:1px solid #eee;
-            margin: 0 0 15px 0;
+        img {
+            max-width: 100%;
         }
     }
 }
+
+
 
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 480px) {
 
-    .comments {
-        .comment {
-
-            .user {
-                display: block;
-                @include span-columns(1.8);
-
-                img {
-                    width:100%;
-                    height: auto;
-                }
-
-                a {
-                    margin: 0;
-                    padding: 0;
-                }
-
-                p {
-                    padding: 0;
-                    margin: 0;
-                    font-size:13px;
-                }
-            }
-
-            .content {
-                @include span-columns(10.2);
-                padding: 20px;
-                border:1px solid #eee;
-                margin: 0 0 25px 0;
-            }
-        }
-    }
-
+    .module {}
 
 }
 
@@ -118,6 +59,8 @@
 // BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 768px) {
+
+
 
 }
 

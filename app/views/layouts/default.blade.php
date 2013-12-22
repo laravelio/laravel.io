@@ -7,7 +7,6 @@
   <title>Laravel.IO - The Official Laravel Framework Community Portal</title>
 
   @section('styles')
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('stylesheets/app.css') }}">
   @show
 
@@ -15,17 +14,25 @@
 </head>
 <body>
 
-  @include('layouts._top_nav')
-  @include('layouts._flash')
-
-  <div class="content">
-     {{ $content }}
+<div class="wrapper">
+  <div class="top-header">
+    @include('layouts._top_nav')
   </div>
 
-  @include('layouts._footer')
+
+  <div class="holder">
+      @include('layouts._flash')
+     <div class="table">
+        {{ $content }}
+      </div>
+  </div>
+</div>
+
+<div class="push"></div>
+@include('layouts._footer')
 
   @section('scripts')
-  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  	<script src="{{ asset('javascripts/vendor/jquery.min.js') }}"></script>
   @show
 </body>
 </html>

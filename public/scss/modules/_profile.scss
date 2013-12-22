@@ -4,51 +4,17 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.auth {
-    padding: 2%;
+.user-sidebar {
+    padding: 15px;
 
-
-    &.woops {
-        text-align: center;
-    }
-
-    .user {
-        @include clearfix;
+    img {
+        max-width: 100%;
     }
 
     h1 {
-        font-size:30px;
-        font-weight: 600;
-        text-align: center;
-        line-height: 1.3;
-        padding: 0 0 20px 0;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-weight: 400;
     }
-
-    img {
-        float: left;
-        @include span-columns(3);
-    }
-
-    .bio {
-        float: left;
-        @include span-columns(9);
-
-            h2 {
-                padding: 0 0 0 10px;
-                font-weight: 600;
-                font-size:22px;
-            }
-
-            h3 {
-                font-size:14px;
-                padding: 0 0 0 10px;
-            }
-
-            .button {
-                font-size:14px;
-                margin: 15px 0 0 10px;
-            }
-        }
 }
 
 
@@ -56,10 +22,7 @@
 
 @media only screen and (min-width: 480px) {
 
-    .auth {
-        width:500px;
-        margin: auto;
-    }
+    .module {}
 
 }
 
@@ -68,7 +31,7 @@
 
 @media only screen and (min-width: 768px) {
 
-    .module {}
+
 }
 
 
