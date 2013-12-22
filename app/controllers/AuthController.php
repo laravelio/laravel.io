@@ -54,7 +54,7 @@ class AuthController extends BaseController implements GithubAuthenticatorObserv
 
     public function userSuccessfullyCreated($user)
     {
-        Auth::login($user);
+        Auth::login($user, true);
         Session::forget('userGithubData');
         return $this->redirectIntended(action('HomeController@getIndex'));
     }
@@ -62,7 +62,7 @@ class AuthController extends BaseController implements GithubAuthenticatorObserv
     // github account integration responses
     public function userFound($user)
     {
-        Auth::login($user);
+        Auth::login($user, true);
         Session::forget('userGithubData');
         return $this->redirectIntended(action('HomeController@getIndex'));
     }
