@@ -1,6 +1,6 @@
 <div class="search">
     {{ Form::open(['action' => 'ArticlesController@getSearch', 'method' => 'GET']) }}
-    {{ Form::text('query', null, ['placeholder' => 'search the laravel.io articles'] )}}
+    {{ Form::text('query', isset($query) ? $query : '', ['placeholder' => 'search the laravel.io articles'] )}}
     {{ Form::close() }}
 </div>
     <ul>
