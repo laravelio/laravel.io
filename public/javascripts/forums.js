@@ -96,10 +96,6 @@ function bindTabby() {
     $('._tab_indent').tabby();
 }
 
-function focusFirstInput() {
-    $('textarea:first').focus();
-}
-
 $(function() {
     bindTagChooser();
     bindTabby();
