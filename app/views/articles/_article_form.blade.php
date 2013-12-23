@@ -8,7 +8,7 @@
                 {{ Form::label('content', 'Thread', ['class' => 'field-title']) }}
                 {{ Form::textarea("content", null) }}
                 {{ $errors->first('content', '<small class="error">:message</small>') }}
-                <small class="gist">Paste a <a target="_blank" href="https://gist.github.com">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
+                <small class="gist">Markdown is supported. Use ~~~ to start / end code blocks. Paste a <a target="_blank" href="https://gist.github.com">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
             </div>
 
             <div class="form-row">
