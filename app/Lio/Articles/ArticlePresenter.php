@@ -27,7 +27,11 @@ class ArticlePresenter extends BasePresenter
         // kinda a mess but s'ok for now
         $html = App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($this->resource->content);
         $text = strip_tags($html);
-        list($excerpt, $dump) = explode("\n\n", $text);
+        if (false !== strpos($text, "\n\n")) {
+            list($excerpt, $dump) = explode("\n\n", $text);
+        } else {
+            $excerpt = $text;
+        }
         return Str::words($excerpt, 200);
     }
 
