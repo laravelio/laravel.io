@@ -8,7 +8,12 @@ class ArticlePresenter extends BasePresenter
 {
     public function content()
     {
-        return MarkdownExtra::defaultTransform($this->resource->content);
+        $content = $this->resource->content;
+        $content = $this->convertMarkdown($content);
+        $content = $this->convertNewlines($content);
+        $content = $this->formatGists($content);
+        $content = $this->linkify($content);
+        return $content;
     }
 
     public function comment_count_label()
@@ -55,5 +60,28 @@ class ArticlePresenter extends BasePresenter
         if ( ! $this->resource->slug) return '';
 
         return action('ArticlesController@getShow', [$this->resource->slug->slug]);
+    }
+
+    // ------------------- //
+
+    private function convertMarkdown($content)
+    {
+        return App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($content);
+    }
+
+    private function convertNewlines($content)
+    {
+        return str_replace("\n\n", '<br/>', $content);
+    }
+
+    private function formatGists($content)
+    {
+        return App::make('Lio\Github\GistEmbedFormatter')->format($content);
+    }
+
+    private function linkify($content)
+    {
+        $linkify = new \Misd\Linkify\Linkify();
+        return $linkify->process($content);
     }
 }
