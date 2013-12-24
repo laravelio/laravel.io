@@ -1,9 +1,9 @@
-<?php namespace Lio\Comments;
+<?php namespace Lio\Forum;
 
 use Lio\Core\FormBase;
 use App, Validator;
 
-class ForumCreateForm extends FormBase
+class ForumThreadForm extends FormBase
 {
     protected $validationRules = [
         'title'           => 'required|min:10',

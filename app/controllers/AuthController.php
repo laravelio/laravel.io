@@ -52,7 +52,7 @@ class AuthController extends BaseController implements GithubAuthenticatorObserv
         return Redirect::to('/');
     }
 
-    public function userSuccessfullyCreated($user)
+    public function userCreated($user)
     {
         Auth::login($user, true);
         Session::forget('userGithubData');

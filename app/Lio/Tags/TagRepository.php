@@ -30,8 +30,9 @@ class TagRepository extends EloquentBaseRepository
         return $this->model->lists('id');
     }
 
-    public function getTagsByIds(array $ids)
+    public function getTagsByIds($ids)
     {
+        if ( ! $ids) return null;
         return $this->model->whereIn('id', $ids)->get();
     }
 

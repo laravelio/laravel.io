@@ -3,5 +3,5 @@
 interface UserCreatorObserver
 {
     public function userValidationError($errors);
-    public function userSuccessfullyCreated($user);
+    public function userCreated($user);
 }

@@ -14,7 +14,7 @@
                         {{ Input::get('tags') }}
                     </div>
                 @endif
-            <a class="button" href="{{ action('ForumController@getCreateThread') }}">Add new Post</a>
+            <a class="button" href="{{ action('ForumController@getCreateThread') }}">Create Thread</a>
         </div>
 
         <div class="threads">

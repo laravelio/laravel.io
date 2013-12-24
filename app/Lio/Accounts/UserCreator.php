@@ -3,8 +3,8 @@
 /**
 * This class can call the following methods on the observer object:
 *
-* userValidationError($validator->getErrors())
-* userSuccessfullyCreated($user)
+* userValidationError($errors)
+* userCreated($user)
 */
 class UserCreator
 {
@@ -15,7 +15,7 @@ class UserCreator
         $this->users = $users;
     }
 
-    public function create($observer, $data, $validator = null)
+    public function create(UserCreatorObserver $observer, $data, $validator = null)
     {
         // check the passed in validator
         if ($validator && ! $validator->isValid()) {
@@ -33,6 +33,6 @@ class UserCreator
             return $observer->userValidationError($user->getErrors());
         }
 
-        return $observer->userSuccessfullyCreated($user);
+        return $observer->userCreated($user);
     }
 }

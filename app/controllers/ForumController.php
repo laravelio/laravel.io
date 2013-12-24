@@ -2,9 +2,17 @@
 
 use Lio\Comments\CommentRepository;
 use Lio\Comments\Comment;
+
 use Lio\Tags\TagRepository;
 
-class ForumController extends BaseController
+use Lio\Forum\ForumThreadForm;
+use Lio\Forum\ForumReplyForm;
+use Lio\Forum\ForumThreadCreatorObserver;
+use Lio\Forum\ForumThreadUpdaterObserver;
+use Lio\Forum\ForumReplyCreatorObserver;
+use Lio\Forum\ForumReplyUpdaterObserver;
+
+class ForumController extends BaseController implements ForumThreadCreatorObserver, ForumThreadUpdaterObserver, ForumReplyCreatorObserver, ForumReplyUpdaterObserver
 {
     protected $categories;
     protected $comments;
@@ -39,70 +47,59 @@ class ForumController extends BaseController
 
     public function postThread()
     {
-        $thread = App::make('slugModel');
-
-        $form = new \Lio\Comments\ReplyForm;
-
-        if ( ! $form->isValid()) return $this->redirectBack(['errors' => $form->getErrors()]);
-
-        $comment = $this->comments->getNew([
+        return App::make('Lio\Forum\ForumReplyCreator')->create($this, [
             'body'      => Input::get('body'),
             'author_id' => Auth::user()->id,
             'type'      => Comment::TYPE_FORUM,
-        ]);
+            'thread'    => App::make('slugModel'),
+        ], new ForumReplyForm);
+    }
 
-        if ( ! $comment->isValid()) return $this->redirectBack(['errors' => $comment->getErrors()]);
-        $thread->children()->save($comment);
+    public function forumReplyValidationError($errors)
+    {
+        return $this->redirectBack(['errors' => $errors]);
+    }
 
+    public function forumReplyCreated($reply)
+    {
         // update cache for sidebar counts
         $timestamps = App::make('Lio\Caching\ForumSectionTimestampFetcher')->cacheSections(Config::get('forum.sections'));
         Cache::put('forum_sidebar_timestamps', $timestamps, 1440);
-
-        return $this->redirectAction('ForumController@getThread', [$thread->slug->slug]);
+        // awful demeter chain - clean up
+        return $this->redirectAction('ForumController@getThread', [$reply->parent()->first()->slug->slug]);
     }
 
     public function getCreateThread()
     {
         $tags = $this->tags->getAllForForum();
-        $versions = \Lio\Comments\Comment::$laravelVersions;
-
+        $versions = Comment::$laravelVersions;
         $this->view('forum.createthread', compact('tags', 'versions'));
     }
 
     public function postCreateThread()
     {
-        $form = new \Lio\Comments\ForumCreateForm;
+        $tags = $this->tags->getTagsByIds(Input::get('tags'));
 
-        if ( ! $form->isValid()) {
-            return $this->redirectBack(['errors' => $form->getErrors()]);
-        }
-
-        $comment = $this->comments->getNew([
+        return App::make('Lio\Forum\ForumThreadCreator')->create($this, [
             'title'           => Input::get('title'),
             'body'            => Input::get('body'),
             'author_id'       => Auth::user()->id,
             'type'            => Comment::TYPE_FORUM,
             'laravel_version' => Input::get('laravel_version'),
-        ]);
+            'tags'            => $tags,
+        ], new ForumThreadForm);
+    }
 
-        if ( ! $comment->isValid()) {
-            return $this->redirectBack(['errors' => $comment->getErrors()]);
-        }
+    public function forumThreadValidationError($errors)
+    {
+        return $this->redirectBack(['errors' => $errors]);
+    }
 
-        $this->comments->save($comment);
-
-        // store tags
-        $tags = $this->tags->getTagsByIds(Input::get('tags'));
-        $comment->tags()->sync($tags->lists('id'));
-
-        // load new slug
-        $commentSlug = $comment->slug()->first()->slug;
-
-        // update cache for sidebar counts
+    public function forumThreadCreated($thread)
+    {
         $timestamps = App::make('Lio\Caching\ForumSectionTimestampFetcher')->cacheSections(Config::get('forum.sections'));
         Cache::put('forum_sidebar_timestamps', $timestamps, 1440);
-
-        return $this->redirectAction('ForumController@getThread', [$commentSlug]);
+        return $this->redirectAction('ForumController@getThread', [$thread->slug()->first()->slug]);
     }
 
     public function getEditThread($threadId)
@@ -118,36 +115,22 @@ class ForumController extends BaseController
 
     public function postEditThread($threadId)
     {
-        // i hate everything about these controllers, it's awful
         $thread = $this->comments->requireForumThreadById($threadId);
         if (Auth::user()->id != $thread->author_id) return Redirect::to('/');
 
-        $form = new \Lio\Comments\ForumCreateForm;
+        $tags = $this->tags->getTagsByIds(Input::get('tags'));
 
-        if ( ! $form->isValid()) {
-            return $this->redirectBack(['errors' => $form->getErrors()]);
-        }
-
-        $thread->fill([
+        return App::make('Lio\Forum\ForumThreadUpdater')->update($thread, $this, [
             'title'           => Input::get('title'),
             'body'            => Input::get('body'),
             'laravel_version' => Input::get('laravel_version'),
-        ]);
+            'tags'            => $tags,
+        ], new ForumThreadForm);
+    }
 
-        if ( ! $thread->isValid()) {
-            return $this->redirectBack(['errors' => $thread->getErrors()]);
-        }
-
-        $this->comments->save($thread);
-
-        // store tags
-        $tags = $this->tags->getTagsByIds(Input::get('tags'));
-        $thread->tags()->sync($tags->lists('id'));
-
-        // load new slug
-        $threadSlug = $thread->slug()->first()->slug;
-
-        return $this->redirectAction('ForumController@getThread', [$threadSlug]);
+    public function forumThreadUpdated($thread)
+    {
+        return $this->redirectAction('ForumController@getThread', [$thread->slug->slug]);
     }
 
     // oh god it's so bad
@@ -158,26 +141,19 @@ class ForumController extends BaseController
         $this->view('forum.editcomment', compact('comment'));
     }
 
-    public function postEditComment($commentId)
+    public function postEditComment($replyId)
     {
-        // i hate everything about these controllers, it's awful
-        $comment = $this->comments->requireForumThreadById($commentId);
-        if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
+        $reply = $this->comments->requireForumThreadById($replyId);
+        if (Auth::user()->id != $reply->author_id) return Redirect::to('/');
 
-        $form = new \Lio\Comments\ReplyForm;
+        return App::make('Lio\Forum\ForumReplyUpdater')->update($reply, $this, [
+            'body'      => Input::get('body'),
+        ], new ForumReplyForm);
+    }
 
-        if ( ! $form->isValid()) return $this->redirectBack(['errors' => $form->getErrors()]);
-
-        $comment->fill([
-            'title' => Input::get('title'),
-            'body'  => Input::get('body'),
-        ]);
-
-        if ( ! $comment->isValid()) return $this->redirectBack(['errors' => $comment->getErrors()]);
-
-        $this->comments->save($comment);
-
-        return $this->redirectAction('ForumController@getThread', [$comment->parent->slug->slug]);
+    public function forumReplyUpdated($reply)
+    {
+        return $this->redirectAction('ForumController@getThread', [$reply->parent->slug->slug]);
     }
 
     public function getComment($thread, $commentId)
