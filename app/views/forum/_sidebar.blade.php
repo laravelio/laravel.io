@@ -8,7 +8,7 @@
     {{-- $forumSections is set in the constructor of the ForumController class --}}
     @foreach($forumSections as $sectionTitle => $sectionTags)
         <li>
-            <a href="{{ action('ForumController@getIndex') }}{{ $sectionTags ? '?tags=' . $sectionTags : '' }}">{{ $sectionTitle }}
+            <a href="{{ action('ForumThreadController@index') }}{{ $sectionTags ? '?tags=' . $sectionTags : '' }}">{{ $sectionTitle }}
                 @if($sectionCounts[$sectionTags] > 0)
                     <span class="new">{{ $sectionCounts[$sectionTags] < 10 ? $sectionCounts[$sectionTags] : '9+' }}</span>
                 @endif

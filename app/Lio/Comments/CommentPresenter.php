@@ -9,7 +9,7 @@ class CommentPresenter extends BasePresenter
     {
         $slug = $this->resource->slug;
         if ( ! $slug) return '';
-        return action('ForumController@getThread', [$slug->slug]);
+        return action('ForumThreadController@show', [$slug->slug]);
     }
 
     public function commentUrl()

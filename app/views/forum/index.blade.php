@@ -14,7 +14,7 @@
                         {{ Input::get('tags') }}
                     </div>
                 @endif
-            <a class="button" href="{{ action('ForumController@getCreateThread') }}">Create Thread</a>
+            <a class="button" href="{{ action('ForumThreadController@create') }}">Create Thread</a>
         </div>
 
         <div class="threads">
@@ -25,7 +25,7 @@
             @if(!$threads->count())
                 <div class="empty-state">
                     <h3>No threads found that are tagged with {{ Input::get('tags') }}</h3>
-                    <a class="button" href="{{ action('ForumController@getCreateThread') }}">Create a new thread</a>
+                    <a class="button" href="{{ action('ForumThreadController@create') }}">Create a new thread</a>
                 </div>
             @endif
         </div>

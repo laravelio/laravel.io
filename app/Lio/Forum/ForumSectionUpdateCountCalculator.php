@@ -1,8 +1,8 @@
-<?php namespace Lio\Caching;
+<?php namespace Lio\Forum;
 
 use Lio\Accounts\User;
 
-class UserForumSectionUpdateCountCalculator
+class ForumSectionUpdateCountCalculator
 {
     protected $forumSections;
     protected $visitedTimestamps;

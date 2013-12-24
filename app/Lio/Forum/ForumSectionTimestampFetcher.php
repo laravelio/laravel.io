@@ -1,4 +1,4 @@
-<?php namespace Lio\Caching;
+<?php namespace Lio\Forum;
 
 use Lio\Comments\Comment;
 use Lio\Tags\TagRepository;
