@@ -5,7 +5,7 @@ use Lio\Comments\Comment;
 
 use Lio\Tags\TagRepository;
 
-class ForumController extends BaseController implements
+class ForumController extends BaseController
 {
     protected $categories;
     protected $comments;
@@ -21,10 +21,6 @@ class ForumController extends BaseController implements
         View::share('forumSections', Config::get('forum.sections'));
         $this->setNewSectionCounts();
     }
-
-
-    // oh god it's so bad
-
 
     public function getComment($thread, $commentId)
     {
