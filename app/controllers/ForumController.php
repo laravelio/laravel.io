@@ -82,7 +82,4 @@ class ForumController extends BaseController
         $sectionCounts = $calculator->getCounts();
         View::share('sectionCounts', $sectionCounts);
     }
-        // update cache for sidebar counts
-        $timestamps = App::make('Lio\Caching\ForumSectionTimestampFetcher')->cacheSections(Config::get('forum.sections'));
-        Cache::put('forum_sidebar_timestamps', $timestamps, 1440);
 }
