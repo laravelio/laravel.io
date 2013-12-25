@@ -38,6 +38,10 @@ class ForumSectionUpdateCountCalculator
     {
         $visited = $this->visitedTimestamps[$tags];
 
+        if ( ! isset($this->postTimestamps[$tags])) {
+            return 0;
+        }
+
         $new = array_filter($this->postTimestamps[$tags], function($posted) use ($visited) {
             return $visited < $posted;
         });
