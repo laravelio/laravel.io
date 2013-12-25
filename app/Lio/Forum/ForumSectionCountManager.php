@@ -30,7 +30,7 @@ class ForumSectionCountManager
 
     public function getCounts($forumSections, $lastVisited)
     {
-        $timestamps = Cache::rememberForever('forum_sidebar_timestamps', function() {
+        $timestamps = Cache::rememberForever('forum_sidebar_timestamps', function() use ($forumSections) {
             return $this->cacheSections($forumSections);
         });
         $calculator = new ForumSectionUpdateCountCalculator($forumSections, $lastVisited, $timestamps);
