@@ -1,6 +1,7 @@
 <?php namespace Lio\Forum;
 
 use Lio\Comments\CommentRepository;
+use Lio\Forum\ForumSectionCountManager;
 
 /**
 * This class can call the following methods on the observer object:
@@ -11,10 +12,12 @@ use Lio\Comments\CommentRepository;
 class ForumThreadCreator
 {
     protected $comments;
+    protected $countManager;
 
-    public function __construct(CommentRepository $comments)
+    public function __construct(CommentRepository $comments, ForumSectionCountManager $countManager)
     {
         $this->comments = $comments;
+        $this->countManager = $countManager;
     }
 
     public function create(ForumThreadCreatorObserver $observer, $data, $validator = null)
@@ -38,6 +41,9 @@ class ForumThreadCreator
         if (isset($data['tags'])) {
             $this->attachTags($thread, $data['tags']);
         }
+
+        // cache new thread update timestamps
+        $this->countManager->cacheSections();
 
         return $observer->forumThreadCreated($thread);
     }

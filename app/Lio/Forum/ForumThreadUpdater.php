@@ -17,7 +17,7 @@ class ForumThreadUpdater
         $this->comments = $comments;
     }
 
-    public function update($thread, ForumThreadUpdaterObserver $observer, $data, $validator = null)
+    public function update(ForumThreadUpdaterObserver $observer, $thread, $data, $validator = null)
     {
         // check the passed in validator
         if ($validator && ! $validator->isValid()) {

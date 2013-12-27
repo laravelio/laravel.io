@@ -122,6 +122,7 @@ return array(
 
 		'Lio\ServiceProviders\GithubServiceProvider',
 		'Lio\ServiceProviders\CommentServiceProvider',
+		'Lio\ServiceProviders\ForumServiceProvider',
 		'Lio\ServiceProviders\MarkdownServiceProvider',
 	),
 

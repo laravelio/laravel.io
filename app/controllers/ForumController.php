@@ -4,17 +4,18 @@ use Lio\Comments\CommentRepository;
 use Lio\Comments\Comment;
 
 use Lio\Tags\TagRepository;
-
-use Lio\Forum\ForumThreadForm;
-use Lio\Forum\ForumThreadCreatorObserver;
-use Lio\Forum\ForumThreadUpdaterObserver;
-
-use Lio\Forum\ForumReplyForm;
-use Lio\Forum\ForumReplyCreatorObserver;
-use Lio\Forum\ForumReplyUpdaterObserver;
 use Lio\Forum\ForumSectionCountManager;
 
-class ForumController extends BaseController implements ForumThreadCreatorObserver, ForumThreadUpdaterObserver, ForumReplyCreatorObserver, ForumReplyUpdaterObserver
+use Lio\Forum\ForumThreadForm;
+use Lio\Forum\ForumReplyForm;
+
+class ForumController extends BaseController implements
+    \Lio\Forum\ForumThreadCreatorObserver,
+    \Lio\Forum\ForumThreadUpdaterObserver,
+    \Lio\Forum\ForumReplyCreatorObserver,
+    \Lio\Forum\ForumReplyUpdaterObserver,
+    \Lio\Forum\ForumThreadDeleterObserver,
+    \Lio\Forum\ForumReplyDeleterObserver
 {
     protected $comments;
     protected $tags;
@@ -94,7 +95,7 @@ class ForumController extends BaseController implements ForumThreadCreatorObserv
 
         $tags = $this->tags->getTagsByIds(Input::get('tags'));
 
-        return App::make('Lio\Forum\ForumThreadUpdater')->update($thread, $this, [
+        return App::make('Lio\Forum\ForumThreadUpdater')->update($this, $thread, [
             'title'           => Input::get('title'),
             'body'            => Input::get('body'),
             'laravel_version' => Input::get('laravel_version'),
@@ -110,7 +111,6 @@ class ForumController extends BaseController implements ForumThreadCreatorObserv
 
     public function forumThreadCreated($thread)
     {
-        $this->sections->cacheSections(Config::get('forum.sections'));
         return $this->redirectAction('ForumController@getShowThread', [$thread->slug()->first()->slug]);
     }
 
@@ -145,15 +145,21 @@ class ForumController extends BaseController implements ForumThreadCreatorObserv
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
 
-        // delete and update the counts
-        $thread = $comment->parent;
-        $comment->delete();
-
-        if ($thread) {
-            $thread->updateChildCount();
+        if ($comment->parent) {
+            return App::make('Lio\Forum\ForumReplyDeleter')->delete($this, $comment);
         }
+        return App::make('Lio\Forum\ForumThreadDeleter')->delete($this, $comment);
+    }
 
+    // observer methods
+    public function forumThreadDeleted()
+    {
         return Redirect::action('ForumController@getIndex');
+    }
+
+    public function forumReplyDeleted($thread)
+    {
+        return Redirect::action('ForumController@getShowThread', [$thread->slug->slug]);
     }
 
     // forum search
@@ -200,8 +206,6 @@ class ForumController extends BaseController implements ForumThreadCreatorObserv
 
     public function forumReplyCreated($reply)
     {
-        // update cache for sidebar counts
-        $this->sections->cacheSections(Config::get('forum.sections'));
         // awful demeter chain - clean up
         return $this->redirectAction('ForumController@getShowThread', [$reply->parent()->first()->slug->slug]);
     }
@@ -215,7 +219,7 @@ class ForumController extends BaseController implements ForumThreadCreatorObserv
     private function prepareViewData()
     {
         $forumSections = Config::get('forum.sections');
-        $sectionCounts = $this->sections->getCounts($forumSections, Session::get('forum_last_visited'));
+        $sectionCounts = $this->sections->getCounts(Session::get('forum_last_visited'));
         View::share(compact('forumSections', 'sectionCounts'));
     }
 }

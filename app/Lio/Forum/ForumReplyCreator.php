@@ -1,5 +1,6 @@
 <?php namespace Lio\Forum;
 
+use Lio\Forum\ForumSectionCountManager;
 use Lio\Comments\CommentRepository;
 use Lio\Comments\Comment;
 
@@ -12,10 +13,12 @@ use Lio\Comments\Comment;
 class ForumReplyCreator
 {
     protected $comments;
+    protected $countManager;
 
-    public function __construct(CommentRepository $comments)
+    public function __construct(CommentRepository $comments, ForumSectionCountManager $countManager)
     {
         $this->comments = $comments;
+        $this->countManager = $countManager;
     }
 
     public function create(ForumReplyCreatorObserver $observer, $data, $threadId, $validator = null)
@@ -38,6 +41,9 @@ class ForumReplyCreator
         if ( ! $this->comments->save($reply)) {
             return $observer->forumReplyValidationError($reply->getErrors());
         }
+
+        // cache new thread update timestamps
+        $this->countManager->cacheSections();
 
         return $observer->forumReplyCreated($reply);
     }
