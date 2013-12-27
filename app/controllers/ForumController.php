@@ -5,81 +5,160 @@ use Lio\Comments\Comment;
 
 use Lio\Tags\TagRepository;
 
-class ForumController extends BaseController
+use Lio\Forum\ForumThreadForm;
+use Lio\Forum\ForumThreadCreatorObserver;
+use Lio\Forum\ForumThreadUpdaterObserver;
+use Lio\Forum\ForumSectionCountManager;
+
+class ForumController extends BaseController implements ForumThreadCreatorObserver, ForumThreadUpdaterObserver
 {
-    protected $categories;
     protected $comments;
+    protected $tags;
+    protected $sections;
 
     protected $threadsPerPage = 20;
     protected $commentsPerPage = 20;
 
-    public function __construct(CommentRepository $comments, TagRepository $tags)
+    public function __construct(CommentRepository $comments, TagRepository $tags, ForumSectionCountManager $sections)
     {
         $this->comments = $comments;
         $this->tags     = $tags;
+        $this->sections = $sections;
 
-        View::share('forumSections', Config::get('forum.sections'));
-        $this->setNewSectionCounts();
+        $this->prepareViewData();
     }
 
-    public function getComment($thread, $commentId)
+    // show thread list
+    public function getIndex()
     {
-        // Holy shit worst code ever made..
-        // LYLAS!
+        // update user timestamp
+        View::share('last_visited_timestamp', App::make('Lio\Forum\ForumSectionCountManager')->updatedAndGetLastVisited(Input::get('tags')));
+        // query tags and retrieve the appropriate threads
+        $tags = $this->tags->getAllTagsBySlug(Input::get('tags'));
+        $threads = $this->comments->getForumThreadsByTagsPaginated($tags, $this->threadsPerPage);
+        // add the tag string to each pagination link
+        $threads->appends(['tags' => Input::get('tags')]);
+        // display the index
+        $this->view('forum.index', compact('threads'));
+    }
+
+    // show a thread
+    public function getShowThread()
+    {
+        $thread = App::make('slugModel');
+        $comments = $this->comments->getThreadCommentsPaginated($thread, $this->commentsPerPage);
+        $this->view('forum.thread', compact('thread', 'comments'));
+    }
+
+    // create a thread
+    public function getCreateThread()
+    {
+        $tags = $this->tags->getAllForForum();
+        $versions = Comment::$laravelVersions;
+        $this->view('forum.createthread', compact('tags', 'versions'));
+    }
+
+    public function postCreateThread()
+    {
+        $tags = $this->tags->getTagsByIds(Input::get('tags'));
+        return App::make('Lio\Forum\ForumThreadCreator')->create($this, [
+            'title'           => Input::get('title'),
+            'body'            => Input::get('body'),
+            'author_id'       => Auth::user()->id,
+            'type'            => Comment::TYPE_FORUM,
+            'laravel_version' => Input::get('laravel_version'),
+            'tags'            => $tags,
+        ], new ForumThreadForm);
+    }
+
+    // edit a thread
+    public function getEditThread($threadId)
+    {
+        // check ownership
+        $thread = $this->comments->requireForumThreadById($threadId);
+        if (Auth::user()->id != $thread->author_id) return Redirect::to('/');
+        //
+        $tags = $this->tags->getAllForForum();
+        $versions = Comment::$laravelVersions;
+        $this->view('forum.editthread', compact('thread', 'tags', 'versions'));
+    }
+
+    public function postEditThread($threadId)
+    {
+        $thread = $this->comments->requireForumThreadById($threadId);
+        if (Auth::user()->id != $thread->author_id) return Redirect::to('/');
+
+        $tags = $this->tags->getTagsByIds(Input::get('tags'));
+
+        return App::make('Lio\Forum\ForumThreadUpdater')->update($thread, $this, [
+            'title'           => Input::get('title'),
+            'body'            => Input::get('body'),
+            'laravel_version' => Input::get('laravel_version'),
+            'tags'            => $tags,
+        ], new ForumThreadForm);
+    }
+
+    // observer methods
+    public function forumThreadValidationError($errors)
+    {
+        return $this->redirectBack(['errors' => $errors]);
+    }
+
+    public function forumThreadCreated($thread)
+    {
+        $this->sections->cacheSections(Config::get('forum.sections'));
+        return $this->redirectAction('ForumController@getShowThread', [$thread->slug()->first()->slug]);
+    }
+
+    public function forumThreadUpdated($thread)
+    {
+        return $this->redirectAction('ForumController@getShowThread', [$thread->slug->slug]);
+    }
+
+    // bounces the user to the correct page of a thread for the indicated comment
+    public function getCommentRedirect($thread, $commentId)
+    {
         $comment = Comment::findOrFail($commentId);
-        $before = Comment::where('parent_id', '=', $comment->parent_id)->where('created_at', '<', $comment->created_at)->count();
-        $page = round($before / $this->commentsPerPage, 0, PHP_ROUND_HALF_DOWN) + 1;
-
-        return Redirect::to(action('ForumThreadController@show', [$thread]) . '?page=' . $page . '#comment-' . $commentId);
+        $numberCommentsBefore = Comment::where('parent_id', '=', $comment->parent_id)->where('created_at', '<', $comment->created_at)->count();
+        $page = round($numberCommentsBefore / $this->commentsPerPage, 0, PHP_ROUND_HALF_DOWN) + 1;
+        return Redirect::to(action('ForumController@getShowThread', [$thread]) . "?page={$page}#comment-{$commentId}");
     }
 
-    // does the awful code ever end?
-    public function getDelete($commentId)
+    // thread deletion
+    public function getDeleteThread($commentId)
     {
+        // user owns the comment
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
+
+        // delete form
         $this->view('forum.delete', compact('comment'));
     }
 
-    public function postDelete($commentId)
+    public function postDeleteThread($commentId)
     {
+        // user owns the comment
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
+
+        // delete and redirect
         $comment->delete();
-        return Redirect::action('ForumThreadController@index');
+        return Redirect::action('ForumController@getIndex');
     }
 
+    // forum search
     public function getSearch()
     {
         $query = Input::get('query');
         $results = App::make('Lio\Comments\ForumSearch')->searchPaginated($query, $this->threadsPerPage);
-        $this->updateUserLastVisited();
         $this->view('forum.search', compact('query', 'results'));
     }
 
-    private function updateUserLastVisited()
+    // ------------------------- //
+    private function prepareViewData()
     {
-        $forumLastVisited = Session::get('forum_last_visited');
-        $tags = Input::get('tags');
-
-        if (is_array($forumLastVisited)) {
-            View::share('last_visited_timestamp', isset($forumLastVisited[$tags]) ? $forumLastVisited[$tags] : 0);
-            $forumLastVisited[$tags] = strtotime('now');
-        } else {
-            View::share('last_visited_timestamp', 0);
-            $forumLastVisited = [$tags => strtotime('now')];
-        }
-
-        Session::put('forum_last_visited', $forumLastVisited);
-    }
-
-    private function setNewSectionCounts()
-    {
-        $timestamps = Cache::rememberForever('forum_sidebar_timestamps', function() {
-            return App::make('Lio\Caching\ForumSectionTimestampFetcher')->cacheSections(Config::get('forum.sections'));
-        });
-        $calculator = new Lio\Caching\UserForumSectionUpdateCountCalculator(Config::get('forum.sections'), Session::get('forum_last_visited'), $timestamps);
-        $sectionCounts = $calculator->getCounts();
-        View::share('sectionCounts', $sectionCounts);
+        $forumSections = Config::get('forum.sections');
+        $sectionCounts = $this->sections->getCounts($forumSections, Session::get('forum_last_visited'));
+        View::share(compact('forumSections', 'sectionCounts'));
     }
 }

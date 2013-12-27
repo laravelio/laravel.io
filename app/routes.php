@@ -41,28 +41,28 @@ Route::post('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesC
 Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum
-Route::get('forum', 'ForumThreadController@index');
+Route::get('forum', 'ForumController@getIndex');
 Route::get('forum/search', 'ForumController@getSearch');
 
 // move to new controller
-Route::get('forum/{slug}/comment/{commentId}', 'ForumController@getComment');
+Route::get('forum/{slug}/comment/{commentId}', 'ForumController@getCommentRedirect');
 
 Route::group(['before' => 'auth'], function() {
-    Route::get('forum/create-thread', 'ForumThreadController@create');
-    Route::post('forum/create-thread', 'ForumThreadController@store');
-    Route::get('forum/edit-thread/{threadId}', 'ForumThreadController@edit');
-    Route::post('forum/edit-thread/{threadId}', 'ForumThreadController@update');
+    Route::get('forum/create-thread', 'ForumController@getCreateThread');
+    Route::post('forum/create-thread', 'ForumController@postCreateThread');
+    Route::get('forum/edit-thread/{threadId}', 'ForumController@getEditThread');
+    Route::post('forum/edit-thread/{threadId}', 'ForumController@postEditThread');
     Route::get('forum/edit-reply/{commentId}', 'ForumReplyController@edit');
     Route::post('forum/edit-reply/{commentId}', 'ForumReplyController@update');
 
     // move to new controller
-    Route::get('forum/delete/{commentId}', 'ForumController@getDelete');
-    Route::post('forum/delete/{commentId}', 'ForumController@postDelete');
+    Route::get('forum/delete/{commentId}', 'ForumController@getDeleteThread');
+    Route::post('forum/delete/{commentId}', 'ForumController@postDeleteThread');
 
     Route::post('forum/{slug}', ['before' => 'handle_slug', 'uses' => 'ForumReplyController@store']);
 });
 
-Route::get('forum/{slug}', ['before' => 'handle_slug', 'uses' => 'ForumThreadController@show']);
+Route::get('forum/{slug}', ['before' => 'handle_slug', 'uses' => 'ForumController@getShowThread']);
 
 // admin
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {

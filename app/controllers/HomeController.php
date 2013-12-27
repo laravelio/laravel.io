@@ -15,7 +15,7 @@ class HomeController extends BaseController
 
 	public function getIndex()
 	{
-        return Redirect::action('ForumThreadController@index');
+        return Redirect::action('ForumController@getIndex');
 
         $articles = $this->articles->getFeaturedArticles(3);
         $threads  = $this->comments->getFeaturedForumThreads(3);

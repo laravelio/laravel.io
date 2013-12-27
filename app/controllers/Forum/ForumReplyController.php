@@ -63,11 +63,11 @@ class ForumReplyController extends BaseController implements ForumReplyCreatorOb
         // update cache for sidebar counts
         $this->sections->cacheSections(Config::get('forum.sections'));
         // awful demeter chain - clean up
-        return $this->redirectAction('ForumThreadController@show', [$reply->parent()->first()->slug->slug]);
+        return $this->redirectAction('ForumController@getShowThread', [$reply->parent()->first()->slug->slug]);
     }
 
     public function forumReplyUpdated($reply)
     {
-        return $this->redirectAction('ForumThreadController@show', [$reply->parent->slug->slug]);
+        return $this->redirectAction('ForumController@getShowThread', [$reply->parent->slug->slug]);
     }
 }
