@@ -52,7 +52,7 @@ class ForumController extends BaseController implements
     {
         $thread = App::make('slugModel');
         $comments = $this->comments->getThreadCommentsPaginated($thread, $this->commentsPerPage);
-        $this->view('forum.thread', compact('thread', 'comments'));
+        $this->view('forum.showthread', compact('thread', 'comments'));
     }
 
     // create a thread
@@ -70,7 +70,6 @@ class ForumController extends BaseController implements
             'title'           => Input::get('title'),
             'body'            => Input::get('body'),
             'author_id'       => Auth::user()->id,
-            'type'            => Comment::TYPE_FORUM,
             'laravel_version' => Input::get('laravel_version'),
             'tags'            => $tags,
         ], new ForumThreadForm);
@@ -122,6 +121,7 @@ class ForumController extends BaseController implements
     // bounces the user to the correct page of a thread for the indicated comment
     public function getCommentRedirect($thread, $commentId)
     {
+        // refactor this
         $comment = Comment::findOrFail($commentId);
         $numberCommentsBefore = Comment::where('parent_id', '=', $comment->parent_id)->where('created_at', '<', $comment->created_at)->count();
         $page = round($numberCommentsBefore / $this->commentsPerPage, 0, PHP_ROUND_HALF_DOWN) + 1;
@@ -167,6 +167,7 @@ class ForumController extends BaseController implements
     {
         $query = Input::get('query');
         $results = App::make('Lio\Comments\ForumSearch')->searchPaginated($query, $this->threadsPerPage);
+
         $this->view('forum.search', compact('query', 'results'));
     }
 
@@ -174,6 +175,7 @@ class ForumController extends BaseController implements
     public function postCreateReply()
     {
         $thread = App::make('slugModel');
+
         return App::make('Lio\Forum\ForumReplyCreator')->create($this, [
             'body'      => Input::get('body'),
             'author_id' => Auth::user()->id,
@@ -185,7 +187,8 @@ class ForumController extends BaseController implements
     {
         $reply = $this->comments->requireForumThreadById($replyId);
         if (Auth::user()->id != $reply->author_id) return Redirect::to('/');
-        $this->view('forum.editcomment', compact('reply'));
+
+        $this->view('forum.editreply', compact('reply'));
     }
 
     public function postEditReply($replyId)

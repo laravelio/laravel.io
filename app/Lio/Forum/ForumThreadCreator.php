@@ -31,7 +31,9 @@ class ForumThreadCreator
 
     private function createValidRecord($observer, $data)
     {
-        $thread = $this->comments->getNew($data);
+        $thread = $this->comments->getNew($data + [
+            'type' => Comment::TYPE_FORUM,
+        ]);
 
         // check the model validation
         if ( ! $this->comments->save($thread)) {

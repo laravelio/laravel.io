@@ -5,9 +5,9 @@
 @stop
 
 @section('content')
-<div class="header">
-    <h1>Edit Your Reply</h1>
-</div>
+    <div class="header">
+        <h1>Edit Your Reply</h1>
+    </div>
 
     <div class="reply-form">
         {{ Form::model($reply->resource) }}
@@ -21,6 +21,7 @@
             <div class="form-row">
                 {{ Form::button('Reply', ['type' => 'submit', 'class' => 'button']) }}
             </div>
+        {{ Form::close() }}
     </div>
 @stop
 
