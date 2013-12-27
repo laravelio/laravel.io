@@ -10,7 +10,12 @@ use Lio\Forum\ForumThreadCreatorObserver;
 use Lio\Forum\ForumThreadUpdaterObserver;
 use Lio\Forum\ForumSectionCountManager;
 
-class ForumController extends BaseController implements ForumThreadCreatorObserver, ForumThreadUpdaterObserver
+use Lio\Forum\ForumReplyForm;
+use Lio\Forum\ForumReplyCreatorObserver;
+use Lio\Forum\ForumReplyUpdaterObserver;
+use Lio\Forum\ForumSectionCountManager;
+
+class ForumController extends BaseController implements ForumThreadCreatorObserver, ForumThreadUpdaterObserver, ForumReplyCreatorObserver, ForumReplyUpdaterObserver
 {
     protected $comments;
     protected $tags;
@@ -152,6 +157,54 @@ class ForumController extends BaseController implements ForumThreadCreatorObserv
         $query = Input::get('query');
         $results = App::make('Lio\Comments\ForumSearch')->searchPaginated($query, $this->threadsPerPage);
         $this->view('forum.search', compact('query', 'results'));
+    }
+
+    // reply to a thread
+    public function postCreateReply()
+    {
+        return App::make('Lio\Forum\ForumReplyCreator')->create($this, [
+            'body'      => Input::get('body'),
+            'author_id' => Auth::user()->id,
+            'type'      => Comment::TYPE_FORUM,
+            'thread'    => App::make('slugModel'),
+        ], new ForumReplyForm);
+    }
+
+    // edit a reply
+    public function getEditReply($replyId)
+    {
+        $reply = $this->comments->requireForumThreadById($replyId);
+        if (Auth::user()->id != $reply->author_id) return Redirect::to('/');
+        $this->view('forum.editcomment', compact('reply'));
+    }
+
+    public function postEditReply($replyId)
+    {
+        $reply = $this->comments->requireForumThreadById($replyId);
+        if (Auth::user()->id != $reply->author_id) return Redirect::to('/');
+
+        return App::make('Lio\Forum\ForumReplyUpdater')->update($reply, $this, [
+            'body' => Input::get('body'),
+        ], new ForumReplyForm);
+    }
+
+    // observer methods
+    public function forumReplyValidationError($errors)
+    {
+        return $this->redirectBack(['errors' => $errors]);
+    }
+
+    public function forumReplyCreated($reply)
+    {
+        // update cache for sidebar counts
+        $this->sections->cacheSections(Config::get('forum.sections'));
+        // awful demeter chain - clean up
+        return $this->redirectAction('ForumController@getShowThread', [$reply->parent()->first()->slug->slug]);
+    }
+
+    public function forumReplyUpdated($reply)
+    {
+        return $this->redirectAction('ForumController@getShowThread', [$reply->parent->slug->slug]);
     }
 
     // ------------------------- //

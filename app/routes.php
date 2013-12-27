@@ -52,14 +52,14 @@ Route::group(['before' => 'auth'], function() {
     Route::post('forum/create-thread', 'ForumController@postCreateThread');
     Route::get('forum/edit-thread/{threadId}', 'ForumController@getEditThread');
     Route::post('forum/edit-thread/{threadId}', 'ForumController@postEditThread');
-    Route::get('forum/edit-reply/{commentId}', 'ForumReplyController@edit');
-    Route::post('forum/edit-reply/{commentId}', 'ForumReplyController@update');
+    Route::get('forum/edit-reply/{commentId}', 'ForumController@getEditReply');
+    Route::post('forum/edit-reply/{commentId}', 'ForumController@postEditReply');
 
     // move to new controller
     Route::get('forum/delete/{commentId}', 'ForumController@getDeleteThread');
     Route::post('forum/delete/{commentId}', 'ForumController@postDeleteThread');
 
-    Route::post('forum/{slug}', ['before' => 'handle_slug', 'uses' => 'ForumReplyController@store']);
+    Route::post('forum/{slug}', ['before' => 'handle_slug', 'uses' => 'ForumController@postCreateReply']);
 });
 
 Route::get('forum/{slug}', ['before' => 'handle_slug', 'uses' => 'ForumController@getShowThread']);

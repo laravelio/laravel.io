@@ -12,7 +12,7 @@
         </div>
         @if(Auth::user() && $comment->author_id == Auth::user()->id)
             <div class="admin-bar">
-                <li><a class="button" href="{{ action('ForumReplyController@edit', [$comment->id]) }}">Edit</a></li>
+                <li><a class="button" href="{{ action('ForumController@getEditReply', [$comment->id]) }}">Edit</a></li>
                 <li><a class="button" href="{{ action('ForumController@getDeleteThread', [$comment->id]) }}">Delete</a></li>
             </div>
         @endif
