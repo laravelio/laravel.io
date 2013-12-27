@@ -1,6 +1,7 @@
 <?php namespace Lio\Forum;
 
 use Lio\Comments\CommentRepository;
+use Lio\Comments\Comment;
 
 /**
 * This class can call the following methods on the observer object:
@@ -17,19 +18,21 @@ class ForumReplyCreator
         $this->comments = $comments;
     }
 
-    public function create(ForumReplyCreatorObserver $observer, $data, $validator = null)
+    public function create(ForumReplyCreatorObserver $observer, $data, $threadId, $validator = null)
     {
         // check the passed in validator
         if ($validator && ! $validator->isValid()) {
             return $observer->forumReplyValidationError($validator->getErrors());
         }
-        return $this->createValidRecord($observer, $data);
+        return $this->createValidRecord($observer, $data, $threadId);
     }
 
-    private function createValidRecord($observer, $data)
+    private function createValidRecord($observer, $data, $threadId)
     {
-        $reply = $this->comments->getNew($data);
-        $reply->parent_id = $data['thread']->id;
+        $reply = $this->comments->getNew($data + [
+            'type'      => Comment::TYPE_FORUM,
+            'parent_id' => $threadId,
+        ]);
 
         // check the model validation
         if ( ! $this->comments->save($reply)) {

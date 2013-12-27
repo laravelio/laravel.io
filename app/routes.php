@@ -56,8 +56,8 @@ Route::group(['before' => 'auth'], function() {
     Route::post('forum/edit-reply/{commentId}', 'ForumController@postEditReply');
 
     // move to new controller
-    Route::get('forum/delete/{commentId}', 'ForumController@getDeleteThread');
-    Route::post('forum/delete/{commentId}', 'ForumController@postDeleteThread');
+    Route::get('forum/delete/{commentId}', 'ForumController@getDelete');
+    Route::post('forum/delete/{commentId}', 'ForumController@postDelete');
 
     Route::post('forum/{slug}', ['before' => 'handle_slug', 'uses' => 'ForumController@postCreateReply']);
 });

@@ -6,13 +6,13 @@
 
 @section('content')
 <div class="header">
-    <h1>Delete Your Post</h1>
+    <h1>Delete Your {{ $comment->isMainComment() ? 'Thread' : 'Reply' }}</h1>
 </div>
 
     <div class="reply-form">
         {{ Form::model($comment->resource) }}
             <div class="form-row">
-                <label class="field-title">Are you sure that you want to delete this post?</label>
+                <label class="field-title">Are you sure that you want to delete this {{ $comment->isMainComment() ? 'thread' : 'reply' }}?</label>
             </div>
 
             <div class="form-row">

@@ -75,6 +75,7 @@ class Comment extends EloquentBaseModel implements SlugInterface
     {
         if ($this->exists) {
             $this->child_count = $this->children()->count();
+            $this->save();
         }
     }
 

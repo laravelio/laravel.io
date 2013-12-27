@@ -129,7 +129,7 @@ class ForumController extends BaseController implements ForumThreadCreatorObserv
     }
 
     // thread deletion
-    public function getDeleteThread($commentId)
+    public function getDelete($commentId)
     {
         // user owns the comment
         $comment = $this->comments->requireById($commentId);
@@ -139,14 +139,20 @@ class ForumController extends BaseController implements ForumThreadCreatorObserv
         $this->view('forum.delete', compact('comment'));
     }
 
-    public function postDeleteThread($commentId)
+    public function postDelete($commentId)
     {
         // user owns the comment
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
 
-        // delete and redirect
+        // delete and update the counts
+        $thread = $comment->parent;
         $comment->delete();
+
+        if ($thread) {
+            $thread->updateChildCount();
+        }
+
         return Redirect::action('ForumController@getIndex');
     }
 
@@ -161,12 +167,11 @@ class ForumController extends BaseController implements ForumThreadCreatorObserv
     // reply to a thread
     public function postCreateReply()
     {
+        $thread = App::make('slugModel');
         return App::make('Lio\Forum\ForumReplyCreator')->create($this, [
             'body'      => Input::get('body'),
             'author_id' => Auth::user()->id,
-            'type'      => Comment::TYPE_FORUM,
-            'thread'    => App::make('slugModel'),
-        ], new ForumReplyForm);
+        ], $thread->id, new ForumReplyForm);
     }
 
     // edit a reply

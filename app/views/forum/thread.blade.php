@@ -28,7 +28,7 @@
         @if(Auth::user() && $thread->id == $thread->id && $thread->author_id == Auth::user()->id)
             <div class="admin-bar">
                 <li><a class="button" href="{{ action('ForumController@getEditThread', [$thread->id]) }}">Edit</a></li>
-                <li><a class="button" href="{{ action('ForumController@getDeleteThread', [$thread->id]) }}">Delete</a></li>
+                <li><a class="button" href="{{ action('ForumController@getDelete', [$thread->id]) }}">Delete</a></li>
             </div>
         @endif
     </div>
