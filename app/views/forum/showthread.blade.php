@@ -11,6 +11,7 @@
         <div class="tags">
             {{ $thread->tags->getTagList() }}
         </div>
+        <a class="button" href="{{ action('ForumController@getCreateThread') }}">Create Thread</a>
     </div>
     <div class="thread">
         <h2>{{ $thread->laravel_version ? $thread->laravel_version . ' ' : '' }}{{ $thread->title }}</h2>
