@@ -1,6 +1,7 @@
 <?php namespace Lio\Forum;
 
 use Lio\Comments\CommentRepository;
+use Lio\Comments\Comment;
 use Lio\Forum\ForumSectionCountManager;
 
 /**
