@@ -8,7 +8,6 @@ use Lio\Tags\TagRepository;
 use Lio\Forum\ForumThreadForm;
 use Lio\Forum\ForumThreadCreatorObserver;
 use Lio\Forum\ForumThreadUpdaterObserver;
-use Lio\Forum\ForumSectionCountManager;
 
 use Lio\Forum\ForumReplyForm;
 use Lio\Forum\ForumReplyCreatorObserver;

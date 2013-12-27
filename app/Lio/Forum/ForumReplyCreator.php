@@ -29,19 +29,13 @@ class ForumReplyCreator
     private function createValidRecord($observer, $data)
     {
         $reply = $this->comments->getNew($data);
+        $reply->parent_id = $data['thread']->id;
 
         // check the model validation
         if ( ! $this->comments->save($reply)) {
             return $observer->forumReplyValidationError($reply->getErrors());
         }
 
-        $this->attachReply($reply, $data['thread']);
-
         return $observer->forumReplyCreated($reply);
-    }
-
-    private function attachReply($reply, $thread)
-    {
-        $thread->children()->save($reply);
     }
 }
