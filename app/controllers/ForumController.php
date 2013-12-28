@@ -12,9 +12,9 @@ use Lio\Forum\ForumReplyForm;
 class ForumController extends BaseController implements
     \Lio\Forum\ForumThreadCreatorObserver,
     \Lio\Forum\ForumThreadUpdaterObserver,
+    \Lio\Forum\ForumThreadDeleterObserver,
     \Lio\Forum\ForumReplyCreatorObserver,
     \Lio\Forum\ForumReplyUpdaterObserver,
-    \Lio\Forum\ForumThreadDeleterObserver,
     \Lio\Forum\ForumReplyDeleterObserver
 {
     protected $comments;
@@ -38,12 +38,14 @@ class ForumController extends BaseController implements
     {
         // update user timestamp
         View::share('last_visited_timestamp', App::make('Lio\Forum\ForumSectionCountManager')->updatedAndGetLastVisited(Input::get('tags')));
+
         // query tags and retrieve the appropriate threads
         $tags = $this->tags->getAllTagsBySlug(Input::get('tags'));
         $threads = $this->comments->getForumThreadsByTagsPaginated($tags, $this->threadsPerPage);
+
         // add the tag string to each pagination link
         $threads->appends(['tags' => Input::get('tags')]);
-        // display the index
+
         $this->view('forum.index', compact('threads'));
     }
 
@@ -52,6 +54,7 @@ class ForumController extends BaseController implements
     {
         $thread = App::make('slugModel');
         $comments = $this->comments->getThreadCommentsPaginated($thread, $this->commentsPerPage);
+
         $this->view('forum.showthread', compact('thread', 'comments'));
     }
 
@@ -60,12 +63,14 @@ class ForumController extends BaseController implements
     {
         $tags = $this->tags->getAllForForum();
         $versions = Comment::$laravelVersions;
+
         $this->view('forum.createthread', compact('tags', 'versions'));
     }
 
     public function postCreateThread()
     {
         $tags = $this->tags->getTagsByIds(Input::get('tags'));
+
         return App::make('Lio\Forum\ForumThreadCreator')->create($this, [
             'title'           => Input::get('title'),
             'body'            => Input::get('body'),
@@ -81,9 +86,10 @@ class ForumController extends BaseController implements
         // check ownership
         $thread = $this->comments->requireForumThreadById($threadId);
         if (Auth::user()->id != $thread->author_id) return Redirect::to('/');
-        //
+
         $tags = $this->tags->getAllForForum();
         $versions = Comment::$laravelVersions;
+
         $this->view('forum.editthread', compact('thread', 'tags', 'versions'));
     }
 
@@ -125,6 +131,7 @@ class ForumController extends BaseController implements
         $comment = Comment::findOrFail($commentId);
         $numberCommentsBefore = Comment::where('parent_id', '=', $comment->parent_id)->where('created_at', '<', $comment->created_at)->count();
         $page = round($numberCommentsBefore / $this->commentsPerPage, 0, PHP_ROUND_HALF_DOWN) + 1;
+
         return Redirect::to(action('ForumController@getShowThread', [$thread]) . "?page={$page}#comment-{$commentId}");
     }
 
@@ -135,7 +142,6 @@ class ForumController extends BaseController implements
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
 
-        // delete form
         $this->view('forum.delete', compact('comment'));
     }
 
