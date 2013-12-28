@@ -171,6 +171,8 @@ class ForumController extends BaseController implements
     // forum search
     public function getSearch()
     {
+        View::share('last_visited_timestamp', App::make('Lio\Forum\ForumSectionCountManager')->updatedAndGetLastVisited(Input::get('tags')));
+
         $query = Input::get('query');
         $results = App::make('Lio\Comments\ForumSearch')->searchPaginated($query, $this->threadsPerPage);
 
