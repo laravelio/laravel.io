@@ -6,6 +6,6 @@ class GistEmbedFormatter
 
     public function format($html)
     {
-        return preg_replace($this->pattern, '<script src="$0.js"></script>', $html);
+        return preg_replace($this->pattern, '<script src="$0.js" async></script>', $html);
     }
 }
