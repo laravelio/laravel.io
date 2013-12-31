@@ -34,11 +34,11 @@
             </div>
 
             <div class="pagination">
-                {{ $results->appends(array('query' => $query))->links() }}
+                {{ $results->links() }}
             </div>
         @else
             <div class="padding">
-                {{ Form::open(['action' => 'ForumController@getSearch', 'method' => 'GET']) }}
+                {{ Form::open(['action' => 'ForumThreadController@getSearch', 'method' => 'GET']) }}
                     <div class="form-row">
                         {{ Form::label('query', 'Search the laravel.io forum', ['class' => 'field-title']) }}
                         {{ Form::text('query', null, ['placeholder' => 'search the laravel.io forum'] )}}

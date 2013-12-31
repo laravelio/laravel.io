@@ -9,7 +9,7 @@ class CommentPresenter extends BasePresenter
     {
         $slug = $this->resource->slug;
         if ( ! $slug) return '';
-        return action('ForumController@getShowThread', [$slug->slug]);
+        return action('ForumThreadController@getShowThread', [$slug->slug]);
     }
 
     public function commentUrl()
@@ -18,7 +18,7 @@ class CommentPresenter extends BasePresenter
         $slug = $this->resource->parent->slug;
         if ( ! $slug) return '';
 
-        $url = action('ForumController@getCommentRedirect', [$slug->slug, $this->id]);
+        $url = action('ForumReplyController@getCommentRedirect', [$slug->slug, $this->id]);
         return $url;
     }
 

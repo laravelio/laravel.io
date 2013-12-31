@@ -9,13 +9,10 @@ use Lio\Forum\ForumSectionCountManager;
 use Lio\Forum\ForumThreadForm;
 use Lio\Forum\ForumReplyForm;
 
-class ForumController extends BaseController implements
+class ForumThreadController extends BaseController implements
     \Lio\Forum\ForumThreadCreatorObserver,
     \Lio\Forum\ForumThreadUpdaterObserver,
-    \Lio\Forum\ForumThreadDeleterObserver,
-    \Lio\Forum\ForumReplyCreatorObserver,
-    \Lio\Forum\ForumReplyUpdaterObserver,
-    \Lio\Forum\ForumReplyDeleterObserver
+    \Lio\Forum\ForumThreadDeleterObserver
 {
     protected $comments;
     protected $tags;
@@ -116,12 +113,12 @@ class ForumController extends BaseController implements
 
     public function forumThreadCreated($thread)
     {
-        return $this->redirectAction('ForumController@getShowThread', [$thread->slug()->first()->slug]);
+        return $this->redirectAction('ForumThreadController@getShowThread', [$thread->slug()->first()->slug]);
     }
 
     public function forumThreadUpdated($thread)
     {
-        return $this->redirectAction('ForumController@getShowThread', [$thread->slug->slug]);
+        return $this->redirectAction('ForumThreadController@getShowThread', [$thread->slug->slug]);
     }
 
     // bounces the user to the correct page of a thread for the indicated comment
@@ -132,7 +129,7 @@ class ForumController extends BaseController implements
         $numberCommentsBefore = Comment::where('parent_id', '=', $comment->parent_id)->where('created_at', '<', $comment->created_at)->count();
         $page = round($numberCommentsBefore / $this->commentsPerPage, 0, PHP_ROUND_HALF_DOWN) + 1;
 
-        return Redirect::to(action('ForumController@getShowThread', [$thread]) . "?page={$page}#comment-{$commentId}");
+        return Redirect::to(action('ForumThreadController@getShowThread', [$thread]) . "?page={$page}#comment-{$commentId}");
     }
 
     // thread deletion
@@ -160,12 +157,7 @@ class ForumController extends BaseController implements
     // observer methods
     public function forumThreadDeleted()
     {
-        return Redirect::action('ForumController@getIndex');
-    }
-
-    public function forumReplyDeleted($thread)
-    {
-        return Redirect::action('ForumController@getShowThread', [$thread->slug->slug]);
+        return Redirect::action('ForumThreadController@getIndex');
     }
 
     // forum search
@@ -175,55 +167,9 @@ class ForumController extends BaseController implements
 
         $query = Input::get('query');
         $results = App::make('Lio\Comments\ForumSearch')->searchPaginated($query, $this->threadsPerPage);
+        $results->appends(array('query' => $query));
 
         $this->view('forum.search', compact('query', 'results'));
-    }
-
-    // reply to a thread
-    public function postCreateReply()
-    {
-        $thread = App::make('slugModel');
-
-        return App::make('Lio\Forum\ForumReplyCreator')->create($this, [
-            'body'      => Input::get('body'),
-            'author_id' => Auth::user()->id,
-        ], $thread->id, new ForumReplyForm);
-    }
-
-    // edit a reply
-    public function getEditReply($replyId)
-    {
-        $reply = $this->comments->requireForumThreadById($replyId);
-        if (Auth::user()->id != $reply->author_id) return Redirect::to('/');
-
-        $this->view('forum.editreply', compact('reply'));
-    }
-
-    public function postEditReply($replyId)
-    {
-        $reply = $this->comments->requireForumThreadById($replyId);
-        if (Auth::user()->id != $reply->author_id) return Redirect::to('/');
-
-        return App::make('Lio\Forum\ForumReplyUpdater')->update($reply, $this, [
-            'body' => Input::get('body'),
-        ], new ForumReplyForm);
-    }
-
-    // observer methods
-    public function forumReplyValidationError($errors)
-    {
-        return $this->redirectBack(['errors' => $errors]);
-    }
-
-    public function forumReplyCreated($reply)
-    {
-        // awful demeter chain - clean up
-        return $this->redirectAction('ForumController@getShowThread', [$reply->parent()->first()->slug->slug]);
-    }
-
-    public function forumReplyUpdated($reply)
-    {
-        return $this->redirectAction('ForumController@getShowThread', [$reply->parent->slug->slug]);
     }
 
     // ------------------------- //
