@@ -12,6 +12,7 @@ class ForumThreadsController extends BaseController implements
     protected $sections;
 
     protected $threadsPerPage = 20;
+    protected $repliesPerPage = 20;
 
     public function __construct(
         \Lio\Forum\ThreadRepository $threads,
@@ -45,7 +46,7 @@ class ForumThreadsController extends BaseController implements
     public function getShowThread($threadSlug)
     {
         $thread = $this->threads->requireBySlug($threadSlug);
-        $replies = $this->threads->getThreadRepliesPaginated($thread, $this->threadsPerPage);
+        $replies = $this->threads->getThreadRepliesPaginated($thread, $this->repliesPerPage);
 
         $this->view('forum.threads.show', compact('thread', 'replies'));
     }
@@ -122,17 +123,6 @@ class ForumThreadsController extends BaseController implements
         return $this->redirectAction('ForumThreadsController@getShowThread', [$thread->slug]);
     }
 
-    // bounces the user to the correct page of a thread for the indicated thread
-    public function getthreadRedirect($thread, $threadId)
-    {
-        // refactor this
-        $thread = Thread::findOrFail($threadId);
-        $numberthreadsBefore = Thread::where('parent_id', '=', $thread->parent_id)->where('created_at', '<', $thread->created_at)->count();
-        $page = round($numberthreadsBefore / $this->threadsPerPage, 0, PHP_ROUND_HALF_DOWN) + 1;
-
-        return Redirect::to(action('ForumThreadsController@getShowThread', [$thread]) . "?page={$page}#thread-{$threadId}");
-    }
-
     // thread deletion
     public function getDelete($threadId)
     {
@@ -162,7 +152,7 @@ class ForumThreadsController extends BaseController implements
         return Redirect::action('ForumThreadsController@getIndex');
     }
 
-    // forum search
+    // forum thread search
     public function getSearch()
     {
         View::share('last_visited_timestamp', App::make('Lio\Forum\SectionCountManager')->updatedAndGetLastVisited(Input::get('tags')));

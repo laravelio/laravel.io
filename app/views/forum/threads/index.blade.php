@@ -19,7 +19,7 @@
 
         <div class="threads">
             {{-- Loop over the threads and display the thread summary partial --}}
-            @each('forum._thread_summary', $threads, 'thread')
+            @each('forum.threads._index_summary', $threads, 'thread')
 
             {{-- If no comments are found display a message --}}
             @if( ! $threads->count())

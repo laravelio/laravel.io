@@ -21,10 +21,10 @@ class ReplyDeleter
 
     public function delete(ReplyDeleterObserver $observer, $reply)
     {
-        $thread = $reply->parent;
+        $thread = $reply->thread;
         $reply->delete();
 
-        $thread->updateChildCount();
+        $thread->updateReplyCount();
         $this->countManager->cacheSections();
         return $observer->replyDeleted($thread);
     }

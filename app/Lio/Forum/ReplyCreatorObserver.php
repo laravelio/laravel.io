@@ -2,6 +2,6 @@
 
 interface ReplyCreatorObserver
 {
-    public function replyValidationError($errors);
+    public function replyCreationError($errors);
     public function replyCreated($reply);
 }

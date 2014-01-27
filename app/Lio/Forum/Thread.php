@@ -9,7 +9,7 @@ class Thread extends \Lio\Core\Entity
 
     public $presenter = 'Lio\Forum\ThreadPresenter';
 
-    protected $validatorRules = [
+    protected $validationRules = [
         'body'      => 'required',
         'author_id' => 'required|exists:users,id',
     ];
@@ -50,7 +50,7 @@ class Thread extends \Lio\Core\Entity
             $date = date('m-d-Y');
         }
 
-        $this->slug = \Str::slug("{$date} - {$this->subject}");
+        $this->attributes['slug'] = \Str::slug("{$date} - {$this->subject}");
     }
 
     public function getLaravelVersions()

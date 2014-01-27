@@ -1,27 +1,25 @@
 <?php namespace Lio\Forum;
 
-use Lio\Comments\CommentRepository;
-
 /**
 * This class can call the following methods on the observer object:
 *
-* replyValidationError($errors)
+* replyUpdateError($errors)
 * replyUpdated($reply)
 */
 class ReplyUpdater
 {
-    protected $comments;
+    protected $replies;
 
-    public function __construct(CommentRepository $comments)
+    public function __construct(ReplyRepository $replies)
     {
-        $this->comments = $comments;
+        $this->replies = $replies;
     }
 
-    public function update($reply, ForumReplyUpdaterObserver $observer, $data, $validator = null)
+    public function update($reply, ReplyUpdaterObserver $observer, $data, $validator = null)
     {
         // check the passed in validator
         if ($validator && ! $validator->isValid()) {
-            return $observer->forumReplyValidationError($validator->getErrors());
+            return $observer->replyUpdateError($validator->getErrors());
         }
         return $this->updateRecord($reply, $observer, $data);
     }
@@ -31,10 +29,10 @@ class ReplyUpdater
         $reply->fill($data);
 
         // check the model validation
-        if ( ! $this->comments->save($reply)) {
-            return $observer->forumReplyValidationError($reply->getErrors());
+        if ( ! $this->replies->save($reply)) {
+            return $observer->replyUpdateError($reply->getErrors());
         }
 
-        return $observer->forumReplyUpdated($reply);
+        return $observer->replyUpdated($reply);
     }
 }

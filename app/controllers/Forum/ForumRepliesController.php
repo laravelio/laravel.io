@@ -1,26 +1,23 @@
 <?php
 
-use Lio\Comments\CommentRepository;
-use Lio\Comments\Comment;
-use Lio\Tags\TagRepository;
-use Lio\Forum\SectionCountManager;
-use Lio\Forum\ForumReplyForm;
+use Lio\Forum\ReplyForm;
 
 class ForumRepliesController extends BaseController implements
-    \Lio\Forum\ForumReplyCreatorObserver,
-    \Lio\Forum\ForumReplyUpdaterObserver,
-    \Lio\Forum\ForumReplyDeleterObserver
+    \Lio\Forum\ReplyCreatorObserver,
+    \Lio\Forum\ReplyUpdaterObserver,
+    \Lio\Forum\ReplyDeleterObserver
 {
-    protected $comments;
     protected $tags;
     protected $sections;
 
-    protected $threadsPerPage = 20;
-    protected $commentsPerPage = 20;
-
-    public function __construct(CommentRepository $comments, TagRepository $tags, SectionCountManager $sections)
-    {
-        $this->comments = $comments;
+    public function __construct(
+        \Lio\Forum\ThreadRepository $threads,
+        \Lio\Forum\ReplyRepository $replies,
+        \Lio\Tags\TagRepository $tags,
+        \Lio\Forum\SectionCountManager $sections
+    ) {
+        $this->threads  = $threads;
+        $this->replies  = $replies;
         $this->tags     = $tags;
         $this->sections = $sections;
 
@@ -28,89 +25,100 @@ class ForumRepliesController extends BaseController implements
     }
 
     // bounces the user to the correct page of a thread for the indicated comment
-    public function getCommentRedirect($thread, $commentId)
+    public function getReplyRedirect($threadSlug, $replyId)
     {
         // refactor this
-        $comment = Comment::findOrFail($commentId);
-        $numberCommentsBefore = Comment::where('parent_id', '=', $comment->parent_id)->where('created_at', '<', $comment->created_at)->count();
-        $page = round($numberCommentsBefore / $this->commentsPerPage, 0, PHP_ROUND_HALF_DOWN) + 1;
+        // $thread = $this->threads->requireBySlug($threadSlug);
+        // $numberthreadsBefore = Thread::where('parent_id', '=', $thread->parent_id)->where('created_at', '<', $thread->created_at)->count();
+        // $page = round($numberthreadsBefore / $this->threadsPerPage, 0, PHP_ROUND_HALF_DOWN) + 1;
 
-        return Redirect::to(action('ForumThreadsController@getShowThread', [$thread]) . "?page={$page}#comment-{$commentId}");
-    }
-
-    // reply deletion
-    public function getDelete($commentId)
-    {
-        // user owns the comment
-        $comment = $this->comments->requireById($commentId);
-        if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
-
-        $this->view('forum.delete', compact('comment'));
-    }
-
-    public function postDelete($commentId)
-    {
-        // user owns the comment
-        $comment = $this->comments->requireById($commentId);
-        if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
-
-        if ($comment->parent) {
-            return App::make('Lio\Forum\ForumReplyDeleter')->delete($this, $comment);
-        }
-        return App::make('Lio\Forum\ForumThreadDeleter')->delete($this, $comment);
-    }
-
-    // observer methods
-    public function forumReplyDeleted($thread)
-    {
-        return Redirect::action('ForumThreadsController@getShowThread', [$thread->slug->slug]);
+        // return Redirect::to(action('ForumThreadsController@getShowThread', [$thread]) . "?page={$page}#thread-{$threadId}");
     }
 
     // reply to a thread
-    public function postCreateReply()
+    public function postCreateReply($threadSlug)
     {
-        $thread = App::make('slugModel');
+        $thread = $this->threads->requireBySlug($threadSlug);
 
-        return App::make('Lio\Forum\ForumReplyCreator')->create($this, [
-            'body'      => Input::get('body'),
-            'author_id' => Auth::user()->id,
-        ], $thread->id, new ForumReplyForm);
+        return App::make('Lio\Forum\ReplyCreator')->create($this, [
+            'body'   => Input::get('body'),
+            'author' => Auth::user(),
+        ], $thread->id, new ReplyForm);
+    }
+
+    public function replyCreationError($errors)
+    {
+        return $this->redirectBack(['errors' => $errors]);
+    }
+
+    public function replyCreated($reply)
+    {
+        return $this->redirectAction('ForumThreadsController@getShowThread', [$reply->thread->slug]);
     }
 
     // edit a reply
     public function getEditReply($replyId)
     {
-        $reply = $this->comments->requireForumThreadById($replyId);
-        if (Auth::user()->id != $reply->author_id) return Redirect::to('/');
+        $reply = $this->replies->requireById($replyId);
 
-        $this->view('forum.editreply', compact('reply'));
+        if ( ! $reply->isOwnedBy(Auth::user())) {
+            return Redirect::to('/');
+        }
+
+        $this->view('forum.replies.edit', compact('reply'));
     }
 
     public function postEditReply($replyId)
     {
-        $reply = $this->comments->requireForumThreadById($replyId);
-        if (Auth::user()->id != $reply->author_id) return Redirect::to('/');
+        $reply = $this->replies->requireById($replyId);
 
-        return App::make('Lio\Forum\ForumReplyUpdater')->update($reply, $this, [
+        if ( ! $reply->isOwnedBy(Auth::user())) {
+            return Redirect::to('/');
+        }
+
+        return App::make('Lio\Forum\ReplyUpdater')->update($reply, $this, [
             'body' => Input::get('body'),
-        ], new ForumReplyForm);
+        ], new ReplyForm);
     }
 
     // observer methods
-    public function forumReplyValidationError($errors)
+    public function replyUpdateError($errors)
     {
         return $this->redirectBack(['errors' => $errors]);
     }
 
-    public function forumReplyCreated($reply)
+    public function replyUpdated($reply)
     {
-        // awful demeter chain - clean up
-        return $this->redirectAction('ForumThreadsController@getShowThread', [$reply->parent()->first()->slug->slug]);
+        return $this->redirectAction('ForumThreadsController@getShowThread', [$reply->thread->slug]);
     }
 
-    public function forumReplyUpdated($reply)
+    // reply deletion
+    public function getDelete($replyId)
     {
-        return $this->redirectAction('ForumThreadsController@getShowThread', [$reply->parent->slug->slug]);
+        $reply = $this->replies->requireById($replyId);
+
+        if ( ! $reply->isOwnedBy(Auth::user())) {
+            return Redirect::to('/');
+        }
+
+        $this->view('forum.replies.delete', compact('reply'));
+    }
+
+    public function postDelete($replyId)
+    {
+        $reply = $this->replies->requireById($replyId);
+
+        if ( ! $reply->isOwnedBy(Auth::user())) {
+            return Redirect::to('/');
+        }
+
+        return App::make('Lio\Forum\ReplyDeleter')->delete($this, $reply);
+    }
+
+    // observer methods
+    public function replyDeleted($thread)
+    {
+        return Redirect::action('ForumThreadsController@getShowThread', [$thread->slug->slug]);
     }
 
     // ------------------------- //

@@ -42,10 +42,7 @@ Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum
 Route::get('forum', 'ForumThreadsController@getIndex');
-Route::get('forum/search', 'ForumSearchController@getSearch');
-
-// move to new controller
-Route::get('forum/{slug}/comment/{commentId}', 'ForumRepliesController@getCommentRedirect');
+Route::get('forum/search', 'ForumThreadsController@getSearch');
 
 Route::group(['before' => 'auth'], function() {
     Route::get('forum/create-thread', 'ForumThreadsController@getCreateThread');
@@ -55,13 +52,16 @@ Route::group(['before' => 'auth'], function() {
     Route::get('forum/edit-reply/{replyId}', 'ForumRepliesController@getEditReply');
     Route::post('forum/edit-reply/{replyId}', 'ForumRepliesController@postEditReply');
 
-    Route::get('forum/delete/thread/{threadId}', 'ForumThreadsController@getDelete');
-    Route::post('forum/delete/thread/{threadId}', 'ForumThreadsController@postDelete');
     Route::get('forum/delete/reply/{replyId}', 'ForumRepliesController@getDelete');
     Route::post('forum/delete/reply/{replyId}', 'ForumRepliesController@postDelete');
+    Route::get('forum/delete/thread/{threadId}', 'ForumThreadsController@getDelete');
+    Route::post('forum/delete/thread/{threadId}', 'ForumThreadsController@postDelete');
 
     Route::post('forum/{slug}', ['before' => '', 'uses' => 'ForumRepliesController@postCreateReply']);
 });
+
+// move to new controller
+Route::get('forum/{slug}/reply/{commentId}', 'ForumRepliesController@getReplyRedirect');
 
 Route::get('forum/{slug}', ['before' => '', 'uses' => 'ForumThreadsController@getShowThread']);
 

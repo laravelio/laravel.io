@@ -14,7 +14,6 @@ abstract class Entity extends Eloquent
         if ( ! isset($this->validationRules)) {
             throw new NoValidationRulesFoundException('no validation rule array defined in class ' . get_called_class());
         }
-
         $this->validator = Validator::make($this->getAttributes(), $this->getPreparedRules());
 
         return $this->validator->passes();
@@ -31,7 +30,9 @@ abstract class Entity extends Eloquent
 
     public function save(array $options = array())
     {
-        if ( ! $this->isValid()) return false;
+        if ( ! $this->isValid()) {
+            return false;
+        }
         return parent::save($options);
     }
 

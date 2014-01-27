@@ -24,7 +24,7 @@
     </div>
     <div class="posts">
         @foreach($threads as $thread)
-            @include('forum._home_summary')
+            @include('forum.threads._index_summary')
         @endforeach
     </div>
 </section>

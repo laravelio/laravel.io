@@ -9,8 +9,8 @@ class Reply extends \Lio\Core\Entity
 
     public $presenter = 'Lio\Forum\ReplyPresenter';
 
-    protected $validatorRules = [
-        'body'      => 'required',
+    protected $validationRules = [
+        'body'      => 'required|min:6',
         'author_id' => 'required|exists:users,id',
     ];
 
@@ -26,6 +26,6 @@ class Reply extends \Lio\Core\Entity
 
     public function isOwnedBy(\Lio\Accounts\User $user)
     {
-        return $user->id == $thread->author_id;
+        return $user->id == $this->author_id;
     }
 }

@@ -5,51 +5,50 @@
 @stop
 
 @section('content')
-<div class="forum">
-    <div class="header">
-        <h1>Forum</h1>
-        <div class="tags">
-            {{ $thread->tags->getTagList() }}
-        </div>
-        <a class="button" href="{{ action('ForumThreadsController@getCreateThread') }}">Create Thread</a>
-    </div>
-    <div class="thread">
-        <h2>{{ $thread->laravel_version ? $thread->laravel_version . ' ' : '' }}{{ $thread->title }}</h2>
-        {{ $thread->body }}
-        <div class="user">
-            {{ $thread->author->thumbnail }}
-            <div class="info">
-                <h6><a href="{{ $thread->author->profileUrl }}">{{ $thread->author->name }}</a></h6>
-                <ul class="meta">
-                    <li>{{ $thread->created_ago }}</li>
-                </ul>
+    <div class="forum">
+        <div class="header">
+            <h1>Forum</h1>
+            <div class="tags">
+                {{ $thread->tags->getTagList() }}
             </div>
+            <a class="button" href="{{ action('ForumThreadsController@getCreateThread') }}">Create Thread</a>
+        </div>
+        <div class="thread">
+            <h2>{{ $thread->laravel_version ? $thread->laravel_version . ' ' : '' }}{{ $thread->subject }}</h2>
+            {{ $thread->body }}
+            <div class="user">
+                {{ $thread->author->thumbnail }}
+                <div class="info">
+                    <h6><a href="{{ $thread->author->profileUrl }}">{{ $thread->author->name }}</a></h6>
+                    <ul class="meta">
+                        <li>{{ $thread->created_ago }}</li>
+                    </ul>
+                </div>
+            </div>
+
+            @if(Auth::user() && $thread->id == $thread->id && $thread->author_id == Auth::user()->id)
+                <div class="admin-bar">
+                    <li><a class="button" href="{{ action('ForumThreadsController@getEditThread', [$thread->id]) }}">Edit</a></li>
+                    <li><a class="button" href="{{ action('ForumThreadsController@getDelete', [$thread->id]) }}">Delete</a></li>
+                </div>
+            @endif
         </div>
 
-        @if(Auth::user() && $thread->id == $thread->id && $thread->author_id == Auth::user()->id)
-            <div class="admin-bar">
-                <li><a class="button" href="{{ action('ForumThreadsController@getEditThread', [$thread->id]) }}">Edit</a></li>
-                <li><a class="button" href="{{ action('ForumThreadsController@getDelete', [$thread->id]) }}">Delete</a></li>
-            </div>
-        @endif
+        <div class="comments">
+            @foreach($replies as $reply)
+                @include('forum.replies._show')
+            @endforeach
+        </div>
+        {{ $replies->links() }}
     </div>
 
-    <div class="comments">
-        @foreach($replies as $reply)
-            @include('forum.replies._show')
-        @endforeach
-    </div>
-    {{ $replies->links() }}
-</div>
-
-@if(Auth::check())
-    @include('forum.replies._create')
-@else
-    <div class="login-cta">
-        <p>Want to reply to this thread?</p> <a class="button" href="{{ action('AuthController@getLogin') }}">Login with github.</a>
-    </div>
-@endif
-
+    @if(Auth::check())
+        @include('forum.replies._create')
+    @else
+        <div class="login-cta">
+            <p>Want to reply to this thread?</p> <a class="button" href="{{ action('AuthController@getLogin') }}">Login with github.</a>
+        </div>
+    @endif
 @stop
 
 @include('layouts._markdown_editor')

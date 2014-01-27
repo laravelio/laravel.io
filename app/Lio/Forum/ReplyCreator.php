@@ -1,52 +1,50 @@
 <?php namespace Lio\Forum;
 
 use Lio\Forum\SectionCountManager;
-use Lio\Comments\CommentRepository;
-use Lio\Comments\Comment;
 
 /**
 * This class can call the following methods on the observer object:
 *
-* replyValidationError($errors)
+* replyCreationError($errors)
 * replyCreated($reply)
 */
 class ReplyCreator
 {
-    protected $comments;
+    protected $replies;
     protected $countManager;
 
-    public function __construct(CommentRepository $comments, SectionCountManager $countManager)
+    public function __construct(ReplyRepository $replies, SectionCountManager $countManager)
     {
-        $this->comments = $comments;
+        $this->replies = $replies;
         $this->countManager = $countManager;
     }
 
     public function create(ReplyCreatorObserver $observer, $data, $threadId, $validator = null)
     {
         $this->runValidator($observer, $validator);
-        $reply = $this->getNew($data);
-        return $this->validateAndSave($reply);
+        $reply = $this->getNew($data, $threadId);
+        return $this->validateAndSave($observer, $reply);
     }
 
     private function runValidator($observer, $validator)
     {
         if ($validator && ! $validator->isValid()) {
-            return $observer->replyValidationError($validator->getErrors());
+            return $observer->replyCreationError($validator->getErrors());
         }
     }
 
-    private function getNew($data)
+    private function getNew($data, $threadId)
     {
-        return $this->comments->getNew($data + [
-            'type'      => Comment::TYPE_FORUM,
-            'parent_id' => $threadId,
+        return $this->replies->getNew($data + [
+            'thread_id' => $threadId,
+            'author_id' => $data['author']->id,
         ]);
     }
 
     private function validateAndSave($observer, $reply)
     {
-        if ( ! $this->comments->save($reply)) {
-            return $observer->replyValidationError($reply->getErrors());
+        if ( ! $this->replies->save($reply)) {
+            return $observer->replyCreationError($reply->getErrors());
         }
 
         // cache new thread update timestamps

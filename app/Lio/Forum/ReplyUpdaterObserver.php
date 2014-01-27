@@ -2,6 +2,6 @@
 
 interface ReplyUpdaterObserver
 {
-    public function forumReplyValidationError($errors);
-    public function forumReplyUpdated($reply);
+    public function replyUpdateError($errors);
+    public function replyUpdated($reply);
 }
