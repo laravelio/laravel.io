@@ -3,7 +3,7 @@
 use Lio\Accounts\UserRepository;
 
 /**
-* This class can call the following methods on the observer object:
+* This class can call the following methods on the listener object:
 *
 * userFound($user)
 * userIsBanned($user)
@@ -19,26 +19,26 @@ class GithubAuthenticator
         $this->reader = $reader;
     }
 
-    public function authByCode($observer, $code)
+    public function authByCode(GithubAuthenticatorListener $listener, $code)
     {
         $githubData = $this->reader->getDataFromCode($code);
         $user = $this->users->getByGithubId($githubData['id']);
 
         if ($user) {
-            return $this->loginUser($observer, $user, $githubData);
+            return $this->loginUser($listener, $user, $githubData);
         }
 
-        return $observer->userNotFound($githubData);
+        return $listener->userNotFound($githubData);
     }
 
-    private function loginUser($observer, $user, $githubData)
+    private function loginUser($listener, $user, $githubData)
     {
         if ($user->is_banned) {
-            return $observer->userIsBanned($user);
+            return $listener->userIsBanned($user);
         }
 
         $user->fill($githubData);
         $this->users->save($user);
-        return $observer->userFound($user);
+        return $listener->userFound($user);
     }
 }

@@ -1,6 +1,6 @@
 <?php namespace Lio\Accounts;
 
-interface UserCreatorObserver
+interface UserCreatorListener
 {
     public function userValidationError($errors);
     public function userCreated($user);
