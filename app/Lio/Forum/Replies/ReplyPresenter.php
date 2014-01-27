@@ -1,27 +1,15 @@
-<?php namespace Lio\Forum;
+<?php namespace Lio\Forum\Replies;
 
 use McCool\LaravelAutoPresenter\BasePresenter;
 use App, Input, Str, Request;
 
-class ThreadPresenter extends BasePresenter
+class ReplyPresenter extends BasePresenter
 {
     public function url()
     {
-        if ( ! $this->slug) {
-            return '';
-        }
-        return action('ForumThreadsController@getShowThread', [$this->slug]);
-    }
-
-    public function reply_count_label()
-    {
-        if ($this->resource->reply_count == 0) {
-            return '0 Responses';
-        } elseif($this->resource->reply_count == 1) {
-            return '1 Response';
-        }
-
-        return $this->resource->reply_count . ' Responses';
+        // $slug = $this->resource->slug;
+        // if ( ! $slug) return '';
+        // return action('ForumThreadsController@getShowThread', [$slug->slug]);
     }
 
     public function created_ago()
@@ -42,16 +30,6 @@ class ThreadPresenter extends BasePresenter
         $body = $this->formatGists($body);
         $body = $this->linkify($body);
         return $body;
-    }
-
-    public function laravel_version()
-    {
-        if ($this->resource->laravel_version == 3) {
-            return '[L3]';
-        }
-        if ($this->resource->laravel_version == 4) {
-            return '[L4]';
-        }
     }
 
     // ------------------- //

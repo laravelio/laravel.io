@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum;
+<?php namespace Lio\Forum\Replies;
 
 use Illuminate\Support\Collection;
 

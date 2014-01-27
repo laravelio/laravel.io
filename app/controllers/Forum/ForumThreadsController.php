@@ -1,11 +1,11 @@
 <?php
 
-use \Lio\Forum\ThreadForm;
+use \Lio\Forum\Threads\ThreadForm;
 
 class ForumThreadsController extends BaseController implements
-    \Lio\Forum\ThreadCreatorListener,
-    \Lio\Forum\ThreadUpdaterListener,
-    \Lio\Forum\ThreadDeleterListener
+    \Lio\Forum\Threads\ThreadCreatorListener,
+    \Lio\Forum\Threads\ThreadUpdaterListener,
+    \Lio\Forum\Threads\ThreadDeleterListener
 {
     protected $threads;
     protected $tags;
@@ -15,7 +15,7 @@ class ForumThreadsController extends BaseController implements
     protected $repliesPerPage = 20;
 
     public function __construct(
-        \Lio\Forum\ThreadRepository $threads,
+        \Lio\Forum\Threads\ThreadRepository $threads,
         \Lio\Tags\TagRepository $tags,
         \Lio\Forum\SectionCountManager $sections
     ) {
@@ -62,7 +62,7 @@ class ForumThreadsController extends BaseController implements
 
     public function postCreateThread()
     {
-        return App::make('Lio\Forum\ThreadCreator')->create($this, [
+        return App::make('Lio\Forum\Threads\ThreadCreator')->create($this, [
             'subject'         => Input::get('subject'),
             'body'            => Input::get('body'),
             'author'          => Auth::user(),
@@ -104,7 +104,7 @@ class ForumThreadsController extends BaseController implements
             return Redirect::to('/');
         }
 
-        return App::make('Lio\Forum\ThreadUpdater')->update($this, $thread, [
+        return App::make('Lio\Forum\Threads\ThreadUpdater')->update($this, $thread, [
             'title'           => Input::get('title'),
             'body'            => Input::get('body'),
             'laravel_version' => Input::get('laravel_version'),
@@ -143,7 +143,7 @@ class ForumThreadsController extends BaseController implements
             return Redirect::to('/');
         }
 
-        return App::make('Lio\Forum\ThreadDeleter')->delete($this, $thread);
+        return App::make('Lio\Forum\Threads\ThreadDeleter')->delete($this, $thread);
     }
 
     // observer methods

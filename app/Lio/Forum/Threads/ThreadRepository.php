@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum;
+<?php namespace Lio\Forum\Threads;
 
 use Illuminate\Support\Collection;
 use Lio\Core\Exceptions\EntityNotFoundException;

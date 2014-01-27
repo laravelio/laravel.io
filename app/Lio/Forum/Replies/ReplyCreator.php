@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum;
+<?php namespace Lio\Forum\Replies;
 
 use Lio\Forum\SectionCountManager;
 

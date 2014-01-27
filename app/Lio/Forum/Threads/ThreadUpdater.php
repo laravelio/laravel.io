@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum;
+<?php namespace Lio\Forum\Threads;
 
 /**
 * This class can call the following methods on the observer object:

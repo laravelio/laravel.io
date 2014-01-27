@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum;
+<?php namespace Lio\Forum\Threads;
 
 use Lio\Forum\SectionCountManager;
 
@@ -20,8 +20,15 @@ class ThreadDeleter
 
     public function delete(ThreadDeleterListener $observer, $thread)
     {
+        $this->deleteReplies($thread);
+
         $this->threads->delete($thread);
         $this->countManager->cacheSections();
         return $observer->threadDeleted();
+    }
+
+    private function deleteReplies(Thread $thread)
+    {
+        $thread->replies()->delete();
     }
 }

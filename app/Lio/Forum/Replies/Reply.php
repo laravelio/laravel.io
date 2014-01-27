@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum;
+<?php namespace Lio\Forum\Replies;
 
 class Reply extends \Lio\Core\Entity
 {
@@ -7,7 +7,7 @@ class Reply extends \Lio\Core\Entity
     protected $with       = ['author'];
     protected $softDelete = true;
 
-    public $presenter = 'Lio\Forum\ReplyPresenter';
+    public $presenter = 'Lio\Forum\Replies\ReplyPresenter';
 
     protected $validationRules = [
         'body'      => 'required|min:6',
@@ -21,7 +21,7 @@ class Reply extends \Lio\Core\Entity
 
     public function thread()
     {
-        return $this->belongsTo('Lio\Forum\Thread', 'thread_id');
+        return $this->belongsTo('Lio\Forum\Threads\Thread', 'thread_id');
     }
 
     public function isOwnedBy(\Lio\Accounts\User $user)

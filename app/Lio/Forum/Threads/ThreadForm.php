@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum;
+<?php namespace Lio\Forum\Threads;
 
 use Lio\Core\FormModel;
 use App, Validator;

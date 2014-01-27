@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum;
+<?php namespace Lio\Forum\Threads;
 
 class Thread extends \Lio\Core\Entity
 {
@@ -7,7 +7,7 @@ class Thread extends \Lio\Core\Entity
     protected $with       = ['author'];
     protected $softDelete = true;
 
-    public $presenter = 'Lio\Forum\ThreadPresenter';
+    public $presenter = 'Lio\Forum\Threads\ThreadPresenter';
 
     protected $validationRules = [
         'body'      => 'required',
@@ -27,7 +27,7 @@ class Thread extends \Lio\Core\Entity
 
     public function replies()
     {
-        return $this->hasMany('Lio\Forum\Reply', 'thread_id');
+        return $this->hasMany('Lio\Forum\Replies\Reply', 'thread_id');
     }
 
     public function tags()
@@ -37,7 +37,7 @@ class Thread extends \Lio\Core\Entity
 
     public function mostRecentReply()
     {
-        return $this->belongsTo('Lio\Forum\Reply', 'most_recent_reply_id');
+        return $this->belongsTo('Lio\Forum\Replies\Reply', 'most_recent_reply_id');
     }
 
     public function setSubjectAttribute($subject)
@@ -86,14 +86,6 @@ class Thread extends \Lio\Core\Entity
     public function hasTag($tagId)
     {
         return $this->tags->contains($tagId);
-    }
-
-    public function delete()
-    {
-        // delete replies
-        $this->replies()->delete();
-        // delete self
-        parent::delete();
     }
 
     public function isNewerThan($timestamp)
