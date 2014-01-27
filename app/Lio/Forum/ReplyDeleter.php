@@ -26,6 +26,7 @@ class ReplyDeleter
 
         $thread->updateReplyCount();
         $this->countManager->cacheSections();
+
         return $observer->replyDeleted($thread);
     }
 }

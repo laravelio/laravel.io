@@ -13,15 +13,15 @@ class ThreadPresenter extends BasePresenter
         return action('ForumThreadsController@getShowThread', [$this->slug]);
     }
 
-    public function child_count_label()
+    public function reply_count_label()
     {
-        if ($this->resource->child_count == 0) {
+        if ($this->resource->reply_count == 0) {
             return '0 Responses';
-        } elseif($this->resource->child_count == 1) {
+        } elseif($this->resource->reply_count == 1) {
             return '1 Response';
         }
 
-        return $this->resource->child_count . ' Responses';
+        return $this->resource->reply_count . ' Responses';
     }
 
     public function created_ago()

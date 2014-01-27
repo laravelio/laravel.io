@@ -21,6 +21,7 @@ class ForumThreadsCreateTable extends Migration {
 			$t->string('category_slug');
 			$t->integer('laravel_version');
 			$t->integer('most_recent_reply_id');
+			$t->integer('reply_count');
 			$t->timestamps();
 			$t->softDeletes();
 		});

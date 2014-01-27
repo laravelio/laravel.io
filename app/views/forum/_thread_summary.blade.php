@@ -7,5 +7,5 @@
             <li>updated {{ $thread->updated_ago }}</li>
         </ul>
     </div>
-    <div class="comment-count {{ $thread->isNewerThan($last_visited_timestamp) ? 'new' : '' }}">{{ $thread->child_count }}</div>
+    <div class="comment-count {{ $thread->isNewerThan($last_visited_timestamp) ? 'new' : '' }}">{{ $thread->reply_count }}</div>
 </div>

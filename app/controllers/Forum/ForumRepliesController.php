@@ -118,7 +118,7 @@ class ForumRepliesController extends BaseController implements
     // observer methods
     public function replyDeleted($thread)
     {
-        return Redirect::action('ForumThreadsController@getShowThread', [$thread->slug->slug]);
+        return Redirect::action('ForumThreadsController@getShowThread', [$thread->slug]);
     }
 
     // ------------------------- //

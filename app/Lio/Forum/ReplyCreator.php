@@ -47,9 +47,20 @@ class ReplyCreator
             return $observer->replyCreationError($reply->getErrors());
         }
 
-        // cache new thread update timestamps
-        $this->countManager->cacheSections();
+        $this->updateSectionCounts();
+        $this->updateThreadCounts($reply->thread);
 
         return $observer->replyCreated($reply);
+    }
+
+    // cache new thread update timestamps
+    private function updateSectionCounts()
+    {
+        $this->countManager->cacheSections();
+    }
+
+    private function updateThreadCounts($thread)
+    {
+        $thread->updateReplyCount();
     }
 }

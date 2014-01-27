@@ -73,7 +73,7 @@ class Thread extends \Lio\Core\Entity
     public function updateReplyCount()
     {
         if ($this->exists) {
-            $this->child_count = $this->replies()->count();
+            $this->reply_count = $this->replies()->count();
             $this->save();
         }
     }
