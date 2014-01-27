@@ -1,10 +1,9 @@
 <?php namespace Lio\Comments;
 
-use McCool\LaravelSlugs\SlugInterface;
-use Lio\Core\EloquentBaseModel;
+use Lio\Core\Entity;
 use Str;
 
-class Comment extends EloquentBaseModel implements SlugInterface
+class Comment extends Entity
 {
     protected $table      = 'comments';
     protected $fillable   = ['title', 'body', 'author_id', 'parent_id', 'category_slug', 'owner_id', 'owner_type', 'type', 'laravel_version'];
@@ -18,7 +17,7 @@ class Comment extends EloquentBaseModel implements SlugInterface
         'author_id' => 'required|exists:users,id',
     ];
 
-    public static $laravelVersions = [
+    protected $laravelVersions = [
         0 => "Doesn't Matter",
         3 => "Laravel 3.x",
         4 => "Laravel 4.x",
@@ -64,6 +63,16 @@ class Comment extends EloquentBaseModel implements SlugInterface
         $this->attributes['body'] = $content;
     }
 
+    public function getLaravelVersions()
+    {
+        return $this->laravelVersions;
+    }
+
+    public function isOwnedBy(\Lio\Accounts\User $user)
+    {
+        return $user->id == $thread->author_id;
+    }
+
     public function setMostRecentChild(Comment $comment)
     {
         $this->most_recent_child_id = $comment->id;
@@ -87,12 +96,6 @@ class Comment extends EloquentBaseModel implements SlugInterface
     public function isMainComment()
     {
         if(! $this->parent_id) return true;
-    }
-
-    // SlugInterface
-    public function slug()
-    {
-        return $this->morphOne('McCool\LaravelSlugs\Slug', 'owner');
     }
 
     public function getSlugString()

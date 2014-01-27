@@ -2,10 +2,10 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
-use Lio\Core\EloquentBaseModel;
+use Lio\Core\Entity;
 use Eloquent;
 
-class User extends EloquentBaseModel implements UserInterface, RemindableInterface
+class User extends Entity implements UserInterface, RemindableInterface
 {
     const STATE_ACTIVE  = 1;
     const STATE_BLOCKED = 2;

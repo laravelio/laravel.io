@@ -1,7 +1,7 @@
 <?php namespace Lio\ServiceProviders;
 
 use Illuminate\Support\ServiceProvider;
-use Lio\Forum\ForumSectionCountManager;
+use Lio\Forum\SectionCountManager;
 use Config;
 
 class ForumServiceProvider extends ServiceProvider
@@ -10,8 +10,8 @@ class ForumServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind('Lio\Forum\ForumSectionCountManager', function($app) {
-            return new ForumSectionCountManager($app['Lio\Forum\ForumSectionTimestampFetcher'], Config::get('forum.sections'));
+        $this->app->bind('Lio\Forum\SectionCountManager', function($app) {
+            return new SectionCountManager($app['Lio\Forum\SectionTimestampFetcher'], Config::get('forum.sections'));
         });
     }
 
@@ -21,6 +21,6 @@ class ForumServiceProvider extends ServiceProvider
 
     public function provides()
     {
-        return ['Lio\Forum\ForumSectionCountManager'];
+        return ['Lio\Forum\SectionCountManager'];
     }
 }

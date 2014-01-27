@@ -1,8 +1,8 @@
 <?php namespace Lio\Accounts;
 
-use Lio\Core\EloquentBaseRepository;
+use Lio\Core\EloquentRepository;
 
-class RoleRepository extends EloquentBaseRepository
+class RoleRepository extends EloquentRepository
 {
     public function __construct(Role $model)
     {

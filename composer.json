@@ -1,12 +1,10 @@
 {
     "description": "Laravel.io",
     "require": {
-        "laravel/framework": "4.0.*",
+        "laravel/framework": "4.1.*",
         "artdarek/oauth-4-laravel": "dev-master",
         "juy/profiler": "dev-master",
         "mccool/laravel-auto-presenter": "dev-master",
-        "mccool/laravel-slugs": "dev-master",
-        "mccool/database-backup": "dev-master",
         "michelf/php-markdown": "1.4.*@dev",
         "nickcernis/html-to-markdown": "dev-master",
         "misd/linkify": "1.1.*@dev"

@@ -1,8 +1,8 @@
 <?php namespace Lio\Accounts;
 
-use Lio\Core\EloquentBaseModel;
+use Lio\Core\Entity;
 
-class Role extends EloquentBaseModel
+class Role extends Entity
 {
     protected $table = 'roles';
 

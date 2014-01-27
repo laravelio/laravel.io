@@ -1,9 +1,9 @@
 <?php namespace Lio\Accounts;
 
-use Lio\Core\EloquentBaseRepository;
+use Lio\Core\EloquentRepository;
 use Lio\Core\Exceptions\EntityNotFoundException;
 
-class UserRepository extends EloquentBaseRepository
+class UserRepository extends EloquentRepository
 {
     public function __construct(User $model)
     {

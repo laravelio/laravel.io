@@ -1,8 +1,8 @@
 <?php namespace Lio\Comments;
 
-use Lio\Core\FormBase;
+use Lio\Core\FormModel;
 
-class ReplyForm extends FormBase
+class ReplyForm extends FormModel
 {
     protected $validationRules = [
         'body'  => 'required',

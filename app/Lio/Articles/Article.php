@@ -1,9 +1,8 @@
 <?php namespace Lio\Articles;
 
-use McCool\LaravelSlugs\SlugInterface;
-use Lio\Core\EloquentBaseModel;
+use Lio\Core\Entity;
 
-class Article extends EloquentBaseModel implements SlugInterface
+class Article extends Entity
 {
     protected $table      = 'articles';
     protected $with       = ['author'];
@@ -74,12 +73,6 @@ class Article extends EloquentBaseModel implements SlugInterface
             return true;
         }
         return false;
-    }
-
-    // SlugInterface
-    public function slug()
-    {
-        return $this->morphOne('McCool\LaravelSlugs\Slug', 'owner');
     }
 
     public function getSlugString()

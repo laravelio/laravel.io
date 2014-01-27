@@ -1,11 +1,11 @@
 <?php namespace Lio\Comments;
 
-use Lio\Core\EloquentBaseRepository;
+use Lio\Core\EloquentRepository;
 use Lio\Forum\ForumCategory;
 use Lio\Articles\Article;
 use Illuminate\Support\Collection;
 
-class CommentRepository extends EloquentBaseRepository
+class CommentRepository extends EloquentRepository
 {
     public function __construct(Comment $model)
     {
@@ -60,7 +60,7 @@ class CommentRepository extends EloquentBaseRepository
                    ->get();
     }
 
-    public function requireForumThreadById($id)
+    public function requireThreadById($id)
     {
         $model = $this->model->where('id', '=', $id)->where('type', '=', COMMENT::TYPE_FORUM)->first();
 

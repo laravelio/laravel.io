@@ -1,8 +1,8 @@
 <?php namespace Lio\Articles;
 
-use Lio\Core\FormBase;
+use Lio\Core\FormModel;
 
-class ArticleForm extends FormBase
+class ArticleForm extends FormModel
 {
     protected $validationRules = [
         'title'           => 'required|min:10',

@@ -1,9 +1,9 @@
 <?php namespace Lio\Tags;
 
-use Lio\Core\EloquentBaseRepository;
+use Lio\Core\EloquentRepository;
 use Illuminate\Support\Collection;
 
-class TagRepository extends EloquentBaseRepository
+class TagRepository extends EloquentRepository
 {
     public function __construct(Tag $model)
     {

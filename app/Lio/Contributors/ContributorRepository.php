@@ -1,8 +1,8 @@
 <?php namespace Lio\Contributors;
 
-use Lio\Core\EloquentBaseRepository;
+use Lio\Core\EloquentRepository;
 
-class ContributorRepository extends EloquentBaseRepository
+class ContributorRepository extends EloquentRepository
 {
     public function __construct(Contributor $model)
     {

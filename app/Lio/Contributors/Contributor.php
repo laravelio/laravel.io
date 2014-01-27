@@ -1,8 +1,8 @@
 <?php namespace Lio\Contributors;
 
-use Lio\Core\EloquentBaseModel;
+use Lio\Core\Entity;
 
-class Contributor extends EloquentBaseModel
+class Contributor extends Entity
 {
     protected $table    = 'contributors';
     protected $fillable = ['user_id', 'github_id', 'name', 'avatar_url', 'github_url', 'contribution_count'];

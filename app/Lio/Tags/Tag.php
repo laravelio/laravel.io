@@ -1,8 +1,8 @@
 <?php namespace Lio\Tags;
 
-use Lio\Core\EloquentBaseModel;
+use Lio\Core\Entity;
 
-class Tag extends EloquentBaseModel
+class Tag extends Entity
 {
     protected $table    = 'tags';
     protected $fillable = ['name', 'slug'];

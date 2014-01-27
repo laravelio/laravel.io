@@ -1,8 +1,8 @@
 <?php namespace Lio\Bin;
 
-use Lio\Core\EloquentBaseRepository;
+use Lio\Core\EloquentRepository;
 
-class PasteRepository extends EloquentBaseRepository
+class PasteRepository extends EloquentRepository
 {
     public function __construct(Paste $model)
     {

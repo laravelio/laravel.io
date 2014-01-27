@@ -1,10 +1,10 @@
 <?php namespace Lio\Articles;
 
-use Lio\Core\EloquentBaseRepository;
+use Lio\Core\EloquentRepository;
 use Lio\Accounts\User;
 use Lio\Tags\TagRepository;
 
-class ArticleRepository extends EloquentBaseRepository
+class ArticleRepository extends EloquentRepository
 {
     public function __construct(Article $model)
     {

@@ -2,7 +2,7 @@
 
 use Validator, App;
 
-class FormBase
+class FormModel
 {
     protected $inputData;
     protected $validationRules;
