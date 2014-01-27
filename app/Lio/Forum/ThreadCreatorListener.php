@@ -1,6 +1,6 @@
 <?php namespace Lio\Forum;
 
-interface ThreadCreatorObserver
+interface ThreadCreatorListener
 {
     public function threadCreationError($errors);
     public function threadCreated($thread);

@@ -1,6 +1,6 @@
 <?php namespace Lio\Forum;
 
-interface ReplyCreatorObserver
+interface ReplyCreatorListener
 {
     public function replyCreationError($errors);
     public function replyCreated($reply);

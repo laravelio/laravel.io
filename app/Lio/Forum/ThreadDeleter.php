@@ -18,7 +18,7 @@ class ThreadDeleter
         $this->countManager = $countManager;
     }
 
-    public function delete(ThreadDeleterObserver $observer, $thread)
+    public function delete(ThreadDeleterListener $observer, $thread)
     {
         $this->threads->delete($thread);
         $this->countManager->cacheSections();

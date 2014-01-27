@@ -19,7 +19,7 @@ class ReplyCreator
         $this->countManager = $countManager;
     }
 
-    public function create(ReplyCreatorObserver $observer, $data, $threadId, $validator = null)
+    public function create(ReplyCreatorListener $observer, $data, $threadId, $validator = null)
     {
         $this->runValidator($observer, $validator);
         $reply = $this->getNew($data, $threadId);

@@ -3,12 +3,14 @@
 use Lio\Forum\ReplyForm;
 
 class ForumRepliesController extends BaseController implements
-    \Lio\Forum\ReplyCreatorObserver,
-    \Lio\Forum\ReplyUpdaterObserver,
-    \Lio\Forum\ReplyDeleterObserver
+    \Lio\Forum\ReplyCreatorListener,
+    \Lio\Forum\ReplyUpdaterListener,
+    \Lio\Forum\ReplyDeleterListener
 {
     protected $tags;
     protected $sections;
+
+    protected $repliesPerPage = 20;
 
     public function __construct(
         \Lio\Forum\ThreadRepository $threads,
@@ -27,12 +29,16 @@ class ForumRepliesController extends BaseController implements
     // bounces the user to the correct page of a thread for the indicated comment
     public function getReplyRedirect($threadSlug, $replyId)
     {
-        // refactor this
-        // $thread = $this->threads->requireBySlug($threadSlug);
-        // $numberthreadsBefore = Thread::where('parent_id', '=', $thread->parent_id)->where('created_at', '<', $thread->created_at)->count();
-        // $page = round($numberthreadsBefore / $this->threadsPerPage, 0, PHP_ROUND_HALF_DOWN) + 1;
+        $reply = $this->replies->requireById($replyId);
 
-        // return Redirect::to(action('ForumThreadsController@getShowThread', [$thread]) . "?page={$page}#thread-{$threadId}");
+        if ( ! $reply->isOwnedBy(Auth::user())) {
+            return Redirect::to('/');
+        }
+
+        $generator = App::make('Lio\Forum\ReplyQueryStringGenerator');
+        $queryString = $generator->generate($reply, $this->repliesPerPage);
+
+        return Redirect::to(action('ForumThreadsController@getShowThread', [$thread]) . $queryString);
     }
 
     // reply to a thread

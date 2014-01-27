@@ -28,4 +28,9 @@ class Reply extends \Lio\Core\Entity
     {
         return $user->id == $this->author_id;
     }
+
+    public function getPrecedingReplyCount()
+    {
+        return $this->where('thread_id', '=', $this->thread_id)->where('created_at', '<', $this->created_at)->count();
+    }
 }

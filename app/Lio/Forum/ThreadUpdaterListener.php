@@ -1,6 +1,6 @@
 <?php namespace Lio\Forum;
 
-interface ThreadUpdaterObserver
+interface ThreadUpdaterListener
 {
     public function threadUpdateError($errors);
     public function threadUpdated($thread);

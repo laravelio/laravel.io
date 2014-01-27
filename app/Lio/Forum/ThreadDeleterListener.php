@@ -1,6 +1,6 @@
 <?php namespace Lio\Forum;
 
-interface ThreadDeleterObserver
+interface ThreadDeleterListener
 {
     public function threadDeleted();
 }

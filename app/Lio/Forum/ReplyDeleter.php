@@ -19,7 +19,7 @@ class ReplyDeleter
         $this->countManager = $countManager;
     }
 
-    public function delete(ReplyDeleterObserver $observer, $reply)
+    public function delete(ReplyDeleterListener $observer, $reply)
     {
         $thread = $reply->thread;
         $reply->delete();

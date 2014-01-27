@@ -21,7 +21,7 @@ class ThreadCreator
 
     // an additional validator is optional and will be run first, an example of a usage for
     // this is a form validator
-    public function create(ThreadCreatorObserver $observer, $data, $validator = null)
+    public function create(ThreadCreatorListener $observer, $data, $validator = null)
     {
         if ($validator && ! $validator->isValid()) {
             return $observer->threadCreationError($validator->getErrors());

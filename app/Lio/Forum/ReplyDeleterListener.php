@@ -1,6 +1,6 @@
 <?php namespace Lio\Forum;
 
-interface ReplyDeleterObserver
+interface ReplyDeleterListener
 {
     public function replyDeleted($thread);
 }

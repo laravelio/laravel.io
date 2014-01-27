@@ -3,9 +3,9 @@
 use \Lio\Forum\ThreadForm;
 
 class ForumThreadsController extends BaseController implements
-    \Lio\Forum\ThreadCreatorObserver,
-    \Lio\Forum\ThreadUpdaterObserver,
-    \Lio\Forum\ThreadDeleterObserver
+    \Lio\Forum\ThreadCreatorListener,
+    \Lio\Forum\ThreadUpdaterListener,
+    \Lio\Forum\ThreadDeleterListener
 {
     protected $threads;
     protected $tags;

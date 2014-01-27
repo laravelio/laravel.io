@@ -15,7 +15,7 @@ class ReplyUpdater
         $this->replies = $replies;
     }
 
-    public function update($reply, ReplyUpdaterObserver $observer, $data, $validator = null)
+    public function update($reply, ReplyUpdaterListener $observer, $data, $validator = null)
     {
         // check the passed in validator
         if ($validator && ! $validator->isValid()) {
