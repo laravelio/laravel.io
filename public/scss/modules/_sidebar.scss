@@ -60,6 +60,10 @@
                     color:white;
                 }
             }
+
+            &.active {
+                border-right:3px solid $lioRed;
+            }
         }
     }
 

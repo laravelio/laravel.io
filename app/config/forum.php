@@ -2,16 +2,38 @@
 
 return [
     'sections' => [
-        'All Threads' => '',
-        'Installation / Configuration' => 'installation,configuration',
-        'Authentication / Security' => 'authentication,security',
-        'Requests / Input / Responses' => 'requests,input',
-        'Session / Cache' => 'session,cache',
-        'Database / Eloquent' => 'database,eloquent',
-        'Packages / IoC ' => 'packages,ioc',
-        'Views / Blade / Forms' => 'views,blade,forms',
-        'Mail / Queues' => 'mail,queues',
-        'Local Community Meetups' => 'meetups',
-        'Laravel.io Site and Community' => 'laravelio',
+        'All Threads' => [
+            'tags' => '',
+        ],
+        'Installation / Configuration' => [
+            'tags' => 'installation,configuration'
+        ],
+        'Authentication / Security' => [
+            'tags' => 'authentication,security'
+        ],
+        'Requests / Input / Responses' => [
+            'tags' => 'requests,input'
+        ],
+        'Session / Cache' => [
+            'tags' => 'session,cache'
+        ],
+        'Database / Eloquent' => [
+            'tags' => 'database,eloquent'
+        ],
+        'Packages / IoC ' => [
+            'tags' => 'packages,ioc'
+        ],
+        'Views / Blade / Forms' => [
+            'tags'  => 'views,blade,forms'
+        ],
+        'Mail / Queues' => [
+            'tags' => 'mail,queues'
+        ],
+        'Local Community Meetups' => [
+            'tags' => 'meetups'
+        ],
+        'Laravel.io Site and Community' => [
+            'tags'  => 'laravelio',
+        ]
     ],
 ];

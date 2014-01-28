@@ -6,11 +6,11 @@
 
 <ul>
     {{-- $forumSections is set in the constructor of the ForumController class --}}
-    @foreach($forumSections as $sectionTitle => $sectionTags)
+    @foreach($forumSections as $sectionTitle => $attributes)
         <li>
-            <a href="{{ action('ForumThreadsController@getIndex') }}{{ $sectionTags ? '?tags=' . $sectionTags : '' }}">{{ $sectionTitle }}
-                @if($sectionCounts[$sectionTags] > 0)
-                    <span class="new">{{ $sectionCounts[$sectionTags] < 10 ? $sectionCounts[$sectionTags] : '9+' }}</span>
+            <a {{ isset($attributes['active']) ? 'class="active"' : null  }} href="{{ action('ForumThreadsController@getIndex') }}{{ $attributes['tags'] ? '?tags=' . $attributes['tags'] : '' }}">{{ $sectionTitle }}
+                @if($sectionCounts[$attributes['tags']] > 0)
+                    <span class="new">{{ $sectionCounts[$attributes['tags']] < 10 ? $sectionCounts[$attributes['tags']] : '9+' }}</span>
                 @endif
             </a>
         </li>

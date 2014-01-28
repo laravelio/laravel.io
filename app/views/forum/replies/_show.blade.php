@@ -6,7 +6,7 @@
             <div class="info">
                 <h6><a href="{{ $reply->author->profileUrl }}">{{ $reply->author->name }}</a></h6>
                 <ul class="meta">
-                    <li>{{ $reply->created_ago }}</li>
+                    <li><a href="{{ $reply->viewReplyUrl }}">{{ $reply->created_ago }}</a></li>
                 </ul>
             </div>
         </div>

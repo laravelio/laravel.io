@@ -88,6 +88,11 @@ class Thread extends \Lio\Core\Entity
         return $this->tags->contains($tagId);
     }
 
+    public function getTags()
+    {
+        return $this->tags->lists('slug');
+    }
+
     public function isNewerThan($timestamp)
     {
         return strtotime($this->updated_at) > $timestamp;

@@ -10,6 +10,7 @@ class ForumThreadsController extends BaseController implements
     protected $threads;
     protected $tags;
     protected $sections;
+    protected $currentSection;
 
     protected $threadsPerPage = 20;
     protected $repliesPerPage = 20;
@@ -38,6 +39,7 @@ class ForumThreadsController extends BaseController implements
 
         // add the tag string to each pagination link
         $threads->appends(['tags' => Input::get('tags')]);
+        $this->createSections(Input::get('tags'));
 
         $this->view('forum.threads.index', compact('threads', 'tags'));
     }
@@ -48,6 +50,7 @@ class ForumThreadsController extends BaseController implements
         $thread = $this->threads->requireBySlug($threadSlug);
         $replies = $this->threads->getThreadRepliesPaginated($thread, $this->repliesPerPage);
 
+        $this->createSections($thread->getTags());
         $this->view('forum.threads.show', compact('thread', 'replies'));
     }
 
@@ -56,6 +59,7 @@ class ForumThreadsController extends BaseController implements
     {
         $tags = $this->tags->getAllForForum();
         $versions = $this->threads->getNew()->getLaravelVersions();
+        $this->createSections(Input::get('tags'));
 
         $this->view('forum.threads.create', compact('tags', 'versions'));
     }
@@ -93,6 +97,7 @@ class ForumThreadsController extends BaseController implements
         $tags = $this->tags->getAllForForum();
         $versions = $thread->getLaravelVersions();
 
+        $this->createSections(Input::get('tags'));
         $this->view('forum.threads.edit', compact('thread', 'tags', 'versions'));
     }
 
@@ -132,6 +137,7 @@ class ForumThreadsController extends BaseController implements
             return Redirect::to('/');
         }
 
+        $this->createSections(Input::get('tags'));
         $this->view('forum.threads.delete', compact('thread'));
     }
 
@@ -161,14 +167,20 @@ class ForumThreadsController extends BaseController implements
         $results = App::make('Lio\threads\ForumSearch')->searchPaginated($query, $this->threadsPerPage);
         $results->appends(array('query' => $query));
 
+        $this->createSections(Input::get('tags'));
         $this->view('forum.search', compact('query', 'results'));
     }
 
     // ------------------------- //
     private function prepareViewData()
     {
-        $forumSections = Config::get('forum.sections');
         $sectionCounts = $this->sections->getCounts(Session::get('forum_last_visited'));
-        View::share(compact('forumSections', 'sectionCounts'));
+        View::share(compact('sectionCounts'));
+    }
+
+    private function createSections($currentSection = null)
+    {
+        $forumSections = App::make('Lio\Forum\SectionSidebarCreator')->createSidebar($currentSection);
+        View::share(compact('forumSections'));
     }
 }

@@ -18,8 +18,8 @@ class SectionTimestampFetcher
     {
         $cache = [];
 
-        foreach ($forumSections as $section => $tags) {
-            $cache[$tags] = $this->getMostRecentTimestamps($tags);
+        foreach ($forumSections as $section => $attributes) {
+            $cache[$attributes['tags']] = $this->getMostRecentTimestamps($attributes['tags']);
         }
 
         return $cache;

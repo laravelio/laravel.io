@@ -19,8 +19,8 @@ class SectionUpdateCountCalculator
     {
         $counts = [];
 
-        foreach ($this->forumSections as $title => $tags) {
-            $counts[$tags] = $this->getNewCount($tags);
+        foreach ($this->forumSections as $forumSection) {
+            $counts[$forumSection['tags']] = $this->getNewCount($forumSection['tags']);
         }
 
         return $counts;

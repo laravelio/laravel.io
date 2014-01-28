@@ -32,6 +32,11 @@ class ReplyPresenter extends BasePresenter
         return $body;
     }
 
+    public function viewReplyUrl()
+    {
+        return \App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->resource);
+    }
+
     // ------------------- //
 
     private function convertMarkdown($content)

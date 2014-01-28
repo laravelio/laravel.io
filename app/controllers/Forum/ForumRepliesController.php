@@ -134,4 +134,16 @@ class ForumRepliesController extends BaseController implements
         $sectionCounts = $this->sections->getCounts(Session::get('forum_last_visited'));
         View::share(compact('forumSections', 'sectionCounts'));
     }
+
+    private function prepareForumSections()
+    {
+        $forumSections = Config::get('forum.sections');
+        dd($forumSections);
+
+        foreach($forumSections as $sectionTitle => $sectionTags) {
+            if(str_contains($sectionTags, Input::get('tags'))) {
+
+            }
+        }
+    }
 }
