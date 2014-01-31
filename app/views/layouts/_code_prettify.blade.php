@@ -5,5 +5,5 @@
 
 @section('styles')
     @parent
-    
+
 @stop

@@ -4,22 +4,22 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.tag {
-    display: block;
-    padding: 7px;
-    background: #cdcdcd;
-    text-align: center;
-    margin:0 5px 5px 0;
-    color:#444444;
-    cursor: pointer;
-
-    &.active {
-        background: $lioRed;
-        color:white;
-    }
-}
-
 .tags {
+
+    .tag {
+        display: block;
+        padding: 7px;
+        background: #cdcdcd;
+        text-align: center;
+        margin:0 5px 5px 0;
+        color:#444444;
+        cursor: pointer;
+
+        &.active {
+            background: $lioRed;
+            color:white;
+        }
+    }
 
     margin: 0;
     padding: 0;
