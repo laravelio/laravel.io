@@ -6,6 +6,9 @@
 
 .forum .markdown, .comment .markdown {
 
+    br:last-child {
+        display:none;
+    }
 
     h1,h2,h3,h4,h5,h6,p,li,ul,ol {
         margin: 0;
@@ -48,11 +51,19 @@
         margin: 0;
         line-height: 1.7;
         padding: 0 0 14px 0;
+
+        br:last-child {
+            display: block;
+        }
+
+        &:nth-last-child(1) {
+            padding: 0;
+        }
     }
 
-    p:last-child {
-            padding:0 !important;
-        }
+    p:nth-last-child(1) {
+        padding:0 !important;
+    }
 
     ul {
         margin: 0;
@@ -91,6 +102,12 @@
     pre {
         margin: 0;
         padding: 0 0 14px 0;
+    }
+
+    .comment {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: none;
     }
 }
 

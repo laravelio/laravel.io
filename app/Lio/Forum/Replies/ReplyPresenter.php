@@ -25,7 +25,7 @@ class ReplyPresenter extends BasePresenter
     public function body()
     {
         $body = $this->resource->body;
-        $body = $this->removeDoubleSpaces($body);
+        // $body = $this->removeDoubleSpaces($body);
         $body = $this->convertMarkdown($body);
         $body = $this->convertNewlines($body);
         $body = $this->formatGists($body);
