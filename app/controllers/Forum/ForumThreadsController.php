@@ -11,6 +11,7 @@ class ForumThreadsController extends BaseController implements
     protected $tags;
     protected $sections;
     protected $currentSection;
+    protected $threadCreator;
 
     protected $threadsPerPage = 20;
     protected $repliesPerPage = 20;
@@ -18,12 +19,13 @@ class ForumThreadsController extends BaseController implements
     public function __construct(
         \Lio\Forum\Threads\ThreadRepository $threads,
         \Lio\Tags\TagRepository $tags,
-        \Lio\Forum\SectionCountManager $sections
+        \Lio\Forum\SectionCountManager $sections,
+        \Lio\Forum\Threads\ThreadCreator $threadCreator
     ) {
         $this->threads = $threads;
         $this->tags     = $tags;
         $this->sections = $sections;
-
+        $this->threadCreator = $threadCreator;
         $this->prepareViewData();
     }
 
@@ -66,7 +68,7 @@ class ForumThreadsController extends BaseController implements
 
     public function postCreateThread()
     {
-        return App::make('Lio\Forum\Threads\ThreadCreator')->create($this, [
+        return $this->threadCreator->create($this, [
             'subject'         => Input::get('subject'),
             'body'            => Input::get('body'),
             'author'          => Auth::user(),
