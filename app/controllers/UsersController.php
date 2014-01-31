@@ -16,8 +16,8 @@ class UsersController extends BaseController
         $user = $this->users->requireByName($userName);
 
         $threads = $user->getLatestThreadsPaginated(5);
-        $comments = $user->getLatestRepliesPaginated(5);
+        $replies = $user->getLatestRepliesPaginated(5);
 
-        $this->view('users.profile', compact('user', 'threads', 'comments'));
+        $this->view('users.profile', compact('user', 'threads', 'replies'));
     }
 }

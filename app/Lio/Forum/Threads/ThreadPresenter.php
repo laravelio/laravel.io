@@ -54,6 +54,11 @@ class ThreadPresenter extends BasePresenter
         }
     }
 
+    public function subject()
+    {
+        return "{$this->laravel_version()} {$this->resource->subject}";
+    }
+
     // ------------------- //
 
     private function convertMarkdown($content)

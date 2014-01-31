@@ -7,9 +7,6 @@
     <nav>
         <ul>
             <li>
-                <a class="{{ Request::is('article*') ? 'active' : null }}" href="{{ action('ArticlesController@getIndex') }}">Articles</a>
-            </li>
-            <li>
                 <a class="{{ Request::is('forum*') ? 'active' : null }}" href="{{ action('ForumThreadsController@getIndex') }}">Forum</a>
             </li>
             <li>

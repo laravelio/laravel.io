@@ -115,12 +115,12 @@ class User extends Entity implements UserInterface, RemindableInterface
 
     public function forumThreads()
     {
-        return $this->hasMany('Lio\Comments\Comment', 'author_id')->whereNull('parent_id')->where('type', '=', \Lio\Comments\Comment::TYPE_FORUM)->orderBy('created_at', 'desc');
+        return $this->hasMany('Lio\Forum\Threads\Thread', 'author_id')->orderBy('created_at', 'desc');
     }
 
     public function forumReplies()
     {
-        return $this->hasMany('Lio\Comments\Comment', 'author_id')->whereNotNull('parent_id')->where('type', '=', \Lio\Comments\Comment::TYPE_FORUM)->orderBy('created_at', 'desc');
+        return $this->hasMany('Lio\Forum\Replies\Reply', 'author_id')->orderBy('created_at', 'desc');
     }
 
     public function mostRecentFiveForumPosts()
@@ -135,6 +135,6 @@ class User extends Entity implements UserInterface, RemindableInterface
 
     public function getLatestRepliesPaginated($max = 5)
     {
-        return $this->forumReplies()->paginate($max);
+        return $this->forumReplies()->with('thread')->paginate($max);
     }
 }
