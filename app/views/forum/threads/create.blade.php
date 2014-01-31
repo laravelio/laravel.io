@@ -25,7 +25,7 @@
 
             <div class="form-row">
                 {{ Form::label('laravel_version', 'Laravel Version', ['class' => 'field-title']) }}
-                <ul class="version">
+                <ul class="version tags">
                     @foreach($versions as $value => $version)
                         <li>
                             <label class="tag">
