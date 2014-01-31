@@ -21,7 +21,7 @@
             {{ Form::label('body', 'Thread', ['class' => 'field-title']) }}
             {{ Form::textarea("body", null) }}
             {{ $errors->first('body', '<small class="error">:message</small>') }}
-            <small class="gist">Paste a <a target="_blank" href="https://gist.github.com">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
+            <small><a href="http://laravel.io/forum/01-31-2014-how-to-mark-up-forum-posts" target="_BLANK">Learn how to mark up your post here.</a></small>
         </div>
 
         <div class="form-row">

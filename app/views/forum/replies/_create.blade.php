@@ -4,7 +4,7 @@
             <label class="field-title">Reply</label>
             {{ Form::textarea("body", null, ['class' => '_tab_indent']) }}
             {{ $errors->first('body', '<small class="error">:message</small>') }}
-            <small>Paste a <a href="https://gist.github.com" target="_NEW">Gist</a> URL to embed source. <em>example: https://gist.github.com/username/1234</em></small>
+            <small><a href="http://laravel.io/forum/01-31-2014-how-to-mark-up-forum-posts" target="_BLANK">Learn how to mark up your post here.</a></small>
         </div>
 
         <div class="form-row">
