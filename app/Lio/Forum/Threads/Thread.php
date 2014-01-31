@@ -1,5 +1,8 @@
 <?php namespace Lio\Forum\Threads;
 
+use Lio\Accounts\User;
+use Auth;
+
 class Thread extends \Lio\Core\Entity
 {
     protected $table      = 'forum_threads';
@@ -96,5 +99,15 @@ class Thread extends \Lio\Core\Entity
     public function isNewerThan($timestamp)
     {
         return strtotime($this->updated_at) > $timestamp;
+    }
+
+    public function isOwnedByCurrentUser()
+    {
+        return $this->isOwnedByUser(Auth::user());
+    }
+
+    public function isOwnedByUser(User $user)
+    {
+        if($this->author_id == $user->id) return true;
     }
 }

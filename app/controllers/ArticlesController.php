@@ -31,7 +31,7 @@ class ArticlesController extends BaseController
 
     public function getShow()
     {
-        $article = App::make('slugModel');
+        $article = App::make('SlugModel');
         $comments = $this->comments->getArticleCommentsPaginated($article, $this->commentsPerPage);
 
         $this->view('articles.show', compact('article', 'comments'));
@@ -39,7 +39,7 @@ class ArticlesController extends BaseController
 
     public function postShow()
     {
-        $article = App::make('slugModel');
+        $article = App::make('SlugModel');
 
         $form = new \Lio\Comments\ReplyForm;
 
@@ -142,7 +142,7 @@ class ArticlesController extends BaseController
 
     public function getEditComment($articleSlug, $commentId)
     {
-        $article = App::make('slugModel');
+        $article = App::make('SlugModel');
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
         $this->view('articles.editcomment', compact('comment'));
@@ -150,7 +150,7 @@ class ArticlesController extends BaseController
 
     public function postEditComment($articleSlug, $commentId)
     {
-        $article = App::make('slugModel');
+        $article = App::make('SlugModel');
 
         // i hate everything about these controllers, it's awful
         $comment = $this->comments->requireById($commentId);
@@ -173,7 +173,7 @@ class ArticlesController extends BaseController
 
     public function getDeleteComment($articleSlug, $commentId)
     {
-        $article = App::make('slugModel');
+        $article = App::make('SlugModel');
 
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
@@ -182,7 +182,7 @@ class ArticlesController extends BaseController
 
     public function postDeleteComment($articleSlug, $commentId)
     {
-        $article = App::make('slugModel');
+        $article = App::make('SlugModel');
 
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');

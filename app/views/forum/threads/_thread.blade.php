@@ -1,5 +1,5 @@
 <div class="thread">
-    <h2>{{ $thread->laravel_version ? $thread->laravel_version . ' ' : '' }}{{ $thread->subject }}</h2>
+    <h2>{{ $thread->subject }}</h2>
     {{ $thread->body }}
     <div class="user">
         {{ $thread->author->thumbnail }}
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    @if(Auth::user() && $thread->id == $thread->id && $thread->author_id == Auth::user()->id)
+    @if($thread->isOwnedByCurrentUser())
         <div class="admin-bar">
             <li><a class="button" href="{{ action('ForumThreadsController@getEditThread', [$thread->id]) }}">Edit</a></li>
             <li><a class="button" href="{{ action('ForumThreadsController@getDelete', [$thread->id]) }}">Delete</a></li>
