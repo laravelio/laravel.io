@@ -9,7 +9,7 @@ class Role extends Entity
     protected $fillable = ['name', 'description'];
 
     protected $validationRules = [
-        'name' => 'required|exists:roles,<name>',
+        'name' => 'required',
     ];
 
     public function users()
