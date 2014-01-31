@@ -32,7 +32,7 @@ class ThreadCreator
     private function createValidRecord($observer, $data)
     {
         $thread = $this->getNew($data);
-        $this->validateAndSave($thread, $observer);
+        $this->validateAndSave($thread, $observer, $data);
 
         // cache new thread update timestamps
         $this->countManager->cacheSections();
@@ -47,7 +47,7 @@ class ThreadCreator
         ]);
     }
 
-    private function validateAndSave($thread, $observer)
+    private function validateAndSave($thread, $observer, $data)
     {
         // check the model validation
         if ( ! $this->threads->save($thread)) {

@@ -96,7 +96,7 @@ Because we keep the generated / minified css out of the repository, we must have
 
 ### Contribution
 
-Please consult [The Vision Document](VISION.md) which contains contribution standards and an outline of the general vision of the application.
+Please post proposals in the Github issues before coding up a PR.
 
 ### Troubleshooting
 
