@@ -110,7 +110,7 @@ class ForumThreadsController extends BaseController implements
         }
 
         return App::make('Lio\Forum\Threads\ThreadUpdater')->update($this, $thread, [
-            'title'           => Input::get('title'),
+            'subject'         => Input::get('subject'),
             'body'            => Input::get('body'),
             'laravel_version' => Input::get('laravel_version'),
             'tags'            => $this->tags->getTagsByIds(Input::get('tags')),
@@ -164,7 +164,7 @@ class ForumThreadsController extends BaseController implements
         View::share('last_visited_timestamp', App::make('Lio\Forum\SectionCountManager')->updatedAndGetLastVisited(Input::get('tags')));
 
         $query = Input::get('query');
-        $results = App::make('Lio\threads\ForumSearch')->searchPaginated($query, $this->threadsPerPage);
+        $results = App::make('Lio\Forum\Threads\ThreadSearch')->searchPaginated($query, $this->threadsPerPage);
         $results->appends(array('query' => $query));
 
         $this->createSections(Input::get('tags'));

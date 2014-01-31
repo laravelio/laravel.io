@@ -5,48 +5,48 @@ use Lio\Comments\CommentRepository;
 use Lio\Forum\Threads\Thread;
 use Lio\Forum\Replies\Reply;
 
-Route::get('migrate-threads', function() {
-    $repo = new CommentRepository(new Comment);
-    $threads = $repo->getAllThreads();
+// Route::get('migrate-threads', function() {
+//     $repo = new CommentRepository(new Comment);
+//     $threads = $repo->getAllThreads();
 
-    foreach ($threads as $thread) {
-        if ( ! $thread->title) continue;
+//     foreach ($threads as $thread) {
+//         if ( ! $thread->title) continue;
 
-        try {
-            $newThread = Thread::create([
-                'id'                   => $thread->id,
-                'author_id'            => $thread->author_id,
-                'subject'              => $thread->title,
-                'body'                 => $thread->body,
-                'category_slug'        => '',
-                'laravel_version'      => $thread->laravel_version,
-                'most_recent_reply_id' => $thread->most_recent_child_id,
-                'reply_count'          => $thread->child_count,
-                'created_at'           => $thread->created_at,
-                'updated_at'           => $thread->updated_at,
-                'deleted_at'           => $thread->deleted_at,
-            ]);
+//         try {
+//             $newThread = Thread::create([
+//                 'id'                   => $thread->id,
+//                 'author_id'            => $thread->author_id,
+//                 'subject'              => $thread->title,
+//                 'body'                 => $thread->body,
+//                 'category_slug'        => '',
+//                 'laravel_version'      => $thread->laravel_version,
+//                 'most_recent_reply_id' => $thread->most_recent_child_id,
+//                 'reply_count'          => $thread->child_count,
+//                 'created_at'           => $thread->created_at,
+//                 'updated_at'           => $thread->updated_at,
+//                 'deleted_at'           => $thread->deleted_at,
+//             ]);
 
-            $newThread->setTags($thread->tags->lists('id'));
+//             $newThread->setTags($thread->tags->lists('id'));
 
-            foreach ($thread->children as $reply) {
-                Reply::create([
-                    'id'         => $reply->id,
-                    'body'       => $reply->body,
-                    'author_id'  => $reply->author_id,
-                    'thread_id'  => $newThread->id,
-                    'updated_at' => $reply->updated_at,
-                    'created_at' => $reply->created_at,
-                    'deleted_at' => $reply->deleted_at,
-                ]);
-            }
+//             foreach ($thread->children as $reply) {
+//                 Reply::create([
+//                     'id'         => $reply->id,
+//                     'body'       => $reply->body,
+//                     'author_id'  => $reply->author_id,
+//                     'thread_id'  => $newThread->id,
+//                     'updated_at' => $reply->updated_at,
+//                     'created_at' => $reply->created_at,
+//                     'deleted_at' => $reply->deleted_at,
+//                 ]);
+//             }
 
-            $newThread->updateReplyCount();
-        } catch (\Illuminate\Database\QueryException $e) {
-            dd($thread->getAttributes());
-        }
-    }
-});
+//             $newThread->updateReplyCount();
+//         } catch (\Illuminate\Database\QueryException $e) {
+//             dd($thread->getAttributes());
+//         }
+//     }
+// });
 
 Route::get('/', 'HomeController@getIndex');
 
@@ -60,7 +60,7 @@ Route::get('oauth', 'AuthController@getOauth');
 
 // user dashboard
 Route::get('dashboard', ['before' => 'auth', 'uses' => 'DashboardController@getIndex']);
-Route::get('dashboard/articles', ['before' => 'auth', 'uses' => 'ArticlesController@getDashboard']);
+//Route::get('dashboard/articles', ['before' => 'auth', 'uses' => 'ArticlesController@getDashboard']);
 
 // user profile
 Route::get('user/{userSlug}', 'UsersController@getProfile');
@@ -75,18 +75,18 @@ Route::get('chat', 'ChatController@getIndex');
 Route::get('bin', 'PastesController@getCreate');
 
 // articles
-Route::get('articles', 'ArticlesController@getIndex');
-Route::get('article/{slug}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getEditComment']);
-Route::post('article/{slug}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postEditComment']);
-Route::get('article/{slug}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getDeleteComment']);
-Route::post('article/{slug}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postDeleteComment']);
-Route::get('article/{slug}', ['before' => '', 'uses' => 'ArticlesController@getShow']);
-Route::post('article/{slug}', ['before' => '', 'uses' => 'ArticlesController@postShow']);
-Route::get('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@getCompose']);
-Route::post('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@postCompose']);
-Route::get('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@getEdit']);
-Route::post('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@postEdit']);
-Route::get('articles/search', 'ArticlesController@getSearch');
+// Route::get('articles', 'ArticlesController@getIndex');
+// Route::get('article/{slug}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getEditComment']);
+// Route::post('article/{slug}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postEditComment']);
+// Route::get('article/{slug}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getDeleteComment']);
+// Route::post('article/{slug}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postDeleteComment']);
+// Route::get('article/{slug}', ['before' => '', 'uses' => 'ArticlesController@getShow']);
+// Route::post('article/{slug}', ['before' => '', 'uses' => 'ArticlesController@postShow']);
+// Route::get('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@getCompose']);
+// Route::post('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@postCompose']);
+// Route::get('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@getEdit']);
+// Route::post('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@postEdit']);
+// Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum
 Route::get('forum', 'ForumThreadsController@getIndex');
