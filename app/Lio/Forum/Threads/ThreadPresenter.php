@@ -37,8 +37,9 @@ class ThreadPresenter extends BasePresenter
     public function body()
     {
         $body = $this->resource->body;
+        //$body = $this->removeDoubleSpaces($body);
         $body = $this->convertMarkdown($body);
-        // $body = $this->convertNewlines($body);
+        $body = $this->convertNewlines($body);
         $body = $this->formatGists($body);
         $body = $this->linkify($body);
         return $body;
@@ -61,14 +62,19 @@ class ThreadPresenter extends BasePresenter
 
     // ------------------- //
 
-    private function convertMarkdown($content)
+    private function removeDoubleSpaces($content)
     {
-        return App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($content);
+        return str_replace('  ', '', $content);
     }
 
     private function convertNewlines($content)
     {
-        return str_replace("\n\n", '<br/>', $content);
+        return preg_replace("/(?<!\\n)(\\n)(?!\\n)/", "<br>", $content);
+    }
+
+    private function convertMarkdown($content)
+    {
+        return App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($content);
     }
 
     private function formatGists($content)
