@@ -15,7 +15,7 @@ class UserCreator
         $this->users = $users;
     }
 
-    public function create(UserCreatorObserver $observer, $data, $validator = null)
+    public function create(UserCreatorListener $observer, $data, $validator = null)
     {
         // check the passed in validator
         if ($validator && ! $validator->isValid()) {
