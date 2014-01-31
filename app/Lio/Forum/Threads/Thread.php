@@ -61,8 +61,9 @@ class Thread extends \Lio\Core\Entity
         return $this->laravelVersions;
     }
 
-    public function isOwnedBy(\Lio\Accounts\User $user)
+    public function isOwnedBy($user)
     {
+        if ( ! $user instanceOf \Lio\Accounts\User) return false;
         return $user->id == $this->author_id;
     }
 
@@ -99,15 +100,5 @@ class Thread extends \Lio\Core\Entity
     public function isNewerThan($timestamp)
     {
         return strtotime($this->updated_at) > $timestamp;
-    }
-
-    public function isOwnedByCurrentUser()
-    {
-        return $this->isOwnedByUser(Auth::user());
-    }
-
-    public function isOwnedByUser(User $user)
-    {
-        if($this->author_id == $user->id) return true;
     }
 }
