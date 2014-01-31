@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Laravel.IO - The Official Laravel Framework Community Portal</title>
+  <title>Laravel.IO - The Official Laravel PHP Framework Community Portal</title>
 
   @section('styles')
     <link rel="stylesheet" href="{{ asset('stylesheets/app.css') }}">
@@ -32,7 +32,6 @@
     @include('layouts._top_nav')
   </div>
 
-
   <div class="holder">
       @include('layouts._flash')
      <div class="table">
@@ -46,7 +45,6 @@
 
   @section('scripts')
   	<script src="{{ asset('javascripts/vendor/jquery.min.js') }}"></script>
-
   @show
 </body>
 </html>

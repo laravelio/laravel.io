@@ -48,6 +48,31 @@ use Lio\Forum\Replies\Reply;
 //     }
 // });
 
+Route::get('thread-timestamps', function() {
+    $repo = new CommentRepository(new Comment);
+    $threads = $repo->getAllThreads();
+
+    foreach ($threads as $thread) {
+        try {
+            $newThread = Thread::find($thread->id);
+            if ( ! $newThread) continue;
+
+            $newThread->created_at = $thread->created_at;
+            $newThread->save();
+
+            foreach ($thread->children as $reply) {
+                $newReply = Reply::find($reply->id);
+                if ( ! $newReply) continue;
+
+                $newReply->created_at = $reply->created_at;
+                $newReply->save();
+            }
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd($thread->getAttributes());
+        }
+    }
+});
+
 Route::get('/', 'HomeController@getIndex');
 
 // authentication
