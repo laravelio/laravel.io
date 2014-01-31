@@ -32,7 +32,7 @@ class Thread extends \Lio\Core\Entity
 
     public function tags()
     {
-        return $this->belongsToMany('Lio\Tags\Tag', 'comment_tag', 'comment_id', 'tag_id');
+        return $this->belongsToMany('Lio\Tags\Tag', 'tagged_items', 'thread_id', 'tag_id');
     }
 
     public function mostRecentReply()

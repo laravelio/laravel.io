@@ -12,11 +12,11 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
 
     public function getByTagsPaginated(Collection $tags, $perPage = 20)
     {
-        $query = $this->model->with(['mostRecentReply', 'tags'])
-            ->join('comment_tag', 'forum_threads.id', '=', 'comment_tag.comment_id');
+        $query = $this->model->with(['mostRecentReply', 'tags']);
 
         if ($tags->count() > 0) {
-            $query->whereIn('comment_tag.tag_id', $tags->lists('id'));
+            $query->join('comment_tag', 'forum_threads.id', '=', 'comment_tag.comment_id')
+                ->whereIn('comment_tag.tag_id', $tags->lists('id'));
         }
 
         $query->groupBy('forum_threads.id')
