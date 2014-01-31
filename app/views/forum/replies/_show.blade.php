@@ -1,5 +1,7 @@
 <div class="comment" id="reply-{{ $reply->id }}">
-        {{ $reply->body }}
+        <span class="markdown">
+            {{ $reply->body }}
+        </span>
 
         <div class="user">
             {{ $reply->author->thumbnail }}

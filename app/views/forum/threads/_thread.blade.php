@@ -1,6 +1,9 @@
 <div class="thread">
     <h2>{{ $thread->subject }}</h2>
-    {{ $thread->body }}
+    <span class="markdown">
+        {{ $thread->body }}
+    </span>
+
     <div class="user">
         {{ $thread->author->thumbnail }}
         <div class="info">

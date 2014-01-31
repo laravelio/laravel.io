@@ -26,7 +26,7 @@ class ReplyPresenter extends BasePresenter
     {
         $body = $this->resource->body;
         $body = $this->convertMarkdown($body);
-        $body = $this->convertNewlines($body);
+        //$body = $this->convertNewlines($body);
         $body = $this->formatGists($body);
         $body = $this->linkify($body);
         return $body;
