@@ -15,8 +15,8 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
         $query = $this->model->with(['mostRecentReply', 'tags']);
 
         if ($tags->count() > 0) {
-            $query->join('comment_tag', 'forum_threads.id', '=', 'comment_tag.comment_id')
-                ->whereIn('comment_tag.tag_id', $tags->lists('id'));
+            $query->join('tagged_items', 'forum_threads.id', '=', 'tagged_items.thread_id')
+                ->whereIn('tagged_items.tag_id', $tags->lists('id'));
         }
 
         $query->groupBy('forum_threads.id')
