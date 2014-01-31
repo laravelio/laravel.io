@@ -12,6 +12,19 @@ class CommentRepository extends EloquentRepository
         $this->model = $model;
     }
 
+    public function getAllThreads()
+    {
+        $query = $this->model->with(['mostRecentChild', 'tags'])
+            ->where('type', '=', COMMENT::TYPE_FORUM)
+            ->join('comment_tag', 'comments.id', '=', 'comment_tag.comment_id');
+
+
+        $query->groupBy('comments.id')
+            ->orderBy('updated_at', 'desc');
+
+        return $query->get(['comments.*']);
+    }
+
     public function getForumThreadsByTagsPaginated(Collection $tags, $perPage = 20)
     {
         $query = $this->model->with(['slug', 'mostRecentChild', 'tags'])

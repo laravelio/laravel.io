@@ -1,5 +1,17 @@
 <?php
 
+use Lio\Comments\Comment;
+use Lio\Comments\CommentRepository;
+use Lio\Forum\Threads\Thread;
+use Lio\Forum\Replies\Reply;
+
+Route::get('migrate', function() {
+    $repo = new CommentRepository(new Comment);
+    $threads = $repo->getAllThreads();
+
+    dd($threads);
+});
+
 Route::get('/', 'HomeController@getIndex');
 
 // authentication
