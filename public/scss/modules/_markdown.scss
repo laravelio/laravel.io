@@ -53,14 +53,42 @@
         padding: 0 0 14px 0;
     }
 
+    p:last-child {
+            padding:0 !important;
+        }
+
     ul {
         margin: 0;
         padding: 0 0 14px 0;
     }
 
     li {
-        margin: 0 0 0 15px;
+        margin: 0 0 0 18px;
         line-height: 1.5;
+    }
+
+    li p {
+        padding: 0;
+    }
+
+    blockquote {
+        background: #f9f9f9;
+        border-left: 5px solid $lioRed;
+        margin: 1.5em 0;
+        padding: 0.5em 10px;
+        quotes: "\201C""\201D""\2018""\2019";
+    }
+    blockquote:before {
+        font-family: 'Source Sans Pro', sans-serif;
+        color: #ccc;
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.25em;
+        vertical-align: -0.4em;
+    }
+    blockquote p {
+        display: inline;
     }
 }
 

@@ -7,7 +7,7 @@
 @section('content')
     <div class="forum">
         <div class="header">
-            <h1>Forum</h1>
+            <h2>Forum</h2>
             <div class="tags">
                 {{ $thread->tags->getTagList() }}
             </div>

@@ -14,8 +14,8 @@
         </div>
         @if(Auth::user() && $reply->author_id == Auth::user()->id)
             <div class="admin-bar">
-                <li><a class="button" href="{{ action('ForumRepliesController@getEditReply', [$reply->id]) }}">Edit</a></li>
-                <li><a class="button" href="{{ action('ForumRepliesController@getDelete', [$reply->id]) }}">Delete</a></li>
+                <li><a href="{{ action('ForumRepliesController@getEditReply', [$reply->id]) }}">Edit</a></li>
+                <li><a href="{{ action('ForumRepliesController@getDelete', [$reply->id]) }}">Delete</a></li>
             </div>
         @endif
 </div>
