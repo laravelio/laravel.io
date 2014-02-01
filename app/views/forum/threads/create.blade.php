@@ -47,14 +47,4 @@
             </div>
         </section>
         {{ Form::close() }}
-<<<<<<< HEAD
-@stop
-
-@section('scripts')
-    @parent
-    <script src="{{ asset('javascripts/vendor/tabby.js') }}"></script>
-    <script src="{{ asset('javascripts/forums.js') }}"></script>
-    <script src="{{ asset('javascripts/vendor/garlic.js') }}"></script>
-=======
->>>>>>> 32bd5178d4747434a21409e9376f8c3deb586214
 @stop
