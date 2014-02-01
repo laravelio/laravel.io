@@ -25,9 +25,7 @@ class PasteCreator
 
     protected function createPaste($code, $user)
     {
-        $paste = $this->pastes->getNew(['code' => $code]);
-        $paste->author = $user;
-        return $paste;
+        return $this->pastes->getNew(['code' => $code, 'author' => $user]);
     }
 
     protected function addHash($paste)

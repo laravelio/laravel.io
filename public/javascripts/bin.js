@@ -44,6 +44,14 @@ $(function() {
         return false;
     });
 
+    // Shortcuts shorcut
+    Mousetrap.bind('s', function() {
+        if ($('.button.shortcuts')) {
+            $('.button.shortcuts')[0].click();
+        }
+        return false;
+    });
+
     // Fork shorcut
     Mousetrap.bind('r', function() {
         if ($('.button.raw')) {

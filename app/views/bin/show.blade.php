@@ -8,6 +8,7 @@
             <li><a href="{{ $paste->forkUrl }}" class="button fork">Fork</a></li>
             <li><a target="_blank" href="{{ $paste->rawUrl }}" class="button raw">Raw</a></li>
             <li><a href="#" class="button copy">Copy URL</a></li>
+            <li><a href="#" class="button shortcuts" data-display="shortcuts-guide" data-closeBGclick="true">Shortcuts</a></li>
         </ul>
         <span class="paste-url">{{ $paste->showUrl }}</span>
     </div>
