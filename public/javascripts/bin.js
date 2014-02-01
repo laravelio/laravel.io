@@ -72,6 +72,24 @@ $(function() {
             toastr.info('Copied URL to clipboard! ' + $('.paste-url').text());
         }
     });
+
+    var line = new String(window.location.hash).slice(1) - 1;
+
+    setTimeout(function() {
+        $('.selectable ol li:eq('+line+')').addClass('selected');
+        $('.selectable ol li').each(function(key, element) {
+            $(this).click(function() {
+                var line = key + 1;
+                window.location.hash = '#'+ line;
+            });
+        });
+    }, 1);
+
+    $(window).bind('hashchange', function() {
+        var line = new String(window.location.hash).slice(1) - 1;
+        $('.selectable ol li').removeClass('selected');
+        $('.selectable ol li:eq('+line+')').addClass('selected');
+    });
 });
 
 

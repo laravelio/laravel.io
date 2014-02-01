@@ -101,7 +101,7 @@ Route::get('bin', 'BinController@getCreate');
 Route::post('bin', 'BinController@postCreate');
 Route::get('bin/fork/{hash}', 'BinController@getFork');
 Route::post('bin/fork/{hash}', 'BinController@postFork');
-Route::get('bin/raw/{hash}', 'BinController@getRaw');
+Route::get('bin/{hash}/raw', 'BinController@getRaw');
 Route::get('bin/{hash}', 'BinController@getShow');
 
 // articles

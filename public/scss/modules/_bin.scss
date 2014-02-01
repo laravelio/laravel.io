@@ -19,7 +19,11 @@ body.bin {
             color: #a0a0a0;
 
             li {
-                margin-bottom: 8px;
+                padding: 4px 0;
+            }
+
+            li.selected {
+                background: #383838;
             }
         }
     }

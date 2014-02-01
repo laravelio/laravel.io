@@ -13,7 +13,9 @@
         <span class="paste-url">{{ $paste->showUrl }}</span>
     </div>
     <div class="comments">
-        <a href="#" class="button"><i class="fa fa-plus"></i> comment</a>
+        @if (Auth::check())
+            <a href="#" class="button"><i class="fa fa-plus"></i> comment</a>
+        @endif
         <h3>Comments</h3>
         @if ($paste->hasComments())
             <ul>
@@ -26,7 +28,7 @@
 </div>
 
 <div class="show-container">
-    <pre class="prettyprint linenums">
+    <pre class="prettyprint linenums selectable">
 {{{ $paste->code }}}
     </pre>
 </div>

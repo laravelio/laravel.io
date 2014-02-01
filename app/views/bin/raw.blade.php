@@ -1,1 +1,1 @@
-{{ nl2br($paste->code) }}
+<pre>{{ htmlentities($paste->code) }}</pre>
