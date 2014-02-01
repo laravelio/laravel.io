@@ -12,19 +12,6 @@
         </ul>
         <span class="paste-url">{{ $paste->showUrl }}</span>
     </div>
-    <div class="comments">
-        @if (Auth::check())
-            <a href="#" class="button"><i class="fa fa-plus"></i> comment</a>
-        @endif
-        <h3>Comments</h3>
-        @if ($paste->hasComments())
-            <ul>
-                <li></li>
-            </ul>
-        @else
-            <p>No comments found.</p>
-        @endif
-    </div>
 </div>
 
 <div class="show-container">
