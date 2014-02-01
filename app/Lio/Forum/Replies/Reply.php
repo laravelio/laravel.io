@@ -24,8 +24,9 @@ class Reply extends \Lio\Core\Entity
         return $this->belongsTo('Lio\Forum\Threads\Thread', 'thread_id');
     }
 
-    public function isOwnedBy(\Lio\Accounts\User $user)
+    public function isOwnedBy($user)
     {
+        if ( ! $user) return false;
         return $user->id == $this->author_id;
     }
 

@@ -45,6 +45,7 @@
 
   @section('scripts')
   	<script src="{{ asset('javascripts/vendor/jquery.min.js') }}"></script>
+    <script src="{{ asset('javascripts/forum.js') }}"></script>
   @show
 </body>
 </html>
