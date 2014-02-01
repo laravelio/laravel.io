@@ -8,4 +8,5 @@ tags
 app/tests/_log/*
 app/tests/_data/*
 app/storage/cache/*
+app/storage/views/*
 stylesheets

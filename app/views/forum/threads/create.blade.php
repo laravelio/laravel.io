@@ -8,7 +8,7 @@
         <div class="header">
             <h1>Create Thread</h1>
         </div>
-        {{ Form::open() }}
+        {{ Form::open(['data-persist' => 'garlic', 'data-expires' => '600']) }}
         <section class="padding">
             <div class="form-row">
                 {{ Form::label('subject', 'Subject', ['class' => 'field-title']) }}
