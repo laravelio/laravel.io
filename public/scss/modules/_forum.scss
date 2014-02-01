@@ -84,11 +84,13 @@
         margin: 15px;
         background: white;
 
-        h2 {
+        h1 {
             padding: 3px 0 15px 0;
-            margin: 0;
+            margin: 0 0 15px 0;
             font-family: 'Source Sans Pro', sans-serif;
-            font-weight: 400;
+            font-weight: 600;
+            border-bottom:1px solid #cdcdcd;
+            font-size:1.4em;
         }
 
         p {

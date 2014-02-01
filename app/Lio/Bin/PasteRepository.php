@@ -13,4 +13,9 @@ class PasteRepository extends EloquentRepository
     {
         return $this->model->orderBy('created_at', 'desc')->paginate($perPage);
     }
+
+    public function getByHash($hash)
+    {
+        return $this->model->where('hash', '=', $hash)->first();
+    }
 }

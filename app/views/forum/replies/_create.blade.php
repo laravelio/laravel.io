@@ -1,5 +1,5 @@
 <div class="reply-form">
-    {{ Form::open() }}
+    {{ Form::open(['data-persist' => 'garlic', 'data-expires' => '300']) }}
         <div class="form-row">
             <label class="field-title">Reply</label>
             {{ Form::textarea("body", null, ['class' => '_tab_indent']) }}

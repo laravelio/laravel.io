@@ -1,0 +1,18 @@
+@include('bin._scripts')
+@include('bin._styles')
+
+{{ Form::model($paste, [
+    'class' => 'editor-form'
+]) }}
+    <div class="sidebar create">
+        <div class="options">
+            <ul>
+                <li><input type="submit" value="Save" class="button"></li>
+                <li><input type="reset" value="Clear" class="button"></li>
+                <li><a href="{{ $paste->showUrl }}" class="button back"><i class="fa fa-arrow-circle-o-left"></i> Back</a></li>
+            </ul>
+        </div>
+    </div>
+
+    @include('bin._editor')
+{{ Form::close() }}

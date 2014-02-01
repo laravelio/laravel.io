@@ -25,8 +25,9 @@ class ReplyPresenter extends BasePresenter
     public function body()
     {
         $body = $this->resource->body;
+        //$body = $this->removeDoubleSpaces($body);
         $body = $this->convertMarkdown($body);
-        $body = $this->convertNewlines($body);
+       // $body = $this->convertNewlines($body);
         $body = $this->formatGists($body);
         $body = $this->linkify($body);
         return $body;
@@ -39,15 +40,22 @@ class ReplyPresenter extends BasePresenter
 
     // ------------------- //
 
+    private function removeDoubleSpaces($content)
+    {
+        return str_replace('  ', '', $content);
+    }
+
+    private function convertNewlines($content)
+    {
+        return preg_replace("/(?<!\\n)(\\n)(?!\\n)/", "<br>", $content);
+    }
+
     private function convertMarkdown($content)
     {
         return App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($content);
     }
 
-    private function convertNewlines($content)
-    {
-        return str_replace("\n\n", '<br/>', $content);
-    }
+
 
     private function formatGists($content)
     {
