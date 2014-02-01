@@ -1,78 +1,5 @@
 <?php
 
-use Lio\Comments\Comment;
-use Lio\Comments\CommentRepository;
-use Lio\Forum\Threads\Thread;
-use Lio\Forum\Replies\Reply;
-
-// Route::get('migrate-threads', function() {
-//     $repo = new CommentRepository(new Comment);
-//     $threads = $repo->getAllThreads();
-
-//     foreach ($threads as $thread) {
-//         if ( ! $thread->title) continue;
-
-//         try {
-//             $newThread = Thread::create([
-//                 'id'                   => $thread->id,
-//                 'author_id'            => $thread->author_id,
-//                 'subject'              => $thread->title,
-//                 'body'                 => $thread->body,
-//                 'category_slug'        => '',
-//                 'laravel_version'      => $thread->laravel_version,
-//                 'most_recent_reply_id' => $thread->most_recent_child_id,
-//                 'reply_count'          => $thread->child_count,
-//                 'created_at'           => $thread->created_at,
-//                 'updated_at'           => $thread->updated_at,
-//                 'deleted_at'           => $thread->deleted_at,
-//             ]);
-
-//             $newThread->setTags($thread->tags->lists('id'));
-
-//             foreach ($thread->children as $reply) {
-//                 Reply::create([
-//                     'id'         => $reply->id,
-//                     'body'       => $reply->body,
-//                     'author_id'  => $reply->author_id,
-//                     'thread_id'  => $newThread->id,
-//                     'updated_at' => $reply->updated_at,
-//                     'created_at' => $reply->created_at,
-//                     'deleted_at' => $reply->deleted_at,
-//                 ]);
-//             }
-
-//             $newThread->updateReplyCount();
-//         } catch (\Illuminate\Database\QueryException $e) {
-//             dd($thread->getAttributes());
-//         }
-//     }
-// });
-
-Route::get('thread-timestamps', function() {
-    $repo = new CommentRepository(new Comment);
-    $threads = $repo->getAllThreads();
-
-    foreach ($threads as $thread) {
-        try {
-            $newThread = Thread::find($thread->id);
-            if ( ! $newThread) continue;
-
-            $newThread->created_at = $thread->created_at;
-            $newThread->save();
-
-            foreach ($thread->children as $reply) {
-                $newReply = Reply::find($reply->id);
-                if ( ! $newReply) continue;
-
-                $newReply->created_at = $reply->created_at;
-                $newReply->save();
-            }
-        } catch (\Illuminate\Database\QueryException $e) {
-            dd($thread->getAttributes());
-        }
-    }
-});
-
 Route::get('/', 'HomeController@getIndex');
 
 // authentication
@@ -90,11 +17,15 @@ Route::get('dashboard', ['before' => 'auth', 'uses' => 'DashboardController@getI
 // user profile
 Route::get('user/{userSlug}', 'UsersController@getProfile');
 
-// chat
+// contributors
 Route::get('contributors', 'ContributorsController@getIndex');
 
 // chat
 Route::get('chat', 'ChatController@getIndex');
+// chat legacy
+Route::get('irc', function() {
+    return Redirect::action('ChatController@getIndex');
+});
 
 // paste bin
 Route::get('bin', 'BinController@getCreate');

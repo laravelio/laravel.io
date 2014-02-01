@@ -67,7 +67,17 @@
     }
 
     li {
-        display: inline;
+        display: inline-block;
+        padding: 0 10px 0 0 !important;
+        margin: 0 10px 0 0 !important;
+        border-right:1px solid #cdcdcd;
+    }
+
+
+
+    li:last-child
+    {
+        border:none;
     }
 }
 

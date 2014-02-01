@@ -46,6 +46,34 @@ class Thread extends \Lio\Core\Entity
     public function setSubjectAttribute($subject)
     {
         $this->attributes['subject'] = $subject;
+        $this->attributes['slug'] = $this->generateNewSlug();
+    }
+
+    private function generateNewSlug()
+    {
+        $i = 0;
+
+        while ($this->getCountBySlug($this->generateSlugByIncrementer($i)) > 0) {
+            $i++;
+        }
+
+        return $this->generateSlugByIncrementer($i);
+    }
+
+    private function getCountBySlug($slug)
+    {
+        $query = static::where('slug', '=', $slug);
+
+        if ($this->exists) {
+            $query->where('id', '!=', $this->id);
+        }
+
+        return $query->count();
+    }
+
+    private function generateSlugByIncrementer($i)
+    {
+        if ($i == 0) $i = '';
 
         if ($this->created_at) {
             $date = date('m-d-Y', strtotime($this->created_at));
@@ -53,7 +81,7 @@ class Thread extends \Lio\Core\Entity
             $date = date('m-d-Y');
         }
 
-        $this->attributes['slug'] = \Str::slug("{$date} - {$this->subject}");
+        return \Str::slug("{$date} - {$this->subject}" . $i);
     }
 
     public function getLaravelVersions()
