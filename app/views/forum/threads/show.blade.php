@@ -42,6 +42,7 @@
     @parent
     <script src="{{ asset('javascripts/vendor/tabby.js') }}"></script>
     <script src="{{ asset('javascripts/forums.js') }}"></script>
+    <script src="{{ asset('javascripts/vendor/garlic.js') }}"></script>
     <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/obsidian.min.css">
     <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
