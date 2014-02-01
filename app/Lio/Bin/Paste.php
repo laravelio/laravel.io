@@ -15,6 +15,11 @@ class Paste extends Entity {
         'code' => 'required',
     ];
 
+    public function author()
+    {
+        return $this->belongsTo('Lio\Accounts\User', 'author_id');
+    }
+
     public function parent()
     {
         return $this->belongsTo('Lio\Bin\Paste', 'parent_id');
@@ -23,6 +28,18 @@ class Paste extends Entity {
     public function comments()
     {
         return $this->morphMany('Lio\Comments\Comment', 'owner');
+    }
+
+    public function setAuthorAttribute($user)
+    {
+        if ( ! $user) return false;
+        $this->author()->associate($user);
+    }
+
+    public function setParentAttribute($paste)
+    {
+        if ( ! $paste) return false;
+        $this->parent()->associate($paste);
     }
 
     public function hasComments()

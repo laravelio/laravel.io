@@ -1,7 +1,9 @@
 @include('bin._scripts')
 @include('bin._styles')
 
-{{ Form::model($paste, ['action' => 'BinController@postCreate']) }}
+{{ Form::model($paste, [
+    'class' => 'editor-form'
+]) }}
     <div class="sidebar create">
         <div class="options">
             <ul>

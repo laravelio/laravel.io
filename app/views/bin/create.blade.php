@@ -2,7 +2,7 @@
 @include('bin._styles')
 
 
-{{ Form::open() }}
+{{ Form::open(['class' => 'editor-form']) }}
     <div class="sidebar create">
         <div class="options">
             <ul>

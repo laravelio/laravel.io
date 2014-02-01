@@ -4,11 +4,12 @@
 <div class="sidebar show">
     <div class="options">
         <ul>
-            <li><a href="{{ $paste->createUrl }}" class="button">New</a></li>
-            <li><a href="{{ $paste->forkUrl }}" class="button">Fork</a></li>
-            <li><a target="_blank" href="{{ $paste->rawUrl }}" class="button">Raw</a></li>
-            <li><a href="#" class="button">Copy URL</a></li>
+            <li><a href="{{ $paste->createUrl }}" class="button new">New</a></li>
+            <li><a href="{{ $paste->forkUrl }}" class="button fork">Fork</a></li>
+            <li><a target="_blank" href="{{ $paste->rawUrl }}" class="button raw">Raw</a></li>
+            <li><a href="#" class="button copy">Copy URL</a></li>
         </ul>
+        <span class="paste-url">{{ $paste->showUrl }}</span>
     </div>
     <div class="comments">
         <a href="#" class="button"><i class="fa fa-plus"></i> comment</a>

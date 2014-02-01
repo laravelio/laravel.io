@@ -1,1 +1,1 @@
-<div>{{{ $paste->code }}}</div>
+{{ nl2br($paste->code) }}

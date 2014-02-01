@@ -1,15 +1,69 @@
 $(function() {
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "positionClass": "toast-bottom-right",
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
     // Save shortcut
     Mousetrap.bind(['command+s', 'ctrl+s'], function() {
-        console.log('Saved!');
-
-        // return false to prevent default browser behavior
-        // and stop event from bubbling
+        if ($('.editor')) {
+            $('.editor-form').submit();
+        }
         return false;
     });
 
+    // Comment shortcut
+    Mousetrap.bind('c', function() {
+        console.log('meow comment');
+        return false;
+    });
+
+    // Fork shorcut
+    Mousetrap.bind('f', function() {
+        if ($('.button.fork')) {
+            $('.button.fork')[0].click();
+        }
+        return false;
+    });
+
+    // New shorcut
+    Mousetrap.bind('n', function() {
+        if ($('.button.new')) {
+            $('.button.new')[0].click();
+        }
+        return false;
+    });
+
+    // Fork shorcut
+    Mousetrap.bind('r', function() {
+        if ($('.button.raw')) {
+            $('.button.raw')[0].click();
+        }
+        return false;
+    });
+
+    // Setup tabby
     var tabbyOptions = { tabString:'    ' };
     $('.editor').focus().tabby(tabbyOptions);
+
+    // Setup zClip
+    $('.button.copy').zclip({
+        path: '/javascripts/vendor/ZeroClipboard.swf',
+        copy: $('.paste-url').text(),
+        afterCopy: function() {
+            toastr.info('Copied URL to clipboard! ' + $('.paste-url').text());
+        }
+    });
 });
 
 

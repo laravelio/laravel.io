@@ -7,6 +7,10 @@ body.bin {
     background: #1D1F21;
     -webkit-font-smoothing: antialiased;
 
+    .paste-url {
+        display: none;
+    }
+
     .prettyprint {
         border: 0;
         margin-bottom: 0;
@@ -45,7 +49,7 @@ body.bin {
         height: 100%;
         background: #2d2e2f;
         padding: 15px;
-        @include box-shadow(rgba(black, 0.2) -2px 0 3px);
+        box-shadow: -2px 0 3px rgba(black, 0.2);
         border: 0;
 
         .options {
@@ -116,6 +120,14 @@ body.bin {
         h3 {
             color: #fff;
         }
+    }
+
+    .toast {
+        box-shadow: none !important;
+    }
+
+    .toast-info {
+        background: rgba(#f0523f, 0.8);
     }
 }
 
