@@ -76,7 +76,6 @@ function bindTagChooser() {
 }
 
 function versionSelectToTag() {
-
     var versionTags = $('.version').find('input');
 
     versionTags.each(function() {
@@ -85,19 +84,41 @@ function versionSelectToTag() {
         }
     });
 
-
     $('.version input').change(function() {
         $('.version .selected').removeClass('selected');
         $(this).closest('label').addClass('selected');
     })
 }
 
-function bindTabby() {
-    $('._tab_indent').tabby();
+function formatForumQuote(author, quote)
+{
+    // add author name
+    quote = "**" + author + "** said:\n\n" + quote;
+
+    // add markdown quote tags
+    quote = quote.replace(/^/g, ">");
+    quote = quote.replace(/\n/g, "\n>");
+
+    return quote;
+}
+
+function bindQuoteLinks()
+{
+    $('._quote_forum_post').click(function(e) {
+        e.preventDefault();
+
+        var replyForm = $('._reply_form');
+        var quoteBody = $(this).closest('.comment').find('._quote_body');
+        var authorName = $(this).closest('.comment').find('._author_name');
+
+        var quoteText = formatForumQuote(authorName.text(), quoteBody.text());
+
+        replyForm.val(replyForm.val() + quoteText);
+    });
 }
 
 $(function() {
     bindTagChooser();
-    bindTabby();
     versionSelectToTag();
+    bindQuoteLinks();
 });

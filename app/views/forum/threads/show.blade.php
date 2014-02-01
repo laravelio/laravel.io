@@ -40,9 +40,12 @@
 
 @section('scripts')
     @parent
+<<<<<<< HEAD
     <script src="{{ asset('javascripts/vendor/tabby.js') }}"></script>
     <script src="{{ asset('javascripts/forums.js') }}"></script>
     <script src="{{ asset('javascripts/vendor/garlic.js') }}"></script>
+=======
+>>>>>>> 32bd5178d4747434a21409e9376f8c3deb586214
     <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/obsidian.min.css">
     <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>

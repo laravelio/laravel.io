@@ -20,8 +20,3 @@
             </div>
     </div>
 @stop
-
-@section('scripts')
-    @parent
-    <script src="{{ asset('javascripts/forums.js') }}"></script>
-@stop
