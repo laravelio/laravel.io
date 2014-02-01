@@ -1,0 +1,154 @@
+/* ==========================================================================
+   MOBILE FIRST MODULE SKELETON
+   ========================================================================== */
+
+// MOBILE STYLES ////////////////////////////////////////////////////////////
+body.bin {
+    background: #1D1F21;
+    -webkit-font-smoothing: antialiased;
+
+    .prettyprint {
+        border: 0;
+        margin-bottom: 0;
+
+        .linenums {
+            color: #a0a0a0;
+
+            li {
+                margin-bottom: 8px;
+            }
+        }
+    }
+
+    .editor {
+        width: 100%;
+        height: 100%;
+        line-height: 1.8em;
+        position: fixed;
+        padding: 2em;
+        background: transparent;
+        border: 0;
+        color: #fff;
+        resize: none;
+        font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+        outline: none;
+        font-size: 12px;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    .sidebar {
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        width: 250px;
+        height: 100%;
+        background: #2d2e2f;
+        padding: 15px;
+        @include box-shadow(rgba(black, 0.2) -2px 0 3px);
+        border: 0;
+
+        .options {
+            overflow: hidden;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #747474;
+
+            ul {
+                margin: 0;
+                padding: 0;
+
+                li {
+                    float: left;
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+
+                li:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .sidebar.create {
+        height: auto;
+        @include box-shadow(rgba(black, 0.2) -2px 2px 3px);
+
+        .options {
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .button {
+        background: #f0523f;
+        width: 100%;
+        color: #fff;
+        border-radius: 2px;
+        border: 0;
+        padding: 10px 0;
+        -webkit-font-smoothing: antialiased;
+        outline: none;
+        display: inline-block;
+
+        .fa {
+            font-size: 10px;
+            margin-right: 3px;
+        }
+
+        &:hover {
+            background: #c73e2d;
+        }
+    }
+
+    .button.back {
+        .fa {
+            font-size: 12px;
+        }
+    }
+
+    .comments {
+        width: 100%;
+        color: #a6a6a6;
+
+        h3 {
+            color: #fff;
+        }
+    }
+}
+
+// BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 480px) {
+
+    .module {}
+
+}
+
+
+// BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
+
+@media screen and (max-width: 768px) {
+
+}
+
+
+// BREAKPOINT 3 (1024) ////////////////////////////////////////////////////////////
+
+@media screen and (max-width: 1024px) {
+    body.bin {
+        .sidebar {
+            width: 30%;
+        }
+    }
+}
+
+
+// BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
+
+@media only screen and (min-width: 1440px) {
+
+    .module {}
+}

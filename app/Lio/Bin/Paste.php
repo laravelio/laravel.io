@@ -9,6 +9,8 @@ class Paste extends Entity {
     protected $with       = ['comments'];
     protected $softDelete = true;
 
+    public $presenter = 'Lio\Bin\PastePresenter';
+
     protected $validationRules = [
         'code' => 'required',
     ];
@@ -16,5 +18,15 @@ class Paste extends Entity {
     public function parent()
     {
         return $this->belongsTo('Lio\Bin\Paste', 'parent_id');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany('Lio\Comments\Comment', 'owner');
+    }
+
+    public function hasComments()
+    {
+        return (bool) $this->comments->count() > 0;
     }
 }

@@ -13,6 +13,9 @@
                 <a class="{{ Request::is('chat*') ? 'active' : null }}" href="{{ action('ChatController@getIndex') }}">Live Chat</a>
             </li>
             <li>
+                <a href="{{ action('BinController@getCreate') }}">Bin</a>
+            </li>
+            <li>
                 <a target="_blank" href="http://forumsarchive.laravel.io/">Old Forum Archive</a>
             </li>
         </ul>

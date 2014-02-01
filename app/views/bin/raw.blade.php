@@ -1,0 +1,1 @@
+<div>{{{ $paste->code }}}</div>

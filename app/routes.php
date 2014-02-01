@@ -96,8 +96,12 @@ Route::get('contributors', 'ContributorsController@getIndex');
 // chat
 Route::get('chat', 'ChatController@getIndex');
 
-// pastes
-Route::get('bin', 'PastesController@getCreate');
+// paste bin
+Route::get('bin', 'BinController@getCreate');
+Route::post('bin', 'BinController@postCreate');
+Route::get('bin/fork/{hash}', 'BinController@getFork');
+Route::get('bin/raw/{hash}', 'BinController@getRaw');
+Route::get('bin/{hash}', 'BinController@getShow');
 
 // articles
 // Route::get('articles', 'ArticlesController@getIndex');
