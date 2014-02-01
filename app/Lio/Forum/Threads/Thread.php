@@ -62,7 +62,13 @@ class Thread extends \Lio\Core\Entity
 
     private function getCountBySlug($slug)
     {
-        return static::where('slug', '=', $slug)->count();
+        $query = static::where('slug', '=', $slug);
+
+        if ($this->exists) {
+            $query->where('id', '!=', $this->id);
+        }
+
+        return $query->count();
     }
 
     private function generateSlugByIncrementer($i)
