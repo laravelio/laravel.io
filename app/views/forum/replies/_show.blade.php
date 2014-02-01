@@ -3,6 +3,7 @@
         {{ $reply->body }}
     </span>
 
+    <span style="display:none;" class="_author_name">{{ $reply->author->name }}</span>
     <span style="display:none;" class="_quote_body">{{ $reply->resource->body }}</span>
 
     <div class="user">

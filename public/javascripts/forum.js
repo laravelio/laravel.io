@@ -90,10 +90,16 @@ function versionSelectToTag() {
     })
 }
 
-function formatForumQuote(quote)
+function formatForumQuote(author, quote)
 {
+    // add author name
+    quote = "**" + author + "** said:\n\n" + quote;
+
+    // add markdown quote tags
     quote = quote.replace(/^/g, ">");
-    return quote.replace(/\n/g, "\n>");
+    quote = quote.replace(/\n/g, "\n>");
+
+    return quote;
 }
 
 function bindQuoteLinks()
@@ -103,8 +109,10 @@ function bindQuoteLinks()
 
         var replyForm = $('._reply_form');
         var quoteBody = $(this).closest('.comment').find('._quote_body');
+        var authorName = $(this).closest('.comment').find('._author_name');
 
-        var quoteText = formatForumQuote(quoteBody.text());
+        var quoteText = formatForumQuote(authorName.text(), quoteBody.text());
+
         replyForm.val(replyForm.val() + quoteText);
     });
 }
