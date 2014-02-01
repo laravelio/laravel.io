@@ -38,8 +38,7 @@ class ContributorsImportCommand extends Command {
 	public function fire()
 	{
 		$importer = App::make('Lio\Contributors\ContributorImporter');
-
-		$importer->import(['LaravelIO/laravel-io', 'LaravelIO/LaravelWeekly']);
+		$importer->import(['LaravelIO/laravel-io']);
 	}
 
 	/**

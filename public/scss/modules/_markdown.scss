@@ -85,6 +85,14 @@
         margin: 1.5em 0;
         padding: 0.5em 7px;
         quotes: "\201C""\201D""\2018""\2019";
+
+        blockquote {
+            margin: 0 0 0 10px;
+            border-top:1px solid #cdcdcd;
+            border-right:1px solid #cdcdcd;
+            border-bottom:1px solid #cdcdcd;
+            margin: 0 0 10px 10px;
+        }
     }
 
     blockquote:before {
@@ -97,8 +105,13 @@
         vertical-align: -0.4em;
     }
     blockquote p {
+
+        &:first-child {
+            padding:0;
+        }
+
         margin: 0 0 0 15px;
-        padding: 0;
+        padding: 0 0 14px 0;
     }
 
     pre {
