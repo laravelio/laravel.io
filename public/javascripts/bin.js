@@ -22,12 +22,6 @@ $(function() {
         return false;
     });
 
-    // Comment shortcut
-    Mousetrap.bind('c', function() {
-        console.log('meow comment');
-        return false;
-    });
-
     // Fork shorcut
     Mousetrap.bind('f', function() {
         if ($('.button.fork')) {
