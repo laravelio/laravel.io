@@ -129,4 +129,11 @@ class Thread extends \Lio\Core\Entity
     {
         return strtotime($this->updated_at) > $timestamp;
     }
+
+    public function lastReply()
+    {
+        $reply = $this->replies()->orderBy('created_at', 'desc')->first();
+
+        return $reply;
+    }
 }

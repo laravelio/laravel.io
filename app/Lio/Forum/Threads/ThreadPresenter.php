@@ -60,6 +60,24 @@ class ThreadPresenter extends BasePresenter
         return "{$this->laravel_version()} {$this->resource->subject}";
     }
 
+    public function LatestReplyMeta()
+    {
+        if($this->resource->replies->count() > 0) {
+            return "latest reply {$this->updated_ago} by {$this->resource->lastReply()->author->name}";
+        }
+    }
+
+    public function latestReplyUrl()
+    {
+        // Check if the thread has replies, if it does return a direct link to the latest reply
+        if($this->resource->replies->count() > 0) {
+            return $this->url . \App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->lastReply());
+        } else {
+            // Thread does not have any replies, return thread url.
+            return $this->url;
+        }
+    }
+
     // ------------------- //
 
     private function removeDoubleSpaces($content)
