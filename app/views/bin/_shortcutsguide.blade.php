@@ -5,7 +5,5 @@
         <li>New (n)</li>
         <li>Fork (f)</li>
         <li>Raw (r)</li>
-        <li>Comment (n)</li>
-        <li>Shortcut guide (s)</li>
     </ul>
 </div>

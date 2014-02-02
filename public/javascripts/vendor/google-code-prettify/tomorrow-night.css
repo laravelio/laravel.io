@@ -1,0 +1,141 @@
+/* Tomorrow Night Theme */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+.prettyprint {
+  background: #1d1f21;
+  font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.pln {
+  color: #c5c8c6;
+}
+
+@media screen {
+  .str {
+    color: #b5bd68;
+  }
+
+  .kwd {
+    color: #b294bb;
+  }
+
+  .com {
+    color: #969896;
+  }
+
+  .typ {
+    color: #81a2be;
+  }
+
+  .lit {
+    color: #de935f;
+  }
+
+  .pun {
+    color: #c5c8c6;
+  }
+
+  .opn {
+    color: #c5c8c6;
+  }
+
+  .clo {
+    color: #c5c8c6;
+  }
+
+  .tag {
+    color: #cc6666;
+  }
+
+  .atn {
+    color: #de935f;
+  }
+
+  .atv {
+    color: #8abeb7;
+  }
+
+  .dec {
+    color: #de935f;
+  }
+
+  .var {
+    color: #cc6666;
+  }
+
+  .fun {
+    color: #81a2be;
+  }
+}
+@media print, projection {
+  .str {
+    color: #006600;
+  }
+
+  .kwd {
+    color: #006;
+    font-weight: bold;
+  }
+
+  .com {
+    color: #600;
+    font-style: italic;
+  }
+
+  .typ {
+    color: #404;
+    font-weight: bold;
+  }
+
+  .lit {
+    color: #004444;
+  }
+
+  .pun, .opn, .clo {
+    color: #444400;
+  }
+
+  .tag {
+    color: #006;
+    font-weight: bold;
+  }
+
+  .atn {
+    color: #440044;
+  }
+
+  .atv {
+    color: #006600;
+  }
+}
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* IE indents via margin-left */
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  /* */
+}
+
+/* Alternate shading for lines */
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 {
+  /* */
+}

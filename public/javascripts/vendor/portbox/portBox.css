@@ -1,0 +1,196 @@
+/*
+ * 	portBox 1.0 - jQuery plugin
+ *	written by Joey Navarro	
+ *	http://www.joeynavarro.com
+ *
+ *	Copyright (c) 2013 Joey Navarro (http://www.joeynavarro.com)
+ *	Dual licensed under the MIT (MIT-LICENSE.txt)
+ *	and GPL (GPL-LICENSE.txt) licenses.
+ *
+ *	Built for jQuery library
+ *	http://jquery.com
+ *
+ */
+/*-----------------------------------------
+portBox CSS
+------------------------------------------*/
+.portBox-overlay {  
+	height: 100%;
+	width: 100%;
+	background: #000000;
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	display: none;
+}
+
+.portBox {
+	max-width:1280px;
+	position: absolute;
+	display:none;
+	background: #ffffff;
+	z-index: 1001;
+	padding: 30px;
+	text-align:left;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 10px;
+	-moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
+	-webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
+	-box-shadow: 0 0 10px rgba(0,0,0,.4);
+	min-width:200px;
+	font-family: 'Source Sans Pro', sans-serif;
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box; 
+	box-sizing: border-box;
+}
+
+.close-portBox{
+		font-size: 20px;
+		line-height: .5;
+		position: absolute;
+		top: -6px;
+		right: -7px;
+		color: #fff !important;
+		text-shadow:none;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-weight:bold;
+		cursor: pointer;
+		border-radius:50%;
+		padding:5px;
+		background-color:#5c5c5c;
+		overflow:visible;
+		border:2px solid #fff;
+		text-decoration:none;
+}
+
+.close-portBox:hover{
+	color: #5c5c5c !important;
+	background-color:#fff;
+	border:2px solid #5c5c5c;	
+}
+
+/*----------------------------------------
+porBox Content CSS
+-----------------------------------------*/
+
+.project-pics{
+	width:70%;
+	float:left;	
+}
+
+	.project-pics img{
+		width:100%;	
+	}
+
+.project-info {
+	float: left;
+	width:30%;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box; 
+	padding:0 0 0 40px;
+	line-height:28px;
+}
+
+.project-info h3,
+.project-info h4,
+.project-info ul,
+.project-info p,
+.project-button{
+	margin:10px 0;
+	float:left;
+	width:100%;	
+}
+
+.project-info h3{
+	font-size:28px;
+	font-weight:bold;
+	color:#030303;	
+}
+
+.project-info p{
+	font-size:16px;
+	color:#030303;		
+}
+
+.project-info h4{
+	font-size:18px;
+	color:#bfbfbf;
+	border-bottom: 1px solid #e3e3e3;
+	margin-top:20px;
+	letter-spacing:2px;	
+}
+
+.project-info ul{
+	list-style:none;
+	padding:0;
+	color:#000;
+}
+
+.project-info ul li{
+	margin-bottom:10px;
+	font-size:16px;
+}
+
+.project-button{
+	line-height: 45px;
+	height: 45px;
+	border-radius: 3px;
+	color:#ffffff;
+	text-decoration:none;
+	background-color:#99cd4e;
+	text-align:center;
+	margin-top:15px;
+	letter-spacing:2px;
+	border: 1px solid #bbb;
+	-webkit-transition: all .15s linear;
+	-moz-transition: all .15s linear;
+	transition: all .15s linear;
+	text-shadow:none;	
+}
+
+	.project-button:hover{
+		background: #d0d0d0;
+		color: #fff !important;
+		-webkit-box-shadow: inset 0 0 1px 1px #eaeaea;
+		box-shadow: inset 0 0 1px 1px #eaeaea;
+		cursor: pointer;
+	}
+	
+	.project-button:active {
+		background-color:#e3e3e3;
+		color:#bfbfbf !important;
+		-webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
+		box-shadow: inset 0 0 1px 1px #e3e3e3; 
+	}
+
+
+@media only screen and (max-width: 1024px){
+	.project-pics{
+		width: 100%;
+	}
+	
+	.project-info{
+		width: 100%;
+		padding:0;
+		margin-top:40px;
+	}
+}
+
+@media only screen and (max-width: 420px){
+	
+	.project-info{
+		text-align:center;
+		margin-top:0;
+	}
+	
+	.project-info h3{
+		font-size:25px;
+		line-height:30px;
+	}
+	
+}
