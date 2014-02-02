@@ -54,6 +54,9 @@ body.bin {
         background: #2d2e2f;
         padding: 15px;
         box-shadow: -2px 0 3px rgba(black, 0.2);
+        -o-box-shadow: -2px 0 3px rgba(black, 0.2);
+        -moz-box-shadow: -2px 0 3px rgba(black, 0.2);
+        -webkit-box-shadow: -2px 0 3px rgba(black, 0.2);
         border: 0;
 
         .options {
@@ -81,7 +84,10 @@ body.bin {
 
     .sidebar.create {
         height: auto;
-        @include box-shadow(rgba(black, 0.2) -2px 2px 3px);
+        box-shadow: -2px 2px 3px rgba(black, 0.2);
+        -o-box-shadow: -2px 2px 3px rgba(black, 0.2);
+        -moz-box-shadow: -2px 2px 3px rgba(black, 0.2);
+        -webkit-box-shadow: -2px 2px 3px rgba(black, 0.2);
 
         .options {
             border: 0;
