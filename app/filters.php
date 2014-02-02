@@ -9,7 +9,9 @@
 App::before(function($request) {});
 
 App::after(function($request, $response) {
-    if ( ! stristr(Request::path(), 'login') && ! stristr(Request::path(), 'signup')) Session::put('url.intended', URL::full());
+    if (Auth::guest()) {
+        if ( ! stristr(Request::path(), 'login') && ! stristr(Request::path(), 'signup')) Session::put('auth.intended_redirect_url', URL::full());
+    }
 });
 
 /*

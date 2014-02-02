@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class BaseController extends Controller
 {
@@ -38,6 +38,10 @@ class BaseController extends Controller
 
     protected function redirectIntended($default = null)
     {
-        return Redirect::intended($default);
+        $intended = Session::get('auth.intended_redirect_url');
+        if ($intended) {
+            return $this->redirectTo($intended);
+        }
+        return Redirect::to($default);
     }
 }
