@@ -2,12 +2,12 @@
 
 Route::group(array('domain' => 'bin.laravel.io'), function() {
     Route::get('{wildcard}', function($wildcard) {
-        return Redirect::to('bin/' . $wildcard);
+        return Redirect::to('http://laravel.io/bin/' . $wildcard);
     });
 });
 Route::group(array('domain' => 'paste.laravel.io'), function() {
     Route::get('{wildcard}', function($wildcard) {
-        return Redirect::to('bin/' . $wildcard);
+        return Redirect::to('http://laravel.io/bin/' . $wildcard);
     });
 });
 
