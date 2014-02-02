@@ -35,7 +35,9 @@ class ReplyPresenter extends BasePresenter
 
     public function viewReplyUrl()
     {
-        return \App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->resource);
+        $slug = $this->thread->slug;
+        $threadUrl = action('ForumThreadsController@getShowThread', [$slug]);
+        return $threadUrl . \App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->resource);
     }
 
     // ------------------- //
