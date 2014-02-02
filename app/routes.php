@@ -1,5 +1,16 @@
 <?php
 
+Route::group(array('domain' => 'bin.app.local'), function() {
+    Route::get('{wildcard}', function($wildcard) {
+        return Redirect::to('bin/' . $wildcard);
+    });
+});
+Route::group(array('domain' => 'paste.app.local'), function() {
+    Route::get('{wildcard}', function($wildcard) {
+        return Redirect::to('bin/' . $wildcard);
+    });
+});
+
 Route::get('/', 'HomeController@getIndex');
 
 // authentication
