@@ -1,10 +1,4 @@
 <div class="comment" id="reply-{{ $reply->id }}">
-    <span class="markdown">
-        {{ $reply->body }}
-    </span>
-
-    <span style="display:none;" class="_author_name">{{ $reply->author->name }}</span>
-    <span style="display:none;" class="_quote_body">{{ $reply->resource->body }}</span>
 
     <div class="user">
         {{ $reply->author->thumbnail }}
@@ -15,6 +9,15 @@
             </ul>
         </div>
     </div>
+
+    <span class="markdown">
+        {{ $reply->body }}
+    </span>
+
+    <span style="display:none;" class="_author_name">{{ $reply->author->name }}</span>
+    <span style="display:none;" class="_quote_body">{{ $reply->resource->body }}</span>
+
+
     @if(Auth::check())
         <div class="admin-bar">
             @if($reply->isOwnedBy(Auth::user()))

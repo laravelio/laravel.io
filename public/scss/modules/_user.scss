@@ -4,11 +4,19 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.user {
+.thread .user {
     @include clearfix;
     border-top:1px solid #cdcdcd;
+    border-bottom:none;
     padding: 15px 0 0 0;
     margin: 15px 0 0 0;
+}
+
+.user {
+    @include clearfix;
+    border-bottom:1px solid #cdcdcd;
+    padding: 0 0 15px 0;
+    margin: 0 0 15px 0;
 
     img {
         float: left;
