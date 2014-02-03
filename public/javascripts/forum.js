@@ -114,6 +114,8 @@ function bindQuoteLinks()
         var quoteText = formatForumQuote(authorName.text(), quoteBody.text());
 
         replyForm.val(replyForm.val() + quoteText);
+
+        location.href="#reply_form";
     });
 }
 

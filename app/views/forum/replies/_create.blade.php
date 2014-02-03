@@ -1,4 +1,5 @@
 <div class="reply-form">
+    <a name="reply_form"></a>
     {{ Form::open(['data-persist' => 'garlic', 'data-expires' => '300']) }}
         <div class="form-row">
             <label class="field-title">Reply</label>
