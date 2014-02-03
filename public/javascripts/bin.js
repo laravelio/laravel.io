@@ -15,19 +15,19 @@ $(function() {
     }
 
     // Save shortcut
-    Mousetrap.bind('mod+s', function() {
+    Mousetrap.bind('mod+s', function(event) {
+        event.preventDefault();
         if ($('.editor')) {
             $('.editor-form').submit();
         }
-        return false;
     });
 
     // Fork shorcut
     Mousetrap.bind('f', function() {
+        event.preventDefault();
         if ($('.button.fork')) {
             $('.button.fork')[0].click();
         }
-        return false;
     });
 
     // New shorcut

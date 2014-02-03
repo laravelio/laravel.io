@@ -8,7 +8,8 @@ body.bin {
     -webkit-font-smoothing: antialiased;
 
     #copy-data {
-        display: none;
+        position: absolute;
+        left: -100%;
     }
 
     .prettyprint {
