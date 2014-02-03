@@ -50,21 +50,20 @@ $(function() {
         if ($('.button.copy')) {
             $('#copy-data').select();
         }
-        return false;
     });
 
     // Setup tabby
-    var tabbyOptions = { tabString:'    ' };
+    var tabbyOptions = { tabString:'    '};
     $('.editor').focus().tabby(tabbyOptions);
 
     // Setup copy
     $(document).on('copy', function (event) {
-        if (window.getSelection().toString() == '') {
+        // if (window.getSelection().toString() == '') {
             event.preventDefault();
             var url = $('#copy-data').val();
             event.originalEvent.clipboardData.setData('text/plain', url);
             toastr.info('Copied URL to clipboard! ' + url);
-        }
+        // }
     });
 
     $('.button.copy').zclip({
