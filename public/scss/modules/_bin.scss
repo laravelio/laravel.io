@@ -7,7 +7,7 @@ body.bin {
     background: #1D1F21;
     -webkit-font-smoothing: antialiased;
 
-    .paste-url {
+    #copy-data {
         display: none;
     }
 
@@ -58,6 +58,11 @@ body.bin {
         -moz-box-shadow: -2px 0 3px rgba(black, 0.2);
         -webkit-box-shadow: -2px 0 3px rgba(black, 0.2);
         border: 0;
+        color: #fff;
+
+        p {
+            margin-bottom: 0;
+        }
 
         .options {
             overflow: hidden;
