@@ -6,11 +6,11 @@
     <div class="sidebar create">
         <div class="options">
             <ul>
-                <li><input type="submit" value="Save" class="button"></li>
+                <li><input type="submit" value="Save (cmd+s)" class="button"></li>
                 <li><input type="reset" value="Clear" class="button"></li>
-                <li><a href="#" class="button shortcuts" data-display="shortcuts-guide" data-closeBGclick="true">Shortcuts</a></li>
             </ul>
         </div>
+        <p>Please note that all pasted data is publicly available.</p>
     </div>
 
     @include('bin._editor')

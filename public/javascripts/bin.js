@@ -46,16 +46,32 @@ $(function() {
         return false;
     });
 
+    Mousetrap.bind(['cmd+c', 'ctrl+c'], function() {
+        if ($('#copy-data')) {
+            $('#copy-data').select();
+        }
+        return false;
+    });
+
     // Setup tabby
     var tabbyOptions = { tabString:'    ' };
     $('.editor').focus().tabby(tabbyOptions);
 
-    // Setup zClip
+    // Setup copy
+    $(document).on('copy', function (event) {
+        if (window.getSelection().toString() == '') {
+            event.preventDefault();
+            var url = $('#copy-data').val();
+            event.originalEvent.clipboardData.setData('text/plain', url);
+            toastr.info('Copied URL to clipboard! ' + url);
+        }
+    });
+
     $('.button.copy').zclip({
         path: '/javascripts/vendor/ZeroClipboard.swf',
-        copy: $('.paste-url').text(),
+        copy: $('#copy-data').val(),
         afterCopy: function() {
-            toastr.info('Copied URL to clipboard! ' + $('.paste-url').text());
+            toastr.info('Copied URL to clipboard! ' + $('#copy-data').val());
         }
     });
 
