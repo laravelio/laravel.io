@@ -46,7 +46,7 @@ $(function() {
         return false;
     });
 
-    Mousetrap.bind(['cmd+c', 'ctrl+c'], function() {
+    Mousetrap.bind(['command+c', 'ctrl+c'], function() {
         if ($('#copy-data')) {
             $('#copy-data').select();
         }
