@@ -2,6 +2,8 @@
 
 This is the Laravel.IO community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
 
+> It's important to note that the application is in heavy development right now. Please do not submit pull requests until you've submitted a proposal issue, first. We'd really hate to have people work really hard on a pull request only to find out that it won't make it into the project.
+
 ### Requirements
 
 1. PHP 5.4
