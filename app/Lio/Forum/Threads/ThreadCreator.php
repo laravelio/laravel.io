@@ -3,7 +3,7 @@
 use Lio\Forum\SectionCountManager;
 
 /**
-* This class can call the following methods on the observer object:
+* This class can call the following methods on the listener object:
 *
 * threadCreationError($errors)
 * threadCreated($thread)
@@ -21,23 +21,23 @@ class ThreadCreator
 
     // an additional validator is optional and will be run first, an example of a usage for
     // this is a form validator
-    public function create(ThreadCreatorListener $observer, $data, $validator = null)
+    public function create(ThreadCreatorListener $listener, $data, $validator = null)
     {
         if ($validator && ! $validator->isValid()) {
-            return $observer->threadCreationError($validator->getErrors());
+            return $listener->threadCreationError($validator->getErrors());
         }
-        return $this->createValidRecord($observer, $data);
+        return $this->createValidRecord($listener, $data);
     }
 
-    private function createValidRecord($observer, $data)
+    private function createValidRecord($listener, $data)
     {
         $thread = $this->getNew($data);
-        $this->validateAndSave($thread, $observer, $data);
+        $this->validateAndSave($thread, $listener, $data);
 
         // cache new thread update timestamps
         $this->countManager->cacheSections();
 
-        return $observer->threadCreated($thread);
+        return $listener->threadCreated($thread);
     }
 
     private function getNew($data)
@@ -47,11 +47,11 @@ class ThreadCreator
         ]);
     }
 
-    private function validateAndSave($thread, $observer, $data)
+    private function validateAndSave($thread, $listener, $data)
     {
         // check the model validation
         if ( ! $this->threads->save($thread)) {
-            return $observer->threadValidationError($thread->getErrors());
+            return $listener->threadValidationError($thread->getErrors());
         }
 
         // attach any tags that were passed through

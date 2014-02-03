@@ -49,7 +49,12 @@ class ForumThreadsController extends BaseController implements
     // show a thread
     public function getShowThread($threadSlug)
     {
-        $thread = $this->threads->requireBySlug($threadSlug);
+        $thread = $this->threads->getBySlug($threadSlug);
+
+        if ( ! $thread) {
+            return $this->redirectAction('ForumThreadsController@getIndex');
+        }
+
         $replies = $this->threads->getThreadRepliesPaginated($thread, $this->repliesPerPage);
 
         $this->createSections($thread->getTags());

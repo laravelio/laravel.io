@@ -1,9 +1,9 @@
 <?php
 
-use Lio\Articles\ArticleRepository;
-use Lio\Tags\TagRepository;
-use Lio\Comments\CommentRepository;
 use Lio\Comments\Comment;
+use Lio\Tags\TagRepository;
+use Lio\Articles\ArticleRepository;
+use Lio\Comments\CommentRepository;
 
 class ArticlesController extends BaseController
 {

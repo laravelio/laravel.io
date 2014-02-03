@@ -32,12 +32,17 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
 
     public function requireBySlug($slug)
     {
-        $model = $this->model->where('slug', '=', $slug)->first();
+        $model = $this->getBySlug($slug);
 
         if ( ! $model) {
             throw new EntityNotFoundException;
         }
 
         return $model;
+    }
+
+    public function getBySlug($slug)
+    {
+        return $this->model->where('slug', '=', $slug)->first();
     }
 }
