@@ -63,7 +63,7 @@
             text-align: center;
             color:white;
 
-            &.new {
+            &.new, &:hover {
                 background: $lioRed;
             }
         }

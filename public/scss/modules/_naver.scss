@@ -1,0 +1,14 @@
+    .naver .naver-handle { color: #333; cursor: pointer; display: none; font-size: 14px; height: 30px; line-height: 28px; text-transform: uppercase;
+        padding: 0 13px;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+             -o-user-select: none;
+                user-select: none;
+    }
+    .naver .naver-handle:before { background: url(../images/jquery.fs.naver-icon.png) no-repeat center; content: ''; display: block; float: left; height: 15px; margin: 7px 10px 0 0; width: 20px; }
+    .naver .naver-wrapper { height: auto; }
+    .naver .naver-container:after { clear: both; content: "."; display: block; height: 0; line-height: 0; visibility: hidden; }
+
+    .naver.enabled .naver-handle { display: block; }
+    .naver.enabled .naver-wrapper { height: 0px; overflow: hidden; }

@@ -11,11 +11,11 @@
             <div class="tags">
                 {{ $thread->tags->getTagList() }}
             </div>
+            {{ $replies->links() }}
         </div>
 
         @if(Input::get('page') < 2)
             @include('forum.threads._thread')
-        @else
         @endif
 
         <div class="comments">

@@ -43,6 +43,10 @@
         float: right;
     }
 
+    .pagination {
+        display: none;
+    }
+
     img {
         float: left;
         height: 35px;
@@ -63,6 +67,25 @@
 
 @media only screen and (min-width: 768px) {
 
+.header {
+
+    padding-right:0;
+
+    .button {
+        margin: 0 15px 0 0;
+    }
+
+    .pagination {
+        display: block;
+        float: right;
+        margin: 0;
+        padding: 0;
+
+        li {
+            line-height: 1;
+        }
+    }
+}
 
 }
 

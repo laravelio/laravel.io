@@ -47,6 +47,16 @@
   	<script src="{{ asset('javascripts/vendor/jquery.min.js') }}"></script>
     <script src="{{ asset('javascripts/forum.js') }}"></script>
     <script src="{{ asset('javascripts/vendor/garlic.js') }}"></script>
+    <script src="{{ asset('javascripts/vendor/jquery.fs.naver.js') }}"></script>
+    <script>
+      $(".sidebar ul").naver({
+        'maxWidth': '768px',
+        labels: {
+                    closed: "Sections",
+                    open: "Close"
+                },
+      });
+    </script>
   @show
 </body>
 </html>

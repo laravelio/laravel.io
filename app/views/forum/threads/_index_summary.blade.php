@@ -4,8 +4,8 @@
         <h3><a href="{{ $thread->url }}">{{ $thread->subject }}</a></h3>
         <ul class="meta">
             <li>posted by <a href="{{ $thread->author->profileUrl }}">{{ $thread->author->name }}</a></li>
-            <li>updated {{ $thread->updated_ago }}</li>
+            <li>{{ $thread->LatestReplyMeta }}</li>
         </ul>
     </div>
-    <div class="comment-count {{ $thread->isNewerThan($last_visited_timestamp) ? 'new' : '' }}">{{ $thread->reply_count }}</div>
+    <a href="{{ $thread->latestReplyUrl() }}" class="comment-count {{ $thread->isNewerThan($last_visited_timestamp) ? 'new' : '' }}">{{ $thread->reply_count }}</a>
 </div>
