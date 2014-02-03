@@ -15,7 +15,7 @@ $(function() {
     }
 
     // Save shortcut
-    Mousetrap.bind(['command+s', 'ctrl+s'], function() {
+    Mousetrap.bind('mod+s', function() {
         if ($('.editor')) {
             $('.editor-form').submit();
         }
@@ -46,8 +46,8 @@ $(function() {
         return false;
     });
 
-    Mousetrap.bind(['command+c', 'ctrl+c'], function() {
-        if ($('#copy-data')) {
+    Mousetrap.bind('mod+c', function() {
+        if ($('.button.copy')) {
             $('#copy-data').select();
         }
         return false;
