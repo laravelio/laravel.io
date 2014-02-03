@@ -59,7 +59,7 @@ class ForumRepliesController extends BaseController implements
 
     public function replyCreated($reply)
     {
-        return $this->redirectAction('ForumThreadsController@getShowThread', [$reply->thread->slug]);
+        return $this->redirectTo($reply->getPresenter()->viewReplyUrl());
     }
 
     // edit a reply

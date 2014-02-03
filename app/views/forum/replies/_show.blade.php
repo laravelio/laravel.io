@@ -24,7 +24,7 @@
                 <li><a href="{{ action('ForumRepliesController@getEditReply', [$reply->id]) }}">Edit</a></li>
                 <li><a href="{{ action('ForumRepliesController@getDelete', [$reply->id]) }}">Delete</a></li>
             @endif
-            <li><a href="#" class="_quote_forum_post">Quote</a></li>
+            <a href="#" class="quote _quote_forum_post">Quote</a>
         </div>
     @endif
 </div>

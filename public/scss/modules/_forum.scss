@@ -4,6 +4,10 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
+.quote {
+    float: right;
+}
+
 .threads {
     @include span-columns(12);
     float: none;
