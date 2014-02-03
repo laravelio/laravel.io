@@ -24,10 +24,10 @@ $(function() {
 
     // Fork shorcut
     Mousetrap.bind('f', function() {
-        event.preventDefault();
         if ($('.button.fork')) {
             $('.button.fork')[0].click();
         }
+        return false;
     });
 
     // New shorcut
