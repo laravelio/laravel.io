@@ -9,12 +9,13 @@ body.bin {
 
     #copy-data {
         position: absolute;
-        left: -100%;
+        right: -100%;
     }
 
     .prettyprint {
         border: 0;
         margin-bottom: 0;
+        padding-bottom: 300px;
 
         .linenums {
             color: #a0a0a0;
