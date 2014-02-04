@@ -34,4 +34,9 @@ class Reply extends \Lio\Core\Entity
     {
         return $this->where('thread_id', '=', $this->thread_id)->where('created_at', '<', $this->created_at)->count();
     }
+
+    public function getPresenter()
+    {
+        return new ReplyPresenter($this);
+    }
 }
