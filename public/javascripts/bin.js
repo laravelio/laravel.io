@@ -47,8 +47,11 @@ $(function() {
     });
 
     Mousetrap.bind('mod+c', function() {
-        if ($('.button.copy')) {
-            $('#copy-data').select();
+        if (window.getSelection().toString() == '') {
+            if ($('.button.copy')) {
+                $('#copy-data').select();
+                toastr.info('Copied URL to clipboard! ' + $('#copy-data').val());
+            }
         }
     });
 
@@ -58,12 +61,11 @@ $(function() {
 
     // Setup copy
     $(document).on('copy', function (event) {
-        // if (window.getSelection().toString() == '') {
+        if (window.getSelection().toString() == '') {
             event.preventDefault();
             var url = $('#copy-data').val();
             event.originalEvent.clipboardData.setData('text/plain', url);
-            toastr.info('Copied URL to clipboard! ' + url);
-        // }
+        }
     });
 
     $('.button.copy').zclip({
