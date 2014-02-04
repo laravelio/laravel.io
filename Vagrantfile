@@ -1,14 +1,14 @@
-base_box = ENV['VAGRANT_BOX'] || 'bn-quantal64-lamp'
-base_box_url = ENV['VAGRANT_BOX_URL'] || 'http://big-name.s3.amazonaws.com/bn-quantal64-lamp.box'
+Vagrant::configure('2') do |config|
+    config.vm.box = 'bn-quantal64-lamp-2.4'
+    config.vm.box_url = 'http://big-name.s3.amazonaws.com/bn-quantal64-lamp-2.4.box'
 
-Vagrant::Config.run do |config|
-    config.vm.box = base_box
-    config.vm.box_url = base_box_url
+    config.vm.provider "virtualbox" do |v|
+        v.customize ["modifyvm", :id, "--memory", "512"]
+    end
 
-    config.vm.network :hostonly, "10.10.10.10"
-    config.vm.customize ["modifyvm", :id, "--memory", 768]
+    config.vm.network "private_network", ip: "10.10.10.10"
 
-    config.vm.share_folder("vagrant-root", "/vagrant", ".", :mount_options => ['dmode=777','fmode=777', 'uid=1000', 'gid=33'])
+    config.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777", "fmode=777"]
 
     config.vm.provision :chef_solo do |chef|
 
@@ -32,6 +32,7 @@ Vagrant::Config.run do |config|
         chef.add_recipe "database::mysql"
         chef.add_recipe "apache-sites"
         chef.add_recipe "mysql-databases"
+        chef.add_recipe "r"
 
         chef.json.merge!({
             "mysql" => {
@@ -53,9 +54,10 @@ end
 
 Vagrant::Config.run do |config|
     config.vm.provision :shell do |shell|
-        shell.inline = "sudo gem install compass"
-    end
-    config.vm.provision :shell do |shell|
         shell.inline = "sudo bash /vagrant/vagrant-chef/scripts/shell.sh"
+    end
+    # Ruby stuff
+    config.vm.provision :shell do |shell|
+        shell.inline = "sudo gem install compass --no-ri --no-rdoc"
     end
 end
