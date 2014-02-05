@@ -20,7 +20,6 @@ class PasteCreator
             return $observer->pasteValidationError($paste->getErrors());
         }
         $this->addHash($paste);
-        $this->cats();
         return $observer->pasteCreated($paste);
     }
 
