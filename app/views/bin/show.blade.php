@@ -2,6 +2,7 @@
 @include('bin._styles')
 
 <div class="sidebar show">
+    @include('bin._logo')
     <div class="options">
         <ul>
             <li><a href="{{ $paste->createUrl }}" class="button new">New (n)</a></li>
