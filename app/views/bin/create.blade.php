@@ -4,6 +4,7 @@
 
 {{ Form::open(['class' => 'editor-form']) }}
     <div class="sidebar create">
+        @include('bin._logo')
         <div class="options">
             <ul>
                 <li><input type="submit" value="Save (cmd+s)" class="button"></li>
