@@ -49,7 +49,7 @@ $(function() {
     Mousetrap.bind('mod+c', function() {
         if (window.getSelection().toString() == '') {
             if ($('.button.copy')) {
-                $('#copy-data').select();
+                $('#copy-data').val(location.toString()).select();
                 toastr.info('Copied URL to clipboard! ' + $('#copy-data').val());
             }
         }
@@ -70,31 +70,41 @@ $(function() {
 
     $('.button.copy').zclip({
         path: '/javascripts/vendor/ZeroClipboard.swf',
-        copy: $('#copy-data').val(),
+        copy: location.toString(),
         afterCopy: function() {
-            toastr.info('Copied URL to clipboard! ' + $('#copy-data').val());
+            toastr.info('Copied URL to clipboard! ' + location.toString());
         }
     });
 
-    var line = new String(window.location.hash).slice(1) - 1;
+    var lines = (window.location.hash != '') ? window.location.hash.replace(/#/g, '').split(',') : [];
 
     setTimeout(function() {
-        $('.selectable ol li:eq('+line+')').addClass('selected');
-        $('.selectable ol li').each(function(key, element) {
-            $(this).click(function() {
-                var line = key + 1;
-                window.location.hash = '#'+ line;
-            });
+        var $lines = $('.selectable ol li');
+
+        $('#copy-data').val(location.toString());
+
+        for(var i in lines) {
+            if(lines.hasOwnProperty(i)) {
+                $lines.eq(lines[i] - 1).addClass('selected');
+            }
+        }
+
+        $('.selectable').on('click', 'li', function() {
+            var indexOfLine = $(this).index() + 1,
+                indexInLinesArray = lines.indexOf(indexOfLine + "");
+
+            if(indexInLinesArray < 0) {
+                lines.push(indexOfLine + "");
+            } else {
+                lines.splice(indexInLinesArray, 1);
+            }
+            
+            $lines.eq(indexOfLine - 1).toggleClass('selected');
+
+            window.location.hash = lines.map(function(v) { return '#' + v; }).join(',');
         });
-    }, 1);
-
-    $(window).bind('hashchange', function() {
-        var line = new String(window.location.hash).slice(1) - 1;
-        $('.selectable ol li').removeClass('selected');
-        $('.selectable ol li:eq('+line+')').addClass('selected');
-    });
+    }, 200);
 });
-
 
 
 
