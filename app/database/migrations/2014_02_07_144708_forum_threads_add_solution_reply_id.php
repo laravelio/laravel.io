@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ForumThreadsAddQuestionFields extends Migration {
+class ForumThreadsAddSolutionReplyId extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,7 +13,7 @@ class ForumThreadsAddQuestionFields extends Migration {
 	public function up()
 	{
 		Schema::table('forum_threads', function($t) {
-            $t->boolean('is_question');
+           $t->integer('solution_reply_id')->nullable()->defaults(null);
         });
 	}
 
@@ -24,8 +24,9 @@ class ForumThreadsAddQuestionFields extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('forum_threads', function($t) {
-            $t->dropColumn('is_question');
+        Schema::table('forum_threads', function($t) {
+            $t->dropColumn('solution_reply_id');
         });
 	}
+
 }

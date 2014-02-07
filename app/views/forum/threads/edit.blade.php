@@ -30,13 +30,13 @@
                 <li>
                     <label class="tag">
                         Question
-                        {{ Form::radio('is_question', $thread->isQuestion(), true) }}
+                        {{ Form::radio('is_question', 1, $thread->is_question) }}
                     </label>
                 </li>
                 <li>
                     <label class="tag">
                         Conversation
-                        {{ Form::radio('is_question', !$thread->isQuestion(), false) }}
+                        {{ Form::radio('is_question', 0, $thread->is_question) }}
                     </label>
                 </li>
             </ul>

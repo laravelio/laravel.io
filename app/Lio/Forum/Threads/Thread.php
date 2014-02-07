@@ -7,7 +7,7 @@ use Lio\Core\Entity;
 class Thread extends Entity
 {
     protected $table      = 'forum_threads';
-    protected $fillable   = ['subject', 'body', 'author_id', 'is_question', 'is_solved', 'category_slug', 'laravel_version'];
+    protected $fillable   = ['subject', 'body', 'author_id', 'is_question', 'is_solved', 'solution_reply_id', 'category_slug', 'laravel_version'];
     protected $with       = ['author'];
     protected $softDelete = true;
 

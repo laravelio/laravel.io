@@ -121,10 +121,30 @@ class ForumThreadsController extends BaseController implements
         return App::make('Lio\Forum\Threads\ThreadUpdater')->update($this, $thread, [
             'subject' => Input::get('subject'),
             'body' => Input::get('body'),
-            'is_question' => Input::get('is_question'),
+            'is_question' => Input::get('is_question', 0),
             'laravel_version' => Input::get('laravel_version'),
             'tags' => $this->tags->getTagsByIds(Input::get('tags')),
         ], new ThreadForm);
+    }
+
+    public function getMarkQuestionSolved($threadId, $solvedByReplyId)
+    {
+        $thread = $this->threads->requireById($threadId);
+
+        if ( ! $thread->isQuestion() || ! $thread->isOwnedBy(Auth::user())) {
+            return Redirect::to('/');
+        }
+
+        $reply = $this->replies->requireById($solvedByReplyId);
+
+        if ( ! $reply || $reply->thread_id != $thread->id) {
+            return Redirect::to('/');
+        }
+
+        return App::make('Lio\Forum\Threads\ThreadUpdater')->update($this, $thread, [
+            'is_solved' => 1,
+            'solution_reply_id' => $reply->id,
+        ]);
     }
 
     // observer methods

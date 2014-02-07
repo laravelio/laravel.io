@@ -61,12 +61,12 @@ Route::get('bin/{hash}', 'BinController@getShow');
 // Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum
-Route::get('forum', 'ForumThreadsController@getIndex');
-Route::get('forum/search', 'ForumThreadsController@getSearch');
-
 Route::group(['before' => 'auth'], function() {
     Route::get('forum/create-thread', 'ForumThreadsController@getCreateThread');
     Route::post('forum/create-thread', 'ForumThreadsController@postCreateThread');
+
+    Route::get('forum/mark-as-solved/{threadId}', 'ForumThreadsController@getMarkQuestionSolved');
+
     Route::get('forum/edit-thread/{threadId}', 'ForumThreadsController@getEditThread');
     Route::post('forum/edit-thread/{threadId}', 'ForumThreadsController@postEditThread');
     Route::get('forum/edit-reply/{replyId}', 'ForumRepliesController@getEditReply');
@@ -79,10 +79,9 @@ Route::group(['before' => 'auth'], function() {
 
     Route::post('forum/{slug}', ['before' => '', 'uses' => 'ForumRepliesController@postCreateReply']);
 });
-
-// move to new controller
+Route::get('forum', 'ForumThreadsController@getIndex');
+Route::get('forum/search', 'ForumThreadsController@getSearch');
 Route::get('forum/{slug}/reply/{commentId}', 'ForumRepliesController@getReplyRedirect');
-
 Route::get('forum/{slug}', ['before' => '', 'uses' => 'ForumThreadsController@getShowThread']);
 
 // admin
