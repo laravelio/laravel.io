@@ -1,32 +1,43 @@
 <?php
 
+use Lio\Forum\Replies\ReplyRepository;
+use Lio\Forum\SectionCountManager;
+use Lio\Forum\Threads\ThreadCreator;
+use Lio\Forum\Threads\ThreadCreatorListener;
+use Lio\Forum\Threads\ThreadDeleterListener;
 use \Lio\Forum\Threads\ThreadForm;
+use Lio\Forum\Threads\ThreadRepository;
+use Lio\Forum\Threads\ThreadUpdaterListener;
+use Lio\Tags\TagRepository;
 
 class ForumThreadsController extends BaseController implements
-    \Lio\Forum\Threads\ThreadCreatorListener,
-    \Lio\Forum\Threads\ThreadUpdaterListener,
-    \Lio\Forum\Threads\ThreadDeleterListener
+    ThreadCreatorListener,
+    ThreadUpdaterListener,
+    ThreadDeleterListener
 {
     protected $threads;
     protected $tags;
     protected $sections;
     protected $currentSection;
     protected $threadCreator;
+    private $replies;
 
     protected $threadsPerPage = 20;
     protected $repliesPerPage = 20;
 
     public function __construct(
-        \Lio\Forum\Threads\ThreadRepository $threads,
-        \Lio\Tags\TagRepository $tags,
-        \Lio\Forum\SectionCountManager $sections,
-        \Lio\Forum\Threads\ThreadCreator $threadCreator
+        ThreadRepository $threads,
+        ReplyRepository $replies,
+        TagRepository $tags,
+        SectionCountManager $sections,
+        ThreadCreator $threadCreator
     )
     {
         $this->threads = $threads;
         $this->tags = $tags;
         $this->sections = $sections;
         $this->threadCreator = $threadCreator;
+        $this->replies = $replies;
         $this->prepareViewData();
     }
 
@@ -142,8 +153,20 @@ class ForumThreadsController extends BaseController implements
         }
 
         return App::make('Lio\Forum\Threads\ThreadUpdater')->update($this, $thread, [
-            'is_solved' => 1,
             'solution_reply_id' => $reply->id,
+        ]);
+    }
+
+    public function getMarkQuestionUnsolved($threadId)
+    {
+        $thread = $this->threads->requireById($threadId);
+
+        if ( ! $thread->isQuestion() || ! $thread->isOwnedBy(Auth::user())) {
+            return Redirect::to('/');
+        }
+
+        return App::make('Lio\Forum\Threads\ThreadUpdater')->update($this, $thread, [
+            'solution_reply_id' => null,
         ]);
     }
 

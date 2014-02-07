@@ -3,11 +3,12 @@
 use Lio\Accounts\User;
 use Auth;
 use Lio\Core\Entity;
+use Lio\Forum\Replies\Reply;
 
 class Thread extends Entity
 {
     protected $table      = 'forum_threads';
-    protected $fillable   = ['subject', 'body', 'author_id', 'is_question', 'is_solved', 'solution_reply_id', 'category_slug', 'laravel_version'];
+    protected $fillable   = ['subject', 'body', 'author_id', 'is_question', 'solution_reply_id', 'category_slug', 'laravel_version'];
     protected $with       = ['author'];
     protected $softDelete = true;
 
@@ -48,6 +49,16 @@ class Thread extends Entity
     {
         $this->attributes['subject'] = $subject;
         $this->attributes['slug'] = $this->generateNewSlug();
+    }
+
+    public function scopeSolvedQuestions($q)
+    {
+        return $q->where('is_question', '=', 1)->whereNull('solution_reply_id');
+    }
+
+    public function scopeUnsolvedQuestions($q)
+    {
+        return $q->where('is_question', '=', 1)->whereNotNull('solution_reply_id');
     }
 
     private function generateNewSlug()
@@ -95,10 +106,20 @@ class Thread extends Entity
         return $this->is_question;
     }
 
+    public function isSolved()
+    {
+        return $this->isQuestion() && ! is_null($this->solution_reply_id);
+    }
+
     public function isOwnedBy($user)
     {
         if ( ! $user instanceOf \Lio\Accounts\User) return false;
         return $user->id == $this->author_id;
+    }
+
+    public function isReplyTheSolution($reply)
+    {
+        return $reply->id == $this->solution_reply_id;
     }
 
     public function setMostRecentReply(Reply $reply)

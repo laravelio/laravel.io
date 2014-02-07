@@ -1,9 +1,5 @@
-<div class="thread">
+<div class="thread {{ $thread->isQuestion() ? 'question' : '' }} {{ $thread->isSolved() ? 'solved' : '' }}">
     <h1>{{ $thread->subject }}</h1>
-
-    @if($thread->isQuestion() && $thread->isOwnedBy(Auth::user()))
-        <a href="">Mark as Solved</a>
-    @endif
 
     <span class="markdown">
         {{ $thread->body }}
@@ -19,10 +15,13 @@
         </div>
     </div>
 
-    @if($thread->isOwnedBy(Auth::user()))
-        <div class="admin-bar">
-            <li><a  href="{{ action('ForumThreadsController@getEditThread', [$thread->id]) }}">Edit</a></li>
-            <li><a  href="{{ action('ForumThreadsController@getDelete', [$thread->id]) }}">Delete</a></li>
-        </div>
-    @endif
+    <div class="admin-bar">
+        @if($thread->isOwnedBy(Auth::user()))
+            <li><a href="{{ $thread->editUrl }}">Edit</a></li>
+            <li><a href="{{ $thread->deleteUrl }}">Delete</a></li>
+        @endif
+        @if($thread->isQuestion() && $thread->isSolved())
+            <li><a href="{{ $thread->markAsUnsolvedUrl }}">Mark Unsolved</a></li>
+        @endif
+    </div>
 </div>

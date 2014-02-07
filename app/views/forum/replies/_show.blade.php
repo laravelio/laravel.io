@@ -1,4 +1,4 @@
-<div class="comment" id="reply-{{ $reply->id }}">
+<div class="comment {{ $thread->isReplyTheSolution($reply) ? 'solution' : '' }}" id="reply-{{ $reply->id }}">
 
     <div class="user">
         {{ $reply->author->thumbnail }}
@@ -17,14 +17,21 @@
     <span style="display:none;" class="_author_name">{{ $reply->author->name }}</span>
     <span style="display:none;" class="_quote_body">{{ $reply->resource->body }}</span>
 
-
     @if(Auth::check())
         <div class="admin-bar">
             @if($reply->isOwnedBy(Auth::user()))
                 <li><a href="{{ action('ForumRepliesController@getEditReply', [$reply->id]) }}">Edit</a></li>
                 <li><a href="{{ action('ForumRepliesController@getDelete', [$reply->id]) }}">Delete</a></li>
             @endif
+
             <a href="#" class="quote _quote_forum_post">Quote</a>
+
+            @if($thread->isQuestion() && $thread->isOwnedBy(Auth::user()))
+                @if( ! $thread->isSolved())
+
+                    <a href="{{ $thread->markAsSolutionUrl($reply->id) }}">Mark as Solution</a>
+                @endif
+            @endif
         </div>
     @endif
 </div>

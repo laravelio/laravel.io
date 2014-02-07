@@ -37,27 +37,22 @@ class ThreadPresenter extends BasePresenter
     public function body()
     {
         $body = $this->resource->body;
-       // $body = $this->removeDoubleSpaces($body);
         $body = $this->convertMarkdown($body);
-      //  $body = $this->convertNewlines($body);
         $body = $this->formatGists($body);
         $body = $this->linkify($body);
         return $body;
     }
 
-    public function laravel_version()
+    public function versionSubjectPrefix()
     {
         if ($this->resource->laravel_version == 3) {
-            return '[L3]';
-        }
-        if ($this->resource->laravel_version == 4) {
-            return '[L4]';
+            return '[L3] ';
         }
     }
 
     public function subject()
     {
-        return "{$this->laravel_version()} {$this->resource->subject}";
+        return "{$this->versionSubjectPrefix()}{$this->resource->subject}";
     }
 
     public function LatestReplyMeta()
@@ -76,6 +71,26 @@ class ThreadPresenter extends BasePresenter
             // Thread does not have any replies, return thread url.
             return $this->url;
         }
+    }
+
+    public function editUrl()
+    {
+        return action('ForumThreadsController@getEditThread', [$this->id]);
+    }
+
+    public function deleteUrl()
+    {
+        return action('ForumThreadsController@getDelete', [$this->id]);
+    }
+
+    public function markAsSolutionUrl($replyId)
+    {
+        return action('ForumThreadsController@getMarkQuestionSolved', [$this->resource->id, $replyId]);
+    }
+
+    public function markAsUnsolvedUrl()
+    {
+        return action('ForumThreadsController@getMarkQuestionUnsolved', [$this->resource->id]);
     }
 
     // ------------------- //

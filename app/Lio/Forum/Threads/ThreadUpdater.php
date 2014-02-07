@@ -34,7 +34,6 @@ class ThreadUpdater
         }
 
         if (isset($data['tags'])) {
-            die('cats');
             $this->attachTags($thread, $data['tags']);
         }
 
