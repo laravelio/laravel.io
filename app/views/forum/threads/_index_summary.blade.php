@@ -1,4 +1,4 @@
-<div class="thread-summary">
+<div class="thread-summary {{ $thread->isQuestion() ? 'question' : '' }} {{ $thread->isSolved() ? 'solved' : '' }}">
     {{ $thread->author->thumbnail }}
     <div class="info">
         <h3><a href="{{ $thread->url }}">{{ $thread->subject }}</a></h3>
