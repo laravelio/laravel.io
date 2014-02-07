@@ -75,8 +75,23 @@ function bindTagChooser() {
     updateTagDisplay();
 }
 
+function questionSelectToTag() {
+    var tags = $('._question_tags').find('input');
+
+    tags.each(function() {
+        if ($(this).prop('checked')) {
+            $(this).closest('label').addClass('selected');
+        }
+    });
+
+    $('._question_tags input').change(function() {
+        $('._question_tags .selected').removeClass('selected');
+        $(this).closest('label').addClass('selected');
+    })
+}
+
 function versionSelectToTag() {
-    var versionTags = $('.version').find('input');
+    var versionTags = $('._version_tags').find('input');
 
     versionTags.each(function() {
         if ($(this).prop('checked')) {
@@ -84,8 +99,8 @@ function versionSelectToTag() {
         }
     });
 
-    $('.version input').change(function() {
-        $('.version .selected').removeClass('selected');
+    $('._version_tags input').change(function() {
+        $('._version_tags .selected').removeClass('selected');
         $(this).closest('label').addClass('selected');
     })
 }
@@ -122,5 +137,6 @@ function bindQuoteLinks()
 $(function() {
     bindTagChooser();
     versionSelectToTag();
+    questionSelectToTag();
     bindQuoteLinks();
 });

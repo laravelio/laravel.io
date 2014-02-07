@@ -1,5 +1,10 @@
 <div class="thread">
     <h1>{{ $thread->subject }}</h1>
+
+    @if($thread->isQuestion() && $thread->isOwnedBy(Auth::user()))
+        <a href="">Mark as Solved</a>
+    @endif
+
     <span class="markdown">
         {{ $thread->body }}
     </span>

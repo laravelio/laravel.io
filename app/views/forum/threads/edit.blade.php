@@ -25,8 +25,27 @@
         </div>
 
         <div class="form-row">
+            {{ Form::label('is_question', 'What type of thread is this?', ['class' => 'field-title']) }}
+            <ul class="version tags _question_tags">
+                <li>
+                    <label class="tag">
+                        Question
+                        {{ Form::radio('is_question', $thread->isQuestion(), true) }}
+                    </label>
+                </li>
+                <li>
+                    <label class="tag">
+                        Conversation
+                        {{ Form::radio('is_question', !$thread->isQuestion(), false) }}
+                    </label>
+                </li>
+            </ul>
+            {{ $errors->first('is_question', '<small class="error">:message</small>') }}
+        </div>
+
+        <div class="form-row">
             {{ Form::label('laravel_version', 'Laravel Version', ['class' => 'field-title']) }}
-            <ul class="version tags">
+            <ul class="version tags _version_tags">
                 @foreach($versions as $value => $version)
                     <li>
                         <label class="tag">

@@ -21,9 +21,10 @@ class ForumThreadsController extends BaseController implements
         \Lio\Tags\TagRepository $tags,
         \Lio\Forum\SectionCountManager $sections,
         \Lio\Forum\Threads\ThreadCreator $threadCreator
-    ) {
+    )
+    {
         $this->threads = $threads;
-        $this->tags     = $tags;
+        $this->tags = $tags;
         $this->sections = $sections;
         $this->threadCreator = $threadCreator;
         $this->prepareViewData();
@@ -74,11 +75,12 @@ class ForumThreadsController extends BaseController implements
     public function postCreateThread()
     {
         return $this->threadCreator->create($this, [
-            'subject'         => Input::get('subject'),
-            'body'            => Input::get('body'),
-            'author'          => Auth::user(),
+            'subject' => Input::get('subject'),
+            'body' => Input::get('body'),
+            'author' => Auth::user(),
             'laravel_version' => Input::get('laravel_version'),
-            'tags'            => $this->tags->getTagsByIds(Input::get('tags')),
+            'is_question' => Input::get('is_question'),
+            'tags' => $this->tags->getTagsByIds(Input::get('tags')),
         ], new ThreadForm);
     }
 
@@ -117,10 +119,11 @@ class ForumThreadsController extends BaseController implements
         }
 
         return App::make('Lio\Forum\Threads\ThreadUpdater')->update($this, $thread, [
-            'subject'         => Input::get('subject'),
-            'body'            => Input::get('body'),
+            'subject' => Input::get('subject'),
+            'body' => Input::get('body'),
+            'is_question' => Input::get('is_question'),
             'laravel_version' => Input::get('laravel_version'),
-            'tags'            => $this->tags->getTagsByIds(Input::get('tags')),
+            'tags' => $this->tags->getTagsByIds(Input::get('tags')),
         ], new ThreadForm);
     }
 

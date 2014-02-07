@@ -2,11 +2,12 @@
 
 use Lio\Accounts\User;
 use Auth;
+use Lio\Core\Entity;
 
-class Thread extends \Lio\Core\Entity
+class Thread extends Entity
 {
     protected $table      = 'forum_threads';
-    protected $fillable   = ['subject', 'body', 'author_id', 'category_slug', 'laravel_version'];
+    protected $fillable   = ['subject', 'body', 'author_id', 'is_question', 'is_solved', 'category_slug', 'laravel_version'];
     protected $with       = ['author'];
     protected $softDelete = true;
 
@@ -18,9 +19,9 @@ class Thread extends \Lio\Core\Entity
     ];
 
     protected $laravelVersions = [
-        0 => "Doesn't Matter",
-        3 => "Laravel 3.x",
         4 => "Laravel 4.x",
+        3 => "Laravel 3.x",
+        0 => "Doesn't Matter",
     ];
 
     public function author()
@@ -87,6 +88,11 @@ class Thread extends \Lio\Core\Entity
     public function getLaravelVersions()
     {
         return $this->laravelVersions;
+    }
+
+    public function isQuestion()
+    {
+        return $this->is_question;
     }
 
     public function isOwnedBy($user)
