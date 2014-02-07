@@ -76,12 +76,63 @@ $(function() {
         }
     });
 
-    var handleLines = (function() {
+    (function($){
 
-        function expander(lines) {
+        var defaults = {
+            $list: $('.list'),
+            selectedClass: 'selected',
+            preventTextSelectionClass: 'prevent-user-select'
+        },
+        _lines, options, $lastLineToggled;
+
+        // Call this public method like $.myMethod();
+        $.handleLines = function(options){
+            defaults = $.extend(defaults, options);
+            defaults.$lines = defaults.$list.find('li');
+            
+            _lines = expandLines(window.location.hash);
+            highlight();
+            events();
+        };
+        
+        function highlight() {
+            for(var i = 0; i < _lines.length; i++) {
+                defaults.$lines.eq(_lines[i] - 1).addClass(defaults.selectedClass);
+            }
+        }
+
+        function events() {
+            defaults.$list.on('click', 'li', function (e) {
+                var $line = $(this);
+                if ($lastLineToggled && e.shiftKey) {
+                    var $range,
+                        lineIndex = $line.index(),
+                        lastLineIndex = $lastLineToggled.index() + 1;
+
+                    $range = (lineIndex > lastLineIndex) ? defaults.$lines.slice(lastLineIndex, lineIndex + 1) : defaults.$lines.slice(lineIndex, lastLineIndex - 1);
+
+                    if ($line.hasClass(defaults.selectedClass)) {
+                        $range.removeClass(defaults.selectedClass);
+                    } else {
+                        $range.addClass(defaults.selectedClass);
+                    }
+                    manage($range);
+                } else {
+                    $line.toggleClass(defaults.selectedClass);
+                    manage($line);
+                }
+                $lastLineToggled = $line;
+            });
+
+            $(document).mousedown(function (e) {
+                if (e.shiftKey) e.preventDefault();
+            });
+        }
+
+        /* expand #1-7,12,20 into [1,2,3,4,5,6,7,12,20] */
+        function expandLines(lines) {
             if(lines == '') return [];
             lines = lines.replace(/#/g, '').split(',');
-
             var linesExpanded = [];
             for(var i in lines) {
                 if(lines.hasOwnProperty(i)) {
@@ -89,8 +140,8 @@ $(function() {
                 }
             }
 
-            return sanitize(linesExpanded);
-        };
+            return sanitize(linesExpanded)
+        }
 
         function expand(item) {
             return (item.indexOf('-') > 0) ? generateRange(item.split('-')) : [parseInt(item, 10)];
@@ -104,20 +155,19 @@ $(function() {
             return range;
         }
 
+        /* sort linesnumbers array and remove duplicate numbers */
         function sanitize(lines) {
-            uniqueLines = [];
-
             lines = lines.sort(function(a, b) { return a-b; });
-
+            uniqueLines = [];
             for(var i = 0; i < lines.length; i++) {
                 if(uniqueLines.indexOf(lines[i]) === -1) uniqueLines.push(lines[i]);
             }
-
             return uniqueLines;
         }
 
-        function collapser(lines) {
-            lines = sanitize(lines);
+        /* collapse [1,2,3,4,5,6,7,12,20] into #1-7,12,20 */
+        function collapser() {
+            lines = sanitize(_lines);
             var ranges = [], rstart, rend;
             for (var i = 0; i < lines.length; i++) {
                 rstart = lines[i];
@@ -131,39 +181,31 @@ $(function() {
             return '#' + ranges.join(',');
         }
 
-        return {
-            expand: expander,
-            collapse: collapser
-        };
+        /* update lines array */
+        function manage(items) {
+            items.each(function() {
+                var indexOfLine = $(this).index() + 1,
+                    indexInLinesArray = _lines.indexOf(indexOfLine);
 
-    })();
-
-    var lines = handleLines.expand(window.location.hash);
-    
-    $('#copy-data').val(location.toString());
-
-    $('.selectable').on('click', 'li', function() {
-        var indexOfLine = $(this).index() + 1,
-            indexInLinesArray = lines.indexOf(indexOfLine);
-
-        if(indexInLinesArray < 0) {
-            lines.push(indexOfLine);
-            $(this).addClass('selected');
-        } else {
-            lines.splice(indexInLinesArray, 1);
-            $(this).removeClass('selected');
+                if(indexInLinesArray < 0) {
+                    _lines.push(indexOfLine);
+                } else {
+                    _lines.splice(indexInLinesArray, 1);
+                }
+            });
+            window.location.hash = collapser();
         }
 
-        window.location.hash = handleLines.collapse(lines);
-    });
+    })(jQuery);
 
-    // callback for the prettyPrint function
     prettyPrint(function() {
-        var $lines = $('.selectable ol li');
-        for(var i = 0; i < lines.length; i++) {
-            $lines.eq(lines[i] - 1).addClass('selected');
-        }
+        $.handleLines({
+            $list: $('ol.linenums'),
+            selectClass: 'selected',
+            preventTextSelectionClass: 'prevent-user-select'
+        });
     });
+
 
 });
 
