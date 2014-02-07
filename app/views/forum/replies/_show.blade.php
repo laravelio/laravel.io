@@ -1,4 +1,4 @@
-<div class="comment {{ $thread->isReplyTheSolution($reply) ? 'solution' : '' }}" id="reply-{{ $reply->id }}">
+<div class="comment {{ $thread->isReplyTheSolution($reply) ? 'solution-border' : '' }}" id="reply-{{ $reply->id }}">
 
     <div class="user">
         {{ $reply->author->thumbnail }}
@@ -8,6 +8,17 @@
                 <li><a href="{{ $reply->viewReplyUrl }}">{{ $reply->created_ago }}</a></li>
             </ul>
         </div>
+
+        @if($thread->isReplyTheSolution($reply))
+            <div class="solution accepted"><i class="fa fa-check-square"></i> Solution</div>
+        @endif
+
+        @if($thread->isQuestion() && $thread->isOwnedBy(Auth::user()))
+            @if( ! $thread->isSolved())
+                <a class="solution" href="{{ $thread->markAsSolutionUrl($reply->id) }}"><i class="fa fa-check-square"></i>Mark as Solution</a>
+            @endif
+        @endif
+
     </div>
 
     <span class="markdown">
@@ -25,13 +36,6 @@
             @endif
 
             <a href="#" class="quote _quote_forum_post">Quote</a>
-
-            @if($thread->isQuestion() && $thread->isOwnedBy(Auth::user()))
-                @if( ! $thread->isSolved())
-
-                    <a href="{{ $thread->markAsSolutionUrl($reply->id) }}">Mark as Solution</a>
-                @endif
-            @endif
         </div>
     @endif
 </div>

@@ -20,6 +20,31 @@
         padding: 12px 20px 12px 10px;
         margin: 0 0 6px 0;
 
+        .info {
+            float: none;
+
+            .post-info {
+                display: block;
+                position: absolute;
+                right:0px;
+                top:0px;
+
+                .accepted {
+                    display: none;
+                }
+
+                .mini {
+                    margin: 0 0 3px 0;
+                    float: none;
+                    display: block;
+                }
+            }
+        }
+
+        .post-info {
+            display: none;
+        }
+
         img {
             display: none;
         }
@@ -58,10 +83,8 @@
         }
 
         .comment-count {
+            display: block;
             min-width:25px;
-            position: absolute;
-            right:0px;
-            top:0px;
             background: #cdcdcd;
             padding: 5px;
             text-align: center;
@@ -115,7 +138,6 @@
         img {
             max-width: 100%;
         }
-
     }
 }
 
@@ -124,7 +146,38 @@
 
 @media only screen and (min-width: 480px) {
 
-    .module {}
+.threads {
+            @include span-columns(12);
+            @include clearfix;
+            padding: 15px 15px 15px 15px;
+            float: none;
+
+            .post-info {
+                display: none;
+            }
+
+
+            .thread-summary {
+                .info {
+                    float: none;
+
+                    .post-info {
+                        display: block;
+                    }
+                }
+
+                .comment-count {
+                    position: relative;
+                    min-width:25px;
+                    float: right;
+                    background: #cdcdcd;
+                    padding: 5px;
+                    margin: 7px 0 0 0;
+                    text-align: center;
+                    color:white;
+                }
+            }
+        }
 
 }
 
@@ -134,12 +187,8 @@
 @media only screen and (min-width: 768px) {
 
         .threads {
-            @include span-columns(12);
-            @include clearfix;
-            padding: 15px 15px 15px 15px;
-            float: none;
-
             .thread-summary {
+
                 img {
                     float: left;
                     height: auto;
@@ -148,23 +197,18 @@
                     padding: 0 10px 0 0;
                 }
 
-                h3 {
-                    max-width: 100%;
+
+                .post-info {
+                    display: block;
                 }
 
                 .info {
                     float: left;
-                }
+                    max-width: 70%;
 
-                .comment-count {
-                    position: relative;
-                    min-width:25px;
-                    float: right;
-                    background: #cdcdcd;
-                    padding: 5px;
-                    margin: 6px 0 0 0;
-                    text-align: center;
-                    color:white;
+                    .post-info {
+                        display: none;
+                    }
                 }
             }
         }
@@ -177,7 +221,14 @@
 
 @media only screen and (min-width: 1024px) {
 
-    .module {}
+    .threads {
+        .thread-summary {
+            .info {
+                max-width: 75%;
+            }
+        }
+    }
+
 }
 
 

@@ -4,51 +4,46 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.comments {
-    h6.title {
-        font-family: 'Source Sans Pro', sans-serif;
-        font-weight: 400;
-        font-size:14px;
-        display: block;
-        width:70px;
-        background: #cdcdcd;
-        margin: auto;
-        padding: 5px 10px;
-        text-align: center;
+.solution {
+    float: right;
+    display: block;
+    background: #ebebeb;
+    height: 25px;
+    padding: 5px 5px 0 5px;
+    color:$lioGrey;
+
+    i {
+        margin: 0 8px 0 0;
     }
 
-    .comment {
-        @include clearfix;
-        background: white;
-        padding: 15px;
-        margin: 15px;
+    &:hover {
+        background:$lioRed;
+        color:white;
+    }
 
-        &.solution-border {
-            border-right:3px solid $lioRed;
+    &.accepted {
+        background: $lioRed;
+        padding: 5px 8px 2px 8px;
+        text-align: center;
+        color:white;
+
+        &:hover{
+            background: #ebebeb;
+            color:$lioGrey;
         }
 
-        p {
+        i {
             margin: 0;
-            line-height: 1.5;
-        }
-
-        ul, li {
-            margin: 0;
-            padding: 0;
-        }
-
-        li {
-            margin: 0 0 0 15px;
-            line-height: 1.5;
-        }
-
-        img {
-            max-width: 100%;
         }
     }
 }
 
-
+.thread-summary {
+    .solution {
+        float: right;
+        margin: 7px 0 0 6px;
+    }
+}
 
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
@@ -63,7 +58,6 @@
 // BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 768px) {
-
 
 
 }
@@ -83,3 +77,4 @@
 
     .module {}
 }
+

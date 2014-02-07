@@ -73,6 +73,13 @@ class ThreadPresenter extends BasePresenter
         }
     }
 
+    public function acceptedSolutionUrl()
+    {
+        if($this->acceptedSolution()) {
+            return $this->url . \App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->acceptedSolution());
+        }
+    }
+
     public function editUrl()
     {
         return action('ForumThreadsController@getEditThread', [$this->id]);

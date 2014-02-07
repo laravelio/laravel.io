@@ -17,6 +17,7 @@
 @import "vendor/bourbon/bourbon";
 @import "vendor/neat/neat";
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700);
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
 
 /* ==========================================================================
@@ -43,3 +44,4 @@
 @import "modules/_bin";
 @import "modules/_markdown";
 @import "modules/_naver";
+@import "modules/_solution";

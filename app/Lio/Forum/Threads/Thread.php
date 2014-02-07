@@ -158,4 +158,9 @@ class Thread extends Entity
 
         return $reply;
     }
+
+    public function acceptedSolution()
+    {
+        return \App::make('Lio\Forum\Replies\ReplyRepository')->requireById($this->solution_reply_id);
+    }
 }
