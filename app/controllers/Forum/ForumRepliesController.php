@@ -15,13 +15,11 @@ class ForumRepliesController extends BaseController implements
     public function __construct(
         \Lio\Forum\Threads\ThreadRepository $threads,
         \Lio\Forum\Replies\ReplyRepository $replies,
-        \Lio\Tags\TagRepository $tags,
-        \Lio\Forum\SectionCountManager $sections
+        \Lio\Tags\TagRepository $tags
     ) {
         $this->threads  = $threads;
         $this->replies  = $replies;
         $this->tags     = $tags;
-        $this->sections = $sections;
 
         $this->prepareViewData();
     }
@@ -131,19 +129,6 @@ class ForumRepliesController extends BaseController implements
     private function prepareViewData()
     {
         $forumSections = Config::get('forum.sections');
-        $sectionCounts = $this->sections->getCounts(Session::get('forum_last_visited'));
-        View::share(compact('forumSections', 'sectionCounts'));
-    }
-
-    private function prepareForumSections()
-    {
-        $forumSections = Config::get('forum.sections');
-        dd($forumSections);
-
-        foreach($forumSections as $sectionTitle => $sectionTags) {
-            if(str_contains($sectionTags, Input::get('tags'))) {
-
-            }
-        }
+        View::share(compact('forumSections'));
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
 use Lio\Forum\Replies\ReplyRepository;
-use Lio\Forum\SectionCountManager;
 use Lio\Forum\Threads\ThreadCreator;
 use Lio\Forum\Threads\ThreadCreatorListener;
 use Lio\Forum\Threads\ThreadDeleterListener;
@@ -17,7 +16,6 @@ class ForumThreadsController extends BaseController implements
 {
     protected $threads;
     protected $tags;
-    protected $sections;
     protected $currentSection;
     protected $threadCreator;
     private $replies;
@@ -29,24 +27,18 @@ class ForumThreadsController extends BaseController implements
         ThreadRepository $threads,
         ReplyRepository $replies,
         TagRepository $tags,
-        SectionCountManager $sections,
         ThreadCreator $threadCreator
     )
     {
         $this->threads = $threads;
         $this->tags = $tags;
-        $this->sections = $sections;
         $this->threadCreator = $threadCreator;
         $this->replies = $replies;
-        $this->prepareViewData();
     }
 
     // show thread list
     public function getIndex()
     {
-        // update user timestamp
-        View::share('last_visited_timestamp', App::make('Lio\Forum\SectionCountManager')->updatedAndGetLastVisited(Input::get('tags')));
-
         // query tags and retrieve the appropriate threads
         $tags = $this->tags->getAllTagsBySlug(Input::get('tags'));
         $threads = $this->threads->getByTagsPaginated($tags, $this->threadsPerPage);
@@ -214,8 +206,6 @@ class ForumThreadsController extends BaseController implements
     // forum thread search
     public function getSearch()
     {
-        View::share('last_visited_timestamp', App::make('Lio\Forum\SectionCountManager')->updatedAndGetLastVisited(Input::get('tags')));
-
         $query = Input::get('query');
         $results = App::make('Lio\Forum\Threads\ThreadSearch')->searchPaginated($query, $this->threadsPerPage);
         $results->appends(array('query' => $query));
@@ -225,12 +215,6 @@ class ForumThreadsController extends BaseController implements
     }
 
     // ------------------------- //
-    private function prepareViewData()
-    {
-        $sectionCounts = $this->sections->getCounts(Session::get('forum_last_visited'));
-        View::share(compact('sectionCounts'));
-    }
-
     private function createSections($currentSection = null)
     {
         $forumSections = App::make('Lio\Forum\SectionSidebarCreator')->createSidebar($currentSection);

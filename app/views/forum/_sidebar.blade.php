@@ -9,9 +9,7 @@
     @foreach($forumSections as $sectionTitle => $attributes)
         <li>
             <a {{ isset($attributes['active']) ? 'class="active"' : null  }} href="{{ action('ForumThreadsController@getIndex') }}{{ $attributes['tags'] ? '?tags=' . $attributes['tags'] : '' }}">{{ $sectionTitle }}
-                @if($sectionCounts[$attributes['tags']] > 0)
-                    <span class="new">{{ $sectionCounts[$attributes['tags']] < 10 ? $sectionCounts[$attributes['tags']] : '9+' }}</span>
-                @endif
+<!--                    <span class="new">1</span>-->
             </a>
         </li>
     @endforeach

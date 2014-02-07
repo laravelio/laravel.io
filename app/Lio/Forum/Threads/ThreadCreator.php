@@ -1,7 +1,5 @@
 <?php namespace Lio\Forum\Threads;
 
-use Lio\Forum\SectionCountManager;
-
 /**
 * This class can call the following methods on the listener object:
 *
@@ -11,12 +9,10 @@ use Lio\Forum\SectionCountManager;
 class ThreadCreator
 {
     protected $threads;
-    protected $countManager;
 
-    public function __construct(ThreadRepository $threads, SectionCountManager $countManager)
+    public function __construct(ThreadRepository $threads)
     {
         $this->threads = $threads;
-        $this->countManager = $countManager;
     }
 
     // an additional validator is optional and will be run first, an example of a usage for
@@ -33,9 +29,6 @@ class ThreadCreator
     {
         $thread = $this->getNew($data);
         $this->validateAndSave($thread, $listener, $data);
-
-        // cache new thread update timestamps
-        $this->countManager->cacheSections();
 
         return $listener->threadCreated($thread);
     }

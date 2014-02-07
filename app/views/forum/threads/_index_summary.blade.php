@@ -7,5 +7,5 @@
             <li>{{ $thread->LatestReplyMeta }}</li>
         </ul>
     </div>
-    <a href="{{ $thread->latestReplyUrl() }}" class="comment-count {{ $thread->isNewerThan($last_visited_timestamp) ? 'new' : '' }}">{{ $thread->reply_count }}</a>
+    <a href="{{ $thread->latestReplyUrl() }}" class="comment-count">{{ $thread->reply_count }}</a>
 </div>
