@@ -25,6 +25,30 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
         return $query->paginate($perPage, ['forum_threads.*']);
     }
 
+    public function getByTagsAndStatusPaginated(Collection $tags, $status, $perPage = 20)
+    {
+        $query = $this->model->with(['mostRecentReply', 'tags']);
+
+        if ($tags->count() > 0) {
+            $query->join('tagged_items', 'forum_threads.id', '=', 'tagged_items.thread_id')
+                ->whereIn('tagged_items.tag_id', $tags->lists('id'));
+        }
+
+        if($status) {
+            if($status == 'solved') {
+                $query->where('solution_reply_id', '>', 0);
+            }
+            if($status == 'unsolved') {
+                $query->whereNull('solution_reply_id');
+            }
+        }
+
+        $query->groupBy('forum_threads.id')
+            ->orderBy('updated_at', 'desc');
+
+        return $query->paginate($perPage, ['forum_threads.*']);
+    }
+
     public function getThreadRepliesPaginated(Thread $thread, $perPage = 20)
     {
         return $thread->replies()->paginate(20);

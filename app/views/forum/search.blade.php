@@ -20,9 +20,9 @@
                     {{-- Loop over the threads and display the thread summary partial --}}
                     @foreach($results as $result)
                         @if($result->parent)
-                            @include('forum._thread_summary', ['thread' => $result->parent])
+                            @include('forum.threads._index_summary', ['thread' => $result->parent])
                         @else
-                            @include('forum._thread_summary', ['thread' => $result])
+                            @include('forum.threads._index_summary', ['thread' => $result])
                         @endif
                     @endforeach
                 @else

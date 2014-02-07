@@ -11,7 +11,7 @@
 .threads {
     @include span-columns(12);
     float: none;
-    padding: 15px 15px 15px 15px;
+    padding: 0 15px 15px 15px;
 
     .thread-summary {
         position: relative;
@@ -149,7 +149,7 @@
 .threads {
             @include span-columns(12);
             @include clearfix;
-            padding: 15px 15px 15px 15px;
+            padding: 0 15px 15px 15px;
             float: none;
 
             .post-info {

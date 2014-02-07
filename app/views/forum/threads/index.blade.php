@@ -17,6 +17,15 @@
             <a class="button" href="{{ action('ForumThreadsController@getCreateThread') }}">Create Thread</a>
         </div>
 
+        <div class="filter">
+            <p>Showing:</p>
+            <ul>
+                <li><a href="" class="{{ Input::has('status') ? '' : 'current' }}">All</a></li>
+                <li><a href="" class="{{ Input::get('status') == 'solved' ? 'current' : '' }}">Solved</a></li>
+                <li><a href="" class="{{ Input::get('status') == 'unsolved' ? 'current' : '' }}">Unsolved</a></li>
+            </ul>
+        </div>
+
         <div class="threads">
             {{-- Loop over the threads and display the thread summary partial --}}
             @each('forum.threads._index_summary', $threads, 'thread')

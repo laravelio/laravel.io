@@ -4,44 +4,39 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.solution {
-    float: right;
-    display: block;
-    background: #ebebeb;
-    height: 25px;
-    padding: 5px 5px 0 5px;
-    color:$lioGrey;
+.filter {
+    @include clearfix;
+    padding: 15px 0 15px 15px;
 
-    i {
-        margin: 0 8px 0 0;
+    p {
+        float: left;
+        margin: 0;
+        padding: 4px 10px 0 0;
+        font-weight:bold;
     }
 
-    &:hover {
-        background:$lioRed;
-        color:white;
+    ul {
+        float: left;
+        margin: 0;
+        padding: 0;
     }
 
-    &.accepted {
-        background: $lioRed;
-        padding: 5px 8px 2px 8px;
-        text-align: center;
-        color:white;
+    li {
+        display: inline;
 
-        &:hover{
-            background: #ebebeb;
+        a {
+            float: left;
+            display: block;
+            height: 25px;
+            padding: 5px 9px 0 9px;
+            margin: 0 8px 0 0;
             color:$lioGrey;
-        }
 
-        i {
-            margin: 0;
+            &:hover, &.current {
+                background:$lioRed;
+                color:white;
+            }
         }
-    }
-}
-
-.thread-summary {
-    .solution {
-        float: right;
-        margin: 7px 6px 0 0;
     }
 }
 
@@ -77,4 +72,3 @@
 
     .module {}
 }
-

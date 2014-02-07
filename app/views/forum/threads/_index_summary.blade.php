@@ -18,10 +18,10 @@
     </div>
 
     <div class="post-info">
+        <a href="{{ $thread->latestReplyUrl() }}" class="comment-count">{{ $thread->reply_count }}</a>
         @if($thread->isSolved())
             <a class="solution accepted" href="{{ $thread->acceptedSolutionUrl }}"><i class="fa fa-check-square"></i> solved</a>
         @endif
-        <a href="{{ $thread->latestReplyUrl() }}" class="comment-count">{{ $thread->reply_count }}</a>
     </div>
 
 </div>
