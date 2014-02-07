@@ -76,37 +76,96 @@ $(function() {
         }
     });
 
-    var lines = (window.location.hash != '') ? window.location.hash.replace(/#/g, '').split(',') : [];
+    var handleLines = (function() {
 
-    setTimeout(function() {
-        var $lines = $('.selectable ol li');
+        function expander(lines) {
+            if(lines == '') return [];
+            lines = lines.replace(/#/g, '').split(',');
 
-        $('#copy-data').val(location.toString());
-
-        for(var i in lines) {
-            if(lines.hasOwnProperty(i)) {
-                $lines.eq(lines[i] - 1).addClass('selected');
+            var linesExpanded = [];
+            for(var i in lines) {
+                if(lines.hasOwnProperty(i)) {
+                    linesExpanded = linesExpanded.concat(expand(lines[i]));
+                }
             }
+
+            return sanitize(linesExpanded);
+        };
+
+        function expand(item) {
+            return (item.indexOf('-') > 0) ? generateRange(item.split('-')) : [parseInt(item, 10)];
         }
 
-        $('.selectable').on('click', 'li', function() {
-            var indexOfLine = $(this).index() + 1,
-                indexInLinesArray = lines.indexOf(indexOfLine + "");
-
-            if(indexInLinesArray < 0) {
-                lines.push(indexOfLine + "");
-            } else {
-                lines.splice(indexInLinesArray, 1);
+        function generateRange(values) {
+            var range = [];
+            for (var i = parseInt(values[0], 10); i <= parseInt(values[1], 10); i++) {
+                range.push(i);
             }
-            
-            $lines.eq(indexOfLine - 1).toggleClass('selected');
+            return range;
+        }
 
-            window.location.hash = lines.map(function(v) { return '#' + v; }).join(',');
-        });
-    }, 200);
+        function sanitize(lines) {
+            uniqueLines = [];
+
+            lines = lines.sort(function(a, b) { return a-b; });
+
+            for(var i = 0; i < lines.length; i++) {
+                if(uniqueLines.indexOf(lines[i]) === -1) uniqueLines.push(lines[i]);
+            }
+
+            return uniqueLines;
+        }
+
+        function collapser(lines) {
+            lines = sanitize(lines);
+            var ranges = [], rstart, rend;
+            for (var i = 0; i < lines.length; i++) {
+                rstart = lines[i];
+                rend = rstart;
+                while (lines[i + 1] - lines[i] == 1) {
+                    rend = lines[i + 1];
+                    i++;
+                }
+                ranges.push(rstart == rend ? rstart+'' : rstart + '-' + rend);
+            }
+            return '#' + ranges.join(',');
+        }
+
+        return {
+            expand: expander,
+            collapse: collapser
+        };
+
+    })();
+
+    var lines = handleLines.expand(window.location.hash);
+    
+    $('#copy-data').val(location.toString());
+
+    $('.selectable').on('click', 'li', function() {
+        var indexOfLine = $(this).index() + 1,
+            indexInLinesArray = lines.indexOf(indexOfLine);
+
+        if(indexInLinesArray < 0) {
+            lines.push(indexOfLine);
+            $(this).addClass('selected');
+        } else {
+            lines.splice(indexInLinesArray, 1);
+            $(this).removeClass('selected');
+        }
+
+        window.location.hash = handleLines.collapse(lines);
+    });
+
+    // callback for the prettyPrint function
+    prettyPrint(function() {
+        var $lines = $('.selectable ol li');
+        for(var i = 0; i < lines.length; i++) {
+            $lines.eq(lines[i] - 1).addClass('selected');
+        }
+    });
+
 });
-
-
 
 // // drag and drop file api stuff
 // function handleFileSelect(e) {
