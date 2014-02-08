@@ -9,16 +9,14 @@ class ArticlesController extends BaseController
 {
     private $articles;
     private $tags;
-    private $comments;
 
     private $articlesPerPage = 20;
     private $commentsPerPage = 20;
 
-    public function __construct(ArticleRepository $articles, TagRepository $tags, CommentRepository $comments)
+    public function __construct(ArticleRepository $articles, TagRepository $tags)
     {
         $this->tags     = $tags;
         $this->articles = $articles;
-        $this->comments = $comments;
     }
 
     public function getIndex()

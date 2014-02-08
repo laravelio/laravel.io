@@ -23,7 +23,7 @@ Route::get('oauth', 'AuthController@getOauth');
 
 // user dashboard
 Route::get('dashboard', ['before' => 'auth', 'uses' => 'DashboardController@getIndex']);
-//Route::get('dashboard/articles', ['before' => 'auth', 'uses' => 'ArticlesController@getDashboard']);
+Route::get('dashboard/articles', ['before' => 'auth', 'uses' => 'ArticlesController@getDashboard']);
 
 // user profile
 Route::get('user/{userSlug}', 'UsersController@getProfile');
@@ -47,18 +47,18 @@ Route::get('bin/{hash}/raw', 'BinController@getRaw');
 Route::get('bin/{hash}', 'BinController@getShow');
 
 // articles
-// Route::get('articles', 'ArticlesController@getIndex');
-// Route::get('article/{slug}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getEditComment']);
-// Route::post('article/{slug}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postEditComment']);
-// Route::get('article/{slug}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getDeleteComment']);
-// Route::post('article/{slug}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postDeleteComment']);
-// Route::get('article/{slug}', ['before' => '', 'uses' => 'ArticlesController@getShow']);
-// Route::post('article/{slug}', ['before' => '', 'uses' => 'ArticlesController@postShow']);
-// Route::get('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@getCompose']);
-// Route::post('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@postCompose']);
-// Route::get('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@getEdit']);
-// Route::post('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@postEdit']);
-// Route::get('articles/search', 'ArticlesController@getSearch');
+Route::get('articles', 'ArticlesController@getIndex');
+Route::get('article/{slug}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getEditComment']);
+Route::post('article/{slug}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postEditComment']);
+Route::get('article/{slug}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getDeleteComment']);
+Route::post('article/{slug}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postDeleteComment']);
+Route::get('article/{slug}', 'ArticlesController@getShow');
+Route::post('article/{slug}', 'ArticlesController@postShow');
+Route::get('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@getCompose']);
+Route::post('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@postCompose']);
+Route::get('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@getEdit']);
+Route::post('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@postEdit']);
+Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum
 Route::group(['before' => 'auth'], function() {
@@ -78,7 +78,7 @@ Route::group(['before' => 'auth'], function() {
     Route::get('forum/delete/thread/{threadId}', 'ForumThreadsController@getDelete');
     Route::post('forum/delete/thread/{threadId}', 'ForumThreadsController@postDelete');
 
-    Route::post('forum/{slug}', ['before' => '', 'uses' => 'ForumRepliesController@postCreateReply']);
+    Route::post('forum/{slug}', 'ForumRepliesController@postCreateReply');
 });
 
 Route::get('forum/{status?}', 'ForumThreadsController@getIndex')
@@ -86,7 +86,7 @@ Route::get('forum/{status?}', 'ForumThreadsController@getIndex')
 
 Route::get('forum/search', 'ForumThreadsController@getSearch');
 Route::get('forum/{slug}/reply/{commentId}', 'ForumRepliesController@getReplyRedirect');
-Route::get('forum/{slug}', ['before' => '', 'uses' => 'ForumThreadsController@getShowThread']);
+Route::get('forum/{slug}', 'ForumThreadsController@getShowThread');
 
 // admin
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {
