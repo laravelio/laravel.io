@@ -13,7 +13,7 @@ $requested = $paths['public'].$uri;
 // application without having installed a "real" web server software here.
 if ($uri !== '/' and file_exists($requested))
 {
-	return false;
+    return false;
 }
 
 require_once $paths['public'].'/index.php';

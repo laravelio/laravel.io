@@ -252,9 +252,9 @@ case "$filetype" in
   "rpm") rpm -Uvh "$tmp_dir/$filename" ;;
   "deb") dpkg -i "$tmp_dir/$filename" ;;
   "solaris") echo "conflict=nocheck" > /tmp/nocheck
-	     echo "action=nocheck" >> /tmp/nocheck
-	     pkgadd -n -d "$tmp_dir/$filename" -a /tmp/nocheck chef
-	     ;;
+         echo "action=nocheck" >> /tmp/nocheck
+         pkgadd -n -d "$tmp_dir/$filename" -a /tmp/nocheck chef
+         ;;
   "sh" ) bash "$tmp_dir/$filename" ;;
 esac
 

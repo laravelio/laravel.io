@@ -92,9 +92,9 @@ Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {
         return Redirect::action('Admin\UsersController@getIndex');
     });
 
-	// users
+    // users
     Route::group(['before' => 'has_role:admin_users'], function() {
-    	Route::get('users', 'Admin\UsersController@getIndex');
+        Route::get('users', 'Admin\UsersController@getIndex');
         Route::get('edit/{user}', 'Admin\UsersController@getEdit');
         Route::post('edit/{user}', 'Admin\UsersController@postEdit');
     });
