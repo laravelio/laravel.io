@@ -1,4 +1,4 @@
-<?php namespace Admin;
+<?php
 
 use Lio\Accounts\User;
 use Lio\Accounts\UserRepository;
@@ -6,7 +6,7 @@ use Lio\Accounts\RoleRepository;
 use BaseController;
 use Input;
 
-class UsersController extends BaseController
+class AdminUsersController extends BaseController
 {
     private $users;
     private $roles;
@@ -20,7 +20,6 @@ class UsersController extends BaseController
     public function getIndex()
     {
         $users = $this->users->getAllPaginated(30);
-
         $this->view('admin.users.index', compact('users'));
     }
 

@@ -40,10 +40,15 @@ class ThreadPresenter extends BasePresenter
         }
     }
 
+    public function solvedPrefix()
+    {
+        return $this->isSolved() ? '[SOLVED]' : '';
+    }
+
     public function subject()
     {
         $subject = Str::limit($this->resource->subject, 80);
-        return $this->versionSubjectPrefix() . $subject;
+        return $this->solvedPrefix() . $this->versionSubjectPrefix() . $subject;
     }
 
     public function mostRecentReplier()
