@@ -96,7 +96,7 @@ Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {
     });
 
 	// users
-    Route::group(['before' => 'has_role:admin_users'], function() {
+    Route::group(['before' => 'has_role:manage_users'], function() {
     	Route::get('users', 'Admin\UsersController@getIndex');
         Route::get('edit/{user}', 'Admin\UsersController@getEdit');
         Route::post('edit/{user}', 'Admin\UsersController@postEdit');
