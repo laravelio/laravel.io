@@ -57,7 +57,8 @@ class ForumRepliesController extends BaseController implements
 
     public function replyCreated($reply)
     {
-        return $this->redirectTo($reply->getPresenter()->viewReplyUrl());
+        $replyPresenter = new ReplyPresenter($reply);
+        return $this->redirectTo($replyPresenter->url);
     }
 
     // edit a reply

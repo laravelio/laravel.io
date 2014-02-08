@@ -32,11 +32,6 @@ class Reply extends \Lio\Core\Entity
 
     public function getPrecedingReplyCount()
     {
-        return $this->where('thread_id', '=', $this->thread_id)->where('created_at', '<', $this->created_at)->count();
-    }
-
-    public function getPresenter()
-    {
-        return new ReplyPresenter($this);
+        return $this->newQuery()->where('thread_id', '=', $this->thread_id)->where('created_at', '<', $this->created_at)->count();
     }
 }
