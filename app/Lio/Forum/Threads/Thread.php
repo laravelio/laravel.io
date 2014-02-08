@@ -35,6 +35,11 @@ class Thread extends Entity
         return $this->hasMany('Lio\Forum\Replies\Reply', 'thread_id');
     }
 
+    public function acceptedSolution()
+    {
+        return $this->hasOne('Lio\Forum\Replies\Reply', 'thread_id')->where('id', '=', $this->solution_reply_id);
+    }
+
     public function tags()
     {
         return $this->belongsToMany('Lio\Tags\Tag', 'tagged_items', 'thread_id', 'tag_id');
@@ -157,10 +162,5 @@ class Thread extends Entity
         $reply = $this->replies()->orderBy('created_at', 'desc')->first();
 
         return $reply;
-    }
-
-    public function acceptedSolution()
-    {
-        return \App::make('Lio\Forum\Replies\ReplyRepository')->requireById($this->solution_reply_id);
     }
 }

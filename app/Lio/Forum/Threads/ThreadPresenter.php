@@ -1,10 +1,18 @@
 <?php namespace Lio\Forum\Threads;
 
+use Lio\Forum\Replies\ReplyQueryStringGenerator;
 use McCool\LaravelAutoPresenter\BasePresenter;
 use App, Input, Str, Request;
 
 class ThreadPresenter extends BasePresenter
 {
+    public function __construct($resource)
+    {
+        parent::__construct($resource);
+
+        $this->replyGenerator = new ReplyQueryStringGenerator;
+    }
+
     public function url()
     {
         if ( ! $this->slug) {
@@ -66,7 +74,7 @@ class ThreadPresenter extends BasePresenter
     {
         // Check if the thread has replies, if it does return a direct link to the latest reply
         if($this->resource->replies->count() > 0) {
-            return $this->url . \App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->lastReply());
+            return $this->url . $this->replyGenerator->generate($this->lastReply());
         } else {
             // Thread does not have any replies, return thread url.
             return $this->url;
@@ -75,9 +83,11 @@ class ThreadPresenter extends BasePresenter
 
     public function acceptedSolutionUrl()
     {
-        if($this->acceptedSolution()) {
-            return $this->url . \App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->acceptedSolution());
+        if ( ! $this->acceptedSolution) {
+            return null;
         }
+
+        return $this->url . $this->replyGenerator->generate($this->acceptedSolution);
     }
 
     public function editUrl()
