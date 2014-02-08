@@ -16,7 +16,7 @@ class ArticleRepository extends EloquentRepository
         return $this->model->with(['author', 'slug'])
                            ->where('status', '=', Article::STATUS_PUBLISHED)
                            ->orderBy('published_at', 'desc')
-                           ->take(3)
+                           ->take($count)
                            ->get();
     }
 
