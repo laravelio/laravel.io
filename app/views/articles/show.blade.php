@@ -22,7 +22,7 @@
                         </ul>
                     </div>
                 </div>
-                @if(Auth::user() && $article->author_id == Auth::user()->id)
+                @if($currentUser && $article->author_id == $currentUser->id)
                     <div class="admin-bar">
                         <li><a class="button" href="{{ action('ArticlesController@getEdit', [$article->id]) }}">Edit</a></li>
                     </div>

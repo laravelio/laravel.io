@@ -38,7 +38,7 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
             if($status == 'solved') {
                 $query->where('solution_reply_id', '>', 0);
             }
-            if($status == 'unsolved') {
+            if($status == 'open') {
                 $query->whereNull('solution_reply_id');
             }
         }

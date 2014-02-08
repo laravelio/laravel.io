@@ -20,9 +20,9 @@
         <div class="filter">
             <p>Showing:</p>
             <ul>
-                <li><a href="" class="{{ Input::has('status') ? '' : 'current' }}">All</a></li>
-                <li><a href="" class="{{ Input::get('status') == 'solved' ? 'current' : '' }}">Solved</a></li>
-                <li><a href="" class="{{ Input::get('status') == 'unsolved' ? 'current' : '' }}">Unsolved</a></li>
+                <li><a href="{{ action('ForumThreadsController@getIndex', '') . $queryString }}" class="{{ Request::path() == 'forum' ? 'current' : '' }}">All</a></li>
+                <li><a href="{{ action('ForumThreadsController@getIndex', 'open') . $queryString }}" class="{{ Request::is('forum/open') ? 'current' : '' }}">Open</a></li>
+                <li><a href="{{ action('ForumThreadsController@getIndex', 'solved') . $queryString }}" class="{{ Request::is('forum/solved') ? 'current' : '' }}">Solved</a></li>
             </ul>
         </div>
 

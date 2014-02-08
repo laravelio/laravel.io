@@ -16,12 +16,13 @@
     </div>
 
     <div class="admin-bar">
-        @if($thread->isOwnedBy(Auth::user()))
+        @if($thread->isOwnedBy($currentUser) || ($currentUser && $currentUser->isForumAdmin()))
             <li><a href="{{ $thread->editUrl }}">Edit</a></li>
             <li><a href="{{ $thread->deleteUrl }}">Delete</a></li>
-        @endif
-        @if($thread->isQuestion() && $thread->isSolved())
-            <li><a href="{{ $thread->markAsUnsolvedUrl }}">Mark Unsolved</a></li>
+
+            @if($thread->isQuestion() && $thread->isSolved())
+                <li><a href="{{ $thread->markAsUnsolvedUrl }}">Mark Unsolved</a></li>
+            @endif
         @endif
     </div>
 </div>

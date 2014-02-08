@@ -81,7 +81,9 @@ Route::group(['before' => 'auth'], function() {
     Route::post('forum/{slug}', ['before' => '', 'uses' => 'ForumRepliesController@postCreateReply']);
 });
 
-Route::get('forum', 'ForumThreadsController@getIndex');
+Route::get('forum/{status?}', 'ForumThreadsController@getIndex')
+    ->where(array('status' => '(|open|solved)'));
+
 Route::get('forum/search', 'ForumThreadsController@getSearch');
 Route::get('forum/{slug}/reply/{commentId}', 'ForumRepliesController@getReplyRedirect');
 Route::get('forum/{slug}', ['before' => '', 'uses' => 'ForumThreadsController@getShowThread']);

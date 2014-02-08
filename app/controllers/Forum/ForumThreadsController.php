@@ -36,21 +36,20 @@ class ForumThreadsController extends BaseController implements
         $this->replies = $replies;
     }
 
-    // show thread list
-    public function getIndex()
+    // show thread list - clean this method
+    public function getIndex($status = '')
     {
-        // Get Status
-        $status = Input::get('status');
-
         // query tags and retrieve the appropriate threads
         $tags = $this->tags->getAllTagsBySlug(Input::get('tags'));
         $threads = $this->threads->getByTagsAndStatusPaginated($tags, $status, $this->threadsPerPage);
 
         // add the tag string to each pagination link
-        $threads->appends(['tags' => Input::get('tags')]);
+        $queryStringAppends = ['tags' => Input::get('tags')];
+        $queryString = !empty($queryStringAppends['tags']) ? '?' . http_build_query($queryStringAppends) : '';
+        $threads->appends($queryStringAppends);
         $this->createSections(Input::get('tags'));
 
-        $this->view('forum.threads.index', compact('threads', 'tags'));
+        $this->view('forum.threads.index', compact('threads', 'tags', 'queryString'));
     }
 
     // show a thread
