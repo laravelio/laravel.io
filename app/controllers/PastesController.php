@@ -5,7 +5,7 @@ use Lio\Bin\PasteCreatorListener;
 use Lio\Bin\PasteCreator;
 use Lio\Bin\PasteForkCreator;
 
-class BinController extends BaseController implements PasteCreatorListener
+class PastesController extends BaseController implements PasteCreatorListener
 {
     protected $layout = 'layouts.bin';
     protected $pastes;
@@ -22,6 +22,7 @@ class BinController extends BaseController implements PasteCreatorListener
     public function getIndex()
     {
         $pastes = $this->pastes->getRecentPaginated();
+        $this->title = "Create Paste";
         $this->view('bin.index', compact('pastes'));
     }
 
@@ -29,8 +30,9 @@ class BinController extends BaseController implements PasteCreatorListener
     {
         $paste = $this->pastes->getByHash($hash);
         if ( ! $paste) {
-            return $this->redirectAction('BinController@getCreate');
+            return $this->redirectAction('PastesController@getCreate');
         }
+        $this->title = "Paste Viewer";
         $this->view('bin.show', compact('paste'));
     }
 
@@ -47,6 +49,7 @@ class BinController extends BaseController implements PasteCreatorListener
     public function getFork($hash)
     {
         $paste = $this->pastes->getByHash($hash);
+        $this->title = "Fork Paste";
         $this->view('bin.fork', compact('paste'));
     }
 
@@ -67,7 +70,7 @@ class BinController extends BaseController implements PasteCreatorListener
     // ------------------ //
     public function pasteCreated($paste)
     {
-        return $this->redirectAction('BinController@getShow', $paste->hash);
+        return $this->redirectAction('PastesController@getShow', $paste->hash);
     }
 
     public function pasteValidationError($errors)

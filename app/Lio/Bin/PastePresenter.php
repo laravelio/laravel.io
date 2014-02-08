@@ -13,22 +13,22 @@ class PastePresenter extends BasePresenter
 
     public function createUrl()
     {
-        return action('BinController@getCreate');
+        return action('PastesController@getCreate');
     }
 
     public function showUrl()
     {
-        return action('BinController@getShow', $this->hash);
+        return action('PastesController@getShow', $this->hash);
     }
 
     public function forkUrl()
     {
-        return action('BinController@getFork', $this->hash);
+        return action('PastesController@getFork', $this->hash);
     }
 
     public function rawUrl()
     {
-        return action('BinController@getRaw', $this->hash);
+        return action('PastesController@getRaw', $this->hash);
     }
 
     protected function convertNewlines($content)

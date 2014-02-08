@@ -49,6 +49,7 @@ class ForumThreadsController extends BaseController implements
         $threads->appends($tagAppends);
         $this->createSections(Input::get('tags'));
 
+        $this->title = "Forum";
         $this->view('forum.threads.index', compact('threads', 'tags', 'queryString'));
     }
 
@@ -76,6 +77,7 @@ class ForumThreadsController extends BaseController implements
         $versions = $this->threads->getNew()->getLaravelVersions();
         $this->createSections(Input::get('tags'));
 
+        $this->title = "Create Forum Thread";
         $this->view('forum.threads.create', compact('tags', 'versions'));
     }
 
@@ -114,6 +116,8 @@ class ForumThreadsController extends BaseController implements
         $versions = $thread->getLaravelVersions();
 
         $this->createSections(Input::get('tags'));
+
+        $this->title = "Edit Forum Thread";
         $this->view('forum.threads.edit', compact('thread', 'tags', 'versions'));
     }
 
@@ -187,6 +191,8 @@ class ForumThreadsController extends BaseController implements
         }
 
         $this->createSections(Input::get('tags'));
+
+        $this->title = "Delete Forum Thread";
         $this->view('forum.threads.delete', compact('thread'));
     }
 
@@ -215,6 +221,7 @@ class ForumThreadsController extends BaseController implements
         $results->appends(array('query' => $query));
 
         $this->createSections(Input::get('tags'));
+        $this->title = "Forum Search";
         $this->view('forum.search', compact('query', 'results'));
     }
 

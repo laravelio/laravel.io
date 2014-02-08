@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Bin - Laravel.IO</title>
+  <title>{{ ! empty($title) ? $title . ' - ' : '' }}Laravel.IO - The Official Laravel PHP Framework Community Portal</title>
 
   @section('styles')
     <link rel="stylesheet" href="{{ asset('stylesheets/app.css') }}">
