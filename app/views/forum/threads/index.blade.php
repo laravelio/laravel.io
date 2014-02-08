@@ -17,6 +17,15 @@
             <a class="button" href="{{ action('ForumThreadsController@getCreateThread') }}">Create Thread</a>
         </div>
 
+        <div class="filter">
+            <p>Showing:</p>
+            <ul>
+                <li><a href="{{ action('ForumThreadsController@getIndex', '') . $queryString }}" class="{{ Request::path() == 'forum' ? 'current' : '' }}">All</a></li>
+                <li><a href="{{ action('ForumThreadsController@getIndex', 'open') . $queryString }}" class="{{ Request::is('forum/open') ? 'current' : '' }}">Open</a></li>
+                <li><a href="{{ action('ForumThreadsController@getIndex', 'solved') . $queryString }}" class="{{ Request::is('forum/solved') ? 'current' : '' }}">Solved</a></li>
+            </ul>
+        </div>
+
         <div class="threads">
             {{-- Loop over the threads and display the thread summary partial --}}
             @each('forum.threads._index_summary', $threads, 'thread')

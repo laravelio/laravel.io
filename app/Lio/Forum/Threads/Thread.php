@@ -2,11 +2,13 @@
 
 use Lio\Accounts\User;
 use Auth;
+use Lio\Core\Entity;
+use Lio\Forum\Replies\Reply;
 
-class Thread extends \Lio\Core\Entity
+class Thread extends Entity
 {
     protected $table      = 'forum_threads';
-    protected $fillable   = ['subject', 'body', 'author_id', 'category_slug', 'laravel_version'];
+    protected $fillable   = ['subject', 'body', 'author_id', 'is_question', 'solution_reply_id', 'category_slug', 'laravel_version'];
     protected $with       = ['author'];
     protected $softDelete = true;
 
@@ -18,9 +20,9 @@ class Thread extends \Lio\Core\Entity
     ];
 
     protected $laravelVersions = [
-        0 => "Doesn't Matter",
-        3 => "Laravel 3.x",
         4 => "Laravel 4.x",
+        3 => "Laravel 3.x",
+        0 => "Doesn't Matter",
     ];
 
     public function author()
@@ -31,6 +33,11 @@ class Thread extends \Lio\Core\Entity
     public function replies()
     {
         return $this->hasMany('Lio\Forum\Replies\Reply', 'thread_id');
+    }
+
+    public function acceptedSolution()
+    {
+        return $this->belongsTo('Lio\Forum\Replies\Reply', 'solution_reply_id');
     }
 
     public function tags()
@@ -47,6 +54,16 @@ class Thread extends \Lio\Core\Entity
     {
         $this->attributes['subject'] = $subject;
         $this->attributes['slug'] = $this->generateNewSlug();
+    }
+
+    public function scopeSolvedQuestions($q)
+    {
+        return $q->where('is_question', '=', 1)->whereNull('solution_reply_id');
+    }
+
+    public function scopeUnsolvedQuestions($q)
+    {
+        return $q->where('is_question', '=', 1)->whereNotNull('solution_reply_id');
     }
 
     private function generateNewSlug()
@@ -89,10 +106,31 @@ class Thread extends \Lio\Core\Entity
         return $this->laravelVersions;
     }
 
+    public function isQuestion()
+    {
+        return $this->is_question;
+    }
+
+    public function isSolved()
+    {
+        return $this->isQuestion() && ! is_null($this->solution_reply_id);
+    }
+
+    public function isManageableBy($user)
+    {
+        if ( ! $user) return false;
+        return $this->isOwnedBy($user) || $user->isForumAdmin();
+    }
+
     public function isOwnedBy($user)
     {
-        if ( ! $user instanceOf \Lio\Accounts\User) return false;
+        if ( ! $user) return false;
         return $user->id == $this->author_id;
+    }
+
+    public function isReplyTheSolution($reply)
+    {
+        return $reply->id == $this->solution_reply_id;
     }
 
     public function setMostRecentReply(Reply $reply)
@@ -123,17 +161,5 @@ class Thread extends \Lio\Core\Entity
     public function getTags()
     {
         return $this->tags->lists('slug');
-    }
-
-    public function isNewerThan($timestamp)
-    {
-        return strtotime($this->updated_at) > $timestamp;
-    }
-
-    public function lastReply()
-    {
-        $reply = $this->replies()->orderBy('created_at', 'desc')->first();
-
-        return $reply;
     }
 }

@@ -1,7 +1,5 @@
 <?php namespace Lio\Forum\Replies;
 
-use Lio\Forum\SectionCountManager;
-
 /**
 * This class can call the following methods on the observer object:
 *
@@ -11,12 +9,10 @@ use Lio\Forum\SectionCountManager;
 class ReplyCreator
 {
     protected $replies;
-    protected $countManager;
 
-    public function __construct(ReplyRepository $replies, SectionCountManager $countManager)
+    public function __construct(ReplyRepository $replies)
     {
         $this->replies = $replies;
-        $this->countManager = $countManager;
     }
 
     public function create(ReplyCreatorListener $observer, $data, $threadId, $validator = null)
@@ -47,16 +43,9 @@ class ReplyCreator
             return $observer->replyCreationError($reply->getErrors());
         }
 
-        $this->updateSectionCounts();
         $this->updateThreadCounts($reply->thread);
 
         return $observer->replyCreated($reply);
-    }
-
-    // cache new thread update timestamps
-    private function updateSectionCounts()
-    {
-        $this->countManager->cacheSections();
     }
 
     private function updateThreadCounts($thread)

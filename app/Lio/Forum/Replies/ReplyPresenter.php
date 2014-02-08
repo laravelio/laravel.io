@@ -7,9 +7,9 @@ class ReplyPresenter extends BasePresenter
 {
     public function url()
     {
-        // $slug = $this->resource->slug;
-        // if ( ! $slug) return '';
-        // return action('ForumThreadsController@getShowThread', [$slug->slug]);
+        $slug = $this->thread->slug;
+        $threadUrl = action('ForumThreadsController@getShowThread', [$slug]);
+        return $threadUrl . \App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->resource);
     }
 
     public function created_ago()
@@ -25,39 +25,18 @@ class ReplyPresenter extends BasePresenter
     public function body()
     {
         $body = $this->resource->body;
-        //$body = $this->removeDoubleSpaces($body);
         $body = $this->convertMarkdown($body);
-       // $body = $this->convertNewlines($body);
         $body = $this->formatGists($body);
         $body = $this->linkify($body);
         return $body;
     }
 
-    public function viewReplyUrl()
-    {
-        $slug = $this->thread->slug;
-        $threadUrl = action('ForumThreadsController@getShowThread', [$slug]);
-        return $threadUrl . \App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->resource);
-    }
-
     // ------------------- //
-
-    private function removeDoubleSpaces($content)
-    {
-        return str_replace('  ', '', $content);
-    }
-
-    private function convertNewlines($content)
-    {
-        return preg_replace("/(?<!\\n)(\\n)(?!\\n)/", "<br>", $content);
-    }
 
     private function convertMarkdown($content)
     {
         return App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($content);
     }
-
-
 
     private function formatGists($content)
     {

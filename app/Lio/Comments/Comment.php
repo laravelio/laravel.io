@@ -68,7 +68,7 @@ class Comment extends Entity
         return $this->laravelVersions;
     }
 
-    public function isOwnedBy(\Lio\Accounts\User $user)
+    public function isManageableBy(\Lio\Accounts\User $user)
     {
         return $user->id == $thread->author_id;
     }

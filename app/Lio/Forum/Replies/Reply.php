@@ -24,6 +24,12 @@ class Reply extends \Lio\Core\Entity
         return $this->belongsTo('Lio\Forum\Threads\Thread', 'thread_id');
     }
 
+    public function isManageableBy($user)
+    {
+        if ( ! $user) return false;
+        return $this->isOwnedBy($user) || $user->isForumAdmin();
+    }
+
     public function isOwnedBy($user)
     {
         if ( ! $user) return false;
@@ -32,11 +38,6 @@ class Reply extends \Lio\Core\Entity
 
     public function getPrecedingReplyCount()
     {
-        return $this->where('thread_id', '=', $this->thread_id)->where('created_at', '<', $this->created_at)->count();
-    }
-
-    public function getPresenter()
-    {
-        return new ReplyPresenter($this);
+        return $this->newQuery()->where('thread_id', '=', $this->thread_id)->where('created_at', '<', $this->created_at)->count();
     }
 }

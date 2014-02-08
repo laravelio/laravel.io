@@ -4,51 +4,41 @@
 
 // MOBILE STYLES ////////////////////////////////////////////////////////////
 
-.comments {
-    h6.title {
-        font-family: 'Source Sans Pro', sans-serif;
-        font-weight: 400;
-        font-size:14px;
-        display: block;
-        width:70px;
-        background: #cdcdcd;
-        margin: auto;
-        padding: 5px 10px;
-        text-align: center;
+.filter {
+    @include clearfix;
+    padding: 15px 0 15px 15px;
+
+    p {
+        float: left;
+        margin: 0;
+        padding: 4px 10px 0 0;
+        font-weight:bold;
     }
 
-    .comment {
-        @include clearfix;
-        background: white;
-        padding: 15px;
-        margin: 15px;
+    ul {
+        float: left;
+        margin: 0;
+        padding: 0;
+    }
 
-        &.solution-border {
-            border-right:3px solid $lioRed;
-        }
+    li {
+        display: inline;
 
-        p {
-            margin: 0;
-            line-height: 1.5;
-        }
+        a {
+            float: left;
+            display: block;
+            height: 25px;
+            padding: 5px 9px 0 9px;
+            margin: 0 8px 0 0;
+            color:$lioGrey;
 
-        ul, li {
-            margin: 0;
-            padding: 0;
-        }
-
-        li {
-            margin: 0 0 0 15px;
-            line-height: 1.5;
-        }
-
-        img {
-            max-width: 100%;
+            &:hover, &.current {
+                background:$lioRed;
+                color:white;
+            }
         }
     }
 }
-
-
 
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
@@ -63,7 +53,6 @@
 // BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
 
 @media only screen and (min-width: 768px) {
-
 
 
 }

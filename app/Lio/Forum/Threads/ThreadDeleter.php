@@ -1,7 +1,5 @@
 <?php namespace Lio\Forum\Threads;
 
-use Lio\Forum\SectionCountManager;
-
 /**
 * This class can call the following methods on the observer object:
 *
@@ -10,12 +8,10 @@ use Lio\Forum\SectionCountManager;
 class ThreadDeleter
 {
     protected $threads;
-    protected $countManager;
 
-    public function __construct(ThreadRepository $threads, SectionCountManager $countManager)
+    public function __construct(ThreadRepository $threads)
     {
         $this->threads = $threads;
-        $this->countManager = $countManager;
     }
 
     public function delete(ThreadDeleterListener $observer, $thread)
@@ -23,7 +19,6 @@ class ThreadDeleter
         $this->deleteReplies($thread);
 
         $this->threads->delete($thread);
-        $this->countManager->cacheSections();
         return $observer->threadDeleted();
     }
 

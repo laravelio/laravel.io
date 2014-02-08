@@ -1,7 +1,6 @@
 <?php namespace Lio\Forum\Replies;
 
 use Lio\Comments\CommentRepository;
-use Lio\Forum\SectionCountManager;
 
 /**
 * This class can call the following methods on the observer object:
@@ -11,12 +10,10 @@ use Lio\Forum\SectionCountManager;
 class ReplyDeleter
 {
     protected $comments;
-    protected $countManager;
 
-    public function __construct(CommentRepository $comments, SectionCountManager $countManager)
+    public function __construct(CommentRepository $comments)
     {
         $this->comments = $comments;
-        $this->countManager = $countManager;
     }
 
     public function delete(ReplyDeleterListener $observer, $reply)
@@ -25,7 +22,6 @@ class ReplyDeleter
         $reply->delete();
 
         $thread->updateReplyCount();
-        $this->countManager->cacheSections();
 
         return $observer->replyDeleted($thread);
     }

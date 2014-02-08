@@ -1,49 +1,55 @@
 <?php
 
+use Lio\Forum\Replies\ReplyRepository;
+use Lio\Forum\Threads\ThreadCreator;
+use Lio\Forum\Threads\ThreadCreatorListener;
+use Lio\Forum\Threads\ThreadDeleterListener;
 use \Lio\Forum\Threads\ThreadForm;
+use Lio\Forum\Threads\ThreadRepository;
+use Lio\Forum\Threads\ThreadUpdaterListener;
+use Lio\Tags\TagRepository;
 
 class ForumThreadsController extends BaseController implements
-    \Lio\Forum\Threads\ThreadCreatorListener,
-    \Lio\Forum\Threads\ThreadUpdaterListener,
-    \Lio\Forum\Threads\ThreadDeleterListener
+    ThreadCreatorListener,
+    ThreadUpdaterListener,
+    ThreadDeleterListener
 {
     protected $threads;
     protected $tags;
-    protected $sections;
     protected $currentSection;
     protected $threadCreator;
+    private $replies;
 
     protected $threadsPerPage = 20;
     protected $repliesPerPage = 20;
 
     public function __construct(
-        \Lio\Forum\Threads\ThreadRepository $threads,
-        \Lio\Tags\TagRepository $tags,
-        \Lio\Forum\SectionCountManager $sections,
-        \Lio\Forum\Threads\ThreadCreator $threadCreator
-    ) {
+        ThreadRepository $threads,
+        ReplyRepository $replies,
+        TagRepository $tags,
+        ThreadCreator $threadCreator
+    )
+    {
         $this->threads = $threads;
-        $this->tags     = $tags;
-        $this->sections = $sections;
+        $this->tags = $tags;
         $this->threadCreator = $threadCreator;
-        $this->prepareViewData();
+        $this->replies = $replies;
     }
 
-    // show thread list
-    public function getIndex()
+    // show thread list - clean this method
+    public function getIndex($status = '')
     {
-        // update user timestamp
-        View::share('last_visited_timestamp', App::make('Lio\Forum\SectionCountManager')->updatedAndGetLastVisited(Input::get('tags')));
-
         // query tags and retrieve the appropriate threads
         $tags = $this->tags->getAllTagsBySlug(Input::get('tags'));
-        $threads = $this->threads->getByTagsPaginated($tags, $this->threadsPerPage);
+        $threads = $this->threads->getByTagsAndStatusPaginated($tags, $status, $this->threadsPerPage);
 
         // add the tag string to each pagination link
-        $threads->appends(['tags' => Input::get('tags')]);
+        $tagAppends = ['tags' => Input::get('tags')];
+        $queryString = !empty($tagAppends['tags']) ? '?tags=' . implode(',', (array)$tagAppends['tags']) : '';
+        $threads->appends($tagAppends);
         $this->createSections(Input::get('tags'));
 
-        $this->view('forum.threads.index', compact('threads', 'tags'));
+        $this->view('forum.threads.index', compact('threads', 'tags', 'queryString'));
     }
 
     // show a thread
@@ -74,11 +80,12 @@ class ForumThreadsController extends BaseController implements
     public function postCreateThread()
     {
         return $this->threadCreator->create($this, [
-            'subject'         => Input::get('subject'),
-            'body'            => Input::get('body'),
-            'author'          => Auth::user(),
+            'subject' => Input::get('subject'),
+            'body' => Input::get('body'),
+            'author' => Auth::user(),
             'laravel_version' => Input::get('laravel_version'),
-            'tags'            => $this->tags->getTagsByIds(Input::get('tags')),
+            'is_question' => Input::get('is_question'),
+            'tags' => $this->tags->getTagsByIds(Input::get('tags')),
         ], new ThreadForm);
     }
 
@@ -97,7 +104,7 @@ class ForumThreadsController extends BaseController implements
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isOwnedBy(Auth::user())) {
+        if ( ! $thread->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -112,16 +119,49 @@ class ForumThreadsController extends BaseController implements
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isOwnedBy(Auth::user())) {
+        if ( ! $thread->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
         return App::make('Lio\Forum\Threads\ThreadUpdater')->update($this, $thread, [
-            'subject'         => Input::get('subject'),
-            'body'            => Input::get('body'),
+            'subject' => Input::get('subject'),
+            'body' => Input::get('body'),
+            'is_question' => Input::get('is_question', 0),
             'laravel_version' => Input::get('laravel_version'),
-            'tags'            => $this->tags->getTagsByIds(Input::get('tags')),
+            'tags' => $this->tags->getTagsByIds(Input::get('tags')),
         ], new ThreadForm);
+    }
+
+    public function getMarkQuestionSolved($threadId, $solvedByReplyId)
+    {
+        $thread = $this->threads->requireById($threadId);
+
+        if ( ! $thread->isQuestion() || ! $thread->isManageableBy(Auth::user())) {
+            return Redirect::to('/');
+        }
+
+        $reply = $this->replies->requireById($solvedByReplyId);
+
+        if ( ! $reply || $reply->thread_id != $thread->id) {
+            return Redirect::to('/');
+        }
+
+        return App::make('Lio\Forum\Threads\ThreadUpdater')->update($this, $thread, [
+            'solution_reply_id' => $reply->id,
+        ]);
+    }
+
+    public function getMarkQuestionUnsolved($threadId)
+    {
+        $thread = $this->threads->requireById($threadId);
+
+        if ( ! $thread->isQuestion() || ! $thread->isManageableBy(Auth::user())) {
+            return Redirect::to('/');
+        }
+
+        return App::make('Lio\Forum\Threads\ThreadUpdater')->update($this, $thread, [
+            'solution_reply_id' => null,
+        ]);
     }
 
     // observer methods
@@ -140,7 +180,7 @@ class ForumThreadsController extends BaseController implements
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isOwnedBy(Auth::user())) {
+        if ( ! $thread->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -152,7 +192,7 @@ class ForumThreadsController extends BaseController implements
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isOwnedBy(Auth::user())) {
+        if ( ! $thread->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -168,8 +208,6 @@ class ForumThreadsController extends BaseController implements
     // forum thread search
     public function getSearch()
     {
-        View::share('last_visited_timestamp', App::make('Lio\Forum\SectionCountManager')->updatedAndGetLastVisited(Input::get('tags')));
-
         $query = Input::get('query');
         $results = App::make('Lio\Forum\Threads\ThreadSearch')->searchPaginated($query, $this->threadsPerPage);
         $results->appends(array('query' => $query));
@@ -179,12 +217,6 @@ class ForumThreadsController extends BaseController implements
     }
 
     // ------------------------- //
-    private function prepareViewData()
-    {
-        $sectionCounts = $this->sections->getCounts(Session::get('forum_last_visited'));
-        View::share(compact('sectionCounts'));
-    }
-
     private function createSections($currentSection = null)
     {
         $forumSections = App::make('Lio\Forum\SectionSidebarCreator')->createSidebar($currentSection);

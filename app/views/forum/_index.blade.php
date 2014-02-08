@@ -21,7 +21,7 @@
 
             {{ str_replace('%2C', ',', $threads->links()) }}
         @else
-            <div class="">
+            <div>
                 There are currently no threads for the selected category.
             </div>
         @endif

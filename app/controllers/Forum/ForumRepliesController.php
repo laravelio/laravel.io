@@ -1,6 +1,7 @@
 <?php
 
 use Lio\Forum\Replies\ReplyForm;
+use Lio\Forum\Replies\ReplyPresenter;
 
 class ForumRepliesController extends BaseController implements
     \Lio\Forum\Replies\ReplyCreatorListener,
@@ -15,13 +16,11 @@ class ForumRepliesController extends BaseController implements
     public function __construct(
         \Lio\Forum\Threads\ThreadRepository $threads,
         \Lio\Forum\Replies\ReplyRepository $replies,
-        \Lio\Tags\TagRepository $tags,
-        \Lio\Forum\SectionCountManager $sections
+        \Lio\Tags\TagRepository $tags
     ) {
         $this->threads  = $threads;
         $this->replies  = $replies;
         $this->tags     = $tags;
-        $this->sections = $sections;
 
         $this->prepareViewData();
     }
@@ -31,7 +30,7 @@ class ForumRepliesController extends BaseController implements
     {
         $reply = $this->replies->requireById($replyId);
 
-        if ( ! $reply->isOwnedBy(Auth::user())) {
+        if ( ! $reply->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -59,7 +58,8 @@ class ForumRepliesController extends BaseController implements
 
     public function replyCreated($reply)
     {
-        return $this->redirectTo($reply->getPresenter()->viewReplyUrl());
+        $replyPresenter = new ReplyPresenter($reply);
+        return $this->redirectTo($replyPresenter->url);
     }
 
     // edit a reply
@@ -67,7 +67,7 @@ class ForumRepliesController extends BaseController implements
     {
         $reply = $this->replies->requireById($replyId);
 
-        if ( ! $reply->isOwnedBy(Auth::user())) {
+        if ( ! $reply->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -78,7 +78,7 @@ class ForumRepliesController extends BaseController implements
     {
         $reply = $this->replies->requireById($replyId);
 
-        if ( ! $reply->isOwnedBy(Auth::user())) {
+        if ( ! $reply->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -103,7 +103,7 @@ class ForumRepliesController extends BaseController implements
     {
         $reply = $this->replies->requireById($replyId);
 
-        if ( ! $reply->isOwnedBy(Auth::user())) {
+        if ( ! $reply->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -114,7 +114,7 @@ class ForumRepliesController extends BaseController implements
     {
         $reply = $this->replies->requireById($replyId);
 
-        if ( ! $reply->isOwnedBy(Auth::user())) {
+        if ( ! $reply->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -131,19 +131,6 @@ class ForumRepliesController extends BaseController implements
     private function prepareViewData()
     {
         $forumSections = Config::get('forum.sections');
-        $sectionCounts = $this->sections->getCounts(Session::get('forum_last_visited'));
-        View::share(compact('forumSections', 'sectionCounts'));
-    }
-
-    private function prepareForumSections()
-    {
-        $forumSections = Config::get('forum.sections');
-        dd($forumSections);
-
-        foreach($forumSections as $sectionTitle => $sectionTags) {
-            if(str_contains($sectionTags, Input::get('tags'))) {
-
-            }
-        }
+        View::share(compact('forumSections'));
     }
 }
