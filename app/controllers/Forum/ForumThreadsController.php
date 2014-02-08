@@ -44,9 +44,9 @@ class ForumThreadsController extends BaseController implements
         $threads = $this->threads->getByTagsAndStatusPaginated($tags, $status, $this->threadsPerPage);
 
         // add the tag string to each pagination link
-        $queryStringAppends = ['tags' => Input::get('tags')];
-        $queryString = !empty($queryStringAppends['tags']) ? '?' . http_build_query($queryStringAppends) : '';
-        $threads->appends($queryStringAppends);
+        $tagAppends = ['tags' => Input::get('tags')];
+        $queryString = !empty($tagAppends['tags']) ? '?tags=' . implode(',', (array)$tagAppends['tags']) : '';
+        $threads->appends($tagAppends);
         $this->createSections(Input::get('tags'));
 
         $this->view('forum.threads.index', compact('threads', 'tags', 'queryString'));
