@@ -56,7 +56,6 @@
             color:$lioGrey;
             font-family: 'Source Sans Pro', sans-serif;
             font-weight: 400;
-            max-width: 90%;
 
             a {
                 color:$lioGrey;
@@ -192,20 +191,21 @@
                 img {
                     float: left;
                     height: auto;
-                    width:50px;
+                    width:7%;
                     display: block;
                     padding: 0 10px 0 0;
                 }
 
 
                 .post-info {
+                    width:23%;
+                    float: right;
                     display: block;
                 }
 
                 .info {
                     float: left;
-                    max-width: 70%;
-
+                    width:65%;
                     .post-info {
                         display: none;
                     }
@@ -223,8 +223,13 @@
 
     .threads {
         .thread-summary {
+
+            .post-info {
+                width:15%;
+            }
+
             .info {
-                max-width: 75%;
+                width:73%;
             }
         }
     }
