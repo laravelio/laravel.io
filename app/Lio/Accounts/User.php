@@ -18,7 +18,7 @@ class User extends Entity implements UserInterface, RemindableInterface
     public $presenter = 'Lio\Accounts\UserPresenter';
 
     protected $validationRules = [
-        'github_id' => 'unique:users',
+        'github_id' => 'unique:users,github_id,<id>',
     ];
 
     private $rolesCache;

@@ -12,3 +12,4 @@
 */
 
 Artisan::add(new ContributorsImportCommand);
+Artisan::add(new ArticleSlugReassignmentCommand);

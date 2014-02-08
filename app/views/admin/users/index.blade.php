@@ -21,13 +21,15 @@
                 <tbody>
                     @foreach($users as $user)
                         <tr>
-                            <td><h6><a href="{{ action('Admin\UsersController@getEdit', $user->id) }}">{{ $user->name }}</a></h6></td>
+                            <td><h6><a href="{{ action('AdminUsersController@getEdit', $user->id) }}">{{ $user->name }}</a></h6></td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->github_url }}</td>
                             <td>{{ $user->is_banned ? 'Banned' : 'Active' }}</td>
                             <td class="capitalize"><span class="label secondary">{{ $user->roleList }}</span></td>
                         </tr>
                     @endforeach
+
+                    {{ $users->links() }}
                 </tbody>
             </table>
         @else
