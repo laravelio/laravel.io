@@ -1,18 +1,11 @@
 <?php namespace Lio\Forum\Threads;
 
-use Lio\Forum\Replies\ReplyQueryStringGenerator;
 use McCool\LaravelAutoPresenter\BasePresenter;
 use App, Input, Str, Request;
+use Misd\Linkify\Linkify;
 
 class ThreadPresenter extends BasePresenter
 {
-    public function __construct($resource)
-    {
-        parent::__construct($resource);
-
-        $this->replyGenerator = new ReplyQueryStringGenerator;
-    }
-
     public function url()
     {
         if ( ! $this->slug) {
@@ -49,7 +42,8 @@ class ThreadPresenter extends BasePresenter
 
     public function subject()
     {
-        return "{$this->versionSubjectPrefix()}{$this->resource->subject}";
+        $subject = Str::limit($this->resource->subject, 80);
+        return $this->versionSubjectPrefix() . $subject;
     }
 
     public function mostRecentReplier()
@@ -65,7 +59,7 @@ class ThreadPresenter extends BasePresenter
         if ( ! $this->mostRecentReply) {
             return $this->url;
         }
-        return $this->url . $this->replyGenerator->generate($this->mostRecentReply);
+        return $this->url . App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->mostRecentReply);
     }
 
     public function acceptedSolutionUrl()
@@ -74,7 +68,7 @@ class ThreadPresenter extends BasePresenter
             return null;
         }
 
-        return $this->url . $this->replyGenerator->generate($this->acceptedSolution);
+        return $this->url . App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->acceptedSolution);
     }
 
     public function editUrl()
@@ -111,7 +105,7 @@ class ThreadPresenter extends BasePresenter
 
     private function linkify($content)
     {
-        $linkify = new \Misd\Linkify\Linkify();
+        $linkify = new Linkify();
         return $linkify->process($content);
     }
 }
