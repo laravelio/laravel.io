@@ -18,6 +18,11 @@
             <li>
                 <a href="{{ action('BinController@getCreate') }}">Paste Bin</a>
             </li>
+            @if($currentUser && $currentUser->isUserAdmin())
+                <li>
+                    <a href="{{ action('AdminUsersController@getIndex') }}">Admin</a>
+                </li>
+            @endif
             <li>
                 <a target="_blank" href="http://forumsarchive.laravel.io/">Old Forum Archive</a>
             </li>
