@@ -8,7 +8,7 @@
                 <a class="solution accepted mini" href="{{ $thread->acceptedSolutionUrl }}"><i class="fa fa-check-square"></i></a>
                 <a class="solution accepted" href="{{ $thread->acceptedSolutionUrl }}"><i class="fa fa-check-square"></i> solved</a>
             @endif
-            <a href="{{ $thread->latestReplyUrl() }}" class="comment-count">{{ $thread->reply_count }}</a>
+            <a href="{{ $thread->latestReplyUrl }}" class="comment-count">{{ $thread->reply_count }}</a>
         </div>
 
         <ul class="meta">
@@ -23,7 +23,7 @@
         @if($thread->isSolved())
             <a class="solution accepted" href="{{ $thread->acceptedSolutionUrl }}"><i class="fa fa-check-square"></i> solved</a>
         @endif
-        <a href="{{ $thread->latestReplyUrl() }}" class="comment-count">{{ $thread->reply_count }}</a>
+        <a href="{{ $thread->latestReplyUrl }}" class="comment-count">{{ $thread->reply_count }}</a>
     </div>
 
 </div>
