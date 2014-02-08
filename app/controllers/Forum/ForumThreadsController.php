@@ -20,7 +20,7 @@ class ForumThreadsController extends BaseController implements
     protected $threadCreator;
     private $replies;
 
-    protected $threadsPerPage = 20;
+    protected $threadsPerPage = 50;
     protected $repliesPerPage = 20;
 
     public function __construct(
