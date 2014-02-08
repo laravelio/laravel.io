@@ -16,7 +16,7 @@ class AdminUsersController extends BaseController
 
     public function getIndex()
     {
-        $users = $this->users->getAllPaginated(30);
+        $users = $this->users->getAllPaginated(100);
         $this->view('admin.users.index', compact('users'));
     }
 

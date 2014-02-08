@@ -28,6 +28,8 @@
                             <td class="capitalize"><span class="label secondary">{{ $user->roleList }}</span></td>
                         </tr>
                     @endforeach
+
+                    {{ $users->links() }}
                 </tbody>
             </table>
         @else
