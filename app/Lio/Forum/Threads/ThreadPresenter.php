@@ -21,17 +21,6 @@ class ThreadPresenter extends BasePresenter
         return action('ForumThreadsController@getShowThread', [$this->slug]);
     }
 
-    public function reply_count_label()
-    {
-        if ($this->reply_count == 0) {
-            return '0 Responses';
-        } elseif($this->reply_count == 1) {
-            return '1 Response';
-        }
-
-        return $this->reply_count . ' Responses';
-    }
-
     public function created_ago()
     {
         return $this->created_at->diffForHumans();

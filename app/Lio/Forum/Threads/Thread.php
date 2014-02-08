@@ -37,7 +37,7 @@ class Thread extends Entity
 
     public function acceptedSolution()
     {
-        return $this->hasOne('Lio\Forum\Replies\Reply', 'thread_id')->where('id', '=', $this->solution_reply_id);
+        return $this->belongsTo('Lio\Forum\Replies\Reply', 'solution_reply_id');
     }
 
     public function tags()
