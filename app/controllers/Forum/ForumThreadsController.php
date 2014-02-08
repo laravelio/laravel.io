@@ -104,7 +104,7 @@ class ForumThreadsController extends BaseController implements
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isOwnedBy(Auth::user())) {
+        if ( ! $thread->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -119,7 +119,7 @@ class ForumThreadsController extends BaseController implements
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isOwnedBy(Auth::user())) {
+        if ( ! $thread->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -136,7 +136,7 @@ class ForumThreadsController extends BaseController implements
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isQuestion() || ! $thread->isOwnedBy(Auth::user())) {
+        if ( ! $thread->isQuestion() || ! $thread->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -155,7 +155,7 @@ class ForumThreadsController extends BaseController implements
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isQuestion() || ! $thread->isOwnedBy(Auth::user())) {
+        if ( ! $thread->isQuestion() || ! $thread->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -180,7 +180,7 @@ class ForumThreadsController extends BaseController implements
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isOwnedBy(Auth::user())) {
+        if ( ! $thread->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -192,7 +192,7 @@ class ForumThreadsController extends BaseController implements
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isOwnedBy(Auth::user())) {
+        if ( ! $thread->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 

@@ -116,9 +116,15 @@ class Thread extends Entity
         return $this->isQuestion() && ! is_null($this->solution_reply_id);
     }
 
+    public function isManageableBy($user)
+    {
+        if ( ! $user) return false;
+        return $this->isOwnedBy($user) || $user->isForumAdmin();
+    }
+
     public function isOwnedBy($user)
     {
-        if ( ! $user instanceOf \Lio\Accounts\User) return false;
+        if ( ! $user) return false;
         return $user->id == $this->author_id;
     }
 

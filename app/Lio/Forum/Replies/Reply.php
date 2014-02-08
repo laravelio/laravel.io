@@ -24,6 +24,12 @@ class Reply extends \Lio\Core\Entity
         return $this->belongsTo('Lio\Forum\Threads\Thread', 'thread_id');
     }
 
+    public function isManageableBy($user)
+    {
+        if ( ! $user) return false;
+        return $this->isOwnedBy($user) || $user->isForumAdmin();
+    }
+
     public function isOwnedBy($user)
     {
         if ( ! $user) return false;

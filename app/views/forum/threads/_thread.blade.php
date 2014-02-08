@@ -16,7 +16,7 @@
     </div>
 
     <div class="admin-bar">
-        @if($thread->isOwnedBy($currentUser) || ($currentUser && $currentUser->isForumAdmin()))
+        @if($thread->isManageableBy($currentUser))
             <li><a href="{{ $thread->editUrl }}">Edit</a></li>
             <li><a href="{{ $thread->deleteUrl }}">Delete</a></li>
 

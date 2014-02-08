@@ -30,7 +30,7 @@ class ForumRepliesController extends BaseController implements
     {
         $reply = $this->replies->requireById($replyId);
 
-        if ( ! $reply->isOwnedBy(Auth::user())) {
+        if ( ! $reply->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -67,7 +67,7 @@ class ForumRepliesController extends BaseController implements
     {
         $reply = $this->replies->requireById($replyId);
 
-        if ( ! $reply->isOwnedBy(Auth::user())) {
+        if ( ! $reply->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -78,7 +78,7 @@ class ForumRepliesController extends BaseController implements
     {
         $reply = $this->replies->requireById($replyId);
 
-        if ( ! $reply->isOwnedBy(Auth::user())) {
+        if ( ! $reply->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -103,7 +103,7 @@ class ForumRepliesController extends BaseController implements
     {
         $reply = $this->replies->requireById($replyId);
 
-        if ( ! $reply->isOwnedBy(Auth::user())) {
+        if ( ! $reply->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
@@ -114,7 +114,7 @@ class ForumRepliesController extends BaseController implements
     {
         $reply = $this->replies->requireById($replyId);
 
-        if ( ! $reply->isOwnedBy(Auth::user())) {
+        if ( ! $reply->isManageableBy(Auth::user())) {
             return Redirect::to('/');
         }
 
