@@ -3,7 +3,6 @@
 use Lio\Comments\Comment;
 use Lio\Tags\TagRepository;
 use Lio\Articles\ArticleRepository;
-use Lio\Comments\CommentRepository;
 
 class ArticlesController extends BaseController
 {
@@ -11,7 +10,6 @@ class ArticlesController extends BaseController
     private $tags;
 
     private $articlesPerPage = 20;
-    private $commentsPerPage = 20;
 
     public function __construct(ArticleRepository $articles, TagRepository $tags)
     {
@@ -24,15 +22,16 @@ class ArticlesController extends BaseController
         $tags     = $this->tags->getAllTagsBySlug(Input::get('tags'));
         $articles = $this->articles->getAllPublishedByTagsPaginated($tags);
 
+        $this->title = 'Articles';
         $this->view('articles.index', compact('articles'));
     }
 
-    public function getShow()
+    public function getShow($slug)
     {
-        $article = App::make('SlugModel');
-        $comments = $this->comments->getArticleCommentsPaginated($article, $this->commentsPerPage);
+        $article = $this->articles->requirePublishedArticleBySlug($slug);
 
-        $this->view('articles.show', compact('article', 'comments'));
+        $this->title = $article->title;
+        $this->view('articles.show', compact('article'));
     }
 
     public function postShow()

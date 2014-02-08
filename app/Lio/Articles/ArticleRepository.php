@@ -2,6 +2,7 @@
 
 use Lio\Core\EloquentRepository;
 use Lio\Accounts\User;
+use Lio\Core\Exceptions\EntityNotFoundException;
 use Lio\Tags\TagRepository;
 
 class ArticleRepository extends EloquentRepository
@@ -18,6 +19,25 @@ class ArticleRepository extends EloquentRepository
                            ->orderBy('published_at', 'desc')
                            ->take($count)
                            ->get();
+    }
+
+    public function requirePublishedArticleBySlug($slug)
+    {
+        $model = $this->getPublishedArticleBySlug($slug);
+
+        if ( ! $model) {
+            throw new EntityNotFoundException("Could not find article by slug \"$slug\".");
+        }
+
+        return $model;
+    }
+
+    public function getPublishedArticleBySlug($slug)
+    {
+        return $this->model->with('author')
+            ->where('slug', '=', $slug)
+            ->where('status', '=', Article::STATUS_PUBLISHED)
+            ->first();
     }
 
     public function getAllPublishedByTagsPaginated($tags, $perPage = 10)
