@@ -4,6 +4,7 @@ class BaseController extends Controller
 {
     protected $layout = 'layouts.default';
     protected $currentUser;
+    protected $title = '';
 
     protected function setupLayout()
     {
@@ -17,6 +18,7 @@ class BaseController extends Controller
 
     protected function view($path, $data = [])
     {
+        $this->layout->title = $this->title;
         $this->layout->content = View::make($path, $data);
     }
 

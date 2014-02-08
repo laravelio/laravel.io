@@ -64,6 +64,8 @@ class ForumThreadsController extends BaseController implements
         $replies = $this->threads->getThreadRepliesPaginated($thread, $this->repliesPerPage);
 
         $this->createSections($thread->getTags());
+
+        $this->title = $thread->subject;
         $this->view('forum.threads.show', compact('thread', 'replies'));
     }
 
