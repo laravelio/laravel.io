@@ -110,12 +110,7 @@ $(function() {
                         lastLineIndex = $lastLineToggled.index() + 1;
 
                     $range = (lineIndex > lastLineIndex) ? defaults.$lines.slice(lastLineIndex, lineIndex + 1) : defaults.$lines.slice(lineIndex, lastLineIndex - 1);
-
-                    if ($line.hasClass(defaults.selectedClass)) {
-                        $range.removeClass(defaults.selectedClass);
-                    } else {
-                        $range.addClass(defaults.selectedClass);
-                    }
+                    $range.toggleClass(defaults.selectedClass);
                     manage($range);
                 } else {
                     $line.toggleClass(defaults.selectedClass);
