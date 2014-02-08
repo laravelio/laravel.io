@@ -23,23 +23,23 @@ class ThreadPresenter extends BasePresenter
 
     public function reply_count_label()
     {
-        if ($this->resource->reply_count == 0) {
+        if ($this->reply_count == 0) {
             return '0 Responses';
-        } elseif($this->resource->reply_count == 1) {
+        } elseif($this->reply_count == 1) {
             return '1 Response';
         }
 
-        return $this->resource->reply_count . ' Responses';
+        return $this->reply_count . ' Responses';
     }
 
     public function created_ago()
     {
-        return $this->resource->created_at->diffForHumans();
+        return $this->created_at->diffForHumans();
     }
 
     public function updated_ago()
     {
-        return $this->resource->updated_at->diffForHumans();
+        return $this->updated_at->diffForHumans();
     }
 
     public function body()
@@ -53,7 +53,7 @@ class ThreadPresenter extends BasePresenter
 
     public function versionSubjectPrefix()
     {
-        if ($this->resource->laravel_version == 3) {
+        if ($this->laravel_version == 3) {
             return '[L3] ';
         }
     }
@@ -63,22 +63,20 @@ class ThreadPresenter extends BasePresenter
         return "{$this->versionSubjectPrefix()}{$this->resource->subject}";
     }
 
-    public function LatestReplyMeta()
+    public function mostRecentReplier()
     {
-        if($this->resource->replies->count() > 0) {
-            return "latest reply {$this->updated_ago} by {$this->resource->lastReply()->author->name}";
+        if ( ! $this->mostRecentReply) {
+            return null;
         }
+        return $this->mostRecentReply->author->name;
     }
 
     public function latestReplyUrl()
     {
-        // Check if the thread has replies, if it does return a direct link to the latest reply
-        if($this->resource->replies->count() > 0) {
-            return $this->url . $this->replyGenerator->generate($this->lastReply());
-        } else {
-            // Thread does not have any replies, return thread url.
+        if ( ! $this->mostRecentReply) {
             return $this->url;
         }
+        return $this->url . $this->replyGenerator->generate($this->mostRecentReply);
     }
 
     public function acceptedSolutionUrl()
@@ -111,16 +109,6 @@ class ThreadPresenter extends BasePresenter
     }
 
     // ------------------- //
-
-    private function removeDoubleSpaces($content)
-    {
-        return str_replace('  ', '', $content);
-    }
-
-    private function convertNewlines($content)
-    {
-        return preg_replace("/(?<!\\n)(\\n)(?!\\n)/", "<br>", $content);
-    }
 
     private function convertMarkdown($content)
     {

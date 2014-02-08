@@ -156,11 +156,4 @@ class Thread extends Entity
     {
         return $this->tags->lists('slug');
     }
-
-    public function lastReply()
-    {
-        $reply = $this->replies()->orderBy('created_at', 'desc')->first();
-
-        return $reply;
-    }
 }
