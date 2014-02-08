@@ -47,8 +47,10 @@ class ThreadPresenter extends BasePresenter
 
     public function subject()
     {
+        $prefix = $this->solvedPrefix() . $this->versionSubjectPrefix();
         $subject = Str::limit($this->resource->subject, 80);
-        return $this->solvedPrefix() . $this->versionSubjectPrefix() . $subject;
+
+        return $prefix ? $prefix .' '. $subject : $subject;
     }
 
     public function mostRecentReplier()
