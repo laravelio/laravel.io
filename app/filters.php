@@ -7,8 +7,9 @@
 */
 
 App::before(function($request) {
-    if (preg_match('/^http:\/\/www/', $request->url())) {
-        $newUrl = preg_replace('/^http:\/\/www/', 'http://', $request->url());
+    // enforce no www
+    if (preg_match('/^http:\/\/www./', $request->url())) {
+        $newUrl = preg_replace('/^http:\/\/www./', 'http://', $request->url());
         return Redirect::to($newUrl);
     }
 });
