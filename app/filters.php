@@ -6,11 +6,17 @@
 |--------------------------------------------------------------------------
 */
 
-App::before(function($request) {});
+App::before(function($request) {
+    // enforce no www
+    if (preg_match('/^http:\/\/www./', $request->url())) {
+        $newUrl = preg_replace('/^http:\/\/www./', 'http://', $request->url());
+        return Redirect::to($newUrl);
+    }
+});
 
 App::after(function($request, $response) {
     if (Auth::guest()) {
-        if ( ! stristr(Request::path(), 'login') && ! stristr(Request::path(), 'signup')) Session::put('auth.intended_redirect_url', URL::full());
+        if ( ! stristr($request->path(), 'login') && ! stristr($request->path(), 'signup')) Session::put('auth.intended_redirect_url', $request->url());
     }
 });
 
@@ -62,14 +68,14 @@ Route::filter('has_role', function($route, $request, $parameters) {
     throw new Lio\Core\Exceptions\NotAuthorizedException(Auth::user()->name . ' does not have the required role(s): ' . $parameters);
 });
 
-// Event::listen('illuminate.query', function($sql, $bindings)
-// {
-//     foreach ($bindings as $i => $val) {
-//         $bindings[$i] = "'$val'";
-//     }
+Event::listen('illuminate.query', function($sql, $bindings)
+{
+    if (App::environment('local')) {
+        foreach ($bindings as $i => $val) {
+            $bindings[$i] = "'$val'";
+        }
 
-//     $sql = str_replace(['?'], $bindings, $sql);
-
-
-//     Log::info($sql);
-// });
+        $sql = str_replace(['?'], $bindings, $sql);
+        Log::info($sql);
+    }
+});

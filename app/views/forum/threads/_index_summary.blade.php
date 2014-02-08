@@ -8,12 +8,14 @@
                 <a class="solution accepted mini" href="{{ $thread->acceptedSolutionUrl }}"><i class="fa fa-check-square"></i></a>
                 <a class="solution accepted" href="{{ $thread->acceptedSolutionUrl }}"><i class="fa fa-check-square"></i> solved</a>
             @endif
-            <a href="{{ $thread->latestReplyUrl() }}" class="comment-count">{{ $thread->reply_count }}</a>
+            <a href="{{ $thread->latestReplyUrl }}" class="comment-count">{{ $thread->reply_count }}</a>
         </div>
 
         <ul class="meta">
             <li>posted by <a href="{{ $thread->author->profileUrl }}">{{ $thread->author->name }}</a></li>
-            <li>{{ $thread->LatestReplyMeta }}</li>
+            @if($thread->mostRecentReply)
+                <li>latest reply {{ $thread->updated_ago }} by {{ $thread->mostRecentReplier }}</li>
+            @endif
         </ul>
     </div>
 
