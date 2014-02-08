@@ -75,17 +75,19 @@ class Article extends Entity
         return false;
     }
 
-    public function getSlugString()
+    public function setTitleAttribute($title)
     {
-        if ( ! $this->status == static::STATUS_PUBLISHED) {
-            return '';
-        }
+        $this->attributes['title'] = $title;
+        $this->attributes['slug'] = $this->generateNewSlug();
+    }
 
+    public function generateNewSlug()
+    {
         $authorName = $this->author->name;
         $date       = date("m-d-Y", strtotime($this->published_at));
         $title      = $this->title;
 
-        return \Str::slug("{$date} {$title} {$authorName}");
+        return \Str::slug("{$authorName} {$date} {$title}");
     }
 
     public function save(array $options = array())

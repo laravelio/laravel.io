@@ -59,7 +59,7 @@ class ArticlePresenter extends BasePresenter
     {
         if ( ! $this->resource->slug) return '';
 
-        return action('ArticlesController@getShow', [$this->resource->slug->slug]);
+        return action('ArticlesController@getShow', [$this->slug]);
     }
 
     // ------------------- //
