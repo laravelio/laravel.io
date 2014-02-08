@@ -1,4 +1,4 @@
-<div class="comment {{ $thread->isReplyTheSolution($reply) ? 'solution-border' : '' }}" id="reply-{{ $reply->id }}">
+<div class="comment {{ $thread->isReplyTheSolution($reply) ? 'solution-border' : '' }} _post" id="reply-{{ $reply->id }}">
 
     <div class="user">
         {{ $reply->author->thumbnail }}

@@ -1,4 +1,4 @@
-<div class="thread {{ $thread->isQuestion() ? 'question' : '' }} {{ $thread->isSolved() ? 'solved' : '' }}">
+<div class="thread {{ $thread->isQuestion() ? 'question' : '' }} {{ $thread->isSolved() ? 'solved' : '' }} _post">
     <h1>{{ $thread->subject }}</h1>
 
     <span class="markdown">
@@ -15,6 +15,9 @@
         </div>
     </div>
 
+    <span style="display:none;" class="_author_name">{{ $thread->author->name }}</span>
+    <span style="display:none;" class="_quote_body">{{ $thread->resource->body }}</span>
+
     <div class="admin-bar">
         @if($thread->isManageableBy($currentUser))
             <li><a href="{{ $thread->editUrl }}">Edit</a></li>
@@ -24,5 +27,6 @@
                 <li><a href="{{ $thread->markAsUnsolvedUrl }}">Mark Unsolved</a></li>
             @endif
         @endif
+        <a href="#" class="quote _quote_forum_post">Quote</a>
     </div>
 </div>
