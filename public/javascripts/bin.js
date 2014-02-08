@@ -76,37 +76,133 @@ $(function() {
         }
     });
 
-    var lines = (window.location.hash != '') ? window.location.hash.replace(/#/g, '').split(',') : [];
+    (function($){
 
-    setTimeout(function() {
-        var $lines = $('.selectable ol li');
+        var defaults = {
+            $list: $('.list'),
+            selectedClass: 'selected',
+            preventTextSelectionClass: 'prevent-user-select'
+        },
+        _lines, options, $lastLineToggled;
 
-        $('#copy-data').val(location.toString());
-
-        for(var i in lines) {
-            if(lines.hasOwnProperty(i)) {
-                $lines.eq(lines[i] - 1).addClass('selected');
+        // Call this public method like $.myMethod();
+        $.handleLines = function(options){
+            defaults = $.extend(defaults, options);
+            defaults.$lines = defaults.$list.find('li');
+            
+            _lines = expandLines(window.location.hash);
+            highlight();
+            events();
+        };
+        
+        function highlight() {
+            for(var i = 0; i < _lines.length; i++) {
+                defaults.$lines.eq(_lines[i] - 1).addClass(defaults.selectedClass);
             }
         }
 
-        $('.selectable').on('click', 'li', function() {
-            var indexOfLine = $(this).index() + 1,
-                indexInLinesArray = lines.indexOf(indexOfLine + "");
+        function events() {
+            defaults.$list.on('click', 'li', function (e) {
+                var $line = $(this);
+                if ($lastLineToggled && e.shiftKey) {
+                    var $range,
+                        lineIndex = $line.index(),
+                        lastLineIndex = $lastLineToggled.index() + 1;
 
-            if(indexInLinesArray < 0) {
-                lines.push(indexOfLine + "");
-            } else {
-                lines.splice(indexInLinesArray, 1);
+                    $range = (lineIndex > lastLineIndex) ? defaults.$lines.slice(lastLineIndex, lineIndex + 1) : defaults.$lines.slice(lineIndex, lastLineIndex - 1);
+                    $range.toggleClass(defaults.selectedClass);
+                    manage($range);
+                } else {
+                    $line.toggleClass(defaults.selectedClass);
+                    manage($line);
+                }
+                $lastLineToggled = $line;
+            });
+
+            $(document).mousedown(function (e) {
+                if (e.shiftKey) e.preventDefault();
+            });
+        }
+
+        /* expand #1-7,12,20 into [1,2,3,4,5,6,7,12,20] */
+        function expandLines(lines) {
+            if(lines == '') return [];
+            lines = lines.replace(/#/g, '').split(',');
+            var linesExpanded = [];
+            for(var i in lines) {
+                if(lines.hasOwnProperty(i)) {
+                    linesExpanded = linesExpanded.concat(expand(lines[i]));
+                }
             }
-            
-            $lines.eq(indexOfLine - 1).toggleClass('selected');
 
-            window.location.hash = lines.map(function(v) { return '#' + v; }).join(',');
+            return sanitize(linesExpanded)
+        }
+
+        function expand(item) {
+            return (item.indexOf('-') > 0) ? generateRange(item.split('-')) : [parseInt(item, 10)];
+        }
+
+        function generateRange(values) {
+            var range = [];
+            for (var i = parseInt(values[0], 10); i <= parseInt(values[1], 10); i++) {
+                range.push(i);
+            }
+            return range;
+        }
+
+        /* sort linesnumbers array and remove duplicate numbers */
+        function sanitize(lines) {
+            lines = lines.sort(function(a, b) { return a-b; });
+            uniqueLines = [];
+            for(var i = 0; i < lines.length; i++) {
+                if(uniqueLines.indexOf(lines[i]) === -1) uniqueLines.push(lines[i]);
+            }
+            return uniqueLines;
+        }
+
+        /* collapse [1,2,3,4,5,6,7,12,20] into #1-7,12,20 */
+        function collapser() {
+            lines = sanitize(_lines);
+            var ranges = [], rstart, rend;
+            for (var i = 0; i < lines.length; i++) {
+                rstart = lines[i];
+                rend = rstart;
+                while (lines[i + 1] - lines[i] == 1) {
+                    rend = lines[i + 1];
+                    i++;
+                }
+                ranges.push(rstart == rend ? rstart+'' : rstart + '-' + rend);
+            }
+            return '#' + ranges.join(',');
+        }
+
+        /* update lines array */
+        function manage(items) {
+            items.each(function() {
+                var indexOfLine = $(this).index() + 1,
+                    indexInLinesArray = _lines.indexOf(indexOfLine);
+
+                if(indexInLinesArray < 0) {
+                    _lines.push(indexOfLine);
+                } else {
+                    _lines.splice(indexInLinesArray, 1);
+                }
+            });
+            window.location.hash = collapser();
+        }
+
+    })(jQuery);
+
+    prettyPrint(function() {
+        $.handleLines({
+            $list: $('ol.linenums'),
+            selectClass: 'selected',
+            preventTextSelectionClass: 'prevent-user-select'
         });
-    }, 200);
+    });
+
+
 });
-
-
 
 // // drag and drop file api stuff
 // function handleFileSelect(e) {
