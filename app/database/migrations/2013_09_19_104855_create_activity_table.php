@@ -4,13 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateActivityTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
         Schema::table('activity', function($t) {
             $t->create();
 
@@ -22,16 +22,16 @@ class CreateActivityTable extends Migration {
 
             $t->timestamps();
         });
-	}
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('activity');
-	}
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('activity');
+    }
 
 }

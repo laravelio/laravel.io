@@ -57,11 +57,11 @@ class CommentRepository extends EloquentRepository
 
     public function getArticleCommentsPaginated(Article $article, $perPage = 20)
     {
-    	return $this->model
+        return $this->model
             ->where('owner_id', '=', $article->id)
             ->where('type', '=', Comment::TYPE_ARTICLE)
-    		->orderBy('created_at', 'asc')
-    		->paginate($perPage);
+            ->orderBy('created_at', 'asc')
+            ->paginate($perPage);
     }
 
     public function getFeaturedForumThreads($count = 3)

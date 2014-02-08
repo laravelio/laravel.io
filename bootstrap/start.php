@@ -25,7 +25,7 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment(array(
-	'local'      => ['quantal64'],
+    'local'      => ['quantal64'],
     'production' => ['laravel.io', 'laraveliotest.*'],
 ));
 

@@ -26,7 +26,7 @@ use Codeception\Module\TestHelper;
 
 class TestGuy extends \Codeception\AbstractGuy
 {
-    
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
@@ -48,7 +48,7 @@ class TestGuy extends \Codeception\AbstractGuy
         return new Maybe();
     }
 
- 
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
@@ -78,7 +78,7 @@ class TestGuy extends \Codeception\AbstractGuy
         return new Maybe();
     }
 
- 
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
@@ -105,7 +105,7 @@ class TestGuy extends \Codeception\AbstractGuy
         return new Maybe();
     }
 
- 
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
@@ -132,7 +132,7 @@ class TestGuy extends \Codeception\AbstractGuy
         return new Maybe();
     }
 
- 
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
@@ -160,7 +160,7 @@ class TestGuy extends \Codeception\AbstractGuy
         return new Maybe();
     }
 
- 
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
@@ -219,7 +219,7 @@ class TestGuy extends \Codeception\AbstractGuy
         return new Maybe();
     }
 
- 
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
@@ -280,7 +280,7 @@ class TestGuy extends \Codeception\AbstractGuy
         return new Maybe();
     }
 
- 
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
@@ -335,7 +335,7 @@ class TestGuy extends \Codeception\AbstractGuy
         return new Maybe();
     }
 
- 
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
@@ -354,7 +354,7 @@ class TestGuy extends \Codeception\AbstractGuy
         return new Maybe();
     }
 
- 
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
@@ -411,7 +411,7 @@ class TestGuy extends \Codeception\AbstractGuy
         return new Maybe();
     }
 
- 
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
@@ -438,7 +438,7 @@ class TestGuy extends \Codeception\AbstractGuy
         return new Maybe();
     }
 
- 
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.

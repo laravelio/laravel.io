@@ -25,7 +25,7 @@ use Codeception\Module\CodeHelper;
 
 class CodeGuy extends \Codeception\AbstractGuy
 {
-    
+
     /**
      * This method is generated.
      * Documentation taken from corresponding module.
