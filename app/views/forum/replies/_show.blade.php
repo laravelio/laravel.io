@@ -31,8 +31,10 @@
     @if(Auth::check())
         <div class="admin-bar">
             @if($reply->isManageableBy($currentUser))
+            <ul>
                 <li><a href="{{ action('ForumRepliesController@getEditReply', [$reply->id]) }}">Edit</a></li>
                 <li><a href="{{ action('ForumRepliesController@getDelete', [$reply->id]) }}">Delete</a></li>
+            </ul>
             @endif
 
             <a href="#" class="quote _quote_forum_post">Quote</a>

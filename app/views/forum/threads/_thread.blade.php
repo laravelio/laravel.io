@@ -20,13 +20,18 @@
 
     <div class="admin-bar">
         @if($thread->isManageableBy($currentUser))
-            <li><a href="{{ $thread->editUrl }}">Edit</a></li>
-            <li><a href="{{ $thread->deleteUrl }}">Delete</a></li>
+            <ul>
+                <li><a href="{{ $thread->editUrl }}">Edit</a></li>
+                <li><a href="{{ $thread->deleteUrl }}">Delete</a></li>
 
-            @if($thread->isQuestion() && $thread->isSolved())
-                <li><a href="{{ $thread->markAsUnsolvedUrl }}">Mark Unsolved</a></li>
-            @endif
+                @if($thread->isQuestion() && $thread->isSolved())
+                    <li><a href="{{ $thread->markAsUnsolvedUrl }}">Mark Unsolved</a></li>
+                @endif
+            </ul>
         @endif
-        <a href="#" class="quote _quote_forum_post">Quote</a>
+
+        @if(Auth::user())
+            <a href="#" class="quote _quote_forum_post">Quote</a>
+        @endif
     </div>
 </div>
