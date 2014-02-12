@@ -7,7 +7,6 @@ class PastePresenter extends BasePresenter
     public function code()
     {
         $code = $this->resource->code;
-        $code = $this->convertNewlines($code);
         return $code;
     }
 
@@ -29,10 +28,5 @@ class PastePresenter extends BasePresenter
     public function rawUrl()
     {
         return action('PastesController@getRaw', $this->hash);
-    }
-
-    protected function convertNewlines($content)
-    {
-        return str_replace("\n\n", '<br/>', $content);
     }
 }
