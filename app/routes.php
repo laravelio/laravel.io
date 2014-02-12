@@ -88,6 +88,8 @@ Route::get('forum/search', 'ForumThreadsController@getSearch');
 Route::get('forum/{slug}/reply/{commentId}', 'ForumRepliesController@getReplyRedirect');
 Route::get('forum/{slug}', ['before' => '', 'uses' => 'ForumThreadsController@getShowThread']);
 
+Route::get('api/forum', 'Api\ForumThreadsController@getIndex');
+
 // admin
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {
 
