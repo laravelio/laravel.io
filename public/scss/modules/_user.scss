@@ -71,6 +71,8 @@
     border-top:1px solid #cdcdcd;
 
     ul, li {
+        @include display('flex');
+        @include justify-content;
         margin:0 !important;
     }
 
@@ -79,14 +81,20 @@
     }
 
     li {
-        display: inline-block;
         padding: 0 10px 0 0 !important;
         margin: 0 10px 0 0 !important;
         border-right:1px solid #cdcdcd;
     }
 
+    .space {
+        @include flex(1);
+        border: none;
+    }
+
     li:last-child
     {
+        margin-right: 0px !important;
+        padding-right: 0px !important;
         border:none;
     }
 }

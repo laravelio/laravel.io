@@ -19,19 +19,19 @@
     <span style="display:none;" class="_quote_body">{{ $thread->resource->body }}</span>
 
     <div class="admin-bar">
+        <ul>
         @if($thread->isManageableBy($currentUser))
-            <ul>
-                <li><a href="{{ $thread->editUrl }}">Edit</a></li>
-                <li><a href="{{ $thread->deleteUrl }}">Delete</a></li>
-
-                @if($thread->isQuestion() && $thread->isSolved())
-                    <li><a href="{{ $thread->markAsUnsolvedUrl }}">Mark Unsolved</a></li>
-                @endif
-            </ul>
+            <li><a href="{{ $thread->editUrl }}">Edit</a></li>
+            <li><a href="{{ $thread->deleteUrl }}">Delete</a></li>
+            @if($thread->isQuestion() && $thread->isSolved())
+                <li><a href="{{ $thread->markAsUnsolvedUrl }}">Mark Unsolved</a></li>
+            @endif
         @endif
 
         @if(Auth::user())
-            <a href="#" class="quote _quote_forum_post">Quote</a>
+            <li class="space"></li>
+            <li><a href="#" class="quote _quote_forum_post">Quote</a></li>
         @endif
+        </ul>
     </div>
 </div>
