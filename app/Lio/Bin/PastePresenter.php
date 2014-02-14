@@ -7,32 +7,26 @@ class PastePresenter extends BasePresenter
     public function code()
     {
         $code = $this->resource->code;
-        $code = $this->convertNewlines($code);
         return $code;
     }
 
     public function createUrl()
     {
-        return action('BinController@getCreate');
+        return action('PastesController@getCreate');
     }
 
     public function showUrl()
     {
-        return action('BinController@getShow', $this->hash);
+        return action('PastesController@getShow', $this->hash);
     }
 
     public function forkUrl()
     {
-        return action('BinController@getFork', $this->hash);
+        return action('PastesController@getFork', $this->hash);
     }
 
     public function rawUrl()
     {
-        return action('BinController@getRaw', $this->hash);
-    }
-
-    protected function convertNewlines($content)
-    {
-        return str_replace("\n\n", '<br/>', $content);
+        return action('PastesController@getRaw', $this->hash);
     }
 }
