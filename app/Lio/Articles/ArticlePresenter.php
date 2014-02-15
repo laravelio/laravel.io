@@ -52,14 +52,12 @@ class ArticlePresenter extends BasePresenter
 
     public function editUrl()
     {
-        return action('ArticlesController@getEdit', [$this->resource->id]);
+        return action('ArticlesController@getEdit', [$this->id]);
     }
 
     public function showUrl()
     {
-        if ( ! $this->resource->slug) return '';
-
-        return action('ArticlesController@getShow', [$this->slug]);
+        return action('Controllers\Articles\ShowArticleController@getShow', [$this->id]);
     }
 
     // ------------------- //
@@ -71,7 +69,7 @@ class ArticlePresenter extends BasePresenter
 
     private function convertNewlines($content)
     {
-        return str_replace("\n\n", '<br/>', $content);
+        return nl2br($content);
     }
 
     private function formatGists($content)

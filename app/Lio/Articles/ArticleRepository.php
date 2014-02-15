@@ -14,28 +14,28 @@ class ArticleRepository extends EloquentRepository
 
     public function getFeaturedArticles($count = 3)
     {
-        return $this->model->with(['author', 'slug'])
+        return $this->model->with(['author'])
                            ->where('status', '=', Article::STATUS_PUBLISHED)
                            ->orderBy('published_at', 'desc')
                            ->take($count)
                            ->get();
     }
 
-    public function requirePublishedArticleBySlug($slug)
+    public function requirePublishedArticleById($id)
     {
-        $model = $this->getPublishedArticleBySlug($slug);
+        $model = $this->getPublishedArticleById($id);
 
         if ( ! $model) {
-            throw new EntityNotFoundException("Could not find article by slug \"$slug\".");
+            throw new EntityNotFoundException("Could not find article by id \"$id\".");
         }
 
         return $model;
     }
 
-    public function getPublishedArticleBySlug($slug)
+    public function getPublishedArticleById($id)
     {
         return $this->model->with('author')
-            ->where('slug', '=', $slug)
+            ->where('id', '=', $id)
             ->where('status', '=', Article::STATUS_PUBLISHED)
             ->first();
     }
@@ -68,10 +68,5 @@ class ArticleRepository extends EloquentRepository
     public function getArticlesByAuthor(User $author)
     {
         return $author->articles()->orderBy('articles.status', 'asc')->orderBy('published_at', 'desc')->orderBy('created_at', 'desc');
-    }
-
-    public function getArticleForm()
-    {
-        return new ArticleForm;
     }
 }

@@ -47,14 +47,17 @@ Route::get('bin/{hash}/raw', 'PastesController@getRaw');
 Route::get('bin/{hash}', 'PastesController@getShow');
 
 // articles
-Route::get('articles', 'ArticlesController@getIndex');
-Route::get('article/{slug}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getEditComment']);
-Route::post('article/{slug}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postEditComment']);
-Route::get('article/{slug}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getDeleteComment']);
-Route::post('article/{slug}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postDeleteComment']);
-Route::get('article/{slug}', 'ArticlesController@getShow');
-Route::post('article/{slug}', 'ArticlesController@postShow');
-Route::get('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@getCompose']);
+Route::get('articles', 'Controllers\Articles\IndexArticleController@getIndex');
+Route::get('article/{id}', 'Controllers\Articles\ShowArticleController@getShow');
+Route::get('articles/create', 'Controllers\Articles\CreateArticleController@getCreate');
+// Route::get('articles', 'ArticlesController@getIndex');
+
+Route::get('article/{id}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getEditComment']);
+Route::post('article/{id}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postEditComment']);
+Route::get('article/{id}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getDeleteComment']);
+Route::post('article/{id}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postDeleteComment']);
+// Route::get('article/{id}', 'ArticlesController@getShow');
+// Route::get('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@getCompose']);
 Route::post('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@postCompose']);
 Route::get('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@getEdit']);
 Route::post('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@postEdit']);
