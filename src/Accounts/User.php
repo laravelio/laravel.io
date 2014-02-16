@@ -1,11 +1,10 @@
 <?php namespace Lio\Accounts;
 
 use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
 use Lio\Core\Entity;
 use Eloquent;
 
-class User extends Entity implements UserInterface, RemindableInterface
+class User extends Entity implements UserInterface
 {
     const STATE_ACTIVE  = 1;
     const STATE_BLOCKED = 2;
@@ -47,6 +46,11 @@ class User extends Entity implements UserInterface, RemindableInterface
     public function isForumAdmin()
     {
         return $this->hasRole('manage_forum');
+    }
+
+    public function isArticleAdmin()
+    {
+        return $this->hasRole('manage_articles');
     }
 
     public function isUserAdmin()

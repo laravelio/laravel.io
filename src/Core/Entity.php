@@ -6,6 +6,7 @@ use Lio\Core\Exceptions\NoValidatorInstantiatedException;
 
 abstract class Entity extends Eloquent
 {
+    // validation
     protected $validationRules = [];
     protected $validator;
 
@@ -58,4 +59,5 @@ abstract class Entity extends Eloquent
         return $newRules;
     }
 
+    // support for
 }
