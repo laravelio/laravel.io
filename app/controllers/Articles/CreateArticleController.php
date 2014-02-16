@@ -1,16 +1,18 @@
-<?php namespace Controllers\Articles;
+<?php
 
+use Lio\Articles\ArticleCreator;
+use Lio\Articles\ArticleCreatorObserver;
+use Lio\Articles\ArticleForm;
 use Lio\Tags\TagRepository;
-use Lio\Articles\ArticleRepository;
 
-class CreateArticleController extends \BaseController
+class CreateArticleController extends BaseController implements ArticleCreatorObserver
 {
-    private $articles;
+    private $creator;
     private $tags;
 
-    public function __construct(ArticleRepository $articles, TagRepository $tags)
+    public function __construct(ArticleCreator $creator, TagRepository $tags)
     {
-        $this->articles = $articles;
+        $this->creator = $creator;
         $this->tags = $tags;
     }
 
@@ -22,6 +24,16 @@ class CreateArticleController extends \BaseController
 
     public function postCreate()
     {
+        return $this->creator->create($this, Input::all(), Auth::user(), new ArticleForm);
+    }
 
+    public function articleCreationError($errors)
+    {
+        return $this->redirectBack(['errors' => $errors]);
+    }
+
+    public function articleCreated($article)
+    {
+        return $this->redirectAction('Controllers\Articles\ShowArticleController@getShowThread', [$article->slug]);
     }
 }

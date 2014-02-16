@@ -16,21 +16,20 @@ class ArticleCreator
         $this->articles = $articles;
     }
 
-    public function create(ArticleCreatorListener $listener, array $data, User $author, $validator = null)
+    public function create(ArticleCreatorObserver $observer, array $data, User $author, $validator = null)
     {
         if ($validator && ! $validator->isValid()) {
-            return $observer->threadCreationError($validator->getErrors());
+            return $observer->articleCreationError($validator->getErrors());
         }
-
-        return $this->createArticle($listener, $data + ['author_id' => $author->id]);
+        return $this->createArticle($observer, $data + ['author_id' => $author->id]);
     }
 
-    protected function createArticle($listener, $data)
+    protected function createArticle($observer, $data)
     {
         $article = $this->articles->getNew($data);
         if ( ! $this->articles->save($article)) {
-            return $listener->articleCreationError($article->getErrors());
+            return $observer->articleCreationError($article->getErrors());
         }
-        return $listener->articleCreated($article);
+        return $observer->articleCreated($article);
     }
 }

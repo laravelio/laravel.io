@@ -25,7 +25,10 @@
             "tests/unit/UnitTestCase.php"
         ],
         "psr-0": {
-            "Lio\\": "app/"
+            "Controllers\\": "."
+        },
+        "psr-4": {
+            "Lio\\": "src/"
         }
     },
     "scripts": {
