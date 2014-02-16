@@ -43,7 +43,7 @@ Here are the steps for installation on a local machine using the officially endo
     ```
 4. Run the install vagrant script
     ```
-    bash ./install_vagrant.sh
+    bash resources/scripts/install_vagrant.sh
     ```
 5. SSH into the vagrant box and run the update environment script
 
@@ -52,7 +52,7 @@ $ vagrant ssh
 
 $ cd /vagrant
 
-$ bash ./update_environment.sh
+$ bash resource/scripts/update_environment.sh
 ```
 
 Now, we must install the oauth configuration.
