@@ -49,6 +49,11 @@ class User extends Entity implements UserInterface, RemindableInterface
         return $this->hasRole('manage_forum');
     }
 
+    public function isUserAdmin()
+    {
+        return $this->hasRole('manage_users');
+    }
+
     public function setRolesAttribute($roles)
     {
         $this->roles()->sync((array) $roles);

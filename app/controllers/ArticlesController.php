@@ -3,59 +3,18 @@
 use Lio\Comments\Comment;
 use Lio\Tags\TagRepository;
 use Lio\Articles\ArticleRepository;
-use Lio\Comments\CommentRepository;
 
 class ArticlesController extends BaseController
 {
     private $articles;
     private $tags;
-    private $comments;
 
     private $articlesPerPage = 20;
-    private $commentsPerPage = 20;
 
-    public function __construct(ArticleRepository $articles, TagRepository $tags, CommentRepository $comments)
+    public function __construct(ArticleRepository $articles, TagRepository $tags)
     {
         $this->tags     = $tags;
         $this->articles = $articles;
-        $this->comments = $comments;
-    }
-
-    public function getIndex()
-    {
-        $tags     = $this->tags->getAllTagsBySlug(Input::get('tags'));
-        $articles = $this->articles->getAllPublishedByTagsPaginated($tags);
-
-        $this->view('articles.index', compact('articles'));
-    }
-
-    public function getShow()
-    {
-        $article = App::make('SlugModel');
-        $comments = $this->comments->getArticleCommentsPaginated($article, $this->commentsPerPage);
-
-        $this->view('articles.show', compact('article', 'comments'));
-    }
-
-    public function postShow()
-    {
-        $article = App::make('SlugModel');
-
-        $form = new \Lio\Comments\ReplyForm;
-
-        if ( ! $form->isValid()) return $this->redirectBack(['errors' => $form->getErrors()]);
-
-        $comment = $this->comments->getNew([
-            'body'      => Input::get('body'),
-            'author_id' => Auth::user()->id,
-            'type'      => Comment::TYPE_ARTICLE,
-        ]);
-
-        if ( ! $comment->isValid()) return $this->redirectBack(['errors' => $comment->getErrors()]);
-
-        $article->comments()->save($comment);
-
-        return $this->redirectAction('ArticlesController@getShow', [$article->slug->slug]);
     }
 
     public function getDashboard()
@@ -93,25 +52,24 @@ class ArticlesController extends BaseController
         $article->tags()->sync($tags->lists('id'));
 
         if ($article->isPublished()) {
-            $articleSlug = $article->slug()->first();
-            return $this->redirectAction('ArticlesController@getShow', [$articleSlug->slug]);
+            return $this->redirectAction('ArticlesController@getShow', [$id]);
         } else {
             return $this->redirectAction('ArticlesController@getDashboard');
         }
     }
 
-    public function getEdit($articleId)
+    public function getEdit($id)
     {
-        $article = $this->articles->requireById($articleId);
+        $article = $this->articles->requireById($id);
         $tags = $this->tags->getAllForArticles();
         $versions = \Lio\Comments\Comment::$laravelVersions;
 
         $this->view('articles.edit', compact('article', 'tags', 'versions'));
     }
 
-    public function postEdit($articleId)
+    public function postEdit($id)
     {
-        $article = $this->articles->requireById($articleId);
+        $article = $this->articles->requireById($id);
 
         $form = $this->articles->getArticleForm();
 
@@ -133,8 +91,7 @@ class ArticlesController extends BaseController
 
 
         if ($article->isPublished()) {
-            $articleSlug = $article->slug()->first();
-            return $this->redirectAction('ArticlesController@getShow', [$articleSlug->slug]);
+            return $this->redirectAction('ArticlesController@getShow', [$id]);
         } else {
             return $this->redirectAction('ArticlesController@getDashboard');
         }
@@ -148,10 +105,8 @@ class ArticlesController extends BaseController
         $this->view('articles.editcomment', compact('comment'));
     }
 
-    public function postEditComment($articleSlug, $commentId)
+    public function postEditComment($id, $commentId)
     {
-        $article = App::make('SlugModel');
-
         // i hate everything about these controllers, it's awful
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
@@ -168,27 +123,23 @@ class ArticlesController extends BaseController
 
         $this->comments->save($comment);
 
-        return $this->redirectAction('ArticlesController@getShow', [$article->slug->slug]);
+        return $this->redirectAction('ArticlesController@getShow', [$id]);
     }
 
-    public function getDeleteComment($articleSlug, $commentId)
+    public function getDeleteComment($id, $commentId)
     {
-        $article = App::make('SlugModel');
-
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
         $this->view('articles.deletecomment', compact('comment'));
     }
 
-    public function postDeleteComment($articleSlug, $commentId)
+    public function postDeleteComment($id, $commentId)
     {
-        $article = App::make('SlugModel');
-
         $comment = $this->comments->requireById($commentId);
         if (Auth::user()->id != $comment->author_id) return Redirect::to('/');
         $comment->delete();
 
-        return Redirect::action('ArticlesController@getShow', [$article->slug->slug]);
+        return Redirect::action('ArticlesController@getShow', [$id]);
     }
 
     public function getSearch()

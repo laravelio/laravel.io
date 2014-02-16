@@ -50,16 +50,19 @@ class ArticlePresenter extends BasePresenter
         return $this->resource->published_at->diffForHumans();
     }
 
-    public function editUrl()
+    public function updateUrl()
     {
-        return action('ArticlesController@getEdit', [$this->resource->id]);
+        return action('Controllers\Articles\UpdateArticleController@getUpdate', [$this->id]);
+    }
+
+    public function deleteUrl()
+    {
+        return action('Controllers\Articles\DeleteArticleController@getDelete', [$this->id]);
     }
 
     public function showUrl()
     {
-        if ( ! $this->resource->slug) return '';
-
-        return action('ArticlesController@getShow', [$this->resource->slug->slug]);
+        return action('Controllers\Articles\ShowArticleController@getShow', [$this->slug]);
     }
 
     // ------------------- //
@@ -71,7 +74,7 @@ class ArticlePresenter extends BasePresenter
 
     private function convertNewlines($content)
     {
-        return str_replace("\n\n", '<br/>', $content);
+        return nl2br($content);
     }
 
     private function formatGists($content)

@@ -7,6 +7,9 @@
     <nav>
         <ul>
             <li>
+                <a class="{{ Request::is('articles*') ? 'active' : null }}" href="{{ action('Controllers\Articles\IndexArticleController@getIndex') }}">Articles</a>
+            </li>
+            <li>
                 <a class="{{ Request::is('forum*') ? 'active' : null }}" href="{{ action('ForumThreadsController@getIndex') }}">Forum</a>
             </li>
             <li>
@@ -15,6 +18,11 @@
             <li>
                 <a href="{{ action('PastesController@getCreate') }}">Pastebin</a>
             </li>
+            @if($currentUser && $currentUser->isUserAdmin())
+                <li>
+                    <a href="{{ action('AdminUsersController@getIndex') }}">Admin</a>
+                </li>
+            @endif
             <li>
                 <a href="http://www.buzzsprout.com/11908">Podcast</a>
             </li>

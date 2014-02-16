@@ -28,7 +28,7 @@ Here are the steps for installation on a local machine using the officially endo
    _Note_: If you are running OS X 10.9 Mavericks, you will need to modify the install.sh file for it to work properly. Run the following in your preferred terminal:
 
    ```
-   wget https://raw.github.com/laravelIO/laravel-io/master/chef/chef-osx.sh
+   wget https://raw2.github.com/ShawnMcCool/vagrant-chef/master/chef/scripts/chef-osx.sh
    chmod +x chef-osx.sh
    sudo ./chef-osx.sh
    ```
@@ -43,7 +43,7 @@ Here are the steps for installation on a local machine using the officially endo
     ```
 4. Run the install vagrant script
     ```
-    bash ./install_vagrant.sh
+    bash resources/scripts/install_vagrant.sh
     ```
 5. SSH into the vagrant box and run the update environment script
 
@@ -52,7 +52,7 @@ $ vagrant ssh
 
 $ cd /vagrant
 
-$ bash ./update_environment.sh
+$ bash resource/scripts/update_environment.sh
 ```
 
 Now, we must install the oauth configuration.
@@ -98,7 +98,7 @@ Because we keep the generated / minified css out of the repository, we must have
 
 ### Contribution
 
-Please post proposals in the Github issues before coding up a PR.
+[Contribution guidelines can be found here.](CONTRIBUTING.md)
 
 ### Troubleshooting
 

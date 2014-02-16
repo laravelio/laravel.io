@@ -5,10 +5,11 @@
 @stop
 
 @section('content')
-        <div class="header">
-            <h1>Create Thread</h1>
-        </div>
-        {{ Form::open(['data-persist' => 'garlic', 'data-expires' => '600']) }}
+    <div class="header">
+        <h1>Create Thread</h1>
+    </div>
+
+    {{ Form::open(['data-persist' => 'garlic', 'data-expires' => '600']) }}
         <section class="padding">
             <div class="form-row">
                 {{ Form::label('subject', 'Subject', ['class' => 'field-title']) }}
@@ -75,5 +76,5 @@
                 {{ Form::button('Save', ['type' => 'submit', 'class' => 'button']) }}
             </div>
         </section>
-        {{ Form::close() }}
+    {{ Form::close() }}
 @stop
