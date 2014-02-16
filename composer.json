@@ -25,7 +25,7 @@
             "tests/unit/UnitTestCase.php"
         ],
         "psr-0": {
-            "Controllers\\": "."
+            "Controllers\\": "app/"
         },
         "psr-4": {
             "Lio\\": "src/"
@@ -37,7 +37,6 @@
             "php artisan optimize"
         ],
         "pre-update-cmd": [
-
         ],
         "post-update-cmd": [
             "php artisan optimize"

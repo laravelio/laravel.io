@@ -11,9 +11,9 @@ class ShowArticleController extends \BaseController
         $this->articles = $articles;
     }
 
-    public function getShow($id)
+    public function getShow($slug)
     {
-        $article = $this->articles->requirePublishedArticleById($id);
+        $article = $this->articles->requirePublishedArticleBySlug($slug);
         $this->title = $article->title;
         $this->view('articles.show', compact('article'));
     }

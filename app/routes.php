@@ -1,5 +1,6 @@
 <?php
 
+// pastebin redirections
 Route::group(array('domain' => 'bin.laravel.io'), function() {
     Route::get('{wildcard}', function($wildcard) {
         return Redirect::to('http://laravel.io/bin/' . $wildcard);
@@ -11,6 +12,7 @@ Route::group(array('domain' => 'paste.laravel.io'), function() {
     });
 });
 
+// landin gpage
 Route::get('/', 'HomeController@getIndex');
 
 // authentication
@@ -33,7 +35,7 @@ Route::get('contributors', 'ContributorsController@getIndex');
 
 // chat
 Route::get('chat', 'ChatController@getIndex');
-// chat legacy
+// chat legacy redirect
 Route::get('irc', function() {
     return Redirect::action('ChatController@getIndex');
 });
@@ -48,19 +50,30 @@ Route::get('bin/{hash}', 'PastesController@getShow');
 
 // articles
 Route::get('articles', 'Controllers\Articles\IndexArticleController@getIndex');
-Route::get('article/{id}', 'Controllers\Articles\ShowArticleController@getShow');
-Route::get('articles/create', 'Controllers\Articles\CreateArticleController@getCreate');
-// Route::get('articles', 'ArticlesController@getIndex');
+Route::get('article/{slug}', 'Controllers\Articles\ShowArticleController@getShow');
 
-Route::get('article/{id}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getEditComment']);
-Route::post('article/{id}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postEditComment']);
-Route::get('article/{id}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getDeleteComment']);
-Route::post('article/{id}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postDeleteComment']);
-// Route::get('article/{id}', 'ArticlesController@getShow');
-// Route::get('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@getCompose']);
-Route::post('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@postCompose']);
-Route::get('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@getEdit']);
-Route::post('articles/edit/{article}', ['before' => 'auth', 'uses' => 'ArticlesController@postEdit']);
+Route::group(['before' => 'auth'], function() {
+    // create
+    Route::get('articles/compose', 'Controllers\Articles\CreateArticleController@getCreate');
+    Route::post('articles/compose', 'Controllers\Articles\CreateArticleController@postCreate');
+
+    // update
+    Route::get('articles/edit/{id}', 'Controllers\Articles\UpdateArticleController@getUpdate');
+    Route::post('articles/edit/{id}', 'Controllers\Articles\UpdateArticleController@postUpdate');
+
+    // delete
+    Route::get('articles/delete/{id}', 'Controllers\Articles\DeleteArticleController@getDelete');
+    Route::post('articles/delete/{id}', 'Controllers\Articles\DeleteArticleController@postDelete');
+});
+
+
+//Route::get('article/{id}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getEditComment']);
+//Route::post('article/{id}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postEditComment']);
+//Route::get('article/{id}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getDeleteComment']);
+//Route::post('article/{id}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postDeleteComment']);
+//// Route::get('article/{id}', 'ArticlesController@getShow');
+//// Route::get('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@getCompose']);
+//Route::post('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@postCompose']);
 Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum

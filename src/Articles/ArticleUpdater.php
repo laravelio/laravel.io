@@ -1,7 +1,6 @@
-<?php namespace Lio\Articles;
-use Lio\Accounts\User;
+<?php  namespace Lio\Articles; 
 
-class ArticleCreator
+class ArticleUpdater
 {
     private $articles;
     private $observer;
@@ -11,14 +10,14 @@ class ArticleCreator
         $this->articles = $articles;
     }
 
-    public function setObserver(ArticleCreatorObserver $observer)
+    public function setObserver(ArticleUpdaterObserver $observer)
     {
         $this->observer = $observer;
     }
 
-    public function create(array $data, User $author, array $tagIds)
+    public function update(Article $article, array $data, array $tagIds)
     {
-        $article = $this->articles->getNew($data + ['author_id' => $author->id]);
+        $article->fill($data);
 
         if ( ! $this->articles->save($article)) {
             return $this->failure($article->getErrors());
@@ -30,6 +29,8 @@ class ArticleCreator
 
         if ($this->needToPublish($data)) {
             $article->publish();
+        } elseif ($this->needsToBeSetAsDraft($data)) {
+            $article->setDraft();
         }
 
         return $this->success($article);
@@ -37,16 +38,25 @@ class ArticleCreator
 
     private function failure($errors)
     {
-        return $this->observer->articleCreationError($errors);
+        if ($this->observer) {
+            return $this->observer->onArticleUpdateFailure($errors);
+        }
     }
 
     private function success(Article $article)
     {
-        return $this->observer->articleCreated($article);
+        if ($this->observer) {
+            return $this->observer->onArticleUpdateSuccess($article);
+        }
     }
 
     private function needToPublish($data)
     {
         return isset($data['status']) && $data['status'] == Article::STATUS_PUBLISHED;
     }
-}
+
+    private function needsToBeSetAsDraft($data)
+    {
+        return ! isset($data['status']) || $data['status'] == 0;
+    }
+} 

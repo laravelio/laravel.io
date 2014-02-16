@@ -50,14 +50,19 @@ class ArticlePresenter extends BasePresenter
         return $this->resource->published_at->diffForHumans();
     }
 
-    public function editUrl()
+    public function updateUrl()
     {
-        return action('ArticlesController@getEdit', [$this->id]);
+        return action('Controllers\Articles\UpdateArticleController@getUpdate', [$this->id]);
+    }
+
+    public function deleteUrl()
+    {
+        return action('Controllers\Articles\DeleteArticleController@getDelete', [$this->id]);
     }
 
     public function showUrl()
     {
-        return action('Controllers\Articles\ShowArticleController@getShow', [$this->id]);
+        return action('Controllers\Articles\ShowArticleController@getShow', [$this->slug]);
     }
 
     // ------------------- //

@@ -18,7 +18,6 @@
     <section class="padding articles">
         @if($articles->count() > 0)
             @foreach($articles as $article)
-                {{ $article->slug }}
                 @include('articles._summary')
             @endforeach
 

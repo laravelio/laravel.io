@@ -12,30 +12,30 @@ class ArticleRepository extends EloquentRepository
         $this->model = $model;
     }
 
-    public function getFeaturedArticles($count = 3)
-    {
-        return $this->model->with(['author'])
-                           ->where('status', '=', Article::STATUS_PUBLISHED)
-                           ->orderBy('published_at', 'desc')
-                           ->take($count)
-                           ->get();
-    }
+//    public function getFeaturedArticles($count = 3)
+//    {
+//        return $this->model->with(['author'])
+//                           ->where('status', '=', Article::STATUS_PUBLISHED)
+//                           ->orderBy('published_at', 'desc')
+//                           ->take($count)
+//                           ->get();
+//    }
 
-    public function requirePublishedArticleById($id)
+    public function requirePublishedArticleBySlug($slug)
     {
-        $model = $this->getPublishedArticleById($id);
+        $model = $this->getPublishedArticleBySlug($slug);
 
         if ( ! $model) {
-            throw new EntityNotFoundException("Could not find article by id \"$id\".");
+            throw new EntityNotFoundException('Could not find article by slug "'.$slug.'".');
         }
 
         return $model;
     }
 
-    public function getPublishedArticleById($id)
+    public function getPublishedArticleBySlug($slug)
     {
         return $this->model->with('author')
-            ->where('id', '=', $id)
+            ->where('slug', '=', $slug)
             ->where('status', '=', Article::STATUS_PUBLISHED)
             ->first();
     }
@@ -60,13 +60,13 @@ class ArticleRepository extends EloquentRepository
         return $query;
     }
 
-    public function getArticlesByAuthorPaginated(User $author, $perPage = 20)
-    {
-        return $this->getArticlesByAuthor($author)->paginate($perPage);
-    }
-
-    public function getArticlesByAuthor(User $author)
-    {
-        return $author->articles()->orderBy('articles.status', 'asc')->orderBy('published_at', 'desc')->orderBy('created_at', 'desc');
-    }
+//    public function getArticlesByAuthorPaginated(User $author, $perPage = 20)
+//    {
+//        return $this->getArticlesByAuthor($author)->paginate($perPage);
+//    }
+//
+//    public function getArticlesByAuthor(User $author)
+//    {
+//        return $author->articles()->orderBy('articles.status', 'asc')->orderBy('published_at', 'desc')->orderBy('created_at', 'desc');
+//    }
 }

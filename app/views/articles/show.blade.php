@@ -10,24 +10,26 @@
     </div>
 
     <article>
-        <h2>{{ $article->subject }}</h2>
+        <h2>{{ $article->title }}</h2>
 
         {{ $article->content }}
-                <div class="user">
-                    {{ $article->author->thumbnail }}
-                    <div class="info">
-                        <h6><a href="{{ $article->author->profileUrl }}">{{ $article->author->name }}</a></h6>
-                        <ul class="meta">
-                            <li>{{ $article->published_ago }}</li>
-                        </ul>
-                    </div>
-                </div>
-                @if($currentUser && $article->author_id == $currentUser->id)
-                    <div class="admin-bar">
-                        <li><a class="button" href="{{ action('ArticlesController@getEdit', [$article->id]) }}">Edit</a></li>
-                    </div>
-                @endif
 
+        <div class="user">
+            {{ $article->author->thumbnail }}
+            <div class="info">
+                <h6><a href="{{ $article->author->profileUrl }}">{{ $article->author->name }}</a></h6>
+                <ul class="meta">
+                    <li>{{ $article->published_ago }}</li>
+                </ul>
+            </div>
+        </div>
+
+        @if($article->isManageableBy($currentUser))
+            <div class="admin-bar">
+                <li><a class="button" href="{{ $article->updateUrl }}">Edit</a></li>
+                <li><a class="button" href="{{ $article->deleteUrl }}">Delete</a></li>
+            </div>
+        @endif
     </article>
 @stop
 

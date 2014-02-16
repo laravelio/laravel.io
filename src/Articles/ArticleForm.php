@@ -8,7 +8,7 @@ class ArticleForm extends FormModel
         'title'           => 'required|min:10',
         'content'         => 'required',
         'laravel_version' => 'required',
-        'status'          => 'required',
+        'status'          => 'in:0,1',
         'tags'            => 'required|max_tags:3',
     ];
 

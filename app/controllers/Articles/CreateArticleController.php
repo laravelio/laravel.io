@@ -1,18 +1,21 @@
-<?php
+<?php namespace Controllers\Articles;
 
 use Lio\Articles\ArticleCreator;
 use Lio\Articles\ArticleCreatorObserver;
 use Lio\Articles\ArticleForm;
 use Lio\Tags\TagRepository;
+use Auth, Input;
 
-class CreateArticleController extends BaseController implements ArticleCreatorObserver
+class CreateArticleController extends \BaseController implements ArticleCreatorObserver
 {
     private $creator;
     private $tags;
 
     public function __construct(ArticleCreator $creator, TagRepository $tags)
     {
+        $creator->setObserver($this);
         $this->creator = $creator;
+
         $this->tags = $tags;
     }
 
@@ -24,7 +27,8 @@ class CreateArticleController extends BaseController implements ArticleCreatorOb
 
     public function postCreate()
     {
-        return $this->creator->create($this, Input::all(), Auth::user(), new ArticleForm);
+        $data = Input::only('title', 'content', 'laravel_version', 'status');
+        return $this->creator->create($data, Auth::user(), Input::get('tags'), new ArticleForm);
     }
 
     public function articleCreationError($errors)
@@ -34,6 +38,10 @@ class CreateArticleController extends BaseController implements ArticleCreatorOb
 
     public function articleCreated($article)
     {
-        return $this->redirectAction('Controllers\Articles\ShowArticleController@getShowThread', [$article->slug]);
+        if ($article->isPublished()) {
+            return $this->redirectAction('Controllers\Articles\ShowArticleController@getShow', [$article->slug]);
+        }
+
+        return $this->redirectAction('Controllers\Articles\UpdateArticleController@getUpdate', [$article->id]);
     }
 }

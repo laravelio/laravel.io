@@ -6,7 +6,7 @@ class Article extends Entity
 {
     protected $table      = 'articles';
     protected $with       = ['author'];
-    protected $fillable   = ['author_id', 'title', 'content', 'status', 'laravel_version', 'published_at'];
+    protected $fillable   = ['author_id', 'title', 'content', 'laravel_version', 'published_at'];
     protected $dates      = ['published_at'];
     protected $softDelete = true;
 
@@ -20,7 +20,7 @@ class Article extends Entity
         'author_id' => 'required|exists:users,id',
         'title'     => 'required',
         'content'   => 'required',
-        'status'    => 'required',
+        'status'    => 'in:0,1',
     ];
 
     public function author()
@@ -44,50 +44,67 @@ class Article extends Entity
         $this->save();
     }
 
-    public function setTagsAttribute($tagIds)
+    public function setTags(array $tagIds)
     {
-        $tagRepository = \App::make('\Lio\Tags\TagRepository');
-        $allTagIds = $tagRepository->getTagIdList();
-
-        $tagsToSync = [];
-
-        foreach ($tagIds as $tagId) {
-            if (in_array($tagId, $allTagIds)) {
-                $tagsToSync[] = $tagId;
-            }
-        }
-
-        if (empty($tagsToSync)) return;
-
-        $this->tags()->sync($tagsToSync);
+        $this->tags()->sync($tagIds);
     }
 
-    public function hasTag($tagId)
+    public function hasTag($id)
     {
-        return $this->tags->contains($tagId);
+        return $this->tags->contains($id);
+    }
+
+    public function isManageableBy($user)
+    {
+        if ( ! $user) return false;
+        return $this->isOwnedBy($user) || $user->isArticleAdmin();
+    }
+
+    public function isOwnedBy($user)
+    {
+        if ( ! $user) return false;
+        return $user->id == $this->author_id;
     }
 
     public function isPublished()
     {
-        if ($this->exists and $this->status == static::STATUS_PUBLISHED) {
-            return true;
-        }
-        return false;
+        return $this->exists && $this->status == static::STATUS_PUBLISHED;
     }
 
-    public function setTitleAttribute($title)
+    public function hasBeenPublished()
     {
-        $this->attributes['title'] = $title;
-        $this->attributes['slug'] = $this->generateNewSlug();
+        return ! is_null($this->published_at);
     }
 
-    public function generateNewSlug()
+    public function createSlug()
     {
         $authorName = $this->author->name;
         $date       = date("m-d-Y", strtotime($this->published_at));
         $title      = $this->title;
 
         return \Str::slug("{$authorName} {$date} {$title}");
+    }
+
+    public function setDraft()
+    {
+        if ($this->exists && $this->isPublished()) {
+            $this->status = static::STATUS_DRAFT;
+        }
+        $this->save();
+    }
+
+    public function publish()
+    {
+        if ($this->exists && ! $this->isPublished()) {
+            $this->status = static::STATUS_PUBLISHED;
+            $this->slug = $this->createSlug();
+
+            if ( ! $this->hasBeenPublished()) {
+                $this->published_at = date('Y-m-d H:i:s');
+            }
+
+            $this->save();
+        }
     }
 
     public function save(array $options = array())
