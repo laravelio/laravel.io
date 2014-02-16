@@ -14,6 +14,8 @@ class DeleteArticleController extends \BaseController implements ArticleDeleterO
     public function __construct(ArticleRepository $articles, ArticleDeleter $deleter)
     {
         $this->articles = $articles;
+
+        $deleter->setObserver($this);
         $this->deleter = $deleter;
     }
 
@@ -34,6 +36,6 @@ class DeleteArticleController extends \BaseController implements ArticleDeleterO
 
     public function onArticleDeleteSuccess(Article $article)
     {
-        return $this->redirectAction('Controllers\Articles\IndexArticleController', ['success' => 'You have successfully deleted the post titled, "'.$article->title.'."']);
+        return $this->redirectAction('Controllers\Articles\IndexArticleController@getIndex', ['success' => 'You have successfully deleted the post titled, "'.$article->title.'."']);
     }
 } 
