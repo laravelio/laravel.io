@@ -16,9 +16,9 @@ class NotificationsCreateTable extends Migration {
             $t->create();
             $t->increments('id');
             $t->integer('user_id');
-            $t->string('object_type');
-            $t->integer('object_id');
-            $t->text('extra');
+            $t->string('class');
+            $t->string('subject_type')->nullable();
+            $t->integer('subject_id')->nullable();
             $t->softDeletes();
             $t->timestamps();
         });

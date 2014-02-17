@@ -1,12 +1,19 @@
-<?php  namespace Lio\Notifications; 
+<?php  namespace Lio\Notifications;
 
-use Lio\Core\Entity;
+use Lio\Core\SingleTableInheritanceEntity;
 
-class Notification extends Entity
+class Notification extends SingleTableInheritanceEntity
 {
-    protected $table      = 'notifications';
-    protected $fillable   = ['user_id', 'object_type', 'object_id'];
+    protected $table = 'notifications';
+    protected $subclassField = 'class';
+
+    protected $fillable = [];
     protected $softDelete = true;
+
+    public function subject()
+    {
+        return $this->morphTo();
+    }
 
     public function markRead()
     {
