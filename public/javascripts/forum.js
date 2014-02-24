@@ -123,10 +123,10 @@ function bindQuoteLinks()
         e.preventDefault();
 
         var replyForm = $('._reply_form');
-        var quoteBody = $(this).closest('._post').find('._quote_body');
-        var authorName = $(this).closest('._post').find('._author_name');
+        var quoteBody = $(this).closest('._post').data('quote-body');
+        var authorName = $(this).closest('._post').data('author-name');
 
-        var quoteText = formatForumQuote(authorName.text(), quoteBody.text());
+        var quoteText = formatForumQuote($.parseJSON(authorName), $.parseJSON(quoteBody));
 
         replyForm.val(replyForm.val() + quoteText);
 
