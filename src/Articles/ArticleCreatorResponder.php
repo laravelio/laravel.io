@@ -1,6 +1,6 @@
 <?php namespace Lio\Articles;
 
-interface ArticleCreatorObserver
+interface ArticleCreatorResponder
 {
     public function articleCreationError($errors);
     public function articleCreated($article);

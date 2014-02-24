@@ -1,19 +1,19 @@
 <?php namespace Controllers\Articles;
 
 use Lio\Articles\ArticleCreator;
-use Lio\Articles\ArticleCreatorObserver;
+use Lio\Articles\ArticleCreatorResponder;
 use Lio\Articles\ArticleForm;
 use Lio\Tags\TagRepository;
 use Auth, Input;
 
-class CreateArticleController extends \BaseController implements ArticleCreatorObserver
+class CreateArticleController extends \BaseController implements ArticleCreatorResponder
 {
     private $creator;
     private $tags;
 
     public function __construct(ArticleCreator $creator, TagRepository $tags)
     {
-        $creator->setObserver($this);
+        $creator->setResponder($this);
         $this->creator = $creator;
 
         $this->tags = $tags;

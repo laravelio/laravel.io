@@ -1,6 +1,7 @@
 <?php namespace Lio\Bin;
 
-interface PasteCreatorListener {
+interface PasteCreatorResponder
+{
     public function pasteCreated($paste);
     public function pasteValidationError($errors);
 }

@@ -1,6 +1,6 @@
 <?php  namespace Lio\Articles; 
 
-interface ArticleDeleterObserver
+interface ArticleDeleterResponder
 {
     public function onArticleDeleteSuccess(Article $article);
 } 

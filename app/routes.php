@@ -1,5 +1,14 @@
 <?php
 
+Route::get('add', function() {
+
+});
+
+Route::get('show', function() {
+    $user = Lio\Accounts\User::find(1);
+    return $user->notifications;
+});
+
 // pastebin redirections
 Route::group(array('domain' => 'bin.laravel.io'), function() {
     Route::get('{wildcard}', function($wildcard) {
@@ -12,7 +21,7 @@ Route::group(array('domain' => 'paste.laravel.io'), function() {
     });
 });
 
-// landin gpage
+// landing page
 Route::get('/', 'HomeController@getIndex');
 
 // authentication

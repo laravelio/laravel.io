@@ -1,4 +1,6 @@
 <?php namespace Lio\Forum\Threads;
+use Lio\Core\EventDispatcher;
+use Lio\Notifications\Tasks\SearchNewForumPostForForumUserTags;
 
 /**
 * This class can call the following methods on the listener object:
@@ -8,29 +10,35 @@
 */
 class ThreadCreator
 {
-    protected $threads;
+    use EventDispatcher;
+
+    private $threads;
+    private $responder;
 
     public function __construct(ThreadRepository $threads)
     {
         $this->threads = $threads;
     }
 
-    // an additional validator is optional and will be run first, an example of a usage for
-    // this is a form validator
-    public function create(ThreadCreatorListener $listener, $data, $validator = null)
+    public function setResponder(ThreadCreatorResponder $responder)
     {
-        if ($validator && ! $validator->isValid()) {
-            return $listener->threadCreationError($validator->getErrors());
-        }
-        return $this->createValidRecord($listener, $data);
+        $this->responder = $responder;
     }
 
-    private function createValidRecord($listener, $data)
+    public function create($data, $validator = null)
+    {
+        if ($validator && ! $validator->isValid()) {
+            return $this->failure($validator->getErrors());
+        }
+        return $this->createValidRecord($data);
+    }
+
+    private function createValidRecord($data)
     {
         $thread = $this->getNew($data);
-        $this->validateAndSave($thread, $listener, $data);
-
-        return $listener->threadCreated($thread);
+        $this->validateAndSave($thread, $data);
+        $this->fireEvents($thread);
+        return $this->success($thread);
     }
 
     private function getNew($data)
@@ -40,16 +48,36 @@ class ThreadCreator
         ]);
     }
 
-    private function validateAndSave($thread, $listener, $data)
+    private function validateAndSave($thread, $data)
     {
         // check the model validation
         if ( ! $this->threads->save($thread)) {
-            return $listener->threadValidationError($thread->getErrors());
+            return $this->failure($thread->getErrors());
         }
 
         // attach any tags that were passed through
         if (isset($data['tags'])) {
             $thread->setTags($data['tags']->lists('id'));
+        }
+    }
+
+    private function fireEvents($thread)
+    {
+        $this->addEvent(new SearchNewForumPostForForumUserTags($thread));
+        $this->dispatchEvents();
+    }
+
+    private function failure($errors)
+    {
+        if ($this->responder) {
+            return $this->responder->threadValidationError($errors);
+        }
+    }
+
+    private function success($thread)
+    {
+        if ($this->responder) {
+            return $this->responder->threadCreated($thread);
         }
     }
 }

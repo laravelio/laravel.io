@@ -1,4 +1,5 @@
 <?php namespace Lio\Forum\Replies;
+use Lio\Core\EventDispatcher;
 
 /**
 * This class can call the following methods on the observer object:
@@ -8,6 +9,8 @@
 */
 class ReplyCreator
 {
+    use EventDispatcher;
+
     protected $replies;
 
     public function __construct(ReplyRepository $replies)
@@ -15,7 +18,7 @@ class ReplyCreator
         $this->replies = $replies;
     }
 
-    public function create(ReplyCreatorListener $observer, $data, $threadId, $validator = null)
+    public function create(ReplyCreatorResponder $observer, $data, $threadId, $validator = null)
     {
         $this->runValidator($observer, $validator);
         $reply = $this->getNew($data, $threadId);
@@ -43,9 +46,16 @@ class ReplyCreator
             return $observer->replyCreationError($reply->getErrors());
         }
 
-        $this->updateThreadCounts($reply->thread);
+        $this->fireEvents($reply);
 
         return $observer->replyCreated($reply);
+    }
+
+    private function fireEvents($reply)
+    {
+        $this->updateThreadCounts($reply->thread);
+        $this->addEvent(new SearchNewForumPostForForumUserTags($reply));
+        $this->dispatchEvents();
     }
 
     private function updateThreadCounts($thread)

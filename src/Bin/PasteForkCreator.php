@@ -1,6 +1,6 @@
 <?php namespace Lio\Bin;
 
-class PasteForkCreator implements PasteCreatorListener
+class PasteForkCreator implements PasteCreatorResponder
 {
     protected $listener;
     protected $parent;

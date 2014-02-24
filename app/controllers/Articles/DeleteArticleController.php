@@ -2,11 +2,11 @@
 
 use Lio\Articles\Article;
 use Lio\Articles\ArticleDeleter;
-use Lio\Articles\ArticleDeleterObserver;
+use Lio\Articles\ArticleDeleterResponder;
 use Lio\Articles\ArticleRepository;
 use Auth;
 
-class DeleteArticleController extends \BaseController implements ArticleDeleterObserver
+class DeleteArticleController extends \BaseController implements ArticleDeleterResponder
 {
     private $articles;
     private $deleter;

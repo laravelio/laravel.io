@@ -1,19 +1,20 @@
 <?php namespace Lio\Articles;
+
 use Lio\Accounts\User;
 
 class ArticleCreator
 {
     private $articles;
-    private $observer;
+    private $responder;
 
     public function __construct(ArticleRepository $articles)
     {
         $this->articles = $articles;
     }
 
-    public function setObserver(ArticleCreatorObserver $observer)
+    public function setResponder(ArticleCreatorResponder $responder)
     {
-        $this->observer = $observer;
+        $this->responder = $responder;
     }
 
     public function create(array $data, User $author, array $tagIds)
@@ -37,12 +38,12 @@ class ArticleCreator
 
     private function failure($errors)
     {
-        return $this->observer->articleCreationError($errors);
+        return $this->responder->articleCreationError($errors);
     }
 
     private function success(Article $article)
     {
-        return $this->observer->articleCreated($article);
+        return $this->responder->articleCreated($article);
     }
 
     private function needToPublish($data)

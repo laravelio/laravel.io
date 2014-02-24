@@ -10,7 +10,7 @@ class ArticleDeleter
         $this->articles = $articles;
     }
 
-    public function setObserver(ArticleDeleterObserver $observer)
+    public function setObserver(ArticleDeleterResponder $observer)
     {
         $this->observer = $observer;
     }

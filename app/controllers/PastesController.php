@@ -1,11 +1,11 @@
 <?php
 
 use Lio\Bin\PasteRepository;
-use Lio\Bin\PasteCreatorListener;
+use Lio\Bin\PasteCreatorResponder;
 use Lio\Bin\PasteCreator;
 use Lio\Bin\PasteForkCreator;
 
-class PastesController extends BaseController implements PasteCreatorListener
+class PastesController extends BaseController implements PasteCreatorResponder
 {
     protected $layout = 'layouts.bin';
     protected $pastes;

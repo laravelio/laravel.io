@@ -2,16 +2,16 @@
 
 use Lio\Forum\Replies\ReplyRepository;
 use Lio\Forum\Threads\ThreadCreator;
-use Lio\Forum\Threads\ThreadCreatorListener;
+use Lio\Forum\Threads\ThreadCreatorResponder;
 use Lio\Forum\Threads\ThreadDeleterListener;
 use \Lio\Forum\Threads\ThreadForm;
 use Lio\Forum\Threads\ThreadRepository;
-use Lio\Forum\Threads\ThreadUpdaterListener;
+use Lio\Forum\Threads\ThreadUpdaterResponder;
 use Lio\Tags\TagRepository;
 
 class ForumThreadsController extends BaseController implements
-    ThreadCreatorListener,
-    ThreadUpdaterListener,
+    ThreadCreatorResponder,
+    ThreadUpdaterResponder,
     ThreadDeleterListener
 {
     protected $threads;
@@ -32,8 +32,10 @@ class ForumThreadsController extends BaseController implements
     {
         $this->threads = $threads;
         $this->tags = $tags;
-        $this->threadCreator = $threadCreator;
         $this->replies = $replies;
+
+        $threadCreator->setResponder($this);
+        $this->threadCreator = $threadCreator;
     }
 
     // show thread list - clean this method
@@ -83,7 +85,7 @@ class ForumThreadsController extends BaseController implements
 
     public function postCreateThread()
     {
-        return $this->threadCreator->create($this, [
+        return $this->threadCreator->create([
             'subject' => Input::get('subject'),
             'body' => Input::get('body'),
             'author' => Auth::user(),

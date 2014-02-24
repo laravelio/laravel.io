@@ -15,7 +15,7 @@ class ThreadUpdater
         $this->threads = $threads;
     }
 
-    public function update(ThreadUpdaterListener $observer, $thread, $data, $validator = null)
+    public function update(ThreadUpdaterResponder $observer, $thread, $data, $validator = null)
     {
         // check the passed in validator
         if ($validator && ! $validator->isValid()) {

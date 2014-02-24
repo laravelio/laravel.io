@@ -4,8 +4,8 @@ use Lio\Forum\Replies\ReplyForm;
 use Lio\Forum\Replies\ReplyPresenter;
 
 class ForumRepliesController extends BaseController implements
-    \Lio\Forum\Replies\ReplyCreatorListener,
-    \Lio\Forum\Replies\ReplyUpdaterListener,
+    \Lio\Forum\Replies\ReplyCreatorResponder,
+    \Lio\Forum\Replies\ReplyUpdaterResponder,
     \Lio\Forum\Replies\ReplyDeleterListener
 {
     protected $tags;

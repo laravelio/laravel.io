@@ -4,11 +4,11 @@ use Lio\Articles\Article;
 use Lio\Articles\ArticleRepository;
 use Lio\Articles\ArticleUpdater;
 use Lio\Articles\ArticleForm;
-use Lio\Articles\ArticleUpdaterObserver;
+use Lio\Articles\ArticleUpdaterResponder;
 use Lio\Tags\TagRepository;
 use Auth, Input;
 
-class UpdateArticleController extends \BaseController implements ArticleUpdaterObserver
+class UpdateArticleController extends \BaseController implements ArticleUpdaterResponder
 {
     private $articles;
     private $updater;

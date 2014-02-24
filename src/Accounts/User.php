@@ -115,10 +115,10 @@ class User extends Entity implements UserInterface
         return $this->password;
     }
 
-    // RemindableInterface
-    public function getReminderEmail()
+    // Notifications
+    public function notifications()
     {
-        return $this->email;
+        $this->hasMany('Lio\Notifications\Notification', 'user_id');
     }
 
     // Forum

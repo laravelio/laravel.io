@@ -10,7 +10,7 @@ class ArticleUpdater
         $this->articles = $articles;
     }
 
-    public function setObserver(ArticleUpdaterObserver $observer)
+    public function setObserver(ArticleUpdaterResponder $observer)
     {
         $this->observer = $observer;
     }

@@ -1,9 +1,9 @@
 <?php
 
 use Lio\Github\GithubAuthenticatorListener;
-use Lio\Accounts\UserCreatorListener;
+use Lio\Accounts\UserCreatorResponder;
 
-class AuthController extends BaseController implements GithubAuthenticatorListener, UserCreatorListener
+class AuthController extends BaseController implements GithubAuthenticatorListener, UserCreatorResponder
 {
     // authenticate with github
     public function getLogin()

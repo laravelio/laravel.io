@@ -1,6 +1,6 @@
 <?php namespace Lio\Forum\Replies;
 
-interface ReplyUpdaterListener
+interface ReplyUpdaterResponder
 {
     public function replyUpdateError($errors);
     public function replyUpdated($reply);
