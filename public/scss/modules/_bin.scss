@@ -11,10 +11,16 @@ body.bin {
         position: absolute;
         right: -100%;
     }
-
+    
+    .show-container {
+        width: 200%;
+        overflow-x: scroll;
+    }
+    
     .prettyprint {
         border: 0;
-        margin-bottom: 0;
+        margin: 0;
+        padding: 0;
         padding-bottom: 300px;
 
         .linenums {
