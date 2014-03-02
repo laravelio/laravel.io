@@ -37,6 +37,5 @@ class CreatePasteHandler implements Handler
     {
         $paste->hash = $this->hashids->encrypt($paste->id);
         $this->repository->save($paste);
-        return $paste;
     }
 }
