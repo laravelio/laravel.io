@@ -1,8 +1,10 @@
 <?php namespace Lio\Bin;
 
-use Lio\Core\Entity;
+use Lio\Core;
 
-class Paste extends Entity {
+class Paste extends Core\Entity
+{
+    use Core\DomainEvents;
 
     protected $table      = 'pastes';
     protected $fillable   = ['description', 'code', 'author_id', 'parent_id'];

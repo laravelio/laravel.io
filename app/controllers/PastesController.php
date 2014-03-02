@@ -1,19 +1,23 @@
 <?php
 
+use Lio\Core\CommandBus;
 use Lio\Bin\PasteRepository;
 use Lio\Bin\PasteCreatorResponder;
 use Lio\Bin\PasteCreator;
 use Lio\Bin\PasteForkCreator;
+use Lio\Bin\Commands\CreatePasteCommand;
 
 class PastesController extends BaseController implements PasteCreatorResponder
 {
     protected $layout = 'layouts.bin';
-    protected $pastes;
-    protected $creator;
-    protected $fork;
+    private $bus;
+    private $pastes;
+    private $creator;
+    private $fork;
 
-    public function __construct(PasteRepository $pastes, PasteCreator $creator, PasteForkCreator $fork)
+    public function __construct(CommandBus $bus, PasteRepository $pastes, PasteCreator $creator, PasteForkCreator $fork)
     {
+        $this->bus = $bus;
         $this->pastes = $pastes;
         $this->creator = $creator;
         $this->fork = $fork;
@@ -43,7 +47,9 @@ class PastesController extends BaseController implements PasteCreatorResponder
 
     public function postCreate()
     {
-        return $this->creator->create($this, Input::get('code'), Auth::user());
+        $command = new CreatePasteCommand(Input::get('code'), Auth::user());
+        $paste = $this->bus->execute($command);
+        return $this->redirectAction('PastesController@getShow', $paste->hash);
     }
 
     public function getFork($hash)
