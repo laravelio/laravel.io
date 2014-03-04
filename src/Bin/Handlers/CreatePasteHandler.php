@@ -2,35 +2,35 @@
 
 use Lio\Core\Handler;
 use Lio\Bin\PasteRepository;
+use Lio\Bin\Bin;
 use Hashids\Hashids;
 
 class CreatePasteHandler implements Handler
 {
+    private $bin;
     private $repository;
     private $hashids;
 
-    public function __construct(PasteRepository $repository, Hashids $hashids)
+    public function __construct(Bin $bin, PasteRepository $repository, Hashids $hashids)
     {
+        $this->bin = $bin;
         $this->repository = $repository;
         $this->hashids = $hashids;
     }
 
     public function handle($command)
     {
-        $paste = $this->createPaste($command->code, $command->user);
+        $paste = $this->bin->createPaste($command->code, $command->user);
         $this->save($paste);
         return $paste;
-    }
-
-    private function createPaste($code, $user)
-    {
-        return $this->repository->getNew(['code' => $code, 'author' => $user]);
     }
 
     private function save($paste)
     {
         $this->repository->save($paste);
         $this->attachHash($paste);
+
+        $events = $this->bin->releaseEvents();
     }
 
     private function attachHash($paste)

@@ -1,6 +1,6 @@
 <?php namespace Lio\Core;
 
-trait DomainEvents
+trait EventGenerator
 {
     protected $pendingEvents = [];
 
