@@ -20,7 +20,7 @@ class CreatePasteHandler implements Handler
 
     public function handle($command)
     {
-        $paste = $this->bin->createPaste($command->code, $command->author);
+        $paste = $this->bin->addPaste($command->code, $command->author);
         $this->save($paste);
         return $paste;
     }
