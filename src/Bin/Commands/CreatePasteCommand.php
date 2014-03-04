@@ -3,11 +3,11 @@
 class CreatePasteCommand
 {
     public $code;
-    public $user;
+    public $author;
 
-    public function __construct($code, $user)
+    public function __construct($code, $author)
     {
         $this->code = $code;
-        $this->user = $user;
+        $this->author = $author;
     }
 }

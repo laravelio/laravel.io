@@ -7,9 +7,11 @@ class Bin
 {
     use EventGenerator;
 
-    public function createPaste($code, $user)
+    public function createPaste($code, $author)
     {
-        $paste = new Paste(['code' => $code, 'user' => $user]);
+        $paste = new Paste;
+        $paste->code = $code;
+        $paste->author = $author;
         $this->raise(new PasteCreatedEvent($paste));
         return $paste;
     }
