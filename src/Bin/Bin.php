@@ -9,9 +9,7 @@ class Bin
 
     public function createPaste($code, $author)
     {
-        $paste = new Paste;
-        $paste->code = $code;
-        $paste->author = $author;
+        $paste = new Paste(['code' => $code, 'author' => $author]);
         $this->raise(new PasteCreatedEvent($paste));
         return $paste;
     }
