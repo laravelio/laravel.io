@@ -2,6 +2,7 @@
 
 use Lio\Forum\Replies\ReplyForm;
 use Lio\Forum\Replies\ReplyPresenter;
+use Helpers\HtmlClean;
 
 class ForumRepliesController extends BaseController implements
     \Lio\Forum\Replies\ReplyCreatorListener,
@@ -46,7 +47,7 @@ class ForumRepliesController extends BaseController implements
         $thread = $this->threads->requireBySlug($threadSlug);
 
         return App::make('Lio\Forum\Replies\ReplyCreator')->create($this, [
-            'body'   => Input::get('body'),
+            'body'   => HtmlClean::make(Input::get('body')),
             'author' => Auth::user(),
         ], $thread->id, new ReplyForm);
     }
@@ -83,7 +84,7 @@ class ForumRepliesController extends BaseController implements
         }
 
         return App::make('Lio\Forum\Replies\ReplyUpdater')->update($reply, $this, [
-            'body' => Input::get('body'),
+            'body' => HtmlClean::make(Input::get('body')),
         ], new ReplyForm);
     }
 
