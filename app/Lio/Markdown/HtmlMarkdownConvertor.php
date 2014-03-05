@@ -11,6 +11,8 @@ class HtmlMarkdownConvertor
     {
         $this->htmlParser = new HTML_To_markdown;
         $this->htmlParser->set_option('header_style', 'atx');
+	$this->htmlParser->set_option('strip_tags', true);
+
 
         $this->markdownParser = new \Michelf\MarkdownExtra;
         $this->markdownParser->no_markup = true;

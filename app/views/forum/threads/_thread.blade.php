@@ -16,7 +16,7 @@
     </div>
 
     <span style="display:none;" class="_author_name">{{ $thread->author->name }}</span>
-    <span style="display:none;" class="_quote_body">{{ $thread->resource->body }}</span>
+    <span style="display:none;" class="_quote_body">{{{ $thread->resource->body }}}</span>
 
     <div class="admin-bar">
         <ul>
