@@ -15,7 +15,7 @@
             <div class="thread-summary">
                 {{ $thread->author->thumbnail }}
                 <div class="info">
-                    <h3><a href="{{ $thread->url }}">{{ $thread->subject }}</a></h3>
+                    <h3><a href="{{ $thread->url }}">{{{ $thread->subject }}}</a></h3>
                     <ul class="meta">
                         <li>posted {{ $thread->created_ago }}</li>
                         <li>by <a href="{{ $thread->author->profileUrl }}">{{ $thread->author->name }}</a></li>
@@ -37,7 +37,7 @@
             <div class="thread-summary">
                 {{ $reply->author->thumbnail }}
                 <div class="info">
-                    <h3><a href="{{ $reply->url }}">In reply to: {{ $reply->thread->subject }}</a></h3>
+                    <h3><a href="{{ $reply->url }}">In reply to: {{{ $reply->thread->subject }}}</a></h3>
                     <ul class="meta">
                         <li>posted {{ $reply->created_ago }}</li>
                         <li>by <a href="{{ $reply->author->profileUrl }}">{{ $reply->author->name }}</a></li>
