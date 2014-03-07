@@ -11,37 +11,38 @@ class PastesController extends BaseController implements PasteCreatorResponder
 {
     protected $layout = 'layouts.bin';
     private $bus;
-    private $pastes;
+    private $repository;
     private $creator;
     private $fork;
 
-    public function __construct(CommandBus $bus, PasteRepository $pastes, PasteCreator $creator, PasteForkCreator $fork)
+    public function __construct(CommandBus $bus, PasteRepository $repository, PasteCreator $creator, PasteForkCreator $fork)
     {
         $this->bus = $bus;
-        $this->pastes = $pastes;
+        $this->repository = $repository;
         $this->creator = $creator;
         $this->fork = $fork;
     }
 
     public function getIndex()
     {
-        $pastes = $this->pastes->getRecentPaginated();
-        $this->title = "Create Paste";
+        $pastes = $this->repository->getRecentPaginated();
+        $this->title = 'Create Paste';
         $this->view('bin.index', compact('pastes'));
     }
 
     public function getShow($hash)
     {
-        $paste = $this->pastes->getByHash($hash);
+        $paste = $this->repository->getByHash($hash);
         if ( ! $paste) {
             return $this->redirectAction('PastesController@getCreate');
         }
-        $this->title = "Paste Viewer";
+        $this->title = 'Paste Viewer';
         $this->view('bin.show', compact('paste'));
     }
 
     public function getCreate()
     {
+        $this->title = 'Create Paste';
         $this->view('bin.create');
     }
 
@@ -54,14 +55,14 @@ class PastesController extends BaseController implements PasteCreatorResponder
 
     public function getFork($hash)
     {
-        $paste = $this->pastes->getByHash($hash);
+        $paste = $this->repository->getByHash($hash);
         $this->title = "Fork Paste";
         $this->view('bin.fork', compact('paste'));
     }
 
     public function postFork($hash)
     {
-        $paste = $this->pastes->getByHash($hash);
+        $paste = $this->repository->getByHash($hash);
         $this->fork->setListener($this);
         $this->fork->setParentPaste($paste);
         return $this->creator->create($this->fork, Input::get('code'), Auth::user());
