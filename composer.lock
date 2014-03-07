@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c99fc69a77a01101424327caff1b16ae",
+    "hash": "cfd21b6200cc4d99c59364a359f9ddcc",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -335,12 +335,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "a75631417c5fcc2143fd4c62d129b68667a6f4e5"
+                "reference": "16542f7a37ae7636f665ace09cfa98d9f260b711"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/a75631417c5fcc2143fd4c62d129b68667a6f4e5",
-                "reference": "a75631417c5fcc2143fd4c62d129b68667a6f4e5",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/16542f7a37ae7636f665ace09cfa98d9f260b711",
+                "reference": "16542f7a37ae7636f665ace09cfa98d9f260b711",
                 "shasum": ""
             },
             "require": {
@@ -403,7 +403,7 @@
                 "iron-io/iron_mq": "1.5.*",
                 "mockery/mockery": "0.9.*",
                 "pda/pheanstalk": "2.1.*",
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "4.0.*"
             },
             "suggest": {
                 "doctrine/dbal": "Allow renaming columns and dropping SQLite columns."
@@ -444,7 +444,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2014-03-07 02:17:42"
+            "time": "2014-03-07 14:46:07"
         },
         {
             "name": "lusitanian/oauth",
@@ -666,12 +666,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mitchellvanw/event-dispatcher.git",
-                "reference": "5487a838e875b3af7aea954765e8342675e1c136"
+                "reference": "cb4066431b0aa15b970d5bff3bfacf304c2f8934"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mitchellvanw/event-dispatcher/zipball/5487a838e875b3af7aea954765e8342675e1c136",
-                "reference": "5487a838e875b3af7aea954765e8342675e1c136",
+                "url": "https://api.github.com/repos/mitchellvanw/event-dispatcher/zipball/cb4066431b0aa15b970d5bff3bfacf304c2f8934",
+                "reference": "cb4066431b0aa15b970d5bff3bfacf304c2f8934",
                 "shasum": ""
             },
             "require": {
@@ -683,7 +683,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.x-dev"
+                    "dev-master": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -702,7 +702,7 @@
                 }
             ],
             "description": "Event Dispatcher with a focus on Domain Events",
-            "time": "2014-03-06 18:29:07"
+            "time": "2014-03-07 15:11:50"
         },
         {
             "name": "monolog/monolog",
@@ -3105,6 +3105,7 @@
         "michelf/php-markdown": 20,
         "nickcernis/html-to-markdown": 20,
         "misd/linkify": 20,
+        "mitch/event-dispatcher": 20,
         "mockery/mockery": 20,
         "raveren/kint": 20
     },
