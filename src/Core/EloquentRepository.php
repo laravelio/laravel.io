@@ -53,13 +53,9 @@ abstract class EloquentRepository
         return $this->model->newInstance($attributes);
     }
 
-    public function save($data)
+    public function save($model)
     {
-        if ($data instanceOf Model) {
-            return $this->storeEloquentModel($data);
-        } elseif (is_array($data)) {
-            return $this->storeArray($data);
-        }
+        $model->save();
     }
 
     public function delete($model)

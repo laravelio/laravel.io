@@ -1,5 +1,5 @@
 <div class="thread {{ $thread->isQuestion() ? 'question' : '' }} {{ $thread->isSolved() ? 'solved' : '' }} _post">
-    <h1>{{ $thread->subject }}</h1>
+    <h1>{{ $thread->title }}</h1>
 
     <span class="markdown">
         {{ $thread->body }}

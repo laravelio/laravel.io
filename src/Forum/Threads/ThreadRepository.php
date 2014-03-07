@@ -2,16 +2,25 @@
 
 use Illuminate\Support\Collection;
 use Lio\Core\Exceptions\EntityNotFoundException;
+use Lio\Tags\TagRepository;
 
 class ThreadRepository extends \Lio\Core\EloquentRepository
 {
-    public function __construct(Thread $model)
+    /**
+     * @var \Lio\Tags\TagRepository
+     */
+    private $tags;
+
+    public function __construct(Thread $model, TagRepository $tags)
     {
         $this->model = $model;
+        $this->tags = $tags;
     }
 
-    public function getByTagsPaginated(Collection $tags, $perPage = 20)
+    public function getByTagsPaginated($tagString, $perPage = 20)
     {
+        $tags = $this->tags->getAllTagsBySlug($tagString);
+
         $query = $this->model->with(['mostRecentReply', 'mostRecentReply.author', 'tags']);
 
         if ($tags->count() > 0) {
@@ -25,8 +34,10 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
         return $query->paginate($perPage, ['forum_threads.*']);
     }
 
-    public function getByTagsAndStatusPaginated(Collection $tags, $status, $perPage = 20)
+    public function getByTagsAndStatusPaginated($tagString, $status, $perPage = 20)
     {
+        $tags = $this->tags->getAllTagsBySlug($tagString);
+
         $query = $this->model->with(['mostRecentReply', 'tags']);
 
         if ($tags->count() > 0) {
@@ -46,7 +57,10 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
         $query->groupBy('forum_threads.id')
             ->orderBy('updated_at', 'desc');
 
-        return $query->paginate($perPage, ['forum_threads.*']);
+        $paginator = $query->paginate($perPage, ['forum_threads.*']);
+        $paginator->appends(['tags' => $tagString]);
+        return $paginator;
+
     }
 
     public function getThreadRepliesPaginated(Thread $thread, $perPage = 20)

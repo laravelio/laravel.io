@@ -9,7 +9,7 @@ use Lio\Forum\Threads\ThreadRepository;
 use Lio\Forum\Threads\ThreadUpdaterResponder;
 use Lio\Tags\TagRepository;
 
-class ForumThreadsController extends BaseController implements
+class OldForumThreadsController extends BaseController implements
     ThreadCreatorResponder,
     ThreadUpdaterResponder,
     ThreadDeleterListener

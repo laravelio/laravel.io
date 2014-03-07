@@ -1,14 +1,14 @@
 <?php namespace Lio\Forum\Threads;
 
-use Lio\Accounts\User;
 use Auth;
 use Lio\Core\Entity;
+use Lio\Core\EventGenerator;
 use Lio\Forum\Replies\Reply;
 
 class Thread extends Entity
 {
     protected $table      = 'forum_threads';
-    protected $fillable   = ['subject', 'body', 'author_id', 'is_question', 'solution_reply_id', 'category_slug', 'laravel_version'];
+    protected $guarded   = [];
     protected $with       = ['author'];
     protected $softDelete = true;
 
@@ -19,7 +19,7 @@ class Thread extends Entity
         'author_id' => 'required|exists:users,id',
     ];
 
-    protected $laravelVersions = [
+    public static $laravelVersions = [
         4 => "Laravel 4.x",
         3 => "Laravel 3.x",
         0 => "Doesn't Matter",
@@ -64,6 +64,11 @@ class Thread extends Entity
     public function scopeUnsolvedQuestions($q)
     {
         return $q->where('is_question', '=', 1)->whereNotNull('solution_reply_id');
+    }
+
+    public function getTitleAttribute()
+    {
+        return ($this->isSolved() ? '[SOLVED] ' : '') . $this->subject;
     }
 
     private function generateNewSlug()

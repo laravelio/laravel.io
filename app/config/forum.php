@@ -11,6 +11,9 @@ return [
         'Authentication / Security' => [
             'tags' => 'authentication,security'
         ],
+        'Architecture / Testing' => [
+            'tags' => 'architecture,testing'
+        ],
         'Requests / Input / Responses' => [
             'tags' => 'requests,input'
         ],
@@ -31,6 +34,9 @@ return [
         ],
         'Local Community Meetups' => [
             'tags' => 'meetups'
+        ],
+        'Job Board' => [
+            'tags' => 'jobs'
         ],
         'Laravel.io Site and Community' => [
             'tags'  => 'laravelio',
