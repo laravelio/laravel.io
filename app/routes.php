@@ -93,8 +93,8 @@ Route::group(['before' => 'auth'], function() {
     Route::get('forum/mark-as-solved/{threadId}/{replyId}', 'ForumThreadsController@getMarkQuestionSolved');
     Route::get('forum/mark-as-unsolved/{threadId}', 'ForumThreadsController@getMarkQuestionUnsolved');
 
-    Route::get('forum/edit-thread/{threadId}', 'ForumThreadsController@getEditThread');
-    Route::post('forum/edit-thread/{threadId}', 'ForumThreadsController@postEditThread');
+    Route::get('forum/update-thread/{threadId}', 'ForumThreadsController@getUpdateThread');
+    Route::post('forum/update-thread/{threadId}', 'ForumThreadsController@postUpdateThread');
     Route::get('forum/edit-reply/{replyId}', 'ForumRepliesController@getEditReply');
     Route::post('forum/edit-reply/{replyId}', 'ForumRepliesController@postEditReply');
 

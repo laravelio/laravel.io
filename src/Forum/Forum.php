@@ -2,7 +2,7 @@
 
 use Lio\Accounts\User;
 use Lio\Core\EventGenerator;
-use Lio\Forum\Threads\Events\ThreadCreatedEvent;
+use Lio\Forum\Threads\Events;
 use Lio\Forum\Threads\Thread;
 use Lio\Forum\Threads\ThreadRepository;
 
@@ -32,8 +32,26 @@ class Forum
 
         $thread->setTagsById($tagIds);
 
-        $this->raise(new ThreadCreatedEvent($thread));
+        $this->raise(new Events\ThreadCreatedEvent($thread));
 
         return $thread;
     }
+
+    public function UpdateThread(Thread $thread, $subject, $body, User $author, $isQuestion, $laravelVersion, array $tagIds)
+    {
+        $thread->fill([
+            'subject' => $subject,
+            'body' => $body,
+            'author_id' => $author->id,
+            'is_question' => $isQuestion,
+            'laravel_version' => $laravelVersion,
+        ]);
+
+        $thread->setTagsById($tagIds);
+
+        $this->raise(new Events\ThreadUpdatedEvent($thread));
+
+        return $thread;
+    }
+
 } 

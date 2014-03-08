@@ -2,6 +2,7 @@
 
 use Lio\Core\CommandBus;
 use Lio\Forum\Threads\Commands\CreateThreadCommand;
+use Lio\Forum\Threads\Commands\UpdateThreadCommand;
 use Lio\Forum\Threads\Thread;
 use Lio\Forum\Threads\ThreadRepository;
 use Lio\Tags\TagRepository;
@@ -63,14 +64,32 @@ class ForumThreadsController extends \BaseController
         return $this->redirectAction('ForumThreadsController@getShowThread', $thread->slug);
     }
 
-    public function getEditThread($threadId)
+    public function getUpdateThread($threadId)
     {
+        $tags = $this->tags->getAllForForum();
+        $versions = Thread::$laravelVersions;
+        $thread = $this->threads->requireById($threadId);
 
+        $this->title = "Update Forum Thread";
+        $this->view('forum.threads.update', compact('thread', 'tags', 'versions'));
     }
 
-    public function postEditThread($threadId)
+    public function postUpdateThread($threadId)
     {
+        $thread = $this->threads->requireById($threadId);
 
+        $command = new UpdateThreadCommand(
+            $thread,
+            Input::get('subject'),
+            Input::get('body'),
+            Auth::user(),
+            Input::get('is_question'),
+            Input::get('laravel_version'),
+            Input::get('tags', [])
+        );
+
+        $thread = $this->bus->execute($command);
+        return $this->redirectAction('ForumThreadsController@getShowThread', $thread->slug);
     }
 
     public function getMarkQuestionSolved($threadId, $solvedByReplyId)

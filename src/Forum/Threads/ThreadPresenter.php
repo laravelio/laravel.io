@@ -75,7 +75,7 @@ class ThreadPresenter extends BasePresenter
 
     public function editUrl()
     {
-        return action('ForumThreadsController@getEditThread', [$this->id]);
+        return action('ForumThreadsController@getUpdateThread', [$this->id]);
     }
 
     public function deleteUrl()

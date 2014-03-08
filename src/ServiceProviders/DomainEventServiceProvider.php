@@ -1,7 +1,7 @@
 <?php namespace Lio\ServiceProviders;
 
 use Illuminate\Support\ServiceProvider;
-use Lio\Forum\Threads\Listeners\AttachForumThreadTagsListener;
+use Lio\Forum\Threads\Listeners;
 
 class DomainEventServiceProvider extends ServiceProvider
 {
