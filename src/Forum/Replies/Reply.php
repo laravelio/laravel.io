@@ -2,15 +2,15 @@
 
 class Reply extends \Lio\Core\Entity
 {
-    protected $table      = 'forum_replies';
-    protected $fillable   = ['body', 'author_id', 'thread_id'];
-    protected $with       = ['author'];
+    protected $table = 'forum_replies';
+    protected $guarded = [];
+    protected $with = ['author'];
     protected $softDelete = true;
 
     public $presenter = 'Lio\Forum\Replies\ReplyPresenter';
 
     protected $validationRules = [
-        'body'      => 'required|min:6',
+        'body' => 'required|min:6',
         'author_id' => 'required|exists:users,id',
     ];
 
@@ -26,13 +26,13 @@ class Reply extends \Lio\Core\Entity
 
     public function isManageableBy($user)
     {
-        if ( ! $user) return false;
+        if (!$user) return false;
         return $this->isOwnedBy($user) || $user->isForumAdmin();
     }
 
     public function isOwnedBy($user)
     {
-        if ( ! $user) return false;
+        if (!$user) return false;
         return $user->id == $this->author_id;
     }
 

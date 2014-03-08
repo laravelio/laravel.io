@@ -2,28 +2,23 @@
 
 use Lio\Accounts\User;
 use Lio\Core\EventGenerator;
-use Lio\Forum\Replies\Reply;
-use Lio\Forum\Threads\Events;
-use Lio\Forum\Threads\Thread;
-use Lio\Forum\Threads\ThreadRepository;
+use Lio\Forum\Replies;
+use Lio\Forum\Threads;
 
 class Forum
 {
     use EventGenerator;
 
-    /**
-     * @var Threads\ThreadRepository
-     */
     private $threads;
 
-    public function __construct(ThreadRepository $threads)
+    public function __construct(Threads\ThreadRepository $threads)
     {
         $this->threads = $threads;
     }
 
     public function addThread($subject, $body, User $author, $isQuestion, $laravelVersion, array $tagIds)
     {
-        $thread = new Thread([
+        $thread = new Threads\Thread([
             'subject' => $subject,
             'body' => $body,
             'author_id' => $author->id,
@@ -33,12 +28,12 @@ class Forum
 
         $thread->setTagsById($tagIds);
 
-        $this->raise(new Events\ThreadCreatedEvent($thread));
+        $this->raise(new Threads\Events\ThreadCreatedEvent($thread));
 
         return $thread;
     }
 
-    public function UpdateThread(Thread $thread, $subject, $body, User $author, $isQuestion, $laravelVersion, array $tagIds)
+    public function UpdateThread(Threads\Thread $thread, $subject, $body, User $author, $isQuestion, $laravelVersion, array $tagIds)
     {
         $thread->fill([
             'subject' => $subject,
@@ -50,28 +45,41 @@ class Forum
 
         $thread->setTagsById($tagIds);
 
-        $this->raise(new Events\ThreadUpdatedEvent($thread));
+        $this->raise(new Threads\Events\ThreadUpdatedEvent($thread));
 
         return $thread;
     }
 
-    public function markThreadSolved(Thread $thread, Reply $solution)
+    public function markThreadSolved(Threads\Thread $thread, Replies\Reply $solution)
     {
         $thread->solution_reply_id = $solution->id;
-        $this->raise(new Events\ThreadSolvedEvent($thread, $solution));
+        $this->raise(new Threads\Events\ThreadSolvedEvent($thread, $solution));
         return $thread;
     }
 
-    public function markThreadUnsolved(Thread $thread)
+    public function markThreadUnsolved(Threads\Thread $thread)
     {
         $thread->solution_reply_id = null;
-        $this->raise(new Events\ThreadUnsolvedEvent($thread));
+        $this->raise(new Threads\Events\ThreadUnsolvedEvent($thread));
         return $thread;
     }
 
-    public function deleteThread(Thread $thread)
+    public function deleteThread(Threads\Thread $thread)
     {
-        $this->raise(new Events\ThreadDeletedEvent($thread));
+        $this->raise(new Threads\Events\ThreadDeletedEvent($thread));
         return $thread;
+    }
+
+    public function addThreadReply(Threads\Thread $thread, $body, User $author)
+    {
+        $reply = new Replies\Reply([
+            'body' => $body,
+            'thread_id' => $thread->id,
+            'author_id' => $author->id,
+        ]);
+
+        $this->raise(new Replies\Events\ReplyCreatedEvent($reply));
+
+        return $reply;
     }
 }

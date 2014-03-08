@@ -9,16 +9,18 @@ use Lio\Forum\Threads\ThreadRepository;
 class ForumRepliesController extends \BaseController
 {
     private $replies;
+    private $threads;
     private $queryStringGenerator;
     private $bus;
 
     private $repliesPerPage = 20;
 
-    function __construct(ReplyRepository $replies, CommandBus $bus, ReplyQueryStringGenerator $queryStringGenerator)
+    function __construct(ReplyRepository $replies, ThreadRepository $threads, CommandBus $bus, ReplyQueryStringGenerator $queryStringGenerator)
     {
         $this->replies = $replies;
         $this->bus = $bus;
         $this->queryStringGenerator = $queryStringGenerator;
+        $this->threads = $threads;
     }
 
     public function getReplyRedirect($threadSlug, $replyId)
@@ -31,7 +33,13 @@ class ForumRepliesController extends \BaseController
 
     public function postCreate($threadSlug)
     {
-        
+        $thread = $this->threads->requireBySlug($threadSlug);
+
+        return App::make('Lio\Forum\Replies\ReplyCreator')->create($this, [
+            'body'   => Input::get('body'),
+            'author' => Auth::user(),
+        ], $thread->id, new ReplyForm);
+
     }
 
     public function getEdit($replyId)
