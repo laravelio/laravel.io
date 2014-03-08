@@ -95,15 +95,15 @@ Route::group(['before' => 'auth'], function() {
 
     Route::get('forum/update-thread/{threadId}', 'ForumThreadsController@getUpdateThread');
     Route::post('forum/update-thread/{threadId}', 'ForumThreadsController@postUpdateThread');
-    Route::get('forum/edit-reply/{replyId}', 'ForumRepliesController@getEditReply');
-    Route::post('forum/edit-reply/{replyId}', 'ForumRepliesController@postEditReply');
+    Route::get('forum/edit-reply/{replyId}', 'ForumRepliesController@getEdit');
+    Route::post('forum/edit-reply/{replyId}', 'ForumRepliesController@postEdit');
 
     Route::get('forum/delete/reply/{replyId}', 'ForumRepliesController@getDelete');
     Route::post('forum/delete/reply/{replyId}', 'ForumRepliesController@postDelete');
     Route::get('forum/delete/thread/{threadId}', 'ForumThreadsController@getDelete');
     Route::post('forum/delete/thread/{threadId}', 'ForumThreadsController@postDelete');
 
-    Route::post('forum/{slug}', 'ForumRepliesController@postCreateReply');
+    Route::post('forum/{slug}', 'ForumRepliesController@postCreate');
 });
 
 Route::get('forum/{status?}', 'ForumThreadsController@getIndex')
