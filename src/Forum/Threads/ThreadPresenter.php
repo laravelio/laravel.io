@@ -11,7 +11,7 @@ class ThreadPresenter extends BasePresenter
         if ( ! $this->slug) {
             return '';
         }
-        return action('ForumThreadsController@getShowThread', [$this->slug]);
+        return action('ForumThreadsController@getShow', [$this->slug]);
     }
 
     public function created_ago()
@@ -75,7 +75,7 @@ class ThreadPresenter extends BasePresenter
 
     public function editUrl()
     {
-        return action('ForumThreadsController@getUpdateThread', [$this->id]);
+        return action('ForumThreadsController@getUpdate', [$this->id]);
     }
 
     public function deleteUrl()

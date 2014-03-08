@@ -14,7 +14,7 @@
                         {{ Input::get('tags') }}
                     </div>
                 @endif
-            <a class="button" href="{{ action('ForumThreadsController@getCreateThread') }}">Create Thread</a>
+            <a class="button" href="{{ action('ForumThreadsController@getCreate') }}">Create Thread</a>
         </div>
 
         <div class="filter">
@@ -38,7 +38,7 @@
                     @else
                         <h3>No threads found.</h3>
                     @endif
-                    <a class="button" href="{{ action('ForumThreadsController@getCreateThread') }}">Create a new thread</a>
+                    <a class="button" href="{{ action('ForumThreadsController@getCreate') }}">Create a new thread</a>
                 </div>
             @endif
         </div>

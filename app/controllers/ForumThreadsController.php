@@ -36,7 +36,7 @@ class ForumThreadsController extends \BaseController
         $this->view('forum.threads.index', compact('threads', 'tags', 'queryString'));
     }
 
-    public function getShowThread($threadSlug)
+    public function getShow($threadSlug)
     {
         $thread = $this->threads->requireBySlug($threadSlug);
         $replies = $this->threads->getThreadRepliesPaginated($thread, $this->repliesPerPage);
@@ -45,7 +45,7 @@ class ForumThreadsController extends \BaseController
         $this->view('forum.threads.show', compact('thread', 'replies'));
     }
 
-    public function getCreateThread()
+    public function getCreate()
     {
         $tags = $this->tags->getAllForForum();
         $versions = Thread::$laravelVersions;
@@ -54,7 +54,7 @@ class ForumThreadsController extends \BaseController
         $this->view('forum.threads.create', compact('tags', 'versions'));
     }
 
-    public function postCreateThread()
+    public function postCreate()
     {
         $command = new Commands\CreateThreadCommand(
             Input::get('subject'),
@@ -65,10 +65,10 @@ class ForumThreadsController extends \BaseController
             Input::get('tags', [])
         );
         $thread = $this->bus->execute($command);
-        return $this->redirectAction('ForumThreadsController@getShowThread', $thread->slug);
+        return $this->redirectAction('ForumThreadsController@getShow', $thread->slug);
     }
 
-    public function getUpdateThread($threadId)
+    public function getUpdate($threadId)
     {
         $tags = $this->tags->getAllForForum();
         $versions = Thread::$laravelVersions;
@@ -78,7 +78,7 @@ class ForumThreadsController extends \BaseController
         $this->view('forum.threads.update', compact('thread', 'tags', 'versions'));
     }
 
-    public function postUpdateThread($threadId)
+    public function postUpdate($threadId)
     {
         $thread = $this->threads->requireById($threadId);
 
@@ -93,7 +93,7 @@ class ForumThreadsController extends \BaseController
         );
 
         $thread = $this->bus->execute($command);
-        return $this->redirectAction('ForumThreadsController@getShowThread', $thread->slug);
+        return $this->redirectAction('ForumThreadsController@getShow', $thread->slug);
     }
 
     public function getMarkThreadSolved($threadId, $solvedByReplyId)
@@ -102,7 +102,7 @@ class ForumThreadsController extends \BaseController
         $reply = $this->replies->requireById($solvedByReplyId);
         $command = new Commands\MarkThreadSolvedCommand($thread, $reply);
         $thread = $this->bus->execute($command);
-        return $this->redirectAction('ForumThreadsController@getShowThread', $thread->slug);
+        return $this->redirectAction('ForumThreadsController@getShow', $thread->slug);
     }
 
     public function getMarkThreadUnsolved($threadId)
@@ -110,7 +110,7 @@ class ForumThreadsController extends \BaseController
         $thread = $this->threads->requireById($threadId);
         $command = new Commands\MarkThreadUnsolvedCommand($thread);
         $thread = $this->bus->execute($command);
-        return $this->redirectAction('ForumThreadsController@getShowThread', $thread->slug);
+        return $this->redirectAction('ForumThreadsController@getShow', $thread->slug);
     }
 
     public function getDelete($threadId)

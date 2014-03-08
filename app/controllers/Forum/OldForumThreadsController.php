@@ -102,7 +102,7 @@ class OldForumThreadsController extends BaseController implements
 
     public function threadCreated($thread)
     {
-        return $this->redirectAction('ForumThreadsController@getShowThread', [$thread->slug]);
+        return $this->redirectAction('ForumThreadsController@getShow', [$thread->slug]);
     }
 
     // edit a thread
@@ -180,7 +180,7 @@ class OldForumThreadsController extends BaseController implements
 
     public function threadUpdated($thread)
     {
-        return $this->redirectAction('ForumThreadsController@getShowThread', [$thread->slug]);
+        return $this->redirectAction('ForumThreadsController@getShow', [$thread->slug]);
     }
 
     // thread deletion

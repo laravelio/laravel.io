@@ -37,7 +37,7 @@ class OldForumRepliesController extends BaseController implements
         $generator = App::make('Lio\Forum\Replies\ReplyQueryStringGenerator');
         $queryString = $generator->generate($reply, $this->repliesPerPage);
 
-        return Redirect::to(action('ForumThreadsController@getShowThread', [$thread]) . $queryString);
+        return Redirect::to(action('ForumThreadsController@getShow', [$thread]) . $queryString);
     }
 
     // reply to a thread
@@ -95,7 +95,7 @@ class OldForumRepliesController extends BaseController implements
 
     public function replyUpdated($reply)
     {
-        return $this->redirectAction('ForumThreadsController@getShowThread', [$reply->thread->slug]);
+        return $this->redirectAction('ForumThreadsController@getShow', [$reply->thread->slug]);
     }
 
     // reply deletion
@@ -124,7 +124,7 @@ class OldForumRepliesController extends BaseController implements
     // observer methods
     public function replyDeleted($thread)
     {
-        return Redirect::action('ForumThreadsController@getShowThread', [$thread->slug]);
+        return Redirect::action('ForumThreadsController@getShow', [$thread->slug]);
     }
 
     // ------------------------- //

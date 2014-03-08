@@ -28,7 +28,7 @@ class ForumRepliesController extends \BaseController
         $reply = $this->replies->requireById($replyId);
         $queryString = $this->queryStringGenerator->generate($reply, $this->repliesPerPage);
 
-        return $this->redirectTo(action('ForumThreadsController@getShowThread', [$threadSlug]) . $queryString);
+        return $this->redirectTo(action('ForumThreadsController@getShow', [$threadSlug]) . $queryString);
     }
 
     public function postCreate($threadSlug)
@@ -55,16 +55,20 @@ class ForumRepliesController extends \BaseController
         $command = new Commands\UpdateReplyCommand($reply, Input::get('body'));
         $reply = $this->bus->execute($command);
         return $this->redirectAction('ForumRepliesController@getReplyRedirect', [$reply->thread->slug, $reply->id]);
-
     }
 
     public function getDelete($replyId)
     {
-
+        $reply = $this->replies->requireById($replyId);
+        $this->view('forum.replies.delete', compact('reply'));
     }
 
     public function postDelete($replyId)
     {
-
+        $reply = $this->replies->requireById($replyId);
+        $thread = $reply->thread;
+        $command = new Commands\DeleteReplyCommand($reply);
+        $reply = $this->bus->execute($command);
+        return $this->redirectAction('ForumThreadsController@getShow', [$thread->slug]);
     }
 } 

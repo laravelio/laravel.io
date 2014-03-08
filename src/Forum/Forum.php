@@ -93,4 +93,10 @@ class Forum
 
         return $reply;
     }
+
+    public function deleteThreadReply(Replies\Reply $reply)
+    {
+        $this->raise(new Replies\Events\ReplyDeletedEvent($reply));
+        return $reply;
+    }
 }

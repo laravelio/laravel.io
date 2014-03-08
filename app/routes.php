@@ -76,25 +76,18 @@ Route::group(['before' => 'auth'], function() {
 });
 
 
-//Route::get('article/{id}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getEditComment']);
-//Route::post('article/{id}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postEditComment']);
-//Route::get('article/{id}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getDeleteComment']);
-//Route::post('article/{id}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postDeleteComment']);
-//// Route::get('article/{id}', 'ArticlesController@getShow');
-//// Route::get('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@getCompose']);
-//Route::post('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@postCompose']);
 Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum
 Route::group(['before' => 'auth'], function() {
-    Route::get('forum/create-thread', 'ForumThreadsController@getCreateThread');
-    Route::post('forum/create-thread', 'ForumThreadsController@postCreateThread');
+    Route::get('forum/create-thread', 'ForumThreadsController@getCreate');
+    Route::post('forum/create-thread', 'ForumThreadsController@postCreate');
 
     Route::get('forum/mark-as-solved/{threadId}/{replyId}', 'ForumThreadsController@getMarkThreadSolved');
     Route::get('forum/mark-as-unsolved/{threadId}', 'ForumThreadsController@getMarkThreadUnsolved');
 
-    Route::get('forum/update-thread/{threadId}', 'ForumThreadsController@getUpdateThread');
-    Route::post('forum/update-thread/{threadId}', 'ForumThreadsController@postUpdateThread');
+    Route::get('forum/update-thread/{threadId}', 'ForumThreadsController@getUpdate');
+    Route::post('forum/update-thread/{threadId}', 'ForumThreadsController@postUpdate');
     Route::get('forum/edit-reply/{replyId}', 'ForumRepliesController@getUpdate');
     Route::post('forum/edit-reply/{replyId}', 'ForumRepliesController@postUpdate');
 
@@ -111,7 +104,7 @@ Route::get('forum/{status?}', 'ForumThreadsController@getIndex')
 
 Route::get('forum/search', 'ForumThreadsController@getSearch');
 Route::get('forum/{slug}/reply/{replyId}', 'ForumRepliesController@getReplyRedirect');
-Route::get('forum/{slug}', 'ForumThreadsController@getShowThread');
+Route::get('forum/{slug}', 'ForumThreadsController@getShow');
 
 Route::get('api/forum', 'Api\ForumThreadsController@getIndex');
 
