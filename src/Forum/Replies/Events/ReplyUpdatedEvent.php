@@ -3,7 +3,7 @@
 use Lio\Forum\Replies\Reply;
 use Mitch\EventDispatcher\Event;
 
-class ReplyCreatedEvent implements Event
+class ReplyUpdatedEvent implements Event
 {
     private $reply;
 
@@ -14,6 +14,6 @@ class ReplyCreatedEvent implements Event
 
     public function getName()
     {
-        return 'forum.reply_created';
+        return 'forum.reply_updated';
     }
 }

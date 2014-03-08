@@ -95,8 +95,8 @@ Route::group(['before' => 'auth'], function() {
 
     Route::get('forum/update-thread/{threadId}', 'ForumThreadsController@getUpdateThread');
     Route::post('forum/update-thread/{threadId}', 'ForumThreadsController@postUpdateThread');
-    Route::get('forum/edit-reply/{replyId}', 'ForumRepliesController@getEdit');
-    Route::post('forum/edit-reply/{replyId}', 'ForumRepliesController@postEdit');
+    Route::get('forum/edit-reply/{replyId}', 'ForumRepliesController@getUpdate');
+    Route::post('forum/edit-reply/{replyId}', 'ForumRepliesController@postUpdate');
 
     Route::get('forum/delete/reply/{replyId}', 'ForumRepliesController@getDelete');
     Route::post('forum/delete/reply/{replyId}', 'ForumRepliesController@postDelete');
@@ -110,7 +110,7 @@ Route::get('forum/{status?}', 'ForumThreadsController@getIndex')
     ->where(array('status' => '(|open|solved)'));
 
 Route::get('forum/search', 'ForumThreadsController@getSearch');
-Route::get('forum/{slug}/reply/{commentId}', 'ForumRepliesController@getReplyRedirect');
+Route::get('forum/{slug}/reply/{replyId}', 'ForumRepliesController@getReplyRedirect');
 Route::get('forum/{slug}', 'ForumThreadsController@getShowThread');
 
 Route::get('api/forum', 'Api\ForumThreadsController@getIndex');

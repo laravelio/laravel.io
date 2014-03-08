@@ -5,7 +5,7 @@ use Lio\Forum\Forum;
 use Lio\Forum\Replies\ReplyRepository;
 use Mitch\EventDispatcher\Dispatcher;
 
-class CreateReplyHandler implements Handler
+class UpdateReplyHandler implements Handler
 {
     private $forum;
     private $repository;
@@ -20,7 +20,7 @@ class CreateReplyHandler implements Handler
 
     public function handle($command)
     {
-        $reply = $this->forum->addThreadReply($command->thread, $command->body, $command->author);
+        $reply = $this->forum->updateThreadReply($command->reply, $command->body);
         $this->repository->save($reply);
         $this->dispatcher->dispatch($this->forum->releaseEvents());
         return $reply;

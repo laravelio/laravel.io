@@ -32,7 +32,7 @@
         <div class="admin-bar">
             <ul>
             @if($reply->isManageableBy($currentUser))
-                <li><a href="{{ action('ForumRepliesController@getEditReply', [$reply->id]) }}">Edit</a></li>
+                <li><a href="{{ action('ForumRepliesController@getUpdate', [$reply->id]) }}">Edit</a></li>
                 <li><a href="{{ action('ForumRepliesController@getDelete', [$reply->id]) }}">Delete</a></li>
             @endif
                 <li class="space"></li>

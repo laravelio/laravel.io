@@ -10,7 +10,7 @@ class Reply extends \Lio\Core\Entity
     public $presenter = 'Lio\Forum\Replies\ReplyPresenter';
 
     protected $validationRules = [
-        'body' => 'required|min:6',
+        'body' => 'required',
         'author_id' => 'required|exists:users,id',
     ];
 

@@ -1,12 +1,13 @@
 <?php namespace Lio\Forum\Replies\Commands; 
 
+use Lio\Accounts\User;
 use Lio\Forum\Threads\Thread;
 
 class CreateReplyCommand
 {
-    private $thread;
-    private $body;
-    private $author;
+    public $thread;
+    public $body;
+    public $author;
 
     public function __construct(Thread $thread, $body, User $author)
     {

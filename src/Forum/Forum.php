@@ -82,4 +82,15 @@ class Forum
 
         return $reply;
     }
+
+    public function updateThreadReply(Replies\Reply $reply, $body)
+    {
+        $reply->fill([
+            'body' => $body,
+        ]);
+
+        $this->raise(new Replies\Events\ReplyUpdatedEvent($reply));
+
+        return $reply;
+    }
 }

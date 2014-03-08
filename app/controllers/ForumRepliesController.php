@@ -3,7 +3,7 @@
 use Lio\Core\CommandBus;
 use Lio\Forum\Replies\ReplyQueryStringGenerator;
 use Lio\Forum\Replies\ReplyRepository;
-use Lio\Forum\Threads\Commands;
+use Lio\Forum\Replies\Commands;
 use Lio\Forum\Threads\ThreadRepository;
 
 class ForumRepliesController extends \BaseController
@@ -35,20 +35,26 @@ class ForumRepliesController extends \BaseController
     {
         $thread = $this->threads->requireBySlug($threadSlug);
 
-        return App::make('Lio\Forum\Replies\ReplyCreator')->create($this, [
-            'body'   => Input::get('body'),
-            'author' => Auth::user(),
-        ], $thread->id, new ReplyForm);
-
+        $command = new Commands\CreateReplyCommand($thread, Input::get('body'), Auth::user());
+        $reply = $this->bus->execute($command);
+        return $this->redirectAction('ForumRepliesController@getReplyRedirect', [$thread->slug, $reply->id]);
     }
 
-    public function getEdit($replyId)
+    public function getUpdate($replyId)
     {
+        $reply = $this->replies->requireById($replyId);
 
+        $this->title = "Update Forum Reply";
+        $this->view('forum.replies.update', compact('reply'));
     }
 
-    public function postEdit($replyId)
+    public function postUpdate($replyId)
     {
+        $reply = $this->replies->requireById($replyId);
+
+        $command = new Commands\UpdateReplyCommand($reply, Input::get('body'));
+        $reply = $this->bus->execute($command);
+        return $this->redirectAction('ForumRepliesController@getReplyRedirect', [$reply->thread->slug, $reply->id]);
 
     }
 
