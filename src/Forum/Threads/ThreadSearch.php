@@ -11,16 +11,16 @@ class ThreadSearch
         $this->model = $model;
     }
 
-    // this stuff is just a placeholder until we implement
-    // a real search system
-    public function searchPaginated($query, $perPage)
+    public function getPaginatedResults($query, $perPage)
     {
-        return $this->model->with(['mostRecentReply', 'tags'])
+        $results = $this->model->with(['mostRecentReply', 'tags'])
             ->where(function($q) use ($query) {
                 $q->where('subject', 'like', '%' . $query . '%')
                   ->orWhere('body', 'like', '%' . $query . '%');
             })
             ->orderBy('updated_at', 'desc')
             ->paginate($perPage, ['forum_threads.*']);
+        $results->appends(array('query' => $query));
+        return $results;
     }
 }

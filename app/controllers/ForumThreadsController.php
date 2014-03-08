@@ -1,10 +1,11 @@
 <?php
 
 use Lio\Core\CommandBus;
-use Lio\Forum\Threads\Commands\CreateThreadCommand;
-use Lio\Forum\Threads\Commands\UpdateThreadCommand;
+use Lio\Forum\Replies\ReplyRepository;
+use Lio\Forum\Threads\Commands;
 use Lio\Forum\Threads\Thread;
 use Lio\Forum\Threads\ThreadRepository;
+use Lio\Forum\Threads\ThreadSearch;
 use Lio\Tags\TagRepository;
 
 class ForumThreadsController extends \BaseController
@@ -12,15 +13,18 @@ class ForumThreadsController extends \BaseController
     private $threads;
     private $tags;
     private $bus;
+    private $search;
 
     private $numberOfThreadsOnIndex = 50;
     private $repliesPerPage = 20;
 
-    function __construct(ThreadRepository $threads, TagRepository $tags, CommandBus $bus)
+    function __construct(ThreadRepository $threads, ReplyRepository $replies, ThreadSearch $search, TagRepository $tags, CommandBus $bus)
     {
         $this->threads = $threads;
+        $this->replies = $replies;
         $this->tags = $tags;
         $this->bus = $bus;
+        $this->search = $search;
     }
 
     public function getIndex($status = '')
@@ -52,7 +56,7 @@ class ForumThreadsController extends \BaseController
 
     public function postCreateThread()
     {
-        $command = new CreateThreadCommand(
+        $command = new Commands\CreateThreadCommand(
             Input::get('subject'),
             Input::get('body'),
             Auth::user(),
@@ -78,7 +82,7 @@ class ForumThreadsController extends \BaseController
     {
         $thread = $this->threads->requireById($threadId);
 
-        $command = new UpdateThreadCommand(
+        $command = new Commands\UpdateThreadCommand(
             $thread,
             Input::get('subject'),
             Input::get('body'),
@@ -92,28 +96,45 @@ class ForumThreadsController extends \BaseController
         return $this->redirectAction('ForumThreadsController@getShowThread', $thread->slug);
     }
 
-    public function getMarkQuestionSolved($threadId, $solvedByReplyId)
+    public function getMarkThreadSolved($threadId, $solvedByReplyId)
     {
-
+        $thread = $this->threads->requireById($threadId);
+        $reply = $this->replies->requireById($solvedByReplyId);
+        $command = new Commands\MarkThreadSolvedCommand($thread, $reply);
+        $this->bus->execute($command);
+        return $this->redirectAction('ForumThreadsController@getShowThread', $thread->slug);
     }
 
-    public function getMarkQuestionUnsolved($threadId)
+    public function getMarkThreadUnsolved($threadId)
     {
-
+        $thread = $this->threads->requireById($threadId);
+        $command = new Commands\MarkThreadUnsolvedCommand($thread);
+        $this->bus->execute($command);
+        return $this->redirectAction('ForumThreadsController@getShowThread', $thread->slug);
     }
 
     public function getDelete($threadId)
     {
+        $thread = $this->threads->requireById($threadId);
 
+        $this->title = "Delete Forum Thread";
+        $this->view('forum.threads.delete', compact('thread'));
     }
 
     public function postDelete($threadId)
     {
-
+        $thread = $this->threads->requireById($threadId);
+        $command = new Commands\DeleteThreadCommand($thread);
+        $this->bus->execute($command);
+        return $this->redirectAction('ForumThreadsController@getIndex');
     }
 
     public function getSearch()
     {
+        $query = Input::get('query');
+        $results = $this->search->getPaginatedResults($query, $this->numberOfThreadsOnIndex);
 
+        $this->title = "Forum Search";
+        $this->view('forum.search', compact('query', 'results'));
     }
 } 

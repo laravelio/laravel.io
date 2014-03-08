@@ -3,7 +3,7 @@
 use Lio\Forum\Threads\Thread;
 use Mitch\EventDispatcher\Event;
 
-class ThreadCreatedEvent implements Event
+class ThreadUnsolvedEvent implements Event
 {
     /**
      * @var \Lio\Forum\Threads\Thread
@@ -17,6 +17,6 @@ class ThreadCreatedEvent implements Event
 
     public function getName()
     {
-        return 'forum.thread_created';
+        return 'forum.thread_unsolved';
     }
 }

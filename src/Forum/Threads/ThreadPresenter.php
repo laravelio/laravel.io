@@ -85,12 +85,12 @@ class ThreadPresenter extends BasePresenter
 
     public function markAsSolutionUrl($replyId)
     {
-        return action('ForumThreadsController@getMarkQuestionSolved', [$this->resource->id, $replyId]);
+        return action('ForumThreadsController@getMarkThreadSolved', [$this->resource->id, $replyId]);
     }
 
     public function markAsUnsolvedUrl()
     {
-        return action('ForumThreadsController@getMarkQuestionUnsolved', [$this->resource->id]);
+        return action('ForumThreadsController@getMarkThreadUnsolved', [$this->resource->id]);
     }
 
     // ------------------- //

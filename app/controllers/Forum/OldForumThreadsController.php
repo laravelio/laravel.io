@@ -140,7 +140,7 @@ class OldForumThreadsController extends BaseController implements
         ], new ThreadForm);
     }
 
-    public function getMarkQuestionSolved($threadId, $solvedByReplyId)
+    public function getMarkThreadSolved($threadId, $solvedByReplyId)
     {
         $thread = $this->threads->requireById($threadId);
 
@@ -159,7 +159,7 @@ class OldForumThreadsController extends BaseController implements
         ]);
     }
 
-    public function getMarkQuestionUnsolved($threadId)
+    public function getMarkThreadUnsolved($threadId)
     {
         $thread = $this->threads->requireById($threadId);
 

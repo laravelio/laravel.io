@@ -2,6 +2,7 @@
 
 use Lio\Accounts\User;
 use Lio\Core\EventGenerator;
+use Lio\Forum\Replies\Reply;
 use Lio\Forum\Threads\Events;
 use Lio\Forum\Threads\Thread;
 use Lio\Forum\Threads\ThreadRepository;
@@ -54,4 +55,23 @@ class Forum
         return $thread;
     }
 
-} 
+    public function markThreadSolved(Thread $thread, Reply $solution)
+    {
+        $thread->solution_reply_id = $solution->id;
+        $this->raise(new Events\ThreadSolvedEvent($thread, $solution));
+        return $thread;
+    }
+
+    public function markThreadUnsolved(Thread $thread)
+    {
+        $thread->solution_reply_id = null;
+        $this->raise(new Events\ThreadUnsolvedEvent($thread));
+        return $thread;
+    }
+
+    public function deleteThread(Thread $thread)
+    {
+        $this->raise(new Events\ThreadDeletedEvent($thread));
+        return $thread;
+    }
+}
