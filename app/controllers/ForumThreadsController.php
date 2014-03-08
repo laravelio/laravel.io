@@ -101,7 +101,7 @@ class ForumThreadsController extends \BaseController
         $thread = $this->threads->requireById($threadId);
         $reply = $this->replies->requireById($solvedByReplyId);
         $command = new Commands\MarkThreadSolvedCommand($thread, $reply);
-        $this->bus->execute($command);
+        $thread = $this->bus->execute($command);
         return $this->redirectAction('ForumThreadsController@getShowThread', $thread->slug);
     }
 
@@ -109,7 +109,7 @@ class ForumThreadsController extends \BaseController
     {
         $thread = $this->threads->requireById($threadId);
         $command = new Commands\MarkThreadUnsolvedCommand($thread);
-        $this->bus->execute($command);
+        $thread = $this->bus->execute($command);
         return $this->redirectAction('ForumThreadsController@getShowThread', $thread->slug);
     }
 
@@ -125,7 +125,7 @@ class ForumThreadsController extends \BaseController
     {
         $thread = $this->threads->requireById($threadId);
         $command = new Commands\DeleteThreadCommand($thread);
-        $this->bus->execute($command);
+        $thread = $this->bus->execute($command);
         return $this->redirectAction('ForumThreadsController@getIndex');
     }
 
