@@ -87,7 +87,8 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
     public function save($model)
     {
         $model->save();
-        $tagIds = $model->getNewTagids();
-        $model->tags()->sync($tagIds);
+        if ($model->hasUpdatedTags()) {
+            $model->tags()->sync($model->getUpdatedTagIds());
+        }
     }
 }

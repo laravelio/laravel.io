@@ -25,16 +25,21 @@ class Thread extends Entity
         0 => "Doesn't Matter",
     ];
 
-    private $newTagIds = [];
+    private $updatedTagIds = null;
 
-    public function setTagsById($newTagIds)
+    public function setTagsById($updatedTagIds)
     {
-        $this->newTagIds = $newTagIds;
+        $this->updatedTagIds = $updatedTagIds;
     }
 
-    public function getNewTagIds()
+    public function hasUpdatedTags()
     {
-        return $this->newTagIds;
+        return ! is_null($this->updatedTagIds);
+    }
+
+    public function getUpdatedTagIds()
+    {
+        return $this->updatedTagIds;
     }
 
     public function author()
