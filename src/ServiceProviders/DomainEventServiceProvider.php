@@ -10,6 +10,5 @@ class DomainEventServiceProvider extends ServiceProvider
     public function register()
     {
         $dispatcher = $this->app['Mitch\EventDispatcher\Dispatcher'];
-        $dispatcher->addListener('forum.thread_created', new AttachForumThreadTagsListener);
     }
 }

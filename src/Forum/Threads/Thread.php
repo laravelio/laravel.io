@@ -25,6 +25,18 @@ class Thread extends Entity
         0 => "Doesn't Matter",
     ];
 
+    private $newTagIds = [];
+
+    public function setTagsById($newTagIds)
+    {
+        $this->newTagIds = $newTagIds;
+    }
+
+    public function getNewTagIds()
+    {
+        return $this->newTagIds;
+    }
+
     public function author()
     {
         return $this->belongsTo('Lio\Accounts\User', 'author_id');
