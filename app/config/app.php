@@ -119,6 +119,7 @@ return array(
         'Lio\ServiceProviders\HashidsServiceProvider',
         'Lio\ServiceProviders\DomainEventServiceProvider',
         'Lio\ServiceProviders\CommandBusServiceProvider',
+        'Lio\ServiceProviders\ValidationServiceProvider',
 	),
 
 	/*

@@ -3,7 +3,7 @@
 App::error(function(\Lio\CommandBus\CommandValidationFailedException $exception) {
     $messages = (array) json_decode($exception->getMessage());
     $errors = new \Illuminate\Support\MessageBag($messages);
-    return Redirect::back()->withErrors($errors);
+    return Redirect::back()->withInput()->withErrors($errors);
 });
 
 /*
