@@ -67,7 +67,7 @@ class ForumRepliesController extends \BaseController
     {
         $reply = $this->replies->requireById($replyId);
         $thread = $reply->thread;
-        $command = new Commands\DeleteReplyCommand($reply);
+        $command = new Commands\DeleteReplyCommand($reply, Auth::user());
         $reply = $this->bus->execute($command);
         return $this->redirectAction('ForumThreadsController@getShow', [$thread->slug]);
     }
