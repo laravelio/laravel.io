@@ -6,16 +6,16 @@ use Lio\Forum\Threads\Commands\CreateThreadCommand;
 
 class CreateThreadValidator
 {
-    private $validator;
+    private $validationFactory;
 
-    public function __construct(Factory $validator)
+    public function __construct(Factory $validationFactory)
     {
-        $this->validator = $validator;
+        $this->validationFactory = $validationFactory;
     }
 
     public function validate(CreateThreadCommand $command)
     {
-        $validator = $this->validator->make(
+        $validator = $this->validationFactory->make(
             [
                 'subject' => $command->subject,
                 'body' => $command->body,
