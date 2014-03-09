@@ -1,7 +1,7 @@
 <?php namespace Lio\CommandBus; 
 
-use Illuminate\Container\BindingResolutionException;
 use Illuminate\Container\Container;
+use ReflectionException;
 
 class ValidationCommandBus implements CommandBusInterface
 {
@@ -27,10 +27,11 @@ class ValidationCommandBus implements CommandBusInterface
 
         try {
             $validator = $this->container->make($validatorClass);
-        } catch (BindingResolutionException $e) {
-            throw new CommandValidatorNotFoundException('Validator not found for command, "' . get_class($command) . '". Expected: ' . $this->inflector->getValidatorClass($command) . '.' . $e->getMessage());
+        } catch (ReflectionException $e) {
         }
 
-        $validator->validate($command);
+        if (isset($validator)) {
+            $validator->validate($command);
+        }
     }
 } 
