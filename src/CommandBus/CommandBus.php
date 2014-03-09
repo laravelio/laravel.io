@@ -1,8 +1,8 @@
-<?php namespace Lio\Core;
+<?php namespace Lio\CommandBus;
 
 use Illuminate\Container\Container;
 
-class CommandBus
+class CommandBus implements CommandBusInterface
 {
     private $container;
     private $inflector;

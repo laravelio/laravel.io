@@ -1,11 +1,11 @@
 <?php
 
-use Lio\Core\CommandBus;
 use Lio\Bin\PasteRepository;
 use Lio\Bin\PasteCreatorResponder;
 use Lio\Bin\PasteCreator;
 use Lio\Bin\PasteForkCreator;
 use Lio\Bin\Commands\CreatePasteCommand;
+use Lio\CommandBus\CommandBusInterface;
 
 class PastesController extends BaseController implements PasteCreatorResponder
 {
@@ -15,7 +15,7 @@ class PastesController extends BaseController implements PasteCreatorResponder
     private $creator;
     private $fork;
 
-    public function __construct(CommandBus $bus, PasteRepository $repository, PasteCreator $creator, PasteForkCreator $fork)
+    public function __construct(CommandBusInterface $bus, PasteRepository $repository, PasteCreator $creator, PasteForkCreator $fork)
     {
         $this->bus = $bus;
         $this->repository = $repository;

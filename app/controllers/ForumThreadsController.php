@@ -1,6 +1,6 @@
 <?php
 
-use Lio\Core\CommandBus;
+use Lio\CommandBus\CommandBusInterface;
 use Lio\Forum\Replies\ReplyRepository;
 use Lio\Forum\Threads\Commands;
 use Lio\Forum\Threads\Thread;
@@ -18,7 +18,7 @@ class ForumThreadsController extends \BaseController
     private $numberOfThreadsOnIndex = 50;
     private $repliesPerPage = 20;
 
-    function __construct(ThreadRepository $threads, ReplyRepository $replies, ThreadSearch $search, TagRepository $tags, CommandBus $bus)
+    function __construct(ThreadRepository $threads, ReplyRepository $replies, ThreadSearch $search, TagRepository $tags, CommandBusInterface $bus)
     {
         $this->threads = $threads;
         $this->replies = $replies;

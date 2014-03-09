@@ -1,6 +1,6 @@
 <?php
 
-use Lio\Core\CommandBus;
+use Lio\CommandBus\CommandBusInterface;
 use Lio\Forum\Replies\ReplyQueryStringGenerator;
 use Lio\Forum\Replies\ReplyRepository;
 use Lio\Forum\Replies\Commands;
@@ -15,7 +15,7 @@ class ForumRepliesController extends \BaseController
 
     private $repliesPerPage = 20;
 
-    function __construct(ReplyRepository $replies, ThreadRepository $threads, CommandBus $bus, ReplyQueryStringGenerator $queryStringGenerator)
+    function __construct(ReplyRepository $replies, ThreadRepository $threads, CommandBusInterface $bus, ReplyQueryStringGenerator $queryStringGenerator)
     {
         $this->replies = $replies;
         $this->bus = $bus;
