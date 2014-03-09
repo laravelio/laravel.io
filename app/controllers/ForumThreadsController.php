@@ -100,7 +100,7 @@ class ForumThreadsController extends \BaseController
     {
         $thread = $this->threads->requireById($threadId);
         $reply = $this->replies->requireById($solvedByReplyId);
-        $command = new Commands\MarkThreadSolvedCommand($thread, $reply);
+        $command = new Commands\MarkThreadSolvedCommand($thread, $reply, Auth::user());
         $thread = $this->bus->execute($command);
         return $this->redirectAction('ForumThreadsController@getShow', $thread->slug);
     }
@@ -108,7 +108,7 @@ class ForumThreadsController extends \BaseController
     public function getMarkThreadUnsolved($threadId)
     {
         $thread = $this->threads->requireById($threadId);
-        $command = new Commands\MarkThreadUnsolvedCommand($thread);
+        $command = new Commands\MarkThreadUnsolvedCommand($thread, Auth::user());
         $thread = $this->bus->execute($command);
         return $this->redirectAction('ForumThreadsController@getShow', $thread->slug);
     }

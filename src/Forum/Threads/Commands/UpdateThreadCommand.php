@@ -8,17 +8,17 @@ class UpdateThreadCommand
     public $thread;
     public $subject;
     public $body;
-    public $author;
+    public $user;
     public $isQuestion;
     public $laravelVersion;
     public $tagIds;
 
-    public function __construct(Thread $thread, $subject, $body, User $author, $isQuestion, $laravelVersion, array $tagIds)
+    public function __construct(Thread $thread, $subject, $body, User $user, $isQuestion, $laravelVersion, array $tagIds)
     {
         $this->thread = $thread;
         $this->subject = $subject;
         $this->body = $body;
-        $this->author = $author;
+        $this->user = $user;
         $this->isQuestion = $isQuestion;
         $this->laravelVersion = $laravelVersion;
         $this->tagIds = $tagIds;

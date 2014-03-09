@@ -18,9 +18,10 @@ class CreateReplyValidator
         $validator = $this->validationFactory->make(
             [
                 'body' => $command->body,
-            ],
-            [
+                'author' => $command->author->id,
+            ], [
                 'body'  => 'required',
+                'author' => 'exists:users,id',
             ]
         );
 

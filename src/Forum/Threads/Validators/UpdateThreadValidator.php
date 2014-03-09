@@ -15,6 +15,11 @@ class UpdateThreadValidator
 
     public function validate(UpdateThreadCommand $command)
     {
+        if ($command->thread->author_id != $command->user->id) {
+            $errorJson = json_encode(['error' => 'User does not have permission to update the thread.']);
+            throw new CommandValidationFailedException($errorJson);
+        }
+
         $validator = $this->validationFactory->make(
             [
                 'subject' => $command->subject,
@@ -22,13 +27,14 @@ class UpdateThreadValidator
                 'tags' => $command->tagIds,
                 'isQuestion' => $command->isQuestion,
                 'laravelVersion' => $command->laravelVersion,
-            ],
-            [
+                'user' => $command->user->id,
+            ], [
                 'subject' => 'required|min:10',
                 'body' => 'required',
                 'tags' => 'required|max_tags:3',
                 'isQuestion' => 'in:0,1',
                 'laravelVersion' => 'required|in:0,3,4',
+                'user' => 'exists:users,id',
             ]
         );
 

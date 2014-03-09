@@ -15,12 +15,18 @@ class UpdateReplyValidator
 
     public function validate(UpdateReplyCommand $command)
     {
+        if ($command->reply->author_id != $command->user->id) {
+            $errorJson = json_encode(['error' => 'User does not have permission to update the reply.']);
+            throw new CommandValidationFailedException($errorJson);
+        }
+
         $validator = $this->validationFactory->make(
             [
                 'body' => $command->body,
-            ],
-            [
-                'body'  => 'required',
+                'user' => $command->user->id,
+            ], [
+                'body' => 'required',
+                'user' => 'exists:users,id',
             ]
         );
 

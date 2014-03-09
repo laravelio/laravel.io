@@ -15,7 +15,7 @@ class DeleteReplyValidator
 
     public function validate(DeleteReplyCommand $command)
     {
-        if ($command->reply->author_id != $command->deleter->id) {
+        if ($command->reply->author_id != $command->user->id) {
             $errorJson = json_encode(['error' => 'User does not have permission to delete the reply.']);
             throw new CommandValidationFailedException($errorJson);
         }

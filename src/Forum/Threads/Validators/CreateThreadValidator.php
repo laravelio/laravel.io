@@ -22,13 +22,14 @@ class CreateThreadValidator
                 'tags' => $command->tagIds,
                 'isQuestion' => $command->isQuestion,
                 'laravelVersion' => $command->laravelVersion,
-            ],
-            [
+                'author' => $command->author->id,
+            ], [
                 'subject' => 'required|min:10',
                 'body' => 'required',
                 'tags' => 'required|max_tags:3',
                 'isQuestion' => 'in:0,1',
                 'laravelVersion' => 'required|in:0,3,4',
+                'author' => 'exists:users,id',
             ]
         );
 

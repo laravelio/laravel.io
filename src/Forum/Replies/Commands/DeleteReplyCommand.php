@@ -6,11 +6,11 @@ use Lio\Forum\Replies\Reply;
 class DeleteReplyCommand
 {
     public $reply;
-    public $deleter;
+    public $user;
 
-    public function __construct(Reply $reply, User $deleter)
+    public function __construct(Reply $reply, User $user)
     {
         $this->reply = $reply;
-        $this->deleter = $deleter;
+        $this->user = $user;
     }
 }
