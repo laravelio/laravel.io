@@ -58,7 +58,7 @@ Route::get('bin/{hash}/raw', 'PastesController@getRaw');
 Route::get('bin/{hash}', 'PastesController@getShow');
 
 // articles
-Route::get('articles', 'Controllers\Articles\IndexArticleController@getIndex');
+Route::get('articles', 'ArticlesController@getIndex');
 Route::get('article/{slug}', 'Controllers\Articles\ShowArticleController@getShow');
 
 Route::group(['before' => 'auth'], function() {
