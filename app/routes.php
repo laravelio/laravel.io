@@ -51,11 +51,11 @@ Route::get('irc', function() {
 
 // paste bin
 Route::get('bin', 'BinController@getCreate');
-Route::post('bin', 'BinController@postCreate');
-Route::get('bin/fork/{hash}', 'BinController@getFork');
-Route::post('bin/fork/{hash}', 'BinController@postFork');
-Route::get('bin/{hash}/raw', 'BinController@getRaw');
+Route::post('bin', ['before' => 'csrf', 'uses' => 'BinController@postCreate']);
 Route::get('bin/{hash}', 'BinController@getShow');
+Route::get('bin/fork/{hash}', 'BinController@getFork');
+Route::post('bin/fork/{hash}', ['before' => 'csrf', 'uses' => 'BinController@postFork']);
+Route::get('bin/{hash}/raw', 'BinController@getRaw');
 
 // articles
 Route::get('articles', 'ArticlesController@getIndex');

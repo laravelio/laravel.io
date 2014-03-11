@@ -64,7 +64,7 @@ class BinController extends BaseController
 
     public function getRaw($hash)
     {
-        $paste = $this->pastes->getByHash($hash);
+        $paste = $this->repository->getByHash($hash);
         return View::make('bin.raw', compact('paste'));
     }
 }
