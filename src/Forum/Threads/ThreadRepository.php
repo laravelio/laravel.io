@@ -83,4 +83,12 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
     {
         return $this->model->where('slug', '=', $slug)->first();
     }
+
+    public function save($model)
+    {
+        $model->save();
+        if ($model->hasUpdatedTags()) {
+            $model->tags()->sync($model->getUpdatedTagIds());
+        }
+    }
 }

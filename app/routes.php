@@ -58,7 +58,7 @@ Route::get('bin/{hash}/raw', 'PastesController@getRaw');
 Route::get('bin/{hash}', 'PastesController@getShow');
 
 // articles
-Route::get('articles', 'Controllers\Articles\IndexArticleController@getIndex');
+Route::get('articles', 'ArticlesController@getIndex');
 Route::get('article/{slug}', 'Controllers\Articles\ShowArticleController@getShow');
 
 Route::group(['before' => 'auth'], function() {
@@ -76,42 +76,35 @@ Route::group(['before' => 'auth'], function() {
 });
 
 
-//Route::get('article/{id}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getEditComment']);
-//Route::post('article/{id}/edit-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postEditComment']);
-//Route::get('article/{id}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@getDeleteComment']);
-//Route::post('article/{id}/delete-comment/{commentId}', ['before' => 'auth', 'uses' => 'ArticlesController@postDeleteComment']);
-//// Route::get('article/{id}', 'ArticlesController@getShow');
-//// Route::get('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@getCompose']);
-//Route::post('articles/compose', ['before' => 'auth', 'uses' => 'ArticlesController@postCompose']);
 Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum
 Route::group(['before' => 'auth'], function() {
-    Route::get('forum/create-thread', 'ForumThreadsController@getCreateThread');
-    Route::post('forum/create-thread', 'ForumThreadsController@postCreateThread');
+    Route::get('forum/create-thread', 'ForumThreadsController@getCreate');
+    Route::post('forum/create-thread', 'ForumThreadsController@postCreate');
 
-    Route::get('forum/mark-as-solved/{threadId}/{replyId}', 'ForumThreadsController@getMarkQuestionSolved');
-    Route::get('forum/mark-as-unsolved/{threadId}', 'ForumThreadsController@getMarkQuestionUnsolved');
+    Route::get('forum/mark-as-solved/{threadId}/{replyId}', 'ForumThreadsController@getMarkThreadSolved');
+    Route::get('forum/mark-as-unsolved/{threadId}', 'ForumThreadsController@getMarkThreadUnsolved');
 
-    Route::get('forum/edit-thread/{threadId}', 'ForumThreadsController@getEditThread');
-    Route::post('forum/edit-thread/{threadId}', 'ForumThreadsController@postEditThread');
-    Route::get('forum/edit-reply/{replyId}', 'ForumRepliesController@getEditReply');
-    Route::post('forum/edit-reply/{replyId}', 'ForumRepliesController@postEditReply');
+    Route::get('forum/update-thread/{threadId}', 'ForumThreadsController@getUpdate');
+    Route::post('forum/update-thread/{threadId}', 'ForumThreadsController@postUpdate');
+    Route::get('forum/edit-reply/{replyId}', 'ForumRepliesController@getUpdate');
+    Route::post('forum/edit-reply/{replyId}', 'ForumRepliesController@postUpdate');
 
     Route::get('forum/delete/reply/{replyId}', 'ForumRepliesController@getDelete');
     Route::post('forum/delete/reply/{replyId}', 'ForumRepliesController@postDelete');
     Route::get('forum/delete/thread/{threadId}', 'ForumThreadsController@getDelete');
     Route::post('forum/delete/thread/{threadId}', 'ForumThreadsController@postDelete');
 
-    Route::post('forum/{slug}', 'ForumRepliesController@postCreateReply');
+    Route::post('forum/{slug}', 'ForumRepliesController@postCreate');
 });
 
 Route::get('forum/{status?}', 'ForumThreadsController@getIndex')
     ->where(array('status' => '(|open|solved)'));
 
 Route::get('forum/search', 'ForumThreadsController@getSearch');
-Route::get('forum/{slug}/reply/{commentId}', 'ForumRepliesController@getReplyRedirect');
-Route::get('forum/{slug}', 'ForumThreadsController@getShowThread');
+Route::get('forum/{slug}/reply/{replyId}', 'ForumRepliesController@getReplyRedirect');
+Route::get('forum/{slug}', 'ForumThreadsController@getShow');
 
 Route::get('api/forum', 'Api\ForumThreadsController@getIndex');
 

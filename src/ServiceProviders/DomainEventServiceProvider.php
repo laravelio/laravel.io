@@ -1,7 +1,7 @@
 <?php namespace Lio\ServiceProviders;
 
 use Illuminate\Support\ServiceProvider;
-use Lio\Forum\Threads\Listeners\AttachForumThreadTagsListener;
+use Lio\Forum\Threads\Listeners;
 
 class DomainEventServiceProvider extends ServiceProvider
 {
@@ -10,6 +10,5 @@ class DomainEventServiceProvider extends ServiceProvider
     public function register()
     {
         $dispatcher = $this->app['Mitch\EventDispatcher\Dispatcher'];
-        $dispatcher->addListener('forum.thread_created', new AttachForumThreadTagsListener);
     }
 }

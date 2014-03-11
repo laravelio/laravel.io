@@ -1,4 +1,4 @@
-<div class="comment {{ $thread->isReplyTheSolution($reply) ? 'solution-border' : '' }} _post" id="reply-{{ $reply->id }}">
+<div class="comment {{ $thread->isReplyTheSolution($reply) ? 'solution-border' : '' }} _post" id="reply-{{ $reply->id }}" data-author-name='{{ json_encode($reply->author->name, JSON_HEX_QUOT|JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS) }}' data-quote-body='{{ json_encode($reply->resource->body, JSON_HEX_QUOT|JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS) }}'>
 
     <div class="user">
         {{ $reply->author->thumbnail }}
@@ -25,14 +25,11 @@
         {{ $reply->body }}
     </span>
 
-    <span style="display:none;" class="_author_name">{{ $reply->author->name }}</span>
-    <span style="display:none;" class="_quote_body">{{ $reply->resource->body }}</span>
-
     @if(Auth::check())
         <div class="admin-bar">
             <ul>
             @if($reply->isManageableBy($currentUser))
-                <li><a href="{{ action('ForumRepliesController@getEditReply', [$reply->id]) }}">Edit</a></li>
+                <li><a href="{{ action('ForumRepliesController@getUpdate', [$reply->id]) }}">Edit</a></li>
                 <li><a href="{{ action('ForumRepliesController@getDelete', [$reply->id]) }}">Delete</a></li>
             @endif
                 <li class="space"></li>

@@ -36,6 +36,6 @@ class DeleteArticleController extends \BaseController implements ArticleDeleterR
 
     public function onArticleDeleteSuccess(Article $article)
     {
-        return $this->redirectAction('Controllers\Articles\IndexArticleController@getIndex', ['success' => 'You have successfully deleted the post titled, "'.$article->title.'."']);
+        return $this->redirectAction('ArticlesController@getIndex', ['success' => 'You have successfully deleted the post titled, "'.$article->title.'."']);
     }
 } 

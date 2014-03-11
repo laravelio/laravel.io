@@ -9,15 +9,10 @@ class ThreadCreatedEvent implements Event
      * @var \Lio\Forum\Threads\Thread
      */
     public $thread;
-    /**
-     * @var array
-     */
-    public $tagIds;
 
-    public function __construct(Thread $thread, array $tagIds = [])
+    public function __construct(Thread $thread)
     {
         $this->thread = $thread;
-        $this->tagIds = $tagIds;
     }
 
     public function getName()

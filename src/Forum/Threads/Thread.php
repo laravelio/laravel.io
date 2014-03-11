@@ -25,6 +25,23 @@ class Thread extends Entity
         0 => "Doesn't Matter",
     ];
 
+    private $updatedTagIds = null;
+
+    public function setTagsById($updatedTagIds)
+    {
+        $this->updatedTagIds = $updatedTagIds;
+    }
+
+    public function hasUpdatedTags()
+    {
+        return ! is_null($this->updatedTagIds);
+    }
+
+    public function getUpdatedTagIds()
+    {
+        return $this->updatedTagIds;
+    }
+
     public function author()
     {
         return $this->belongsTo('Lio\Accounts\User', 'author_id');

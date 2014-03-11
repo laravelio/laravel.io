@@ -335,12 +335,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "16542f7a37ae7636f665ace09cfa98d9f260b711"
+                "reference": "a084f61690d10a58645a28ebf835809bd6aae99f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/16542f7a37ae7636f665ace09cfa98d9f260b711",
-                "reference": "16542f7a37ae7636f665ace09cfa98d9f260b711",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a084f61690d10a58645a28ebf835809bd6aae99f",
+                "reference": "a084f61690d10a58645a28ebf835809bd6aae99f",
                 "shasum": ""
             },
             "require": {
@@ -444,7 +444,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2014-03-07 14:46:07"
+            "time": "2014-03-08 04:40:33"
         },
         {
             "name": "lusitanian/oauth",
@@ -666,12 +666,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mitchellvanw/event-dispatcher.git",
-                "reference": "cb4066431b0aa15b970d5bff3bfacf304c2f8934"
+                "reference": "e938ccf83f2bbe5b308bf6b1f617d5c52af73807"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mitchellvanw/event-dispatcher/zipball/cb4066431b0aa15b970d5bff3bfacf304c2f8934",
-                "reference": "cb4066431b0aa15b970d5bff3bfacf304c2f8934",
+                "url": "https://api.github.com/repos/mitchellvanw/event-dispatcher/zipball/e938ccf83f2bbe5b308bf6b1f617d5c52af73807",
+                "reference": "e938ccf83f2bbe5b308bf6b1f617d5c52af73807",
                 "shasum": ""
             },
             "require": {
@@ -683,7 +683,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.2.x-dev"
+                    "dev-master": "0.1.x-dev"
                 }
             },
             "autoload": {
@@ -702,7 +702,7 @@
                 }
             ],
             "description": "Event Dispatcher with a focus on Domain Events",
-            "time": "2014-03-07 15:11:50"
+            "time": "2014-03-08 10:35:54"
         },
         {
             "name": "monolog/monolog",
