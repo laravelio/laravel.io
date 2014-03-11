@@ -16,7 +16,7 @@
                 <a class="{{ Request::is('chat*') ? 'active' : null }}" href="{{ action('ChatController@getIndex') }}">Live Chat</a>
             </li>
             <li>
-                <a href="{{ action('PastesController@getCreate') }}">Pastebin</a>
+                <a href="{{ action('BinController@getCreate') }}">Pastebin</a>
             </li>
             @if($currentUser && $currentUser->isUserAdmin())
                 <li>

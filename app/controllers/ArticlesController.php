@@ -1,7 +1,7 @@
 <?php
 
 use Lio\Articles\ArticleRepository;
-use Lio\CommandBus\CommandBusInterface;
+use Lio\CommandBus\CommandBus;
 use Lio\Tags\TagRepository;
 use Lio\Articles\Commands;
 
@@ -11,7 +11,7 @@ class ArticlesController extends \BaseController
     private $tags;
     private $bus;
 
-    function __construct(ArticleRepository $articles, TagRepository $tags, CommandBusInterface $bus)
+    function __construct(ArticleRepository $articles, TagRepository $tags, CommandBus $bus)
     {
         $this->articles = $articles;
         $this->tags = $tags;

@@ -1,4 +1,4 @@
-<?php namespace Lio\Core;
+<?php namespace Lio\CommandBus;
 
 interface Handler
 {

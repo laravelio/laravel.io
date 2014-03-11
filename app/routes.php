@@ -50,12 +50,12 @@ Route::get('irc', function() {
 });
 
 // paste bin
-Route::get('bin', 'PastesController@getCreate');
-Route::post('bin', 'PastesController@postCreate');
-Route::get('bin/fork/{hash}', 'PastesController@getFork');
-Route::post('bin/fork/{hash}', 'PastesController@postFork');
-Route::get('bin/{hash}/raw', 'PastesController@getRaw');
-Route::get('bin/{hash}', 'PastesController@getShow');
+Route::get('bin', 'BinController@getCreate');
+Route::post('bin', 'BinController@postCreate');
+Route::get('bin/fork/{hash}', 'BinController@getFork');
+Route::post('bin/fork/{hash}', 'BinController@postFork');
+Route::get('bin/{hash}/raw', 'BinController@getRaw');
+Route::get('bin/{hash}', 'BinController@getShow');
 
 // articles
 Route::get('articles', 'ArticlesController@getIndex');
