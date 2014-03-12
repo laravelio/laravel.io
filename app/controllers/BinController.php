@@ -50,7 +50,7 @@ class BinController extends BaseController
     public function getFork($hash)
     {
         $paste = $this->repository->getByHash($hash);
-        $this->title = "Fork Paste";
+        $this->title = 'Fork Paste';
         $this->view('bin.fork', compact('paste'));
     }
 

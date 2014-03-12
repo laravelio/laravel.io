@@ -5,8 +5,7 @@ use Lio\Core;
 class Paste extends Core\Entity
 {
     protected $table      = 'pastes';
-    protected $fillable   = ['description', 'code', 'author_id', 'parent_id'];
-    protected $with       = ['comments'];
+    protected $fillable   = ['code', 'author_id', 'parent_id'];
     protected $softDelete = true;
 
     public $presenter = 'Lio\Bin\PastePresenter';
