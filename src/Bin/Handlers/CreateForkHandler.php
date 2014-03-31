@@ -1,12 +1,12 @@
-<?php namespace Lio\Bin\Handlers;
+<?php  namespace Lio\Bin\Handlers; 
 
-use Lio\CommandBus\Handler;
+use Hashids\Hashids;
 use Lio\Bin\PasteRepository;
 use Lio\Bin\Bin;
-use Hashids\Hashids;
+use Lio\CommandBus\Handler;
 use Mitch\EventDispatcher\Dispatcher;
 
-class CreatePasteHandler implements Handler
+class CreateForkHandler implements Handler
 {
     private $bin;
     private $repository;
@@ -23,16 +23,16 @@ class CreatePasteHandler implements Handler
 
     public function handle($command)
     {
-        $paste = $this->bin->addPaste($command->code, $command->author);
-        $this->repository->save($paste);
-        $this->attachHash($paste);
+        $fork = $this->bin->addFork($command->parent, $command->code, $command->author);
+        $this->repository->save($fork);
+        $this->attachHash($fork);
         $this->dispatcher->dispatch($this->bin->releaseEvents());
-        return $paste;
+        return $fork;
     }
 
-    private function attachHash($paste)
+    private function attachHash($fork)
     {
-        $paste->hash = $this->hashids->encrypt($paste->id);
-        $this->repository->save($paste);
+        $fork->hash = $this->hashids->encrypt($fork->id);
+        $this->repository->save($fork);
     }
 }

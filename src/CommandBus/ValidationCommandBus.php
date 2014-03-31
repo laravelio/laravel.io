@@ -3,12 +3,13 @@
 use Illuminate\Container\Container;
 use ReflectionException;
 
-class ValidationCommandBus implements CommandBusInterface
+class ValidationCommandBus implements CommandBus
 {
     private $bus;
+    private $container;
     private $inflector;
 
-    public function __construct(CommandBus $bus, Container $container, CommandHandlerNameInflector $inflector)
+    public function __construct(DefaultCommandBus $bus, Container $container, CommandNameInflector $inflector)
     {
         $this->bus = $bus;
         $this->container = $container;
@@ -24,14 +25,9 @@ class ValidationCommandBus implements CommandBusInterface
     private function validate($command)
     {
         $validatorClass = $this->inflector->getValidatorClass($command);
-
         try {
             $validator = $this->container->make($validatorClass);
-        } catch (ReflectionException $e) {
-        }
-
-        if (isset($validator)) {
             $validator->validate($command);
-        }
+        } catch (ReflectionException $e) {}
     }
 } 

@@ -1,6 +1,6 @@
 <?php namespace Lio\CommandBus;
 
-class CommandHandlerNameInflector
+class CommandNameInflector
 {
     public function getHandlerClass($command)
     {

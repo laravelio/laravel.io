@@ -1,5 +1,7 @@
 <?php namespace Lio\Bin\Commands;
 
+use Lio\Accounts\User;
+
 class CreatePasteCommand
 {
     public $code;
