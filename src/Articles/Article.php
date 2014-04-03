@@ -1,12 +1,15 @@
 <?php namespace Lio\Articles;
 
 use Lio\Core\Entity;
+use Lio\Tags\Taggable;
 
 class Article extends Entity
 {
+    use \Lio\Tags\Taggable;
+
     protected $table      = 'articles';
     protected $with       = ['author'];
-    protected $fillable   = ['author_id', 'title', 'content', 'laravel_version', 'published_at'];
+    protected $guarded = [];
     protected $dates      = ['published_at'];
     protected $softDelete = true;
 
@@ -28,11 +31,6 @@ class Article extends Entity
         return $this->belongsTo('Lio\Accounts\User', 'author_id');
     }
 
-    public function tags()
-    {
-        return $this->belongsToMany('Lio\Tags\Tag', 'article_tag', 'article_id', 'tag_id');
-    }
-
     public function comments()
     {
         return $this->morphMany('Lio\Comments\Comment', 'owner');
@@ -42,16 +40,6 @@ class Article extends Entity
     {
         $this->comment_count = $this->comments()->count();
         $this->save();
-    }
-
-    public function setTags(array $tagIds)
-    {
-        $this->tags()->sync($tagIds);
-    }
-
-    public function hasTag($id)
-    {
-        return $this->tags->contains($id);
     }
 
     public function isManageableBy($user)

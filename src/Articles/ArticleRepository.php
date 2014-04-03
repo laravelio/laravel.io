@@ -1,9 +1,7 @@
 <?php namespace Lio\Articles;
 
 use Lio\Core\EloquentRepository;
-use Lio\Accounts\User;
 use Lio\Core\Exceptions\EntityNotFoundException;
-use Lio\Tags\TagRepository;
 
 class ArticleRepository extends EloquentRepository
 {
@@ -11,15 +9,6 @@ class ArticleRepository extends EloquentRepository
     {
         $this->model = $model;
     }
-
-//    public function getFeaturedArticles($count = 3)
-//    {
-//        return $this->model->with(['author'])
-//                           ->where('status', '=', Article::STATUS_PUBLISHED)
-//                           ->orderBy('published_at', 'desc')
-//                           ->take($count)
-//                           ->get();
-//    }
 
     public function requirePublishedArticleBySlug($slug)
     {
@@ -60,13 +49,11 @@ class ArticleRepository extends EloquentRepository
         return $query;
     }
 
-//    public function getArticlesByAuthorPaginated(User $author, $perPage = 20)
-//    {
-//        return $this->getArticlesByAuthor($author)->paginate($perPage);
-//    }
-//
-//    public function getArticlesByAuthor(User $author)
-//    {
-//        return $author->articles()->orderBy('articles.status', 'asc')->orderBy('published_at', 'desc')->orderBy('created_at', 'desc');
-//    }
+    public function save($model)
+    {
+        $model->save();
+        if ($model->hasUpdatedTags()) {
+            $model->tags()->sync($model->getUpdatedTagIds());
+        }
+    }
 }

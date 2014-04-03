@@ -1,44 +1,56 @@
 <?php
 
+use Illuminate\Auth\AuthManager;
+use Illuminate\Http\Request;
 use Lio\Articles\ArticleRepository;
 use Lio\CommandBus\CommandBus;
+use Lio\Laravel\Laravel;
 use Lio\Tags\TagRepository;
 use Lio\Articles\Commands;
 
 class ArticlesController extends \BaseController
 {
-    private $articles;
-    private $tags;
+    private $articleRepository;
+    private $tagRepository;
+    /**
+     * @var Request
+     */
+    private $request;
+    /**
+     * @var Illuminate\Auth\AuthManager
+     */
+    private $auth;
     private $bus;
 
-    function __construct(ArticleRepository $articles, TagRepository $tags, CommandBus $bus)
+    function __construct(ArticleRepository $articleRepository, TagRepository $tagRepository, CommandBus $bus, Request $request, AuthManager $auth)
     {
-        $this->articles = $articles;
-        $this->tags = $tags;
+        $this->articleRepository = $articleRepository;
+        $this->tagRepository = $tagRepository;
+        $this->request = $request;
+        $this->auth = $auth;
         $this->bus = $bus;
     }
 
     public function getIndex()
     {
-        $tags = $this->tags->getAllTagsBySlug($this->request->input('tags'));
-        $articles = $this->articles->getAllPublishedByTagsPaginated($tags);
+        $tags = $this->tagRepository->getAllTagsBySlug($this->request->input('tags'));
+        $articles = $this->articleRepository->getAllPublishedByTagsPaginated($tags);
 
         $this->title = 'Articles';
         $this->view('articles.index', compact('articles'));
     }
 
-    public function getShow($threadSlug)
+    public function getShow($articleSlug)
     {
-        $thread = $this->threads->requireBySlug($threadSlug);
-        $replies = $this->threads->getThreadRepliesPaginated($thread, $this->repliesPerPage);
+        $article = $this->articleRepository->requireBySlug($articleSlug);
 
-        $this->title = $thread->title;
-        $this->view('forum.threads.show', compact('thread', 'replies'));
+        $this->title = $article->title;
+        $this->view('articles.show', compact('article'));
     }
 
     public function getCreate()
     {
-        $tags = $this->tags->getAllForForum();
+        $tags = $this->tagRepository->getAllForForum();
         $versions = Thread::$laravelVersions;
 
         $this->title = "Create Forum Thread";
@@ -47,85 +59,60 @@ class ArticlesController extends \BaseController
 
     public function postCreate()
     {
-        $command = new Commands\CreateThreadCommand(
-            Input::get('subject'),
-            Input::get('body'),
-            Auth::user(),
-            Input::get('is_question'),
-            Input::get('laravel_version'),
-            Input::get('tags', [])
+        $command = new Commands\CreateArticleCommand(
+            $this->auth->user(),
+            $this->request->get('title'),
+            $this->request->get('content'),
+            $this->request->get('status'),
+            $this->request->get('laravel_version'),
+            $this->request->get('tags') ?: []
         );
-        $thread = $this->bus->execute($command);
-        return $this->redirectAction('ForumThreadsController@getShow', $thread->slug);
+        $article = $this->bus->execute($command);
+        return $this->redirectAction('ArticlesController@getShow', $article->slug);
     }
 
-    public function getUpdate($threadId)
+    public function getUpdate($articleId)
     {
-        $tags = $this->tags->getAllForForum();
-        $versions = Thread::$laravelVersions;
-        $thread = $this->threads->requireById($threadId);
+        $tags = $this->tagRepository->getAllForArticles();
+        $versions = Laravel::$versions;
+        $article = $this->articleRepository->requireById($articleId);
 
-        $this->title = "Update Forum Thread";
-        $this->view('forum.threads.update', compact('thread', 'tags', 'versions'));
+        $this->title = 'Update Article';
+        $this->view('articles.update', compact('article', 'tags', 'versions'));
     }
 
-    public function postUpdate($threadId)
+    public function postUpdate($articleId)
     {
-        $thread = $this->threads->requireById($threadId);
+        $article = $this->articleRepository->requireById($articleId);
 
-        $command = new Commands\UpdateThreadCommand(
-            $thread,
-            Input::get('subject'),
-            Input::get('body'),
-            Auth::user(),
-            Input::get('is_question'),
-            Input::get('laravel_version'),
-            Input::get('tags', [])
+        $command = new Commands\UpdateArticleCommand(
+            $article,
+            $this->request->get('title'),
+            $this->request->get('content'),
+            $this->request->get('status'),
+            $this->request->get('laravel_version'),
+            $this->request->get('tags') ?: []
         );
 
-        $thread = $this->bus->execute($command);
-        return $this->redirectAction('ForumThreadsController@getShow', $thread->slug);
+        $article = $this->bus->execute($command);
+        return $this->redirectAction('ArticlesController@getShow', $article->slug);
     }
 
-    public function getMarkThreadSolved($threadId, $solvedByReplyId)
+    public function getDelete($articleId)
     {
-        $thread = $this->threads->requireById($threadId);
-        $reply = $this->replies->requireById($solvedByReplyId);
-        $command = new Commands\MarkThreadSolvedCommand($thread, $reply, Auth::user());
-        $thread = $this->bus->execute($command);
-        return $this->redirectAction('ForumThreadsController@getShow', $thread->slug);
+        $article = $this->articleRepository->requireById($articleId);
+
+        $this->title = "Delete Article";
+        $this->view('articles.delete', compact('article'));
     }
 
-    public function getMarkThreadUnsolved($threadId)
+    public function postDelete($articleId)
     {
-        $thread = $this->threads->requireById($threadId);
-        $command = new Commands\MarkThreadUnsolvedCommand($thread, Auth::user());
-        $thread = $this->bus->execute($command);
-        return $this->redirectAction('ForumThreadsController@getShow', $thread->slug);
+        $article = $this->articleRepository->requireById($articleId);
+
+        $command = new Commands\DeleteThreadCommand($article);
+        $article = $this->bus->execute($command);
+
+        return $this->redirectAction('ArticlesController@getIndex');
     }
-
-    public function getDelete($threadId)
-    {
-        $thread = $this->threads->requireById($threadId);
-
-        $this->title = "Delete Forum Thread";
-        $this->view('forum.threads.delete', compact('thread'));
-    }
-
-    public function postDelete($threadId)
-    {
-        $thread = $this->threads->requireById($threadId);
-        $command = new Commands\DeleteThreadCommand($thread);
-        $thread = $this->bus->execute($command);
-        return $this->redirectAction('ForumThreadsController@getIndex');
-    }
-
-    public function getSearch()
-    {
-        $query = Input::get('query');
-        $results = $this->search->getPaginatedResults($query, $this->numberOfThreadsOnIndex);
-
-        $this->title = "Forum Search";
-        $this->view('forum.search', compact('query', 'results'));
-    }
-} 
+}

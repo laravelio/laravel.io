@@ -3,10 +3,13 @@
 use Auth;
 use Lio\Core\Entity;
 use Lio\Core\EventGenerator;
+use Lio\Tags\Taggable;
 use Lio\Forum\Replies\Reply;
 
 class Thread extends Entity
 {
+    use \Lio\Tags\Taggable;
+
     protected $table      = 'forum_threads';
     protected $guarded   = [];
     protected $with       = ['author'];
@@ -25,23 +28,6 @@ class Thread extends Entity
         0 => "Doesn't Matter",
     ];
 
-    private $updatedTagIds = null;
-
-    public function setTagsById($updatedTagIds)
-    {
-        $this->updatedTagIds = $updatedTagIds;
-    }
-
-    public function hasUpdatedTags()
-    {
-        return ! is_null($this->updatedTagIds);
-    }
-
-    public function getUpdatedTagIds()
-    {
-        return $this->updatedTagIds;
-    }
-
     public function author()
     {
         return $this->belongsTo('Lio\Accounts\User', 'author_id');
@@ -55,11 +41,6 @@ class Thread extends Entity
     public function acceptedSolution()
     {
         return $this->belongsTo('Lio\Forum\Replies\Reply', 'solution_reply_id');
-    }
-
-    public function tags()
-    {
-        return $this->belongsToMany('Lio\Tags\Tag', 'tagged_items', 'thread_id', 'tag_id');
     }
 
     public function mostRecentReply()
@@ -168,20 +149,5 @@ class Thread extends Entity
             $this->reply_count = $this->replies()->count();
             $this->save();
         }
-    }
-
-    public function setTags(array $tagIds)
-    {
-        $this->tags()->sync($tagIds);
-    }
-
-    public function hasTag($tagId)
-    {
-        return $this->tags->contains($tagId);
-    }
-
-    public function getTags()
-    {
-        return $this->tags->lists('slug');
     }
 }
