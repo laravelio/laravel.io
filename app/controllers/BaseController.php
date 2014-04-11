@@ -1,9 +1,8 @@
 <?php
 
-class BaseController extends Controller
+abstract class BaseController extends Controller
 {
     protected $layout = 'layouts.default';
-    protected $currentUser;
     protected $title = '';
 
     protected function setupLayout()
@@ -11,8 +10,6 @@ class BaseController extends Controller
         if ( ! is_null($this->layout)) {
             $this->layout = View::make($this->layout);
         }
-
-        $this->currentUser = \Auth::user();
     }
 
     protected function view($path, $data = [])
