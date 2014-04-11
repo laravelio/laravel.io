@@ -22,7 +22,7 @@ Route::group(array('domain' => 'paste.laravel.io'), function() {
 });
 
 // landing page
-Route::get('/', 'HomeController@getIndex');
+Route::get('/', 'ForumThreadsController@getIndex');
 
 // authentication
 Route::get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
@@ -37,7 +37,7 @@ Route::get('dashboard', ['before' => 'auth', 'uses' => 'DashboardController@getI
 Route::get('dashboard/articles', ['before' => 'auth', 'uses' => 'ArticlesController@getDashboard']);
 
 // user profile
-Route::get('user/{userSlug}', 'UsersController@getProfile');
+Route::get('user/{userSlug}', 'ProfileController@getShow');
 
 // contributors
 Route::get('contributors', 'ContributorsController@getIndex');

@@ -24,7 +24,7 @@ class UserPresenter extends BasePresenter
 
     public function profileUrl()
     {
-        return action('UsersController@getProfile', [$this->resource->name]);
+        return action('ProfileController@getShow', [$this->resource->name]);
     }
 
     public function thumbnail()

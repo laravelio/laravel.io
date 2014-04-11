@@ -1,6 +1,7 @@
 <?php namespace Lio\Forum\Threads;
 
 use Illuminate\Support\Collection;
+use Lio\Accounts\User;
 use Lio\Core\Exceptions\EntityNotFoundException;
 use Lio\Tags\TagRepository;
 
@@ -65,7 +66,7 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
 
     public function getThreadRepliesPaginated(Thread $thread, $perPage = 20)
     {
-        return $thread->replies()->paginate(20);
+        return $thread->replies()->paginate($perPage);
     }
 
     public function requireBySlug($slug)
@@ -82,6 +83,11 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
     public function getBySlug($slug)
     {
         return $this->model->where('slug', '=', $slug)->first();
+    }
+
+    public function getRecentByUser(User $user, $count = 5)
+    {
+        return $this->model->where('author_id', '=', $user->id)->orderBy('created_at', 'desc')->take($count)->get();
     }
 
     public function save($model)

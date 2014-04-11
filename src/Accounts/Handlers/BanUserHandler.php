@@ -5,7 +5,7 @@ use Lio\Accounts\Users;
 use Lio\Core\Handler;
 use Mitch\EventDispatcher\Dispatcher;
 
-class CreateUserHandler implements Handler
+class BanUserHandler implements Handler
 {
     /**
      * @var \Mitch\EventDispatcher\Dispatcher
@@ -22,14 +22,14 @@ class CreateUserHandler implements Handler
 
     public function __construct(Users $users, UserRepository $repository, Dispatcher $dispatcher)
     {
-        $this->dispatcher = $dispatcher;
         $this->users = $users;
+        $this->dispatcher = $dispatcher;
         $this->repository = $repository;
     }
 
     public function handle($command)
     {
-        $user = $this->users->addUser($command->email, $command->name, $command->githubUrl, $command->githubId, $command->imageUrl);
+        $user = $this->users->banUser($command->problem, $command->admin);
         $this->repository->save($user);
         $this->dispatcher->dispatch($this->users->releaseEvents());
         return $user;

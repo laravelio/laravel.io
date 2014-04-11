@@ -2,7 +2,7 @@
 
 use Lio\Accounts\UserRepository;
 
-class UsersController extends BaseController
+class ProfileController extends BaseController
 {
     private $users;
 
@@ -11,7 +11,7 @@ class UsersController extends BaseController
         $this->users = $users;
     }
 
-    public function getProfile($userName)
+    public function getShow($userName)
     {
         $user = $this->users->requireByName($userName);
 

@@ -14,7 +14,6 @@ class ContributorsController extends BaseController
     public function getIndex()
     {
         $contributors = $this->contributors->getAllByContributionsPaginated();
-
         $this->view('contributors.index', compact('contributors'));
     }
 }

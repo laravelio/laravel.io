@@ -146,4 +146,9 @@ class User extends \Eloquent implements UserInterface
     {
         return $this->forumReplies()->with('thread')->paginate($max);
     }
+
+    public function ban()
+    {
+        $this->is_banned = 1;
+    }
 }

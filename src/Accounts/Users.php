@@ -18,4 +18,11 @@ class Users
 
         return $user;
     }
+
+    public function banUser(User $problem, User $admin)
+    {
+        $problem->ban();
+        
+        return $problem;
+    }
 } 

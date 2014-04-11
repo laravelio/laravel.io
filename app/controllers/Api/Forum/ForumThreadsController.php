@@ -1,33 +1,45 @@
 <?php namespace Api;
 
-use Lio\Forum\Threads\ThreadRepository;
-use Lio\Tags\TagRepository;
-use BaseController;
-use Input;
+use Illuminate\Http\Request;
+use Illuminate\Routing\UrlGenerator;
 use URL;
+use Input;
+use BaseController;
+use Lio\Tags\TagRepository;
+use Lio\Forum\Threads\ThreadRepository;
 
 class ForumThreadsController extends BaseController
 {
-    protected $threadsPerPage = 50;
-    protected $threads;
     protected $tags;
+    protected $threads;
+    protected $threadsPerPage = 50;
+    /**
+     * @var \Illuminate\Http\Request
+     */
+    private $request;
+    /**
+     * @var UrlGenerator
+     */
+    private $url;
 
-    public function __construct(ThreadRepository $threads, TagRepository $tags)
+    public function __construct(ThreadRepository $threads, TagRepository $tags, Request $request, UrlGenerator $url)
     {
         $this->threads = $threads;
-        $this->tags    = $tags;
+        $this->tags = $tags;
+        $this->request = $request;
+        $this->url = $url;
     }
 
     public function getIndex($status = '')
     {
-        $threadCount = Input::get('take', $this->threadsPerPage);
-        $tags        = $this->tags->getAllTagsBySlug(Input::get('tags'));
-        $threads     = $this->threads->getByTagsAndStatusPaginated($tags, $status, $threadCount);
+        $threadCount = $this->request->get('take', $this->threadsPerPage);
+        $tags = $this->tags->getAllTagsBySlug($this->request->get('tags'));
+        $threads = $this->threads->getByTagsAndStatusPaginated($tags, $status, $threadCount);
 
         $collection = $threads->getCollection();
 
         $collection->each(function($thread) {
-            $thread->url = URL::action('ForumThreadsController@getShow', ['slug' => $thread->slug]);
+            $thread->url = $this->url->action('ForumThreadsController@getShow', ['slug' => $thread->slug]);
         });
 
         // We want the newest threads to come out in chronological order
