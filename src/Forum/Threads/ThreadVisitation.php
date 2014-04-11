@@ -2,7 +2,7 @@
 
 use Lio\Core\Entity;
 
-class ThreadVisitation extends Entity
+class ThreadVisitation extends \Eloquent
 {
     protected $table      = 'forum_thread_visitations';
     protected $fillable   = ['user_id', 'thread_id', 'visited_at'];

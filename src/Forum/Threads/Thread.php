@@ -6,7 +6,7 @@ use Lio\Core\EventGenerator;
 use Lio\Tags\Taggable;
 use Lio\Forum\Replies\Reply;
 
-class Thread extends Entity
+class Thread extends \Eloquent
 {
     use \Lio\Tags\Taggable;
 

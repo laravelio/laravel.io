@@ -3,7 +3,7 @@
 use Lio\Core\Entity;
 use Str;
 
-class Comment extends Entity
+class Comment extends \Eloquent
 {
     protected $table      = 'comments';
     protected $fillable   = ['title', 'body', 'author_id', 'parent_id', 'category_slug', 'owner_id', 'owner_type', 'type', 'laravel_version'];

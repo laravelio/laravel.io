@@ -2,7 +2,7 @@
 
 use Lio\Core\Entity;
 
-class Contributor extends Entity
+class Contributor extends \Eloquent
 {
     protected $table    = 'contributors';
     protected $fillable = ['user_id', 'github_id', 'name', 'avatar_url', 'github_url', 'contribution_count'];

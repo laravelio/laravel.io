@@ -1,34 +1,31 @@
 <?php
 
-use Illuminate\Auth\AuthManager;
-use Illuminate\Http\Request;
-use Lio\Articles\ArticleRepository;
-use Lio\CommandBus\CommandBus;
 use Lio\Laravel\Laravel;
-use Lio\Tags\TagRepository;
 use Lio\Articles\Commands;
+use Lio\Tags\TagRepository;
+use Illuminate\Http\Request;
+use Lio\CommandBus\CommandBus;
+use Illuminate\Auth\AuthManager;
+use Illuminate\Routing\Redirector;
+use Lio\Articles\ArticleRepository;
 
 class ArticlesController extends \BaseController
 {
-    private $articleRepository;
-    private $tagRepository;
-    /**
-     * @var Request
-     */
-    private $request;
-    /**
-     * @var Illuminate\Auth\AuthManager
-     */
-    private $auth;
     private $bus;
+    private $auth;
+    private $request;
+    private $redirector;
+    private $tagRepository;
+    private $articleRepository;
 
-    function __construct(ArticleRepository $articleRepository, TagRepository $tagRepository, CommandBus $bus, Request $request, AuthManager $auth)
+    public function __construct(ArticleRepository $articleRepository, TagRepository $tagRepository, CommandBus $bus, Request $request, AuthManager $auth, Redirector $redirector)
     {
-        $this->articleRepository = $articleRepository;
-        $this->tagRepository = $tagRepository;
-        $this->request = $request;
-        $this->auth = $auth;
         $this->bus = $bus;
+        $this->auth = $auth;
+        $this->request = $request;
+        $this->redirector = $redirector;
+        $this->tagRepository = $tagRepository;
+        $this->articleRepository = $articleRepository;
     }
 
     public function getIndex()
@@ -51,9 +48,9 @@ class ArticlesController extends \BaseController
     public function getCreate()
     {
         $tags = $this->tagRepository->getAllForForum();
-        $versions = Thread::$laravelVersions;
+        $versions = Laravel::$versions;
 
-        $this->title = "Create Forum Thread";
+        $this->title = 'Create Forum Thread';
         $this->view('forum.threads.create', compact('tags', 'versions'));
     }
 
@@ -68,14 +65,14 @@ class ArticlesController extends \BaseController
             $this->request->get('tags') ?: []
         );
         $article = $this->bus->execute($command);
-        return $this->redirectAction('ArticlesController@getShow', $article->slug);
+        return $this->redirector->action('ArticlesController@getShow', [$article->slug]);
     }
 
     public function getUpdate($articleId)
     {
+        $article = $this->articleRepository->requireById($articleId);
         $tags = $this->tagRepository->getAllForArticles();
         $versions = Laravel::$versions;
-        $article = $this->articleRepository->requireById($articleId);
 
         $this->title = 'Update Article';
         $this->view('articles.update', compact('article', 'tags', 'versions'));
@@ -95,14 +92,13 @@ class ArticlesController extends \BaseController
         );
 
         $article = $this->bus->execute($command);
-        return $this->redirectAction('ArticlesController@getShow', $article->slug);
+        return $this->redirector->action('ArticlesController@getShow', [$article->slug]);
     }
 
     public function getDelete($articleId)
     {
         $article = $this->articleRepository->requireById($articleId);
-
-        $this->title = "Delete Article";
+        $this->title = 'Delete Article';
         $this->view('articles.delete', compact('article'));
     }
 
@@ -112,7 +108,6 @@ class ArticlesController extends \BaseController
 
         $command = new Commands\DeleteThreadCommand($article);
         $article = $this->bus->execute($command);
-
-        return $this->redirectAction('ArticlesController@getIndex');
+        return $this->redirector->action('ArticlesController@getShow', [$article->slug]);
     }
 }

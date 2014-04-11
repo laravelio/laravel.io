@@ -12,16 +12,6 @@ abstract class EloquentRepository
         $this->model = $model;
     }
 
-    public function getModel()
-    {
-        return $this->model;
-    }
-
-    public function setModel($model)
-    {
-        $this->model = $model;
-    }
-
     public function getAll()
     {
         return $this->model->all();
@@ -48,22 +38,7 @@ abstract class EloquentRepository
         return $model;
     }
 
-    public function getNew($attributes = array())
-    {
-        return $this->model->newInstance($attributes);
-    }
-
-    public function save($model)
-    {
-        $model->save();
-    }
-
-    public function delete($model)
-    {
-        return $model->delete();
-    }
-
-    protected function storeEloquentModel($model)
+    public function save(Model $model)
     {
         if ($model->getDirty()) {
             return $model->save();
@@ -72,9 +47,8 @@ abstract class EloquentRepository
         }
     }
 
-    protected function storeArray($data)
+    public function delete($model)
     {
-        $model = $this->getNew($data);
-        return $this->storeEloquentModel($model);
+        return $model->delete();
     }
 }

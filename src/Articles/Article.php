@@ -3,7 +3,7 @@
 use Lio\Core\Entity;
 use Lio\Tags\Taggable;
 
-class Article extends Entity
+class Article extends \Eloquent
 {
     use \Lio\Tags\Taggable;
 

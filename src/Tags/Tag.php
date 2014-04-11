@@ -2,7 +2,7 @@
 
 use Lio\Core\Entity;
 
-class Tag extends Entity
+class Tag extends \Eloquent
 {
     protected $table    = 'tags';
     protected $fillable = ['name', 'slug'];

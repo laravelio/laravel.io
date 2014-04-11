@@ -13,33 +13,14 @@ class BaseController extends Controller
         }
 
         $this->currentUser = \Auth::user();
-        View::share('currentUser', $this->currentUser);
     }
 
     protected function view($path, $data = [])
     {
+        View::share('currentUser', $this->currentUser);
+
         $this->layout->title = $this->title;
         $this->layout->content = View::make($path, $data);
-    }
-
-    protected function redirectTo($url, $statusCode = 302)
-    {
-        return Redirect::to($url, $statusCode);
-    }
-
-    protected function redirectAction($action, $data = [])
-    {
-        return Redirect::action($action, $data);
-    }
-
-    protected function redirectRoute($route, $data = [])
-    {
-        return Redirect::route($route, $data);
-    }
-
-    protected function redirectBack($data = [])
-    {
-        return Redirect::back()->withInput()->with($data);
     }
 
     protected function redirectIntended($default = null)

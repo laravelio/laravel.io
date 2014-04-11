@@ -1,24 +1,19 @@
 <?php namespace Lio\Accounts;
 
 use Illuminate\Auth\UserInterface;
-use Lio\Core\Entity;
 use Eloquent;
 
-class User extends Entity implements UserInterface
+class User extends \Eloquent implements UserInterface
 {
-    const STATE_ACTIVE  = 1;
+    const STATE_ACTIVE = 1;
     const STATE_BLOCKED = 2;
 
-    protected $table      = 'users';
-    protected $hidden     = ['github_id'];
-    protected $fillable   = ['email', 'name', 'github_url', 'github_id', 'image_url', 'is_banned'];
+    protected $table = 'users';
+    protected $hidden = ['github_id'];
+    protected $guarded = [];
     protected $softDelete = true;
 
     public $presenter = 'Lio\Accounts\UserPresenter';
-
-    protected $validationRules = [
-        'github_id' => 'unique:users,github_id,<id>',
-    ];
 
     private $rolesCache;
 
@@ -36,7 +31,7 @@ class User extends Entity implements UserInterface
 
     public function getRoles()
     {
-        if ( ! isset($this->rolesCache)) {
+        if (!isset($this->rolesCache)) {
             $this->rolesCache = $this->roles;
         }
 
@@ -60,7 +55,7 @@ class User extends Entity implements UserInterface
 
     public function setRolesAttribute($roles)
     {
-        $this->roles()->sync((array) $roles);
+        $this->roles()->sync((array)$roles);
     }
 
     public function hasRole($roleName)
@@ -72,14 +67,14 @@ class User extends Entity implements UserInterface
     {
         $roleList = \App::make('Lio\Accounts\RoleRepository')->getRoleList();
 
-        foreach ((array) $roleNames as $allowedRole) {
+        foreach ((array)$roleNames as $allowedRole) {
             // validate that the role exists
-            if ( ! in_array($allowedRole, $roleList)) {
+            if (!in_array($allowedRole, $roleList)) {
                 throw new InvalidRoleException("Unidentified role: {$allowedRole}");
             }
 
             // validate that the user has the role
-            if ( ! $this->roleCollectionHasRole($allowedRole)) {
+            if (!$this->roleCollectionHasRole($allowedRole)) {
                 return false;
             }
         }
@@ -91,7 +86,7 @@ class User extends Entity implements UserInterface
     {
         $roles = $this->getRoles();
 
-        if ( ! $roles) {
+        if (!$roles) {
             return false;
         }
 
