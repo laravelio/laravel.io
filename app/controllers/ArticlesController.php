@@ -3,11 +3,12 @@
 use Lio\Laravel\Laravel;
 use Lio\Articles\Commands;
 use Lio\Tags\TagRepository;
-use Illuminate\Http\Request;
 use Lio\CommandBus\CommandBus;
+use Lio\Articles\ArticleRepository;
+
+use Illuminate\Http\Request;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Routing\Redirector;
-use Lio\Articles\ArticleRepository;
 
 class ArticlesController extends \BaseController
 {

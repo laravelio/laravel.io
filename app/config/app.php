@@ -109,7 +109,6 @@ return array(
 
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
-		'Mitch\EventDispatcher\Laravel\EventDispatcherServiceProvider',
 
 		'Lio\ServiceProviders\GithubServiceProvider',
         'Lio\ServiceProviders\MarkdownServiceProvider',

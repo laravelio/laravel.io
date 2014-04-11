@@ -2,13 +2,6 @@
 
 use Lio\Accounts\UserRepository;
 
-/**
-* This class can call the following methods on the listener object:
-*
-* userFound($user)
-* userIsBanned($user)
-* userNotFound($githubData)
-*/
 class GithubAuthenticator
 {
     protected $users;
@@ -19,9 +12,9 @@ class GithubAuthenticator
         $this->reader = $reader;
     }
 
-    public function authByCode(GithubAuthenticatorListener $listener, $code)
+    public function authByCode($code)
     {
-        $githubData = $this->reader->getDataFromCode($code);
+        die('login is disabled atm');
         $user = $this->users->getByGithubId($githubData['id']);
 
         if ($user) {

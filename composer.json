@@ -2,7 +2,6 @@
     "description": "Laravel.io",
     "require": {
         "laravel/framework": "4.1.*",
-        "artdarek/oauth-4-laravel": "dev-master",
         "mccool/laravel-auto-presenter": "dev-master",
         "michelf/php-markdown": "1.4.*@dev",
         "nickcernis/html-to-markdown": "dev-master",
@@ -24,7 +23,7 @@
             "tests/unit/UnitTestCase.php"
         ],
         "psr-0": {
-            "Controllers\\": "app/"
+            "Api\\": "app/controllers/"
         },
         "psr-4": {
             "Lio\\": "src/"

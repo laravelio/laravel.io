@@ -1,8 +1,7 @@
 <?php namespace Lio\ServiceProviders;
 
-use Illuminate\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
-use Lio\Forum\Threads\Listeners;
+use Lio\Events\Dispatcher;
 
 class DomainEventServiceProvider extends ServiceProvider
 {
