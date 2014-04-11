@@ -32,7 +32,6 @@ class ArticlesController extends \BaseController
     {
         $tags = $this->tagRepository->getAllTagsBySlug($this->request->input('tags'));
         $articles = $this->articleRepository->getAllPublishedByTagsPaginated($tags);
-
         $this->title = 'Articles';
         $this->view('articles.index', compact('articles'));
     }
@@ -40,7 +39,6 @@ class ArticlesController extends \BaseController
     public function getShow($articleSlug)
     {
         $article = $this->articleRepository->requireBySlug($articleSlug);
-
         $this->title = $article->title;
         $this->view('articles.show', compact('article'));
     }
@@ -49,7 +47,6 @@ class ArticlesController extends \BaseController
     {
         $tags = $this->tagRepository->getAllForForum();
         $versions = Laravel::$versions;
-
         $this->title = 'Create Forum Thread';
         $this->view('forum.threads.create', compact('tags', 'versions'));
     }
@@ -73,7 +70,6 @@ class ArticlesController extends \BaseController
         $article = $this->articleRepository->requireById($articleId);
         $tags = $this->tagRepository->getAllForArticles();
         $versions = Laravel::$versions;
-
         $this->title = 'Update Article';
         $this->view('articles.update', compact('article', 'tags', 'versions'));
     }
@@ -81,7 +77,6 @@ class ArticlesController extends \BaseController
     public function postUpdate($articleId)
     {
         $article = $this->articleRepository->requireById($articleId);
-
         $command = new Commands\UpdateArticleCommand(
             $article,
             $this->request->get('title'),
@@ -90,7 +85,6 @@ class ArticlesController extends \BaseController
             $this->request->get('laravel_version'),
             $this->request->get('tags') ?: []
         );
-
         $article = $this->bus->execute($command);
         return $this->redirector->action('ArticlesController@getShow', [$article->slug]);
     }
@@ -105,7 +99,6 @@ class ArticlesController extends \BaseController
     public function postDelete($articleId)
     {
         $article = $this->articleRepository->requireById($articleId);
-
         $command = new Commands\DeleteThreadCommand($article);
         $article = $this->bus->execute($command);
         return $this->redirector->action('ArticlesController@getShow', [$article->slug]);
