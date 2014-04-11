@@ -1,4 +1,4 @@
-<?php  namespace Lio\Core; 
+<?php  namespace Lio\Events;
 
 trait EventDispatcher
 {

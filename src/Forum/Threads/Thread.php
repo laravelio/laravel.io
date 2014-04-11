@@ -2,7 +2,7 @@
 
 use Auth;
 use Lio\Core\Entity;
-use Lio\Core\EventGenerator;
+use Lio\Events\EventGenerator;
 use Lio\Tags\Taggable;
 use Lio\Forum\Replies\Reply;
 

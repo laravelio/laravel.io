@@ -1,5 +1,6 @@
 <?php namespace Lio\ServiceProviders;
 
+use Illuminate\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
 use Lio\Forum\Threads\Listeners;
 
@@ -9,6 +10,10 @@ class DomainEventServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $dispatcher = $this->app['Mitch\EventDispatcher\Dispatcher'];
+        $this->app->singleton('Lio\Events\Dispatcher', function($app) {
+            $dispatcher = new Dispatcher;
+
+            return $dispatcher;
+        });
     }
 }

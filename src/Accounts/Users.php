@@ -1,10 +1,10 @@
 <?php namespace Lio\Accounts; 
 
-use Lio\Core\EventGenerator;
+use Lio\Events\EventGenerator;
 
 class Users
 {
-    use EventGenerator;
+    use \Lio\Events\EventGenerator;
 
     public function addUser($email, $name, $githubUrl, $githubId, $imageUrl)
     {
@@ -22,7 +22,7 @@ class Users
     public function banUser(User $problem, User $admin)
     {
         $problem->ban();
-        
+
         return $problem;
     }
 } 

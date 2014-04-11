@@ -1,12 +1,12 @@
 <?php namespace Lio\Bin;
 
 use Lio\Bin\Events\ForkCreatedEvent;
-use Lio\Core\EventGenerator;
+use Lio\Events\EventGenerator;
 use Lio\Bin\Events\PasteCreatedEvent;
 
 class Bin
 {
-    use EventGenerator;
+    use \Lio\Events\EventGenerator;
 
     public function addPaste($code, $author)
     {

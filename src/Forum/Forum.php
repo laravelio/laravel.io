@@ -1,13 +1,13 @@
 <?php namespace Lio\Forum; 
 
 use Lio\Accounts\User;
-use Lio\Core\EventGenerator;
+use Lio\Events\EventGenerator;
 use Lio\Forum\Replies;
 use Lio\Forum\Threads;
 
 class Forum
 {
-    use EventGenerator;
+    use \Lio\Events\EventGenerator;
 
     private $threads;
 
