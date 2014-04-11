@@ -1,0 +1,16 @@
+# file: mysql/meta/main.yml
+
+galaxy_info:
+  author: pjan vandaele
+  company: Ansibles
+  description: "MySQL install and configuration (hardening, databases, users, ...)"
+  min_ansible_version: 1.4
+  license: MIT
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  categories:
+  - system
+
+dependencies: []

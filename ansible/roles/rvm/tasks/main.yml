@@ -1,0 +1,17 @@
+---
+- name: Check if RVM is installed
+  file: 
+    path: /etc/profile.d/rvm.sh 
+    state: file
+  ignore_errors: True
+  register: result
+- include: ./install_rvm.yml
+  when: result|failed
+
+- name:  Check Ruby Version
+  action: shell source /etc/profile.d/rvm.sh && rvm use  --default ruby-{{rvm_ruby_version}} executable=/bin/bash
+  register: set_ruby_version
+  ignore_errors: true
+
+- include: ./install_ruby.yml
+  when: set_ruby_version|failed

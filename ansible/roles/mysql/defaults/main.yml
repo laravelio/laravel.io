@@ -1,0 +1,29 @@
+# file: mysql/defaults/main.yml
+
+# Basic settings
+mysql_port: 3306
+mysql_bind_address: "0.0.0.0"
+mysql_root_password: 'password'
+
+# Fine Tuning
+mysql_key_buffer: '16M'
+mysql_max_allowed_packet: '128M'
+mysql_thread_stack: '192K'
+mysql_cache_size: 8
+mysql_myisam_recover: 'BACKUP'
+mysql_max_connections: 100
+mysql_table_cache: 64
+mysql_thread_concurrency: 10
+mysql_query_cache_limit: '1M'
+mysql_query_cache_size: '16M'
+mysql_innodb_file_per_table: 'innodb_file_per_table'
+mysql_character_set_server: 'utf8'
+mysql_collation_server: 'utf8_general_ci'
+mysql_mysqldump_max_allowed_packet: '128M'
+mysql_isamchk_key_buffer: '16M'
+
+# List of databases to be created
+mysql_databases: []
+
+# List of users to be created
+mysql_users: []

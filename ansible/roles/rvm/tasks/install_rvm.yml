@@ -1,0 +1,8 @@
+---
+- name: Copying rvm-installer script
+  copy: src=./rvm-installer dest=/root/rvm-installer
+- name: Installing RVM   
+  command: /root/rvm-installer stable
+- name: Seting RVM autolibs on
+  command: /usr/local/rvm/bin/rvm autolibs 3
+

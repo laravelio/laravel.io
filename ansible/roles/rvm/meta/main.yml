@@ -1,0 +1,16 @@
+galaxy_info:
+  author: kalkin
+  company: Xsrc
+  description: "RVM and Ruby installation"
+  min_ansible_version: 1.4
+  license: GPLv3
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  categories:
+  - development
+  - web
+  - packaging
+
+dependencies: []

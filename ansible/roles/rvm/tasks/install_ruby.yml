@@ -1,0 +1,7 @@
+- name: Installing Ruby
+  command: /usr/local/rvm/bin/rvm install {{rvm_ruby_version}}
+- name: Setting default Ruby version
+  action: shell source /etc/profile.d/rvm.sh && rvm use  --default {{rvm_ruby_version}} executable=/bin/bash
+
+
+

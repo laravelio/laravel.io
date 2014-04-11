@@ -1,0 +1,90 @@
+#
+# The MySQL database server configuration file.
+#
+# For explanations see
+# http://dev.mysql.com/doc/mysql/en/server-system-variables.html
+
+[client]
+port        = {{ mysql_port }}
+socket      = /var/run/mysqld/mysqld.sock
+
+[mysqld_safe]
+socket      = /var/run/mysqld/mysqld.sock
+nice        = 0
+
+[mysqld]
+# * Basic Settings
+user        = mysql
+pid-file    = /var/run/mysqld/mysqld.pid
+socket      = /var/run/mysqld/mysqld.sock
+port        = {{ mysql_port }}
+basedir     = /usr
+datadir     = /var/lib/mysql
+tmpdir      = /tmp
+lc-messages-dir = /usr/share/mysql
+skip-external-locking
+
+
+# * Fine Tuning
+key_buffer              = {{ mysql_key_buffer }}
+max_allowed_packet      = {{ mysql_max_allowed_packet }}
+thread_stack            = {{ mysql_thread_stack }}
+thread_cache_size       = {{ mysql_cache_size }}
+myisam-recover          = {{ mysql_myisam_recover }}
+max_connections         = {{ mysql_max_connections }}
+table_cache             = {{ mysql_table_cache }}
+thread_concurrency      = {{ mysql_thread_concurrency }}
+
+# ** Query Cache Configuration
+query_cache_limit       = {{ mysql_query_cache_limit }}
+query_cache_size        = {{ mysql_query_cache_size }}
+
+# ** Logging and Replication
+#general_log_file        = /var/log/mysql/mysql.log
+#general_log             = 1
+#
+#log_slow_queries   = /var/log/mysql/mysql-slow.log
+#long_query_time = 2
+#log-queries-not-using-indexes
+#
+# The following can be used as easy to replay backup logs or for replication.
+#server-id      = 1
+#log_bin            = /var/log/mysql/mysql-bin.log
+expire_logs_days    = 10
+max_binlog_size     = 100M
+#binlog_do_db       = include_database_name
+#binlog_ignore_db   = include_database_name
+
+# ** InnoDB
+# InnoDB is enabled by default with a 10MB datafile in /var/lib/mysql/.
+# Read the manual for more InnoDB related options. There are many!
+
+# ** Security Features
+# Read the manual, too, if you want chroot!
+# chroot = /var/lib/mysql/
+#
+# For generating SSL certificates I recommend the OpenSSL GUI "tinyca".
+# ssl-ca=/etc/mysql/cacert.pem
+# ssl-cert=/etc/mysql/server-cert.pem
+# ssl-key=/etc/mysql/server-key.pem
+
+{{ mysql_innodb_file_per_table }}
+character_set_server = {{ mysql_character_set_server }}
+collation_server = {{ mysql_collation_server }}
+
+[mysqldump]
+quick
+quote-names
+max_allowed_packet  = {{ mysql_mysqldump_max_allowed_packet }}
+
+[mysql]
+#no-auto-rehash # faster start of mysql but no tab completition
+
+[isamchk]
+key_buffer      = {{ mysql_isamchk_key_buffer }}
+
+#
+# * IMPORTANT: Additional settings that can override those from this file!
+#   The files must end with '.cnf', otherwise they'll be ignored.
+#
+!includedir /etc/mysql/conf.d/

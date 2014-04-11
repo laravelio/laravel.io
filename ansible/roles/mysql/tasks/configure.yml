@@ -1,0 +1,11 @@
+# file: mysql/tasks/configure.yml
+
+- name: MySQL | Update the my.cnf
+  template:
+    src: etc_mysql_my.cnf.j2
+    dest: /etc/mysql/my.cnf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart mysql

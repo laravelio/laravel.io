@@ -1,0 +1,6 @@
+# file: mysql/tasks/monit.yml
+
+- name: MySQL | (Monit) Copy the mysql monit service file
+  template:
+    src: etc_monit_conf.d_mysql.j2
+    dest: /etc/monit/conf.d/mysql

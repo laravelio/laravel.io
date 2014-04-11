@@ -1,0 +1,9 @@
+# file: mysql/tasks/install.yml
+
+- name: MySQL | Load the os specific variables
+  include_vars: "{{ansible_os_family | lower}}.yml"
+
+- name: MySQL | Make sure the MySql packages are installed
+  apt:
+    pkg: "{{item}}"
+  with_items: mysql_packages
