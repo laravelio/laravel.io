@@ -1,4 +1,4 @@
-<?php namespace Lio\Accounts\Validators; 
+<?php namespace Lio\Accounts\Validators;
 
 use Illuminate\Validation\Factory;
 use Lio\CommandBus\CommandValidationFailedException;

@@ -1,4 +1,4 @@
-<?php namespace Lio\Articles\Commands; 
+<?php namespace Lio\Articles\Commands;
 
 class CreateArticleCommand
 {

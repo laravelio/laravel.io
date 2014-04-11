@@ -1,5 +1,4 @@
 <?php namespace Lio\Events;
-
 trait EventGenerator
 {
     protected $pendingEvents = [];

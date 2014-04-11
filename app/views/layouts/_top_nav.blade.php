@@ -1,6 +1,6 @@
 <header class="top-navigation">
     <div class="top-navigation-logo">
-        <a href="{{ action('HomeController@getIndex') }}">
+        <a href="{{ action('ForumThreadsController@getIndex') }}">
             <img class="logo" src="/images/laravel-io-logo.png">
         </a>
     </div>

@@ -1,6 +1,5 @@
 <?php namespace Lio\Articles;
 
-use Lio\Core\Entity;
 use Lio\Tags\Taggable;
 
 class Article extends \Eloquent

@@ -1,4 +1,4 @@
-<?php namespace Lio\Accounts\Commands; 
+<?php namespace Lio\Accounts\Commands;
 
 use Lio\Accounts\User;
 

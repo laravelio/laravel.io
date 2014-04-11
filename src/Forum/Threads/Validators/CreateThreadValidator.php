@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum\Threads\Validators; 
+<?php namespace Lio\Forum\Threads\Validators;
 
 use Illuminate\Validation\Factory;
 use Lio\CommandBus\CommandValidationFailedException;

@@ -1,4 +1,4 @@
-<?php namespace Lio\Accounts\Handlers; 
+<?php namespace Lio\Accounts\Handlers;
 
 use Lio\Accounts\UserRepository;
 use Lio\Accounts\Users;

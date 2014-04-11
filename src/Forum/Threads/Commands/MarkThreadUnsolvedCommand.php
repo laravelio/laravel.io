@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum\Threads\Commands; 
+<?php namespace Lio\Forum\Threads\Commands;
 
 use Lio\Forum\Threads\Thread;
 

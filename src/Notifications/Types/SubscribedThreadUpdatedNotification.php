@@ -1,4 +1,4 @@
-<?php namespace Lio\Notifications\Types; 
+<?php namespace Lio\Notifications\Types;
 
 use Lio\Notifications\Notification;
 

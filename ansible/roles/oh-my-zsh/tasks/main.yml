@@ -1,0 +1,24 @@
+- name: Install git and zsh
+  apt: name={{ item }} state=latest update_cache=yes
+  with_items:
+   - git
+   - zsh
+   - git-core
+
+- name: Clone oh-my-zsh repo
+  git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=/home/{{ user }}/.oh-my-zsh
+
+- name: Create conf folder in home directory
+  file: path=/home/{{ user }}/conf/ state=directory owner={{ user }}
+
+- name: deploy .zshrc
+  template: src=zshrc.in dest=/home/{{ user }}/conf/zshrc owner={{ user }}
+
+- name: remove standard zshrc
+  file: path=/home/{{ user }}/.zshrc state=absent
+
+- name: symlink zshrc
+  file: path=/home/{{ user }}/.zshrc src=/home/{{ user }}/conf/zshrc state=link owner={{ user }}
+
+- name: Set zsh as default shell
+  user: name={{ user }} shell=/bin/zsh

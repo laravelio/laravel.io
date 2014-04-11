@@ -1,4 +1,4 @@
-<?php  namespace Lio\Notifications\Tasks; 
+<?php  namespace Lio\Notifications\Tasks;
 
 use Lio\Accounts\User;
 use Lio\Notifications\ForumTag;

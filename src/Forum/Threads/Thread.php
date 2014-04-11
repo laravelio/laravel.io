@@ -1,7 +1,6 @@
 <?php namespace Lio\Forum\Threads;
 
 use Auth;
-use Lio\Core\Entity;
 use Lio\Events\EventGenerator;
 use Lio\Tags\Taggable;
 use Lio\Forum\Replies\Reply;

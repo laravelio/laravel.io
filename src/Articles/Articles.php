@@ -1,5 +1,4 @@
-<?php namespace Lio\Articles;
-use Lio\Accounts\User;
+<?php namespace Lio\Articles;use Lio\Accounts\User;
 
 /**
  * Class Articles

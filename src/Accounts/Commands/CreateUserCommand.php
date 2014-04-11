@@ -1,4 +1,4 @@
-<?php namespace Lio\Accounts\Commands; 
+<?php namespace Lio\Accounts\Commands;
 
 class CreateUserCommand
 {

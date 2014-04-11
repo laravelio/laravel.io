@@ -72,15 +72,3 @@ Route::filter('has_role', function($route, $request, $parameters) {
 
     throw new Lio\Core\Exceptions\NotAuthorizedException(Auth::user()->name . ' does not have the required role(s): ' . $parameters);
 });
-
-//Event::listen('illuminate.query', function($sql, $bindings)
-//{
-//    if (App::environment('local')) {
-//        foreach ($bindings as $i => $val) {
-//            $bindings[$i] = "'$val'";
-//        }
-//
-//        $sql = str_replace(['?'], $bindings, $sql);
-//        Log::info($sql);
-//    }
-//});

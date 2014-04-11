@@ -1,7 +1,5 @@
 <?php namespace Lio\Tags;
 
-use Lio\Core\Entity;
-
 class Tag extends \Eloquent
 {
     protected $table    = 'tags';

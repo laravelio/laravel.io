@@ -1,0 +1,5 @@
+user: vagrant
+pbname: $inventory_hostname
+distro: ${ansible_distribution}
+pkg_mgr: ${ansible_pkg_mgr}
+zsh_theme: af-magic

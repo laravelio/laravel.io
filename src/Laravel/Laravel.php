@@ -1,4 +1,4 @@
-<?php namespace Lio\Laravel; 
+<?php namespace Lio\Laravel;
 
 class Laravel
 {

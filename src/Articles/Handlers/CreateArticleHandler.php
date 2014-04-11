@@ -1,4 +1,4 @@
-<?php namespace Lio\Articles\Handlers; 
+<?php namespace Lio\Articles\Handlers;
 
 use Lio\Articles\ArticleRepository;
 use Lio\CommandBus\Handler;

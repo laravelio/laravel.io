@@ -1,6 +1,6 @@
 <?php namespace Lio\Forum\Threads;
 
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Lio\Accounts\User;
 use Lio\Core\Exceptions\EntityNotFoundException;
 use Lio\Tags\TagRepository;
@@ -90,7 +90,7 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
         return $this->model->where('author_id', '=', $user->id)->orderBy('created_at', 'desc')->take($count)->get();
     }
 
-    public function save($model)
+    public function save(Model $model)
     {
         $model->save();
         if ($model->hasUpdatedTags()) {

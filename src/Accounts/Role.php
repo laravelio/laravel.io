@@ -1,7 +1,5 @@
 <?php namespace Lio\Accounts;
 
-use Lio\Core\Entity;
-
 class Role extends \Eloquent
 {
     protected $table = 'roles';

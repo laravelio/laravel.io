@@ -1,5 +1,4 @@
-<?php namespace Lio\CommandBus; 
-
+<?php namespace Lio\CommandBus;
 interface CommandBus
 {
     public function execute($command);

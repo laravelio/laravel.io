@@ -16,10 +16,10 @@ class Notification extends SingleTableInheritanceEntity
         return $this->morphTo();
     }
 
-    public function setSubject(Model $object)
+    public function setModel(Model $object)
     {
-        $this->attributes['subject_type'] = get_class($object);
-        $this->attributes['subject_id'] = $object->getKey();
+        $this->attributes['model_type'] = get_class($object);
+        $this->attributes['model_id'] = $object->getKey();
     }
 
     public function markRead()

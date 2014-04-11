@@ -1,12 +1,16 @@
 <?php
 
-use Illuminate\Session\SessionManager;
-use Lio\Github\GithubAuthenticator;
-use Lio\Github\GithubAuthenticatorListener;
-use Lio\Accounts\UserCreatorResponder;
+use Illuminate\Http\Request;
 use Lio\Accounts\Commands;
+use Lio\CommandBus\CommandBus;
+use Illuminate\Auth\AuthManager;
+use Illuminate\Routing\Redirector;
+use Lio\Github\GithubAuthenticator;
+use Lio\Accounts\UserCreatorResponder;
+use Illuminate\Session\SessionManager;
+use Lio\Github\GithubAuthenticatorListener;
 
-class AuthController extends BaseController implements GithubAuthenticatorListener, UserCreatorResponder
+class AuthController extends BaseController implements GithubAuthenticatorListener
 {
     /**
      * @var CommandBus
@@ -27,29 +31,29 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
     /**
      * @var Lio\Github\GithubAuthenticator
      */
-    private $githubAuthenticator;
+    private $github;
     /**
      * @var Illuminate\Session\SessionManager
      */
     private $session;
 
-    function __construct(CommandBus $bus, Request $request, AuthManager $auth, Redirector $redirector, GithubAuthenticator $githubAuthenticator, SessionManager $session)
+    function __construct(CommandBus $bus, Request $request, AuthManager $auth, Redirector $redirector, GithubAuthenticator $github, SessionManager $session)
     {
         $this->bus = $bus;
-        $this->request = $request;
         $this->auth = $auth;
-        $this->redirector = $redirector;
-        $this->githubAuthenticator = $githubAuthenticator;
+        $this->github = $github;
+        $this->request = $request;
         $this->session = $session;
+        $this->redirector = $redirector;
     }
 
     public function getLogin()
     {
         $code = $this->request->has('code');
         if ($code) {
-            return $this->githubAuthenticator->authByCode($this, $code);
+            return $this->github->authByCode($this, $code);
         }
-        $this->redirector->to((string) OAuth::consumer('GitHub')->getAuthorizationUri());
+        return $this->redirector->to((string) OAuth::consumer('GitHub')->getAuthorizationUri());
     }
 
     // github account integration responses
@@ -57,12 +61,12 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
     {
         Auth::login($user, true);
         Session::forget('userGithubData');
-        return $this->redirectIntended(action('HomeController@getIndex'));
+        return $this->redirectIntended(action('ForumThreadsController@getIndex'));
     }
 
     public function userIsBanned($user)
     {
-        return $this->redirector->action('HomeController@getIndex');
+        return $this->redirector->action('ForumThreadsController@getIndex');
     }
 
     public function userNotFound($githubData)
@@ -74,7 +78,7 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
     public function getLogout()
     {
         $this->auth->logout();
-        return $this->redirector->action('HomeController@getIndex');
+        return $this->redirector->action('ForumThreadsController@getIndex');
     }
 
     // page that a user sees if they try to do something that requires an authed session
@@ -116,6 +120,6 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
         $this->auth->login($user, true);
         $this->session->forget('userGithubData');
 
-        return $this->redirectIntended(action('HomeController@getIndex'));
+        return $this->redirectIntended(action('ForumThreadsController@getIndex'));
     }
 }

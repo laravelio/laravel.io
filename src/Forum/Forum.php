@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum; 
+<?php namespace Lio\Forum;
 
 use Lio\Accounts\User;
 use Lio\Events\EventGenerator;

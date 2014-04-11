@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum\Replies\Handlers; 
+<?php namespace Lio\Forum\Replies\Handlers;
 
 use Lio\Core\Handler;
 use Lio\Forum\Forum;

@@ -1,7 +1,5 @@
 <?php namespace Lio\Forum\Threads;
 
-use Lio\Core\Entity;
-
 class ThreadVisitation extends \Eloquent
 {
     protected $table      = 'forum_thread_visitations';

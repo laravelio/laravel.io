@@ -1,4 +1,4 @@
-<?php namespace Lio\Articles\Events; 
+<?php namespace Lio\Articles\Events;
 
 use Lio\Articles\Article;
 use Mitch\EventDispatcher\Event;

@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum\Threads\Events; 
+<?php namespace Lio\Forum\Threads\Events;
 
 use Lio\Forum\Replies\Reply;
 use Lio\Forum\Threads\Thread;

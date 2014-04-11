@@ -1,7 +1,5 @@
 <?php namespace Lio\Contributors;
 
-use Lio\Core\Entity;
-
 class Contributor extends \Eloquent
 {
     protected $table    = 'contributors';

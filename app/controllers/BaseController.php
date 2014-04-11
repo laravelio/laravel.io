@@ -14,8 +14,7 @@ abstract class BaseController extends Controller
 
     protected function view($path, $data = [])
     {
-        View::share('currentUser', $this->currentUser);
-
+        View::share('currentUser', Auth::user());
         $this->layout->title = $this->title;
         $this->layout->content = View::make($path, $data);
     }
@@ -24,7 +23,7 @@ abstract class BaseController extends Controller
     {
         $intended = Session::get('auth.intended_redirect_url');
         if ($intended) {
-            return $this->redirectTo($intended);
+            return Redirect::to($intended);
         }
         return Redirect::to($default);
     }

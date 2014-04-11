@@ -1,4 +1,4 @@
-<?php  namespace Lio\Bin\Handlers; 
+<?php  namespace Lio\Bin\Handlers;
 
 use Hashids\Hashids;
 use Lio\Bin\PasteRepository;

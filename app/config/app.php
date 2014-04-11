@@ -108,13 +108,10 @@ return array(
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
-		// 'McCool\DatabaseBackup\ServiceProviders\LaravelServiceProvider',
-		//'Juy\Profiler\Providers\ProfilerServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
 		'Mitch\EventDispatcher\Laravel\EventDispatcherServiceProvider',
 
 		'Lio\ServiceProviders\GithubServiceProvider',
-		'Lio\ServiceProviders\CommentServiceProvider',
         'Lio\ServiceProviders\MarkdownServiceProvider',
         'Lio\ServiceProviders\HashidsServiceProvider',
         'Lio\ServiceProviders\DomainEventServiceProvider',

@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum\Replies\Commands; 
+<?php namespace Lio\Forum\Replies\Commands;
 
 use Lio\Forum\Replies\Reply;
 

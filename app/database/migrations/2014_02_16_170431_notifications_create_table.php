@@ -12,14 +12,18 @@ class NotificationsCreateTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('notifications', function($t) {
+        Schema::table('notifications', function($t) {
             $t->create();
             $t->increments('id');
-            $t->integer('user_id');
-            $t->string('class');
-            $t->string('subject_type')->nullable();
-            $t->integer('subject_id')->nullable();
-            $t->softDeletes();
+            $t->integer('user_id')->index();
+            $t->string('class')->index();
+            $t->string('model_type');
+            $t->integer('model_id')->index();
+            $t->text('extra_data');
+            $t->boolean('is_read');
+            $t->string('message');
+            $t->string('link');
+            $t->timestamp('read_at');
             $t->timestamps();
         });
 	}

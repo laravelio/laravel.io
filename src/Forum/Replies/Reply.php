@@ -1,6 +1,6 @@
 <?php namespace Lio\Forum\Replies;
 
-class Reply extends \Lio\Core\Entity
+class Reply extends \Eloquent
 {
     protected $table = 'forum_replies';
     protected $guarded = [];

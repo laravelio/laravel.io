@@ -1,4 +1,4 @@
-<?php  namespace Lio\Bin\Events; 
+<?php  namespace Lio\Bin\Events;
 
 use Lio\Bin\Paste;
 use Mitch\EventDispatcher\Event;

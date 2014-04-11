@@ -1,4 +1,4 @@
-<?php  namespace Lio\Notifications; 
+<?php  namespace Lio\Notifications;
 
 class ForumTag extends Notification
 {

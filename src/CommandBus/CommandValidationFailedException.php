@@ -1,3 +1,3 @@
-<?php namespace Lio\CommandBus; 
+<?php namespace Lio\CommandBus;
 
 class CommandValidationFailedException extends \Exception {}

@@ -1,4 +1,4 @@
-<?php namespace Lio\Forum\Threads\Validators; 
+<?php namespace Lio\Forum\Threads\Validators;
 
 use Lio\CommandBus\CommandValidationFailedException;
 use Lio\Forum\Threads\Commands\MarkThreadUnsolvedCommand;

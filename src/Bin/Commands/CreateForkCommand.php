@@ -1,4 +1,4 @@
-<?php  namespace Lio\Bin\Commands; 
+<?php  namespace Lio\Bin\Commands;
 
 use Lio\Accounts\User;
 use Lio\Bin\Paste;

@@ -1,4 +1,4 @@
-<?php namespace Lio\CommandBus; 
+<?php namespace Lio\CommandBus;
 
 use Illuminate\Container\Container;
 use ReflectionException;

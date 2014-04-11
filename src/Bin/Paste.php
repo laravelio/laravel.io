@@ -1,8 +1,6 @@
 <?php namespace Lio\Bin;
 
-use Lio\Core;
-
-class Paste extends Core\Entity
+class Paste extends \Eloquent
 {
     protected $table      = 'pastes';
     protected $fillable   = ['code', 'author_id', 'parent_id'];

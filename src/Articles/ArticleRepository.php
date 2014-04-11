@@ -1,5 +1,6 @@
 <?php namespace Lio\Articles;
 
+use Illuminate\Database\Eloquent\Model;
 use Lio\Core\EloquentRepository;
 use Lio\Core\Exceptions\EntityNotFoundException;
 
@@ -49,7 +50,7 @@ class ArticleRepository extends EloquentRepository
         return $query;
     }
 
-    public function save($model)
+    public function save(Model $model)
     {
         $model->save();
         if ($model->hasUpdatedTags()) {

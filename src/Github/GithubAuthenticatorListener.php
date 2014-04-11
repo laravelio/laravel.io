@@ -1,5 +1,4 @@
 <?php namespace Lio\Github;
-
 interface GithubAuthenticatorListener
 {
     public function userFound($user);

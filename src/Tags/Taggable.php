@@ -1,5 +1,4 @@
 <?php namespace Lio\Tags;
-
 trait Taggable
 {
     protected $updatedTagIds = null;
