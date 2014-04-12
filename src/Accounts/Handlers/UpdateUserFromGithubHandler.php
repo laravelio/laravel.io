@@ -1,13 +1,12 @@
-<?php namespace Lio\Accounts\Handlers;
+<?php namespace Lio\Accounts\Handlers; 
 
 use Lio\Accounts\UserRepository;
 use Lio\Accounts\Users;
 use Lio\CommandBus\Handler;
 use Lio\Events\Dispatcher;
 
-class CreateUserHandler implements Handler
+class UpdateUserFromGithubHandler implements Handler
 {
-    private $dispatcher;
     /**
      * @var \Lio\Accounts\Users
      */
@@ -16,17 +15,21 @@ class CreateUserHandler implements Handler
      * @var \Lio\Accounts\UserRepository
      */
     private $repository;
+    /**
+     * @var \Lio\Events\Dispatcher
+     */
+    private $dispatcher;
 
     public function __construct(Users $users, UserRepository $repository, Dispatcher $dispatcher)
     {
-        $this->dispatcher = $dispatcher;
         $this->users = $users;
         $this->repository = $repository;
+        $this->dispatcher = $dispatcher;
     }
 
     public function handle($command)
     {
-        $user = $this->users->addUser($command->email, $command->name, $command->githubUrl, $command->githubId, $command->imageUrl);
+        $user = $this->users->updateUserFromGithub($command->user, $command->githubUser);
         $this->repository->save($user);
         $this->dispatcher->dispatch($this->users->releaseEvents());
         return $user;

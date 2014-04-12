@@ -62,6 +62,9 @@ class AuthController extends BaseController
         $user = $this->userRepository->getGithubUser($githubUser);
 
         if ($user) {
+            $command = new Commands\UpdateUserFromGithubCommand($user, $githubUser);
+            $this->bus->execute($command);
+
             $this->auth->login($user, true);
             $this->session->forget('userGithubData');
             return $this->redirectIntended(action('ForumThreadsController@getIndex'));
@@ -106,13 +109,7 @@ class AuthController extends BaseController
 
         $githubUser = $this->session->get('githubUser');
 
-        $command = new Commands\CreateUserCommand(
-            $githubUser->email,
-            $githubUser->name,
-            $githubUser->githubUrl,
-            $githubUser->githubId,
-            $githubUser->imageUrl
-        );
+        $command = new Commands\CreateUserFromGithubCommand($githubUser);
 
         $user = $this->bus->execute($command);
 
