@@ -1,6 +1,8 @@
 <?php  namespace Lio\Core;
 
-class SingleTableInheritanceEntity extends \Eloquent
+use Illuminate\Database\Eloquent\Model;
+
+class SingleTableInheritanceEntity extends Model
 {
     // the field that stores the subclass
     protected $subclassField = null;

@@ -1,37 +1,80 @@
 <?php namespace Lio\Github;
 
 use Lio\Accounts\UserRepository;
+use Lio\Github\Requests\AccessTokenRequest;
+use Lio\Github\Requests\UserEmailRequest;
+use Lio\Github\Requests\UserRequest;
 
 class GithubAuthenticator
 {
-    protected $users;
+    private $tokenRequest;
+    private $userRepository;
+    private $emailRequest;
+    private $userRequest;
+    private $config;
 
-    public function __construct(UserRepository $users, GithubUserDataReader $reader)
+    public function __construct($config, UserRepository $userRepository, AccessTokenRequest $tokenRequest, UserRequest $userRequest, UserEmailRequest $emailRequest)
     {
-        $this->users = $users;
-        $this->reader = $reader;
+        $this->tokenRequest = $tokenRequest;
+        $this->userRepository = $userRepository;
+        $this->emailRequest = $emailRequest;
+        $this->userRequest = $userRequest;
+        $this->config = $config;
     }
 
-    public function authByCode($code)
+    public function getAuthUrl($state = null)
     {
-        die('login is disabled atm');
-        $user = $this->users->getByGithubId($githubData['id']);
-
-        if ($user) {
-            return $this->loginUser($listener, $user, $githubData);
+        $params = [
+            'client_id' => $this->config['client_id'],
+            'redirect_uri' => $this->config['redirect_url'],
+            'scope' => implode(',', $this->config['scope']),
+        ];
+        if ($state) {
+            $params['state'] = $state;
         }
-
-        return $listener->userNotFound($githubData);
+        return 'https://github.com/login/oauth/authorize?' . http_build_query($params);
     }
 
-    private function loginUser($listener, $user, $githubData)
+    public function authorize($response, $state = null)
     {
-        if ($user->is_banned) {
-            return $listener->userIsBanned($user);
+        if ( ! $this->validateState($response, $state)) {
+            return false;
         }
 
-        $user->fill($githubData);
-        $this->users->save($user);
-        return $listener->userFound($user);
+        $response = $this->tokenRequest->request($this->config['client_id'], $this->config['client_secret'], $response['code']);
+
+        return $this->constructGithubUser(
+            $this->userRequest->request($response['access_token']),
+            $this->emailRequest->request($response['access_token'])
+        );
+
+        return $user;
+    }
+
+    private function validateState($response, $state)
+    {
+        if (is_null($state)) {
+            return true;
+        }
+        if ( ! isset($response['state']) || $response['state'] != $state) {
+            return false;
+        }
+        return true;
+    }
+
+    private function constructGithubUser(array $userData, array $emailData)
+    {
+        $primaryEmail = $this->getPrimaryEmail($emailData);
+        return new GithubUser($userData['login'], $primaryEmail, $userData['html_url'], $userData['id'], $userData['avatar_url']);
+    }
+
+    private function getPrimaryEmail($emails)
+    {
+        foreach ($emails as $email) {
+            if ($email->primary) {
+                return $email->email;
+            }
+        }
+        return null;
     }
 }

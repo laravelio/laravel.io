@@ -1,8 +1,9 @@
 <?php namespace Lio\Articles;
 
+use Illuminate\Database\Eloquent\Model;
 use Lio\Tags\Taggable;
 
-class Article extends \Eloquent
+class Article extends Model
 {
     use \Lio\Tags\Taggable;
 

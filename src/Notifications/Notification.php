@@ -1,6 +1,5 @@
 <?php  namespace Lio\Notifications;
 
-use Illuminate\Database\Eloquent\Model;
 use Lio\Core\SingleTableInheritanceEntity;
 
 class Notification extends SingleTableInheritanceEntity

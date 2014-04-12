@@ -1,11 +1,11 @@
 <?php namespace Lio\Forum\Threads;
 
-use Auth;
-use Lio\Events\EventGenerator;
 use Lio\Tags\Taggable;
 use Lio\Forum\Replies\Reply;
+use Lio\Events\EventGenerator;
+use Illuminate\Database\Eloquent\Model;
 
-class Thread extends \Eloquent
+class Thread extends Model
 {
     use \Lio\Tags\Taggable;
 

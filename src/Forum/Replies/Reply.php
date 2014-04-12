@@ -1,6 +1,8 @@
 <?php namespace Lio\Forum\Replies;
 
-class Reply extends \Eloquent
+use Illuminate\Database\Eloquent\Model;
+
+class Reply extends Model
 {
     protected $table = 'forum_replies';
     protected $guarded = [];

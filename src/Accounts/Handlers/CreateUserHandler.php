@@ -2,14 +2,11 @@
 
 use Lio\Accounts\UserRepository;
 use Lio\Accounts\Users;
-use Lio\Core\Handler;
-use Mitch\EventDispatcher\Dispatcher;
+use Lio\CommandBus\Handler;
+use Lio\Events\Dispatcher;
 
 class CreateUserHandler implements Handler
 {
-    /**
-     * @var \Mitch\EventDispatcher\Dispatcher
-     */
     private $dispatcher;
     /**
      * @var \Lio\Accounts\Users

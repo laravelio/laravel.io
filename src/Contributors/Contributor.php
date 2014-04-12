@@ -1,6 +1,8 @@
 <?php namespace Lio\Contributors;
 
-class Contributor extends \Eloquent
+use Illuminate\Database\Eloquent\Model;
+
+class Contributor extends Model
 {
     protected $table    = 'contributors';
     protected $fillable = ['user_id', 'github_id', 'name', 'avatar_url', 'github_url', 'contribution_count'];

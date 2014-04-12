@@ -1,6 +1,8 @@
 <?php namespace Lio\Bin;
 
-class Paste extends \Eloquent
+use Illuminate\Database\Eloquent\Model;
+
+class Paste extends Model
 {
     protected $table      = 'pastes';
     protected $fillable   = ['code', 'author_id', 'parent_id'];

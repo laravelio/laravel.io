@@ -108,8 +108,6 @@ return array(
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
-		'Artdarek\OAuth\OAuthServiceProvider',
-
 		'Lio\ServiceProviders\GithubServiceProvider',
         'Lio\ServiceProviders\MarkdownServiceProvider',
         'Lio\ServiceProviders\HashidsServiceProvider',
@@ -181,10 +179,6 @@ return array(
         'URL'             => 'Illuminate\Support\Facades\URL',
         'Validator'       => 'Illuminate\Support\Facades\Validator',
         'View'            => 'Illuminate\Support\Facades\View',
-
-		'Profiler' => 'Juy\Profiler\Facades\Profiler',
-		'OAuth'    => 'Artdarek\OAuth\Facade\OAuth',
-		'GitHub'   => 'Lio\GitHub\GitHubFacade',
 	),
 
 );

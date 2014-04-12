@@ -1,6 +1,7 @@
 <?php namespace Lio\Accounts\Validators;
 
 use Illuminate\Validation\Factory;
+use Lio\Accounts\Commands\CreateUserCommand;
 use Lio\CommandBus\CommandValidationFailedException;
 
 class CreateUserValidator
@@ -12,13 +13,13 @@ class CreateUserValidator
         $this->validationFactory = $validationFactory;
     }
 
-    public function validate(CreateThreadCommand $command)
+    public function validate(CreateUserCommand $command)
     {
         $validator = $this->validationFactory->make(
             [
                 'github_id' => $command->githubId,
             ], [
-                'github_id' => 'unique:users,github_id,<id>',
+                'github_id' => 'unique:users,github_id',
             ]
         );
 

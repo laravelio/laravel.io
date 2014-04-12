@@ -1,9 +1,10 @@
 <?php namespace Lio\Accounts;
 
-use Illuminate\Auth\UserInterface;
 use Eloquent;
+use Illuminate\Auth\UserInterface;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends \Eloquent implements UserInterface
+class User extends Model implements UserInterface
 {
     const STATE_ACTIVE = 1;
     const STATE_BLOCKED = 2;

@@ -1,6 +1,8 @@
 <?php namespace Lio\Forum\Threads;
 
-class ThreadVisitation extends \Eloquent
+use Illuminate\Database\Eloquent\Model;
+
+class ThreadVisitation extends Model
 {
     protected $table      = 'forum_thread_visitations';
     protected $fillable   = ['user_id', 'thread_id', 'visited_at'];

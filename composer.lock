@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e6126542f0b97b2fb4a28c52e33b9087",
+    "hash": "7f8739e429afcb7d66abe03387afe7e0",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -287,12 +287,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "3004f39a1d2f5392b778375a061640b89fee09df"
+                "reference": "3e24e006025c0e830bbc48c0f76a81170b1d1a94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/3004f39a1d2f5392b778375a061640b89fee09df",
-                "reference": "3004f39a1d2f5392b778375a061640b89fee09df",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3e24e006025c0e830bbc48c0f76a81170b1d1a94",
+                "reference": "3e24e006025c0e830bbc48c0f76a81170b1d1a94",
                 "shasum": ""
             },
             "require": {
@@ -396,7 +396,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2014-04-11 14:11:00"
+            "time": "2014-04-11 20:10:04"
         },
         {
             "name": "mccool/laravel-auto-presenter",
@@ -811,18 +811,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "242cd2c31910708654bf5db88f78e3d87ddd43bd"
+                "reference": "367c8566053d8f9f56e34e88591d5b5faf28349b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/242cd2c31910708654bf5db88f78e3d87ddd43bd",
-                "reference": "242cd2c31910708654bf5db88f78e3d87ddd43bd",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/367c8566053d8f9f56e34e88591d5b5faf28349b",
+                "reference": "367c8566053d8f9f56e34e88591d5b5faf28349b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.0.0"
             },
             "require-dev": {
+                "phpunit/phpunit": "4.0.*",
                 "squizlabs/php_codesniffer": "1.*"
             },
             "suggest": {
@@ -898,7 +899,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2014-04-10 22:45:32"
+            "time": "2014-04-12 05:23:23"
         },
         {
             "name": "predis/predis",
@@ -1096,12 +1097,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/BrowserKit.git",
-                "reference": "1f5e42db799e05e85d03fe8504c5b1c92c46968d"
+                "reference": "3f784e96caa7ff92ecc960a5eb0377bbc12b4908"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/1f5e42db799e05e85d03fe8504c5b1c92c46968d",
-                "reference": "1f5e42db799e05e85d03fe8504c5b1c92c46968d",
+                "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/3f784e96caa7ff92ecc960a5eb0377bbc12b4908",
+                "reference": "3f784e96caa7ff92ecc960a5eb0377bbc12b4908",
                 "shasum": ""
             },
             "require": {
@@ -1144,7 +1145,7 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "http://symfony.com",
-            "time": "2014-03-27 14:53:17"
+            "time": "2014-04-10 13:00:56"
         },
         {
             "name": "symfony/console",
@@ -1529,12 +1530,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "415c1f8f690a7e6f0f6eca0f1ce0b2c5404d8e97"
+                "reference": "049b2acf5fc5793532c8719dc7edb56c6f12d9a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/415c1f8f690a7e6f0f6eca0f1ce0b2c5404d8e97",
-                "reference": "415c1f8f690a7e6f0f6eca0f1ce0b2c5404d8e97",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/049b2acf5fc5793532c8719dc7edb56c6f12d9a3",
+                "reference": "049b2acf5fc5793532c8719dc7edb56c6f12d9a3",
                 "shasum": ""
             },
             "require": {
@@ -1575,7 +1576,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2014-04-10 13:00:56"
+            "time": "2014-04-11 18:33:45"
         },
         {
             "name": "symfony/http-kernel",
@@ -1584,12 +1585,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "24fd3559c31ab9692c3df447472e19db92c687b7"
+                "reference": "2c47845bb1eb4ae5078779b0e83f4bf7c9565cb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/24fd3559c31ab9692c3df447472e19db92c687b7",
-                "reference": "24fd3559c31ab9692c3df447472e19db92c687b7",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/2c47845bb1eb4ae5078779b0e83f4bf7c9565cb9",
+                "reference": "2c47845bb1eb4ae5078779b0e83f4bf7c9565cb9",
                 "shasum": ""
             },
             "require": {
@@ -1648,7 +1649,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2014-04-10 13:00:56"
+            "time": "2014-04-11 18:33:45"
         },
         {
             "name": "symfony/process",
@@ -2859,52 +2860,6 @@
             "time": "2014-03-18 08:58:58"
         },
         {
-            "name": "raveren/kint",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/raveren/kint.git",
-                "reference": "590e3fcc3fd4234a8d5e844ce783c82464401d7f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/raveren/kint/zipball/590e3fcc3fd4234a8d5e844ce783c82464401d7f",
-                "reference": "590e3fcc3fd4234a8d5e844ce783c82464401d7f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "Kint.class.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rokas Šleinius",
-                    "homepage": "https://github.com/raveren"
-                },
-                {
-                    "name": "Contributors",
-                    "homepage": "https://github.com/raveren/kint/contributors"
-                }
-            ],
-            "description": "Kint - debugging helper for PHP developers",
-            "homepage": "https://github.com/raveren/kint",
-            "keywords": [
-                "debug",
-                "kint",
-                "php"
-            ],
-            "time": "2014-03-20 13:38:44"
-        },
-        {
             "name": "sebastian/comparator",
             "version": "dev-master",
             "source": {
@@ -3230,8 +3185,7 @@
         "michelf/php-markdown": 20,
         "nickcernis/html-to-markdown": 20,
         "misd/linkify": 20,
-        "mockery/mockery": 20,
-        "raveren/kint": 20
+        "mockery/mockery": 20
     },
     "platform": [
 

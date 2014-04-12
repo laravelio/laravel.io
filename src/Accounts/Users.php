@@ -6,6 +6,16 @@ class Users
 {
     use \Lio\Events\EventGenerator;
 
+    /**
+     * @var UserRepository
+     */
+    private $users;
+
+    public function __construct(UserRepository $users)
+    {
+        $this->users = $users;
+    }
+
     public function addUser($email, $name, $githubUrl, $githubId, $imageUrl)
     {
         $user = new User([

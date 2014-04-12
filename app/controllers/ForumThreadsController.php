@@ -63,7 +63,7 @@ class ForumThreadsController extends BaseController
     public function getCreate()
     {
         $tags = $this->tags->getAllForForum();
-        $versions = Laravel::$laravelVersions;
+        $versions = Laravel::$versions;
         $this->title = 'Create Forum Thread';
         $this->view('forum.threads.create', compact('tags', 'versions'));
     }
@@ -85,7 +85,7 @@ class ForumThreadsController extends BaseController
     public function getUpdate($threadId)
     {
         $tags = $this->tags->getAllForForum();
-        $versions = Laravel::$laravelVersions;
+        $versions = Laravel::$versions;
         $thread = $this->threads->requireById($threadId);
         $this->title = 'Update Forum Thread';
         $this->view('forum.threads.update', compact('thread', 'tags', 'versions'));

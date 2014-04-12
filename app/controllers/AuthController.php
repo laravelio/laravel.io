@@ -1,16 +1,16 @@
 <?php
 
-use Illuminate\Http\Request;
 use Lio\Accounts\Commands;
+use Illuminate\Http\Request;
 use Lio\CommandBus\CommandBus;
+use Lio\Accounts\UserRepository;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Routing\Redirector;
 use Lio\Github\GithubAuthenticator;
 use Lio\Accounts\UserCreatorResponder;
 use Illuminate\Session\SessionManager;
-use Lio\Github\GithubAuthenticatorListener;
 
-class AuthController extends BaseController implements GithubAuthenticatorListener
+class AuthController extends BaseController
 {
     /**
      * @var CommandBus
@@ -36,8 +36,12 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
      * @var Illuminate\Session\SessionManager
      */
     private $session;
+    /**
+     * @var Lio\Accounts\UserRepository
+     */
+    private $userRepository;
 
-    function __construct(CommandBus $bus, Request $request, AuthManager $auth, Redirector $redirector, GithubAuthenticator $github, SessionManager $session)
+    function __construct(CommandBus $bus, Request $request, UserRepository $userRepository, AuthManager $auth, Redirector $redirector, GithubAuthenticator $github, SessionManager $session)
     {
         $this->bus = $bus;
         $this->auth = $auth;
@@ -45,35 +49,29 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
         $this->request = $request;
         $this->session = $session;
         $this->redirector = $redirector;
+        $this->userRepository = $userRepository;
     }
 
     public function getLogin()
     {
-        $code = $this->request->has('code');
-        if ($code) {
-            return $this->github->authByCode($this, $code);
+        if ( ! $this->request->has('code')) {
+            return $this->redirector->to($this->github->getAuthUrl());
         }
-        return $this->redirector->to((string) OAuth::consumer('GitHub')->getAuthorizationUri());
-    }
 
-    // github account integration responses
-    public function userFound($user)
-    {
-        Auth::login($user, true);
-        Session::forget('userGithubData');
-        return $this->redirectIntended(action('ForumThreadsController@getIndex'));
-    }
+        $githubUser = $this->github->authorize($this->request->all());
+        $user = $this->userRepository->getGithubUser($githubUser);
 
-    public function userIsBanned($user)
-    {
-        return $this->redirector->action('ForumThreadsController@getIndex');
-    }
+        if ($user) {
+            $this->auth->login($user, true);
+            $this->session->forget('userGithubData');
+            return $this->redirectIntended(action('ForumThreadsController@getIndex'));
+        }
 
-    public function userNotFound($githubData)
-    {
-        $this->session->put('userGithubData', $githubData);
+        $this->session->put('githubUser', $githubUser);
         return $this->redirector->action('AuthController@getSignupConfirm');
     }
+
+    // implement banned user
 
     public function getLogout()
     {
@@ -90,35 +88,36 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
     // the confirmation page that shows a user what their new account will look like
     public function getSignupConfirm()
     {
-        if ( ! $this->session->has('userGithubData')) {
+        if ( ! $this->session->has('githubUser')) {
             return $this->redirector->action('AuthController@getLogin');
         }
+
         $this->view('auth.signupconfirm', [
-            'githubUser' => $this->session->has('userGithubData'),
+            'githubUser' => $this->session->get('githubUser'),
         ]);
     }
 
     // actually creates the new user account
     public function postSignupConfirm()
     {
-        if ( ! $this->session->has('userGithubData')) {
+        if ( ! $this->session->has('githubUser')) {
             return $this->redirector->action('AuthController@getLogin');
         }
 
-        $github = $this->session->get('userGithubData');
+        $githubUser = $this->session->get('githubUser');
 
         $command = new Commands\CreateUserCommand(
-            $github['email'],
-            $github['login'],
-            $github['html_url'],
-            $github['id'],
-            $github['avatar_url']
+            $githubUser->email,
+            $githubUser->name,
+            $githubUser->githubUrl,
+            $githubUser->githubId,
+            $githubUser->imageUrl
         );
 
         $user = $this->bus->execute($command);
 
         $this->auth->login($user, true);
-        $this->session->forget('userGithubData');
+        $this->session->forget('githubUser');
 
         return $this->redirectIntended(action('ForumThreadsController@getIndex'));
     }

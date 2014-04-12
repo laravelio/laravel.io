@@ -2,6 +2,7 @@
 
 use Lio\Core\EloquentRepository;
 use Lio\Core\Exceptions\EntityNotFoundException;
+use Lio\Github\GithubUser;
 
 class UserRepository extends EloquentRepository
 {
@@ -34,5 +35,10 @@ class UserRepository extends EloquentRepository
     public function getFirstX($count)
     {
         return $this->model->take($count)->get();
+    }
+
+    public function getGithubUser(GithubUser $user)
+    {
+        return $this->getByGithubId($user->githubId);
     }
 }

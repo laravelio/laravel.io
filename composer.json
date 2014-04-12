@@ -1,5 +1,5 @@
 {
-    "description": "Laravel.io",
+    "description": "Laravel.IO",
     "require": {
         "laravel/framework": "4.1.*",
         "mccool/laravel-auto-presenter": "dev-master",
@@ -10,7 +10,6 @@
     },
     "require-dev": {
         "mockery/mockery": "dev-master",
-        "raveren/kint": "dev-master",
         "codeception/codeception": "*",
         "codeception/aspect-mock": "*"
     },
