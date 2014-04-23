@@ -10,3 +10,4 @@ app/tests/_data/*
 app/storage/cache/*
 app/storage/views/*
 stylesheets
+vagrant_ansible_inventory_default
