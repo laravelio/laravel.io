@@ -85,7 +85,7 @@ composer-download:
 # Perform a composer install
 # Use: make composer-install
 composer-install:
-	@$(VAGRANTSSH) "cd /vagrant && php composer.phar install"
+	@$(VAGRANTSSH) "cd /vagrant && php composer.phar install --no-dev"
 
 # Perform a composer install with --dev
 # Use: make composer-install-dev
