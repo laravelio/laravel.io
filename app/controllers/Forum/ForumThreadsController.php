@@ -8,6 +8,7 @@ use \Lio\Forum\Threads\ThreadForm;
 use Lio\Forum\Threads\ThreadRepository;
 use Lio\Forum\Threads\ThreadUpdaterListener;
 use Lio\Tags\TagRepository;
+use Helpers\HtmlClean;
 
 class ForumThreadsController extends BaseController implements
     ThreadCreatorListener,
@@ -85,7 +86,7 @@ class ForumThreadsController extends BaseController implements
     {
         return $this->threadCreator->create($this, [
             'subject' => Input::get('subject'),
-            'body' => Input::get('body'),
+            'body' => HtmlClean::make(Input::get('body')),
             'author' => Auth::user(),
             'laravel_version' => Input::get('laravel_version'),
             'is_question' => Input::get('is_question'),
@@ -131,7 +132,7 @@ class ForumThreadsController extends BaseController implements
 
         return App::make('Lio\Forum\Threads\ThreadUpdater')->update($this, $thread, [
             'subject' => Input::get('subject'),
-            'body' => Input::get('body'),
+            'body' => HtmlClean::make(Input::get('body')),
             'is_question' => Input::get('is_question', 0),
             'laravel_version' => Input::get('laravel_version'),
             'tags' => $this->tags->getTagsByIds(Input::get('tags')),
