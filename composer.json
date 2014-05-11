@@ -2,16 +2,16 @@
     "description": "Laravel.IO",
     "require": {
         "laravel/framework": "4.1.*",
-        "mccool/laravel-auto-presenter": "dev-master",
-        "michelf/php-markdown": "1.4.*@dev",
-        "nickcernis/html-to-markdown": "dev-master",
-        "misd/linkify": "1.1.*@dev",
-        "hashids/hashids": "0.3.*"
+        "mccool/laravel-auto-presenter": "~1.0",
+        "michelf/php-markdown": "~1.4",
+        "nickcernis/html-to-markdown": "~2.1",
+        "misd/linkify": "~1.1@dev",
+        "hashids/hashids": "~0.3@dev"
     },
     "require-dev": {
-        "mockery/mockery": "dev-master",
-        "codeception/codeception": "*",
-        "codeception/aspect-mock": "*"
+        "mockery/mockery": "~0.9",
+        "codeception/codeception": "~2.0",
+        "codeception/aspect-mock": "~0.4"
     },
     "autoload": {
         "classmap": [
@@ -41,5 +41,5 @@
     "config": {
         "preferred-install": "dist"
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "RC"
 }
