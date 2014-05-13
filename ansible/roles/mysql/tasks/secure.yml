@@ -10,7 +10,7 @@
    - "%"
    - ::1
    - localhost
-  when: ansible_hostname != 'localhost'
+  when: ansible_hostname != 'localhost'pas
 
 - name: MySQL | Set the root password.
   mysql_user:
