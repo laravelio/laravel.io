@@ -25,7 +25,9 @@
 
 </head>
 <body>
-
+<div style="background: #2fb352; padding: .75em; text-align:center; font-size:1.1em">
+    <a href="http://laracon.eu" style="color:#eee;">Tickets available for Laracon EU 28th, 29th and 30th August Amsterdam.</a>
+</div>
 <div class="wrapper">
   <div class="top-header">
     @include('layouts._top_nav')

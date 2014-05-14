@@ -30,9 +30,8 @@ class GithubAuthenticatorTest extends \UnitTestCase
         // the user repository and the reader
         $auth = $this->getAuthenticator($users, $reader);
 
-        // create a fake observer class (an example of an observer
-        // class would be a controller. (see: AuthController)
-        $observer = m::mock();
+        // create a fake listener
+        $observer = m::mock('Lio\Github\GithubAuthenticatorListener');
         $observer->shouldReceive('userFound')->once();
 
         // Our goal here is to ensure that when a non-banned user
@@ -54,7 +53,7 @@ class GithubAuthenticatorTest extends \UnitTestCase
 
         $auth = $this->getAuthenticator($users, $reader);
 
-        $observer = m::mock();
+        $observer = m::mock('Lio\Github\GithubAuthenticatorListener');
         $observer->shouldReceive('userIsBanned')->once();
 
         // when a banned user is found by its Github id, the
@@ -74,7 +73,7 @@ class GithubAuthenticatorTest extends \UnitTestCase
 
         $auth = $this->getAuthenticator($users, $reader);
 
-        $observer = m::mock();
+        $observer = m::mock('Lio\Github\GithubAuthenticatorListener');
         $observer->shouldReceive('userNotFound')->once();
 
         $auth->authByCode($observer, 'foo');
