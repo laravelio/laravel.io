@@ -21,7 +21,6 @@ class UpdateMemberDetailsFromGithub implements Listener
         $member = $event->member;
         $github = $event->githubUser;
 
-        $member->edit
         $member->name = $github->name;
         $member->email = $github->email;
         $member->github_url = $github->githubUrl;
