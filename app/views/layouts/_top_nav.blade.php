@@ -25,7 +25,7 @@
     </nav>
     <ul class="user-navigation">
         @if(Auth::check())
-            {{-- <li><a href="{{ action('DashboardController@getIndex') }}">{{ $currentUser->name }}<span class="dashboard-word">'s Dashboard</span></a></li> --}}
+            <li><a href="{{ url($currentUser->profileUrl) }}">{{ $currentUser->name }}</a></li>
             <li><a class="button" href="{{ action('AuthController@getLogout') }}">Logout</a></li>
         @else
             <li><a class="button" href="{{ action('AuthController@getLogin') }}">Login with GitHub</a></li>
