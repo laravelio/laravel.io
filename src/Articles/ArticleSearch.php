@@ -1,8 +1,5 @@
 <?php namespace Lio\Articles;
 
-use Lio\Comments\Comment;
-use DB;
-
 class ArticleSearch
 {
     protected $model;

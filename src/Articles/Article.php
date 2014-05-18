@@ -1,30 +1,24 @@
 <?php namespace Lio\Articles;
 
 use Illuminate\Database\Eloquent\Model;
+use Lio\Articles\Events\ArticleWrittenEvent;
+use Lio\Events\EventGenerator;
 use Lio\Tags\Taggable;
 
 class Article extends Model
 {
-    use \Lio\Tags\Taggable;
+    use Taggable, EventGenerator;
 
     protected $table      = 'articles';
     protected $with       = ['author'];
-    protected $guarded = [];
+    protected $guarded    = [];
     protected $dates      = ['published_at'];
     protected $softDelete = true;
 
     public $presenter = 'Lio\Articles\ArticlePresenter';
 
-    const STATUS_DRAFT     = 0;
+    const STATUS_DRAFT = 0;
     const STATUS_PUBLISHED = 1;
-
-
-    protected $validationRules = [
-        'author_id' => 'required|exists:users,id',
-        'title'     => 'required',
-        'content'   => 'required',
-        'status'    => 'in:0,1',
-    ];
 
     public function author()
     {
@@ -34,6 +28,28 @@ class Article extends Model
     public function comments()
     {
         return $this->morphMany('Lio\Comments\Comment', 'owner');
+    }
+
+    public static function write($author, $title, $content, $status, $laravelVersion, array $tagIds = [])
+    {
+        $article = new static([
+            'author_id' => $author->id,
+            'title' => $title,
+            'content' => $content,
+            'status' => $status,
+            'laravel_version' => $laravelVersion,
+        ]);
+        $article->setTagsById($tagIds);
+        $article->raise(new ArticleWrittenEvent($article));
+        return $article;
+    }
+
+    public function edit($title, $content, $laravelVersion, array $tagIds = [])
+    {
+        $this->title = $title;
+        $this->content = $content;
+        $this->laravelVersion = $laravelVersion;
+        $this->setTagsById($tagIds);
     }
 
     public function updateCommentCount()
@@ -97,7 +113,7 @@ class Article extends Model
 
     public function save(array $options = array())
     {
-        if($this->status == static::STATUS_PUBLISHED && ! $this->published_at) {
+        if ($this->status == static::STATUS_PUBLISHED && ! $this->published_at) {
             $this->published_at = $this->freshTimestamp();
         }
 
