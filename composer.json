@@ -1,4 +1,5 @@
 {
+    "name": "laravelio/laravelio",
     "description": "Laravel.io",
     "require": {
         "laravel/framework": "4.1.*",
