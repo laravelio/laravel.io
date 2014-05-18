@@ -133,4 +133,9 @@ class Member extends Model implements UserInterface
     {
         return 'remember_token';
     }
+
+    public function bannedBy(Member $moderator)
+    {
+        $this->is_banned = 1;
+    }
 }

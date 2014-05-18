@@ -47,8 +47,8 @@ return array(
 	'connections' => array(
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '127.0.0.1',
-			'database'  => 'lio_development',
+			'host'      => 'localhost',
+			'database'  => 'homestead',
 			'username'  => 'homestead',
 			'password'  => 'secret',
 			'charset'   => 'utf8',
