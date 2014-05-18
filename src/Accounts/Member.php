@@ -3,20 +3,25 @@
 use Eloquent;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Database\Eloquent\Model;
+use Lio\Accounts\Events\MemberLoggedInThroughGithub;
+use Lio\Events\EventGenerator;
 
 class Member extends Model implements UserInterface
 {
-    const STATE_ACTIVE = 1;
-    const STATE_BLOCKED = 2;
+    use EventGenerator;
 
     protected $table = 'users';
-    protected $hidden = ['github_id'];
     protected $guarded = [];
     protected $softDelete = true;
-
     public $presenter = 'Lio\Accounts\UserPresenter';
 
-    private $rolesCache;
+    const STATE_ACTIVE = 1;
+    const STATE_BANNED = 2;
+
+    public function login()
+    {
+        $this->raise(new MemberLoggedInThroughGithub($this));
+    }
 
     // Articles
     public function articles()
@@ -28,15 +33,6 @@ class Member extends Model implements UserInterface
     public function roles()
     {
         return $this->belongsToMany('Lio\Accounts\Role');
-    }
-
-    public function getRoles()
-    {
-        if (!isset($this->rolesCache)) {
-            $this->rolesCache = $this->roles;
-        }
-
-        return $this->rolesCache;
     }
 
     public function isForumAdmin()
@@ -54,50 +50,9 @@ class Member extends Model implements UserInterface
         return $this->hasRole('manage_users');
     }
 
-    public function setRolesAttribute($roles)
-    {
-        $this->roles()->sync((array)$roles);
-    }
-
     public function hasRole($roleName)
     {
         return $this->hasRoles($roleName);
-    }
-
-    public function hasRoles($roleNames = [])
-    {
-        $roleList = \App::make('Lio\Accounts\RoleRepository')->getRoleList();
-
-        foreach ((array)$roleNames as $allowedRole) {
-            // validate that the role exists
-            if (!in_array($allowedRole, $roleList)) {
-                throw new InvalidRoleException("Unidentified role: {$allowedRole}");
-            }
-
-            // validate that the user has the role
-            if (!$this->roleCollectionHasRole($allowedRole)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private function roleCollectionHasRole($allowedRole)
-    {
-        $roles = $this->getRoles();
-
-        if (!$roles) {
-            return false;
-        }
-
-        foreach ($roles as $role) {
-            if (strtolower($role->name) == strtolower($allowedRole)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     // UserInterface
@@ -118,11 +73,6 @@ class Member extends Model implements UserInterface
     }
 
     // Forum
-    public function forumPosts()
-    {
-        return $this->hasMany('Lio\Comments\Comment', 'author_id')->where('type', '=', \Lio\Comments\Comment::TYPE_FORUM)->orderBy('created_at', 'desc');
-    }
-
     public function forumThreads()
     {
         return $this->hasMany('Lio\Forum\Threads\Thread', 'author_id')->orderBy('created_at', 'desc');
@@ -181,6 +131,6 @@ class Member extends Model implements UserInterface
      */
     public function getRememberTokenName()
     {
-
+        return 'remember_token';
     }
 }

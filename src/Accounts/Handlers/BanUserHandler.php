@@ -1,6 +1,6 @@
 <?php namespace Lio\Accounts\Handlers;
 
-use Lio\Accounts\UserRepository;
+use Lio\Accounts\EloquentMemberRepository;
 use Lio\Accounts\Users;
 use Lio\Core\Handler;
 use Mitch\EventDispatcher\Dispatcher;
@@ -16,11 +16,11 @@ class BanUserHandler implements Handler
      */
     private $users;
     /**
-     * @var \Lio\Accounts\UserRepository
+     * @var \Lio\Accounts\EloquentMemberRepository
      */
     private $repository;
 
-    public function __construct(Users $users, UserRepository $repository, Dispatcher $dispatcher)
+    public function __construct(Users $users, EloquentMemberRepository $repository, Dispatcher $dispatcher)
     {
         $this->users = $users;
         $this->dispatcher = $dispatcher;

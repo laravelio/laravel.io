@@ -8,11 +8,11 @@ class Users
     use EventGenerator;
 
     /**
-     * @var UserRepository
+     * @var EloquentMemberRepository
      */
     private $users;
 
-    public function __construct(UserRepository $users)
+    public function __construct(EloquentMemberRepository $users)
     {
         $this->users = $users;
     }

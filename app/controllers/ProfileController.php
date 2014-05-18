@@ -1,12 +1,12 @@
 <?php
 
-use Lio\Accounts\UserRepository;
+use Lio\Accounts\EloquentMemberRepository;
 
 class ProfileController extends BaseController
 {
     private $users;
 
-    public function __construct(UserRepository $users)
+    public function __construct(EloquentMemberRepository $users)
     {
         $this->users = $users;
     }

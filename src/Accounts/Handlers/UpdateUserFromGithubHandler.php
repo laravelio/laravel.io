@@ -1,6 +1,6 @@
 <?php namespace Lio\Accounts\Handlers; 
 
-use Lio\Accounts\UserRepository;
+use Lio\Accounts\EloquentMemberRepository;
 use Lio\Accounts\Users;
 use Lio\CommandBus\Handler;
 use Lio\Events\Dispatcher;
@@ -12,7 +12,7 @@ class UpdateUserFromGithubHandler implements Handler
      */
     private $users;
     /**
-     * @var \Lio\Accounts\UserRepository
+     * @var \Lio\Accounts\EloquentMemberRepository
      */
     private $repository;
     /**
@@ -20,7 +20,7 @@ class UpdateUserFromGithubHandler implements Handler
      */
     private $dispatcher;
 
-    public function __construct(Users $users, UserRepository $repository, Dispatcher $dispatcher)
+    public function __construct(Users $users, EloquentMemberRepository $repository, Dispatcher $dispatcher)
     {
         $this->users = $users;
         $this->repository = $repository;

@@ -1,55 +1,23 @@
 <?php
 
-use Lio\Accounts\Commands;
-use Illuminate\Http\Request;
-use Lio\CommandBus\CommandBus;
-use Lio\Accounts\UserRepository;
-use Illuminate\Auth\AuthManager;
-use Illuminate\Routing\Redirector;
+use Lio\Accounts\MemberNotFoundException;
+use Lio\Accounts\UseCases\LoginMemberThroughGithubRequest;
 use Lio\Github\GithubAuthenticator;
-use Lio\Accounts\UserCreatorResponder;
-use Illuminate\Session\SessionManager;
 
 class AuthController extends BaseController
 {
-    /**
-     * @var CommandBus
-     */
-    private $bus;
-    /**
-     * @var Request
-     */
-    private $request;
-    /**
-     * @var AuthManager
-     */
-    private $auth;
-    /**
-     * @var Redirector
-     */
-    private $redirector;
-    /**
-     * @var Lio\Github\GithubAuthenticator
-     */
-    private $github;
-    /**
-     * @var Illuminate\Session\SessionManager
-     */
-    private $session;
-    /**
-     * @var Lio\Accounts\UserRepository
-     */
-    private $userRepository;
+    protected $bus;
+    protected $request;
+    protected $redirector;
 
-    function __construct(CommandBus $bus, Request $request, UserRepository $userRepository, AuthManager $auth, Redirector $redirector, GithubAuthenticator $github, SessionManager $session)
+    private $github;
+
+    public function __construct(CommandBus $bus, Request $request, Redirector $redirector, GithubAuthenticator $github)
     {
         $this->bus = $bus;
-        $this->auth = $auth;
-        $this->github = $github;
         $this->request = $request;
-        $this->session = $session;
         $this->redirector = $redirector;
-        $this->userRepository = $userRepository;
+        $this->github = $github;
     }
 
     public function getLogin()
@@ -59,19 +27,18 @@ class AuthController extends BaseController
         }
 
         $githubUser = $this->github->authorize($this->request->all());
-        $user = $this->userRepository->getGithubUser($githubUser);
 
-        if ($user) {
-            $command = new Commands\UpdateUserFromGithubCommand($user, $githubUser);
-            $this->bus->execute($command);
+        $request = new LoginMemberThroughGithubRequest($githubUser);
 
-            $this->auth->login($user, true);
-            $this->session->forget('userGithubData');
-            return $this->redirectIntended(action('ForumThreadsController@getIndex'));
+        try {
+            $member = $this->bus->execute($request);
+        } catch (MemberNotFoundException $e) {
+            $this->session->put('githubUser', $githubUser);
+            return $this->redirector->action('AuthController@getSignupConfirm');
         }
 
-        $this->session->put('githubUser', $githubUser);
-        return $this->redirector->action('AuthController@getSignupConfirm');
+        $this->session->forget('userGithubData');
+        return $this->redirectIntended(action('ForumThreadsController@getIndex'));
     }
 
     // implement banned user

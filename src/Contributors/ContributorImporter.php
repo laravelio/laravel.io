@@ -1,13 +1,13 @@
 <?php namespace Lio\Contributors;
 
-use Lio\Accounts\UserRepository;
+use Lio\Accounts\EloquentMemberRepository;
 
 class ContributorImporter
 {
     private $users;
     private $contributors;
 
-    public function __construct(UserRepository $users, ContributorRepository $contributors)
+    public function __construct(EloquentMemberRepository $users, ContributorRepository $contributors)
     {
         $this->users        = $users;
         $this->contributors = $contributors;
