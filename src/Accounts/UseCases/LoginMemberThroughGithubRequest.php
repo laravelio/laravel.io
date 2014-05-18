@@ -4,7 +4,7 @@ use Lio\Github\GithubUser;
 
 class LoginMemberThroughGithubRequest
 {
-    private $githubUser;
+    public $githubUser;
 
     public function __construct(GithubUser $githubUser)
     {

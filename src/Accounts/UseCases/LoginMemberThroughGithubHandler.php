@@ -1,7 +1,6 @@
 <?php namespace Lio\Accounts\UseCases; 
 
 use Illuminate\Auth\AuthManager;
-use Illuminate\Auth\Guard;
 use Lio\Accounts\MemberNotFoundException;
 use Lio\Accounts\MemberRepository;
 use Lio\CommandBus\Handler;
@@ -14,30 +13,32 @@ class LoginMemberThroughGithubHandler implements Handler
      */
     private $memberRepository;
     /**
-     * @var \Illuminate\Auth\Guard
-     */
-    private $auth;
-    /**
      * @var \Lio\Events\Dispatcher
      */
     private $dispatcher;
+    /**
+     * @var \Illuminate\Auth\AuthManager
+     */
+    private $auth;
 
-    public function __construct(Guard $auth, MemberRepository $memberRepository, Dispatcher $dispatcher)
+    public function __construct(AuthManager $auth, MemberRepository $memberRepository, Dispatcher $dispatcher)
     {
         $this->memberRepository = $memberRepository;
-        $this->auth = $auth;
         $this->dispatcher = $dispatcher;
+        $this->auth = $auth;
     }
 
     public function handle($request)
     {
-        $member = $this->memberRepository->getByGithubId($request->githubId);
+        $githubUser = $request->githubUser;
+
+        $member = $this->memberRepository->getByGithubId($githubUser->githubId);
 
         if ( ! $member) {
             throw new MemberNotFoundException;
         }
 
-        $member->loginThroughGithub($request->githubUser);
+        $member->loginThroughGithub($githubUser->githubUser);
         $this->auth->login($member);
 
         $this->dispatcher->dispatch($member->releaseEvents());

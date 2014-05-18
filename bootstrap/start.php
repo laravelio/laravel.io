@@ -25,7 +25,7 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment(array(
-	'local'      => ['precise64'],
+	'local'      => ['homestead'],
     'production' => ['laravel.io', 'laraveliotest.*'],
 ));
 

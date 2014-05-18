@@ -47,10 +47,10 @@ return array(
 	'connections' => array(
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => '127.0.0.1',
 			'database'  => 'lio_development',
-			'username'  => 'root',
-			'password'  => 'password',
+			'username'  => 'homestead',
+			'password'  => 'secret',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
