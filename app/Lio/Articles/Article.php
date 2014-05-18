@@ -69,7 +69,7 @@ class Article extends Entity
 
     public function isPublished()
     {
-        if ($this->exists and $this->status == static::STATUS_PUBLISHED) {
+        if ($this->exists && $this->status == static::STATUS_PUBLISHED) {
             return true;
         }
         return false;

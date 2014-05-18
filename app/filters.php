@@ -61,7 +61,7 @@ Route::filter('csrf', function() {
 Route::filter('has_role', function($route, $request, $parameters) {
     $allowedRoles = explode(',', $parameters);
 
-    if (Auth::check() and Auth::user()->hasRoles($allowedRoles)) {
+    if (Auth::check() && Auth::user()->hasRoles($allowedRoles)) {
         return;
     }
 
