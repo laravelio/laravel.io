@@ -6,7 +6,7 @@ use Lio\Github\GithubUser;
 
 class UserRepository extends EloquentRepository
 {
-    public function __construct(User $model)
+    public function __construct(Member $model)
     {
         $this->model = $model;
     }

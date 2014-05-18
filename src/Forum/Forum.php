@@ -1,6 +1,6 @@
 <?php namespace Lio\Forum;
 
-use Lio\Accounts\User;
+use Lio\Accounts\Member;
 use Lio\Events\EventGenerator;
 use Lio\Forum\Replies;
 use Lio\Forum\Threads;
@@ -16,7 +16,7 @@ class Forum
         $this->threads = $threads;
     }
 
-    public function addThread($subject, $body, User $author, $isQuestion, $laravelVersion, array $tagIds)
+    public function addThread($subject, $body, Member $author, $isQuestion, $laravelVersion, array $tagIds)
     {
         $thread = new Threads\Thread([
             'subject' => $subject,
@@ -33,7 +33,7 @@ class Forum
         return $thread;
     }
 
-    public function UpdateThread(Threads\Thread $thread, $subject, $body, User $author, $isQuestion, $laravelVersion, array $tagIds)
+    public function UpdateThread(Threads\Thread $thread, $subject, $body, Member $author, $isQuestion, $laravelVersion, array $tagIds)
     {
         $thread->fill([
             'subject' => $subject,
@@ -70,7 +70,7 @@ class Forum
         return $thread;
     }
 
-    public function addThreadReply(Threads\Thread $thread, $body, User $author)
+    public function addThreadReply(Threads\Thread $thread, $body, Member $author)
     {
         $reply = new Replies\Reply([
             'body' => $body,

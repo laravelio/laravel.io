@@ -18,6 +18,6 @@ class ProfileController extends BaseController
         $threads = $user->getLatestThreadsPaginated(5);
         $replies = $user->getLatestRepliesPaginated(5);
 
-        $this->view('users.profile', compact('user', 'threads', 'replies'));
+        $this->renderView('users.profile', compact('user', 'threads', 'replies'));
     }
 }

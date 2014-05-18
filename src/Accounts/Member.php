@@ -4,7 +4,7 @@ use Eloquent;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model implements UserInterface
+class Member extends Model implements UserInterface
 {
     const STATE_ACTIVE = 1;
     const STATE_BLOCKED = 2;
@@ -151,5 +151,36 @@ class User extends Model implements UserInterface
     public function ban()
     {
         $this->is_banned = 1;
+    }
+
+    /**
+     * Get the token value for the "remember me" session.
+     *
+     * @return string
+     */
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
+
+    /**
+     * Set the token value for the "remember me" session.
+     *
+     * @param  string $value
+     * @return void
+     */
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
+    }
+
+    /**
+     * Get the column name for the "remember me" token.
+     *
+     * @return string
+     */
+    public function getRememberTokenName()
+    {
+
     }
 }

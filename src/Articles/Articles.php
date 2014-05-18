@@ -1,4 +1,4 @@
-<?php namespace Lio\Articles;use Lio\Accounts\User;
+<?php namespace Lio\Articles;use Lio\Accounts\Member;
 
 /**
  * Class Articles
@@ -7,7 +7,7 @@
  */
 class Articles
 {
-    public function addArticle(User $author, $title, $content, $status, $laravelVersion, array $tagIds = [])
+    public function addArticle(Member $author, $title, $content, $status, $laravelVersion, array $tagIds = [])
     {
         $article = new Article([
             'author_id' => $author->id,

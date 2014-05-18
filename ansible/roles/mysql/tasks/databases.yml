@@ -1,8 +1,0 @@
-# file: mysql/tasks/databases.yml
-
-- name: MySQL | Make sure the MySQL databases are present
-  mysql_db:
-    name: "{{item.name}}"
-    state: present
-  with_items: mysql_databases
-  when: mysql_databases|length > 0

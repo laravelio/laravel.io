@@ -1,12 +1,12 @@
 <?php namespace Lio\Accounts\Commands;
 
-use Lio\Accounts\User;
+use Lio\Accounts\Member;
 use Lio\Github\GithubUser;
 
 class UpdateUserFromGithubCommand
 {
     /**
-     * @var \Lio\Accounts\User
+     * @var \Lio\Accounts\Member
      */
     public $user;
     /**
@@ -14,7 +14,7 @@ class UpdateUserFromGithubCommand
      */
     public $githubUser;
 
-    public function __construct(User $user, GithubUser $githubUser)
+    public function __construct(Member $user, GithubUser $githubUser)
     {
         $this->user = $user;
         $this->githubUser = $githubUser;

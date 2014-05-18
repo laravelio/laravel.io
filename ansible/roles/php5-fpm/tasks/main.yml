@@ -1,7 +1,0 @@
-- name: Install php5-fpm and php5-cli
-  sudo: yes
-  apt: pkg={{ item }} state=latest
-  with_items:
-    - php5-fpm
-    - php5-cli
-    - php5-mysql
