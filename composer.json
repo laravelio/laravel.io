@@ -1,6 +1,7 @@
 {
     "name": "laravelio/laravelio",
     "description": "Laravel.io",
+    "license": "MIT",
     "require": {
         "laravel/framework": "4.1.*",
         "artdarek/oauth-4-laravel": "dev-master",
