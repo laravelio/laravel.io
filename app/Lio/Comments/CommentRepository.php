@@ -1,6 +1,7 @@
 <?php namespace Lio\Comments;
 
 use Lio\Core\EloquentRepository;
+use Lio\Core\Exceptions\EntityNotFoundException;
 use Lio\Forum\ForumCategory;
 use Lio\Articles\Article;
 use Illuminate\Support\Collection;
