@@ -1,12 +1,12 @@
 <?php
 
-use Lio\Accounts\UserRepository;
+use Lio\Accounts\EloquentMemberRepository;
 
 class ProfileController extends BaseController
 {
     private $users;
 
-    public function __construct(UserRepository $users)
+    public function __construct(EloquentMemberRepository $users)
     {
         $this->users = $users;
     }
@@ -18,6 +18,6 @@ class ProfileController extends BaseController
         $threads = $user->getLatestThreadsPaginated(5);
         $replies = $user->getLatestRepliesPaginated(5);
 
-        $this->view('users.profile', compact('user', 'threads', 'replies'));
+        $this->renderView('users.profile', compact('user', 'threads', 'replies'));
     }
 }

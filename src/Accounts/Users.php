@@ -8,18 +8,18 @@ class Users
     use EventGenerator;
 
     /**
-     * @var UserRepository
+     * @var EloquentMemberRepository
      */
     private $users;
 
-    public function __construct(UserRepository $users)
+    public function __construct(EloquentMemberRepository $users)
     {
         $this->users = $users;
     }
 
     public function addUserFromGithub(GithubUser $github)
     {
-        $user = new User([
+        $user = new Member([
             'email' => $github->email,
             'name' => $github->name,
             'github_url' => $github->githubUrl,
@@ -29,7 +29,7 @@ class Users
         return $user;
     }
 
-    public function updateUserFromGithub(User $user, GithubUser $github)
+    public function updateUserFromGithub(Member $user, GithubUser $github)
     {
         $user->fill([
             'email' => $github->email,
@@ -41,7 +41,7 @@ class Users
         return $user;
     }
 
-    public function banUser(User $problem, User $admin)
+    public function banUser(Member $problem, Member $admin)
     {
         $problem->ban();
         return $problem;

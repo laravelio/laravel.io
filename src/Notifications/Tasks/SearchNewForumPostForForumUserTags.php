@@ -1,6 +1,6 @@
 <?php  namespace Lio\Notifications\Tasks;
 
-use Lio\Accounts\User;
+use Lio\Accounts\Member;
 use Lio\Notifications\ForumTag;
 use Lio\Notifications\UserTagParser;
 
@@ -38,10 +38,10 @@ class SearchNewForumPostForForumUserTags
 
     private function getUser($username)
     {
-        return User::where('name', '=', $username)->where('is_banned', '=', 0)->first();
+        return Member::where('name', '=', $username)->where('is_banned', '=', 0)->first();
     }
 
-    private function insertNotificationRecord(User $user, $post)
+    private function insertNotificationRecord(Member $user, $post)
     {
         $notification = new ForumTag;
         $notification->user_id = $user->id;

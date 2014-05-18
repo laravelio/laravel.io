@@ -1,9 +1,27 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Session\SessionManager;
+use Lio\CommandBus\CommandBus;
+
 abstract class BaseController extends Controller
 {
     protected $layout = 'layouts.default';
     protected $title = '';
+
+    protected $bus;
+    protected $request;
+    protected $redirector;
+    protected $session;
+
+    public function __construct(CommandBus $bus, Request $request, Redirector $redirector, SessionManager $session)
+    {
+        $this->bus = $bus;
+        $this->request = $request;
+        $this->redirector = $redirector;
+        $this->session = $session;
+    }
 
     protected function setupLayout()
     {
@@ -12,7 +30,7 @@ abstract class BaseController extends Controller
         }
     }
 
-    protected function view($path, $data = [])
+    protected function renderView($path, $data = [])
     {
         View::share('currentUser', Auth::user());
         $this->layout->title = $this->title;

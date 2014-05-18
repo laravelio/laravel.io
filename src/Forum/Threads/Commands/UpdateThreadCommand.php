@@ -1,6 +1,6 @@
 <?php namespace Lio\Forum\Threads\Commands;
 
-use Lio\Accounts\User;
+use Lio\Accounts\Member;
 use Lio\Forum\Threads\Thread;
 
 class UpdateThreadCommand
@@ -13,7 +13,7 @@ class UpdateThreadCommand
     public $laravelVersion;
     public $tagIds;
 
-    public function __construct(Thread $thread, $subject, $body, User $user, $isQuestion, $laravelVersion, array $tagIds)
+    public function __construct(Thread $thread, $subject, $body, Member $user, $isQuestion, $laravelVersion, array $tagIds)
     {
         $this->thread = $thread;
         $this->subject = $subject;

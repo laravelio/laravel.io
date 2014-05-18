@@ -1,6 +1,6 @@
 <?php namespace Lio\Forum\Threads\Commands;
 
-use Lio\Accounts\User;
+use Lio\Accounts\Member;
 
 class CreateThreadCommand
 {
@@ -11,7 +11,7 @@ class CreateThreadCommand
     public $laravelVersion;
     public $tagIds;
 
-    public function __construct($subject, $body, User $author, $isQuestion, $laravelVersion, array $tagIds)
+    public function __construct($subject, $body, Member $author, $isQuestion, $laravelVersion, array $tagIds)
     {
         $this->subject = $subject;
         $this->body = $body;

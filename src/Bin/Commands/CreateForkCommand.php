@@ -1,6 +1,6 @@
 <?php  namespace Lio\Bin\Commands;
 
-use Lio\Accounts\User;
+use Lio\Accounts\Member;
 use Lio\Bin\Paste;
 
 class CreateForkCommand
