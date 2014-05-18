@@ -1,6 +1,6 @@
 ## Laravel.IO Community Portal
 
-[![Code Climate](https://codeclimate.com/github/LaravelIO/laravel.io.png)](https://codeclimate.com/github/LaravelIO/laravel.io)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e/mini.png)](https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e)
 
 This is the Laravel.IO community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
 
