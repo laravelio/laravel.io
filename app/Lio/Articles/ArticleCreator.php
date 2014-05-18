@@ -1,5 +1,6 @@
 <?php namespace Lio\Articles;
 use Lio\Accounts\User;
+use Lio\Articles\ArticleCreatorListener;
 
 /**
 * This class can call the following methods on the observer object:
@@ -19,13 +20,13 @@ class ArticleCreator
     public function create(ArticleCreatorListener $listener, array $data, User $author, $validator = null)
     {
         if ($validator && ! $validator->isValid()) {
-            return $observer->threadCreationError($validator->getErrors());
+            return $listener->threadCreationError($validator->getErrors());
         }
 
         return $this->createArticle($listener, $data + ['author_id' => $author->id]);
     }
 
-    protected function createArticle($listener, $data)
+    protected function createArticle(ArticleCreatorListener $listener, $data)
     {
         $article = $this->articles->getNew($data);
         if ( ! $this->articles->save($article)) {
