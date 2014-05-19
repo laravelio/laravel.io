@@ -3,7 +3,7 @@
 use Lio\Articles\Article;
 use Lio\Articles\ArticleRepository;
 use Lio\CommandBus\Handler;
-use Mitch\EventDispatcher\Dispatcher;
+use Lio\Events\Dispatcher;
 
 class ComposeArticleHandler implements Handler
 {

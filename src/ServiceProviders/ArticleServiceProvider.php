@@ -6,7 +6,7 @@ class ArticleServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->bind('Lio\Article\ArticleRepository', 'Lio\Article\EloquentArticleRepository');
+        $this->app->bind('Lio\Articles\ArticleRepository', 'Lio\Articles\EloquentArticleRepository');
     }
 
     public function provides()

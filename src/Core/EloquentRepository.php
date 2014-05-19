@@ -47,7 +47,7 @@ abstract class EloquentRepository
         }
     }
 
-    public function delete($model)
+    public function delete(Model $model)
     {
         return $model->delete();
     }
