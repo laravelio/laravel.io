@@ -4,6 +4,7 @@ use Lio\Accounts\MemberNotFoundException;
 use Lio\Accounts\MemberRepository;
 use Lio\CommandBus\Handler;
 use Lio\Forum\EloquentReplyRepository;
+use Lio\Forum\ReplyRepository;
 use Lio\Forum\ThreadRepository;
 
 class ViewProfileHandler implements Handler
@@ -17,11 +18,11 @@ class ViewProfileHandler implements Handler
      */
     private $threadRepository;
     /**
-     * @var \Lio\Forum\EloquentReplyRepository
+     * @var \Lio\Forum\ReplyRepository
      */
     private $replyRepository;
 
-    public function __construct(MemberRepository $memberRepository, ThreadRepository $threadRepository, EloquentReplyRepository $replyRepository)
+    public function __construct(MemberRepository $memberRepository, ThreadRepository $threadRepository, ReplyRepository $replyRepository)
     {
         $this->memberRepository = $memberRepository;
         $this->threadRepository = $threadRepository;

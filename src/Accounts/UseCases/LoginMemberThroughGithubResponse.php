@@ -7,7 +7,7 @@ class LoginMemberThroughGithubResponse
     /**
      * @var \Lio\Accounts\Member
      */
-    private $member;
+    public $member;
 
     public function __construct(Member $member)
     {
