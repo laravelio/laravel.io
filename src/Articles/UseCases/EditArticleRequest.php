@@ -2,18 +2,16 @@
 
 class EditArticleRequest
 {
-    private $articleId;
-    private $title;
-    private $content;
-    private $laravelVersion;
-    private $tagIds;
+    public $articleId;
+    public $title;
+    public $content;
+    public $tagIds;
 
-    public function __construct($articleId, $title, $content, $laravelVersion, array $tagIds = [])
+    public function __construct($articleId, $title, $content, array $tagIds = [])
     {
         $this->articleId = $articleId;
         $this->title = $title;
         $this->content = $content;
-        $this->laravelVersion = $laravelVersion;
         $this->tagIds = $tagIds;
     }
 }
