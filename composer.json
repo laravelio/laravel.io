@@ -20,8 +20,8 @@
             "app/controllers",
             "app/database/migrations",
             "app/database/seeds",
-            "tests/unit/UnitTestCase.php",
-            "tests/integration/IntTestCase.php"
+            "tests/unit",
+            "tests/integration"
         ],
         "psr-0": {
             "Api\\": "app/controllers/"
