@@ -12,7 +12,7 @@ class AddPublishedAtFieldToArticles extends Migration {
 	public function up()
 	{
 		Schema::table('articles', function($t) {
-			$t->integer('status')->defaults(0);
+			$t->integer('status')->default('0');
 			$t->dateTime('published_at')->nullable();
 		});
 	}

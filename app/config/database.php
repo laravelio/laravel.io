@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'development',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return array(
 	*/
 
 	'connections' => array(
-		'mysql' => array(
+		'development' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'homestead',
@@ -55,6 +55,11 @@ return array(
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
+        'testing' => array(
+            'driver'   => 'sqlite',
+            'database' => __DIR__.'/../database/testing.sqlite',
+            'prefix'   => '',
+        ),
 	),
 
 	/*

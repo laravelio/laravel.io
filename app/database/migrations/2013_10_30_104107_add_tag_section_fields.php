@@ -12,8 +12,8 @@ class AddTagSectionFields extends Migration {
 	public function up()
 	{
 		Schema::table('tags', function($t) {
-			$t->boolean('forum')->defaults(0);
-			$t->boolean('articles')->defaults(0);
+			$t->boolean('forum')->default(0);
+			$t->boolean('articles')->default(0);
 		});
 	}
 

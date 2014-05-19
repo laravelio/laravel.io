@@ -13,7 +13,7 @@ class ArticlesAddSlugField extends Migration {
 	public function up()
 	{
 		Schema::table('articles', function($t) {
-            $t->string('slug');
+            $t->string('slug')->default('');
         });
 	}
 

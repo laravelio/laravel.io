@@ -13,7 +13,7 @@ class AddIsBannedFieldToUsers extends Migration {
 	{
 		//
 		Schema::table('users', function($t) {
-			$t->integer('is_banned')->defaults(0);
+			$t->integer('is_banned')->default(0);
 		});
 	}
 

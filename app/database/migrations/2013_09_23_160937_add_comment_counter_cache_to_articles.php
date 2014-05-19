@@ -12,7 +12,7 @@ class AddCommentCounterCacheToArticles extends Migration {
 	public function up()
 	{
 		Schema::table('articles', function($t) {
-			$t->integer('comment_count')->defaults(0);
+			$t->integer('comment_count')->default(0);
 		});
 	}
 

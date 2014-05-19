@@ -24,10 +24,24 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
-	'local'      => ['homestead'],
-    'production' => ['laravel.io', 'laraveliotest.*'],
-));
+$env = $app->detectEnvironment(function() {
+    if (getenv('ENVIRONMENT')) {
+        return getenv('ENVIRONMENT');
+    }
+
+    switch (gethostname()) {
+        case 'laravel.io':
+            return 'production';
+            break;
+        default:
+            return 'local';
+    }
+});
+
+//$env = $app->detectEnvironment(array(
+//	'local'      => ['homestead'],
+//    'production' => ['laravel.io', 'laraveliotest.*'],
+//));
 
 /*
 |--------------------------------------------------------------------------
