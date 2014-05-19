@@ -38,9 +38,13 @@ class LoginMemberThroughGithubHandler implements Handler
             throw new MemberNotFoundException;
         }
 
-        $member->loginThroughGithub($githubUser->githubUser);
-        $this->auth->login($member);
+        $member->name = $githubUser->name;
+        $member->email = $githubUser->email;
+        $member->github_url = $githubUser->githubUrl;
+        $member->github_id = $githubUser->githubId;
+        $member->image_url = $githubUser->imageUrl;
 
-        $this->dispatcher->dispatch($member->releaseEvents());
+        $this->memberRepository->save($member);
+        $this->auth->login($member);
     }
 }

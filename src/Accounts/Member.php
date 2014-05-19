@@ -18,11 +18,6 @@ class Member extends Model implements UserInterface
     const STATE_ACTIVE = 1;
     const STATE_BANNED = 2;
 
-    public function login()
-    {
-        $this->raise(new MemberLoggedInThroughGithub($this));
-    }
-
     // Articles
     public function articles()
     {
@@ -96,11 +91,6 @@ class Member extends Model implements UserInterface
     public function getLatestRepliesPaginated($max = 5)
     {
         return $this->forumReplies()->with('thread')->paginate($max);
-    }
-
-    public function ban()
-    {
-        $this->is_banned = 1;
     }
 
     /**

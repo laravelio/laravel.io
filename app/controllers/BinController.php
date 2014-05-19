@@ -39,7 +39,7 @@ class BinController extends BaseController
     {
         $pastes = $this->repository->getRecentPaginated();
         $this->title = 'Create Paste';
-        $this->renderView('bin.index', compact('pastes'));
+        $this->render('bin.index', compact('pastes'));
     }
 
     public function getShow($hash)
@@ -49,13 +49,13 @@ class BinController extends BaseController
             return $this->redirector->back();
         }
         $this->title = 'Paste Viewer';
-        $this->renderView('bin.show', compact('paste'));
+        $this->render('bin.show', compact('paste'));
     }
 
     public function getCreate()
     {
         $this->title = 'Create Paste';
-        $this->renderView('bin.create');
+        $this->render('bin.create');
     }
 
     public function postCreate()
@@ -69,7 +69,7 @@ class BinController extends BaseController
     {
         $paste = $this->repository->getByHash($hash);
         $this->title = 'Fork Paste';
-        $this->renderView('bin.fork', compact('paste'));
+        $this->render('bin.fork', compact('paste'));
     }
 
     public function postFork($hash)
@@ -83,6 +83,6 @@ class BinController extends BaseController
     public function getRaw($hash)
     {
         $paste = $this->repository->getByHash($hash);
-        return $this->renderView('bin.raw', compact('paste'));
+        return $this->render('bin.raw', compact('paste'));
     }
 }

@@ -34,14 +34,14 @@ class ArticlesController extends \BaseController
         $tags = $this->tagRepository->getAllTagsBySlug($this->request->input('tags'));
         $articles = $this->articleRepository->getAllPublishedByTagsPaginated($tags);
         $this->title = 'Articles';
-        $this->renderView('articles.index', compact('articles'));
+        $this->render('articles.index', compact('articles'));
     }
 
     public function getShow($articleSlug)
     {
         $article = $this->articleRepository->requireBySlug($articleSlug);
         $this->title = $article->title;
-        $this->renderView('articles.show', compact('article'));
+        $this->render('articles.show', compact('article'));
     }
 
     public function getCreate()
@@ -49,7 +49,7 @@ class ArticlesController extends \BaseController
         $tags = $this->tagRepository->getAllForForum();
         $versions = Laravel::$versions;
         $this->title = 'Create Forum Thread';
-        $this->renderView('forum.threads.create', compact('tags', 'versions'));
+        $this->render('forum.threads.create', compact('tags', 'versions'));
     }
 
     public function postCreate()
@@ -72,7 +72,7 @@ class ArticlesController extends \BaseController
         $tags = $this->tagRepository->getAllForArticles();
         $versions = Laravel::$versions;
         $this->title = 'Update Article';
-        $this->renderView('articles.update', compact('article', 'tags', 'versions'));
+        $this->render('articles.update', compact('article', 'tags', 'versions'));
     }
 
     public function postUpdate($articleId)
@@ -94,7 +94,7 @@ class ArticlesController extends \BaseController
     {
         $article = $this->articleRepository->requireById($articleId);
         $this->title = 'Delete Article';
-        $this->renderView('articles.delete', compact('article'));
+        $this->render('articles.delete', compact('article'));
     }
 
     public function postDelete($articleId)
