@@ -12,7 +12,7 @@ class ArticlesAddLaravelVerionField extends Migration {
 	public function up()
 	{
 		Schema::table('articles', function($t) {
-			$t->integer('laravel_version')->defaults(0);
+			$t->integer('laravel_version')->default(0);
 		});
 	}
 

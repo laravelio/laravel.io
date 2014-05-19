@@ -6,7 +6,8 @@
         "michelf/php-markdown": "1.4.*@dev",
         "nickcernis/html-to-markdown": "dev-master",
         "misd/linkify": "1.1.*@dev",
-        "hashids/hashids": "0.3.*"
+        "hashids/hashids": "0.3.*",
+        "doctrine/dbal": "2.4.*"
     },
     "require-dev": {
         "mockery/mockery": "dev-master",
@@ -19,7 +20,8 @@
             "app/controllers",
             "app/database/migrations",
             "app/database/seeds",
-            "tests/unit/UnitTestCase.php"
+            "tests/unit/UnitTestCase.php",
+            "tests/integration/IntTestCase.php"
         ],
         "psr-0": {
             "Api\\": "app/controllers/"
@@ -27,16 +29,6 @@
         "psr-4": {
             "Lio\\": "src/"
         }
-    },
-    "scripts": {
-        "post-install-cmd": [
-        ],
-        "pre-update-cmd": [
-        ],
-        "post-update-cmd": [
-        ],
-        "post-create-project-cmd": [
-        ]
     },
     "config": {
         "preferred-install": "dist"

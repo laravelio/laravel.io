@@ -13,7 +13,7 @@ class ForumThreadsAddQuestionFields extends Migration {
 	public function up()
 	{
 		Schema::table('forum_threads', function($t) {
-            $t->boolean('is_question');
+            $t->boolean('is_question')->default(0);
         });
 	}
 

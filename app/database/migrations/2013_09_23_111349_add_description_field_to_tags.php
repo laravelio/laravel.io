@@ -12,7 +12,7 @@ class AddDescriptionFieldToTags extends Migration {
 	public function up()
 	{
 		Schema::table('tags', function($t) {
-			$t->text('description');
+			$t->text('description')->default("");
 		});
 	}
 

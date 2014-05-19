@@ -2,8 +2,8 @@
 
 class BanMemberRequest
 {
-    private $problemMemberId;
-    private $moderatorId;
+    public $problemMemberId;
+    public $moderatorId;
 
     public function __construct($problemMemberId, $moderatorId)
     {
