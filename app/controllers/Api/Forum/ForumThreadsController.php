@@ -6,7 +6,7 @@ use URL;
 use Input;
 use BaseController;
 use Lio\Tags\TagRepository;
-use Lio\Forum\Threads\ThreadRepository;
+use Lio\Forum\EloquentThreadRepository;
 
 class ForumThreadsController extends BaseController
 {
@@ -22,7 +22,7 @@ class ForumThreadsController extends BaseController
      */
     private $url;
 
-    public function __construct(ThreadRepository $threads, TagRepository $tags, Request $request, UrlGenerator $url)
+    public function __construct(EloquentThreadRepository $threads, TagRepository $tags, Request $request, UrlGenerator $url)
     {
         $this->threads = $threads;
         $this->tags = $tags;

@@ -82,9 +82,9 @@ class AuthController extends BaseController
             $githubUser->imageUrl
         );
 
-        $member = $this->bus->execute($request);
+        $response = $this->bus->execute($request);
 
-        Auth::login($member, true);
+        Auth::login($response->member, true);
         Session::forget('githubUser');
 
         return $this->redirectIntended(action('ForumThreadsController@getIndex'));

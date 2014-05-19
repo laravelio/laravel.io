@@ -2,7 +2,7 @@
 
 use Lio\Core\Handler;
 use Lio\Forum\Forum;
-use Lio\Forum\Threads\ThreadRepository;
+use Lio\Forum\EloquentThreadRepository;
 use Mitch\EventDispatcher\Dispatcher;
 
 class DeleteThreadHandler implements Handler
@@ -12,7 +12,7 @@ class DeleteThreadHandler implements Handler
      */
     private $forum;
     /**
-     * @var \Lio\Forum\Threads\ThreadRepository
+     * @var \Lio\Forum\EloquentThreadRepository
      */
     private $repository;
     /**
@@ -20,7 +20,7 @@ class DeleteThreadHandler implements Handler
      */
     private $dispatcher;
 
-    public function __construct(Forum $forum, ThreadRepository $repository, Dispatcher $dispatcher)
+    public function __construct(Forum $forum, EloquentThreadRepository $repository, Dispatcher $dispatcher)
     {
         $this->forum = $forum;
         $this->repository = $repository;

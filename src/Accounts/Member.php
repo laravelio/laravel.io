@@ -3,25 +3,30 @@
 use Eloquent;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Database\Eloquent\Model;
-use Lio\Accounts\Events\MemberLoggedInThroughGithub;
 use Lio\Events\EventGenerator;
 
 class Member extends Model implements UserInterface
 {
     use EventGenerator;
 
-    protected $table = 'users';
+    protected $table = 'members';
     protected $guarded = [];
     protected $softDelete = true;
-    public $presenter = 'Lio\Accounts\UserPresenter';
 
     const STATE_ACTIVE = 1;
     const STATE_BANNED = 2;
 
-    // Articles
-    public function articles()
+    public static function register($name, $email, $githubUrl, $githubId, $imageUrl)
     {
-        return $this->hasMany('Lio\Articles\Article', 'author_id');
+        $member = new static([
+            'name' => $name,
+            'email' => $email,
+            'github_url' => $githubUrl,
+            'github_id' => $githubId,
+            'image_url' => $imageUrl,
+        ]);
+
+        return $member;
     }
 
     // Roles
@@ -59,38 +64,6 @@ class Member extends Model implements UserInterface
     public function getAuthPassword()
     {
         return $this->password;
-    }
-
-    // Notifications
-    public function notifications()
-    {
-        $this->hasMany('Lio\Notifications\Notification', 'user_id');
-    }
-
-    // Forum
-    public function forumThreads()
-    {
-        return $this->hasMany('Lio\Forum\Threads\Thread', 'author_id')->orderBy('created_at', 'desc');
-    }
-
-    public function forumReplies()
-    {
-        return $this->hasMany('Lio\Forum\Replies\Reply', 'author_id')->orderBy('created_at', 'desc');
-    }
-
-    public function mostRecentFiveForumPosts()
-    {
-        return $this->forumPosts()->take(5);
-    }
-
-    public function getLatestThreadsPaginated($max = 5)
-    {
-        return $this->forumThreads()->paginate($max);
-    }
-
-    public function getLatestRepliesPaginated($max = 5)
-    {
-        return $this->forumReplies()->with('thread')->paginate($max);
     }
 
     /**

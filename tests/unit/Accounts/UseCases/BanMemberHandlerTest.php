@@ -1,8 +1,6 @@
 <?php namespace Lio\Accounts\UseCases;
 
 use App;
-use Lio\Accounts\Member;
-use Lio\Events\DispatcherStub;
 use Mockery as m;
 
 class BanMemberHandlerTest extends \UnitTestCase

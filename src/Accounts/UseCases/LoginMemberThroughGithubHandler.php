@@ -1,6 +1,5 @@
 <?php namespace Lio\Accounts\UseCases; 
 
-use Illuminate\Auth\AuthManager;
 use Lio\Accounts\MemberNotFoundException;
 use Lio\Accounts\MemberRepository;
 use Lio\CommandBus\Handler;

@@ -2,7 +2,7 @@
 
 use Lio\Accounts\Member;
 
-class LoginMemberThroughGithubResponse
+class RegisterMemberResponse
 {
     /**
      * @var \Lio\Accounts\Member

@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Auth\AuthManager;
-use Lio\Forum\Replies\ReplyRepository;
-use Lio\Forum\Threads\ThreadRepository;
+use Lio\Forum\EloquentReplyRepository;
+use Lio\Forum\EloquentThreadRepository;
 
 class DashboardController extends BaseController
 {
@@ -11,15 +11,15 @@ class DashboardController extends BaseController
      */
     private $auth;
     /**
-     * @var Lio\Forum\Threads\ThreadRepository
+     * @var \Lio\Forum\EloquentThreadRepository
      */
     private $threadRepository;
     /**
-     * @var Lio\Forum\Replies\ReplyRepository
+     * @var \Lio\Forum\EloquentReplyRepository
      */
     private $replyRepository;
 
-    public function __construct(AuthManager $auth, ThreadRepository $threadRepository, ReplyRepository $replyRepository)
+    public function __construct(AuthManager $auth, EloquentThreadRepository $threadRepository, EloquentReplyRepository $replyRepository)
     {
         $this->auth = $auth;
         $this->threadRepository = $threadRepository;
@@ -29,8 +29,8 @@ class DashboardController extends BaseController
     public function getIndex()
     {
         $user = $this->auth->user();
-        $threads = $this->threadRepository->getRecentByUser($user);
-        $replies = $this->replyRepository->getRecentByUser($user);
+        $threads = $this->threadRepository->getRecentByMember($user);
+        $replies = $this->replyRepository->getRecentByMember($user);
         $this->render('dashboard.index', compact('user', 'threads', 'replies'));
     }
 }

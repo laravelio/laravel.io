@@ -2,7 +2,7 @@
 
 use Lio\Core\Handler;
 use Lio\Forum\Forum;
-use Lio\Forum\Replies\ReplyRepository;
+use Lio\Forum\EloquentReplyRepository;
 use Mitch\EventDispatcher\Dispatcher;
 
 class CreateReplyHandler implements Handler
@@ -11,7 +11,7 @@ class CreateReplyHandler implements Handler
     private $repository;
     private $dispatcher;
 
-    public function __construct(Forum $forum, ReplyRepository $repository, Dispatcher $dispatcher)
+    public function __construct(Forum $forum, EloquentReplyRepository $repository, Dispatcher $dispatcher)
     {
         $this->forum = $forum;
         $this->repository = $repository;

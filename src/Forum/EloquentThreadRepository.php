@@ -1,11 +1,12 @@
-<?php namespace Lio\Forum\Threads;
+<?php namespace Lio\Forum;
 
 use Illuminate\Database\Eloquent\Model;
 use Lio\Accounts\Member;
 use Lio\Core\Exceptions\EntityNotFoundException;
+use Lio\Forum\Threads\Thread;
 use Lio\Tags\TagRepository;
 
-class ThreadRepository extends \Lio\Core\EloquentRepository
+class EloquentThreadRepository extends \Lio\Core\EloquentRepository implements ThreadRepository
 {
     /**
      * @var \Lio\Tags\TagRepository
@@ -85,9 +86,9 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
         return $this->model->where('slug', '=', $slug)->first();
     }
 
-    public function getRecentByUser(Member $user, $count = 5)
+    public function getRecentByMember(Member $member, $count = 5)
     {
-        return $this->model->where('author_id', '=', $user->id)->orderBy('created_at', 'desc')->take($count)->get();
+        return $this->model->where('author_id', '=', $member->id)->orderBy('created_at', 'desc')->take($count)->get();
     }
 
     public function save(Model $model)

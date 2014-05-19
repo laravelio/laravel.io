@@ -2,7 +2,7 @@
 
 class ViewProfileRequest
 {
-    private $name;
+    public $name;
 
     public function __construct($name)
     {
