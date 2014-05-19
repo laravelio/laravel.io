@@ -3,7 +3,7 @@
 use Lio\Articles\Article;
 use Mitch\EventDispatcher\Event;
 
-class ArticleWrittenEvent implements Event
+class ArticleWasComposed implements Event
 {
     private $article;
 
@@ -14,6 +14,6 @@ class ArticleWrittenEvent implements Event
 
     public function getName()
     {
-        return 'ArticleWritten';
+        return 'ArticleWasComposed';
     }
 }
