@@ -56,7 +56,7 @@ class ForumRepliesController extends \BaseController
     {
         $reply = $this->replies->requireById($replyId);
         $this->title = 'Update Forum Reply';
-        $this->renderView('forum.replies.update', compact('reply'));
+        $this->render('forum.replies.update', compact('reply'));
     }
 
     public function postUpdate($replyId)
@@ -70,7 +70,7 @@ class ForumRepliesController extends \BaseController
     public function getDelete($replyId)
     {
         $reply = $this->replies->requireById($replyId);
-        $this->renderView('forum.replies.delete', compact('reply'));
+        $this->render('forum.replies.delete', compact('reply'));
     }
 
     public function postDelete($replyId)

@@ -52,7 +52,7 @@ class AuthController extends BaseController
     // page that a user sees if they try to do something that requires an authed session
     public function getLoginRequired()
     {
-        $this->renderView('auth.loginrequired');
+        $this->render('auth.loginrequired');
     }
 
     // the confirmation page that shows a user what their new account will look like
@@ -62,7 +62,7 @@ class AuthController extends BaseController
             return $this->redirector->action('AuthController@getLogin');
         }
 
-        $this->renderView('auth.signupconfirm', [
+        $this->render('auth.signupconfirm', [
             'githubUser' => $this->session->get('githubUser'),
         ]);
     }

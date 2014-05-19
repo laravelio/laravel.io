@@ -34,6 +34,5 @@ class BanMemberHandler implements Handler
 
         $problemMember->bannedBy($moderator);
         $this->memberRepository->save($problemMember);
-        $this->dispatcher->dispatch($problemMember->releaseEvents());
     }
 }

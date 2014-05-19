@@ -1,6 +1,7 @@
 <?php namespace Lio\Accounts\UseCases;
 
 use App;
+use Lio\Accounts\Member;
 use Lio\Github\GithubUser;
 use Mockery as m;
 
@@ -11,7 +12,7 @@ class LoginMemberThroughGithubHandlerTest extends \UnitTestCase
         $this->assertInstanceOf('Lio\Accounts\UseCases\LoginMemberThroughGithubHandler', $this->getHandler());
     }
 
-    public function test_unknown_members_throw_exceptions()
+    public function test_unknown_member_throws_exception()
     {
         $this->setExpectedException('Lio\Accounts\MemberNotFoundException');
 
@@ -25,6 +26,31 @@ class LoginMemberThroughGithubHandlerTest extends \UnitTestCase
         ));
 
         $handler->handle($request);
+    }
+
+    public function test_member_details_are_updated_at_login()
+    {
+        $member = new Member;
+
+        $memberRepository = m::mock('Lio\Accounts\MemberRepository');
+        $memberRepository->shouldReceive('getByGithubId')->andReturn($member);
+        $memberRepository->shouldIgnoreMissing();
+
+        $handler = $this->getHandler(null, $memberRepository);
+
+        $request = new LoginMemberThroughGithubRequest(new GithubUser(
+            'name', 'email', 'url', 'id', 'imageurl'
+        ));
+
+        $handler->handle($request);
+
+        $this->assertEquals([
+            'name' => 'name',
+            'email' => 'email',
+            'github_url' => 'url',
+            'github_id' => 'id',
+            'image_url' => 'imageurl',
+        ], $member->getAttributes());
     }
 
     private function getHandler($auth = null, $memberRepository = null, $dispatcher = null)

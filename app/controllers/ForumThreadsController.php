@@ -14,7 +14,7 @@ class ForumThreadsController extends BaseController
         $queryString = Input::get('tags') ? 'tags=' . Input::get('tags') : '';
 
         $this->title = 'Forum';
-        $this->renderView('forum.threads.index', compact('threads', 'tags', 'queryString'));
+        $this->render('forum.threads.index', compact('threads', 'tags', 'queryString'));
     }
 
     public function getShow($threadSlug)
@@ -23,7 +23,7 @@ class ForumThreadsController extends BaseController
         $replies = $this->threads->getThreadRepliesPaginated($thread, $this->repliesPerPage);
 
         $this->title = $thread->title;
-        $this->renderView('forum.threads.show', compact('thread', 'replies'));
+        $this->render('forum.threads.show', compact('thread', 'replies'));
     }
 
     public function getCreate()
@@ -31,7 +31,7 @@ class ForumThreadsController extends BaseController
         $tags = $this->tags->getAllForForum();
         $versions = Laravel::$versions;
         $this->title = 'Create Forum Thread';
-        $this->renderView('forum.threads.create', compact('tags', 'versions'));
+        $this->render('forum.threads.create', compact('tags', 'versions'));
     }
 
     public function postCreate()
@@ -54,7 +54,7 @@ class ForumThreadsController extends BaseController
         $versions = Laravel::$versions;
         $thread = $this->threads->requireById($threadId);
         $this->title = 'Update Forum Thread';
-        $this->renderView('forum.threads.update', compact('thread', 'tags', 'versions'));
+        $this->render('forum.threads.update', compact('thread', 'tags', 'versions'));
     }
 
     public function postUpdate($threadId)
@@ -96,7 +96,7 @@ class ForumThreadsController extends BaseController
     {
         $thread = $this->threads->requireById($threadId);
         $this->title = 'Delete Forum Thread';
-        $this->renderView('forum.threads.delete', compact('thread'));
+        $this->render('forum.threads.delete', compact('thread'));
     }
 
     public function postDelete($threadId)
@@ -112,6 +112,6 @@ class ForumThreadsController extends BaseController
         $query = Input::get('query');
         $results = $this->search->getPaginatedResults($query, $this->numberOfThreadsOnIndex);
         $this->title = 'Forum Search';
-        $this->renderView('forum.search', compact('query', 'results'));
+        $this->render('forum.search', compact('query', 'results'));
     }
 } 

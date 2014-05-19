@@ -31,6 +31,6 @@ class DashboardController extends BaseController
         $user = $this->auth->user();
         $threads = $this->threadRepository->getRecentByUser($user);
         $replies = $this->replyRepository->getRecentByUser($user);
-        $this->renderView('dashboard.index', compact('user', 'threads', 'replies'));
+        $this->render('dashboard.index', compact('user', 'threads', 'replies'));
     }
 }
