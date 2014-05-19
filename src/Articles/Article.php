@@ -30,7 +30,7 @@ class Article extends Model
         return $this->morphMany('Lio\Comments\Comment', 'owner');
     }
 
-    public static function write($author, $title, $content, $status, $laravelVersion, array $tagIds = [])
+    public static function compose($author, $title, $content, $status, $laravelVersion, array $tagIds = [])
     {
         $article = new static([
             'author_id' => $author->id,

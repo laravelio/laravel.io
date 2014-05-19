@@ -19,7 +19,7 @@ class ComposeArticleHandler implements Handler
 
     public function handle($command)
     {
-        $article = Article::write(
+        $article = Article::compose(
             $command->author,
             $command->title,
             $command->content,
