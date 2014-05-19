@@ -1,5 +1,6 @@
 <?php namespace Lio\Accounts\UseCases; 
 
+use Lio\Accounts\MemberNotFoundException;
 use Lio\Accounts\MemberRepository;
 use Lio\CommandBus\Handler;
 use Lio\Core\Exceptions\EntityNotFoundException;
@@ -28,7 +29,7 @@ class BanMemberHandler implements Handler
         $moderator = $this->memberRepository->getById($command->moderatorId);
 
         if ( ! $problemMember || ! $moderator) {
-            throw new EntityNotFoundException;
+            throw new MemberNotFoundException;
         }
 
         $problemMember->bannedBy($moderator);

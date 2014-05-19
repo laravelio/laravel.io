@@ -2,6 +2,7 @@
 
 use App;
 use Lio\Github\GithubUser;
+use Mockery as m;
 
 class LoginMemberThroughGithubHandlerTest extends \UnitTestCase
 {
@@ -14,18 +15,23 @@ class LoginMemberThroughGithubHandlerTest extends \UnitTestCase
     {
         $this->setExpectedException('Lio\Accounts\MemberNotFoundException');
 
+        $memberRepository = m::mock('Lio\Accounts\MemberRepository');
+        $memberRepository->shouldReceive('getByGithubId')->andReturn(null);
+
+        $handler = $this->getHandler(null, $memberRepository);
+
         $request = new LoginMemberThroughGithubRequest(new GithubUser(
             'foo-name', 'bar-email', 'baz-url', 'caz-id', 'shaz-imageurl'
         ));
 
-        $this->getHandler()->handle($request);
+        $handler->handle($request);
     }
 
-    private function getHandler()
+    private function getHandler($auth = null, $memberRepository = null, $dispatcher = null)
     {
         return new LoginMemberThroughGithubHandler(
-            App::make('auth'),
-            App::make('Lio\Accounts\MemberRepository'),
-            App::make('Lio\Events\Dispatcher'));
+            $auth ?: App::make('auth'),
+            $memberRepository ?: App::make('Lio\Accounts\MemberRepository'),
+            $dispatcher ?: App::make('Lio\Events\Dispatcher'));
     }
 }
