@@ -1,13 +1,16 @@
 <?php namespace Lio\Articles;
 
 use Illuminate\Database\Eloquent\Model;
-use Lio\Articles\Events\ArticleWrittenEvent;
+use Lio\Articles\Events\ArticleWasComposed;
 use Lio\Events\EventGenerator;
 use Lio\Tags\Taggable;
 
 class Article extends Model
 {
     use Taggable, EventGenerator;
+
+    const STATUS_DRAFT = 0;
+    const STATUS_PUBLISHED = 1;
 
     protected $table      = 'articles';
     protected $with       = ['author'];
@@ -16,9 +19,6 @@ class Article extends Model
     protected $softDelete = true;
 
     public $presenter = 'Lio\Articles\ArticlePresenter';
-
-    const STATUS_DRAFT = 0;
-    const STATUS_PUBLISHED = 1;
 
     public function author()
     {
@@ -40,7 +40,7 @@ class Article extends Model
             'laravel_version' => $laravelVersion,
         ]);
         $article->setTagsById($tagIds);
-        $article->raise(new ArticleWrittenEvent($article));
+        $article->raise(new ArticleWasComposed($article));
         return $article;
     }
 
