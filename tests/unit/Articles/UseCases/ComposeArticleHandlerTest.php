@@ -1,7 +1,8 @@
 <?php namespace Lio\Articles\UseCases;
 
-use App;
 use Lio\Accounts\Member;
+use Lio\Articles\Article;
+use Lio\Articles\EloquentArticleRepository;
 use Mockery as m;
 
 class ComposeArticleHandlerTest extends \UnitTestCase
@@ -22,6 +23,6 @@ class ComposeArticleHandlerTest extends \UnitTestCase
 
     private function getHandler($articleRepository = null)
     {
-        return new ComposeArticleHandler($articleRepository ?: m::mock('Lio\Articles\ArticleRepository'));
+        return new ComposeArticleHandler($articleRepository ?: new EloquentArticleRepository(new Article));
     }
 } 
