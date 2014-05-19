@@ -3,14 +3,13 @@
 use Eloquent;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Database\Eloquent\Model;
-use Lio\Accounts\Events\MemberLoggedInThroughGithub;
 use Lio\Events\EventGenerator;
 
 class Member extends Model implements UserInterface
 {
     use EventGenerator;
 
-    protected $table = 'users';
+    protected $table = 'members';
     protected $guarded = [];
     protected $softDelete = true;
     public $presenter = 'Lio\Accounts\UserPresenter';
