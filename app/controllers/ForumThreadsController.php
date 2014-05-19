@@ -5,16 +5,25 @@ use Lio\Forum\Threads\Commands;
 
 class ForumThreadsController extends BaseController
 {
-    private $numberOfThreadsOnIndex = 50;
+    private $threadsPerPage = 50;
     private $repliesPerPage = 20;
 
     public function getIndex($status = '')
     {
-        $threads = $this->threads->getByTagsAndStatusPaginated(Input::get('tags'), $status, $this->numberOfThreadsOnIndex);
-        $queryString = Input::get('tags') ? 'tags=' . Input::get('tags') : '';
+        $request = new \Lio\Forum\UseCases\ListThreadsRequest(
+            Input::get('tags'),
+            Input::get('page'),
+            $status,
+            $this->threadsPerPage
+        );
+        $response = $this->bus->execute($request);
 
         $this->title = 'Forum';
-        $this->render('forum.threads.index', compact('threads', 'tags', 'queryString'));
+        $this->render('forum.threads.index', [
+            'threads' => $response->threads,
+            'tags' => Input::get('tags'),
+            'queryString' => Input::get('tags') ? 'tags=' . Input::get('tags') : '',
+        ]);
     }
 
     public function getShow($threadSlug)
