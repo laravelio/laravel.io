@@ -41,7 +41,7 @@ class BanMemberHandlerTest extends \UnitTestCase
     private function getHandler($memberRepository = null, $dispatcher = null)
     {
         return new BanMemberHandler(
-            $memberRepository ?: App::make('Lio\Accounts\MemberRepository'),
+            $memberRepository ?: m::mock('Lio\Accounts\MemberRepository'),
             $dispatcher ?: App::make('Lio\Events\Dispatcher'));
     }
 } 
