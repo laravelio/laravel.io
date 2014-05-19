@@ -28,6 +28,25 @@ class LoginMemberThroughGithubHandlerTest extends \UnitTestCase
         $handler->handle($request);
     }
 
+    public function test_can_receive_login_response()
+    {
+        $member = new Member;
+
+        $memberRepository = m::mock('Lio\Accounts\MemberRepository');
+        $memberRepository->shouldReceive('getByGithubId')->andReturn($member);
+        $memberRepository->shouldIgnoreMissing();
+
+        $handler = $this->getHandler($memberRepository);
+
+        $request = new LoginMemberThroughGithubRequest(new GithubUser(
+            'name', 'email', 'url', 'id', 'imageurl'
+        ));
+
+        $response = $handler->handle($request);
+
+        $this->assertInstanceOf('Lio\Accounts\UseCases\LoginMemberThroughGithubResponse', $response);
+    }
+
     public function test_member_details_are_updated_at_login()
     {
         $member = new Member;

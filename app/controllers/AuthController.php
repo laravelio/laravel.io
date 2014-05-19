@@ -30,14 +30,13 @@ class AuthController extends BaseController
         $request = new LoginMemberThroughGithubRequest($githubUser);
 
         try {
-            $member = $this->bus->execute($request);
+            $response = $this->bus->execute($request);
         } catch (MemberNotFoundException $e) {
-            dd($githubUser);
             Session::put('githubUser', $githubUser);
             return Redirect::action('AuthController@getSignupConfirm');
         }
 
-        Auth::login($member);
+        Auth::login($response->member);
         Session::forget('userGithubData');
         return $this->redirectIntended(action('ForumThreadsController@getIndex'));
     }

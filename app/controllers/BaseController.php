@@ -23,7 +23,7 @@ abstract class BaseController extends Controller
 
     protected function render($path, $data = [])
     {
-        View::share('currentUser', $this->auth->user());
+        View::share('currentUser', Auth::user());
         $this->layout->title = $this->title;
         $this->layout->content = View::make($path, $data);
     }

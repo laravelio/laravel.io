@@ -40,6 +40,7 @@ class LoginMemberThroughGithubHandler implements Handler
         $member->image_url = $githubUser->imageUrl;
 
         $this->memberRepository->save($member);
-        return $member;
+
+        return new LoginMemberThroughGithubResponse($member);
     }
 }
