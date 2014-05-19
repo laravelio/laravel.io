@@ -128,4 +128,17 @@ class Member extends Model implements UserInterface
     {
         $this->is_banned = 1;
     }
+
+    public static function register($name, $email, $githubUrl, $githubId, $imageUrl)
+    {
+        $member = new static([
+            'name' => $name,
+            'email' => $email,
+            'github_url' => $githubUrl,
+            'github_id' => $githubId,
+            'image_url' => $imageUrl,
+        ]);
+
+        return $member;
+    }
 }

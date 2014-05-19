@@ -1,11 +1,12 @@
 <?php namespace Lio\Accounts\UseCases; 
 
+use Lio\Accounts\Member;
 use Lio\Accounts\MemberNotFoundException;
 use Lio\Accounts\MemberRepository;
 use Lio\CommandBus\Handler;
 use Lio\Events\Dispatcher;
 
-class LoginMemberThroughGithubHandler implements Handler
+class RegisterMemberHandler implements Handler
 {
     /**
      * @var \Lio\Accounts\MemberRepository
@@ -24,22 +25,17 @@ class LoginMemberThroughGithubHandler implements Handler
 
     public function handle($request)
     {
-        $githubUser = $request->githubUser;
-
-        $member = $this->memberRepository->getByGithubId($githubUser->githubId);
-
-        if ( ! $member) {
-            throw new MemberNotFoundException;
-        }
-
-        $member->name = $githubUser->name;
-        $member->email = $githubUser->email;
-        $member->github_url = $githubUser->githubUrl;
-        $member->github_id = $githubUser->githubId;
-        $member->image_url = $githubUser->imageUrl;
+        $member = Member::register(
+            $request->name,
+            $request->email,
+            $request->githubUrl,
+            $request->githubId,
+            $request->imageUrl
+        );
 
         $this->memberRepository->save($member);
+        $this->dispatcher->dispatch($member->releaseEvents());
 
-        return new LoginMemberThroughGithubResponse($member);
+        return new RegisterMemberResponse($member);
     }
 }
