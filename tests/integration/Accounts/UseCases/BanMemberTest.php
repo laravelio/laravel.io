@@ -1,11 +1,10 @@
 <?php
 namespace Accounts\UseCases;
 
-class BanMemberTest extends IntTestCase
+class BanMemberTest extends \IntTestCase
 {
     // tests
     public function testMe()
     {
     }
-
 }
