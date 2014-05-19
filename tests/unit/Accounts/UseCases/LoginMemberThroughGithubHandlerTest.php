@@ -19,7 +19,7 @@ class LoginMemberThroughGithubHandlerTest extends \UnitTestCase
         $memberRepository = m::mock('Lio\Accounts\MemberRepository');
         $memberRepository->shouldReceive('getByGithubId')->andReturn(null);
 
-        $handler = $this->getHandler(null, $memberRepository);
+        $handler = $this->getHandler($memberRepository);
 
         $request = new LoginMemberThroughGithubRequest(new GithubUser(
             'foo-name', 'bar-email', 'baz-url', 'caz-id', 'shaz-imageurl'
@@ -36,7 +36,7 @@ class LoginMemberThroughGithubHandlerTest extends \UnitTestCase
         $memberRepository->shouldReceive('getByGithubId')->andReturn($member);
         $memberRepository->shouldIgnoreMissing();
 
-        $handler = $this->getHandler(null, $memberRepository);
+        $handler = $this->getHandler($memberRepository);
 
         $request = new LoginMemberThroughGithubRequest(new GithubUser(
             'name', 'email', 'url', 'id', 'imageurl'
@@ -53,10 +53,9 @@ class LoginMemberThroughGithubHandlerTest extends \UnitTestCase
         ], $member->getAttributes());
     }
 
-    private function getHandler($auth = null, $memberRepository = null, $dispatcher = null)
+    private function getHandler($memberRepository = null, $dispatcher = null)
     {
         return new LoginMemberThroughGithubHandler(
-            $auth ?: App::make('auth'),
             $memberRepository ?: App::make('Lio\Accounts\MemberRepository'),
             $dispatcher ?: App::make('Lio\Events\Dispatcher'));
     }

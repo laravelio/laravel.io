@@ -37,15 +37,15 @@ class AuthController extends BaseController
             return $this->redirector->action('AuthController@getSignupConfirm');
         }
 
+        $this->auth->login($member);
         $this->session->forget('userGithubData');
         return $this->redirectIntended(action('ForumThreadsController@getIndex'));
     }
 
-    // implement banned user
-
     public function getLogout()
     {
-        $this->auth->logout();
+        $request = new \Lio\Accounts\UseCases\LogoutMemberRequest();
+        $this->bus->execute($request);
         return $this->redirector->action('ForumThreadsController@getIndex');
     }
 

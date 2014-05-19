@@ -19,11 +19,11 @@ abstract class BaseController extends Controller
     /**
      * @var Illuminate\View\Factory
      */
-    private $view;
+    protected $view;
     /**
      * @var Illuminate\Auth\AuthManager
      */
-    private $auth;
+    protected $auth;
 
     public function __construct(CommandBus $bus, Request $request, Redirector $redirector, SessionManager $session, Factory $view, AuthManager $auth)
     {
