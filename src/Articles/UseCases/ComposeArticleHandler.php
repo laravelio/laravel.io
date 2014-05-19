@@ -3,17 +3,14 @@
 use Lio\Articles\Article;
 use Lio\Articles\ArticleRepository;
 use Lio\CommandBus\Handler;
-use Lio\Events\Dispatcher;
 
 class ComposeArticleHandler implements Handler
 {
     private $articleRepository;
-    private $dispatcher;
 
-    public function __construct(ArticleRepository $articleRepository, Dispatcher $dispatcher)
+    public function __construct(ArticleRepository $articleRepository)
     {
         $this->articleRepository = $articleRepository;
-        $this->dispatcher = $dispatcher;
     }
 
     public function handle($command)
@@ -27,7 +24,6 @@ class ComposeArticleHandler implements Handler
             $command->tagIds
         );
         $this->articleRepository->save($article);
-        $this->dispatcher->dispatch($article->releaseEvents());
         return new ComposeArticleResponse($article);
     }
 }

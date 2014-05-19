@@ -1,7 +1,7 @@
 <?php namespace Lio\Articles;
 
 use Illuminate\Database\Eloquent\Model;
-use Lio\Articles\Events\ArticleWasComposed;
+use Lio\Accounts\Member;
 use Lio\Events\EventGenerator;
 use Lio\Tags\Taggable;
 
@@ -30,7 +30,7 @@ class Article extends Model
         return $this->morphMany('Lio\Comments\Comment', 'owner');
     }
 
-    public static function compose($author, $title, $content, $status, $laravelVersion, array $tagIds = [])
+    public static function compose(Member $author, $title, $content, $status, $laravelVersion, array $tagIds = [])
     {
         $article = new static([
             'author_id' => $author->id,
@@ -40,7 +40,6 @@ class Article extends Model
             'laravel_version' => $laravelVersion,
         ]);
         $article->setTagsById($tagIds);
-        $article->raise(new ArticleWasComposed($article));
         return $article;
     }
 
