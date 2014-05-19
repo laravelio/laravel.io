@@ -52,8 +52,14 @@ class Member extends Model implements UserInterface
 
     public function hasRole($roleName)
     {
-        return $this->hasRoles($roleName);
+        foreach ($this->roles as $role) {
+            if ($role->name == $roleName) {
+                return true;
+            }
+        }
+        return false;
     }
+
 
     // UserInterface
     public function getAuthIdentifier()

@@ -1,16 +1,9 @@
 <?php namespace Lio\Accounts;
 
-use Lio\Core\EloquentRepository;
+use Illuminate\Database\Eloquent\Model;
 
-class RoleRepository extends EloquentRepository
+interface RoleRepository
 {
-    public function __construct(Role $model)
-    {
-        $this->model = $model;
-    }
-
-    public function getRoleList()
-    {
-        return $this->model->lists('name', 'id');
-    }
+    public function getRoleList();
+    public function save(Model $model);
 }
