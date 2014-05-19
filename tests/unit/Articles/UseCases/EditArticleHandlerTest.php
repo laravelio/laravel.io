@@ -4,7 +4,6 @@ use Lio\Articles\Article;
 use Lio\Articles\EloquentArticleRepository;
 use Lio\Articles\UseCases\EditArticleHandler;
 use Lio\Articles\UseCases\EditArticleRequest;
-use Lio\Laravel\Laravel;
 use Mockery as m;
 
 class EditArticleHandlerTest extends \UnitTestCase
