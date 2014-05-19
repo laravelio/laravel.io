@@ -1,6 +1,8 @@
 <?php namespace Lio\Articles\UseCases;
 
 use App;
+use Lio\Accounts\Member;
+use Mockery as m;
 
 class ComposeArticleHandlerTest extends \UnitTestCase
 {
@@ -9,11 +11,17 @@ class ComposeArticleHandlerTest extends \UnitTestCase
         $this->assertInstanceOf('Lio\Articles\UseCases\ComposeArticleHandler', $this->getHandler());
     }
 
-    private function getHandler($articleRepository = null, $dispatcher = null)
+    public function test_can_compose_article()
     {
-        return new ComposeArticleHandler(
-            $articleRepository ?: App::make('Lio\Articles\ArticleRepository'),
-            $dispatcher ?: App::make('Lio\Events\Dispatcher')
-        );
+        $articleRepository = m::mock('Lio\Articles\ArticleRepository');
+        $articleRepository->shouldReceive('save')->andReturn(true);
+        $handler = $this->getHandler($articleRepository);
+        $request = new ComposeArticleRequest(new Member, 'title', 'content', 1, 4);
+        $this->assertInstanceOf('Lio\Articles\UseCases\ComposeArticleResponse', $handler->handle($request));
+    }
+
+    private function getHandler($articleRepository = null)
+    {
+        return new ComposeArticleHandler($articleRepository ?: m::mock('Lio\Articles\ArticleRepository'));
     }
 } 
