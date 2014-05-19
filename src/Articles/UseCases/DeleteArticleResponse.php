@@ -1,4 +1,4 @@
-<?php namespace Lio\Articles\UseCases\Responses; 
+<?php namespace Lio\Articles\UseCases;
 
 use Lio\Articles\Article;
 

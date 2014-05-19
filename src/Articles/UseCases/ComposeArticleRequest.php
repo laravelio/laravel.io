@@ -1,4 +1,4 @@
-<?php namespace Lio\Articles\UseCases\Requests;
+<?php namespace Lio\Articles\UseCases;
 
 class ComposeArticleRequest
 {

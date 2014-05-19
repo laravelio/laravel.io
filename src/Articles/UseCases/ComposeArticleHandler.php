@@ -1,8 +1,7 @@
-<?php namespace Lio\Articles\UseCases\Handlers;
+<?php namespace Lio\Articles\UseCases;
 
 use Lio\Articles\Article;
 use Lio\Articles\ArticleRepository;
-use Lio\Articles\UseCases\Responses\ComposeArticleResponse;
 use Lio\CommandBus\Handler;
 use Mitch\EventDispatcher\Dispatcher;
 

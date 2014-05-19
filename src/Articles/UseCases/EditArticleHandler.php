@@ -1,14 +1,10 @@
-<?php namespace Lio\Articles\UseCases\Handlers; 
+<?php namespace Lio\Articles\UseCases;
 
 use Lio\Articles\ArticleRepository;
-use Lio\Articles\UseCases\Responses\DeleteArticleResponse;
 use Lio\CommandBus\Handler;
 
-class DeleteArticleHandler implements Handler
+class EditArticleHandler implements Handler
 {
-    /**
-     * @var \Lio\Articles\ArticleRepository
-     */
     private $articleRepository;
 
     public function __construct(ArticleRepository $articleRepository)
@@ -19,7 +15,8 @@ class DeleteArticleHandler implements Handler
     public function handle($command)
     {
         $article = $this->articleRepository->requireById($command->articleId);
-        $this->articleRepository->delete($article);
-        return new DeleteArticleResponse($article);
+        $article->edit($command->title, $command->content, $command->laravelVersion, $command->tagIds);
+        $this->articleRepository->save($article);
+        return new EditArticleResponse($article);
     }
 }
