@@ -17,8 +17,17 @@ class ComposeArticleHandlerTest extends \UnitTestCase
     {
         $articleRepository = m::mock('Lio\Articles\ArticleRepository');
         $articleRepository->shouldReceive('save')->andReturn(true);
+
         $handler = $this->getHandler($articleRepository);
-        $request = new ComposeArticleRequest(new Member, 'title', 'content', Article::STATUS_PUBLISHED, Laravel::$versions[4]);
+
+        $request = new ComposeArticleRequest(
+            new Member,
+            'title',
+            'content',
+            Article::STATUS_PUBLISHED,
+            Laravel::$versions[4]
+        );
+
         $response = $handler->handle($request);
 
         $this->assertInstanceOf('Lio\Articles\UseCases\ComposeArticleResponse', $response);
@@ -30,6 +39,8 @@ class ComposeArticleHandlerTest extends \UnitTestCase
 
     private function getHandler($articleRepository = null)
     {
-        return new ComposeArticleHandler($articleRepository ?: new EloquentArticleRepository(new Article));
+        return new ComposeArticleHandler(
+            $articleRepository ?: new EloquentArticleRepository(new Article)
+        );
     }
 } 

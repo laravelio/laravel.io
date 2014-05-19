@@ -1,7 +1,6 @@
 <?php namespace Lio\Articles;
 
 use McCool\LaravelAutoPresenter\BasePresenter;
-use \Michelf\MarkdownExtra;
 use App, Str;
 
 class ArticlePresenter extends BasePresenter
