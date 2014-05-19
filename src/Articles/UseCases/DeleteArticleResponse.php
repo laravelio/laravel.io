@@ -7,7 +7,7 @@ class DeleteArticleResponse
     /**
      * @var \Lio\Articles\Article
      */
-    private $article;
+    public $article;
 
     public function __construct(Article $article)
     {

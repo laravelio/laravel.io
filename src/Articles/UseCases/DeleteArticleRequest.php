@@ -2,7 +2,7 @@
 
 class DeleteArticleRequest
 {
-    private $articleId;
+    public $articleId;
 
     public function __construct($articleId)
     {

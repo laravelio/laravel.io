@@ -15,7 +15,7 @@ class EditArticleHandler implements Handler
     public function handle($command)
     {
         $article = $this->articleRepository->requireById($command->articleId);
-        $article->edit($command->title, $command->content, $command->laravelVersion, $command->tagIds);
+        $article->edit($command->title, $command->content, $command->tagIds);
         $this->articleRepository->save($article);
         return new EditArticleResponse($article);
     }
