@@ -1,10 +1,9 @@
-<?php
+<?php namespace Lio\Accounts\UseCases;
 
-use Lio\Accounts\UseCases\LoginMemberThroughGithubHandler;
-use Lio\Accounts\UseCases\LoginMemberThroughGithubRequest;
+use App;
 use Lio\Github\GithubUser;
 
-class LoginMemberThroughGithubHandlerTest extends UnitTestCase
+class LoginMemberThroughGithubHandlerTest extends \UnitTestCase
 {
     public function test_can_create_handler()
     {

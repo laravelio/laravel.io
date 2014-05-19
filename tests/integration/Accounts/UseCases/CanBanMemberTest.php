@@ -1,14 +1,9 @@
-<?php
+<?php namespace Lio\Accounts\UseCases;
 
-use Lio\Accounts\UseCases\BanMemberRequest;
+use App;
 
-class BanMemberTest extends UnitTestCase
+class CanBanMemberTest extends \IntTestCase
 {
-    public function test_can_create_handler()
-    {
-        $this->assertInstanceOf('Lio\Accounts\UseCases\BanMemberHandler', $this->getHandler());
-    }
-
     public function test_unknown_members_throw_exceptions()
     {
         $this->setExpectedException('Lio\Accounts\MemberNotFoundException');
@@ -20,8 +15,8 @@ class BanMemberTest extends UnitTestCase
 
     private function getHandler()
     {
-        return new \Lio\Accounts\UseCases\BanMemberHandler(
+        return new BanMemberHandler(
             App::make('Lio\Accounts\MemberRepository'),
             App::make('Lio\Events\Dispatcher'));
     }
-} 
+}
