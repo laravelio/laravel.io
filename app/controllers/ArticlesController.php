@@ -4,7 +4,7 @@ use Lio\Laravel\Laravel;
 use Lio\Articles\Commands;
 use Lio\Tags\TagRepository;
 use Lio\CommandBus\CommandBus;
-use Lio\Articles\ArticleRepository;
+use Lio\Articles\EloquentArticleRepository;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\AuthManager;
@@ -19,7 +19,7 @@ class ArticlesController extends \BaseController
     private $tagRepository;
     private $articleRepository;
 
-    public function __construct(ArticleRepository $articleRepository, TagRepository $tagRepository, CommandBus $bus, Request $request, AuthManager $auth, Redirector $redirector)
+    public function __construct(EloquentArticleRepository $articleRepository, TagRepository $tagRepository, CommandBus $bus, Request $request, AuthManager $auth, Redirector $redirector)
     {
         $this->bus = $bus;
         $this->auth = $auth;

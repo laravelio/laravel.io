@@ -1,18 +1,15 @@
-<?php namespace Lio\Articles\Commands;
+<?php namespace Lio\Articles\UseCases;
 
-class CreateArticleCommand
+class ComposeArticleRequest
 {
+    public $author;
     public $title;
     public $content;
     public $status;
     public $laravelVersion;
     public $tagIds;
-    /**
-     * @var User
-     */
-    public $author;
 
-    public function __construct(User $author, $title, $content, $status, $laravelVersion, array $tagIds = [])
+    public function __construct($author, $title, $content, $status, $laravelVersion, array $tagIds = [])
     {
         $this->author = $author;
         $this->title = $title;
@@ -21,4 +18,4 @@ class CreateArticleCommand
         $this->laravelVersion = $laravelVersion;
         $this->tagIds = $tagIds;
     }
-} 
+}
