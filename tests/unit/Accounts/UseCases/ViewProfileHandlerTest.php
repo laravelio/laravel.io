@@ -1,6 +1,7 @@
 <?php namespace Lio\Accounts\UseCases;
 
 use App;
+use Lio\Accounts\Member;
 use Mockery as m;
 
 class ViewProfileHandlerTest extends \UnitTestCase
@@ -10,24 +11,29 @@ class ViewProfileHandlerTest extends \UnitTestCase
         $this->assertInstanceOf('Lio\Accounts\UseCases\ViewProfileHandler', $this->getHandler());
     }
 
-    public function test_can_register_member()
+    public function test_can_get_response()
     {
         $memberRepository = m::mock('Lio\Accounts\MemberRepository');
-        $memberRepository->shouldIgnoreMissing();
+        $memberRepository->shouldReceive('getByName')->andReturn(new Member);
 
-        $request = new RegisterMemberRequest(
-            'name', 'email', 'url', 'id', 'image'
-        );
+        $threadRepository = m::mock('Lio\Forum\ThreadRepository');
+        $threadRepository->shouldIgnoreMissing();
 
-        $response = $this->getHandler($memberRepository)->handle($request);
+        $replyRepository = m::mock('Lio\Forum\ReplyRepository');
+        $replyRepository->shouldIgnoreMissing();
 
-        $this->assertInstanceOf('Lio\Accounts\UseCases\RegisterMemberResponse', $response);
+        $request = new ViewProfileRequest('foo');
+
+        $response = $this->getHandler($memberRepository, $threadRepository, $replyRepository)->handle($request);
+
+        $this->assertInstanceOf('Lio\Accounts\UseCases\ViewProfileResponse', $response);
     }
 
-    private function getHandler($memberRepository = null, $dispatcher = null)
+    private function getHandler($memberRepository = null, $threadRepository = null, $replyRepository = null)
     {
         return new ViewProfileHandler(
             $memberRepository ?: m::mock('Lio\Accounts\MemberRepository'),
-            $dispatcher ?: App::make('Lio\Events\Dispatcher'));
+            $threadRepository ?: m::mock('Lio\Forum\ThreadRepository'),
+            $replyRepository ?: m::mock('Lio\Forum\ReplyRepository'));
     }
 } 

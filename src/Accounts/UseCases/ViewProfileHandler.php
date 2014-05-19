@@ -3,7 +3,6 @@
 use Lio\Accounts\MemberNotFoundException;
 use Lio\Accounts\MemberRepository;
 use Lio\CommandBus\Handler;
-use Lio\Forum\EloquentReplyRepository;
 use Lio\Forum\ReplyRepository;
 use Lio\Forum\ThreadRepository;
 
