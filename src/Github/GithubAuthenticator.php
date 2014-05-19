@@ -1,6 +1,6 @@
 <?php namespace Lio\Github;
 
-use Lio\Accounts\EloquentMemberRepository;
+use Lio\Accounts\MemberRepository;
 use Lio\Github\Requests\AccessTokenRequest;
 use Lio\Github\Requests\UserEmailRequest;
 use Lio\Github\Requests\UserRequest;
@@ -8,15 +8,15 @@ use Lio\Github\Requests\UserRequest;
 class GithubAuthenticator
 {
     private $tokenRequest;
-    private $userRepository;
+    private $memberRepository;
     private $emailRequest;
     private $userRequest;
     private $config;
 
-    public function __construct($config, EloquentMemberRepository $userRepository, AccessTokenRequest $tokenRequest, UserRequest $userRequest, UserEmailRequest $emailRequest)
+    public function __construct($config, MemberRepository $memberRepository, AccessTokenRequest $tokenRequest, UserRequest $userRequest, UserEmailRequest $emailRequest)
     {
         $this->tokenRequest = $tokenRequest;
-        $this->userRepository = $userRepository;
+        $this->memberRepository = $memberRepository;
         $this->emailRequest = $emailRequest;
         $this->userRequest = $userRequest;
         $this->config = $config;

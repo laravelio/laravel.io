@@ -109,13 +109,13 @@ return array(
 
         'Lio\ServiceProviders\AccountServiceProvider',
         'Lio\ServiceProviders\ArticleServiceProvider',
+        'Lio\ServiceProviders\CommandBusServiceProvider',
 
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
 		'Lio\ServiceProviders\GithubServiceProvider',
         'Lio\ServiceProviders\MarkdownServiceProvider',
         'Lio\ServiceProviders\HashidsServiceProvider',
         'Lio\ServiceProviders\DomainEventServiceProvider',
-        'Lio\ServiceProviders\CommandBusServiceProvider',
         'Lio\ServiceProviders\ValidationServiceProvider',
 	),
 

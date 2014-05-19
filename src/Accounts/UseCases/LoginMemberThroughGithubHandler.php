@@ -16,16 +16,11 @@ class LoginMemberThroughGithubHandler implements Handler
      * @var \Lio\Events\Dispatcher
      */
     private $dispatcher;
-    /**
-     * @var \Illuminate\Auth\AuthManager
-     */
-    private $auth;
 
-    public function __construct(AuthManager $auth, MemberRepository $memberRepository, Dispatcher $dispatcher)
+    public function __construct(MemberRepository $memberRepository, Dispatcher $dispatcher)
     {
         $this->memberRepository = $memberRepository;
         $this->dispatcher = $dispatcher;
-        $this->auth = $auth;
     }
 
     public function handle($request)
@@ -45,6 +40,6 @@ class LoginMemberThroughGithubHandler implements Handler
         $member->image_url = $githubUser->imageUrl;
 
         $this->memberRepository->save($member);
-        $this->auth->login($member);
+        return $member;
     }
 }

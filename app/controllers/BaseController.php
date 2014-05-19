@@ -4,7 +4,7 @@ use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Session\SessionManager;
-use Illuminate\View\Factory;
+use Illuminate\View\Environment;
 use Lio\CommandBus\CommandBus;
 
 abstract class BaseController extends Controller
@@ -17,15 +17,15 @@ abstract class BaseController extends Controller
     protected $redirector;
     protected $session;
     /**
-     * @var Illuminate\View\Factory
+     * @var Illuminate\View\Environment
      */
-    private $view;
+    protected $view;
     /**
      * @var Illuminate\Auth\AuthManager
      */
-    private $auth;
+    protected $auth;
 
-    public function __construct(CommandBus $bus, Request $request, Redirector $redirector, SessionManager $session, Factory $view, AuthManager $auth)
+    public function __construct(CommandBus $bus, Request $request, Redirector $redirector, SessionManager $session, Environment $view, AuthManager $auth)
     {
         $this->bus = $bus;
         $this->request = $request;
