@@ -4,8 +4,8 @@ use Lio\CommandBus\CommandBus;
 use Lio\Forum\Replies\Commands;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Routing\Redirector;
-use Lio\Forum\Replies\ReplyRepository;
-use Lio\Forum\Threads\ThreadRepository;
+use Lio\Forum\EloquentReplyRepository;
+use Lio\Forum\EloquentThreadRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Lio\Forum\Replies\ReplyQueryStringGenerator;
 
@@ -26,7 +26,7 @@ class ForumRepliesController extends \BaseController
      */
     private $request;
 
-    function __construct(ReplyRepository $replies, ThreadRepository $threads, CommandBus $bus, ReplyQueryStringGenerator $queryString, Redirector $redirector, AuthManager $auth, Request $request)
+    function __construct(EloquentReplyRepository $replies, EloquentThreadRepository $threads, CommandBus $bus, ReplyQueryStringGenerator $queryString, Redirector $redirector, AuthManager $auth, Request $request)
     {
         $this->bus = $bus;
         $this->auth = $auth;

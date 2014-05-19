@@ -1,23 +1,18 @@
 <?php
 
-use Lio\Accounts\EloquentMemberRepository;
+use Lio\Accounts\UseCases\ViewProfileRequest;
 
 class ProfileController extends BaseController
 {
-    private $users;
-
-    public function __construct(EloquentMemberRepository $users)
+    public function getShow($name)
     {
-        $this->users = $users;
-    }
+        $request = new ViewProfileRequest($name);
+        $response = $this->bus->execute($request);
 
-    public function getShow($userName)
-    {
-        $user = $this->users->requireByName($userName);
-
-        $threads = $user->getLatestThreadsPaginated(5);
-        $replies = $user->getLatestRepliesPaginated(5);
-
-        $this->render('users.profile', compact('user', 'threads', 'replies'));
+        $this->render('users.profile', [
+            'user' => $response->member,
+            'threads' => $response->threads,
+            'replies' => $response->replies,
+        ]);
     }
 }

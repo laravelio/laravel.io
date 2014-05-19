@@ -1,7 +1,6 @@
 <?php namespace Lio\Accounts\UseCases; 
 
 use Lio\Accounts\Member;
-use Lio\Accounts\MemberNotFoundException;
 use Lio\Accounts\MemberRepository;
 use Lio\CommandBus\Handler;
 use Lio\Events\Dispatcher;

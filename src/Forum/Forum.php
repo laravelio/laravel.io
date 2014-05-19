@@ -11,7 +11,7 @@ class Forum
 
     private $threads;
 
-    public function __construct(Threads\ThreadRepository $threads)
+    public function __construct(\Lio\Forum\EloquentThreadRepository $threads)
     {
         $this->threads = $threads;
     }

@@ -109,6 +109,7 @@ return array(
 
         'Lio\ServiceProviders\AccountServiceProvider',
         'Lio\ServiceProviders\ArticleServiceProvider',
+        'Lio\ServiceProviders\ForumServiceProvider',
         'Lio\ServiceProviders\CommandBusServiceProvider',
 
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
