@@ -1,7 +1,11 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Lio\Accounts\MemberNotFoundException;
 use Lio\Accounts\UseCases\LoginMemberThroughGithubRequest;
+use Lio\Accounts\UseCases\RegisterMemberRequest;
+use Lio\CommandBus\CommandBus;
 use Lio\Github\GithubAuthenticator;
 
 class AuthController extends BaseController
@@ -12,11 +16,14 @@ class AuthController extends BaseController
 
     private $github;
 
-    public function __construct(CommandBus $bus, Request $request, Redirector $redirector, GithubAuthenticator $github)
+    public function __construct(CommandBus $bus, Request $request, Redirector $redirector, SessionManager $session, Environment $view, AuthManager $auth, GithubAuthenticator $github)
     {
         $this->bus = $bus;
         $this->request = $request;
         $this->redirector = $redirector;
+        $this->session = $session;
+        $this->view = $view;
+        $this->auth = $auth;
         $this->github = $github;
     }
 
@@ -44,8 +51,7 @@ class AuthController extends BaseController
 
     public function getLogout()
     {
-        $request = new \Lio\Accounts\UseCases\LogoutMemberRequest();
-        $this->bus->execute($request);
+        $this->auth->logout();
         return $this->redirector->action('ForumThreadsController@getIndex');
     }
 
@@ -76,11 +82,17 @@ class AuthController extends BaseController
 
         $githubUser = $this->session->get('githubUser');
 
-        $command = new Commands\CreateUserFromGithubCommand($githubUser);
+        $request = new RegisterMemberRequest(
+            $githubUser->name,
+            $githubUser->email,
+            $githubUser->githubUrl,
+            $githubUser->githubId,
+            $githubUser->imageUrl
+        );
 
-        $user = $this->bus->execute($command);
+        $member = $this->bus->execute($request);
 
-        $this->auth->login($user, true);
+        $this->auth->login($member, true);
         $this->session->forget('githubUser');
 
         return $this->redirectIntended(action('ForumThreadsController@getIndex'));

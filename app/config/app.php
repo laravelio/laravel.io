@@ -108,6 +108,7 @@ return array(
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
         'Lio\ServiceProviders\AccountServiceProvider',
+        'Lio\ServiceProviders\CommandBusServiceProvider',
 
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
 		'Lio\ServiceProviders\GithubServiceProvider',

@@ -19,7 +19,7 @@ class GithubServiceProvider extends ServiceProvider
         $this->app->singleton('Lio\Github\GithubAuthenticator', function($app) {
             return new GithubAuthenticator(
                 $app['config']->get('github'),
-                $app['Lio\Accounts\UserRepository'],
+                $app['Lio\Accounts\MemberRepository'],
                 new AccessTokenRequest,
                 new UserRequest,
                 new UserEmailRequest
@@ -29,6 +29,6 @@ class GithubServiceProvider extends ServiceProvider
 
     public function provides()
     {
-        return ['Lio\Github\GistEmbedFormatter','Lio\Github\GithubAuthenticator'];
+        return ['Lio\Github\GistEmbedFormatter', 'Lio\Github\GithubAuthenticator'];
     }
 }
