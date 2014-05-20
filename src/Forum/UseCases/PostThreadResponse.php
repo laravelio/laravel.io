@@ -7,7 +7,7 @@ class PostThreadResponse
     /**
      * @var \Lio\Forum\Threads\Thread
      */
-    private $thread;
+    public $thread;
 
     public function __construct(Thread $thread)
     {

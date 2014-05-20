@@ -39,7 +39,7 @@ class ForumController extends BaseController
         $collection = $threads->getCollection();
 
         $collection->each(function($thread) {
-            $thread->url = $this->url->action('ForumController@getShow', ['slug' => $thread->slug]);
+            $thread->url = $this->url->action('ForumController@getViewThread', ['slug' => $thread->slug]);
         });
 
         // We want the newest threads to come out in chronological order

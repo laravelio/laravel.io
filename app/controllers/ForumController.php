@@ -41,8 +41,8 @@ class ForumController extends BaseController
 
     public function getPostThread()
     {
-        $tags = $this->tags->getAllForForum();
-        $versions = Laravel::$versions;
+        $tags = \Lio\Tags\Tag::all();
+        $versions = \Lio\Laravel\Laravel::$versions;
         $this->title = 'Create Forum Thread';
         $this->render('forum.threads.create', compact('tags', 'versions'));
     }
@@ -59,7 +59,7 @@ class ForumController extends BaseController
         );
         $response = $this->bus->execute($request);
 
-        return Redirect::action('ForumController@getShow', [$response->thread->slug]);
+        return Redirect::action('ForumController@getViewThread', [$response->thread->slug]);
     }
 
     public function getUpdate($threadId)
@@ -86,7 +86,7 @@ class ForumController extends BaseController
         );
 
         $thread = $this->bus->execute($command);
-        return Redirect::action('ForumController@getShow', [$thread->slug]);
+        return Redirect::action('ForumController@getViewThread', [$thread->slug]);
     }
 
     public function getMarkThreadSolved($threadId, $solvedByReplyId)
@@ -95,7 +95,7 @@ class ForumController extends BaseController
         $reply = $this->replies->requireById($solvedByReplyId);
         $command = new Commands\MarkThreadSolvedCommand($thread, $reply, Auth::user());
         $thread = $this->bus->execute($command);
-        return Redirect::action('ForumController@getShow', [$thread->slug]);
+        return Redirect::action('ForumController@getViewThread', [$thread->slug]);
     }
 
     public function getMarkThreadUnsolved($threadId)
@@ -103,7 +103,7 @@ class ForumController extends BaseController
         $thread = $this->threads->requireById($threadId);
         $command = new Commands\MarkThreadUnsolvedCommand($thread, Auth::user());
         $thread = $this->bus->execute($command);
-        return Redirect::action('ForumController@getShow', [$thread->slug]);
+        return Redirect::action('ForumController@getViewThread', [$thread->slug]);
     }
 
     public function getDelete($threadId)

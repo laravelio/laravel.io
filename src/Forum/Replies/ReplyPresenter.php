@@ -8,7 +8,7 @@ class ReplyPresenter extends BasePresenter
     public function url()
     {
         $slug = $this->thread->slug;
-        $threadUrl = action('ForumController@getShow', [$slug]);
+        $threadUrl = action('ForumController@getViewThread', [$slug]);
         return $threadUrl . \App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->resource);
     }
 

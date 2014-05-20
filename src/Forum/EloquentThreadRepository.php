@@ -70,7 +70,7 @@ class EloquentThreadRepository extends \Lio\Core\EloquentRepository implements T
     {
         $model->save();
         if ($model->hasUpdatedTags()) {
-            $model->tags()->sync($model->getUpdatedTagIds());
+            //$model->tags()->sync($model->getUpdatedTagIds());
         }
     }
 }

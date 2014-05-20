@@ -37,6 +37,7 @@ class ViewThreadHandler implements Handler
         }
 
         $replies = $this->replyRepository->getRepliesForThread($thread, $request->page, $request->repliesPerPage);
+
         return new ViewThreadResponse($thread, $replies);
     }
 }

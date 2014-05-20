@@ -11,7 +11,7 @@ class ThreadPresenter extends BasePresenter
         if ( ! $this->slug) {
             return '';
         }
-        return action('ForumController@getShow', [$this->slug]);
+        return action('ForumController@getViewThread', [$this->slug]);
     }
 
     public function created_ago()

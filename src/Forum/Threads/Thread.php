@@ -1,5 +1,6 @@
 <?php namespace Lio\Forum\Threads;
 
+use Lio\Accounts\Member;
 use Lio\Events\EventGenerator;
 use Illuminate\Database\Eloquent\Model;
 use Lio\Tags\Taggable;
@@ -17,6 +18,21 @@ class Thread extends Model
         3 => "Laravel 3.x",
         0 => "Doesn't Matter",
     ];
+
+    public static function register(Member $member, $subject, $body, $isQuestion, $laravelVersion, array $tags = [])
+    {
+        $thread = new static([
+            'author_id' => $member->id,
+            'subject' => $subject,
+            'body' => $body,
+            'is_question' => $isQuestion,
+            'laravel_version' => $laravelVersion,
+        ]);
+
+        $thread->setTagsById($tags);
+
+        return $thread;
+    }
 
     public function author()
     {

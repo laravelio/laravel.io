@@ -10,7 +10,7 @@ class ReplyQueryStringGenerator
         $pageNumber = $this->getPageNumber($precedingReplyCount, $perPage);
         // $page = round($numberthreadsBefore / $this->threadsPerPage, 0, PHP_ROUND_HALF_DOWN) + 1;
 
-        // return Redirect::to(action('ForumController@getShow', [$thread]) . "?page={$page}#thread-{$threadId}");
+        // return Redirect::to(action('ForumController@getViewThread', [$thread]) . "?page={$page}#thread-{$threadId}");
 
         return "?page={$pageNumber}#reply-{$reply->id}";
     }
