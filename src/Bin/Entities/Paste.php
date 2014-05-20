@@ -1,6 +1,7 @@
 <?php namespace Lio\Bin\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Lio\Accounts\Member;
 
 class Paste extends Model
 {
@@ -10,13 +11,9 @@ class Paste extends Model
 
     public $presenter = 'Lio\Bin\PastePresenter';
 
-    protected $validationRules = [
-        'code' => 'required',
-    ];
-
     public function author()
     {
-        return $this->belongsTo('Lio\Accounts\User', 'author_id');
+        return $this->belongsTo('Lio\Accounts\Member', 'author_id');
     }
 
     public function parent()
@@ -24,25 +21,25 @@ class Paste extends Model
         return $this->belongsTo('Lio\Bin\Entities\Paste', 'parent_id');
     }
 
-    public function comments()
+    public static function createPaste($author, $code)
     {
-        return $this->morphMany('Lio\Comments\Comment', 'owner');
+        return new static([
+            'author_id' => is_null($author) ? null : $author->id,
+            'code' => $code,
+        ]);
     }
 
-    public function setAuthorAttribute($user)
+    public function fork($author, $code)
     {
-        if ( ! $user) return false;
-        $this->author()->associate($user);
+        return new static([
+            'parent_id' => $this->id,
+            'author_id' => is_null($author) ? null : $author->id,
+            'code' => $code,
+        ]);
     }
 
-    public function setParentAttribute($paste)
+    public function isOwnerBy(Member $author)
     {
-        if ( ! $paste) return false;
-        $this->parent()->associate($paste);
-    }
-
-    public function hasComments()
-    {
-        return (bool) $this->comments->count() > 0;
+        return $author->id == $this->author_id;
     }
 }
