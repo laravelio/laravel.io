@@ -30,7 +30,7 @@
             </div>
 
             <div class="pagination">
-                {{ $results->appends(array('query' => $query))->links() }}
+                Pagination
             </div>
         @else
             <div class="padding">

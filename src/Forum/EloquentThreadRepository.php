@@ -38,12 +38,11 @@ class EloquentThreadRepository extends \Lio\Core\EloquentRepository implements T
                 $query->whereNull('solution_reply_id');
             }
         }
-
         return $query->groupBy('forum_threads.id')
             ->orderBy('updated_at', 'desc')
             ->skip($page * $threadsPerPage)
             ->take($threadsPerPage)
-            ->get('forum_threads.*');
+            ->get(['forum_threads.*']);
     }
 
     public function requireBySlug($slug)

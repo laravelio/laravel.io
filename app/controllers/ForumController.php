@@ -1,6 +1,7 @@
 <?php
 
 use Lio\Forum\UseCases\ListThreadsRequest;
+use Lio\Forum\UseCases\PostThreadRequest;
 use Lio\Forum\UseCases\ViewThreadRequest;
 
 class ForumController extends BaseController
@@ -48,16 +49,17 @@ class ForumController extends BaseController
 
     public function postPostThread()
     {
-        $command = new Commands\CreateThreadCommand(
+        $request = new PostThreadRequest(
+            Auth::user(),
             Input::get('subject'),
             Input::get('body'),
-            Auth::user(),
             Input::get('is_question'),
             Input::get('laravel_version'),
             Input::get('tags', [])
         );
-        $thread = $this->bus->execute($command);
-        return Redirect::action('ForumThreadsController@getShow', [$thread->slug]);
+        $response = $this->bus->execute($request);
+
+        return Redirect::action('ForumController@getShow', [$response->thread->slug]);
     }
 
     public function getUpdate($threadId)
@@ -84,7 +86,7 @@ class ForumController extends BaseController
         );
 
         $thread = $this->bus->execute($command);
-        return Redirect::action('ForumThreadsController@getShow', [$thread->slug]);
+        return Redirect::action('ForumController@getShow', [$thread->slug]);
     }
 
     public function getMarkThreadSolved($threadId, $solvedByReplyId)
@@ -93,7 +95,7 @@ class ForumController extends BaseController
         $reply = $this->replies->requireById($solvedByReplyId);
         $command = new Commands\MarkThreadSolvedCommand($thread, $reply, Auth::user());
         $thread = $this->bus->execute($command);
-        return Redirect::action('ForumThreadsController@getShow', [$thread->slug]);
+        return Redirect::action('ForumController@getShow', [$thread->slug]);
     }
 
     public function getMarkThreadUnsolved($threadId)
@@ -101,7 +103,7 @@ class ForumController extends BaseController
         $thread = $this->threads->requireById($threadId);
         $command = new Commands\MarkThreadUnsolvedCommand($thread, Auth::user());
         $thread = $this->bus->execute($command);
-        return Redirect::action('ForumThreadsController@getShow', [$thread->slug]);
+        return Redirect::action('ForumController@getShow', [$thread->slug]);
     }
 
     public function getDelete($threadId)
@@ -116,7 +118,7 @@ class ForumController extends BaseController
         $thread = $this->threads->requireById($threadId);
         $command = new Commands\DeleteThreadCommand($thread, Auth::user());
         $thread = $this->bus->execute($command);
-        return Redirect::action('ForumThreadsController@getIndex');
+        return Redirect::action('ForumController@getListThreads');
     }
 
     public function getSearch()

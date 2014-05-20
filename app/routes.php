@@ -13,7 +13,7 @@ Route::group(array('domain' => 'paste.laravel.io'), function() {
 });
 
 // landing page
-Route::get('/', 'ForumController@getIndex');
+Route::get('/', 'ForumController@getListThreads');
 
 // authentication
 Route::get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
@@ -97,7 +97,7 @@ Route::get('forum/search', 'ForumController@getSearch');
 Route::get('forum/{slug}/reply/{replyId}', 'ForumRepliesController@getReplyRedirect');
 Route::get('forum/{slug}', 'ForumController@getViewThread');
 
-Route::get('api/forum', 'Api\ForumController@getIndex');
+Route::get('api/forum', 'Api\ForumController@getListThreads');
 
 // admin
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {

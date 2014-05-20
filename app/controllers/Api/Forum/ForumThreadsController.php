@@ -8,7 +8,7 @@ use BaseController;
 use Lio\Tags\TagRepository;
 use Lio\Forum\EloquentThreadRepository;
 
-class ForumThreadsController extends BaseController
+class ForumController extends BaseController
 {
     protected $tags;
     protected $threads;
@@ -39,7 +39,7 @@ class ForumThreadsController extends BaseController
         $collection = $threads->getCollection();
 
         $collection->each(function($thread) {
-            $thread->url = $this->url->action('ForumThreadsController@getShow', ['slug' => $thread->slug]);
+            $thread->url = $this->url->action('ForumController@getShow', ['slug' => $thread->slug]);
         });
 
         // We want the newest threads to come out in chronological order

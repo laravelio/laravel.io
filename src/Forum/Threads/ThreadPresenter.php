@@ -11,7 +11,7 @@ class ThreadPresenter extends BasePresenter
         if ( ! $this->slug) {
             return '';
         }
-        return action('ForumThreadsController@getShow', [$this->slug]);
+        return action('ForumController@getShow', [$this->slug]);
     }
 
     public function created_ago()
@@ -75,22 +75,22 @@ class ThreadPresenter extends BasePresenter
 
     public function editUrl()
     {
-        return action('ForumThreadsController@getUpdate', [$this->id]);
+        return action('ForumController@getUpdate', [$this->id]);
     }
 
     public function deleteUrl()
     {
-        return action('ForumThreadsController@getDelete', [$this->id]);
+        return action('ForumController@getDelete', [$this->id]);
     }
 
     public function markAsSolutionUrl($replyId)
     {
-        return action('ForumThreadsController@getMarkThreadSolved', [$this->resource->id, $replyId]);
+        return action('ForumController@getMarkThreadSolved', [$this->resource->id, $replyId]);
     }
 
     public function markAsUnsolvedUrl()
     {
-        return action('ForumThreadsController@getMarkThreadUnsolved', [$this->resource->id]);
+        return action('ForumController@getMarkThreadUnsolved', [$this->resource->id]);
     }
 
     // ------------------- //
