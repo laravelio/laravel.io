@@ -39,6 +39,16 @@ class Thread extends Model
         return $this->belongsTo('Lio\Accounts\User', 'author_id');
     }
 
+    public function acceptedSolution()
+    {
+        return $this->belongsTo('Lio\Forum\Replies\Reply', 'solution_reply_id');
+    }
+
+    public function mostRecentReply()
+    {
+        return $this->belongsTo('Lio\Forum\Replies\Reply', 'most_recent_reply_id');
+    }
+    
     public function getTitleAttribute()
     {
         return ($this->isSolved() ? '[SOLVED] ' : '') . $this->subject;
