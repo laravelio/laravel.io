@@ -4,7 +4,7 @@ use Lio\Laravel\Laravel;
 use Lio\Articles\Commands;
 use Lio\Tags\TagRepository;
 use Lio\CommandBus\CommandBus;
-use Lio\Articles\EloquentArticleRepository;
+use Lio\Articles\Repositories\EloquentArticleRepository;
 
 use Illuminate\Http\Request;
 use Illuminate\Auth\AuthManager;

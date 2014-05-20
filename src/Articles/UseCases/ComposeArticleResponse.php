@@ -1,6 +1,6 @@
 <?php namespace Lio\Articles\UseCases;
 
-use Lio\Articles\Article;
+use Lio\Articles\Entities\Article;
 
 class ComposeArticleResponse
 {

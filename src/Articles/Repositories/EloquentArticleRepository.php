@@ -1,6 +1,7 @@
-<?php namespace Lio\Articles;
+<?php namespace Lio\Articles\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
+use Lio\Articles\Entities\Article;
 use Lio\Core\EloquentRepository;
 use Lio\Core\Exceptions\EntityNotFoundException;
 
@@ -14,11 +15,9 @@ class EloquentArticleRepository extends EloquentRepository implements ArticleRep
     public function requirePublishedArticleBySlug($slug)
     {
         $model = $this->getPublishedArticleBySlug($slug);
-
         if ( ! $model) {
             throw new EntityNotFoundException("Could not find article by slug {$slug}.");
         }
-
         return $model;
     }
 
@@ -28,6 +27,11 @@ class EloquentArticleRepository extends EloquentRepository implements ArticleRep
             ->where('slug', '=', $slug)
             ->where('status', '=', Article::STATUS_PUBLISHED)
             ->first();
+    }
+
+    public function getBySlug($slug)
+    {
+        return $this->model->where('slug', '=', $slug)->first();
     }
 
     public function getAllPublishedByTagsPaginated($tags, $perPage = 10)
@@ -55,6 +59,9 @@ class EloquentArticleRepository extends EloquentRepository implements ArticleRep
         $model->save();
         if ($model->hasUpdatedTags()) {
             $model->tags()->sync($model->getUpdatedTagIds());
+        }
+        if ($model->hasPlacedComment()) {
+            $model->getPlacedComment()->save();
         }
     }
 }

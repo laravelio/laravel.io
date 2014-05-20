@@ -1,11 +1,11 @@
-<?php  namespace Lio\Articles\UseCases;
+<?php namespace Lio\Articles\UseCases;
 
-use Lio\Articles\Article;
+use Lio\Articles\Entities\Article;
 
 class EditArticleResponse
 {
     /**
-     * @var \Lio\Articles\Article
+     * @var \Lio\Articles\Entities\Article
      */
     public $article;
 

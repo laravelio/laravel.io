@@ -1,8 +1,8 @@
 <?php namespace Lio\Articles\UseCases;
 
-use Lio\Articles\Article;
-use Lio\Articles\ArticleRepository;
+use Lio\Articles\Entities\Article;
 use Lio\CommandBus\Handler;
+use Lio\Articles\Repositories\ArticleRepository;
 
 class ComposeArticleHandler implements Handler
 {

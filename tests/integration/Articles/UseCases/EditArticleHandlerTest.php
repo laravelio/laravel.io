@@ -1,10 +1,10 @@
 <?php namespace unit\Articles\UseCases; 
 
-use Lio\Articles\Article;
-use Lio\Articles\EloquentArticleRepository;
+use Mockery as m;
+use Lio\Articles\Entities\Article;
+use Lio\Articles\StubbedArticleRepository;
 use Lio\Articles\UseCases\EditArticleHandler;
 use Lio\Articles\UseCases\EditArticleRequest;
-use Mockery as m;
 
 class EditArticleHandlerTest extends \UnitTestCase
 {
@@ -15,19 +15,22 @@ class EditArticleHandlerTest extends \UnitTestCase
 
     public function test_can_edit_article()
     {
-        $articleRepository = m::mock('Lio\Articles\ArticleRepository');
-        $articleRepository->shouldReceive('requireById')->andReturn(new Article);
+        $articleRepository = m::mock('Lio\Articles\Repositories\ArticleRepository');
+        $articleRepository->shouldReceive('getBySlug')->andReturn(new Article);
         $articleRepository->shouldReceive('save');
+
         $handler = $this->getHandler($articleRepository);
-        $request = new EditArticleRequest(1, 'title2', 'content2');
+        $request = new EditArticleRequest('slug', 'new title', 'new content');
         $response = $handler->handle($request);
+
         $this->assertInstanceOf('Lio\Articles\UseCases\EditArticleResponse', $response);
-        $this->assertEquals('title2', $response->article->title);
-        $this->assertEquals('content2', $response->article->content);
+        $this->assertInstanceOf('Lio\Articles\Entities\Article', $response->article);
+        $this->assertEquals('new title', $response->article->title);
+        $this->assertEquals('new content', $response->article->content);
     }
 
     private function getHandler($articleRepository = null)
     {
-        return new EditArticleHandler($articleRepository ?: new EloquentArticleRepository(new Article));
+        return new EditArticleHandler($articleRepository ?: new StubbedArticleRepository);
     }
 }

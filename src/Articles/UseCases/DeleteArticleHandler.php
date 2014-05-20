@@ -1,12 +1,12 @@
 <?php namespace Lio\Articles\UseCases;
 
-use Lio\Articles\ArticleRepository;
+use Lio\Articles\Repositories\ArticleRepository;
 use Lio\CommandBus\Handler;
 
 class DeleteArticleHandler implements Handler
 {
     /**
-     * @var \Lio\Articles\ArticleRepository
+     * @var \Lio\Articles\Repositories\ArticleRepository
      */
     private $articleRepository;
 
@@ -17,7 +17,7 @@ class DeleteArticleHandler implements Handler
 
     public function handle($command)
     {
-        $article = $this->articleRepository->requireById($command->articleId);
+        $article = $this->articleRepository->getById($command->articleId);
         $this->articleRepository->delete($article);
         return new DeleteArticleResponse($article);
     }

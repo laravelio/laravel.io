@@ -1,10 +1,13 @@
-<?php namespace Lio\Articles\UseCases;
+<?php namespace Lio\Articles\UseCases; 
 
 use Lio\Articles\Repositories\ArticleRepository;
 use Lio\CommandBus\Handler;
 
-class EditArticleHandler implements Handler
+class PublishArticleHandler implements Handler
 {
+    /**
+     * @var \Lio\Articles\Repositories\ArticleRepository
+     */
     private $articleRepository;
 
     public function __construct(ArticleRepository $articleRepository)
@@ -14,9 +17,9 @@ class EditArticleHandler implements Handler
 
     public function handle($command)
     {
-        $article = $this->articleRepository->getById($command->articleId);
-        $article->edit($command->title, $command->content, $command->tagIds);
+        $article = $this->articleRepository->getBySlug($command->$articleId);
+        $article->publish();
         $this->articleRepository->save($article);
-        return new EditArticleResponse($article);
+        return new PublishArticleResponse($article);
     }
 }

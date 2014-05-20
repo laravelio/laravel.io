@@ -1,5 +1,7 @@
 <?php namespace Lio\Articles;
 
+use Lio\Articles\Entities\Article;
+
 class ArticleSearch
 {
     protected $model;

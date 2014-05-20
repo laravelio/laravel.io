@@ -2,34 +2,20 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticleTagTable extends Migration {
-
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
+class CreateArticleTagTable extends Migration
+{
 	public function up()
 	{
-		Schema::table('article_tag', function($t) {
-			$t->create();
-
+		Schema::create('article_tag', function($t) {
 			$t->increments('id');
 			$t->integer('article_id')->index();
 			$t->integer('tag_id')->index();
-
 			$t->timestamps();
 		});
 	}
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
 	public function down()
 	{
 		Schema::drop('article_tag');
 	}
-
 }

@@ -1,8 +1,8 @@
-<?php namespace Lio\Articles\UseCases;
+<?php namespace Lio\Articles\UseCases; 
 
 use Lio\Articles\Entities\Article;
 
-class DeleteArticleResponse
+class PublishArticleResponse
 {
     /**
      * @var \Lio\Articles\Entities\Article

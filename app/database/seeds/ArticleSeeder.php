@@ -1,6 +1,6 @@
 <?php
 
-use Lio\Articles\Article;
+use Lio\Articles\Entities\Article;
 
 class ArticleSeeder extends Seeder
 {
