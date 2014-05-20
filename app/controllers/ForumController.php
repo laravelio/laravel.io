@@ -1,19 +1,19 @@
 <?php
 
-use Lio\Laravel\Laravel;
-use Lio\Forum\Threads\Commands;
+use Lio\Forum\UseCases\ListThreadsRequest;
+use Lio\Forum\UseCases\ViewThreadRequest;
 
-class ForumThreadsController extends BaseController
+class ForumController extends BaseController
 {
     private $threadsPerPage = 50;
     private $repliesPerPage = 20;
 
-    public function getIndex($status = '')
+    public function getListThreads($status = '')
     {
-        $request = new \Lio\Forum\UseCases\ListThreadsRequest(
+        $request = new ListThreadsRequest(
             Input::get('tags'),
-            Input::get('page'),
             $status,
+            Input::get('page'),
             $this->threadsPerPage
         );
         $response = $this->bus->execute($request);
@@ -26,16 +26,19 @@ class ForumThreadsController extends BaseController
         ]);
     }
 
-    public function getShow($threadSlug)
+    public function getViewThread($threadSlug)
     {
-        $thread = $this->threads->requireBySlug($threadSlug);
-        $replies = $this->threads->getThreadRepliesPaginated($thread, $this->repliesPerPage);
+        $request = new ViewThreadRequest($threadSlug, 0, $this->repliesPerPage);
+        $response = $this->bus->execute($request);
 
-        $this->title = $thread->title;
-        $this->render('forum.threads.show', compact('thread', 'replies'));
+        $this->title = $response->thread->title;
+        $this->render('forum.threads.show', [
+            'thread' => $response->thread,
+            'replies' => $response->replies
+        ]);
     }
 
-    public function getCreate()
+    public function getPostThread()
     {
         $tags = $this->tags->getAllForForum();
         $versions = Laravel::$versions;
@@ -43,7 +46,7 @@ class ForumThreadsController extends BaseController
         $this->render('forum.threads.create', compact('tags', 'versions'));
     }
 
-    public function postCreate()
+    public function postPostThread()
     {
         $command = new Commands\CreateThreadCommand(
             Input::get('subject'),

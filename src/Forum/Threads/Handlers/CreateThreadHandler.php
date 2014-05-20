@@ -1,9 +1,9 @@
 <?php namespace Lio\Forum\Threads\Handlers;
 
 use Lio\Core\Handler;
+use Lio\Events\Dispatcher;
 use Lio\Forum\Forum;
 use Lio\Forum\EloquentThreadRepository;
-use Mitch\EventDispatcher\Dispatcher;
 
 class CreateThreadHandler implements Handler
 {
@@ -16,7 +16,7 @@ class CreateThreadHandler implements Handler
      */
     private $repository;
     /**
-     * @var \Mitch\EventDispatcher\Dispatcher
+     * @var \Lio\Events\Dispatcher
      */
     private $dispatcher;
 

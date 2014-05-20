@@ -5,13 +5,13 @@ class ListThreadsRequest
     public $tags;
     public $page;
     public $status;
-    public $perPage;
+    public $threadsPerPage;
 
-    public function __construct($tags, $page, $status, $perPage)
+    public function __construct($tags, $status, $page, $threadsPerPage)
     {
         $this->tags = $tags;
         $this->page = $page;
         $this->status = $status;
-        $this->perPage = $perPage;
+        $this->threadsPerPage = $threadsPerPage;
     }
 } 

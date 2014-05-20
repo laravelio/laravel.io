@@ -13,7 +13,7 @@ Route::group(array('domain' => 'paste.laravel.io'), function() {
 });
 
 // landing page
-Route::get('/', 'ForumThreadsController@getIndex');
+Route::get('/', 'ForumController@getIndex');
 
 // authentication
 Route::get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
@@ -71,33 +71,33 @@ Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum
 Route::group(['before' => 'auth'], function() {
-    Route::get('forum/create-thread', 'ForumThreadsController@getCreate');
-    Route::post('forum/create-thread', 'ForumThreadsController@postCreate');
+    Route::get('forum/create-thread', 'ForumController@getPostThread');
+    Route::post('forum/create-thread', 'ForumController@postPostThread');
 
-    Route::get('forum/mark-as-solved/{threadId}/{replyId}', 'ForumThreadsController@getMarkThreadSolved');
-    Route::get('forum/mark-as-unsolved/{threadId}', 'ForumThreadsController@getMarkThreadUnsolved');
+    Route::get('forum/mark-as-solved/{threadId}/{replyId}', 'ForumController@getMarkThreadSolved');
+    Route::get('forum/mark-as-unsolved/{threadId}', 'ForumController@getMarkThreadUnsolved');
 
-    Route::get('forum/update-thread/{threadId}', 'ForumThreadsController@getUpdate');
-    Route::post('forum/update-thread/{threadId}', 'ForumThreadsController@postUpdate');
+    Route::get('forum/update-thread/{threadId}', 'ForumController@getUpdate');
+    Route::post('forum/update-thread/{threadId}', 'ForumController@postUpdate');
     Route::get('forum/edit-reply/{replyId}', 'ForumRepliesController@getUpdate');
     Route::post('forum/edit-reply/{replyId}', 'ForumRepliesController@postUpdate');
 
     Route::get('forum/delete/reply/{replyId}', 'ForumRepliesController@getDelete');
     Route::post('forum/delete/reply/{replyId}', 'ForumRepliesController@postDelete');
-    Route::get('forum/delete/thread/{threadId}', 'ForumThreadsController@getDelete');
-    Route::post('forum/delete/thread/{threadId}', 'ForumThreadsController@postDelete');
+    Route::get('forum/delete/thread/{threadId}', 'ForumController@getDelete');
+    Route::post('forum/delete/thread/{threadId}', 'ForumController@postDelete');
 
     Route::post('forum/{slug}', 'ForumRepliesController@postCreate');
 });
 
-Route::get('forum/{status?}', 'ForumThreadsController@getIndex')
+Route::get('forum/{status?}', 'ForumController@getListThreads')
     ->where(array('status' => '(|open|solved)'));
 
-Route::get('forum/search', 'ForumThreadsController@getSearch');
+Route::get('forum/search', 'ForumController@getSearch');
 Route::get('forum/{slug}/reply/{replyId}', 'ForumRepliesController@getReplyRedirect');
-Route::get('forum/{slug}', 'ForumThreadsController@getShow');
+Route::get('forum/{slug}', 'ForumController@getViewThread');
 
-Route::get('api/forum', 'Api\ForumThreadsController@getIndex');
+Route::get('api/forum', 'Api\ForumController@getIndex');
 
 // admin
 Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {

@@ -2,7 +2,7 @@
 
 class ListThreadsResponse
 {
-    private $threads;
+    public $threads;
 
     public function __construct($threads)
     {
