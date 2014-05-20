@@ -1,7 +1,7 @@
 <?php
 
 use Lio\Bin\Commands;
-use Lio\Bin\PasteRepository;
+use Lio\Bin\Repositories\EloquentPasteRepository;
 use Illuminate\Http\Request;
 use Lio\CommandBus\CommandBus;
 use Illuminate\Auth\AuthManager;
@@ -26,7 +26,7 @@ class BinController extends BaseController
      */
     private $auth;
 
-    public function __construct(CommandBus $bus, PasteRepository $repository, Redirector $redirector, Request $request, AuthManager $auth)
+    public function __construct(CommandBus $bus, EloquentPasteRepository $repository, Redirector $redirector, Request $request, AuthManager $auth)
     {
         $this->bus = $bus;
         $this->repository = $repository;

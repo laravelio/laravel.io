@@ -1,7 +1,7 @@
 <?php  namespace Lio\Bin\Handlers;
 
 use Hashids\Hashids;
-use Lio\Bin\PasteRepository;
+use Lio\Bin\Repositories\EloquentPasteRepository;
 use Lio\Bin\Bin;
 use Lio\CommandBus\Handler;
 use Mitch\EventDispatcher\Dispatcher;
@@ -13,7 +13,7 @@ class CreateForkHandler implements Handler
     private $hashids;
     private $dispatcher;
 
-    public function __construct(Bin $bin, PasteRepository $repository, Hashids $hashids, Dispatcher $dispatcher)
+    public function __construct(Bin $bin, EloquentPasteRepository $repository, Hashids $hashids, Dispatcher $dispatcher)
     {
         $this->bin = $bin;
         $this->repository = $repository;

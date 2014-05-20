@@ -1,8 +1,9 @@
-<?php namespace Lio\Bin;
+<?php namespace Lio\Bin\Repositories;
 
+use Lio\Bin\Entities\Paste;
 use Lio\Core\EloquentRepository;
 
-class PasteRepository extends EloquentRepository
+class EloquentPasteRepository extends EloquentRepository
 {
     public function __construct(Paste $model)
     {
@@ -16,6 +17,6 @@ class PasteRepository extends EloquentRepository
 
     public function getByHash($hash)
     {
-        return $this->model->where('hash', '=', $hash)->first();
+        return $this->model->whereR('hash', '=', $hash)->first();
     }
 }

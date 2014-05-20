@@ -1,4 +1,4 @@
-<?php namespace Lio\Bin;
+<?php namespace Lio\Bin\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +21,7 @@ class Paste extends Model
 
     public function parent()
     {
-        return $this->belongsTo('Lio\Bin\Paste', 'parent_id');
+        return $this->belongsTo('Lio\Bin\Entities\Paste', 'parent_id');
     }
 
     public function comments()

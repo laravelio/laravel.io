@@ -1,7 +1,7 @@
 <?php  namespace Lio\Bin\Commands;
 
 use Lio\Accounts\Member;
-use Lio\Bin\Paste;
+use Lio\Bin\Entities\Paste;
 
 class CreateForkCommand
 {
