@@ -41,7 +41,7 @@ class ForumRepliesController extends \BaseController
     {
         $reply = $this->replies->requireById($replyId);
         $queryString = $this->queryString->generate($reply, $this->repliesPerPage);
-        return $this->redirector->to(action('ForumThreadsController@getShow', [$threadSlug]) . $queryString);
+        return $this->redirector->to(action('ForumController@getViewThread', [$threadSlug]) . $queryString);
     }
 
     public function postCreate($threadSlug)
@@ -79,6 +79,6 @@ class ForumRepliesController extends \BaseController
         $thread = $reply->thread;
         $command = new Commands\DeleteReplyCommand($reply, $this->auth->user());
         $reply = $this->bus->execute($command);
-        return $this->redirector->action('ForumThreadsController@getShow', [$thread->slug]);
+        return $this->redirector->action('ForumController@getViewThread', [$thread->slug]);
     }
 } 

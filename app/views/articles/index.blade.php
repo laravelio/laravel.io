@@ -21,7 +21,6 @@
                 @include('articles._summary')
             @endforeach
 
-            {{ $articles->links() }}
         @else
             <div class="empty-state">
                 <h3>There are currently no articles for the selected category.</h3>

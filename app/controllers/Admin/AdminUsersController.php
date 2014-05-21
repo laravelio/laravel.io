@@ -1,14 +1,14 @@
 <?php
 
 use Lio\Accounts\EloquentMemberRepository;
-use Lio\Accounts\RoleRepository;
+use Lio\Accounts\EloquentRoleRepository;
 
 class AdminUsersController extends BaseController
 {
     private $users;
     private $roles;
 
-    public function __construct(EloquentMemberRepository $users, RoleRepository $roles)
+    public function __construct(EloquentMemberRepository $users, EloquentRoleRepository $roles)
     {
         $this->users = $users;
         $this->roles = $roles;

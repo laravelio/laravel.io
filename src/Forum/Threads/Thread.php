@@ -1,25 +1,17 @@
 <?php namespace Lio\Forum\Threads;
 
-use Lio\Tags\Taggable;
-use Lio\Forum\Replies\Reply;
+use Lio\Accounts\Member;
 use Lio\Events\EventGenerator;
 use Illuminate\Database\Eloquent\Model;
+use Lio\Tags\Taggable;
 
 class Thread extends Model
 {
-    use \Lio\Tags\Taggable;
+    use Taggable;
 
-    protected $table      = 'forum_threads';
-    protected $guarded   = [];
-    protected $with       = ['author'];
+    protected $table = 'forum_threads';
+    protected $guarded = [];
     protected $softDelete = true;
-
-    public $presenter = 'Lio\Forum\Threads\ThreadPresenter';
-
-    protected $validationRules = [
-        'body'      => 'required',
-        'author_id' => 'required|exists:users,id',
-    ];
 
     public static $laravelVersions = [
         4 => "Laravel 4.x",
@@ -27,14 +19,24 @@ class Thread extends Model
         0 => "Doesn't Matter",
     ];
 
+    public static function register(Member $member, $subject, $body, $isQuestion, $laravelVersion, array $tags = [])
+    {
+        $thread = new static([
+            'author_id' => $member->id,
+            'subject' => $subject,
+            'body' => $body,
+            'is_question' => $isQuestion,
+            'laravel_version' => $laravelVersion,
+        ]);
+
+        $thread->setTagsById($tags);
+
+        return $thread;
+    }
+
     public function author()
     {
         return $this->belongsTo('Lio\Accounts\User', 'author_id');
-    }
-
-    public function replies()
-    {
-        return $this->hasMany('Lio\Forum\Replies\Reply', 'thread_id');
     }
 
     public function acceptedSolution()
@@ -46,61 +48,10 @@ class Thread extends Model
     {
         return $this->belongsTo('Lio\Forum\Replies\Reply', 'most_recent_reply_id');
     }
-
-    public function setSubjectAttribute($subject)
-    {
-        $this->attributes['subject'] = $subject;
-        $this->attributes['slug'] = $this->generateNewSlug();
-    }
-
-    public function scopeSolvedQuestions($q)
-    {
-        return $q->where('is_question', '=', 1)->whereNull('solution_reply_id');
-    }
-
-    public function scopeUnsolvedQuestions($q)
-    {
-        return $q->where('is_question', '=', 1)->whereNotNull('solution_reply_id');
-    }
-
+    
     public function getTitleAttribute()
     {
         return ($this->isSolved() ? '[SOLVED] ' : '') . $this->subject;
-    }
-
-    private function generateNewSlug()
-    {
-        $i = 0;
-
-        while ($this->getCountBySlug($this->generateSlugByIncrementer($i)) > 0) {
-            $i++;
-        }
-
-        return $this->generateSlugByIncrementer($i);
-    }
-
-    private function getCountBySlug($slug)
-    {
-        $query = static::where('slug', '=', $slug);
-
-        if ($this->exists) {
-            $query->where('id', '!=', $this->id);
-        }
-
-        return $query->count();
-    }
-
-    private function generateSlugByIncrementer($i)
-    {
-        if ($i == 0) $i = '';
-
-        if ($this->created_at) {
-            $date = date('m-d-Y', strtotime($this->created_at));
-        } else {
-            $date = date('m-d-Y');
-        }
-
-        return \Str::slug("{$date} - {$this->subject}" . $i);
     }
 
     public function getLaravelVersions()
@@ -118,35 +69,24 @@ class Thread extends Model
         return $this->isQuestion() && ! is_null($this->solution_reply_id);
     }
 
-    public function isManageableBy($user)
+    public function isManageableBy($member)
     {
-        if ( ! $user) return false;
-        return $this->isOwnedBy($user) || $user->isForumAdmin();
+        if ( ! $member) {
+            return false;
+        }
+        return $this->isOwnedBy($member) || $member->isForumAdmin();
     }
 
-    public function isOwnedBy($user)
+    public function isOwnedBy($member)
     {
-        if ( ! $user) return false;
-        return $user->id == $this->author_id;
+        if ( ! $member) {
+            return false;
+        }
+        return $member->id == $this->author_id;
     }
 
     public function isReplyTheSolution($reply)
     {
         return $reply->id == $this->solution_reply_id;
-    }
-
-    public function setMostRecentReply(Reply $reply)
-    {
-        $this->most_recent_reply_id = $reply->id;
-        $this->updateReplyCount();
-        $this->save();
-    }
-
-    public function updateReplyCount()
-    {
-        if ($this->exists) {
-            $this->reply_count = $this->replies()->count();
-            $this->save();
-        }
     }
 }

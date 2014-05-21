@@ -11,7 +11,6 @@
             <div class="tags">
                 {{ $thread->tags->getTagList() }}
             </div>
-            {{ $replies->links() }}
         </div>
 
         @if(Input::get('page') < 2)
@@ -23,7 +22,6 @@
                 @include('forum.replies._show')
             @endforeach
         </div>
-        {{ $replies->links() }}
     </div>
 
     @if(Auth::check())

@@ -1,6 +1,7 @@
 <?php namespace Lio\Accounts\UseCases;
 
 use App;
+use Lio\Events\Dispatcher;
 use Mockery as m;
 
 class BanMemberHandlerTest extends \UnitTestCase
@@ -40,6 +41,6 @@ class BanMemberHandlerTest extends \UnitTestCase
     {
         return new BanMemberHandler(
             $memberRepository ?: m::mock('Lio\Accounts\MemberRepository'),
-            $dispatcher ?: App::make('Lio\Events\Dispatcher'));
+            $dispatcher ?: new Dispatcher);
     }
 } 

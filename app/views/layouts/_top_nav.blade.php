@@ -1,6 +1,6 @@
 <header class="top-navigation">
     <div class="top-navigation-logo">
-        <a href="{{ action('ForumThreadsController@getIndex') }}">
+        <a href="{{ action('ForumController@getListThreads') }}">
             <img class="logo" src="/images/laravel-io-logo.png">
         </a>
     </div>
@@ -10,7 +10,7 @@
                 <a class="{{ Request::is('articles*') ? 'active' : null }}" href="{{ action('ArticlesController@getIndex') }}">Articles</a>
             </li>
             <li>
-                <a class="{{ Request::is('forum*') ? 'active' : null }}" href="{{ action('ForumThreadsController@getIndex') }}">Forum</a>
+                <a class="{{ Request::is('forum*') ? 'active' : null }}" href="{{ action('ForumController@getListThreads') }}">Forum</a>
             </li>
             <li>
                 <a class="{{ Request::is('chat*') ? 'active' : null }}" href="{{ action('ChatController@getIndex') }}">Live Chat</a>

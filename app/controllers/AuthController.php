@@ -36,15 +36,15 @@ class AuthController extends BaseController
             return Redirect::action('AuthController@getSignupConfirm');
         }
 
-        Auth::login($response->member);
+        Auth::login($response->member, true);
         Session::forget('userGithubData');
-        return $this->redirectIntended(action('ForumThreadsController@getIndex'));
+        return $this->redirectIntended(action('ForumController@getListThreads'));
     }
 
     public function getLogout()
     {
         Auth::logout();
-        return Redirect::action('ForumThreadsController@getIndex');
+        return Redirect::action('ForumController@getListThreads');
     }
 
     // page that a user sees if they try to do something that requires an authed session
@@ -87,6 +87,6 @@ class AuthController extends BaseController
         Auth::login($response->member, true);
         Session::forget('githubUser');
 
-        return $this->redirectIntended(action('ForumThreadsController@getIndex'));
+        return $this->redirectIntended(action('ForumController@getListThreads'));
     }
 }

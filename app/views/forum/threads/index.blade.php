@@ -14,15 +14,15 @@
                         {{ Input::get('tags') }}
                     </div>
                 @endif
-            <a class="button" href="{{ action('ForumThreadsController@getCreate') }}">Create Thread</a>
+            <a class="button" href="{{ action('ForumController@getPostThread') }}">Create Thread</a>
         </div>
 
         <div class="filter">
             <p>Showing:</p>
             <ul>
-                <li><a href="{{ action('ForumThreadsController@getIndex', '') . $queryString }}" class="{{ Request::path() == 'forum' ? 'current' : '' }}">All</a></li>
-                <li><a href="{{ action('ForumThreadsController@getIndex', 'open') . $queryString }}" class="{{ Request::is('forum/open') ? 'current' : '' }}">Open</a></li>
-                <li><a href="{{ action('ForumThreadsController@getIndex', 'solved') . $queryString }}" class="{{ Request::is('forum/solved') ? 'current' : '' }}">Solved</a></li>
+                <li><a href="{{ action('ForumController@getListThreads', '') . $queryString }}" class="{{ Request::path() == 'forum' ? 'current' : '' }}">All</a></li>
+                <li><a href="{{ action('ForumController@getListThreads', 'open') . $queryString }}" class="{{ Request::is('forum/open') ? 'current' : '' }}">Open</a></li>
+                <li><a href="{{ action('ForumController@getListThreads', 'solved') . $queryString }}" class="{{ Request::is('forum/solved') ? 'current' : '' }}">Solved</a></li>
             </ul>
         </div>
 
@@ -38,13 +38,13 @@
                     @else
                         <h3>No threads found.</h3>
                     @endif
-                    <a class="button" href="{{ action('ForumThreadsController@getCreate') }}">Create a new thread</a>
+                    <a class="button" href="{{ action('ForumController@getPostThread') }}">Create a new thread</a>
                 </div>
             @endif
         </div>
 
         <div class="pagination">
-            {{ $threads->links() }}
+            Pagination
         </div>
     </section>
 @stop

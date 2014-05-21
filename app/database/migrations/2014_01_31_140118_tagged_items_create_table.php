@@ -15,7 +15,7 @@ class TaggedItemsCreateTable extends Migration {
 			$t->create();
 
 			$t->increments('id');
-			$t->integer('thread_id');
+			$t->integer('model_id');
 			$t->integer('tag_id');
 
 			$t->timestamps();

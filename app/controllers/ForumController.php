@@ -1,51 +1,65 @@
 <?php
 
-use Lio\Laravel\Laravel;
-use Lio\Forum\Threads\Commands;
+use Lio\Forum\UseCases\ListThreadsRequest;
+use Lio\Forum\UseCases\PostThreadRequest;
+use Lio\Forum\UseCases\ViewThreadRequest;
 
-class ForumThreadsController extends BaseController
+class ForumController extends BaseController
 {
-    private $numberOfThreadsOnIndex = 50;
+    private $threadsPerPage = 50;
     private $repliesPerPage = 20;
 
-    public function getIndex($status = '')
+    public function getListThreads($status = '')
     {
-        $threads = $this->threads->getByTagsAndStatusPaginated(Input::get('tags'), $status, $this->numberOfThreadsOnIndex);
-        $queryString = Input::get('tags') ? 'tags=' . Input::get('tags') : '';
+        $request = new ListThreadsRequest(
+            Input::get('tags'),
+            $status,
+            Input::get('page'),
+            $this->threadsPerPage
+        );
+        $response = $this->bus->execute($request);
 
         $this->title = 'Forum';
-        $this->render('forum.threads.index', compact('threads', 'tags', 'queryString'));
+        $this->render('forum.threads.index', [
+            'threads' => $response->threads,
+            'tags' => Input::get('tags'),
+            'queryString' => Input::get('tags') ? 'tags=' . Input::get('tags') : '',
+        ]);
     }
 
-    public function getShow($threadSlug)
+    public function getViewThread($threadSlug)
     {
-        $thread = $this->threads->requireBySlug($threadSlug);
-        $replies = $this->threads->getThreadRepliesPaginated($thread, $this->repliesPerPage);
+        $request = new ViewThreadRequest($threadSlug, 0, $this->repliesPerPage);
+        $response = $this->bus->execute($request);
 
-        $this->title = $thread->title;
-        $this->render('forum.threads.show', compact('thread', 'replies'));
+        $this->title = $response->thread->title;
+        $this->render('forum.threads.show', [
+            'thread' => $response->thread,
+            'replies' => $response->replies
+        ]);
     }
 
-    public function getCreate()
+    public function getPostThread()
     {
-        $tags = $this->tags->getAllForForum();
-        $versions = Laravel::$versions;
+        $tags = \Lio\Tags\Tag::all();
+        $versions = \Lio\Laravel\Laravel::$versions;
         $this->title = 'Create Forum Thread';
         $this->render('forum.threads.create', compact('tags', 'versions'));
     }
 
-    public function postCreate()
+    public function postPostThread()
     {
-        $command = new Commands\CreateThreadCommand(
+        $request = new PostThreadRequest(
+            Auth::user(),
             Input::get('subject'),
             Input::get('body'),
-            Auth::user(),
             Input::get('is_question'),
             Input::get('laravel_version'),
             Input::get('tags', [])
         );
-        $thread = $this->bus->execute($command);
-        return Redirect::action('ForumThreadsController@getShow', [$thread->slug]);
+        $response = $this->bus->execute($request);
+
+        return Redirect::action('ForumController@getViewThread', [$response->thread->slug]);
     }
 
     public function getUpdate($threadId)
@@ -72,7 +86,7 @@ class ForumThreadsController extends BaseController
         );
 
         $thread = $this->bus->execute($command);
-        return Redirect::action('ForumThreadsController@getShow', [$thread->slug]);
+        return Redirect::action('ForumController@getViewThread', [$thread->slug]);
     }
 
     public function getMarkThreadSolved($threadId, $solvedByReplyId)
@@ -81,7 +95,7 @@ class ForumThreadsController extends BaseController
         $reply = $this->replies->requireById($solvedByReplyId);
         $command = new Commands\MarkThreadSolvedCommand($thread, $reply, Auth::user());
         $thread = $this->bus->execute($command);
-        return Redirect::action('ForumThreadsController@getShow', [$thread->slug]);
+        return Redirect::action('ForumController@getViewThread', [$thread->slug]);
     }
 
     public function getMarkThreadUnsolved($threadId)
@@ -89,7 +103,7 @@ class ForumThreadsController extends BaseController
         $thread = $this->threads->requireById($threadId);
         $command = new Commands\MarkThreadUnsolvedCommand($thread, Auth::user());
         $thread = $this->bus->execute($command);
-        return Redirect::action('ForumThreadsController@getShow', [$thread->slug]);
+        return Redirect::action('ForumController@getViewThread', [$thread->slug]);
     }
 
     public function getDelete($threadId)
@@ -104,7 +118,7 @@ class ForumThreadsController extends BaseController
         $thread = $this->threads->requireById($threadId);
         $command = new Commands\DeleteThreadCommand($thread, Auth::user());
         $thread = $this->bus->execute($command);
-        return Redirect::action('ForumThreadsController@getIndex');
+        return Redirect::action('ForumController@getListThreads');
     }
 
     public function getSearch()

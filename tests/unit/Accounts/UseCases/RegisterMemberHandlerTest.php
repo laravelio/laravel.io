@@ -1,6 +1,7 @@
 <?php namespace Lio\Accounts\UseCases;
 
 use App;
+use Lio\Events\Dispatcher;
 use Mockery as m;
 
 class RegisterMemberHandlerTest extends \UnitTestCase
@@ -28,6 +29,6 @@ class RegisterMemberHandlerTest extends \UnitTestCase
     {
         return new RegisterMemberHandler(
             $memberRepository ?: m::mock('Lio\Accounts\MemberRepository'),
-            $dispatcher ?: App::make('Lio\Events\Dispatcher'));
+            $dispatcher ?: new Dispatcher);
     }
 } 

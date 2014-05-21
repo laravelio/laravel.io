@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UsersAddRememberToken extends Migration {
+class MemberRoleRenameUserIdColumnToMemberId extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,8 +12,8 @@ class UsersAddRememberToken extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('users', function($t) {
-            $t->string('remember_token', 100)->default('');
+        Schema::table('member_role', function($table) {
+            $table->renameColumn('user_id', 'member_id');
         });
 	}
 
@@ -24,8 +24,8 @@ class UsersAddRememberToken extends Migration {
 	 */
 	public function down()
 	{
-        Schema::table('users', function($t) {
-            $t->dropColumn('remember_token');
+        Schema::table('member_role', function($table) {
+            $table->renameColumn('member_id', 'user_id');
         });
 	}
 
