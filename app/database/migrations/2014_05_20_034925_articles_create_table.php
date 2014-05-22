@@ -18,7 +18,7 @@ class ArticlesCreateTable extends Migration
             $t->integer('comment_count')->default(0);
             $t->timestamp('published_at')->nullable();
             $t->timestamps();
-            $t->softDelets();
+            $t->softDeletes();
         });
     }
 
