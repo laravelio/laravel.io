@@ -95,7 +95,8 @@ class ForumRepliesController extends BaseController implements
 
     public function replyUpdated($reply)
     {
-        return $this->redirectAction('ForumThreadsController@getShowThread', [$reply->thread->slug]);
+        $replyPresenter = new ReplyPresenter($reply);
+        return $this->redirectTo($replyPresenter->url);
     }
 
     // reply deletion
