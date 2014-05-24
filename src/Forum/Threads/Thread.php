@@ -48,7 +48,7 @@ class Thread extends Model
     {
         return $this->belongsTo('Lio\Forum\Replies\Reply', 'most_recent_reply_id');
     }
-    
+
     public function getTitleAttribute()
     {
         return ($this->isSolved() ? '[SOLVED] ' : '') . $this->subject;
