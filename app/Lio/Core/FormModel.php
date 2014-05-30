@@ -7,6 +7,7 @@ class FormModel
 {
     protected $inputData;
     protected $validationRules;
+    protected $validator;
 
     public function __construct()
     {
