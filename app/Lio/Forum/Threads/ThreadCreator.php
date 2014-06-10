@@ -20,7 +20,7 @@ class ThreadCreator
     public function create(ThreadCreatorListener $listener, $data, $validator = null)
     {
         if ($validator && ! $validator->isValid()) {
-            return $listener->threadCreationError($validator->getErrors());
+            return $listener->threadValidationError($validator->getErrors());
         }
         return $this->createValidRecord($listener, $data);
     }
@@ -28,9 +28,7 @@ class ThreadCreator
     private function createValidRecord($listener, $data)
     {
         $thread = $this->getNew($data);
-        $this->validateAndSave($thread, $listener, $data);
-
-        return $listener->threadCreated($thread);
+        return $this->validateAndSave($thread, $listener, $data);
     }
 
     private function getNew($data)
@@ -51,5 +49,7 @@ class ThreadCreator
         if (isset($data['tags'])) {
             $thread->setTags($data['tags']->lists('id'));
         }
+        
+        return $listener->threadCreated($thread);
     }
 }
