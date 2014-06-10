@@ -15,18 +15,15 @@ class ReplyCreator
         $this->replies = $replies;
     }
 
-    public function create(ReplyCreatorListener $observer, $data, $threadId, $validator = null)
-    {
-        $this->runValidator($observer, $validator);
-        $reply = $this->getNew($data, $threadId);
-        return $this->validateAndSave($observer, $reply);
-    }
-
-    private function runValidator($observer, $validator)
+    public function create(ReplyCreatorListener $listener, $data, $threadId, $validator = null)
     {
         if ($validator && ! $validator->isValid()) {
-            return $observer->replyCreationError($validator->getErrors());
+            return $listener->replyCreationError($validator->getErrors());
         }
+
+        $reply = $this->getNew($data, $threadId);
+
+        return $this->validateAndSave($listener, $reply);
     }
 
     private function getNew($data, $threadId)
@@ -37,15 +34,15 @@ class ReplyCreator
         ]);
     }
 
-    private function validateAndSave($observer, $reply)
+    private function validateAndSave($listener, $reply)
     {
         if ( ! $this->replies->save($reply)) {
-            return $observer->replyCreationError($reply->getErrors());
+            return $listener->replyCreationError($reply->getErrors());
         }
 
         $this->updateThreadCounts($reply->thread);
 
-        return $observer->replyCreated($reply);
+        return $listener->replyCreated($reply);
     }
 
     private function updateThreadCounts($thread)
