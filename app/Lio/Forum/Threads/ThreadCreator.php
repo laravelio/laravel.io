@@ -28,9 +28,8 @@ class ThreadCreator
     private function createValidRecord($listener, $data)
     {
         $thread = $this->getNew($data);
-        $this->validateAndSave($thread, $listener, $data);
 
-        return $listener->threadCreated($thread);
+        return $this->validateAndSave($thread, $listener, $data);
     }
 
     private function getNew($data)
@@ -44,12 +43,14 @@ class ThreadCreator
     {
         // check the model validation
         if ( ! $this->threads->save($thread)) {
-            return $listener->threadValidationError($thread->getErrors());
+            return $listener->threadCreationError($thread->getErrors());
         }
 
         // attach any tags that were passed through
         if (isset($data['tags'])) {
             $thread->setTags($data['tags']->lists('id'));
         }
+
+        return $listener->threadCreated($thread);
     }
 }
