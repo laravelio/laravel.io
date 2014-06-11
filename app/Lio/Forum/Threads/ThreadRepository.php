@@ -67,6 +67,6 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
 
     public function getBySlug($slug)
     {
-        return $this->model->where('slug', '=', $slug)->first();
+        return $this->model->with('author')->where('slug', '=', $slug)->first();
     }
 }
