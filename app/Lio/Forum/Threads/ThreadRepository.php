@@ -27,24 +27,24 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
 
     public function getByTagsAndStatusPaginated(Collection $tags, $status, $perPage = 20)
     {
-        $query = $this->model->with(['mostRecentReply', 'tags']);
+        $query = $this->model->with(['author', 'mostRecentReply', 'acceptedSolution']);
 
         if ($tags->count() > 0) {
             $query->join('tagged_items', 'forum_threads.id', '=', 'tagged_items.thread_id')
                 ->whereIn('tagged_items.tag_id', $tags->lists('id'));
+            $query->groupBy('forum_threads.id');
         }
 
-        if($status) {
-            if($status == 'solved') {
+        if ($status) {
+            if ($status == 'solved') {
                 $query->where('solution_reply_id', '>', 0);
             }
-            if($status == 'open') {
+            if ($status == 'open') {
                 $query->whereNull('solution_reply_id');
             }
         }
 
-        $query->groupBy('forum_threads.id')
-            ->orderBy('updated_at', 'desc');
+        $query->orderBy('updated_at', 'desc');
 
         return $query->paginate($perPage, ['forum_threads.*']);
     }

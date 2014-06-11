@@ -107,9 +107,9 @@ return array(
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
+        'Barryvdh\Debugbar\ServiceProvider',
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
 		'McCool\DatabaseBackup\ServiceProviders\LaravelServiceProvider',
-		//'Juy\Profiler\Providers\ProfilerServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
 
 		'Lio\ServiceProviders\GithubServiceProvider',

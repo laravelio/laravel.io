@@ -1,6 +1,5 @@
 <?php namespace Lio\Forum\Threads;
 
-use Lio\Accounts\User;
 use Auth;
 use Lio\Core\Entity;
 use Lio\Forum\Replies\Reply;
@@ -9,7 +8,6 @@ class Thread extends Entity
 {
     protected $table      = 'forum_threads';
     protected $fillable   = ['subject', 'body', 'author_id', 'is_question', 'solution_reply_id', 'category_slug', 'laravel_version'];
-    protected $with       = ['author'];
     protected $softDelete = true;
 
     public $presenter = 'Lio\Forum\Threads\ThreadPresenter';

@@ -70,7 +70,8 @@ class ThreadPresenter extends BasePresenter
             return null;
         }
 
-        return $this->url . App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->acceptedSolution);
+        return action('ForumRepliesController@getReplyRedirect', [$this->resource->slug, $this->acceptedSolution->id]);
+        //return $this->url . App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->acceptedSolution);
     }
 
     public function editUrl()
