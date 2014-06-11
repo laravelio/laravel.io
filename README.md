@@ -71,21 +71,16 @@ Now, we must install the oauth configuration.
     a. Full URL: http://io.local:8000
 
     b. Callback URL: http://io.local:8000/login
-2. Create the configuration file below at ***app/config/packages/artdarek/oauth-4-laravel/config.php***
+2. Create the configuration file below at ***app/config/local/github.php***
 
 ```PHP
 <?php
 
 return [
-    'storage' => 'Session',
-
-    'consumers' => [
-        'GitHub' => [
-            'client_id'     => 'YOUR_NEW_CLIENT_ID_HERE',
-            'client_secret' => 'YOUR_NEW_CLIENT_SECRET_HERE',
-            'scope'         => ['user'],
-        ],
-    ],
+    'client_id'     => 'CLIENT_ID',
+    'client_secret' => 'CLIENT_SECRET',
+    'scope'         => ['user:email'],
+    'redirect_url'  => 'http://io.local:8000/login',
 ];
 ```
 
