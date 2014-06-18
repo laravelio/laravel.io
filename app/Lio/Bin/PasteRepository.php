@@ -16,6 +16,6 @@ class PasteRepository extends EloquentRepository
 
     public function getByHash($hash)
     {
-        return $this->model->whereRaw('BINARY hash = ?', [$hash])->first();
+        return $this->model->whereRaw('hash = BINARY ?', [$hash])->first();
     }
 }
