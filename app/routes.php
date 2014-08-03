@@ -91,16 +91,14 @@ Route::get('forum/{slug}', ['before' => '', 'uses' => 'ForumThreadsController@ge
 Route::get('api/forum', 'Api\ForumThreadsController@getIndex');
 
 // admin
-Route::group(['before' => 'auth', 'prefix' => 'admin'], function() {
-
+Route::group(['before' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::get('/', function() {
-        return Redirect::action('AdminUsersController@getIndex');
+        return Redirect::action('Admin\UsersController@getIndex');
     });
 
-	// users
     Route::group(['before' => 'has_role:manage_users'], function() {
-    	Route::get('users', 'AdminUsersController@getIndex');
-        Route::get('edit/{user}', 'AdminUsersController@getEdit');
-        Route::post('edit/{user}', 'AdminUsersController@postEdit');
+        Route::get('users', 'UsersController@getIndex');
+        Route::get('edit/{user}', 'UsersController@getEdit');
+        Route::post('edit/{user}', 'UsersController@postEdit');
     });
 });
