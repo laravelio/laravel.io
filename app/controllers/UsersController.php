@@ -20,4 +20,22 @@ class UsersController extends BaseController
 
         $this->view('users.profile', compact('user', 'threads', 'replies'));
     }
+
+    public function getThreads($userName)
+    {
+        $user = $this->users->requireByName($userName);
+
+        $threads = $user->getLatestThreadsPaginated(10);
+
+        $this->view('users.threads', compact('user', 'threads'));
+    }
+
+    public function getReplies($userName)
+    {
+        $user = $this->users->requireByName($userName);
+
+        $replies = $user->getLatestRepliesPaginated(10);
+
+        $this->view('users.replies', compact('user', 'replies'));
+    }
 }

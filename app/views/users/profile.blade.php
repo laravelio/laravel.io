@@ -24,9 +24,11 @@
             </div>
         @endforeach
     </div>
+
+    @if ($threads->getTotal() > 5)
+    <p class="section-navigation"><a class="button" href="{{ action('UsersController@getThreads', $user->name) }}">View all threads</a></p>
+    @endif
 @endif
-
-
 
 @if($replies->count())
     <div class="header double">
@@ -46,6 +48,10 @@
             </div>
         @endforeach
     </div>
+
+    @if ($replies->getTotal() > 5)
+    <p class="section-navigation"><a class="button" href="{{ action('UsersController@getReplies', $user->name) }}">View all replies</a></p>
+    @endif
 @endif
 
 

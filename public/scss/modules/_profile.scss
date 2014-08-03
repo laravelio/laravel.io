@@ -17,6 +17,22 @@
     }
 }
 
+.user-content {
+    .section-navigation {
+        padding-left: 15px;
+        padding-bottom: 15px;
+    }
+
+    div.pagination {
+        float: none;
+        text-align: center;
+
+        ul.pagination {
+            float: none;
+        }
+    }
+}
+
 
 // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
 

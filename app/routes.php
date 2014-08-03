@@ -27,6 +27,8 @@ Route::get('dashboard', ['before' => 'auth', 'uses' => 'DashboardController@getI
 
 // user profile
 Route::get('user/{userSlug}', 'UsersController@getProfile');
+Route::get('user/{userSlug}/threads', 'UsersController@getThreads');
+Route::get('user/{userSlug}/replies', 'UsersController@getReplies');
 
 // contributors
 Route::get('contributors', 'ContributorsController@getIndex');
