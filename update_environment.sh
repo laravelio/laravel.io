@@ -2,29 +2,29 @@
 
 chmod -R 777 app/storage
 
-# update the composer binary
-if [ `hostname -s` == "quantal64" ]; then
+# Update the composer binary
+if [ `hostname -s` == "homestead" ]; then
     php ./composer.phar self-update
 fi
 
-# have to run this before any laravel code is run
+# Have to run this before any laravel code is run
 php ./composer.phar dump-autoload
 
-# delete compiled classes file
+# Delete compiled classes file
 if [ ! -n bootstrap/compiled.php ]; then
     rm bootstrap/compiled.php
 fi
 
-# bring up the maintenance site
-if [ `hostname -s` != "quantal64" ]; then
+# Bring up the maintenance site
+if [ `hostname -s` != "homestead" ]; then
     php artisan down
 fi
 
-# install composer packages
+# Install composer packages
 php ./composer.phar install --no-scripts
 
-# migrate and seed both databases
-if [ `hostname -s` != "quantal64" ]; then
+# Migrate and seed both databases
+if [ `hostname -s` != "homestead" ]; then
     php artisan migrate --env=production
     php artisan migrate --package=mccool/laravel-slugs --env=production
     php artisan db:seed --env=production
@@ -34,11 +34,11 @@ else
     php artisan db:seed --env=local
 fi
 
-# create laravel optimized autoloader
+# Create laravel optimized autoloader
 php artisan dump-autoload
 
-# bring the site back up
-if [ `hostname -s` != "quantal64" ]; then
+# Bring the site back up
+if [ `hostname -s` != "homestead" ]; then
     php artisan up
 fi
 

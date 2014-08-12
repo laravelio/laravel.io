@@ -8,22 +8,26 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 
 ### Requirements
 
-1. PHP 5.4
-2. Vagrant
-3. Chef
-4. Virtualbox
-5. NodeJS
-
-### Recommended
-
-1. Vagrant - Our entire workflow is built into a Vagrant setup. Those looking to
-   contribute to the project should use the Vagrant configuration for a number
-   of reasons. These include ease of configuration and ensuring that the
-   environments used are compatible.
+We use Laravel Homestead for local development. Please review [the Homstead documentation](laravel.com/docs/homestead) to install it.
 
 ### Local Installation
 
-Here are the steps for installation on a local machine using the officially endorsed workflow.
+Here are the steps for installation on a local machine.
+
+1. Make sure you have [Laravel Homestead](laravel.com/docs/homestead) installed.
+2. Clone this repository.
+    ```
+    git clone git@github.com:LaravelIO/laravel-io.git laravelio/
+    cd laravelio/
+    ```
+3. Add the path for the cloned laravel.io repository to the `Homestead.yml` file under the `folders` list.
+4. Add a site `lio.loc` for the laravel.io repository to the `Homestead.yml` file under the `sites` list.
+5. Run `vagrant provision` in your Homestead folder.
+6. Create a database in Homestead called `laravelio`.
+7. SSH into your Homestead box, go to the laravel.io folder and run `./update_environment.sh`.
+
+
+
 
 1. Install [Vagrant][1], [Chef][2], and [VirtualBox][3] from their websites. **NOT** from package managers. If you install any of these from package managers, please do not ask for help or support when things break, which will VERY likely happen. Additional information can be found here: https://github.com/ShawnMcCool/vagrant-chef
 
