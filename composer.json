@@ -27,8 +27,8 @@
             "app/database/seeds",
             "tests/unit/UnitTestCase.php"
         ],
-        "psr-0": {
-            "Lio\\": "app/"
+        "psr-4": {
+            "Lio\\": "src/"
         }
     },
     "scripts": {
