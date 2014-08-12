@@ -1,3 +1,0 @@
-[submodule "vagrant-chef"]
-	path = vagrant-chef
-	url = git@github.com:ShawnMcCool/vagrant-chef.git

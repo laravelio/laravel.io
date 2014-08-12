@@ -24,10 +24,10 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
-	'local'      => ['quantal64'],
+$env = $app->detectEnvironment([
+    'local' => ['homestead'],
     'production' => ['laravel.io', 'laraveliotest.*'],
-));
+]);
 
 /*
 |--------------------------------------------------------------------------
