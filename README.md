@@ -35,7 +35,7 @@ Now, we must install the oauth configuration.
 
 1. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel IO Development" and add your GH application's client id and secret to this config file. Your GitHub Application should be set up as follows:
 
-    a. Full URL: http://lio.loc
+    a. Full URL: http://lio.loc  
     b. Callback URL: http://lio.loc/login
 
 2. Create the configuration file below at ***app/config/packages/artdarek/oauth-4-laravel/config.php***
