@@ -7,13 +7,48 @@ use Lio\Comments\CommentRepository;
 
 class ArticlesController extends BaseController
 {
+    /**
+     * Holds articles
+     *
+     * @var $articles
+     */
     private $articles;
+    
+    /**
+     * Holds tags
+     *
+     * @var $tags
+     */
     private $tags;
+    
+    /**
+     * Holds tags
+     *
+     * @var $comments
+     */
     private $comments;
 
+    /**
+     * Article per page limit
+     *
+     * @var $articlesPerPage
+     */
     private $articlesPerPage = 20;
+    /**
+     * Comments per page limit
+     *
+     * @var $commentsPerPage
+     */
     private $commentsPerPage = 20;
 
+    /**
+     * Resolves class dependencies 
+     *
+     * @param ArticleRepository $articles
+     * @param TagRepository $tags
+     * @param CommentRepository $comments
+     * @return void
+     */
     public function __construct(ArticleRepository $articles, TagRepository $tags, CommentRepository $comments)
     {
         $this->tags     = $tags;
@@ -21,6 +56,11 @@ class ArticlesController extends BaseController
         $this->comments = $comments;
     }
 
+    /**
+     * Renders the article index page with all published articles by tags 
+     *
+     * @return void
+     */
     public function getIndex()
     {
         $tags     = $this->tags->getAllTagsBySlug(Input::get('tags'));
@@ -29,6 +69,11 @@ class ArticlesController extends BaseController
         $this->view('articles.index', compact('articles'));
     }
 
+    /**
+     * Renders the article show page with articles and comments paginated 
+     *
+     * @return void
+     */
     public function getShow()
     {
         $article = App::make('SlugModel');
@@ -37,6 +82,11 @@ class ArticlesController extends BaseController
         $this->view('articles.show', compact('article', 'comments'));
     }
 
+    /**
+     * Validates form input and stores posts to the database
+     *
+     * @return Response
+     */
     public function postShow()
     {
         $article = App::make('SlugModel');
@@ -58,12 +108,22 @@ class ArticlesController extends BaseController
         return $this->redirectAction('ArticlesController@getShow', [$article->slug->slug]);
     }
 
+    /**
+     * Renders the article dashboard page with articles by author paginated 
+     *
+     * @return void
+     */
     public function getDashboard()
     {
         $articles = $this->articles->getArticlesByAuthorPaginated(Auth::user());
         $this->view('articles.dashboard', compact('articles'));
     }
 
+    /**
+     * Renders the article compose page with tags and versions 
+     *
+     * @return void
+     */
     public function getCompose()
     {
         $tags = $this->tags->getAllForArticles();
@@ -71,6 +131,11 @@ class ArticlesController extends BaseController
         $this->view('articles.compose', compact('tags', 'versions'));
     }
 
+    /**
+     * Validates form input and stores articles posts and tags to the database
+     *
+     * @return Response
+     */
     public function postCompose()
     {
         $form = $this->articles->getArticleForm();
@@ -100,6 +165,11 @@ class ArticlesController extends BaseController
         }
     }
 
+    /**
+     * Renders the article edit page with articles, tags and versions 
+     *
+     * @return Response
+     */
     public function getEdit($articleId)
     {
         $article = $this->articles->requireById($articleId);
@@ -109,6 +179,11 @@ class ArticlesController extends BaseController
         $this->view('articles.edit', compact('article', 'tags', 'versions'));
     }
 
+    /**
+     * Validates form input and stores articles edits and tags to the database
+     *
+     * @return Response
+     */
     public function postEdit($articleId)
     {
         $article = $this->articles->requireById($articleId);
@@ -140,6 +215,11 @@ class ArticlesController extends BaseController
         }
     }
 
+    /**
+     * Renders the article edit comment page with comments 
+     *
+     * @return Response
+     */
     public function getEditComment($articleSlug, $commentId)
     {
         $article = App::make('SlugModel');
@@ -148,6 +228,14 @@ class ArticlesController extends BaseController
         $this->view('articles.editcomment', compact('comment'));
     }
 
+    /**
+     * Validates form input and stores comment edits to the database
+     * 
+     * @param string @articleSlug
+     * @param int @commentId
+     *
+     * @return Response
+     */
     public function postEditComment($articleSlug, $commentId)
     {
         $article = App::make('SlugModel');
@@ -171,6 +259,14 @@ class ArticlesController extends BaseController
         return $this->redirectAction('ArticlesController@getShow', [$article->slug->slug]);
     }
 
+    /**
+     * Renders the delete comment page by author 
+     * 
+     * @param string @articleSlug
+     * @param int @commentId
+     *
+     * @return Response
+     */
     public function getDeleteComment($articleSlug, $commentId)
     {
         $article = App::make('SlugModel');
@@ -180,6 +276,14 @@ class ArticlesController extends BaseController
         $this->view('articles.deletecomment', compact('comment'));
     }
 
+    /**
+     * Destroys comment by author 
+     * 
+     * @param string @articleSlug
+     * @param int @commentId
+     *
+     * @return Response
+     */
     public function postDeleteComment($articleSlug, $commentId)
     {
         $article = App::make('SlugModel');
@@ -191,6 +295,11 @@ class ArticlesController extends BaseController
         return Redirect::action('ArticlesController@getShow', [$article->slug->slug]);
     }
 
+    /**
+     * Renders the article search page with the query results 
+     * 
+     * @return Response
+     */
     public function getSearch()
     {
         $query = Input::get('query');
