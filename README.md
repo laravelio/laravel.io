@@ -1,12 +1,10 @@
-## Laravel.IO Community Portal
+# Laravel.IO Community Portal
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e/mini.png)](https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e)
 
 This is the Laravel.IO community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
 
-> This project is currently in the process of being transitioned into the services of a new lead developer. The current team is no longer able to manage it and the community will be better served by the new management.
-
-### Requirements
+## Requirements
 
 1. PHP 5.4
 2. Vagrant
@@ -14,14 +12,11 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 4. Virtualbox
 5. NodeJS
 
-### Recommended
+## Recommended
 
-1. Vagrant - Our entire workflow is built into a Vagrant setup. Those looking to
-   contribute to the project should use the Vagrant configuration for a number
-   of reasons. These include ease of configuration and ensuring that the
-   environments used are compatible.
+Vagrant - Our entire workflow is built into a Vagrant setup. Those looking to contribute to the project should use the Vagrant configuration for a number of reasons. These include ease of configuration and ensuring that the environments used are compatible.
 
-### Local Installation
+## Local Installation
 
 Here are the steps for installation on a local machine using the officially endorsed workflow.
 
@@ -82,7 +77,7 @@ return [
 ];
 ```
 
-### Workflow
+## Workflow
 
 When you'd like to work on the application, run vagrant up. When you're finished, run vagrant suspend.
 
@@ -92,17 +87,17 @@ When you'd like to access the database, connect to host app.local port 3306 usin
 
 After pulling down changes, ssh into the vagrant box and run the update_environment.sh script.
 
-### Frontend
+## Frontend
 
 Because we keep the generated / minified css out of the repository, we must have a workflow for compiling the styles.
 * Install the latest NodeJS
 * Finally, run "compass watch" in your /public folder and the minified css will be generated and also your filesystem will watch for file changes (and overwrites the .css). You can also run "compass compile" as a single one-time command to generate the css and don't watch the filesystem.
 
-### Contribution
+## Contribution
 
 Please post proposals in the Github issues before coding up a PR.
 
-### Troubleshooting
+## Troubleshooting
 
 **I'm getting an error about running a 64bit VM on a 32bit machine**
 
