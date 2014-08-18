@@ -10,7 +10,7 @@
                 <a class="{{ Request::is('forum*') ? 'active' : null }}" href="{{ action('ForumThreadsController@getIndex') }}">Forum</a>
             </li>
             <li>
-                <a href="https://larajobs.com/?partner=32">Jobs</a>
+                <a href="https://larajobs.com/?partner=28">Jobs</a>
             </li>
             <li>
                 <a class="{{ Request::is('chat*') ? 'active' : null }}" href="{{ action('ChatController@getIndex') }}">Live Chat</a>
