@@ -4,20 +4,20 @@
     "license": "MIT",
     "require": {
         "laravel/framework": "4.1.*",
-        "artdarek/oauth-4-laravel": "dev-master",
-        "barryvdh/laravel-debugbar": "1.*",
-        "mccool/laravel-auto-presenter": "1.*",
-        "mccool/database-backup": "dev-master",
+        "artdarek/oauth-4-laravel": "1.0.*",
+        "barryvdh/laravel-debugbar": "~1.6",
+        "mccool/laravel-auto-presenter": "~1.1",
+        "mccool/database-backup": "~1.0",
         "michelf/php-markdown": "1.4.*@dev",
-        "nickcernis/html-to-markdown": "dev-master",
-        "misd/linkify": "1.1.*@dev",
-        "hashids/hashids": "0.3.*"
+        "nickcernis/html-to-markdown": "~2.1",
+        "misd/linkify": "1.1.*",
+        "hashids/hashids": "0.3.*@dev"
     },
     "require-dev": {
-        "mockery/mockery": "dev-master",
-        "raveren/kint": "dev-master",
-        "codeception/codeception": "*",
-        "codeception/aspect-mock": "*"
+        "mockery/mockery": "~0.9",
+        "raveren/kint": "~0.9",
+        "codeception/codeception": "~2.0",
+        "codeception/aspect-mock": "0.5.*@beta"
     },
     "autoload": {
         "classmap": [
@@ -48,6 +48,5 @@
     },
     "config": {
         "preferred-install": "dist"
-    },
-    "minimum-stability": "dev"
+    }
 }
