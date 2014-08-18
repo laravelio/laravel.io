@@ -1,11 +1,2 @@
-/bootstrap/compiled.php
-/vendor
-.DS_Store
-.idea
-public/.sass-cache
-tags
-app/tests/_log/*
-app/tests/_data/*
-app/storage/cache/*
-app/storage/views/*
-stylesheets
+bootstrap/compiled.php
+vendor/

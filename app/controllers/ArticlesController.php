@@ -34,6 +34,7 @@ class ArticlesController extends BaseController
      * @var $articlesPerPage
      */
     private $articlesPerPage = 20;
+
     /**
      * Comments per page limit
      *
@@ -42,12 +43,11 @@ class ArticlesController extends BaseController
     private $commentsPerPage = 20;
 
     /**
-     * Resolves class dependencies 
+     * Resolves class dependencies
      *
-     * @param ArticleRepository $articles
-     * @param TagRepository $tags
-     * @param CommentRepository $comments
-     * @return void
+     * @param \Lio\Articles\ArticleRepository $articles
+     * @param \Lio\Tags\TagRepository $tags
+     * @param \Lio\Comments\CommentRepository $comments
      */
     public function __construct(ArticleRepository $articles, TagRepository $tags, CommentRepository $comments)
     {
@@ -216,8 +216,10 @@ class ArticlesController extends BaseController
     }
 
     /**
-     * Renders the article edit comment page with comments 
+     * Renders the article edit comment page with comments
      *
+     * @param $articleSlug
+     * @param $commentId
      * @return Response
      */
     public function getEditComment($articleSlug, $commentId)
@@ -231,8 +233,8 @@ class ArticlesController extends BaseController
     /**
      * Validates form input and stores comment edits to the database
      * 
-     * @param string @articleSlug
-     * @param int @commentId
+     * @param string $articleSlug
+     * @param int $commentId
      *
      * @return Response
      */
@@ -262,8 +264,8 @@ class ArticlesController extends BaseController
     /**
      * Renders the delete comment page by author 
      * 
-     * @param string @articleSlug
-     * @param int @commentId
+     * @param string $articleSlug
+     * @param int $commentId
      *
      * @return Response
      */
@@ -279,8 +281,8 @@ class ArticlesController extends BaseController
     /**
      * Destroys comment by author 
      * 
-     * @param string @articleSlug
-     * @param int @commentId
+     * @param string $articleSlug
+     * @param int $commentId
      *
      * @return Response
      */
