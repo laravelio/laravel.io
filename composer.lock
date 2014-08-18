@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3b858daaebdc653d407c07167517a1c2",
+    "hash": "dc82a3209a5f43070ee4ff54719a918e",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -3801,14 +3801,19 @@
             "time": "2014-08-05 09:00:40"
         }
     ],
-    "aliases": [],
+    "aliases": [
+
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
         "michelf/php-markdown": 20,
         "hashids/hashids": 20,
         "codeception/aspect-mock": 10
     },
-    "prefer-stable": false,
-    "platform": [],
-    "platform-dev": []
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
 }
