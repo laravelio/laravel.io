@@ -6,7 +6,7 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 
 ## Requirements
 
-We use Laravel Homestead for local development. Please review [the Homstead documentation](http://laravel.com/docs/homestead) to install it.
+We use Laravel Homestead for local development. Please review [the Homestead documentation](http://laravel.com/docs/homestead) to install it.
 
 ## Local Installation
 
