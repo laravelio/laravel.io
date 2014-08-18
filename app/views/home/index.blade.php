@@ -1,4 +1,4 @@
-<secion class="hero-section">
+<section class="hero-section">
     <div class="description">
         <h1>Articles</h1>
         <p class="lead">
@@ -15,7 +15,7 @@
     </div>
 </section>
 
-<secion class="hero-section dark">
+<section class="hero-section dark">
     <div class="description">
         <h1>Forum Threads</h1>
         <p class="lead">
@@ -29,7 +29,7 @@
     </div>
 </section>
 
-<secion class="hero-section darker">
+<section class="hero-section darker">
     <div class="description">
         <h1>Help Cases</h1>
         <p class="lead">
