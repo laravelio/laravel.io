@@ -6,7 +6,7 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 
 ## Requirements
 
-We use Laravel Homestead for local development. Please review [the Homstead documentation](http://laravel.com/docs/homestead) to install it.
+We use Laravel Homestead for local development. Please review [the Homestead documentation](http://laravel.com/docs/homestead) to install it.
 
 ## Local Installation
 
@@ -27,7 +27,7 @@ Here are the steps for installation on a local machine.
 7. SSH into your Homestead box, go to the laravel.io folder and run `./update_environment.sh`.
 8. Add `127.0.0.1 lio.loc` to your hosts file.
 
-You can now visit the app in your browser by surfing to [lio.loc](http://lio.loc).
+You can now visit the app in your browser by surfing to [lio.loc:8000](http://lio.loc:8000).
 
 ## Github OAuth Configuration
 
@@ -35,8 +35,8 @@ Now, we must install the oauth configuration.
 
 1. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel IO Development" and add your GH application's client id and secret to this config file. Your GitHub Application should be set up as follows:
 
-    a. Full URL: http://lio.loc  
-    b. Callback URL: http://lio.loc/login
+    a. Full URL: http://lio.loc:8000  
+    b. Callback URL: http://lio.loc:8000/login
 
 2. Create the configuration file below at ***app/config/packages/artdarek/oauth-4-laravel/config.php***
 
