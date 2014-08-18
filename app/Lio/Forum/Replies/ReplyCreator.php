@@ -36,11 +36,12 @@ class ReplyCreator
 
     private function validateAndSave($listener, $reply)
     {
-        if ( ! $this->replies->save($reply)) {
+        if (! $this->replies->save($reply)) {
             return $listener->replyCreationError($reply->getErrors());
         }
 
         $this->updateThreadCounts($reply->thread);
+        $this->setThreadMostRecentReply($reply);
 
         return $listener->replyCreated($reply);
     }
@@ -48,5 +49,10 @@ class ReplyCreator
     private function updateThreadCounts($thread)
     {
         $thread->updateReplyCount();
+    }
+
+    private function setThreadMostRecentReply($reply)
+    {
+        $reply->thread->setMostRecentReply($reply);
     }
 }
