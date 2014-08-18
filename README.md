@@ -8,57 +8,71 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 
 1. PHP 5.4
 2. Vagrant
-3. Chef
-4. Virtualbox
-5. NodeJS
-
-## Recommended
-
-Vagrant - Our entire workflow is built into a Vagrant setup. Those looking to contribute to the project should use the Vagrant configuration for a number of reasons. These include ease of configuration and ensuring that the environments used are compatible.
+3. Virtualbox
+4. NodeJS & NPM
+5. Ruby, Sass, and Compass
 
 ## Local Installation
 
 Here are the steps for installation on a local machine using the officially endorsed workflow.
 
-1. Install [Vagrant][1], [Chef][2], and [VirtualBox][3] from their websites. **NOT** from package managers. If you install any of these from package managers, please do not ask for help or support when things break, which will VERY likely happen. Additional information can be found here: https://github.com/ShawnMcCool/vagrant-chef
+1. If you haven't already, install Laravel Homestead and all of its dependencies (Vagrant, Virtualbox). The environment provided by Homestead the most consistent and predictable environment for developing on the project.
 
-   _Note_: If you are running OS X 10.9 Mavericks, you will need to modify the install.sh file for it to work properly. Run the following in your preferred terminal:
+    [Laravel Homestead Installation Instructions][4]
 
-   ```
-   wget https://raw.github.com/laravelIO/laravel-io/master/chef/chef-osx.sh
-   chmod +x chef-osx.sh
-   sudo ./chef-osx.sh
-   ```
-
-2. Add "10.10.10.10 app.local" to your HOSTS file. Instructions below for Linux.
+2. Add `127.0.0.1 io.local` to your HOSTS file. For *nix/Mac, either `sudo vim /etc/hosts` and add it there or run the command below:
+    
     ```
-    echo "10.10.10.10 app.local" | sudo tee -a /etc/hosts
+    echo "127.0.0.1 io.local" | sudo tee -a /etc/hosts
     ```
-3. Clone down this repository
+3. Clone down this repository to your code/sites folder
+    
     ```
     git clone git@github.com:LaravelIO/laravel-io.git
     ```
-4. Run the install vagrant script
+4. Add the app to Homestead by adding the following lines to your Homestead.yaml:
+    
     ```
-    bash ./install_vagrant.sh
+        - map io.local
+          to: /home/vagrant/Code/laravel.io/public
     ```
-5. SSH into the vagrant box and run the update environment script
+5. If your Homestead environment has already been provisioned, refresh it, either by running `vagrant destroy` and then `vagrant up`, or by running the following within your `vagrant ssh`:
+    
+    ```
+    serve io.local /home/vagrant/Code/laravel.io/public
+    ```
+6. Create a `lio_development` MySQL database in Homestead.
 
-```
-$ vagrant ssh
+7. **The remaining steps will all be from within your vagrant ssh, run from the laravel.io folder.**
+    Chmod your storage folder
+    ```
+    chmod -R 777 app/storage
+    ```
+    
+8. Composer install
+    ```
+    composer install --no-scripts
+    ```
+    
+9. Migrate and seed your database
+    ```
+    php artisan migrate --env=local
+    php artisan db:seed --env=local
+    ```
 
-$ cd /vagrant
+10. Optimize your autoloader
+    ```
+    php artisan dump-autoload
+    ```
 
-$ bash ./update_environment.sh
-```
 
-Now, we must install the oauth configuration.
+Now, let's install the oauth configuration.
 
-1. [Create an application][4] in your github account called something like "Laravel IO Development" and add your GH application's client id and secret to this config file. Your GitHub Application should be set up as follows:
+1. [Create an application][5] in your github account called something like "Laravel IO Development" and add your GH application's client id and secret to this config file. Your GitHub Application should be set up as follows:
 
-    a. Full URL: http://app.local
+    a. Full URL: http://io.local:8000
 
-    b. Callback URL: http://app.local/login
+    b. Callback URL: http://io.local:8000/login
 2. Create the configuration file below at ***app/config/packages/artdarek/oauth-4-laravel/config.php***
 
 ```PHP
@@ -69,8 +83,8 @@ return [
 
     'consumers' => [
         'GitHub' => [
-            'client_id'     => '',
-            'client_secret' => '',
+            'client_id'     => 'YOUR_NEW_CLIENT_ID_HERE',
+            'client_secret' => 'YOUR_NEW_CLIENT_SECRET_HERE',
             'scope'         => ['user'],
         ],
     ],
@@ -79,19 +93,18 @@ return [
 
 ## Workflow
 
-When you'd like to work on the application, run vagrant up. When you're finished, run vagrant suspend.
+Before working on the application, make sure your Homestead vagrant install is up.
 
-Access the application at the URL: http://app.local/ (the trailing front-slash tends to be required for .local tlds in most browsers).
-
-When you'd like to access the database, connect to host app.local port 3306 using the user/password root/password.
-
-After pulling down changes, ssh into the vagrant box and run the update_environment.sh script.
+Access the application at the URL: http://io.local:8000/ (the trailing front-slash tends to be required for .local tlds in most browsers).
 
 ## Frontend
 
 Because we keep the generated / minified css out of the repository, we must have a workflow for compiling the styles.
+
 * Install the latest NodeJS
-* Finally, run "compass watch" in your /public folder and the minified css will be generated and also your filesystem will watch for file changes (and overwrites the .css). You can also run "compass compile" as a single one-time command to generate the css and don't watch the filesystem.
+* Install Ruby via RVM
+* Install Sass and Compass
+* Finally, run "compass watch" in your /public folder and the minified css will be generated and also your filesystem will watch for file changes (and overwrites the .css). You can also run "compass compile" as a single one-time command to generate the css and don't watch the filesystem.  
 
 ## Contribution
 
@@ -107,4 +120,5 @@ You probably don't have hardware virtualization support enabled in your computer
   [1]: http://downloads.vagrantup.com/
   [2]: http://www.opscode.com/chef/install/
   [3]: https://www.virtualbox.org/wiki/Downloads
-  [4]: https://github.com/settings/applications
+  [4]: http://laravel.com/docs/homestead
+  [5]: https://github.com/settings/applications
