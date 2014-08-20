@@ -1,7 +1,7 @@
 @include('bin._scripts')
 @include('bin._styles')
 
-
+@include('bin._sidebar_toggle')
 {{ Form::open(['class' => 'editor-form']) }}
     <div class="sidebar create">
         @include('bin._logo')
