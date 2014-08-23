@@ -1,15 +1,15 @@
 {
     "name": "laravelio/laravelio",
-    "description": "Laravel.io",
+    "description": "The source code for the Laravel.IO community portal.",
     "license": "MIT",
     "require": {
         "laravel/framework": "4.1.*",
         "artdarek/oauth-4-laravel": "1.0.*",
-        "barryvdh/laravel-debugbar": "~1.6",
-        "mccool/laravel-auto-presenter": "~1.1",
-        "mccool/database-backup": "~1.0",
-        "michelf/php-markdown": "1.4.*@dev",
-        "nickcernis/html-to-markdown": "~2.1",
+        "barryvdh/laravel-debugbar": "1.6.*",
+        "mccool/laravel-auto-presenter": "1.1.*",
+        "mccool/database-backup": "1.0.*",
+        "michelf/php-markdown": "1.4.*",
+        "nickcernis/html-to-markdown": "2.1.*",
         "misd/linkify": "1.1.*",
         "hashids/hashids": "0.3.*@dev"
     },
@@ -37,6 +37,7 @@
             "php artisan optimize"
         ],
         "post-update-cmd": [
+            "php artisan clear-compiled",
             "php artisan optimize"
         ],
         "post-create-project-cmd": [
@@ -45,5 +46,6 @@
     },
     "config": {
         "preferred-install": "dist"
-    }
+    },
+    "minimum-stability": "stable"
 }
