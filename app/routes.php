@@ -26,7 +26,7 @@ Route::get('dashboard', ['before' => 'auth', 'uses' => 'DashboardController@getI
 //Route::get('dashboard/articles', ['before' => 'auth', 'uses' => 'ArticlesController@getDashboard']);
 
 // user profile
-Route::get('user/{userSlug}', 'UsersController@getProfile');
+Route::get('user/{userSlug}', ['as' => 'user', 'uses' => 'UsersController@getProfile']);
 Route::get('user/{userSlug}/threads', 'UsersController@getThreads');
 Route::get('user/{userSlug}/replies', 'UsersController@getReplies');
 
