@@ -1,8 +1,34 @@
 # Laravel.IO Community Portal
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e/mini.png)](https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e)
-
 This is the Laravel.IO community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
+
+<table>
+    <thead>
+        <tr>
+            <th>Analysis</th>
+            <th>master</th>
+            <th>develop</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Build Status</td>
+            <td>[![Build Status](https://travis-ci.org/LaravelIO/laravel.io.svg?branch=master)](https://travis-ci.org/LaravelIO/laravel.io)</td>
+            <td>[![Build Status](https://travis-ci.org/LaravelIO/laravel.io.svg?branch=develop)](https://travis-ci.org/LaravelIO/laravel.io)</td>
+        </tr>
+        <tr>
+            <td>Code Quality</td>
+            <td>[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=master)</td>
+            <td>[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=develop)</td>
+        </tr>
+        <tr>
+            <td>Insights</td>
+            <td>[![SensioLabsInsight](https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e/mini.png)](https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e)</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
 
 ## Requirements
 
@@ -62,10 +88,24 @@ return [
 
 Because we keep the generated / minified css out of the repository, we must have a workflow for compiling the styles.
 
-* Be sure you have Ruby, Sass, and Compass installed on your machine
-* When running any compass command in the terminal, be sure to run it from your `/public` folder.
-* Compass is the tool used to compile Sass source files into CSS files; you can run `compass compile` to run it once, or `compass watch` to trigger a script that will watch your Sass files for changes and trigger a new compass compile on each change
+- Be sure you have Ruby, Sass, and Compass installed on your machine
+- When running any compass command in the terminal, be sure to run it from your `/public` folder.
+- Compass is the tool used to compile Sass source files into CSS files; you can run `compass compile` to run it once, or `compass watch` to trigger a script that will watch your Sass files for changes and trigger a new compass compile on each change
 
-## Contribution
+## Maintainer
 
-Please post proposals in the Github issues before coding up a PR.
+The Laravel.IO project is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to ask them in an issue or email me at [dries.vints@gmail.com](mailto:dries.vints@gmail.com).
+
+## Testing
+
+All tests can be run with the following command. Make sure to run this inside the Homestead box.
+
+    $ vendor/bin/phpunit
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
