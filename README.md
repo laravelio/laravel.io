@@ -13,17 +13,17 @@ This is the Laravel.IO community portal site. The site is entirely open source a
     <tbody>
         <tr>
             <td>Build Status</td>
-            <td>[![Build Status](https://travis-ci.org/LaravelIO/laravel.io.svg?branch=master)](https://travis-ci.org/LaravelIO/laravel.io)</td>
-            <td>[![Build Status](https://travis-ci.org/LaravelIO/laravel.io.svg?branch=develop)](https://travis-ci.org/LaravelIO/laravel.io)</td>
+            <td><a href="https://travis-ci.org/LaravelIO/laravel.io"><img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=master" alt="Build Status"></a></td>
+            <td><a href="https://travis-ci.org/LaravelIO/laravel.io"><img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=develop" alt="Build Status"></a></td>
         </tr>
         <tr>
             <td>Code Quality</td>
-            <td>[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=master)</td>
-            <td>[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=develop)</td>
+            <td><a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=master"><img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a></td>
+            <td><a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=develop"><img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=develop" alt="Scrutinizer Code Quality"></a></td>
         </tr>
         <tr>
             <td>Insights</td>
-            <td>[![SensioLabsInsight](https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e/mini.png)](https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e)</td>
+            <td><a href="https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e"><img src="https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e/mini.png" alt="SensioLabsInsight"></a></td>
             <td></td>
         </tr>
     </tbody>

@@ -1,4 +1,4 @@
-# Laravel Contributing Guide
+# Contributing Guide
 
 This page contains guidelines for contributing to the Laravel.IO project. Please review these guidelines before submitting any pull requests to the project.
 
