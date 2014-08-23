@@ -22,7 +22,7 @@ If you have an idea for a new feature you would like to see added to Laravel, yo
 
 ## Coding Standards
 
-The Laravel.IO project follows the PSR-0, PSR-1 and PSR-2 coding standards. Although the current codebase isn't compliant yet, pull requests are required to adhere to these coding standards.
+The Laravel.IO project follows the [PSR-0](http://www.php-fig.org/psr/psr-0/), [PSR-1](http://www.php-fig.org/psr/psr-1/) and [PSR-2](http://www.php-fig.org/psr/psr-2/) coding standards. Although the current codebase isn't compliant yet, pull requests are required to adhere to these coding standards.
 
 ### Docblocks
 
