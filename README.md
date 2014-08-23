@@ -5,9 +5,10 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 <table>
     <thead>
         <tr>
-            <th>Analysis</th>
+            <th>Branch</th>
             <th>master</th>
             <th>develop</th>
+            <th>release/3.0</th>
         </tr>
     </thead>
     <tbody>
@@ -15,15 +16,18 @@ This is the Laravel.IO community portal site. The site is entirely open source a
             <td>Build Status</td>
             <td><a href="https://travis-ci.org/LaravelIO/laravel.io"><img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=master" alt="Build Status"></a></td>
             <td><a href="https://travis-ci.org/LaravelIO/laravel.io"><img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=develop" alt="Build Status"></a></td>
+            <td><a href="https://travis-ci.org/LaravelIO/laravel.io"><img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=release%23.0" alt="Build Status"></a></td>
         </tr>
         <tr>
             <td>Code Quality</td>
             <td><a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=master"><img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a></td>
             <td><a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=develop"><img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=develop" alt="Scrutinizer Code Quality"></a></td>
+            <td><a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=release%23.0"><img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=release%23.0" alt="Scrutinizer Code Quality"></a></td>
         </tr>
         <tr>
             <td>Insights</td>
             <td><a href="https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e"><img src="https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e/mini.png" alt="SensioLabsInsight"></a></td>
+            <td></td>
             <td></td>
         </tr>
     </tbody>
