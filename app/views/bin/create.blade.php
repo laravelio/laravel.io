@@ -7,7 +7,7 @@
         @include('bin._logo')
         <div class="options">
             <ul>
-                <li><input type="submit" value="Save (cmd+s)" class="button"></li>
+                <li><input type="submit" value="Save (CMD+S)" class="button"></li>
                 <li><input type="reset" value="Clear" class="button"></li>
             </ul>
         </div>
