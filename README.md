@@ -16,13 +16,13 @@ This is the Laravel.IO community portal site. The site is entirely open source a
             <td>Build Status</td>
             <td><a href="https://travis-ci.org/LaravelIO/laravel.io"><img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=master" alt="Build Status"></a></td>
             <td><a href="https://travis-ci.org/LaravelIO/laravel.io"><img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=develop" alt="Build Status"></a></td>
-            <td><a href="https://travis-ci.org/LaravelIO/laravel.io"><img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=release%23.0" alt="Build Status"></a></td>
+            <td><a href="https://travis-ci.org/LaravelIO/laravel.io"><img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=release%2F3.0" alt="Build Status"></a></td>
         </tr>
         <tr>
             <td>Code Quality</td>
             <td><a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=master"><img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a></td>
             <td><a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=develop"><img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=develop" alt="Scrutinizer Code Quality"></a></td>
-            <td><a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=release%23.0"><img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=release%23.0" alt="Scrutinizer Code Quality"></a></td>
+            <td><a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=release%2F3.0"><img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=release%2F3.0" alt="Scrutinizer Code Quality"></a></td>
         </tr>
         <tr>
             <td>Insights</td>
