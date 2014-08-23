@@ -1,7 +1,8 @@
 @include('bin._scripts')
 @include('bin._styles')
 
-<div class="sidebar show">
+@include('bin._sidebar_toggle')
+<div class="sidebar">
     @include('bin._logo')
     <div class="options">
         <ul>
