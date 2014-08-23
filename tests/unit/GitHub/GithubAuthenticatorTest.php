@@ -1,10 +1,12 @@
-<?php namespace Lio\Github;
-use Codeception\Util\Stub;
+<?php
+namespace Lio\Tests\Unit\Github;
+
+use Lio\Github\GithubAuthenticator;
+use Lio\Tests\TestCase;
 use Mockery as m;
 
-class GithubAuthenticatorTest extends \UnitTestCase
+class GithubAuthenticatorTest extends TestCase
 {
-    // tests
     public function testCanCreateGithubAuthenticator()
     {
         $this->assertInstanceOf('Lio\Github\GithubAuthenticator', $this->getAuthenticator());
@@ -79,7 +81,6 @@ class GithubAuthenticatorTest extends \UnitTestCase
         $auth->authByCode($observer, 'foo');
     }
 
-    //-------- private ---------//
     private function getAuthenticator($userRepository = null, $reader = null)
     {
         $userRepository = $userRepository ?: m::mock('Lio\Accounts\UserRepository');

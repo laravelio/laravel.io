@@ -14,30 +14,27 @@
         "hashids/hashids": "0.3.*@dev"
     },
     "require-dev": {
-        "mockery/mockery": "~0.9",
-        "raveren/kint": "~0.9",
-        "codeception/codeception": "~2.0",
-        "codeception/aspect-mock": "0.5.*@beta"
+        "phpunit/phpunit": "4.2.*",
+        "mockery/mockery": "0.9.*"
     },
     "autoload": {
         "classmap": [
             "app/commands",
             "app/controllers",
             "app/database/migrations",
-            "app/database/seeds",
-            "tests/unit/UnitTestCase.php"
+            "app/database/seeds"
         ],
         "psr-0": {
             "Lio\\": "app/"
+        },
+        "psr-4": {
+            "Lio\\Tests\\": "tests/"
         }
     },
     "scripts": {
         "post-install-cmd": [
             "php artisan clear-compiled",
             "php artisan optimize"
-        ],
-        "pre-update-cmd": [
-
         ],
         "post-update-cmd": [
             "php artisan optimize"

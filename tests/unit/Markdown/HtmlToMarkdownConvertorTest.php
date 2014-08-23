@@ -1,18 +1,12 @@
-<?php namespace Lio\Markdown;
-use Codeception\Util\Stub;
+<?php
+namespace Lio\Tests\Unit\Markdown;
+
+use Lio\Markdown\HtmlMarkdownConvertor;
+use Lio\Tests\TestCase;
 use Mockery;
 
-class HtmlMarkdownConvertorTest extends \Codeception\TestCase\Test
+class HtmlMarkdownConvertorTest extends TestCase
 {
-   /**
-    * @var \CodeGuy
-    */
-    protected $codeGuy;
-
-    protected function _before() {}
-    protected function _after() {}
-
-    // tests
     public function testCanCreate()
     {
         $this->assertInstanceOf('Lio\Markdown\HtmlMarkdownConvertor', $this->getConvertor());
@@ -53,8 +47,6 @@ class HtmlMarkdownConvertorTest extends \Codeception\TestCase\Test
         $this->assertEquals("<pre><code>Robots\n</code></pre>\n", $conv->convertMarkdownToHtml('    Robots'));
         $this->assertEquals("<p><code>Robots</code></p>\n", $conv->convertMarkdownToHtml('`Robots`'));
     }
-
-   //-------- private ---------//
 
     private function getConvertor()
     {

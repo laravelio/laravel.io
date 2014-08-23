@@ -1,18 +1,12 @@
-<?php namespace Lio\GitHub;
-use Codeception\Util\Stub;
+<?php
+namespace Lio\Tests\Unit\GitHub;
+
+use Lio\Github\GistEmbedFormatter;
+use Lio\Tests\TestCase;
 use Mockery;
 
-class GistEmbedFormatterTest extends \Codeception\TestCase\Test
+class GistEmbedFormatterTest extends TestCase
 {
-   /**
-    * @var \CodeGuy
-    */
-    protected $codeGuy;
-
-    protected function _before() {}
-    protected function _after() {}
-
-    // tests
     public function testCanCreate()
     {
         $this->assertInstanceOf('Lio\GitHub\GistEmbedFormatter', $this->getFormatter());
@@ -50,7 +44,6 @@ What makes people so impatient is what I can\'t figure; all the guy had to do wa
         $this->assertEquals($embedHtml, $formatter->format($gistUrl));
     }
 
-    //-------- private ---------//
     private function getFormatter()
     {
         return new GistEmbedFormatter;

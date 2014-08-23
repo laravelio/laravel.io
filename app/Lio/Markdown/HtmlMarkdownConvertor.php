@@ -1,6 +1,7 @@
 <?php namespace Lio\Markdown;
 
 use HTML_To_Markdown;
+use Michelf\MarkdownExtra;
 
 class HtmlMarkdownConvertor
 {
@@ -12,7 +13,7 @@ class HtmlMarkdownConvertor
         $this->htmlParser = new HTML_To_markdown;
         $this->htmlParser->set_option('header_style', 'atx');
 
-        $this->markdownParser = new \Michelf\MarkdownExtra;
+        $this->markdownParser = new MarkdownExtra;
         $this->markdownParser->no_markup = true;
     }
 
