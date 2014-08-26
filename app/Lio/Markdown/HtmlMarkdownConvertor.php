@@ -2,6 +2,7 @@
 
 use HTML_To_Markdown;
 use Michelf\MarkdownExtra;
+use Purifier;
 
 class HtmlMarkdownConvertor
 {
@@ -24,6 +25,7 @@ class HtmlMarkdownConvertor
 
     public function convertMarkdownToHtml($markdown)
     {
-        return $this->markdownParser->transform($markdown);
+        $html = $this->markdownParser->transform($markdown);
+        return Purifier::clean($html, 'markdown');
     }
 }
