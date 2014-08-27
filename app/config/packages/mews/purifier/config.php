@@ -9,7 +9,7 @@
  */
 
 return array(
-	'encoding' => 'UTF-8',
+    'encoding' => 'UTF-8',
     'finalize' => true,
     'preload'  => false,
     'settings' => array(
