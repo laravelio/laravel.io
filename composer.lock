@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ec42a7d4efe1aa97673b81f598edb6be",
+    "hash": "30096d97d3b6b682454c5438a6b15ee0",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -920,7 +920,7 @@
         },
         {
             "name": "mews/purifier",
-            "version": "dev-master",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mewebstudio/Purifier.git",
@@ -3292,8 +3292,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "hashids/hashids": 20,
-        "mews/purifier": 20
+        "hashids/hashids": 20
     },
     "prefer-stable": false,
     "platform": [
