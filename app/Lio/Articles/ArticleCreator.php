@@ -22,7 +22,6 @@ class ArticleCreator
         if ($validator && ! $validator->isValid()) {
             return $listener->threadCreationError($validator->getErrors());
         }
-
         return $this->createArticle($listener, $data + ['author_id' => $author->id]);
     }
 

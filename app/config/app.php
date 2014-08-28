@@ -186,5 +186,5 @@ return array(
 		'OAuth'    => 'Artdarek\OAuth\Facade\OAuth',
 		'GitHub'   => 'Lio\GitHub\GitHubFacade',
 	),
-
+	'cipher' => MCRYPT_RIJNDAEL_256
 );
