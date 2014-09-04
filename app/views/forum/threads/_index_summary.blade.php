@@ -2,7 +2,7 @@
     {{ $thread->author->thumbnail }}
 
     <div class="info">
-        <h3><a href="{{ $thread->url }}">{{ $thread->subject }}</a></h3>
+        <h3><a href="{{ $thread->url }}">{{{ $thread->subject }}}</a></h3>
 
         <div class="post-info">
             @if ($thread->isSolved())
