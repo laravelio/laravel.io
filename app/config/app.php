@@ -111,6 +111,7 @@ return array(
 		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
 		'McCool\DatabaseBackup\ServiceProviders\LaravelServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
+		'Mews\Purifier\PurifierServiceProvider',
 
 		'Lio\ServiceProviders\GithubServiceProvider',
 		'Lio\ServiceProviders\CommentServiceProvider',
@@ -185,6 +186,7 @@ return array(
 		'Profiler' => 'Juy\Profiler\Facades\Profiler',
 		'OAuth'    => 'Artdarek\OAuth\Facade\OAuth',
 		'GitHub'   => 'Lio\GitHub\GitHubFacade',
+		'Purifier' => 'Mews\Purifier\Facades\Purifier',
 	),
 
 );

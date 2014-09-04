@@ -11,7 +11,8 @@
         "michelf/php-markdown": "1.4.*",
         "nickcernis/html-to-markdown": "2.1.*",
         "misd/linkify": "1.1.*",
-        "hashids/hashids": "0.3.*@dev"
+        "hashids/hashids": "0.3.*@dev",
+        "mews/purifier": "1.0.*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.2.*",
