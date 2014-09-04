@@ -26,7 +26,7 @@
 </head>
 <body>
 <div style="background: #2fb352; padding: .75em; text-align:center; font-size:1.1em">
-    <a href="http://laracon.eu" style="color:#eee;">Tickets for Laracon EU are sold out. Join the waiting list!</a>
+    <a href="http://laracon.eu/2014/" style="color:#eee;">Laracon EU is over! Thanks for all your support! Watch the videos here.</a>
 </div>
 <div class="wrapper">
   <div class="top-header">
