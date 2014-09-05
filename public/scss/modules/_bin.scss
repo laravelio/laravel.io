@@ -98,6 +98,7 @@ body.bin {
         padding: 15px;
         position: fixed;
         right: 0;
+        -webkit-transition: -webkit-transform $sidebar_transition;
         transition: transform $sidebar_transition;
         top: 0;
         width: 50%;
@@ -137,6 +138,7 @@ body.bin {
         }
 
         &.hide {
+            -webkit-transform: translateX(100%);
             transform: translateX(100%);
         }
     }
