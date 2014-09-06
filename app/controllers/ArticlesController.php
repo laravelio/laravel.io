@@ -22,7 +22,7 @@ class ArticlesController extends BaseController
     private $tags;
     
     /**
-     * Holds tags
+     * Holds comments
      *
      * @var $comments
      */
