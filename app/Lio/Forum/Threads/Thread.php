@@ -1,16 +1,18 @@
 <?php namespace Lio\Forum\Threads;
 
 use Auth;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Lio\Core\Entity;
 use Lio\Forum\Replies\Reply;
+use McCool\LaravelAutoPresenter\PresenterInterface;
 
-class Thread extends Entity
+class Thread extends Entity implements PresenterInterface
 {
-    protected $table      = 'forum_threads';
-    protected $fillable   = ['subject', 'body', 'author_id', 'is_question', 'solution_reply_id', 'category_slug', 'laravel_version'];
-    protected $softDelete = true;
+    use SoftDeletingTrait;
 
-    public $presenter = 'Lio\Forum\Threads\ThreadPresenter';
+    protected $table    = 'forum_threads';
+    protected $fillable = ['subject', 'body', 'author_id', 'is_question', 'solution_reply_id', 'category_slug', 'laravel_version'];
+    protected $dates    = ['deleted_at'];
 
     protected $validationRules = [
         'body'      => 'required',
@@ -159,5 +161,15 @@ class Thread extends Entity
     public function getTags()
     {
         return $this->tags->lists('slug');
+    }
+
+    /**
+     * Get the presenter class.
+     *
+     * @return string The class path to the presenter.
+     */
+    public function getPresenter()
+    {
+        return 'Lio\Forum\Threads\ThreadPresenter';
     }
 }

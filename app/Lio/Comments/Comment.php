@@ -1,16 +1,18 @@
 <?php namespace Lio\Comments;
 
+use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Lio\Core\Entity;
 use Str;
 
-class Comment extends Entity
+class Comment extends Entity implements RemindableInterface
 {
-    protected $table      = 'comments';
-    protected $fillable   = ['title', 'body', 'author_id', 'parent_id', 'category_slug', 'owner_id', 'owner_type', 'type', 'laravel_version'];
-    protected $with       = ['author'];
-    protected $softDelete = true;
+    use SoftDeletingTrait;
 
-    public $presenter = 'Lio\Comments\CommentPresenter';
+    protected $table    = 'comments';
+    protected $fillable = ['title', 'body', 'author_id', 'parent_id', 'category_slug', 'owner_id', 'owner_type', 'type', 'laravel_version'];
+    protected $with     = ['author'];
+    protected $dates    = ['deleted_at'];
 
     protected $validatorRules = [
         'body'      => 'required',
@@ -125,5 +127,15 @@ class Comment extends Entity
     public function isNewerThan($timestamp)
     {
         return strtotime($this->updated_at) > $timestamp;
+    }
+
+    /**
+     * Get the e-mail address where password reminders are sent.
+     *
+     * @return string
+     */
+    public function getReminderEmail()
+    {
+        return 'Lio\Comments\CommentPresenter';
     }
 }

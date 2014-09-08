@@ -1,15 +1,17 @@
 <?php namespace Lio\Bin;
 
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Lio\Core\Entity;
+use McCool\LaravelAutoPresenter\PresenterInterface;
 
-class Paste extends Entity {
+class Paste extends Entity implements PresenterInterface
+{
+    use SoftDeletingTrait;
 
-    protected $table      = 'pastes';
-    protected $fillable   = ['description', 'code', 'author_id', 'parent_id'];
-    protected $with       = ['comments'];
-    protected $softDelete = true;
-
-    public $presenter = 'Lio\Bin\PastePresenter';
+    protected $table    = 'pastes';
+    protected $fillable = ['description', 'code', 'author_id', 'parent_id'];
+    protected $with     = ['comments'];
+    protected $dates    = ['deleted_at'];
 
     protected $validationRules = [
         'code' => 'required',
@@ -45,5 +47,15 @@ class Paste extends Entity {
     public function hasComments()
     {
         return (bool) $this->comments->count() > 0;
+    }
+
+    /**
+     * Get the presenter class.
+     *
+     * @return string The class path to the presenter.
+     */
+    public function getPresenter()
+    {
+        return 'Lio\Bin\PastePresenter';
     }
 }

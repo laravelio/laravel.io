@@ -1,20 +1,20 @@
 <?php namespace Lio\Articles;
 
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Lio\Core\Entity;
+use McCool\LaravelAutoPresenter\PresenterInterface;
 
-class Article extends Entity
+class Article extends Entity implements PresenterInterface
 {
-    protected $table      = 'articles';
-    protected $with       = ['author'];
-    protected $fillable   = ['author_id', 'title', 'content', 'status', 'laravel_version', 'published_at'];
-    protected $dates      = ['published_at'];
-    protected $softDelete = true;
+    use SoftDeletingTrait;
 
-    public $presenter = 'Lio\Articles\ArticlePresenter';
+    protected $table    = 'articles';
+    protected $with     = ['author'];
+    protected $fillable = ['author_id', 'title', 'content', 'status', 'laravel_version', 'published_at'];
+    protected $dates    = ['published_at', 'deleted_at'];
 
     const STATUS_DRAFT     = 0;
     const STATUS_PUBLISHED = 1;
-
 
     protected $validationRules = [
         'author_id' => 'required|exists:users,id',
@@ -95,5 +95,15 @@ class Article extends Entity
         }
 
         return parent::save($options);
+    }
+
+    /**
+     * Get the presenter class.
+     *
+     * @return string The class path to the presenter.
+     */
+    public function getPresenter()
+    {
+        return 'Lio\Articles\ArticlePresenter';
     }
 }

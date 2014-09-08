@@ -71,6 +71,7 @@ class ThreadPresenter extends BasePresenter
         if ( ! $this->mostRecentReply) {
             return $this->url;
         }
+
         return $this->url . App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->mostRecentReply);
     }
 
@@ -103,8 +104,6 @@ class ThreadPresenter extends BasePresenter
     {
         return action('ForumThreadsController@getMarkQuestionUnsolved', [$this->resource->id]);
     }
-
-    // ------------------- //
 
     private function convertMarkdown($content)
     {

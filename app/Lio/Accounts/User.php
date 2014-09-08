@@ -1,21 +1,25 @@
 <?php namespace Lio\Accounts;
 
+use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Auth\UserTrait;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Lio\Core\Entity;
 use Eloquent;
+use McCool\LaravelAutoPresenter\PresenterInterface;
 
-class User extends Entity implements UserInterface, RemindableInterface
+class User extends Entity implements UserInterface, RemindableInterface, PresenterInterface
 {
+    use UserTrait, RemindableTrait, SoftDeletingTrait;
+
     const STATE_ACTIVE  = 1;
     const STATE_BLOCKED = 2;
 
-    protected $table      = 'users';
-    protected $hidden     = ['github_id'];
-    protected $fillable   = ['email', 'name', 'github_url', 'github_id', 'image_url', 'is_banned'];
-    protected $softDelete = true;
-
-    public $presenter = 'Lio\Accounts\UserPresenter';
+    protected $table    = 'users';
+    protected $hidden   = ['github_id'];
+    protected $fillable = ['email', 'name', 'github_url', 'github_id', 'image_url', 'is_banned'];
+    protected $dates    = ['deleted_at'];
 
     protected $validationRules = [
         'github_id' => 'unique:users,github_id,<id>',
@@ -95,23 +99,6 @@ class User extends Entity implements UserInterface, RemindableInterface
         return false;
     }
 
-    // UserInterface
-    public function getAuthIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    public function getAuthPassword()
-    {
-        return $this->password;
-    }
-
-    // RemindableInterface
-    public function getReminderEmail()
-    {
-        return $this->email;
-    }
-
     // Forum
     public function forumPosts()
     {
@@ -143,18 +130,13 @@ class User extends Entity implements UserInterface, RemindableInterface
         return $this->forumReplies()->with('thread')->paginate($max);
     }
 
-    public function getRememberToken()
+    /**
+     * Get the presenter class.
+     *
+     * @return string The class path to the presenter.
+     */
+    public function getPresenter()
     {
-        return $this->remember_token;
-    }
-
-    public function setRememberToken($value)
-    {
-        $this->remember_token = $value;
-    }
-
-    public function getRememberTokenName()
-    {
-        return 'remember_token';
+        return 'Lio\Accounts\UserPresenter';
     }
 }

@@ -1,13 +1,17 @@
 <?php namespace Lio\Forum\Replies;
 
-class Reply extends \Lio\Core\Entity
-{
-    protected $table      = 'forum_replies';
-    protected $fillable   = ['body', 'author_id', 'thread_id'];
-    protected $with       = ['author'];
-    protected $softDelete = true;
+use Illuminate\Database\Eloquent\SoftDeletingTrait;
+use Lio\Core\Entity;
+use McCool\LaravelAutoPresenter\PresenterInterface;
 
-    public $presenter = 'Lio\Forum\Replies\ReplyPresenter';
+class Reply extends Entity implements PresenterInterface
+{
+    use SoftDeletingTrait;
+
+    protected $table    = 'forum_replies';
+    protected $fillable = ['body', 'author_id', 'thread_id'];
+    protected $with     = ['author'];
+    protected $dates    = ['deleted_at'];
 
     protected $validationRules = [
         'body'      => 'required|min:6',
@@ -39,5 +43,15 @@ class Reply extends \Lio\Core\Entity
     public function getPrecedingReplyCount()
     {
         return $this->newQuery()->where('thread_id', '=', $this->thread_id)->where('created_at', '<', $this->created_at)->count();
+    }
+
+    /**
+     * Get the presenter class.
+     *
+     * @return string The class path to the presenter.
+     */
+    public function getPresenter()
+    {
+        return 'Lio\Forum\Replies\ReplyPresenter';
     }
 }
