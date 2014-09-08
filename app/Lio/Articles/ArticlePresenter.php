@@ -1,8 +1,8 @@
 <?php namespace Lio\Articles;
 
 use McCool\LaravelAutoPresenter\BasePresenter;
-use \Michelf\MarkdownExtra;
 use App, Str;
+use Misd\Linkify\Linkify;
 
 class ArticlePresenter extends BasePresenter
 {
@@ -13,6 +13,7 @@ class ArticlePresenter extends BasePresenter
         $content = $this->convertNewlines($content);
         $content = $this->formatGists($content);
         $content = $this->linkify($content);
+
         return $content;
     }
 
@@ -32,11 +33,13 @@ class ArticlePresenter extends BasePresenter
         // kinda a mess but s'ok for now
         $html = App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($this->resource->content);
         $text = strip_tags($html);
+
         if (false !== strpos($text, "\n\n")) {
             list($excerpt, $dump) = explode("\n\n", $text);
         } else {
             $excerpt = $text;
         }
+
         return Str::words($excerpt, 200);
     }
 
@@ -57,12 +60,12 @@ class ArticlePresenter extends BasePresenter
 
     public function showUrl()
     {
-        if ( ! $this->resource->slug) return '';
+        if (! $this->resource->slug) {
+            return '';
+        }
 
         return action('ArticlesController@getShow', [$this->resource->slug->slug]);
     }
-
-    // ------------------- //
 
     private function convertMarkdown($content)
     {
@@ -81,7 +84,8 @@ class ArticlePresenter extends BasePresenter
 
     private function linkify($content)
     {
-        $linkify = new \Misd\Linkify\Linkify();
+        $linkify = new Linkify;
+
         return $linkify->process($content);
     }
 }
