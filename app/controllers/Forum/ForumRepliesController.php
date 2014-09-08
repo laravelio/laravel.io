@@ -37,7 +37,7 @@ class ForumRepliesController extends BaseController implements
         $generator = App::make('Lio\Forum\Replies\ReplyQueryStringGenerator');
         $queryString = $generator->generate($reply, $this->repliesPerPage);
 
-        return Redirect::to(action('ForumThreadsController@getShowThread', [$thread]) . $queryString);
+        return Redirect::to(action('ForumThreadsController@getShowThread', [$threadSlug]) . $queryString);
     }
 
     // reply to a thread
