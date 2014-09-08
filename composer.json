@@ -6,7 +6,7 @@
         "laravel/framework": "4.1.*",
         "artdarek/oauth-4-laravel": "1.0.*",
         "barryvdh/laravel-debugbar": "1.6.*",
-        "mccool/laravel-auto-presenter": "1.1.*",
+        "mccool/laravel-auto-presenter": "1.2.*",
         "mccool/database-backup": "1.0.*",
         "michelf/php-markdown": "1.4.*",
         "nickcernis/html-to-markdown": "2.1.*",
@@ -47,6 +47,5 @@
     },
     "config": {
         "preferred-install": "dist"
-    },
-    "minimum-stability": "stable"
+    }
 }
