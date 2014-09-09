@@ -1,11 +1,10 @@
 <?php namespace Lio\Comments;
-
-use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 use Lio\Core\Entity;
+use McCool\LaravelAutoPresenter\PresenterInterface;
 use Str;
 
-class Comment extends Entity implements RemindableInterface
+class Comment extends Entity implements PresenterInterface
 {
     use SoftDeletingTrait;
 
@@ -130,11 +129,11 @@ class Comment extends Entity implements RemindableInterface
     }
 
     /**
-     * Get the e-mail address where password reminders are sent.
+     * Get the presenter class.
      *
-     * @return string
+     * @return string The class path to the presenter.
      */
-    public function getReminderEmail()
+    public function getPresenter()
     {
         return 'Lio\Comments\CommentPresenter';
     }
