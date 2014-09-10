@@ -12,7 +12,6 @@ class ArticleForm extends FormModel
         'tags'            => 'required|max_tags:3',
     ];
 
-
     protected function beforeValidation()
     {
         \Validator::extend('max_tags', function($attribute, $tagIds, $params) {
