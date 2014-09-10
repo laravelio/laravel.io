@@ -5,6 +5,8 @@
 {{ Form::open(['class' => 'editor-form']) }}
     <div class="sidebar create">
         @include('bin._logo')
+
+        @if (Auth::check())
         <div class="options">
             <ul>
                 <li><input type="submit" value="Save (CMD+S)" class="button"></li>
@@ -12,6 +14,14 @@
             </ul>
         </div>
         <p>Please note that all pasted data is publicly available.</p>
+        @else
+        <div class="options">
+            <ul>
+                <li><a class="button" href="{{ action('AuthController@getLogin') }}">Login with GitHub</a></li>
+            </ul>
+        </div>
+        <p>Please login first before using the pastebin.</p>
+        @endif
     </div>
 
     @include('bin._editor')

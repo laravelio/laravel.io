@@ -7,6 +7,8 @@
 ]) }}
     <div class="sidebar create">
         @include('bin._logo')
+
+        @if (Auth::check())
         <div class="options">
             <ul>
                 <li><input type="submit" value="Save (CMD/CTRL+S)" class="button"></li>
@@ -14,6 +16,14 @@
                 <li><a href="{{ $paste->showUrl }}" class="button back"><i class="fa fa-arrow-circle-o-left"></i> Back</a></li>
             </ul>
         </div>
+        @else
+        <div class="options">
+            <ul>
+                <li><a class="button" href="{{ action('AuthController@getLogin') }}">Login with GitHub</a></li>
+            </ul>
+        </div>
+        <p>Please login first before using the pastebin.</p>
+        @endif
     </div>
 
     @include('bin._editor')

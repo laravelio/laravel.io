@@ -42,11 +42,14 @@ Route::get('irc', function() {
 
 // paste bin
 Route::get('bin', 'PastesController@getCreate');
-Route::post('bin', ['before' => 'csrf', 'uses' => 'PastesController@postCreate']);
 Route::get('bin/fork/{hash}', 'PastesController@getFork');
-Route::post('bin/fork/{hash}', ['before' => 'csrf', 'uses' => 'PastesController@postFork']);
 Route::get('bin/{hash}/raw', 'PastesController@getRaw');
 Route::get('bin/{hash}', 'PastesController@getShow');
+
+Route::group(['before' => 'auth'], function() {
+    Route::post('bin', ['before' => 'csrf', 'uses' => 'PastesController@postCreate']);
+    Route::post('bin/fork/{hash}', ['before' => 'csrf', 'uses' => 'PastesController@postFork']);
+});
 
 // articles
 // Route::get('articles', 'ArticlesController@getIndex');
