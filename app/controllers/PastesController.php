@@ -4,6 +4,7 @@ use Lio\Bin\PasteRepository;
 use Lio\Bin\PasteCreatorListener;
 use Lio\Bin\PasteCreator;
 use Lio\Bin\PasteForkCreator;
+use Lio\Bin\PasteForm;
 
 class PastesController extends BaseController implements PasteCreatorListener
 {
@@ -22,17 +23,19 @@ class PastesController extends BaseController implements PasteCreatorListener
     public function getIndex()
     {
         $pastes = $this->pastes->getRecentPaginated();
-        $this->title = "Create Paste";
+        $this->title = 'Create Paste';
         $this->view('bin.index', compact('pastes'));
     }
 
     public function getShow($hash)
     {
         $paste = $this->pastes->getByHash($hash);
-        if ( ! $paste) {
+
+        if (! $paste) {
             return $this->redirectAction('PastesController@getCreate');
         }
-        $this->title = "Paste Viewer";
+
+        $this->title = 'Paste Viewer';
         $this->view('bin.show', compact('paste'));
     }
 
@@ -43,13 +46,13 @@ class PastesController extends BaseController implements PasteCreatorListener
 
     public function postCreate()
     {
-        return $this->creator->create($this, Input::get('code'), Auth::user());
+        return $this->creator->create($this, Input::get('code'), Auth::user(), new PasteForm);
     }
 
     public function getFork($hash)
     {
         $paste = $this->pastes->getByHash($hash);
-        $this->title = "Fork Paste";
+        $this->title = 'Fork Paste';
         $this->view('bin.fork', compact('paste'));
     }
 
@@ -58,7 +61,7 @@ class PastesController extends BaseController implements PasteCreatorListener
         $paste = $this->pastes->getByHash($hash);
         $this->fork->setListener($this);
         $this->fork->setParentPaste($paste);
-        return $this->creator->create($this->fork, Input::get('code'), Auth::user());
+        return $this->creator->create($this->fork, Input::get('code'), Auth::user(), new PasteForm);
     }
 
     public function getRaw($hash)
@@ -67,7 +70,6 @@ class PastesController extends BaseController implements PasteCreatorListener
         return View::make('bin.raw', compact('paste'));
     }
 
-    // ------------------ //
     public function pasteCreated($paste)
     {
         return $this->redirectAction('PastesController@getShow', $paste->hash);

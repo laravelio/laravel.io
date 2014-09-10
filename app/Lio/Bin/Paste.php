@@ -9,7 +9,7 @@ class Paste extends Entity implements PresenterInterface
     use SoftDeletingTrait;
 
     protected $table    = 'pastes';
-    protected $fillable = ['description', 'code', 'author_id', 'parent_id'];
+    protected $fillable = ['description', 'code', 'ip', 'author', 'parent', 'author_id', 'parent_id'];
     protected $with     = ['comments'];
     protected $dates    = ['deleted_at'];
 

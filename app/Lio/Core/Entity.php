@@ -1,10 +1,11 @@
 <?php namespace Lio\Core;
 
-use Validator, Eloquent;
+use Illuminate\Database\Eloquent\Model;
+use Validator;
 use Lio\Core\Exceptions\NoValidationRulesFoundException;
 use Lio\Core\Exceptions\NoValidatorInstantiatedException;
 
-abstract class Entity extends Eloquent
+abstract class Entity extends Model
 {
     protected $validationRules = [];
     protected $validator;

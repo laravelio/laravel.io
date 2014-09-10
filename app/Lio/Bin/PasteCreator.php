@@ -1,6 +1,7 @@
 <?php namespace Lio\Bin;
 
 use Hashids\Hashids;
+use Request;
 
 class PasteCreator
 {
@@ -13,8 +14,12 @@ class PasteCreator
         $this->hashids = $hashids;
     }
 
-    public function create($observer, $code, $user)
+    public function create($observer, $code, $user, $validator = null)
     {
+        if ($validator && ! $validator->isValid()) {
+            return $observer->pasteValidationError($validator->getErrors());
+        }
+
         $paste = $this->createPaste($code, $user);
         if ( ! $this->pastes->save($paste)) {
             return $observer->pasteValidationError($paste->getErrors());
@@ -25,7 +30,7 @@ class PasteCreator
 
     protected function createPaste($code, $user)
     {
-        return $this->pastes->getNew(['code' => $code, 'author' => $user]);
+        return $this->pastes->getNew(['code' => $code, 'author' => $user, 'ip' => Request::getClientIp()]);
     }
 
     protected function addHash($paste)
