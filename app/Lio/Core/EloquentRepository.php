@@ -5,6 +5,9 @@ use Lio\Core\Exceptions\EntityNotFoundException;
 
 abstract class EloquentRepository
 {
+    /**
+     * @var \Illuminate\Database\Eloquent\Model
+     */
     protected $model;
 
     public function __construct($model = null)
