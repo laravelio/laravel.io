@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "428a15f67d657c0cef17730b59e4f5dc",
+    "hash": "cc76ae42c07578a77dc80c0adda28f7c",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -451,16 +451,16 @@
         },
         {
             "name": "hashids/hashids",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ivanakimov/hashids.php.git",
-                "reference": "11895b4c33cc390d7faa4aab40f4cd17f05b23a2"
+                "reference": "a3b9873d56c0878aaa640f21c385f88a3adfad07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ivanakimov/hashids.php/zipball/11895b4c33cc390d7faa4aab40f4cd17f05b23a2",
-                "reference": "11895b4c33cc390d7faa4aab40f4cd17f05b23a2",
+                "url": "https://api.github.com/repos/ivanakimov/hashids.php/zipball/a3b9873d56c0878aaa640f21c385f88a3adfad07",
+                "reference": "a3b9873d56c0878aaa640f21c385f88a3adfad07",
                 "shasum": ""
             },
             "require": {
@@ -488,23 +488,23 @@
                 {
                     "name": "Ivan Akimov",
                     "email": "ivan@barreleye.com",
-                    "homepage": "https://twitter.com/ivanakimov",
-                    "role": "Developer"
+                    "homepage": "https://twitter.com/IvanAkimov"
                 }
             ],
-            "description": "Generate hashes like YouTube or Bitly from numbers to obfuscate your database IDs, or navigate to the right shard.",
-            "homepage": "http://www.hashids.org/php/",
+            "description": "Generate hashids like YouTube or Bitly from numbers to obfuscate your database primary ids, or navigate to the right shard.",
+            "homepage": "http://hashids.org/php",
             "keywords": [
                 "bitly",
                 "decrypt",
                 "encrypt",
                 "hash",
+                "hashid",
                 "hashids",
                 "ids",
                 "obfuscate",
                 "youtube"
             ],
-            "time": "2014-07-22 05:42:05"
+            "time": "2014-09-09 19:31:50"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -3272,18 +3272,10 @@
             "time": "2014-08-31 03:22:04"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "hashids/hashids": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "platform": [],
+    "platform-dev": []
 }
