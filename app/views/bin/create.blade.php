@@ -12,8 +12,6 @@
             </ul>
         </div>
         <p>Please note that all pasted data is publicly available.</p>
-
-        <input type="text" name="subject" style="display: none;">
     </div>
 
     @include('bin._editor')
