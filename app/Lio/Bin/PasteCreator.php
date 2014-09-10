@@ -35,7 +35,7 @@ class PasteCreator
 
     protected function addHash($paste)
     {
-        $paste->hash = $this->hashids->encrypt($paste->id);
+        $paste->hash = $this->hashids->encode($paste->id);
         $this->pastes->save($paste);
     }
 }
