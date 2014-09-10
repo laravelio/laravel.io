@@ -42,9 +42,9 @@ Route::get('irc', function() {
 
 // paste bin
 Route::get('bin', 'PastesController@getCreate');
-Route::post('bin', 'PastesController@postCreate');
+Route::post('bin', ['before' => 'csrf', 'uses' => 'PastesController@postCreate']);
 Route::get('bin/fork/{hash}', 'PastesController@getFork');
-Route::post('bin/fork/{hash}', 'PastesController@postFork');
+Route::post('bin/fork/{hash}', ['before' => 'csrf', 'uses' => 'PastesController@postFork']);
 Route::get('bin/{hash}/raw', 'PastesController@getRaw');
 Route::get('bin/{hash}', 'PastesController@getShow');
 
