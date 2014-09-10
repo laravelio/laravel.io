@@ -46,7 +46,7 @@ class PastesController extends BaseController implements PasteCreatorListener
 
     public function postCreate()
     {
-        return $this->creator->create($this, Input::get('code'), Auth::user(), new PasteForm);
+        return $this->creator->create($this, Input::get('paste_data'), Auth::user(), new PasteForm);
     }
 
     public function getFork($hash)
@@ -61,7 +61,7 @@ class PastesController extends BaseController implements PasteCreatorListener
         $paste = $this->pastes->getByHash($hash);
         $this->fork->setListener($this);
         $this->fork->setParentPaste($paste);
-        return $this->creator->create($this->fork, Input::get('code'), Auth::user(), new PasteForm);
+        return $this->creator->create($this->fork, Input::get('paste_data'), Auth::user(), new PasteForm);
     }
 
     public function getRaw($hash)
