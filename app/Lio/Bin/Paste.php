@@ -13,7 +13,6 @@ class Paste extends Entity {
 
     protected $validationRules = [
         'code' => 'required',
-        'password' => 'size:0',
     ];
 
     public function author()

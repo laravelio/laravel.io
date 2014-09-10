@@ -5,7 +5,7 @@ use Lio\Core\FormModel;
 class PasteForm extends FormModel
 {
     protected $validationRules = [
-        'paste_data' => 'required',
-        'password'  => 'size:0',
+        'code' => 'required',
+        'password' => 'size:0',
     ];
 }
