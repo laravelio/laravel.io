@@ -5,7 +5,7 @@ use Lio\Core\Entity;
 class Paste extends Entity {
 
     protected $table      = 'pastes';
-    protected $fillable   = ['description', 'code', 'author_id', 'parent_id'];
+    protected $fillable   = ['description', 'code', 'ip', 'author_id', 'parent_id'];
     protected $with       = ['comments'];
     protected $softDelete = true;
 
@@ -13,6 +13,7 @@ class Paste extends Entity {
 
     protected $validationRules = [
         'code' => 'required',
+        'subject' => 'size:0',
     ];
 
     public function author()
