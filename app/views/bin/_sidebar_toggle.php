@@ -1,1 +1,1 @@
-<a href="#" class="show-sidebar show"><i class="fa fa-bars"></i></a>
+<a href="#" class="show-sidebar show"><i class="fa fa-arrow-right"></i></a>
