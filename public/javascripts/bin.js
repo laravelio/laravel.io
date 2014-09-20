@@ -26,13 +26,17 @@ var PasteBin = (function($) {
      */
     var _responsiveNav = function() {
         var $showHideButton = $('.show-sidebar'),
-            $sidebar = $('.sidebar');
+            $sidebar = $('.sidebar'),
+            $editor = $('.editor'),
+            $showContainer = $('.show-container');
 
         $showHideButton.on('click', function(e) {
             e.preventDefault();
 
             $showHideButton.toggleClass('show');
             $sidebar.toggleClass('hide');
+            $editor.toggleClass('sidebar-hidden');
+            $showContainer.toggleClass('sidebar-hidden');
         });
     };
 

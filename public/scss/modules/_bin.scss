@@ -12,6 +12,7 @@ body.bin {
     }
 
     .show-container {
+        background: #1D1F21;
         -ms-word-break: break-all;
         word-break: break-all;
 
@@ -22,10 +23,13 @@ body.bin {
         -moz-hyphens: auto;
         hyphens: auto;
 
-        overflow-x: scroll;
+        padding-right: 2em;
+        -webkit-transition: width $sidebar_transition, padding-right $sidebar_transition;
+        transition: width $sidebar_transition, padding-right $sidebar_transition;
     }
 
     .prettyprint {
+        background: #1D1F21;
         border: 0;
         margin: 3em 0 0 0;
         padding: 0;
@@ -51,15 +55,20 @@ body.bin {
         font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
         font-size: 12px;
         -webkit-font-smoothing: antialiased;
-        height: 100%;
         line-height: 1.8em;
         margin-top: 1em;
         outline: none;
         padding: 2em;
         position: fixed;
         resize: none;
-        width: 100%;
+        -webkit-transition: width $sidebar_transition, padding-right $sidebar_transition;
+        transition: width $sidebar_transition, padding-right $sidebar_transition;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        // Non standard for webkit
+        word-break: break-word;
         z-index: 1;
+        width: 100%;
     }
 
     .show-sidebar {
@@ -143,20 +152,6 @@ body.bin {
         }
     }
 
-    .sidebar.create {
-        box-shadow: -2px 2px 3px rgba(black, 0.2);
-        -o-box-shadow: -2px 2px 3px rgba(black, 0.2);
-        -moz-box-shadow: -2px 2px 3px rgba(black, 0.2);
-        -webkit-box-shadow: -2px 2px 3px rgba(black, 0.2);
-        height: auto;
-
-        .options {
-            border: 0;
-            margin: 0;
-            padding: 0;
-        }
-    }
-
     .button {
         background: $orange_button_bg;
         border: 0;
@@ -221,12 +216,26 @@ body.bin {
     // BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
 
     @media screen and (min-width: 768px) {
+        .show-container,
+        .editor {
+            width: 70%;
+        }
+        .show-container.sidebar-hidden,
+        .editor.sidebar-hidden {
+            width: 100%;
+            padding-right: 2em;
+        }
     }
 
 
     // BREAKPOINT 3 (1024) ////////////////////////////////////////////////////////////
 
     @media screen and (min-width: 1024px) {
+        .show-container,
+        .editor {
+            width: 100%;
+            padding-right: 290px;
+        }
         .sidebar {
             width: 250px;
         }
@@ -244,6 +253,11 @@ body.bin {
 
     // SPECIAL HEIGHT BREAKPOINT
     @media only screen and (max-height: 400px) {
+        .show-container,
+        .editor {
+            padding-right: 360px;
+        }
+
         .sidebar {
             width: 320px;
         }

@@ -2,9 +2,7 @@
 @include('bin._styles')
 
 @include('bin._sidebar_toggle')
-{{ Form::model($paste, [
-    'class' => 'editor-form'
-]) }}
+{{ Form::model($paste, ['class' => 'editor-form']) }}
     <div class="sidebar create">
         @include('bin._logo')
 

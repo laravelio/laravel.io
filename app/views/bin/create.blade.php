@@ -3,7 +3,7 @@
 
 @include('bin._sidebar_toggle')
 {{ Form::open(['class' => 'editor-form']) }}
-    <div class="sidebar create">
+    <div class="sidebar">
         @include('bin._logo')
 
         @if (Auth::check())
