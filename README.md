@@ -54,12 +54,20 @@ This is the Laravel.IO community portal site. The site is entirely open source a
         <tr>
             <td>Code Coverage</td>
             <td>
-                <a href='https://coveralls.io/r/LaravelIO/laravel.io'>
-                    <img src='https://coveralls.io/repos/LaravelIO/laravel.io/badge.png' alt='Coverage Status' />
+                <a href='https://coveralls.io/r/LaravelIO/laravel.io?branch=master'>
+                    <img src='https://coveralls.io/repos/LaravelIO/laravel.io/badge.png?branch=master' alt='Coverage Status' />
                 </a>
             </td>
-            <td></td>
-            <td></td>
+            <td>
+                <a href='https://coveralls.io/r/LaravelIO/laravel.io?branch=develop'>
+                    <img src='https://coveralls.io/repos/LaravelIO/laravel.io/badge.png?branch=develop' alt='Coverage Status' />
+                </a>
+            </td>
+            <td>
+                <a href='https://coveralls.io/r/LaravelIO/laravel.io?branch=release%2F3.0'>
+                    <img src='https://coveralls.io/repos/LaravelIO/laravel.io/badge.png?branch=release%2F3.0' alt='Coverage Status' />
+                </a>
+            </td>
         </tr>
         <tr>
             <td>Insights</td>
