@@ -34,6 +34,7 @@ var PasteBin = (function($) {
             e.preventDefault();
 
             $showHideButton.toggleClass('show');
+            $showHideButton.children('i').toggleClass('fa-arrow-right').toggleClass('fa-arrow-left');
             $sidebar.toggleClass('hide');
             $editor.toggleClass('sidebar-hidden');
             $showContainer.toggleClass('sidebar-hidden');
