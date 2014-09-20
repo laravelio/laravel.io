@@ -2,7 +2,7 @@
 
 This page contains guidelines for contributing to the Laravel.IO project. Please review these guidelines before submitting any pull requests to the project.
 
-This contributing guide is based on the [Laravel Contribution Guide](https://github.com/laravel/framework/blob/master/CONTRIBUTING.md).
+This contributing guide is based on the original [Laravel Contribution Guide](https://github.com/laravel/framework/blob/4.1/CONTRIBUTING.md).
 
 ## Which Branch?
 
