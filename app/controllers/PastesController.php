@@ -20,13 +20,6 @@ class PastesController extends BaseController implements PasteCreatorListener
         $this->fork = $fork;
     }
 
-    public function getIndex()
-    {
-        $pastes = $this->pastes->getRecentPaginated();
-        $this->title = 'Create Paste';
-        $this->view('bin.index', compact('pastes'));
-    }
-
     public function getShow($hash)
     {
         $paste = $this->pastes->getByHash($hash);
