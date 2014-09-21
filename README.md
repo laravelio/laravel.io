@@ -8,7 +8,7 @@ This is the Laravel.IO community portal site. The site is entirely open source a
             <th>Branch</th>
             <th>master</th>
             <th>develop</th>
-            <th>release/3.0</th>
+            <th>3.0</th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@ This is the Laravel.IO community portal site. The site is entirely open source a
             </td>
             <td>
                 <a href="https://travis-ci.org/LaravelIO/laravel.io">
-                    <img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=release%2F3.0" alt="Build Status">
+                    <img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=3.0" alt="Build Status">
                 </a>
             </td>
         </tr>
@@ -45,8 +45,8 @@ This is the Laravel.IO community portal site. The site is entirely open source a
                 </a>
             </td>
             <td>
-                <a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=release%2F3.0">
-                    <img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=release%2F3.0"
+                <a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=3.0">
+                    <img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=3.0"
                          alt="Scrutinizer Code Quality">
                 </a>
             </td>
@@ -65,7 +65,7 @@ This is the Laravel.IO community portal site. The site is entirely open source a
             </td>
             <td>
                 <a href='https://coveralls.io/r/LaravelIO/laravel.io?branch=release%2F3.0'>
-                    <img src='https://coveralls.io/repos/LaravelIO/laravel.io/badge.png?branch=release%2F3.0' alt='Coverage Status' />
+                    <img src='https://coveralls.io/repos/LaravelIO/laravel.io/badge.png?branch=3.0' alt='Coverage Status' />
                 </a>
             </td>
         </tr>

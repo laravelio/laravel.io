@@ -8,7 +8,7 @@ This contributing guide is based on the original [Laravel Contribution Guide](ht
 
 The current 2.x version of the website is in maintenace mode. This means that only bugfixes and small improvements will be accepted for the current version. New features will be accepted only if they are needed on short-term basis. All changes targeting the current version should be sent to the `develop` branch.
 
-New features need to be sent to the `release/3.0` branch.
+New features need to be sent to the [`3.0`](https://github.com/LaravelIO/laravel.io/tree/3.0) branch.
 
 ## Pull Requests
 
