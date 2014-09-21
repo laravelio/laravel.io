@@ -114,6 +114,7 @@ return array(
 		'McCool\DatabaseBackup\ServiceProviders\LaravelServiceProvider',
 		'Artdarek\OAuth\OAuthServiceProvider',
 		'Mews\Purifier\PurifierServiceProvider',
+        'Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider',
 
 		'Lio\ServiceProviders\GithubServiceProvider',
 		'Lio\ServiceProviders\CommentServiceProvider',
@@ -189,6 +190,7 @@ return array(
 		'OAuth'    => 'Artdarek\OAuth\Facade\OAuth',
 		'GitHub'   => 'Lio\GitHub\GitHubFacade',
 		'Purifier' => 'Mews\Purifier\Facades\Purifier',
+        'Bugsnag' => 'Bugsnag\BugsnagLaravel\BugsnagFacade',
 	),
 
 );

@@ -82,3 +82,15 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| Bugsnag
+|--------------------------------------------------------------------------
+*/
+
+// If a user is logged in, we'll set him as the
+// target user for which the errors will occur.
+if (Auth::check()) {
+    Bugsnag::setUser(['name' => Auth::user()->name, 'email' => Auth::user()->email]);
+}

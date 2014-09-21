@@ -12,7 +12,8 @@
         "nickcernis/html-to-markdown": "2.1.*",
         "misd/linkify": "1.1.*",
         "hashids/hashids": "1.0.*",
-        "mews/purifier": "1.0.*"
+        "mews/purifier": "1.0.*",
+        "bugsnag/bugsnag-laravel": "1.*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.2.*",
