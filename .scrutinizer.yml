@@ -1,0 +1,63 @@
+filter:
+    paths: [app/Lio/*]
+tools:
+    php_analyzer: true
+    php_code_sniffer:
+        config:
+            standard: "PSR2"
+    php_sim: true
+    php_changetracking: true
+    php_mess_detector: true
+    php_pdepend: true
+    sensiolabs_security_checker: true
+checks:
+    php:
+        code_rating: true
+        duplication: true
+        variable_existence: true
+        useless_calls: true
+        use_statement_alias_conflict: true
+        unused_variables: true
+        unused_properties: true
+        unused_parameters: true
+        unused_methods: true
+        unreachable_code: true
+        sql_injection_vulnerabilities: true
+        security_vulnerabilities: true
+        precedence_mistakes: true
+        precedence_in_conditions: true
+        parameter_non_unique: true
+        no_property_on_interface: true
+        no_non_implemented_abstract_methods: true
+        deprecated_code_usage: true
+        closure_use_not_conflicting: true
+        closure_use_modifiable: true
+        avoid_useless_overridden_methods: true
+        avoid_conflicting_incrementers: true
+        assignment_of_null_return: true
+        psr2_switch_declaration: true
+        psr2_control_structure_declaration: true
+        psr2_class_declaration: true
+        one_class_per_file: true
+        spacing_of_function_arguments: true
+        spacing_around_non_conditional_operators: true
+        spacing_around_conditional_operators: true
+        space_after_cast: true
+        single_namespace_per_use: true
+        require_scope_for_properties: true
+        require_scope_for_methods: true
+        require_braces_around_control_structures: true
+        parameters_in_camelcaps: true
+        properties_in_camelcaps: true
+        no_underscore_prefix_in_methods: true
+        no_underscore_prefix_in_properties: true
+        no_space_inside_cast_operator: true
+        no_space_around_object_operator: true
+        no_debug_code: true
+        lowercase_php_keywords: true
+        lowercase_basic_constants: true
+        function_body_start_on_new_line: true
+        classes_in_camel_caps: true
+        blank_line_after_namespace_declaration: true
+        avoid_usage_of_logical_operators: true
+        avoid_tab_indentation: true
