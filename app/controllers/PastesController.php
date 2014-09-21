@@ -60,6 +60,11 @@ class PastesController extends BaseController implements PasteCreatorListener
     public function getRaw($hash)
     {
         $paste = $this->pastes->getByHash($hash);
+
+        if (! $paste) {
+            return $this->redirectAction('PastesController@getCreate');
+        }
+
         return View::make('bin.raw', compact('paste'));
     }
 
