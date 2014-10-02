@@ -20,7 +20,7 @@ class ArticleCreator
     public function create(ArticleCreatorListener $listener, array $data, User $author, $validator = null)
     {
         if ($validator && ! $validator->isValid()) {
-            return $listener->threadCreationError($validator->getErrors());
+            return $listener->articleCreationError($validator->getErrors());
         }
 
         return $this->createArticle($listener, $data + ['author_id' => $author->id]);
