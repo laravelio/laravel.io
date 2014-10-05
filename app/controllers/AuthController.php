@@ -11,6 +11,7 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
         if (Input::has('code')) {
             return App::make('Lio\Github\GithubAuthenticator')->authByCode($this, Input::get('code'));
         }
+
         // redirect to the github authentication url
         return $this->redirectTo((string) OAuth::consumer('GitHub')->getAuthorizationUri());
     }
@@ -19,6 +20,7 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
     public function getLogout()
     {
         Auth::logout();
+
         return $this->redirectAction('HomeController@getIndex');
     }
 
@@ -31,18 +33,20 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
     // the confirmation page that shows a user what their new account will look like
     public function getSignupConfirm()
     {
-        if ( ! Session::has('userGithubData')) {
+        if (! Session::has('userGithubData')) {
             return $this->redirectAction('AuthController@getLogin');
         }
+
         $this->view('auth.signupconfirm', ['githubUser' => Session::get('userGithubData')]);
     }
 
     // actually creates the new user account
     public function postSignupConfirm()
     {
-        if ( ! Session::has('userGithubData')) {
+        if (! Session::has('userGithubData')) {
             return $this->redirectAction('AuthController@getLogin');
         }
+
         return App::make('Lio\Accounts\UserCreator')->create($this, Session::get('userGithubData'));
     }
 
@@ -56,6 +60,7 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
     {
         Auth::login($user, true);
         Session::forget('userGithubData');
+
         return $this->redirectIntended(action('HomeController@getIndex'));
     }
 
@@ -64,6 +69,7 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
     {
         Auth::login($user, true);
         Session::forget('userGithubData');
+
         return $this->redirectIntended(action('HomeController@getIndex'));
     }
 
@@ -75,6 +81,7 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
     public function userNotFound($githubData)
     {
         Session::put('userGithubData', $githubData);
+
         return $this->redirectAction('AuthController@getSignupConfirm');
     }
 }

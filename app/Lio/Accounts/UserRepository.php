@@ -35,4 +35,15 @@ class UserRepository extends EloquentRepository
     {
         return $this->model->take($count)->get();
     }
+
+    /**
+     * Determine if an email already exists for a user
+     *
+     * @param string $email
+     * @return bool
+     */
+    public function emailExists($email)
+    {
+        return (bool) User::where('email', $email)->count();
+    }
 }

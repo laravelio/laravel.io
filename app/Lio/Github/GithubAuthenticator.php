@@ -39,6 +39,7 @@ class GithubAuthenticator
 
         $user->fill($githubData);
         $this->users->save($user);
+
         return $listener->userFound($user);
     }
 }

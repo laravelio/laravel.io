@@ -15,24 +15,25 @@ class UserCreator
         $this->users = $users;
     }
 
-    public function create(UserCreatorListener $observer, $data, $validator = null)
+    public function create(UserCreatorListener $listener, $data, $validator = null)
     {
         // check the passed in validator
         if ($validator && ! $validator->isValid()) {
-            return $observer->userValidationError($validator->getErrors());
+            return $listener->userValidationError($validator->getErrors());
         }
-        return $this->createValidUserRecord($observer, $data);
+
+        return $this->createValidUserRecord($listener, $data);
     }
 
-    private function createValidUserRecord($observer, $data)
+    private function createValidUserRecord($listener, $data)
     {
         $user = $this->users->getNew($data);
 
         // check the model validation
-        if ( ! $this->users->save($user)) {
-            return $observer->userValidationError($user->getErrors());
+        if (! $this->users->save($user)) {
+            return $listener->userValidationError($user->getErrors());
         }
 
-        return $observer->userCreated($user);
+        return $listener->userCreated($user);
     }
 }
