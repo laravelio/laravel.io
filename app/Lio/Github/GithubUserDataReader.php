@@ -17,6 +17,7 @@ class GithubUserDataReader
         $github->requestAccessToken($code);
 
         $githubData = json_decode($github->request('user'), true);
+        $githubData['email'] = last(json_decode($github->request('user/emails'), true));
 
         return $githubData;
     }
