@@ -11,7 +11,10 @@ Route::group(array('domain' => 'paste.laravel.io'), function() {
     });
 });
 
-Route::get('/', 'HomeController@getIndex');
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getIndex']);
+Route::get('rss', function () {
+    return Redirect::home();
+});
 
 // authentication
 Route::get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
