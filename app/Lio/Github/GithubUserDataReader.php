@@ -14,6 +14,7 @@ class GithubUserDataReader
     private function readFromGithub($code)
     {
         $github = OAuth::consumer('GitHub');
+        $github->requestAccessToken($code);
 
         $githubData = json_decode($github->request('user'), true);
 
