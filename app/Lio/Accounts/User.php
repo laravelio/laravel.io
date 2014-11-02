@@ -1,5 +1,6 @@
 <?php namespace Lio\Accounts;
 
+use Carbon\Carbon;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
@@ -128,6 +129,17 @@ class User extends Entity implements UserInterface, RemindableInterface, Present
     public function getLatestRepliesPaginated($max = 5)
     {
         return $this->forumReplies()->with('thread')->paginate($max);
+    }
+
+    public function hasCreatedAThreadRecently()
+    {
+        $thread = $this->forumThreads()->first();
+
+        if ($thread) {
+            return $thread->created_at->gte(new Carbon('10 minutes ago'));
+        }
+
+        return false;
     }
 
     /**

@@ -73,9 +73,14 @@ class ForumThreadsController extends BaseController implements
     // create a thread
     public function getCreateThread()
     {
+        $this->createSections(Input::get('tags'));
+
+        if (Auth::user()->hasCreatedAThreadRecently()) {
+            return $this->view('forum.threads.throttle');
+        }
+
         $tags = $this->tags->getAllForForum();
         $versions = $this->threads->getNew()->getLaravelVersions();
-        $this->createSections(Input::get('tags'));
 
         $this->title = "Create Forum Thread";
         $this->view('forum.threads.create', compact('tags', 'versions'));
@@ -83,6 +88,10 @@ class ForumThreadsController extends BaseController implements
 
     public function postCreateThread()
     {
+        if (Auth::user()->hasCreatedAThreadRecently()) {
+            return Redirect::action('ForumThreadsController@getCreateThread');
+        }
+
         return $this->threadCreator->create($this, [
             'subject' => Input::get('subject'),
             'body' => Input::get('body'),
