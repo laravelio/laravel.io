@@ -28,7 +28,9 @@
         ],
         "psr-0": {
             "Lio\\": "app/"
-        },
+        }
+    },
+    "autoload-dev": {
         "psr-4": {
             "Lio\\Tests\\": "tests/"
         }
