@@ -36,16 +36,16 @@ class HtmlMarkdownConvertorTest extends TestCase
     {
         $conv = $this->getConvertor();
 
-        $this->assertEquals("\n", $conv->convertMarkdownToHtml(''));
-        $this->assertEquals("<p><strong>cats</strong></p>\n", $conv->convertMarkdownToHtml('**cats**'));
-        $this->assertEquals("<p><em>cats</em></p>\n", $conv->convertMarkdownToHtml('*cats*'));
-        $this->assertEquals("<p><strong><em>cats</em></strong></p>\n", $conv->convertMarkdownToHtml('***cats***'));
-        $this->assertEquals("<h1>Robots</h1>\n", $conv->convertMarkdownToHtml('# Robots'));
-        $this->assertEquals("<h2>Robots</h2>\n", $conv->convertMarkdownToHtml('## Robots'));
-        $this->assertEquals("<h3>Robots</h3>\n", $conv->convertMarkdownToHtml('### Robots'));
-        $this->assertEquals("<h4>Robots</h4>\n", $conv->convertMarkdownToHtml('#### Robots'));
-        $this->assertEquals("<pre><code>Robots\n</code></pre>\n", $conv->convertMarkdownToHtml('    Robots'));
-        $this->assertEquals("<p><code>Robots</code></p>\n", $conv->convertMarkdownToHtml('`Robots`'));
+        $this->assertEquals(PHP_EOL, $conv->convertMarkdownToHtml(''));
+        $this->assertEquals('<p><strong>cats</strong></p>'.PHP_EOL, $conv->convertMarkdownToHtml('**cats**'));
+        $this->assertEquals('<p><em>cats</em></p>'.PHP_EOL, $conv->convertMarkdownToHtml('*cats*'));
+        $this->assertEquals('<p><strong><em>cats</em></strong></p>'.PHP_EOL, $conv->convertMarkdownToHtml('***cats***'));
+        $this->assertEquals('<h1>Robots</h1>'.PHP_EOL, $conv->convertMarkdownToHtml('# Robots'));
+        $this->assertEquals('<h2>Robots</h2>'.PHP_EOL, $conv->convertMarkdownToHtml('## Robots'));
+        $this->assertEquals('<h3>Robots</h3>'.PHP_EOL, $conv->convertMarkdownToHtml('### Robots'));
+        $this->assertEquals('<h4>Robots</h4>'.PHP_EOL, $conv->convertMarkdownToHtml('#### Robots'));
+        $this->assertEquals('<pre><code>Robots'.PHP_EOL.'</code></pre>'.PHP_EOL, $conv->convertMarkdownToHtml('    Robots'));
+        $this->assertEquals('<p><code>Robots</code></p>'.PHP_EOL, $conv->convertMarkdownToHtml('`Robots`'));
     }
 
     private function getConvertor()
