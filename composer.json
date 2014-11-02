@@ -5,7 +5,7 @@
     "require": {
         "laravel/framework": "4.2.*",
         "artdarek/oauth-4-laravel": "1.0.*",
-        "barryvdh/laravel-debugbar": "1.6.*",
+        "barryvdh/laravel-debugbar": "1.8.*",
         "mccool/laravel-auto-presenter": "2.2.*",
         "mccool/database-backup": "1.0.*",
         "michelf/php-markdown": "1.4.*",
@@ -13,10 +13,10 @@
         "misd/linkify": "1.1.*",
         "hashids/hashids": "1.0.*",
         "mews/purifier": "1.0.*",
-        "bugsnag/bugsnag-laravel": "1.*"
+        "bugsnag/bugsnag-laravel": "1.1.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.2.*",
+        "phpunit/phpunit": "4.3.*",
         "mockery/mockery": "0.9.*"
     },
     "autoload": {
