@@ -1,6 +1,6 @@
 <?php namespace Lio\Core;
 
-use Validator, App;
+use App, Validator;
 use Lio\Core\Exceptions\NoValidationRulesFoundException;
 
 class FormModel
