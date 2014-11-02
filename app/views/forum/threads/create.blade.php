@@ -9,6 +9,10 @@
             <h1>Create Thread</h1>
         </div>
         {{ Form::open(['data-persist' => 'garlic', 'data-expires' => '600']) }}
+
+        {{-- Time field used to check for spam bots --}}
+        {{ Form::hidden('_time', time()) }}
+
         <section class="padding">
             <div class="form-row">
                 {{ Form::label('subject', 'Subject', ['class' => 'field-title']) }}

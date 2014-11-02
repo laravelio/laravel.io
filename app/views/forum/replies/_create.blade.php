@@ -1,6 +1,10 @@
 <div class="reply-form">
     <a name="reply_form"></a>
     {{ Form::open(['data-persist' => 'garlic', 'data-expires' => '300']) }}
+
+        {{-- Time field used to check for spam bots --}}
+        {{ Form::hidden('_time', time()) }}
+
         <div class="form-row">
             <label class="field-title">Reply</label>
             {{ Form::textarea("body", null, ['class' => '_tab_indent _reply_form']) }}
