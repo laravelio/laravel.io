@@ -1,7 +1,7 @@
 <?php namespace Lio\Forum\Threads;
 
 use Lio\Core\FormModel;
-use App, Validator;
+use App, Input, Validator;
 
 class ThreadForm extends FormModel
 {
