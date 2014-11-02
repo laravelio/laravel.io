@@ -1,5 +1,7 @@
 <?php
 
+Route::filter('banned', 'Lio\Http\Filters\Banned');
+
 Route::group(array('domain' => 'bin.laravel.io'), function() {
     Route::get('{wildcard}', function($wildcard) {
         return Redirect::to('http://laravel.io/bin/' . $wildcard);
@@ -69,7 +71,7 @@ Route::group(['before' => 'auth'], function() {
 // Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum
-Route::group(['before' => 'auth'], function() {
+Route::group(['before' => 'auth|banned'], function() {
     Route::get('forum/create-thread', 'ForumThreadsController@getCreateThread');
     Route::post('forum/create-thread', 'ForumThreadsController@postCreateThread');
 

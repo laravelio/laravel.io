@@ -35,11 +35,12 @@ class UsersController extends BaseController
         $user = $this->users->requireById($userId);
 
         $user->fill(Input::all());
-        if ( ! Input::has('is_banned')) {
+
+        if (! Input::has('is_banned')) {
             $user->is_banned = 0;
         }
 
-        if ( ! $user->isValid()) {
+        if (! $user->isValid()) {
             return $this->redirectBack(['errors' => $user->getErrors()]);
         }
 
