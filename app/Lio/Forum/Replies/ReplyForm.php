@@ -10,7 +10,7 @@ class ReplyForm extends FormModel
         '_time' => 'min_time:2',
     ];
 
-    public function beforeValidation()
+    protected function beforeValidation()
     {
         $type = isset($this->inputData['_type']) ? $this->inputData['_type'] : null;
 
