@@ -53,7 +53,7 @@ class ForumRepliesController extends BaseController implements
 
     public function replyCreationError($errors)
     {
-        return $this->redirectBack(['errors' => $errors]);
+        return $this->redirectBack(['errors' => $errors], Input::except('_time'));
     }
 
     public function replyCreated($reply)

@@ -37,9 +37,9 @@ class BaseController extends Controller
         return Redirect::route($route, $data);
     }
 
-    protected function redirectBack($data = [])
+    protected function redirectBack($data = [], $input = [])
     {
-        return Redirect::back()->withInput()->with($data);
+        return Redirect::back()->withInput($input)->with($data);
     }
 
     protected function redirectIntended($default = null)

@@ -75,7 +75,7 @@ class ForumThreadsController extends BaseController implements
     {
         $this->createSections(Input::get('tags'));
 
-        if (Auth::user()->hasCreatedAThreadRecently()) {
+        if (App::environment('production') && Auth::user()->hasCreatedAThreadRecently()) {
             return $this->view('forum.threads.throttle');
         }
 
@@ -88,7 +88,7 @@ class ForumThreadsController extends BaseController implements
 
     public function postCreateThread()
     {
-        if (Auth::user()->hasCreatedAThreadRecently()) {
+        if (App::environment('production') && Auth::user()->hasCreatedAThreadRecently()) {
             return Redirect::action('ForumThreadsController@getCreateThread');
         }
 
@@ -104,7 +104,7 @@ class ForumThreadsController extends BaseController implements
 
     public function threadCreationError($errors)
     {
-        return $this->redirectBack(['errors' => $errors]);
+        return $this->redirectBack(['errors' => $errors], Input::except('_time'));
     }
 
     public function threadCreated($thread)
