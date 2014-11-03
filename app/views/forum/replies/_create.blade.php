@@ -4,6 +4,7 @@
 
         {{-- Time field used to check for spam bots --}}
         {{ Form::hidden('_time', time()) }}
+        {{ Form::hidden('_type', 'create') }}
 
         <div class="form-row">
             <label class="field-title">Reply</label>

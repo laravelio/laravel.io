@@ -1,25 +1,26 @@
 <?php namespace Lio\Forum\Replies;
 
 use Lio\Core\FormModel;
+use Validator;
 
 class ReplyForm extends FormModel
 {
     protected $validationRules = [
         'body'  => 'required',
+        '_time' => 'min_time:2',
     ];
 
     protected function beforeValidation()
     {
-        $time = Input::get('_time');
+        $type = isset($this->inputData['_type']) ? $this->inputData['_type'] : null;
 
-        // Conditional validation rule:
-        //   - compare processing time to form-creation time
-        //   - if the difference is less than 2 seconds
-        //   - we apply a rule where the max length of the _time input is 0
-        //   - and then validation will fail because it is not 0
-        Validator::sometimes('_time', 'max:0', function() use ($time)
-        {
-            return (strtotime("now") - $time) < 2;
-        });
+        // Time validation on Create forms
+        if ($type === 'create') {
+            Validator::extend('min_time', function ($attribute, $time, $params) {
+                $minTime = $params[0];
+
+                return (time() - $time) > $minTime;
+            });
+        }
     }
 }

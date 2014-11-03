@@ -12,6 +12,7 @@
 
         {{-- Time field used to check for spam bots --}}
         {{ Form::hidden('_time', time()) }}
+        {{ Form::hidden('_type', 'create') }}
 
         <section class="padding">
             <div class="form-row">
