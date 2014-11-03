@@ -69,4 +69,13 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
     {
         return $this->model->with('author')->where('slug', '=', $slug)->first();
     }
+
+    /**
+     * @param int $userId
+     * @return mixed
+     */
+    public function deleteByAuthorId($userId)
+    {
+        return $this->model->where('author_id', $userId)->delete();
+    }
 }

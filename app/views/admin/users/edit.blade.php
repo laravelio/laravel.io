@@ -50,7 +50,16 @@
                     {{ Form::button('Save', ['type' => 'submit']) }}
                 </div>
             </div>
-
         {{ Form::close() }}
+
+        @if (! $user->is_banned)
+            {{ Form::open(['action' => ['Admin\UsersController@putBanAndDeleteThreads', $user->id], 'method' => 'put']) }}
+                <div class="row">
+                    <div class="large-12 columns">
+                        {{ Form::button('Ban and delete threads', ['type' => 'submit']) }}
+                    </div>
+                </div>
+            {{ Form::close() }}
+        @endif
     </div>
 </div>

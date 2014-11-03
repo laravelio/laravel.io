@@ -110,5 +110,6 @@ Route::group(['before' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin'], 
         Route::get('users', 'UsersController@getIndex');
         Route::get('edit/{user}', 'UsersController@getEdit');
         Route::post('edit/{user}', 'UsersController@postEdit');
+        Route::put('ban-and-delete-threads/{user}', 'UsersController@putBanAndDeleteThreads');
     });
 });
