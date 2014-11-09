@@ -106,10 +106,10 @@ Here are the steps for installation on a local machine.
 4. Add a site `lio.loc` for the laravel.io repository to the `Homestead.yml` file under the `sites` list.
 5. Run `vagrant provision` in your Homestead folder.
 6. Create a database in Homestead called `laravelio`.
-7. SSH into your Homestead box, go to the laravel.io folder and run `./update_environment.sh`.
-8. Add `127.0.0.1 lio.loc` to your computer's `hosts` file.
+7. Run `composer install --dev` and `php artisan migrate --env=local`.
+8. Add `192.168.10.10 lio.loc` to your computer's `hosts` file.
 
-You can now visit the app in your browser by visiting [http://lio.loc:8000/](http://lio.loc:8000).
+You can now visit the app in your browser by visiting [http://lio.loc/](http://lio.loc).
 
 ## Github OAuth Configuration
 
@@ -117,8 +117,8 @@ Now, we must install the oauth configuration.
 
 1. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel IO Development" and add your GH application's client id and secret to this config file. Your GitHub Application should be set up as follows:
 
-    a. Full URL: http://lio.loc:8000  
-    b. Callback URL: http://lio.loc:8000/login
+    a. Full URL: http://lio.loc
+    b. Callback URL: http://lio.loc/login
 
 2. Create the configuration file below at ***app/config/packages/artdarek/oauth-4-laravel/config.php***
 
