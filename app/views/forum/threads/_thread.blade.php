@@ -1,5 +1,11 @@
 <div class="thread {{ $thread->isQuestion() ? 'question' : '' }} {{ $thread->isSolved() ? 'solved' : '' }} _post" data-author-name='{{ json_encode($thread->author->name, JSON_HEX_QUOT|JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS) }}' data-quote-body='{{ json_encode($thread->resource->body, JSON_HEX_QUOT|JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS) }}'>
-    <h1>{{{ $thread->subject }}}</h1>
+    <h1>
+        @if ($thread->pinned)
+            [Pinned]
+        @endif
+
+        {{{ $thread->subject }}}
+    </h1>
 
     <span class="markdown">
         {{ $thread->body }}

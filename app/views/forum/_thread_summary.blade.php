@@ -1,7 +1,15 @@
 <div class="thread-summary">
     {{ $thread->author->thumbnail }}
     <div class="info">
-        <h3><a href="{{ $thread->url }}">{{ $thread->subject }}</a></h3>
+        <h3>
+            <a href="{{ $thread->url }}">
+                @if ($thread->pinned)
+                    [Pinned]
+                @endif
+
+                {{ $thread->subject }}
+            </a>
+        </h3>
         <ul class="meta">
             <li>posted by <a href="{{ $thread->author->profileUrl }}">{{ $thread->author->name }}</a></li>
             <li>updated {{ $thread->updated_ago }}</li>

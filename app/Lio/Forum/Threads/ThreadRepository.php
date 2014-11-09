@@ -20,6 +20,7 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
         }
 
         $query->groupBy('forum_threads.id')
+            ->orderBy('pinned', 'desc')
             ->orderBy('updated_at', 'desc');
 
         return $query->paginate($perPage, ['forum_threads.*']);
@@ -44,6 +45,7 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
             }
         }
 
+        $query->orderBy('pinned', 'desc');
         $query->orderBy('updated_at', 'desc');
 
         return $query->paginate($perPage, ['forum_threads.*']);
