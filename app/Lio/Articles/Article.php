@@ -69,10 +69,7 @@ class Article extends Entity implements PresenterInterface
 
     public function isPublished()
     {
-        if ($this->exists && $this->status == static::STATUS_PUBLISHED) {
-            return true;
-        }
-        return false;
+        return $this->exists && $this->status == static::STATUS_PUBLISHED);
     }
 
     public function getSlugString()
@@ -90,7 +87,7 @@ class Article extends Entity implements PresenterInterface
 
     public function save(array $options = array())
     {
-        if($this->status == static::STATUS_PUBLISHED && ! $this->published_at) {
+        if ($this->status == static::STATUS_PUBLISHED && ! $this->published_at) {
             $this->published_at = $this->freshTimestamp();
         }
 
