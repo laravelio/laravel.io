@@ -18,7 +18,7 @@ class User extends Entity implements UserInterface, RemindableInterface, Present
     const STATE_BLOCKED = 2;
 
     protected $table    = 'users';
-    protected $hidden   = ['github_id'];
+    protected $hidden   = ['github_id', 'email', 'remember_token'];
     protected $fillable = ['email', 'name', 'github_url', 'github_id', 'image_url', 'is_banned'];
     protected $dates    = ['deleted_at'];
 
