@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "017d036f9b7679efca4788c527a6d419",
+    "hash": "8597a0bb67b52bea2718bfeeac596800",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -1020,6 +1020,59 @@
                 "presenter"
             ],
             "time": "2014-08-26 12:20:38"
+        },
+        {
+            "name": "mews/captcha",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mauris/captcha.git",
+                "reference": "0a0cadebba3ce5a780f26082077fd57958d34567"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mauris/captcha/zipball/0a0cadebba3ce5a780f26082077fd57958d34567",
+                "reference": "0a0cadebba3ce5a780f26082077fd57958d34567",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~4",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mews\\Captcha\\": "src/Mews/Captcha"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muharrem ERIN",
+                    "email": "me@mewebstudio.com"
+                },
+                {
+                    "name": "Sam Yong",
+                    "email": "sam@mauris.sg"
+                }
+            ],
+            "description": "Captcha Package for Laravel 4",
+            "homepage": "http://github.com/mewebstudio/captcha",
+            "keywords": [
+                "Captcha",
+                "L4",
+                "Laravel",
+                "Laravel 4",
+                "captcha image",
+                "mecaptcha",
+                "security"
+            ],
+            "support": {
+                "source": "https://github.com/mauris/captcha/tree/1.0.5"
+            },
+            "time": "2014-05-03 01:39:20"
         },
         {
             "name": "mews/purifier",

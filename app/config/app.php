@@ -115,6 +115,7 @@ return array(
 		'Artdarek\OAuth\OAuthServiceProvider',
 		'Mews\Purifier\PurifierServiceProvider',
         'Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider',
+        'Mews\Captcha\CaptchaServiceProvider',
 
 		'Lio\ServiceProviders\GithubServiceProvider',
 		'Lio\ServiceProviders\CommentServiceProvider',
@@ -191,6 +192,7 @@ return array(
 		'GitHub'   => 'Lio\GitHub\GitHubFacade',
 		'Purifier' => 'Mews\Purifier\Facades\Purifier',
         'Bugsnag' => 'Bugsnag\BugsnagLaravel\BugsnagFacade',
+        'Captcha' => 'Mews\Captcha\Facades\Captcha',
 	),
 
 );
