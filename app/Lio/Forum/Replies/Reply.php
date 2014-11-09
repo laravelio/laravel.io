@@ -42,7 +42,7 @@ class Reply extends Entity implements PresenterInterface
 
     public function getPrecedingReplyCount()
     {
-        return $this->newQuery()->where('thread_id', '=', $this->thread_id)->where('created_at', '<', $this->created_at)->count();
+        return $this->newQuery()->where('thread_id', $this->thread_id)->where('created_at', '<', $this->created_at)->count();
     }
 
     /**
