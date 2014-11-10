@@ -48,10 +48,15 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
         }
 
         /** @var \Illuminate\Validation\Validator $validator */
-        $validator = Validator::make(Input::only('captcha'), ['captcha' => 'required|captcha']);
+        $validator = Validator::make(Input::only('captcha', 'is_valid_potato'), [
+            'captcha' => 'required|captcha',
+            'is_valid_potato' => 'required',
+        ]);
 
         if ($validator->fails()) {
-            return Redirect::action('AuthController@getSignupConfirm')->exceptInput('captcha')->withErrors($validator->errors());
+            return Redirect::action('AuthController@getSignupConfirm')
+                ->exceptInput('captcha', 'is_valid_potato')
+                ->withErrors($validator->errors());
         }
 
         return App::make('Lio\Accounts\UserCreator')->create($this, Session::get('userGithubData'));

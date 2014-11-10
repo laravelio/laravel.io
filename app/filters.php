@@ -16,7 +16,14 @@ App::before(function($request) {
 
 App::after(function($request, $response) {
     if (Auth::guest()) {
-        if ( ! stristr($request->path(), 'login') && ! stristr($request->path(), 'signup') && ! stristr($request->path(), 'captcha')) Session::put('auth.intended_redirect_url', $request->url());
+        if (
+            ! stristr($request->path(), 'login') &&
+            ! stristr($request->path(), 'signup') &&
+            ! stristr($request->path(), 'captcha') &&
+            ! stristr($request->path(), 'is_valid_potato')
+        ) {
+            Session::put('auth.intended_redirect_url', $request->url());
+        }
     }
 });
 

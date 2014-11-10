@@ -5,7 +5,7 @@
         <h1>We're going to create an account with this information.</h1>
 
         <div class="user">
-            {{ Form::open() }}
+            {{ Form::open(['id' => 'signup-form']) }}
                 <img src="{{ $githubUser['image_url'] }}"/>
 
                 <div class="bio">
