@@ -1,87 +1,11 @@
 # Laravel.IO Community Portal
 
-This is the Laravel.IO community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
+<img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=master" alt="Build Status">
+<img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality">
+<img src='https://coveralls.io/repos/LaravelIO/laravel.io/badge.png?branch=master' alt='Coverage Status' />
+<img src="https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e/mini.png" alt="SensioLabsInsight">
 
-<table>
-    <thead>
-        <tr>
-            <th>Branch</th>
-            <th>master</th>
-            <th>develop</th>
-            <th>3.0</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Build Status</td>
-            <td>
-                <a href="https://travis-ci.org/LaravelIO/laravel.io">
-                    <img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=master" alt="Build Status">
-                </a>
-            </td>
-            <td>
-                <a href="https://travis-ci.org/LaravelIO/laravel.io">
-                    <img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=develop" alt="Build Status">
-                </a>
-            </td>
-            <td>
-                <a href="https://travis-ci.org/LaravelIO/laravel.io">
-                    <img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=3.0" alt="Build Status">
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>Code Quality</td>
-            <td>
-                <a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=master">
-                    <img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=master"
-                         alt="Scrutinizer Code Quality">
-                </a>
-            </td>
-            <td>
-                <a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=develop">
-                    <img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=develop"
-                         alt="Scrutinizer Code Quality">
-                </a>
-            </td>
-            <td>
-                <a href="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/?branch=3.0">
-                    <img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=3.0"
-                         alt="Scrutinizer Code Quality">
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>Code Coverage</td>
-            <td>
-                <a href='https://coveralls.io/r/LaravelIO/laravel.io?branch=master'>
-                    <img src='https://coveralls.io/repos/LaravelIO/laravel.io/badge.png?branch=master' alt='Coverage Status' />
-                </a>
-            </td>
-            <td>
-                <a href='https://coveralls.io/r/LaravelIO/laravel.io?branch=develop'>
-                    <img src='https://coveralls.io/repos/LaravelIO/laravel.io/badge.png?branch=develop' alt='Coverage Status' />
-                </a>
-            </td>
-            <td>
-                <a href='https://coveralls.io/r/LaravelIO/laravel.io?branch=release%2F3.0'>
-                    <img src='https://coveralls.io/repos/LaravelIO/laravel.io/badge.png?branch=3.0' alt='Coverage Status' />
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td>Insights</td>
-            <td>
-                <a href="https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e">
-                    <img src="https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e/mini.png"
-                         alt="SensioLabsInsight">
-                </a>
-            </td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+This is the Laravel.IO community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
 
 
 ## Requirements
@@ -89,6 +13,7 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 We use Laravel Homestead for local development. Please review [the Homestead documentation](http://laravel.com/docs/homestead) to install it.
 
 In order to compile stylesheets you will also need Ruby, Sass, and Compass installed.
+
 
 ## Local Installation
 
@@ -110,6 +35,7 @@ Here are the steps for installation on a local machine.
 8. Add `192.168.10.10 lio.loc` to your computer's `hosts` file.
 
 You can now visit the app in your browser by visiting [http://lio.loc/](http://lio.loc).
+
 
 ## Github OAuth Configuration
 
@@ -138,6 +64,7 @@ return [
 ];
 ```
 
+
 ## Frontend
 
 Because we keep the generated / minified css out of the repository, we must have a workflow for compiling the styles.
@@ -146,9 +73,11 @@ Because we keep the generated / minified css out of the repository, we must have
 - When running any compass command in the terminal, be sure to run it from your `/public` folder.
 - Compass is the tool used to compile Sass source files into CSS files; you can run `compass compile` to run it once, or `compass watch` to trigger a script that will watch your Sass files for changes and trigger a new compass compile on each change
 
+
 ## Maintainer
 
 The Laravel.IO project is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to ask them in an issue or email me at [dries.vints@gmail.com](mailto:dries.vints@gmail.com).
+
 
 ## Testing
 
@@ -156,9 +85,11 @@ All tests can be run with the following command. Make sure to run this inside th
 
     $ vendor/bin/phpunit
 
+
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
 
 ## License
 
