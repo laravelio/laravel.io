@@ -4,9 +4,10 @@
 
         <strong>GitHub Information</strong>
         <ul>
-            <li>ID: {{ $user->github_id }}</li>
-            <li>URL: <a href="{{ $user->github_url }}">{{ $user->github_url }}</a></li>
-            <li>Name: {{ $user->name }}</li>
+            <li>ID: {{ $user->id }}</li>
+            <li>Github ID: {{ $user->github_id }}</li>
+            <li>Github url: <a href="{{ $user->github_url }}" target="_blank">{{ $user->github_url }}</a></li>
+            <li>Github username: {{ $user->name }}</li>
             <li>Email: {{ $user->email }}</li>
         </ul>
 

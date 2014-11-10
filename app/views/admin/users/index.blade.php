@@ -11,21 +11,23 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>GitHub URL</th>
-                        <th>Status</th>
-                        <th>Roles</th>
+                        <th style="padding:5px 10px;border: 1px solid #ccc">Name</th>
+                        <th style="padding:5px 10px;border: 1px solid #ccc">Email</th>
+                        <th style="padding:5px 10px;border: 1px solid #ccc">Signed up at</th>
+                        <th style="padding:5px 10px;border: 1px solid #ccc">GitHub URL</th>
+                        <th style="padding:5px 10px;border: 1px solid #ccc">Status</th>
+                        <th style="padding:5px 10px;border: 1px solid #ccc">Roles</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($users as $user)
                         <tr>
-                            <td><h6><a href="{{ action('Admin\UsersController@getEdit', $user->id) }}">{{ $user->name }}</a></h6></td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->github_url }}</td>
-                            <td>{{ $user->is_banned ? 'Banned' : 'Active' }}</td>
-                            <td class="capitalize"><span class="label secondary">{{ $user->roleList }}</span></td>
+                            <td style="padding:5px 10px;border: 1px solid #ccc"><h6><a href="{{ action('Admin\UsersController@getEdit', $user->id) }}">{{ $user->name }}</a></h6></td>
+                            <td style="padding:5px 10px;border: 1px solid #ccc">{{ $user->email }}</td>
+                            <td style="padding:5px 10px;border: 1px solid #ccc">{{ $user->created_at->format('Y-m-d H:i:s') }}</td>
+                            <td style="padding:5px 10px;border: 1px solid #ccc"><a href="{{ $user->github_url }}" target="_blank">{{ $user->github_url }}</a></td>
+                            <td style="padding:5px 10px;border: 1px solid #ccc">{{ $user->is_banned ? 'Banned' : 'Active' }}</td>
+                            <td style="padding:5px 10px;border: 1px solid #ccc" class="capitalize"><span class="label secondary">{{ $user->roleList }}</span></td>
                         </tr>
                     @endforeach
 
