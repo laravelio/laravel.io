@@ -25,9 +25,6 @@
 
 </head>
 <body>
-<div style="background: #2fb352; padding: .75em; text-align:center; font-size:1.1em">
-    <a href="http://laracon.eu/2014/" style="color:#eee;">Laracon EU is over! Thanks for all your support! Watch the videos here.</a>
-</div>
 <div class="wrapper">
   <div class="top-header">
     @include('layouts._top_nav')
