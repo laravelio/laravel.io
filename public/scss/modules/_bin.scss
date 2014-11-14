@@ -197,6 +197,21 @@ body.bin {
         background: rgba(#f0523f, 0.8);
     }
 
+    .cartalyst-ad {
+        border-top: 2px solid #747474;
+        color: white;
+        display: inline-block;
+        font-size: 12px;
+        line-height: 18px;
+        margin-top: 15px;
+        padding-top: 15px;
+
+        img {
+            float: left;
+            padding: 0 10px 10px 0;
+        }
+    }
+
     // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
 
     @media only screen and (min-width: 480px) {

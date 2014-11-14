@@ -10,7 +10,6 @@
 }
 
 footer {
-
     background: #cdcdcd;
     padding: 15px 15px 20px 15px;
     text-align: right;
@@ -18,20 +17,26 @@ footer {
     margin: 25px 0 0 0;
 
     .fortrabbit {
-          font-family: Georgia, serif;
-          font-weight: bold;
-          font-style: italic;
-          color: #333;
-          text-transform: lowercase;
-          font-size:21px;
-          display: inline;
-        }
-        .fortrabbit:hover {
-          text-decoration: none;
-        }
-        .fortrabbit:hover em {
-          color: red;
-        }
+        font-family: Georgia, serif;
+        font-weight: bold;
+        font-style: italic;
+        color: #333;
+        text-transform: lowercase;
+        font-size:21px;
+        display: inline;
+    }
+    .fortrabbit:hover {
+        text-decoration: none;
+    }
+    .fortrabbit:hover em {
+        color: red;
+    }
+
+    .cartalyst a {
+        font-weight: bold;
+        color: #333;
+        font-size: 21px;
+    }
 }
 
 
