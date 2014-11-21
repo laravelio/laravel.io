@@ -7,7 +7,7 @@ class ReplyForm extends FormModel
 {
     protected $validationRules = [
         'body'  => 'required',
-        '_time' => 'min_time:2',
+        '_time' => 'required|min_time:2',
     ];
 
     protected function beforeValidation()
