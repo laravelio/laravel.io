@@ -11,7 +11,7 @@ class ThreadForm extends FormModel
         'tags' => 'required|max_tags:3',
         'is_question' => 'in:0,1',
         'laravel_version' => 'required|in:0,3,4',
-        '_time' => 'min_time:5',
+        '_time' => 'required|min_time:5',
     ];
 
     protected function beforeValidation()
