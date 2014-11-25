@@ -6,12 +6,13 @@ use App, Validator;
 class ThreadForm extends FormModel
 {
     protected $validationRules = [
-        'subject' => 'required|min:10',
-        'body' => 'required',
+        'subject' => 'required|min:10|no_phone',
+        'body' => 'required|no_phone',
         'tags' => 'required|max_tags:3',
         'is_question' => 'in:0,1',
         'laravel_version' => 'required|in:0,3,4',
         '_time' => 'required|min_time:5',
+        '_type' => 'required',
     ];
 
     protected function beforeValidation()
@@ -29,15 +30,18 @@ class ThreadForm extends FormModel
             return true;
         });
 
-        $type = isset($this->inputData['_type']) ? $this->inputData['_type'] : null;
+        Validator::extend('min_time', function ($attribute, $time, $params) {
+            $minTime = $params[0];
 
-        // Time validation on Create forms
-        if ($type === 'create') {
-            Validator::extend('min_time', function ($attribute, $time, $params) {
-                $minTime = $params[0];
-
+            if ($this->inputData['_type'] == 'create') {
                 return (time() - $time) > $minTime;
-            });
-        }
+            }
+
+            return true;
+        });
+
+        Validator::extend('no_phone', function ($attribute, $text, $params) {
+           return ! preg_match('\+?(\d{1,3}[-.\s]?)?\d{3}[-.\s]?\d{3}[-.\s]?\d{4}', $text);
+        });
     }
 }

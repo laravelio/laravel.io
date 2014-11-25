@@ -11,6 +11,10 @@
 
     <div class="reply-form">
         {{ Form::model($reply->resource) }}
+
+            {{ Form::hidden('_time', time()) }}
+            {{ Form::hidden('_type', 'edit') }}
+
             <div class="form-row">
                 <label class="field-title">Reply</label>
                 {{ Form::textarea("body", null, ['class' => '_tab_indent']) }}
