@@ -6,6 +6,10 @@
 
 @section('content')
 {{ Form::model($thread->resource) }}
+
+    {{ Form::hidden('_time', time()) }}
+    {{ Form::hidden('_type', 'edit') }}
+
     <div class="header">
         <h1>Edit Thread</h1>
     </div>

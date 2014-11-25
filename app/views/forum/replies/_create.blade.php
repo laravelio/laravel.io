@@ -2,7 +2,6 @@
     <a name="reply_form"></a>
     {{ Form::open(['data-persist' => 'garlic', 'data-expires' => '300']) }}
 
-        {{-- Time field used to check for spam bots --}}
         {{ Form::hidden('_time', time()) }}
         {{ Form::hidden('_type', 'create') }}
 

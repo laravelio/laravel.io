@@ -8,19 +8,19 @@ class ReplyForm extends FormModel
     protected $validationRules = [
         'body'  => 'required',
         '_time' => 'required|min_time:2',
+        '_type' => 'required',
     ];
 
     protected function beforeValidation()
     {
-        $type = isset($this->inputData['_type']) ? $this->inputData['_type'] : null;
+        Validator::extend('min_time', function ($attribute, $time, $params) {
+            $minTime = $params[0];
 
-        // Time validation on Create forms
-        if ($type === 'create') {
-            Validator::extend('min_time', function ($attribute, $time, $params) {
-                $minTime = $params[0];
+            if ($this->inputData['_type'] == 'edit') {
+                return true;
+            }
 
-                return (time() - $time) > $minTime;
-            });
-        }
+            return (time() - $time) > $minTime;
+        });
     }
 }
