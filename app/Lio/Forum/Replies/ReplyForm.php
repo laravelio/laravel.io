@@ -16,11 +16,11 @@ class ReplyForm extends FormModel
         Validator::extend('min_time', function ($attribute, $time, $params) {
             $minTime = $params[0];
 
-            if ($this->inputData['_type'] == 'create') {
-                return (time() - $time) > $minTime;
+            if ($this->inputData['_type'] == 'edit') {
+                return true;
             }
 
-            return true;
+            return (time() - $time) > $minTime;
         });
     }
 }
