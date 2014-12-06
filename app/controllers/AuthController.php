@@ -48,7 +48,9 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
         }
 
         /** @var \Illuminate\Validation\Validator $validator */
-        $validator = Validator::make(Input::all(), ['g-recaptcha-response' => 'required|recaptcha']);
+        $validator = Validator::make(Input::only('g-recaptcha-response'), [
+            'g-recaptcha-response' => 'required|recaptcha'
+        ]);
 
         if ($validator->fails()) {
             return Redirect::action('AuthController@getSignupConfirm')

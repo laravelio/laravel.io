@@ -8,6 +8,9 @@
         <div class="header">
             <h1>Create Thread</h1>
         </div>
+
+        {{ ReCaptcha::getScript() }}
+
         {{ Form::open(['data-persist' => 'garlic', 'data-expires' => '600']) }}
 
         <section class="padding">
@@ -70,6 +73,14 @@
 
             <div class="form-row tags">
                 @include('forum._tag_chooser')
+            </div>
+
+            <div class="form-row">
+                <p>{{ ReCaptcha::getWidget() }}</p>
+
+                @if ($errors->has('g-recaptcha-response'))
+                    <p>Please fill in the captcha field correctly.</p>
+                @endif
             </div>
 
             <div class="form-row">

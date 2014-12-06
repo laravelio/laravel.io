@@ -92,6 +92,17 @@ class ForumThreadsController extends BaseController implements
             return Redirect::action('ForumThreadsController@getCreateThread');
         }
 
+        /** @var \Illuminate\Validation\Validator $validator */
+        $validator = Validator::make(Input::only('g-recaptcha-response'), [
+            'g-recaptcha-response' => 'required|recaptcha'
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::action('ForumThreadsController@getCreateThread')
+                ->exceptInput('g-recaptcha-response')
+                ->withErrors($validator->errors());
+        }
+
         return $this->threadCreator->create($this, [
             'subject' => Input::get('subject'),
             'body' => Input::get('body'),
