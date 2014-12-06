@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8597a0bb67b52bea2718bfeeac596800",
+    "hash": "a66f31f78b4b4846de16b3159429f0ae",
     "packages": [
         {
             "name": "artdarek/oauth-4-laravel",
@@ -453,6 +453,60 @@
                 "zf2"
             ],
             "time": "2014-10-26 09:05:09"
+        },
+        {
+            "name": "fruitcakestudio/recaptcha",
+            "version": "v0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fruitcakestudio/php-recaptcha.git",
+                "reference": "87d1f09d671c38c40f64015ef7885db2918e5f6f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fruitcakestudio/php-recaptcha/zipball/87d1f09d671c38c40f64015ef7885db2918e5f6f",
+                "reference": "87d1f09d671c38c40f64015ef7885db2918e5f6f",
+                "shasum": ""
+            },
+            "require-dev": {
+                "laravel/support": "~4.0",
+                "symfony/http-foundation": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FruitcakeStudio\\ReCaptcha\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                },
+                {
+                    "name": "Fruitcake Studio",
+                    "homepage": "http://fruitcakestudio.com"
+                }
+            ],
+            "description": "reCAPTCHA library",
+            "keywords": [
+                "captcha",
+                "laravel",
+                "no captcha",
+                "nocaptcha",
+                "recaptcha",
+                "spam"
+            ],
+            "time": "2014-12-05 09:02:23"
         },
         {
             "name": "guzzle/guzzle",
@@ -1020,59 +1074,6 @@
                 "presenter"
             ],
             "time": "2014-08-26 12:20:38"
-        },
-        {
-            "name": "mews/captcha",
-            "version": "1.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mauris/captcha.git",
-                "reference": "0a0cadebba3ce5a780f26082077fd57958d34567"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mauris/captcha/zipball/0a0cadebba3ce5a780f26082077fd57958d34567",
-                "reference": "0a0cadebba3ce5a780f26082077fd57958d34567",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~4",
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Mews\\Captcha\\": "src/Mews/Captcha"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Muharrem ERIN",
-                    "email": "me@mewebstudio.com"
-                },
-                {
-                    "name": "Sam Yong",
-                    "email": "sam@mauris.sg"
-                }
-            ],
-            "description": "Captcha Package for Laravel 4",
-            "homepage": "http://github.com/mewebstudio/captcha",
-            "keywords": [
-                "Captcha",
-                "L4",
-                "Laravel",
-                "Laravel 4",
-                "captcha image",
-                "mecaptcha",
-                "security"
-            ],
-            "support": {
-                "source": "https://github.com/mauris/captcha/tree/1.0.5"
-            },
-            "time": "2014-05-03 01:39:20"
         },
         {
             "name": "mews/purifier",

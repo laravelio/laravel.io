@@ -5,6 +5,7 @@
         <h1>We're going to create an account with this information.</h1>
 
         <div class="user">
+            {{ ReCaptcha::getScript() }}
             {{ Form::open(['id' => 'signup-form']) }}
                 <img src="{{ $githubUser['image_url'] }}"/>
 
@@ -17,12 +18,10 @@
                         <p>{{ $githubUser['email'] }}</p>
                     @endif
 
-                    <p>{{ Form::label('captcha', 'Please fill out the captcha:') }}</p>
-                    <p>{{ HTML::image(Captcha::img(), 'Captcha image', ['class' => 'captcha']) }}</p>
-                    <p>{{ Form::text('captcha') }}</p>
+                    <p>{{ ReCaptcha::getWidget() }}</p>
 
-                    @if ($errors->has('captcha'))
-                        <p>{{ $errors->first('captcha') }}</p>
+                    @if ($errors->has('g-recaptcha-response'))
+                        <p>Please fill in the captcha field correctly.</p>
                     @endif
 
                     {{ Form::submit('Create My Laravel.IO Account', ['class' => 'button']) }}

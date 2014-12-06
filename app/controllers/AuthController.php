@@ -48,14 +48,11 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
         }
 
         /** @var \Illuminate\Validation\Validator $validator */
-        $validator = Validator::make(Input::only('captcha', 'is_valid_potato'), [
-            'captcha' => 'required|captcha',
-            'is_valid_potato' => 'required',
-        ]);
+        $validator = Validator::make(Input::all(), ['g-recaptcha-response' => 'required|recaptcha']);
 
         if ($validator->fails()) {
             return Redirect::action('AuthController@getSignupConfirm')
-                ->exceptInput('captcha', 'is_valid_potato')
+                ->exceptInput('g-recaptcha-response')
                 ->withErrors($validator->errors());
         }
 

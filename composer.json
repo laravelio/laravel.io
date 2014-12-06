@@ -14,7 +14,7 @@
         "hashids/hashids": "1.0.*",
         "mews/purifier": "1.0.*",
         "bugsnag/bugsnag-laravel": "1.1.*",
-        "mews/captcha": "~1.0"
+        "fruitcakestudio/recaptcha": "~0.2"
     },
     "require-dev": {
         "phpunit/phpunit": "4.3.*",

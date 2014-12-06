@@ -19,8 +19,7 @@ App::after(function($request, $response) {
         if (
             ! stristr($request->path(), 'login') &&
             ! stristr($request->path(), 'signup') &&
-            ! stristr($request->path(), 'captcha') &&
-            ! stristr($request->path(), 'is_valid_potato')
+            ! stristr($request->path(), 'g-recaptcha-response')
         ) {
             Session::put('auth.intended_redirect_url', $request->url());
         }

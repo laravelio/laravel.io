@@ -139,12 +139,4 @@ $(function() {
     versionSelectToTag();
     questionSelectToTag();
     bindQuoteLinks();
-
-    var form = $('#signup-form');
-
-    form.submit(function () {
-        $('<input />').attr('type', 'hidden').attr('name', 'is_valid_potato').attr('value', 'true').appendTo(form);
-
-        return true;
-    });
 });
