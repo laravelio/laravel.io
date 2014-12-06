@@ -36,5 +36,8 @@
 @section('scripts')
   <script src="{{ asset('javascripts/vendor/jquery.min.js') }}"></script>
 @show
+
+@include('layouts._snappy')
+
 </body>
 </html>
