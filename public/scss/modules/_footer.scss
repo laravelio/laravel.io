@@ -12,9 +12,11 @@
 footer {
     background: #cdcdcd;
     padding: 15px 15px 20px 15px;
-    text-align: right;
     color: #333;
+    font-size: 14px;
+    font-weight: bold;
     margin: 25px 0 0 0;
+    line-height: 18px;
 
     .fortrabbit {
         font-family: Georgia, serif;
@@ -22,7 +24,7 @@ footer {
         font-style: italic;
         color: #333;
         text-transform: lowercase;
-        font-size:21px;
+        font-size: 30px;
         display: inline;
     }
     .fortrabbit:hover {
@@ -44,8 +46,6 @@ footer {
 
 @media only screen and (min-width: 480px) {
 
-    .module {}
-
 }
 
 
@@ -53,6 +53,11 @@ footer {
 
 @media only screen and (min-width: 768px) {
 
+    .span4 {
+        float: left;
+        text-align: center;
+        width: 33.333333%;
+    }
 
 }
 
@@ -61,7 +66,11 @@ footer {
 
 @media only screen and (min-width: 1024px) {
 
-    .module {}
+    .container{
+        max-width: 1024px;
+        margin: 0 auto;
+    }
+
 }
 
 

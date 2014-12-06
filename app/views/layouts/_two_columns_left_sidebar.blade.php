@@ -1,6 +1,6 @@
 <section class="sidebar">
-	@section('sidebar')
-	@show
+    @section('sidebar')
+    @show
 </section>
 
 <section class="content">
