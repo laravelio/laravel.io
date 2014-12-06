@@ -104,7 +104,7 @@ class ForumThreadsController extends BaseController implements
 
     public function threadCreationError($errors)
     {
-        return $this->redirectBack(['errors' => $errors], Input::except('_time'));
+        return $this->redirectBack(['errors' => $errors]);
     }
 
     public function threadCreated($thread)

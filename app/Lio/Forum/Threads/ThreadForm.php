@@ -11,7 +11,6 @@ class ThreadForm extends FormModel
         'tags' => 'required|max_tags:3',
         'is_question' => 'in:0,1',
         'laravel_version' => 'required|in:0,3,4',
-        '_time' => 'required|min_time:5',
     ];
 
     protected function beforeValidation()
@@ -28,16 +27,5 @@ class ThreadForm extends FormModel
 
             return true;
         });
-
-        $type = isset($this->inputData['_type']) ? $this->inputData['_type'] : null;
-
-        // Time validation on Create forms
-        if ($type === 'create') {
-            Validator::extend('min_time', function ($attribute, $time, $params) {
-                $minTime = $params[0];
-
-                return (time() - $time) > $minTime;
-            });
-        }
     }
 }
