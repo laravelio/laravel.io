@@ -6,7 +6,8 @@
 
         <div class="user">
             {{ ReCaptcha::getScript() }}
-            {{ Form::open(['id' => 'signup-form']) }}
+
+            {{ Form::open() }}
                 <img src="{{ $githubUser['image_url'] }}"/>
 
                 <div class="bio">

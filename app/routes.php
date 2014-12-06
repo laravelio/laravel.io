@@ -22,7 +22,7 @@ Route::get('rss', function () {
 Route::get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
 Route::get('login-required', 'AuthController@getLoginRequired');
 Route::get('signup-confirm', 'AuthController@getSignupConfirm');
-Route::post('signup-confirm', 'AuthController@postSignupConfirm');
+Route::post('signup-confirm', ['before' => 'csrf', 'uses' => 'AuthController@postSignupConfirm']);
 Route::get('logout', 'AuthController@getLogout');
 Route::get('oauth', 'AuthController@getOauth');
 
@@ -73,7 +73,7 @@ Route::group(['before' => 'auth'], function() {
 // forum
 Route::group(['before' => 'auth|banned'], function() {
     Route::get('forum/create-thread', 'ForumThreadsController@getCreateThread');
-    Route::post('forum/create-thread', 'ForumThreadsController@postCreateThread');
+    Route::post('forum/create-thread', ['before' => 'csrf', 'uses' => 'ForumThreadsController@postCreateThread']);
 
     Route::get('forum/mark-as-solved/{threadId}/{replyId}', 'ForumThreadsController@getMarkQuestionSolved');
     Route::get('forum/mark-as-unsolved/{threadId}', 'ForumThreadsController@getMarkQuestionUnsolved');
@@ -81,14 +81,14 @@ Route::group(['before' => 'auth|banned'], function() {
     Route::get('forum/edit-thread/{threadId}', 'ForumThreadsController@getEditThread');
     Route::post('forum/edit-thread/{threadId}', 'ForumThreadsController@postEditThread');
     Route::get('forum/edit-reply/{replyId}', 'ForumRepliesController@getEditReply');
-    Route::post('forum/edit-reply/{replyId}', 'ForumRepliesController@postEditReply');
+    Route::post('forum/edit-reply/{replyId}', ['before' => 'csrf', 'uses' => 'ForumRepliesController@postEditReply']);
 
     Route::get('forum/delete/reply/{replyId}', 'ForumRepliesController@getDelete');
     Route::post('forum/delete/reply/{replyId}', 'ForumRepliesController@postDelete');
     Route::get('forum/delete/thread/{threadId}', 'ForumThreadsController@getDelete');
     Route::post('forum/delete/thread/{threadId}', 'ForumThreadsController@postDelete');
 
-    Route::post('forum/{slug}', ['before' => '', 'uses' => 'ForumRepliesController@postCreateReply']);
+    Route::post('forum/{slug}', ['before' => 'csrf', 'uses' => 'ForumRepliesController@postCreateReply']);
 });
 
 Route::get('forum/{status?}', 'ForumThreadsController@getIndex')
