@@ -22,6 +22,7 @@ class GithubAuthenticatorTest extends TestCase
         // (hint: it wasn't banned)
         $user = m::mock()->shouldIgnoreMissing();
         $user->is_banned = 0;
+        $user->shouldReceive('isConfirmed')->andReturn(true);
 
         // create a fake user repository, when it's queried for
         // a user by Github id, give the user that we just made
