@@ -33,19 +33,17 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
         if ($tags->count() > 0) {
             $query->join('tagged_items', 'forum_threads.id', '=', 'tagged_items.thread_id')
                 ->whereIn('tagged_items.tag_id', $tags->lists('id'));
+            $query->groupBy('forum_threads.id');
         }
 
         if ($status) {
             if ($status == 'solved') {
                 $query->where('solution_reply_id', '>', 0);
             }
-
             if ($status == 'open') {
                 $query->whereNull('solution_reply_id');
             }
         }
-
-        $query->groupBy('forum_threads.id');
 
         $query->orderBy('pinned', 'desc');
         $query->orderBy('updated_at', 'desc');
