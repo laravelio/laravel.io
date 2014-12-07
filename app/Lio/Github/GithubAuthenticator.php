@@ -37,6 +37,10 @@ class GithubAuthenticator
             return $listener->userIsBanned($user);
         }
 
+        if (! $user->isConfirmed()) {
+            return $listener->userIsntConfirmed($user);
+        }
+
         $user->fill($githubData);
         $this->users->save($user);
 

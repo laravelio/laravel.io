@@ -143,6 +143,16 @@ class User extends Entity implements UserInterface, RemindableInterface, Present
     }
 
     /**
+     * Determine if the user has confirmed his email address already or not
+     *
+     * @return bool
+     */
+    public function isConfirmed()
+    {
+        return (bool) $this->confirmed;
+    }
+
+    /**
      * Get the presenter class.
      *
      * @return string The class path to the presenter.

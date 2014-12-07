@@ -1,7 +1,5 @@
 <?php
 
-Route::filter('banned', 'Lio\Http\Filters\Banned');
-
 Route::group(array('domain' => 'bin.laravel.io'), function() {
     Route::get('{wildcard}', function($wildcard) {
         return Redirect::to('http://laravel.io/bin/' . $wildcard);
@@ -13,7 +11,7 @@ Route::group(array('domain' => 'paste.laravel.io'), function() {
     });
 });
 
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@getIndex']);
+Route::get('/', 'HomeController@getIndex');
 Route::get('rss', function () {
     return Redirect::home();
 });
@@ -25,9 +23,11 @@ Route::get('signup-confirm', 'AuthController@getSignupConfirm');
 Route::post('signup-confirm', ['before' => 'csrf', 'uses' => 'AuthController@postSignupConfirm']);
 Route::get('logout', 'AuthController@getLogout');
 Route::get('oauth', 'AuthController@getOauth');
+Route::get('signup/confirm-email/{confirmation_code}', ['as' => 'user.confirm', 'uses' => 'AuthController@getConfirmEmail']);
+Route::get('signup/resend-confirmation/{confirmation_code}', ['as' => 'user.reconfirm', 'uses' => 'AuthController@getResendConfirmation']);
 
 // user dashboard
-Route::get('dashboard', ['before' => 'auth', 'uses' => 'DashboardController@getIndex']);
+//Route::get('dashboard', ['before' => 'auth', 'uses' => 'DashboardController@getIndex']);
 //Route::get('dashboard/articles', ['before' => 'auth', 'uses' => 'ArticlesController@getDashboard']);
 
 // user profile
@@ -71,7 +71,7 @@ Route::group(['before' => 'auth'], function() {
 // Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum
-Route::group(['before' => 'auth|banned'], function() {
+Route::group(['before' => 'auth'], function() {
     Route::get('forum/create-thread', 'ForumThreadsController@getCreateThread');
     Route::post('forum/create-thread', ['before' => 'csrf', 'uses' => 'ForumThreadsController@postCreateThread']);
 
@@ -91,7 +91,7 @@ Route::group(['before' => 'auth|banned'], function() {
     Route::post('forum/{slug}', ['before' => 'csrf', 'uses' => 'ForumRepliesController@postCreateReply']);
 });
 
-Route::get('forum/{status?}', 'ForumThreadsController@getIndex')
+Route::get('forum/{status?}', ['as' => 'home', 'uses' => 'ForumThreadsController@getIndex'])
     ->where(array('status' => '(|open|solved)'));
 
 Route::get('forum/search', 'ForumThreadsController@getSearch');

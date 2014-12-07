@@ -19,7 +19,7 @@ class UserRepository extends EloquentRepository
     {
         $model = $this->getByName($name);
 
-        if ( ! $model) {
+        if (! $model) {
             throw new EntityNotFoundException("User with name {$name} could not be found.");
         }
 
@@ -34,6 +34,17 @@ class UserRepository extends EloquentRepository
     public function getFirstX($count)
     {
         return $this->model->take($count)->get();
+    }
+
+    /**
+     * Find a user by its confirmation code
+     *
+     * @param string $code
+     * @return \Lio\Accounts\User
+     */
+    public function getByConfirmationCode($code)
+    {
+        return $this->model->where('confirmation_code', $code)->first();
     }
 
     /**

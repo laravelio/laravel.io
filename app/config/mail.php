@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => '', 'name' => ''),
+	'from' => array('address' => 'hello@laravel.io', 'name' => 'Laravel.IO'),
 
 	/*
 	|--------------------------------------------------------------------------

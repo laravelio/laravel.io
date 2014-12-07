@@ -33,7 +33,22 @@ App::after(function($request, $response) {
 */
 
 Route::filter('auth', function() {
-    if (Auth::guest()) return Redirect::action('AuthController@getLoginRequired');
+    if (Auth::guest()) {
+        return Redirect::action('AuthController@getLoginRequired');
+    } elseif (Auth::user()->is_banned) {
+        // Don't allow people who are banned to log in.
+        Auth::logout();
+
+        return Redirect::home();
+    } elseif (! Auth::user()->isConfirmed()) {
+        // Don't let people who haven't confirmed their email use the authed sections on the website.
+        Session::flash('error', 'Please confirm your email address  (' . Auth::user()->email . ') before you try to login.
+        <a style="color:#fff" href="' . route('user.reconfirm', Auth::user()->confirmation_code) . '">Re-send confirmation email.</a>');
+
+        Auth::logout();
+
+        return Redirect::home();
+    }
 });
 
 
@@ -72,16 +87,4 @@ Route::filter('has_role', function($route, $request, $parameters) {
     }
 
     throw new Lio\Core\Exceptions\NotAuthorizedException(Auth::user()->name . ' does not have the required role(s): ' . $parameters);
-});
-
-Event::listen('illuminate.query', function($sql, $bindings)
-{
-    if (App::environment('local')) {
-        foreach ($bindings as $i => $val) {
-            $bindings[$i] = "'$val'";
-        }
-
-        $sql = str_replace(['?'], $bindings, $sql);
-        Log::info($sql);
-    }
 });

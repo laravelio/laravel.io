@@ -13,13 +13,13 @@ class HomeController extends BaseController
         $this->comments = $comments;
     }
 
-	public function getIndex()
-	{
+    public function getIndex()
+    {
         return Redirect::action('ForumThreadsController@getIndex');
 
         $articles = $this->articles->getFeaturedArticles(3);
         $threads  = $this->comments->getFeaturedForumThreads(3);
 
-		$this->view('home.index', compact('articles', 'threads'));
-	}
+        $this->view('home.index', compact('articles', 'threads'));
+    }
 }

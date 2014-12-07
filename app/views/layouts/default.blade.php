@@ -25,17 +25,26 @@
 
 </head>
 <body>
-<div class="wrapper">
-  <div class="top-header">
-    @include('layouts._top_nav')
-  </div>
 
-  <div class="holder">
-      @include('layouts._flash')
-     <div class="table">
-        {{ $content }}
-      </div>
-  </div>
+@if (Auth::check() && ! Auth::user()->isConfirmed())
+    <div style="background: #2fb352; padding: .75em; text-align:center; color:#eee; font-size:1.1em">
+        Please confirm your email address ({{ Auth::user()->email }}).
+        <a href="{{ route('user.reconfirm', Auth::user()->confirmation_code) }}" style="color:#eee;">Re-send confirmation email.</a>
+    </div>
+@endif
+
+<div class="wrapper">
+    <div class="top-header">
+        @include('layouts._top_nav')
+    </div>
+
+    <div class="holder">
+        @include('layouts._flash')
+
+        <div class="table">
+            {{ $content }}
+        </div>
+    </div>
 </div>
 
 <div class="push"></div>
