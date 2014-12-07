@@ -23,8 +23,9 @@
 
         <ul class="meta">
             <li>posted by <a href="{{ $thread->author->profileUrl }}">{{ $thread->author->name }}</a></li>
-            @if ($thread->mostRecentReply)
-            <li> - latest reply {{ $thread->updated_ago }} by <a href="{{ $thread->mostRecentReplierProfileUrl }}">{{ $thread->mostRecentReplier }}</a></li>
+
+            @if (count($thread->replies))
+                <li> - latest reply {{ $thread->lastReplyDiff }} by <a href="{{ $thread->mostRecentReplierProfileUrl }}">{{ $thread->mostRecentReplier }}</a></li>
             @endif
         </ul>
     </div>

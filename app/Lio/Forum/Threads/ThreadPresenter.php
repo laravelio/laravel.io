@@ -50,29 +50,38 @@ class ThreadPresenter extends BasePresenter
 
     public function mostRecentReplier()
     {
-        if ( ! $this->mostRecentReply) {
+        if (! count($this->replies)) {
             return null;
         }
 
-        return $this->mostRecentReply->author->name;
+        return $this->replies->last()->author->name;
     }
 
     public function mostRecentReplierProfileUrl()
     {
-        if ( ! $this->mostRecentReply) {
+        if (! count($this->replies)) {
             return null;
         }
 
-        return $this->mostRecentReply->author->profileUrl;
+        return $this->replies->last()->author->profileUrl;
     }
 
     public function latestReplyUrl()
     {
-        if ( ! $this->mostRecentReply) {
+        if (! count($this->replies)) {
             return $this->url;
         }
 
-        return $this->url . App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->mostRecentReply);
+        return $this->url . App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->replies->last());
+    }
+
+    public function lastReplyDiff()
+    {
+        if (count($this->replies)) {
+            return $this->replies->last()->created_at->diffForHumans();
+        }
+
+        return $this->updated_ago();
     }
 
     public function acceptedSolutionUrl()
