@@ -14,7 +14,8 @@
         "hashids/hashids": "1.0.*",
         "mews/purifier": "1.0.*",
         "bugsnag/bugsnag-laravel": "1.1.*",
-        "fruitcakestudio/recaptcha": "0.2.*"
+        "fruitcakestudio/recaptcha": "0.2.*",
+        "guzzlehttp/guzzle": "4.2.*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.3.*",
