@@ -158,6 +158,8 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
 
     public function userIsBanned($user)
     {
+        Session::flash('error', 'Your account has been banned. If you\'d like to appeal, please contact us through the support widget below.');
+
         return $this->redirectHome();
     }
 

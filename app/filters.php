@@ -37,6 +37,8 @@ Route::filter('auth', function() {
         return Redirect::action('AuthController@getLoginRequired');
     } elseif (Auth::user()->is_banned) {
         // Don't allow people who are banned to log in.
+        Session::flash('error', 'Your account has been banned. If you\'d like to appeal, please contact us through the support widget below.');
+
         Auth::logout();
 
         return Redirect::home();

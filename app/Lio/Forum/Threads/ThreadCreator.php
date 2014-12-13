@@ -1,5 +1,9 @@
 <?php namespace Lio\Forum\Threads;
 
+use Illuminate\Support\MessageBag;
+use Lio\Accounts\User;
+use Lio\Validators\DoesNotContainPhoneNumbers;
+
 /**
 * This class can call the following methods on the listener object:
 *
@@ -8,11 +12,24 @@
 */
 class ThreadCreator
 {
+    /**
+     * @var \Lio\Forum\Threads\ThreadRepository
+     */
     protected $threads;
 
-    public function __construct(ThreadRepository $threads)
+    /**
+     * @var \Lio\Validators\DoesNotContainPhoneNumbers
+     */
+    protected $phoneNumbers;
+
+    /**
+     * @param \Lio\Forum\Threads\ThreadRepository $threads
+     * @param \Lio\Validators\DoesNotContainPhoneNumbers $phoneNumbers
+     */
+    public function __construct(ThreadRepository $threads, DoesNotContainPhoneNumbers $phoneNumbers)
     {
         $this->threads = $threads;
+        $this->phoneNumbers = $phoneNumbers;
     }
 
     // an additional validator is optional and will be run first, an example of a usage for
@@ -41,8 +58,24 @@ class ThreadCreator
 
     private function validateAndSave($thread, $listener, $data)
     {
+        if ($this->containsSpam($thread->subject)) {
+            $this->increaseUserSpamCount($thread->author);
+
+            return $listener->threadCreationError(
+                new MessageBag(['subject' => 'Title contains spam. Your account has been flagged.'])
+            );
+        }
+
+        if ($this->containsSpam($thread->body)) {
+            $this->increaseUserSpamCount($thread->author);
+
+            return $listener->threadCreationError(
+                new MessageBag(['body' => 'Body contains spam. Your account has been flagged.'])
+            );
+        }
+
         // check the model validation
-        if ( ! $this->threads->save($thread)) {
+        if (! $this->threads->save($thread)) {
             return $listener->threadCreationError($thread->getErrors());
         }
 
@@ -52,5 +85,34 @@ class ThreadCreator
         }
 
         return $listener->threadCreated($thread);
+    }
+
+    /**
+     * Determines if one or more subject contain spam
+     *
+     * @param string|array $subject
+     * @return bool
+     */
+    private function containsSpam($subject)
+    {
+        // If the validator detects phone numbers, return false.
+        return ! $this->phoneNumbers->validate($subject);
+    }
+
+    /**
+     * Increases a user's spam count
+     *
+     * @param \Lio\Accounts\User $user
+     */
+    private function increaseUserSpamCount(User $user)
+    {
+        $user->spam_count = $user->spam_count + 1;
+
+        // If the user reaches a spam threshold of 3 or more, automatically ban him
+        if ($user->spam_count >= 3) {
+            $user->is_banned = true;
+        }
+
+        $user->save();
     }
 }
