@@ -3,7 +3,7 @@ namespace Lio\Tests;
 
 use Illuminate\Foundation\Testing\TestCase as IlluminateTestCase;
 
-class TestCase extends IlluminateTestCase
+abstract class TestCase extends IlluminateTestCase
 {
     /**
      * Creates the application.

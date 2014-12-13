@@ -2,10 +2,9 @@
 namespace Lio\Tests\Unit\GitHub;
 
 use Lio\Github\GistEmbedFormatter;
-use Lio\Tests\TestCase;
 use Mockery;
 
-class GistEmbedFormatterTest extends TestCase
+class GistEmbedFormatterTest extends \PHPUnit_Framework_TestCase
 {
     public function testCanCreate()
     {

@@ -2,10 +2,9 @@
 namespace Lio\Tests\Unit\Github;
 
 use Lio\Github\GithubAuthenticator;
-use Lio\Tests\TestCase;
 use Mockery as m;
 
-class GithubAuthenticatorTest extends TestCase
+class GithubAuthenticatorTest extends \PHPUnit_Framework_TestCase
 {
     public function testCanCreateGithubAuthenticator()
     {
