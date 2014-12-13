@@ -110,6 +110,7 @@ class ForumThreadsController extends BaseController implements
             'laravel_version' => Input::get('laravel_version'),
             'is_question' => Input::get('is_question'),
             'tags' => $this->tags->getTagsByIds(Input::get('tags')),
+            'ip' => Request::ip(),
         ], new ThreadForm);
     }
 

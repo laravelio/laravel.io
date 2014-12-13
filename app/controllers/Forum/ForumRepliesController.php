@@ -48,6 +48,7 @@ class ForumRepliesController extends BaseController implements
         return App::make('Lio\Forum\Replies\ReplyCreator')->create($this, [
             'body'   => Input::get('body'),
             'author' => Auth::user(),
+            'ip' => Request::ip(),
         ], $thread->id, new ReplyForm);
     }
 

@@ -80,7 +80,10 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
                 ->withErrors($validator->errors());
         }
 
-        return App::make('Lio\Accounts\UserCreator')->create($this, Session::get('userGithubData'));
+        $data = Session::get('userGithubData');
+        $data['ip'] = Request::ip();
+
+        return App::make('Lio\Accounts\UserCreator')->create($this, $data);
     }
 
     /**

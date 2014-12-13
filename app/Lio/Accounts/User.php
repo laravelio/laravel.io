@@ -19,7 +19,7 @@ class User extends Entity implements UserInterface, RemindableInterface, Present
 
     protected $table    = 'users';
     protected $hidden   = ['github_id', 'email', 'remember_token'];
-    protected $fillable = ['email', 'name', 'github_url', 'github_id', 'image_url', 'is_banned'];
+    protected $fillable = ['email', 'name', 'github_url', 'github_id', 'image_url', 'is_banned', 'ip'];
     protected $dates    = ['deleted_at'];
 
     protected $validationRules = [

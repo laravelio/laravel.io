@@ -11,7 +11,7 @@ class Thread extends Entity implements PresenterInterface
     use SoftDeletingTrait;
 
     protected $table    = 'forum_threads';
-    protected $fillable = ['subject', 'body', 'author_id', 'is_question', 'solution_reply_id', 'category_slug', 'laravel_version'];
+    protected $fillable = ['subject', 'body', 'author_id', 'is_question', 'solution_reply_id', 'category_slug', 'laravel_version', 'ip'];
     protected $dates    = ['deleted_at'];
 
     protected $validationRules = [

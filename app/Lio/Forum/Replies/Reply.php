@@ -9,7 +9,7 @@ class Reply extends Entity implements PresenterInterface
     use SoftDeletingTrait;
 
     protected $table    = 'forum_replies';
-    protected $fillable = ['body', 'author_id', 'thread_id'];
+    protected $fillable = ['body', 'author_id', 'thread_id', 'ip'];
     protected $with     = ['author'];
     protected $dates    = ['deleted_at'];
 
