@@ -21,12 +21,6 @@
         "phpunit/phpunit": "4.3.*",
         "mockery/mockery": "0.9.*"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/mauris/captcha"
-        }
-    ],
     "autoload": {
         "classmap": [
             "app/commands",
