@@ -30,11 +30,6 @@ class UsersController extends BaseController implements UserUpdaterListener
     {
         $user = $this->users->requireByName($userName);
 
-        // Make sure that the user which is updated is the one who is currently logged in.
-        if (Auth::user()->id !== $user->id) {
-            App::abort(403);
-        }
-
         $threads = $user->getLatestThreadsPaginated(5);
         $replies = $user->getLatestRepliesPaginated(5);
 
@@ -45,12 +40,22 @@ class UsersController extends BaseController implements UserUpdaterListener
     {
         $user = $this->users->requireByName($userName);
 
+        // Make sure that the user which is updated is the one who is currently logged in.
+        if (Auth::user()->id !== $user->id) {
+            App::abort(403);
+        }
+
         $this->view('users.settings', compact('user'));
     }
 
     public function putSettings($userName)
     {
         $user = $this->users->requireByName($userName);
+
+        // Make sure that the user which is updated is the one who is currently logged in.
+        if (Auth::user()->id !== $user->id) {
+            App::abort(403);
+        }
 
         return $this->updater->update($this, $user, Input::only('email'));
     }
