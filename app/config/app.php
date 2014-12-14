@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -13,7 +13,7 @@ return array(
     |
     */
 
-    'debug' => true,
+    'debug' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return array(
     |
     */
 
-    'key' => '',
+    'key' => getenv('APP_KEY'),
 
     'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -80,7 +80,7 @@ return array(
     |
     */
 
-    'providers' => array(
+    'providers' => [
 
         'Illuminate\Foundation\Providers\ArtisanServiceProvider',
         'Illuminate\Auth\AuthServiceProvider',
@@ -120,7 +120,7 @@ return array(
         'Lio\ServiceProviders\CommentServiceProvider',
         'Lio\ServiceProviders\MarkdownServiceProvider',
         'Lio\ServiceProviders\HashidsServiceProvider',
-    ),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -146,7 +146,7 @@ return array(
     |
     */
 
-    'aliases' => array(
+    'aliases' => [
 
         'App'             => 'Illuminate\Support\Facades\App',
         'Artisan'         => 'Illuminate\Support\Facades\Artisan',
@@ -192,6 +192,6 @@ return array(
         'Purifier' => 'Mews\Purifier\Facades\Purifier',
         'Bugsnag' => 'Bugsnag\BugsnagLaravel\BugsnagFacade',
         'ReCaptcha' => 'FruitcakeStudio\ReCaptcha\Support\Laravel\Facade',
-    ),
+    ],
 
-);
+];

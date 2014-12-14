@@ -7,13 +7,11 @@
 
 This is the Laravel.IO community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
 
-
 ## Requirements
 
 We use Laravel Homestead for local development. Please review [the Homestead documentation](http://laravel.com/docs/homestead) to install it.
 
 In order to compile stylesheets you will also need Ruby, Sass, and Compass installed.
-
 
 ## Local Installation
 
@@ -36,34 +34,30 @@ Here are the steps for installation on a local machine.
 
 You can now visit the app in your browser by visiting [http://lio.loc/](http://lio.loc).
 
+## Service Configuration
 
-## Github OAuth Configuration
+Laravel.IO relies on some key services to function, namely Github OAuth authentication and the Google ReCaptcha service. Follow the steps below to fill in the credentials in a custom `.env.local.php` file.
 
-Now, we must install the oauth configuration.
+1. Create the configuration file below at the root of your application with the name ***.env.local.php***.
 
-1. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel IO Development" and add your GH application's client id and secret to this config file. Your GitHub Application should be set up as follows:
+```php
+<?php
+
+return [
+    'GITHUB_CLIENT_ID' => '',
+    'GITHUB_CLIENT_SECRET' => '',
+    'GOOGLE_RECAPTCHA_SITEKEY' => '',
+    'GOOGLE_RECAPTCHA_SECRETKEY' => '',
+];
+
+```
+
+2. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel IO Development" and add your Github application's client id and secret to the `.env.local.php` file. Your GitHub application should be set up as follows.
 
     a. Full URL: http://lio.loc
     b. Callback URL: http://lio.loc/login
 
-2. Create the configuration file below at ***app/config/packages/artdarek/oauth-4-laravel/config.php***
-
-```PHP
-<?php
-
-return [
-    'storage' => 'Session',
-
-    'consumers' => [
-        'GitHub' => [
-            'client_id'     => 'YOUR_NEW_CLIENT_ID_HERE',
-            'client_secret' => 'YOUR_NEW_CLIENT_SECRET_HERE',
-            'scope'         => ['user'],
-        ],
-    ],
-];
-```
-
+3. [Register a new website](https://www.google.com/recaptcha/admin) for the Google ReCaptcha service and fill in the site key and secret key in the `.env.local.php` file.
 
 ## Frontend
 
@@ -73,11 +67,9 @@ Because we keep the generated / minified css out of the repository, we must have
 - When running any compass command in the terminal, be sure to run it from your `/public` folder.
 - Compass is the tool used to compile Sass source files into CSS files; you can run `compass compile` to run it once, or `compass watch` to trigger a script that will watch your Sass files for changes and trigger a new compass compile on each change
 
-
 ## Maintainer
 
 The Laravel.IO project is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to ask them in an issue or email me at [dries.vints@gmail.com](mailto:dries.vints@gmail.com).
-
 
 ## Testing
 
@@ -85,11 +77,9 @@ All tests can be run with the following command. Make sure to run this inside th
 
     $ vendor/bin/phpunit
 
-
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
 
 ## License
 

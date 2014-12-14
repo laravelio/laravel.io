@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
     |
     */
 
-    'username' => $_ENV['MANDRILL_USERNAME'],
+    'username' => getenv('MANDRILL_USERNAME'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
     |
     */
 
-    'password' => $_ENV['MANDRILL_API_KEY'],
+    'password' => getenv('MANDRILL_API_KEY'),
 
     /*
     |--------------------------------------------------------------------------
@@ -121,4 +121,4 @@ return array(
 
     'pretend' => false,
 
-);
+];

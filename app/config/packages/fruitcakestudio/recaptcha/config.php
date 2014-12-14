@@ -16,8 +16,8 @@ return array(
      | See https://www.google.com/recaptcha/admin
      |
      */
-    'sitekey' => $_ENV['GOOGLE_RECAPTCHA_SITEKEY'],
-    'secret'  => $_ENV['GOOGLE_RECAPTCHA_SECRETKEY'],
+    'sitekey' => getenv('GOOGLE_RECAPTCHA_SITEKEY'),
+    'secret'  => getenv('GOOGLE_RECAPTCHA_SECRETKEY'),
 
     /*
      |--------------------------------------------------------------------------
