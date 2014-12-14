@@ -109,7 +109,6 @@ return array(
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
-        'Barryvdh\Debugbar\ServiceProvider',
         'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
         'McCool\DatabaseBackup\ServiceProviders\LaravelServiceProvider',
         'Artdarek\OAuth\OAuthServiceProvider',
