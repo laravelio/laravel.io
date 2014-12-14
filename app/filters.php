@@ -42,14 +42,6 @@ Route::filter('auth', function() {
         Auth::logout();
 
         return Redirect::home();
-    } elseif (! Auth::user()->isConfirmed()) {
-        // Don't let people who haven't confirmed their email use the authed sections on the website.
-        Session::flash('error', 'Please confirm your email address  (' . Auth::user()->email . ') before you try to login.
-        <a style="color:#fff" href="' . route('user.reconfirm', Auth::user()->confirmation_code) . '">Re-send confirmation email.</a>');
-
-        Auth::logout();
-
-        return Redirect::home();
     }
 });
 
@@ -57,6 +49,17 @@ Route::filter('auth', function() {
 Route::filter('auth.basic', function()
 {
     return Auth::basic();
+});
+
+Route::filter('confirmed', function() {
+    if (Auth::guest() || ! Auth::user()->isConfirmed()) {
+        // Don't let people who haven't confirmed their email use the authed sections on the website.
+        Session::flash('error', 'Please confirm your email address  (' . Auth::user()->email . ') before you try to use this section.
+        <a style="color:#fff" href="' . route('user.reconfirm', Auth::user()->confirmation_code) . '">Re-send confirmation email.</a>
+        <a href="' . route('user.settings', Auth::user()->name) . '" style="color:#eee;">Change e-mail address.</a>');
+
+        return Redirect::home();
+    }
 });
 
 /*

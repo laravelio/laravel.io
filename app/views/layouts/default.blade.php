@@ -30,6 +30,7 @@
     <div style="background: #2fb352; padding: .75em; text-align:center; color:#eee; font-size:1.1em">
         Please confirm your email address ({{ Auth::user()->email }}).
         <a href="{{ route('user.reconfirm', Auth::user()->confirmation_code) }}" style="color:#eee;">Re-send confirmation email.</a>
+        <a href="{{ route('user.settings', Auth::user()->name) }}" style="color:#eee;">Change e-mail address.</a>
     </div>
 @endif
 

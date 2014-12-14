@@ -35,6 +35,11 @@ Route::get('user/{userSlug}', ['as' => 'user', 'uses' => 'UsersController@getPro
 Route::get('user/{userSlug}/threads', 'UsersController@getThreads');
 Route::get('user/{userSlug}/replies', 'UsersController@getReplies');
 
+Route::group(['before' => 'auth'], function () {
+    Route::get('user/{userSlug}/settings', ['as' => 'user.settings', 'uses' => 'UsersController@getSettings']);
+    Route::put('user/{userSlug}/settings', ['before' => 'csrf', 'as' => 'user.settings.update', 'uses' => 'UsersController@putSettings']);
+});
+
 // contributors
 Route::get('contributors', 'ContributorsController@getIndex');
 
@@ -51,7 +56,7 @@ Route::get('bin/fork/{hash}', 'PastesController@getFork');
 Route::get('bin/{hash}/raw', 'PastesController@getRaw');
 Route::get('bin/{hash}', 'PastesController@getShow');
 
-Route::group(['before' => 'auth'], function() {
+Route::group(['before' => 'auth|confirmed'], function() {
     Route::post('bin', ['before' => 'csrf', 'uses' => 'PastesController@postCreate']);
     Route::post('bin/fork/{hash}', ['before' => 'csrf', 'uses' => 'PastesController@postFork']);
 });
@@ -71,7 +76,7 @@ Route::group(['before' => 'auth'], function() {
 // Route::get('articles/search', 'ArticlesController@getSearch');
 
 // forum
-Route::group(['before' => 'auth'], function() {
+Route::group(['before' => 'auth|confirmed'], function() {
     Route::get('forum/create-thread', 'ForumThreadsController@getCreateThread');
     Route::post('forum/create-thread', ['before' => 'csrf', 'uses' => 'ForumThreadsController@postCreateThread']);
 
@@ -101,7 +106,7 @@ Route::get('forum/{slug}', ['before' => '', 'uses' => 'ForumThreadsController@ge
 Route::get('api/forum', 'Api\ForumThreadsController@getIndex');
 
 // admin
-Route::group(['before' => 'auth', 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
+Route::group(['before' => 'auth|confirmed', 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::get('/', function() {
         return Redirect::action('Admin\UsersController@getIndex');
     });

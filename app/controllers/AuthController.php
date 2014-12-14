@@ -165,14 +165,6 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
         return $this->redirectHome();
     }
 
-    public function userIsntConfirmed($user)
-    {
-        Session::flash('error', 'Please confirm your email address (' . $user->email . ') before trying to login.
-        <a style="color:#fff" href="' . route('user.reconfirm', $user->confirmation_code) . '">Re-send confirmation email.</a>');
-
-        return $this->redirectHome();
-    }
-
     public function userNotFound($githubData)
     {
         Session::put('userGithubData', $githubData);

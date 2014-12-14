@@ -77,6 +77,21 @@
     }
 }
 
+.user-settings {
+    padding: 15px;
+
+    label {
+        display: inline-block;
+        width: 40px;
+    }
+    input {
+        display: inline-block;
+        padding: 5px 7px;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
 .admin-bar {
     margin: 15px 0 0 0;
     padding: 15px 0 0 0;

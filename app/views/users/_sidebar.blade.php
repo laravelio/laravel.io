@@ -5,5 +5,9 @@
         {{ $user->imageMedium }}
     @endif
     <h1>{{ $user->name }}</h1>
-    <a class="button" target="_blank" href="{{ $user->github_url }}">Visit GitHub Profile</a>
+    <p><a class="button" target="_blank" href="{{ $user->github_url }}">Visit GitHub Profile</a></p>
+
+    @if (Auth::check())
+        <p><a class="button" href="{{ route('user.settings', $user->name) }}">Edit Account Settings</a></p>
+    @endif
 </div>
