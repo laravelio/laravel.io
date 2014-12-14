@@ -82,6 +82,8 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
 
         $data = Session::get('userGithubData');
         $data['ip'] = Request::ip();
+        $data['name'] = Input::get('name');
+        $data['email'] = Input::get('email');
 
         return App::make('Lio\Accounts\UserCreator')->create($this, $data);
     }
@@ -135,7 +137,7 @@ class AuthController extends BaseController implements GithubAuthenticatorListen
     // user creator responses
     public function userValidationError($errors)
     {
-        return Redirect::to('/');
+        return $this->redirectBack(['errors' => $errors]);
     }
 
     public function userCreated($user)

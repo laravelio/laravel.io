@@ -8,15 +8,25 @@
             {{ ReCaptcha::getScript() }}
 
             {{ Form::open() }}
-                <img src="{{ $githubUser['image_url'] }}"/>
-
                 <div class="bio">
-                    @if (isset($githubUser['name']))
-                        <h2>{{ $githubUser['name'] }}</h2>
+                    <p><img src="{{ $githubUser['image_url'] }}"/></p>
+
+                    <p>
+                        {{ Form::label('name') }}
+                        {{ Form::text('name', Input::old('email', $githubUser['name'])) }}
+                    </p>
+
+                    @if ($errors->has('name'))
+                        <p>{{ $errors->first('name') }}</p>
                     @endif
 
-                    @if (isset($githubUser['email']))
-                        <p>{{ $githubUser['email'] }}</p>
+                    <p>
+                        {{ Form::label('email') }}
+                        {{ Form::email('email', Input::old('email', $githubUser['email'])) }}
+                    </p>
+
+                    @if ($errors->has('email'))
+                        <p>{{ $errors->first('email') }}</p>
                     @endif
 
                     <p>{{ ReCaptcha::getWidget() }}</p>
@@ -29,6 +39,5 @@
                 </div>
             {{ Form::close() }}
         </div>
-
     </section>
 @stop
