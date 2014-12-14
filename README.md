@@ -7,13 +7,23 @@
 
 This is the Laravel.IO community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
 
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Frontend](#frontend)
+- [Maintainer](#maintainer)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Requirements
 
 We use Laravel Homestead for local development. Please review [the Homestead documentation](http://laravel.com/docs/homestead) to install it.
 
 In order to compile stylesheets you will also need Ruby, Sass, and Compass installed.
 
-## Local Installation
+## Installation
 
 Here are the steps for installation on a local machine.
 
@@ -31,10 +41,9 @@ Here are the steps for installation on a local machine.
 6. Create a database in Homestead called `laravelio`.
 7. Run `composer install --dev` and `php artisan migrate --seed --env=local`.
 8. Add `192.168.10.10 lio.loc` to your computer's `hosts` file.
+9. Follow the configuration steps below to configure the external services.
 
-You can now visit the app in your browser by visiting [http://lio.loc/](http://lio.loc).
-
-## Service Configuration
+## Configuration
 
 Laravel.IO relies on some key services to function, namely Github OAuth authentication and the Google ReCaptcha service. Follow the steps below to fill in the credentials in a custom `.env.local.php` file.
 
@@ -59,6 +68,8 @@ return [
 
 3. [Register a new website](https://www.google.com/recaptcha/admin) for the Google ReCaptcha service and fill in the site key and secret key in the `.env.local.php` file.
 
+You can now visit the app in your browser by visiting [http://lio.loc/](http://lio.loc).
+
 ## Frontend
 
 Because we keep the generated / minified css out of the repository, we must have a workflow for compiling the styles.
@@ -69,13 +80,7 @@ Because we keep the generated / minified css out of the repository, we must have
 
 ## Maintainer
 
-The Laravel.IO project is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to ask them in an issue or email me at [dries.vints@gmail.com](mailto:dries.vints@gmail.com).
-
-## Testing
-
-All tests can be run with the following command. Make sure to run this inside the Homestead box.
-
-    $ vendor/bin/phpunit
+The Laravel.IO project is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to contact us through the support widget on the [Laravel.IO](http://laravel.io/) website.
 
 ## Contributing
 
@@ -83,4 +88,4 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [the License File](LICENSE.md) for more information.

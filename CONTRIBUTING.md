@@ -22,7 +22,7 @@ If you have an idea for a new feature you would like to see added to Laravel, yo
 
 ## Coding Standards
 
-The Laravel.IO project follows the [PSR-1](http://www.php-fig.org/psr/psr-1/), [PSR-2](http://www.php-fig.org/psr/psr-2/) and [PSR-4](http://www.php-fig.org/psr/psr-4/) coding standards. Although the current codebase isn't compliant yet, pull requests are required to adhere to these coding standards.
+The Laravel.IO project follows the [PSR-2](http://www.php-fig.org/psr/psr-2/) coding standards. Although the current codebase isn't compliant yet, pull requests which contain new code are required to adhere to these coding standards.
 
 ### Docblocks
 
@@ -33,3 +33,7 @@ When writing `@param` or `@return` statements it's encouraged to use the full na
 ## Testing
 
 The current test suite is still being worked on but we encourage you to write tests for new code and/or features.
+
+All tests can be run with the following command. Make sure to run this inside the Homestead box.
+
+    $ vendor/bin/phpunit
