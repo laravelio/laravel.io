@@ -40,9 +40,6 @@ Route::group(['before' => 'auth'], function () {
     Route::put('user/{userSlug}/settings', ['before' => 'csrf', 'as' => 'user.settings.update', 'uses' => 'UsersController@putSettings']);
 });
 
-// contributors
-Route::get('contributors', 'ContributorsController@getIndex');
-
 // chat
 Route::get('chat', 'ChatController@getIndex');
 // chat legacy

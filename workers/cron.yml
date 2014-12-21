@@ -6,11 +6,3 @@ DatabaseBackup:
     interval:
         minute:  0
         hour:    4
-ContributorImport:
-    type:   cron
-    script: htdocs/artisan
-    args:
-        - "contributors:import"
-    interval:
-        minute:  0
-        hour:    23
