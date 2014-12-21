@@ -24,8 +24,8 @@ class User extends Entity implements UserInterface, RemindableInterface, Present
 
     protected $validationRules = [
         'github_id' => 'unique:users,github_id,<id>',
-        'email' => 'required|unique:users,email,<id>',
-        'name' => 'required|unique:users,name,<id>',
+        'email' => 'required|email|unique:users,email,<id>',
+        'name' => 'required|alpha_num|unique:users,name,<id>',
     ];
 
     private $rolesCache;
