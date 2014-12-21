@@ -13,6 +13,7 @@ before_script:
 
 script:
   - mkdir -p build/logs
+  - vendor/bin/phpspec run --verbose --format=dot
   - vendor/bin/phpunit --verbose --coverage-clover build/logs/clover.xml
 
 after_script:

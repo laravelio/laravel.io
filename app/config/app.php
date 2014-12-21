@@ -109,13 +109,14 @@ return [
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
+        'BigName\BackupManager\Integrations\Laravel\BackupManagerServiceProvider',
         'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
-        'McCool\DatabaseBackup\ServiceProviders\LaravelServiceProvider',
         'Artdarek\OAuth\OAuthServiceProvider',
         'Mews\Purifier\PurifierServiceProvider',
         'Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider',
         'FruitcakeStudio\ReCaptcha\Support\Laravel\ServiceProvider',
 
+        'Lio\ServiceProviders\BackupServiceProvider',
         'Lio\ServiceProviders\GithubServiceProvider',
         'Lio\ServiceProviders\CommentServiceProvider',
         'Lio\ServiceProviders\MarkdownServiceProvider',

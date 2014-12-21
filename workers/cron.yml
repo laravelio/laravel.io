@@ -2,11 +2,7 @@ DatabaseBackup:
     type:   cron
     script: htdocs/artisan
     args:
-        - db:backup
-        - --s3-bucket=laravelio
-        - --s3-path=backups
-        - --gzip
-        - --cleanup
+        - backup:create
     interval:
         minute:  0
         hour:    4

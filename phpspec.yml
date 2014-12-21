@@ -1,0 +1,4 @@
+suites:
+  lio:
+    namespace: Lio
+    src_path: app
