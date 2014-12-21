@@ -57,7 +57,7 @@ class UsersController extends BaseController implements UserUpdaterListener
             App::abort(403);
         }
 
-        return $this->updater->update($this, $user, Input::only('email'));
+        return $this->updater->update($this, $user, Input::only('name', 'email'));
     }
 
     public function getThreads($userName)
@@ -91,6 +91,6 @@ class UsersController extends BaseController implements UserUpdaterListener
             Session::flash('success', 'Settings updated');
         }
 
-        return Redirect::route('user', $user->name);
+        return Redirect::route('user.settings', $user->name);
     }
 }

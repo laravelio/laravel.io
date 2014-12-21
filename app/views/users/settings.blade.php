@@ -13,6 +13,15 @@
     <div class="user-settings">
         {{ Form::open(['route' => ['user.settings.update', $user->name], 'method' => 'put']) }}
             <p>
+                {{ Form::label('name', 'Username') }}
+                {{ Form::text('name', $user->name) }}
+            </p>
+
+            @if ($errors->has('name'))
+                <p>{{ $errors->first('name') }}</p>
+            @endif
+
+            <p>
                 {{ Form::label('email') }}
                 {{ Form::email('email', $user->email) }}
             </p>

@@ -12,7 +12,7 @@
                     <p><img src="{{ $githubUser['image_url'] }}"/></p>
 
                     <p>
-                        {{ Form::label('name') }}
+                        {{ Form::label('name', 'Username') }}
                         {{ Form::text('name', Input::old('name', $githubUser['name'])) }}
                     </p>
 
