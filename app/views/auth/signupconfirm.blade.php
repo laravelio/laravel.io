@@ -13,7 +13,7 @@
 
                     <p>
                         {{ Form::label('name') }}
-                        {{ Form::text('name', Input::old('email', $githubUser['name'])) }}
+                        {{ Form::text('name', Input::old('name', $githubUser['name'])) }}
                     </p>
 
                     @if ($errors->has('name'))
