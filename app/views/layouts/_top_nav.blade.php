@@ -19,7 +19,7 @@
                 <a href="{{ action('PastesController@getCreate') }}">Pastebin</a>
             </li>
             <li>
-                <a href="http://www.buzzsprout.com/11908">Podcast</a>
+                <a href="http://www.laravelpodcast.com">Podcast</a>
             </li>
             <li>
                 <a target="_blank" href="http://forumsarchive.laravel.io/">Old Forum Archive</a>
