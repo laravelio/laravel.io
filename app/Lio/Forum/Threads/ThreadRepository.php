@@ -53,7 +53,7 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
 
     public function getThreadRepliesPaginated(Thread $thread, $perPage = 20)
     {
-        return $thread->replies()->paginate(20);
+        return $thread->replies()->paginate($perPage);
     }
 
     public function requireBySlug($slug)
