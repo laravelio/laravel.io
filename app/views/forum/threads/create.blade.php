@@ -51,8 +51,14 @@
                 <ul class="version tags _version_tags">
                     <li>
                         <label class="tag">
+                            Laravel 5.x
+                            {{ Form::radio('laravel_version', 5, true) }}
+                        </label>
+                    </li>
+                    <li>
+                        <label class="tag">
                             Laravel 4.x
-                            {{ Form::radio('laravel_version', 4, true) }}
+                            {{ Form::radio('laravel_version', 4) }}
                         </label>
                     </li>
                     <li>
