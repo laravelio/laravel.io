@@ -4,14 +4,14 @@ DatabaseBackup:
     args:
         - backup:create
     interval:
-        minute:  0
-        hour:    4
+        minute: 0
+        hour:   */8
 DatabaseCleanup:
     type:   cron
     script: htdocs/artisan
     args:
         - backup:clean
-        - 5
+        - 10
     interval:
-        minute:  0
-        hour:    24
+        minute: 0
+        hour:   4
