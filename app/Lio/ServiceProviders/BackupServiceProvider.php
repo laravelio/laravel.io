@@ -52,7 +52,7 @@ class BackupServiceProvider extends ServiceProvider
             $destination = $app['config']->get('backup.destination');
 
             if ($destination === 's3') {
-                $config = $storage['local']['s3'];
+                $config = $storage['s3'];
 
                 $client = S3Client::factory([
                     'key'    => $config['key'],
