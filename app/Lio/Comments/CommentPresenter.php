@@ -64,12 +64,15 @@ class CommentPresenter extends BasePresenter
         if ($this->resource->laravel_version == 3) {
             return '[L3]';
         }
+
         if ($this->resource->laravel_version == 4) {
             return '[L4]';
         }
-    }
 
-    // ------------------- //
+        if ($this->resource->laravel_version == 5) {
+            return '[L5]';
+        }
+    }
 
     private function convertMarkdown($content)
     {

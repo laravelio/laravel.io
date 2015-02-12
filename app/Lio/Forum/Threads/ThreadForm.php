@@ -10,7 +10,7 @@ class ThreadForm extends FormModel
         'body' => 'required',
         'tags' => 'required|max_tags:3',
         'is_question' => 'in:0,1',
-        'laravel_version' => 'required|in:0,3,4',
+        'laravel_version' => 'required|in:0,3,4,5',
     ];
 
     protected function beforeValidation()
