@@ -3,7 +3,7 @@ namespace Lio\Backup;
 
 use Illuminate\Console\Command;
 
-class BackupCreatorCommand extends Command
+class BackupCreateCommand extends Command
 {
     /**
      * The console command name.
@@ -17,7 +17,7 @@ class BackupCreatorCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Creates a new database backup file.';
+    protected $description = 'Creates a new database backup file';
 
     /**
      * @var \Lio\Backup\BackupCreator
@@ -45,7 +45,6 @@ class BackupCreatorCommand extends Command
     {
         $file = $this->backup->create();
 
-        // Output a message to the user with the generated filename.
         $this->info("Backup file \"$file\" was created successfully.");
     }
 }

@@ -22,13 +22,13 @@ class BackupCreator
 
     /**
      * @param \BigName\BackupManager\Manager $manager
-     * @param string $connection
+     * @param string $database
      * @param string $destination
      */
-    public function __construct(Manager $manager, $connection, $destination)
+    public function __construct(Manager $manager, $database, $destination)
     {
         $this->manager = $manager;
-        $this->database = $connection;
+        $this->database = $database;
         $this->destination = $destination;
     }
 

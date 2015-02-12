@@ -1,21 +1,15 @@
 <?php namespace Lio\ServiceProviders;
 
+use Aws\S3\S3Client;
 use Illuminate\Support\ServiceProvider;
+use League\Flysystem\Adapter\AwsS3;
+use League\Flysystem\Adapter\Local;
+use League\Flysystem\Filesystem;
 use Lio\Backup\BackupCreator;
-use Lio\Backup\BackupCreatorCommand;
+use Lio\Backup\BackupCleaner;
 
 class BackupServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap the application events
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->commands('command.backup.creator');
-    }
-
     /**
      * Register the service provider
      *
@@ -24,7 +18,12 @@ class BackupServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerBackupCreator();
-        $this->registerBackupCreatorCommand();
+        $this->registerBackupCleaner();
+
+        $this->commands([
+            'Lio\\Backup\\BackupCleanCommand',
+            'Lio\\Backup\\BackupCreateCommand'
+        ]);
     }
 
     /**
@@ -44,13 +43,31 @@ class BackupServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the backup creator command
+     * Register the backup creator
      */
-    protected function registerBackupCreatorCommand()
+    protected function registerBackupCleaner()
     {
-        $this->app->bindShared('command.backup.creator', function($app) {
-            return new BackupCreatorCommand($app['backup.creator']);
+        $this->app->bindShared('backup.cleaner', function($app) {
+            $storage = $app['config']['backup-manager::storage'];
+            $destination = $app['config']->get('backup.destination');
+
+            if ($destination === 's3') {
+                $config = $storage['local']['s3'];
+
+                $client = S3Client::factory([
+                    'key'    => $config['key'],
+                    'secret' => $config['secret'],
+                    'region' => $config['region'],
+                ]);
+                $adapter = new AwsS3($client, $config['bucket']);
+            } else {
+                $adapter = new Local($storage['local']['root']);
+            }
+
+            return new BackupCleaner(new Filesystem($adapter));
         });
+
+        $this->app->alias('backup.cleaner', 'Lio\Backup\BackupCleaner');
     }
 
     /**
@@ -60,6 +77,6 @@ class BackupServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['backup.creator', 'command.backup.creator'];
+        return ['backup.creator', 'backup.cleaner'];
     }
 }

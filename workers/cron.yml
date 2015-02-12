@@ -6,3 +6,12 @@ DatabaseBackup:
     interval:
         minute:  0
         hour:    4
+DatabaseCleanup:
+    type:   cron
+    script: htdocs/artisan
+    args:
+        - backup:clean
+        - 5
+    interval:
+        minute:  0
+        hour:    24
