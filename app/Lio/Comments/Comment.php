@@ -22,6 +22,7 @@ class Comment extends Entity implements PresenterInterface
         0 => "Doesn't Matter",
         3 => "Laravel 3.x",
         4 => "Laravel 4.x",
+        5 => "Laravel 5.x",
     ];
 
     const TYPE_FORUM   = 0;
