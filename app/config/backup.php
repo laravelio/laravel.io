@@ -12,6 +12,6 @@ return [
     |
     */
 
-    'destination' => 's3',
+    'destination' => 'local',
 
 ];

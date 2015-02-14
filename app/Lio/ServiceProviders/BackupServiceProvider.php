@@ -49,20 +49,20 @@ class BackupServiceProvider extends ServiceProvider
     {
         $this->app->bindShared('backup.cleaner', function($app) {
             $storage = $app['config']['backup-manager::storage'];
-//            $destination = $app['config']->get('backup.destination');
+            $destination = $app['config']->get('backup.destination');
 
-//            if ($destination === 's3') {
-//                $config = $storage['s3'];
-//
-//                $client = S3Client::factory([
-//                    'key'    => $config['key'],
-//                    'secret' => $config['secret'],
-//                    'region' => $config['region'],
-//                ]);
-//                $adapter = new AwsS3($client, $config['bucket']);
-//            } else {
+            if ($destination === 's3') {
+                $config = $storage['s3'];
+
+                $client = S3Client::factory([
+                    'key'    => $config['key'],
+                    'secret' => $config['secret'],
+                    'region' => $config['region'],
+                ]);
+                $adapter = new AwsS3($client, $config['bucket']);
+            } else {
                 $adapter = new Local($storage['local']['root']);
-//            }
+            }
 
             return new BackupCleaner(new Filesystem($adapter));
         });
