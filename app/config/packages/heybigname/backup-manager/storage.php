@@ -3,7 +3,7 @@
 return [
     'local' => [
         'type' => 'Local',
-        'root' => storage_path('dumps/backups'),
+        'root' => storage_path('dumps'),
     ],
     's3' => [
         'type' => 'AwsS3',
