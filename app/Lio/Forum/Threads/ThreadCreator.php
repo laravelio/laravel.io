@@ -95,8 +95,21 @@ class ThreadCreator
      */
     private function containsSpam($subject)
     {
+        if ($this->containsKoreanOrChinese($subject)) {
+            return true;
+        }
+
         // If the validator detects phone numbers, return false.
         return ! $this->phoneNumbers->validate($subject);
+    }
+
+    /**
+     * @param string $subject
+     * @return bool
+     */
+    private function containsKoreanOrChinese($subject)
+    {
+        return (bool) preg_match("/[\p{Hangul}|\p{Han}]+/u", $subject);
     }
 
     /**
