@@ -119,6 +119,7 @@ return [
         'Lio\ServiceProviders\BackupServiceProvider',
         'Lio\ServiceProviders\GithubServiceProvider',
         'Lio\ServiceProviders\CommentServiceProvider',
+        'Lio\ServiceProviders\ContentServiceProvider',
         'Lio\ServiceProviders\MarkdownServiceProvider',
         'Lio\ServiceProviders\HashidsServiceProvider',
     ],

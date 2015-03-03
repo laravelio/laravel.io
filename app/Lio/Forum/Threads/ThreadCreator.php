@@ -2,7 +2,7 @@
 
 use Illuminate\Support\MessageBag;
 use Lio\Accounts\User;
-use Lio\Validators\DoesNotContainPhoneNumbers;
+use Lio\Content\SpamDetector;
 
 /**
 * This class can call the following methods on the listener object:
@@ -18,18 +18,18 @@ class ThreadCreator
     protected $threads;
 
     /**
-     * @var \Lio\Validators\DoesNotContainPhoneNumbers
+     * @var \Lio\Content\SpamDetector
      */
-    protected $phoneNumbers;
+    private $spamDetector;
 
     /**
      * @param \Lio\Forum\Threads\ThreadRepository $threads
-     * @param \Lio\Validators\DoesNotContainPhoneNumbers $phoneNumbers
+     * @param \Lio\Content\SpamDetector $spamDetector
      */
-    public function __construct(ThreadRepository $threads, DoesNotContainPhoneNumbers $phoneNumbers)
+    public function __construct(ThreadRepository $threads, SpamDetector $spamDetector)
     {
         $this->threads = $threads;
-        $this->phoneNumbers = $phoneNumbers;
+        $this->spamDetector = $spamDetector;
     }
 
     // an additional validator is optional and will be run first, an example of a usage for
@@ -58,7 +58,7 @@ class ThreadCreator
 
     private function validateAndSave($thread, $listener, $data)
     {
-        if ($this->containsSpam($thread->subject)) {
+        if ($this->spamDetector->detectsSpam($thread->subject)) {
             $this->increaseUserSpamCount($thread->author);
 
             return $listener->threadCreationError(
@@ -66,7 +66,7 @@ class ThreadCreator
             );
         }
 
-        if ($this->containsSpam($thread->body)) {
+        if ($this->spamDetector->detectsSpam($thread->body)) {
             $this->increaseUserSpamCount($thread->author);
 
             return $listener->threadCreationError(
@@ -85,31 +85,6 @@ class ThreadCreator
         }
 
         return $listener->threadCreated($thread);
-    }
-
-    /**
-     * Determines if one or more subject contain spam
-     *
-     * @param string|array $subject
-     * @return bool
-     */
-    private function containsSpam($subject)
-    {
-        if ($this->containsKoreanOrChinese($subject)) {
-            return true;
-        }
-
-        // If the validator detects phone numbers, return false.
-        return ! $this->phoneNumbers->validate($subject);
-    }
-
-    /**
-     * @param string $subject
-     * @return bool
-     */
-    private function containsKoreanOrChinese($subject)
-    {
-        return (bool) preg_match("/[\p{Hangul}|\p{Han}]+/u", $subject);
     }
 
     /**
