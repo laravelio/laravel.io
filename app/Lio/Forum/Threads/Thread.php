@@ -71,11 +71,11 @@ class Thread extends Entity implements PresenterInterface
     {
         $i = 0;
 
-        while ($this->getCountBySlug($this->generateSlugByIncrementer($i)) > 0) {
-            $i++;
-        }
+        do {
+            $slug = $this->generateSlugByIncrementer($i++);
+        } while ($this->getCountBySlug($slug) > 0);
 
-        return $this->generateSlugByIncrementer($i);
+        return $slug;
     }
 
     private function getCountBySlug($slug)
