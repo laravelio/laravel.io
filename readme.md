@@ -33,7 +33,7 @@ Here are the steps for installation on a local machine.
 4. Add a site `lio.loc` for the laravel.io repository to the `Homestead.yml` file under the `sites` list.
 5. Run `vagrant provision` in your Homestead folder.
 6. Create a database in Homestead called `laravelio`.
-7. Run `composer install --dev` and `php artisan migrate --seed --env=local`.
+7. Run `composer install` and `php artisan migrate --seed --env=local`.
 8. Add `192.168.10.10 lio.loc` to your computer's `hosts` file.
 9. Follow the configuration steps below to configure the external services.
 
