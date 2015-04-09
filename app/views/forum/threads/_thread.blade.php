@@ -29,6 +29,11 @@
             @if($thread->isQuestion() && $thread->isSolved())
                 <li><a href="{{ $thread->markAsUnsolvedUrl }}">Mark Unsolved</a></li>
             @endif
+            @if ($currentUser->hasRoles('manage_users'))
+                {{ Form::open(['action' => ['Admin\UsersController@putBanAndDeleteThreads', $thread->author->id], 'method' => 'put']) }}
+                    <li>{{ Form::button('Ban User and Delete Threads', ['type' => 'submit']) }}</li>
+                {{ Form::close() }}
+            @endif
         @endif
 
         @if (Auth::user())
