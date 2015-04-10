@@ -15,6 +15,7 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 - [Frontend](#frontend)
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
+- [Security Vulnerabilities](#security-vulnerabilities)
 - [License](#license)
 
 ## Requirements
@@ -74,12 +75,16 @@ Because we keep the generated / minified css out of the repository, we must have
 
 ## Maintainers
 
-The Laravel.IO project is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to contact us through the support widget on the [Laravel.IO](http://laravel.io/) website.
+The Laravel.IO portal is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to contact us through the support widget on the [Laravel.IO](http://laravel.io/) website.
 
 ## Contributing
 
-Please see [the contributing file](contributing.md) for details.
+Please see [the contributing guide](contributing.md) for details.
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel.IO, please send an email immediately to Dries Vints at dries.vints@gmail.com. **Do not create an issue for the vulnerability.**
 
 ## License
 
-The MIT License (MIT). Please see [the license file](license.txt) for more information.
+The MIT License. Please see [the license file](license.txt) for more information.
