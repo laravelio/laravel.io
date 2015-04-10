@@ -27,15 +27,15 @@ In order to compile stylesheets you will also need Ruby, Sass, and Compass insta
 
 Here are the steps for installation on a local machine.
 
-1. Make sure you have [Laravel Homestead](http://laravel.com/docs/homestead) installed.
-2. Clone this repository: `git clone git@github.com:LaravelIO/laravel-io.git laravelio/`.
-3. Add the path for the cloned laravel.io repository to the `Homestead.yml` file under the `folders` list.
-4. Add a site `lio.loc` for the laravel.io repository to the `Homestead.yml` file under the `sites` list.
-5. Run `vagrant provision` in your Homestead folder.
-6. Create a database in Homestead called `laravelio`.
-7. Run `composer install` and `php artisan migrate --seed --env=local`.
-8. Add `192.168.10.10 lio.loc` to your computer's `hosts` file.
-9. Follow the configuration steps below to configure the external services.
+1. Make sure you have [Laravel Homestead](http://laravel.com/docs/homestead) installed
+2. Clone this repository: `git clone git@github.com:LaravelIO/laravel-io.git laravelio/`
+3. Add the path for the cloned laravel.io repository to the `Homestead.yml` file under the `folders` list
+4. Add a site `lio.loc` for the laravel.io repository to the `Homestead.yml` file under the `sites` list
+5. Run `vagrant provision` in your Homestead folder
+6. Create a database in Homestead called `laravelio`
+7. Run `composer install` and `php artisan migrate --seed --env=local`
+8. Add `192.168.10.10 lio.loc` to your computer's `hosts` file
+9. Follow the configuration steps below to configure the external services
 
 ## Configuration
 
