@@ -4,7 +4,7 @@ We welcome contributions to the Laravel.IO project. Please read the following gu
 
 ## Pull Requests
 
-- **Feature requests** first need to be discussed and accepted by the community through an issue before sending in a pull request
+- **Feature requests** first need to be discussed and accepted [through an issue](https://github.com/LaravelIO/laravel.io/issues/new) before sending in a pull request
 - **Bug fixes** should contain [regression tests](https://laracasts.com/lessons/regression-testing)
 - All pull requests should follow the [coding standards](#coding-standards)
 - Pull requests will be merged after being reviewed by [the maintainers](readme.md#maintainers)
