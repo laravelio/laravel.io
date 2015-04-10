@@ -1,6 +1,6 @@
 # Contributing Guide
 
-We welcome contributions to the Laravel.IO project. Please read the following guide on how to in pull requests.
+We welcome contributions to the Laravel.IO project. Please read the following guide on how to send in pull requests.
 
 ## Pull Requests
 
