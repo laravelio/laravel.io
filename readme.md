@@ -13,7 +13,7 @@ This is the Laravel.IO community portal site. The site is entirely open source a
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Frontend](#frontend)
-- [Maintainer](#maintainer)
+- [Maintainers](#maintainers)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -72,7 +72,7 @@ Because we keep the generated / minified css out of the repository, we must have
 - When running any compass command in the terminal, be sure to run it from your `/public` folder.
 - Compass is the tool used to compile Sass source files into CSS files; you can run `compass compile` to run it once, or `compass watch` to trigger a script that will watch your Sass files for changes and trigger a new compass compile on each change
 
-## Maintainer
+## Maintainers
 
 The Laravel.IO project is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to contact us through the support widget on the [Laravel.IO](http://laravel.io/) website.
 
