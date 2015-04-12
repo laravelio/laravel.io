@@ -3,6 +3,7 @@
 use Illuminate\Support\MessageBag;
 use Lio\Accounts\User;
 use Lio\Content\SpamDetector;
+use Psr\Log\LoggerInterface;
 
 /**
 * This class can call the following methods on the listener object:
@@ -23,13 +24,20 @@ class ThreadCreator
     private $spamDetector;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
      * @param \Lio\Forum\Threads\ThreadRepository $threads
      * @param \Lio\Content\SpamDetector $spamDetector
+     * @param \Psr\Log\LoggerInterface $logger
      */
-    public function __construct(ThreadRepository $threads, SpamDetector $spamDetector)
+    public function __construct(ThreadRepository $threads, SpamDetector $spamDetector, LoggerInterface $logger)
     {
         $this->threads = $threads;
         $this->spamDetector = $spamDetector;
+        $this->logger = $logger;
     }
 
     // an additional validator is optional and will be run first, an example of a usage for
@@ -39,6 +47,7 @@ class ThreadCreator
         if ($validator && ! $validator->isValid()) {
             return $listener->threadCreationError($validator->getErrors());
         }
+
         return $this->createValidRecord($listener, $data);
     }
 
@@ -59,6 +68,8 @@ class ThreadCreator
     private function validateAndSave($thread, $listener, $data)
     {
         if ($this->spamDetector->detectsSpam($thread->subject)) {
+            $this->logSpam($thread->subject, $thread->author);
+
             $this->increaseUserSpamCount($thread->author);
 
             return $listener->threadCreationError(
@@ -67,6 +78,8 @@ class ThreadCreator
         }
 
         if ($this->spamDetector->detectsSpam($thread->body)) {
+            $this->logSpam($thread->body, $thread->author);
+
             $this->increaseUserSpamCount($thread->author);
 
             return $listener->threadCreationError(
@@ -102,5 +115,15 @@ class ThreadCreator
         }
 
         $user->save();
+    }
+
+    /**
+     * @param string $spam
+     * @param \Lio\Accounts\User $author
+     */
+    private function logSpam($spam, User $author)
+    {
+        $this->logger->warning("Warning: attempted spam posted by [#{$author->id}] {$author->name}:");
+        $this->logger->warning($spam);
     }
 }
