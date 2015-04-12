@@ -15,14 +15,14 @@ class ForumThreadsController extends BaseController
     public function __construct(ThreadRepository $threads, TagRepository $tags)
     {
         $this->threads = $threads;
-        $this->tags    = $tags;
+        $this->tags = $tags;
     }
 
     public function getIndex($status = '')
     {
         $threadCount = Input::get('take', $this->threadsPerPage);
-        $tags        = $this->tags->getAllTagsBySlug(Input::get('tags'));
-        $threads     = $this->threads->getByTagsAndStatusPaginated($tags, $status, $threadCount);
+        $tags = $this->tags->getAllTagsBySlug(Input::get('tags'));
+        $threads = $this->threads->getByTagsAndStatusPaginated($tags, $status, $threadCount);
 
         $collection = $threads->getCollection();
 

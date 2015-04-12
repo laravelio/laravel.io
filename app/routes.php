@@ -94,7 +94,7 @@ Route::group(['before' => 'auth|confirmed'], function() {
 });
 
 Route::get('forum/{status?}', ['as' => 'home', 'uses' => 'ForumThreadsController@getIndex'])
-    ->where(array('status' => '(|open|solved)'));
+    ->where(['status' => '(open|solved)']);
 
 Route::get('forum/search', 'ForumThreadsController@getSearch');
 Route::get('forum/{slug}/reply/{commentId}', 'ForumRepliesController@getReplyRedirect');

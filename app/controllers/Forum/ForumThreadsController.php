@@ -45,11 +45,11 @@ class ForumThreadsController extends BaseController implements
 
         // add the tag string to each pagination link
         $tagAppends = ['tags' => Input::get('tags')];
-        $queryString = !empty($tagAppends['tags']) ? '?tags=' . implode(',', (array)$tagAppends['tags']) : '';
+        $queryString = ! empty($tagAppends['tags']) ? '?tags=' . implode(',', (array) $tagAppends['tags']) : '';
         $threads->appends($tagAppends);
         $this->createSections(Input::get('tags'));
 
-        $this->title = "Forum";
+        $this->title = 'Forum';
         $this->view('forum.threads.index', compact('threads', 'tags', 'queryString'));
     }
 
@@ -58,7 +58,7 @@ class ForumThreadsController extends BaseController implements
     {
         $thread = $this->threads->getBySlug($threadSlug);
 
-        if ( ! $thread) {
+        if (! $thread) {
             return $this->redirectAction('ForumThreadsController@getIndex');
         }
 

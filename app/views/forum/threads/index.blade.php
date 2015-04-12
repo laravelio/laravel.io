@@ -9,7 +9,7 @@
         <div class="header">
             <h1>Forum</h1>
                 {{-- Display select tags --}}
-                @if(Input::get('tags', null))
+                @if (Input::get('tags', null))
                     <div class="tags">
                         {{ Input::get('tags') }}
                     </div>
@@ -31,9 +31,9 @@
             @each('forum.threads._index_summary', $threads, 'thread')
 
             {{-- If no comments are found display a message --}}
-            @if( ! $threads->count())
+            @if (! $threads->count())
                 <div class="empty-state">
-                    @if(Input::get('tags'))
+                    @if (Input::get('tags'))
                         <h3>No threads found that are tagged with {{ Input::get('tags') }}</h3>
                     @else
                         <h3>No threads found.</h3>
