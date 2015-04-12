@@ -1,22 +1,17 @@
-<?php namespace Lio\Forum\Threads;
+<?php
+namespace Lio\Forum\Threads;
 
 use Illuminate\Support\MessageBag;
 use Lio\Accounts\User;
 use Lio\Content\SpamDetector;
 use Psr\Log\LoggerInterface;
 
-/**
-* This class can call the following methods on the listener object:
-*
-* threadCreationError($errors)
-* threadCreated($thread)
-*/
 class ThreadCreator
 {
     /**
      * @var \Lio\Forum\Threads\ThreadRepository
      */
-    protected $threads;
+    private $threads;
 
     /**
      * @var \Lio\Content\SpamDetector
