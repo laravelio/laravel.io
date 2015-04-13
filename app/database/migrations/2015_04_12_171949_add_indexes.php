@@ -36,18 +36,18 @@ class AddIndexes extends Migration
     public function down()
     {
         Schema::table('forum_threads', function (Blueprint $table) {
-            $table->dropIndex('author_id');
-            $table->dropIndex('most_recent_reply_id');
-            $table->dropIndex('solution_reply_id');
+            $table->dropIndex(['author_id']);
+            $table->dropIndex(['most_recent_reply_id']);
+            $table->dropIndex(['solution_reply_id']);
         });
 
         Schema::table('forum_replies', function (Blueprint $table) {
-            $table->dropIndex('author_id');
-            $table->dropIndex('thread_id');
+            $table->dropIndex(['author_id']);
+            $table->dropIndex(['thread_id']);
         });
 
         Schema::table('comments', function (Blueprint $table) {
-            $table->dropIndex('author_id');
+            $table->dropIndex(['author_id']);
         });
     }
 }
