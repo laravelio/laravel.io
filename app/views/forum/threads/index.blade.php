@@ -11,7 +11,7 @@
                 {{-- Display select tags --}}
                 @if (Input::get('tags', null))
                     <div class="tags">
-                        {{ Input::get('tags') }}
+                        {{{ Input::get('tags') }}}
                     </div>
                 @endif
             <a class="button" href="{{ action('ForumThreadsController@getCreateThread') }}">Create Thread</a>
@@ -34,7 +34,7 @@
             @if (! $threads->count())
                 <div class="empty-state">
                     @if (Input::get('tags'))
-                        <h3>No threads found that are tagged with {{ Input::get('tags') }}</h3>
+                        <h3>No threads found that are tagged with {{{ Input::get('tags') }}}</h3>
                     @else
                         <h3>No threads found.</h3>
                     @endif

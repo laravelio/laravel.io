@@ -10,7 +10,7 @@
             {{-- Display select tags --}}
             @if(Input::get('tags'))
                 <div class="tags">
-                    {{ Input::get('tags') }}
+                    {{{ Input::get('tags') }}}
                 </div>
             @endif
     </div>
