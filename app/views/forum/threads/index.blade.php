@@ -8,21 +8,23 @@
     <section class="forum">
         <div class="header">
             <h1>Forum</h1>
-                {{-- Display select tags --}}
-                @if (Input::get('tags', null))
-                    <div class="tags">
-                        {{{ Input::get('tags') }}}
-                    </div>
-                @endif
+
+            {{-- Display select tags --}}
+            @if (Input::get('tags', null))
+                <div class="tags">
+                    {{{ Input::get('tags') }}}
+                </div>
+            @endif
+
             <a class="button" href="{{ action('ForumThreadsController@getCreateThread') }}">Create Thread</a>
         </div>
 
         <div class="filter">
             <p>Showing:</p>
             <ul>
-                <li><a href="{{ action('ForumThreadsController@getIndex', '') . $queryString }}" class="{{ Request::path() == 'forum' ? 'current' : '' }}">All</a></li>
-                <li><a href="{{ action('ForumThreadsController@getIndex', 'open') . $queryString }}" class="{{ Request::is('forum/open') ? 'current' : '' }}">Open</a></li>
-                <li><a href="{{ action('ForumThreadsController@getIndex', 'solved') . $queryString }}" class="{{ Request::is('forum/solved') ? 'current' : '' }}">Solved</a></li>
+                <li><a href="{{{ action('ForumThreadsController@getIndex', '') . $queryString }}}" class="{{ Request::path() == 'forum' ? 'current' : '' }}">All</a></li>
+                <li><a href="{{{ action('ForumThreadsController@getIndex', 'open') . $queryString }}}" class="{{ Request::is('forum/open') ? 'current' : '' }}">Open</a></li>
+                <li><a href="{{{ action('ForumThreadsController@getIndex', 'solved') . $queryString }}}" class="{{ Request::is('forum/solved') ? 'current' : '' }}">Solved</a></li>
             </ul>
         </div>
 

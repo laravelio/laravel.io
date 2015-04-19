@@ -14,23 +14,24 @@
             {{ $replies->links() }}
         </div>
 
-        @if(Input::get('page') < 2)
+        @if (Input::get('page') < 2)
             @include('forum.threads._thread')
         @endif
 
         <div class="comments">
-            @foreach($replies as $reply)
+            @foreach ($replies as $reply)
                 @include('forum.replies._show')
             @endforeach
         </div>
         {{ $replies->links() }}
     </div>
 
-    @if(Auth::check())
+    @if (Auth::check())
         @include('forum.replies._create')
     @else
         <div class="login-cta">
-            <p>Want to reply to this thread?</p> <a class="button" href="{{ action('AuthController@getLogin') }}">Login with github.</a>
+            <p>Want to reply to this thread?</p>
+            <a class="button" href="{{ action('AuthController@getLogin') }}">Login with github.</a>
         </div>
     @endif
 @stop
@@ -40,6 +41,7 @@
 
 @section('scripts')
     @parent
+
     <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/obsidian.min.css">
     <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
