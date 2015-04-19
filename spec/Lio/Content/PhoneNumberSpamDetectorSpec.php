@@ -125,6 +125,8 @@ Tantra Mantra, Tankarik Baba, Indian Astrologer
 Just Give A Call & Get Your Love Back one call and change your life nageshewarbaba.blogspot.com email id nageshewarbaba@yahoo.com
 TEXT;
 
+    private $otherTextWithPhoneNumber = 'ｂｅｓｔｔｔ~91-8872522276 vashikaran specialist uk usa india';
+
     function it_is_initializable()
     {
         $this->shouldHaveType('Lio\Content\PhoneNumberSpamDetector');
@@ -134,6 +136,7 @@ TEXT;
     function it_can_detect_phone_number_spam()
     {
         $this->detectsSpam($this->textWithPhoneNumbers)->shouldReturn(true);
+        $this->detectsSpam($this->otherTextWithPhoneNumber)->shouldReturn(true);
     }
 
     function it_passes_when_no_phone_numbers_are_detected()
