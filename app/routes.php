@@ -109,7 +109,8 @@ Route::group(['before' => 'auth|confirmed', 'prefix' => 'admin', 'namespace' => 
     });
 
     Route::group(['before' => 'has_role:manage_users'], function() {
-        Route::get('users', 'UsersController@getIndex');
+        Route::get('users', ['as' => 'admin.users', 'uses' => 'UsersController@getIndex']);
+        Route::get('users/search', ['as' => 'admin.users.search', 'uses' => 'UsersController@search']);
         Route::get('edit/{user}', 'UsersController@getEdit');
         Route::post('edit/{user}', 'UsersController@postEdit');
         Route::put('ban-and-delete-threads/{user}', 'UsersController@putBanAndDeleteThreads');

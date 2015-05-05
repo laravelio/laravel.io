@@ -5,6 +5,14 @@
         </div>
     </div>
 </header>
+
+<div style="margin-bottom: 25px">
+    {{ Form::open(['route' => 'admin.users.search', 'method' => 'GET']) }}
+        {{ Form::text('q') }}
+        {{ Form::submit('Search Users') }}
+    {{ Form::close() }}
+</div>
+
 <div class="row">
     <div class="small-12 columns">
         @if ($users->getTotal() > 0)

@@ -5,6 +5,14 @@ use Lio\Core\Exceptions\EntityNotFoundException;
 
 class UserRepository extends EloquentRepository
 {
+    /**
+     * @var \Lio\Accounts\User
+     */
+    protected $model;
+
+    /**
+     * @param \Lio\Accounts\User $model
+     */
     public function __construct(User $model)
     {
         $this->model = $model;
@@ -29,6 +37,19 @@ class UserRepository extends EloquentRepository
     public function getByName($name)
     {
         return $this->model->where('name', '=', $name)->first();
+    }
+
+    /**
+     * @param mixed $value
+     * @return \Lio\Accounts\User[]
+     */
+    public function search($value)
+    {
+        return $this->model
+            ->where('name', $value)
+            ->orWhere('id', $value)
+            ->orWhere('email', $value)
+            ->paginate();
     }
 
     public function getFirstX($count)

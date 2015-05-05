@@ -8,7 +8,14 @@ use Lio\Forum\Threads\ThreadRepository;
 
 class UsersController extends BaseController
 {
+    /**
+     * @var \Lio\Accounts\UserRepository
+     */
     private $users;
+
+    /**
+     * @var \Lio\Accounts\RoleRepository
+     */
     private $roles;
 
     /**
@@ -26,6 +33,14 @@ class UsersController extends BaseController
     public function getIndex()
     {
         $users = $this->users->getAllPaginated(100);
+
+        $this->view('admin.users.index', compact('users'));
+    }
+
+    public function search()
+    {
+        $users = $this->users->search(Input::get('q'));
+
         $this->view('admin.users.index', compact('users'));
     }
 
