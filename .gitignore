@@ -1,3 +1,5 @@
-/bootstrap/compiled.php
-/vendor/
-/.env*.php
+.DS_Store
+.idea
+bootstrap/compiled.php
+vendor/
+.env*.php
