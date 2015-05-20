@@ -30,8 +30,8 @@
             "app/database/migrations",
             "app/database/seeds"
         ],
-        "psr-0": {
-            "Lio\\": "app/"
+        "psr-4": {
+            "Lio\\": "src/"
         }
     },
     "autoload-dev": {

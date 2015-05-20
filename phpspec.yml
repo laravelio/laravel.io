@@ -1,4 +1,4 @@
 suites:
   lio:
     namespace: Lio
-    src_path: app
+    psr4_prefix: Lio
