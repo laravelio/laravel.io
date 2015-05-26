@@ -7,7 +7,7 @@ class HashidsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->app->bind('Hashids\Hashids', function() {
+        $this->app->bind(['Hashids\Hashids' => 'hashids'], function() {
             $key = $this->app['config']->get('app.key');
             return new Hashids($key, 2);
         });
