@@ -1,7 +1,7 @@
 <?php
 
 // Load Environment Variables
-$dotenv = new Dotenv\Dotenv(base_path());
+$dotenv = new Dotenv\Dotenv(__DIR__ . '/..');
 $dotenv->load();
 
 /*
