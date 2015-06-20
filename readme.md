@@ -40,7 +40,7 @@ Here are the steps for installation on a local machine.
 
 ## Configuration
 
-Laravel.IO relies on some key services to function, namely Github OAuth authentication and the Google ReCaptcha service. Follow the steps below to fill in the credentials in a custom `.env.local.php` file.
+Laravel.IO relies on some key services to function, namely Github OAuth authentication and the Google ReCaptcha service. Follow the steps below to fill in the credentials in a custom `.env` file.
 
 1. Create the configuration file below at the root of your application with the name ***.env***.
 
