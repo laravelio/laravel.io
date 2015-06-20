@@ -51,12 +51,12 @@ GOOGLE_RECAPTCHA_SITEKEY=
 GOOGLE_RECAPTCHA_SECRETKEY=
 ```
 
-2. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel IO Development" and add your Github application's client id and secret to the `.env.local.php` file. Your GitHub application should be set up as follows.
+2. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel IO Development" and add your Github application's client id and secret to the `.env` file. Your GitHub application should be set up as follows.
 
     a. Full URL: http://lio.loc
     b. Callback URL: http://lio.loc/login
 
-3. [Register a new website](https://www.google.com/recaptcha/admin) for the Google ReCaptcha service and fill in the site key and secret key in the `.env.local.php` file.
+3. [Register a new website](https://www.google.com/recaptcha/admin) for the Google ReCaptcha service and fill in the site key and secret key in the `.env` file.
 
 You can now visit the app in your browser by visiting [http://lio.loc/](http://lio.loc).
 
