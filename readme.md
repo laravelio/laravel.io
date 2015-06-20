@@ -44,7 +44,7 @@ Laravel.IO relies on some key services to function, namely Github OAuth authenti
 
 1. Create the configuration file below at the root of your application with the name ***.env***.
 
-```php
+```
 GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 GOOGLE_RECAPTCHA_SITEKEY=
