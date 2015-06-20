@@ -1,5 +1,9 @@
 <?php
 
+// Load Environment Variables
+$dotenv = new Dotenv\Dotenv(base_path());
+$dotenv->load();
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application
