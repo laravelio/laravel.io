@@ -16,7 +16,8 @@
         "guzzlehttp/guzzle": "4.2.*",
         "heybigname/backup-manager": "0.3.*",
         "aws/aws-sdk-php": "2.7.*",
-        "league/flysystem": "0.5.*"
+        "league/flysystem": "0.5.*",
+        "vlucas/phpdotenv": "~2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "4.3.*",
