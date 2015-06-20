@@ -42,18 +42,13 @@ Here are the steps for installation on a local machine.
 
 Laravel.IO relies on some key services to function, namely Github OAuth authentication and the Google ReCaptcha service. Follow the steps below to fill in the credentials in a custom `.env.local.php` file.
 
-1. Create the configuration file below at the root of your application with the name ***.env.local.php***.
+1. Create the configuration file below at the root of your application with the name ***.env***.
 
 ```php
-<?php
-
-return [
-    'GITHUB_CLIENT_ID' => '',
-    'GITHUB_CLIENT_SECRET' => '',
-    'GOOGLE_RECAPTCHA_SITEKEY' => '',
-    'GOOGLE_RECAPTCHA_SECRETKEY' => '',
-];
-
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+GOOGLE_RECAPTCHA_SITEKEY=
+GOOGLE_RECAPTCHA_SECRETKEY=
 ```
 
 2. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel IO Development" and add your Github application's client id and secret to the `.env.local.php` file. Your GitHub application should be set up as follows.
