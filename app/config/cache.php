@@ -69,12 +69,8 @@ return array(
 
     'memcached' => [
         [
-            'host' =>getenv('MEMCACHED_HOST'),
-            'port' => getenv('MEMCACHED_PORT1'),
-            'weight' => 100,
-        ], [
-            'host'   => getenv('MEMCACHED_HOST'),
-            'port'   => getenv('MEMCACHED_PORT2'),
+            'host' => '127.0.0.1',
+            'port' => 11211,
             'weight' => 100,
         ],
     ],
