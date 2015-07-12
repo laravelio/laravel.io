@@ -21,9 +21,6 @@
             <li>
                 <a href="http://www.laravelpodcast.com">Podcast</a>
             </li>
-            <li>
-                <a target="_blank" href="http://forumsarchive.laravel.io/">Old Forum Archive</a>
-            </li>
 
             @if (Auth::check() && Auth::user()->hasRole('manage_users'))
                 <li>
