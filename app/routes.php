@@ -1,13 +1,28 @@
 <?php
 
-Route::group(array('domain' => 'bin.laravel.io'), function() {
+Route::group(['domain' => 'bin.laravel.io'], function() {
     Route::get('{wildcard}', function($wildcard) {
         return Redirect::to('http://laravel.io/bin/' . $wildcard);
     });
 });
-Route::group(array('domain' => 'paste.laravel.io'), function() {
+Route::group(['domain' => 'paste.laravel.io'], function() {
     Route::get('{wildcard}', function($wildcard) {
         return Redirect::to('http://laravel.io/bin/' . $wildcard);
+    });
+});
+Route::group(['domain' => 'wiki.laravel.io'], function() {
+    Route::get('{wildcard}', function($wildcard) {
+        return Redirect::to('http://laravel.io/');
+    });
+});
+Route::group(['domain' => 'forum.laravel.io'], function() {
+    Route::get('{wildcard}', function($wildcard) {
+        return Redirect::to('http://laravel.io/');
+    });
+});
+Route::group(['domain' => 'forums.laravel.io'], function() {
+    Route::get('{wildcard}', function($wildcard) {
+        return Redirect::to('http://laravel.io/');
     });
 });
 
