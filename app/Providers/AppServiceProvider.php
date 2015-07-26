@@ -13,13 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // If a user is logged in, we'll set him as the target user for which the errors will occur.
-        if ($this->app['auth']->check()) {
-            $this->app['bugsnag']->setUser([
-                'name' => $this->app['auth']->user()->name,
-                'email' => $this->app['auth']->user()->email
-            ]);
-        }
+        //
     }
 
     /**
