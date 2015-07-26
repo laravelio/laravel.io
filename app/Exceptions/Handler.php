@@ -1,7 +1,6 @@
 <?php
 namespace Lio\Exceptions;
 
-use Auth;
 use Bugsnag;
 use Exception;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -29,10 +28,10 @@ class Handler extends ExceptionHandler
     public function report(Exception $e)
     {
         // If a user is logged in, we'll set him as the target user for which the errors will occur.
-        if (Auth::check()) {
+        if (auth()->check()) {
             Bugsnag::setUser([
-                'name' => Auth::user()->name,
-                'email' => Auth::user()->email,
+                'name' => auth()->user()->name,
+                'email' => auth()->user()->email,
             ]);
         }
 
