@@ -3,7 +3,6 @@ namespace Lio\Tests\Unit\Markdown;
 
 use Lio\Markdown\HtmlMarkdownConvertor;
 use Lio\Tests\TestCase;
-use Mockery;
 
 class HtmlMarkdownConvertorTest extends TestCase
 {

@@ -1,5 +1,5 @@
 filter:
-    paths: [app/Lio/*]
+    paths: [app/*]
 tools:
     php_analyzer: true
     php_code_sniffer:

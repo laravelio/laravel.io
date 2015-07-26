@@ -12,7 +12,8 @@ TEXT;
 
     private $validText = 'This piece of text should pass.
 
-<?php namespace App\\Http\\Requests;
+<?php
+namespace Lio\\Http\\Requests;
 
 class ModifyContinentRequest extends Request {
 

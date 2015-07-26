@@ -1,5 +1,6 @@
 .DS_Store
 .idea
-bootstrap/compiled.php
-vendor/
+/vendor
+/node_modules
+Homestead.yaml
 .env

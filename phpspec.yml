@@ -2,3 +2,4 @@ suites:
   lio:
     namespace: Lio
     psr4_prefix: Lio
+formatter.name: dot

@@ -1,20 +1,29 @@
 <?php
 namespace Lio\Tests;
 
+use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\TestCase as IlluminateTestCase;
 
 abstract class TestCase extends IlluminateTestCase
 {
     /**
+     * The base URL to use while testing the application.
+     *
+     * @var string
+     */
+    protected $baseUrl = 'http://localhost';
+
+    /**
      * Creates the application.
      *
-     * @return Symfony\Component\HttpKernel\HttpKernelInterface
+     * @return \Illuminate\Foundation\Application
      */
     public function createApplication()
     {
-        $unitTesting = true;
-        $testEnvironment = 'testing';
+        $app = require __DIR__.'/../bootstrap/app.php';
 
-        return require __DIR__ . '/../bootstrap/start.php';
+        $app->make(Kernel::class)->bootstrap();
+
+        return $app;
     }
 }
