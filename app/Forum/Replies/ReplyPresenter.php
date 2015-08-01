@@ -1,18 +1,19 @@
 <?php
 namespace Lio\Forum\Replies;
 
-use App;
 use Input;
 use McCool\LaravelAutoPresenter\BasePresenter;
+use Misd\Linkify\Linkify;
 use Request;
 
 class ReplyPresenter extends BasePresenter
 {
     public function url()
     {
-        $slug = $this->thread->slug;
-        $threadUrl = action('Forum\ForumThreadsController@getShowThread', [$slug]);
-        return $threadUrl . \App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->getWrappedObject());
+        $slug = $this->getWrappedObject()->thread->slug;
+        $threadUrl = action('Forum\ForumThreadsController@getShowThread', $slug);
+
+        return $threadUrl . app(ReplyQueryStringGenerator::class)->generate($this->getWrappedObject());
     }
 
     public function created_ago()
@@ -35,21 +36,20 @@ class ReplyPresenter extends BasePresenter
         return $body;
     }
 
-    // ------------------- //
-
     private function convertMarkdown($content)
     {
-        return App::make('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($content);
+        return app('Lio\Markdown\HtmlMarkdownConvertor')->convertMarkdownToHtml($content);
     }
 
     private function formatGists($content)
     {
-        return App::make('Lio\Github\GistEmbedFormatter')->format($content);
+        return app('Lio\Github\GistEmbedFormatter')->format($content);
     }
 
     private function linkify($content)
     {
-        $linkify = new \Misd\Linkify\Linkify();
+        $linkify = new Linkify();
+
         return $linkify->process($content);
     }
 }
