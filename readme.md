@@ -44,8 +44,8 @@ Laravel.io relies on some key services to function, namely Github OAuth authenti
 
 1. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel.io Development" and add your Github application's client id, secret and url to the `.env` file. Your GitHub application should be set up as follows.
 
-    a. Full URL: http://lio.loc
-    b. Callback URL: http://lio.loc/auth/github
+    Full URL: http://lio.loc  
+    Callback URL: http://lio.loc/auth/github
 
 2. [Register a new website](https://www.google.com/recaptcha/admin) for the Google ReCaptcha service and fill in the site key and secret key in the `.env` file.
 
