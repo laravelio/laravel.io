@@ -5,10 +5,10 @@
 </head>
 <body>
 
-<h2>Verify your email address for your Laravel.IO account</h2>
+<h2>Verify your email address for your Laravel.io account</h2>
 
 <p>
-    Thanks for creating an account on Laravel.IO.<br>
+    Thanks for creating an account on Laravel.io.<br>
     Please follow the link below to verify your email address
 </p>
 <p><a href="{{ route('auth.confirm', $confirmationCode) }}">{{ route('auth.confirm', $confirmationCode) }}</a></p>

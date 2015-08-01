@@ -1,11 +1,11 @@
-# Laravel.IO Community Portal
+# Laravel.io Community Portal
 
 <img src="https://travis-ci.org/LaravelIO/laravel.io.svg?branch=master" alt="Build Status">
 <img src="https://scrutinizer-ci.com/g/LaravelIO/laravel.io/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality">
 <img src='https://coveralls.io/repos/LaravelIO/laravel.io/badge.png?branch=master' alt='Coverage Status' />
 <img src="https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e/mini.png" alt="SensioLabsInsight">
 
-This is the Laravel.IO community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
+This is the Laravel.io community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
 
 ## Table of Contents
 
@@ -40,7 +40,7 @@ Here are the steps for installation on a local machine.
 
 ## Configuration
 
-Laravel.IO relies on some key services to function, namely Github OAuth authentication and the Google ReCaptcha service. Follow the steps below to fill in the credentials in a custom `.env` file.
+Laravel.io relies on some key services to function, namely Github OAuth authentication and the Google ReCaptcha service. Follow the steps below to fill in the credentials in a custom `.env` file.
 
 1. Create the configuration file below at the root of your application with the name ***.env***.
 
@@ -51,7 +51,7 @@ GOOGLE_RECAPTCHA_SITEKEY=
 GOOGLE_RECAPTCHA_SECRETKEY=
 ```
 
-2. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel IO Development" and add your Github application's client id and secret to the `.env` file. Your GitHub application should be set up as follows.
+2. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel.io Development" and add your Github application's client id and secret to the `.env` file. Your GitHub application should be set up as follows.
 
     a. Full URL: http://lio.loc
     b. Callback URL: http://lio.loc/login
@@ -70,7 +70,7 @@ Because we keep the generated / minified css out of the repository, we must have
 
 ## Maintainers
 
-The Laravel.IO portal is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to contact us through the support widget on the [Laravel.IO](http://laravel.io/) website.
+The Laravel.io portal is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to contact us through the support widget on the [Laravel.io](http://laravel.io/) website.
 
 ## Contributing
 
@@ -78,7 +78,7 @@ Please see [the contributing guide](contributing.md) for details.
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel.IO, please send an email immediately to Dries Vints at dries.vints@gmail.com. **Do not create an issue for the vulnerability.**
+If you discover a security vulnerability within Laravel.io, please send an email immediately to Dries Vints at dries.vints@gmail.com. **Do not create an issue for the vulnerability.**
 
 ## License
 

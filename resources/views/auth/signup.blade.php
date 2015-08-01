@@ -30,10 +30,10 @@
                     <p>{!! app('captcha')->display(); !!}</p>
 
                     @if ($errors->has('g-recaptcha-response'))
-                        <p>Please fill in the captcha field correctly.</p>
+                      g  <p>Please fill in the captcha field correctly.</p>
                     @endif
 
-                    {!! Form::submit('Create My Laravel.IO Account', ['class' => 'button']) !!}
+                    {!! Form::submit('Create My Laravel.io Account', ['class' => 'button']) !!}
                 </div>
             {!! Form::close() !!}
         </div>

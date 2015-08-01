@@ -1,6 +1,6 @@
 # Contributing Guide
 
-We welcome contributions to the Laravel.IO project. Please read the following guide on how to send in pull requests.
+We welcome contributions to the Laravel.io project. Please read the following guide on how to send in pull requests.
 
 ## Pull Requests
 
@@ -13,7 +13,7 @@ We welcome contributions to the Laravel.IO project. Please read the following gu
 ## Coding Standards
 
 - Follow the [PSR-2 Coding Standard](http://www.php-fig.org/psr/psr-2/)
-- Add tests because we generally don't accept pull requests without them
+- It's a good practice to write tests for your contribution
 - Write the full namespace in DocBlocks for `@param`, `@var` or `@return` tags
 
 ## Testing

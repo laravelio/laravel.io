@@ -38,7 +38,7 @@ class SendConfirmationEmail
             ['confirmationCode' => $user->confirmation_code],
             function (Message $message) use ($user) {
                 $message->to($user->email);
-                $message->subject('Verify your email address for your Laravel.IO account');
+                $message->subject('Verify your email address for your Laravel.io account');
             }
         );
     }
