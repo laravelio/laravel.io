@@ -5,7 +5,7 @@
 <img src='https://coveralls.io/repos/LaravelIO/laravel.io/badge.png?branch=master' alt='Coverage Status' />
 <img src="https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e/mini.png" alt="SensioLabsInsight">
 
-This is the Laravel.io community portal site. The site is entirely open source and community involvement is not only encouraged, but required in order to ensure the future success of the project.
+This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and licensed under [the MIT license](license.txt). Feel free to contribute to the portal by sending in a pull request.
 
 ## Table of Contents
 
@@ -26,37 +26,28 @@ In order to compile stylesheets you will also need Ruby, Sass, and Compass insta
 
 ## Installation
 
-Here are the steps for installation on a local machine.
-
-1. Make sure you have [Laravel Homestead](http://laravel.com/docs/homestead) installed
-2. Clone this repository: `git clone git@github.com:LaravelIO/laravel-io.git laravelio/`
-3. Add the path for the cloned laravel.io repository to the `Homestead.yml` file under the `folders` list
-4. Add a site `lio.loc` for the laravel.io repository to the `Homestead.yml` file under the `sites` list
-5. Run `vagrant provision` in your Homestead folder
-6. Create a database in Homestead called `laravelio`
-7. Run `composer install` and `php artisan migrate --seed --env=local`
-8. Add `192.168.10.10 lio.loc` to your computer's `hosts` file
-9. Follow the configuration steps below to configure the external services
+1. Clone this repository: `git clone git@github.com:laravelio/laravel-io.git laravelio/`
+2. Update your `Homestead.yml` with the following settings:
+    1. Add the path for the cloned laravel.io repository to the `folders` list
+    2. Add a site `lio.loc` for the laravel.io repository to the `sites` list
+    3. Add a database called `laravelio` to the `databases` list
+    4. Run `homestead provision`
+3. SSH into your Homestead box and run the following commands:
+    1. `composer install`
+    2. `php artisan migrate --seed --env=local`
+4. Add `192.168.10.10 lio.loc` to your computer's `hosts` file
+5. Follow the configuration steps below to configure the external services
 
 ## Configuration
 
-Laravel.io relies on some key services to function, namely Github OAuth authentication and the Google ReCaptcha service. Follow the steps below to fill in the credentials in a custom `.env` file.
+Laravel.io relies on some key services to function, namely Github OAuth authentication and the Google ReCaptcha service. Follow the steps below to fill in the credentials in your custom `.env` file.
 
-1. Create the configuration file below at the root of your application with the name ***.env***.
-
-```
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
-GOOGLE_RECAPTCHA_SITEKEY=
-GOOGLE_RECAPTCHA_SECRETKEY=
-```
-
-2. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel.io Development" and add your Github application's client id and secret to the `.env` file. Your GitHub application should be set up as follows.
+1. [Create an application](https://github.com/settings/applications) in your github account called something like "Laravel.io Development" and add your Github application's client id, secret and url to the `.env` file. Your GitHub application should be set up as follows.
 
     a. Full URL: http://lio.loc
-    b. Callback URL: http://lio.loc/login
+    b. Callback URL: http://lio.loc/auth/github
 
-3. [Register a new website](https://www.google.com/recaptcha/admin) for the Google ReCaptcha service and fill in the site key and secret key in the `.env` file.
+2. [Register a new website](https://www.google.com/recaptcha/admin) for the Google ReCaptcha service and fill in the site key and secret key in the `.env` file.
 
 You can now visit the app in your browser by visiting [http://lio.loc/](http://lio.loc).
 
@@ -78,7 +69,7 @@ Please see [the contributing guide](contributing.md) for details.
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel.io, please send an email immediately to Dries Vints at dries.vints@gmail.com. **Do not create an issue for the vulnerability.**
+If you discover a security vulnerability within Laravel.io, please send an email immediately to Dries Vints at [dries.vints@gmail.com](mailto:dries.vints@gmail.com). **Do not create an issue for the vulnerability.**
 
 ## License
 
