@@ -1,15 +1,5 @@
 <?php
 
-Route::group(['domain' => 'bin.laravel.io'], function() {
-    Route::get('{wildcard}', function($wildcard) {
-        return Redirect::to('http://laravel.io/bin/' . $wildcard);
-    });
-});
-Route::group(['domain' => 'paste.laravel.io'], function() {
-    Route::get('{wildcard}', function($wildcard) {
-        return Redirect::to('http://laravel.io/bin/' . $wildcard);
-    });
-});
 Route::group(['domain' => 'wiki.laravel.io'], function() {
     Route::get('{wildcard}', function($wildcard) {
         return Redirect::to('http://laravel.io/');
