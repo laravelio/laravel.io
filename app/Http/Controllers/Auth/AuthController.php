@@ -56,6 +56,7 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
         $this->confirmation = $confirmation;
 
         $this->middleware('guest', ['except' => ['logout', 'confirmEmail', 'resendEmailConfirmation']]);
+        $this->middleware('auth', ['only' => ['logout', 'resendEmailConfirmation']]);
     }
 
     /**
@@ -146,7 +147,9 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
 
         Auth::login($user, true);
 
-        return redirect()->home()->with('success', 'Your email was successfully confirmed.');
+        session(['success' => 'Your email was successfully confirmed.']);
+
+        return redirect()->home();
     }
 
     /**
@@ -158,7 +161,9 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
     {
         $this->confirmation->send(Auth::user());
 
-        return redirect()->home()->with('success', 'A new email confirmation was sent to ' . Auth::user()->email);
+        session(['success' => 'A new email confirmation was sent to ' . Auth::user()->email]);
+
+        return redirect()->home();
     }
 
     /**
