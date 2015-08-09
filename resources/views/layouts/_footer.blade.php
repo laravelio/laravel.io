@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="span4">
-                <p>Proudly hosted by</p>
+                <p>Much thanks to</p>
                 <a class="fortrabbit home" href="http://fortrabbit.com"><em>•</em> fortrabbit</a>
             </div>
             <div class="span4">
