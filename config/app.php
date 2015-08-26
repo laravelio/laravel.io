@@ -156,7 +156,6 @@ return [
         Lio\Providers\GithubServiceProvider::class,
         Lio\Providers\CommentServiceProvider::class,
         Lio\Providers\ContentServiceProvider::class,
-        Lio\Providers\MarkdownServiceProvider::class,
         Lio\Providers\HashidsServiceProvider::class,
 
     ],
