@@ -13,8 +13,8 @@ class ContentServiceProvider extends ServiceProvider
     {
         $this->app->bindShared(SpamDetector::class, function () {
             return new SpamFilter([
-                new PhoneNumberSpamDetector(),
-                new ForeignLanguageSpamDetector(),
+                new PhoneNumberSpamDetector,
+                new ForeignLanguageSpamDetector,
             ]);
         });
     }

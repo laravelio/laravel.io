@@ -30,7 +30,7 @@ abstract class Entity extends Model
         return $this->validator->errors();
     }
 
-    public function save(array $options = array())
+    public function save(array $options = [])
     {
         if ( ! $this->isValid()) {
             return false;

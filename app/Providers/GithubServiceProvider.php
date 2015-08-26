@@ -33,6 +33,9 @@ class GithubServiceProvider extends ServiceProvider
 
     public function provides()
     {
-        return [GistEmbedFormatter::class, GithubAuthenticator::class];
+        return [
+            GistEmbedFormatter::class,
+            GithubAuthenticator::class,
+        ];
     }
 }

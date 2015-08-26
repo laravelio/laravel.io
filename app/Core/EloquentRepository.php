@@ -52,7 +52,7 @@ abstract class EloquentRepository
         return $model;
     }
 
-    public function getNew($attributes = array())
+    public function getNew($attributes = [])
     {
         return $this->model->newInstance($attributes);
     }

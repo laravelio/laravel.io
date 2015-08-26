@@ -2,13 +2,18 @@
 namespace Lio\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Lio\Comments\Comment;
+use Lio\Comments\CommentObserver;
 
 class CommentServiceProvider extends ServiceProvider
 {
-    public function register() {}
-
     public function boot()
     {
-        \Lio\Comments\Comment::observe(new \Lio\Comments\CommentObserver);
+        Comment::observe(new CommentObserver);
+    }
+
+    public function register()
+    {
+        //
     }
 }
