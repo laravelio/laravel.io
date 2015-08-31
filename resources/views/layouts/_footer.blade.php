@@ -11,7 +11,7 @@
                     </a>
                 </div>
                 <div class="span4">
-                    <a href="https://ottomatik.io">
+                    <a href="https://ottomatik.io/?refcode=bPeKyjQV">
                         <img src="{{ asset('images/ottomatik.png') }}" alt="Cartalyst" height="30" />
                     </a>
                 </div>
