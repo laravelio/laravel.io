@@ -8,7 +8,7 @@
     <title>{{ ! empty($title) ? $title . ' - ' : '' }}Laravel.io - The Laravel Community Portal</title>
 
     @section('styles')
-      <link rel="stylesheet" href="{{ asset('stylesheets/app.css') }}">
+      <link rel="stylesheet" href="{{ asset('stylesheets/app.css') }}?v=2">
     @show
 
     <script src="{{ asset('javascripts/vendor/custom.modernizr.js') }}"></script>
