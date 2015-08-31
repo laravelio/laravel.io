@@ -2,10 +2,8 @@
 namespace Lio\Providers;
 
 use App;
-use Auth;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Lio\Core\Exceptions\NotAuthorizedException;
 use Route;
 
 class RouteServiceProvider extends ServiceProvider
@@ -30,11 +28,9 @@ class RouteServiceProvider extends ServiceProvider
         Route::filter('has_role', function($route, $request, $parameters) {
             $allowedRoles = explode(',', $parameters);
 
-            if (Auth::check() && Auth::user()->hasRoles($allowedRoles)) {
-                return;
+            if (auth()->guest() || (auth()->check() && ! auth()->user()->hasRoles($allowedRoles))) {
+                abort(403);
             }
-
-            throw new NotAuthorizedException(Auth::user()->name . ' does not have the required role(s): ' . $parameters);
         });
 
         parent::boot($router);
