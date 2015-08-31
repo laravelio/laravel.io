@@ -55,8 +55,8 @@ You can now visit the app in your browser by visiting [http://lio.loc/](http://l
 
 Because we keep the generated / minified css out of the repository, we must have a workflow for compiling the styles.
 
-- Be sure you have Ruby, Sass, and Compass installed on your machine
-- When running any compass command in the terminal, be sure to run it from your `/public` folder.
+- To compile stylesheets, we'll need [Compass](http://compass-style.org/). Install Compass by running `sudo apt-get install ruby-compass` when ssh'd into your Homestead box.
+- When running any Compass command in the terminal, be sure to run it from your `/public` folder.
 - Compass is the tool used to compile Sass source files into CSS files; you can run `compass compile` to run it once, or `compass watch` to trigger a script that will watch your Sass files for changes and trigger a new compass compile on each change
 
 ## Maintainers
