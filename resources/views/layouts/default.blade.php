@@ -25,11 +25,6 @@
     </div>
 @endif
 
-<div style="background: #2fb352; padding: .75em; text-align:center; color:#eee; font-size:1.1em">
-    Tickets for <a href="http://laracon.us/" style="color:#eee;font-weight:bold;">Laracon US</a> and
-    <a href="http://laracon.eu/" style="color:#eee;font-weight:bold;">Laracon EU</a> are available now!
-</div>
-
 <div class="wrapper">
     <div class="top-header">
         @include('layouts._top_nav')
