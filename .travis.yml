@@ -13,12 +13,16 @@ before_script:
 
 script:
   - vendor/bin/phpspec run --verbose
-  - vendor/bin/phpunit -v --coverage-clover ./build/logs/clover.xml
+  - vendor/bin/phpunit --verbose --coverage-clover build/logs/clover.xml
 
 after_script:
-  - php vendor/bin/coveralls -v
+  - vendor/bin/test-reporter
 
 matrix:
   allow_failures:
     - php: 7.0
     - php: hhvm
+
+addons:
+  code_climate:
+    repo_token: $CODE_CLIMATE_TOKEN

@@ -1,8 +1,9 @@
 # Laravel.io Community Portal
 
 <img src="https://travis-ci.org/laravelio/laravel.io.svg?branch=master" alt="Build Status">
-<img src="https://scrutinizer-ci.com/g/laravelio/laravel.io/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality">
-<img src="https://coveralls.io/repos/LaravelIO/laravel.io/badge.png?branch=master" alt="Coverage Status" />
+[![Code Climate](https://codeclimate.com/github/LaravelIO/laravel.io/badges/gpa.svg)](https://codeclimate.com/github/LaravelIO/laravel.io)
+[![Code Climate](https://codeclimate.com/github/LaravelIO/laravel.io/badges/gpa.svg)](https://codeclimate.com/github/LaravelIO/laravel.io)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](license.txt)
 <img src="https://insight.sensiolabs.com/projects/50a7431f-66b0-4221-8837-7ccf1924031e/mini.png" alt="SensioLabsInsight">
 
 This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and licensed under [the MIT license](license.txt). Feel free to contribute to the portal by sending in a pull request.
