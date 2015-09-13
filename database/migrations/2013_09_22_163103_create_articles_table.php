@@ -1,37 +1,35 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateArticlesTable extends Migration {
+class CreateArticlesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('articles', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('author_id');
+            $table->string('title');
+            $table->text('content');
+            $table->boolean('featured')->default(0);
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::table('articles', function($t) {
-			$t->create();
+            $table->timestamps();
+        });
+    }
 
-			$t->increments('id');
-			$t->integer('author_id');
-			$t->string('title');
-			$t->text('content');
-			$t->boolean('featured')->defaults(0);
-
-			$t->timestamps();
-		});
-	}
-
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('articles');
-	}
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('articles');
+    }
 }

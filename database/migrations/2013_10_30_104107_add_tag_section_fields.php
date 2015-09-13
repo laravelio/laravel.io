@@ -1,33 +1,32 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class AddTagSectionFields extends Migration {
+class AddTagSectionFields extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('tags', function(Blueprint $table) {
+            $table->smallInteger('forum')->default(0);
+            $table->smallInteger('articles')->default(0);
+        });
+    }
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::table('tags', function($t) {
-			$t->boolean('forum')->defaults(0);
-			$t->boolean('articles')->defaults(0);
-		});
-	}
-
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::table('tags', function($t) {
-			$t->dropColumn('forum');
-			$t->dropColumn('articles');
-		});
-	}
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('tags', function(Blueprint $table) {
+            $table->dropColumn('forum', 'articles');
+        });
+    }
 }

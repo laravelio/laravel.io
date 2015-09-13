@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AddIpToPastesTable extends Migration
 {
@@ -11,7 +12,7 @@ class AddIpToPastesTable extends Migration
      */
     public function up()
     {
-        Schema::table('pastes', function ($table) {
+        Schema::table('pastes', function (Blueprint $table) {
             $table->string('ip')->nullable();
         });
     }
@@ -23,7 +24,7 @@ class AddIpToPastesTable extends Migration
      */
     public function down()
     {
-        Schema::table('pastes', function ($table) {
+        Schema::table('pastes', function (Blueprint $table) {
             $table->dropColumn('ip');
         });
     }

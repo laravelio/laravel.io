@@ -1,35 +1,33 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class TaggedItemsCreateTable extends Migration {
+class TaggedItemsCreateTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('tagged_items', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('thread_id');
+            $table->integer('tag_id');
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::table('tagged_items', function($t) {
-			$t->create();
+            $table->timestamps();
+        });
+    }
 
-			$t->increments('id');
-			$t->integer('thread_id');
-			$t->integer('tag_id');
-
-			$t->timestamps();
-		});
-	}
-
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('tagged_items');
-	}
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('tagged_items');
+    }
 }

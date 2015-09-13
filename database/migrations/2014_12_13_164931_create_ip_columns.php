@@ -13,13 +13,15 @@ class CreateIpColumns extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('ip', 100);
+            $table->string('ip', 100)->default('');
         });
+
         Schema::table('forum_threads', function (Blueprint $table) {
-            $table->string('ip', 100);
+            $table->string('ip', 100)->default('');
         });
+
         Schema::table('forum_replies', function (Blueprint $table) {
-            $table->string('ip', 100);
+            $table->string('ip', 100)->default('');
         });
     }
 
@@ -33,9 +35,11 @@ class CreateIpColumns extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('ip');
         });
+
         Schema::table('forum_threads', function (Blueprint $table) {
             $table->dropColumn('ip');
         });
+
         Schema::table('forum_replies', function (Blueprint $table) {
             $table->dropColumn('ip');
         });

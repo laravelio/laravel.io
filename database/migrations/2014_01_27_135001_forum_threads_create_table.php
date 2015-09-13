@@ -1,40 +1,39 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class ForumThreadsCreateTable extends Migration {
+class ForumThreadsCreateTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('forum_threads', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('author_id');
+            $table->string('subject');
+            $table->text('body');
+            $table->string('slug');
+            $table->string('category_slug');
+            $table->integer('laravel_version');
+            $table->integer('most_recent_reply_id');
+            $table->integer('reply_count');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::table('forum_threads', function($t) {
-			$t->create();
-			$t->increments('id');
-			$t->integer('author_id');
-			$t->string('subject');
-			$t->text('body');
-			$t->string('slug');
-			$t->string('category_slug');
-			$t->integer('laravel_version');
-			$t->integer('most_recent_reply_id');
-			$t->integer('reply_count');
-			$t->timestamps();
-			$t->softDeletes();
-		});
-	}
-
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('forum_threads');
-	}
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('forum_threads');
+    }
 }

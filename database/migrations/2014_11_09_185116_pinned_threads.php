@@ -13,7 +13,7 @@ class PinnedThreads extends Migration
     public function up()
     {
         Schema::table('forum_threads', function (Blueprint $table) {
-            $table->boolean('pinned');
+            $table->boolean('pinned')->default(false);
         });
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateActivityTable extends Migration
 {
@@ -11,16 +12,14 @@ class CreateActivityTable extends Migration
      */
     public function up()
     {
-        Schema::table('activity', function($t) {
-            $t->create();
+        Schema::create('activity', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id');
+            $table->integer('activity_type');
+            $table->integer('activity_id');
+            $table->text('description');
 
-            $t->increments('id');
-            $t->integer('user_id');
-            $t->integer('activity_type');
-            $t->integer('activity_id');
-            $t->text('description');
-
-            $t->timestamps();
+            $table->timestamps();
         });
     }
 

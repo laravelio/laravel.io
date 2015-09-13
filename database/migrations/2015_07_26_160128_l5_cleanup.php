@@ -32,11 +32,11 @@ class L5Cleanup extends Migration
             $table->integer('author_id');
             $table->string('title');
             $table->text('content');
-            $table->boolean('featured')->defaults(0);
-            $table->integer('status')->defaults(0);
+            $table->boolean('featured')->default(0);
+            $table->integer('status')->default(0);
             $table->dateTime('published_at')->nullable();
-            $table->integer('comment_count')->defaults(0);
-            $table->integer('laravel_version')->defaults(0);
+            $table->integer('comment_count')->default(0);
+            $table->integer('laravel_version')->default(0);
 
             $table->timestamps();
             $table->softDeletes();
@@ -53,7 +53,7 @@ class L5Cleanup extends Migration
         });
 
         Schema::table('tags', function (Blueprint $table) {
-            $table->boolean('articles')->defaults(0);
+            $table->boolean('articles')->default(0);
         });
     }
 }

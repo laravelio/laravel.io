@@ -1,39 +1,37 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateContributorsTable extends Migration {
+class CreateContributorsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('contributors', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->nullable();
+            $table->string('github_id');
+            $table->string('name');
+            $table->string('avatar_url');
+            $table->string('github_url');
+            $table->integer('contribution_count')->default(0);
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::table('contributors', function($t) {
-			$t->create();
+            $table->timestamps();
+        });
+    }
 
-			$t->increments('id');
-			$t->integer('user_id')->nullable();
-			$t->string('github_id');
-			$t->string('name');
-			$t->string('avatar_url');
-			$t->string('github_url');
-			$t->integer('contribution_count')->defaults(0);
-
-			$t->timestamps();
-		});
-	}
-
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('contributors');
-	}
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('contributors');
+    }
 }

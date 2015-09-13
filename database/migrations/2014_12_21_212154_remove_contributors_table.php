@@ -29,7 +29,7 @@ class RemoveContributorsTable extends Migration
             $table->string('name');
             $table->string('avatar_url');
             $table->string('github_url');
-            $table->integer('contribution_count')->defaults(0);
+            $table->integer('contribution_count')->default(0);
 
             $table->timestamps();
         });

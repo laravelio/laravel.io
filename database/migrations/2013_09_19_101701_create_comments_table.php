@@ -1,45 +1,43 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateCommentsTable extends Migration {
+class CreateCommentsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('comments', function(Blueprint $table) {
+            $table->increments('id');
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::table('comments', function($t) {
-			$t->create();
+            $table->string('title')->nullable();
+            $table->text('body');
 
-			$t->increments('id');
+            $table->string('owner_type');
+            $table->integer('owner_id');
 
-			$t->string('title')->nullable();
-			$t->text('body');
+            $table->integer('author_id');
+            $table->integer('parent_id')->nullable();
 
-			$t->string('owner_type');
-			$t->integer('owner_id');
+            $table->integer('child_count')->default(0);
+            $table->integer('most_recent_child_id')->nullable();
 
-			$t->integer('author_id');
-			$t->integer('parent_id')->nullable();
+            $table->timestamps();
+        });
+    }
 
-			$t->integer('child_count')->defaults(0);
-			$t->integer('most_recent_child_id')->nullable();
-
-			$t->timestamps();
-		});
-	}
-
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('comments');
-	}
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('comments');
+    }
 }

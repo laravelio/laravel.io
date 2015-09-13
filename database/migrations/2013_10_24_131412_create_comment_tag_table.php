@@ -1,35 +1,33 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateCommentTagTable extends Migration {
+class CreateCommentTagTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('comment_tag', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('comment_id')->index();
+            $table->integer('tag_id')->index();
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::table('comment_tag', function($t) {
-			$t->create();
+            $table->timestamps();
+        });
+    }
 
-			$t->increments('id');
-			$t->integer('comment_id')->index();
-			$t->integer('tag_id')->index();
-
-			$t->timestamps();
-		});
-	}
-
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('comment_tag');
-	}
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('comment_tag');
+    }
 }

@@ -1,35 +1,33 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateArticleTagTable extends Migration {
+class CreateArticleTagTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('article_tag', function(Blueprint $table) {
+            $table->increments('id');
+            $table->integer('article_id')->index();
+            $table->integer('tag_id')->index();
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		Schema::table('article_tag', function($t) {
-			$t->create();
+            $table->timestamps();
+        });
+    }
 
-			$t->increments('id');
-			$t->integer('article_id')->index();
-			$t->integer('tag_id')->index();
-
-			$t->timestamps();
-		});
-	}
-
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('article_tag');
-	}
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('article_tag');
+    }
 }
