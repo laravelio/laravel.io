@@ -16,12 +16,12 @@ class GithubAuthenticatorTest extends \PHPUnit_Framework_TestCase
         m::close();
     }
 
-    public function testCanCreateGithubAuthenticator()
+    function testCanCreateGithubAuthenticator()
     {
         $this->assertInstanceOf(GithubAuthenticator::class, $this->getAuthenticator());
     }
 
-    public function testExistingUserCanBeFound()
+    function testExistingUserCanBeFound()
     {
         $socialiteUser = $this->mockSocialiteUser();
         $socialiteUser->shouldReceive('getId')->andReturn(1);
@@ -53,7 +53,7 @@ class GithubAuthenticatorTest extends \PHPUnit_Framework_TestCase
         $auth->authBySocialite($listener);
     }
 
-    public function testBannedUsersCantAuthenticate()
+    function testBannedUsersCantAuthenticate()
     {
         $socialiteUser = $this->mockSocialiteUser();
         $socialiteUser->shouldReceive('getId')->andReturn(1);
@@ -77,7 +77,7 @@ class GithubAuthenticatorTest extends \PHPUnit_Framework_TestCase
         $auth->authBySocialite($listener);
     }
 
-    public function testUnfoundUserTriggersObserverCorrectly()
+    function testUnfoundUserTriggersObserverCorrectly()
     {
         $socialiteUser = $this->mockSocialiteUser()->shouldIgnoreMissing();
         $socialiteUser->shouldReceive('getId')->andReturn(1);
@@ -121,17 +121,11 @@ class GithubAuthenticatorTest extends \PHPUnit_Framework_TestCase
         return m::mock(SocialiteUser::class);
     }
 
-    /**
-     * @return \Mockery\MockInterface
-     */
     private function mockUsersRepository()
     {
         return m::mock(UserRepository::class);
     }
 
-    /**
-     * @return \Mockery\MockInterface
-     */
     private function mockListener()
     {
         return m::mock(GithubAuthenticatorListener::class);

@@ -5,12 +5,12 @@ use Lio\Github\GistEmbedFormatter;
 
 class GistEmbedFormatterTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCanCreate()
+    function testCanCreate()
     {
         $this->assertInstanceOf(GistEmbedFormatter::class, $this->getFormatter());
     }
 
-    public function testCanFormat()
+    function testCanFormat()
     {
         $formatter = $this->getFormatter();
 
@@ -19,7 +19,7 @@ class GistEmbedFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($embedHtml, $formatter->format($gistUrl));
     }
 
-    public function testCanFormatMany()
+    function testCanFormatMany()
     {
         $formatter = $this->getFormatter();
 
