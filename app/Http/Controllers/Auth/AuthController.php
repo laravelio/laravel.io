@@ -23,6 +23,27 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
+     * Override for the default email field
+     *
+     * @var string
+     */
+    protected $username = 'username';
+
+    /**
+     * Override the default login path
+     *
+     * @var string
+     */
+    protected $loginPath = '/login';
+
+    /**
+     * Override the default redirect path
+     *
+     * @var string
+     */
+    protected $redirectTo = '/dashboard';
+
+    /**
      * Create a new authentication controller instance.
      */
     public function __construct()
@@ -41,6 +62,7 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
+            'username' => 'required|max:40|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -56,6 +78,7 @@ class AuthController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'username' => $data['username'],
             'password' => bcrypt($data['password']),
         ]);
     }

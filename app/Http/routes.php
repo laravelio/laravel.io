@@ -18,13 +18,17 @@ get('rss', 'HomeController@rss');
 
 // Auth
 Route::group(['namespace' => 'Auth'], function () {
-    get('login', ['as' => 'login', 'uses' => 'AuthController@login']);
+    get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
+    post('login', ['as' => 'login.post', 'uses' => 'AuthController@postLogin']);
+    get('logout', ['as' => 'logout', 'uses' => 'AuthController@getLogout']);
+    get('signup', ['as' => 'signup', 'uses' => 'AuthController@getRegister']);
+    post('signup', ['as' => 'signup.post', 'uses' => 'AuthController@postRegister']);
+
     get('auth/github', 'AuthController@authByGithub');
-    get('signup', ['as' => 'signup', 'uses' => 'AuthController@signup']);
-    get('logout', ['as' => 'logout', 'uses' => 'AuthController@logout']);
 });
 
 // Users
+get('dashboard', ['as' => 'dashboard', 'uses' => 'UsersController@dashboard']);
 get('user/{username}', ['as' => 'user', 'uses' => 'UsersController@profile']);
 
 // Paste Bin

@@ -12,11 +12,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        if (App::environment('production')) {
+            exit('I just stopped you getting fired. Love Phil');
+            // Thanks Phil!
+        }
+
         Model::unguard();
 
-        $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(TagSeeder::class);
 
         Model::reguard();
     }

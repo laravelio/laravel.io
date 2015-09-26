@@ -4,11 +4,11 @@ namespace Lio\Http\Controllers;
 class HomeController extends Controller
 {
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\View\View
      */
     public function home()
     {
-        return 'Where it starts';
+        return view('home');
     }
 
     /**
