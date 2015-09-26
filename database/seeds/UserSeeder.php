@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Lio\Accounts\User;
+use Lio\Users\User;
 
 class UserSeeder extends Seeder
 {

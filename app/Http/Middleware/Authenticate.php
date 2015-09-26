@@ -40,15 +40,6 @@ class Authenticate
             }
         }
 
-        if ($this->auth->user()->is_banned) {
-            // Don't allow people who are banned to log in.
-            session()->put('error', 'Your account has been banned. If you\'d like to appeal, please contact us through the support widget below.');
-
-            $this->auth->logout();
-
-            return redirect()->home();
-        }
-
         return $next($request);
     }
 }

@@ -142,21 +142,16 @@ return [
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider::class,
-        Mews\Purifier\PurifierServiceProvider::class,
         Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
-        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
-        Lio\Providers\AppServiceProvider::class,
-        Lio\Providers\EventServiceProvider::class,
-        Lio\Providers\RouteServiceProvider::class,
-        Lio\Providers\GithubServiceProvider::class,
-        Lio\Providers\CommentServiceProvider::class,
-        Lio\Providers\ContentServiceProvider::class,
-        Lio\Providers\HashidsServiceProvider::class,
+        Lio\AppServiceProvider::class,
+        Lio\Auth\AuthServiceProvider::class,
+        Lio\Events\EventServiceProvider::class,
+        Lio\Http\RouteServiceProvider::class,
+        Lio\Spam\SpamServiceProvider::class,
 
     ],
 
@@ -186,6 +181,7 @@ return [
         'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
+        'Gate' => Illuminate\Support\Facades\Gate::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
         'Input' => Illuminate\Support\Facades\Input::class,
         'Inspiring' => Illuminate\Foundation\Inspiring::class,
@@ -207,8 +203,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'GitHub' => Lio\GitHub\GitHubFacade::class,
-        'Purifier' => Mews\Purifier\Facades\Purifier::class,
         'Bugsnag' => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
         'Form' => Collective\Html\FormFacade::class,
 

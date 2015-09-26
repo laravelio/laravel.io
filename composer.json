@@ -8,22 +8,15 @@
         "laravel/framework": "5.1.*",
         "laravelcollective/html": "5.1.*",
         "laravel/socialite": "^2.0",
-        "mccool/laravel-auto-presenter": "~3.1",
-        "michelf/php-markdown": "1.4.*",
-        "nickcernis/html-to-markdown": "2.1.*",
-        "misd/linkify": "1.1.*",
-        "hashids/hashids": "1.0.*",
-        "mews/purifier": "~2.0",
-        "bugsnag/bugsnag-laravel": "1.*",
-        "anhskohbo/no-captcha": "^2.0"
+        "bugsnag/bugsnag-laravel": "1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "~2.1",
         "codeclimate/php-test-reporter": "^0.1.2",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "phpspec/phpspec": "^2.3"
     },
     "autoload": {
         "classmap": [

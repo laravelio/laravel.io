@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'model' => Lio\Accounts\User::class,
+    'model' => Lio\Users\User::class,
 
     /*
     |--------------------------------------------------------------------------

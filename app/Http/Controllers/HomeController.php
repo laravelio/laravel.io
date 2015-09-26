@@ -6,9 +6,9 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function index()
+    public function home()
     {
-        return redirect()->action('Forum\ForumThreadsController@getIndex');
+        return 'Where it starts';
     }
 
     /**
