@@ -18,12 +18,24 @@ get('rss', 'HomeController@rss');
 
 // Auth
 Route::group(['namespace' => 'Auth'], function () {
+    // Authentication routes...
     get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
     post('login', ['as' => 'login.post', 'uses' => 'AuthController@postLogin']);
     get('logout', ['as' => 'logout', 'uses' => 'AuthController@getLogout']);
+
+    // Registration routes...
     get('signup', ['as' => 'signup', 'uses' => 'AuthController@getRegister']);
     post('signup', ['as' => 'signup.post', 'uses' => 'AuthController@postRegister']);
 
+    // Password reset link request routes...
+    get('forgot-password', ['as' => 'password.forgot', 'uses' => 'PasswordController@getEmail']);
+    post('forgot-password', ['as' => 'password.forgot.post', 'uses' => 'PasswordController@postEmail']);
+
+    // Password reset routes...
+    get('reset-password/{token}', ['as' => 'password.reset', 'uses' => 'PasswordController@getReset']);
+    post('reset-password', ['as' => 'password.reset.post', 'uses' => 'PasswordController@postReset']);
+
+    // Social authentication routes...
     get('auth/github', 'AuthController@authByGithub');
 });
 

@@ -87,4 +87,15 @@ class AuthTest extends TestCase
 
         $this->assertFalse(Auth::check());
     }
+
+    /** @test */
+    function users_can_request_a_password_reset_link()
+    {
+        $this->createUser();
+
+        $this->visit('/forgot-password')
+            ->type('john@example.com', 'email')
+            ->press('Send Password Reset Link')
+            ->see('We have e-mailed your password reset link!');
+    }
 }
