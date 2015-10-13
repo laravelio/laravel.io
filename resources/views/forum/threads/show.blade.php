@@ -1,4 +1,4 @@
-@extends('layouts._two_columns_left_sidebar')
+@extends('layouts._two_columns_left_sidebar', ['pageTitle' => ($thread->isSolved() ? '[SOLVED] ' : '') . $thread->subject])
 
 @section('sidebar')
     @include('forum._sidebar')

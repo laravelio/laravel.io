@@ -1,4 +1,4 @@
-@extends('layouts.bin')
+@extends('layouts.bin', ['pageTitle' => 'Paste Viewer'])
 
 @section('table')
     @include('bin._scripts')

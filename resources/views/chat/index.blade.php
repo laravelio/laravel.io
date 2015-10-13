@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.default', ['pageTitle' => 'Live Chat'])
 
 @section('table')
     <h2>#Laravel IRC Chat</h2>

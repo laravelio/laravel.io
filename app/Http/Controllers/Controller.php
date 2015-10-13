@@ -11,8 +11,6 @@ class Controller extends BaseController
 {
     use DispatchesJobs, ValidatesRequests;
 
-    protected $title = '';
-
     protected function redirectTo($url, $statusCode = 302)
     {
         return Redirect::to($url, $statusCode);

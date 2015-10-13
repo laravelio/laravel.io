@@ -53,8 +53,6 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
         $threads->appends($tagAppends);
         $this->createSections(Input::get('tags'));
 
-        $this->title = 'Forum';
-
         return view('forum.threads.index', compact('threads', 'tags', 'queryString'));
     }
 
@@ -71,8 +69,6 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
 
         $this->createSections($thread->getTags());
 
-        $this->title = ($thread->isSolved() ? '[SOLVED] ' : '') . $thread->subject;
-
         return view('forum.threads.show', compact('thread', 'replies'));
     }
 
@@ -87,8 +83,6 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
 
         $tags = $this->tags->getAllForForum();
         $versions = $this->threads->getNew()->getLaravelVersions();
-
-        $this->title = "Create Forum Thread";
 
         return view('forum.threads.create', compact('tags', 'versions'));
     }
@@ -144,8 +138,6 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
         $versions = $thread->getLaravelVersions();
 
         $this->createSections(Input::get('tags'));
-
-        $this->title = "Edit Forum Thread";
 
         return view('forum.threads.edit', compact('thread', 'tags', 'versions'));
     }
@@ -221,8 +213,6 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
 
         $this->createSections(Input::get('tags'));
 
-        $this->title = "Delete Forum Thread";
-
         return view('forum.threads.delete', compact('thread'));
     }
 
@@ -251,7 +241,6 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
         $results->appends(['query' => $query]);
 
         $this->createSections(Input::get('tags'));
-        $this->title = "Forum Search";
 
         return view('forum.search', compact('query', 'results'));
     }

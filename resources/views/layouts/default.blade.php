@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
 
-    <title>{{ ! empty($title) ? $title . ' - ' : '' }}Laravel.io - The Laravel Community Portal</title>
+    <title>{{ isset($pageTitle) ? $pageTitle . ' - ' : '' }}Laravel.io - The Laravel Community Portal</title>
 
     @section('styles')
       <link rel="stylesheet" href="{{ asset('stylesheets/app.css') }}?v=2">

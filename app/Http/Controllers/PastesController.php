@@ -30,8 +30,6 @@ class PastesController extends Controller implements PasteCreatorListener
             return $this->redirectAction('PastesController@getCreate');
         }
 
-        $this->title = 'Paste Viewer';
-
         return view('bin.show', compact('paste'));
     }
 
@@ -48,7 +46,6 @@ class PastesController extends Controller implements PasteCreatorListener
     public function getFork($hash)
     {
         $paste = $this->pastes->getByHash($hash);
-        $this->title = 'Fork Paste';
 
         return view('bin.fork', compact('paste'));
     }

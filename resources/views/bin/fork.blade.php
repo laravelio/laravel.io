@@ -1,4 +1,4 @@
-@extends('layouts.bin')
+@extends('layouts.bin', ['pageTitle' => 'Fork Paste'])
 
 @section('table')
     @include('bin._scripts')
