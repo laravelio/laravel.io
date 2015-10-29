@@ -3,7 +3,7 @@ namespace Lio\Tests;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\TestCase as IlluminateTestCase;
-use Lio\Users\User;
+use Lio\Users\EloquentUser;
 
 abstract class TestCase extends IlluminateTestCase
 {
@@ -33,11 +33,12 @@ abstract class TestCase extends IlluminateTestCase
      */
     protected function createUser()
     {
-        return factory(User::class)->create([
+        return factory(EloquentUser::class)->create([
             'name' => 'John Doe',
             'username' => 'johndoe',
             'email' => 'john@example.com',
             'password' => bcrypt('password'),
+            'github_url' => 'johndoe',
         ]);
     }
 }

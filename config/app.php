@@ -140,9 +140,9 @@ return [
         /*
          * Package Service Providers...
          */
-        Laravel\Socialite\SocialiteServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
         Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -150,8 +150,10 @@ return [
         Lio\AppServiceProvider::class,
         Lio\Auth\AuthServiceProvider::class,
         Lio\Events\EventServiceProvider::class,
+        Lio\Forum\ForumServiceProvider::class,
         Lio\Http\RouteServiceProvider::class,
         Lio\Spam\SpamServiceProvider::class,
+        Lio\Users\UserServiceProvider::class,
 
     ],
 
@@ -201,9 +203,12 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        /*
+         * Package Aliases...
+         */
         'Bugsnag' => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
         'Form' => Collective\Html\FormFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

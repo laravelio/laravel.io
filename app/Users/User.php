@@ -1,38 +1,20 @@
 <?php
 namespace Lio\Users;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-
-class User extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
-                                    CanResetPasswordContract
+interface User
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    /**
+     * @return int
+     */
+    public function id();
 
     /**
-     * The database table used by the model.
-     *
-     * @var string
+     * @return string
      */
-    protected $table = 'users';
+    public function name();
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * @return string
      */
-    protected $fillable = ['name', 'email', 'password'];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['password', 'remember_token'];
+    public function githubUsername();
 }

@@ -23,7 +23,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
+        require __DIR__ . '/bindings.php';
 
         parent::boot($router);
     }

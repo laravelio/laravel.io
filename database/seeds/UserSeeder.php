@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Lio\Users\User;
+use Lio\Users\EloquentUser;
 
 class UserSeeder extends Seeder
 {
     public function run()
     {
-        User::create([
+        factory(EloquentUser::class)->create([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'username' => 'johndoe',

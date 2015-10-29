@@ -11,7 +11,10 @@
 |
 */
 
-$factory->define(Lio\Users\User::class, function (Faker\Generator $faker) {
+use Lio\Forum\EloquentThread;
+use Lio\Users\EloquentUser;
+
+$factory->define(EloquentUser::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
@@ -19,5 +22,16 @@ $factory->define(Lio\Users\User::class, function (Faker\Generator $faker) {
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
         'confirmed' => true,
+        'github_url' => $faker->userName,
+    ];
+});
+
+$factory->define(EloquentThread::class, function (Faker\Generator $faker) {
+    return [
+        'subject' => $faker->title,
+        'body' => $faker->text,
+        'slug' => $faker->slug,
+        'author_id' => factory(EloquentUser::class)->create()->id(),
+        'laravel_version' => $faker->randomElement([3, 4, 5]),
     ];
 });

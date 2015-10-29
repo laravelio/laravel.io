@@ -2,7 +2,7 @@
 namespace Lio\Http\Controllers\Auth;
 
 use Lio\Http\Controllers\Controller;
-use Lio\Users\User;
+use Lio\Users\EloquentUser;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Validator;
@@ -75,7 +75,8 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        /** @todo Replace by repository */
+        return EloquentUser::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'username' => $data['username'],

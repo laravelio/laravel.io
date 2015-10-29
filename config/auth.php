@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'model' => Lio\Users\User::class,
+    'model' => Lio\Users\EloquentUser::class,
 
     /*
     |--------------------------------------------------------------------------

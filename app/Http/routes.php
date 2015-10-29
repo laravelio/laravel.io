@@ -50,5 +50,6 @@ get('bin/{hash}', 'PasteBinController@show');
 
 // Forum
 Route::group(['namespace' => 'Forum'], function() {
-    get('forum/{slug}', 'ThreadsController@show');
+    get('forum', 'ThreadsController@overview');
+    get('forum/{thread_slug}', 'ThreadsController@show');
 });
