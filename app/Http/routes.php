@@ -18,24 +18,24 @@ get('rss', 'HomeController@rss');
 
 // Auth
 Route::group(['namespace' => 'Auth'], function () {
-    // Authentication routes...
+    // Authentication
     get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
     post('login', ['as' => 'login.post', 'uses' => 'AuthController@postLogin']);
     get('logout', ['as' => 'logout', 'uses' => 'AuthController@getLogout']);
 
-    // Registration routes...
+    // Registration
     get('signup', ['as' => 'signup', 'uses' => 'AuthController@getRegister']);
     post('signup', ['as' => 'signup.post', 'uses' => 'AuthController@postRegister']);
 
-    // Password reset link request routes...
+    // Password reset link request
     get('forgot-password', ['as' => 'password.forgot', 'uses' => 'PasswordController@getEmail']);
     post('forgot-password', ['as' => 'password.forgot.post', 'uses' => 'PasswordController@postEmail']);
 
-    // Password reset routes...
+    // Password reset
     get('reset-password/{token}', ['as' => 'password.reset', 'uses' => 'PasswordController@getReset']);
     post('reset-password', ['as' => 'password.reset.post', 'uses' => 'PasswordController@postReset']);
 
-    // Social authentication routes...
+    // Social authentication
     get('auth/github', 'AuthController@authByGithub');
 });
 
@@ -50,6 +50,9 @@ get('bin/{hash}', 'PasteBinController@show');
 
 // Forum
 Route::group(['namespace' => 'Forum'], function() {
-    get('forum', 'ThreadsController@overview');
-    get('forum/{thread_slug}', 'ThreadsController@show');
+    get('forum', ['as' => 'forum', 'uses' => 'ThreadsController@overview']);
+    get('forum/{thread_slug}', ['as' => 'thread', 'uses' => 'ThreadsController@show']);
 });
+
+// Replies
+post('replies', ['as' => 'replies.store', 'uses' => 'ReplyController@store']);

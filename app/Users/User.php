@@ -17,4 +17,9 @@ interface User
      * @return string
      */
     public function githubUsername();
+
+    /**
+     * @return \Lio\Replies\Reply[]
+     */
+    public function replies();
 }

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Lio\Replies\HasManyReplies;
 
 final class EloquentUser extends Model implements
     AuthenticatableContract,
@@ -15,7 +16,7 @@ final class EloquentUser extends Model implements
     CanResetPasswordContract,
     User
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable, Authorizable, CanResetPassword, HasManyReplies;
 
     /**
      * The database table used by the model.

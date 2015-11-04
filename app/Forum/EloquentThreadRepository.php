@@ -25,6 +25,15 @@ final class EloquentThreadRepository implements ThreadRepository
     }
 
     /**
+     * @param int $id
+     * @return \Lio\Forum\Thread|null
+     */
+    public function find($id)
+    {
+        return $this->model->find($id);
+    }
+
+    /**
      * @param string $slug
      * @return \Lio\Forum\Thread|null
      */

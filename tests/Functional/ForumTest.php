@@ -35,4 +35,21 @@ class ForumTest extends TestCase
         $this->visit('/forum/the-first-thread')
             ->see('The first thread');
     }
+
+    /** @test */
+    function we_can_add_a_reply_to_a_thread()
+    {
+        $this->be($this->createUser());
+
+        factory(EloquentThread::class)->create([
+            'subject' => 'The first thread',
+            'slug' => 'the-first-thread',
+        ]);
+
+        $this->visit('/forum/the-first-thread')
+            ->type('The first reply', 'body')
+            ->press('Reply')
+            ->see('The first thread')
+            ->see('The first reply');
+    }
 }

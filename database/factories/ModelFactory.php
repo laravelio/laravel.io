@@ -12,6 +12,7 @@
 */
 
 use Lio\Forum\EloquentThread;
+use Lio\Replies\EloquentReply;
 use Lio\Users\EloquentUser;
 
 $factory->define(EloquentUser::class, function (Faker\Generator $faker) {
@@ -28,10 +29,19 @@ $factory->define(EloquentUser::class, function (Faker\Generator $faker) {
 
 $factory->define(EloquentThread::class, function (Faker\Generator $faker) {
     return [
-        'subject' => $faker->title,
+        'subject' => $faker->sentence,
         'body' => $faker->text,
         'slug' => $faker->slug,
         'author_id' => factory(EloquentUser::class)->create()->id(),
         'laravel_version' => $faker->randomElement([3, 4, 5]),
+    ];
+});
+
+$factory->define(EloquentReply::class, function (Faker\Generator $faker) {
+    return [
+        'body' => $faker->title,
+        'author_id' => factory(EloquentUser::class)->create()->id(),
+        'replyable_id' => factory(EloquentThread::class)->create()->id(),
+        'replyable_type' => 'thread',
     ];
 });
