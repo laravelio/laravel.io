@@ -5,12 +5,13 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Lio\Testing\RepositoryTest;
 use Lio\Tests\TestCase;
 use Lio\Users\User;
+use Lio\Users\UserRepository;
 
 class UserRepositoryTest extends TestCase
 {
     use DatabaseMigrations, RepositoryTest;
 
-    protected $repoName = 'Lio\\Users\\UserRepository';
+    protected $repoName = UserRepository::class;
 
     /** @test */
     public function find_by_username()

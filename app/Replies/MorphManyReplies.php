@@ -8,13 +8,13 @@ trait MorphManyReplies
      */
     public function replies()
     {
-        return $this->replyable;
+        return $this->replyAble;
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    public function replyable()
+    public function replyAble()
     {
         return $this->morphMany(EloquentReply::class, 'replyable');
     }

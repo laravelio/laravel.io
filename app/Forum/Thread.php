@@ -1,7 +1,9 @@
 <?php
 namespace Lio\Forum;
 
-interface Thread
+use Lio\DateTime\Timestamps;
+
+interface Thread extends Timestamps
 {
     const TYPE = 'threads';
 
@@ -14,6 +16,11 @@ interface Thread
      * @return string
      */
     public function subject();
+
+    /**
+     * @return string
+     */
+    public function body();
 
     /**
      * @return string

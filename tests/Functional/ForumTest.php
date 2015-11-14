@@ -39,7 +39,7 @@ class ForumTest extends TestCase
     /** @test */
     function we_can_add_a_reply_to_a_thread()
     {
-        $this->be($this->createUser());
+        $this->login();
 
         factory(EloquentThread::class)->create([
             'subject' => 'The first thread',
@@ -51,5 +51,39 @@ class ForumTest extends TestCase
             ->press('Reply')
             ->see('The first thread')
             ->see('The first reply');
+    }
+
+    /** @test */
+    function we_cannot_create_a_thread_when_not_logged_in()
+    {
+        $this->visit('/forum/create-thread')
+            ->seePageIs('/login');
+    }
+
+    /** @test */
+    function we_can_create_a_thread_when_logged_in()
+    {
+        $this->login();
+
+        $this->visit('/forum/create-thread')
+            ->type('How to work with Eloquent?', 'subject')
+            ->type('This text explains how to work with Eloquent.', 'body')
+            ->press('Create Thread')
+            ->seePageIs('/forum/how-to-work-with-eloquent');
+    }
+
+    /** @test */
+    function we_can_edit_a_thread()
+    {
+        factory(EloquentThread::class)->create(['slug' => 'my-first-thread']);
+
+        $this->login();
+
+        $this->visit('/forum/my-first-thread/edit')
+            ->type('How to work with Eloquent?', 'subject')
+            ->type('This text explains how to work with Eloquent.', 'body')
+            ->press('Update')
+            ->seePageIs('/forum/my-first-thread')
+            ->see('How to work with Eloquent?');
     }
 }

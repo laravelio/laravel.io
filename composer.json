@@ -8,7 +8,8 @@
         "laravel/framework": "5.1.*",
         "laravelcollective/html": "5.1.*",
         "laravel/socialite": "^2.0",
-        "bugsnag/bugsnag-laravel": "1.*"
+        "bugsnag/bugsnag-laravel": "1.*",
+        "league/commonmark": "^0.12.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

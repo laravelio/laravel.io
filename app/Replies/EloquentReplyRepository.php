@@ -19,6 +19,15 @@ final class EloquentReplyRepository implements ReplyRepository
     }
 
     /**
+     * @param int $id
+     * @return \Lio\Replies\Reply|null
+     */
+    public function find($id)
+    {
+        return $this->model->find($id);
+    }
+
+    /**
      * @param \Lio\Replies\ReplyAble $relation
      * @param \Lio\Users\User $author
      * @param string $body
@@ -26,12 +35,31 @@ final class EloquentReplyRepository implements ReplyRepository
      */
     public function create(ReplyAble $relation, User $author, $body)
     {
-        $reply = $this->model->newInstance();
+        $reply = $this->model->newInstance(compact('body'));
         $reply->author_id = $author->id();
-        $reply->body = $body;
 
-        $relation->replyable()->save($reply);
+        $relation->replyAble()->save($reply);
 
         return $reply;
+    }
+
+    /**
+     * @param \Lio\Replies\Reply $reply
+     * @param array $attributes
+     * @return \Lio\Replies\Reply
+     */
+    public function update(Reply $reply, array $attributes = [])
+    {
+        $reply->update($attributes);
+
+        return $reply;
+    }
+
+    /**
+     * @param \Lio\Replies\Reply $reply
+     */
+    public function delete(Reply $reply)
+    {
+        $reply->delete();
     }
 }

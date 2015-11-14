@@ -2,14 +2,30 @@
 namespace Lio\Replies;
 
 use Illuminate\Database\Eloquent\Model;
+use Lio\Eloquent\HasTimestamps;
 use Lio\Users\EloquentUser;
 
 final class EloquentReply extends Model implements Reply
 {
+    use HasTimestamps;
+
     /**
      * @var string
      */
     protected $table = 'replies';
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['body'];
+
+    /**
+     * @return int
+     */
+    public function id()
+    {
+        return $this->id;
+    }
 
     /**
      * @return string
@@ -20,11 +36,19 @@ final class EloquentReply extends Model implements Reply
     }
 
     /**
+     * @return \Lio\Replies\ReplyAble
+     */
+    public function replyAble()
+    {
+        return $this->replyAbleRelation;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function replyable()
+    public function replyAbleRelation()
     {
-        return $this->morphTo();
+        return $this->morphTo('replyable');
     }
 
     /**

@@ -1,7 +1,12 @@
 <?php
 
 use Lio\Forum\ThreadRepository;
+use Lio\Replies\ReplyRepository;
 use Lio\Users\UserRepository;
+
+Route::bind('reply', function($id) {
+    return app(ReplyRepository::class)->find($id) ?: abort(404);
+});
 
 Route::bind('thread_slug', function($slug) {
     return app(ThreadRepository::class)->findBySlug($slug) ?: abort(404);

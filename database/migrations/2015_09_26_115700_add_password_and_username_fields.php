@@ -14,7 +14,7 @@ class AddPasswordAndUsernameFields extends Migration
     {
         Schema::table('users', function(Blueprint $table) {
             $table->string('email')->unique()->change();
-            $table->string('username', 40)->unique()->default('');
+            $table->string('username', 40)->default('');
             $table->string('password')->default('');
         });
     }

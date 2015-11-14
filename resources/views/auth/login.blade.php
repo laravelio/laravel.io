@@ -1,7 +1,7 @@
 {!! Form::open(['route' => 'login.post']) !!}
-    {!! Form::text('username') !!}
+    {!! Form::text('username') !!}<br>
     {{ $errors->first('username') }}<br>
-    {!! Form::password('password') !!}
+    {!! Form::password('password') !!}<br>
     {{ $errors->first('password') }}<br>
     {!! Form::submit('Login') !!}
 {!! Form::close() !!}

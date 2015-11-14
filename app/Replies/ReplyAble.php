@@ -6,5 +6,5 @@ interface ReplyAble
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOneOrMany
      */
-    public function replyable();
+    public function replyAble();
 }

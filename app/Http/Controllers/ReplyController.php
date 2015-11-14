@@ -2,31 +2,59 @@
 namespace Lio\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Lio\Forum\EloquentThread;
 use Lio\Forum\Thread;
 use Lio\Forum\ThreadRepository;
+use Lio\Replies\UpdateReplyRequest;
+use Lio\Replies\Reply;
 use Lio\Replies\ReplyAble;
 use Lio\Replies\ReplyRepository;
 
 class ReplyController extends Controller
 {
     /**
+     * @var \Lio\Replies\ReplyRepository
+     */
+    private $replies;
+
+    /**
      * @var \Lio\Forum\ThreadRepository
      */
     private $threads;
 
-    public function __construct(ThreadRepository $threads)
+    public function __construct(ReplyRepository $replies, ThreadRepository $threads)
     {
         $this->threads = $threads;
+        $this->replies = $replies;
+
+        $this->middleware('auth');
     }
 
-    public function store(ReplyRepository $replies, Request $request)
+    public function store(Request $request)
     {
         $replyAble = $this->findReplyAble($request->get('replyable_id'), $request->get('replyable_type'));
 
-        $replies->create($replyAble, auth()->user(), $request->get('body'));
+        $this->replies->create($replyAble, auth()->user(), $request->get('body'));
 
         return $this->redirectToReplyAble($replyAble);
+    }
+
+    public function edit(Reply $reply)
+    {
+        return view('replies.edit', compact('reply'));
+    }
+
+    public function update(UpdateReplyRequest $request, Reply $reply)
+    {
+        $this->replies->update($reply, $request->only('body'));
+
+        return $this->redirectToReplyAble($reply->replyAble());
+    }
+
+    public function delete(Reply $reply)
+    {
+        $this->replies->delete($reply);
+
+        return $this->redirectToReplyAble($reply->replyAble());
     }
 
     /**

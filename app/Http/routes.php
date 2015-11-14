@@ -51,8 +51,16 @@ get('bin/{hash}', 'PasteBinController@show');
 // Forum
 Route::group(['namespace' => 'Forum'], function() {
     get('forum', ['as' => 'forum', 'uses' => 'ThreadsController@overview']);
+    get('forum/create-thread', ['as' => 'threads.create', 'uses' => 'ThreadsController@create']);
+    post('forum/create-thread', ['as' => 'threads.store', 'uses' => 'ThreadsController@store']);
     get('forum/{thread_slug}', ['as' => 'thread', 'uses' => 'ThreadsController@show']);
+    get('forum/{thread_slug}/edit', ['as' => 'threads.edit', 'uses' => 'ThreadsController@edit']);
+    put('forum/{thread_slug}', ['as' => 'threads.update', 'uses' => 'ThreadsController@update']);
+    get('forum/{thread_slug}/delete', ['as' => 'threads.delete', 'uses' => 'ThreadsController@delete']);
 });
 
 // Replies
 post('replies', ['as' => 'replies.store', 'uses' => 'ReplyController@store']);
+get('replies/{reply}/edit', ['as' => 'replies.edit', 'uses' => 'ReplyController@edit']);
+put('replies/{reply}', ['as' => 'replies.update', 'uses' => 'ReplyController@update']);
+get('replies/{reply}/delete', ['as' => 'replies.delete', 'uses' => 'ReplyController@delete']);

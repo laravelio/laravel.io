@@ -2,6 +2,7 @@
 namespace Lio\Tests\Functional;
 
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Lio\Tests\TestCase;
 
@@ -78,7 +79,7 @@ class AuthTest extends TestCase
     /** @test */
     function users_can_logout()
     {
-        $this->be($this->createUser());
+        $this->login();
 
         $this->assertTrue(Auth::check());
 
@@ -97,5 +98,31 @@ class AuthTest extends TestCase
             ->type('john@example.com', 'email')
             ->press('Send Password Reset Link')
             ->see('We have e-mailed your password reset link!');
+    }
+
+    /** @test */
+    function users_can_reset_their_password()
+    {
+        $this->createUser();
+
+        // Insert a password reset token into the database.
+        $this->app['db']->table('password_resets')->insert([
+            'email' => 'john@example.com',
+            'token' => 'foo-token',
+            'created_at' => new Carbon(),
+        ]);
+
+        $this->visit('/reset-password/foo-token')
+            ->type('john@example.com', 'email')
+            ->type('foopassword', 'password')
+            ->type('foopassword', 'password_confirmation')
+            ->press('Reset Password')
+            ->seePageIs('/dashboard')
+            ->visit('/logout')
+            ->visit('/login')
+            ->type('johndoe', 'username')
+            ->type('foopassword', 'password')
+            ->press('Login')
+            ->seePageIs('/dashboard');
     }
 }

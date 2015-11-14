@@ -28,7 +28,7 @@ class HomeTest extends TestCase
     /** @test */
     function users_can_see_a_logout_button_when_logged_in()
     {
-        $this->be($this->createUser());
+        $this->login();
 
         $this->visit('/')
             ->seeLink('Logout')

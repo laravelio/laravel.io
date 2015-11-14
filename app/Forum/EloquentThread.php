@@ -2,12 +2,13 @@
 namespace Lio\Forum;
 
 use Illuminate\Database\Eloquent\Model;
+use Lio\Eloquent\HasTimestamps;
 use Lio\Replies\MorphManyReplies;
 use Lio\Replies\ReplyAble;
 
 final class EloquentThread extends Model implements Thread, ReplyAble
 {
-    use MorphManyReplies;
+    use HasTimestamps, MorphManyReplies;
 
     /**
      * @var string
@@ -18,6 +19,11 @@ final class EloquentThread extends Model implements Thread, ReplyAble
      * @var string
      */
     protected $morphClass = self::TYPE;
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['subject', 'body'];
 
     /**
      * @return int
@@ -33,6 +39,14 @@ final class EloquentThread extends Model implements Thread, ReplyAble
     public function subject()
     {
         return $this->subject;
+    }
+
+    /**
+     * @return string
+     */
+    public function body()
+    {
+        return $this->body;
     }
 
     /**

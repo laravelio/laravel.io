@@ -1,7 +1,9 @@
 <?php
 namespace Lio\Users;
 
-interface User
+use Lio\DateTime\Timestamps;
+
+interface User extends Timestamps
 {
     /**
      * @return int

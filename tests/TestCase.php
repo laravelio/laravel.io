@@ -29,16 +29,30 @@ abstract class TestCase extends IlluminateTestCase
     }
 
     /**
+     * @param array $attributes
      * @return \Lio\Users\User
      */
-    protected function createUser()
+    protected function login(array $attributes = [])
     {
-        return factory(EloquentUser::class)->create([
+        $user = $this->createUser($attributes);
+
+        $this->be($user);
+
+        return $user;
+    }
+
+    /**
+     * @param array $attributes
+     * @return \Lio\Users\User
+     */
+    protected function createUser(array $attributes = [])
+    {
+        return factory(EloquentUser::class)->create(array_merge([
             'name' => 'John Doe',
             'username' => 'johndoe',
             'email' => 'john@example.com',
             'password' => bcrypt('password'),
             'github_url' => 'johndoe',
-        ]);
+        ], $attributes));
     }
 }

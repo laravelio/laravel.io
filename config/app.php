@@ -155,6 +155,7 @@ return [
         Lio\Replies\ReplyServiceProvider::class,
         Lio\Spam\SpamServiceProvider::class,
         Lio\Users\UserServiceProvider::class,
+        Lio\Views\ViewServiceProvider::class,
 
     ],
 
