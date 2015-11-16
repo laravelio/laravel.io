@@ -3,10 +3,13 @@ namespace Lio\Tests;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\TestCase as IlluminateTestCase;
-use Lio\Users\EloquentUser;
+use Lio\Testing\BuildsModels;
+use Lio\Users\User;
 
 abstract class TestCase extends IlluminateTestCase
 {
+    use BuildsModels;
+
     /**
      * The base URL to use while testing the application.
      *
@@ -47,7 +50,7 @@ abstract class TestCase extends IlluminateTestCase
      */
     protected function createUser(array $attributes = [])
     {
-        return factory(EloquentUser::class)->create(array_merge([
+        return $this->create(User::class, array_merge([
             'name' => 'John Doe',
             'username' => 'johndoe',
             'email' => 'john@example.com',

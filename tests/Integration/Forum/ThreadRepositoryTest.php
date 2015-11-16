@@ -3,7 +3,6 @@ namespace Lio\Tests\Integration\Forum;
 
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Lio\Forum\EloquentThread;
 use Lio\Forum\Thread;
 use Lio\Forum\ThreadRepository;
 use Lio\Testing\RepositoryTest;
@@ -18,7 +17,7 @@ class ThreadRepositoryTest extends TestCase
     /** @test */
     public function find_all_paginated()
     {
-        factory(EloquentThread::class, 2)->create();
+        $this->create(Thread::class, [], 2);
 
         $threads = $this->repo->findAllPaginated();
 
@@ -29,7 +28,7 @@ class ThreadRepositoryTest extends TestCase
     /** @test */
     public function find_by_slug()
     {
-        factory(EloquentThread::class)->create(['slug' => 'foo']);
+        $this->create(Thread::class, ['slug' => 'foo']);
 
         $this->assertInstanceOf(Thread::class, $this->repo->findBySlug('foo'));
     }
@@ -44,8 +43,8 @@ class ThreadRepositoryTest extends TestCase
     /** @test */
     function we_can_update_a_thread()
     {
-        $thread = factory(EloquentThread::class)->create(['body' => 'foo']);
-        factory(EloquentThread::class)->create(['body' => 'bar']);
+        $thread = $this->create(Thread::class, ['body' => 'foo']);
+        $this->create(Thread::class, ['body' => 'bar']);
 
         $this->repo->update($thread, ['body' => 'baz']);
 
@@ -58,7 +57,7 @@ class ThreadRepositoryTest extends TestCase
     /** @test */
     function we_can_delete_a_thread()
     {
-        $thread = factory(EloquentThread::class)->create();
+        $thread = $this->create(Thread::class);
 
         $this->seeInDatabase('threads', ['id' => 1]);
 

@@ -2,8 +2,7 @@
 namespace Lio\Tests\Integration\Replies;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Lio\Forum\EloquentThread;
-use Lio\Replies\EloquentReply;
+use Lio\Forum\Thread;
 use Lio\Replies\Reply;
 use Lio\Replies\ReplyRepository;
 use Lio\Testing\RepositoryTest;
@@ -18,7 +17,7 @@ class ReplyRepositoryTest extends TestCase
     /** @test */
     function we_can_create_a_reply()
     {
-        $thread = factory(EloquentThread::class)->create();
+        $thread = $this->create(Thread::class);
         $user = $this->createUser();
 
         $this->assertInstanceOf(Reply::class, $this->repo->create($thread, $user, 'Foo'));
@@ -27,8 +26,8 @@ class ReplyRepositoryTest extends TestCase
     /** @test */
     function we_can_update_a_reply()
     {
-        $reply = factory(EloquentReply::class)->create(['body' => 'foo']);
-        factory(EloquentReply::class)->create(['body' => 'bar']);
+        $reply = $this->create(Reply::class, ['body' => 'foo']);
+        $this->create(Reply::class, ['body' => 'bar']);
 
         $this->repo->update($reply, ['body' => 'baz']);
 
@@ -41,7 +40,7 @@ class ReplyRepositoryTest extends TestCase
     /** @test */
     function we_can_delete_a_reply()
     {
-        $reply = factory(EloquentReply::class)->create();
+        $reply = $this->create(Reply::class);
 
         $this->seeInDatabase('replies', ['id' => 1]);
 

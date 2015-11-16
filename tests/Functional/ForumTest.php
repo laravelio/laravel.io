@@ -2,7 +2,7 @@
 namespace Lio\Tests\Functional;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Lio\Forum\EloquentThread;
+use Lio\Forum\Thread;
 use Lio\Tests\TestCase;
 
 class ForumTest extends TestCase
@@ -12,12 +12,8 @@ class ForumTest extends TestCase
     /** @test */
     function we_can_see_a_list_of_threads()
     {
-        factory(EloquentThread::class)->create([
-            'subject' => 'The first thread',
-        ]);
-        factory(EloquentThread::class)->create([
-            'subject' => 'The second thread',
-        ]);
+        $this->create(Thread::class, ['subject' => 'The first thread']);
+        $this->create(Thread::class, ['subject' => 'The second thread']);
 
         $this->visit('/forum')
             ->see('The first thread')
@@ -27,7 +23,7 @@ class ForumTest extends TestCase
     /** @test */
     function we_can_see_a_single_thread()
     {
-        factory(EloquentThread::class)->create([
+        $this->create(Thread::class, [
             'subject' => 'The first thread',
             'slug' => 'the-first-thread',
         ]);
@@ -41,7 +37,7 @@ class ForumTest extends TestCase
     {
         $this->login();
 
-        factory(EloquentThread::class)->create([
+        $this->create(Thread::class, [
             'subject' => 'The first thread',
             'slug' => 'the-first-thread',
         ]);
@@ -75,7 +71,7 @@ class ForumTest extends TestCase
     /** @test */
     function we_can_edit_a_thread()
     {
-        factory(EloquentThread::class)->create(['slug' => 'my-first-thread']);
+        $this->create(Thread::class, ['slug' => 'my-first-thread']);
 
         $this->login();
 
