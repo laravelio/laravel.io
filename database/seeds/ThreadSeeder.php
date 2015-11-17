@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use Lio\Forum\EloquentThread;
+use Lio\Forum\Thread;
 
 class ThreadSeeder extends Seeder
 {
     public function run()
     {
-        factory(EloquentThread::class, 5)->create();
+        $this->create(Thread::class, [], 5);
     }
 }
