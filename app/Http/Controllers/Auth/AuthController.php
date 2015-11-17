@@ -2,9 +2,9 @@
 namespace Lio\Http\Controllers\Auth;
 
 use Lio\Http\Controllers\Controller;
-use Lio\Users\EloquentUser;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Lio\Users\UserRepository;
 use Validator;
 
 class AuthController extends Controller
@@ -44,10 +44,14 @@ class AuthController extends Controller
     protected $redirectTo = '/dashboard';
 
     /**
-     * Create a new authentication controller instance.
+     * @var \Lio\Users\UserRepository
      */
-    public function __construct()
+    private $users;
+
+    public function __construct(UserRepository $users)
     {
+        $this->users = $users;
+
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -75,12 +79,11 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        /** @todo Replace by repository */
-        return EloquentUser::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'username' => $data['username'],
-            'password' => bcrypt($data['password']),
-        ]);
+        return $this->users->create(
+            $data['name'],
+            $data['email'],
+            bcrypt($data['password']),
+            $data['username']
+        );
     }
 }
