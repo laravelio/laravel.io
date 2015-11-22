@@ -1,6 +1,8 @@
 {
   "private": true,
   "dependencies": {
-    "laravel-elixir": "^3.4.2"
+    "bootstrap-sass": "^3.3.5",
+    "jquery": "^2.1.4",
+    "laravel-elixir": "^4.0.3"
   }
 }

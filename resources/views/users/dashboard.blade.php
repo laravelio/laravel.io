@@ -1,3 +1,5 @@
-<p>Welcome {{ Auth::user()->name }}!</p>
+@extends('layouts.default')
 
-<p><a href="{{ route('home') }}">Home</a></p>
+@section('content')
+    <p>Welcome {{ Auth::user()->name }}!</p>
+@stop

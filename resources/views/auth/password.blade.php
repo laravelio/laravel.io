@@ -1,15 +1,19 @@
-<p>{{ Session::get('status', 'Please fill in your email address below.') }}</p>
+@extends('layouts.default')
 
-{!! Form::open(['route' => 'password.forgot.post']) !!}
-    <div>
-        {!! Form::label('email') !!}<br>
-        {!! Form::email('email') !!}<br>
-        {{ $errors->first('email') }}<br>
-    </div>
+@section('content')
+    <p>{{ Session::get('status', 'Please fill in your email address below.') }}</p>
 
-    <div>
-        <button type="submit">
-            Send Password Reset Link
-        </button>
-    </div>
-{!! Form::close() !!}
+    {!! Form::open(['route' => 'password.forgot.post']) !!}
+        <div>
+            {!! Form::label('email') !!}<br>
+            {!! Form::email('email') !!}<br>
+            {{ $errors->first('email') }}<br>
+        </div>
+
+        <div>
+            <button type="submit">
+                Send Password Reset Link
+            </button>
+        </div>
+    {!! Form::close() !!}
+@stop
