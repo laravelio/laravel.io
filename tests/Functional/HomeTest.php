@@ -34,6 +34,6 @@ class HomeTest extends TestCase
             ->seeLink('Logout')
             ->dontSeeLink('Login')
             ->dontSeeLink('Signup')
-            ->seeLink('John Doe', '/dashboard');
+            ->seeLink('Dashboard', '/dashboard');
     }
 }
