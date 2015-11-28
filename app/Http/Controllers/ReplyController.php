@@ -1,9 +1,9 @@
 <?php
 namespace Lio\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Lio\Forum\Thread;
 use Lio\Forum\ThreadRepository;
+use Lio\Replies\CreateReplyRequest;
 use Lio\Replies\UpdateReplyRequest;
 use Lio\Replies\Reply;
 use Lio\Replies\ReplyAble;
@@ -29,7 +29,7 @@ class ReplyController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(Request $request)
+    public function store(CreateReplyRequest $request)
     {
         $replyAble = $this->findReplyAble($request->get('replyable_id'), $request->get('replyable_type'));
 

@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('content')
+@section('default-content')
     <h1>{{ $user->name() }}</h1>
 
     @if ($user->githubUsername())

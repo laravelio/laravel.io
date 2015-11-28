@@ -1,5 +1,5 @@
 @extends('layouts.default')
 
-@section('content')
-    <p>Welcome {{ Auth::user()->name }}!</p>
+@section('default-content')
+    <h1>Welcome {{ Auth::user()->name }}!</h1>
 @stop

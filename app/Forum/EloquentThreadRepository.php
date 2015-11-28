@@ -24,7 +24,7 @@ final class EloquentThreadRepository implements ThreadRepository
      */
     public function findAllPaginated()
     {
-        return $this->model->orderBy('created_at', 'desc')->paginate(50);
+        return $this->model->orderBy('created_at', 'desc')->paginate(20);
     }
 
     /**

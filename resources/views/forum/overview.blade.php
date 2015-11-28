@@ -1,6 +1,8 @@
 @extends('layouts.default')
 
-@section('content')
+@section('default-content')
+    <h1>Forum</h1>
+
     @if (count($threads))
         @foreach ($threads as $thread)
             <h2><a href="{{ route('thread', $thread->slug()) }}">{{ $thread->subject() }}</a></h2>
@@ -11,5 +13,7 @@
         @endforeach
     @endif
 
-    {!! $threads->render() !!}
+    <div class="text-center">
+        {!! $threads->render() !!}
+    </div>
 @stop
