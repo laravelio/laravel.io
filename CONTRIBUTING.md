@@ -1,2 +1,0 @@
-# Contribution Guidelines
-

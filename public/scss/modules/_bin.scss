@@ -1,24 +1,37 @@
-/* ==========================================================================
-   MOBILE FIRST MODULE SKELETON
-   ========================================================================== */
+$orange_button_bg: #f0523f;
+$orange_button_bg_hover: #c73e2d;
+$sidebar_transition: 0.5s ease;
 
-// MOBILE STYLES ////////////////////////////////////////////////////////////
 body.bin {
     background: #1D1F21;
     -webkit-font-smoothing: antialiased;
 
     #copy-data {
         position: absolute;
-        right: -100%;
+        right: -200%;
     }
-    
+
     .show-container {
-        overflow-x: scroll;
+        background: #1D1F21;
+        -ms-word-break: break-all;
+        word-break: break-all;
+
+        // Non standard for webkit
+        word-break: break-word;
+
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        hyphens: auto;
+
+        padding-right: 2em;
+        -webkit-transition: width $sidebar_transition, padding-right $sidebar_transition;
+        transition: width $sidebar_transition, padding-right $sidebar_transition;
     }
-    
+
     .prettyprint {
+        background: #1D1F21;
         border: 0;
-        margin: 0;
+        margin: 3em 0 0 0;
         padding: 0;
         padding-bottom: 300px;
 
@@ -36,37 +49,70 @@ body.bin {
     }
 
     .editor {
-        width: 100%;
-        height: 100%;
-        line-height: 1.8em;
-        position: fixed;
-        padding: 2em;
         background: transparent;
         border: 0;
         color: #fff;
-        resize: none;
         font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-        outline: none;
         font-size: 12px;
         -webkit-font-smoothing: antialiased;
+        line-height: 1.8em;
+        height: 100%;
+        margin-top: 1em;
+        outline: none;
+        padding: 2em;
+        position: fixed;
+        resize: none;
+        -webkit-transition: width $sidebar_transition, padding-right $sidebar_transition;
+        transition: width $sidebar_transition, padding-right $sidebar_transition;
+        -ms-word-break: break-all;
+        word-break: break-all;
+        // Non standard for webkit
+        word-break: break-word;
         z-index: 1;
+        width: 100%;
+    }
+
+    .show-sidebar {
+        background: #444;
+        color: #888;
+        font-size: 1em;
+        height: 3.15em;
+        padding: 1em 1em;
+        position: fixed;
+        right: 0;
+        text-align: center;
+        transition: right $sidebar_transition;
+        top: 0;
+        width: 3em;
+        z-index: 15;
+
+        &:hover {
+            background: #666;
+            color: #eee;
+        }
+
+        &.show {
+            right: 50%;
+        }
     }
 
     .sidebar {
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        right: 0;
-        width: 250px;
-        height: 100%;
         background: #2d2e2f;
-        padding: 15px;
+        border: 0;
         box-shadow: -2px 0 3px rgba(black, 0.2);
         -o-box-shadow: -2px 0 3px rgba(black, 0.2);
         -moz-box-shadow: -2px 0 3px rgba(black, 0.2);
         -webkit-box-shadow: -2px 0 3px rgba(black, 0.2);
-        border: 0;
         color: #fff;
+        height: 100%;
+        padding: 15px;
+        position: fixed;
+        right: 0;
+        -webkit-transition: -webkit-transform $sidebar_transition;
+        transition: transform $sidebar_transition;
+        top: 0;
+        width: 50%;
+        z-index: 10;
 
         p {
             margin-bottom: 0;
@@ -75,24 +121,24 @@ body.bin {
         .logo {
             display: block;
             margin: auto;
+            max-width: 100%;
             padding: 15px 0;
             width: 150px;
         }
 
         .options {
-            overflow: hidden;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
             border-bottom: 2px solid #747474;
+            overflow: hidden;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
 
             ul {
                 margin: 0;
                 padding: 0;
 
                 li {
-                    float: left;
-                    width: 100%;
                     margin-bottom: 10px;
+                    width: 100%;
                 }
 
                 li:last-child {
@@ -100,32 +146,23 @@ body.bin {
                 }
             }
         }
-    }
 
-    .sidebar.create {
-        height: auto;
-        box-shadow: -2px 2px 3px rgba(black, 0.2);
-        -o-box-shadow: -2px 2px 3px rgba(black, 0.2);
-        -moz-box-shadow: -2px 2px 3px rgba(black, 0.2);
-        -webkit-box-shadow: -2px 2px 3px rgba(black, 0.2);
-
-        .options {
-            border: 0;
-            margin: 0;
-            padding: 0;
+        &.hide {
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
         }
     }
 
     .button {
-        background: #f0523f;
-        width: 100%;
-        color: #fff;
-        border-radius: 2px;
+        background: $orange_button_bg;
         border: 0;
-        padding: 10px 0;
+        border-radius: 2px;
+        color: #fff;
+        display: inline-block;
         -webkit-font-smoothing: antialiased;
         outline: none;
-        display: inline-block;
+        padding: 10px 5px;
+        width: 100%;
 
         .fa {
             font-size: 10px;
@@ -133,7 +170,7 @@ body.bin {
         }
 
         &:hover {
-            background: #c73e2d;
+            background: $orange_button_bg_hover;
         }
     }
 
@@ -144,8 +181,8 @@ body.bin {
     }
 
     .comments {
-        width: 100%;
         color: #a6a6a6;
+        width: 100%;
 
         h3 {
             color: #fff;
@@ -159,38 +196,97 @@ body.bin {
     .toast-info {
         background: rgba(#f0523f, 0.8);
     }
-}
 
-// BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
+    .cartalyst-ad {
+        border-top: 2px solid #747474;
+        color: white;
+        display: inline-block;
+        font-size: 12px;
+        line-height: 18px;
+        margin-top: 15px;
+        padding-top: 15px;
 
-@media only screen and (min-width: 480px) {
+        img {
+            float: left;
+            padding: 0 10px 10px 0;
+        }
+    }
 
-    .module {}
+    // BREAKPOINT 1 (480) ////////////////////////////////////////////////////////////
 
-}
-
-
-// BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
-
-@media screen and (max-width: 768px) {
-
-}
-
-
-// BREAKPOINT 3 (1024) ////////////////////////////////////////////////////////////
-
-@media screen and (max-width: 1024px) {
-    body.bin {
+    @media only screen and (min-width: 480px) {
         .sidebar {
             width: 30%;
         }
+
+        .show-sidebar.show {
+            right: 30%;
+        }
+
+        .editor {
+            margin-top: 1em;
+        }
     }
-}
 
 
-// BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
+    // BREAKPOINT 2 (768) ////////////////////////////////////////////////////////////
 
-@media only screen and (min-width: 1440px) {
+    @media screen and (min-width: 768px) {
+        .show-container,
+        .editor {
+            width: 70%;
+        }
+        .show-container.sidebar-hidden,
+        .editor.sidebar-hidden {
+            width: 100%;
+            padding-right: 2em;
+        }
+    }
 
-    .module {}
+
+    // BREAKPOINT 3 (1024) ////////////////////////////////////////////////////////////
+
+    @media screen and (min-width: 1024px) {
+        .show-container,
+        .editor {
+            width: 100%;
+            padding-right: 290px;
+        }
+        .sidebar {
+            width: 250px;
+        }
+        .show-sidebar.show {
+            right: 250px;
+        }
+    }
+
+
+    // BREAKPOINT 4 (1440) ////////////////////////////////////////////////////////////
+
+    @media only screen and (min-width: 1440px) {
+
+    }
+
+    // SPECIAL HEIGHT BREAKPOINT
+    @media only screen and (max-height: 400px) {
+        .show-container,
+        .editor {
+            padding-right: 360px;
+        }
+
+        .sidebar {
+            width: 320px;
+        }
+
+        .show-sidebar.show {
+            right: 320px;
+        }
+
+        .sidebar .options ul li {
+            float: left;
+            margin-right: 5%;
+            width: 45%;
+        }
+    }
+
 }

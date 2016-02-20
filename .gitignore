@@ -1,13 +1,6 @@
-/bootstrap/compiled.php
-/vendor
 .DS_Store
-.vagrant
 .idea
-public/.sass-cache
-tags
-app/tests/_log/*
-app/tests/_data/*
-app/storage/cache/*
-app/storage/views/*
-stylesheets
-vagrant_ansible_inventory_default
+/vendor
+/node_modules
+Homestead.yaml
+.env

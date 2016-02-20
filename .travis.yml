@@ -1,6 +1,28 @@
 language: php
 
 php:
-  - 5.3
+  - 5.6
+  - 7.0
+  - hhvm
 
-script: "php artisan test:core"
+sudo: false
+
+before_script:
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
+
+script:
+  - vendor/bin/phpspec run --verbose
+  - vendor/bin/phpunit --verbose --coverage-clover build/logs/clover.xml
+
+after_script:
+  - vendor/bin/test-reporter
+
+matrix:
+  allow_failures:
+    - php: 7.0
+    - php: hhvm
+
+addons:
+  code_climate:
+    repo_token: $CODE_CLIMATE_TOKEN
