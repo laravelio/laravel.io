@@ -1,8 +1,6 @@
 language: php
 
-php:
-  - 7.0
-  - hhvm
+php: 7.0
 
 sudo: false
 
@@ -16,10 +14,6 @@ script:
 
 after_script:
   - vendor/bin/test-reporter
-
-matrix:
-  allow_failures:
-    - php: hhvm
 
 addons:
   code_climate:

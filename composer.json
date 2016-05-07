@@ -17,7 +17,8 @@
         "phpunit/phpunit": "~4.0",
         "codeclimate/php-test-reporter": "^0.1.2",
         "doctrine/dbal": "^2.5",
-        "phpspec/phpspec": "^2.3"
+        "phpspec/phpspec": "^2.3",
+        "laravel/homestead": "^3.0"
     },
     "autoload": {
         "classmap": [
