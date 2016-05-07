@@ -26,10 +26,12 @@ Please make sure you install the following tools before starting with the instal
 
 ## Installation
 
+> Note that you're free to adjust the `~/Sites/laravelio` location to any new directory you want on your system.
+
 1. Clone this repository: `git clone git@github.com:laravelio/laravel-io.git ~/Sites/laravelio`
 2. Add the `Homestead.yaml` file from below to the root of your project
 3. Run `vagrant up`
-4. SSH into your Vagrant box, cd to `/home/vagrant/laravelio` and run the following commands:
+4. SSH into your Vagrant box, go to `/home/vagrant/laravelio` and run the following commands:
     1. `composer install`
     2. `php artisan migrate --seed --env=local`
     3. `npm install && gulp`
