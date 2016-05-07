@@ -7,7 +7,7 @@ class SpamServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->bindShared(SpamDetector::class, function () {
+        $this->app->singleton(SpamDetector::class, function () {
             return new SpamFilter([
                 new PhoneNumberSpamDetector,
                 new ForeignLanguageSpamDetector,

@@ -4,6 +4,7 @@ namespace Lio\Http\Controllers\Auth;
 use Lio\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Lio\Users\User;
 use Lio\Users\UserRepository;
 use Validator;
 
@@ -30,13 +31,6 @@ class AuthController extends Controller
     protected $username = 'username';
 
     /**
-     * Override the default login path
-     *
-     * @var string
-     */
-    protected $loginPath = '/login';
-
-    /**
      * Override the default redirect path
      *
      * @var string
@@ -52,7 +46,7 @@ class AuthController extends Controller
     {
         $this->users = $users;
 
-        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware($this->guestMiddleware(), ['except' => 'getLogout']);
     }
 
     /**
@@ -74,7 +68,7 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return User
      */
     protected function create(array $data)

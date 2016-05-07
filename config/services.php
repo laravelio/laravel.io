@@ -24,14 +24,18 @@ return [
     ],
 
     'ses' => [
-        'key'    => env('SES_KEY'),
+        'key' => env('SES_KEY'),
         'secret' => env('SES_SECRET'),
         'region' => 'us-east-1',
     ],
 
+    'sparkpost' => [
+        'secret' => env('SPARKPOST_SECRET'),
+    ],
+
     'stripe' => [
-        'model'  => Lio\Users\User::class,
-        'key'    => env('STRIPE_KEY'),
+        'model' => Lio\Users\EloquentUser::class,
+        'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
 
@@ -49,3 +53,4 @@ return [
     ],
 
 ];
+

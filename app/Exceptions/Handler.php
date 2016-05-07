@@ -1,9 +1,12 @@
 <?php
 namespace Lio\Exceptions;
 
+use Auth;
 use Bugsnag;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Bugsnag\BugsnagLaravel\BugsnagExceptionHandler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -16,8 +19,10 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
+        AuthorizationException::class,
         HttpException::class,
         ModelNotFoundException::class,
+        ValidationException::class,
     ];
 
     /**
@@ -31,10 +36,10 @@ class Handler extends ExceptionHandler
     public function report(Exception $e)
     {
         // If a user is logged in, we'll set him as the target user for which the errors will occur.
-        if (auth()->check()) {
+        if (Auth::check()) {
             Bugsnag::setUser([
-                'name' => auth()->user()->name,
-                'email' => auth()->user()->email,
+                'name' => Auth::user()->name,
+                'email' => Auth::user()->email,
             ]);
         }
 
