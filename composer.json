@@ -8,16 +8,15 @@
         "bugsnag/bugsnag-laravel": "^1.6",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "5.2.*",
-        "league/commonmark": "^0.12.0"
+        "league/commonmark": "^0.13.2"
     },
     "require-dev": {
-        "codeclimate/php-test-reporter": "^0.1.2",
+        "codeclimate/php-test-reporter": "^0.3.2",
         "doctrine/dbal": "^2.5",
-        "fzaninotto/faker": "~1.4",
+        "fzaninotto/faker": "^1.6",
         "laravel/homestead": "^3.0",
-        "mockery/mockery": "0.9.*",
-        "phpspec/phpspec": "^2.3",
-        "phpunit/phpunit": "~4.0",
+        "phpspec/phpspec": "^2.5",
+        "phpunit/phpunit": "^5.3",
         "symfony/css-selector": "^3.0",
         "symfony/dom-crawler": "^3.0"
     },
