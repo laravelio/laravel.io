@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder as LaravelSeeder;
 use Lio\ModelFactories\BuildsModels;
 use Lio\ModelFactories\ModelFactory;
 
-class Seeder extends LaravelSeeder
+abstract class Seeder extends LaravelSeeder
 {
     use BuildsModels;
 
