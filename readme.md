@@ -26,7 +26,7 @@ Please make sure you install the following tools before starting with the instal
 
 ## Installation
 
-> Note that you're free to adjust the `~/Sites/laravelio` location to any new directory you want on your system.
+> Note that you're free to adjust the `~/Sites/laravelio` location to any new directory you want on your machine.
 
 1. Clone this repository: `git clone git@github.com:laravelio/laravel-io.git ~/Sites/laravelio`
 2. Add the `Homestead.yaml` file from below to the root of your project
