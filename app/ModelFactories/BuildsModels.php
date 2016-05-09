@@ -4,18 +4,13 @@ namespace Lio\ModelFactories;
 trait BuildsModels
 {
     /**
-     * @var \Lio\ModelFactories\ModelFactory
-     */
-    protected $modelFactory;
-
-    /**
      * @param string $model
      * @param array $attributes
      * @return object
      */
     public function make($model, array $attributes = [])
     {
-        return $this->modelFactory->make($model, $attributes);
+        return app(ModelFactory::class)->make($model, $attributes);
     }
 
     /**
@@ -26,7 +21,7 @@ trait BuildsModels
      */
     public function create($model, array $attributes = [], $times = 1)
     {
-        return $this->modelFactory->create($model, $attributes, $times);
+        return app(ModelFactory::class)->create($model, $attributes, $times);
     }
 }
 

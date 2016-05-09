@@ -3,7 +3,7 @@ namespace Lio\Tests;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Testing\TestCase as IlluminateTestCase;
-use Lio\Testing\BuildsModels;
+use Lio\ModelFactories\BuildsModels;
 use Lio\Users\User;
 
 abstract class TestCase extends IlluminateTestCase
