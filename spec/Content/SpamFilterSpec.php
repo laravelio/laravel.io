@@ -3,6 +3,8 @@ namespace spec\Lio\Content;
 
 use Lio\Content\ForeignLanguageSpamDetector;
 use Lio\Content\PhoneNumberSpamDetector;
+use Lio\Content\SpamDetector;
+use Lio\Content\SpamFilter;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -18,8 +20,8 @@ class SpamFilterSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Lio\Content\SpamFilter');
-        $this->shouldHaveType('Lio\Content\SpamDetector');
+        $this->shouldHaveType(SpamFilter::class);
+        $this->shouldHaveType(SpamDetector::class);
     }
 
     function it_can_detect_spam()

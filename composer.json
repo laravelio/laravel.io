@@ -15,7 +15,8 @@
         "hashids/hashids": "1.0.*",
         "mews/purifier": "~2.0",
         "bugsnag/bugsnag-laravel": "1.*",
-        "anhskohbo/no-captcha": "^2.0"
+        "anhskohbo/no-captcha": "^2.0",
+        "tijsverkoyen/akismet": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

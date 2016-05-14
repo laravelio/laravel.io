@@ -62,7 +62,7 @@ class ThreadCreator
 
     private function validateAndSave($thread, $listener, $data)
     {
-        if ($this->spamDetector->detectsSpam($thread->subject)) {
+        if ($this->spamDetector->detectsSpam($thread->subject, $thread->author)) {
             $this->logSpam($thread->subject, $thread->author);
 
             $this->increaseUserSpamCount($thread->author);
@@ -72,7 +72,7 @@ class ThreadCreator
             );
         }
 
-        if ($this->spamDetector->detectsSpam($thread->body)) {
+        if ($this->spamDetector->detectsSpam($thread->body, $thread->author)) {
             $this->logSpam($thread->body, $thread->author);
 
             $this->increaseUserSpamCount($thread->author);
