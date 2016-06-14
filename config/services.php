@@ -52,5 +52,9 @@ return [
         'domain' => env('SNAPPY_DOMAIN'),
     ],
 
+    'akismet' => [
+        'api_key' => env('AKISMET_API_KEY'),
+    ],
+
 ];
 

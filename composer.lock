@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fd56d61e3e1053bafd11486f9be73140",
-    "content-hash": "d88d9fe708279563fec6091a0f7450c4",
+    "hash": "c8ed22a66198d19bae79f1245de32e45",
+    "content-hash": "293258a15f08d4d575cc6ecdd228a1ac",
     "packages": [
         {
             "name": "bugsnag/bugsnag",
@@ -1944,6 +1944,47 @@
                 "dump"
             ],
             "time": "2016-04-25 11:17:47"
+        },
+        {
+            "name": "tijsverkoyen/akismet",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tijsverkoyen/Akismet.git",
+                "reference": "0c5185956e11824ed310d134d38d0b2c936f3d3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tijsverkoyen/Akismet/zipball/0c5185956e11824ed310d134d38d0b2c936f3d3a",
+                "reference": "0c5185956e11824ed310d134d38d0b2c936f3d3a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    ""
+                ]
+            },
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Tijs Verkoyen",
+                    "email": "akismet@verkoyen.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Akismet is a wrapper-class to communicate with the Akismet API.",
+            "homepage": "https://github.com/tijsverkoyen/Akismet",
+            "support": {
+                "source": "https://github.com/xuwaters/Akismet/tree/1.1.0"
+            },
+            "time": "2012-10-13 17:59:41"
         },
         {
             "name": "vlucas/phpdotenv",

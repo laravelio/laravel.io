@@ -8,7 +8,8 @@
         "bugsnag/bugsnag-laravel": "^1.6",
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "5.2.*",
-        "league/commonmark": "^0.13.2"
+        "league/commonmark": "^0.13.2",
+        "tijsverkoyen/akismet": "^1.1"
     },
     "require-dev": {
         "codeclimate/php-test-reporter": "^0.3.2",
