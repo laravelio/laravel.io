@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Events;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
@@ -11,17 +12,10 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $listen = [
-        'Lio\Events\SomeEvent' => [
-            'Lio\Listeners\EventListener',
-        ],
-    ];
+    protected $listen = [];
 
     /**
      * Register any other events for your application.
-     *
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $events
-     * @return void
      */
     public function boot(DispatcherContract $events)
     {

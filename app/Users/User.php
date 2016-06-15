@@ -18,6 +18,11 @@ interface User extends Timestamps
     /**
      * @return string
      */
+    public function username();
+
+    /**
+     * @return string
+     */
     public function githubUsername();
 
     /**

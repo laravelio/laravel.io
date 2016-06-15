@@ -23,10 +23,10 @@
                         <li><a href="https://twitter.com/laravelio"><i class="fa fa-twitter"></i> Twitter</a></li>
                         <li><a href="https://github.com/laravelio"><i class="fa fa-github"></i> Github</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="http://laravel.com/">Laravel</a></li>
+                        <li><a href="https://laravel.com">Laravel</a></li>
                         <li><a href="https://larajobs.com/?partner=28">Larajobs</a></li>
-                        <li><a href="https://laravel-news.com/">Laravel News</a></li>
-                        <li><a href="http://www.laravelpodcast.com/">Podcast</a></li>
+                        <li><a href="https://laravel-news.com">Laravel News</a></li>
+                        <li><a href="http://www.laravelpodcast.com">Podcast</a></li>
                     </ul>
                 </li>
             </ul>
@@ -39,6 +39,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi, {{ Auth::user()->name() }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ route('profile', Auth::user()->username()) }}">Profile</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('logout') }}">Logout</a></li>
                         </ul>

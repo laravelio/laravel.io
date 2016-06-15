@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Forum;
 
 use Illuminate\Support\ServiceProvider;

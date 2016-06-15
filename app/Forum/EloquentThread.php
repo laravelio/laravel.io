@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Forum;
 
 use Illuminate\Database\Eloquent\Model;
@@ -25,34 +26,22 @@ final class EloquentThread extends Model implements Thread, ReplyAble
      */
     protected $fillable = ['subject', 'body'];
 
-    /**
-     * @return int
-     */
-    public function id()
+    public function id(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function subject()
+    public function subject(): string
     {
         return $this->subject;
     }
 
-    /**
-     * @return string
-     */
-    public function body()
+    public function body(): string
     {
         return $this->body;
     }
 
-    /**
-     * @return string
-     */
-    public function slug()
+    public function slug(): string
     {
         return $this->slug;
     }

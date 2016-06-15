@@ -41,7 +41,7 @@ Route::group(['namespace' => 'Auth'], function () {
 
 // Users
 Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'UsersController@dashboard']);
-Route::get('user/{username}', ['as' => 'user', 'uses' => 'UsersController@profile']);
+Route::get('user/{username}', ['as' => 'profile', 'uses' => 'UsersController@profile']);
 
 // Paste Bin
 Route::get('bin', 'PasteBinController@create');

@@ -1,10 +1,10 @@
 <?php
+
 namespace Lio\Replies;
+
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 interface ReplyAble
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOneOrMany
-     */
-    public function replyAble();
+    public function replyAble(): MorphMany;
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Forum;
 
 use Lio\DateTime\Timestamps;
@@ -7,25 +8,10 @@ interface Thread extends Timestamps
 {
     const TYPE = 'threads';
 
-    /**
-     * @return int
-     */
-    public function id();
-
-    /**
-     * @return string
-     */
-    public function subject();
-
-    /**
-     * @return string
-     */
-    public function body();
-
-    /**
-     * @return string
-     */
-    public function slug();
+    public function id(): int;
+    public function subject(): string;
+    public function body(): string;
+    public function slug(): string;
 
     /**
      * @return \Lio\Replies\Reply[]

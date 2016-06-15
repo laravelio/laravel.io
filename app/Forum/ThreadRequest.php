@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Forum;
 
 use Lio\Http\Requests\Request;

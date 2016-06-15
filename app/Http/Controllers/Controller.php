@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;

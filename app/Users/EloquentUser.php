@@ -1,23 +1,13 @@
 <?php
 namespace Lio\Users;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Lio\Eloquent\HasTimestamps;
 use Lio\Replies\HasManyReplies;
 
-final class EloquentUser extends Model implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract,
-    User
+final class EloquentUser extends Authenticatable implements User
 {
-    use Authenticatable, Authorizable, CanResetPassword, HasManyReplies, HasTimestamps;
+    use HasManyReplies, HasTimestamps;
 
     /**
      * The database table used by the model.
@@ -54,6 +44,14 @@ final class EloquentUser extends Model implements
     public function name()
     {
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function username()
+    {
+        return $this->username;
     }
 
     /**

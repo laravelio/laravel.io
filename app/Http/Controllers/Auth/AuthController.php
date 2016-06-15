@@ -1,6 +1,8 @@
 <?php
+
 namespace Lio\Http\Controllers\Auth;
 
+use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Lio\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -51,11 +53,8 @@ class AuthController extends Controller
 
     /**
      * Get a validator for an incoming registration request.
-     *
-     * @param array $data
-     * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data): ValidatorContract
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
@@ -67,11 +66,8 @@ class AuthController extends Controller
 
     /**
      * Create a new user instance after a valid registration.
-     *
-     * @param array $data
-     * @return User
      */
-    protected function create(array $data)
+    protected function create(array $data): User
     {
         return $this->users->create(
             $data['name'],

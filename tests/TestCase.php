@@ -2,6 +2,7 @@
 namespace Lio\Tests;
 
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\TestCase as IlluminateTestCase;
 use Lio\ModelFactories\BuildsModels;
 use Lio\Users\User;
@@ -17,12 +18,7 @@ abstract class TestCase extends IlluminateTestCase
      */
     protected $baseUrl = 'http://localhost';
 
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
+    public function createApplication(): Application
     {
         $app = require __DIR__.'/../bootstrap/app.php';
 
@@ -31,11 +27,7 @@ abstract class TestCase extends IlluminateTestCase
         return $app;
     }
 
-    /**
-     * @param array $attributes
-     * @return \Lio\Users\User
-     */
-    protected function login(array $attributes = [])
+    protected function login(array $attributes = []): User
     {
         $user = $this->createUser($attributes);
 
@@ -44,11 +36,7 @@ abstract class TestCase extends IlluminateTestCase
         return $user;
     }
 
-    /**
-     * @param array $attributes
-     * @return \Lio\Users\User
-     */
-    protected function createUser(array $attributes = [])
+    protected function createUser(array $attributes = []): User
     {
         return $this->create(User::class, array_merge([
             'name' => 'John Doe',

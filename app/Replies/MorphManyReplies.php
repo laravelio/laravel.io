@@ -1,5 +1,8 @@
 <?php
+
 namespace Lio\Replies;
+
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait MorphManyReplies
 {
@@ -11,10 +14,7 @@ trait MorphManyReplies
         return $this->replyAble;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function replyAble()
+    public function replyAble(): MorphMany
     {
         return $this->morphMany(EloquentReply::class, 'replyable');
     }

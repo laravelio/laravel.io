@@ -1,6 +1,8 @@
 <?php
+
 namespace Lio\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Lio\Forum\Thread;
 use Lio\Forum\ThreadRepository;
 use Lio\Replies\CreateReplyRequest;
@@ -57,12 +59,7 @@ class ReplyController extends Controller
         return $this->redirectToReplyAble($reply->replyAble());
     }
 
-    /**
-     * @param int $id
-     * @param string $type
-     * @return \Lio\Replies\ReplyAble
-     */
-    private function findReplyAble($id, $type)
+    private function findReplyAble(int $id, string $type): ReplyAble
     {
         switch ($type) {
             case Thread::TYPE:
@@ -72,11 +69,7 @@ class ReplyController extends Controller
         abort(404);
     }
 
-    /**
-     * @param \Lio\Replies\ReplyAble $replyAble
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    private function redirectToReplyAble(ReplyAble $replyAble)
+    private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse
     {
         if ($replyAble instanceof Thread) {
             return redirect()->route('thread', $replyAble->slug());

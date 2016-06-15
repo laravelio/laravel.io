@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Http\Controllers;
 
 use Lio\Users\User;

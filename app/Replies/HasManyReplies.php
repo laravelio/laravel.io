@@ -1,5 +1,8 @@
 <?php
+
 namespace Lio\Replies;
+
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait HasManyReplies
 {
@@ -11,10 +14,7 @@ trait HasManyReplies
         return $this->replyable;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function replyable()
+    public function replyable(): HasMany
     {
         return $this->hasMany(EloquentReply::class);
     }

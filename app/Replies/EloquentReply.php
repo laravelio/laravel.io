@@ -1,9 +1,13 @@
 <?php
+
 namespace Lio\Replies;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Lio\Eloquent\HasTimestamps;
 use Lio\Users\EloquentUser;
+use Lio\Users\User;
 
 final class EloquentReply extends Model implements Reply
 {
@@ -19,50 +23,32 @@ final class EloquentReply extends Model implements Reply
      */
     protected $fillable = ['body'];
 
-    /**
-     * @return int
-     */
-    public function id()
+    public function id(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function body()
+    public function body(): string
     {
         return $this->body;
     }
 
-    /**
-     * @return \Lio\Replies\ReplyAble
-     */
-    public function replyAble()
+    public function replyAble(): ReplyAble
     {
         return $this->replyAbleRelation;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-     */
-    public function replyAbleRelation()
+    public function replyAbleRelation(): MorphTo
     {
         return $this->morphTo('replyable');
     }
 
-    /**
-     * @return \Lio\Users\User
-     */
-    public function author()
+    public function author(): User
     {
         return $this->authorRelation;
     }
 
-    /**
-     * @return \Lio\Users\User
-     */
-    public function authorRelation()
+    public function authorRelation(): BelongsTo
     {
         return $this->belongsTo(EloquentUser::class, 'author_id');
     }

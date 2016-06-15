@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\ModelFactories;
 
 use Illuminate\Database\Eloquent\Factory;
@@ -30,32 +31,17 @@ final class EloquentModelFactory implements ModelFactory
         $this->factory = $factory;
     }
 
-    /**
-     * @param string $model
-     * @param array $attributes
-     * @return object
-     */
-    public function make($model, array $attributes = [])
+    public function make(string $model, array $attributes = [])
     {
         return $this->factory->of($this->resolveModel($model))->make($attributes);
     }
 
-    /**
-     * @param string $model
-     * @param array $attributes
-     * @param int $times
-     * @return object
-     */
-    public function create($model, array $attributes = [], $times = 1)
+    public function create(string $model, array $attributes = [],int  $times = 1)
     {
         return $this->factory->of($this->resolveModel($model))->times($times)->create($attributes);
     }
 
-    /**
-     * @param string $model
-     * @throws \Lio\ModelFactories\InvalidModelException
-     */
-    private function resolveModel($model)
+    private function resolveModel(string $model)
     {
         if (! isset($this->models[$model])) {
             throw InvalidModelException::notRegistered($model);

@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Replies;
 
 use Lio\Http\Requests\Request;

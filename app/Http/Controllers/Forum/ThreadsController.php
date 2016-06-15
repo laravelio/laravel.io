@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Http\Controllers\Forum;
 
 use Lio\Forum\Thread;

@@ -1,27 +1,14 @@
 <?php
+
 namespace Lio\Replies;
 
 use Lio\DateTime\Timestamps;
+use Lio\Users\User;
 
 interface Reply extends Timestamps
 {
-    /**
-     * @return int
-     */
-    public function id();
-
-    /**
-     * @return string
-     */
-    public function body();
-
-    /**
-     * @return \Lio\Users\User
-     */
-    public function author();
-
-    /**
-     * @return \Lio\Replies\ReplyAble
-     */
-    public function replyAble();
+    public function id(): int;
+    public function body(): string;
+    public function author(): User;
+    public function replyAble(): ReplyAble;
 }

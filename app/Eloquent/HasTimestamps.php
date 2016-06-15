@@ -1,20 +1,17 @@
 <?php
+
 namespace Lio\Eloquent;
+
+use Carbon\Carbon;
 
 trait HasTimestamps
 {
-    /**
-     * @return \Carbon\Carbon
-     */
-    public function createdAt()
+    public function createdAt(): Carbon
     {
         return $this->created_at;
     }
 
-    /**
-     * @return \Carbon\Carbon
-     */
-    public function updatedAt()
+    public function updatedAt(): Carbon
     {
         return $this->updated_at;
     }

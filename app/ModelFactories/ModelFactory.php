@@ -1,20 +1,9 @@
 <?php
+
 namespace Lio\ModelFactories;
 
 interface ModelFactory
 {
-    /**
-     * @param string $model
-     * @param array $attributes
-     * @return object
-     */
-    public function make($model, array $attributes = []);
-
-    /**
-     * @param string $model
-     * @param array $attributes
-     * @param int $times
-     * @return object
-     */
-    public function create($model, array $attributes = [], $times = 1);
+    public function make(string $model, array $attributes = []);
+    public function create(string $model, array $attributes = [], int $times = 1);
 }

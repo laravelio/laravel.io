@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Forum;
 
 use Illuminate\Support\Str;
@@ -11,9 +12,6 @@ final class EloquentThreadRepository implements ThreadRepository
      */
     private $model;
 
-    /**
-     * @param \Lio\Forum\EloquentThread $model
-     */
     public function __construct(EloquentThread $model)
     {
         $this->model = $model;
@@ -28,31 +26,22 @@ final class EloquentThreadRepository implements ThreadRepository
     }
 
     /**
-     * @param int $id
      * @return \Lio\Forum\Thread|null
      */
-    public function find($id)
+    public function find(int $id)
     {
         return $this->model->find($id);
     }
 
     /**
-     * @param string $slug
      * @return \Lio\Forum\Thread|null
      */
-    public function findBySlug($slug)
+    public function findBySlug(string $slug)
     {
         return $this->model->where('slug', $slug)->first();
     }
 
-    /**
-     * @param \Lio\Users\User $author
-     * @param string $subject
-     * @param string $body
-     * @param array $attributes
-     * @return \Lio\Forum\Thread
-     */
-    public function create(User $author, $subject, $body, array $attributes = [])
+    public function create(User $author, string $subject, string $body, array $attributes = []): Thread
     {
         $thread = $this->model->newInstance(compact('subject', 'body'));
         $thread->author_id = $author->id();
@@ -67,21 +56,13 @@ final class EloquentThreadRepository implements ThreadRepository
         return $thread;
     }
 
-    /**
-     * @param \Lio\Forum\Thread $thread
-     * @param array $attributes
-     * @return \Lio\Forum\Thread
-     */
-    public function update(Thread $thread, array $attributes = [])
+    public function update(Thread $thread, array $attributes = []): Thread
     {
         $thread->update($attributes);
 
         return $thread;
     }
 
-    /**
-     * @param \Lio\Forum\Thread $thread
-     */
     public function delete(Thread $thread)
     {
         $thread->delete();

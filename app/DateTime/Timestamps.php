@@ -1,15 +1,11 @@
 <?php
+
 namespace Lio\DateTime;
+
+use Carbon\Carbon;
 
 interface Timestamps
 {
-    /**
-     * @return \Carbon\Carbon
-     */
-    public function createdAt();
-
-    /**
-     * @return \Carbon\Carbon
-     */
-    public function updatedAt();
+    public function createdAt(): Carbon;
+    public function updatedAt(): Carbon;
 }
