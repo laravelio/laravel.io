@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Users;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,34 +31,22 @@ final class EloquentUser extends Authenticatable implements User
      */
     protected $hidden = ['password', 'remember_token'];
 
-    /**
-     * @return int
-     */
-    public function id()
+    public function id(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function name()
+    public function name(): string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function username()
+    public function username(): string
     {
         return $this->username;
     }
 
-    /**
-     * @return string
-     */
-    public function githubUsername()
+    public function githubUsername(): string
     {
         return $this->github_url;
     }

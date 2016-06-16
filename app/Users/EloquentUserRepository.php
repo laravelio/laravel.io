@@ -1,8 +1,8 @@
 <?php
+
 namespace Lio\Users;
 
-use Illuminate\Database\QueryException;
-use Lio\Users\Exceptions\UserCreationException;
+use Lio\Users\Exceptions\CannotCreateUser;
 
 final class EloquentUserRepository implements UserRepository
 {
@@ -11,49 +11,35 @@ final class EloquentUserRepository implements UserRepository
      */
     private $model;
 
-    /**
-     * @param \Lio\Users\EloquentUser $model
-     */
     public function __construct(EloquentUser $model)
     {
         $this->model = $model;
     }
 
     /**
-     * @param string $username
      * @return \Lio\Users\User|null
      */
-    public function findByUsername($username)
+    public function findByUsername(string $username)
     {
         return $this->model->where('username', $username)->first();
     }
 
     /**
-     * @param string $emailAddress
      * @return \Lio\Users\User|null
      */
-    public function findByEmailAddress($emailAddress)
+    public function findByEmailAddress(string $emailAddress)
     {
         return $this->model->where('email', $emailAddress)->first();
     }
 
-    /**
-     * @param string $name
-     * @param string $emailAddress
-     * @param string $password
-     * @param string $username
-     * @param array $attributes
-     * @return \Lio\Users\User
-     * @throws \Lio\Users\Exceptions\UserCreationException
-     */
-    public function create($name, $emailAddress, $password, $username, array $attributes = [])
+    public function create(string $name, string $emailAddress, string $password, string $username, array $attributes = []): User
     {
         if ($this->findByEmailAddress($emailAddress)) {
-            throw UserCreationException::duplicateEmailAddress($emailAddress);
+            throw CannotCreateUser::duplicateEmailAddress($emailAddress);
         }
 
         if ($this->findByUsername($username)) {
-            throw UserCreationException::duplicateUsername($username);
+            throw CannotCreateUser::duplicateUsername($username);
         }
 
         $user = $this->model->newInstance($attributes);

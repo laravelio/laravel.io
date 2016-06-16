@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Tests\Integration\Forum;
 
 use Illuminate\Contracts\Pagination\Paginator;

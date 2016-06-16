@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Tests\Functional;
 
 use Auth;

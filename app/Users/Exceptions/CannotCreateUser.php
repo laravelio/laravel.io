@@ -1,14 +1,15 @@
 <?php
+
 namespace Lio\Users\Exceptions;
 
-class UserCreationException extends \Exception
+class CannotCreateUser extends \Exception
 {
-    public static function duplicateEmailAddress($emailAddress)
+    public static function duplicateEmailAddress(string $emailAddress): CannotCreateUser
     {
         return new static("The email address [$emailAddress] already exists.");
     }
 
-    public static function duplicateUsername($username)
+    public static function duplicateUsername(string $username): CannotCreateUser
     {
         return new static("The username [$username] already exists.");
     }

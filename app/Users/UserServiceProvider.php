@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Users;
 
 use Illuminate\Support\ServiceProvider;

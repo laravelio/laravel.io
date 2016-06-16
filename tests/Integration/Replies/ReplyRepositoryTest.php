@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Tests\Integration\Replies;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;

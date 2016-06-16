@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Spam;
 
 use Illuminate\Support\ServiceProvider;

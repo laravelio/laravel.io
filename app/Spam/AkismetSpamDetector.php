@@ -17,8 +17,7 @@ class AkismetSpamDetector implements SpamDetector
         $this->akismet = $akismet;
     }
 
-    /** @inheritdoc */
-    public function detectsSpam($value, User $user = null)
+    public function detectsSpam($value, User $user = null): bool
     {
         $name = $user ? $user->name : null;
         $email = $user ? $user->email : null;

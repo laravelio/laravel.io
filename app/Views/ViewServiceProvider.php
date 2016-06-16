@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Views;
 
 use Blade;

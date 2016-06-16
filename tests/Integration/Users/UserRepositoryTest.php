@@ -1,10 +1,11 @@
 <?php
+
 namespace Lio\Tests\Integration\Users;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Lio\Testing\RepositoryTest;
 use Lio\Tests\TestCase;
-use Lio\Users\Exceptions\UserCreationException;
+use Lio\Users\Exceptions\CannotCreateUser;
 use Lio\Users\User;
 use Lio\Users\UserRepository;
 
@@ -45,7 +46,7 @@ class UserRepositoryTest extends TestCase
     function we_cannot_create_a_user_with_the_same_email_address()
     {
         $this->setExpectedException(
-            UserCreationException::class,
+            CannotCreateUser::class,
             'The email address [john@example.com] already exists.'
         );
 
@@ -57,7 +58,7 @@ class UserRepositoryTest extends TestCase
     function we_cannot_create_a_user_with_the_same_username()
     {
         $this->setExpectedException(
-            UserCreationException::class,
+            CannotCreateUser::class,
             'The username [johndoe] already exists.'
         );
 

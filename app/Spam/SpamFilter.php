@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Spam;
 
 use Lio\Users\User;
@@ -18,8 +19,7 @@ class SpamFilter implements SpamDetector
         $this->detectors = $detectors;
     }
 
-    /** @inheritdoc */
-    public function detectsSpam($value, User $user = null)
+    public function detectsSpam($value, User $user = null): bool
     {
         return collect($this->detectors)
             ->contains(function ($key, SpamDetector $detector) use ($value, $user) {

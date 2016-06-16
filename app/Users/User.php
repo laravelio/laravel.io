@@ -1,29 +1,15 @@
 <?php
+
 namespace Lio\Users;
 
 use Lio\DateTime\Timestamps;
 
 interface User extends Timestamps
 {
-    /**
-     * @return int
-     */
-    public function id();
-
-    /**
-     * @return string
-     */
-    public function name();
-
-    /**
-     * @return string
-     */
-    public function username();
-
-    /**
-     * @return string
-     */
-    public function githubUsername();
+    public function id(): int;
+    public function name(): string;
+    public function username(): string;
+    public function githubUsername(): string;
 
     /**
      * @return \Lio\Replies\Reply[]

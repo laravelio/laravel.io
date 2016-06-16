@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio;
 
 use Illuminate\Support\ServiceProvider;
