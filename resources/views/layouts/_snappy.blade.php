@@ -6,8 +6,8 @@
         data-background="#444"
 
         @if (Auth::check())
-            data-name="{{ Auth::user()->name }}"
-            data-email="{{ Auth::user()->email }}"
+            data-name="{{ Auth::user()->name() }}"
+            data-email="{{ Auth::user()->emailAddress() }}"
         @endif
 
         @if (config('services.snappy.debug'))

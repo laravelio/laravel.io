@@ -13,6 +13,13 @@
             {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
             {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
         </div>
+        <div class="form-group">
+            <label>
+                {!! Form::checkbox('remember') !!}
+                Remember login
+            </label>
+        </div>
+
         {!! Form::submit('Login', ['class' => 'btn btn-primary btn-block']) !!}
         <a href="#" class="btn btn-default btn-block">
             <i class="fa fa-github"></i> Github

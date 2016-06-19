@@ -11,11 +11,7 @@ interface ReplyRepository
      */
     public function find(int $id);
 
-    /**
-     * @return \Lio\Replies\Reply[]
-     */
-    public function create(ReplyAble $relation, User $author, string $body);
-
+    public function create(ReplyAble $relation, User $author, string $body): Reply;
     public function update(Reply $reply, array $attributes = []): Reply;
     public function delete(Reply $reply);
 }

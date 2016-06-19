@@ -2,6 +2,7 @@
 
 namespace Lio\Http\Controllers\Forum;
 
+use Gate;
 use Lio\Forum\Thread;
 use Lio\Forum\ThreadRequest;
 use Lio\Http\Controllers\Controller;
@@ -45,11 +46,15 @@ class ThreadsController extends Controller
 
     public function edit(Thread $thread)
     {
+        abort_if(Gate::denies('update', $thread), 403);
+
         return view('forum.threads.edit', compact('thread'));
     }
 
     public function update(ThreadRequest $request, Thread $thread)
     {
+        abort_if(Gate::denies('update', $thread), 403);
+
         $this->threads->update($thread, $request->only('subject', 'body'));
 
         return redirect()->route('thread', $thread->slug());
@@ -57,6 +62,8 @@ class ThreadsController extends Controller
 
     public function delete(Thread $thread)
     {
+        abort_if(Gate::denies('delete', $thread), 403);
+
         $this->threads->delete($thread);
 
         return redirect()->route('forum');

@@ -11,9 +11,6 @@ final class EloquentReplyRepository implements ReplyRepository
      */
     private $model;
 
-    /**
-     * @param \Lio\Replies\EloquentReply $model
-     */
     public function __construct(EloquentReply $model)
     {
         $this->model = $model;
@@ -27,10 +24,7 @@ final class EloquentReplyRepository implements ReplyRepository
         return $this->model->find($id);
     }
 
-    /**
-     * @return \Lio\Replies\Reply[]
-     */
-    public function create(ReplyAble $relation, User $author, string $body)
+    public function create(ReplyAble $relation, User $author, string $body): Reply
     {
         $reply = $this->model->newInstance(compact('body'));
         $reply->author_id = $author->id();

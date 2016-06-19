@@ -4,12 +4,13 @@ namespace Lio\Forum;
 
 use Illuminate\Database\Eloquent\Model;
 use Lio\Eloquent\HasTimestamps;
-use Lio\Replies\MorphManyReplies;
+use Lio\Replies\UsesReplies;
 use Lio\Replies\ReplyAble;
+use Lio\Users\HasAuthor;
 
 final class EloquentThread extends Model implements Thread, ReplyAble
 {
-    use HasTimestamps, MorphManyReplies;
+    use HasAuthor, HasTimestamps, UsesReplies;
 
     /**
      * @var string

@@ -4,7 +4,7 @@ namespace Lio\Replies;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-trait MorphManyReplies
+trait UsesReplies
 {
     /**
      * @return \Lio\Replies\Reply[]

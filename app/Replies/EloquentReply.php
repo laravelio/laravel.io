@@ -3,15 +3,13 @@
 namespace Lio\Replies;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Lio\Eloquent\HasTimestamps;
-use Lio\Users\EloquentUser;
-use Lio\Users\User;
+use Lio\Users\HasAuthor;
 
 final class EloquentReply extends Model implements Reply
 {
-    use HasTimestamps;
+    use HasAuthor, HasTimestamps;
 
     /**
      * @var string
@@ -41,15 +39,5 @@ final class EloquentReply extends Model implements Reply
     public function replyAbleRelation(): MorphTo
     {
         return $this->morphTo('replyable');
-    }
-
-    public function author(): User
-    {
-        return $this->authorRelation;
-    }
-
-    public function authorRelation(): BelongsTo
-    {
-        return $this->belongsTo(EloquentUser::class, 'author_id');
     }
 }

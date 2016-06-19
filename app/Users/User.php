@@ -8,6 +8,7 @@ interface User extends Timestamps
 {
     public function id(): int;
     public function name(): string;
+    public function emailAddress(): string;
     public function username(): string;
     public function githubUsername(): string;
 

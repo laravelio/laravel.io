@@ -58,7 +58,7 @@ class ForumTest extends TestCase
     }
 
     /** @test */
-    function we_can_create_a_thread_when_logged_in()
+    function we_can_create_a_thread()
     {
         $this->login();
 
@@ -72,9 +72,9 @@ class ForumTest extends TestCase
     /** @test */
     function we_can_edit_a_thread()
     {
-        $this->create(Thread::class, ['slug' => 'my-first-thread']);
+        $user = $this->login();
 
-        $this->login();
+        $this->create(Thread::class, ['slug' => 'my-first-thread', 'author_id' => $user->id()]);
 
         $this->visit('/forum/my-first-thread/edit')
             ->type('How to work with Eloquent?', 'subject')
@@ -82,5 +82,35 @@ class ForumTest extends TestCase
             ->press('Update')
             ->seePageIs('/forum/my-first-thread')
             ->see('How to work with Eloquent?');
+    }
+
+    /** @test */
+    function we_cannot_edit_a_thread_we_do_not_own()
+    {
+        $this->create(Thread::class, ['slug' => 'my-first-thread']);
+
+        $this->login();
+
+        $this->get('/forum/my-first-thread/edit')
+            ->assertResponseStatus(403);
+
+        // @todo I wish I could do this.
+        //$this->visit('/forum/my-first-thread/edit')
+        //    ->see('Forbidden');
+    }
+
+    /** @test */
+    function we_cannot_delete_a_thread_we_do_not_own()
+    {
+        $this->create(Thread::class, ['slug' => 'my-first-thread']);
+
+        $this->login();
+
+        $this->get('/forum/my-first-thread/delete')
+            ->assertResponseStatus(403);
+
+        // @todo I wish I could do this.
+        //$this->visit('/forum/my-first-thread/delete')
+        //    ->see('Forbidden');
     }
 }

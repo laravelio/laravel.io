@@ -41,6 +41,11 @@ final class EloquentUser extends Authenticatable implements User
         return $this->name;
     }
 
+    public function emailAddress(): string
+    {
+        return $this->email;
+    }
+
     public function username(): string
     {
         return $this->username;
