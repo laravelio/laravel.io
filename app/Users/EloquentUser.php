@@ -3,7 +3,7 @@
 namespace Lio\Users;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Lio\Eloquent\HasTimestamps;
+use Lio\DateTime\HasTimestamps;
 use Lio\Replies\HasManyReplies;
 
 final class EloquentUser extends Authenticatable implements User

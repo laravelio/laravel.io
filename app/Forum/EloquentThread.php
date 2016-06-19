@@ -3,7 +3,7 @@
 namespace Lio\Forum;
 
 use Illuminate\Database\Eloquent\Model;
-use Lio\Eloquent\HasTimestamps;
+use Lio\DateTime\HasTimestamps;
 use Lio\Replies\UsesReplies;
 use Lio\Replies\ReplyAble;
 use Lio\Users\HasAuthor;

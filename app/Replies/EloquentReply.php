@@ -4,7 +4,7 @@ namespace Lio\Replies;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Lio\Eloquent\HasTimestamps;
+use Lio\DateTime\HasTimestamps;
 use Lio\Users\HasAuthor;
 
 final class EloquentReply extends Model implements Reply
