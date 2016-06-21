@@ -17,10 +17,13 @@
             <hr>
             <p>@md($reply->body())</p>
             <p>By {{ $reply->author()->name() }} - {{ $reply->createdAt()->diffForHumans() }}</p>
-            <p>
-                <a href="{{ route('replies.edit', $thread->id()) }}">Edit</a> |
-                <a href="{{ route('replies.delete', $thread->id()) }}">Delete</a>
-            </p>
+
+            @can('update', $reply)
+                <p>
+                    <a href="{{ route('replies.edit', $thread->id()) }}">Edit</a> |
+                    <a href="{{ route('replies.delete', $thread->id()) }}">Delete</a>
+                </p>
+            @endcan
         @endforeach
     @endif
 
