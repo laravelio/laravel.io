@@ -4,6 +4,7 @@ namespace Lio\Tests\Functional;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Lio\Forum\Thread;
+use Lio\Replies\Reply;
 use Lio\Tests\TestCase;
 
 class ForumTest extends TestCase
@@ -31,23 +32,6 @@ class ForumTest extends TestCase
 
         $this->visit('/forum/the-first-thread')
             ->see('The first thread');
-    }
-
-    /** @test */
-    function we_can_add_a_reply_to_a_thread()
-    {
-        $this->login();
-
-        $this->create(Thread::class, [
-            'subject' => 'The first thread',
-            'slug' => 'the-first-thread',
-        ]);
-
-        $this->visit('/forum/the-first-thread')
-            ->type('The first reply', 'body')
-            ->press('Reply')
-            ->see('The first thread')
-            ->see('The first reply');
     }
 
     /** @test */
@@ -112,5 +96,63 @@ class ForumTest extends TestCase
         // @todo I wish I could do this.
         //$this->visit('/forum/my-first-thread/delete')
         //    ->see('Forbidden');
+    }
+
+    /** @test */
+    function we_can_add_a_reply_to_a_thread()
+    {
+        $this->login();
+
+        $this->create(Thread::class, [
+            'subject' => 'The first thread',
+            'slug' => 'the-first-thread',
+        ]);
+
+        $this->visit('/forum/the-first-thread')
+            ->type('The first reply', 'body')
+            ->press('Reply')
+            ->see('The first thread')
+            ->see('The first reply');
+    }
+
+    /** @test */
+    function we_can_edit_a_reply()
+    {
+        $user = $this->login();
+
+        $thread = $this->create(Thread::class, ['slug' => 'the-first-thread']);
+        $this->create(Reply::class, [
+            'body' => 'The first reply',
+            'author_id' => $user->id(),
+            'replyable_id' => $thread->id(),
+        ]);
+
+        $this->visit('/replies/1/edit')
+            ->type('The edited reply', 'body')
+            ->press('Update')
+            ->seePageIs('/forum/the-first-thread')
+            ->see('The edited reply');
+    }
+
+    /** @test */
+    function we_cannot_edit_a_reply_we_do_not_own()
+    {
+        $this->login();
+
+        $this->create(Reply::class, ['body' => 'The first reply']);
+
+        $this->get('/replies/1/edit')
+            ->assertResponseStatus(403);
+    }
+
+    /** @test */
+    function we_cannot_delete_a_reply_we_do_not_own()
+    {
+        $this->login();
+
+        $this->create(Reply::class, ['body' => 'The first reply']);
+
+        $this->get('/replies/1/delete')
+            ->assertResponseStatus(403);
     }
 }

@@ -2,15 +2,12 @@
 
 // We support these old routes to make sure people
 // find their way to the new portal website.
-Route::group(['domain' => 'wiki.laravel.io'], function() {
+$redirectToMainWebsite = function() {
     Route::get('{wildcard}', 'HomeController@redirectToMainWebsite');
-});
-Route::group(['domain' => 'forum.laravel.io'], function() {
-    Route::get('{wildcard}', 'HomeController@redirectToMainWebsite');
-});
-Route::group(['domain' => 'forums.laravel.io'], function() {
-    Route::get('{wildcard}', 'HomeController@redirectToMainWebsite');
-});
+};
+Route::group(['domain' => 'wiki.laravel.io'], $redirectToMainWebsite);
+Route::group(['domain' => 'forum.laravel.io'], $redirectToMainWebsite);
+Route::group(['domain' => 'forums.laravel.io'], $redirectToMainWebsite);
 
 // Home
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);

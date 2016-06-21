@@ -3,12 +3,11 @@
 namespace Lio\Replies;
 
 use Lio\DateTime\Timestamps;
-use Lio\Users\User;
+use Lio\Users\Authored;
 
-interface Reply extends Timestamps
+interface Reply extends Authored, Timestamps
 {
     public function id(): int;
     public function body(): string;
-    public function author(): User;
     public function replyAble(): ReplyAble;
 }

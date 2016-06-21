@@ -220,6 +220,11 @@ return [
         'Bugsnag' => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
         'Form' => Collective\Html\FormFacade::class,
 
+        /*
+         * Eloquent Aliases...
+         */
+        \Lio\Forum\Thread::TYPE => \Lio\Forum\EloquentThread::class,
+
     ],
 
 ];

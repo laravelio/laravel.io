@@ -46,14 +46,14 @@ class ThreadsController extends Controller
 
     public function edit(Thread $thread)
     {
-        abort_if(Gate::denies('update', $thread), 403);
+        $this->authorize('update', $thread);
 
         return view('forum.threads.edit', compact('thread'));
     }
 
     public function update(ThreadRequest $request, Thread $thread)
     {
-        abort_if(Gate::denies('update', $thread), 403);
+        $this->authorize('update', $thread);
 
         $this->threads->update($thread, $request->only('subject', 'body'));
 
@@ -62,7 +62,7 @@ class ThreadsController extends Controller
 
     public function delete(Thread $thread)
     {
-        abort_if(Gate::denies('delete', $thread), 403);
+        $this->authorize('delete', $thread);
 
         $this->threads->delete($thread);
 

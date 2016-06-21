@@ -5,12 +5,12 @@
 
     @md($thread->body())
 
-    @if (Auth::check())
+    @can('update', $thread)
         <p>
             <a href="{{ route('threads.edit', $thread->slug()) }}">Edit</a> |
             <a href="{{ route('threads.delete', $thread->slug()) }}">Delete</a>
         </p>
-    @endif
+    @endcan
 
     @if (count($replies = $thread->replies()))
         @foreach ($replies as $reply)

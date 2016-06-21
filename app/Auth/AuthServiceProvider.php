@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Lio\Forum\EloquentThread;
 use Lio\Forum\ThreadPolicy;
+use Lio\Replies\EloquentReply;
+use Lio\Replies\ReplyPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -15,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        EloquentReply::class => ReplyPolicy::class,
         EloquentThread::class => ThreadPolicy::class,
     ];
 

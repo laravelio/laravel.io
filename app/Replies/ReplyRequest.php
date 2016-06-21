@@ -4,7 +4,7 @@ namespace Lio\Replies;
 
 use Lio\Http\Requests\Request;
 
-class UpdateReplyRequest extends Request
+class ReplyRequest extends Request
 {
     public function authorize()
     {

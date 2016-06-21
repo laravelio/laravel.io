@@ -45,10 +45,7 @@ class UserRepositoryTest extends TestCase
     /** @test */
     function we_cannot_create_a_user_with_the_same_email_address()
     {
-        $this->setExpectedException(
-            CannotCreateUser::class,
-            'The email address [john@example.com] already exists.'
-        );
+        $this->expectException(CannotCreateUser::class);
 
         $this->repo->create('John Doe', 'john@example.com', 'password', 'johndoe');
         $this->repo->create('John Foo', 'john@example.com', 'password', 'johnfoo');
@@ -57,10 +54,7 @@ class UserRepositoryTest extends TestCase
     /** @test */
     function we_cannot_create_a_user_with_the_same_username()
     {
-        $this->setExpectedException(
-            CannotCreateUser::class,
-            'The username [johndoe] already exists.'
-        );
+        $this->expectException(CannotCreateUser::class);
 
         $this->repo->create('John Doe', 'john@example.com', 'password', 'johndoe');
         $this->repo->create('John Doe', 'john.doe@example.com', 'password', 'johndoe');

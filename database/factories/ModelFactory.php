@@ -42,6 +42,6 @@ $factory->define(EloquentReply::class, function (Faker\Generator $faker) {
         'body' => $faker->title,
         'author_id' => factory(EloquentUser::class)->create()->id(),
         'replyable_id' => factory(EloquentThread::class)->create()->id(),
-        'replyable_type' => 'thread',
+        'replyable_type' => EloquentThread::TYPE,
     ];
 });
