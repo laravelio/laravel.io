@@ -3,16 +3,15 @@
 namespace Lio\Views;
 
 use Blade;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
-use League\CommonMark\CommonMarkConverter;
 
 class ViewServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(Filesystem $filesystem)
     {
-        /** @todo Don't implicitly bind CommonMarkConverter class */
-        Blade::directive('md', function($expression) {
-            return "<?php echo (new " . CommonMarkConverter::class . "())->convertToHtml($expression); ?>";
+        collect($filesystem->files(resource_path('macros')))->each(function ($path) {
+            require_once $path;
         });
     }
 

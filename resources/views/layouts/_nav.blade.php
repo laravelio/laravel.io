@@ -12,8 +12,8 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Articles <span class="sr-only">(current)</span></a></li>
-                <li><a href="{{ route('forum') }}">Forum</a></li>
+                <li class="{{ active('articles') }}"><a href="#">Articles <span class="sr-only">(current)</span></a></li>
+                <li class="{{ active('forum') }}"><a href="{{ route('forum') }}">Forum</a></li>
                 <li><a href="#">Pastebin</a></li>
                 <li><a href="#">Chat</a></li>
                 <li><a href="#">About</a></li>
@@ -32,16 +32,16 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
-                    <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('signup') }}">Signup</a></li>
+                    <li class="{{ active('login') }}"><a href="{{ route('login') }}">Login</a></li>
+                    <li class="{{ active('signup') }}"><a href="{{ route('signup') }}">Signup</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <img class="img-circle" src="{{ Auth::user()->gratavarUrl(60) }}" width="30"> <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('profile', Auth::user()->username()) }}">Profile</a></li>
-                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li class="{{ active('profile') }}"><a href="{{ route('profile', Auth::user()->username()) }}">Profile</a></li>
+                            <li class="{{ active('dashboard') }}"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('logout') }}">Logout</a></li>
                         </ul>

@@ -2,6 +2,16 @@
 
 use Lio\Replies\ReplyAble;
 
+if (! function_exists('active')) {
+    /**
+     * Sets the menu item class for an active route.
+     */
+    function active($routes, $class = 'active'): string
+    {
+        return call_user_func_array([app('router'), 'is'], (array) $routes) ? $class: '';
+    }
+}
+
 if (! function_exists('route_to_reply_able')) {
     /**
      * Returns the route for the replyAble.

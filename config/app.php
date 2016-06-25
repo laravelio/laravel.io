@@ -223,6 +223,7 @@ return [
         /*
          * Eloquent Aliases...
          */
+
         \Lio\Forum\Thread::TYPE => \Lio\Forum\EloquentThread::class,
 
     ],
