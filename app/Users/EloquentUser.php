@@ -55,4 +55,11 @@ final class EloquentUser extends Authenticatable implements User
     {
         return $this->github_url;
     }
+
+    public function gratavarUrl($size = 100): string
+    {
+        $hash = md5(strtolower(trim($this->email)));
+
+        return "https://www.gravatar.com/avatar/$hash?s=$size";
+    }
 }

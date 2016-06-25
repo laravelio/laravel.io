@@ -11,6 +11,7 @@ interface User extends Timestamps
     public function emailAddress(): string;
     public function username(): string;
     public function githubUsername(): string;
+    public function gratavarUrl($size = 100): string;
 
     /**
      * @return \Lio\Replies\Reply[]
