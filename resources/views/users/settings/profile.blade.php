@@ -14,50 +14,35 @@
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                @formGroup('name')
                     {!! Form::label('name', null, ['class' => 'col-md-3 control-label']) !!}
 
                     <div class="col-md-6">
-                        {!! Form::text('name', Auth::user()->name(), ['class' => 'form-control']) !!}
-
-                        @if ($errors->has('name'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
-                        @endif
+                        {!! Form::text('name', Auth::user()->name(), ['class' => 'form-control', 'required']) !!}
+                        @error('name')
                     </div>
-                </div>
+                @endFormGroup
 
-                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                @formGroup('email')
                     {!! Form::label('email', null, ['class' => 'col-md-3 control-label']) !!}
 
                     <div class="col-md-6">
-                        {!! Form::email('email', Auth::user()->emailAddress(), ['class' => 'form-control']) !!}
-
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
+                        {!! Form::email('email', Auth::user()->emailAddress(), ['class' => 'form-control', 'required']) !!}
+                        @error('email')
                     </div>
-                </div>
+                @endFormGroup
 
-                <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                @formGroup('username')
                     {!! Form::label('username', null, ['class' => 'col-md-3 control-label']) !!}
 
                     <div class="col-md-6">
-                        {!! Form::text('username', Auth::user()->username(), ['class' => 'form-control']) !!}
-
-                        @if ($errors->has('username'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('username') }}</strong>
-                            </span>
-                        @endif
+                        {!! Form::text('username', Auth::user()->username(), ['class' => 'form-control', 'required']) !!}
+                        @error('username')
                     </div>
-                </div>
+                @endFormGroup
 
                 <div class="form-group">
-                    <div class="col-md-offset-3 col-sm-6">
+                    <div class="col-md-offset-3 col-md-6">
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </div>

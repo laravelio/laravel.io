@@ -11,7 +11,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(Filesystem $filesystem)
     {
         collect($filesystem->files(resource_path('macros')))->each(function ($path) {
-            require_once $path;
+            require $path;
         });
     }
 
