@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
-@section('content')
+@section('body')
     <div class="container">
-        @yield('default-content')
+        @yield('content')
     </div>
 @stop

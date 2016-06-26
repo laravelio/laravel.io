@@ -2,7 +2,10 @@
 
 namespace Lio;
 
+use Auth;
 use Illuminate\Support\ServiceProvider;
+use Hash;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +17,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         require __DIR__ . '/helpers.php';
+
+        $this->registerPasscheckValidationRule();
     }
 
     /**
@@ -24,5 +29,13 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    private function registerPasscheckValidationRule()
+    {
+        Validator::extend('passcheck', function ($attribute, $value, $parameters)
+        {
+            return Hash::check($value, Auth::user()->getAuthPassword());
+        });
     }
 }

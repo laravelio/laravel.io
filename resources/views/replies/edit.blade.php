@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('default-content')
+@section('content')
     <h1>Edit your reply</h1>
 
     {!! Form::open(['route' => ['replies.update', $reply->id()], 'method' => 'PUT']) !!}

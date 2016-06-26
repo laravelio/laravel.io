@@ -39,6 +39,12 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'UsersController@dashboard']);
 Route::get('user/{username}', ['as' => 'profile', 'uses' => 'UsersController@profile']);
 
+// Settings
+Route::get('settings', ['as' => 'settings.profile', 'uses' => 'SettingsController@profile']);
+Route::put('settings', ['as' => 'settings.profile.update', 'uses' => 'SettingsController@updateProfile']);
+Route::get('settings/password', ['as' => 'settings.password', 'uses' => 'SettingsController@password']);
+Route::put('settings/password', ['as' => 'settings.password.update', 'uses' => 'SettingsController@updatePassword']);
+
 // Paste Bin
 Route::get('bin', 'PasteBinController@create');
 Route::get('bin/{hash}/raw', 'PasteBinController@raw');

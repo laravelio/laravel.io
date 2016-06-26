@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('default-content')
+@section('content')
     <h1>Forum</h1>
 
     @if (count($threads))

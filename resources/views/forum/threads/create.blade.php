@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('default-content')
+@section('content')
     <h1>Create your thread</h1>
 
     {!! Form::open(['route' => 'threads.store']) !!}

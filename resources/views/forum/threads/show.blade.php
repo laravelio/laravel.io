@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('default-content')
+@section('content')
     <h1>{{ $thread->subject() }}</h1>
 
     @md($thread->body())

@@ -1,6 +1,6 @@
-@extends('layouts.base')
+@extends('layouts.base', ['bodyClass' => 'home'])
 
-@section('content')
+@section('body')
     <div class="jumbotron text-center">
         <h1>Laravel.io</h1>
         <h2>The Laravel Community Portal</h2>

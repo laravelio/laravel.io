@@ -12,10 +12,10 @@
 
     @include('layouts._google_analytics')
 </head>
-<body>
+<body class="{{ $bodyClass or '' }}">
     @include('layouts._nav')
 
-    @yield('content')
+    @yield('body')
 
     <div class="container text-center">
         <hr>

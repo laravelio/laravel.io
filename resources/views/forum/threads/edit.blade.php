@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('default-content')
+@section('content')
     <h1>Edit your thread</h1>
 
     {!! Form::open(['route' => ['threads.update', $thread->slug()], 'method' => 'PUT']) !!}

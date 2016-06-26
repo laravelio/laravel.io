@@ -59,4 +59,15 @@ class UserRepositoryTest extends TestCase
         $this->repo->create('John Doe', 'john@example.com', 'password', 'johndoe');
         $this->repo->create('John Doe', 'john.doe@example.com', 'password', 'johndoe');
     }
+
+    /** @test */
+    function we_can_update_a_user()
+    {
+        $user = $this->createUser();
+
+        $user = $this->repo->update($user, ['username' => 'foo', 'name' => 'bar']);
+
+        $this->assertEquals('foo', $user->username());
+        $this->seeInDatabase('users', ['username' => 'foo', 'name' => 'bar']);
+    }
 }

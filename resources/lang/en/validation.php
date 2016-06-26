@@ -97,6 +97,8 @@ return [
         ],
     ],
 
+    'passcheck' => 'Your current password is incorrect.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes

@@ -42,6 +42,7 @@
                         <ul class="dropdown-menu">
                             <li class="{{ active('profile') }}"><a href="{{ route('profile', Auth::user()->username()) }}">Profile</a></li>
                             <li class="{{ active('dashboard') }}"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                            <li class="{{ active('settings.*') }}"><a href="{{ route('settings.profile') }}">Settings</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('logout') }}">Logout</a></li>
                         </ul>
