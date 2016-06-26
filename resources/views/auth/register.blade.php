@@ -1,7 +1,9 @@
+@php($title = 'Signup')
+
 @extends('layouts.small')
 
 @section('small-content')
-    <h1 class="text-center">Signup</h1>
+    <h1 class="text-center">{{ $title }}</h1>
     {!! Form::open(['route' => 'signup.post']) !!}
         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
             {!! Form::label('name') !!}

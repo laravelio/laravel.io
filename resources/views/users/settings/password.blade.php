@@ -1,8 +1,10 @@
+@php($title = 'Password')
+
 @extends('layouts.settings')
 
 @section('content')
     <div class="panel panel-default">
-        <div class="panel-heading">Password Settings</div>
+        <div class="panel-heading">{{ $title }}</div>
 
         <div class="panel-body">
             {{ Form::open(['route' => 'settings.password.update', 'method' => 'PUT', 'class' => 'form-horizontal']) }}

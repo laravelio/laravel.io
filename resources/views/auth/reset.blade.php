@@ -1,7 +1,9 @@
+@php($title = 'Reset Password')
+
 @extends('layouts.small')
 
 @section('small-content')
-    <h1 class="text-center">Reset Password</h1>
+    <h1 class="text-center">{{ $title }}</h1>
     {!! Form::open(['route' => 'password.reset.post']) !!}
         {!! Form::hidden('token', $token) !!}
 

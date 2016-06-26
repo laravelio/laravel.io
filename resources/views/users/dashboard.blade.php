@@ -1,3 +1,5 @@
+@php($title = 'Dashboard')
+
 @extends('layouts.default')
 
 @section('content')

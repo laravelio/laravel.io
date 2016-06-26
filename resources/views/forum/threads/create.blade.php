@@ -1,7 +1,9 @@
+@php($title = 'Create your thread')
+
 @extends('layouts.default')
 
 @section('content')
-    <h1>Create your thread</h1>
+    <h1>{{ $title }}</h1>
 
     {!! Form::open(['route' => 'threads.store']) !!}
         <div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">

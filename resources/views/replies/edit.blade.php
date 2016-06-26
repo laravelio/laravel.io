@@ -1,7 +1,9 @@
+@php($title = 'Edit your reply')
+
 @extends('layouts.default')
 
 @section('content')
-    <h1>Edit your reply</h1>
+    <h1>{{ $title }}</h1>
 
     {!! Form::open(['route' => ['replies.update', $reply->id()], 'method' => 'PUT']) !!}
         <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">

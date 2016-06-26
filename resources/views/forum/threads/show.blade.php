@@ -1,7 +1,9 @@
+@php($title = $thread->subject())
+
 @extends('layouts.default')
 
 @section('content')
-    <h1>{{ $thread->subject() }}</h1>
+    <h1>{{ $title }}</h1>
 
     @md($thread->body())
 

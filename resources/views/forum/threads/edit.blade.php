@@ -1,7 +1,9 @@
+@php($title = 'Edit your thread')
+
 @extends('layouts.default')
 
 @section('content')
-    <h1>Edit your thread</h1>
+    <h1>{{ $title }}</h1>
 
     {!! Form::open(['route' => ['threads.update', $thread->slug()], 'method' => 'PUT']) !!}
         <div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">

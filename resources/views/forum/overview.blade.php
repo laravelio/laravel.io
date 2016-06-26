@@ -1,7 +1,9 @@
+@php($title = 'Forum')
+
 @extends('layouts.default')
 
 @section('content')
-    <h1>Forum</h1>
+    <h1>{{ $title }}</h1>
 
     @if (count($threads))
         @foreach ($threads as $thread)

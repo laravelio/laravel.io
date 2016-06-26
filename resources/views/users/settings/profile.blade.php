@@ -1,8 +1,10 @@
+@php($title = 'Profile')
+
 @extends('layouts.settings')
 
 @section('content')
     <div class="panel panel-default">
-        <div class="panel-heading">Profile</div>
+        <div class="panel-heading">{{ $title }}</div>
         <div class="panel-body">
             {!! Form::open(['route' => 'settings.profile.update', 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
                 <div class="form-group">

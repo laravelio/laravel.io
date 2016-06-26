@@ -1,7 +1,9 @@
+@php($title = 'Login')
+
 @extends('layouts.small')
 
 @section('small-content')
-    <h1 class="text-center">Login</h1>
+    <h1 class="text-center">{{ $title }}</h1>
     {!! Form::open(['route' => 'login.post']) !!}
         <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
             {!! Form::label('username') !!}
