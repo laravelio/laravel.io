@@ -1,5 +1,6 @@
 <?php
 
+use DB;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -16,6 +17,13 @@ class AddPasswordAndUsernameFields extends Migration
             $table->string('email')->unique()->change();
             $table->string('username', 40)->default('');
             $table->string('password')->default('');
+        });
+
+        // Copy name to username.
+        DB::update('UPDATE users SET username = name');
+
+        Schema::table('users', function(Blueprint $table) {
+            $table->string('username', 40)->unique()->change();
         });
     }
 
