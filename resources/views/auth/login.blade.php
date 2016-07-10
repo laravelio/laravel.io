@@ -32,7 +32,7 @@
 
 @section('small-content-after')
     <div class="text-center">
-        <a href="{{ route('password.forgot') }}" class="btn btn-default btn-block">Forgot your password?</a>
-        <a href="{{ route('signup') }}" class="btn btn-default btn-block">Need to create an account?</a>
+        <a href="{{ route('password.forgot') }}" class="btn btn-default btn-sm btn-block">Forgot your password?</a>
+        <a href="{{ route('signup') }}" class="btn btn-default btn-sm btn-block">Need to create an account?</a>
     </div>
 @endsection
