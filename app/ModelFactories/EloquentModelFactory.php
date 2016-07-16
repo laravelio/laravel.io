@@ -7,6 +7,8 @@ use Lio\Forum\EloquentThread;
 use Lio\Forum\Thread;
 use Lio\Replies\EloquentReply;
 use Lio\Replies\Reply;
+use Lio\Tags\EloquentTag;
+use Lio\Tags\Tag;
 use Lio\Users\EloquentUser;
 use Lio\Users\User;
 
@@ -16,6 +18,7 @@ final class EloquentModelFactory implements ModelFactory
      * @var array
      */
     private $models = [
+        Tag::class => EloquentTag::class,
         Thread::class => EloquentThread::class,
         Reply::class => EloquentReply::class,
         User::class => EloquentUser::class,

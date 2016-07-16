@@ -6,16 +6,24 @@
     <h1>{{ $title }}</h1>
 
     {!! Form::open(['route' => ['threads.update', $thread->slug()], 'method' => 'PUT']) !!}
-        <div class="form-group{{ $errors->has('subject') ? ' has-error' : '' }}">
+        @formGroup('subject')
             {!! Form::label('subject') !!}
             {!! Form::text('subject', $thread->subject(), ['class' => 'form-control', 'required']) !!}
-            {!! $errors->first('subject', '<span class="help-block">:message</span>') !!}
-        </div>
-        <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
+            @error('subject')
+        @endFormGroup
+
+        @formGroup('body')
             {!! Form::label('body') !!}
-            {!! Form::textarea('body', $thread->body(), ['class' => 'form-control', 'required']) !!}
-            {!! $errors->first('body', '<span class="help-block">:message</span>') !!}
-        </div>
+            {!! Form::text('body', $thread->body(), ['class' => 'form-control', 'required']) !!}
+            @error('body')
+        @endFormGroup
+
+        @formGroup('tags')
+            {!! Form::label('tags') !!}
+            {!! Form::select('tags[]', $tags->lists('name', 'id'), $thread->tags()->lists('id')->toArray(), ['class' => 'form-control selectize', 'multiple', 'required']) !!}
+            @error('tags')
+        @endFormGroup
+
         {!! Form::submit('Update', ['class' => 'btn btn-primary btn-block']) !!}
         <a href="{{ route('thread', $thread->slug()) }}" class="btn btn-default btn-block">Cancel</a>
     {!! Form::close() !!}

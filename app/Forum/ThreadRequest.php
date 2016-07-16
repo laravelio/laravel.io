@@ -16,6 +16,8 @@ class ThreadRequest extends Request
         return [
             'subject' => 'required',
             'body' => 'required',
+            'tags' => 'array',
+            'tags.*' => 'exists:tags,id',
         ];
     }
 }

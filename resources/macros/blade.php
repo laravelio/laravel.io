@@ -18,3 +18,15 @@ Blade::directive('formGroup', function($expression) {
 Blade::directive('endFormGroup', function($expression) {
     return "</div>";
 });
+
+Blade::directive('tags', function($tags) {
+    return "<?php
+        echo $tags
+        ->map(function(\$tag, \$id) {
+            return '<a href=\"'.route('tag', \$tag->slug()).'\">
+                <span class=\"label label-default\">'.\$tag->name().'</span>
+            </a>';
+        })
+        ->implode(' ');
+    ?>";
+});

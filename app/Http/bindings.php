@@ -2,6 +2,7 @@
 
 use Lio\Forum\ThreadRepository;
 use Lio\Replies\ReplyRepository;
+use Lio\Tags\TagRepository;
 use Lio\Users\UserRepository;
 
 Route::bind('reply', function($id) {
@@ -14,4 +15,8 @@ Route::bind('thread_slug', function($slug) {
 
 Route::bind('username', function($username) {
     return app(UserRepository::class)->findByUsername($username) ?: abort(404);
+});
+
+Route::bind('tag', function($slug) {
+    return app(TagRepository::class)->findBySlug($slug) ?: abort(404);
 });

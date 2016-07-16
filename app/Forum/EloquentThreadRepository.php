@@ -2,6 +2,7 @@
 
 namespace Lio\Forum;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Lio\Users\User;
 
@@ -49,18 +50,28 @@ final class EloquentThreadRepository implements ThreadRepository
         // Todo: Figure out what to do with these
         $thread->slug = Str::slug($subject);
         $thread->laravel_version = 5;
-        $thread->is_question = true;
 
         $thread->save();
+
+        $this->updateTags($thread, $attributes);
 
         return $thread;
     }
 
     public function update(Thread $thread, array $attributes = []): Thread
     {
-        $thread->update($attributes);
+        $thread->update(Arr::only($attributes, ['subject', 'body']));
+
+        $this->updateTags($thread, $attributes);
 
         return $thread;
+    }
+
+    private function updateTags(Thread $thread, array $attributes)
+    {
+        if ($tags = Arr::get($attributes, 'tags')) {
+            $thread->tagsRelation()->sync($attributes['tags']);
+        }
     }
 
     public function delete(Thread $thread)

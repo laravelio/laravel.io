@@ -7,7 +7,9 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.5",
     "bootswatch": "^3.3.6",
-    "jquery": "^2.1.4"
+    "jquery": "^2.1.4",
+    "selectize": "^0.12.2",
+    "selectize-scss": "^0.9.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

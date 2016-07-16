@@ -7,6 +7,7 @@ use Lio\Forum\Thread;
 use Lio\Forum\ThreadRequest;
 use Lio\Http\Controllers\Controller;
 use Lio\Forum\ThreadRepository;
+use Lio\Tags\TagRepository;
 
 class ThreadsController extends Controller
 {
@@ -32,30 +33,33 @@ class ThreadsController extends Controller
         return view('forum.threads.show', compact('thread'));
     }
 
-    public function create()
+    public function create(TagRepository $tags)
     {
-        return view('forum.threads.create');
+        return view('forum.threads.create', ['tags' => $tags->findAll()]);
     }
 
     public function store(ThreadRequest $request)
     {
-        $thread = $this->threads->create(auth()->user(), $request->get('subject'), $request->get('body'));
+        $thread = $this->threads->create(auth()->user(), $request->get('subject'), $request->get('body'), $request->only('tags'));
 
         return redirect()->route('thread', $thread->slug());
     }
 
-    public function edit(Thread $thread)
+    public function edit(TagRepository $tags, Thread $thread)
     {
         $this->authorize('update', $thread);
 
-        return view('forum.threads.edit', compact('thread'));
+        return view('forum.threads.edit', [
+            'thread' => $thread,
+            'tags' => $tags->findAll(),
+        ]);
     }
 
     public function update(ThreadRequest $request, Thread $thread)
     {
         $this->authorize('update', $thread);
 
-        $this->threads->update($thread, $request->only('subject', 'body'));
+        $this->threads->update($thread, $request->only('subject', 'body', 'tags'));
 
         return redirect()->route('thread', $thread->slug());
     }

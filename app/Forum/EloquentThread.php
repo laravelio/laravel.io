@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Lio\DateTime\HasTimestamps;
 use Lio\Replies\UsesReplies;
 use Lio\Replies\ReplyAble;
+use Lio\Tags\UsesTags;
 use Lio\Users\HasAuthor;
 
 final class EloquentThread extends Model implements Thread, ReplyAble
 {
-    use HasAuthor, HasTimestamps, UsesReplies;
+    use HasAuthor, HasTimestamps, UsesReplies, UsesTags;
 
     /**
      * @var string

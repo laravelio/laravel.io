@@ -66,3 +66,7 @@ Route::post('replies', ['as' => 'replies.store', 'uses' => 'ReplyController@stor
 Route::get('replies/{reply}/edit', ['as' => 'replies.edit', 'uses' => 'ReplyController@edit']);
 Route::put('replies/{reply}', ['as' => 'replies.update', 'uses' => 'ReplyController@update']);
 Route::get('replies/{reply}/delete', ['as' => 'replies.delete', 'uses' => 'ReplyController@delete']);
+
+// Tags
+Route::get('tags', ['as' => 'tags', 'uses' => 'TagsController@overview']);
+Route::get('tags/{tag}', ['as' => 'tag', 'uses' => 'TagsController@show']);

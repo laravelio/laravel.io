@@ -165,6 +165,7 @@ return [
         Lio\ModelFactories\ModelFactoryServiceProvider::class,
         Lio\Replies\ReplyServiceProvider::class,
         Lio\Spam\SpamServiceProvider::class,
+        Lio\Tags\TagServiceProvider::class,
         Lio\Users\UserServiceProvider::class,
         Lio\Views\ViewServiceProvider::class,
 

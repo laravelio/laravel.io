@@ -3,9 +3,10 @@
 namespace Lio\Forum;
 
 use Lio\DateTime\Timestamps;
+use Lio\Tags\Taggable;
 use Lio\Users\Authored;
 
-interface Thread extends Authored, Timestamps
+interface Thread extends Authored, Taggable, Timestamps
 {
     const TYPE = 'threads';
 
