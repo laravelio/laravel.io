@@ -14,7 +14,7 @@
 
         @formGroup('body')
             {!! Form::label('body') !!}
-            {!! Form::text('body', $thread->body(), ['class' => 'form-control', 'required']) !!}
+            {!! Form::textarea('body', $thread->body(), ['class' => 'form-control', 'required']) !!}
             @error('body')
         @endFormGroup
 
