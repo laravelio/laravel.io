@@ -30,3 +30,7 @@ Blade::directive('tags', function($tags) {
         ->implode(' ');
     ?>";
 });
+
+Blade::directive('title', function($expression) {
+    return "<?php \$title = $expression ?>";
+});

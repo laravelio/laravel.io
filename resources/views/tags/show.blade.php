@@ -1,4 +1,4 @@
-@php($title = $tag->name())
+@title($tag->name())
 
 @extends('layouts.default')
 

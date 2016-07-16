@@ -1,4 +1,4 @@
-@php($title = 'Forbidden')
+@title('Forbidden')
 
 @extends('layouts.base')
 

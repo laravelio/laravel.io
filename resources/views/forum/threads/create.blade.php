@@ -1,4 +1,4 @@
-@php($title = 'Create your thread')
+@title('Create your thread')
 
 @extends('layouts.default')
 

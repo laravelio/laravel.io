@@ -1,4 +1,4 @@
-@php($title = $thread->subject())
+@title($thread->subject())
 
 @extends('layouts.default')
 

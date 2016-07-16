@@ -1,4 +1,4 @@
-@php($title = 'Tags')
+@title('Tags')
 
 @extends('layouts.default')
 

@@ -1,4 +1,4 @@
-@php($title = 'Forum')
+@title('Forum')
 
 @extends('layouts.default')
 

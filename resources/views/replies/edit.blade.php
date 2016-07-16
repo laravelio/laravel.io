@@ -1,4 +1,4 @@
-@php($title = 'Edit your reply')
+@title('Edit your reply')
 
 @extends('layouts.default')
 

@@ -1,4 +1,4 @@
-@php($title = 'Profile')
+@title('Profile')
 
 @extends('layouts.settings')
 

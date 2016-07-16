@@ -1,4 +1,4 @@
-@php($title = 'Reset Password')
+@title('Reset Password')
 
 @extends('layouts.small')
 

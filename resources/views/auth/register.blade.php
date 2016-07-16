@@ -1,4 +1,4 @@
-@php($title = 'Signup')
+@title('Signup')
 
 @extends('layouts.small')
 

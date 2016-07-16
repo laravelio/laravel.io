@@ -1,4 +1,4 @@
-@php($title = 'Page not found')
+@title('Page not found')
 
 @extends('layouts.base')
 

@@ -1,4 +1,4 @@
-@php($title = 'Dashboard')
+@title('Dashboard')
 
 @extends('layouts.default')
 
