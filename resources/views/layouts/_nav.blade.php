@@ -24,6 +24,7 @@
                         <li><a href="https://github.com/laravelio"><i class="fa fa-github"></i> Github</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="https://laravel.com">Laravel</a></li>
+                        <li><a href="https://laracasts.com">Laracasts</a></li>
                         <li><a href="https://larajobs.com/?partner=28">Larajobs</a></li>
                         <li><a href="https://laravel-news.com">Laravel News</a></li>
                         <li><a href="http://www.laravelpodcast.com">Podcast</a></li>
