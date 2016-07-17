@@ -18,7 +18,15 @@ class AppServiceProvider extends ServiceProvider
     {
         require __DIR__ . '/helpers.php';
 
-        $this->registerPasscheckValidationRule();
+        $this->bootPasscheckValidationRule();
+    }
+
+    private function bootPasscheckValidationRule()
+    {
+        Validator::extend('passcheck', function ($attribute, $value, $parameters)
+        {
+            return Hash::check($value, Auth::user()->getAuthPassword());
+        });
     }
 
     /**
@@ -29,13 +37,5 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-    }
-
-    private function registerPasscheckValidationRule()
-    {
-        Validator::extend('passcheck', function ($attribute, $value, $parameters)
-        {
-            return Hash::check($value, Auth::user()->getAuthPassword());
-        });
     }
 }
