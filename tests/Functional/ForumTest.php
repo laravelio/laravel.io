@@ -4,6 +4,7 @@ namespace Lio\Tests\Functional;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Lio\Forum\Thread;
+use Lio\Forum\Topics\Topic;
 use Lio\Replies\Reply;
 use Lio\Tags\Tag;
 use Lio\Tests\TestCase;
@@ -13,12 +14,14 @@ class ForumTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    function we_can_see_a_list_of_threads()
+    function we_can_see_a_list_of_topics_and_latest_threads()
     {
-        $this->create(Thread::class, ['subject' => 'The first thread']);
-        $this->create(Thread::class, ['subject' => 'The second thread']);
+        $topic = $this->create(Topic::class, ['name' => 'Eloquent']);
+        $this->create(Thread::class, ['subject' => 'The first thread', 'topic_id' => $topic->id()]);
+        $this->create(Thread::class, ['subject' => 'The second thread', 'topic_id' => $topic->id()]);
 
         $this->visit('/forum')
+            ->see('Eloquent')
             ->see('The first thread')
             ->see('The second thread');
     }
@@ -45,17 +48,20 @@ class ForumTest extends TestCase
     /** @test */
     function we_can_create_a_thread()
     {
+        $topic = $this->create(Topic::class, ['name' => 'Eloquent']);
         $tag = $this->create(Tag::class, ['name' => 'Test Tag']);
 
         $this->login();
 
         $this->visit('/forum/create-thread')
             ->submitForm('Create Thread', [
+                'topic' => $topic->id(),
                 'subject' => 'How to work with Eloquent?',
                 'body' => 'This text explains how to work with Eloquent.',
                 'tags' => [$tag->id()],
             ])
             ->seePageIs('/forum/how-to-work-with-eloquent')
+            ->see('Eloquent')
             ->see('Test Tag');
     }
 
@@ -64,17 +70,25 @@ class ForumTest extends TestCase
     {
         $user = $this->login();
 
-        $this->create(Thread::class, ['slug' => 'my-first-thread', 'author_id' => $user->id()]);
+        $currentTopic = $this->create(Topic::class, ['name' => 'Laravel']);
+        $newTopic = $this->create(Topic::class, ['name' => 'Spark']);
         $tag = $this->create(Tag::class, ['name' => 'Test Tag']);
+        $this->create(Thread::class, [
+            'author_id' => $user->id(),
+            'topic_id' => $currentTopic->id(),
+            'slug' => 'my-first-thread',
+        ]);
 
         $this->visit('/forum/my-first-thread/edit')
             ->submitForm('Update', [
+                'topic' => $newTopic->id(),
                 'subject' => 'How to work with Eloquent?',
                 'body' => 'This text explains how to work with Eloquent.',
                 'tags' => [$tag->id()],
             ])
             ->seePageIs('/forum/my-first-thread')
             ->see('How to work with Eloquent?')
+            ->see('Spark')
             ->see('Test Tag');
     }
 

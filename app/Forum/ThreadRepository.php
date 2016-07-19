@@ -2,6 +2,7 @@
 
 namespace Lio\Forum;
 
+use Lio\Forum\Topics\Topic;
 use Lio\Users\User;
 
 interface ThreadRepository
@@ -21,7 +22,7 @@ interface ThreadRepository
      */
     public function findBySlug(string $slug);
 
-    public function create(User $author, string $subject, string $body, array $attributes = []): Thread;
+    public function create(User $author, Topic $topic, string $subject, string $body, array $attributes = []): Thread;
     public function update(Thread $thread, array $attributes = []): Thread;
     public function delete(Thread $thread);
 }

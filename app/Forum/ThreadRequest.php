@@ -2,6 +2,8 @@
 
 namespace Lio\Forum;
 
+use Lio\Forum\Topics\Topic;
+use Lio\Forum\Topics\TopicRepository;
 use Lio\Http\Requests\Request;
 
 class ThreadRequest extends Request
@@ -14,10 +16,21 @@ class ThreadRequest extends Request
     public function rules()
     {
         return [
+            'topic' => 'required|exists:topics,id',
             'subject' => 'required',
             'body' => 'required',
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',
         ];
+    }
+
+    public function topic(): Topic
+    {
+        return app(TopicRepository::class)->find((int) $this->get('topic'));
+    }
+
+    public function forUpdate(): array
+    {
+        return array_merge($this->only('subject', 'body', 'tags'), ['topic' => $this->topic()]);
     }
 }

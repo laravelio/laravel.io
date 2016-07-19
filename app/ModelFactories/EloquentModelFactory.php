@@ -5,6 +5,8 @@ namespace Lio\ModelFactories;
 use Illuminate\Database\Eloquent\Factory;
 use Lio\Forum\EloquentThread;
 use Lio\Forum\Thread;
+use Lio\Forum\Topics\EloquentTopic;
+use Lio\Forum\Topics\Topic;
 use Lio\Replies\EloquentReply;
 use Lio\Replies\Reply;
 use Lio\Tags\EloquentTag;
@@ -18,9 +20,10 @@ final class EloquentModelFactory implements ModelFactory
      * @var array
      */
     private $models = [
-        Tag::class => EloquentTag::class,
-        Thread::class => EloquentThread::class,
         Reply::class => EloquentReply::class,
+        Tag::class => EloquentTag::class,
+        Topic::class => EloquentTopic::class,
+        Thread::class => EloquentThread::class,
         User::class => EloquentUser::class,
     ];
 

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Lio\Forum\Thread;
 use Lio\Forum\ThreadRepository;
+use Lio\Forum\Topics\Topic;
 use Lio\Testing\RepositoryTest;
 use Lio\Tests\TestCase;
 
@@ -27,18 +28,28 @@ class ThreadRepositoryTest extends TestCase
     }
 
     /** @test */
+    public function find_by_id()
+    {
+        $thread = $this->create(Thread::class, ['slug' => 'foo']);
+
+        $this->assertInstanceOf(Thread::class, $this->repo->find($thread->id()));
+    }
+
+    /** @test */
     public function find_by_slug()
     {
         $this->create(Thread::class, ['slug' => 'foo']);
 
         $this->assertInstanceOf(Thread::class, $this->repo->findBySlug('foo'));
     }
+
     /** @test */
     function we_can_create_a_thread()
     {
         $user = $this->createUser();
+        $topic = $this->create(Topic::class);
 
-        $this->assertInstanceOf(Thread::class, $this->repo->create($user, 'Foo', 'Baz'));
+        $this->assertInstanceOf(Thread::class, $this->repo->create($user, $topic, 'Foo', 'Baz'));
     }
 
     /** @test */

@@ -4,6 +4,7 @@
 
 @section('content')
     <h1>{{ $title }}</h1>
+    <h2>{{ $thread->topic()->name() }}</h2>
 
     @md($thread->body())
 

@@ -3,7 +3,10 @@
 namespace Lio\Forum;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Lio\DateTime\HasTimestamps;
+use Lio\Forum\Topics\EloquentTopic;
+use Lio\Forum\Topics\Topic;
 use Lio\Replies\UsesReplies;
 use Lio\Replies\ReplyAble;
 use Lio\Tags\UsesTags;
@@ -46,5 +49,15 @@ final class EloquentThread extends Model implements Thread, ReplyAble
     public function slug(): string
     {
         return $this->slug;
+    }
+
+    public function topic(): Topic
+    {
+        return $this->topicRelation;
+    }
+
+    public function topicRelation(): BelongsTo
+    {
+        return $this->belongsTo(EloquentTopic::class, 'topic_id');
     }
 }

@@ -55,10 +55,12 @@ Route::group(['namespace' => 'Forum'], function() {
     Route::get('forum', ['as' => 'forum', 'uses' => 'ThreadsController@overview']);
     Route::get('forum/create-thread', ['as' => 'threads.create', 'uses' => 'ThreadsController@create']);
     Route::post('forum/create-thread', ['as' => 'threads.store', 'uses' => 'ThreadsController@store']);
-    Route::get('forum/{thread_slug}', ['as' => 'thread', 'uses' => 'ThreadsController@show']);
-    Route::get('forum/{thread_slug}/edit', ['as' => 'threads.edit', 'uses' => 'ThreadsController@edit']);
-    Route::put('forum/{thread_slug}', ['as' => 'threads.update', 'uses' => 'ThreadsController@update']);
-    Route::get('forum/{thread_slug}/delete', ['as' => 'threads.delete', 'uses' => 'ThreadsController@delete']);
+    Route::get('forum/{thread}', ['as' => 'thread', 'uses' => 'ThreadsController@show']);
+    Route::get('forum/{thread}/edit', ['as' => 'threads.edit', 'uses' => 'ThreadsController@edit']);
+    Route::put('forum/{thread}', ['as' => 'threads.update', 'uses' => 'ThreadsController@update']);
+    Route::get('forum/{thread}/delete', ['as' => 'threads.delete', 'uses' => 'ThreadsController@delete']);
+
+    Route::get('forum/topics/{topic}', ['as' => 'forum.topic', 'uses' => 'TopicController@show']);
 });
 
 // Replies

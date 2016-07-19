@@ -2,7 +2,7 @@
 
 namespace Lio\Tags;
 
-class EloquentTagRepository implements TagRepository
+final class EloquentTagRepository implements TagRepository
 {
     /**
      * @var \Lio\Tags\EloquentTag

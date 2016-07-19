@@ -5,6 +5,7 @@ namespace Lio\Http\Controllers\Forum;
 use Gate;
 use Lio\Forum\Thread;
 use Lio\Forum\ThreadRequest;
+use Lio\Forum\Topics\TopicRepository;
 use Lio\Http\Controllers\Controller;
 use Lio\Forum\ThreadRepository;
 use Lio\Tags\TagRepository;
@@ -23,9 +24,12 @@ class ThreadsController extends Controller
         $this->middleware('auth', ['except' => ['overview', 'show']]);
     }
 
-    public function overview()
+    public function overview(TopicRepository $topics)
     {
-        return view('forum.overview', ['threads' => $this->threads->findAllPaginated()]);
+        return view('forum.overview', [
+            'topics' => $topics->findAll(),
+            'threads' => $this->threads->findAllPaginated(),
+        ]);
     }
 
     public function show(Thread $thread)
@@ -33,23 +37,30 @@ class ThreadsController extends Controller
         return view('forum.threads.show', compact('thread'));
     }
 
-    public function create(TagRepository $tags)
+    public function create(TopicRepository $topics, TagRepository $tags)
     {
-        return view('forum.threads.create', ['tags' => $tags->findAll()]);
+        return view('forum.threads.create', ['topics' => $topics->findAll(), 'tags' => $tags->findAll()]);
     }
 
     public function store(ThreadRequest $request)
     {
-        $thread = $this->threads->create(auth()->user(), $request->get('subject'), $request->get('body'), $request->only('tags'));
+        $thread = $this->threads->create(
+            auth()->user(),
+            $request->topic(),
+            $request->get('subject'),
+            $request->get('body'),
+            $request->only('tags')
+        );
 
         return redirect()->route('thread', $thread->slug());
     }
 
-    public function edit(TagRepository $tags, Thread $thread)
+    public function edit(TopicRepository $topics, TagRepository $tags, Thread $thread)
     {
         $this->authorize('update', $thread);
 
         return view('forum.threads.edit', [
+            'topics' => $topics->findAll(),
             'thread' => $thread,
             'tags' => $tags->findAll(),
         ]);
@@ -59,7 +70,7 @@ class ThreadsController extends Controller
     {
         $this->authorize('update', $thread);
 
-        $this->threads->update($thread, $request->only('subject', 'body', 'tags'));
+        $this->threads->update($thread, $request->forUpdate());
 
         return redirect()->route('thread', $thread->slug());
     }
