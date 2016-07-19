@@ -102,7 +102,7 @@ class ForumTest extends TestCase
         $this->get('/forum/my-first-thread/edit')
             ->assertResponseStatus(403);
 
-        // @todo I wish I could do this.
+        // I wish I could do this.
         //$this->visit('/forum/my-first-thread/edit')
         //    ->see('Forbidden');
     }
@@ -117,7 +117,7 @@ class ForumTest extends TestCase
         $this->get('/forum/my-first-thread/delete')
             ->assertResponseStatus(403);
 
-        // @todo I wish I could do this.
+        // I wish I could do this.
         //$this->visit('/forum/my-first-thread/delete')
         //    ->see('Forbidden');
     }

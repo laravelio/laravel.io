@@ -80,6 +80,6 @@ class ReplyController extends Controller
             return redirect()->route('thread', $replyAble->slug());
         }
 
-        abort(500); // Todo: find better error method
+        abort(404);
     }
 }

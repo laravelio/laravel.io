@@ -162,6 +162,7 @@ return [
         Lio\Events\EventServiceProvider::class,
         Lio\Forum\ForumServiceProvider::class,
         Lio\Http\RouteServiceProvider::class,
+        Lio\Markdown\MarkdownServiceProvider::class,
         Lio\ModelFactories\ModelFactoryServiceProvider::class,
         Lio\Replies\ReplyServiceProvider::class,
         Lio\Spam\SpamServiceProvider::class,

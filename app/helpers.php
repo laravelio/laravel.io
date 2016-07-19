@@ -12,6 +12,16 @@ if (! function_exists('active')) {
     }
 }
 
+if (! function_exists('md_to_html')) {
+    /**
+     * Convert Markdown to HTML.
+     */
+    function md_to_html(string $markdown): string
+    {
+        return app(\Lio\Markdown\Converter::class)->toHtml($markdown);
+    }
+}
+
 if (! function_exists('route_to_reply_able')) {
     /**
      * Returns the route for the replyAble.

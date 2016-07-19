@@ -1,10 +1,7 @@
 <?php
 
-use League\CommonMark\CommonMarkConverter;
-
-/** @todo Don't implicitly bind CommonMarkConverter class */
 Blade::directive('md', function($expression) {
-    return "<?php echo (new " . CommonMarkConverter::class . "())->convertToHtml($expression); ?>";
+    return "<?php echo md_to_html($expression); ?>";
 });
 
 Blade::directive('error', function($expression) {
