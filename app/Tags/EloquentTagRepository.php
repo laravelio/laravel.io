@@ -22,11 +22,8 @@ final class EloquentTagRepository implements TagRepository
         return $this->model->all();
     }
 
-    /**
-     * @return \Lio\Tags\Tag|null
-     */
-    public function findBySlug(string $slug)
+    public function findBySlug(string $slug): Tag
     {
-        return $this->model->where('slug', $slug)->first();
+        return $this->model->where('slug', $slug)->firstOrFail();
     }
 }

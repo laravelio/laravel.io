@@ -16,12 +16,9 @@ final class EloquentReplyRepository implements ReplyRepository
         $this->model = $model;
     }
 
-    /**
-     * @return \Lio\Replies\Reply|null
-     */
-    public function find(int $id)
+    public function find(int $id): Reply
     {
-        return $this->model->find($id);
+        return $this->model->findOrFail($id);
     }
 
     public function create(ReplyAble $relation, User $author, string $body): Reply

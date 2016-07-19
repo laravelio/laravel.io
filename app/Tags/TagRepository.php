@@ -8,9 +8,5 @@ interface TagRepository
      * @return \Lio\Tags\Tag[]
      */
     public function findAll();
-
-    /**
-     * @return \Lio\Forum\Thread|null
-     */
-    public function findBySlug(string $slug);
+    public function findBySlug(string $slug): Tag;
 }

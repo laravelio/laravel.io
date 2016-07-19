@@ -7,21 +7,21 @@ use Lio\Tags\TagRepository;
 use Lio\Users\UserRepository;
 
 Route::bind('reply', function($id) {
-    return app(ReplyRepository::class)->find($id) ?: abort(404);
+    return app(ReplyRepository::class)->find($id);
 });
 
 Route::bind('tag', function($slug) {
-    return app(TagRepository::class)->findBySlug($slug) ?: abort(404);
+    return app(TagRepository::class)->findBySlug($slug);
 });
 
 Route::bind('thread', function($slug) {
-    return app(ThreadRepository::class)->findBySlug($slug) ?: abort(404);
+    return app(ThreadRepository::class)->findBySlug($slug);
 });
 
 Route::bind('topic', function($slug) {
-    return app(TopicRepository::class)->findBySlug($slug) ?: abort(404);
+    return app(TopicRepository::class)->findBySlug($slug);
 });
 
 Route::bind('username', function($username) {
-    return app(UserRepository::class)->findByUsername($username) ?: abort(404);
+    return app(UserRepository::class)->findByUsername($username);
 });

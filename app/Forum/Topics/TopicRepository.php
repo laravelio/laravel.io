@@ -9,13 +9,6 @@ interface TopicRepository
      */
     public function findAll();
 
-    /**
-     * @return \Lio\Forum\Topics\Topic|null
-     */
-    public function find($id);
-
-    /**
-     * @return \Lio\Forum\Topics\Topic|null
-     */
-    public function findBySlug(string $slug);
+    public function find($id): Topic;
+    public function findBySlug(string $slug): Topic;
 }

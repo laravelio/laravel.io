@@ -27,20 +27,14 @@ final class EloquentThreadRepository implements ThreadRepository
         return $this->model->orderBy('created_at', 'desc')->paginate(20);
     }
 
-    /**
-     * @return \Lio\Forum\Thread|null
-     */
-    public function find(int $id)
+    public function find(int $id): Thread
     {
-        return $this->model->find($id);
+        return $this->model->findOrFail($id);
     }
 
-    /**
-     * @return \Lio\Forum\Thread|null
-     */
-    public function findBySlug(string $slug)
+    public function findBySlug(string $slug): Thread
     {
-        return $this->model->where('slug', $slug)->first();
+        return $this->model->where('slug', $slug)->firstOrFail();
     }
 
     public function create(User $author, Topic $topic, string $subject, string $body, array $attributes = []): Thread

@@ -22,19 +22,13 @@ final class EloquentTopicRepository implements TopicRepository
         return $this->model->all();
     }
 
-    /**
-     * @return \Lio\Forum\Topics\Topic|null
-     */
-    public function find($id)
+    public function find($id): Topic
     {
-        return $this->model->find($id);
+        return $this->model->findOrFail($id);
     }
 
-    /**
-     * @return \Lio\Forum\Topics\Topic|null
-     */
-    public function findBySlug(string $slug)
+    public function findBySlug(string $slug): Topic
     {
-        return $this->model->where('slug', $slug)->first();
+        return $this->model->where('slug', $slug)->firstOrFail();
     }
 }

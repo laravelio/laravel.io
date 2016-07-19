@@ -12,16 +12,8 @@ interface ThreadRepository
      */
     public function findAllPaginated();
 
-    /**
-     * @return \Lio\Forum\Thread|null
-     */
-    public function find(int $id);
-
-    /**
-     * @return \Lio\Forum\Thread|null
-     */
-    public function findBySlug(string $slug);
-
+    public function find(int $id): Thread;
+    public function findBySlug(string $slug): Thread;
     public function create(User $author, Topic $topic, string $subject, string $body, array $attributes = []): Thread;
     public function update(Thread $thread, array $attributes = []): Thread;
     public function delete(Thread $thread);

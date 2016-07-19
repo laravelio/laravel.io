@@ -2,6 +2,7 @@
 
 namespace Lio\Users;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Lio\Users\Exceptions\CannotCreateUser;
 
 final class EloquentUserRepository implements UserRepository
@@ -16,31 +17,20 @@ final class EloquentUserRepository implements UserRepository
         $this->model = $model;
     }
 
-    /**
-     * @return \Lio\Users\User|null
-     */
-    public function findByUsername(string $username)
+    public function findByUsername(string $username): User
     {
-        return $this->model->where('username', $username)->first();
+        return $this->model->where('username', $username)->firstOrFail();
     }
 
-    /**
-     * @return \Lio\Users\User|null
-     */
-    public function findByEmailAddress(string $emailAddress)
+    public function findByEmailAddress(string $emailAddress): User
     {
-        return $this->model->where('email', $emailAddress)->first();
+        return $this->model->where('email', $emailAddress)->firstOrFail();
     }
 
     public function create(string $name, string $emailAddress, string $password, string $username, array $attributes = []): User
     {
-        if ($this->findByEmailAddress($emailAddress)) {
-            throw CannotCreateUser::duplicateEmailAddress($emailAddress);
-        }
-
-        if ($this->findByUsername($username)) {
-            throw CannotCreateUser::duplicateUsername($username);
-        }
+        $this->assertEmailAddressIsUnique($emailAddress);
+        $this->assertUsernameIsUnique($username);
 
         $user = $this->model->newInstance($attributes);
         $user->name = $name;
@@ -50,6 +40,28 @@ final class EloquentUserRepository implements UserRepository
         $user->save();
 
         return $user;
+    }
+
+    private function assertEmailAddressIsUnique(string $emailAddress)
+    {
+        try {
+            $this->findByEmailAddress($emailAddress);
+        } catch (ModelNotFoundException $exception) {
+            return true;
+        }
+
+        throw CannotCreateUser::duplicateEmailAddress($emailAddress);
+    }
+
+    private function assertUsernameIsUnique(string $username)
+    {
+        try {
+            $this->findByUsername($username);
+        } catch (ModelNotFoundException $exception) {
+            return true;
+        }
+
+        throw CannotCreateUser::duplicateUsername($username);
     }
 
     public function update(User $user, array $attributes): User
