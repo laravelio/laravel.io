@@ -25,18 +25,18 @@ $factory->define(EloquentUser::class, function (Faker\Generator $faker) {
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
         'confirmed' => true,
+        'github_id' => $faker->numberBetween(10000, 99999),
         'github_url' => $faker->userName,
     ];
 });
 
 $factory->define(EloquentThread::class, function (Faker\Generator $faker) {
     return [
-        'topic_id' => factory(EloquentTopic::class)->create()->id(),
+        'topic_id' => 1,
         'subject' => $faker->text(20),
         'body' => $faker->text,
         'slug' => $faker->slug,
         'author_id' => factory(EloquentUser::class)->create()->id(),
-        'laravel_version' => $faker->randomElement([3, 4, 5]),
     ];
 });
 

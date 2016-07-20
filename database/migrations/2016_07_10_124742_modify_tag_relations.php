@@ -23,6 +23,12 @@ class ModifyTagRelations extends Migration
         });
 
         DB::table('taggables')->update(['taggable_type' => 'threads']);
+
+        Schema::table('tags', function (Blueprint $table) {
+            $table->unique('name');
+            $table->unique('slug');
+            $table->text('description')->nullable(false)->change();
+        });
     }
 
     /**
@@ -32,6 +38,12 @@ class ModifyTagRelations extends Migration
      */
     public function down()
     {
+        Schema::table('tags', function (Blueprint $table) {
+            $table->dropUnique('tags_name_unique');
+            $table->dropUnique('tags_slug_unique');
+            $table->text('description')->nullable(true)->change();
+        });
+
         Schema::table('taggables', function(Blueprint $table) {
             $table->renameColumn('taggable_id', 'thread_id');
         });

@@ -45,7 +45,6 @@ final class EloquentThreadRepository implements ThreadRepository
 
         // Todo: Figure out what to do with these
         $thread->slug = Str::slug($subject);
-        $thread->laravel_version = 5;
 
         $thread->save();
 

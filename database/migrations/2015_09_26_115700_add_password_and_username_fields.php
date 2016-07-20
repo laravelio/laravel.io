@@ -13,6 +13,7 @@ class AddPasswordAndUsernameFields extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table) {
+            $table->unique('github_id');
             $table->string('email')->unique()->change();
             $table->string('username', 40)->default('');
             $table->string('password')->default('');
@@ -35,6 +36,7 @@ class AddPasswordAndUsernameFields extends Migration
     {
         Schema::table('users', function(Blueprint $table) {
             $table->dropColumn('username', 'password');
+            $table->dropUnique('users_github_id_unique');
             $table->dropUnique('users_email_unique');
         });
     }
