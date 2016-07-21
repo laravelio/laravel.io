@@ -86,7 +86,7 @@ class ForumTest extends TestCase
                 'body' => 'This text explains how to work with Eloquent.',
                 'tags' => [$tag->id()],
             ])
-            ->seePageIs('/forum/my-first-thread')
+            ->seePageIs('/forum/how-to-work-with-eloquent')
             ->see('How to work with Eloquent?')
             ->see('Spark')
             ->see('Test Tag');
