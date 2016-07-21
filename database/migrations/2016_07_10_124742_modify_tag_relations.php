@@ -39,8 +39,8 @@ class ModifyTagRelations extends Migration
     public function down()
     {
         Schema::table('tags', function (Blueprint $table) {
-            $table->dropUnique('tags_name_unique');
-            $table->dropUnique('tags_slug_unique');
+            $table->dropUnique(['name']);
+            $table->dropUnique(['slug']);
             $table->text('description')->nullable(true)->change();
         });
 

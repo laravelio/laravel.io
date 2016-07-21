@@ -15,6 +15,10 @@ class CleanUpThreadsTable extends Migration
         Schema::table('threads', function (Blueprint $table) {
             $table->dropColumn('is_question', 'pinned', 'laravel_version');
             $table->unique('slug');
+            $table->integer('solution_reply_id')->unsigned()->change();
+            $table->foreign('solution_reply_id')
+                ->references('id')->on('replies')
+                ->onDelete('set null');
         });
     }
 
@@ -26,10 +30,11 @@ class CleanUpThreadsTable extends Migration
     public function down()
     {
         Schema::table('threads', function(Blueprint $table) {
+            $table->dropForeign(['solution_reply_id']);
             $table->boolean('is_question')->default(true);
             $table->boolean('pinned')->default(false);
             $table->integer('laravel_version')->default(0);
-            $table->dropUnique('threads_slug_unique');
+            $table->dropUnique(['slug']);
         });
     }
 }
