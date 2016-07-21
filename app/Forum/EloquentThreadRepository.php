@@ -3,12 +3,14 @@
 namespace Lio\Forum;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Lio\Forum\Topics\Topic;
+use Lio\Slugs\GeneratesSlugs;
 use Lio\Users\User;
 
 final class EloquentThreadRepository implements ThreadRepository
 {
+    use GeneratesSlugs;
+
     /**
      * @var \Lio\Forum\EloquentThread
      */
@@ -44,7 +46,7 @@ final class EloquentThreadRepository implements ThreadRepository
         $thread->topicRelation()->associate($topic);
 
         // Todo: Figure out what to do with these
-        $thread->slug = Str::slug($subject);
+        $thread->slug = $this->generateUniqueSlug($subject);
         $thread->ip = Arr::get($attributes, 'ip', '');
         $thread->save();
 
