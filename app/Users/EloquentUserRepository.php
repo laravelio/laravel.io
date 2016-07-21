@@ -66,8 +66,8 @@ final class EloquentUserRepository implements UserRepository
 
     public function update(User $user, array $attributes): User
     {
-        $this->model->where('id', $user->id())->update($attributes);
+        $user->update($attributes);
 
-        return $this->model->find($user->id());
+        return $user;
     }
 }

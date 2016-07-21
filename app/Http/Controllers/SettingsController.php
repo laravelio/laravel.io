@@ -21,10 +21,7 @@ class SettingsController extends Controller
 
     public function updateProfile(SaveSettingsRequest $request, UserRepository $users)
     {
-        $user = $users->update(Auth::user(), $request->only('name', 'email', 'username'));
-
-        // Unfortunately we need to do this to make the tests pass.
-        Auth::setUser($user);
+        $users->update(Auth::user(), $request->only('name', 'email', 'username'));
 
         return redirect()->route('settings.profile');
     }
@@ -36,10 +33,7 @@ class SettingsController extends Controller
 
     public function updatePassword(ChangePasswordRequest $request, UserRepository $users)
     {
-        $user = $users->update(Auth::user(), $request->fromForm());
-
-        // Unfortunately we need to do this to make the tests pass.
-        Auth::setUser($user);
+        $users->update(Auth::user(), $request->dataForUpdate());
 
         return redirect()->route('settings.password');
     }

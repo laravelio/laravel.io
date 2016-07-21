@@ -20,7 +20,7 @@ class ChangePasswordRequest extends Request
         ];
     }
 
-    public function fromForm(): array
+    public function dataForUpdate(): array
     {
         return ['password' => bcrypt($this->get('password'))];
     }
