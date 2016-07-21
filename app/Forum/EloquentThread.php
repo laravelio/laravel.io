@@ -4,7 +4,6 @@ namespace Lio\Forum;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Lio\DateTime\HasTimestamps;
 use Lio\Forum\Topics\EloquentTopic;
 use Lio\Forum\Topics\Topic;
