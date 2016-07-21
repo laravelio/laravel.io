@@ -26,7 +26,7 @@
 
         @formGroup('tags')
             {!! Form::label('tags') !!}
-            {!! Form::select('tags[]', $tags->lists('name', 'id'), $thread->tags()->lists('id')->toArray(), ['class' => 'form-control selectize', 'multiple', 'required']) !!}
+            {!! Form::select('tags[]', $tags->lists('name', 'id'), $thread->tags()->lists('id')->toArray(), ['class' => 'form-control selectize', 'multiple']) !!}
             @error('tags')
         @endFormGroup
 
