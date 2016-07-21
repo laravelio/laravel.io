@@ -23,6 +23,9 @@ class RemoveUnusedDbTablesAndColumns extends Migration
         Schema::table('tags', function (Blueprint $table) {
             $table->dropColumn('forum');
         });
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('image_url');
+        });
     }
 
     /**
@@ -76,6 +79,10 @@ class RemoveUnusedDbTablesAndColumns extends Migration
 
         Schema::table('tags', function (Blueprint $table) {
             $table->smallInteger('forum')->default(0);
+        });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('image_url')->nullable();
         });
     }
 }
