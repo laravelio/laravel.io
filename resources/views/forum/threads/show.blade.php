@@ -29,8 +29,8 @@
 
             @can('update', $reply)
                 <p>
-                    <a href="{{ route('replies.edit', $thread->id()) }}">Edit</a> |
-                    <a href="{{ route('replies.delete', $thread->id()) }}">Delete</a>
+                    <a href="{{ route('replies.edit', $reply->id()) }}">Edit</a> |
+                    <a href="{{ route('replies.delete', $reply->id()) }}">Delete</a>
                 </p>
             @endcan
 
