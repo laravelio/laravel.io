@@ -73,7 +73,8 @@ class AuthController extends Controller
             $data['name'],
             $data['email'],
             bcrypt($data['password']),
-            $data['username']
+            $data['username'],
+            ['ip' => request()->ip()]
         );
     }
 }

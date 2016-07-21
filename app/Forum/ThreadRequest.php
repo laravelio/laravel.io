@@ -29,7 +29,12 @@ class ThreadRequest extends Request
         return app(TopicRepository::class)->find((int) $this->get('topic'));
     }
 
-    public function forUpdate(): array
+    public function dataForStore(): array
+    {
+        return array_merge($this->only('tags'), ['ip' => $this->ip()]);
+    }
+
+    public function dataForUpdate(): array
     {
         return array_merge($this->only('subject', 'body', 'tags'), ['topic' => $this->topic()]);
     }

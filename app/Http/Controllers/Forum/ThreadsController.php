@@ -2,7 +2,6 @@
 
 namespace Lio\Http\Controllers\Forum;
 
-use Gate;
 use Lio\Forum\Thread;
 use Lio\Forum\ThreadRequest;
 use Lio\Forum\Topics\TopicRepository;
@@ -49,7 +48,7 @@ class ThreadsController extends Controller
             $request->topic(),
             $request->get('subject'),
             $request->get('body'),
-            $request->only('tags')
+            $request->dataForStore()
         );
 
         return redirect()->route('thread', $thread->slug());
@@ -70,7 +69,7 @@ class ThreadsController extends Controller
     {
         $this->authorize('update', $thread);
 
-        $this->threads->update($thread, $request->forUpdate());
+        $this->threads->update($thread, $request->dataForUpdate());
 
         return redirect()->route('thread', $thread->slug());
     }

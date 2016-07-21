@@ -2,6 +2,7 @@
 
 namespace Lio\Replies;
 
+use Illuminate\Support\Arr;
 use Lio\Users\User;
 
 final class EloquentReplyRepository implements ReplyRepository
@@ -21,10 +22,11 @@ final class EloquentReplyRepository implements ReplyRepository
         return $this->model->findOrFail($id);
     }
 
-    public function create(ReplyAble $relation, User $author, string $body): Reply
+    public function create(ReplyAble $relation, User $author, string $body, array $attributes = []): Reply
     {
         $reply = $this->model->newInstance(compact('body'));
         $reply->author_id = $author->id();
+        $reply->ip = Arr::get($attributes, 'ip', '');
 
         $relation->replyAble()->save($reply);
 

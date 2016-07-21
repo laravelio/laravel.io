@@ -27,6 +27,7 @@ $factory->define(EloquentUser::class, function (Faker\Generator $faker) {
         'confirmed' => true,
         'github_id' => $faker->numberBetween(10000, 99999),
         'github_url' => $faker->userName,
+        'ip' => $faker->ipv6,
     ];
 });
 
@@ -37,6 +38,7 @@ $factory->define(EloquentThread::class, function (Faker\Generator $faker) {
         'body' => $faker->text,
         'slug' => $faker->slug,
         'author_id' => factory(EloquentUser::class)->create()->id(),
+        'ip' => $faker->ipv6,
     ];
 });
 
@@ -53,6 +55,7 @@ $factory->define(EloquentReply::class, function (Faker\Generator $faker) {
         'author_id' => factory(EloquentUser::class)->create()->id(),
         'replyable_id' => factory(EloquentThread::class)->create()->id(),
         'replyable_type' => EloquentThread::TYPE,
+        'ip' => $faker->ipv6,
     ];
 });
 

@@ -45,10 +45,11 @@ final class EloquentThreadRepository implements ThreadRepository
 
         // Todo: Figure out what to do with these
         $thread->slug = Str::slug($subject);
-
+        $thread->ip = Arr::get($attributes, 'ip', '');
         $thread->save();
 
-        $this->updateTags($thread, $attributes);
+        $thread = $this->updateTags($thread, $attributes);
+        $thread->save();
 
         return $thread;
     }
