@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Lio\Forum\Thread;
 use Lio\Forum\ThreadRepository;
 use Lio\Forum\Topics\Topic;
+use Lio\Replies\Reply;
 use Lio\Testing\RepositoryTest;
 use Lio\Tests\TestCase;
 
@@ -76,5 +77,22 @@ class ThreadRepositoryTest extends TestCase
         $this->repo->delete($thread);
 
         $this->notSeeInDatabase('threads', ['id' => 1]);
+    }
+
+    /** @test */
+    function we_can_mark_and_unmark_a_reply_as_the_solution()
+    {
+        $thread = $this->create(Thread::class);
+        $reply = $this->create(Reply::class, ['replyable_id' => $thread->id()]);
+
+        $this->assertFalse($thread->isSolutionReply($reply));
+
+        $thread = $this->repo->markSolution($reply);
+
+        $this->assertTrue($thread->isSolutionReply($reply));
+
+        $thread = $this->repo->unmarkSolution($thread);
+
+        $this->assertFalse($thread->isSolutionReply($reply));
     }
 }

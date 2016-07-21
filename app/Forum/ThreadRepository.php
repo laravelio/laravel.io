@@ -3,6 +3,7 @@
 namespace Lio\Forum;
 
 use Lio\Forum\Topics\Topic;
+use Lio\Replies\Reply;
 use Lio\Users\User;
 
 interface ThreadRepository
@@ -17,4 +18,6 @@ interface ThreadRepository
     public function create(User $author, Topic $topic, string $subject, string $body, array $attributes = []): Thread;
     public function update(Thread $thread, array $attributes = []): Thread;
     public function delete(Thread $thread);
+    public function markSolution(Reply $reply): Thread;
+    public function unmarkSolution(Thread $thread): Thread;
 }

@@ -59,7 +59,10 @@ Route::group(['namespace' => 'Forum'], function() {
     Route::get('forum/{thread}/edit', ['as' => 'threads.edit', 'uses' => 'ThreadsController@edit']);
     Route::put('forum/{thread}', ['as' => 'threads.update', 'uses' => 'ThreadsController@update']);
     Route::get('forum/{thread}/delete', ['as' => 'threads.delete', 'uses' => 'ThreadsController@delete']);
+    Route::get('forum/{thread}/mark-solution/{reply}', ['as' => 'threads.solution.mark', 'uses' => 'ThreadsController@markSolution']);
+    Route::get('forum/{thread}/unmark-solution', ['as' => 'threads.solution.unmark', 'uses' => 'ThreadsController@unmarkSolution']);
 
+    // Topics
     Route::get('forum/topics/{topic}', ['as' => 'forum.topic', 'uses' => 'TopicController@show']);
 });
 

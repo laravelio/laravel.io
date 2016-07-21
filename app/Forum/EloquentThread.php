@@ -4,9 +4,12 @@ namespace Lio\Forum;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Lio\DateTime\HasTimestamps;
 use Lio\Forum\Topics\EloquentTopic;
 use Lio\Forum\Topics\Topic;
+use Lio\Replies\EloquentReply;
+use Lio\Replies\Reply;
 use Lio\Replies\UsesReplies;
 use Lio\Replies\ReplyAble;
 use Lio\Tags\UsesTags;
@@ -59,5 +62,27 @@ final class EloquentThread extends Model implements Thread, ReplyAble
     public function topicRelation(): BelongsTo
     {
         return $this->belongsTo(EloquentTopic::class, 'topic_id');
+    }
+
+    /**
+     * @return \Lio\Replies\Reply|null
+     */
+    public function solutionReply()
+    {
+        return $this->solutionReplyRelation;
+    }
+
+    public function solutionReplyRelation(): BelongsTo
+    {
+        return $this->belongsTo(EloquentReply::class, 'solution_reply_id');
+    }
+
+    public function isSolutionReply(Reply $reply): bool
+    {
+        if ($solution = $this->solutionReply()) {
+            return $solution->id() === $reply->id();
+        }
+
+        return false;
     }
 }

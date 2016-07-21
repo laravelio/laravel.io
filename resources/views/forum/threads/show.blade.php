@@ -33,6 +33,17 @@
                     <a href="{{ route('replies.delete', $thread->id()) }}">Delete</a>
                 </p>
             @endcan
+
+            @can('update', $thread)
+                @if ($thread->isSolutionReply($reply))
+                    <p>
+                        This is the solution.
+                        <a href="{{ route('threads.solution.unmark', $thread->slug()) }}">Unmark As Solution</a>
+                    </p>
+                @else
+                    <p><a href="{{ route('threads.solution.mark', [$thread->slug(), $reply->id()]) }}">Mark As Solution</a></p>
+                @endif
+            @endcan
         @endforeach
     @endif
 

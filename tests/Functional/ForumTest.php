@@ -8,6 +8,7 @@ use Lio\Forum\Topics\Topic;
 use Lio\Replies\Reply;
 use Lio\Tags\Tag;
 use Lio\Tests\TestCase;
+use Lio\Users\User;
 
 class ForumTest extends TestCase
 {
@@ -127,10 +128,7 @@ class ForumTest extends TestCase
     {
         $this->login();
 
-        $this->create(Thread::class, [
-            'subject' => 'The first thread',
-            'slug' => 'the-first-thread',
-        ]);
+        $this->create(Thread::class, ['subject' => 'The first thread', 'slug' => 'the-first-thread']);
 
         $this->visit('/forum/the-first-thread')
             ->type('The first reply', 'body')
@@ -177,6 +175,23 @@ class ForumTest extends TestCase
         $this->create(Reply::class, ['body' => 'The first reply']);
 
         $this->get('/replies/1/delete')
+            ->assertResponseStatus(403);
+    }
+
+    /** @test */
+    function we_cannot_mark_a_reply_as_the_solution_of_the_thread_if_we_do_not_own_the_thread()
+    {
+        $this->login();
+
+        $user = $this->create(User::class);
+        $thread = $this->create(Thread::class, [
+            'author_id' => $user->id(),
+            'subject' => 'The first thread',
+            'slug' => 'the-first-thread',
+        ]);
+        $reply = $this->create(Reply::class, ['body' => 'The first reply', 'replyable_id' => $thread->id()]);
+
+        $this->get('/forum/the-first-thread/mark-solution/'.$reply->id())
             ->assertResponseStatus(403);
     }
 }

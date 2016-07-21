@@ -3,8 +3,10 @@
 namespace Lio\Forum;
 
 use Illuminate\Support\Arr;
+use Lio\Forum\Exceptions\CouldNotMarkReplyAsSolution;
 use Lio\Forum\Topics\Topic;
 use Lio\Eloquent\GeneratesSlugs;
+use Lio\Replies\Reply;
 use Lio\Users\User;
 
 final class EloquentThreadRepository implements ThreadRepository
@@ -89,5 +91,27 @@ final class EloquentThreadRepository implements ThreadRepository
     public function delete(Thread $thread)
     {
         $thread->delete();
+    }
+
+    public function markSolution(Reply $reply): Thread
+    {
+        $thread = $reply->replyAble();
+
+        if (! $thread instanceof EloquentThread) {
+            throw CouldNotMarkReplyAsSolution::replyAbleIsNotAThread($reply);
+        }
+
+        $thread->solutionReplyRelation()->associate($reply);
+        $thread->save();
+
+        return $thread;
+    }
+
+    public function unmarkSolution(Thread $thread): Thread
+    {
+        $thread->solutionReplyRelation()->dissociate();
+        $thread->save();
+
+        return $thread;
     }
 }

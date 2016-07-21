@@ -7,6 +7,7 @@ use Lio\Forum\ThreadRequest;
 use Lio\Forum\Topics\TopicRepository;
 use Lio\Http\Controllers\Controller;
 use Lio\Forum\ThreadRepository;
+use Lio\Replies\Reply;
 use Lio\Tags\TagRepository;
 
 class ThreadsController extends Controller
@@ -81,5 +82,23 @@ class ThreadsController extends Controller
         $this->threads->delete($thread);
 
         return redirect()->route('forum');
+    }
+
+    public function markSolution(Thread $thread, Reply $reply)
+    {
+        $this->authorize('update', $thread);
+
+        $this->threads->markSolution($reply);
+
+        return redirect()->route('thread', $thread->slug());
+    }
+
+    public function unmarkSolution(Thread $thread)
+    {
+        $this->authorize('update', $thread);
+
+        $this->threads->unmarkSolution($thread);
+
+        return redirect()->route('thread', $thread->slug());
     }
 }
