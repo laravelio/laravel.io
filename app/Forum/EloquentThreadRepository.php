@@ -4,7 +4,7 @@ namespace Lio\Forum;
 
 use Illuminate\Support\Arr;
 use Lio\Forum\Topics\Topic;
-use Lio\Slugs\GeneratesSlugs;
+use Lio\Eloquent\GeneratesSlugs;
 use Lio\Users\User;
 
 final class EloquentThreadRepository implements ThreadRepository
@@ -60,6 +60,7 @@ final class EloquentThreadRepository implements ThreadRepository
     {
         $thread->update(Arr::only($attributes, ['subject', 'body']));
 
+        $thread->slug = $this->generateUniqueSlug($thread->subject(), $thread->id());
         $thread = $this->updateTopic($thread, $attributes);
         $thread = $this->updateTags($thread, $attributes);
         $thread->save();
