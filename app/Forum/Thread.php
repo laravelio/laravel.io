@@ -1,12 +1,12 @@
 <?php
 
-namespace Lio\Forum;
+namespace App\Forum;
 
-use Lio\DateTime\Timestamps;
-use Lio\Forum\Topics\Topic;
-use Lio\Replies\Reply;
-use Lio\Tags\Taggable;
-use Lio\Users\Authored;
+use App\DateTime\Timestamps;
+use App\Forum\Topics\Topic;
+use App\Replies\Reply;
+use App\Tags\Taggable;
+use App\Users\Authored;
 
 interface Thread extends Authored, Taggable, Timestamps
 {
@@ -19,13 +19,13 @@ interface Thread extends Authored, Taggable, Timestamps
     public function topic(): Topic;
 
     /**
-     * @return \Lio\Replies\Reply|null
+     * @return \App\Replies\Reply|null
      */
     public function solutionReply();
     public function isSolutionReply(Reply $reply): bool;
 
     /**
-     * @return \Lio\Replies\Reply[]
+     * @return \App\Replies\Reply[]
      */
     public function replies();
 }

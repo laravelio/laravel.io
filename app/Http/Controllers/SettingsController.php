@@ -1,11 +1,11 @@
 <?php
 
-namespace Lio\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Auth;
-use Lio\Users\ChangePasswordRequest;
-use Lio\Users\SaveSettingsRequest;
-use Lio\Users\UserRepository;
+use App\Users\ChangePasswordRequest;
+use App\Users\SaveSettingsRequest;
+use App\Users\UserRepository;
 
 class SettingsController extends Controller
 {

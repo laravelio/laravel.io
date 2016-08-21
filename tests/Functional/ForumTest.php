@@ -2,13 +2,13 @@
 
 namespace Tests\Functional;
 
+use App\Forum\Thread;
+use App\Forum\Topics\Topic;
+use App\Replies\Reply;
+use App\Tags\Tag;
+use App\Users\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Lio\Forum\Thread;
-use Lio\Forum\Topics\Topic;
-use Lio\Replies\Reply;
-use Lio\Tags\Tag;
 use Tests\TestCase;
-use Lio\Users\User;
 
 class ForumTest extends TestCase
 {

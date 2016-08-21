@@ -1,13 +1,13 @@
 <?php
 
-namespace Lio\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
-use Lio\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Lio\Users\User;
-use Lio\Users\UserRepository;
+use App\Users\User;
+use App\Users\UserRepository;
 use Validator;
 
 class AuthController extends Controller
@@ -40,7 +40,7 @@ class AuthController extends Controller
     protected $redirectTo = '/dashboard';
 
     /**
-     * @var \Lio\Users\UserRepository
+     * @var \App\Users\UserRepository
      */
     private $users;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Markdown;
+namespace App\Markdown;
 
 use League\CommonMark\CommonMarkConverter;
 

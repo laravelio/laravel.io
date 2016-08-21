@@ -1,12 +1,12 @@
 <?php
 
-namespace Lio\Forum\Topics;
+namespace App\Forum\Topics;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Lio\DateTime\HasTimestamps;
-use Lio\Forum\EloquentThread;
+use App\DateTime\HasTimestamps;
+use App\Forum\EloquentThread;
 
 final class EloquentTopic extends Model implements Topic
 {
@@ -40,7 +40,7 @@ final class EloquentTopic extends Model implements Topic
     }
 
     /**
-     * @return \Lio\Forum\Threads[]
+     * @return \App\Forum\Threads[]
      */
     public function threads()
     {

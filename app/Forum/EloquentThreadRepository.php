@@ -1,20 +1,20 @@
 <?php
 
-namespace Lio\Forum;
+namespace App\Forum;
 
 use Illuminate\Support\Arr;
-use Lio\Forum\Exceptions\CouldNotMarkReplyAsSolution;
-use Lio\Forum\Topics\Topic;
-use Lio\Eloquent\GeneratesSlugs;
-use Lio\Replies\Reply;
-use Lio\Users\User;
+use App\Forum\Exceptions\CouldNotMarkReplyAsSolution;
+use App\Forum\Topics\Topic;
+use App\Eloquent\GeneratesSlugs;
+use App\Replies\Reply;
+use App\Users\User;
 
 final class EloquentThreadRepository implements ThreadRepository
 {
     use GeneratesSlugs;
 
     /**
-     * @var \Lio\Forum\EloquentThread
+     * @var \App\Forum\EloquentThread
      */
     private $model;
 
@@ -24,7 +24,7 @@ final class EloquentThreadRepository implements ThreadRepository
     }
 
     /**
-     * @return \Lio\Forum\Thread[]|\Illuminate\Contracts\Pagination\Paginator
+     * @return \App\Forum\Thread[]|\Illuminate\Contracts\Pagination\Paginator
      */
     public function findAllPaginated()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Users;
+namespace App\Users;
 
 interface Authored
 {

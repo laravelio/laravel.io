@@ -1,9 +1,9 @@
 <?php
 
-namespace Lio\Http\Controllers;
+namespace App\Http\Controllers;
 
-use Lio\Tags\Tag;
-use Lio\Tags\TagRepository;
+use App\Tags\Tag;
+use App\Tags\TagRepository;
 
 class TagsController extends Controller
 {

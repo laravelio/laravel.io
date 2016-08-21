@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Views;
+namespace App\Views;
 
 use Blade;
 use Illuminate\Filesystem\Filesystem;

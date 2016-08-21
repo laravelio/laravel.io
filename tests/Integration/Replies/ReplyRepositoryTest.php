@@ -2,11 +2,11 @@
 
 namespace Tests\Integration\Replies;
 
+use App\Forum\Thread;
+use App\Replies\Reply;
+use App\Replies\ReplyRepository;
+use App\Testing\RepositoryTest;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Lio\Forum\Thread;
-use Lio\Replies\Reply;
-use Lio\Replies\ReplyRepository;
-use Lio\Testing\RepositoryTest;
 use Tests\TestCase;
 
 class ReplyRepositoryTest extends TestCase

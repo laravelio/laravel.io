@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Users\Exceptions;
+namespace App\Users\Exceptions;
 
 class CannotCreateUser extends \Exception
 {

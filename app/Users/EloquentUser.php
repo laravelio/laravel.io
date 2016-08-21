@@ -1,10 +1,10 @@
 <?php
 
-namespace Lio\Users;
+namespace App\Users;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Lio\DateTime\HasTimestamps;
-use Lio\Replies\HasManyReplies;
+use App\DateTime\HasTimestamps;
+use App\Replies\HasManyReplies;
 
 final class EloquentUser extends Authenticatable implements User
 {

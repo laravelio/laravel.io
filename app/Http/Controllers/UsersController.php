@@ -1,8 +1,8 @@
 <?php
 
-namespace Lio\Http\Controllers;
+namespace App\Http\Controllers;
 
-use Lio\Users\User;
+use App\Users\User;
 
 class UsersController extends Controller
 {

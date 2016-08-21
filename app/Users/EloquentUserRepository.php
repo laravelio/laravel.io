@@ -1,14 +1,14 @@
 <?php
 
-namespace Lio\Users;
+namespace App\Users;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Lio\Users\Exceptions\CannotCreateUser;
+use App\Users\Exceptions\CannotCreateUser;
 
 final class EloquentUserRepository implements UserRepository
 {
     /**
-     * @var \Lio\Users\EloquentUser
+     * @var \App\Users\EloquentUser
      */
     private $model;
 

@@ -2,9 +2,9 @@
 
 namespace Tests\Functional;
 
+use App\Testing\RequiresLogin;
 use Auth;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Lio\Testing\RequiresLogin;
 use Tests\TestCase;
 
 class SettingsTest extends TestCase

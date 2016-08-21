@@ -1,8 +1,8 @@
 <?php
 
-namespace Lio\Spam;
+namespace App\Spam;
 
-use Lio\Users\User;
+use App\Users\User;
 
 interface SpamDetector
 {

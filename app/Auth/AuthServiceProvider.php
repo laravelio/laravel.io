@@ -1,13 +1,13 @@
 <?php
 
-namespace Lio\Auth;
+namespace App\Auth;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Lio\Forum\EloquentThread;
-use Lio\Forum\ThreadPolicy;
-use Lio\Replies\EloquentReply;
-use Lio\Replies\ReplyPolicy;
+use App\Forum\EloquentThread;
+use App\Forum\ThreadPolicy;
+use App\Replies\EloquentReply;
+use App\Replies\ReplyPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {

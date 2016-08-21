@@ -1,10 +1,10 @@
 <?php
-namespace spec\Lio\Spam;
 
-use Lio\Spam\PhoneNumberSpamDetector;
-use Lio\Spam\SpamDetector;
+namespace spec\App\Spam;
+
+use App\Spam\PhoneNumberSpamDetector;
+use App\Spam\SpamDetector;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class PhoneNumberSpamDetectorSpec extends ObjectBehavior
 {

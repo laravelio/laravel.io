@@ -1,18 +1,18 @@
 <?php
 
-namespace Lio\ModelFactories;
+namespace App\ModelFactories;
 
 use Illuminate\Database\Eloquent\Factory;
-use Lio\Forum\EloquentThread;
-use Lio\Forum\Thread;
-use Lio\Forum\Topics\EloquentTopic;
-use Lio\Forum\Topics\Topic;
-use Lio\Replies\EloquentReply;
-use Lio\Replies\Reply;
-use Lio\Tags\EloquentTag;
-use Lio\Tags\Tag;
-use Lio\Users\EloquentUser;
-use Lio\Users\User;
+use App\Forum\EloquentThread;
+use App\Forum\Thread;
+use App\Forum\Topics\EloquentTopic;
+use App\Forum\Topics\Topic;
+use App\Replies\EloquentReply;
+use App\Replies\Reply;
+use App\Tags\EloquentTag;
+use App\Tags\Tag;
+use App\Users\EloquentUser;
+use App\Users\User;
 
 final class EloquentModelFactory implements ModelFactory
 {

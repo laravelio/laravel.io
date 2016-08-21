@@ -1,9 +1,9 @@
 <?php
 
-namespace Lio\Http\Controllers\Forum;
+namespace App\Http\Controllers\Forum;
 
-use Lio\Forum\Topics\Topic;
-use Lio\Http\Controllers\Controller;
+use App\Forum\Topics\Topic;
+use App\Http\Controllers\Controller;
 
 class TopicController extends Controller
 {

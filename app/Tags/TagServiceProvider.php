@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Tags;
+namespace App\Tags;
 
 use Illuminate\Support\ServiceProvider;
 

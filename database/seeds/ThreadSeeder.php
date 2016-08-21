@@ -1,8 +1,8 @@
 <?php
 
+use App\Forum\Thread;
+use App\ModelFactories\BuildsModels;
 use Illuminate\Database\Seeder;
-use Lio\Forum\Thread;
-use Lio\ModelFactories\BuildsModels;
 
 class ThreadSeeder extends Seeder
 {

@@ -1,19 +1,19 @@
 <?php
 
-namespace Lio\Http\Controllers\Forum;
+namespace App\Http\Controllers\Forum;
 
-use Lio\Forum\Thread;
-use Lio\Forum\ThreadRequest;
-use Lio\Forum\Topics\TopicRepository;
-use Lio\Http\Controllers\Controller;
-use Lio\Forum\ThreadRepository;
-use Lio\Replies\Reply;
-use Lio\Tags\TagRepository;
+use App\Forum\Thread;
+use App\Forum\ThreadRequest;
+use App\Forum\Topics\TopicRepository;
+use App\Http\Controllers\Controller;
+use App\Forum\ThreadRepository;
+use App\Replies\Reply;
+use App\Tags\TagRepository;
 
 class ThreadsController extends Controller
 {
     /**
-     * @var \Lio\Forum\ThreadRepository
+     * @var \App\Forum\ThreadRepository
      */
     private $threads;
 

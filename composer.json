@@ -25,7 +25,7 @@
             "database"
         ],
         "psr-4": {
-            "Lio\\": "app/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {

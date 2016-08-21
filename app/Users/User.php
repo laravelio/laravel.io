@@ -1,8 +1,8 @@
 <?php
 
-namespace Lio\Users;
+namespace App\Users;
 
-use Lio\DateTime\Timestamps;
+use App\DateTime\Timestamps;
 
 interface User extends Timestamps
 {
@@ -14,7 +14,7 @@ interface User extends Timestamps
     public function gratavarUrl($size = 100): string;
 
     /**
-     * @return \Lio\Replies\Reply[]
+     * @return \App\Replies\Reply[]
      */
     public function replies();
 }

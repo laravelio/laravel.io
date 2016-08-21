@@ -1,8 +1,8 @@
 <?php
 
+use App\ModelFactories\BuildsModels;
+use App\Tags\Tag;
 use Illuminate\Database\Seeder;
-use Lio\ModelFactories\BuildsModels;
-use Lio\Tags\Tag;
 
 class TagSeeder extends Seeder
 {

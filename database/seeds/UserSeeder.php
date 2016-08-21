@@ -1,8 +1,8 @@
 <?php
 
+use App\ModelFactories\BuildsModels;
+use App\Users\User;
 use Illuminate\Database\Seeder;
-use Lio\ModelFactories\BuildsModels;
-use Lio\Users\User;
 
 class UserSeeder extends Seeder
 {

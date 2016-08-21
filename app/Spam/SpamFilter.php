@@ -1,18 +1,18 @@
 <?php
 
-namespace Lio\Spam;
+namespace App\Spam;
 
-use Lio\Users\User;
+use App\Users\User;
 
 class SpamFilter implements SpamDetector
 {
     /**
-     * @var \Lio\Spam\SpamDetector[]
+     * @var \App\Spam\SpamDetector[]
      */
     private $detectors;
 
     /**
-     * @param \Lio\Spam\SpamDetector[] $detectors
+     * @param \App\Spam\SpamDetector[] $detectors
      */
     public function __construct(array $detectors)
     {

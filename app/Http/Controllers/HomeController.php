@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Http\Controllers;
+namespace App\Http\Controllers;
 
 class HomeController extends Controller
 {

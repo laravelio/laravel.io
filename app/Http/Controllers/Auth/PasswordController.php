@@ -1,9 +1,9 @@
 <?php
 
-namespace Lio\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use Lio\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 
 class PasswordController extends Controller
 {

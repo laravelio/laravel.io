@@ -1,10 +1,10 @@
 <?php
 
-namespace Lio\Forum;
+namespace App\Forum;
 
 use Illuminate\Support\ServiceProvider;
-use Lio\Forum\Topics\EloquentTopicRepository;
-use Lio\Forum\Topics\TopicRepository;
+use App\Forum\Topics\EloquentTopicRepository;
+use App\Forum\Topics\TopicRepository;
 
 class ForumServiceProvider extends ServiceProvider
 {

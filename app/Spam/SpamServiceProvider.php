@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Spam;
+namespace App\Spam;
 
 use Illuminate\Support\ServiceProvider;
 use TijsVerkoyen\Akismet\Akismet;

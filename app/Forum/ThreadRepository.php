@@ -1,15 +1,15 @@
 <?php
 
-namespace Lio\Forum;
+namespace App\Forum;
 
-use Lio\Forum\Topics\Topic;
-use Lio\Replies\Reply;
-use Lio\Users\User;
+use App\Forum\Topics\Topic;
+use App\Replies\Reply;
+use App\Users\User;
 
 interface ThreadRepository
 {
     /**
-     * @return \Lio\Forum\Thread[]|\Illuminate\Contracts\Pagination\Paginator
+     * @return \App\Forum\Thread[]|\Illuminate\Contracts\Pagination\Paginator
      */
     public function findAllPaginated();
 

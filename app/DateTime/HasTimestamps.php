@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\DateTime;
+namespace App\DateTime;
 
 use Carbon\Carbon;
 

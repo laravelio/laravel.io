@@ -1,10 +1,10 @@
 <?php
-namespace spec\Lio\Spam;
 
-use Lio\Spam\ForeignLanguageSpamDetector;
-use Lio\Spam\SpamDetector;
+namespace spec\App\Spam;
+
+use App\Spam\ForeignLanguageSpamDetector;
+use App\Spam\SpamDetector;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class ForeignLanguageSpamDetectorSpec extends ObjectBehavior
 {
@@ -15,7 +15,7 @@ TEXT;
     private $validText = 'This piece of text should pass.
 
 <?php
-namespace Lio\\Http\\Requests;
+namespace App\\Http\\Requests;
 
 class ModifyContinentRequest extends Request {
 

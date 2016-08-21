@@ -11,11 +11,11 @@
 |
 */
 
-use Lio\Forum\EloquentThread;
-use Lio\Forum\Topics\EloquentTopic;
-use Lio\Replies\EloquentReply;
-use Lio\Tags\EloquentTag;
-use Lio\Users\EloquentUser;
+use App\Forum\EloquentThread;
+use App\Forum\Topics\EloquentTopic;
+use App\Replies\EloquentReply;
+use App\Tags\EloquentTag;
+use App\Users\EloquentUser;
 
 $factory->define(EloquentUser::class, function (Faker\Generator $faker) {
     return [

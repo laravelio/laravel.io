@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Replies;
+namespace App\Replies;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 

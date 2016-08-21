@@ -1,6 +1,6 @@
 <?php
 
-use Lio\Replies\ReplyAble;
+use App\Replies\ReplyAble;
 
 if (! function_exists('active')) {
     /**
@@ -18,7 +18,7 @@ if (! function_exists('md_to_html')) {
      */
     function md_to_html(string $markdown): string
     {
-        return app(\Lio\Markdown\Converter::class)->toHtml($markdown);
+        return app(\App\Markdown\Converter::class)->toHtml($markdown);
     }
 }
 
@@ -28,7 +28,7 @@ if (! function_exists('route_to_reply_able')) {
      */
     function route_to_reply_able(ReplyAble $replyAble): string
     {
-        if ($replyAble instanceof \Lio\Forum\Thread) {
+        if ($replyAble instanceof \App\Forum\Thread) {
             return route('thread', $replyAble->slug());
         }
     }

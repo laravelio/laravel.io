@@ -1,10 +1,10 @@
 <?php
 
-namespace Lio\Tags;
+namespace App\Tags;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Lio\Forum\EloquentThread;
+use App\Forum\EloquentThread;
 
 final class EloquentTag extends Model implements Tag
 {
@@ -41,7 +41,7 @@ final class EloquentTag extends Model implements Tag
     }
 
     /**
-     * @return \Lio\Forum\Thread[]
+     * @return \App\Forum\Thread[]
      */
     public function threads()
     {

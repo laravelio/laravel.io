@@ -1,18 +1,18 @@
 <?php
 
-namespace Lio\Forum;
+namespace App\Forum;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Lio\DateTime\HasTimestamps;
-use Lio\Forum\Topics\EloquentTopic;
-use Lio\Forum\Topics\Topic;
-use Lio\Replies\EloquentReply;
-use Lio\Replies\Reply;
-use Lio\Replies\UsesReplies;
-use Lio\Replies\ReplyAble;
-use Lio\Tags\UsesTags;
-use Lio\Users\HasAuthor;
+use App\DateTime\HasTimestamps;
+use App\Forum\Topics\EloquentTopic;
+use App\Forum\Topics\Topic;
+use App\Replies\EloquentReply;
+use App\Replies\Reply;
+use App\Replies\UsesReplies;
+use App\Replies\ReplyAble;
+use App\Tags\UsesTags;
+use App\Users\HasAuthor;
 
 final class EloquentThread extends Model implements Thread, ReplyAble
 {
@@ -64,7 +64,7 @@ final class EloquentThread extends Model implements Thread, ReplyAble
     }
 
     /**
-     * @return \Lio\Replies\Reply|null
+     * @return \App\Replies\Reply|null
      */
     public function solutionReply()
     {

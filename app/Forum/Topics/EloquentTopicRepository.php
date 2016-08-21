@@ -1,11 +1,11 @@
 <?php
 
-namespace Lio\Forum\Topics;
+namespace App\Forum\Topics;
 
 final class EloquentTopicRepository implements TopicRepository
 {
     /**
-     * @var \Lio\Forum\Topics\EloquentTopic
+     * @var \App\Forum\Topics\EloquentTopic
      */
     private $model;
 
@@ -15,7 +15,7 @@ final class EloquentTopicRepository implements TopicRepository
     }
 
     /**
-     * @return \Lio\Forum\Topics\Topic[]
+     * @return \App\Forum\Topics\Topic[]
      */
     public function findAll()
     {

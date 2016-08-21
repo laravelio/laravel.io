@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Testing;
+namespace App\Testing;
 
 trait RepositoryTest
 {

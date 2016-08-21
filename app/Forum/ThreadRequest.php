@@ -1,10 +1,10 @@
 <?php
 
-namespace Lio\Forum;
+namespace App\Forum;
 
-use Lio\Forum\Topics\Topic;
-use Lio\Forum\Topics\TopicRepository;
-use Lio\Http\Requests\Request;
+use App\Forum\Topics\Topic;
+use App\Forum\Topics\TopicRepository;
+use App\Http\Requests\Request;
 
 class ThreadRequest extends Request
 {

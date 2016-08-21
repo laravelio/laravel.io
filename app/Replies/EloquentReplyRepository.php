@@ -1,14 +1,14 @@
 <?php
 
-namespace Lio\Replies;
+namespace App\Replies;
 
 use Illuminate\Support\Arr;
-use Lio\Users\User;
+use App\Users\User;
 
 final class EloquentReplyRepository implements ReplyRepository
 {
     /**
-     * @var \Lio\Replies\EloquentReply
+     * @var \App\Replies\EloquentReply
      */
     private $model;
 

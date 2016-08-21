@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Exceptions;
+namespace App\Exceptions;
 
 use Auth;
 use Bugsnag;

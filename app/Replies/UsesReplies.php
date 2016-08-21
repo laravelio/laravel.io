@@ -1,13 +1,13 @@
 <?php
 
-namespace Lio\Replies;
+namespace App\Replies;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait UsesReplies
 {
     /**
-     * @return \Lio\Replies\Reply[]
+     * @return \App\Replies\Reply[]
      */
     public function replies()
     {

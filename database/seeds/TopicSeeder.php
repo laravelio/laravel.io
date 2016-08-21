@@ -1,8 +1,8 @@
 <?php
 
+use App\Forum\Topics\Topic;
+use App\ModelFactories\BuildsModels;
 use Illuminate\Database\Seeder;
-use Lio\Forum\Topics\Topic;
-use Lio\ModelFactories\BuildsModels;
 
 class TopicSeeder extends Seeder
 {

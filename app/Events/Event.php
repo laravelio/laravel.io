@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Events;
+namespace App\Events;
 
 abstract class Event
 {

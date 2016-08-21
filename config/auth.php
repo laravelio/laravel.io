@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Lio\Users\EloquentUser::class,
+            'model' => App\Users\EloquentUser::class,
         ],
 
         // 'users' => [

@@ -1,11 +1,11 @@
 <?php
 
-namespace Lio\Tags;
+namespace App\Tags;
 
 interface TagRepository
 {
     /**
-     * @return \Lio\Tags\Tag[]
+     * @return \App\Tags\Tag[]
      */
     public function findAll();
     public function findBySlug(string $slug): Tag;

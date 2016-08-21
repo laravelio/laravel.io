@@ -1,8 +1,8 @@
 <?php
 
-namespace Lio\Replies;
+namespace App\Replies;
 
-use Lio\Http\Requests\Request;
+use App\Http\Requests\Request;
 
 class ReplyRequest extends Request
 {

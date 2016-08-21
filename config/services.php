@@ -34,7 +34,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => Lio\Users\EloquentUser::class,
+        'model' => App\Users\EloquentUser::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

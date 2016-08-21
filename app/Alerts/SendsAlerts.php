@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Alerts;
+namespace App\Alerts;
 
 trait SendsAlerts
 {

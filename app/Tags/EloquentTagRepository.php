@@ -1,11 +1,11 @@
 <?php
 
-namespace Lio\Tags;
+namespace App\Tags;
 
 final class EloquentTagRepository implements TagRepository
 {
     /**
-     * @var \Lio\Tags\EloquentTag
+     * @var \App\Tags\EloquentTag
      */
     private $model;
 
@@ -15,7 +15,7 @@ final class EloquentTagRepository implements TagRepository
     }
 
     /**
-     * @return \Lio\Tags\Tag[]
+     * @return \App\Tags\Tag[]
      */
     public function findAll()
     {

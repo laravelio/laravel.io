@@ -2,12 +2,12 @@
 
 namespace Tests\Functional;
 
+use App\Forum\ThreadRepository;
+use App\Forum\Topics\Topic;
+use App\Tags\Tag;
+use App\Users\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Lio\Forum\ThreadRepository;
-use Lio\Forum\Topics\Topic;
-use Lio\Tags\Tag;
 use Tests\TestCase;
-use Lio\Users\User;
 
 class TagsTest extends TestCase
 {

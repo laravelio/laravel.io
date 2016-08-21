@@ -1,8 +1,8 @@
 <?php
 
-namespace Lio\Forum\Exceptions;
+namespace App\Forum\Exceptions;
 
-use Lio\Replies\Reply;
+use App\Replies\Reply;
 
 class CouldNotMarkReplyAsSolution extends \Exception
 {

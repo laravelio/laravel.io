@@ -1,10 +1,10 @@
 <?php
 
-use Lio\Forum\ThreadRepository;
-use Lio\Forum\Topics\TopicRepository;
-use Lio\Replies\ReplyRepository;
-use Lio\Tags\TagRepository;
-use Lio\Users\UserRepository;
+use App\Forum\ThreadRepository;
+use App\Forum\Topics\TopicRepository;
+use App\Replies\ReplyRepository;
+use App\Tags\TagRepository;
+use App\Users\UserRepository;
 
 Route::bind('reply', function($id) {
     return app(ReplyRepository::class)->find($id);

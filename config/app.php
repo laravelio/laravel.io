@@ -157,18 +157,18 @@ return [
         /*
          * Application Service Providers...
          */
-        Lio\AppServiceProvider::class,
-        Lio\Auth\AuthServiceProvider::class,
-        Lio\Events\EventServiceProvider::class,
-        Lio\Forum\ForumServiceProvider::class,
-        Lio\Http\RouteServiceProvider::class,
-        Lio\Markdown\MarkdownServiceProvider::class,
-        Lio\ModelFactories\ModelFactoryServiceProvider::class,
-        Lio\Replies\ReplyServiceProvider::class,
-        Lio\Spam\SpamServiceProvider::class,
-        Lio\Tags\TagServiceProvider::class,
-        Lio\Users\UserServiceProvider::class,
-        Lio\Views\ViewServiceProvider::class,
+        App\AppServiceProvider::class,
+        App\Auth\AuthServiceProvider::class,
+        App\Events\EventServiceProvider::class,
+        App\Forum\ForumServiceProvider::class,
+        App\Http\RouteServiceProvider::class,
+        App\Markdown\MarkdownServiceProvider::class,
+        App\ModelFactories\ModelFactoryServiceProvider::class,
+        App\Replies\ReplyServiceProvider::class,
+        App\Spam\SpamServiceProvider::class,
+        App\Tags\TagServiceProvider::class,
+        App\Users\UserServiceProvider::class,
+        App\Views\ViewServiceProvider::class,
 
     ],
 
@@ -225,8 +225,7 @@ return [
         /*
          * Eloquent Aliases...
          */
-
-        \Lio\Forum\Thread::TYPE => \Lio\Forum\EloquentThread::class,
+        App\Forum\Thread::TYPE => App\Forum\EloquentThread::class,
 
     ],
 

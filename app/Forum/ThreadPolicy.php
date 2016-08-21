@@ -1,9 +1,9 @@
 <?php
 
-namespace Lio\Forum;
+namespace App\Forum;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Lio\Users\User;
+use App\Users\User;
 
 class ThreadPolicy
 {

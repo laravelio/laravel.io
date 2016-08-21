@@ -2,13 +2,13 @@
 
 namespace Tests\Integration\Forum;
 
+use App\Forum\Thread;
+use App\Forum\ThreadRepository;
+use App\Forum\Topics\Topic;
+use App\Replies\Reply;
+use App\Testing\RepositoryTest;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Lio\Forum\Thread;
-use Lio\Forum\ThreadRepository;
-use Lio\Forum\Topics\Topic;
-use Lio\Replies\Reply;
-use Lio\Testing\RepositoryTest;
 use Tests\TestCase;
 
 class ThreadRepositoryTest extends TestCase

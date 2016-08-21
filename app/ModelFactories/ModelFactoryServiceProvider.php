@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\ModelFactories;
+namespace App\ModelFactories;
 
 use Illuminate\Support\ServiceProvider;
 

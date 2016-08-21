@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Eloquent;
+namespace App\Eloquent;
 
 use Illuminate\Support\Str;
 

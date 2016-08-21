@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Tags;
+namespace App\Tags;
 
 interface Tag
 {
@@ -10,7 +10,7 @@ interface Tag
     public function description(): string;
 
     /**
-     * @return \Lio\Forum\Thread[]
+     * @return \App\Forum\Thread[]
      */
     public function threads();
 }

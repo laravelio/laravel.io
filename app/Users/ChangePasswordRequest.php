@@ -1,9 +1,9 @@
 <?php
 
-namespace Lio\Users;
+namespace App\Users;
 
 use Auth;
-use Lio\Http\Requests\Request;
+use App\Http\Requests\Request;
 
 class ChangePasswordRequest extends Request
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Lio\Tags;
+namespace App\Tags;
 
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait UsesTags
 {
     /**
-     * @return \Lio\Tags\Tag[]
+     * @return \App\Tags\Tag[]
      */
     public function tags()
     {

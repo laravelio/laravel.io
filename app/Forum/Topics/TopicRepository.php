@@ -1,11 +1,11 @@
 <?php
 
-namespace Lio\Forum\Topics;
+namespace App\Forum\Topics;
 
 interface TopicRepository
 {
     /**
-     * @return \Lio\Forum\Topics\Topic[]
+     * @return \App\Forum\Topics\Topic[]
      */
     public function findAll();
 

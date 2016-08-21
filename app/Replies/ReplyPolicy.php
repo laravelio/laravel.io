@@ -1,9 +1,9 @@
 <?php
 
-namespace Lio\Replies;
+namespace App\Replies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Lio\Users\User;
+use App\Users\User;
 
 class ReplyPolicy
 {

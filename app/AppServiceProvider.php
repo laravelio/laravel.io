@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio;
+namespace App;
 
 use Auth;
 use Illuminate\Support\ServiceProvider;

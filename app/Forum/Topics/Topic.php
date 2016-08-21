@@ -1,9 +1,9 @@
 <?php
 
-namespace Lio\Forum\Topics;
+namespace App\Forum\Topics;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Lio\DateTime\Timestamps;
+use App\DateTime\Timestamps;
 
 interface Topic extends Timestamps
 {
@@ -12,7 +12,7 @@ interface Topic extends Timestamps
     public function slug(): string;
 
     /**
-     * @return \Lio\Forum\Threads[]
+     * @return \App\Forum\Threads[]
      */
     public function threads();
     public function paginatedThreads(int $perPage = 10): LengthAwarePaginator;

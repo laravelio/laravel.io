@@ -1,24 +1,24 @@
 <?php
 
-namespace Lio\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
-use Lio\Forum\Thread;
-use Lio\Forum\ThreadRepository;
-use Lio\Replies\ReplyRequest;
-use Lio\Replies\Reply;
-use Lio\Replies\ReplyAble;
-use Lio\Replies\ReplyRepository;
+use App\Forum\Thread;
+use App\Forum\ThreadRepository;
+use App\Replies\ReplyRequest;
+use App\Replies\Reply;
+use App\Replies\ReplyAble;
+use App\Replies\ReplyRepository;
 
 class ReplyController extends Controller
 {
     /**
-     * @var \Lio\Replies\ReplyRepository
+     * @var \App\Replies\ReplyRepository
      */
     private $replies;
 
     /**
-     * @var \Lio\Forum\ThreadRepository
+     * @var \App\Forum\ThreadRepository
      */
     private $threads;
 

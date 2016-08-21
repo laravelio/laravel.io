@@ -1,9 +1,9 @@
 <?php
 
-namespace Lio\Replies;
+namespace App\Replies;
 
-use Lio\DateTime\Timestamps;
-use Lio\Users\Authored;
+use App\DateTime\Timestamps;
+use App\Users\Authored;
 
 interface Reply extends Authored, Timestamps
 {

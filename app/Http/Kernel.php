@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Http;
+namespace App\Http;
 
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -10,10 +10,10 @@ use Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Lio\Http\Middleware\Authenticate;
-use Lio\Http\Middleware\EncryptCookies;
-use Lio\Http\Middleware\RedirectIfAuthenticated;
-use Lio\Http\Middleware\VerifyCsrfToken;
+use App\Http\Middleware\Authenticate;
+use App\Http\Middleware\EncryptCookies;
+use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Middleware\VerifyCsrfToken;
 
 class Kernel extends HttpKernel
 {

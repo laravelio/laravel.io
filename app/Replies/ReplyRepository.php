@@ -1,8 +1,8 @@
 <?php
 
-namespace Lio\Replies;
+namespace App\Replies;
 
-use Lio\Users\User;
+use App\Users\User;
 
 interface ReplyRepository
 {

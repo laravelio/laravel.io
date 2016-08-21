@@ -1,13 +1,13 @@
 <?php
 
-namespace Lio\Replies;
+namespace App\Replies;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait HasManyReplies
 {
     /**
-     * @return \Lio\Replies\Reply[]
+     * @return \App\Replies\Reply[]
      */
     public function replies()
     {
