@@ -63,7 +63,8 @@ class ForumTest extends TestCase
             ])
             ->seePageIs('/forum/how-to-work-with-eloquent')
             ->see('Eloquent')
-            ->see('Test Tag');
+            ->see('Test Tag')
+            ->see('Thread successfully created!');
     }
 
     /** @test */
@@ -90,7 +91,8 @@ class ForumTest extends TestCase
             ->seePageIs('/forum/how-to-work-with-eloquent')
             ->see('How to work with Eloquent?')
             ->see('Spark')
-            ->see('Test Tag');
+            ->see('Test Tag')
+            ->see('Thread successfully updated!');
     }
 
     /** @test */
@@ -134,7 +136,8 @@ class ForumTest extends TestCase
             ->type('The first reply', 'body')
             ->press('Reply')
             ->see('The first thread')
-            ->see('The first reply');
+            ->see('The first reply')
+            ->see('Reply successfully added!');
     }
 
     /** @test */
@@ -153,7 +156,8 @@ class ForumTest extends TestCase
             ->type('The edited reply', 'body')
             ->press('Update')
             ->seePageIs('/forum/the-first-thread')
-            ->see('The edited reply');
+            ->see('The edited reply')
+            ->see('Reply successfully updated!');
     }
 
     /** @test */

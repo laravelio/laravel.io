@@ -19,6 +19,8 @@
                 </div>
             </div>
             <div class="col-md-9">
+                @include('layouts._alerts')
+
                 @yield('content')
             </div>
         </div>

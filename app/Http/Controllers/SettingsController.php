@@ -23,6 +23,8 @@ class SettingsController extends Controller
     {
         $users->update(Auth::user(), $request->only('name', 'email', 'username'));
 
+        $this->success('settings.updated');
+
         return redirect()->route('settings.profile');
     }
 
@@ -34,6 +36,8 @@ class SettingsController extends Controller
     public function updatePassword(ChangePasswordRequest $request, UserRepository $users)
     {
         $users->update(Auth::user(), $request->dataForUpdate());
+
+        $this->success('settings.password.updated');
 
         return redirect()->route('settings.password');
     }

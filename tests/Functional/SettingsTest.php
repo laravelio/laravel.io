@@ -29,7 +29,8 @@ class SettingsTest extends TestCase
             ])
             ->seePageIs('/settings')
             ->see('Freek Murze')
-            ->see('freekmurze');
+            ->see('freekmurze')
+            ->see('Settings successfully saved!');
     }
 
     /** @test */
@@ -46,6 +47,7 @@ class SettingsTest extends TestCase
                 'username' => 'freekmurze',
             ])
             ->seePageIs('/settings')
+            ->see('Something went wrong. Please review the fields below.')
             ->see('The email has already been taken.')
             ->see('The username has already been taken.');
     }
@@ -61,7 +63,8 @@ class SettingsTest extends TestCase
                 'password' => 'newpassword',
                 'password_confirmation' => 'newpassword',
             ])
-            ->seePageIs('/settings/password');
+            ->seePageIs('/settings/password')
+            ->see('Password successfully changed!');
 
         $this->assertPasswordWasHashedAndSaved();
     }

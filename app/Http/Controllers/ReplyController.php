@@ -36,6 +36,8 @@ class ReplyController extends Controller
 
         $this->replies->create($replyAble, auth()->user(), $request->get('body'), ['ip' => $request->ip()]);
 
+        $this->success('replies.created');
+
         return $this->redirectToReplyAble($replyAble);
     }
 
@@ -52,6 +54,8 @@ class ReplyController extends Controller
 
         $this->replies->update($reply, $request->only('body'));
 
+        $this->success('replies.updated');
+
         return $this->redirectToReplyAble($reply->replyAble());
     }
 
@@ -60,6 +64,8 @@ class ReplyController extends Controller
         $this->authorize('delete', $reply);
 
         $this->replies->delete($reply);
+
+        $this->success('replies.deleted');
 
         return $this->redirectToReplyAble($reply->replyAble());
     }

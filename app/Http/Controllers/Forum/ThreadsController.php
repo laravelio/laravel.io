@@ -52,6 +52,8 @@ class ThreadsController extends Controller
             $request->dataForStore()
         );
 
+        $this->success('forum.threads.created');
+
         return redirect()->route('thread', $thread->slug());
     }
 
@@ -72,6 +74,8 @@ class ThreadsController extends Controller
 
         $this->threads->update($thread, $request->dataForUpdate());
 
+        $this->success('forum.threads.updated');
+
         return redirect()->route('thread', $thread->slug());
     }
 
@@ -80,6 +84,8 @@ class ThreadsController extends Controller
         $this->authorize('delete', $thread);
 
         $this->threads->delete($thread);
+
+        $this->success('forum.threads.deleted');
 
         return redirect()->route('forum');
     }
