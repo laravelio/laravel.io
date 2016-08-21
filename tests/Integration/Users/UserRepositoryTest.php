@@ -1,10 +1,10 @@
 <?php
 
-namespace Lio\Tests\Integration\Users;
+namespace Tests\Integration\Users;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Lio\Testing\RepositoryTest;
-use Lio\Tests\TestCase;
+use Tests\TestCase;
 use Lio\Users\Exceptions\CannotCreateUser;
 use Lio\Users\User;
 use Lio\Users\UserRepository;

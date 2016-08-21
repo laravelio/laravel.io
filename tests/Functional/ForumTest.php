@@ -1,13 +1,13 @@
 <?php
 
-namespace Lio\Tests\Functional;
+namespace Tests\Functional;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Lio\Forum\Thread;
 use Lio\Forum\Topics\Topic;
 use Lio\Replies\Reply;
 use Lio\Tags\Tag;
-use Lio\Tests\TestCase;
+use Tests\TestCase;
 use Lio\Users\User;
 
 class ForumTest extends TestCase

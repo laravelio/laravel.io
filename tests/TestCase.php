@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Tests;
+namespace Tests;
 
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;

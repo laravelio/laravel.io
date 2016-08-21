@@ -1,9 +1,9 @@
 <?php
 
-namespace Lio\Tests\Functional;
+namespace Tests\Functional;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Lio\Tests\TestCase;
+use Tests\TestCase;
 
 class HomeTest extends TestCase
 {

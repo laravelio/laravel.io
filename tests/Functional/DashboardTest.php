@@ -1,10 +1,10 @@
 <?php
 
-namespace Lio\Tests\Functional;
+namespace Tests\Functional;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Lio\Testing\RequiresLogin;
-use Lio\Tests\TestCase;
+use Tests\TestCase;
 
 class DashboardTest extends TestCase
 {

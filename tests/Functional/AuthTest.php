@@ -1,11 +1,11 @@
 <?php
 
-namespace Lio\Tests\Functional;
+namespace Tests\Functional;
 
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Lio\Tests\TestCase;
+use Tests\TestCase;
 
 class AuthTest extends TestCase
 {

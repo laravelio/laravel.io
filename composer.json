@@ -30,7 +30,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Lio\\Tests\\": "tests/"
+            "Tests\\": "tests/"
         }
     },
     "scripts": {

@@ -1,13 +1,13 @@
 <?php
 
-namespace Lio\Tests\Integration\Replies;
+namespace Tests\Integration\Replies;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Lio\Forum\Thread;
 use Lio\Replies\Reply;
 use Lio\Replies\ReplyRepository;
 use Lio\Testing\RepositoryTest;
-use Lio\Tests\TestCase;
+use Tests\TestCase;
 
 class ReplyRepositoryTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Lio\Tests\Integration\Forum;
+namespace Tests\Integration\Forum;
 
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -9,7 +9,7 @@ use Lio\Forum\ThreadRepository;
 use Lio\Forum\Topics\Topic;
 use Lio\Replies\Reply;
 use Lio\Testing\RepositoryTest;
-use Lio\Tests\TestCase;
+use Tests\TestCase;
 
 class ThreadRepositoryTest extends TestCase
 {
