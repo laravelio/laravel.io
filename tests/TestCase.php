@@ -7,6 +7,7 @@ use App\Users\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Testing\TestCase as IlluminateTestCase;
+use Hash;
 
 abstract class TestCase extends IlluminateTestCase
 {
@@ -24,6 +25,9 @@ abstract class TestCase extends IlluminateTestCase
         $app = require __DIR__.'/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
+
+        // Thanks for the tip Jeff!
+        Hash::setRounds(5);
 
         return $app;
     }
