@@ -16,6 +16,6 @@ class HomeController extends Controller
 
     public function redirectToMainWebsite()
     {
-        return redirect('http://laravel.io/');
+        return redirect('http://laravel.io/', 301);
     }
 }

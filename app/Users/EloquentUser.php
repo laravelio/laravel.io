@@ -2,13 +2,14 @@
 
 namespace App\Users;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\DateTime\HasTimestamps;
 use App\Replies\HasManyReplies;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 final class EloquentUser extends Authenticatable implements User
 {
-    use HasManyReplies, HasTimestamps;
+    use HasManyReplies, HasTimestamps, Notifiable;
 
     /**
      * The database table used by the model.

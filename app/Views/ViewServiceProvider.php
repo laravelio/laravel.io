@@ -10,9 +10,9 @@ class ViewServiceProvider extends ServiceProvider
 {
     public function boot(Filesystem $filesystem)
     {
-        collect($filesystem->files(resource_path('macros')))->each(function ($path) {
+        foreach ($filesystem->files(resource_path('macros')) as $path) {
             require $path;
-        });
+        }
     }
 
     public function register()

@@ -12,15 +12,15 @@ class AuthTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    function users_can_signup()
+    function users_can_register()
     {
-        $this->visit('/signup')
+        $this->visit('/register')
             ->type('John Doe', 'name')
             ->type('john.doe@example.com', 'email')
             ->type('johndoe', 'username')
             ->type('password', 'password')
             ->type('password', 'password_confirmation')
-            ->press('Signup')
+            ->press('Register')
             ->seePageIs('/dashboard')
             ->see('Welcome John Doe!');
 
@@ -28,11 +28,11 @@ class AuthTest extends TestCase
     }
 
     /** @test */
-    function signup_fails_when_a_required_field_is_not_filled_in()
+    function registration_fails_when_a_required_field_is_not_filled_in()
     {
-        $this->visit('/signup')
-            ->press('Signup')
-            ->seePageIs('/signup')
+        $this->visit('/register')
+            ->press('Register')
+            ->seePageIs('/register')
             ->see('The name field is required.')
             ->see('The email field is required.')
             ->see('The username field is required.')
@@ -95,7 +95,7 @@ class AuthTest extends TestCase
     {
         $this->createUser();
 
-        $this->visit('/forgot-password')
+        $this->visit('/password/reset')
             ->type('john@example.com', 'email')
             ->press('Send Password Reset Link')
             ->see('We have e-mailed your password reset link!');
@@ -113,7 +113,7 @@ class AuthTest extends TestCase
             'created_at' => new Carbon(),
         ]);
 
-        $this->visit('/reset-password/foo-token')
+        $this->visit('/password/reset/foo-token')
             ->type('john@example.com', 'email')
             ->type('foopassword', 'password')
             ->type('foopassword', 'password_confirmation')

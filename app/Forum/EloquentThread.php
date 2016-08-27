@@ -24,11 +24,6 @@ final class EloquentThread extends Model implements Thread, ReplyAble
     protected $table = self::TYPE;
 
     /**
-     * @var string
-     */
-    protected $morphClass = self::TYPE;
-
-    /**
      * @var array
      */
     protected $fillable = ['subject', 'body'];

@@ -18,11 +18,11 @@ class HomeTest extends TestCase
     }
 
     /** @test */
-    function users_can_see_a_login_and_signup_link_when_logged_out()
+    function users_can_see_a_login_and_registration_link_when_logged_out()
     {
         $this->visit('/')
             ->seeLink('Login')
-            ->seeLink('Signup')
+            ->seeLink('Register')
             ->dontSeeLink('Logout');
     }
 
@@ -34,7 +34,7 @@ class HomeTest extends TestCase
         $this->visit('/')
             ->seeLink('Logout')
             ->dontSeeLink('Login')
-            ->dontSeeLink('Signup')
+            ->dontSeeLink('Register')
             ->seeLink('Dashboard', '/dashboard');
     }
 }

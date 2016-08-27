@@ -8,7 +8,7 @@
     {!! Form::open(['route' => 'threads.store']) !!}
         @formGroup('topic')
             {!! Form::label('topic') !!}
-            {!! Form::select('topic', $topics->lists('name', 'id'), null, ['class' => 'form-control', 'required']) !!}
+            {!! Form::select('topic', $topics->pluck('name', 'id'), null, ['class' => 'form-control', 'required']) !!}
             @error('topic')
         @endFormGroup
 
@@ -26,7 +26,7 @@
 
         @formGroup('tags')
             {!! Form::label('tags') !!}
-            {!! Form::select('tags[]', $tags->lists('name', 'id'), null, ['class' => 'form-control selectize', 'multiple']) !!}
+            {!! Form::select('tags[]', $tags->pluck('name', 'id'), null, ['class' => 'form-control selectize', 'multiple']) !!}
             @error('tags')
         @endFormGroup
 

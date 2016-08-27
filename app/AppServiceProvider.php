@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Forum\EloquentThread;
 use Auth;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 use Hash;
 use Validator;
@@ -16,9 +18,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        require __DIR__ . '/helpers.php';
-
+        $this->bootHelpers();
         $this->bootPasscheckValidationRule();
+        $this->bootEloquentMorphs();
+    }
+
+    private function bootHelpers()
+    {
+        require __DIR__ . '/helpers.php';
     }
 
     private function bootPasscheckValidationRule()
@@ -27,6 +34,13 @@ class AppServiceProvider extends ServiceProvider
         {
             return Hash::check($value, Auth::user()->getAuthPassword());
         });
+    }
+
+    private function bootEloquentMorphs()
+    {
+        Relation::morphMap([
+            EloquentThread::TYPE => EloquentThread::class,
+        ]);
     }
 
     /**

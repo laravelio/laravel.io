@@ -18,11 +18,13 @@ use App\Tags\EloquentTag;
 use App\Users\EloquentUser;
 
 $factory->define(EloquentUser::class, function (Faker\Generator $faker) {
+    static $password;
+
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
         'username' => $faker->userName,
-        'password' => bcrypt(str_random(10)),
+        'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
         'confirmed' => true,
         'github_id' => $faker->numberBetween(10000, 99999),

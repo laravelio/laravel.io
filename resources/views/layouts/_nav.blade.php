@@ -34,7 +34,7 @@
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
                     <li class="{{ active('login') }}"><a href="{{ route('login') }}">Login</a></li>
-                    <li class="{{ active('signup') }}"><a href="{{ route('signup') }}">Signup</a></li>
+                    <li class="{{ active('register') }}"><a href="{{ route('register') }}">Register</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

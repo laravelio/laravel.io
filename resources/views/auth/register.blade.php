@@ -1,9 +1,9 @@
-@title('Signup')
+@title('Register')
 
 @extends('layouts.small')
 
 @section('small-content')
-    {!! Form::open(['route' => 'signup.post']) !!}
+    {!! Form::open(['route' => 'register.post']) !!}
         @formGroup('name')
             {!! Form::label('name') !!}
             {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}
@@ -33,6 +33,6 @@
             {!! Form::password('password_confirmation', ['class' => 'form-control', 'required']) !!}
         </div>
 
-        {!! Form::submit('Signup', ['class' => 'btn btn-primary btn-block']) !!}
+        {!! Form::submit('Register', ['class' => 'btn btn-primary btn-block']) !!}
     {!! Form::close() !!}
 @stop

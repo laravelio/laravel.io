@@ -6,8 +6,8 @@
     "require": {
         "php": "^7.0",
         "bugsnag/bugsnag-laravel": "^1.6",
-        "laravel/framework": "5.2.*",
-        "laravelcollective/html": "^5.2",
+        "laravel/framework": "5.3.*",
+        "laravelcollective/html": "^5.2@dev",
         "league/commonmark": "^0.14.0",
         "tijsverkoyen/akismet": "^1.1"
     },
@@ -35,7 +35,7 @@
     },
     "scripts": {
         "post-root-package-install": [
-            "php -r \"copy('.env.example', '.env');\""
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
             "php artisan key:generate"

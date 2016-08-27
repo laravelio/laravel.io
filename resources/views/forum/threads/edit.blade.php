@@ -8,7 +8,7 @@
     {!! Form::open(['route' => ['threads.update', $thread->slug()], 'method' => 'PUT']) !!}
         @formGroup('topic')
             {!! Form::label('topic') !!}
-            {!! Form::select('topic', $topics->lists('name', 'id'), $thread->topic()->id(), ['class' => 'form-control', 'required']) !!}
+            {!! Form::select('topic', $topics->pluck('name', 'id'), $thread->topic()->id(), ['class' => 'form-control', 'required']) !!}
             @error('topic')
         @endFormGroup
 
@@ -26,7 +26,7 @@
 
         @formGroup('tags')
             {!! Form::label('tags') !!}
-            {!! Form::select('tags[]', $tags->lists('name', 'id'), $thread->tags()->lists('id')->toArray(), ['class' => 'form-control selectize', 'multiple']) !!}
+            {!! Form::select('tags[]', $tags->pluck('name', 'id'), $thread->tags()->pluck('id')->toArray(), ['class' => 'form-control selectize', 'multiple']) !!}
             @error('tags')
         @endFormGroup
 

@@ -2,39 +2,28 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Users\User;
 use App\Users\UserRepository;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Validator;
 
-class AuthController extends Controller
+class RegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Registration & Login Controller
+    | Register Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
+    | This controller handles the registration of new users as well as their
+    | validation and creation. By default this controller uses a trait to
+    | provide this functionality without requiring any additional code.
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use RegistersUsers;
 
     /**
-     * Override for the default email field
-     *
-     * @var string
-     */
-    protected $username = 'username';
-
-    /**
-     * Override the default redirect path
-     *
      * @var string
      */
     protected $redirectTo = '/dashboard';
@@ -48,13 +37,18 @@ class AuthController extends Controller
     {
         $this->users = $users;
 
-        $this->middleware($this->guestMiddleware(), ['except' => 'getLogout']);
+        $this->middleware('guest');
+    }
+
+    public function redirectToRegistrationForm()
+    {
+        return redirect()->route('register', [], 301);
     }
 
     /**
      * Get a validator for an incoming registration request.
      */
-    protected function validator(array $data): ValidatorContract
+    protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => 'required|max:255',

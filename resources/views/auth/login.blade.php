@@ -33,6 +33,6 @@
 @section('small-content-after')
     <div class="text-center">
         <a href="{{ route('password.forgot') }}" class="btn btn-default btn-sm btn-block">Forgot your password?</a>
-        <a href="{{ route('signup') }}" class="btn btn-default btn-sm btn-block">Need an account?</a>
+        <a href="{{ route('register') }}" class="btn btn-default btn-sm btn-block">Need an account?</a>
     </div>
 @endsection

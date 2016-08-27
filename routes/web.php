@@ -2,11 +2,11 @@
 
 // We support these old routes to make sure people
 // find their way to the new portal website.
-collect(['wiki', 'forum', 'forums'])->each(function ($subdomain) {
+foreach (['wiki', 'forum', 'forums'] as $subdomain) {
     Route::group(['domain' => $subdomain.'.laravel.io'], function() {
         Route::get('{wildcard}', 'HomeController@redirectToMainWebsite');
     });
-});
+};
 
 // Home
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
@@ -15,21 +15,22 @@ Route::get('rss', 'HomeController@rss');
 // Authentication
 Route::group(['namespace' => 'Auth'], function () {
     // Sessions
-    Route::get('login', ['as' => 'login', 'uses' => 'AuthController@getLogin']);
-    Route::post('login', ['as' => 'login.post', 'uses' => 'AuthController@postLogin']);
-    Route::get('logout', ['as' => 'logout', 'uses' => 'AuthController@getLogout']);
+    Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLoginForm']);
+    Route::post('login', ['as' => 'login.post', 'uses' => 'LoginController@login']);
+    Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
 
     // Registration
-    Route::get('signup', ['as' => 'signup', 'uses' => 'AuthController@getRegister']);
-    Route::post('signup', ['as' => 'signup.post', 'uses' => 'AuthController@postRegister']);
+    Route::get('register', ['as' => 'register', 'uses' => 'RegisterController@showRegistrationForm']);
+    Route::get('signup', 'RegisterController@redirectToRegistrationForm'); // BC for old links
+    Route::post('register', ['as' => 'register.post', 'uses' => 'RegisterController@register']);
 
     // Password reset link request
-    Route::get('forgot-password', ['as' => 'password.forgot', 'uses' => 'PasswordController@getEmail']);
-    Route::post('forgot-password', ['as' => 'password.forgot.post', 'uses' => 'PasswordController@postEmail']);
+    Route::get('password/reset', ['as' => 'password.forgot', 'uses' => 'ForgotPasswordController@showLinkRequestForm']);
+    Route::post('password/email', ['as' => 'password.forgot.post', 'uses' => 'ForgotPasswordController@sendResetLinkEmail']);
 
     // Password reset
-    Route::get('reset-password/{token}', ['as' => 'password.reset', 'uses' => 'PasswordController@getReset']);
-    Route::post('reset-password', ['as' => 'password.reset.post', 'uses' => 'PasswordController@postReset']);
+    Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'ResetPasswordController@showResetForm']);
+    Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'ResetPasswordController@reset']);
 
     // Social authentication
     Route::get('auth/github', 'AuthController@authByGithub');
