@@ -182,6 +182,7 @@ return [
         App\Spam\SpamServiceProvider::class,
         App\Tags\TagServiceProvider::class,
         App\Users\UserServiceProvider::class,
+        App\Validation\ValidationServiceProvider::class,
         App\Views\ViewServiceProvider::class,
 
     ],

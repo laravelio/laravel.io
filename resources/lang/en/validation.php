@@ -97,6 +97,7 @@ return [
         ],
     ],
 
+    'not_contain_url' => 'The :attribute field cannot contain an url.',
     'passcheck' => 'Your current password is incorrect.',
 
     /*

@@ -17,7 +17,7 @@ class ThreadRequest extends Request
     {
         return [
             'topic' => 'required|exists:topics,id',
-            'subject' => 'required',
+            'subject' => 'required|not_contain_url',
             'body' => 'required',
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',

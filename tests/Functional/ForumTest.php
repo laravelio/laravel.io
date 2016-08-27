@@ -47,6 +47,25 @@ class ForumTest extends TestCase
     }
 
     /** @test */
+    function the_thread_subject_cannot_be_an_url()
+    {
+        $topic = $this->create(Topic::class, ['name' => 'Eloquent']);
+        $tag = $this->create(Tag::class, ['name' => 'Test Tag']);
+
+        $this->login();
+
+        $this->visit('/forum/create-thread')
+            ->submitForm('Create Thread', [
+                'topic' => $topic->id(),
+                'subject' => 'http://example.com',
+                'body' => 'This text explains how to work with Eloquent.',
+                'tags' => [$tag->id()],
+            ])
+            ->seePageIs('/forum/create-thread')
+            ->see('The subject field cannot contain an url.');
+    }
+
+    /** @test */
     function we_can_create_a_thread()
     {
         $topic = $this->create(Topic::class, ['name' => 'Eloquent']);
