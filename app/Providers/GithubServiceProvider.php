@@ -1,6 +1,7 @@
 <?php
 namespace Lio\Providers;
 
+use Guzzle\Http\Client;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Socialite\Contracts\Factory;
 use Lio\Accounts\UserRepository;
@@ -27,7 +28,7 @@ class GithubServiceProvider extends ServiceProvider
     private function registerGithubAuthenticator()
     {
         $this->app->singleton(GithubAuthenticator::class, function ($app) {
-            return new GithubAuthenticator($app[Factory::class]->driver('github'), $app[UserRepository::class]);
+            return new GithubAuthenticator($app[Factory::class]->driver('github'), $app[UserRepository::class], new Client());
         });
     }
 

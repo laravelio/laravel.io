@@ -16,7 +16,8 @@
         "mews/purifier": "~2.0",
         "bugsnag/bugsnag-laravel": "1.*",
         "anhskohbo/no-captcha": "^2.0",
-        "tijsverkoyen/akismet": "^1.1"
+        "tijsverkoyen/akismet": "^1.1",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

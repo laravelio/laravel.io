@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a3487d26612b58feec27c4a096b83ccc",
-    "content-hash": "e46e370141ad0bd44d6f3451884f03f8",
+    "hash": "6e8671a2f41b429184f6f1f97dd8b02c",
+    "content-hash": "a9e4e4cdc07d70967d431ca683ca3ece",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -494,20 +494,21 @@
                 "rest",
                 "web service"
             ],
+            "abandoned": "guzzlehttp/guzzle",
             "time": "2015-03-18 18:23:50"
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.0.2",
+            "version": "6.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "a8dfeff00eb84616a17fea7a4d72af35e750410f"
+                "reference": "d094e337976dff9d8e2424e8485872194e768662"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/a8dfeff00eb84616a17fea7a4d72af35e750410f",
-                "reference": "a8dfeff00eb84616a17fea7a4d72af35e750410f",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/d094e337976dff9d8e2424e8485872194e768662",
+                "reference": "d094e337976dff9d8e2424e8485872194e768662",
                 "shasum": ""
             },
             "require": {
@@ -523,7 +524,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.0-dev"
+                    "dev-master": "6.2-dev"
                 }
             },
             "autoload": {
@@ -556,7 +557,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2015-07-04 20:09:24"
+            "time": "2016-03-21 20:02:09"
         },
         {
             "name": "guzzlehttp/promises",
@@ -2644,12 +2645,12 @@
             "version": "1.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/xuwaters/Akismet.git",
+                "url": "https://github.com/tijsverkoyen/Akismet.git",
                 "reference": "0c5185956e11824ed310d134d38d0b2c936f3d3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xuwaters/Akismet/zipball/0c5185956e11824ed310d134d38d0b2c936f3d3a",
+                "url": "https://api.github.com/repos/tijsverkoyen/Akismet/zipball/0c5185956e11824ed310d134d38d0b2c936f3d3a",
                 "reference": "0c5185956e11824ed310d134d38d0b2c936f3d3a",
                 "shasum": ""
             },

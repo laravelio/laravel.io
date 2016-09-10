@@ -2,6 +2,7 @@
 namespace Lio\Http\Controllers\Auth;
 
 use Auth;
+use Carbon\Carbon;
 use Input;
 use Lio\Accounts\SendConfirmationEmail;
 use Lio\Accounts\User;
@@ -88,7 +89,16 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
             return redirect()->route('login');
         }
 
-        return view('auth.signup', ['githubData' => Session::get('githubData')]);
+        $githubData = Session::get('githubData');
+        $createdAt = new Carbon($githubData['created_at']);
+
+        if ($createdAt > Carbon::now()->subDays(14)) {
+            session(['success' => 'Your Github account needs to be older then 2 weeks in order to signup.']);
+
+            return redirect()->route('home');
+        }
+
+        return view('auth.signup', compact('githubData'));
     }
 
     /**

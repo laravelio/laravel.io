@@ -2,6 +2,7 @@
 namespace Lio\Github;
 
 use Exception;
+use Guzzle\Http\Client;
 use Laravel\Socialite\Contracts\Provider as Socialite;
 use Laravel\Socialite\Contracts\User as GithubUser;
 use Lio\Accounts\User;
@@ -20,13 +21,19 @@ class GithubAuthenticator
     protected $users;
 
     /**
+     * @var \Guzzle\Http\Client
+     */
+    private $guzzle;
+
+    /**
      * @param \Laravel\Socialite\Contracts\Provider $socialite
      * @param \Lio\Accounts\UserRepository $users
      */
-    public function __construct(Socialite $socialite, UserRepository $users)
+    public function __construct(Socialite $socialite, UserRepository $users, Client $guzzle)
     {
         $this->socialite = $socialite;
         $this->users = $users;
+        $this->guzzle = $guzzle;
     }
 
     /**
@@ -68,13 +75,15 @@ class GithubAuthenticator
      */
     private function githubUserToArray(GithubUser $user)
     {
-        return [
+        $data = json_decode($this->guzzle->get('https://api.github.com/users/'.$user->getNickname())->send()->getBody(true), true);
+
+        return array_merge($data, [
             'id' => $user->getId(),
             'name' => $user->getNickname(),
             'email' => $user->getEmail(),
             'github_id'  => $user->getId(),
             'github_url' => 'https://github.com/' . $user->getNickname(),
             'image_url'  => $user->getAvatar(),
-        ];
+        ]);
     }
 }
