@@ -2,7 +2,7 @@
 
 namespace Tests\Integration\Users;
 
-use App\Testing\RepositoryTest;
+use App\Testing\TestsRepositories;
 use App\Users\Exceptions\CannotCreateUser;
 use App\Users\User;
 use App\Users\UserRepository;
@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class UserRepositoryTest extends TestCase
 {
-    use DatabaseMigrations, RepositoryTest;
+    use DatabaseMigrations, TestsRepositories;
 
     protected $repoName = UserRepository::class;
 

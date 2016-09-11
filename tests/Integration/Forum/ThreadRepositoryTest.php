@@ -6,14 +6,14 @@ use App\Forum\Thread;
 use App\Forum\ThreadRepository;
 use App\Forum\Topics\Topic;
 use App\Replies\Reply;
-use App\Testing\RepositoryTest;
+use App\Testing\TestsRepositories;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class ThreadRepositoryTest extends TestCase
 {
-    use DatabaseMigrations, RepositoryTest;
+    use DatabaseMigrations, TestsRepositories;
 
     protected $repoName = ThreadRepository::class;
 

@@ -2,7 +2,7 @@
 
 namespace App\Testing;
 
-trait RepositoryTest
+trait TestsRepositories
 {
     protected $repo;
 
