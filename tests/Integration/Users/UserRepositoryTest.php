@@ -2,12 +2,12 @@
 
 namespace Tests\Integration\Users;
 
-use App\Testing\TestsRepositories;
 use App\Users\Exceptions\CannotCreateUser;
 use App\Users\User;
 use App\Users\UserRepository;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
+use Tests\TestsRepositories;
 
 class UserRepositoryTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Testing;
+namespace Tests;
 
 trait TestsRepositories
 {

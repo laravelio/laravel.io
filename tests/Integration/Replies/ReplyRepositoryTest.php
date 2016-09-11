@@ -5,9 +5,9 @@ namespace Tests\Integration\Replies;
 use App\Forum\Thread;
 use App\Replies\Reply;
 use App\Replies\ReplyRepository;
-use App\Testing\TestsRepositories;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
+use Tests\TestsRepositories;
 
 class ReplyRepositoryTest extends TestCase
 {

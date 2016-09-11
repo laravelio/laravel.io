@@ -3,7 +3,6 @@
 namespace Tests;
 
 use App\ModelFactories\BuildsModels;
-use App\Testing\HttpAssertions;
 use App\Users\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;

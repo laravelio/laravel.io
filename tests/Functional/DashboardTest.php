@@ -2,8 +2,8 @@
 
 namespace Tests\Functional;
 
-use App\Testing\RequiresLogin;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\RequiresLogin;
 use Tests\TestCase;
 
 class DashboardTest extends TestCase

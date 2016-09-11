@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Testing;
+namespace Tests;
 
 use Symfony\Component\HttpFoundation\Response;
 
