@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\ModelFactories\BuildsModels;
+use App\Testing\HttpAssertions;
 use App\Users\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;
@@ -11,7 +12,7 @@ use Hash;
 
 abstract class TestCase extends IlluminateTestCase
 {
-    use BuildsModels;
+    use BuildsModels, HttpAssertions;
 
     /**
      * The base URL to use while testing the application.

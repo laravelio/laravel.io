@@ -55,7 +55,7 @@ class ReplyTest extends TestCase
         $this->create(Reply::class, ['body' => 'The first reply']);
 
         $this->get('/replies/1/edit')
-            ->assertResponseStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -66,7 +66,7 @@ class ReplyTest extends TestCase
         $this->create(Reply::class, ['body' => 'The first reply']);
 
         $this->get('/replies/1/delete')
-            ->assertResponseStatus(403);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -83,6 +83,6 @@ class ReplyTest extends TestCase
         $reply = $this->create(Reply::class, ['body' => 'The first reply', 'replyable_id' => $thread->id()]);
 
         $this->get('/forum/the-first-thread/mark-solution/'.$reply->id())
-            ->assertResponseStatus(403);
+            ->assertForbidden();
     }
 }
