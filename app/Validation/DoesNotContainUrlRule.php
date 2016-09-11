@@ -18,10 +18,10 @@ class DoesNotContainUrlRule
 
     public function validate($attribute, $value)
     {
-        return collect(explode(' ', $value))->contains(function ($word) {
+        return ! collect(explode(' ', $value))->contains(function ($word) {
             return $this->validator
                 ->make(compact('word'), ['word' => 'url'])
-                ->fails();
+                ->passes();
         });
     }
 }

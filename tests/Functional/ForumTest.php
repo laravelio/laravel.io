@@ -55,7 +55,7 @@ class ForumTest extends TestCase
         $this->visit('/forum/create-thread')
             ->submitForm('Create Thread', [
                 'topic' => $topic->id(),
-                'subject' => 'http://example.com',
+                'subject' => 'http://example.com Foo title',
                 'body' => 'This text explains how to work with Eloquent.',
                 'tags' => [$tag->id()],
             ])
