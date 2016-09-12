@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -11,7 +12,6 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\VerifyCsrfToken;
