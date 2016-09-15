@@ -14,8 +14,4 @@ class ViewServiceProvider extends ServiceProvider
             require $path;
         }
     }
-
-    public function register()
-    {
-    }
 }

@@ -63,4 +63,9 @@ final class EloquentUser extends Authenticatable implements User
 
         return "https://www.gravatar.com/avatar/$hash?s=$size";
     }
+
+    public function isUnverified(): bool
+    {
+        return ! (bool) $this->confirmed;
+    }
 }

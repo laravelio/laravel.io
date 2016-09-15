@@ -6,7 +6,7 @@ foreach (['wiki', 'forum', 'forums'] as $subdomain) {
     Route::group(['domain' => $subdomain.'.laravel.io'], function() {
         Route::get('{wildcard}', 'HomeController@redirectToMainWebsite');
     });
-};
+}
 
 // Home
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);

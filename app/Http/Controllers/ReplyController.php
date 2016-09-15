@@ -27,7 +27,7 @@ class ReplyController extends Controller
         $this->threads = $threads;
         $this->replies = $replies;
 
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 
     public function store(ReplyRequest $request)

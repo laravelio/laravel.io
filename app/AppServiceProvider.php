@@ -42,14 +42,4 @@ class AppServiceProvider extends ServiceProvider
             EloquentThread::TYPE => EloquentThread::class,
         ]);
     }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
 }

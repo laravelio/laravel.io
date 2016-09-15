@@ -15,6 +15,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\VerifyCsrfToken;
+use App\Http\Middleware\RedirectIfUnverified;
 
 class Kernel extends HttpKernel
 {
@@ -61,5 +62,6 @@ class Kernel extends HttpKernel
         'can' => Authorize::class,
         'guest' => RedirectIfAuthenticated::class,
         'throttle' => ThrottleRequests::class,
+        'verified' => RedirectIfUnverified::class,
     ];
 }

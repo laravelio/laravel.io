@@ -126,4 +126,13 @@ class AuthTest extends TestCase
             ->press('Login')
             ->seePageIs('/dashboard');
     }
+
+    /** @test */
+    function unverified_users_cannot_create_threads()
+    {
+        $this->login(['confirmed' => false]);
+
+        $this->visit('/forum/create-thread')
+            ->see('Please verify your account first.');
+    }
 }

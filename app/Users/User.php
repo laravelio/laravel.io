@@ -12,6 +12,7 @@ interface User extends Timestamps
     public function username(): string;
     public function githubUsername(): string;
     public function gratavarUrl($size = 100): string;
+    public function isUnverified(): bool;
 
     /**
      * @return \App\Replies\Reply[]
