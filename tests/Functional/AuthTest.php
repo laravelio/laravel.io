@@ -2,9 +2,12 @@
 
 namespace Tests\Functional;
 
+use App\Users\ConfirmEmailAddress;
+use App\Users\UserWasRegistered;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Mail;
 use Tests\TestCase;
 
 class AuthTest extends TestCase
@@ -14,6 +17,8 @@ class AuthTest extends TestCase
     /** @test */
     function users_can_register()
     {
+        Mail::fake();
+
         $this->visit('/register')
             ->type('John Doe', 'name')
             ->type('john.doe@example.com', 'email')
@@ -25,6 +30,8 @@ class AuthTest extends TestCase
             ->see('Welcome John Doe!');
 
         $this->assertTrue(Auth::check());
+
+        Mail::assertSent(ConfirmEmailAddress::class);
     }
 
     /** @test */
@@ -37,6 +44,46 @@ class AuthTest extends TestCase
             ->see('The email field is required.')
             ->see('The username field is required.')
             ->see('The password field is required.');
+    }
+
+    /** @test */
+    function users_can_resend_the_email_confimation()
+    {
+        $this->login(['confirmed' => false]);
+
+        $this->visit('/email-address-confirmation')
+            ->seePageIs('/dashboard')
+            ->see('Email address confirmation sent to john@example.com');
+    }
+
+    /** @test */
+    function users_do_not_need_to_confirm_their_email_address_twice()
+    {
+        $this->login();
+
+        $this->visit('/email-address-confirmation')
+            ->seePageIs('/dashboard')
+            ->see('Your email address is already confirmed.');
+    }
+
+    /** @test */
+    function users_can_confirm_their_email_address()
+    {
+        $this->createUser(['confirmed' => false, 'confirmation_code' => 'testcode']);
+
+        $this->visit('/email-address-confirmation/john@example.com/testcode')
+            ->seePageIs('/')
+            ->see('Your email address was successfully confirmed.');
+    }
+
+    /** @test */
+    function users_get_a_message_when_a_confirmation_code_was_not_found()
+    {
+        $this->createUser(['confirmed' => false]);
+
+        $this->visit('/email-address-confirmation/john@example.com/testcode')
+            ->seePageIs('/')
+            ->see('We could not confirm your email address. The given email address and code did not match.');
     }
 
     /** @test */
@@ -128,11 +175,11 @@ class AuthTest extends TestCase
     }
 
     /** @test */
-    function unverified_users_cannot_create_threads()
+    function unconfirmed_users_cannot_create_threads()
     {
         $this->login(['confirmed' => false]);
 
         $this->visit('/forum/create-thread')
-            ->see('Please verify your account first.');
+            ->see('Please confirm your email address first.');
     }
 }

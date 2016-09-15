@@ -32,6 +32,10 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'ResetPasswordController@showResetForm']);
     Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'ResetPasswordController@reset']);
 
+    // Email address confirmation
+    Route::get('email-address-confirmation', ['as' => 'email.send_confirmation', 'uses' => 'EmailAddressController@sendConfirmation']);
+    Route::get('email-address-confirmation/{email_address}/{code}', ['as' => 'email.confirm', 'uses' => 'EmailAddressController@confirm']);
+
     // Social authentication
     Route::get('auth/github', 'AuthController@authByGithub');
 });

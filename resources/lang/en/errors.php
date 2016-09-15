@@ -3,6 +3,6 @@
 return [
 
     'fields' => 'Something went wrong. Please review the fields below.',
-    'unverified' => 'Please verify your account first.',
+    'unconfirmed' => '<a href="'.route('email.send_confirmation').'" class="alert-link">Please confirm your email address first.</a>',
 
 ];

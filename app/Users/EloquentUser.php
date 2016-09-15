@@ -64,8 +64,23 @@ final class EloquentUser extends Authenticatable implements User
         return "https://www.gravatar.com/avatar/$hash?s=$size";
     }
 
-    public function isUnverified(): bool
+    public function isConfirmed(): bool
     {
-        return ! (bool) $this->confirmed;
+        return (bool) $this->confirmed;
+    }
+
+    public function isUnconfirmed(): bool
+    {
+        return ! $this->isConfirmed();
+    }
+
+    public function confirmationCode(): string
+    {
+        return (string) $this->confirmation_code;
+    }
+
+    public function matchesConfirmationCode(string $code): bool
+    {
+        return $this->confirmation_code === $code;
     }
 }

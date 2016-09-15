@@ -25,3 +25,7 @@ Route::bind('topic', function($slug) {
 Route::bind('username', function($username) {
     return app(UserRepository::class)->findByUsername($username);
 });
+
+Route::bind('email_address', function($emailAddress) {
+    return app(UserRepository::class)->findByEmailAddress($emailAddress);
+});

@@ -4,6 +4,7 @@ namespace App\Users;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Users\Exceptions\CannotCreateUser;
+use Illuminate\Support\Str;
 
 final class EloquentUserRepository implements UserRepository
 {
@@ -37,6 +38,7 @@ final class EloquentUserRepository implements UserRepository
         $user->email = $emailAddress;
         $user->password = $password;
         $user->username = $username;
+        $user->confirmation_code = Str::random(40);
         $user->save();
 
         return $user;
@@ -69,5 +71,10 @@ final class EloquentUserRepository implements UserRepository
         $user->update($attributes);
 
         return $user;
+    }
+
+    public function confirmUser(User $user)
+    {
+        $user->update(['confirmed' => true, 'confirmation_code' => null]);
     }
 }

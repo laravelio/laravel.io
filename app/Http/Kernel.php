@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckConfirmation;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
@@ -15,7 +16,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\VerifyCsrfToken;
-use App\Http\Middleware\RedirectIfUnverified;
+use App\Http\Middleware\RedirectIfUnconfirmed;
 
 class Kernel extends HttpKernel
 {
@@ -43,6 +44,7 @@ class Kernel extends HttpKernel
             ShareErrorsFromSession::class,
             SubstituteBindings::class,
             VerifyCsrfToken::class,
+            CheckConfirmation::class,
         ],
         'api' => [
             'throttle:60,1',
@@ -62,6 +64,6 @@ class Kernel extends HttpKernel
         'can' => Authorize::class,
         'guest' => RedirectIfAuthenticated::class,
         'throttle' => ThrottleRequests::class,
-        'verified' => RedirectIfUnverified::class,
+        'confirmed' => RedirectIfUnconfirmed::class,
     ];
 }

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Users\SendEmailAddressConfirmation;
 use App\Users\User;
 use App\Users\UserRepository;
+use App\Users\UserWasRegistered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Validator;
 
@@ -63,12 +65,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        return $this->users->create(
+        $user = $this->users->create(
             $data['name'],
             $data['email'],
             bcrypt($data['password']),
             $data['username'],
             ['ip' => request()->ip()]
         );
+
+        $this->dispatch(new SendEmailAddressConfirmation($user));
+
+        return $user;
     }
 }

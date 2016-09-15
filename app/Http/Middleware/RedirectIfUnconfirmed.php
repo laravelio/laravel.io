@@ -6,7 +6,7 @@ use App\Alerts\SendsAlerts;
 use Auth;
 use Closure;
 
-class RedirectIfUnverified
+class RedirectIfUnconfirmed
 {
     use SendsAlerts;
 
@@ -17,8 +17,8 @@ class RedirectIfUnverified
      */
     public function handle($request, Closure $next, string $guard = null)
     {
-        if (Auth::user()->isUnverified()) {
-            $this->error('errors.unverified');
+        if (Auth::user()->isUnconfirmed()) {
+            $this->error('errors.unconfirmed');
 
             return redirect()->home();
         }

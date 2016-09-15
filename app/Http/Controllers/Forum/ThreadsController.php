@@ -21,7 +21,7 @@ class ThreadsController extends Controller
     {
         $this->threads = $threads;
 
-        $this->middleware(['auth', 'verified'], ['except' => ['overview', 'show']]);
+        $this->middleware(['auth', 'confirmed'], ['except' => ['overview', 'show']]);
     }
 
     public function overview(TopicRepository $topics)
