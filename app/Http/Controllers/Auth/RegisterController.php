@@ -73,7 +73,7 @@ class RegisterController extends Controller
             ['ip' => request()->ip()]
         );
 
-        $this->dispatch(new SendEmailAddressConfirmation($user));
+        $this->dispatchNow(new SendEmailAddressConfirmation($user));
 
         return $user;
     }

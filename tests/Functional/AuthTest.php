@@ -47,7 +47,7 @@ class AuthTest extends TestCase
     }
 
     /** @test */
-    function users_can_resend_the_email_confimation()
+    function users_can_resend_the_email_confirmation()
     {
         $this->login(['confirmed' => false]);
 
@@ -69,11 +69,13 @@ class AuthTest extends TestCase
     /** @test */
     function users_can_confirm_their_email_address()
     {
-        $this->createUser(['confirmed' => false, 'confirmation_code' => 'testcode']);
+        $user = $this->createUser(['confirmed' => false, 'confirmation_code' => 'testcode']);
 
         $this->visit('/email-address-confirmation/john@example.com/testcode')
             ->seePageIs('/')
             ->see('Your email address was successfully confirmed.');
+
+        $this->seeInDatabase('users', ['id' => $user->id(), 'confirmed' => true]);
     }
 
     /** @test */

@@ -20,7 +20,7 @@ class EmailAddressController extends Controller
         if (Auth::user()->isConfirmed()) {
             $this->error('auth.confirmation.already_confirmed');
         } else {
-            $this->dispatch(new SendEmailAddressConfirmation(Auth::user()));
+            $this->dispatchNow(new SendEmailAddressConfirmation(Auth::user()));
 
             $this->success('auth.confirmation.sent', ['emailAddress' => Auth::user()->emailAddress()]);
         }
@@ -31,7 +31,7 @@ class EmailAddressController extends Controller
     public function confirm(UserRepository $users, User $user, string $code)
     {
         if (! $user->matchesConfirmationCode($code)) {
-            $this->success('auth.confirmation.no_match');
+            $this->error('auth.confirmation.no_match');
         } else {
             $users->confirmUser($user);
 
