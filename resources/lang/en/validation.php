@@ -80,6 +80,11 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'url'                  => 'The :attribute format is invalid.',
 
+    // Custom Validation Rules
+    'not_contain_url' => 'The :attribute field cannot contain an url.',
+    'passcheck' => 'Your current password is incorrect.',
+    'recaptcha' => 'The captcha field is not correct.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -92,13 +97,10 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'g-recaptcha-response' => [
+            'required' => 'The captcha field is required.',
         ],
     ],
-
-    'not_contain_url' => 'The :attribute field cannot contain an url.',
-    'passcheck' => 'Your current password is incorrect.',
 
     /*
     |--------------------------------------------------------------------------

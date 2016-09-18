@@ -6,6 +6,7 @@
     "require": {
         "php": "^7.0",
         "bugsnag/bugsnag-laravel": "^1.6",
+        "greggilbert/recaptcha": "^2.1",
         "laravel/framework": "5.3.*",
         "laravelcollective/html": "^5.2@dev",
         "league/commonmark": "^0.14.0",

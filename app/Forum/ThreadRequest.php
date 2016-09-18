@@ -15,13 +15,19 @@ class ThreadRequest extends Request
 
     public function rules()
     {
-        return [
+        $rules = [
             'topic' => 'required|exists:topics,id',
             'subject' => 'required|not_contain_url',
             'body' => 'required',
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',
         ];
+
+        if (! app()->runningUnitTests()) {
+            $rules['g-recaptcha-response'] = 'required|recaptcha';
+        }
+
+        return $rules;
     }
 
     public function topic(): Topic
