@@ -169,6 +169,7 @@ return [
         Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -239,6 +240,7 @@ return [
         'Bugsnag' => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

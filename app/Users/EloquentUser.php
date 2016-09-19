@@ -23,7 +23,16 @@ final class EloquentUser extends Authenticatable implements User
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'username', 'password', 'ip', 'confirmed', 'confirmation_code'];
+    protected $fillable = [
+        'name',
+        'email',
+        'username',
+        'password',
+        'ip',
+        'confirmed',
+        'confirmation_code',
+        'github_id',
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.

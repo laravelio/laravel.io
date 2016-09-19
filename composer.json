@@ -8,6 +8,7 @@
         "bugsnag/bugsnag-laravel": "^1.6",
         "greggilbert/recaptcha": "^2.1",
         "laravel/framework": "5.3.*",
+        "laravel/socialite": "^2.0",
         "laravelcollective/html": "^5.2@dev",
         "league/commonmark": "^0.14.0",
         "tijsverkoyen/akismet": "^1.1"

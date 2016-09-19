@@ -28,16 +28,23 @@ final class EloquentUserRepository implements UserRepository
         return $this->model->where('email', $emailAddress)->firstOrFail();
     }
 
-    public function create(string $name, string $emailAddress, string $password, string $username, array $attributes = []): User
+    public function findByGithubId(string $githubId): User
     {
-        $this->assertEmailAddressIsUnique($emailAddress);
-        $this->assertUsernameIsUnique($username);
+        return $this->model->where('github_id', $githubId)->firstOrFail();
+    }
 
-        $user = $this->model->newInstance($attributes);
-        $user->name = $name;
-        $user->email = $emailAddress;
-        $user->password = $password;
-        $user->username = $username;
+    public function create(NewUserData $data): User
+    {
+        $this->assertEmailAddressIsUnique($data->emailAddress());
+        $this->assertUsernameIsUnique($data->username());
+
+        $user = $this->model->newInstance();
+        $user->name = $data->name();
+        $user->email = $data->emailAddress();
+        $user->username = $data->username();
+        $user->password = $data->password();
+        $user->ip = $data->ip();
+        $user->github_id = $data->githubId();
         $user->confirmation_code = Str::random(40);
         $user->save();
 

@@ -3,6 +3,7 @@
 namespace Tests\Integration\Users;
 
 use App\Users\Exceptions\CannotCreateUser;
+use App\Users\NewUserData;
 use App\Users\User;
 use App\Users\UserRepository;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -34,12 +35,12 @@ class UserRepositoryTest extends TestCase
     /** @test */
     function we_can_create_a_user()
     {
-        $this->assertInstanceOf(User::class, $this->repo->create(
+        $this->assertInstanceOf(User::class, $this->repo->create(new NewUserData(
             'John Doe',
             'john@example.com',
-            'password',
-            'johndoe'
-        ));
+            'johndoe',
+            'password'
+        )));
     }
 
     /** @test */
@@ -47,8 +48,8 @@ class UserRepositoryTest extends TestCase
     {
         $this->expectException(CannotCreateUser::class);
 
-        $this->repo->create('John Doe', 'john@example.com', 'password', 'johndoe');
-        $this->repo->create('John Foo', 'john@example.com', 'password', 'johnfoo');
+        $this->repo->create(new NewUserData('John Doe', 'john@example.com', 'johndoe', 'password'));
+        $this->repo->create(new NewUserData('John Foo', 'john@example.com', 'johnfoo', 'password'));
     }
 
     /** @test */
@@ -56,8 +57,8 @@ class UserRepositoryTest extends TestCase
     {
         $this->expectException(CannotCreateUser::class);
 
-        $this->repo->create('John Doe', 'john@example.com', 'password', 'johndoe');
-        $this->repo->create('John Doe', 'john.doe@example.com', 'password', 'johndoe');
+        $this->repo->create(new NewUserData('John Doe', 'john@example.com', 'johndoe', 'password'));
+        $this->repo->create(new NewUserData('John Doe', 'john.doe@example.com', 'johndoe', 'password'));
     }
 
     /** @test */

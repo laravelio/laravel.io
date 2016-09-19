@@ -37,7 +37,8 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::get('email-address-confirmation/{email_address}/{code}', ['as' => 'email.confirm', 'uses' => 'EmailAddressController@confirm']);
 
     // Social authentication
-    Route::get('auth/github', 'AuthController@authByGithub');
+    Route::get('login/github', ['as' => 'login.github', 'uses' => 'GithubController@redirectToProvider']);
+    Route::get('auth/github', 'GithubController@handleProviderCallback');
 });
 
 // Users
