@@ -34,7 +34,7 @@ class ReplyController extends Controller
     {
         $replyAble = $this->findReplyAble($request->get('replyable_id'), $request->get('replyable_type'));
 
-        $this->replies->create($replyAble, auth()->user(), $request->get('body'), ['ip' => $request->ip()]);
+        $this->replies->create($replyAble, $request->user(), $request->get('body'), ['ip' => $request->ip()]);
 
         $this->success('replies.created');
 

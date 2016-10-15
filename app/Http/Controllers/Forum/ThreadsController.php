@@ -45,7 +45,7 @@ class ThreadsController extends Controller
     public function store(ThreadRequest $request)
     {
         $thread = $this->threads->create(
-            auth()->user(),
+            $request->user(),
             $request->topic(),
             $request->get('subject'),
             $request->get('body'),
