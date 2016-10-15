@@ -1,6 +1,6 @@
 suites:
   lio:
-    namespace: Lio
-    psr4_prefix: Lio
+    namespace: App
+    psr4_prefix: App
     src_path: app
 formatter.name: dot

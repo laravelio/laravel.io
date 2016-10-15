@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Social\GithubRepository;
+use App\Social\GithubUser;
+use App\Users\User;
 use App\Users\UserRepository;
 use Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\RedirectResponse;
 use Socialite;
 
 class GithubController extends Controller
@@ -15,9 +19,15 @@ class GithubController extends Controller
      */
     private $users;
 
-    public function __construct(UserRepository $users)
+    /**
+     * @var \App\Social\GithubRepository
+     */
+    private $github;
+
+    public function __construct(UserRepository $users, GithubRepository $github)
     {
         $this->users = $users;
+        $this->github = $github;
     }
 
     /**
@@ -37,19 +47,42 @@ class GithubController extends Controller
 
         try {
             $user = $this->users->findByGithubId($socialiteUser->getId());
+
+            return $this->userFound($user);
         } catch (ModelNotFoundException $exception) {
-            session()->put('githubData', [
-                'id' => $socialiteUser->getId(),
-                'name' => $socialiteUser->getName(),
-                'email' => $socialiteUser->getEmail(),
-                'username' => $socialiteUser->getNickname(),
-            ]);
+            $user = $this->github->findByUsername($socialiteUser->getNickname());
 
-            return redirect()->route('register');
+            return $this->userNotFound($user);
         }
+    }
 
+    private function userFound(User $user): RedirectResponse
+    {
         Auth::login($user);
 
         return redirect()->route('dashboard');
+    }
+
+    private function userNotFound(GithubUser $user): RedirectResponse
+    {
+        if ($user->isYoungerThanTwoWeeks()) {
+            return $this->redirectUserToHome();
+        }
+
+        return $this->redirectUserToRegistration($user);
+    }
+
+    private function redirectUserToHome(): RedirectResponse
+    {
+        $this->error('Your Github account needs to be older than 2 weeks in order to register.');
+
+        return redirect()->home();
+    }
+
+    private function redirectUserToRegistration(GithubUser $user): RedirectResponse
+    {
+        session(['githubData' => $user->toArray()]);
+
+        return redirect()->route('register');
     }
 }

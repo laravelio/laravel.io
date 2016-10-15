@@ -2,6 +2,9 @@
 
 namespace App\Users;
 
+use Illuminate\Http\Request;
+use Illuminate\Session\SessionInterface as Session;
+
 class NewUserData
 {
     /**
@@ -34,7 +37,12 @@ class NewUserData
      */
     private $githubId;
 
-    public function __construct($name, $emailAddress, $username, $password = null, $ip = null, $githubId = null)
+    /**
+     * @var string|null
+     */
+    private $githubUsername;
+
+    public function __construct($name, $emailAddress, $username, $password = null, $ip = null, $githubId = null, $githubUsername = null)
     {
         $this->name = $name;
         $this->emailAddress = $emailAddress;
@@ -42,6 +50,20 @@ class NewUserData
         $this->password = $password;
         $this->ip = $ip;
         $this->githubId = $githubId;
+        $this->githubUsername = $githubUsername;
+    }
+
+    public static function makeFromRequestAndSession(Request $request, Session $session): NewUserData
+    {
+        return new self(
+            $request->get('name'),
+            $request->get('email'),
+            $request->get('username'),
+            $request->has('password') ? bcrypt($request->get('password')) : null,
+            $request->ip(),
+            $session->get('githubData.id'),
+            $session->get('githubData.username')
+        );
     }
 
     public function name(): string
@@ -72,5 +94,10 @@ class NewUserData
     public function githubId(): string
     {
         return $this->githubId ?: '';
+    }
+
+    public function githubUsername()
+    {
+        return $this->githubUsername ?: '';
     }
 }

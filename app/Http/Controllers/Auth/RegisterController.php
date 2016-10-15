@@ -78,14 +78,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        $user = $this->users->create(new NewUserData(
-            $data['name'],
-            $data['email'],
-            $data['username'],
-            ! request()->has('github_id') ? bcrypt($data['password']) : null,
-            request()->ip(),
-            request('github_id')
-        ));
+        $user = $this->users->create(NewUserData::makeFromRequestAndSession(app('request'), app('session.store')));
 
         $this->dispatchNow(new SendEmailAddressConfirmation($user));
 

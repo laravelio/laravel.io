@@ -7,6 +7,7 @@
         "php": "^7.0",
         "bugsnag/bugsnag-laravel": "^1.6",
         "greggilbert/recaptcha": "^2.1",
+        "guzzlehttp/guzzle": "^6.2",
         "laravel/framework": "5.3.*",
         "laravel/socialite": "^2.0",
         "laravelcollective/html": "^5.2@dev",

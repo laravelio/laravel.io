@@ -181,6 +181,7 @@ return [
         App\Markdown\MarkdownServiceProvider::class,
         App\ModelFactories\ModelFactoryServiceProvider::class,
         App\Replies\ReplyServiceProvider::class,
+        App\Social\SocialServiceProvider::class,
         App\Spam\SpamServiceProvider::class,
         App\Tags\TagServiceProvider::class,
         App\Users\UserServiceProvider::class,

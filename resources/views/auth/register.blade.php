@@ -4,6 +4,12 @@
 
 @section('small-content')
     {!! Form::open(['route' => 'register.post']) !!}
+        @if (session()->has('githubData'))
+            <div class="alert alert-info">
+                Password isn't required when registering through Github.
+            </div>
+        @endif
+
         @formGroup('name')
             {!! Form::label('name') !!}
             {!! Form::text('name', session('githubData.name'), ['class' => 'form-control', 'required']) !!}
@@ -38,7 +44,6 @@
             @error('g-recaptcha-response')
         @endFormGroup
 
-        {!! Form::hidden('github_id', session('githubData.id')) !!}
         {!! Form::submit('Register', ['class' => 'btn btn-primary btn-block']) !!}
     {!! Form::close() !!}
 @stop

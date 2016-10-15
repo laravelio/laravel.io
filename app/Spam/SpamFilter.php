@@ -22,7 +22,7 @@ class SpamFilter implements SpamDetector
     public function detectsSpam($value, User $user = null): bool
     {
         return collect($this->detectors)
-            ->contains(function ($key, SpamDetector $detector) use ($value, $user) {
+            ->contains(function (SpamDetector $detector) use ($value, $user) {
                 return $detector->detectsSpam($value, $user);
             });
     }
