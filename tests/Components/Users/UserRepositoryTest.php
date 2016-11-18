@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Integration\Users;
+namespace Tests\Components\Users;
 
 use App\Users\Exceptions\CannotCreateUser;
 use App\Users\NewUserData;

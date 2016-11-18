@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Integration\Forum;
+namespace Tests\Components\Forum;
 
 use App\Forum\Thread;
 use App\Forum\ThreadRepository;

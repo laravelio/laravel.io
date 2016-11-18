@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Integration\Replies;
+namespace Tests\Components\Replies;
 
 use App\Forum\Thread;
 use App\Replies\Reply;
