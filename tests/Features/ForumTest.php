@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Functional;
+namespace Tests\Features;
 
 use App\Forum\Thread;
 use App\Forum\Topics\Topic;
