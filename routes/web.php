@@ -10,7 +10,6 @@ foreach (['wiki', 'forum', 'forums'] as $subdomain) {
 
 // Home
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
-Route::get('rss', 'HomeController@rss');
 
 // Authentication
 Route::group(['namespace' => 'Auth'], function () {
@@ -50,11 +49,6 @@ Route::get('settings', ['as' => 'settings.profile', 'uses' => 'SettingsControlle
 Route::put('settings', ['as' => 'settings.profile.update', 'uses' => 'SettingsController@updateProfile']);
 Route::get('settings/password', ['as' => 'settings.password', 'uses' => 'SettingsController@password']);
 Route::put('settings/password', ['as' => 'settings.password.update', 'uses' => 'SettingsController@updatePassword']);
-
-// Paste Bin
-Route::get('bin', 'PasteBinController@create');
-Route::get('bin/{hash}/raw', 'PasteBinController@raw');
-Route::get('bin/{hash}', 'PasteBinController@show');
 
 // Forum
 Route::group(['namespace' => 'Forum'], function() {
