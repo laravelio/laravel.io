@@ -7,13 +7,16 @@ use App\Replies\Reply;
 use App\Replies\ReplyRepository;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-use Tests\TestsRepositories;
+use Tests\TestsRepository;
 
 class ReplyRepositoryTest extends TestCase
 {
-    use DatabaseMigrations, TestsRepositories;
+    use DatabaseMigrations, TestsRepository;
 
-    protected $repoName = ReplyRepository::class;
+    /**
+     * @var \App\Replies\ReplyRepository
+     */
+    protected $repo = ReplyRepository::class;
 
     /** @test */
     function we_can_create_a_reply()

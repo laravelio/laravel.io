@@ -2,16 +2,14 @@
 
 namespace Tests;
 
-trait TestsRepositories
+trait TestsRepository
 {
-    protected $repo;
-
     /**
      * @before
      */
     public function setUpRepository()
     {
-        $this->repo = $this->app->make($this->repoName);
+        $this->repo = app($this->repo);
     }
 
     /**

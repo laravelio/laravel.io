@@ -8,13 +8,16 @@ use App\Users\User;
 use App\Users\UserRepository;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-use Tests\TestsRepositories;
+use Tests\TestsRepository;
 
 class UserRepositoryTest extends TestCase
 {
-    use DatabaseMigrations, TestsRepositories;
+    use DatabaseMigrations, TestsRepository;
 
-    protected $repoName = UserRepository::class;
+    /**
+     * @var \App\Users\UserRepository
+     */
+    protected $repo = UserRepository::class;
 
     /** @test */
     function find_by_username()

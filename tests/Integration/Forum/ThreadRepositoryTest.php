@@ -9,13 +9,16 @@ use App\Replies\Reply;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-use Tests\TestsRepositories;
+use Tests\TestsRepository;
 
 class ThreadRepositoryTest extends TestCase
 {
-    use DatabaseMigrations, TestsRepositories;
+    use DatabaseMigrations, TestsRepository;
 
-    protected $repoName = ThreadRepository::class;
+    /**
+     * @var \App\Forum\ThreadRepository
+     */
+    protected $repo = ThreadRepository::class;
 
     /** @test */
     public function find_all_paginated()
