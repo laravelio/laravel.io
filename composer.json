@@ -5,13 +5,13 @@
     "type": "project",
     "require": {
         "php": "^7.0",
-        "bugsnag/bugsnag-laravel": "^1.6",
+        "bugsnag/bugsnag-laravel": "^2.4",
         "greggilbert/recaptcha": "^2.1",
         "guzzlehttp/guzzle": "^6.2",
         "laravel/framework": "5.3.*",
         "laravel/socialite": "^2.0",
         "laravelcollective/html": "^5.2@dev",
-        "league/commonmark": "^0.14.0",
+        "league/commonmark": "^0.15.1",
         "tijsverkoyen/akismet": "^1.1"
     },
     "require-dev": {
@@ -19,7 +19,7 @@
         "fzaninotto/faker": "^1.6",
         "laravel/homestead": "^3.0",
         "mockery/mockery": "^0.9.5",
-        "phpspec/phpspec": "^2.5",
+        "phpspec/phpspec": "^3.1",
         "phpunit/phpunit": "^5.3",
         "symfony/css-selector": "^3.0",
         "symfony/dom-crawler": "^3.0"

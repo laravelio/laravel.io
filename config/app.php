@@ -166,7 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
+        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
