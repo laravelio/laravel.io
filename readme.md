@@ -38,13 +38,13 @@ Please make sure you install the following tools before starting with the instal
 5. Add `192.168.10.10 lio.loc` to your computer's `/etc/hosts` file
 
 ```yaml
+---
 ip: "192.168.10.10"
 memory: 4096
 cpus: 1
 hostname: laravelio
 name: laravelio
 provider: virtualbox
-mariadb: true
 
 authorize: ~/.ssh/id_rsa.pub
 
