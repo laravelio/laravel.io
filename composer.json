@@ -10,7 +10,7 @@
         "guzzlehttp/guzzle": "^6.2",
         "laravel/framework": "5.3.*",
         "laravel/socialite": "^2.0",
-        "laravelcollective/html": "^5.2@dev",
+        "laravelcollective/html": "^5.3",
         "league/commonmark": "^0.15.1",
         "tijsverkoyen/akismet": "^1.1"
     },
