@@ -14,6 +14,7 @@ interface User extends Timestamps
     public function gratavarUrl($size = 100): string;
     public function isConfirmed(): bool;
     public function isUnconfirmed(): bool;
+    public function isBanned(): bool;
     public function confirmationCode(): string;
     public function matchesConfirmationCode(string $code): bool;
 

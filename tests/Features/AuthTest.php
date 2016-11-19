@@ -127,6 +127,19 @@ class AuthTest extends TestCase
     }
 
     /** @test */
+    function login_fails_when_user_is_banned()
+    {
+        $this->createUser(['is_banned' => true]);
+
+        $this->visit('/login')
+            ->type('johndoe', 'username')
+            ->type('password', 'password')
+            ->press('Login')
+            ->seePageIs('/')
+            ->see('This account is banned.');
+    }
+
+    /** @test */
     function users_can_logout()
     {
         $this->login();

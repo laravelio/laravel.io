@@ -83,6 +83,11 @@ final class EloquentUser extends Authenticatable implements User
         return ! $this->isConfirmed();
     }
 
+    public function isBanned(): bool
+    {
+        return (bool) $this->is_banned;
+    }
+
     public function confirmationCode(): string
     {
         return (string) $this->confirmation_code;

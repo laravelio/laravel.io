@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\RedirectIfBanned;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Auth\Middleware\Authorize;
@@ -43,6 +44,7 @@ class Kernel extends HttpKernel
             ShareErrorsFromSession::class,
             SubstituteBindings::class,
             VerifyCsrfToken::class,
+            RedirectIfBanned::class,
         ],
         'api' => [
             'throttle:60,1',

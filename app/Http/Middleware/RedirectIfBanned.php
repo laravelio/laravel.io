@@ -6,14 +6,16 @@ use App\Alerts\SendsAlerts;
 use Auth;
 use Closure;
 
-class RedirectIfUnconfirmed
+class RedirectIfBanned
 {
     use SendsAlerts;
 
     public function handle($request, Closure $next, string $guard = null)
     {
-        if (Auth::user()->isUnconfirmed()) {
-            $this->error('errors.unconfirmed');
+        if (Auth::check() && Auth::user()->isBanned()) {
+            $this->error('errors.banned');
+
+            Auth::logout();
 
             return redirect()->home();
         }
