@@ -46,8 +46,6 @@ final class EloquentThreadRepository implements ThreadRepository
         $thread = $this->model->newInstance(compact('subject', 'body'));
         $thread->authorRelation()->associate($author);
         $thread->topicRelation()->associate($topic);
-
-        // Todo: Figure out what to do with these
         $thread->slug = $this->generateUniqueSlug($subject);
         $thread->ip = Arr::get($attributes, 'ip', '');
         $thread->save();
