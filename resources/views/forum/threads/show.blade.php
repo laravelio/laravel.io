@@ -21,31 +21,29 @@
         </p>
     @endcan
 
-    @if (count($replies = $thread->replies()))
-        @foreach ($replies as $reply)
-            <hr>
-            @md($reply->body())
-            <p>By {{ $reply->author()->name() }} - {{ $reply->createdAt()->diffForHumans() }}</p>
+    @foreach ($thread->replies() as $reply)
+        <hr>
+        @md($reply->body())
+        <p>By {{ $reply->author()->name() }} - {{ $reply->createdAt()->diffForHumans() }}</p>
 
-            @can('update', $reply)
+        @can('update', $reply)
+            <p>
+                <a href="{{ route('replies.edit', $reply->id()) }}">Edit</a> |
+                <a href="{{ route('replies.delete', $reply->id()) }}">Delete</a>
+            </p>
+        @endcan
+
+        @can('update', $thread)
+            @if ($thread->isSolutionReply($reply))
                 <p>
-                    <a href="{{ route('replies.edit', $reply->id()) }}">Edit</a> |
-                    <a href="{{ route('replies.delete', $reply->id()) }}">Delete</a>
+                    This is the solution.
+                    <a href="{{ route('threads.solution.unmark', $thread->slug()) }}">Unmark As Solution</a>
                 </p>
-            @endcan
-
-            @can('update', $thread)
-                @if ($thread->isSolutionReply($reply))
-                    <p>
-                        This is the solution.
-                        <a href="{{ route('threads.solution.unmark', $thread->slug()) }}">Unmark As Solution</a>
-                    </p>
-                @else
-                    <p><a href="{{ route('threads.solution.mark', [$thread->slug(), $reply->id()]) }}">Mark As Solution</a></p>
-                @endif
-            @endcan
-        @endforeach
-    @endif
+            @else
+                <p><a href="{{ route('threads.solution.mark', [$thread->slug(), $reply->id()]) }}">Mark As Solution</a></p>
+            @endif
+        @endcan
+    @endforeach
 
     @if (Auth::check())
         <hr>

@@ -1,7 +1,5 @@
 <?php
 
-use App\Replies\ReplyAble;
-
 if (! function_exists('active')) {
     /**
      * Sets the menu item class for an active route.
@@ -18,7 +16,7 @@ if (! function_exists('md_to_html')) {
      */
     function md_to_html(string $markdown): string
     {
-        return app(\App\Markdown\Converter::class)->toHtml($markdown);
+        return app(App\Markdown\Converter::class)->toHtml($markdown);
     }
 }
 
@@ -26,9 +24,9 @@ if (! function_exists('route_to_reply_able')) {
     /**
      * Returns the route for the replyAble.
      */
-    function route_to_reply_able(ReplyAble $replyAble): string
+    function route_to_reply_able(App\Replies\ReplyAble $replyAble): string
     {
-        if ($replyAble instanceof \App\Forum\Thread) {
+        if ($replyAble instanceof App\Forum\Thread) {
             return route('thread', $replyAble->slug());
         }
     }

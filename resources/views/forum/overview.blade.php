@@ -19,16 +19,14 @@
         @endforeach
     @endif
 
-    @if (count($threads))
-        @foreach ($threads as $thread)
-            <h2><a href="{{ route('thread', $thread->slug()) }}">{{ $thread->subject() }}</a></h2>
-            <p>
-                Topic: {{ $thread->topic()->name() }} |
-                {{ $thread->createdAt()->diffForHumans() }} |
-                {{ count($thread->replies()) }} replies
-            </p>
-        @endforeach
-    @endif
+    @foreach ($threads as $thread)
+        <h2><a href="{{ route('thread', $thread->slug()) }}">{{ $thread->subject() }}</a></h2>
+        <p>
+            Topic: {{ $thread->topic()->name() }} |
+            {{ $thread->createdAt()->diffForHumans() }} |
+            {{ count($thread->replies()) }} replies
+        </p>
+    @endforeach
 
     <div class="text-center">
         {!! $threads->render() !!}

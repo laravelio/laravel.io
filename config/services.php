@@ -41,13 +41,6 @@ return [
         'redirect' => env('GITHUB_URL'),
     ],
 
-    'snappy' => [
-        'enabled' => env('SNAPPY_ENABLED', false),
-        'debug' => env('SNAPPY_DEBUG', false),
-        'embed_url' => env('SNAPPY_EMBED_URL'),
-        'domain' => env('SNAPPY_DOMAIN'),
-    ],
-
     'akismet' => [
         'api_key' => env('AKISMET_API_KEY'),
     ],

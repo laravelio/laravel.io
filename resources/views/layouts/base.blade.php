@@ -25,6 +25,5 @@
     </div>
 
     <script src="{{ elixir('js/app.js') }}"></script>
-    @include('layouts._snappy')
 </body>
 </html>
