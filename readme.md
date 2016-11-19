@@ -67,7 +67,7 @@ You can now visit the app in your browser by visiting [http://lio.loc/](http://l
 
 ## Maintainers
 
-The Laravel.io portal is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to contact us through the support widget on the [Laravel.io](http://laravel.io/) website.
+The Laravel.io portal is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to create an issue on this repo or ask us through the #laravelio channel on [Slack](https://larachat.slack.com).
 
 ## Contributing
 
