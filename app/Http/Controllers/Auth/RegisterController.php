@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Jobs\SendEmailAddressConfirmation;
 use App\Http\Controllers\Controller;
-use App\Users\NewUserData;
 use App\Users\User;
 use App\Users\UserRepository;
 use App\Users\UserWasRegistered;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Session;
 use Validator;
 
 class RegisterController extends Controller
@@ -54,23 +53,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $rules = [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'username' => 'required|max:40|unique:users',
-        ];
-
-        if (Session::has('githubData')) {
-            $rules['password'] = 'confirmed|min:6';
-        } else {
-            $rules['password'] = 'required|confirmed|min:6';
-        }
-
-        if (! app()->runningUnitTests()) {
-            $rules['g-recaptcha-response'] = 'required|recaptcha';
-        }
-
-        return Validator::make($data, $rules);
+        return Validator::make($data, app(CreateUserRequest::class)->rules());
     }
 
     /**
@@ -78,7 +61,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        $user = $this->users->create(NewUserData::makeFromRequestAndSession(app('request'), app('session.store')));
+        $user = $this->users->create(app(CreateUserRequest::class));
 
         $this->dispatchNow(new SendEmailAddressConfirmation($user));
 

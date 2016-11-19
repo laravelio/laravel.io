@@ -3,7 +3,7 @@
 namespace Tests\Components\Users;
 
 use App\Users\Exceptions\CannotCreateUser;
-use App\Users\NewUserData;
+use App\Users\NewUser;
 use App\Users\User;
 use App\Users\UserRepository;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -38,7 +38,7 @@ class UserRepositoryTest extends TestCase
     /** @test */
     function we_can_create_a_user()
     {
-        $this->assertInstanceOf(User::class, $this->repo->create(new NewUserData(
+        $this->assertInstanceOf(User::class, $this->repo->create(new DummyNewUser(
             'John Doe',
             'john@example.com',
             'johndoe',
@@ -51,8 +51,8 @@ class UserRepositoryTest extends TestCase
     {
         $this->expectException(CannotCreateUser::class);
 
-        $this->repo->create(new NewUserData('John Doe', 'john@example.com', 'johndoe', 'password'));
-        $this->repo->create(new NewUserData('John Foo', 'john@example.com', 'johnfoo', 'password'));
+        $this->repo->create(new DummyNewUser('John Doe', 'john@example.com', 'johndoe', 'password'));
+        $this->repo->create(new DummyNewUser('John Foo', 'john@example.com', 'johnfoo', 'password'));
     }
 
     /** @test */
@@ -60,8 +60,8 @@ class UserRepositoryTest extends TestCase
     {
         $this->expectException(CannotCreateUser::class);
 
-        $this->repo->create(new NewUserData('John Doe', 'john@example.com', 'johndoe', 'password'));
-        $this->repo->create(new NewUserData('John Doe', 'john.doe@example.com', 'johndoe', 'password'));
+        $this->repo->create(new DummyNewUser('John Doe', 'john@example.com', 'johndoe', 'password'));
+        $this->repo->create(new DummyNewUser('John Doe', 'john.doe@example.com', 'johndoe', 'password'));
     }
 
     /** @test */
@@ -73,5 +73,71 @@ class UserRepositoryTest extends TestCase
 
         $this->assertEquals('foo', $user->username());
         $this->seeInDatabase('users', ['username' => 'foo', 'name' => 'bar']);
+    }
+}
+
+class DummyNewUser implements NewUser
+{
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $emailAddress;
+
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string|null
+     */
+    private $password;
+
+    public function __construct($name, $emailAddress, $username, $password = null)
+    {
+        $this->name = $name;
+        $this->emailAddress = $emailAddress;
+        $this->username = $username;
+        $this->password = $password;
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function emailAddress(): string
+    {
+        return $this->emailAddress;
+    }
+
+    public function username(): string
+    {
+        return $this->username;
+    }
+
+    public function password(): string
+    {
+        return $this->password ?: '';
+    }
+
+    public function ip()
+    {
+        return '';
+    }
+
+    public function githubId(): string
+    {
+        return '';
+    }
+
+    public function githubUsername(): string
+    {
+        return '';
     }
 }
