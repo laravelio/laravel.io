@@ -16,7 +16,7 @@ class DoesNotContainUrlRule
         $this->validator = $validator;
     }
 
-    public function validate($attribute, $value)
+    public function validate($attribute, $value): bool
     {
         return ! collect(explode(' ', $value))->contains(function ($word) {
             return $this->validator

@@ -4,30 +4,33 @@ namespace App\Spam;
 
 use Illuminate\Support\ServiceProvider;
 use TijsVerkoyen\Akismet\Akismet;
+use Validator;
 
 class SpamServiceProvider extends ServiceProvider
 {
+    public function boot()
+    {
+        Validator::extend('spam', SpamRule::class.'@validate');
+    }
+
     public function register()
     {
-        $this->app->singleton(AkismetSpamDetector::class, function ($app) {
-            $config = $app['config'];
-            $apiKey = $config['services']['akismet']['api_key'];
-            $url = $config['app']['url'];
-
-            return new AkismetSpamDetector(new Akismet($apiKey, $url));
-        });
-
-        $this->app->singleton(SpamDetector::class, function ($app) {
-            return new SpamFilter([
+        $this->app->singleton(SpamDetector::class, function () {
+            $detectors = [
                 new PhoneNumberSpamDetector,
                 new ForeignLanguageSpamDetector,
-                $app[AkismetSpamDetector::class]
-            ]);
+            ];
+
+            if ($apiKey = config('services.akismet.api_key')) {
+                $detectors[] = $this->akismetSpamDetector($apiKey);
+            }
+
+            return new SpamFilter($detectors);
         });
     }
 
-    public function provides()
+    private function akismetSpamDetector($apiKey): AkismetSpamDetector
     {
-        return [AkismetSpamDetector::class, SpamDetector::class];
+        return new AkismetSpamDetector(new Akismet($apiKey, config('app.url')));
     }
 }

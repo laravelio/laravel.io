@@ -19,8 +19,8 @@ class AkismetSpamDetector implements SpamDetector
 
     public function detectsSpam($value, User $user = null): bool
     {
-        $name = $user ? $user->name : null;
-        $email = $user ? $user->email : null;
+        $name = $user ? $user->name() : null;
+        $email = $user ? $user->emailAddress() : null;
 
         if (! $this->akismet->verifyKey()) {
             return false;

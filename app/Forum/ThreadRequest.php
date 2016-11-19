@@ -17,8 +17,8 @@ class ThreadRequest extends Request
     {
         $rules = [
             'topic' => 'required|exists:topics,id',
-            'subject' => 'required|not_contain_url',
-            'body' => 'required',
+            'subject' => 'required|not_contain_url|spam',
+            'body' => 'required|spam',
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',
         ];

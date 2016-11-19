@@ -84,6 +84,7 @@ return [
     'not_contain_url' => 'The :attribute field cannot contain an url.',
     'passcheck' => 'Your current password is incorrect.',
     'recaptcha' => 'The captcha field is not correct.',
+    'spam' => 'The :attribute field contains spam.',
 
     /*
     |--------------------------------------------------------------------------
