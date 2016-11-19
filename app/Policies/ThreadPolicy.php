@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Forum;
+namespace App\Policies;
 
-use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Forum\Thread;
 use App\Users\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ThreadPolicy
 {

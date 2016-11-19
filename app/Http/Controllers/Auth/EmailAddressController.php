@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Jobs\SendEmailAddressConfirmation;
 use App\Http\Controllers\Controller;
-use App\Users\SendEmailAddressConfirmation;
 use App\Users\User;
 use App\Users\UserRepository;
 use Auth;

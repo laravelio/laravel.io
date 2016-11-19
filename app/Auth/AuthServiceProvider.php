@@ -2,12 +2,12 @@
 
 namespace App\Auth;
 
+use App\Policies\ReplyPolicy;
+use App\Policies\ThreadPolicy;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Forum\Thread;
-use App\Forum\ThreadPolicy;
 use App\Replies\Reply;
-use App\Replies\ReplyPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {

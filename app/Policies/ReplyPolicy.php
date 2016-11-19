@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Replies;
+namespace App\Policies;
 
-use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Replies\Reply;
 use App\Users\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ReplyPolicy
 {

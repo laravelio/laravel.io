@@ -2,7 +2,7 @@
 
 namespace Tests\Features;
 
-use App\Users\ConfirmEmailAddress;
+use App\Mail\ConfirmEmailAddress;
 use App\Users\UserWasRegistered;
 use Auth;
 use Carbon\Carbon;
