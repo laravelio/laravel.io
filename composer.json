@@ -52,7 +52,8 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
         ],
-        "test": "phpunit"
+        "test": "phpunit",
+        "specs": "phpspec run"
     },
     "config": {
         "preferred-install": "dist",
