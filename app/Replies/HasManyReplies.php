@@ -11,7 +11,7 @@ trait HasManyReplies
      */
     public function replies()
     {
-        return $this->replyable;
+        return $this->replyAble;
     }
 
     public function replyAble(): HasMany
