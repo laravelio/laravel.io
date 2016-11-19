@@ -14,8 +14,8 @@ trait HasManyReplies
         return $this->replyable;
     }
 
-    public function replyable(): HasMany
+    public function replyAble(): HasMany
     {
-        return $this->hasMany(EloquentReply::class);
+        return $this->hasMany(Reply::class);
     }
 }

@@ -73,7 +73,7 @@ class ReplyController extends Controller
     private function findReplyAble(int $id, string $type): ReplyAble
     {
         switch ($type) {
-            case Thread::TYPE:
+            case Thread::TABLE:
                 return $this->threads->find($id);
         }
 

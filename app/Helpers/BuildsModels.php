@@ -1,17 +1,17 @@
 <?php
 
-namespace App\ModelFactories;
+namespace App\Helpers;
 
 trait BuildsModels
 {
     public function make(string $model, array $attributes = [])
     {
-        return app(ModelFactory::class)->make($model, $attributes);
+        return factory($model)->make($attributes);
     }
 
     public function create(string $model, array $attributes = [], int $times = 1)
     {
-        return app(ModelFactory::class)->create($model, $attributes, $times);
+        return factory($model, $times)->create($attributes);
     }
 }
 

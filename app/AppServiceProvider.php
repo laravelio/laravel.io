@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Forum\EloquentThread;
+use App\Forum\Thread;
 use Auth;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
     private function bootEloquentMorphs()
     {
         Relation::morphMap([
-            EloquentThread::TYPE => EloquentThread::class,
+            Thread::TABLE => Thread::class,
         ]);
     }
 }

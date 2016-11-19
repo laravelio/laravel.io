@@ -16,6 +16,6 @@ trait UsesReplies
 
     public function replyAble(): MorphMany
     {
-        return $this->morphMany(EloquentReply::class, 'replyable');
+        return $this->morphMany(Reply::class, 'replyable');
     }
 }

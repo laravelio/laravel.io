@@ -4,9 +4,9 @@ namespace App\Auth;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use App\Forum\EloquentThread;
+use App\Forum\Thread;
 use App\Forum\ThreadPolicy;
-use App\Replies\EloquentReply;
+use App\Replies\Reply;
 use App\Replies\ReplyPolicy;
 
 class AuthServiceProvider extends ServiceProvider
@@ -17,8 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        EloquentReply::class => ReplyPolicy::class,
-        EloquentThread::class => ThreadPolicy::class,
+        Reply::class => ReplyPolicy::class,
+        Thread::class => ThreadPolicy::class,
     ];
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 use App\Forum\Thread;
-use App\ModelFactories\BuildsModels;
+use App\Helpers\BuildsModels;
 use Illuminate\Database\Seeder;
 
 class ThreadSeeder extends Seeder

@@ -3,7 +3,7 @@
 namespace Tests\Features;
 
 use App\Forum\ThreadRepository;
-use App\Forum\Topics\Topic;
+use App\Forum\Topic;
 use App\Tags\Tag;
 use App\Users\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

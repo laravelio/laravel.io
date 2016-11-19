@@ -2,8 +2,6 @@
 
 namespace App\Forum;
 
-use App\Forum\Topics\Topic;
-use App\Forum\Topics\TopicRepository;
 use App\Http\Requests\Request;
 
 class ThreadRequest extends Request

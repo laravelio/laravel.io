@@ -1,7 +1,7 @@
 <?php
 
-use App\Forum\Topics\Topic;
-use App\ModelFactories\BuildsModels;
+use App\Forum\Topic;
+use App\Helpers\BuildsModels;
 use Illuminate\Database\Seeder;
 
 class TopicSeeder extends Seeder

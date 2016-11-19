@@ -1,7 +1,7 @@
 <?php
 
 use App\Forum\ThreadRepository;
-use App\Forum\Topics\TopicRepository;
+use App\Forum\TopicRepository;
 use App\Replies\ReplyRepository;
 use App\Tags\TagRepository;
 use App\Users\UserRepository;

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Forum\Thread;
 use App\Forum\ThreadRequest;
-use App\Forum\Topics\TopicRepository;
+use App\Forum\TopicRepository;
 use App\Http\Controllers\Controller;
 use App\Forum\ThreadRepository;
 use App\Replies\Reply;

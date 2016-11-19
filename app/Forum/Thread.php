@@ -3,29 +3,82 @@
 namespace App\Forum;
 
 use App\DateTime\Timestamps;
-use App\Forum\Topics\Topic;
-use App\Replies\Reply;
 use App\Tags\Taggable;
 use App\Users\Authored;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\DateTime\HasTimestamps;
+use App\Replies\Reply;
+use App\Replies\UsesReplies;
+use App\Replies\ReplyAble;
+use App\Tags\UsesTags;
+use App\Users\HasAuthor;
 
-interface Thread extends Authored, Taggable, Timestamps
+class Thread extends Model implements Authored, ReplyAble, Taggable, Timestamps
 {
-    const TYPE = 'threads';
+    use HasAuthor, HasTimestamps, UsesReplies, UsesTags;
 
-    public function id(): int;
-    public function subject(): string;
-    public function body(): string;
-    public function slug(): string;
-    public function topic(): Topic;
+    const TABLE = 'threads';
+
+    /**
+     * @var string
+     */
+    protected $table = self::TABLE;
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['subject', 'body'];
+
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function subject(): string
+    {
+        return $this->subject;
+    }
+
+    public function body(): string
+    {
+        return $this->body;
+    }
+
+    public function slug(): string
+    {
+        return $this->slug;
+    }
+
+    public function topic(): Topic
+    {
+        return $this->topicRelation;
+    }
+
+    public function topicRelation(): BelongsTo
+    {
+        return $this->belongsTo(Topic::class, 'topic_id');
+    }
 
     /**
      * @return \App\Replies\Reply|null
      */
-    public function solutionReply();
-    public function isSolutionReply(Reply $reply): bool;
+    public function solutionReply()
+    {
+        return $this->solutionReplyRelation;
+    }
 
-    /**
-     * @return \App\Replies\Reply[]
-     */
-    public function replies();
+    public function solutionReplyRelation(): BelongsTo
+    {
+        return $this->belongsTo(Reply::class, 'solution_reply_id');
+    }
+
+    public function isSolutionReply(Reply $reply): bool
+    {
+        if ($solution = $this->solutionReply()) {
+            return $solution->id() === $reply->id();
+        }
+
+        return false;
+    }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Alerts\SendsAlerts;
+use App\Helpers\SendsAlerts;
 
 abstract class Request extends FormRequest
 {

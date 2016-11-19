@@ -176,15 +176,10 @@ return [
          */
         App\AppServiceProvider::class,
         App\Auth\AuthServiceProvider::class,
-        App\Forum\ForumServiceProvider::class,
         App\Http\RouteServiceProvider::class,
         App\Markdown\MarkdownServiceProvider::class,
-        App\ModelFactories\ModelFactoryServiceProvider::class,
-        App\Replies\ReplyServiceProvider::class,
         App\Social\SocialServiceProvider::class,
         App\Spam\SpamServiceProvider::class,
-        App\Tags\TagServiceProvider::class,
-        App\Users\UserServiceProvider::class,
         App\Validation\ValidationServiceProvider::class,
         App\Views\ViewServiceProvider::class,
 

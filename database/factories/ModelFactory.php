@@ -11,13 +11,13 @@
 |
 */
 
-use App\Forum\EloquentThread;
-use App\Forum\Topics\EloquentTopic;
-use App\Replies\EloquentReply;
-use App\Tags\EloquentTag;
-use App\Users\EloquentUser;
+use App\Forum\Thread;
+use App\Forum\Topic;
+use App\Replies\Reply;
+use App\Tags\Tag;
+use App\Users\User;
 
-$factory->define(EloquentUser::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -35,35 +35,35 @@ $factory->define(EloquentUser::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(EloquentThread::class, function (Faker\Generator $faker) {
+$factory->define(Thread::class, function (Faker\Generator $faker) {
     return [
         'topic_id' => 1,
         'subject' => $faker->text(20),
         'body' => $faker->text,
         'slug' => $faker->slug,
-        'author_id' => factory(EloquentUser::class)->create()->id(),
+        'author_id' => factory(User::class)->create()->id(),
         'ip' => $faker->ipv6,
     ];
 });
 
-$factory->define(EloquentTopic::class, function (Faker\Generator $faker) {
+$factory->define(Topic::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->text(20),
         'slug' => $faker->slug,
     ];
 });
 
-$factory->define(EloquentReply::class, function (Faker\Generator $faker) {
+$factory->define(Reply::class, function (Faker\Generator $faker) {
     return [
         'body' => $faker->text(),
-        'author_id' => factory(EloquentUser::class)->create()->id(),
-        'replyable_id' => factory(EloquentThread::class)->create()->id(),
-        'replyable_type' => EloquentThread::TYPE,
+        'author_id' => factory(User::class)->create()->id(),
+        'replyable_id' => factory(Thread::class)->create()->id(),
+        'replyable_type' => Thread::TABLE,
         'ip' => $faker->ipv6,
     ];
 });
 
-$factory->define(EloquentTag::class, function (Faker\Generator $faker) {
+$factory->define(Tag::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->text(15),
         'slug' => $faker->slug,

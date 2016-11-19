@@ -2,24 +2,100 @@
 
 namespace App\Users;
 
+use App\DateTime\HasTimestamps;
 use App\DateTime\Timestamps;
+use App\Replies\HasManyReplies;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-interface User extends Timestamps
+class User extends Authenticatable implements Timestamps
 {
-    public function id(): int;
-    public function name(): string;
-    public function emailAddress(): string;
-    public function username(): string;
-    public function githubUsername(): string;
-    public function gratavarUrl($size = 100): string;
-    public function isConfirmed(): bool;
-    public function isUnconfirmed(): bool;
-    public function isBanned(): bool;
-    public function confirmationCode(): string;
-    public function matchesConfirmationCode(string $code): bool;
+    use HasManyReplies, HasTimestamps, Notifiable;
 
     /**
-     * @return \App\Replies\Reply[]
+     * The database table used by the model.
+     *
+     * @var string
      */
-    public function replies();
+    protected $table = 'users';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'username',
+        'password',
+        'ip',
+        'confirmed',
+        'confirmation_code',
+        'github_id',
+    ];
+
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['password', 'remember_token'];
+
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function emailAddress(): string
+    {
+        return $this->email;
+    }
+
+    public function username(): string
+    {
+        return $this->username;
+    }
+
+    public function githubUsername(): string
+    {
+        return $this->github_url;
+    }
+
+    public function gratavarUrl($size = 100): string
+    {
+        $hash = md5(strtolower(trim($this->email)));
+
+        return "https://www.gravatar.com/avatar/$hash?s=$size";
+    }
+
+    public function isConfirmed(): bool
+    {
+        return (bool) $this->confirmed;
+    }
+
+    public function isUnconfirmed(): bool
+    {
+        return ! $this->isConfirmed();
+    }
+
+    public function isBanned(): bool
+    {
+        return (bool) $this->is_banned;
+    }
+
+    public function confirmationCode(): string
+    {
+        return (string) $this->confirmation_code;
+    }
+
+    public function matchesConfirmationCode(string $code): bool
+    {
+        return $this->confirmation_code === $code;
+    }
 }

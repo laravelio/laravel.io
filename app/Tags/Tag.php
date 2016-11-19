@@ -2,15 +2,54 @@
 
 namespace App\Tags;
 
-interface Tag
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use App\Forum\Thread;
+
+class Tag extends Model
 {
-    public function id(): int;
-    public function name(): string;
-    public function slug(): string;
-    public function description(): string;
+    /**
+     * @var string
+     */
+    protected $table = 'tags';
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function slug(): string
+    {
+        return $this->slug;
+    }
+
+    public function description(): string
+    {
+        return $this->description;
+    }
 
     /**
      * @return \App\Forum\Thread[]
      */
-    public function threads();
+    public function threads()
+    {
+        return $this->threadsRelation;
+    }
+
+    public function threadsRelation(): MorphToMany
+    {
+        return $this->morphedByMany(Thread::class, 'taggable', 'taggables', 'tag_id');
+    }
 }

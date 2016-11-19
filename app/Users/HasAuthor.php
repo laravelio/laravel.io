@@ -13,7 +13,7 @@ trait HasAuthor
 
     public function authorRelation(): BelongsTo
     {
-        return $this->belongsTo(EloquentUser::class, 'author_id');
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     public function isAuthoredBy(User $user): bool

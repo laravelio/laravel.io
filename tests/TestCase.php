@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\ModelFactories\BuildsModels;
+use App\Helpers\BuildsModels;
 use App\Users\User;
 use Illuminate\Contracts\Console\Kernel;
 use Illuminate\Foundation\Application;

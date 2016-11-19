@@ -1,6 +1,6 @@
 <?php
 
-use App\ModelFactories\BuildsModels;
+use App\Helpers\BuildsModels;
 use App\Users\User;
 use Illuminate\Database\Seeder;
 

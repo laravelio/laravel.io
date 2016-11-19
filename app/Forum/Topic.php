@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Forum\Topics;
+namespace App\Forum;
 
+use App\DateTime\Timestamps;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\DateTime\HasTimestamps;
-use App\Forum\EloquentThread;
 
-final class EloquentTopic extends Model implements Topic
+class Topic extends Model implements Timestamps
 {
     use HasTimestamps;
 
@@ -54,6 +54,6 @@ final class EloquentTopic extends Model implements Topic
 
     public function threadsRelation(): HasMany
     {
-        return $this->hasMany(EloquentThread::class, 'topic_id');
+        return $this->hasMany(Thread::class, 'topic_id');
     }
 }

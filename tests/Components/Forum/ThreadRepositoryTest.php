@@ -4,7 +4,7 @@ namespace Tests\Components\Forum;
 
 use App\Forum\Thread;
 use App\Forum\ThreadRepository;
-use App\Forum\Topics\Topic;
+use App\Forum\Topic;
 use App\Replies\Reply;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

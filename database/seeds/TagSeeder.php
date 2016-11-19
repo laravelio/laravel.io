@@ -1,6 +1,6 @@
 <?php
 
-use App\ModelFactories\BuildsModels;
+use App\Helpers\BuildsModels;
 use App\Tags\Tag;
 use Illuminate\Database\Seeder;
 

@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Forum\Topics;
+namespace App\Forum;
 
-final class EloquentTopicRepository implements TopicRepository
+class TopicRepository
 {
     /**
-     * @var \App\Forum\Topics\EloquentTopic
+     * @var \App\Forum\Topic
      */
     private $model;
 
-    public function __construct(EloquentTopic $model)
+    public function __construct(Topic $model)
     {
         $this->model = $model;
     }
 
     /**
-     * @return \App\Forum\Topics\Topic[]
+     * @return \App\Forum\Topic[]
      */
     public function findAll()
     {

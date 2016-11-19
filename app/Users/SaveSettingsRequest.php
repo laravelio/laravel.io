@@ -2,8 +2,8 @@
 
 namespace App\Users;
 
-use Auth;
 use App\Http\Requests\Request;
+use Auth;
 
 class SaveSettingsRequest extends Request
 {
