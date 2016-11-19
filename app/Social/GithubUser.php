@@ -41,10 +41,10 @@ class GithubUser implements Arrayable
     public function toArray(): array
     {
         return [
-            'id' => $this->attributes['id'],
-            'name' => $this->attributes['name'],
-            'email' => $this->attributes['email'],
-            'username' => $this->attributes['login'],
+            'id' => $this->get('id'),
+            'name' => $this->get('name'),
+            'email' => $this->get('email'),
+            'username' => $this->get('login'),
         ];
     }
 }
