@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Forum;
+namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
+use App\Forum\Topic;
+use App\Forum\TopicRepository;
+use Auth;
 
 class ThreadRequest extends Request
 {
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     public function rules()

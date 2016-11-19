@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
 use App\Forum\Thread;
 use App\Forum\ThreadRepository;
-use App\Replies\ReplyRequest;
+use App\Http\Requests\ReplyRequest;
 use App\Replies\Reply;
 use App\Replies\ReplyAble;
 use App\Replies\ReplyRepository;
+use Illuminate\Http\RedirectResponse;
 
 class ReplyController extends Controller
 {

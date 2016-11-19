@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\Users\ChangePasswordRequest;
-use App\Users\SaveSettingsRequest;
+use App\Http\Requests\UpdatePasswordRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Users\UserRepository;
 
 class SettingsController extends Controller
@@ -19,7 +19,7 @@ class SettingsController extends Controller
         return view('users.settings.profile');
     }
 
-    public function updateProfile(SaveSettingsRequest $request, UserRepository $users)
+    public function updateProfile(UpdateProfileRequest $request, UserRepository $users)
     {
         $users->update(Auth::user(), $request->only('name', 'email', 'username'));
 
@@ -33,7 +33,7 @@ class SettingsController extends Controller
         return view('users.settings.password');
     }
 
-    public function updatePassword(ChangePasswordRequest $request, UserRepository $users)
+    public function updatePassword(UpdatePasswordRequest $request, UserRepository $users)
     {
         $users->update(Auth::user(), $request->dataForUpdate());
 

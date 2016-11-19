@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Users;
+namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Auth;
 
-class SaveSettingsRequest extends Request
+class UpdateProfileRequest extends Request
 {
     public function authorize()
     {

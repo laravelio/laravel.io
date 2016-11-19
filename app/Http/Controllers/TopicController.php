@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Forum;
+namespace App\Http\Controllers;
 
 use App\Forum\Topic;
-use App\Http\Controllers\Controller;
 
 class TopicController extends Controller
 {

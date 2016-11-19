@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Forum;
+namespace App\Http\Controllers;
 
 use App\Forum\Thread;
-use App\Forum\ThreadRequest;
-use App\Forum\TopicRepository;
-use App\Http\Controllers\Controller;
 use App\Forum\ThreadRepository;
+use App\Forum\TopicRepository;
+use App\Http\Requests\ThreadRequest;
 use App\Replies\Reply;
 use App\Tags\TagRepository;
 
@@ -42,7 +41,7 @@ class ThreadsController extends Controller
         return view('forum.threads.create', ['topics' => $topics->findAll(), 'tags' => $tags->findAll()]);
     }
 
-    public function store(ThreadRequest $request)
+    public function store(\App\Http\Requests\ThreadRequest $request)
     {
         $thread = $this->threads->create(
             $request->user(),

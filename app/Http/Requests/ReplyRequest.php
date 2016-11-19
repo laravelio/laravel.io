@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Replies;
+namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
+use Auth;
 
 class ReplyRequest extends Request
 {
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     public function rules()

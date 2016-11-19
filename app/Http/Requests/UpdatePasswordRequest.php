@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Users;
+namespace App\Http\Requests;
 
 use Auth;
-use App\Http\Requests\Request;
 
-class ChangePasswordRequest extends Request
+class UpdatePasswordRequest extends Request
 {
     public function authorize()
     {
