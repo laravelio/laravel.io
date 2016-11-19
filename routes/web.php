@@ -23,7 +23,7 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::get('signup', 'RegisterController@redirectToRegistrationForm'); // BC for old links
     Route::post('register', ['as' => 'register.post', 'uses' => 'RegisterController@register']);
 
-    // Password reset link request
+    // Request password reset
     Route::get('password/reset', ['as' => 'password.forgot', 'uses' => 'ForgotPasswordController@showLinkRequestForm']);
     Route::post('password/email', ['as' => 'password.forgot.post', 'uses' => 'ForgotPasswordController@sendResetLinkEmail']);
 
