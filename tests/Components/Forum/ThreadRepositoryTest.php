@@ -2,10 +2,12 @@
 
 namespace Tests\Components\Forum;
 
+use App\Forum\NewThread;
 use App\Forum\Thread;
 use App\Forum\ThreadRepository;
 use App\Forum\Topic;
 use App\Replies\Reply;
+use App\Users\User;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -50,10 +52,7 @@ class ThreadRepositoryTest extends TestCase
     /** @test */
     function we_can_create_a_thread()
     {
-        $user = $this->createUser();
-        $topic = $this->create(Topic::class);
-
-        $this->assertInstanceOf(Thread::class, $this->repo->create($user, $topic, 'Foo', 'Baz'));
+        $this->assertInstanceOf(Thread::class, $this->repo->create($this->newThread()));
     }
 
     /** @test */
@@ -97,5 +96,41 @@ class ThreadRepositoryTest extends TestCase
         $thread = $this->repo->unmarkSolution($thread);
 
         $this->assertFalse($thread->isSolutionReply($reply));
+    }
+
+    private function newThread(): NewThread
+    {
+        return new class extends ThreadRepositoryTest implements NewThread
+        {
+            public function author(): User
+            {
+                return $this->createUser();
+            }
+
+            public function subject(): string
+            {
+                return 'Foo Thread';
+            }
+
+            public function body(): string
+            {
+                return 'Foo Thread Body';
+            }
+
+            public function topic(): Topic
+            {
+                return $this->create(Topic::class);
+            }
+
+            public function ip()
+            {
+                return '';
+            }
+
+            public function tags(): array
+            {
+                return [];
+            }
+        };
     }
 }

@@ -2,11 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Forum\NewThread;
 use App\Forum\Topic;
 use App\Forum\TopicRepository;
+use App\Users\User;
 use Auth;
 
-class ThreadRequest extends Request
+class ThreadRequest extends Request implements NewThread
 {
     public function authorize()
     {
@@ -30,18 +32,33 @@ class ThreadRequest extends Request
         return $rules;
     }
 
+    public function dataForUpdate(): array
+    {
+        return array_merge($this->only('subject', 'body', 'tags'), ['topic' => $this->topic()]);
+    }
+
+    public function author(): User
+    {
+        return $this->user();
+    }
+
+    public function subject(): string
+    {
+        return $this->get('subject');
+    }
+
+    public function body(): string
+    {
+        return $this->get('body');
+    }
+
     public function topic(): Topic
     {
         return app(TopicRepository::class)->find((int) $this->get('topic'));
     }
 
-    public function dataForStore(): array
+    public function tags(): array
     {
-        return array_merge($this->only('tags'), ['ip' => $this->ip()]);
-    }
-
-    public function dataForUpdate(): array
-    {
-        return array_merge($this->only('subject', 'body', 'tags'), ['topic' => $this->topic()]);
+        return $this->get('tags');
     }
 }

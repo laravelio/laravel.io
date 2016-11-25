@@ -41,15 +41,9 @@ class ThreadsController extends Controller
         return view('forum.threads.create', ['topics' => $topics->findAll(), 'tags' => $tags->findAll()]);
     }
 
-    public function store(\App\Http\Requests\ThreadRequest $request)
+    public function store(ThreadRequest $request)
     {
-        $thread = $this->threads->create(
-            $request->user(),
-            $request->topic(),
-            $request->get('subject'),
-            $request->get('body'),
-            $request->dataForStore()
-        );
+        $thread = $this->threads->create($request);
 
         $this->success('forum.threads.created');
 

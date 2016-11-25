@@ -5,7 +5,6 @@ namespace App\Forum;
 use App\Forum\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Helpers\GeneratesSlugs;
 use App\Replies\Reply;
-use App\Users\User;
 use Illuminate\Support\Arr;
 
 class ThreadRepository
@@ -40,16 +39,18 @@ class ThreadRepository
         return $this->model->where('slug', $slug)->firstOrFail();
     }
 
-    public function create(User $author, Topic $topic, string $subject, string $body, array $attributes = []): Thread
+    public function create(NewThread $data): Thread
     {
-        $thread = $this->model->newInstance(compact('subject', 'body'));
-        $thread->authorRelation()->associate($author);
-        $thread->topicRelation()->associate($topic);
-        $thread->slug = $this->generateUniqueSlug($subject);
-        $thread->ip = Arr::get($attributes, 'ip', '');
+        $thread = $this->model->newInstance();
+        $thread->subject = $data->subject();
+        $thread->body = $data->body();
+        $thread->authorRelation()->associate($data->author());
+        $thread->topicRelation()->associate($data->topic());
+        $thread->slug = $this->generateUniqueSlug($data->subject());
+        $thread->ip = $data->ip();
         $thread->save();
 
-        $thread = $this->updateTags($thread, $attributes);
+        $thread = $this->updateTags($thread, $data->tags());
         $thread->save();
 
         return $thread;
@@ -61,7 +62,7 @@ class ThreadRepository
 
         $thread->slug = $this->generateUniqueSlug($thread->subject(), $thread->id());
         $thread = $this->updateTopic($thread, $attributes);
-        $thread = $this->updateTags($thread, $attributes);
+        $thread = $this->updateTags($thread, Arr::get($attributes, 'tags', []));
         $thread->save();
 
         return $thread;
@@ -76,10 +77,10 @@ class ThreadRepository
         return $thread;
     }
 
-    private function updateTags(Thread $thread, array $attributes): Thread
+    private function updateTags(Thread $thread, array $tags): Thread
     {
-        if ($tags = Arr::get($attributes, 'tags')) {
-            $thread->tagsRelation()->sync($attributes['tags']);
+        if ($tags) {
+            $thread->tagsRelation()->sync($tags);
         }
 
         return $thread;
