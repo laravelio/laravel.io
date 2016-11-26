@@ -32,11 +32,6 @@ class ThreadRequest extends Request implements ThreadData
         return $rules;
     }
 
-    public function dataForUpdate(): array
-    {
-        return array_merge($this->only('subject', 'body', 'tags'), ['topic' => $this->topic()]);
-    }
-
     public function author(): User
     {
         return $this->user();
@@ -54,11 +49,16 @@ class ThreadRequest extends Request implements ThreadData
 
     public function topic(): Topic
     {
-        return app(TopicRepository::class)->find((int) $this->get('topic'));
+        return $this->container->make(TopicRepository::class)->find((int) $this->get('topic'));
     }
 
     public function tags(): array
     {
         return $this->get('tags');
+    }
+
+    public function changed(): array
+    {
+        return array_merge($this->only('subject', 'body', 'tags'), ['topic' => $this->topic()]);
     }
 }

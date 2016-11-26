@@ -32,7 +32,7 @@ class ReplyRequest extends Request implements ReplyData
     {
         switch ($type) {
             case Thread::TABLE:
-                return app(ThreadRepository::class)->find($id);
+                return $this->container->make(ThreadRepository::class)->find($id);
         }
 
         abort(404);

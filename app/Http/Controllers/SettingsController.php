@@ -35,7 +35,7 @@ class SettingsController extends Controller
 
     public function updatePassword(UpdatePasswordRequest $request, UserRepository $users)
     {
-        $users->update(Auth::user(), $request->dataForUpdate());
+        $users->update(Auth::user(), $request->changed());
 
         $this->success('settings.password.updated');
 

@@ -65,7 +65,7 @@ class ThreadsController extends Controller
     {
         $this->authorize('update', $thread);
 
-        $this->threads->update($thread, $request->dataForUpdate());
+        $this->threads->update($thread, $request->changed());
 
         $this->success('forum.threads.updated');
 

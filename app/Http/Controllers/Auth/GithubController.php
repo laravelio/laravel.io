@@ -74,7 +74,7 @@ class GithubController extends Controller
 
     private function redirectUserToHome(): RedirectResponse
     {
-        $this->error('Your Github account needs to be older than 2 weeks in order to register.');
+        $this->error('errors.github_account_too_young');
 
         return redirect()->home();
     }
