@@ -30,11 +30,6 @@
             @error('tags')
         @endFormGroup
 
-        @formGroup('g-recaptcha-response')
-            {!! Recaptcha::render(['lang' => App::getLocale()]) !!}
-            @error('g-recaptcha-response')
-        @endFormGroup
-
         {!! Form::submit('Create Thread', ['class' => 'btn btn-primary btn-block']) !!}
         <a href="{{ route('forum') }}" class="btn btn-default btn-block">Cancel</a>
     {!! Form::close() !!}

@@ -83,7 +83,6 @@ return [
     // Custom Validation Rules
     'not_contain_url' => 'The :attribute field cannot contain an url.',
     'passcheck' => 'Your current password is incorrect.',
-    'recaptcha' => 'The captcha field is not correct.',
     'spam' => 'The :attribute field contains spam.',
 
     /*
@@ -98,9 +97,7 @@ return [
     */
 
     'custom' => [
-        'g-recaptcha-response' => [
-            'required' => 'The captcha field is required.',
-        ],
+        //
     ],
 
     /*

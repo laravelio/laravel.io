@@ -37,10 +37,6 @@ class RegisterRequest extends FormRequest implements UserData
             $rules['password'] = 'required|confirmed|min:6';
         }
 
-        if (! app()->runningUnitTests()) {
-            $rules['g-recaptcha-response'] = 'required|recaptcha';
-        }
-
         return $rules;
     }
 

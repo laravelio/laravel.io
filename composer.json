@@ -6,7 +6,6 @@
     "require": {
         "php": "^7.0",
         "bugsnag/bugsnag-laravel": "^2.4",
-        "greggilbert/recaptcha": "^2.1",
         "guzzlehttp/guzzle": "^6.2",
         "laravel/framework": "5.3.*",
         "laravel/socialite": "^2.0",

@@ -10,6 +10,7 @@ use App\Users\UserRepository;
 use App\Users\UserWasRegistered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Validator;
+use Session;
 
 class RegisterController extends Controller
 {

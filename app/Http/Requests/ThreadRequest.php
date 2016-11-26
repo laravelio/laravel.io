@@ -17,19 +17,13 @@ class ThreadRequest extends Request implements ThreadData
 
     public function rules()
     {
-        $rules = [
+        return [
             'topic' => 'required|exists:topics,id',
             'subject' => 'required|not_contain_url|spam',
             'body' => 'required|spam',
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',
         ];
-
-        if (! app()->runningUnitTests()) {
-            $rules['g-recaptcha-response'] = 'required|recaptcha';
-        }
-
-        return $rules;
     }
 
     public function author(): User

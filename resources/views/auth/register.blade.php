@@ -39,11 +39,6 @@
             {!! Form::password('password_confirmation', ['class' => 'form-control', Session::has('githubData') ? null : 'required']) !!}
         </div>
 
-        @formGroup('g-recaptcha-response')
-            {!! Recaptcha::render(['lang' => App::getLocale()]) !!}
-            @error('g-recaptcha-response')
-        @endFormGroup
-
         {!! Form::submit('Register', ['class' => 'btn btn-primary btn-block']) !!}
     {!! Form::close() !!}
 @endsection
