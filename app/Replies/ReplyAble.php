@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 interface ReplyAble
 {
-    public function replyAble(): MorphMany;
+    /**
+     * @return \App\Replies\Reply[]
+     */
+    public function replies();
+    public function repliesRelation(): MorphMany;
 }

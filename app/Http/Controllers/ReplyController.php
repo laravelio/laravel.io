@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Forum\Thread;
-use App\Forum\ThreadRepository;
 use App\Http\Requests\ReplyRequest;
 use App\Replies\Reply;
 use App\Replies\ReplyAble;
@@ -17,14 +16,8 @@ class ReplyController extends Controller
      */
     private $replies;
 
-    /**
-     * @var \App\Forum\ThreadRepository
-     */
-    private $threads;
-
-    public function __construct(ReplyRepository $replies, ThreadRepository $threads)
+    public function __construct(ReplyRepository $replies)
     {
-        $this->threads = $threads;
         $this->replies = $replies;
 
         $this->middleware(['auth', 'confirmed']);
@@ -32,13 +25,11 @@ class ReplyController extends Controller
 
     public function store(ReplyRequest $request)
     {
-        $replyAble = $this->findReplyAble($request->get('replyable_id'), $request->get('replyable_type'));
-
-        $this->replies->create($replyAble, $request->user(), $request->get('body'), ['ip' => $request->ip()]);
+        $reply = $this->replies->create($request);
 
         $this->success('replies.created');
 
-        return $this->redirectToReplyAble($replyAble);
+        return $this->redirectToReplyAble($reply->replyAble());
     }
 
     public function edit(Reply $reply)
@@ -68,16 +59,6 @@ class ReplyController extends Controller
         $this->success('replies.deleted');
 
         return $this->redirectToReplyAble($reply->replyAble());
-    }
-
-    private function findReplyAble(int $id, string $type): ReplyAble
-    {
-        switch ($type) {
-            case Thread::TABLE:
-                return $this->threads->find($id);
-        }
-
-        abort(404);
     }
 
     private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse

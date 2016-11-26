@@ -3,8 +3,11 @@
 namespace Tests\Components\Replies;
 
 use App\Forum\Thread;
+use App\Replies\NewReply;
 use App\Replies\Reply;
+use App\Replies\ReplyAble;
 use App\Replies\ReplyRepository;
+use App\Users\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\TestsRepository;
@@ -21,10 +24,7 @@ class ReplyRepositoryTest extends TestCase
     /** @test */
     function we_can_create_a_reply()
     {
-        $thread = $this->create(Thread::class);
-        $user = $this->createUser();
-
-        $this->assertInstanceOf(Reply::class, $this->repo->create($thread, $user, 'Foo'));
+        $this->assertInstanceOf(Reply::class, $this->repo->create($this->newReply()));
     }
 
     /** @test */
@@ -51,5 +51,31 @@ class ReplyRepositoryTest extends TestCase
         $this->repo->delete($reply);
 
         $this->notSeeInDatabase('replies', ['id' => 1]);
+    }
+
+    private function newReply()
+    {
+        return new class extends ReplyRepositoryTest implements NewReply
+        {
+            public function replyAble(): ReplyAble
+            {
+                return $this->create(Thread::class);
+            }
+
+            public function author(): User
+            {
+                return $this->createUser();
+            }
+
+            public function body(): string
+            {
+                return 'Foo';
+            }
+
+            public function ip()
+            {
+                return '';
+            }
+        };
     }
 }

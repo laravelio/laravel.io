@@ -2,9 +2,6 @@
 
 namespace App\Replies;
 
-use Illuminate\Support\Arr;
-use App\Users\User;
-
 class ReplyRepository
 {
     /**
@@ -22,13 +19,14 @@ class ReplyRepository
         return $this->model->findOrFail($id);
     }
 
-    public function create(ReplyAble $relation, User $author, string $body, array $attributes = []): Reply
+    public function create(NewReply $data): Reply
     {
-        $reply = $this->model->newInstance(compact('body'));
-        $reply->author_id = $author->id();
-        $reply->ip = Arr::get($attributes, 'ip', '');
+        $reply = $this->model->newInstance();
+        $reply->body = $data->body();
+        $reply->author_id = $data->author()->id();
+        $reply->ip = $data->ip();
 
-        $relation->replyAble()->save($reply);
+        $data->replyAble()->repliesRelation()->save($reply);
 
         return $reply;
     }

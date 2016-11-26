@@ -2,9 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Forum\Thread;
+use App\Forum\ThreadRepository;
+use App\Replies\NewReply;
+use App\Replies\ReplyAble;
+use App\Users\User;
 use Auth;
 
-class ReplyRequest extends Request
+class ReplyRequest extends Request implements NewReply
 {
     public function authorize()
     {
@@ -16,5 +21,30 @@ class ReplyRequest extends Request
         return [
             'body' => 'required|spam',
         ];
+    }
+
+    public function replyAble(): ReplyAble
+    {
+        return $this->findReplyAble($this->get('replyable_id'), $this->get('replyable_type'));
+    }
+
+    private function findReplyAble(int $id, string $type): ReplyAble
+    {
+        switch ($type) {
+            case Thread::TABLE:
+                return app(ThreadRepository::class)->find($id);
+        }
+
+        abort(404);
+    }
+
+    public function author(): User
+    {
+        return $this->user();
+    }
+
+    public function body(): string
+    {
+        return $this->get('body');
     }
 }

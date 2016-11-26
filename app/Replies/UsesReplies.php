@@ -11,10 +11,10 @@ trait UsesReplies
      */
     public function replies()
     {
-        return $this->replyAble;
+        return $this->repliesRelation;
     }
 
-    public function replyAble(): MorphMany
+    public function repliesRelation(): MorphMany
     {
         return $this->morphMany(Reply::class, 'replyable');
     }
