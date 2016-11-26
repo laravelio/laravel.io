@@ -1,3 +1,40 @@
 #footer {
   padding-bottom: 20px;
 }
+
+#sponsors {
+  text-align: center;
+}
+#sponsors h2 {
+  margin-bottom: 30px;
+}
+.sponsors-list div {
+  margin-bottom: 20px;
+}
+.sponsors-list div img {
+  max-width: 50%;
+}
+
+@media (min-width: $screen-sm-min) {
+  #sponsors h2 {
+    margin-bottom: 40px;
+  }
+
+  .sponsors-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      flex: 1 0 33.33333%;
+      margin-bottom: 35px;
+      width: 33.33333%;
+
+      img {
+        max-width: 200px;
+      }
+    }
+  }
+}
