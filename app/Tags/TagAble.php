@@ -4,7 +4,7 @@ namespace App\Tags;
 
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-interface Taggable
+interface TagAble
 {
     /**
      * @return \App\Tags\Tag[]

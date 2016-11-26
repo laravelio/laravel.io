@@ -3,7 +3,7 @@
 namespace App\Forum;
 
 use App\DateTime\Timestamps;
-use App\Tags\Taggable;
+use App\Tags\TagAble;
 use App\Users\Authored;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,7 +14,7 @@ use App\Replies\ReplyAble;
 use App\Tags\UsesTags;
 use App\Users\HasAuthor;
 
-class Thread extends Model implements Authored, ReplyAble, Taggable, Timestamps
+class Thread extends Model implements Authored, ReplyAble, TagAble, Timestamps
 {
     use HasAuthor, HasTimestamps, UsesReplies, UsesTags;
 
