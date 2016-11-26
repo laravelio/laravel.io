@@ -3,7 +3,6 @@
 @extends('layouts.default')
 
 @section('content')
-
     @if (isset($topic))
         <h1>{{ $topic->name() }}</h1>
 
