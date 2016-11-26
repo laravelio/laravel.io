@@ -8,7 +8,6 @@
     "bootstrap-sass": "^3.3.7",
     "bootswatch": "^3.3.7",
     "jquery": "^2.2.4",
-    "laravel-elixir-vue-2": "^0.2.0",
     "lodash": "^4.17.2",
     "selectize": "^0.12.4",
     "selectize-scss": "^0.9.2",
@@ -18,6 +17,7 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "laravel-elixir": "^6.0.0-15",
+    "laravel-elixir-vue-2": "^0.2.0",
     "laravel-elixir-webpack-official": "^1.0.9"
   }
 }
