@@ -9,7 +9,7 @@ foreach (['wiki', 'forum', 'forums'] as $subdomain) {
 }
 
 // Home
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@show']);
 
 // Authentication
 Route::group(['namespace' => 'Auth'], function () {
@@ -41,14 +41,14 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 
 // Users
-Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'UsersController@dashboard']);
-Route::get('user/{username}', ['as' => 'profile', 'uses' => 'UsersController@profile']);
+Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@show']);
+Route::get('user/{username}', ['as' => 'profile', 'uses' => 'ProfileController@show']);
 
 // Settings
-Route::get('settings', ['as' => 'settings.profile', 'uses' => 'SettingsController@profile']);
-Route::put('settings', ['as' => 'settings.profile.update', 'uses' => 'SettingsController@updateProfile']);
-Route::get('settings/password', ['as' => 'settings.password', 'uses' => 'SettingsController@password']);
-Route::put('settings/password', ['as' => 'settings.password.update', 'uses' => 'SettingsController@updatePassword']);
+Route::get('settings', ['as' => 'settings.profile', 'uses' => 'Settings\ProfileController@edit']);
+Route::put('settings', ['as' => 'settings.profile.update', 'uses' => 'Settings\ProfileController@update']);
+Route::get('settings/password', ['as' => 'settings.password', 'uses' => 'Settings\PasswordController@edit']);
+Route::put('settings/password', ['as' => 'settings.password.update', 'uses' => 'Settings\PasswordController@update']);
 
 // Forum
 Route::get('forum', ['as' => 'forum', 'uses' => 'ThreadsController@overview']);
