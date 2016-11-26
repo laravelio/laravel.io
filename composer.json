@@ -53,7 +53,7 @@
             "php artisan optimize"
         ],
         "test": "phpunit",
-        "specs": "phpspec run"
+        "spec": "phpspec run"
     },
     "config": {
         "preferred-install": "dist",
