@@ -4,7 +4,7 @@ namespace App\Forum;
 
 use App\Users\User;
 
-interface NewThread
+interface ThreadData
 {
     public function author(): User;
     public function subject(): string;

@@ -2,7 +2,7 @@
 
 namespace Tests\Features;
 
-use App\Forum\NewThread;
+use App\Forum\ThreadData;
 use App\Forum\ThreadRepository;
 use App\Forum\Topic;
 use App\Tags\Tag;
@@ -29,7 +29,7 @@ class TagsTest extends TestCase
     {
         $tag = $this->create(Tag::class, ['name' => 'Eloquent', 'description' => 'Example description.']);
 
-        $this->app->make(ThreadRepository::class)->create($this->newThread($tag));
+        $this->app->make(ThreadRepository::class)->create($this->ThreadData($tag));
 
         $this->visit('/tags/'.$tag->slug())
             ->see('Eloquent')
@@ -37,9 +37,9 @@ class TagsTest extends TestCase
             ->see('Foo Thread');
     }
 
-    private function newThread(Tag $tag): NewThread
+    private function ThreadData(Tag $tag): ThreadData
     {
-        return new class($tag) extends TagsTest implements NewThread
+        return new class($tag) extends TagsTest implements ThreadData
         {
             public function __construct($tag)
             {

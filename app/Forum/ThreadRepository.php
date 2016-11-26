@@ -39,7 +39,7 @@ class ThreadRepository
         return $this->model->where('slug', $slug)->firstOrFail();
     }
 
-    public function create(NewThread $data): Thread
+    public function create(ThreadData $data): Thread
     {
         $thread = $this->model->newInstance();
         $thread->subject = $data->subject();

@@ -2,7 +2,7 @@
 
 namespace Tests\Components\Forum;
 
-use App\Forum\NewThread;
+use App\Forum\ThreadData;
 use App\Forum\Thread;
 use App\Forum\ThreadRepository;
 use App\Forum\Topic;
@@ -52,7 +52,7 @@ class ThreadRepositoryTest extends TestCase
     /** @test */
     function we_can_create_a_thread()
     {
-        $this->assertInstanceOf(Thread::class, $this->repo->create($this->newThread()));
+        $this->assertInstanceOf(Thread::class, $this->repo->create($this->threadData()));
     }
 
     /** @test */
@@ -98,9 +98,9 @@ class ThreadRepositoryTest extends TestCase
         $this->assertFalse($thread->isSolutionReply($reply));
     }
 
-    private function newThread(): NewThread
+    private function threadData(): ThreadData
     {
-        return new class extends ThreadRepositoryTest implements NewThread
+        return new class extends ThreadRepositoryTest implements ThreadData
         {
             public function author(): User
             {

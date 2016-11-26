@@ -3,7 +3,7 @@
 namespace Tests\Components\Replies;
 
 use App\Forum\Thread;
-use App\Replies\NewReply;
+use App\Replies\ReplyData;
 use App\Replies\Reply;
 use App\Replies\ReplyAble;
 use App\Replies\ReplyRepository;
@@ -24,7 +24,7 @@ class ReplyRepositoryTest extends TestCase
     /** @test */
     function we_can_create_a_reply()
     {
-        $this->assertInstanceOf(Reply::class, $this->repo->create($this->newReply()));
+        $this->assertInstanceOf(Reply::class, $this->repo->create($this->replyData()));
     }
 
     /** @test */
@@ -53,9 +53,9 @@ class ReplyRepositoryTest extends TestCase
         $this->notSeeInDatabase('replies', ['id' => 1]);
     }
 
-    private function newReply()
+    private function replyData()
     {
-        return new class extends ReplyRepositoryTest implements NewReply
+        return new class extends ReplyRepositoryTest implements ReplyData
         {
             public function replyAble(): ReplyAble
             {

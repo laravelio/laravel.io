@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Users\NewUser;
+use App\Users\UserData;
 use Illuminate\Foundation\Http\FormRequest;
 use Session;
 
-class CreateUserRequest extends FormRequest implements NewUser
+class RegisterRequest extends FormRequest implements UserData
 {
     /**
      * Determine if the user is authorized to make this request.

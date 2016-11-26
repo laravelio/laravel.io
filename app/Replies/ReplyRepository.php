@@ -19,7 +19,7 @@ class ReplyRepository
         return $this->model->findOrFail($id);
     }
 
-    public function create(NewReply $data): Reply
+    public function create(ReplyData $data): Reply
     {
         $reply = $this->model->newInstance();
         $reply->body = $data->body();

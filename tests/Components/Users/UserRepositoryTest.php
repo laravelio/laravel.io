@@ -3,7 +3,7 @@
 namespace Tests\Components\Users;
 
 use App\Users\Exceptions\CannotCreateUser;
-use App\Users\NewUser;
+use App\Users\UserData;
 use App\Users\User;
 use App\Users\UserRepository;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -38,7 +38,7 @@ class UserRepositoryTest extends TestCase
     /** @test */
     function we_can_create_a_user()
     {
-        $this->assertInstanceOf(User::class, $this->repo->create($this->newUser(
+        $this->assertInstanceOf(User::class, $this->repo->create($this->userData(
             'john@example.com',
             'johndoe'
         )));
@@ -49,8 +49,8 @@ class UserRepositoryTest extends TestCase
     {
         $this->expectException(CannotCreateUser::class);
 
-        $this->repo->create($this->newUser('john@example.com', 'johndoe'));
-        $this->repo->create($this->newUser('john@example.com', 'johnfoo'));
+        $this->repo->create($this->userData('john@example.com', 'johndoe'));
+        $this->repo->create($this->userData('john@example.com', 'johnfoo'));
     }
 
     /** @test */
@@ -58,8 +58,8 @@ class UserRepositoryTest extends TestCase
     {
         $this->expectException(CannotCreateUser::class);
 
-        $this->repo->create($this->newUser('john@example.com', 'johndoe'));
-        $this->repo->create($this->newUser('john.doe@example.com', 'johndoe'));
+        $this->repo->create($this->userData('john@example.com', 'johndoe'));
+        $this->repo->create($this->userData('john.doe@example.com', 'johndoe'));
     }
 
     /** @test */
@@ -73,9 +73,9 @@ class UserRepositoryTest extends TestCase
         $this->seeInDatabase('users', ['username' => 'foo', 'name' => 'bar']);
     }
 
-    private function newUser($emailAddress, $username)
+    private function userData($emailAddress, $username)
     {
-        return new class($emailAddress, $username) implements NewUser
+        return new class($emailAddress, $username) implements UserData
         {
             public function __construct($emailAddress, $username)
             {

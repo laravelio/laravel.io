@@ -4,12 +4,12 @@ namespace App\Http\Requests;
 
 use App\Forum\Thread;
 use App\Forum\ThreadRepository;
-use App\Replies\NewReply;
+use App\Replies\ReplyData;
 use App\Replies\ReplyAble;
 use App\Users\User;
 use Auth;
 
-class ReplyRequest extends Request implements NewReply
+class ReplyRequest extends Request implements ReplyData
 {
     public function authorize()
     {

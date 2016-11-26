@@ -2,7 +2,7 @@
 
 namespace App\Users;
 
-interface NewUser
+interface UserData
 {
     public function name(): string;
     public function emailAddress(): string;

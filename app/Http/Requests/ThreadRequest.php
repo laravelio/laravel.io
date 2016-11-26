@@ -2,13 +2,13 @@
 
 namespace App\Http\Requests;
 
-use App\Forum\NewThread;
+use App\Forum\ThreadData;
 use App\Forum\Topic;
 use App\Forum\TopicRepository;
 use App\Users\User;
 use Auth;
 
-class ThreadRequest extends Request implements NewThread
+class ThreadRequest extends Request implements ThreadData
 {
     public function authorize()
     {

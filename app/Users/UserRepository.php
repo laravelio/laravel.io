@@ -33,7 +33,7 @@ class UserRepository
         return $this->model->where('github_id', $githubId)->firstOrFail();
     }
 
-    public function create(NewUser $data): User
+    public function create(UserData $data): User
     {
         $this->assertEmailAddressIsUnique($data->emailAddress());
         $this->assertUsernameIsUnique($data->username());

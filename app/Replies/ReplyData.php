@@ -4,7 +4,7 @@ namespace App\Replies;
 
 use App\Users\User;
 
-interface NewReply
+interface ReplyData
 {
     public function replyAble(): ReplyAble;
     public function author(): User;
