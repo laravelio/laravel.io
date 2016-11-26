@@ -28,7 +28,7 @@
             <i class="fa fa-github"></i> Github
         </a>
     {!! Form::close() !!}
-@stop
+@endsection
 
 @section('small-content-after')
     <div class="text-center">

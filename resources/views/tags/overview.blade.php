@@ -9,4 +9,4 @@
         <h2><a href="{{ route('tag', $tag->slug()) }}">{{ $tag->name() }}</a></h2>
         <p>{{ $tag->description() }}</p>
     @endforeach
-@stop
+@endsection

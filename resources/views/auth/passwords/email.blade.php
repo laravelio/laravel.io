@@ -14,4 +14,4 @@
 
         {!! Form::submit('Send Password Reset Link', ['class' => 'btn btn-primary btn-block']) !!}
     {!! Form::close() !!}
-@stop
+@endsection

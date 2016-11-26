@@ -8,4 +8,4 @@
     @if ($user->githubUsername())
         <a href="https://github.com/{{ $user->githubUsername() }}">Github</a>
     @endif
-@stop
+@endsection

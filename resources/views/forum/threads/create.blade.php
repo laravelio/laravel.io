@@ -38,4 +38,4 @@
         {!! Form::submit('Create Thread', ['class' => 'btn btn-primary btn-block']) !!}
         <a href="{{ route('forum') }}" class="btn btn-default btn-block">Cancel</a>
     {!! Form::close() !!}
-@stop
+@endsection

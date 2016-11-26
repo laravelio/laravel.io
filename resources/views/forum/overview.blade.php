@@ -30,4 +30,4 @@
     <div class="text-center">
         {!! $threads->render() !!}
     </div>
-@stop
+@endsection

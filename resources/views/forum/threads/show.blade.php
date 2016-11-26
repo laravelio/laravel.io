@@ -60,4 +60,4 @@
             {!! Form::submit('Reply', ['class' => 'btn btn-primary btn-block']) !!}
         {!! Form::close() !!}
     @endif
-@stop
+@endsection

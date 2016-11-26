@@ -33,4 +33,4 @@
         {!! Form::submit('Update', ['class' => 'btn btn-primary btn-block']) !!}
         <a href="{{ route('thread', $thread->slug()) }}" class="btn btn-default btn-block">Cancel</a>
     {!! Form::close() !!}
-@stop
+@endsection

@@ -7,4 +7,4 @@
         <h1>{{ $title }}</h1>
         <p>You're not allow to this page.</p>
     </div>
-@stop
+@endsection

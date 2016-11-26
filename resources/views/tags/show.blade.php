@@ -11,4 +11,4 @@
     @foreach ($tag->threads() as $thread)
         <h3>{{ $thread->subject() }}</h3>
     @endforeach
-@stop
+@endsection

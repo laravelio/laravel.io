@@ -25,4 +25,4 @@
 
         {!! Form::submit('Reset Password', ['class' => 'btn btn-primary btn-block']) !!}
     {!! Form::close() !!}
-@stop
+@endsection

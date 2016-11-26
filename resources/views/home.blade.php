@@ -7,4 +7,4 @@
         <h1>Laravel.io</h1>
         <h2>The Laravel Community Portal</h2>
     </div>
-@stop
+@endsection

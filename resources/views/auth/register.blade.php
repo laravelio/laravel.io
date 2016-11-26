@@ -46,4 +46,4 @@
 
         {!! Form::submit('Register', ['class' => 'btn btn-primary btn-block']) !!}
     {!! Form::close() !!}
-@stop
+@endsection
