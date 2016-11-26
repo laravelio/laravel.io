@@ -1,4 +1,5 @@
 <div id="sponsors" class="container">
+    <hr>
     <h2>Sponsors</h2>
 
     <div class="sponsors-list">
