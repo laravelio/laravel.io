@@ -11,7 +11,7 @@
         "laravel/framework": "5.3.*",
         "laravel/socialite": "^2.0",
         "laravelcollective/html": "^5.3",
-        "league/commonmark": "^0.15.1",
+        "league/commonmark": "^0.15.2",
         "tijsverkoyen/akismet": "^1.1"
     },
     "require-dev": {
@@ -20,9 +20,9 @@
         "laravel/homestead": "^3.0",
         "mockery/mockery": "^0.9.5",
         "phpspec/phpspec": "^3.1",
-        "phpunit/phpunit": "^5.3",
-        "symfony/css-selector": "^3.0",
-        "symfony/dom-crawler": "^3.0"
+        "phpunit/phpunit": "^5.6",
+        "symfony/css-selector": "^3.1",
+        "symfony/dom-crawler": "^3.1"
     },
     "autoload": {
         "classmap": [
