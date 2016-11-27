@@ -1,6 +1,6 @@
 @title($user->name())
 
-@extends('layouts.default', ['title' => $user->name()])
+@extends('layouts.default')
 
 @section('content')
     <div id="profile">
