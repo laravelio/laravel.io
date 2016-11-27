@@ -45,6 +45,11 @@ class Thread extends Model implements Authored, ReplyAble, TagAble, Timestamps
         return $this->body;
     }
 
+    public function excerpt(int $limit = 50): string
+    {
+        return str_limit(strip_tags(md_to_html($this->body())), $limit);
+    }
+
     public function slug(): string
     {
         return $this->slug;
@@ -80,5 +85,15 @@ class Thread extends Model implements Authored, ReplyAble, TagAble, Timestamps
         }
 
         return false;
+    }
+
+    public function replySubject(): string
+    {
+        return $this->subject();
+    }
+
+    public function replyExcerpt(): string
+    {
+        return $this->excerpt();
     }
 }

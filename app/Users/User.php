@@ -4,7 +4,9 @@ namespace App\Users;
 
 use App\DateTime\HasTimestamps;
 use App\DateTime\Timestamps;
+use App\Forum\Thread;
 use App\Replies\HasManyReplies;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -97,5 +99,18 @@ class User extends Authenticatable implements Timestamps
     public function matchesConfirmationCode(string $code): bool
     {
         return $this->confirmation_code === $code;
+    }
+
+    /**
+     * @return \App\Forum\Thread[]
+     */
+    public function latestThreads(int $amount = 5)
+    {
+        return $this->threadsRelation->take($amount);
+    }
+
+    public function threadsRelation(): HasMany
+    {
+        return $this->hasMany(Thread::class, 'author_id');
     }
 }

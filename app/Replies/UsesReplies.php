@@ -14,6 +14,14 @@ trait UsesReplies
         return $this->repliesRelation;
     }
 
+    /**
+     * @return \App\Replies\Reply[]
+     */
+    public function latestReplies(int $amount = 5)
+    {
+        return $this->repliesRelation()->orderBy('created_at', 'DESC')->limit($amount)->get();
+    }
+
     public function repliesRelation(): MorphMany
     {
         return $this->morphMany(Reply::class, 'replyable');
