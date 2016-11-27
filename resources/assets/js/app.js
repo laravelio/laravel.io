@@ -13,20 +13,10 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example', require('./components/Example.vue'));
-
 const app = new Vue({
-    el: '#app'
-});
-
-/**
- * Initialize selectize.
- *
- * @todo move this to a Vue component
- */
-
-require('selectize');
-
-$('select.selectize').selectize({
-    maxItems: 3
+    el: '#app',
+    mounted() {
+        $('select.selectize').selectize({ maxItems: 3 });
+        $('textarea.wysiwyg').markdown({ iconlibrary: 'fa' });
+    }
 });

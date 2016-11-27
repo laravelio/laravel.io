@@ -2,6 +2,8 @@
 @import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../../../node_modules/bootswatch/flatly/bootswatch";
 @import "../../../node_modules/selectize-scss/src/selectize.bootstrap3";
+@import "../../../node_modules/bootstrap-markdown/css/bootstrap-markdown.min";
 
 @import "footer";
 @import "nav";
+@import "wysiwyg";

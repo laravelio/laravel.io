@@ -13,12 +13,17 @@
     @include('layouts._google_analytics')
 </head>
 <body class="{{ $bodyClass or '' }}">
+
+<div id="app">
     @include('layouts._nav')
 
     @yield('body')
 
     @include('layouts._footer')
+</div>
 
-    <script src="{{ elixir('js/app.js') }}"></script>
+<script src="{{ asset('build/custom/markdown.js') }}"></script>
+<script src="{{ elixir('js/app.js') }}"></script>
+
 </body>
 </html>

@@ -8,7 +8,7 @@
     {!! Form::open(['route' => ['replies.update', $reply->id()], 'method' => 'PUT']) !!}
         @formGroup('body')
             {!! Form::label('body') !!}
-            {!! Form::textarea('body', $reply->body(), ['class' => 'form-control', 'required']) !!}
+            {!! Form::textarea('body', $reply->body(), ['class' => 'form-control wysiwyg', 'required']) !!}
             @error('body')
         @endFormGroup
 

@@ -43,3 +43,11 @@ Vue.http.interceptors.push((request, next) => {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+/**
+ * 3rd Party Libraries.
+ */
+require('selectize');
+require('markdown'); // This doesn't seems to work so we require it directly in base.blade.php
+require('to-markdown');
+require('bootstrap-markdown/js/bootstrap-markdown');

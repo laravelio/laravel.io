@@ -20,7 +20,7 @@
 
         @formGroup('body')
             {!! Form::label('body') !!}
-            {!! Form::textarea('body', $thread->body(), ['class' => 'form-control', 'required']) !!}
+            {!! Form::textarea('body', $thread->body(), ['class' => 'form-control wysiwyg', 'required']) !!}
             @error('body')
         @endFormGroup
 
