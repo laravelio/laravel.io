@@ -10,6 +10,7 @@ before_script:
 
 script:
   - vendor/bin/phpspec run --verbose
+  - vendor/bin/parallel-lint --exclude vendor .
   - vendor/bin/phpunit --verbose --coverage-clover build/logs/clover.xml
 
 after_script:
