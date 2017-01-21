@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="span2">&nbsp;</div>
                 <div class="span4">
-                    <a class="fortrabbit" href="http://fortrabbit.com"><em>•</em> fortrabbit</a>
+                    <a class="fortrabbit" href="https://fortrabbit.com"><em>•</em> fortrabbit</a>
                 </div>
                 <div class="span4">
                     <a href="https://besnappy.com/partner">

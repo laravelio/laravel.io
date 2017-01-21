@@ -43,7 +43,7 @@
 @section('scripts')
     @parent
 
-    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.5/styles/obsidian.min.css">
-    <script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/7.5/styles/obsidian.min.css">
+    <script src="https://yandex.st/highlightjs/7.5/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 @stop
