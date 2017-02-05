@@ -40,14 +40,17 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('chat', 'ChatController@getIndex');
 
 // Paste Bin
-Route::get('bin', 'PastesController@getCreate');
-Route::get('bin/fork/{hash}', 'PastesController@getFork');
-Route::get('bin/{hash}/raw', 'PastesController@getRaw');
-Route::get('bin/{hash}', 'PastesController@getShow');
-
-Route::group(['middleware' => ['auth', 'confirmed']], function() {
-    Route::post('bin', 'PastesController@postCreate');
-    Route::post('bin/fork/{hash}', 'PastesController@postFork');
+Route::get('bin', function () {
+    return redirect('http://paste.laravel.io/');
+});
+Route::get('bin/fork/{hash}', function ($hash) {
+    return redirect('http://paste.laravel.io/fork/'.$hash);
+});
+Route::get('bin/{hash}/raw', function ($hash) {
+    return redirect('http://paste.laravel.io/'.$hash.'/raw');
+});
+Route::get('bin/{hash}', function ($hash) {
+    return redirect('http://paste.laravel.io/'.$hash);
 });
 
 // Forum
