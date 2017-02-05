@@ -3,80 +3,26 @@ namespace Lio\Http\Controllers;
 
 use Auth;
 use Input;
-use Lio\Bin\PasteRepository;
-use Lio\Bin\PasteCreatorListener;
-use Lio\Bin\PasteCreator;
-use Lio\Bin\PasteForkCreator;
-use Lio\Bin\PasteForm;
 
-class PastesController extends Controller implements PasteCreatorListener
+class PastesController extends Controller
 {
-    protected $pastes;
-    protected $creator;
-    protected $fork;
-
-    public function __construct(PasteRepository $pastes, PasteCreator $creator, PasteForkCreator $fork)
-    {
-        $this->pastes = $pastes;
-        $this->creator = $creator;
-        $this->fork = $fork;
-    }
-
     public function getShow($hash)
     {
-        $paste = $this->pastes->getByHash($hash);
-
-        if (! $paste) {
-            return $this->redirectAction('PastesController@getCreate');
-        }
-
-        return view('bin.show', compact('paste'));
+        return redirect('http://paste.laravel.io/'.$hash);
     }
 
     public function getCreate()
     {
-        return view('bin.create');
-    }
-
-    public function postCreate()
-    {
-        return $this->creator->create($this, Input::get('code'), Auth::user(), new PasteForm);
+        return redirect('http://paste.laravel.io/');
     }
 
     public function getFork($hash)
     {
-        $paste = $this->pastes->getByHash($hash);
-
-        return view('bin.fork', compact('paste'));
-    }
-
-    public function postFork($hash)
-    {
-        $paste = $this->pastes->getByHash($hash);
-        $this->fork->setListener($this);
-        $this->fork->setParentPaste($paste);
-
-        return $this->creator->create($this->fork, Input::get('code'), Auth::user(), new PasteForm);
+        return redirect('http://paste.laravel.io/fork/'.$hash);
     }
 
     public function getRaw($hash)
     {
-        $paste = $this->pastes->getByHash($hash);
-
-        if (! $paste) {
-            return $this->redirectAction('PastesController@getCreate');
-        }
-
-        return view('bin.raw', compact('paste'));
-    }
-
-    public function pasteCreated($paste)
-    {
-        return $this->redirectAction('PastesController@getShow', $paste->hash);
-    }
-
-    public function pasteValidationError($errors)
-    {
-        return $this->redirectBack()->withErrors($errors);
+        return redirect('http://paste.laravel.io/'.$hash.'/raw');
     }
 }
