@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="{{ active(['forum', 'threads*', 'thread']) }}"><a href="{{ route('forum') }}">Forum</a></li>
-                <li><a href="#">Pastebin</a></li>
+                <li><a href="https://paste.laravel.io">Pastebin</a></li>
                 <li><a href="#">Chat</a></li>
                 <li><a href="https://larajobs.com/?partner=28">Jobs</a></li>
                 <li><a href="#">About</a></li>
