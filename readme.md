@@ -35,35 +35,27 @@ Please make sure you install the following tools before starting with the instal
     1. `composer install`
     2. `php artisan migrate --seed --env=local`
     3. `npm install && gulp`
-5. Add `192.168.10.10 lio.loc` to your computer's `/etc/hosts` file
+5. Add `192.168.10.10 lio.app` to your computer's `/etc/hosts` file
 
 ```yaml
----
-ip: "192.168.10.10"
-memory: 4096
+ip: 192.168.10.10
+memory: 2048
 cpus: 1
-hostname: laravelio
-name: laravelio
 provider: virtualbox
-
 authorize: ~/.ssh/id_rsa.pub
-
 keys:
     - ~/.ssh/id_rsa
-
 folders:
-    - map: "~/Sites/laravelio"
-      to: "/home/vagrant/laravelio"
-
+    - { map: ~/Sites/laravelio, to: /home/vagrant/laravelio }
 sites:
-    - map: lio.loc
-      to: "/home/vagrant/laravelio/public"
-
+    - { map: lio.app, to: /home/vagrant/laravelio/public }
 databases:
-    - laravelio
+    - homestead
+name: laravelio
+hostname: laravelio
 ```
 
-You can now visit the app in your browser by visiting [http://lio.loc/](http://lio.loc).
+You can now visit the app in your browser by visiting [http://lio.app/](http://lio.app).
 
 ## Maintainers
 
