@@ -1,7 +1,5 @@
 <div id="sponsors" class="container">
     <hr>
-    <h2>Sponsors</h2>
-
     <div class="sponsors-list">
         <div>
             <a href="https://www.digitalocean.com/?refcode=7922b1dff899">

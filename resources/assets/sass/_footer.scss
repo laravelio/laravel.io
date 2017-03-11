@@ -5,8 +5,8 @@
 #sponsors {
   text-align: center;
 }
-#sponsors h2 {
-  margin-bottom: 30px;
+.sponsors-list {
+  padding-top: 20px;
 }
 .sponsors-list div {
   margin-bottom: 20px;
@@ -16,16 +16,13 @@
 }
 
 @media (min-width: $screen-sm-min) {
-  #sponsors h2 {
-    margin-bottom: 40px;
-  }
-
   .sponsors-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    padding-top: 40px;
 
     div {
       flex: 1 0 33.33333%;
