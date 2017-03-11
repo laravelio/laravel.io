@@ -74,11 +74,11 @@ class ThreadRepositoryTest extends TestCase
     {
         $thread = $this->create(Thread::class);
 
-        $this->seeInDatabase('threads', ['id' => 1]);
+        $this->assertDatabaseHas('threads', ['id' => 1]);
 
         $this->repo->delete($thread);
 
-        $this->notSeeInDatabase('threads', ['id' => 1]);
+        $this->assertDatabaseMissing('threads', ['id' => 1]);
     }
 
     /** @test */

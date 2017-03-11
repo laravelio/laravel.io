@@ -46,11 +46,11 @@ class ReplyRepositoryTest extends TestCase
     {
         $reply = $this->create(Reply::class);
 
-        $this->seeInDatabase('replies', ['id' => 1]);
+        $this->assertDatabaseHas('replies', ['id' => 1]);
 
         $this->repo->delete($reply);
 
-        $this->notSeeInDatabase('replies', ['id' => 1]);
+        $this->assertDatabaseMissing('replies', ['id' => 1]);
     }
 
     private function replyData()

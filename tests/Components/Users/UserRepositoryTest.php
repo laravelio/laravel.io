@@ -70,7 +70,7 @@ class UserRepositoryTest extends TestCase
         $user = $this->repo->update($user, ['username' => 'foo', 'name' => 'bar']);
 
         $this->assertEquals('foo', $user->username());
-        $this->seeInDatabase('users', ['username' => 'foo', 'name' => 'bar']);
+        $this->assertDatabaseHas('users', ['username' => 'foo', 'name' => 'bar']);
     }
 
     private function userData($emailAddress, $username)
