@@ -53,7 +53,7 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
         ],
-        "test": "phpunit",
+        "test": "phpunit --stop-on-failure",
         "spec": "phpspec run"
     },
     "config": {
