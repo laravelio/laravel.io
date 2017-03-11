@@ -9,7 +9,7 @@ trait BuildsModels
         return factory($model)->make($attributes);
     }
 
-    public function create(string $model, array $attributes = [], int $times = 1)
+    public function create(string $model, array $attributes = [], int $times = null)
     {
         return factory($model, $times)->create($attributes);
     }
