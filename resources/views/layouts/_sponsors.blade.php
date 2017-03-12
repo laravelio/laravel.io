@@ -31,5 +31,10 @@
                 <img src="{{ asset('images/bugsnag.png') }}">
             </a>
         </div>
+        <div>
+            <a href="https://fortrabbit.com/">
+                <img src="{{ asset('images/fortrabbit.png') }}">
+            </a>
+        </div>
     </div>
 </div>
