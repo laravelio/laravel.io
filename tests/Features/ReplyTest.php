@@ -6,9 +6,9 @@ use App\Forum\Thread;
 use App\Replies\Reply;
 use App\Users\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\TestCase;
+use Tests\BrowserKitTestCase;
 
-class ReplyTest extends TestCase
+class ReplyTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 

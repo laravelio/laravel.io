@@ -5,12 +5,12 @@ namespace Tests\Features;
 use App\Mail\ConfirmEmailAddress;
 use App\Users\UserWasRegistered;
 use Auth;
-use Carbon\Carbon;
+use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Mail;
-use Tests\TestCase;
+use Tests\BrowserKitTestCase;
 
-class AuthTest extends TestCase
+class AuthTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 
@@ -166,16 +166,12 @@ class AuthTest extends TestCase
     /** @test */
     function users_can_reset_their_password()
     {
-        $this->createUser();
+        $user = $this->createUser();
 
         // Insert a password reset token into the database.
-        $this->app['db']->table('password_resets')->insert([
-            'email' => 'john@example.com',
-            'token' => 'foo-token',
-            'created_at' => new Carbon(),
-        ]);
+        $token = $this->app[PasswordBroker::class]->getRepository()->create($user);
 
-        $this->visit('/password/reset/foo-token')
+        $this->visit('/password/reset/'.$token)
             ->type('john@example.com', 'email')
             ->type('foopassword', 'password')
             ->type('foopassword', 'password_confirmation')

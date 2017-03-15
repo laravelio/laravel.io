@@ -4,10 +4,10 @@ namespace Tests\Features;
 
 use Auth;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\BrowserKitTestCase;
 use Tests\RequiresLogin;
-use Tests\TestCase;
 
-class SettingsTest extends TestCase
+class SettingsTest extends BrowserKitTestCase
 {
     use DatabaseMigrations, RequiresLogin;
 

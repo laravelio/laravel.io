@@ -6,9 +6,9 @@ use App\Forum\Thread;
 use App\Forum\Topic;
 use App\Tags\Tag;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\TestCase;
+use Tests\BrowserKitTestCase;
 
-class ForumTest extends TestCase
+class ForumTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 

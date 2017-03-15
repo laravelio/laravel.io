@@ -3,10 +3,10 @@
 namespace Tests\Features;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\BrowserKitTestCase;
 use Tests\RequiresLogin;
-use Tests\TestCase;
 
-class DashboardTest extends TestCase
+class DashboardTest extends BrowserKitTestCase
 {
     use DatabaseMigrations, RequiresLogin;
 

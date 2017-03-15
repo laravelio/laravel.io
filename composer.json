@@ -18,10 +18,11 @@
         "fzaninotto/faker": "^1.6",
         "jakub-onderka/php-console-highlighter": "^0.3.2",
         "jakub-onderka/php-parallel-lint": "^0.9.2",
+        "laravel/browser-kit-testing": "^1.0",
         "laravel/homestead": "^5.0",
         "mockery/mockery": "^0.9.5",
-        "phpspec/phpspec": "^3.1",
-        "phpunit/phpunit": "^5.6",
+        "phpspec/phpspec": "^3.2",
+        "phpunit/phpunit": "^5.7",
         "symfony/css-selector": "^3.1",
         "symfony/dom-crawler": "^3.1"
     },

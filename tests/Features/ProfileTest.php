@@ -3,9 +3,9 @@
 namespace Tests\Features;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\TestCase;
+use Tests\BrowserKitTestCase;
 
-class ProfileTest extends TestCase
+class ProfileTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 
