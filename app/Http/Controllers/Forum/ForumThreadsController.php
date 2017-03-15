@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Http\Controllers\Forum;
 
 use App;
@@ -8,7 +9,7 @@ use Lio\Forum\Replies\ReplyRepository;
 use Lio\Forum\Threads\ThreadCreator;
 use Lio\Forum\Threads\ThreadCreatorListener;
 use Lio\Forum\Threads\ThreadDeleterListener;
-use \Lio\Forum\Threads\ThreadForm;
+use Lio\Forum\Threads\ThreadForm;
 use Lio\Forum\Threads\ThreadRepository;
 use Lio\Forum\Threads\ThreadUpdaterListener;
 use Lio\Http\Controllers\Controller;
@@ -49,7 +50,7 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
 
         // add the tag string to each pagination link
         $tagAppends = ['tags' => Input::get('tags')];
-        $queryString = ! empty($tagAppends['tags']) ? '?tags=' . implode(',', (array) $tagAppends['tags']) : '';
+        $queryString = !empty($tagAppends['tags']) ? '?tags='.implode(',', (array) $tagAppends['tags']) : '';
         $threads->appends($tagAppends);
         $this->createSections(Input::get('tags'));
 
@@ -61,7 +62,7 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
     {
         $thread = $this->threads->getBySlug($threadSlug);
 
-        if (! $thread) {
+        if (!$thread) {
             return $this->redirectAction('Forum\ForumThreadsController@getIndex');
         }
 
@@ -95,7 +96,7 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
 
         /** @var \Illuminate\Validation\Validator $validator */
         $validator = Validator::make(Input::only('g-recaptcha-response'), [
-            'g-recaptcha-response' => 'required|captcha'
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         if ($validator->fails()) {
@@ -105,14 +106,14 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
         }
 
         return $this->threadCreator->create($this, [
-            'subject' => Input::get('subject'),
-            'body' => Input::get('body'),
-            'author' => Auth::user(),
+            'subject'         => Input::get('subject'),
+            'body'            => Input::get('body'),
+            'author'          => Auth::user(),
             'laravel_version' => Input::get('laravel_version'),
-            'is_question' => Input::get('is_question'),
-            'tags' => $this->tags->getTagsByIds(Input::get('tags')),
-            'ip' => Request::ip(),
-        ], new ThreadForm);
+            'is_question'     => Input::get('is_question'),
+            'tags'            => $this->tags->getTagsByIds(Input::get('tags')),
+            'ip'              => Request::ip(),
+        ], new ThreadForm());
     }
 
     public function threadCreationError($errors)
@@ -130,7 +131,7 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
     {
         $thread = $this->threads->requireById($threadId);
 
-        if (! $thread->isManageableBy(Auth::user())) {
+        if (!$thread->isManageableBy(Auth::user())) {
             return redirect()->home();
         }
 
@@ -146,30 +147,30 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isManageableBy(Auth::user())) {
+        if (!$thread->isManageableBy(Auth::user())) {
             return redirect()->home();
         }
 
         return app('Lio\Forum\Threads\ThreadUpdater')->update($this, $thread, [
-            'subject' => Input::get('subject'),
-            'body' => Input::get('body'),
-            'is_question' => Input::get('is_question', 0),
+            'subject'         => Input::get('subject'),
+            'body'            => Input::get('body'),
+            'is_question'     => Input::get('is_question', 0),
             'laravel_version' => Input::get('laravel_version'),
-            'tags' => $this->tags->getTagsByIds(Input::get('tags')),
-        ], new ThreadForm);
+            'tags'            => $this->tags->getTagsByIds(Input::get('tags')),
+        ], new ThreadForm());
     }
 
     public function getMarkQuestionSolved($threadId, $solvedByReplyId)
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isQuestion() || ! $thread->isManageableBy(Auth::user())) {
+        if (!$thread->isQuestion() || !$thread->isManageableBy(Auth::user())) {
             return redirect()->home();
         }
 
         $reply = $this->replies->requireById($solvedByReplyId);
 
-        if ( ! $reply || $reply->thread_id != $thread->id) {
+        if (!$reply || $reply->thread_id != $thread->id) {
             return redirect()->home();
         }
 
@@ -182,7 +183,7 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isQuestion() || ! $thread->isManageableBy(Auth::user())) {
+        if (!$thread->isQuestion() || !$thread->isManageableBy(Auth::user())) {
             return redirect()->home();
         }
 
@@ -207,7 +208,7 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isManageableBy(Auth::user())) {
+        if (!$thread->isManageableBy(Auth::user())) {
             return redirect()->home();
         }
 
@@ -220,7 +221,7 @@ class ForumThreadsController extends Controller implements ThreadCreatorListener
     {
         $thread = $this->threads->requireById($threadId);
 
-        if ( ! $thread->isManageableBy(Auth::user())) {
+        if (!$thread->isManageableBy(Auth::user())) {
             return redirect()->home();
         }
 

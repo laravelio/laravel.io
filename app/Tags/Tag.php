@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Tags;
 
 use Lio\Core\Entity;

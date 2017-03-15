@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Markdown;
 
 use HTML_To_Markdown;
@@ -12,10 +13,10 @@ class HtmlMarkdownConvertor
 
     public function __construct()
     {
-        $this->htmlParser = new HTML_To_markdown;
+        $this->htmlParser = new HTML_To_markdown();
         $this->htmlParser->set_option('header_style', 'atx');
 
-        $this->markdownParser = new MarkdownExtra;
+        $this->markdownParser = new MarkdownExtra();
         $this->markdownParser->no_markup = true;
     }
 
@@ -27,6 +28,7 @@ class HtmlMarkdownConvertor
     public function convertMarkdownToHtml($markdown)
     {
         $html = $this->markdownParser->transform($markdown);
+
         return Purifier::clean($html, 'markdown');
     }
 }

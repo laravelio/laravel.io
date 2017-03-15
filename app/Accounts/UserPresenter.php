@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Accounts;
 
 use McCool\LaravelAutoPresenter\BasePresenter;
@@ -9,7 +10,7 @@ class UserPresenter extends BasePresenter
     {
         $roles = $this->roles;
 
-        if (! $roles->count()) {
+        if (!$roles->count()) {
             return 'none';
         }
 
@@ -29,11 +30,11 @@ class UserPresenter extends BasePresenter
 
     public function thumbnail()
     {
-        return '<img src="' . $this->image_url . '&size=50" alt="' . $this->getWrappedObject()->name . '">';
+        return '<img src="'.$this->image_url.'&size=50" alt="'.$this->getWrappedObject()->name.'">';
     }
 
     public function imageMedium()
     {
-        return '<img src="' . $this->image_url . '&size=300">';
+        return '<img src="'.$this->image_url.'&size=300">';
     }
 }

@@ -1,18 +1,20 @@
 <?php
+
 namespace Lio\Forum\Threads;
 
+use App;
 use Illuminate\Support\Str;
 use McCool\LaravelAutoPresenter\BasePresenter;
-use App, Input, Request;
 use Misd\Linkify\Linkify;
 
 class ThreadPresenter extends BasePresenter
 {
     public function url()
     {
-        if ( ! $this->slug) {
+        if (!$this->slug) {
             return '';
         }
+
         return action('Forum\ForumThreadsController@getShowThread', [$this->slug]);
     }
 
@@ -32,6 +34,7 @@ class ThreadPresenter extends BasePresenter
         $body = $this->convertMarkdown($body);
         $body = $this->formatGists($body);
         $body = $this->linkify($body);
+
         return $body;
     }
 
@@ -47,7 +50,7 @@ class ThreadPresenter extends BasePresenter
         $prefix = $this->versionSubjectPrefix();
         $subject = Str::limit($this->getWrappedObject()->subject, 80);
 
-        return $prefix ? $prefix .' '. $subject : $subject;
+        return $prefix ? $prefix.' '.$subject : $subject;
     }
 
     public function mostRecentReplier()
@@ -57,11 +60,11 @@ class ThreadPresenter extends BasePresenter
 
     public function latestReplyUrl()
     {
-        if (! count($this->replies)) {
+        if (!count($this->replies)) {
             return $this->url;
         }
 
-        return $this->url . App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->replies->last());
+        return $this->url.App::make('Lio\Forum\Replies\ReplyQueryStringGenerator')->generate($this->replies->last());
     }
 
     public function lastReplyDiff()
@@ -75,8 +78,8 @@ class ThreadPresenter extends BasePresenter
 
     public function acceptedSolutionUrl()
     {
-        if ( ! $this->acceptedSolution) {
-            return null;
+        if (!$this->acceptedSolution) {
+            return;
         }
 
         return action('Forum\ForumRepliesController@getReplyRedirect', [$this->getWrappedObject()->slug, $this->acceptedSolution->id]);
@@ -115,6 +118,7 @@ class ThreadPresenter extends BasePresenter
     private function linkify($content)
     {
         $linkify = new Linkify();
+
         return $linkify->process($content);
     }
 }

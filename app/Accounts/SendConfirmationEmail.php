@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Accounts;
 
 use Illuminate\Mail\Mailer;
@@ -12,7 +13,7 @@ class SendConfirmationEmail
     private $mailer;
 
     /**
-     * The view for the confirmation HTML email
+     * The view for the confirmation HTML email.
      *
      * @var string
      */
@@ -27,7 +28,7 @@ class SendConfirmationEmail
     }
 
     /**
-     * Send a confirmation email to the user to verify his email address
+     * Send a confirmation email to the user to verify his email address.
      *
      * @param \Lio\Accounts\User $user
      */

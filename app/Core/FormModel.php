@@ -1,8 +1,10 @@
 <?php
+
 namespace Lio\Core;
 
-use App, Validator;
+use App;
 use Lio\Core\Exceptions\NoValidationRulesFoundException;
+use Validator;
 
 class FormModel
 {
@@ -24,8 +26,8 @@ class FormModel
     {
         $this->beforeValidation();
 
-        if ( ! isset($this->validationRules)) {
-            throw new NoValidationRulesFoundException('no validation rules found in class ' . get_called_class());
+        if (!isset($this->validationRules)) {
+            throw new NoValidationRulesFoundException('no validation rules found in class '.get_called_class());
         }
 
         $this->validator = Validator::make($this->getInputData(), $this->getPreparedRules());
@@ -43,5 +45,7 @@ class FormModel
         return $this->validationRules;
     }
 
-    protected function beforeValidation() {}
+    protected function beforeValidation()
+    {
+    }
 }

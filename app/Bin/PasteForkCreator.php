@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Bin;
 
 class PasteForkCreator implements PasteCreatorListener
@@ -25,9 +26,10 @@ class PasteForkCreator implements PasteCreatorListener
     public function pasteCreated($paste)
     {
         $paste->parent = $this->parent;
-        if ( ! $this->pastes->save($paste)) {
+        if (!$this->pastes->save($paste)) {
             return $this->pasteValidationError($paste->getErrors());
         }
+
         return $this->listener->pasteCreated($paste);
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Comments;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,10 +11,10 @@ class Comment extends Entity implements HasPresenter
 {
     use SoftDeletes;
 
-    protected $table    = 'comments';
+    protected $table = 'comments';
     protected $fillable = ['title', 'body', 'author_id', 'parent_id', 'category_slug', 'owner_id', 'owner_type', 'type', 'laravel_version'];
-    protected $with     = ['author'];
-    protected $dates    = ['deleted_at'];
+    protected $with = ['author'];
+    protected $dates = ['deleted_at'];
 
     protected $validatorRules = [
         'body'      => 'required',
@@ -22,13 +23,13 @@ class Comment extends Entity implements HasPresenter
 
     protected $laravelVersions = [
         0 => "Doesn't Matter",
-        3 => "Laravel 3.x",
-        4 => "Laravel 4.x",
-        5 => "Laravel 5.x",
+        3 => 'Laravel 3.x',
+        4 => 'Laravel 4.x',
+        5 => 'Laravel 5.x',
     ];
 
-    const TYPE_FORUM   = 0;
-    const TYPE_PASTE   = 1;
+    const TYPE_FORUM = 0;
+    const TYPE_PASTE = 1;
 
     public function owner()
     {
@@ -98,7 +99,9 @@ class Comment extends Entity implements HasPresenter
 
     public function isMainComment()
     {
-        if(! $this->parent_id) return true;
+        if (!$this->parent_id) {
+            return true;
+        }
     }
 
     public function getSlugString()
@@ -111,9 +114,11 @@ class Comment extends Entity implements HasPresenter
     //
     protected function getForumPostSlugString()
     {
-        if (empty($this->title)) return '';
+        if (empty($this->title)) {
+            return '';
+        }
 
-        $date = date("m-d-Y", strtotime($this->created_at));
+        $date = date('m-d-Y', strtotime($this->created_at));
 
         return Str::slug("{$date} - {$this->title}");
     }

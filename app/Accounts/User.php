@@ -1,8 +1,8 @@
 <?php
+
 namespace Lio\Accounts;
 
 use Carbon\Carbon;
-use Eloquent;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -45,8 +45,8 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
 
     protected $validationRules = [
         'github_id' => 'unique:users,github_id,<id>',
-        'email' => 'required|email|unique:users,email,<id>',
-        'name' => 'required|alpha_num|unique:users,name,<id>',
+        'email'     => 'required|email|unique:users,email,<id>',
+        'name'      => 'required|alpha_num|unique:users,name,<id>',
     ];
 
     private $rolesCache;
@@ -58,7 +58,7 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
 
     public function getRoles()
     {
-        if (! isset($this->rolesCache)) {
+        if (!isset($this->rolesCache)) {
             $this->rolesCache = $this->roles;
         }
 
@@ -86,12 +86,12 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
 
         foreach ((array) $roleNames as $allowedRole) {
             // validate that the role exists
-            if (! $roleList->contains($allowedRole)) {
+            if (!$roleList->contains($allowedRole)) {
                 throw new InvalidRoleException("Unidentified role: {$allowedRole}");
             }
 
             // validate that the user has the role
-            if (! $this->roleCollectionHasRole($allowedRole)) {
+            if (!$this->roleCollectionHasRole($allowedRole)) {
                 return false;
             }
         }
@@ -103,7 +103,7 @@ class User extends Entity implements AuthenticatableContract, CanResetPasswordCo
     {
         $roles = $this->getRoles();
 
-        if (! $roles) {
+        if (!$roles) {
             return false;
         }
 

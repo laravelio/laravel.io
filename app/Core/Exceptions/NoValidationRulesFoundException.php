@@ -1,4 +1,7 @@
 <?php
+
 namespace Lio\Core\Exceptions;
 
-class NoValidationRulesFoundException extends \Exception {}
+class NoValidationRulesFoundException extends \Exception
+{
+}

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class ForumThreadsAddQuestionFields extends Migration
 {
@@ -12,7 +12,7 @@ class ForumThreadsAddQuestionFields extends Migration
      */
     public function up()
     {
-        Schema::table('forum_threads', function(Blueprint $table) {
+        Schema::table('forum_threads', function (Blueprint $table) {
             $table->boolean('is_question')->default(true);
         });
     }
@@ -24,7 +24,7 @@ class ForumThreadsAddQuestionFields extends Migration
      */
     public function down()
     {
-        Schema::table('forum_threads', function(Blueprint $table) {
+        Schema::table('forum_threads', function (Blueprint $table) {
             $table->dropColumn('is_question');
         });
     }

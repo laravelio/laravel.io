@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class DropUnusedTables extends Migration
 {
@@ -24,7 +24,7 @@ class DropUnusedTables extends Migration
      */
     public function down()
     {
-        Schema::table('activity', function(Blueprint $table) {
+        Schema::table('activity', function (Blueprint $table) {
             $table->create();
 
             $table->increments('id');
@@ -36,7 +36,7 @@ class DropUnusedTables extends Migration
             $table->timestamps();
         });
 
-        Schema::table('forum_thread_visitations', function(Blueprint $table) {
+        Schema::table('forum_thread_visitations', function (Blueprint $table) {
             $table->create();
             $table->increments('id');
             $table->integer('user_id');
@@ -45,7 +45,7 @@ class DropUnusedTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('sessions', function(Blueprint $table) {
+        Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->unique();
             $table->text('payload');
             $table->integer('last_activity');

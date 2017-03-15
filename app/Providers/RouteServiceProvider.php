@@ -1,9 +1,9 @@
 <?php
+
 namespace Lio\Providers;
 
-use App;
-use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 use Route;
 
 class RouteServiceProvider extends ServiceProvider
@@ -20,15 +20,16 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
+     * @param \Illuminate\Routing\Router $router
+     *
      * @return void
      */
     public function boot(Router $router)
     {
-        Route::filter('has_role', function($route, $request, $parameters) {
+        Route::filter('has_role', function ($route, $request, $parameters) {
             $allowedRoles = explode(',', $parameters);
 
-            if (auth()->guest() || (auth()->check() && ! auth()->user()->hasRoles($allowedRoles))) {
+            if (auth()->guest() || (auth()->check() && !auth()->user()->hasRoles($allowedRoles))) {
                 abort(403);
             }
         });
@@ -40,6 +41,7 @@ class RouteServiceProvider extends ServiceProvider
      * Define the routes for the application.
      *
      * @param \Illuminate\Routing\Router $router
+     *
      * @return void
      */
     public function map(Router $router)

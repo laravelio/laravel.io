@@ -12,7 +12,7 @@ class CommentsAddLaravelVersion extends Migration
      */
     public function up()
     {
-        Schema::table('comments', function(Blueprint $table) {
+        Schema::table('comments', function (Blueprint $table) {
             $table->integer('laravel_version')->default(0);
         });
     }
@@ -24,7 +24,7 @@ class CommentsAddLaravelVersion extends Migration
      */
     public function down()
     {
-        Schema::table('comments', function(Blueprint $table) {
+        Schema::table('comments', function (Blueprint $table) {
             $table->dropColumn('laravel_version');
         });
     }

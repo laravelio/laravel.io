@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Bin;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,10 +10,10 @@ class Paste extends Entity implements HasPresenter
 {
     use SoftDeletes;
 
-    protected $table    = 'pastes';
+    protected $table = 'pastes';
     protected $fillable = ['description', 'code', 'ip', 'author', 'parent', 'author_id', 'parent_id'];
-    protected $with     = ['comments'];
-    protected $dates    = ['deleted_at'];
+    protected $with = ['comments'];
+    protected $dates = ['deleted_at'];
 
     protected $validationRules = [
         'code' => 'required',
@@ -35,13 +36,17 @@ class Paste extends Entity implements HasPresenter
 
     public function setAuthorAttribute($user)
     {
-        if ( ! $user) return false;
+        if (!$user) {
+            return false;
+        }
         $this->author()->associate($user);
     }
 
     public function setParentAttribute($paste)
     {
-        if ( ! $paste) return false;
+        if (!$paste) {
+            return false;
+        }
         $this->parent()->associate($paste);
     }
 

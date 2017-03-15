@@ -13,9 +13,9 @@
 
 $factory->define(Lio\Accounts\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => str_random(10),
+        'name'           => $faker->name,
+        'email'          => $faker->email,
+        'password'       => str_random(10),
         'remember_token' => str_random(10),
     ];
 });

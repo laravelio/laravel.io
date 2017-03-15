@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Http\Controllers\Forum;
 
 use Auth;
@@ -36,14 +37,14 @@ class ForumRepliesController extends Controller implements ReplyCreatorListener,
     {
         $reply = $this->replies->requireById($replyId);
 
-        if (! $reply->isManageableBy(Auth::user())) {
+        if (!$reply->isManageableBy(Auth::user())) {
             return redirect()->home();
         }
 
         $generator = app('Lio\Forum\Replies\ReplyQueryStringGenerator');
         $queryString = $generator->generate($reply, $this->repliesPerPage);
 
-        return redirect(action('Forum\ForumThreadsController@getShowThread', $threadSlug) . $queryString);
+        return redirect(action('Forum\ForumThreadsController@getShowThread', $threadSlug).$queryString);
     }
 
     // reply to a thread
@@ -52,10 +53,10 @@ class ForumRepliesController extends Controller implements ReplyCreatorListener,
         $thread = $this->threads->requireBySlug($threadSlug);
 
         return app('Lio\Forum\Replies\ReplyCreator')->create($this, [
-            'body' => Input::get('body'),
+            'body'   => Input::get('body'),
             'author' => Auth::user(),
-            'ip' => Request::ip(),
-        ], $thread->id, new ReplyForm);
+            'ip'     => Request::ip(),
+        ], $thread->id, new ReplyForm());
     }
 
     public function replyCreationError($errors)
@@ -75,7 +76,7 @@ class ForumRepliesController extends Controller implements ReplyCreatorListener,
     {
         $reply = $this->replies->requireById($replyId);
 
-        if (! $reply->isManageableBy(Auth::user())) {
+        if (!$reply->isManageableBy(Auth::user())) {
             return redirect()->home();
         }
 
@@ -86,13 +87,13 @@ class ForumRepliesController extends Controller implements ReplyCreatorListener,
     {
         $reply = $this->replies->requireById($replyId);
 
-        if (! $reply->isManageableBy(Auth::user())) {
+        if (!$reply->isManageableBy(Auth::user())) {
             return redirect()->home();
         }
 
         return app('Lio\Forum\Replies\ReplyUpdater')->update($reply, $this, [
             'body' => Input::get('body'),
-        ], new ReplyForm);
+        ], new ReplyForm());
     }
 
     // observer methods
@@ -113,7 +114,7 @@ class ForumRepliesController extends Controller implements ReplyCreatorListener,
     {
         $reply = $this->replies->requireById($replyId);
 
-        if (! $reply->isManageableBy(Auth::user())) {
+        if (!$reply->isManageableBy(Auth::user())) {
             return redirect()->home();
         }
 
@@ -124,7 +125,7 @@ class ForumRepliesController extends Controller implements ReplyCreatorListener,
     {
         $reply = $this->replies->requireById($replyId);
 
-        if (! $reply->isManageableBy(Auth::user())) {
+        if (!$reply->isManageableBy(Auth::user())) {
             return redirect()->home();
         }
 

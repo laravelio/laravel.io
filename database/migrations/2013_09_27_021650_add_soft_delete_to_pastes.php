@@ -12,7 +12,7 @@ class AddSoftDeleteToPastes extends Migration
      */
     public function up()
     {
-        Schema::table('pastes', function(Blueprint $table) {
+        Schema::table('pastes', function (Blueprint $table) {
             $table->softDeletes();
         });
     }
@@ -24,7 +24,7 @@ class AddSoftDeleteToPastes extends Migration
      */
     public function down()
     {
-        Schema::table('pastes', function(Blueprint $table) {
+        Schema::table('pastes', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }

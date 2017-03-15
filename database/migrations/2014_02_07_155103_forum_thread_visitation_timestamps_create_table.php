@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class ForumThreadVisitationTimestampsCreateTable extends Migration
 {
@@ -12,7 +12,7 @@ class ForumThreadVisitationTimestampsCreateTable extends Migration
      */
     public function up()
     {
-        Schema::table('forum_thread_visitations', function(Blueprint $table) {
+        Schema::table('forum_thread_visitations', function (Blueprint $table) {
             $table->create();
             $table->increments('id');
             $table->integer('user_id');

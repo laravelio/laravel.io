@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Http\Controllers;
 
 use Auth;
@@ -22,7 +23,7 @@ class UsersController extends Controller implements UserUpdaterListener
 
     /**
      * @param \Lio\Accounts\UserRepository $users
-     * @param \Lio\Accounts\UserUpdater $updater
+     * @param \Lio\Accounts\UserUpdater    $updater
      */
     public function __construct(UserRepository $users, UserUpdater $updater)
     {
@@ -90,7 +91,7 @@ class UsersController extends Controller implements UserUpdaterListener
     public function userUpdated($user, $emailChanged = false)
     {
         if ($emailChanged) {
-            Session::put('success', 'Settings updated. An email confirmation was sent to ' . $user->email);
+            Session::put('success', 'Settings updated. An email confirmation was sent to '.$user->email);
         } else {
             Session::put('success', 'Settings updated');
         }

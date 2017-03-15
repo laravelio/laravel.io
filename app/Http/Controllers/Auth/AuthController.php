@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Http\Controllers\Auth;
 
 use Auth;
@@ -40,9 +41,9 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
     private $confirmation;
 
     /**
-     * @param \Lio\Github\GithubAuthenticator $github
-     * @param \Lio\Accounts\UserRepository $users
-     * @param \Lio\Accounts\UserCreator $userCreator
+     * @param \Lio\Github\GithubAuthenticator     $github
+     * @param \Lio\Accounts\UserRepository        $users
+     * @param \Lio\Accounts\UserCreator           $userCreator
      * @param \Lio\Accounts\SendConfirmationEmail $confirmation
      */
     public function __construct(
@@ -85,7 +86,7 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
      */
     public function signup()
     {
-        if (! Session::has('githubData')) {
+        if (!Session::has('githubData')) {
             return redirect()->route('login');
         }
 
@@ -106,13 +107,13 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
      */
     public function register()
     {
-        if (! Session::has('githubData')) {
+        if (!Session::has('githubData')) {
             return redirect()->route('login');
         }
 
         /** @var \Illuminate\Validation\Validator $validator */
         $validator = Validator::make(Input::only('g-recaptcha-response'), [
-            'g-recaptcha-response' => 'required|captcha'
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         if ($validator->fails()) {
@@ -140,14 +141,15 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
     }
 
     /**
-     * Confirms a user's email address
+     * Confirms a user's email address.
      *
      * @param string $code
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function confirmEmail($code)
     {
-        if (! $user = $this->users->getByConfirmationCode($code)) {
+        if (!$user = $this->users->getByConfirmationCode($code)) {
             abort(404);
         }
 
@@ -163,7 +165,7 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
     }
 
     /**
-     * Re-sends the confirmation email
+     * Re-sends the confirmation email.
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -171,7 +173,7 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
     {
         $this->confirmation->send(Auth::user());
 
-        session(['success' => 'A new email confirmation was sent to ' . Auth::user()->email]);
+        session(['success' => 'A new email confirmation was sent to '.Auth::user()->email]);
 
         return redirect()->home();
     }
@@ -188,6 +190,7 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
 
     /**
      * @param \Lio\Accounts\User $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function userFound(User $user)
@@ -209,6 +212,7 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
 
     /**
      * @param array $githubData
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function userNotFound($githubData)
@@ -220,6 +224,7 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
 
     /**
      * @param $errors
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function userValidationError($errors)
@@ -229,12 +234,13 @@ class AuthController extends Controller implements GithubAuthenticatorListener, 
 
     /**
      * @param \Lio\Accounts\User $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function userCreated($user)
     {
         Session::forget('githubData');
-        Session::put('success', 'Account created. An email confirmation was sent to ' . $user->email);
+        Session::put('success', 'Account created. An email confirmation was sent to '.$user->email);
 
         Auth::login($user, true);
 

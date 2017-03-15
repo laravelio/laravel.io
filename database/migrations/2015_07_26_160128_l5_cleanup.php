@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class L5Cleanup extends Migration
 {
@@ -27,7 +27,7 @@ class L5Cleanup extends Migration
      */
     public function down()
     {
-        Schema::create('articles', function(Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('author_id');
             $table->string('title');
@@ -42,7 +42,7 @@ class L5Cleanup extends Migration
             $table->softDeletes();
         });
 
-        Schema::table('article_tag', function(Blueprint $table) {
+        Schema::table('article_tag', function (Blueprint $table) {
             $table->create();
 
             $table->increments('id');

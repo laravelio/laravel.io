@@ -2,11 +2,11 @@
 
 return [
 
-    'encoding' => 'UTF-8',
-    'finalize' => true,
-    'preload'  => false,
+    'encoding'  => 'UTF-8',
+    'finalize'  => true,
+    'preload'   => false,
     'cachePath' => storage_path('purifier'),
-    'settings' => [
+    'settings'  => [
         'default' => [
             'HTML.Doctype'             => 'XHTML 1.0 Strict',
             'HTML.Allowed'             => 'div,b,strong,i,em,a[href|title],ul,ol,li,p[style],br,span[style],img[width|height|alt|src]',
@@ -22,11 +22,11 @@ return [
             'AutoFormat.RemoveEmpty'   => true,
         ],
         'test' => [
-            'Attr.EnableID' => true
+            'Attr.EnableID' => true,
         ],
-        "youtube" => [
-            "HTML.SafeIframe" => 'true',
-            "URI.SafeIframeRegexp" => "%^(http://|https://|//)(www.youtube.com/embed/|player.vimeo.com/video/)%",
+        'youtube' => [
+            'HTML.SafeIframe'      => 'true',
+            'URI.SafeIframeRegexp' => '%^(http://|https://|//)(www.youtube.com/embed/|player.vimeo.com/video/)%',
         ],
     ],
 ];

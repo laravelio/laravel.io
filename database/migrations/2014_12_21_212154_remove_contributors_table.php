@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class RemoveContributorsTable extends Migration
 {
@@ -22,7 +22,7 @@ class RemoveContributorsTable extends Migration
      */
     public function down()
     {
-        Schema::create('contributors', function(Blueprint $table) {
+        Schema::create('contributors', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->nullable();
             $table->string('github_id');

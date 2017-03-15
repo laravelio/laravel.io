@@ -12,7 +12,7 @@ class ForumRepliesCreateTable extends Migration
      */
     public function up()
     {
-        Schema::create('forum_replies', function(Blueprint $table) {
+        Schema::create('forum_replies', function (Blueprint $table) {
             $table->increments('id');
             $table->text('body');
             $table->integer('author_id');

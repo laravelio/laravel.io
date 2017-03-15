@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -23,9 +24,9 @@ class ContentServiceProvider extends ServiceProvider
 
         $this->app->singleton(SpamDetector::class, function ($app) {
             return new SpamFilter([
-                new PhoneNumberSpamDetector,
-                new ForeignLanguageSpamDetector,
-                $app[AkismetSpamDetector::class]
+                new PhoneNumberSpamDetector(),
+                new ForeignLanguageSpamDetector(),
+                $app[AkismetSpamDetector::class],
             ]);
         });
     }

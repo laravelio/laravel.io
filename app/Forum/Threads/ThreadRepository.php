@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Forum\Threads;
 
 use Illuminate\Support\Collection;
@@ -61,8 +62,8 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
     {
         $model = $this->getBySlug($slug);
 
-        if ( ! $model) {
-            throw new EntityNotFoundException;
+        if (!$model) {
+            throw new EntityNotFoundException();
         }
 
         return $model;
@@ -75,6 +76,7 @@ class ThreadRepository extends \Lio\Core\EloquentRepository
 
     /**
      * @param int $userId
+     *
      * @return mixed
      */
     public function deleteByAuthorId($userId)

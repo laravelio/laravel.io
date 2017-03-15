@@ -1,12 +1,13 @@
 <?php
+
 namespace Lio\Forum\Replies;
 
 /**
-* This class can call the following methods on the observer object:
-*
-* replyCreationError($errors)
-* replyCreated($reply)
-*/
+ * This class can call the following methods on the observer object:.
+ *
+ * replyCreationError($errors)
+ * replyCreated($reply)
+ */
 class ReplyCreator
 {
     protected $replies;
@@ -18,7 +19,7 @@ class ReplyCreator
 
     public function create(ReplyCreatorListener $listener, $data, $threadId, $validator = null)
     {
-        if ($validator && ! $validator->isValid()) {
+        if ($validator && !$validator->isValid()) {
             return $listener->replyCreationError($validator->getErrors());
         }
 
@@ -37,7 +38,7 @@ class ReplyCreator
 
     private function validateAndSave($listener, $reply)
     {
-        if (! $this->replies->save($reply)) {
+        if (!$this->replies->save($reply)) {
             return $listener->replyCreationError($reply->getErrors());
         }
 

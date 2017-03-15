@@ -1,16 +1,17 @@
 <?php
+
 namespace Lio\Tests\Unit\GitHub;
 
 use Lio\Github\GistEmbedFormatter;
 
 class GistEmbedFormatterTest extends \PHPUnit_Framework_TestCase
 {
-    function testCanCreate()
+    public function testCanCreate()
     {
         $this->assertInstanceOf(GistEmbedFormatter::class, $this->getFormatter());
     }
 
-    function testCanFormat()
+    public function testCanFormat()
     {
         $formatter = $this->getFormatter();
 
@@ -19,7 +20,7 @@ class GistEmbedFormatterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($embedHtml, $formatter->format($gistUrl));
     }
 
-    function testCanFormatMany()
+    public function testCanFormatMany()
     {
         $formatter = $this->getFormatter();
 
@@ -44,6 +45,6 @@ What makes people so impatient is what I can\'t figure; all the guy had to do wa
 
     private function getFormatter()
     {
-        return new GistEmbedFormatter;
+        return new GistEmbedFormatter();
     }
 }

@@ -1,11 +1,12 @@
 <?php
+
 namespace Lio\Forum\Threads;
 
 /**
-* This class can call the following methods on the observer object:
-*
-* threadDeleted()
-*/
+ * This class can call the following methods on the observer object:.
+ *
+ * threadDeleted()
+ */
 class ThreadDeleter
 {
     protected $threads;
@@ -20,6 +21,7 @@ class ThreadDeleter
         $this->deleteReplies($thread);
 
         $this->threads->delete($thread);
+
         return $observer->threadDeleted();
     }
 

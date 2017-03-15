@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Tests;
 
 use Illuminate\Contracts\Console\Kernel;

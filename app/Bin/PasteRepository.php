@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Bin;
 
 use Lio\Core\EloquentRepository;

@@ -1,12 +1,13 @@
 <?php
+
 namespace Lio\Forum\Replies;
 
 /**
-* This class can call the following methods on the observer object:
-*
-* replyUpdateError($errors)
-* replyUpdated($reply)
-*/
+ * This class can call the following methods on the observer object:.
+ *
+ * replyUpdateError($errors)
+ * replyUpdated($reply)
+ */
 class ReplyUpdater
 {
     protected $replies;
@@ -19,9 +20,10 @@ class ReplyUpdater
     public function update($reply, ReplyUpdaterListener $observer, $data, $validator = null)
     {
         // check the passed in validator
-        if ($validator && ! $validator->isValid()) {
+        if ($validator && !$validator->isValid()) {
             return $observer->replyUpdateError($validator->getErrors());
         }
+
         return $this->updateRecord($reply, $observer, $data);
     }
 
@@ -30,7 +32,7 @@ class ReplyUpdater
         $reply->fill($data);
 
         // check the model validation
-        if ( ! $this->replies->save($reply)) {
+        if (!$this->replies->save($reply)) {
             return $observer->replyUpdateError($reply->getErrors());
         }
 

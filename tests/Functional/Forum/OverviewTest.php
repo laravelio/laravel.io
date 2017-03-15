@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Tests\Functional\Forum;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -9,7 +10,7 @@ class OverviewTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    function it_shows_the_create_thread_button()
+    public function it_shows_the_create_thread_button()
     {
         $this->visit('/forum')
             ->see('Create Thread');

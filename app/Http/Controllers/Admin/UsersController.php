@@ -1,10 +1,10 @@
 <?php
+
 namespace Lio\Http\Controllers\Admin;
 
-use Auth;
 use Input;
-use Lio\Accounts\UserRepository;
 use Lio\Accounts\RoleRepository;
+use Lio\Accounts\UserRepository;
 use Lio\Forum\Threads\ThreadRepository;
 use Lio\Http\Controllers\Controller;
 
@@ -48,7 +48,7 @@ class UsersController extends Controller
 
     public function getEdit($userId)
     {
-        $user  = $this->users->requireById($userId);
+        $user = $this->users->requireById($userId);
         $roles = $this->roles->getAll();
 
         return view('admin.users.edit', compact('user', 'roles'));
@@ -60,11 +60,11 @@ class UsersController extends Controller
 
         $user->fill(Input::all());
 
-        if (! Input::has('is_banned')) {
+        if (!Input::has('is_banned')) {
             $user->is_banned = 0;
         }
 
-        if (! $user->isValid()) {
+        if (!$user->isValid()) {
             return $this->redirectBack(['errors' => $user->getErrors()]);
         }
 

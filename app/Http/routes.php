@@ -1,13 +1,13 @@
 <?php
 
 // Home
-Route::group(['domain' => 'wiki.laravel.io'], function() {
+Route::group(['domain' => 'wiki.laravel.io'], function () {
     Route::get('{wildcard}', 'HomeController@redirectToMainWebsite');
 });
-Route::group(['domain' => 'forum.laravel.io'], function() {
+Route::group(['domain' => 'forum.laravel.io'], function () {
     Route::get('{wildcard}', 'HomeController@redirectToMainWebsite');
 });
-Route::group(['domain' => 'forums.laravel.io'], function() {
+Route::group(['domain' => 'forums.laravel.io'], function () {
     Route::get('{wildcard}', 'HomeController@redirectToMainWebsite');
 });
 
@@ -45,14 +45,14 @@ Route::get('bin/fork/{hash}', 'PastesController@getFork');
 Route::get('bin/{hash}/raw', 'PastesController@getRaw');
 Route::get('bin/{hash}', 'PastesController@getShow');
 
-Route::group(['middleware' => ['auth', 'confirmed']], function() {
+Route::group(['middleware' => ['auth', 'confirmed']], function () {
     Route::post('bin', 'PastesController@postCreate');
     Route::post('bin/fork/{hash}', 'PastesController@postFork');
 });
 
 // Forum
-Route::group(['namespace' => 'Forum'], function() {
-    Route::group(['middleware' => ['auth', 'confirmed']], function() {
+Route::group(['namespace' => 'Forum'], function () {
+    Route::group(['middleware' => ['auth', 'confirmed']], function () {
         Route::get('forum/create-thread', 'ForumThreadsController@getCreateThread');
         Route::post('forum/create-thread', 'ForumThreadsController@postCreateThread');
 
@@ -81,7 +81,7 @@ Route::group(['namespace' => 'Forum'], function() {
 });
 
 // Admin
-Route::group(['middleware' => ['auth', 'confirmed'], 'before' => 'has_role:manage_users', 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
+Route::group(['middleware' => ['auth', 'confirmed'], 'before' => 'has_role:manage_users', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', 'OverviewController@overview');
 
     Route::get('users', ['as' => 'admin.users', 'uses' => 'UsersController@getIndex']);

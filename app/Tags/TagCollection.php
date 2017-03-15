@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Tags;
 
 class TagCollection extends \Illuminate\Database\Eloquent\Collection
@@ -8,7 +9,7 @@ class TagCollection extends \Illuminate\Database\Eloquent\Collection
         $tagLinks = [];
 
         foreach ($this->items as $item) {
-            $tagLinks[] = '<a href="' . action('Forum\ForumThreadsController@getIndex') . '?tags=' . $item->slug . '">' . $item->name . '</a>';
+            $tagLinks[] = '<a href="'.action('Forum\ForumThreadsController@getIndex').'?tags='.$item->slug.'">'.$item->name.'</a>';
         }
 
         return implode(', ', $tagLinks);

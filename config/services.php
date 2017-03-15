@@ -36,16 +36,16 @@ return [
     ],
 
     'github' => [
-        'client_id' => env('GITHUB_ID'),
+        'client_id'     => env('GITHUB_ID'),
         'client_secret' => env('GITHUB_SECRET'),
-        'redirect' => env('GITHUB_URL'),
+        'redirect'      => env('GITHUB_URL'),
     ],
 
     'snappy' => [
-        'enabled' => env('SNAPPY_ENABLED', false),
-        'debug' => env('SNAPPY_DEBUG', false),
+        'enabled'   => env('SNAPPY_ENABLED', false),
+        'debug'     => env('SNAPPY_DEBUG', false),
         'embed_url' => env('SNAPPY_EMBED_URL'),
-        'domain' => env('SNAPPY_DOMAIN'),
+        'domain'    => env('SNAPPY_DOMAIN'),
     ],
 
     'akismet' => [

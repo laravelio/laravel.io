@@ -12,7 +12,7 @@ class AddCommentCounterCacheToArticles extends Migration
      */
     public function up()
     {
-        Schema::table('articles', function(Blueprint $table) {
+        Schema::table('articles', function (Blueprint $table) {
             $table->integer('comment_count')->default(0);
         });
     }
@@ -24,7 +24,7 @@ class AddCommentCounterCacheToArticles extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function(Blueprint $table) {
+        Schema::table('articles', function (Blueprint $table) {
             $table->dropColumn('comment_count');
         });
     }

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AddIndexesToTaggedItems extends Migration
 {
@@ -29,5 +29,5 @@ class AddIndexesToTaggedItems extends Migration
             $table->dropIndex(['thread_id']);
             $table->dropIndex(['tag_id']);
         });
-   }
+    }
 }

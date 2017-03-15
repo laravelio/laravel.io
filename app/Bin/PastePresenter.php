@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Bin;
 
 use McCool\LaravelAutoPresenter\BasePresenter;

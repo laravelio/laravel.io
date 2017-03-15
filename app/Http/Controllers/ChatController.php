@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Http\Controllers;
 
 class ChatController extends Controller
