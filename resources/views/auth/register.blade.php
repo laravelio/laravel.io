@@ -6,19 +6,19 @@
     {!! Form::open(['route' => 'register.post']) !!}
         @formGroup('name')
             {!! Form::label('name') !!}
-            {!! Form::text('name', session('githubData.name'), ['class' => 'form-control', 'required']) !!}
+            {!! Form::text('name', session('githubData.name'), ['class' => 'form-control', 'required', 'placeholder' => 'John Doe']) !!}
             @error('name')
         @endFormGroup
 
         @formGroup('email')
             {!! Form::label('email') !!}
-            {!! Form::email('email', session('githubData.email'), ['class' => 'form-control', 'required']) !!}
+            {!! Form::email('email', session('githubData.email'), ['class' => 'form-control', 'required', 'placeholder' => 'john@example.com']) !!}
             @error('email')
         @endFormGroup
 
         @formGroup('username')
             {!! Form::label('username') !!}
-            {!! Form::text('username', session('githubData.username'), ['class' => 'form-control', 'required']) !!}
+            {!! Form::text('username', session('githubData.username'), ['class' => 'form-control', 'required', 'placeholder' => 'johndoe']) !!}
             @error('username')
         @endFormGroup
 
