@@ -1,10 +1,9 @@
 <?php
+
 namespace Lio\Forum\Replies;
 
-use Input;
 use McCool\LaravelAutoPresenter\BasePresenter;
 use Misd\Linkify\Linkify;
-use Request;
 
 class ReplyPresenter extends BasePresenter
 {
@@ -13,7 +12,7 @@ class ReplyPresenter extends BasePresenter
         $slug = $this->getWrappedObject()->thread->slug;
         $threadUrl = action('Forum\ForumThreadsController@getShowThread', $slug);
 
-        return $threadUrl . app(ReplyQueryStringGenerator::class)->generate($this->getWrappedObject());
+        return $threadUrl.app(ReplyQueryStringGenerator::class)->generate($this->getWrappedObject());
     }
 
     public function created_ago()

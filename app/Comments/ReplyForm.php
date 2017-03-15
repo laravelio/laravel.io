@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Comments;
 
 use Lio\Core\FormModel;

@@ -1,7 +1,7 @@
 <?php
+
 namespace Lio\Forum\Threads;
 
-use Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Lio\Core\Entity;
@@ -17,7 +17,7 @@ class Thread extends Entity implements HasPresenter
     protected $dates = ['deleted_at'];
 
     protected $validationRules = [
-        'body' => 'required',
+        'body'      => 'required',
         'author_id' => 'required|exists:users,id',
     ];
 
@@ -93,7 +93,9 @@ class Thread extends Entity implements HasPresenter
 
     private function generateSlugByIncrementer($i)
     {
-        if ($i == 0) $i = '';
+        if ($i == 0) {
+            $i = '';
+        }
 
         if ($this->created_at) {
             $date = date('m-d-Y', strtotime($this->created_at));
@@ -101,7 +103,7 @@ class Thread extends Entity implements HasPresenter
             $date = date('m-d-Y');
         }
 
-        return Str::slug("{$date} - {$this->subject}" . $i);
+        return Str::slug("{$date} - {$this->subject}".$i);
     }
 
     public function getLaravelVersions()
@@ -116,18 +118,24 @@ class Thread extends Entity implements HasPresenter
 
     public function isSolved()
     {
-        return $this->isQuestion() && ! is_null($this->solution_reply_id);
+        return $this->isQuestion() && !is_null($this->solution_reply_id);
     }
 
     public function isManageableBy($user)
     {
-        if ( ! $user) return false;
+        if (!$user) {
+            return false;
+        }
+
         return $this->isOwnedBy($user) || $user->isForumAdmin();
     }
 
     public function isOwnedBy($user)
     {
-        if ( ! $user) return false;
+        if (!$user) {
+            return false;
+        }
+
         return $user->id == $this->author_id;
     }
 

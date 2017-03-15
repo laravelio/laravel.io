@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Accounts;
 
 use Lio\Core\EloquentRepository;
@@ -28,7 +29,7 @@ class UserRepository extends EloquentRepository
     {
         $model = $this->getByName($name);
 
-        if (! $model) {
+        if (!$model) {
             throw new EntityNotFoundException("User with name {$name} could not be found.");
         }
 
@@ -42,6 +43,7 @@ class UserRepository extends EloquentRepository
 
     /**
      * @param mixed $value
+     *
      * @return \Lio\Accounts\User[]
      */
     public function search($value)
@@ -59,9 +61,10 @@ class UserRepository extends EloquentRepository
     }
 
     /**
-     * Find a user by its confirmation code
+     * Find a user by its confirmation code.
      *
      * @param string $code
+     *
      * @return \Lio\Accounts\User
      */
     public function getByConfirmationCode($code)
@@ -70,9 +73,10 @@ class UserRepository extends EloquentRepository
     }
 
     /**
-     * Determine if an email already exists for a user
+     * Determine if an email already exists for a user.
      *
      * @param string $email
+     *
      * @return bool
      */
     public function emailExists($email)

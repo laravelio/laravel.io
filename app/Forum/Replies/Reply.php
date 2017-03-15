@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Forum\Replies;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -9,10 +10,10 @@ class Reply extends Entity implements HasPresenter
 {
     use SoftDeletes;
 
-    protected $table    = 'forum_replies';
+    protected $table = 'forum_replies';
     protected $fillable = ['body', 'author_id', 'thread_id', 'ip'];
-    protected $with     = ['author'];
-    protected $dates    = ['deleted_at'];
+    protected $with = ['author'];
+    protected $dates = ['deleted_at'];
 
     protected $validationRules = [
         'body'      => 'required|min:6',
@@ -31,13 +32,19 @@ class Reply extends Entity implements HasPresenter
 
     public function isManageableBy($user)
     {
-        if ( ! $user) return false;
+        if (!$user) {
+            return false;
+        }
+
         return $this->isOwnedBy($user) || $user->isForumAdmin();
     }
 
     public function isOwnedBy($user)
     {
-        if ( ! $user) return false;
+        if (!$user) {
+            return false;
+        }
+
         return $user->id == $this->author_id;
     }
 

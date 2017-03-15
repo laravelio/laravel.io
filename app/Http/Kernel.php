@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Http;
 
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
@@ -35,9 +36,9 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => Authenticate::class,
+        'auth'       => Authenticate::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
-        'guest' => RedirectIfAuthenticated::class,
-        'confirmed' => EmailConfirmed::class,
+        'guest'      => RedirectIfAuthenticated::class,
+        'confirmed'  => EmailConfirmed::class,
     ];
 }

@@ -1,8 +1,9 @@
 <?php
+
 namespace Lio\Tags;
 
-use Lio\Core\EloquentRepository;
 use Illuminate\Support\Collection;
+use Lio\Core\EloquentRepository;
 
 class TagRepository extends EloquentRepository
 {
@@ -14,7 +15,7 @@ class TagRepository extends EloquentRepository
     public function getAllTagsBySlug($slugString)
     {
         if (is_null($slugString)) {
-            return new Collection;
+            return new Collection();
         }
 
         if (stristr($slugString, ',')) {
@@ -33,7 +34,10 @@ class TagRepository extends EloquentRepository
 
     public function getTagsByIds($ids)
     {
-        if ( ! $ids) return null;
+        if (!$ids) {
+            return;
+        }
+
         return $this->model->whereIn('id', $ids)->get();
     }
 

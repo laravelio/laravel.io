@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Providers;
 
 use Guzzle\Http\Client;
@@ -21,7 +22,7 @@ class GithubServiceProvider extends ServiceProvider
     private function registerGistEmbedFormatter()
     {
         $this->app->singleton(GistEmbedFormatter::class, function () {
-            return new GistEmbedFormatter;
+            return new GistEmbedFormatter();
         });
     }
 

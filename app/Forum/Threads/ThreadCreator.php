@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Forum\Threads;
 
 use Illuminate\Support\MessageBag;
@@ -25,8 +26,8 @@ class ThreadCreator
 
     /**
      * @param \Lio\Forum\Threads\ThreadRepository $threads
-     * @param \Lio\Content\SpamDetector $spamDetector
-     * @param \Psr\Log\LoggerInterface $logger
+     * @param \Lio\Content\SpamDetector           $spamDetector
+     * @param \Psr\Log\LoggerInterface            $logger
      */
     public function __construct(ThreadRepository $threads, SpamDetector $spamDetector, LoggerInterface $logger)
     {
@@ -39,7 +40,7 @@ class ThreadCreator
     // this is a form validator
     public function create(ThreadCreatorListener $listener, $data, $validator = null)
     {
-        if ($validator && ! $validator->isValid()) {
+        if ($validator && !$validator->isValid()) {
             return $listener->threadCreationError($validator->getErrors());
         }
 
@@ -83,7 +84,7 @@ class ThreadCreator
         }
 
         // check the model validation
-        if (! $this->threads->save($thread)) {
+        if (!$this->threads->save($thread)) {
             return $listener->threadCreationError($thread->getErrors());
         }
 
@@ -96,7 +97,7 @@ class ThreadCreator
     }
 
     /**
-     * Increases a user's spam count
+     * Increases a user's spam count.
      *
      * @param \Lio\Accounts\User $user
      */
@@ -113,7 +114,7 @@ class ThreadCreator
     }
 
     /**
-     * @param string $spam
+     * @param string             $spam
      * @param \Lio\Accounts\User $author
      */
     private function logSpam($spam, User $author)

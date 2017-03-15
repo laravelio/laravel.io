@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Accounts;
 
 use Illuminate\Support\Str;
@@ -17,7 +18,7 @@ class UserUpdater
     protected $confirmation;
 
     /**
-     * @param \Lio\Accounts\UserRepository $users
+     * @param \Lio\Accounts\UserRepository        $users
      * @param \Lio\Accounts\SendConfirmationEmail $confirmation
      */
     public function __construct(UserRepository $users, SendConfirmationEmail $confirmation)
@@ -28,15 +29,16 @@ class UserUpdater
 
     /**
      * @param \Lio\Accounts\UserUpdaterListener $listener
-     * @param \Lio\Accounts\User $user
-     * @param array $data
-     * @param \Illuminate\Validation\Validator $validator
+     * @param \Lio\Accounts\User                $user
+     * @param array                             $data
+     * @param \Illuminate\Validation\Validator  $validator
+     *
      * @return mixed
      */
     public function update(UserUpdaterListener $listener, User $user, array $data, Validator $validator = null)
     {
         // check the passed in validator
-        if ($validator && ! $validator->isValid()) {
+        if ($validator && !$validator->isValid()) {
             return $listener->userValidationError($validator->getErrors());
         }
 
@@ -44,9 +46,10 @@ class UserUpdater
     }
 
     /**
-     * @param \Lio\Accounts\User $user
+     * @param \Lio\Accounts\User                $user
      * @param \Lio\Accounts\UserUpdaterListener $listener
-     * @param array $data
+     * @param array                             $data
+     *
      * @return mixed
      */
     private function updateUser(User $user, UserUpdaterListener $listener, array $data)
@@ -72,7 +75,7 @@ class UserUpdater
         }
 
         // check the model validation
-        if (! $this->users->save($user)) {
+        if (!$this->users->save($user)) {
             return $listener->userValidationError($user->getErrors());
         }
 

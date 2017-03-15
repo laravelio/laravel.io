@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Forum\Threads;
 
 use Lio\Accounts\User;
@@ -9,7 +10,7 @@ class ThreadVisitationUpdater
     {
         $visitation = $this->getVisitation($thread, $user);
 
-        if ( ! $visitation) {
+        if (!$visitation) {
             return $this->createVisitation($thread, $user);
         }
 

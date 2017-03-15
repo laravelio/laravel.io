@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -9,7 +10,7 @@ class CommentServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Comment::observe(new CommentObserver);
+        Comment::observe(new CommentObserver());
     }
 
     public function register()

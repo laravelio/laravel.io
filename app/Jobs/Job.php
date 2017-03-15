@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Jobs;
 
 use Illuminate\Bus\Queueable;

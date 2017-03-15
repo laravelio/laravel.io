@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Tests\Unit\Github;
 
 use Guzzle\Http\Client;
@@ -17,12 +18,12 @@ class GithubAuthenticatorTest extends \PHPUnit_Framework_TestCase
         m::close();
     }
 
-    function testCanCreateGithubAuthenticator()
+    public function testCanCreateGithubAuthenticator()
     {
         $this->assertInstanceOf(GithubAuthenticator::class, $this->getAuthenticator());
     }
 
-    function testExistingUserCanBeFound()
+    public function testExistingUserCanBeFound()
     {
         $socialiteUser = $this->mockSocialiteUser();
         $socialiteUser->shouldReceive('getId')->andReturn(1);
@@ -54,7 +55,7 @@ class GithubAuthenticatorTest extends \PHPUnit_Framework_TestCase
         $auth->authBySocialite($listener);
     }
 
-    function testBannedUsersCantAuthenticate()
+    public function testBannedUsersCantAuthenticate()
     {
         $socialiteUser = $this->mockSocialiteUser();
         $socialiteUser->shouldReceive('getId')->andReturn(1);
@@ -102,6 +103,7 @@ class GithubAuthenticatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @param \Mockery\MockInterface $socialite
      * @param \Mockery\MockInterface $users
+     *
      * @return \Lio\Github\GithubAuthenticator
      */
     private function getAuthenticator($socialite = null, $users = null)

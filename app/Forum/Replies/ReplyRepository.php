@@ -1,7 +1,6 @@
 <?php
-namespace Lio\Forum\Replies;
 
-use Illuminate\Support\Collection;
+namespace Lio\Forum\Replies;
 
 class ReplyRepository extends \Lio\Core\EloquentRepository
 {

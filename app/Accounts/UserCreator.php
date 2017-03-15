@@ -1,14 +1,15 @@
 <?php
+
 namespace Lio\Accounts;
 
 use Illuminate\Support\Str;
 
 /**
-* This class can call the following methods on the observer object:
-*
-* userValidationError($errors)
-* userCreated($user)
-*/
+ * This class can call the following methods on the observer object:.
+ *
+ * userValidationError($errors)
+ * userCreated($user)
+ */
 class UserCreator
 {
     /**
@@ -22,7 +23,7 @@ class UserCreator
     protected $confirmation;
 
     /**
-     * @param \Lio\Accounts\UserRepository $users
+     * @param \Lio\Accounts\UserRepository        $users
      * @param \Lio\Accounts\SendConfirmationEmail $confirmation
      */
     public function __construct(UserRepository $users, SendConfirmationEmail $confirmation)
@@ -34,7 +35,7 @@ class UserCreator
     public function create(UserCreatorListener $listener, $data, $validator = null)
     {
         // check the passed in validator
-        if ($validator && ! $validator->isValid()) {
+        if ($validator && !$validator->isValid()) {
             return $listener->userValidationError($validator->getErrors());
         }
 
@@ -57,7 +58,7 @@ class UserCreator
         $user->confirmation_code = $confirmationCode;
 
         // check the model validation
-        if (! $this->users->save($user)) {
+        if (!$this->users->save($user)) {
             return $listener->userValidationError($user->getErrors());
         }
 

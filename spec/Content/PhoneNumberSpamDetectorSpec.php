@@ -1,12 +1,12 @@
 <?php
+
 namespace spec\Lio\Content;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class PhoneNumberSpamDetectorSpec extends ObjectBehavior
 {
-    private $textWithPhoneNumbers = <<<TEXT
+    private $textWithPhoneNumbers = <<<'TEXT'
 +91-8872522276 WORLD FAMOUS ASTROLOGER}...NAGESHEWAR BABA JI [DIAMOND
 GOLD MEDLIST]....[+91-8872522276] Make one call and change your life
 with in 21 hours call soon get solve your all problems with in 21 hours
@@ -67,7 +67,7 @@ Tantra Mantra, Tankarik Baba, Indian Astrologer
 Just Give A Call & Get Your Love Back one call and change your life +91-8872522276 nageshewarbaba.blogspot.com email id nageshewarbaba@yahoo.com
 TEXT;
 
-    private $textWithoutPhoneNumbers = <<<TEXT
+    private $textWithoutPhoneNumbers = <<<'TEXT'
 WORLD FAMOUS ASTROLOGER}...NAGESHEWAR BABA JI [DIAMOND
 GOLD MEDLIST]....[] Make one call and change your life
 with in 21 hours call soon get solve your all problems with in 21 hours
@@ -127,19 +127,19 @@ TEXT;
 
     private $otherTextWithPhoneNumber = 'ｂｅｓｔｔｔ~91-8872522276 vashikaran specialist uk usa india';
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Lio\Content\PhoneNumberSpamDetector');
         $this->shouldHaveType('Lio\Content\SpamDetector');
     }
 
-    function it_can_detect_phone_number_spam()
+    public function it_can_detect_phone_number_spam()
     {
         $this->detectsSpam($this->textWithPhoneNumbers)->shouldReturn(true);
         $this->detectsSpam($this->otherTextWithPhoneNumber)->shouldReturn(true);
     }
 
-    function it_passes_when_no_phone_numbers_are_detected()
+    public function it_passes_when_no_phone_numbers_are_detected()
     {
         $this->detectsSpam($this->textWithoutPhoneNumbers)->shouldReturn(false);
     }

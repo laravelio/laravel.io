@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Http\Controllers\Admin;
 
 use Lio\Http\Controllers\Controller;

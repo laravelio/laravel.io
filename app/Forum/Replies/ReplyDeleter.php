@@ -1,11 +1,12 @@
 <?php
+
 namespace Lio\Forum\Replies;
 
 /**
-* This class can call the following methods on the observer object:
-*
-* replyDeleted($thread)
-*/
+ * This class can call the following methods on the observer object:.
+ *
+ * replyDeleted($thread)
+ */
 class ReplyDeleter
 {
     public function delete(ReplyDeleterListener $observer, $reply)

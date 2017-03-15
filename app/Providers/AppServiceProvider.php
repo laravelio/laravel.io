@@ -1,7 +1,7 @@
 <?php
+
 namespace Lio\Providers;
 
-use Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

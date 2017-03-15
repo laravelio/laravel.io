@@ -17,13 +17,13 @@ class AkismetSpamDetector implements SpamDetector
         $this->akismet = $akismet;
     }
 
-    /** @inheritdoc */
+    /** {@inheritdoc} */
     public function detectsSpam($value, User $user = null)
     {
         $name = $user ? $user->name : null;
         $email = $user ? $user->email : null;
 
-        if (! $this->akismet->verifyKey()) {
+        if (!$this->akismet->verifyKey()) {
             return false;
         }
 

@@ -6,34 +6,34 @@ return [
             'tags' => '',
         ],
         'Installation / Configuration' => [
-            'tags' => 'installation,configuration'
+            'tags' => 'installation,configuration',
         ],
         'Authentication / Security' => [
-            'tags' => 'authentication,security'
+            'tags' => 'authentication,security',
         ],
         'Requests / Input / Responses' => [
-            'tags' => 'requests,input'
+            'tags' => 'requests,input',
         ],
         'Session / Cache' => [
-            'tags' => 'session,cache'
+            'tags' => 'session,cache',
         ],
         'Database / Eloquent' => [
-            'tags' => 'database,eloquent'
+            'tags' => 'database,eloquent',
         ],
         'Packages / IoC ' => [
-            'tags' => 'packages,ioc'
+            'tags' => 'packages,ioc',
         ],
         'Views / Blade / Forms' => [
-            'tags'  => 'views,blade,forms'
+            'tags'  => 'views,blade,forms',
         ],
         'Mail / Queues' => [
-            'tags' => 'mail,queues'
+            'tags' => 'mail,queues',
         ],
         'Local Community Meetups' => [
-            'tags' => 'meetups'
+            'tags' => 'meetups',
         ],
         'Laravel.io Site and Community' => [
             'tags'  => 'laravelio',
-        ]
+        ],
     ],
 ];

@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Github;
 
 use Exception;
@@ -27,7 +28,7 @@ class GithubAuthenticator
 
     /**
      * @param \Laravel\Socialite\Contracts\Provider $socialite
-     * @param \Lio\Accounts\UserRepository $users
+     * @param \Lio\Accounts\UserRepository          $users
      */
     public function __construct(Socialite $socialite, UserRepository $users, Client $guzzle)
     {
@@ -38,6 +39,7 @@ class GithubAuthenticator
 
     /**
      * @param \Lio\Github\GithubAuthenticatorListener $listener
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function authBySocialite(GithubAuthenticatorListener $listener)
@@ -57,7 +59,8 @@ class GithubAuthenticator
 
     /**
      * @param \Lio\Github\GithubAuthenticatorListener $listener
-     * @param \Lio\Accounts\User $user
+     * @param \Lio\Accounts\User                      $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     private function loginUser(GithubAuthenticatorListener $listener, User $user)
@@ -71,6 +74,7 @@ class GithubAuthenticator
 
     /**
      * @param \Laravel\Socialite\Contracts\User $user
+     *
      * @return array
      */
     private function githubUserToArray(GithubUser $user)
@@ -78,11 +82,11 @@ class GithubAuthenticator
         $data = json_decode($this->guzzle->get('https://api.github.com/users/'.$user->getNickname())->send()->getBody(true), true);
 
         return array_merge($data, [
-            'id' => $user->getId(),
-            'name' => $user->getNickname(),
-            'email' => $user->getEmail(),
+            'id'         => $user->getId(),
+            'name'       => $user->getNickname(),
+            'email'      => $user->getEmail(),
             'github_id'  => $user->getId(),
-            'github_url' => 'https://github.com/' . $user->getNickname(),
+            'github_url' => 'https://github.com/'.$user->getNickname(),
             'image_url'  => $user->getAvatar(),
         ]);
     }

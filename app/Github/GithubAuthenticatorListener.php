@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Github;
 
 use Lio\Accounts\User;
@@ -12,6 +13,7 @@ interface GithubAuthenticatorListener
 
     /**
      * @param \Lio\Accounts\User $user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function userFound(User $user);
@@ -23,6 +25,7 @@ interface GithubAuthenticatorListener
 
     /**
      * @param array $githubData
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function userNotFound($githubData);

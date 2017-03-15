@@ -1,13 +1,14 @@
 <?php
+
 namespace Lio\Http\Controllers;
 
 use Auth;
 use Input;
-use Lio\Bin\PasteRepository;
-use Lio\Bin\PasteCreatorListener;
 use Lio\Bin\PasteCreator;
+use Lio\Bin\PasteCreatorListener;
 use Lio\Bin\PasteForkCreator;
 use Lio\Bin\PasteForm;
+use Lio\Bin\PasteRepository;
 
 class PastesController extends Controller implements PasteCreatorListener
 {
@@ -26,7 +27,7 @@ class PastesController extends Controller implements PasteCreatorListener
     {
         $paste = $this->pastes->getByHash($hash);
 
-        if (! $paste) {
+        if (!$paste) {
             return $this->redirectAction('PastesController@getCreate');
         }
 
@@ -40,7 +41,7 @@ class PastesController extends Controller implements PasteCreatorListener
 
     public function postCreate()
     {
-        return $this->creator->create($this, Input::get('code'), Auth::user(), new PasteForm);
+        return $this->creator->create($this, Input::get('code'), Auth::user(), new PasteForm());
     }
 
     public function getFork($hash)
@@ -56,14 +57,14 @@ class PastesController extends Controller implements PasteCreatorListener
         $this->fork->setListener($this);
         $this->fork->setParentPaste($paste);
 
-        return $this->creator->create($this->fork, Input::get('code'), Auth::user(), new PasteForm);
+        return $this->creator->create($this->fork, Input::get('code'), Auth::user(), new PasteForm());
     }
 
     public function getRaw($hash)
     {
         $paste = $this->pastes->getByHash($hash);
 
-        if (! $paste) {
+        if (!$paste) {
             return $this->redirectAction('PastesController@getCreate');
         }
 

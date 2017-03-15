@@ -1,16 +1,18 @@
 <?php
+
 namespace Lio\Forum\Threads;
 
+use App;
 use Lio\Core\FormModel;
-use App, Validator;
+use Validator;
 
 class ThreadForm extends FormModel
 {
     protected $validationRules = [
-        'subject' => 'required|min:10',
-        'body' => 'required',
-        'tags' => 'required|max_tags:3',
-        'is_question' => 'in:0,1',
+        'subject'         => 'required|min:10',
+        'body'            => 'required',
+        'tags'            => 'required|max_tags:3',
+        'is_question'     => 'in:0,1',
         'laravel_version' => 'required|in:0,3,4,5',
     ];
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Lio\Console\Commands;
 
 use Illuminate\Console\Command;

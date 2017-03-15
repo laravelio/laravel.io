@@ -1,4 +1,7 @@
 <?php
+
 namespace Lio\Accounts;
 
-class InvalidRoleException extends \Exception {}
+class InvalidRoleException extends \Exception
+{
+}

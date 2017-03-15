@@ -1,10 +1,11 @@
 <?php
+
 namespace Lio\Tests\Unit\Markdown;
 
 use Lio\Markdown\HtmlMarkdownConvertor;
 use Lio\Tests\TestCase;
 
-class HtmlMarkdownConvertorTest extends TestCase
+class HtmlToMarkdownConvertorTest extends TestCase
 {
     public function testCanCreate()
     {
@@ -23,12 +24,12 @@ class HtmlMarkdownConvertorTest extends TestCase
         $this->assertEquals('## Robots', $conv->convertHtmlToMarkdown('<h2>Robots</h2>'));
         $this->assertEquals('### Robots', $conv->convertHtmlToMarkdown('<h3>Robots</h3>'));
         $this->assertEquals('#### Robots', $conv->convertHtmlToMarkdown('<h4>Robots</h4>'));
-        $this->assertEquals("    Robots", $conv->convertHtmlToMarkdown("<code>\nRobots\n</code>"));
-        $this->assertEquals("    Robots", $conv->convertHtmlToMarkdown("<pre><code>Robots\n</code></pre>\n"));
-        $this->assertEquals("    Robots", $conv->convertHtmlToMarkdown("<p><code>Robots\n</code></p>"));
-        $this->assertEquals("`Robots`", $conv->convertHtmlToMarkdown("<code>Robots</code>"));
-        $this->assertEquals("`Robots`", $conv->convertHtmlToMarkdown("<pre><code>Robots</code></pre>\n"));
-        $this->assertEquals("`Robots`", $conv->convertHtmlToMarkdown("<p><code>Robots</code></p>"));
+        $this->assertEquals('    Robots', $conv->convertHtmlToMarkdown("<code>\nRobots\n</code>"));
+        $this->assertEquals('    Robots', $conv->convertHtmlToMarkdown("<pre><code>Robots\n</code></pre>\n"));
+        $this->assertEquals('    Robots', $conv->convertHtmlToMarkdown("<p><code>Robots\n</code></p>"));
+        $this->assertEquals('`Robots`', $conv->convertHtmlToMarkdown('<code>Robots</code>'));
+        $this->assertEquals('`Robots`', $conv->convertHtmlToMarkdown("<pre><code>Robots</code></pre>\n"));
+        $this->assertEquals('`Robots`', $conv->convertHtmlToMarkdown('<p><code>Robots</code></p>'));
     }
 
     public function testCanConvertMarkdownToHtml()
@@ -49,6 +50,6 @@ class HtmlMarkdownConvertorTest extends TestCase
 
     private function getConvertor()
     {
-        return new HtmlMarkdownConvertor;
+        return new HtmlMarkdownConvertor();
     }
 }

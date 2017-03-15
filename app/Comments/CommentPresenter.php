@@ -1,16 +1,20 @@
 <?php
+
 namespace Lio\Comments;
 
+use App;
 use Illuminate\Support\Str;
 use McCool\LaravelAutoPresenter\BasePresenter;
-use App, Input, Request;
 
 class CommentPresenter extends BasePresenter
 {
     public function forumThreadUrl()
     {
         $slug = $this->getWrappedObject()->slug;
-        if ( ! $slug) return '';
+        if (!$slug) {
+            return '';
+        }
+
         return action('Forum\ForumThreadsController@getShowThread', [$slug->slug]);
     }
 
@@ -18,9 +22,12 @@ class CommentPresenter extends BasePresenter
     {
         $pagination = null;
         $slug = $this->getWrappedObject()->parent->slug;
-        if ( ! $slug) return '';
+        if (!$slug) {
+            return '';
+        }
 
         $url = action('Forum\ForumRepliesController@getCommentRedirect', [$slug->slug, $this->id]);
+
         return $url;
     }
 
@@ -28,11 +35,11 @@ class CommentPresenter extends BasePresenter
     {
         if ($this->getWrappedObject()->child_count == 0) {
             return '0 Responses';
-        } elseif($this->getWrappedObject()->child_count == 1) {
+        } elseif ($this->getWrappedObject()->child_count == 1) {
             return '1 Response';
         }
 
-        return $this->getWrappedObject()->child_count . ' Responses';
+        return $this->getWrappedObject()->child_count.' Responses';
     }
 
     public function created_ago()
@@ -52,6 +59,7 @@ class CommentPresenter extends BasePresenter
         $body = $this->convertNewlines($body);
         $body = $this->formatGists($body);
         $body = $this->linkify($body);
+
         return $body;
     }
 
@@ -95,6 +103,7 @@ class CommentPresenter extends BasePresenter
     private function linkify($content)
     {
         $linkify = new \Misd\Linkify\Linkify();
+
         return $linkify->process($content);
     }
 }

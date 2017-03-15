@@ -13,12 +13,12 @@ return [
     |
     */
 
-    "password" => "Wachtwoorden moeten minstens 6 karakters bevatten en met elkaar matchen.",
+    'password' => 'Wachtwoorden moeten minstens 6 karakters bevatten en met elkaar matchen.',
 
-    "user" => "We kunnen geen gebruiker vinden met dat email adres.",
+    'user' => 'We kunnen geen gebruiker vinden met dat email adres.',
 
-    "token" => "De herstel token voor het wachtwoord is incorrect",
+    'token' => 'De herstel token voor het wachtwoord is incorrect',
 
-    "sent" => "De wachtwoord herrinering is verzonden!",
+    'sent' => 'De wachtwoord herrinering is verzonden!',
 
 ];

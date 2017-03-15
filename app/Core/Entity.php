@@ -1,10 +1,11 @@
 <?php
+
 namespace Lio\Core;
 
 use Illuminate\Database\Eloquent\Model;
-use Validator;
 use Lio\Core\Exceptions\NoValidationRulesFoundException;
 use Lio\Core\Exceptions\NoValidatorInstantiatedException;
+use Validator;
 
 abstract class Entity extends Model
 {
@@ -13,8 +14,8 @@ abstract class Entity extends Model
 
     public function isValid()
     {
-        if ( ! isset($this->validationRules)) {
-            throw new NoValidationRulesFoundException('no validation rule array defined in class ' . get_called_class());
+        if (!isset($this->validationRules)) {
+            throw new NoValidationRulesFoundException('no validation rule array defined in class '.get_called_class());
         }
         $this->validator = Validator::make($this->getAttributes(), $this->getPreparedRules());
 
@@ -23,8 +24,8 @@ abstract class Entity extends Model
 
     public function getErrors()
     {
-        if ( ! $this->validator) {
-            throw new NoValidatorInstantiatedException;
+        if (!$this->validator) {
+            throw new NoValidatorInstantiatedException();
         }
 
         return $this->validator->errors();
@@ -32,9 +33,10 @@ abstract class Entity extends Model
 
     public function save(array $options = [])
     {
-        if ( ! $this->isValid()) {
+        if (!$this->isValid()) {
             return false;
         }
+
         return parent::save($options);
     }
 
@@ -59,5 +61,4 @@ abstract class Entity extends Model
 
         return $newRules;
     }
-
 }
