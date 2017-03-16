@@ -5,10 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ isset($title) ? $title.' | ' : '' }} Laravel.io</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ isset($title) ? $title.' | ' : '' }} {{ config('app.name') }}</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('build/css/app.css') }}" rel="stylesheet">
+
+    <script>
+        window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
+    </script>
 
     @include('layouts._google_analytics')
 </head>
@@ -23,7 +30,7 @@
 </div>
 
 <script src="{{ asset('build/custom/markdown.js') }}"></script>
-<script src="{{ elixir('js/app.js') }}"></script>
+<script src="{{ mix('build/js/app.js') }}"></script>
 
 </body>
 </html>

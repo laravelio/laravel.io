@@ -4,7 +4,6 @@ namespace App\Auth;
 
 use App\Policies\ReplyPolicy;
 use App\Policies\ThreadPolicy;
-use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Forum\Thread;
 use App\Replies\Reply;
@@ -22,10 +21,10 @@ class AuthServiceProvider extends ServiceProvider
     ];
 
     /**
-     * Register any application authentication / authorization services.
+     * Register any authentication / authorization services.
      */
-    public function boot(GateContract $gate)
+    public function boot()
     {
-        $this->registerPolicies($gate);
+        $this->registerPolicies();
     }
 }

@@ -123,7 +123,7 @@ class AuthTest extends BrowserKitTestCase
             ->type('invalidpass', 'password')
             ->press('Login')
             ->seePageIs('/login')
-            ->see('Incorrect login, please try again.');
+            ->see('These credentials do not match our records.');
     }
 
     /** @test */

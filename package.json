@@ -1,14 +1,17 @@
 {
   "private": true,
   "scripts": {
-    "prod": "gulp --production",
-    "dev": "gulp watch"
+    "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "dependencies": {
     "bootstrap-markdown": "^2.10.0",
     "bootstrap-sass": "^3.3.7",
     "bootswatch": "^3.3.7",
-    "jquery": "^2.2.4",
+    "jquery": "^3.1.1",
     "lodash": "^4.17.2",
     "markdown": "^0.5.0",
     "selectize": "^0.12.4",
@@ -18,9 +21,10 @@
     "vue-resource": "^1.0.3"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "laravel-elixir": "^6.0.0-15",
-    "laravel-elixir-vue-2": "^0.2.0",
-    "laravel-elixir-webpack-official": "^1.0.9"
+    "axios": "^0.15.3",
+    "cross-env": "^3.2.3",
+    "laravel-mix": "^0.8.3",
+    "lodash": "^4.17.4",
+    "vue": "^2.1.10"
   }
 }

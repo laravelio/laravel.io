@@ -7,10 +7,9 @@ use App\Jobs\SendEmailAddressConfirmation;
 use App\Http\Controllers\Controller;
 use App\Users\User;
 use App\Users\UserRepository;
-use App\Users\UserWasRegistered;
+use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Validator;
-use Session;
 
 class RegisterController extends Controller
 {
@@ -28,6 +27,8 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
+     * Where to redirect users after registration.
+     *
      * @var string
      */
     protected $redirectTo = '/dashboard';
@@ -37,6 +38,11 @@ class RegisterController extends Controller
      */
     private $users;
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct(UserRepository $users)
     {
         $this->users = $users;
@@ -44,15 +50,10 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function redirectToRegistrationForm()
-    {
-        return redirect()->route('register', [], 301);
-    }
-
     /**
      * Get a validator for an incoming registration request.
      */
-    protected function validator(array $data)
+    protected function validator(array $data): ValidatorContract
     {
         return Validator::make($data, app(RegisterRequest::class)->rules());
     }

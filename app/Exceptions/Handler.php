@@ -31,9 +31,6 @@ class Handler extends ExceptionHandler
      * Report or log an exception.
      *
      * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-     *
-     * @param  \Exception  $exception
-     * @return void
      */
     public function report(Exception $exception)
     {
@@ -63,6 +60,6 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        return redirect()->guest('login');
+        return redirect()->guest(route('login'));
     }
 }
