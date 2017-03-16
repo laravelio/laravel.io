@@ -33,7 +33,8 @@ Please make sure you install the following tools before starting with the instal
 3. Run `vagrant up`
 4. SSH into your Vagrant box, go to `/home/vagrant/laravelio` and run the following commands:
     1. `composer install`
-    2. `php artisan migrate --seed --env=local`
+    2. `php artisan key:generate`
+    3. `php artisan migrate --seed`
     3. `npm install && gulp`
 5. Add `192.168.10.10 lio.app` to your computer's `/etc/hosts` file
 

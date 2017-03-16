@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^6.2",
         "laravel/framework": "5.4.*",
         "laravel/socialite": "^3.0",
+        "laravel/tinker": "^1.0",
         "laravelcollective/html": "5.4.*",
         "league/commonmark": "^0.15.2",
         "tijsverkoyen/akismet": "^1.1"
