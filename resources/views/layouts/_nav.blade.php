@@ -16,7 +16,6 @@
                 <li><a href="https://paste.laravel.io">Pastebin</a></li>
                 <li><a href="#">Chat</a></li>
                 <li><a href="https://larajobs.com/?partner=28">Jobs</a></li>
-                <li><a href="#">About</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Community <span class="caret"></span></a>
                     <ul class="dropdown-menu">
