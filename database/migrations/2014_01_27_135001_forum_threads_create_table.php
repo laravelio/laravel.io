@@ -34,6 +34,6 @@ class ForumThreadsCreateTable extends Migration
      */
     public function down()
     {
-        Schema::drop('forum_threads');
+        Schema::dropIfExists('forum_threads');
     }
 }

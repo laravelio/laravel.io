@@ -28,6 +28,6 @@ class CreateArticleTagTable extends Migration
      */
     public function down()
     {
-        Schema::drop('article_tag');
+        Schema::dropIfExists('article_tag');
     }
 }

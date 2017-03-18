@@ -28,6 +28,6 @@ class CreateCommentTagTable extends Migration
      */
     public function down()
     {
-        Schema::drop('comment_tag');
+        Schema::dropIfExists('comment_tag');
     }
 }

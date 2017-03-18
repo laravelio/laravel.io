@@ -28,6 +28,6 @@ class TaggedItemsCreateTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tagged_items');
+        Schema::dropIfExists('tagged_items');
     }
 }

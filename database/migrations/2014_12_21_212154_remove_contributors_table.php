@@ -12,7 +12,7 @@ class RemoveContributorsTable extends Migration
      */
     public function up()
     {
-        Schema::drop('contributors');
+        Schema::dropIfExists('contributors');
     }
 
     /**

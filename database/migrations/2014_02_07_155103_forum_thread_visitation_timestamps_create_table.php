@@ -29,6 +29,6 @@ class ForumThreadVisitationTimestampsCreateTable extends Migration
      */
     public function down()
     {
-        Schema::drop('forum_thread_visitations');
+        Schema::dropIfExists('forum_thread_visitations');
     }
 }

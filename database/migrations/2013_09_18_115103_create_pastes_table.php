@@ -32,6 +32,6 @@ class CreatePastesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pastes');
+        Schema::dropIfExists('pastes');
     }
 }

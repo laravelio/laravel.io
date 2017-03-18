@@ -29,6 +29,6 @@ class ForumRepliesCreateTable extends Migration
      */
     public function down()
     {
-        Schema::drop('forum_replies');
+        Schema::dropIfExists('forum_replies');
     }
 }

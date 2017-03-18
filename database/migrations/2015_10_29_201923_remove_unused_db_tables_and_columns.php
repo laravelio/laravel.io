@@ -15,8 +15,8 @@ class RemoveUnusedDbTablesAndColumns extends Migration
         Schema::table('forum_threads', function (Blueprint $table) {
             $table->dropColumn('category_slug', 'most_recent_reply_id', 'reply_count');
         });
-        Schema::drop('comments');
-        Schema::drop('comment_tag');
+        Schema::dropIfExists('comments');
+        Schema::dropIfExists('comment_tag');
         Schema::table('pastes', function (Blueprint $table) {
             $table->dropColumn('comment_count', 'child_count');
         });

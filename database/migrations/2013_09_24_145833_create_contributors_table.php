@@ -32,6 +32,6 @@ class CreateContributorsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('contributors');
+        Schema::dropIfExists('contributors');
     }
 }

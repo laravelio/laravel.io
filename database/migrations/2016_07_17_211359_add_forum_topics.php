@@ -43,6 +43,6 @@ class AddForumTopics extends Migration
         Schema::table('threads', function(Blueprint $table) {
             $table->dropColumn('topic_id');
         });
-        Schema::drop('topics');
+        Schema::dropIfExists('topics');
     }
 }

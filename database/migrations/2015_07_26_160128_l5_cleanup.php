@@ -12,8 +12,8 @@ class L5Cleanup extends Migration
      */
     public function up()
     {
-        Schema::drop('articles');
-        Schema::drop('article_tag');
+        Schema::dropIfExists('articles');
+        Schema::dropIfExists('article_tag');
 
         Schema::table('tags', function (Blueprint $table) {
             $table->dropColumn('articles');

@@ -12,9 +12,9 @@ class DropUnusedTables extends Migration
      */
     public function up()
     {
-        Schema::drop('activity');
-        Schema::drop('forum_thread_visitations');
-        Schema::drop('sessions');
+        Schema::dropIfExists('activity');
+        Schema::dropIfExists('forum_thread_visitations');
+        Schema::dropIfExists('sessions');
     }
 
     /**
