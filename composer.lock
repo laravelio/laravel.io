@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ca36bfd06dfde5390b600ee7fd6ac244",
+    "content-hash": "a2c62000325e909142971b45d678010d",
     "packages": [
         {
             "name": "bugsnag/bugsnag",
@@ -1681,6 +1681,60 @@
                 "uuid"
             ],
             "time": "2016-11-22T19:21:44+00:00"
+        },
+        {
+            "name": "spatie/laravel-migrate-fresh",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-migrate-fresh.git",
+                "reference": "12e90d34958dc5cecffd27a1ec20dbfa4fc2496b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-migrate-fresh/zipball/12e90d34958dc5cecffd27a1ec20dbfa4fc2496b",
+                "reference": "12e90d34958dc5cecffd27a1ec20dbfa4fc2496b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^5.3.28",
+                "illuminate/events": "^5.3.28",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.7",
+                "orchestra/testbench": "^3.3",
+                "phpunit/phpunit": "5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\MigrateFresh\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A command to build up the database from scratch",
+            "homepage": "https://github.com/spatie/laravel-migrate-fresh",
+            "keywords": [
+                "database",
+                "eloquent",
+                "fresh",
+                "laravel-migrate-fresh",
+                "migrate",
+                "spatie"
+            ],
+            "time": "2017-03-09T20:31:52+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
