@@ -38,6 +38,7 @@ Please make sure you install the following tools before starting with the instal
     4. `yarn install`
     5. `yarn run dev`
 5. Add `192.168.10.10 lio.app` to your computer's `/etc/hosts` file
+6. You can now visit the app in your browser by visiting [http://lio.app/](http://lio.app)
 
 ```yaml
 ip: 192.168.10.10
@@ -56,8 +57,6 @@ databases:
 name: laravelio
 hostname: laravelio
 ```
-
-You can now visit the app in your browser by visiting [http://lio.app/](http://lio.app).
 
 ## Maintainers
 
