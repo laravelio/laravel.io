@@ -17,34 +17,35 @@
             </div>
         </div>
 
-        <hr>
+        <div class="row profile-latest-items">
+            <div class="col-md-6">
+                <h3>Latest Threads</h3>
 
-        <div class="profile-latest-threads">
-            <h2>Latest Threads</h2>
+                @forelse ($user->latestThreads() as $thread)
+                    <div class="list-group">
+                        <a href="{{ route('thread', $thread->slug()) }}" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{ $thread->subject() }}</h4>
+                            <p class="list-group-item-text">{{ $thread->excerpt() }}</p>
+                        </a>
+                    </div>
+                @empty
+                    <p class="text-center">This user has not posted any threads yet.</p>
+                @endforelse
+            </div>
+            <div class="col-md-6">
+                <h3>Latest Replies</h3>
 
-            @forelse ($user->latestThreads() as $thread)
-                <div class="profile-user-thread">
-                    <h3><a href="{{ route('thread', $thread->slug()) }}">{{ $thread->subject() }}</a></h3>
-                    <p>{{ $thread->excerpt() }}</p>
-                </div>
-            @empty
-                <p>This user has not posted any threads yet.</p>
-            @endforelse
-        </div>
-
-        <hr>
-
-        <div class="profile-latest-replies">
-            <h2>Latest Replies</h2>
-
-            @forelse ($user->latestReplies() as $reply)
-                <div class="profile-user-reply">
-                    <h3><a href="{{ route_to_reply_able($reply->replyAble()) }}">{{ $reply->replyAble()->replySubject() }}</a></h3>
-                    <p>{{ $reply->replyAble()->replyExcerpt() }}</p>
-                </div>
-            @empty
-                <p>This user has not posted any replies yet.</p>
-            @endforelse
+                @forelse ($user->latestReplies() as $reply)
+                    <div class="list-group">
+                        <a href="{{ route_to_reply_able($reply->replyAble()) }}" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{ $reply->replyAble()->replySubject() }}</h4>
+                            <p class="list-group-item-text">{{ $reply->replyAble()->replyExcerpt() }}</p>
+                        </a>
+                    </div>
+                @empty
+                    <p class="text-center">This user has not posted any replies yet.</p>
+                @endforelse
+            </div>
         </div>
     </div>
 @endsection

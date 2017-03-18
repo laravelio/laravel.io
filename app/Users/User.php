@@ -104,7 +104,7 @@ class User extends Authenticatable implements Timestamps
     /**
      * @return \App\Forum\Thread[]
      */
-    public function latestThreads(int $amount = 5)
+    public function latestThreads(int $amount = 3)
     {
         return $this->threadsRelation->take($amount);
     }

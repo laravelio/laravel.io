@@ -17,7 +17,7 @@ trait HasManyReplies
     /**
      * @return \App\Replies\Reply[]
      */
-    public function latestReplies(int $amount = 5)
+    public function latestReplies(int $amount = 3)
     {
         return $this->replyAble()->orderBy('created_at', 'DESC')->limit($amount)->get();
     }

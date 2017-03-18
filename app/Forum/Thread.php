@@ -45,7 +45,7 @@ class Thread extends Model implements Authored, ReplyAble, TagAble, Timestamps
         return $this->body;
     }
 
-    public function excerpt(int $limit = 50): string
+    public function excerpt(int $limit = 100): string
     {
         return str_limit(strip_tags(md_to_html($this->body())), $limit);
     }
