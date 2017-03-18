@@ -1,37 +1,37 @@
 #footer {
-  padding-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 #sponsors {
-  text-align: center;
+    text-align: center;
 }
 .sponsors-list {
-  padding-top: 20px;
+    padding-top: 20px;
 }
 .sponsors-list div {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 .sponsors-list div img {
-  max-width: 50%;
+    max-width: 50%;
 }
 
 @media (min-width: $screen-sm-min) {
-  .sponsors-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    padding-top: 40px;
+    .sponsors-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        padding-top: 40px;
 
-    div {
-      flex: 1 0 33.33333%;
-      margin-bottom: 35px;
-      width: 33.33333%;
+        div {
+            flex: 1 0 33.33333%;
+            margin-bottom: 35px;
+            width: 33.33333%;
 
-      img {
-        max-width: 200px;
-      }
+            img {
+                max-width: 200px;
+            }
+        }
     }
-  }
 }
