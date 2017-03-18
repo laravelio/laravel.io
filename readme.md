@@ -58,6 +58,16 @@ name: laravelio
 hostname: laravelio
 ```
 
+### Github Authentication
+
+To get Github authentication to work locally, you'll need to [register a new OAuth application on Github](https://github.com/settings/applications/new). Use `http://lio.app` for the homepage url and `http://lio.app/auth/github` for the callback url. When you've created the app, fill in the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with Github.
+
+```
+GITHUB_ID=
+GITHUB_SECRET=
+GITHUB_URL=http://lio.app/auth/github
+```
+
 ## Maintainers
 
 The Laravel.io portal is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to create an issue on this repo or ask us through the #laravelio channel on [Slack](https://larachat.slack.com).
