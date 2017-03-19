@@ -104,6 +104,14 @@ class User extends Authenticatable implements Timestamps
     /**
      * @return \App\Forum\Thread[]
      */
+    public function threads()
+    {
+        return $this->threadsRelation;
+    }
+
+    /**
+     * @return \App\Forum\Thread[]
+     */
     public function latestThreads(int $amount = 3)
     {
         return $this->threadsRelation->take($amount);
@@ -112,5 +120,29 @@ class User extends Authenticatable implements Timestamps
     public function threadsRelation(): HasMany
     {
         return $this->hasMany(Thread::class, 'author_id');
+    }
+
+    public function countThreads(): int
+    {
+        return $this->threadsRelation()->count();
+    }
+
+    public function countReplies(): int
+    {
+        return $this->replyAble()->count();
+    }
+
+    /**
+     * @todo Make this work with Eloquent instead of a collection
+     */
+    public function countSolutions(): int
+    {
+        return $this->threads()->filter(function (Thread $thread) {
+            if ($solutionReply = $thread->solutionReply()) {
+                return $solutionReply->isAuthoredBy($this);
+            }
+
+            return false;
+        })->count();
     }
 }
