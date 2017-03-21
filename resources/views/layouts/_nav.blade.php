@@ -49,6 +49,11 @@
                             <li class="{{ active('profile') }}"><a href="{{ route('profile', Auth::user()->username()) }}">Profile</a></li>
                             <li class="{{ active('dashboard') }}"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="{{ active('settings.*') }}"><a href="{{ route('settings.profile') }}">Settings</a></li>
+
+                            @if (Auth::user()->isAdmin())
+                                <li class="{{ active('admin*') }}"><a href="{{ route('admin') }}">Admin</a></li>
+                            @endif
+
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('logout') }}">Logout</a></li>
                         </ul>

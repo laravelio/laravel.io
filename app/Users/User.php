@@ -14,6 +14,10 @@ class User extends Authenticatable implements Timestamps
 {
     use HasManyReplies, HasTimestamps, Notifiable;
 
+    const DEFAULT = 1;
+    const MODERATOR = 2;
+    const ADMIN = 3;
+
     /**
      * The database table used by the model.
      *
@@ -89,6 +93,11 @@ class User extends Authenticatable implements Timestamps
     public function isBanned(): bool
     {
         return (bool) $this->is_banned;
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->type === self::ADMIN;
     }
 
     public function confirmationCode(): string

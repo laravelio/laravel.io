@@ -7,6 +7,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\RedirectIfBanned;
 use App\Http\Middleware\RedirectIfUnconfirmed;
 use App\Http\Middleware\TrimStrings;
+use App\Http\Middleware\VerifyAdmins;
 use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
@@ -67,6 +68,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'admin' => VerifyAdmins::class,
         'auth' => Authenticate::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
         'bindings' => SubstituteBindings::class,

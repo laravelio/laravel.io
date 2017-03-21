@@ -33,6 +33,14 @@ class UserRepository
         return $this->model->where('github_id', $githubId)->firstOrFail();
     }
 
+    /**
+     * @return \App\Users\User[]|\Illuminate\Contracts\Pagination\Paginator
+     */
+    public function findAllPaginated()
+    {
+        return $this->model->orderBy('created_at', 'desc')->paginate(20);
+    }
+
     public function create(UserData $data): User
     {
         $this->assertEmailAddressIsUnique($data->emailAddress());

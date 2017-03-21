@@ -73,3 +73,6 @@ Route::get('replies/{reply}/delete', ['as' => 'replies.delete', 'uses' => 'Reply
 // Tags
 Route::get('tags', ['as' => 'tags', 'uses' => 'TagsController@overview']);
 Route::get('tags/{tag}', ['as' => 'tag', 'uses' => 'TagsController@show']);
+
+// Admin
+Route::get('admin', ['as' => 'admin', 'uses' => 'Admin\UsersController@index']);
