@@ -77,10 +77,50 @@
             @if ($thread->isSolutionReply($reply))
                 <p>
                     This is the solution.
-                    <a href="{{ route('threads.solution.unmark', $thread->slug()) }}">Unmark As Solution</a>
+                    <a href="#" data-toggle="modal" data-target="#unmarkSolution">Unmark As Solution</a>
                 </p>
+
+                <div class="modal fade" id="unmarkSolution" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            {{ Form::open(['route' => ['threads.solution.unmark', $thread->slug()], 'method' => 'PUT']) }}
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Unmark As Solution</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Confirm to unmark this reply as the solution for <strong>"{{ $thread->subject() }}"</strong>.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                {{ Form::submit('Unmark As Solution', ['class' => 'btn btn-primary']) }}
+                            </div>
+                            {{ Form::close() }}
+                        </div>
+                    </div>
+                </div>
             @else
-                <p><a href="{{ route('threads.solution.mark', [$thread->slug(), $reply->id()]) }}">Mark As Solution</a></p>
+                <p><a href="#" data-toggle="modal" data-target="#markSolution{{ $reply->id() }}">Mark As Solution</a></p>
+
+                <div class="modal fade" id="markSolution{{ $reply->id() }}" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            {{ Form::open(['route' => ['threads.solution.mark', $thread->slug(), $reply->id()], 'method' => 'PUT']) }}
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Mark As Solution</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Confirm to mark this reply as the solution for <strong>"{{ $thread->subject() }}"</strong>.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    {{ Form::submit('Mark As Solution', ['class' => 'btn btn-primary']) }}
+                                </div>
+                            {{ Form::close() }}
+                        </div>
+                    </div>
+                </div>
             @endif
         @endcan
     @endforeach

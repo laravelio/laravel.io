@@ -50,8 +50,8 @@ Route::get('forum/{thread}', ['as' => 'thread', 'uses' => 'ThreadsController@sho
 Route::get('forum/{thread}/edit', ['as' => 'threads.edit', 'uses' => 'ThreadsController@edit']);
 Route::put('forum/{thread}', ['as' => 'threads.update', 'uses' => 'ThreadsController@update']);
 Route::delete('forum/{thread}', ['as' => 'threads.delete', 'uses' => 'ThreadsController@delete']);
-Route::get('forum/{thread}/mark-solution/{reply}', ['as' => 'threads.solution.mark', 'uses' => 'ThreadsController@markSolution']);
-Route::get('forum/{thread}/unmark-solution', ['as' => 'threads.solution.unmark', 'uses' => 'ThreadsController@unmarkSolution']);
+Route::put('forum/{thread}/mark-solution/{reply}', ['as' => 'threads.solution.mark', 'uses' => 'ThreadsController@markSolution']);
+Route::put('forum/{thread}/unmark-solution', ['as' => 'threads.solution.unmark', 'uses' => 'ThreadsController@unmarkSolution']);
 
 // Topics
 Route::get('forum/topics/{topic}', ['as' => 'forum.topic', 'uses' => 'TopicController@show']);

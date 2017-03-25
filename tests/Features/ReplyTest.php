@@ -82,7 +82,7 @@ class ReplyTest extends BrowserKitTestCase
         ]);
         $reply = $this->create(Reply::class, ['body' => 'The first reply', 'replyable_id' => $thread->id()]);
 
-        $this->get('/forum/the-first-thread/mark-solution/'.$reply->id())
+        $this->put('/forum/the-first-thread/mark-solution/'.$reply->id())
             ->assertForbidden();
     }
 }
