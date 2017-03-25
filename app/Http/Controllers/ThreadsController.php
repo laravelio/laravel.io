@@ -6,6 +6,7 @@ use App\Forum\Thread;
 use App\Forum\ThreadRepository;
 use App\Forum\TopicRepository;
 use App\Http\Requests\ThreadRequest;
+use App\Jobs\DeleteThread;
 use App\Replies\Reply;
 use App\Tags\TagRepository;
 
@@ -76,7 +77,7 @@ class ThreadsController extends Controller
     {
         $this->authorize('delete', $thread);
 
-        $this->threads->delete($thread);
+        $this->dispatchNow(new DeleteThread($thread));
 
         $this->success('forum.threads.deleted');
 

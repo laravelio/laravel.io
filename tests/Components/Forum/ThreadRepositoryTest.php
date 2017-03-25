@@ -70,18 +70,6 @@ class ThreadRepositoryTest extends TestCase
     }
 
     /** @test */
-    function we_can_delete_a_thread()
-    {
-        $thread = $this->create(Thread::class);
-
-        $this->assertDatabaseHas('threads', ['id' => 1]);
-
-        $this->repo->delete($thread);
-
-        $this->assertDatabaseMissing('threads', ['id' => 1]);
-    }
-
-    /** @test */
     function we_can_mark_and_unmark_a_reply_as_the_solution()
     {
         $thread = $this->create(Thread::class);

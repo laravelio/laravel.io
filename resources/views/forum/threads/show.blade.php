@@ -24,7 +24,7 @@
             'id' => 'deleteThread',
             'route' => ['threads.delete', $thread->slug()],
             'title' => 'Delete Thread',
-            'body' => '<p>Are you sure you want to delete this thread? This cannot be undone.</p>',
+            'body' => '<p>Are you sure you want to delete this thread and its replies? This cannot be undone.</p>',
         ])
     @endcan
 

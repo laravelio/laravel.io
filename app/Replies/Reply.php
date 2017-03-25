@@ -2,12 +2,12 @@
 
 namespace App\Replies;
 
+use App\DateTime\HasTimestamps;
 use App\DateTime\Timestamps;
 use App\Users\Authored;
+use App\Users\HasAuthor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use App\DateTime\HasTimestamps;
-use App\Users\HasAuthor;
 
 class Reply extends Model implements Authored, Timestamps
 {

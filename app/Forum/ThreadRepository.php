@@ -87,11 +87,6 @@ class ThreadRepository
         return $thread;
     }
 
-    public function delete(Thread $thread)
-    {
-        $thread->delete();
-    }
-
     public function deleteByAuthor(User $author)
     {
         $this->model->where('author_id', $author->id())->delete();
