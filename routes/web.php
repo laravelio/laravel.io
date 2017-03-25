@@ -49,7 +49,7 @@ Route::post('forum/create-thread', ['as' => 'threads.store', 'uses' => 'ThreadsC
 Route::get('forum/{thread}', ['as' => 'thread', 'uses' => 'ThreadsController@show']);
 Route::get('forum/{thread}/edit', ['as' => 'threads.edit', 'uses' => 'ThreadsController@edit']);
 Route::put('forum/{thread}', ['as' => 'threads.update', 'uses' => 'ThreadsController@update']);
-Route::get('forum/{thread}/delete', ['as' => 'threads.delete', 'uses' => 'ThreadsController@delete']);
+Route::delete('forum/{thread}', ['as' => 'threads.delete', 'uses' => 'ThreadsController@delete']);
 Route::get('forum/{thread}/mark-solution/{reply}', ['as' => 'threads.solution.mark', 'uses' => 'ThreadsController@markSolution']);
 Route::get('forum/{thread}/unmark-solution', ['as' => 'threads.solution.unmark', 'uses' => 'ThreadsController@unmarkSolution']);
 
@@ -60,7 +60,7 @@ Route::get('forum/topics/{topic}', ['as' => 'forum.topic', 'uses' => 'TopicContr
 Route::post('replies', ['as' => 'replies.store', 'uses' => 'ReplyController@store']);
 Route::get('replies/{reply}/edit', ['as' => 'replies.edit', 'uses' => 'ReplyController@edit']);
 Route::put('replies/{reply}', ['as' => 'replies.update', 'uses' => 'ReplyController@update']);
-Route::get('replies/{reply}/delete', ['as' => 'replies.delete', 'uses' => 'ReplyController@delete']);
+Route::delete('replies/{reply}', ['as' => 'replies.delete', 'uses' => 'ReplyController@delete']);
 
 // Tags
 Route::get('tags', ['as' => 'tags', 'uses' => 'TagsController@overview']);

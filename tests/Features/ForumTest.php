@@ -130,7 +130,7 @@ class ForumTest extends BrowserKitTestCase
 
         $this->login();
 
-        $this->get('/forum/my-first-thread/delete')
+        $this->delete('/forum/my-first-thread')
             ->assertForbidden();
     }
 }

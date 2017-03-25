@@ -17,8 +17,28 @@
     @can('update', $thread)
         <p>
             <a href="{{ route('threads.edit', $thread->slug()) }}">Edit</a> |
-            <a href="{{ route('threads.delete', $thread->slug()) }}">Delete</a>
+            <a href="#" data-toggle="modal" data-target="#deleteThread">Delete</a>
         </p>
+
+        <div class="modal fade" id="deleteThread" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    {{ Form::open(['route' => ['threads.delete', $thread->slug()], 'method' => 'DELETE']) }}
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Delete Thread</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this thread? This cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        {{ Form::submit('Delete Thread', ['class' => 'btn btn-danger']) }}
+                    </div>
+                    {{ Form::close() }}
+                </div>
+            </div>
+        </div>
     @endcan
 
     @foreach ($thread->replies() as $reply)
@@ -29,8 +49,28 @@
         @can('update', $reply)
             <p>
                 <a href="{{ route('replies.edit', $reply->id()) }}">Edit</a> |
-                <a href="{{ route('replies.delete', $reply->id()) }}">Delete</a>
+                <a href="#" data-toggle="modal" data-target="#deleteReply{{ $reply->id() }}">Delete</a>
             </p>
+
+            <div class="modal fade" id="deleteReply{{ $reply->id() }}" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        {{ Form::open(['route' => ['replies.delete', $reply->id()], 'method' => 'DELETE']) }}
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Delete Reply</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to delete this reply? This cannot be undone.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                {{ Form::submit('Delete Reply', ['class' => 'btn btn-danger']) }}
+                            </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
+            </div>
         @endcan
 
         @can('update', $thread)

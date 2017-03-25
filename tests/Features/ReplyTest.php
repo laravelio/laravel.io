@@ -65,7 +65,7 @@ class ReplyTest extends BrowserKitTestCase
 
         $this->create(Reply::class, ['body' => 'The first reply']);
 
-        $this->get('/replies/1/delete')
+        $this->delete('/replies/1')
             ->assertForbidden();
     }
 

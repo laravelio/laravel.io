@@ -51,7 +51,7 @@
                         <p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         {{ Form::submit('Ban User', ['class' => 'btn btn-warning']) }}
                     </div>
                 {{ Form::close() }}
@@ -71,7 +71,7 @@
                     <p>Unbanning this user will allow them to login again and post content.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     {{ Form::submit('Unban User', ['class' => 'btn btn-warning']) }}
                 </div>
                 {{ Form::close() }}
@@ -91,7 +91,7 @@
                         <p>Deleting this user will remove their account and any related content like threads & replies. This cannot be undone.</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         {{ Form::submit('Delete User', ['class' => 'btn btn-danger']) }}
                     </div>
                 {{ Form::close() }}

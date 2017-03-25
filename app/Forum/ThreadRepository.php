@@ -63,7 +63,7 @@ class ThreadRepository
 
         $thread->slug = $this->generateUniqueSlug($thread->subject(), $thread->id());
         $thread = $this->updateTopic($thread, $attributes);
-        $thread = $this->updateTags($thread, Arr::get($attributes, 'tags', []));
+        $thread = $this->updateTags($thread, (array) Arr::get($attributes, 'tags', []));
         $thread->save();
 
         return $thread;
