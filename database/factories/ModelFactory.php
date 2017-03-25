@@ -43,7 +43,7 @@ $factory->define(Thread::class, function (Faker\Generator $faker) {
         'body' => $faker->text,
         'slug' => $faker->slug,
         'author_id' => factory(User::class)->create()->id(),
-        'ip' => $faker->ipv6,
+        'ip' => $faker->ipv4,
     ];
 });
 
@@ -60,7 +60,7 @@ $factory->define(Reply::class, function (Faker\Generator $faker) {
         'author_id' => factory(User::class)->create()->id(),
         'replyable_id' => factory(Thread::class)->create()->id(),
         'replyable_type' => Thread::TABLE,
-        'ip' => $faker->ipv6,
+        'ip' => $faker->ipv4,
     ];
 });
 
