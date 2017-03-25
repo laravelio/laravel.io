@@ -5,7 +5,6 @@ namespace App\Forum;
 use App\Forum\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Helpers\GeneratesSlugs;
 use App\Replies\Reply;
-use App\Users\User;
 use Illuminate\Support\Arr;
 
 class ThreadRepository
@@ -85,11 +84,6 @@ class ThreadRepository
         }
 
         return $thread;
-    }
-
-    public function deleteByAuthor(User $author)
-    {
-        $this->model->where('author_id', $author->id())->delete();
     }
 
     public function markSolution(Reply $reply): Thread

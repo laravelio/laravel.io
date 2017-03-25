@@ -5,11 +5,12 @@ namespace App\Jobs;
 use App\Forum\ThreadRepository;
 use App\Replies\ReplyRepository;
 use App\Users\User;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Queue\SerializesModels;
 
 class DeleteUser
 {
-    use SerializesModels;
+    use DispatchesJobs, SerializesModels;
 
     /**
      * @var \App\Users\User
@@ -21,11 +22,21 @@ class DeleteUser
         $this->user = $user;
     }
 
-    public function handle(ThreadRepository $threads, ReplyRepository $replies)
+    public function handle(ReplyRepository $replies)
     {
-        $threads->deleteByAuthor($this->user);
+        $this->deleteUserThreads();
         $replies->deleteByAuthor($this->user);
 
         $this->user->delete();
+    }
+
+    /**
+     * @todo Perhaps solve this differently
+     */
+    private function deleteUserThreads()
+    {
+        foreach ($this->user->threads() as $thread) {
+            $this->dispatchNow(new DeleteThread($thread));
+        }
     }
 }
