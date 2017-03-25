@@ -1,13 +1,5 @@
 <?php
 
-// We support these old routes to make sure people
-// find their way to the new portal website.
-foreach (['wiki', 'forum', 'forums'] as $subdomain) {
-    Route::group(['domain' => $subdomain.'.laravel.io'], function() {
-        Route::get('{wildcard}', 'HomeController@redirectToMainWebsite');
-    });
-}
-
 // Home
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@show']);
 

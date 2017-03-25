@@ -8,9 +8,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    public function redirectToMainWebsite()
-    {
-        return redirect('http://laravel.io/', 301);
-    }
 }
