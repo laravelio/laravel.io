@@ -20,25 +20,12 @@
             <a href="#" data-toggle="modal" data-target="#deleteThread">Delete</a>
         </p>
 
-        <div class="modal fade" id="deleteThread" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    {{ Form::open(['route' => ['threads.delete', $thread->slug()], 'method' => 'DELETE']) }}
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Delete Thread</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete this thread? This cannot be undone.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        {{ Form::submit('Delete Thread', ['class' => 'btn btn-danger']) }}
-                    </div>
-                    {{ Form::close() }}
-                </div>
-            </div>
-        </div>
+        @include('_partials._delete_modal', [
+            'id' => 'deleteThread',
+            'route' => ['threads.delete', $thread->slug()],
+            'title' => 'Delete Thread',
+            'body' => '<p>Are you sure you want to delete this thread? This cannot be undone.</p>',
+        ])
     @endcan
 
     @foreach ($thread->replies() as $reply)
@@ -52,25 +39,12 @@
                 <a href="#" data-toggle="modal" data-target="#deleteReply{{ $reply->id() }}">Delete</a>
             </p>
 
-            <div class="modal fade" id="deleteReply{{ $reply->id() }}" tabindex="-1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        {{ Form::open(['route' => ['replies.delete', $reply->id()], 'method' => 'DELETE']) }}
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Delete Reply</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>Are you sure you want to delete this reply? This cannot be undone.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                {{ Form::submit('Delete Reply', ['class' => 'btn btn-danger']) }}
-                            </div>
-                        {{ Form::close() }}
-                    </div>
-                </div>
-            </div>
+            @include('_partials._delete_modal', [
+                'id' => "deleteReply{$reply->id()}",
+                'route' => ['replies.delete', $reply->id()],
+                'title' => 'Delete Reply',
+                'body' => '<p>Are you sure you want to delete this reply? This cannot be undone.</p>',
+            ])
         @endcan
 
         @can('update', $thread)
@@ -80,47 +54,21 @@
                     <a href="#" data-toggle="modal" data-target="#unmarkSolution">Unmark As Solution</a>
                 </p>
 
-                <div class="modal fade" id="unmarkSolution" tabindex="-1" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            {{ Form::open(['route' => ['threads.solution.unmark', $thread->slug()], 'method' => 'PUT']) }}
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Unmark As Solution</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>Confirm to unmark this reply as the solution for <strong>"{{ $thread->subject() }}"</strong>.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                {{ Form::submit('Unmark As Solution', ['class' => 'btn btn-primary']) }}
-                            </div>
-                            {{ Form::close() }}
-                        </div>
-                    </div>
-                </div>
+                @include('_partials._update_modal', [
+                    'id' => 'unmarkSolution',
+                    'route' => ['threads.solution.unmark', $thread->slug()],
+                    'title' => 'Unmark As Solution',
+                    'body' => '<p>Confirm to unmark this reply as the solution for <strong>"'.$thread->subject().'"</strong>.</p>',
+                ])
             @else
                 <p><a href="#" data-toggle="modal" data-target="#markSolution{{ $reply->id() }}">Mark As Solution</a></p>
 
-                <div class="modal fade" id="markSolution{{ $reply->id() }}" tabindex="-1" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            {{ Form::open(['route' => ['threads.solution.mark', $thread->slug(), $reply->id()], 'method' => 'PUT']) }}
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">Mark As Solution</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Confirm to mark this reply as the solution for <strong>"{{ $thread->subject() }}"</strong>.</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                    {{ Form::submit('Mark As Solution', ['class' => 'btn btn-primary']) }}
-                                </div>
-                            {{ Form::close() }}
-                        </div>
-                    </div>
-                </div>
+                @include('_partials._update_modal', [
+                    'id' => "markSolution{$reply->id()}",
+                    'route' => ['threads.solution.mark', $thread->slug(), $reply->id()],
+                    'title' => 'Mark As Solution',
+                    'body' => '<p>Confirm to mark this reply as the solution for <strong>"'.$thread->subject().'"</strong>.</p>',
+                ])
             @endif
         @endcan
     @endforeach
