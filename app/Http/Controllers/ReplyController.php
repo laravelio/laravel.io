@@ -63,10 +63,8 @@ class ReplyController extends Controller
 
     private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse
     {
-        if ($replyAble instanceof Thread) {
-            return redirect()->route('thread', $replyAble->slug());
-        }
+        abort_unless($replyAble instanceof Thread, 404);
 
-        abort(404);
+        return redirect()->route('thread', $replyAble->slug());
     }
 }
