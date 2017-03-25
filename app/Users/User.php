@@ -90,14 +90,33 @@ class User extends Authenticatable implements Timestamps
         return ! $this->isConfirmed();
     }
 
+    public function ban()
+    {
+        $this->is_banned = true;
+
+        $this->save();
+    }
+
+    public function unban()
+    {
+        $this->is_banned = false;
+
+        $this->save();
+    }
+
     public function isBanned(): bool
     {
         return (bool) $this->is_banned;
     }
 
+    public function type(): int
+    {
+        return (int) $this->type;
+    }
+
     public function isAdmin(): bool
     {
-        return $this->type === self::ADMIN;
+        return $this->type() === self::ADMIN;
     }
 
     public function confirmationCode(): string

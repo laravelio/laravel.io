@@ -4,18 +4,7 @@
 
 @section('content')
     <div id="profile">
-        <div class="profile-user-info">
-            <img class="img-circle" src="{{ $user->gratavarUrl(150) }}">
-            <h1>{{ $title }}</h1>
-
-            <div class="profile-social-icons">
-                @if ($user->githubUsername())
-                    <a href="https://github.com/{{ $user->githubUsername() }}">
-                        <i class="fa fa-github"></i>
-                    </a>
-                @endif
-            </div>
-        </div>
+        @include('users._profile_user_info')
 
         <div class="row profile-latest-items">
             <div class="col-md-6">

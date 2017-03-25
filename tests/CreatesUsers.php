@@ -15,6 +15,11 @@ trait CreatesUsers
         return $user;
     }
 
+    protected function loginAsAdmin(array $attributes = []): User
+    {
+        return $this->login(array_merge($attributes, ['type' => User::ADMIN]));
+    }
+
     protected function createUser(array $attributes = []): User
     {
         return $this->create(User::class, array_merge([

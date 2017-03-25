@@ -2,6 +2,7 @@
 
 namespace Tests\Features;
 
+use App\Forum\Thread;
 use App\Users\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;
@@ -28,7 +29,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_see_the_users_overview()
     {
-        $this->login(['type' => User::ADMIN]);
+        $this->loginAsAdmin();
 
         $this->create(User::class, ['name' => 'Freek Murze']);
         $this->create(User::class, ['name' => 'Frederick Vanbrabant']);
@@ -36,5 +37,72 @@ class AdminTest extends BrowserKitTestCase
         $this->visit('/admin')
             ->see('Freek Murze')
             ->see('Frederick Vanbrabant');
+    }
+
+    /** @test */
+    public function admins_can_ban_a_user()
+    {
+        $this->loginAsAdmin();
+
+        $user = $this->create(User::class, ['name' => 'Freek Murze']);
+
+        $this->put('/admin/users/'.$user->username().'/ban')
+            ->assertRedirectedTo('/admin/users/'.$user->username());
+
+        $this->seeInDatabase('users', ['id' => $user->id(), 'is_banned' => true]);
+    }
+
+    /** @test */
+    public function admins_can_unban_a_user()
+    {
+        $this->loginAsAdmin();
+
+        $user = $this->create(User::class, ['name' => 'Freek Murze', 'is_banned' => true]);
+
+        $this->put('/admin/users/'.$user->username().'/unban')
+            ->assertRedirectedTo('/admin/users/'.$user->username());
+
+        $this->seeInDatabase('users', ['id' => $user->id(), 'is_banned' => false]);
+    }
+
+    /** @test */
+    public function admins_cannot_ban_other_admins()
+    {
+        $this->loginAsAdmin();
+
+        $user = $this->create(User::class, ['name' => 'Freek Murze', 'type' => User::ADMIN]);
+
+        $this->put('/admin/users/'.$user->username().'/ban')
+            ->assertRedirectedTo('/admin/users/'.$user->username());
+
+        $this->seeInDatabase('users', ['name' => 'Freek Murze']);
+    }
+
+    /** @test */
+    public function admins_can_delete_a_user()
+    {
+        $this->loginAsAdmin();
+
+        $user = $this->create(User::class, ['name' => 'Freek Murze']);
+        $this->create(Thread::class, ['subject' => 'Laravel Database Backup Tool', 'author_id' => $user->id()]);
+
+        $this->delete('/admin/users/'.$user->username())
+            ->assertRedirectedTo('/admin');
+
+        $this->notSeeInDatabase('users', ['name' => 'Freek Murze']);
+        $this->notSeeInDatabase('threads', ['subject' => 'Laravel Database Backup Tool']);
+    }
+
+    /** @test */
+    public function admins_cannot_delete_other_admins()
+    {
+        $this->loginAsAdmin();
+
+        $user = $this->create(User::class, ['name' => 'Freek Murze', 'type' => User::ADMIN]);
+
+        $this->delete('/admin/users/'.$user->username())
+            ->assertRedirectedTo('/admin/users/'.$user->username());
+
+        $this->seeInDatabase('users', ['name' => 'Freek Murze']);
     }
 }

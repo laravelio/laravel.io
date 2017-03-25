@@ -2,6 +2,8 @@
 
 namespace App\Replies;
 
+use App\Users\User;
+
 class ReplyRepository
 {
     /**
@@ -41,5 +43,10 @@ class ReplyRepository
     public function delete(Reply $reply)
     {
         $reply->delete();
+    }
+
+    public function deleteByAuthor(User $author)
+    {
+        $this->model->where('author_id', $author->id())->delete();
     }
 }

@@ -55,6 +55,7 @@ class UserRepository
         $user->github_id = $data->githubId();
         $user->github_url = $data->githubUsername();
         $user->confirmation_code = Str::random(60);
+        $user->type = User::DEFAULT;
         $user->save();
 
         return $user;

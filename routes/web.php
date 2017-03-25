@@ -75,4 +75,10 @@ Route::get('tags', ['as' => 'tags', 'uses' => 'TagsController@overview']);
 Route::get('tags/{tag}', ['as' => 'tag', 'uses' => 'TagsController@show']);
 
 // Admin
-Route::get('admin', ['as' => 'admin', 'uses' => 'Admin\UsersController@index']);
+Route::group(['namespace' => 'Admin', 'as' => 'admin', 'prefix' => 'admin'], function () {
+    Route::get('/', 'AdminController@index');
+    Route::get('users/{username}', ['as' => '.users.show', 'uses' => 'UsersController@show']);
+    Route::put('users/{username}/ban', ['as' => '.users.ban', 'uses' => 'UsersController@ban']);
+    Route::put('users/{username}/unban', ['as' => '.users.unban', 'uses' => 'UsersController@unban']);
+    Route::delete('users/{username}', ['as' => '.users.delete', 'uses' => 'UsersController@delete']);
+});

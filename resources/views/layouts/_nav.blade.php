@@ -50,7 +50,7 @@
                             <li class="{{ active('dashboard') }}"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="{{ active('settings.*') }}"><a href="{{ route('settings.profile') }}">Settings</a></li>
 
-                            @if (Auth::user()->isAdmin())
+                            @can ('admin', App\Users\User::class)
                                 <li class="{{ active('admin*') }}"><a href="{{ route('admin') }}">Admin</a></li>
                             @endif
 

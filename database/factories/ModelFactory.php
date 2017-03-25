@@ -32,6 +32,7 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'github_url' => $faker->userName,
         'ip' => $faker->ipv4,
         'is_banned' => false,
+        'type' => User::DEFAULT,
     ];
 });
 

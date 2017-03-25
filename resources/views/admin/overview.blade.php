@@ -12,6 +12,7 @@
                         <th>Joined On</th>
                         <th>Name</th>
                         <th>E-mail Address</th>
+                        <th>Status</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -22,14 +23,16 @@
                             <td>{{ $user->name() }}</td>
                             <td>{{ $user->emailAddress() }}</td>
                             <td>
-                                <div class="btn-group">
-                                    <a href="#" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-gear"></i>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ route('profile', $user->username()) }}">View Profile</a></li>
-                                    </ul>
-                                </div>
+                                @if ($user->isBanned())
+                                    <span class="label label-warning">Banned</span>
+                                @elseif ($user->isAdmin())
+                                    <span class="label label-primary">Admin</span>
+                                @else
+                                    <span class="label label-default">User</span>
+                                @endif
+                            </td>
+                            <td style="text-align:center;">
+                                <a href="{{ route('admin.users.show', $user->username()) }}" class="btn btn-xs btn-link"><i class="fa fa-gear"></i></a>
                             </td>
                         </tr>
                     @endforeach
