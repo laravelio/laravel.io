@@ -15,9 +15,9 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     function we_can_see_a_list_of_topics_and_latest_threads()
     {
-        $topic = $this->create(Topic::class, ['name' => 'Eloquent']);
-        $this->create(Thread::class, ['subject' => 'The first thread', 'topic_id' => $topic->id()]);
-        $this->create(Thread::class, ['subject' => 'The second thread', 'topic_id' => $topic->id()]);
+        $topic = factory(Topic::class)->create(['name' => 'Eloquent']);
+        factory(Thread::class)->create(['subject' => 'The first thread', 'topic_id' => $topic->id()]);
+        factory(Thread::class)->create(['subject' => 'The second thread', 'topic_id' => $topic->id()]);
 
         $this->visit('/forum')
             ->see('Eloquent')
@@ -28,7 +28,7 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     function we_can_see_a_single_thread()
     {
-        $this->create(Thread::class, [
+        factory(Thread::class)->create([
             'subject' => 'The first thread',
             'slug' => 'the-first-thread',
         ]);
@@ -47,8 +47,8 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     function the_thread_subject_cannot_be_an_url()
     {
-        $topic = $this->create(Topic::class, ['name' => 'Eloquent']);
-        $tag = $this->create(Tag::class, ['name' => 'Test Tag']);
+        $topic = factory(Topic::class)->create(['name' => 'Eloquent']);
+        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
 
         $this->login();
 
@@ -66,8 +66,8 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     function we_can_create_a_thread()
     {
-        $topic = $this->create(Topic::class, ['name' => 'Eloquent']);
-        $tag = $this->create(Tag::class, ['name' => 'Test Tag']);
+        $topic = factory(Topic::class)->create(['name' => 'Eloquent']);
+        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
 
         $this->login();
 
@@ -89,10 +89,10 @@ class ForumTest extends BrowserKitTestCase
     {
         $user = $this->login();
 
-        $currentTopic = $this->create(Topic::class, ['name' => 'Laravel']);
-        $newTopic = $this->create(Topic::class, ['name' => 'Spark']);
-        $tag = $this->create(Tag::class, ['name' => 'Test Tag']);
-        $this->create(Thread::class, [
+        $currentTopic = factory(Topic::class)->create(['name' => 'Laravel']);
+        $newTopic = factory(Topic::class)->create(['name' => 'Spark']);
+        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+        factory(Thread::class)->create([
             'author_id' => $user->id(),
             'topic_id' => $currentTopic->id(),
             'slug' => 'my-first-thread',
@@ -115,7 +115,7 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     function we_cannot_edit_a_thread_we_do_not_own()
     {
-        $this->create(Thread::class, ['slug' => 'my-first-thread']);
+        factory(Thread::class)->create(['slug' => 'my-first-thread']);
 
         $this->login();
 
@@ -126,7 +126,7 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     function we_cannot_delete_a_thread_we_do_not_own()
     {
-        $this->create(Thread::class, ['slug' => 'my-first-thread']);
+        factory(Thread::class)->create(['slug' => 'my-first-thread']);
 
         $this->login();
 

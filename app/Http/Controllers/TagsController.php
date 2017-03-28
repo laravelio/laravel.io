@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Tags\Tag;
-use App\Tags\TagRepository;
 
 class TagsController extends Controller
 {
-    public function overview(TagRepository $tags)
+    public function overview()
     {
-        return view('tags.overview', ['tags' => $tags->findAll()]);
+        return view('tags.overview', ['tags' => Tag::all()]);
     }
 
     public function show(Tag $tag)

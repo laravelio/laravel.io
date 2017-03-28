@@ -17,7 +17,7 @@ class ReplyTest extends BrowserKitTestCase
     {
         $this->login();
 
-        $this->create(Thread::class, ['subject' => 'The first thread', 'slug' => 'the-first-thread']);
+        factory(Thread::class)->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
 
         $this->visit('/forum/the-first-thread')
             ->type('The first reply', 'body')
@@ -32,8 +32,8 @@ class ReplyTest extends BrowserKitTestCase
     {
         $user = $this->login();
 
-        $thread = $this->create(Thread::class, ['slug' => 'the-first-thread']);
-        $this->create(Reply::class, [
+        $thread = factory(Thread::class)->create(['slug' => 'the-first-thread']);
+        factory(Reply::class)->create([
             'body' => 'The first reply',
             'author_id' => $user->id(),
             'replyable_id' => $thread->id(),
@@ -52,7 +52,7 @@ class ReplyTest extends BrowserKitTestCase
     {
         $this->login();
 
-        $this->create(Reply::class, ['body' => 'The first reply']);
+        factory(Reply::class)->create(['body' => 'The first reply']);
 
         $this->get('/replies/1/edit')
             ->assertForbidden();
@@ -63,7 +63,7 @@ class ReplyTest extends BrowserKitTestCase
     {
         $this->login();
 
-        $this->create(Reply::class, ['body' => 'The first reply']);
+        factory(Reply::class)->create(['body' => 'The first reply']);
 
         $this->delete('/replies/1')
             ->assertForbidden();
@@ -74,13 +74,13 @@ class ReplyTest extends BrowserKitTestCase
     {
         $this->login();
 
-        $user = $this->create(User::class);
-        $thread = $this->create(Thread::class, [
+        $user = factory(User::class)->create();
+        $thread = factory(Thread::class)->create([
             'author_id' => $user->id(),
             'subject' => 'The first thread',
             'slug' => 'the-first-thread',
         ]);
-        $reply = $this->create(Reply::class, ['body' => 'The first reply', 'replyable_id' => $thread->id()]);
+        $reply = factory(Reply::class)->create(['body' => 'The first reply', 'replyable_id' => $thread->id()]);
 
         $this->put('/forum/the-first-thread/mark-solution/'.$reply->id())
             ->assertForbidden();

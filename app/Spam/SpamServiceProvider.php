@@ -4,15 +4,9 @@ namespace App\Spam;
 
 use Illuminate\Support\ServiceProvider;
 use TijsVerkoyen\Akismet\Akismet;
-use Validator;
 
 class SpamServiceProvider extends ServiceProvider
 {
-    public function boot()
-    {
-        Validator::extend('spam', SpamRule::class.'@validate');
-    }
-
     public function register()
     {
         $this->app->singleton(SpamDetector::class, function () {

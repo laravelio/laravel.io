@@ -181,7 +181,6 @@ return [
         App\Social\SocialServiceProvider::class,
         App\Spam\SpamServiceProvider::class,
         App\Validation\ValidationServiceProvider::class,
-        App\Views\ViewServiceProvider::class,
 
     ],
 

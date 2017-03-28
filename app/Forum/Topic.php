@@ -2,15 +2,15 @@
 
 namespace App\Forum;
 
-use App\DateTime\Timestamps;
+use App\Helpers\HasTimestamps;
+use App\Helpers\HasSlug;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\DateTime\HasTimestamps;
 
-class Topic extends Model implements Timestamps
+class Topic extends Model
 {
-    use HasTimestamps;
+    use HasSlug, HasTimestamps;
 
     /**
      * @var string

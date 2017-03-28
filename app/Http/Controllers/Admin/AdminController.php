@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Users\UserRepository;
+use App\Users\User;
 
 class AdminController extends Controller
 {
@@ -12,9 +12,9 @@ class AdminController extends Controller
         $this->middleware(['auth', 'admin']);
     }
 
-    public function index(UserRepository $users)
+    public function index()
     {
-        $users = $users->findAllPaginated();
+        $users = User::findAllPaginated();
 
         return view('admin.overview', compact('users'));
     }

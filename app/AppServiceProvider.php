@@ -3,11 +3,9 @@
 namespace App;
 
 use App\Forum\Thread;
-use Auth;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
-use Hash;
-use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,22 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->bootHelpers();
-        $this->bootPasscheckValidationRule();
         $this->bootEloquentMorphs();
-    }
-
-    private function bootHelpers()
-    {
-        require __DIR__ . '/helpers.php';
-    }
-
-    private function bootPasscheckValidationRule()
-    {
-        Validator::extend('passcheck', function ($attribute, $value, $parameters)
-        {
-            return Hash::check($value, Auth::user()->getAuthPassword());
-        });
+        $this->bootMacros();
     }
 
     private function bootEloquentMorphs()
@@ -41,5 +25,12 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             Thread::TABLE => Thread::class,
         ]);
+    }
+
+    public function bootMacros()
+    {
+        foreach ($this->app[Filesystem::class]->files(resource_path('macros')) as $path) {
+            require $path;
+        }
     }
 }

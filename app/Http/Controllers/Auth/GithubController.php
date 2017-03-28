@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Social\GithubRepository;
+use App\Social\GithubUsers;
 use App\Social\GithubUser;
 use App\Users\User;
-use App\Users\UserRepository;
 use Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
@@ -14,22 +13,6 @@ use Socialite;
 
 class GithubController extends Controller
 {
-    /**
-     * @var \App\Users\UserRepository
-     */
-    private $users;
-
-    /**
-     * @var \App\Social\GithubRepository
-     */
-    private $github;
-
-    public function __construct(UserRepository $users, GithubRepository $github)
-    {
-        $this->users = $users;
-        $this->github = $github;
-    }
-
     /**
      * Redirect the user to the GitHub authentication page.
      */
@@ -41,16 +24,16 @@ class GithubController extends Controller
     /**
      * Obtain the user information from GitHub.
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(GithubUsers $githubUsers)
     {
         $socialiteUser = Socialite::driver('github')->user();
 
         try {
-            $user = $this->users->findByGithubId($socialiteUser->getId());
+            $user = User::findByGithubId($socialiteUser->getId());
 
             return $this->userFound($user);
         } catch (ModelNotFoundException $exception) {
-            $user = $this->github->findByUsername($socialiteUser->getNickname());
+            $user = $githubUsers->findByUsername($socialiteUser->getNickname());
 
             return $this->userNotFound($user);
         }
@@ -65,21 +48,16 @@ class GithubController extends Controller
 
     private function userNotFound(GithubUser $user): RedirectResponse
     {
-        if ($user->isYoungerThanTwoWeeks()) {
-            return $this->redirectUserToHome();
+        if ($user->isTooYoung()) {
+            $this->error('errors.github_account_too_young');
+
+            return redirect()->home();
         }
 
-        return $this->redirectUserToRegistration($user);
+        return $this->redirectUserToRegistrationPage($user);
     }
 
-    private function redirectUserToHome(): RedirectResponse
-    {
-        $this->error('errors.github_account_too_young');
-
-        return redirect()->home();
-    }
-
-    private function redirectUserToRegistration(GithubUser $user): RedirectResponse
+    private function redirectUserToRegistrationPage(GithubUser $user): RedirectResponse
     {
         session(['githubData' => $user->toArray()]);
 

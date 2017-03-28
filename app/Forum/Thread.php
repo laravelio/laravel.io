@@ -2,21 +2,21 @@
 
 namespace App\Forum;
 
-use App\DateTime\Timestamps;
-use App\Tags\TagAble;
-use App\Users\Authored;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\DateTime\HasTimestamps;
+use App\Forum\Exceptions\CouldNotMarkReplyAsSolution;
+use App\Helpers\HasSlug;
+use App\Helpers\HasTimestamps;
+use App\Helpers\ModelHelpers;
 use App\Replies\Reply;
 use App\Replies\UsesReplies;
 use App\Replies\ReplyAble;
 use App\Tags\UsesTags;
 use App\Users\HasAuthor;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Thread extends Model implements Authored, ReplyAble, TagAble, Timestamps
+class Thread extends Model implements ReplyAble
 {
-    use HasAuthor, HasTimestamps, UsesReplies, UsesTags;
+    use HasAuthor, HasSlug, HasTimestamps, ModelHelpers, UsesReplies, UsesTags;
 
     const TABLE = 'threads';
 
@@ -87,6 +87,24 @@ class Thread extends Model implements Authored, ReplyAble, TagAble, Timestamps
         return false;
     }
 
+    public function markSolution(Reply $reply)
+    {
+        $thread = $reply->replyAble();
+
+        if (! $thread instanceof Thread) {
+            throw CouldNotMarkReplyAsSolution::replyAbleIsNotAThread($reply);
+        }
+
+        $this->solutionReplyRelation()->associate($reply);
+        $this->save();
+    }
+
+    public function unmarkSolution()
+    {
+        $this->solutionReplyRelation()->dissociate();
+        $this->save();
+    }
+
     public function replySubject(): string
     {
         return $this->subject();
@@ -95,5 +113,42 @@ class Thread extends Model implements Authored, ReplyAble, TagAble, Timestamps
     public function replyExcerpt(): string
     {
         return $this->excerpt();
+    }
+
+    public static function createFromData(ThreadData $data): Thread
+    {
+        $thread = new static();
+        $thread->subject = $data->subject();
+        $thread->body = $data->body();
+        $thread->authorRelation()->associate($data->author());
+        $thread->topicRelation()->associate($data->topic());
+        $thread->slug = static::generateUniqueSlug($data->subject());
+        $thread->ip = $data->ip();
+        $thread->save();
+
+        if ($tags = $data->tags()) {
+            $thread->tagsRelation()->sync($tags);
+        }
+
+        $thread->save();
+
+        return $thread;
+    }
+
+    public function updateFromRequest(Thread $thread, array $attributes = [])
+    {
+        $this->update(array_only($attributes, ['subject', 'body']));
+
+        $this->slug = static::generateUniqueSlug($thread->subject(), $thread->id());
+
+        if ($topic = array_get($attributes, 'topic')) {
+            $this->topicRelation()->associate($topic);
+        }
+
+        if ($tags = (array) array_get($attributes, 'tags', [])) {
+            $this->tagsRelation()->sync($tags);
+        }
+
+        $this->save();
     }
 }

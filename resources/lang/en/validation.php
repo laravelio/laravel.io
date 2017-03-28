@@ -87,9 +87,9 @@ return [
     'url'                  => 'The :attribute format is invalid.',
 
     // Custom Validation Rules
-    'not_contain_url' => 'The :attribute field cannot contain an url.',
-    'passcheck' => 'Your current password is incorrect.',
-    'spam' => 'The :attribute field contains spam.',
+    App\Validation\DoesNotContainUrlRule::NAME => 'The :attribute field cannot contain an url.',
+    App\Validation\PasscheckRule::NAME => 'Your current password is incorrect.',
+    App\Validation\SpamRule::class => 'The :attribute field contains spam.',
 
     /*
     |--------------------------------------------------------------------------

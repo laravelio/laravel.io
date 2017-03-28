@@ -2,7 +2,7 @@
 
 namespace App\Social;
 
-interface GithubRepository
+interface GithubUsers
 {
     public function findByUsername(string $username): GithubUser;
 }

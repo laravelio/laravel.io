@@ -3,32 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Forum\Thread;
-use App\Forum\ThreadRepository;
-use App\Forum\TopicRepository;
+use App\Forum\Topic;
 use App\Http\Requests\ThreadRequest;
 use App\Jobs\DeleteThread;
 use App\Replies\Reply;
-use App\Tags\TagRepository;
+use App\Tags\Tag;
 
 class ThreadsController extends Controller
 {
-    /**
-     * @var \App\Forum\ThreadRepository
-     */
-    private $threads;
-
-    public function __construct(ThreadRepository $threads)
+    public function __construct()
     {
-        $this->threads = $threads;
-
         $this->middleware(['auth', 'confirmed'], ['except' => ['overview', 'show']]);
     }
 
-    public function overview(TopicRepository $topics)
+    public function overview()
     {
         return view('forum.overview', [
-            'topics' => $topics->findAll(),
-            'threads' => $this->threads->findAllPaginated(),
+            'topics' => Topic::all(),
+            'threads' => Thread::findAllPaginated(),
         ]);
     }
 
@@ -37,28 +29,28 @@ class ThreadsController extends Controller
         return view('forum.threads.show', compact('thread'));
     }
 
-    public function create(TopicRepository $topics, TagRepository $tags)
+    public function create()
     {
-        return view('forum.threads.create', ['topics' => $topics->findAll(), 'tags' => $tags->findAll()]);
+        return view('forum.threads.create', ['topics' => Topic::all(), 'tags' => Tag::all()]);
     }
 
     public function store(ThreadRequest $request)
     {
-        $thread = $this->threads->create($request);
+        $thread = Thread::createFromData($request);
 
         $this->success('forum.threads.created');
 
         return redirect()->route('thread', $thread->slug());
     }
 
-    public function edit(TopicRepository $topics, TagRepository $tags, Thread $thread)
+    public function edit(Thread $thread)
     {
         $this->authorize('update', $thread);
 
         return view('forum.threads.edit', [
-            'topics' => $topics->findAll(),
+            'topics' => Topic::all(),
             'thread' => $thread,
-            'tags' => $tags->findAll(),
+            'tags' => Tag::all(),
         ]);
     }
 
@@ -66,7 +58,7 @@ class ThreadsController extends Controller
     {
         $this->authorize('update', $thread);
 
-        $this->threads->update($thread, $request->changed());
+        $thread->updateFromRequest($thread, $request->changed());
 
         $this->success('forum.threads.updated');
 
@@ -88,7 +80,7 @@ class ThreadsController extends Controller
     {
         $this->authorize('update', $thread);
 
-        $this->threads->markSolution($reply);
+        $thread->markSolution($reply);
 
         return redirect()->route('thread', $thread->slug());
     }
@@ -97,7 +89,7 @@ class ThreadsController extends Controller
     {
         $this->authorize('update', $thread);
 
-        $this->threads->unmarkSolution($thread);
+        $thread->unmarkSolution();
 
         return redirect()->route('thread', $thread->slug());
     }

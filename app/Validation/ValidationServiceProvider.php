@@ -9,6 +9,8 @@ class ValidationServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Validator::extend('not_contain_url', DoesNotContainUrlRule::class.'@validate');
+        Validator::extend(DoesNotContainUrlRule::NAME, DoesNotContainUrlRule::class.'@validate');
+        Validator::extend(PasscheckRule::NAME, PasscheckRule::class.'@validate');
+        Validator::extend(SpamRule::NAME, SpamRule::class.'@validate');
     }
 }

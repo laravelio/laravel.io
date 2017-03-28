@@ -2,14 +2,13 @@
 
 namespace App\Replies;
 
-use App\DateTime\HasTimestamps;
-use App\DateTime\Timestamps;
-use App\Users\Authored;
+use App\Helpers\HasTimestamps;
 use App\Users\HasAuthor;
+use App\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class Reply extends Model implements Authored, Timestamps
+class Reply extends Model
 {
     use HasAuthor, HasTimestamps;
 
@@ -41,5 +40,24 @@ class Reply extends Model implements Authored, Timestamps
     public function replyAbleRelation(): MorphTo
     {
         return $this->morphTo('replyable');
+    }
+
+    public static function createFromData(ReplyData $data): Reply
+    {
+        $reply = new static();
+        $reply->body = $data->body();
+        $reply->author_id = $data->author()->id();
+        $reply->ip = $data->ip();
+
+        $data->replyAble()->repliesRelation()->save($reply);
+
+        $reply->save();
+
+        return $reply;
+    }
+
+    public static function deleteByAuthor(User $author)
+    {
+        static::where('author_id', $author->id())->delete();
     }
 }

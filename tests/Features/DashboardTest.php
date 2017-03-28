@@ -22,9 +22,12 @@ class DashboardTest extends BrowserKitTestCase
     {
         $user = $this->login();
 
-        $thread = array_first($this->create(Thread::class, ['author_id' => $user->id()], 3));
-        $reply = array_first($this->create(Reply::class, ['author_id' => $user->id(), 'replyable_id' => $thread->id()], 2));
-        Thread::where('id', $thread->id())->update(['solution_reply_id' => $reply->id()]);
+        $thread = array_first(factory(Thread::class, 3)->create(['author_id' => $user->id()]));
+        $reply = array_first(factory(Reply::class, 2)->create([
+            'author_id' => $user->id(),
+            'replyable_id' => $thread->id(),
+        ]));
+        $thread->markSolution($reply);
 
         $this->visit('/dashboard')
             ->see('<div class="panel-body">3</div>') // 3 threads

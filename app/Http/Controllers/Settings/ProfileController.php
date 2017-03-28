@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Http\Requests\UpdateProfileRequest;
-use App\Users\UserRepository;
 
 class ProfileController extends Controller
 {
@@ -19,9 +18,9 @@ class ProfileController extends Controller
         return view('users.settings.profile');
     }
 
-    public function update(UpdateProfileRequest $request, UserRepository $users)
+    public function update(UpdateProfileRequest $request)
     {
-        $users->update(Auth::user(), $request->only('name', 'email', 'username'));
+        Auth::user()->update($request->only('name', 'email', 'username'));
 
         $this->success('settings.updated');
 

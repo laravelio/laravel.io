@@ -4,8 +4,8 @@ namespace App\Http\Requests;
 
 use App\Forum\ThreadData;
 use App\Forum\Topic;
-use App\Forum\TopicRepository;
 use App\Users\User;
+use App\Validation\DoesNotContainUrlRule;
 use Auth;
 
 class ThreadRequest extends Request implements ThreadData
@@ -19,7 +19,7 @@ class ThreadRequest extends Request implements ThreadData
     {
         return [
             'topic' => 'required|exists:topics,id',
-            'subject' => 'required|not_contain_url|spam',
+            'subject' => 'required|'.DoesNotContainUrlRule::NAME.'|spam',
             'body' => 'required|spam',
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',
@@ -43,7 +43,7 @@ class ThreadRequest extends Request implements ThreadData
 
     public function topic(): Topic
     {
-        return $this->container->make(TopicRepository::class)->find((int) $this->get('topic'));
+        return Topic::find((int) $this->get('topic'));
     }
 
     public function tags(): array

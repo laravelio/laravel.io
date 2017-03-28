@@ -8,6 +8,6 @@ class SocialServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->bind(GithubRepository::class, GuzzleGithubRepository::class);
+        $this->app->bind(GithubUsers::class, GuzzleGithubUsers::class);
     }
 }

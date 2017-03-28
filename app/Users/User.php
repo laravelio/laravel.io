@@ -2,17 +2,19 @@
 
 namespace App\Users;
 
-use App\DateTime\HasTimestamps;
-use App\DateTime\Timestamps;
 use App\Forum\Thread;
+use App\Helpers\HasTimestamps;
+use App\Helpers\ModelHelpers;
 use App\Replies\HasManyReplies;
+use App\Users\Exceptions\CannotCreateUser;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable implements Timestamps
+class User extends Authenticatable
 {
-    use HasManyReplies, HasTimestamps, Notifiable;
+    use HasManyReplies, HasTimestamps, ModelHelpers, Notifiable;
 
     const DEFAULT = 1;
     const MODERATOR = 2;
@@ -90,6 +92,21 @@ class User extends Authenticatable implements Timestamps
         return ! $this->isConfirmed();
     }
 
+    public function confirm()
+    {
+        $this->update(['confirmed' => true, 'confirmation_code' => null]);
+    }
+
+    public function confirmationCode(): string
+    {
+        return (string) $this->confirmation_code;
+    }
+
+    public function matchesConfirmationCode(string $code): bool
+    {
+        return $this->confirmation_code === $code;
+    }
+
     public function ban()
     {
         $this->is_banned = true;
@@ -117,16 +134,6 @@ class User extends Authenticatable implements Timestamps
     public function isAdmin(): bool
     {
         return $this->type() === self::ADMIN;
-    }
-
-    public function confirmationCode(): string
-    {
-        return (string) $this->confirmation_code;
-    }
-
-    public function matchesConfirmationCode(string $code): bool
-    {
-        return $this->confirmation_code === $code;
     }
 
     /**
@@ -172,5 +179,62 @@ class User extends Authenticatable implements Timestamps
 
             return false;
         })->count();
+    }
+
+    public static function findByUsername(string $username): User
+    {
+        return static::where('username', $username)->firstOrFail();
+    }
+
+    public static function findByEmailAddress(string $emailAddress): User
+    {
+        return static::where('email', $emailAddress)->firstOrFail();
+    }
+
+    public static function findByGithubId(string $githubId): User
+    {
+        return static::where('github_id', $githubId)->firstOrFail();
+    }
+
+    public static function createFromData(UserData $data): User
+    {
+        static::assertEmailAddressIsUnique($data->emailAddress());
+        static::assertUsernameIsUnique($data->username());
+
+        $user = new static();
+        $user->name = $data->name();
+        $user->email = $data->emailAddress();
+        $user->username = $data->username();
+        $user->password = $data->password();
+        $user->ip = $data->ip();
+        $user->github_id = $data->githubId();
+        $user->github_url = $data->githubUsername();
+        $user->confirmation_code = str_random(60);
+        $user->type = static::DEFAULT;
+        $user->save();
+
+        return $user;
+    }
+
+    private static function assertEmailAddressIsUnique(string $emailAddress)
+    {
+        try {
+            User::findByEmailAddress($emailAddress);
+        } catch (ModelNotFoundException $exception) {
+            return true;
+        }
+
+        throw CannotCreateUser::duplicateEmailAddress($emailAddress);
+    }
+
+    private static function assertUsernameIsUnique(string $username)
+    {
+        try {
+            User::findByUsername($username);
+        } catch (ModelNotFoundException $exception) {
+            return true;
+        }
+
+        throw CannotCreateUser::duplicateUsername($username);
     }
 }

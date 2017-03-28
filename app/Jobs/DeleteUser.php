@@ -2,8 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Forum\ThreadRepository;
-use App\Replies\ReplyRepository;
+use App\Replies\Reply;
 use App\Users\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Queue\SerializesModels;
@@ -22,10 +21,11 @@ class DeleteUser
         $this->user = $user;
     }
 
-    public function handle(ReplyRepository $replies)
+    public function handle()
     {
         $this->deleteUserThreads();
-        $replies->deleteByAuthor($this->user);
+
+        Reply::deleteByAuthor($this->user);
 
         $this->user->delete();
     }

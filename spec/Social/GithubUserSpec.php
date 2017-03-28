@@ -22,13 +22,13 @@ class GithubUserSpec extends ObjectBehavior
     {
         $this->beConstructedWith(['created_at' => Carbon::now()->subWeek(3)]);
 
-        $this->isYoungerThanTwoWeeks()->shouldReturn(false);
+        $this->isTooYoung()->shouldReturn(false);
     }
 
     function it_can_determine_if_the_user_is_younger_than_two_weeks()
     {
         $this->beConstructedWith(['created_at' => Carbon::now()->subWeek(1)]);
 
-        $this->isYoungerThanTwoWeeks()->shouldReturn(true);
+        $this->isTooYoung()->shouldReturn(true);
     }
 }

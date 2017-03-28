@@ -6,7 +6,6 @@ use App\Http\Requests\RegisterRequest;
 use App\Jobs\SendEmailAddressConfirmation;
 use App\Http\Controllers\Controller;
 use App\Users\User;
-use App\Users\UserRepository;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -34,19 +33,12 @@ class RegisterController extends Controller
     protected $redirectTo = '/dashboard';
 
     /**
-     * @var \App\Users\UserRepository
-     */
-    private $users;
-
-    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(UserRepository $users)
+    public function __construct()
     {
-        $this->users = $users;
-
         $this->middleware('guest');
     }
 
@@ -63,7 +55,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        $user = $this->users->create(app(RegisterRequest::class));
+        $user = User::createFromData(app(RegisterRequest::class));
 
         $this->dispatchNow(new SendEmailAddressConfirmation($user));
 

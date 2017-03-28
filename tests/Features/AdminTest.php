@@ -31,8 +31,8 @@ class AdminTest extends BrowserKitTestCase
     {
         $this->loginAsAdmin();
 
-        $this->create(User::class, ['name' => 'Freek Murze']);
-        $this->create(User::class, ['name' => 'Frederick Vanbrabant']);
+        factory(User::class)->create(['name' => 'Freek Murze']);
+        factory(User::class)->create(['name' => 'Frederick Vanbrabant']);
 
         $this->visit('/admin')
             ->see('Freek Murze')
@@ -44,7 +44,7 @@ class AdminTest extends BrowserKitTestCase
     {
         $this->loginAsAdmin();
 
-        $user = $this->create(User::class, ['name' => 'Freek Murze']);
+        $user = factory(User::class)->create(['name' => 'Freek Murze']);
 
         $this->put('/admin/users/'.$user->username().'/ban')
             ->assertRedirectedTo('/admin/users/'.$user->username());
@@ -57,7 +57,7 @@ class AdminTest extends BrowserKitTestCase
     {
         $this->loginAsAdmin();
 
-        $user = $this->create(User::class, ['name' => 'Freek Murze', 'is_banned' => true]);
+        $user = factory(User::class)->create(['name' => 'Freek Murze', 'is_banned' => true]);
 
         $this->put('/admin/users/'.$user->username().'/unban')
             ->assertRedirectedTo('/admin/users/'.$user->username());
@@ -70,7 +70,7 @@ class AdminTest extends BrowserKitTestCase
     {
         $this->loginAsAdmin();
 
-        $user = $this->create(User::class, ['name' => 'Freek Murze', 'type' => User::ADMIN]);
+        $user = factory(User::class)->create(['name' => 'Freek Murze', 'type' => User::ADMIN]);
 
         $this->put('/admin/users/'.$user->username().'/ban')
             ->assertRedirectedTo('/admin/users/'.$user->username());
@@ -83,8 +83,8 @@ class AdminTest extends BrowserKitTestCase
     {
         $this->loginAsAdmin();
 
-        $user = $this->create(User::class, ['name' => 'Freek Murze']);
-        $this->create(Thread::class, ['subject' => 'Laravel Database Backup Tool', 'author_id' => $user->id()]);
+        $user = factory(User::class)->create(['name' => 'Freek Murze']);
+        factory(Thread::class)->create(['subject' => 'Laravel Database Backup Tool', 'author_id' => $user->id()]);
 
         $this->delete('/admin/users/'.$user->username())
             ->assertRedirectedTo('/admin');
@@ -98,7 +98,7 @@ class AdminTest extends BrowserKitTestCase
     {
         $this->loginAsAdmin();
 
-        $user = $this->create(User::class, ['name' => 'Freek Murze', 'type' => User::ADMIN]);
+        $user = factory(User::class)->create(['name' => 'Freek Murze', 'type' => User::ADMIN]);
 
         $this->delete('/admin/users/'.$user->username())
             ->assertRedirectedTo('/admin/users/'.$user->username());

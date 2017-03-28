@@ -4,7 +4,6 @@ namespace App\Social;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Arr;
 
 class GithubUser implements Arrayable
 {
@@ -18,7 +17,7 @@ class GithubUser implements Arrayable
         $this->attributes = $attributes;
     }
 
-    public function isYoungerThanTwoWeeks(): bool
+    public function isTooYoung(): bool
     {
         return $this->createdAt() > $this->twoWeeksAgo();
     }
@@ -35,7 +34,7 @@ class GithubUser implements Arrayable
 
     private function get($name)
     {
-        return Arr::get($this->attributes, $name);
+        return array_get($this->attributes, $name);
     }
 
     public function toArray(): array

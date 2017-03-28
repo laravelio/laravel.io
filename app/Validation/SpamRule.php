@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Spam;
+namespace App\Validation;
 
+use App\Spam\SpamDetector;
 use Illuminate\Contracts\Auth\Guard;
 
 class SpamRule
 {
+    const NAME = 'spam';
+
     /**
      * @var \App\Spam\SpamDetector
      */

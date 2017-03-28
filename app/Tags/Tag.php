@@ -2,12 +2,15 @@
 
 namespace App\Tags;
 
+use App\Forum\Thread;
+use App\Helpers\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use App\Forum\Thread;
 
 class Tag extends Model
 {
+    use HasSlug;
+
     /**
      * @var string
      */

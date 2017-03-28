@@ -15,8 +15,8 @@ class DeleteThreadTest extends TestCase
     /** @test */
     function it_can_delete_a_thread_and_its_replies()
     {
-        $thread = $this->create(Thread::class);
-        $this->create(Reply::class, ['replyable_id' => $thread->id()]);
+        $thread = factory(Thread::class)->create();
+        factory(Reply::class)->create(['replyable_id' => $thread->id()]);
 
         (new DeleteThread($thread))->handle();
 

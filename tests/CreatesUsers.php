@@ -22,7 +22,7 @@ trait CreatesUsers
 
     protected function createUser(array $attributes = []): User
     {
-        return $this->create(User::class, array_merge([
+        return factory(User::class)->create(array_merge([
             'name' => 'John Doe',
             'username' => 'johndoe',
             'email' => 'john@example.com',

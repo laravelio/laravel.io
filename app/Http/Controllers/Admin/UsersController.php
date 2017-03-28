@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\BanUser;
 use App\Jobs\DeleteUser;
-use App\Jobs\UnbanUser;
 use App\Users\User;
 
 class UsersController extends Controller
@@ -25,7 +23,7 @@ class UsersController extends Controller
         if ($user->isAdmin()) {
             $this->error('admin.users.cannot_ban_other_admins');
         } else {
-            $this->dispatchNow(new BanUser($user));
+            $user->ban();
 
             $this->success('admin.users.banned', ['name' => $user->name()]);
         }
@@ -35,7 +33,7 @@ class UsersController extends Controller
 
     public function unban(User $user)
     {
-        $this->dispatchNow(new UnbanUser($user));
+        $user->unban();
 
         $this->success('admin.users.unbanned', ['name' => $user->name()]);
 

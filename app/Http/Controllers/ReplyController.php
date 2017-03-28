@@ -6,26 +6,18 @@ use App\Forum\Thread;
 use App\Http\Requests\ReplyRequest;
 use App\Replies\Reply;
 use App\Replies\ReplyAble;
-use App\Replies\ReplyRepository;
 use Illuminate\Http\RedirectResponse;
 
 class ReplyController extends Controller
 {
-    /**
-     * @var \App\Replies\ReplyRepository
-     */
-    private $replies;
-
-    public function __construct(ReplyRepository $replies)
+    public function __construct()
     {
-        $this->replies = $replies;
-
         $this->middleware(['auth', 'confirmed']);
     }
 
     public function store(ReplyRequest $request)
     {
-        $reply = $this->replies->create($request);
+        $reply = Reply::createFromData($request);
 
         $this->success('replies.created');
 
@@ -43,7 +35,7 @@ class ReplyController extends Controller
     {
         $this->authorize('update', $reply);
 
-        $this->replies->update($reply, $request->only('body'));
+        $reply->update($request->only('body'));
 
         $this->success('replies.updated');
 
@@ -54,7 +46,7 @@ class ReplyController extends Controller
     {
         $this->authorize('delete', $reply);
 
-        $this->replies->delete($reply);
+        $reply->delete();
 
         $this->success('replies.deleted');
 

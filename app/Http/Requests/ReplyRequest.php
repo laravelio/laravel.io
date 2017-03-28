@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Forum\Thread;
-use App\Forum\ThreadRepository;
 use App\Replies\ReplyData;
 use App\Replies\ReplyAble;
 use App\Users\User;
@@ -32,7 +31,7 @@ class ReplyRequest extends Request implements ReplyData
     {
         switch ($type) {
             case Thread::TABLE:
-                return $this->container->make(ThreadRepository::class)->find($id);
+                return Thread::find($id);
         }
 
         abort(404);

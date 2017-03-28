@@ -4,7 +4,7 @@ namespace App\Social;
 
 use GuzzleHttp\Client as Guzzle;
 
-class GuzzleGithubRepository implements GithubRepository
+class GuzzleGithubUsers implements GithubUsers
 {
     /**
      * @var \GuzzleHttp\Client

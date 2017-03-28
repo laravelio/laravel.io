@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Http\Requests\UpdatePasswordRequest;
-use App\Users\UserRepository;
 
 class PasswordController extends Controller
 {
@@ -19,9 +18,9 @@ class PasswordController extends Controller
         return view('users.settings.password');
     }
 
-    public function update(UpdatePasswordRequest $request, UserRepository $users)
+    public function update(UpdatePasswordRequest $request)
     {
-        $users->update(Auth::user(), $request->changed());
+        Auth::user()->update($request->changed());
 
         $this->success('settings.password.updated');
 

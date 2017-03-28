@@ -6,6 +6,8 @@ use Illuminate\Validation\Factory as Validator;
 
 class DoesNotContainUrlRule
 {
+    const NAME = 'not_contain_url';
+
     /**
      * @var \Illuminate\Validation\Factory
      */

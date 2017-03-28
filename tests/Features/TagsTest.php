@@ -2,8 +2,8 @@
 
 namespace Tests\Features;
 
+use App\Forum\Thread;
 use App\Forum\ThreadData;
-use App\Forum\ThreadRepository;
 use App\Forum\Topic;
 use App\Tags\Tag;
 use App\Users\User;
@@ -17,7 +17,7 @@ class TagsTest extends BrowserKitTestCase
     /** @test */
     public function users_can_see_a_list_of_tags()
     {
-        $this->create(Tag::class, ['name' => 'Eloquent', 'description' => 'Example description.']);
+        factory(Tag::class)->create(['name' => 'Eloquent', 'description' => 'Example description.']);
 
         $this->visit('/tags')
             ->see('Eloquent')
@@ -27,9 +27,9 @@ class TagsTest extends BrowserKitTestCase
     /** @test */
     public function users_can_see_content_related_to_a_tag()
     {
-        $tag = $this->create(Tag::class, ['name' => 'Eloquent', 'description' => 'Example description.']);
+        $tag = factory(Tag::class)->create(['name' => 'Eloquent', 'description' => 'Example description.']);
 
-        $this->app->make(ThreadRepository::class)->create($this->ThreadData($tag));
+        Thread::createFromData($this->ThreadData($tag));
 
         $this->visit('/tags/'.$tag->slug())
             ->see('Eloquent')
@@ -63,7 +63,7 @@ class TagsTest extends BrowserKitTestCase
 
             public function topic(): Topic
             {
-                return $this->create(Topic::class);
+                return factory(Topic::class)->create();
             }
 
             public function ip()
