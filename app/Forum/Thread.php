@@ -4,13 +4,13 @@ namespace App\Forum;
 
 use App\Forum\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Helpers\HasSlug;
+use App\Helpers\HasAuthor;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
 use App\Replies\Reply;
 use App\Replies\UsesReplies;
 use App\Replies\ReplyAble;
 use App\Tags\UsesTags;
-use App\Users\HasAuthor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

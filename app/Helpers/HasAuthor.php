@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Users;
+namespace App\Helpers;
 
+use App\Users\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait HasAuthor
