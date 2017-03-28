@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Users\Exceptions;
+namespace App\Exceptions;
 
 class CannotCreateUser extends \Exception
 {

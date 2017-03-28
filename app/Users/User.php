@@ -2,11 +2,11 @@
 
 namespace App\Users;
 
+use App\Exceptions\CannotCreateUser;
 use App\Forum\Thread;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
 use App\Replies\HasManyReplies;
-use App\Users\Exceptions\CannotCreateUser;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;

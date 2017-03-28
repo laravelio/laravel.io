@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Tags;
+namespace App\Helpers;
 
+use App\Tags\Tag;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait UsesTags

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Forum\Exceptions;
+namespace App\Exceptions;
 
 use App\Replies\Reply;
 

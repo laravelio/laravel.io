@@ -2,7 +2,7 @@
 
 namespace Tests\Components\Users;
 
-use App\Users\Exceptions\CannotCreateUser;
+use App\Exceptions\CannotCreateUser;
 use App\Users\UserData;
 use App\Users\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
