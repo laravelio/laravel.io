@@ -41,7 +41,11 @@
                 <div class="clear"></div>
             </div>
             <div class="row">
-                <div class="span2">&nbsp;</div>
+                <div class="span4">
+                    <a class="blackfire" href="https://blackfire.io">
+                        <img src="{{ asset('images/blackfire-io.png') }}" alt="Blackfire.io" height="40" />
+                    </a>
+                </div>
                 <div class="span4">
                     <a class="fortrabbit" href="https://fortrabbit.com"><em>•</em> fortrabbit</a>
                 </div>
