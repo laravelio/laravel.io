@@ -13,7 +13,7 @@ Route::bind('thread', function($slug) {
 });
 
 Route::bind('topic', function($slug) {
-    return App\Forum\Topic::findBySlug($slug);
+    return \App\Models\Topic::findBySlug($slug);
 });
 
 Route::bind('username', function($username) {

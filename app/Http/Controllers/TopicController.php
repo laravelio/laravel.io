@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Forum\Topic;
+use App\Models\Topic;
 
 class TopicController extends Controller
 {

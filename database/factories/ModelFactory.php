@@ -12,7 +12,7 @@
 */
 
 use App\Forum\Thread;
-use App\Forum\Topic;
+use App\Models\Topic;
 use App\Replies\Reply;
 use App\Models\Tag;
 use App\User;

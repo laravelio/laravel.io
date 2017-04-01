@@ -8,6 +8,7 @@ use App\Helpers\HasAuthor;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
 use App\Helpers\UsesTags;
+use App\Models\Topic;
 use App\Replies\Reply;
 use App\Replies\UsesReplies;
 use App\Replies\ReplyAble;

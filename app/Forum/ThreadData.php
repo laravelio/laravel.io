@@ -2,6 +2,7 @@
 
 namespace App\Forum;
 
+use App\Models\Topic;
 use App\User;
 
 interface ThreadData

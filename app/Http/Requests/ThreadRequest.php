@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Forum\ThreadData;
-use App\Forum\Topic;
+use App\Models\Topic;
 use App\User;
 use App\Validation\DoesNotContainUrlRule;
 use Auth;

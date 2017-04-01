@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Forum\Thread;
-use App\Forum\Topic;
+use App\Models\Topic;
 use App\Http\Requests\ThreadRequest;
 use App\Jobs\DeleteThread;
 use App\Replies\Reply;

@@ -4,7 +4,7 @@ namespace Tests\Components\Forum;
 
 use App\Forum\ThreadData;
 use App\Forum\Thread;
-use App\Forum\Topic;
+use App\Models\Topic;
 use App\Replies\Reply;
 use App\User;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -78,7 +78,7 @@ class ThreadTest extends TestCase
 
             public function topic(): Topic
             {
-                return factory(Topic::class)->create();
+                return factory(\App\Models\Topic::class)->create();
             }
 
             public function ip()
