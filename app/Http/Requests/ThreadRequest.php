@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Topic;
 use App\User;
 use App\Validation\DoesNotContainUrlRule;
+use App\Validation\SpamRule;
 use Auth;
 
 class ThreadRequest extends Request
@@ -18,8 +19,8 @@ class ThreadRequest extends Request
     {
         return [
             'topic' => 'required|exists:topics,id',
-            'subject' => 'required|'.DoesNotContainUrlRule::NAME.'|spam',
-            'body' => 'required|spam',
+            'subject' => 'required|'.DoesNotContainUrlRule::NAME.'|'.SpamRule::NAME,
+            'body' => 'required|'.SpamRule::NAME,
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',
         ];
@@ -48,10 +49,5 @@ class ThreadRequest extends Request
     public function tags(): array
     {
         return $this->get('tags');
-    }
-
-    public function changed(): array
-    {
-        return array_merge($this->only('subject', 'body', 'tags'), ['topic' => $this->topic()]);
     }
 }

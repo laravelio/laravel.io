@@ -2,13 +2,10 @@
 
 namespace App;
 
-use App\Exceptions\CannotCreateUser;
 use App\Models\Thread;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
-use App\Http\Requests\RegisterRequest;
 use App\Models\Reply;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -216,47 +213,5 @@ class User extends Authenticatable
     public static function findByGithubId(string $githubId): User
     {
         return static::where('github_id', $githubId)->firstOrFail();
-    }
-
-    public static function register(RegisterRequest $request): User
-    {
-        static::assertEmailAddressIsUnique($request->emailAddress());
-        static::assertUsernameIsUnique($request->username());
-
-        $user = new static();
-        $user->name = $request->name();
-        $user->email = $request->emailAddress();
-        $user->username = $request->username();
-        $user->password = $request->password();
-        $user->ip = $request->ip();
-        $user->github_id = $request->githubId();
-        $user->github_url = $request->githubUsername();
-        $user->confirmation_code = str_random(60);
-        $user->type = static::DEFAULT;
-        $user->save();
-
-        return $user;
-    }
-
-    private static function assertEmailAddressIsUnique(string $emailAddress)
-    {
-        try {
-            User::findByEmailAddress($emailAddress);
-        } catch (ModelNotFoundException $exception) {
-            return true;
-        }
-
-        throw CannotCreateUser::duplicateEmailAddress($emailAddress);
-    }
-
-    private static function assertUsernameIsUnique(string $username)
-    {
-        try {
-            User::findByUsername($username);
-        } catch (ModelNotFoundException $exception) {
-            return true;
-        }
-
-        throw CannotCreateUser::duplicateUsername($username);
     }
 }

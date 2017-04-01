@@ -20,6 +20,11 @@ class UpdatePasswordRequest extends Request
         ];
     }
 
+    public function newPassword(): string
+    {
+        return $this->get('password');
+    }
+
     public function changed(): array
     {
         return ['password' => bcrypt($this->get('password'))];

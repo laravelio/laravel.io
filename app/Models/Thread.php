@@ -9,7 +9,6 @@ use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
 use App\Helpers\UsesReplies;
 use App\Helpers\UsesTags;
-use App\Http\Requests\ThreadRequest;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -101,53 +100,6 @@ class Thread extends Model
     public function unmarkSolution()
     {
         $this->solutionReplyRelation()->dissociate();
-        $this->save();
-    }
-
-    public function replySubject(): string
-    {
-        return $this->subject();
-    }
-
-    public function replyExcerpt(): string
-    {
-        return $this->excerpt();
-    }
-
-    public static function createFromRequest(ThreadRequest $data): Thread
-    {
-        $thread = new static();
-        $thread->subject = $data->subject();
-        $thread->body = $data->body();
-        $thread->authorRelation()->associate($data->author());
-        $thread->topicRelation()->associate($data->topic());
-        $thread->slug = static::generateUniqueSlug($data->subject());
-        $thread->ip = $data->ip();
-        $thread->save();
-
-        if ($tags = $data->tags()) {
-            $thread->tagsRelation()->sync($tags);
-        }
-
-        $thread->save();
-
-        return $thread;
-    }
-
-    public function updateFromRequest(Thread $thread, array $attributes = [])
-    {
-        $this->update(array_only($attributes, ['subject', 'body']));
-
-        $this->slug = static::generateUniqueSlug($thread->subject(), $thread->id());
-
-        if ($topic = array_get($attributes, 'topic')) {
-            $this->topicRelation()->associate($topic);
-        }
-
-        if ($tags = (array) array_get($attributes, 'tags', [])) {
-            $this->tagsRelation()->sync($tags);
-        }
-
         $this->save();
     }
 }

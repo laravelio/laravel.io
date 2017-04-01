@@ -40,7 +40,7 @@ class Topic extends Model
     }
 
     /**
-     * @return \App\Forum\Threads[]
+     * @return \App\Models\Threads[]
      */
     public function threads()
     {

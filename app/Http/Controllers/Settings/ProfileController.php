@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\UpdateProfile;
 use Auth;
 use App\Http\Requests\UpdateProfileRequest;
 
@@ -20,7 +21,7 @@ class ProfileController extends Controller
 
     public function update(UpdateProfileRequest $request)
     {
-        Auth::user()->update($request->only('name', 'email', 'username'));
+        $this->dispatchNow(new UpdateProfile(Auth::user(), $request));
 
         $this->success('settings.updated');
 

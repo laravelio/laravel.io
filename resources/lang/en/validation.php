@@ -89,7 +89,7 @@ return [
     // Custom Validation Rules
     App\Validation\DoesNotContainUrlRule::NAME => 'The :attribute field cannot contain an url.',
     App\Validation\PasscheckRule::NAME => 'Your current password is incorrect.',
-    App\Validation\SpamRule::class => 'The :attribute field contains spam.',
+    App\Validation\SpamRule::NAME => 'The :attribute field contains spam.',
 
     /*
     |--------------------------------------------------------------------------

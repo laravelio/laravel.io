@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\RegisterRequest;
+use App\Jobs\RegisterUser;
 use App\Jobs\SendEmailAddressConfirmation;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -55,7 +56,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        $user = User::register(app(RegisterRequest::class));
+        $user = $this->dispatchNow(new RegisterUser(app(RegisterRequest::class)));
 
         $this->dispatchNow(new SendEmailAddressConfirmation($user));
 

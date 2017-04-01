@@ -21,4 +21,9 @@ trait HasAuthor
     {
         return $this->author()->id() === $user->id();
     }
+
+    public static function deleteByAuthor(User $author)
+    {
+        static::where('author_id', $author->id())->delete();
+    }
 }

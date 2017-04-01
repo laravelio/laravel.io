@@ -2,7 +2,7 @@
 
 namespace App\Seeds;
 
-use App\Forum\Thread;
+use App\Models\Thread;
 use App\Models\Reply;
 use Illuminate\Database\Seeder;
 

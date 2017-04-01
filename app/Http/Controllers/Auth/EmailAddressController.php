@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Jobs\ConfirmUser;
 use App\Jobs\SendEmailAddressConfirmation;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -29,12 +30,12 @@ class EmailAddressController extends Controller
 
     public function confirm(User $user, string $code)
     {
-        if (! $user->matchesConfirmationCode($code)) {
-            $this->error('auth.confirmation.no_match');
-        } else {
-            $user->confirm();
+        if ($user->matchesConfirmationCode($code)) {
+            $this->dispatchNow(new ConfirmUser($user));
 
             $this->success('auth.confirmation.success');
+        } else {
+            $this->error('auth.confirmation.no_match');
         }
 
         return Auth::check() ? redirect()->route('dashboard') : redirect()->home();

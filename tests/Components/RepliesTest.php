@@ -1,25 +1,26 @@
 <?php
 
-namespace Tests\Components\Replies;
+namespace Tests\Components;
 
 use App\Http\Requests\ReplyRequest;
+use App\Jobs\CreateReply;
 use App\Models\Thread;
 use App\Models\Reply;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class ReplyTest extends TestCase
+class RepliesTest extends TestCase
 {
     use DatabaseMigrations;
 
     /** @test */
     function we_can_create_a_reply()
     {
-        $this->assertInstanceOf(Reply::class, Reply::createFromRequest($this->replyData()));
+        $this->assertInstanceOf(Reply::class, (new CreateReply($this->replyRequest()))->handle());
     }
 
-    private function replyData()
+    private function replyRequest(): ReplyRequest
     {
         return new class extends ReplyRequest
         {

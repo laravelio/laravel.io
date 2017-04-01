@@ -9,12 +9,12 @@ trait HasSlug
         return static::where('slug', $slug)->firstOrFail();
     }
 
-    private static function generateUniqueSlug(string $value, int $ignoreId = null): string
+    public function generateUniqueSlug(string $value, int $ignoreId = null): string
     {
         $slug = $originalSlug = str_slug($value);
         $counter = 0;
 
-        while (static::slugExists($slug, $ignoreId)) {
+        while ($this->slugExists($slug, $ignoreId)) {
             $counter++;
             $slug = $originalSlug.'-'.$counter;
         }
@@ -22,9 +22,9 @@ trait HasSlug
         return $slug;
     }
 
-    private static function slugExists(string $slug, int $ignoreId = null): bool
+    private function slugExists(string $slug, int $ignoreId = null): bool
     {
-        $query = static::where('slug', $slug);
+        $query = $this->where('slug', $slug);
 
         if ($ignoreId) {
             $query->where('id', '!=', $ignoreId);

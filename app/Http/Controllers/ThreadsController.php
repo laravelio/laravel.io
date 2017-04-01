@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\CreateThread;
+use App\Jobs\MarkThreadSolution;
+use App\Jobs\UnmarkThreadSolution;
+use App\Jobs\UpdateThread;
 use App\Models\Thread;
 use App\Models\Topic;
 use App\Http\Requests\ThreadRequest;
@@ -36,7 +40,7 @@ class ThreadsController extends Controller
 
     public function store(ThreadRequest $request)
     {
-        $thread = Thread::createFromRequest($request);
+        $thread = $this->dispatchNow(new CreateThread($request));
 
         $this->success('forum.threads.created');
 
@@ -47,18 +51,14 @@ class ThreadsController extends Controller
     {
         $this->authorize('update', $thread);
 
-        return view('forum.threads.edit', [
-            'topics' => Topic::all(),
-            'thread' => $thread,
-            'tags' => Tag::all(),
-        ]);
+        return view('forum.threads.edit', ['thread' => $thread, 'topics' => Topic::all(), 'tags' => Tag::all()]);
     }
 
     public function update(ThreadRequest $request, Thread $thread)
     {
         $this->authorize('update', $thread);
 
-        $thread->updateFromRequest($thread, $request->changed());
+        $thread = $this->dispatchNow(new UpdateThread($thread, $request));
 
         $this->success('forum.threads.updated');
 
@@ -80,7 +80,7 @@ class ThreadsController extends Controller
     {
         $this->authorize('update', $thread);
 
-        $thread->markSolution($reply);
+        $this->dispatchNow(new MarkThreadSolution($thread, $reply));
 
         return redirect()->route('thread', $thread->slug());
     }
@@ -89,7 +89,7 @@ class ThreadsController extends Controller
     {
         $this->authorize('update', $thread);
 
-        $thread->unmarkSolution();
+        $this->dispatchNow(new UnmarkThreadSolution($thread));
 
         return redirect()->route('thread', $thread->slug());
     }

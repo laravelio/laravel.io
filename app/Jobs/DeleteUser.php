@@ -5,11 +5,10 @@ namespace App\Jobs;
 use App\Models\Reply;
 use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Queue\SerializesModels;
 
 class DeleteUser
 {
-    use DispatchesJobs, SerializesModels;
+    use DispatchesJobs;
 
     /**
      * @var \App\User
@@ -24,8 +23,7 @@ class DeleteUser
     public function handle()
     {
         $this->deleteUserThreads();
-
-        Reply::deleteByAuthor($this->user);
+        $this->deleteUserReplies();
 
         $this->user->delete();
     }
@@ -33,10 +31,15 @@ class DeleteUser
     /**
      * @todo Perhaps solve this differently
      */
-    private function deleteUserThreads()
+    private function deleteUserThreads(): void
     {
         foreach ($this->user->threads() as $thread) {
             $this->dispatchNow(new DeleteThread($thread));
         }
+    }
+
+    private function deleteUserReplies(): void
+    {
+        Reply::deleteByAuthor($this->user);
     }
 }

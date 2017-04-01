@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\CreateReply;
+use App\Jobs\DeleteReply;
+use App\Jobs\UpdateReply;
 use App\Models\Thread;
 use App\Http\Requests\ReplyRequest;
 use App\Models\Reply;
@@ -16,7 +19,7 @@ class ReplyController extends Controller
 
     public function store(ReplyRequest $request)
     {
-        $reply = Reply::createFromRequest($request);
+        $reply = $this->dispatchNow(new CreateReply($request));
 
         $this->success('replies.created');
 
@@ -34,7 +37,7 @@ class ReplyController extends Controller
     {
         $this->authorize('update', $reply);
 
-        $reply->update($request->only('body'));
+        $this->dispatchNow(new UpdateReply($reply, $request->body()));
 
         $this->success('replies.updated');
 
@@ -45,7 +48,7 @@ class ReplyController extends Controller
     {
         $this->authorize('delete', $reply);
 
-        $reply->delete();
+        $this->dispatchNow(new DeleteReply($reply));
 
         $this->success('replies.deleted');
 
