@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Forum\Thread;
+use App\Models\Thread;
 
 class DeleteThread
 {

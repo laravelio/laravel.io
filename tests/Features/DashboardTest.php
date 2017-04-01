@@ -2,7 +2,7 @@
 
 namespace Tests\Features;
 
-use App\Forum\Thread;
+use App\Models\Thread;
 use App\Replies\Reply;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;

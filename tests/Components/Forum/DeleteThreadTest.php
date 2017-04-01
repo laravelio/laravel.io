@@ -2,7 +2,7 @@
 
 namespace Tests\Components\Forum;
 
-use App\Forum\Thread;
+use App\Models\Thread;
 use App\Jobs\DeleteThread;
 use App\Replies\Reply;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

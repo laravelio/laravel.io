@@ -2,7 +2,7 @@
 
 namespace Tests\Features;
 
-use App\Forum\Thread;
+use App\Models\Thread;
 use App\Models\Topic;
 use App\Models\Tag;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

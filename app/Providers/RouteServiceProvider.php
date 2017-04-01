@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http;
+namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -23,7 +23,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        require __DIR__ . '/bindings.php';
+        require base_path('routes/bindings.php');
 
         parent::boot();
     }

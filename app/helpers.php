@@ -26,7 +26,7 @@ if (! function_exists('route_to_reply_able')) {
      */
     function route_to_reply_able(App\Replies\ReplyAble $replyAble): string
     {
-        if ($replyAble instanceof App\Forum\Thread) {
+        if ($replyAble instanceof App\Models\Thread) {
             return route('thread', $replyAble->slug());
         }
     }

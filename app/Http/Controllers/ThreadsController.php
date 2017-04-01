@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Forum\Thread;
+use App\Models\Thread;
 use App\Models\Topic;
 use App\Http\Requests\ThreadRequest;
 use App\Jobs\DeleteThread;
@@ -36,7 +36,7 @@ class ThreadsController extends Controller
 
     public function store(ThreadRequest $request)
     {
-        $thread = Thread::createFromData($request);
+        $thread = Thread::createFromRequest($request);
 
         $this->success('forum.threads.created');
 

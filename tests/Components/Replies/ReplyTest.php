@@ -2,7 +2,7 @@
 
 namespace Tests\Components\Replies;
 
-use App\Forum\Thread;
+use App\Models\Thread;
 use App\Replies\ReplyData;
 use App\Replies\Reply;
 use App\Replies\ReplyAble;

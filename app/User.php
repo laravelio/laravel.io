@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Exceptions\CannotCreateUser;
-use App\Forum\Thread;
+use App\Models\Thread;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
 use App\Http\Requests\RegisterRequest;
@@ -138,7 +138,7 @@ class User extends Authenticatable
     }
 
     /**
-     * @return \App\Forum\Thread[]
+     * @return \App\Models\Thread[]
      */
     public function threads()
     {
@@ -146,7 +146,7 @@ class User extends Authenticatable
     }
 
     /**
-     * @return \App\Forum\Thread[]
+     * @return \App\Models\Thread[]
      */
     public function latestThreads(int $amount = 3)
     {

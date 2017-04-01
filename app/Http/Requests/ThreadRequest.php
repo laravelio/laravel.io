@@ -2,13 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Forum\ThreadData;
 use App\Models\Topic;
 use App\User;
 use App\Validation\DoesNotContainUrlRule;
 use Auth;
 
-class ThreadRequest extends Request implements ThreadData
+class ThreadRequest extends Request
 {
     public function authorize()
     {

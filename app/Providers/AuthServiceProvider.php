@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Auth;
+namespace App\Providers;
 
-use App\Forum\Thread;
+use App\Models\Thread;
 use App\Policies\ReplyPolicy;
 use App\Policies\ThreadPolicy;
 use App\Policies\UserPolicy;

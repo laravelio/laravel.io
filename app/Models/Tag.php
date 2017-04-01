@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Forum\Thread;
 use App\Helpers\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -44,7 +43,7 @@ class Tag extends Model
     }
 
     /**
-     * @return \App\Forum\Thread[]
+     * @return \App\Models\Thread[]
      */
     public function threads()
     {

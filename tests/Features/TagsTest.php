@@ -2,8 +2,8 @@
 
 namespace Tests\Features;
 
-use App\Forum\Thread;
-use App\Forum\ThreadData;
+use App\Http\Requests\ThreadRequest;
+use App\Models\Thread;
 use App\Models\Topic;
 use App\Models\Tag;
 use App\User;
@@ -29,7 +29,7 @@ class TagsTest extends BrowserKitTestCase
     {
         $tag = factory(Tag::class)->create(['name' => 'Eloquent', 'description' => 'Example description.']);
 
-        Thread::createFromData($this->ThreadData($tag));
+        Thread::createFromRequest($this->ThreadData($tag));
 
         $this->visit('/tags/'.$tag->slug())
             ->see('Eloquent')
@@ -37,9 +37,9 @@ class TagsTest extends BrowserKitTestCase
             ->see('Foo Thread');
     }
 
-    private function ThreadData(Tag $tag): ThreadData
+    private function ThreadData(Tag $tag): ThreadRequest
     {
-        return new class($tag) extends TagsTest implements ThreadData
+        return new class($tag) extends ThreadRequest
         {
             public function __construct($tag)
             {
@@ -48,7 +48,7 @@ class TagsTest extends BrowserKitTestCase
 
             public function author(): User
             {
-                return $this->createUser();
+                return factory(User::class)->create();
             }
 
             public function subject(): string

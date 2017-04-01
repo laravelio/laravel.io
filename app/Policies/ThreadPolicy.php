@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Forum\Thread;
+use App\Models\Thread;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 

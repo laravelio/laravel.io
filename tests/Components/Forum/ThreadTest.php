@@ -2,8 +2,8 @@
 
 namespace Tests\Components\Forum;
 
-use App\Forum\ThreadData;
-use App\Forum\Thread;
+use App\Models\Thread;
+use App\Http\Requests\ThreadRequest;
 use App\Models\Topic;
 use App\Replies\Reply;
 use App\User;
@@ -37,7 +37,7 @@ class ThreadTest extends TestCase
     /** @test */
     function we_can_create_a_thread()
     {
-        $this->assertInstanceOf(Thread::class, Thread::createFromData($this->threadData()));
+        $this->assertInstanceOf(Thread::class, Thread::createFromRequest($this->threadData()));
     }
 
     /** @test */
@@ -57,13 +57,13 @@ class ThreadTest extends TestCase
         $this->assertFalse($thread->isSolutionReply($reply));
     }
 
-    private function threadData(): ThreadData
+    private function threadData(): ThreadRequest
     {
-        return new class extends ThreadTest implements ThreadData
+        return new class extends ThreadRequest
         {
             public function author(): User
             {
-                return $this->createUser();
+                return factory(User::class)->create();
             }
 
             public function subject(): string
@@ -78,7 +78,7 @@ class ThreadTest extends TestCase
 
             public function topic(): Topic
             {
-                return factory(\App\Models\Topic::class)->create();
+                return factory(Topic::class)->create();
             }
 
             public function ip()

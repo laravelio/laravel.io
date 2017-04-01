@@ -174,9 +174,9 @@ return [
         /*
          * Application Service Providers...
          */
-        App\AppServiceProvider::class,
-        App\Auth\AuthServiceProvider::class,
-        App\Http\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
         App\Markdown\MarkdownServiceProvider::class,
         App\Social\SocialServiceProvider::class,
         App\Spam\SpamServiceProvider::class,

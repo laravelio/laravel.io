@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Forum\Thread;
+use App\Models\Thread;
 use App\Replies\ReplyData;
 use App\Replies\ReplyAble;
 use App\User;

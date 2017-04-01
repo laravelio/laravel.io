@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Forum\Thread;
 use App\Helpers\HasTimestamps;
 use App\Helpers\HasSlug;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;

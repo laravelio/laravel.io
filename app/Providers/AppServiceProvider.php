@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Providers;
 
-use App\Forum\Thread;
+use App\Models\Thread;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
