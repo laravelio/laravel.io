@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Forum\Thread;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,8 +28,6 @@ class AppServiceProvider extends ServiceProvider
 
     public function bootMacros()
     {
-        foreach ($this->app[Filesystem::class]->files(resource_path('macros')) as $path) {
-            require $path;
-        }
+        require base_path('resources/macros/blade.php');
     }
 }
