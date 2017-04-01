@@ -3,12 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Models\Thread;
-use App\Replies\ReplyData;
-use App\Replies\ReplyAble;
 use App\User;
 use Auth;
 
-class ReplyRequest extends Request implements ReplyData
+class ReplyRequest extends Request
 {
     public function authorize()
     {
@@ -22,12 +20,12 @@ class ReplyRequest extends Request implements ReplyData
         ];
     }
 
-    public function replyAble(): ReplyAble
+    public function replyAble()
     {
         return $this->findReplyAble($this->get('replyable_id'), $this->get('replyable_type'));
     }
 
-    private function findReplyAble(int $id, string $type): ReplyAble
+    private function findReplyAble(int $id, string $type)
     {
         switch ($type) {
             case Thread::TABLE:

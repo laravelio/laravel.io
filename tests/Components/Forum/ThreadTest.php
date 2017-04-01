@@ -5,7 +5,7 @@ namespace Tests\Components\Forum;
 use App\Models\Thread;
 use App\Http\Requests\ThreadRequest;
 use App\Models\Topic;
-use App\Replies\Reply;
+use App\Models\Reply;
 use App\User;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

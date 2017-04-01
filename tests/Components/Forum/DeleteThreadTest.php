@@ -4,7 +4,7 @@ namespace Tests\Components\Forum;
 
 use App\Models\Thread;
 use App\Jobs\DeleteThread;
-use App\Replies\Reply;
+use App\Models\Reply;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

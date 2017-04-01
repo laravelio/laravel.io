@@ -7,15 +7,13 @@ use App\Helpers\HasSlug;
 use App\Helpers\HasAuthor;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
+use App\Helpers\UsesReplies;
 use App\Helpers\UsesTags;
 use App\Http\Requests\ThreadRequest;
-use App\Replies\Reply;
-use App\Replies\UsesReplies;
-use App\Replies\ReplyAble;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Thread extends Model implements ReplyAble
+class Thread extends Model
 {
     use HasAuthor, HasSlug, HasTimestamps, ModelHelpers, UsesReplies, UsesTags;
 
@@ -67,7 +65,7 @@ class Thread extends Model implements ReplyAble
     }
 
     /**
-     * @return \App\Replies\Reply|null
+     * @return \App\Models\Reply|null
      */
     public function solutionReply()
     {

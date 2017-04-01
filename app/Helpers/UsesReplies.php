@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Replies;
+namespace App\Helpers;
 
+use App\Models\Reply;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait UsesReplies
 {
     /**
-     * @return \App\Replies\Reply[]
+     * @return \App\Models\Reply[]
      */
     public function replies()
     {
@@ -15,7 +16,7 @@ trait UsesReplies
     }
 
     /**
-     * @return \App\Replies\Reply[]
+     * @return \App\Models\Reply[]
      */
     public function latestReplies(int $amount = 5)
     {

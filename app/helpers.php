@@ -24,7 +24,7 @@ if (! function_exists('route_to_reply_able')) {
     /**
      * Returns the route for the replyAble.
      */
-    function route_to_reply_able(App\Replies\ReplyAble $replyAble): string
+    function route_to_reply_able($replyAble): string
     {
         if ($replyAble instanceof App\Models\Thread) {
             return route('thread', $replyAble->slug());

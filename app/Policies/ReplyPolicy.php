@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Replies\Reply;
+use App\Models\Reply;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 

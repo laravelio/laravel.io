@@ -13,7 +13,7 @@
 
 use App\Models\Thread;
 use App\Models\Topic;
-use App\Replies\Reply;
+use App\Models\Reply;
 use App\Models\Tag;
 use App\User;
 

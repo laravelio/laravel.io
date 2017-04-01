@@ -7,7 +7,7 @@ use App\Models\Thread;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
 use App\Http\Requests\RegisterRequest;
-use App\Replies\HasManyReplies;
+use App\Models\Reply;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +15,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasManyReplies, HasTimestamps, ModelHelpers, Notifiable;
+    use HasTimestamps, ModelHelpers, Notifiable;
 
     const DEFAULT = 1;
     const MODERATOR = 2;
@@ -163,9 +163,30 @@ class User extends Authenticatable
         return $this->threadsRelation()->count();
     }
 
+    /**
+     * @return \App\Models\Reply[]
+     */
+    public function replies()
+    {
+        return $this->replyAble;
+    }
+
+    /**
+     * @return \App\Models\Reply[]
+     */
+    public function latestReplies(int $amount = 3)
+    {
+        return $this->replyAble()->orderBy('created_at', 'DESC')->limit($amount)->get();
+    }
+
     public function countReplies(): int
     {
         return $this->replyAble()->count();
+    }
+
+    public function replyAble(): HasMany
+    {
+        return $this->hasMany(Reply::class, 'author_id');
     }
 
     /**

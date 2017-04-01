@@ -2,10 +2,9 @@
 
 namespace Tests\Components\Replies;
 
+use App\Http\Requests\ReplyRequest;
 use App\Models\Thread;
-use App\Replies\ReplyData;
-use App\Replies\Reply;
-use App\Replies\ReplyAble;
+use App\Models\Reply;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -17,21 +16,21 @@ class ReplyTest extends TestCase
     /** @test */
     function we_can_create_a_reply()
     {
-        $this->assertInstanceOf(Reply::class, Reply::createFromData($this->replyData()));
+        $this->assertInstanceOf(Reply::class, Reply::createFromRequest($this->replyData()));
     }
 
     private function replyData()
     {
-        return new class extends ReplyTest implements ReplyData
+        return new class extends ReplyRequest
         {
-            public function replyAble(): ReplyAble
+            public function replyAble()
             {
                 return factory(Thread::class)->create();
             }
 
             public function author(): User
             {
-                return $this->createUser();
+                return factory(User::class)->create();
             }
 
             public function body(): string

@@ -3,7 +3,7 @@
 namespace Tests\Features;
 
 use App\Models\Thread;
-use App\Replies\Reply;
+use App\Models\Reply;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;

@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Replies;
+namespace App\Models;
 
 use App\Helpers\HasAuthor;
 use App\Helpers\HasTimestamps;
+use App\Http\Requests\ReplyRequest;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -32,7 +33,7 @@ class Reply extends Model
         return $this->body;
     }
 
-    public function replyAble(): ReplyAble
+    public function replyAble()
     {
         return $this->replyAbleRelation;
     }
@@ -42,14 +43,14 @@ class Reply extends Model
         return $this->morphTo('replyable');
     }
 
-    public static function createFromData(ReplyData $data): Reply
+    public static function createFromRequest(ReplyRequest $request): Reply
     {
         $reply = new static();
-        $reply->body = $data->body();
-        $reply->author_id = $data->author()->id();
-        $reply->ip = $data->ip();
+        $reply->body = $request->body();
+        $reply->author_id = $request->author()->id();
+        $reply->ip = $request->ip();
 
-        $data->replyAble()->repliesRelation()->save($reply);
+        $request->replyAble()->repliesRelation()->save($reply);
 
         $reply->save();
 

@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Thread;
 use App\Http\Requests\ReplyRequest;
-use App\Replies\Reply;
-use App\Replies\ReplyAble;
+use App\Models\Reply;
 use Illuminate\Http\RedirectResponse;
 
 class ReplyController extends Controller
@@ -17,7 +16,7 @@ class ReplyController extends Controller
 
     public function store(ReplyRequest $request)
     {
-        $reply = Reply::createFromData($request);
+        $reply = Reply::createFromRequest($request);
 
         $this->success('replies.created');
 
@@ -53,7 +52,7 @@ class ReplyController extends Controller
         return $this->redirectToReplyAble($reply->replyAble());
     }
 
-    private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse
+    private function redirectToReplyAble($replyAble): RedirectResponse
     {
         abort_unless($replyAble instanceof Thread, 404);
 

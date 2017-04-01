@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Replies\Reply;
+use App\Models\Reply;
 use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Queue\SerializesModels;

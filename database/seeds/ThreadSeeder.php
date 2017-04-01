@@ -3,7 +3,7 @@
 namespace App\Seeds;
 
 use App\Forum\Thread;
-use App\Replies\Reply;
+use App\Models\Reply;
 use Illuminate\Database\Seeder;
 
 class ThreadSeeder extends Seeder
