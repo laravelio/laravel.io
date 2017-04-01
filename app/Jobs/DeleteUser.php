@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Replies\Reply;
-use App\Users\User;
+use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Queue\SerializesModels;
 
@@ -12,7 +12,7 @@ class DeleteUser
     use DispatchesJobs, SerializesModels;
 
     /**
-     * @var \App\Users\User
+     * @var \App\User
      */
     public $user;
 

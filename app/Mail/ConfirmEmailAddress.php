@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Users\User;
+use App\User;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -11,7 +11,7 @@ class ConfirmEmailAddress extends Mailable
     use SerializesModels;
 
     /**
-     * @var \App\Users\User
+     * @var \App\User
      */
     public $user;
 

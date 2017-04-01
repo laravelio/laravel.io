@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Requests\RegisterRequest;
 use App\Jobs\SendEmailAddressConfirmation;
 use App\Http\Controllers\Controller;
-use App\Users\User;
+use App\User;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -55,7 +55,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        $user = User::createFromData(app(RegisterRequest::class));
+        $user = User::register(app(RegisterRequest::class));
 
         $this->dispatchNow(new SendEmailAddressConfirmation($user));
 

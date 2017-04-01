@@ -6,7 +6,7 @@ use App\Forum\Thread;
 use App\Replies\ReplyData;
 use App\Replies\Reply;
 use App\Replies\ReplyAble;
-use App\Users\User;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

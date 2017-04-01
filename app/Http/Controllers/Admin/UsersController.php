@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\DeleteUser;
-use App\Users\User;
+use App\User;
 
 class UsersController extends Controller
 {

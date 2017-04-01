@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-use App\Users\User;
+use App\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait HasAuthor

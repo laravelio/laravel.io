@@ -2,7 +2,7 @@
 
 namespace App\Replies;
 
-use App\Users\User;
+use App\User;
 
 interface ReplyData
 {

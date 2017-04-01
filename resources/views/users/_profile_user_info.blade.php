@@ -1,11 +1,11 @@
 <div class="profile-user-info">
-    @can('admin', App\Users\User::class)
+    @can('admin', App\User::class)
         <a href="{{ route('admin.users.show', $user->username()) }}">
             <img class="img-circle" src="{{ $user->gratavarUrl(150) }}">
         </a>
     @else
         <img class="img-circle" src="{{ $user->gratavarUrl(150) }}">
-    @endif
+    @endcan
 
     <h1>{{ $user->name() }}</h1>
 

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Users;
+namespace App;
 
 use App\Exceptions\CannotCreateUser;
 use App\Forum\Thread;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
+use App\Http\Requests\RegisterRequest;
 use App\Replies\HasManyReplies;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -196,19 +197,19 @@ class User extends Authenticatable
         return static::where('github_id', $githubId)->firstOrFail();
     }
 
-    public static function createFromData(UserData $data): User
+    public static function register(RegisterRequest $request): User
     {
-        static::assertEmailAddressIsUnique($data->emailAddress());
-        static::assertUsernameIsUnique($data->username());
+        static::assertEmailAddressIsUnique($request->emailAddress());
+        static::assertUsernameIsUnique($request->username());
 
         $user = new static();
-        $user->name = $data->name();
-        $user->email = $data->emailAddress();
-        $user->username = $data->username();
-        $user->password = $data->password();
-        $user->ip = $data->ip();
-        $user->github_id = $data->githubId();
-        $user->github_url = $data->githubUsername();
+        $user->name = $request->name();
+        $user->email = $request->emailAddress();
+        $user->username = $request->username();
+        $user->password = $request->password();
+        $user->ip = $request->ip();
+        $user->github_id = $request->githubId();
+        $user->github_url = $request->githubUsername();
         $user->confirmation_code = str_random(60);
         $user->type = static::DEFAULT;
         $user->save();

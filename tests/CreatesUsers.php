@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Users\User;
+use App\User;
 
 trait CreatesUsers
 {

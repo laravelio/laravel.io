@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Replies\Reply;
-use App\Users\User;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ReplyPolicy

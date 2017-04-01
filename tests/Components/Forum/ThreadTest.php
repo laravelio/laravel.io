@@ -6,7 +6,7 @@ use App\Forum\ThreadData;
 use App\Forum\Thread;
 use App\Forum\Topic;
 use App\Replies\Reply;
-use App\Users\User;
+use App\User;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;

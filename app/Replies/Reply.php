@@ -4,7 +4,7 @@ namespace App\Replies;
 
 use App\Helpers\HasAuthor;
 use App\Helpers\HasTimestamps;
-use App\Users\User;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 

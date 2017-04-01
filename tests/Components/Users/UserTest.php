@@ -3,8 +3,8 @@
 namespace Tests\Components\Users;
 
 use App\Exceptions\CannotCreateUser;
-use App\Users\UserData;
-use App\Users\User;
+use App\Http\Requests\RegisterRequest;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -31,7 +31,7 @@ class UserTest extends TestCase
     /** @test */
     function we_can_create_a_user()
     {
-        $this->assertInstanceOf(User::class, User::createFromData($this->userData(
+        $this->assertInstanceOf(User::class, User::register($this->newRegistration(
             'john@example.com',
             'johndoe'
         )));
@@ -42,8 +42,8 @@ class UserTest extends TestCase
     {
         $this->expectException(CannotCreateUser::class);
 
-        User::createFromData($this->userData('john@example.com', 'johndoe'));
-        User::createFromData($this->userData('john@example.com', 'johnfoo'));
+        User::register($this->newRegistration('john@example.com', 'johndoe'));
+        User::register($this->newRegistration('john@example.com', 'johnfoo'));
     }
 
     /** @test */
@@ -51,13 +51,13 @@ class UserTest extends TestCase
     {
         $this->expectException(CannotCreateUser::class);
 
-        User::createFromData($this->userData('john@example.com', 'johndoe'));
-        User::createFromData($this->userData('john.doe@example.com', 'johndoe'));
+        User::register($this->newRegistration('john@example.com', 'johndoe'));
+        User::register($this->newRegistration('john.doe@example.com', 'johndoe'));
     }
 
-    private function userData($emailAddress, $username)
+    private function newRegistration($emailAddress, $username)
     {
-        return new class($emailAddress, $username) implements UserData
+        return new class($emailAddress, $username) extends RegisterRequest
         {
             public function __construct($emailAddress, $username)
             {

@@ -50,9 +50,9 @@
                             <li class="{{ active('dashboard') }}"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="{{ active('settings.*') }}"><a href="{{ route('settings.profile') }}">Settings</a></li>
 
-                            @can ('admin', App\Users\User::class)
+                            @can('admin', App\User::class)
                                 <li class="{{ active('admin*') }}"><a href="{{ route('admin') }}">Admin</a></li>
-                            @endif
+                            @endcan
 
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('logout') }}">Logout</a></li>

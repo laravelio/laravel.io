@@ -3,7 +3,6 @@
 namespace Tests\Features;
 
 use App\Mail\ConfirmEmailAddress;
-use App\Users\UserWasRegistered;
 use Auth;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

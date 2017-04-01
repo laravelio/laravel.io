@@ -2,7 +2,7 @@
 
 namespace App\Spam;
 
-use App\Users\User;
+use App\User;
 use TijsVerkoyen\Akismet\Akismet;
 
 class AkismetSpamDetector implements SpamDetector

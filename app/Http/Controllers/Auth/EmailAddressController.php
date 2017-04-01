@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Jobs\SendEmailAddressConfirmation;
 use App\Http\Controllers\Controller;
-use App\Users\User;
+use App\User;
 use Auth;
 
 class EmailAddressController extends Controller

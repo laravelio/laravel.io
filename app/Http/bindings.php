@@ -17,9 +17,9 @@ Route::bind('topic', function($slug) {
 });
 
 Route::bind('username', function($username) {
-    return App\Users\User::findByUsername($username);
+    return App\User::findByUsername($username);
 });
 
 Route::bind('email_address', function($emailAddress) {
-    return App\Users\User::findByEmailAddress($emailAddress);
+    return App\User::findByEmailAddress($emailAddress);
 });

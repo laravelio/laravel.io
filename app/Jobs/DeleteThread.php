@@ -7,7 +7,7 @@ use App\Forum\Thread;
 class DeleteThread
 {
     /**
-     * @var \App\Users\User
+     * @var \App\User
      */
     public $thread;
 

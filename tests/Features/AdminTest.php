@@ -3,7 +3,7 @@
 namespace Tests\Features;
 
 use App\Forum\Thread;
-use App\Users\User;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;
 use Tests\RequiresLogin;

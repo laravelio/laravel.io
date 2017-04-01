@@ -7,7 +7,7 @@ use App\Policies\ReplyPolicy;
 use App\Policies\ThreadPolicy;
 use App\Policies\UserPolicy;
 use App\Replies\Reply;
-use App\Users\User;
+use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

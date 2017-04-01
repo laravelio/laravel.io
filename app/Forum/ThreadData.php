@@ -2,7 +2,7 @@
 
 namespace App\Forum;
 
-use App\Users\User;
+use App\User;
 
 interface ThreadData
 {

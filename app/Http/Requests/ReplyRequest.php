@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Forum\Thread;
 use App\Replies\ReplyData;
 use App\Replies\ReplyAble;
-use App\Users\User;
+use App\User;
 use Auth;
 
 class ReplyRequest extends Request implements ReplyData
