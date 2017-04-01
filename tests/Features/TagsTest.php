@@ -5,7 +5,7 @@ namespace Tests\Features;
 use App\Forum\Thread;
 use App\Forum\ThreadData;
 use App\Forum\Topic;
-use App\Tags\Tag;
+use App\Models\Tag;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;

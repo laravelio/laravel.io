@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tags;
+namespace App\Models;
 
 use App\Forum\Thread;
 use App\Helpers\HasSlug;

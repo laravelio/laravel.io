@@ -5,7 +5,7 @@ Route::bind('reply', function($id) {
 });
 
 Route::bind('tag', function($slug) {
-    return App\Tags\Tag::findBySlug($slug);
+    return App\Models\Tag::findBySlug($slug);
 });
 
 Route::bind('thread', function($slug) {

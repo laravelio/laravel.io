@@ -2,13 +2,13 @@
 
 namespace App\Helpers;
 
-use App\Tags\Tag;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait UsesTags
 {
     /**
-     * @return \App\Tags\Tag[]
+     * @return \App\Models\Tag[]
      */
     public function tags()
     {

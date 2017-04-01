@@ -7,7 +7,7 @@ use App\Forum\Topic;
 use App\Http\Requests\ThreadRequest;
 use App\Jobs\DeleteThread;
 use App\Replies\Reply;
-use App\Tags\Tag;
+use App\Models\Tag;
 
 class ThreadsController extends Controller
 {

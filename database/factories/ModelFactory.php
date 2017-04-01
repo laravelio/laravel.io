@@ -14,7 +14,7 @@
 use App\Forum\Thread;
 use App\Forum\Topic;
 use App\Replies\Reply;
-use App\Tags\Tag;
+use App\Models\Tag;
 use App\User;
 
 $factory->define(User::class, function (Faker\Generator $faker) {
