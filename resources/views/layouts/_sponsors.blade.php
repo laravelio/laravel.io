@@ -1,5 +1,6 @@
 <div id="sponsors" class="container">
     <hr>
+    <h2>We'd like to thank these <strong>amazing companies</strong> for supporting us</h2>
     <div class="sponsors-list">
         <div>
             <a href="https://www.digitalocean.com/?refcode=7922b1dff899">
@@ -34,6 +35,11 @@
         <div>
             <a href="https://fortrabbit.com/">
                 <img src="{{ asset('images/fortrabbit.png') }}">
+            </a>
+        </div>
+        <div>
+            <a href="https://blackfire.io/">
+                <img src="{{ asset('images/blackfire-io.png') }}">
             </a>
         </div>
     </div>

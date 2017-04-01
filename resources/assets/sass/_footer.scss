@@ -5,6 +5,10 @@
 #sponsors {
     text-align: center;
 }
+#sponsors h2 {
+    font-size: $font-size-large;
+    margin-top: 35px;
+}
 .sponsors-list {
     padding-top: 20px;
 }
@@ -16,6 +20,10 @@
 }
 
 @media (min-width: $screen-sm-min) {
+    #sponsors h2 {
+        font-size: $font-size-h3;
+        margin-top: 50px;
+    }
     .sponsors-list {
         display: flex;
         flex-direction: row;
@@ -25,13 +33,25 @@
         padding-top: 40px;
 
         div {
-            flex: 1 0 33.33333%;
+            flex: 1 0 50%;
             margin-bottom: 35px;
-            width: 33.33333%;
+            width: 50%;
 
             img {
                 max-width: 200px;
             }
+        }
+    }
+}
+
+@media (min-width: $screen-md-min) {
+    #sponsors h2 {
+        font-size: $font-size-h2;
+    }
+    .sponsors-list {
+        div {
+            flex: 1 0 25%;
+            width: 25%;
         }
     }
 }
