@@ -9,7 +9,7 @@ class UpdateReply
     /**
      * @var \App\Models\Reply
      */
-    public $reply;
+    private $reply;
 
     /**
      * @var string

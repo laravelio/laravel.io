@@ -7,9 +7,9 @@ use App\Models\Thread;
 class DeleteThread
 {
     /**
-     * @var \App\User
+     * @var \App\Models\Thread
      */
-    public $thread;
+    private $thread;
 
     public function __construct(Thread $thread)
     {

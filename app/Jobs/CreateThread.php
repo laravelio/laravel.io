@@ -10,7 +10,7 @@ class CreateThread
     /**
      * @var \App\Http\Requests\ThreadRequest
      */
-    public $request;
+    private $request;
 
     public function __construct(ThreadRequest $request)
     {

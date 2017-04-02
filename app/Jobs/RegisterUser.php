@@ -12,7 +12,7 @@ class RegisterUser
     /**
      * @var \App\Http\Requests\RegisterRequest
      */
-    public $request;
+    private $request;
 
     public function __construct(RegisterRequest $request)
     {

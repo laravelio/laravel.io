@@ -9,7 +9,7 @@ class DeleteReply
     /**
      * @var \App\Models\Reply
      */
-    public $reply;
+    private $reply;
 
     public function __construct(Reply $reply)
     {

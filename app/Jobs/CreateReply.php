@@ -10,7 +10,7 @@ class CreateReply
     /**
      * @var \App\Http\Requests\ReplyRequest
      */
-    public $request;
+    private $request;
 
     public function __construct(ReplyRequest $request)
     {

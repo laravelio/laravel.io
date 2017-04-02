@@ -14,7 +14,7 @@ class SendEmailAddressConfirmation
     /**
      * @var \App\User
      */
-    public $user;
+    private $user;
 
     public function __construct(User $user)
     {

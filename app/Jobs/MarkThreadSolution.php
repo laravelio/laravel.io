@@ -8,9 +8,9 @@ use App\Models\Thread;
 class MarkThreadSolution
 {
     /**
-     * @var \App\User
+     * @var \App\Models\Thread
      */
-    public $thread;
+    private $thread;
 
     /**
      * @var \App\Models\Reply

@@ -10,7 +10,7 @@ class UpdatePassword
     /**
      * @var \App\User
      */
-    public $user;
+    private $user;
 
     /**
      * @var string

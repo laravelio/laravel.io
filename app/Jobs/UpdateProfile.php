@@ -10,7 +10,7 @@ class UpdateProfile
     /**
      * @var \App\User
      */
-    public $user;
+    private $user;
 
     /**
      * @var \App\Http\Requests\UpdateProfileRequest

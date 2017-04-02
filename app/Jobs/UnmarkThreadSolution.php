@@ -9,7 +9,7 @@ class UnmarkThreadSolution
     /**
      * @var \App\User
      */
-    public $thread;
+    private $thread;
 
     public function __construct(Thread $thread)
     {
