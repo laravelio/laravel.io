@@ -63,10 +63,7 @@ class Thread extends Model
         return $this->belongsTo(Topic::class, 'topic_id');
     }
 
-    /**
-     * @return \App\Models\Reply|null
-     */
-    public function solutionReply()
+    public function solutionReply(): ?Reply
     {
         return $this->solutionReplyRelation;
     }
