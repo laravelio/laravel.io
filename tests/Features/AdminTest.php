@@ -2,6 +2,7 @@
 
 namespace Tests\Features;
 
+use App\Models\Reply;
 use App\Models\Thread;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -84,13 +85,17 @@ class AdminTest extends BrowserKitTestCase
         $this->loginAsAdmin();
 
         $user = factory(User::class)->create(['name' => 'Freek Murze']);
-        factory(Thread::class)->create(['subject' => 'Laravel Database Backup Tool', 'author_id' => $user->id()]);
+        $thread = factory(Thread::class)->create(['author_id' => $user->id()]);
+        factory(Reply::class)->create(['replyable_id' => $thread->id()]);
+        factory(Reply::class)->create(['author_id' => $user->id()]);
 
         $this->delete('/admin/users/'.$user->username())
             ->assertRedirectedTo('/admin');
 
         $this->notSeeInDatabase('users', ['name' => 'Freek Murze']);
-        $this->notSeeInDatabase('threads', ['subject' => 'Laravel Database Backup Tool']);
+        $this->notSeeInDatabase('threads', ['author_id' => $user->id()]);
+        $this->notSeeInDatabase('replies', ['replyable_id' => $thread->id()]);
+        $this->notSeeInDatabase('replies', ['author_id' => $user->id()]);
     }
 
     /** @test */

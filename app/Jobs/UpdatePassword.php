@@ -25,7 +25,6 @@ class UpdatePassword
 
     public function handle(Hasher $hasher)
     {
-        $this->user->password = $hasher->make($this->newPassword);
-        $this->user->save();
+        $this->user->update(['password' => $hasher->make($this->newPassword)]);
     }
 }

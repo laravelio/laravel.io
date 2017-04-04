@@ -24,7 +24,6 @@ class UpdateReply
 
     public function handle()
     {
-        $this->reply->body = $this->body;
-        $this->reply->save();
+        $this->reply->update(['body' => $this->body]);
     }
 }

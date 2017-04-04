@@ -5,7 +5,7 @@ namespace App\Helpers;
 use App\Models\Reply;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-trait UsesReplies
+trait ReceivesReplies
 {
     /**
      * @return \App\Models\Reply[]
@@ -21,6 +21,11 @@ trait UsesReplies
     public function latestReplies(int $amount = 5)
     {
         return $this->repliesRelation()->orderBy('created_at', 'DESC')->limit($amount)->get();
+    }
+
+    public function removeReplies()
+    {
+        $this->repliesRelation()->delete();
     }
 
     public function repliesRelation(): MorphMany

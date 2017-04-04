@@ -19,7 +19,7 @@ class ReplyController extends Controller
 
     public function store(ReplyRequest $request)
     {
-        $reply = $this->dispatchNow(new CreateReply($request));
+        $reply = $this->dispatchNow(CreateReply::fromRequest($request));
 
         $this->success('replies.created');
 

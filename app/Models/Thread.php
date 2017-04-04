@@ -7,14 +7,14 @@ use App\Helpers\HasSlug;
 use App\Helpers\HasAuthor;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
-use App\Helpers\UsesReplies;
-use App\Helpers\UsesTags;
+use App\Helpers\ReceivesReplies;
+use App\Helpers\HasTags;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Thread extends Model
+class Thread extends Model implements ReplyAble
 {
-    use HasAuthor, HasSlug, HasTimestamps, ModelHelpers, UsesReplies, UsesTags;
+    use HasAuthor, HasSlug, HasTimestamps, ModelHelpers, ReceivesReplies, HasTags;
 
     const TABLE = 'threads';
 
@@ -26,7 +26,7 @@ class Thread extends Model
     /**
      * @var array
      */
-    protected $fillable = ['subject', 'body'];
+    protected $fillable = ['subject', 'body', 'ip', 'slug'];
 
     public function id(): int
     {
@@ -48,14 +48,14 @@ class Thread extends Model
         return str_limit(strip_tags(md_to_html($this->body())), $limit);
     }
 
-    public function slug(): string
-    {
-        return $this->slug;
-    }
-
     public function topic(): Topic
     {
         return $this->topicRelation;
+    }
+
+    public function setTopic(Topic $topic)
+    {
+        $this->topicRelation()->associate($topic);
     }
 
     public function topicRelation(): BelongsTo
@@ -98,5 +98,13 @@ class Thread extends Model
     {
         $this->solutionReplyRelation()->dissociate();
         $this->save();
+    }
+
+    public function delete()
+    {
+        $this->removeTags();
+        $this->removeReplies();
+
+        parent::delete();
     }
 }

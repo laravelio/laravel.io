@@ -21,7 +21,7 @@ class ProfileController extends Controller
 
     public function update(UpdateProfileRequest $request)
     {
-        $this->dispatchNow(new UpdateProfile(Auth::user(), $request));
+        $this->dispatchNow(UpdateProfile::fromRequest(Auth::user(), $request));
 
         $this->success('settings.updated');
 

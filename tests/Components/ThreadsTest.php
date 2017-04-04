@@ -5,10 +5,8 @@ namespace Tests\Components;
 use App\Jobs\CreateThread;
 use App\Jobs\DeleteThread;
 use App\Models\Thread;
-use App\Http\Requests\ThreadRequest;
 use App\Models\Topic;
 use App\Models\Reply;
-use App\User;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -39,7 +37,9 @@ class ThreadsTest extends TestCase
     /** @test */
     function we_can_create_a_thread()
     {
-        $this->assertInstanceOf(Thread::class, (new CreateThread($this->threadRequest()))->handle());
+        $job = new CreateThread('Subject', 'Body', '', $this->createUser(), factory(Topic::class)->create());
+
+        $this->assertInstanceOf(Thread::class, $job->handle());
     }
 
     /** @test */
@@ -69,41 +69,5 @@ class ThreadsTest extends TestCase
 
         $this->assertDatabaseMissing('threads', ['id' => $thread->id()]);
         $this->assertDatabaseMissing('replies', ['replyable_id' => $thread->id()]);
-    }
-
-    private function threadRequest(): ThreadRequest
-    {
-        return new class extends ThreadRequest
-        {
-            public function author(): User
-            {
-                return factory(User::class)->create();
-            }
-
-            public function subject(): string
-            {
-                return 'Foo Thread';
-            }
-
-            public function body(): string
-            {
-                return 'Foo Thread Body';
-            }
-
-            public function topic(): Topic
-            {
-                return factory(Topic::class)->create();
-            }
-
-            public function ip()
-            {
-                return '';
-            }
-
-            public function tags(): array
-            {
-                return [];
-            }
-        };
     }
 }

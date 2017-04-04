@@ -13,23 +13,39 @@ class UpdateThread
     private $thread;
 
     /**
-     * @var \App\Http\Requests\ThreadRequest
+     * @var array
      */
-    public $request;
+    private $attributes;
 
-    public function __construct(Thread $thread, ThreadRequest $request)
+    public function __construct(Thread $thread, array $attributes = [])
     {
         $this->thread = $thread;
-        $this->request = $request;
+        $this->attributes = array_only($attributes, ['subject', 'body', 'slug', 'topic', 'tags']);
+    }
+
+    public static function fromRequest(Thread $thread, ThreadRequest $request): self
+    {
+        return new static($thread, [
+            'subject' => $request->subject(),
+            'body' => $request->body(),
+            'slug' => $request->subject(),
+            'topic' => $request->topic(),
+            'tags' => $request->tags(),
+        ]);
     }
 
     public function handle(): Thread
     {
-        $this->thread->subject = $this->request->subject();
-        $this->thread->body = $this->request->body();
-        $this->thread->slug = $this->thread->generateUniqueSlug($this->thread->subject(), $this->thread->id());
-        $this->thread->topicRelation()->associate($this->request->topic());
-        $this->thread->tagsRelation()->sync($this->request->tags());
+        $this->thread->update($this->attributes);
+
+        if (array_has($this->attributes, 'topic')) {
+            $this->thread->setTopic($this->attributes['topic']);
+        }
+
+        if (array_has($this->attributes, 'tags')) {
+            $this->thread->syncTags($this->attributes['tags']);
+        }
+
         $this->thread->save();
 
         return $this->thread;

@@ -40,7 +40,7 @@ class ThreadsController extends Controller
 
     public function store(ThreadRequest $request)
     {
-        $thread = $this->dispatchNow(new CreateThread($request));
+        $thread = $this->dispatchNow(CreateThread::fromRequest($request));
 
         $this->success('forum.threads.created');
 
@@ -58,7 +58,7 @@ class ThreadsController extends Controller
     {
         $this->authorize('update', $thread);
 
-        $thread = $this->dispatchNow(new UpdateThread($thread, $request));
+        $thread = $this->dispatchNow(UpdateThread::fromRequest($thread, $request));
 
         $this->success('forum.threads.updated');
 

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Thread;
 use App\User;
+use App\Validation\SpamRule;
 use Auth;
 
 class ReplyRequest extends Request
@@ -16,7 +17,7 @@ class ReplyRequest extends Request
     public function rules()
     {
         return [
-            'body' => 'required|spam',
+            'body' => 'required|'.SpamRule::NAME,
         ];
     }
 

@@ -150,6 +150,15 @@ class User extends Authenticatable
         return $this->threadsRelation->take($amount);
     }
 
+    public function deleteThreads()
+    {
+        // We need to explicitly iterate over the threads and delete them
+        // separately because all related models need to be deleted.
+        foreach ($this->threads() as $thread) {
+            $thread->delete();
+        }
+    }
+
     public function threadsRelation(): HasMany
     {
         return $this->hasMany(Thread::class, 'author_id');
@@ -174,6 +183,11 @@ class User extends Authenticatable
     public function latestReplies(int $amount = 3)
     {
         return $this->replyAble()->orderBy('created_at', 'DESC')->limit($amount)->get();
+    }
+
+    public function deleteReplies()
+    {
+        $this->replyAble()->delete();
     }
 
     public function countReplies(): int
@@ -213,5 +227,13 @@ class User extends Authenticatable
     public static function findByGithubId(string $githubId): User
     {
         return static::where('github_id', $githubId)->firstOrFail();
+    }
+
+    public function delete()
+    {
+        $this->deleteThreads();
+        $this->deleteReplies();
+
+        parent::delete();
     }
 }

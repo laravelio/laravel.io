@@ -5,7 +5,7 @@ namespace App\Helpers;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-trait UsesTags
+trait HasTags
 {
     /**
      * @return \App\Models\Tag[]
@@ -13,6 +13,20 @@ trait UsesTags
     public function tags()
     {
         return $this->tagsRelation;
+    }
+
+    /**
+     * @param \App\Models\Tag[] $tags
+     */
+    public function syncTags(array $tags)
+    {
+        $this->save();
+        $this->tagsRelation()->sync($tags);
+    }
+
+    public function removeTags()
+    {
+        $this->tagsRelation()->detach();
     }
 
     public function tagsRelation(): MorphToMany

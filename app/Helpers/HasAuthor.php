@@ -12,6 +12,11 @@ trait HasAuthor
         return $this->authorRelation;
     }
 
+    public function authoredBy(User $author)
+    {
+        $this->authorRelation()->associate($author);
+    }
+
     public function authorRelation(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id');
@@ -20,10 +25,5 @@ trait HasAuthor
     public function isAuthoredBy(User $user): bool
     {
         return $this->author()->id() === $user->id();
-    }
-
-    public static function deleteByAuthor(User $author)
-    {
-        static::where('author_id', $author->id())->delete();
     }
 }

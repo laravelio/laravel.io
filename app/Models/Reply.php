@@ -19,7 +19,7 @@ class Reply extends Model
     /**
      * @var array
      */
-    protected $fillable = ['body'];
+    protected $fillable = ['body', 'ip'];
 
     public function id(): int
     {
@@ -31,7 +31,12 @@ class Reply extends Model
         return $this->body;
     }
 
-    public function replyAble()
+    public function to(ReplyAble $replyAble)
+    {
+        $this->replyAbleRelation()->associate($replyAble);
+    }
+
+    public function replyAble(): ReplyAble
     {
         return $this->replyAbleRelation;
     }

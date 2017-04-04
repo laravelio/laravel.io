@@ -30,11 +30,6 @@ class Tag extends Model
         return $this->name;
     }
 
-    public function slug(): string
-    {
-        return $this->slug;
-    }
-
     public function description(): string
     {
         return $this->description;

@@ -34,11 +34,6 @@ class Topic extends Model
         return $this->name;
     }
 
-    public function slug(): string
-    {
-        return $this->slug;
-    }
-
     /**
      * @return \App\Models\Threads[]
      */

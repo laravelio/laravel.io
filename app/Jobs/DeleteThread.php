@@ -18,8 +18,6 @@ class DeleteThread
 
     public function handle()
     {
-        $this->thread->tagsRelation()->detach();
-        $this->thread->repliesRelation()->delete();
         $this->thread->delete();
     }
 }
