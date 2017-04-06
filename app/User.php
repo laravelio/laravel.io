@@ -39,6 +39,8 @@ class User extends Authenticatable
         'confirmed',
         'confirmation_code',
         'github_id',
+        'github_url',
+        'type',
     ];
 
     /**

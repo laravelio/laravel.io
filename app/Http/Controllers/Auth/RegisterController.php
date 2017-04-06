@@ -56,7 +56,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        $user = $this->dispatchNow(new RegisterUser(app(RegisterRequest::class)));
+        $user = $this->dispatchNow(RegisterUser::fromRequest(app(RegisterRequest::class)));
 
         $this->dispatchNow(new SendEmailAddressConfirmation($user));
 

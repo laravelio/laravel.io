@@ -29,12 +29,14 @@
         "symfony/dom-crawler": "^3.1"
     },
     "autoload": {
+        "classmap": [
+            "database"
+        ],
         "files": [
             "app/helpers.php"
         ],
         "psr-4": {
-            "App\\": "app/",
-            "App\\Seeds\\": "app/seeds/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {

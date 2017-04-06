@@ -41,7 +41,7 @@ class RegisterRequest extends FormRequest
 
     public function name(): string
     {
-        return$this->get('name');
+        return $this->get('name');
     }
 
     public function emailAddress(): string

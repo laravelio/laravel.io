@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Seeds;
-
 use App\Models\Thread;
 use App\Models\Reply;
 use Illuminate\Database\Seeder;
