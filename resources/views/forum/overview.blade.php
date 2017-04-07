@@ -1,9 +1,11 @@
-@title('Forum')
+@php($subTitle = isset($activeTopic) ? $activeTopic->name() : null)
+@php($subTitle = isset($activeTag) ? $activeTag->name() : $subTitle)
+@title('Forum' . (isset($subTitle) ? ' > ' . $subTitle : ''))
 
 @extends('layouts.default')
 
 @section('content')
-    <h1>{{ $title }}{{ isset($activeTopic) ? ' > ' . $activeTopic->name() : '' }}</h1>
+    <h1>{{ $title }}</h1>
 
     <hr>
 
