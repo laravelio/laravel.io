@@ -32,7 +32,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        @include('users._profile_user_info')
+                        @include('users._user_info')
                     </div>
                 </div>
             </div>

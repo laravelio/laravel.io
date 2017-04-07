@@ -44,11 +44,16 @@ class Topic extends Model
 
     public function paginatedThreads(int $perPage = 10): LengthAwarePaginator
     {
-        return $this->threadsRelation()->paginate($perPage);
+        return $this->threadsRelation()->orderBy('created_at', 'DESC')->paginate($perPage);
     }
 
     public function threadsRelation(): HasMany
     {
         return $this->hasMany(Thread::class, 'topic_id');
+    }
+
+    public function matches(Topic $topic): bool
+    {
+        return $this->id === $topic->id();
     }
 }

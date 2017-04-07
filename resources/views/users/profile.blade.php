@@ -4,37 +4,7 @@
 
 @section('content')
     <div id="profile">
-        @include('users._profile_user_info')
-
-        <div class="row profile-latest-items">
-            <div class="col-md-6">
-                <h3>Latest Threads</h3>
-
-                @forelse ($user->latestThreads() as $thread)
-                    <div class="list-group">
-                        <a href="{{ route('thread', $thread->slug()) }}" class="list-group-item">
-                            <h4 class="list-group-item-heading">{{ $thread->subject() }}</h4>
-                            <p class="list-group-item-text">{{ $thread->excerpt() }}</p>
-                        </a>
-                    </div>
-                @empty
-                    <p class="text-center">This user has not posted any threads yet.</p>
-                @endforelse
-            </div>
-            <div class="col-md-6">
-                <h3>Latest Replies</h3>
-
-                @forelse ($user->latestReplies() as $reply)
-                    <div class="list-group">
-                        <a href="{{ route_to_reply_able($reply->replyAble()) }}" class="list-group-item">
-                            <h4 class="list-group-item-heading">{{ $reply->replyAble()->subject() }}</h4>
-                            <p class="list-group-item-text">{{ $reply->replyAble()->excerpt() }}</p>
-                        </a>
-                    </div>
-                @empty
-                    <p class="text-center">This user has not posted any replies yet.</p>
-                @endforelse
-            </div>
-        </div>
+        @include('users._user_info')
+        @include('users._latest_content')
     </div>
 @endsection

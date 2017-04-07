@@ -5,6 +5,8 @@
 @section('content')
     <h1>{{ $title }}</h1>
 
+    <hr>
+
     {!! Form::open(['route' => 'threads.store']) !!}
         @formGroup('topic')
             {!! Form::label('topic') !!}

@@ -27,4 +27,7 @@
             </div>
         </div>
     </div>
+
+
+    @include('users._latest_content', ['user' => Auth::user()])
 @endsection
