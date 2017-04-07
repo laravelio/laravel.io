@@ -1,7 +1,9 @@
 @extends('layouts.base', ['bodyClass' => 'home'])
 
 @section('body')
-    @include('layouts._alerts')
+    <div class="container">
+        @include('layouts._alerts')
+    </div>
 
     <div class="jumbotron text-center">
         <h1>Laravel.io</h1>

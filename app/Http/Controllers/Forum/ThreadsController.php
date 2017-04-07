@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Forum;
 
+use App\Http\Controllers\Controller;
 use App\Jobs\CreateThread;
 use App\Jobs\MarkThreadSolution;
 use App\Jobs\UnmarkThreadSolution;
@@ -22,10 +23,7 @@ class ThreadsController extends Controller
 
     public function overview()
     {
-        return view('forum.overview', [
-            'topics' => Topic::all(),
-            'threads' => Thread::findAllPaginated(),
-        ]);
+        return view('forum.overview', ['threads' => Thread::findAllPaginated()]);
     }
 
     public function show(Thread $thread)

@@ -10,4 +10,9 @@ trait ModelHelpers
     {
         return static::orderBy('created_at', 'desc')->paginate($perPage);
     }
+
+    public function matches(self $model): bool
+    {
+        return $this->id === $model->id();
+    }
 }

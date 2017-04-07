@@ -4,13 +4,14 @@ namespace App\Models;
 
 use App\Helpers\HasTimestamps;
 use App\Helpers\HasSlug;
+use App\Helpers\ModelHelpers;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Topic extends Model
 {
-    use HasSlug, HasTimestamps;
+    use HasSlug, HasTimestamps, ModelHelpers;
 
     /**
      * @var string
@@ -50,10 +51,5 @@ class Topic extends Model
     public function threadsRelation(): HasMany
     {
         return $this->hasMany(Thread::class, 'topic_id');
-    }
-
-    public function matches(Topic $topic): bool
-    {
-        return $this->id === $topic->id();
     }
 }
