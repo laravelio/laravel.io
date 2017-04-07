@@ -9,8 +9,6 @@ class TagsController extends Controller
 {
     public function show(Tag $tag)
     {
-        $threads = $tag->paginatedThreads();
-
-        return view('forum.overview', ['threads' => $threads, 'activeTag' => $tag]);
+        return view('forum.overview', ['threads' => $tag->paginatedThreads(), 'activeTag' => $tag]);
     }
 }

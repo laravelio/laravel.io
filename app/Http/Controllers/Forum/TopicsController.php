@@ -9,8 +9,6 @@ class TopicsController extends Controller
 {
     public function show(Topic $topic)
     {
-        $threads = $topic->paginatedThreads();
-
-        return view('forum.overview', ['threads' => $threads, 'activeTopic' => $topic]);
+        return view('forum.overview', ['threads' => $topic->paginatedThreads(), 'activeTopic' => $topic]);
     }
 }
