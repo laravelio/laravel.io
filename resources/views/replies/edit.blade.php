@@ -5,9 +5,10 @@
 @section('content')
     <h1>{{ $title }}</h1>
 
+    <hr>
+
     {!! Form::open(['route' => ['replies.update', $reply->id()], 'method' => 'PUT']) !!}
         @formGroup('body')
-            {!! Form::label('body') !!}
             {!! Form::textarea('body', $reply->body(), ['class' => 'form-control wysiwyg', 'required']) !!}
             @error('body')
         @endFormGroup
