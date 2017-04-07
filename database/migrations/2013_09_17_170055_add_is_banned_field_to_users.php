@@ -16,16 +16,4 @@ class AddIsBannedFieldToUsers extends Migration
             $table->integer('is_banned')->default(0);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('users', function(Blueprint $table) {
-            $table->dropColumn('is_banned');
-        });
-    }
 }

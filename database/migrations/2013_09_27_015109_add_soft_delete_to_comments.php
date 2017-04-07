@@ -16,16 +16,4 @@ class AddSoftDeleteToComments extends Migration
             $table->softDeletes();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('comments', function(Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
-    }
 }

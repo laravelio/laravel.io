@@ -18,14 +18,4 @@ class CreateSessionTable extends Migration
             $table->integer('last_activity');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('sessions');
-    }
 }

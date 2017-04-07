@@ -32,17 +32,4 @@ class AddForumTopics extends Migration
             $table->integer('topic_id')->default(1)->index();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('threads', function(Blueprint $table) {
-            $table->dropColumn('topic_id');
-        });
-        Schema::dropIfExists('topics');
-    }
 }

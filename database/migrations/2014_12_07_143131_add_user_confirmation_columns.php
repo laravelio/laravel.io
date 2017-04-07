@@ -17,16 +17,4 @@ class AddUserConfirmationColumns extends Migration
             $table->string('confirmation_code')->nullable();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('confirmed', 'confirmation_code');
-        });
-    }
 }

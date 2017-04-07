@@ -18,16 +18,4 @@ class AddUserType extends Migration
             $table->smallInteger('type', false, true)->default(User::DEFAULT);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('type');
-        });
-    }
 }

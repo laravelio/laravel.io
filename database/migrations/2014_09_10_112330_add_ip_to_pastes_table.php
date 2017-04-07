@@ -16,16 +16,4 @@ class AddIpToPastesTable extends Migration
             $table->string('ip')->nullable();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('pastes', function (Blueprint $table) {
-            $table->dropColumn('ip');
-        });
-    }
 }

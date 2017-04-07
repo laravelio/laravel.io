@@ -30,28 +30,4 @@ class ModifyTagRelations extends Migration
             $table->text('description')->nullable(false)->change();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('tags', function (Blueprint $table) {
-            $table->dropUnique(['name']);
-            $table->dropUnique(['slug']);
-            $table->text('description')->nullable(true)->change();
-        });
-
-        Schema::table('taggables', function(Blueprint $table) {
-            $table->renameColumn('taggable_id', 'thread_id');
-        });
-
-        Schema::table('taggables', function(Blueprint $table) {
-            $table->dropColumn('taggable_type');
-        });
-
-        Schema::rename('taggables', 'tagged_items');
-    }
 }

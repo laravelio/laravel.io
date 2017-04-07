@@ -16,16 +16,4 @@ class AddTypeFieldToComments extends Migration
             $table->integer('type')->default(0);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('comments', function(Blueprint $table) {
-            $table->dropColumn('type');
-        });
-    }
 }

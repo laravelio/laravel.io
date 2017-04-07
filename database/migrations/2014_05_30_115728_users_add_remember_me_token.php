@@ -16,16 +16,4 @@ class UsersAddRememberMeToken extends Migration
             $table->string('remember_token')->default('');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('users', function(Blueprint $table) {
-            $table->dropRememberToken();
-        });
-    }
 }

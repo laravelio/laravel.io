@@ -27,27 +27,4 @@ class AddIndexes extends Migration
             $table->index('author_id');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('forum_threads', function (Blueprint $table) {
-            $table->dropIndex(['author_id']);
-            $table->dropIndex(['most_recent_reply_id']);
-            $table->dropIndex(['solution_reply_id']);
-        });
-
-        Schema::table('forum_replies', function (Blueprint $table) {
-            $table->dropIndex(['author_id']);
-            $table->dropIndex(['thread_id']);
-        });
-
-        Schema::table('comments', function (Blueprint $table) {
-            $table->dropIndex(['author_id']);
-        });
-    }
 }

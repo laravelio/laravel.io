@@ -16,16 +16,4 @@ class PinnedThreads extends Migration
             $table->boolean('pinned')->default(false);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('forum_threads', function (Blueprint $table) {
-            $table->dropColumn('pinned');
-        });
-    }
 }

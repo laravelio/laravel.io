@@ -16,16 +16,4 @@ class AddDescriptionFieldToTags extends Migration
             $table->text('description')->nullable();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('tags', function(Blueprint $table) {
-            $table->dropColumn('description');
-        });
-    }
 }

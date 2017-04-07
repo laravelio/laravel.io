@@ -16,16 +16,4 @@ class ArticlesAddLaravelVerionField extends Migration
             $table->integer('laravel_version')->default(0);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('articles', function(Blueprint $table) {
-            $table->dropColumn('laravel_version');
-        });
-    }
 }

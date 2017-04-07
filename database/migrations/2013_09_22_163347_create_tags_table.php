@@ -18,14 +18,4 @@ class CreateTagsTable extends Migration
             $table->string('slug');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('tags');
-    }
 }

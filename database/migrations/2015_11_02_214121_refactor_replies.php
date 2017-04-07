@@ -23,23 +23,4 @@ class RefactorReplies extends Migration
             $table->string('replyable_type')->default('');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('replies', function (Blueprint $table) {
-            $table->renameColumn('replyable_id', 'thread_id');
-        });
-
-        Schema::table('replies', function (Blueprint $table) {
-            $table->dropColumn('replyable_type');
-        });
-
-        Schema::rename('replies', 'forum_replies');
-        Schema::rename('threads', 'forum_threads');
-    }
 }

@@ -17,17 +17,4 @@ class AddIndexesToTaggedItems extends Migration
             $table->index('tag_id');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('tagged_items', function (Blueprint $table) {
-            $table->dropIndex(['thread_id']);
-            $table->dropIndex(['tag_id']);
-        });
-   }
 }

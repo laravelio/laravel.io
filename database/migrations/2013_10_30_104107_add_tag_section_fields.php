@@ -17,16 +17,4 @@ class AddTagSectionFields extends Migration
             $table->smallInteger('articles')->default(0);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('tags', function(Blueprint $table) {
-            $table->dropColumn('forum', 'articles');
-        });
-    }
 }

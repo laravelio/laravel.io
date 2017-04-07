@@ -16,16 +16,4 @@ class AddCommentCounterCacheToArticles extends Migration
             $table->integer('comment_count')->default(0);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('articles', function(Blueprint $table) {
-            $table->dropColumn('comment_count');
-        });
-    }
 }

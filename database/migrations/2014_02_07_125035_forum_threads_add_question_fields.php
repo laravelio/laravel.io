@@ -16,16 +16,4 @@ class ForumThreadsAddQuestionFields extends Migration
             $table->boolean('is_question')->default(true);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('forum_threads', function(Blueprint $table) {
-            $table->dropColumn('is_question');
-        });
-    }
 }

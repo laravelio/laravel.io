@@ -16,16 +16,4 @@ class PastesAddHashField extends Migration
             $table->string('hash')->nullable();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('pastes', function(Blueprint $table) {
-            $table->dropColumn('hash');
-        });
-    }
 }

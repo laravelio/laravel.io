@@ -16,16 +16,4 @@ class AddSpamCounterToUsersTable extends Migration
             $table->tinyInteger('spam_count')->default(0);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('spam_count');
-        });
-    }
 }

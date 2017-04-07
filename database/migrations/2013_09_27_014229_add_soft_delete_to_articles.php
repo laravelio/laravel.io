@@ -16,16 +16,4 @@ class AddSoftDeleteToArticles extends Migration
             $table->softDeletes();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('articles', function(Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
-    }
 }

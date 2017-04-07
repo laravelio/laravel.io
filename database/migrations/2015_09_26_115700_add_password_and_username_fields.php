@@ -25,17 +25,4 @@ class AddPasswordAndUsernameFields extends Migration
             $table->string('username', 40)->unique()->change();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('users', function(Blueprint $table) {
-            $table->dropColumn('username', 'password');
-            $table->dropUnique(['email']);
-        });
-    }
 }

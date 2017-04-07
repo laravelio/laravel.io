@@ -24,24 +24,4 @@ class CreateIpColumns extends Migration
             $table->string('ip', 100)->default('');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('ip');
-        });
-
-        Schema::table('forum_threads', function (Blueprint $table) {
-            $table->dropColumn('ip');
-        });
-
-        Schema::table('forum_replies', function (Blueprint $table) {
-            $table->dropColumn('ip');
-        });
-    }
 }

@@ -25,25 +25,4 @@ class RemoveSoftdeletes extends Migration
             $table->dropSoftDeletes();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('threads', function (Blueprint $table) {
-            $table->softDeletes();
-        });
-        Schema::table('replies', function (Blueprint $table) {
-            $table->softDeletes();
-        });
-        Schema::table('users', function (Blueprint $table) {
-            $table->softDeletes();
-        });
-        Schema::table('pastes', function (Blueprint $table) {
-            $table->softDeletes();
-        });
-    }
 }

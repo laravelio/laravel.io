@@ -17,16 +17,4 @@ class AddPublishedAtFieldToArticles extends Migration
             $table->dateTime('published_at')->nullable();
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('articles', function(Blueprint $table) {
-            $table->dropColumn('status', 'published_at');
-        });
-    }
 }
