@@ -13,10 +13,9 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-    mounted() {
-        $('select.selectize').selectize({ maxItems: 3 });
-        $('textarea.wysiwyg').markdown({ iconlibrary: 'fa' });
-    }
-});
+$('select.selectize').selectize({ maxItems: 3 });
+$('textarea.wysiwyg').markdown({ iconlibrary: 'fa' });
+
+// const app = new Vue({
+//     el: '#app'
+// });
