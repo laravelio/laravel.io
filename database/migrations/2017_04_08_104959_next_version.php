@@ -43,6 +43,8 @@ class NextVersion extends Migration
             $table->smallInteger('type', false, true)->default(User::DEFAULT);
             $table->dateTime('created_at')->nullable()->default(NULL)->change();
             $table->dateTime('updated_at')->nullable()->default(NULL)->change();
+        });
+        Schema::table('users', function(Blueprint $table) {
             $table->dropSoftDeletes();
         });
         Schema::table('users', function(Blueprint $table) {
@@ -50,13 +52,11 @@ class NextVersion extends Migration
         });
 
         if (! app()->runningUnitTests()) {
-            DB::update('UPDATE users SET username = name');
+            DB::statement('UPDATE users SET username = name');
         }
 
-        Schema::table('users', function(Blueprint $table) {
-            $table->string('username', 40)->unique()->change();
-        });
         Schema::table('users', function (Blueprint $table) {
+            $table->unique('username');
             $table->index('email');
             $table->index('username');
         });
@@ -110,6 +110,8 @@ class NextVersion extends Migration
             $table->dropColumn(
                 'category_slug', 'most_recent_reply_id', 'reply_count', 'is_question', 'pinned', 'laravel_version'
             );
+        });
+        Schema::table('threads', function(Blueprint $table) {
             $table->dropSoftDeletes();
         });
         Schema::table('threads', function (Blueprint $table) {
@@ -164,16 +166,14 @@ class NextVersion extends Migration
             $table->index('slug');
         });
 
-        if (! app()->runningUnitTests()) {
-            $createdAt = new DateTime();
+        $createdAt = new DateTime();
 
-            DB::table('topics')->insert([
-                'name' => 'General',
-                'slug' => 'general',
-                'created_at' => $createdAt,
-                'updated_at' => $createdAt,
-            ]);
-        }
+        DB::table('topics')->insert([
+            'name' => 'General',
+            'slug' => 'general',
+            'created_at' => $createdAt,
+            'updated_at' => $createdAt,
+        ]);
 
         Schema::table('threads', function(Blueprint $table) {
             $table->integer('topic_id')->default(1)->index();
