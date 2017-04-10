@@ -89,7 +89,7 @@ class ForumTest extends BrowserKitTestCase
         ]);
 
         $this->visit('/forum/my-first-thread/edit')
-            ->submitForm('Update', [
+            ->submitForm('Update Thread', [
                 'subject' => 'How to work with Eloquent?',
                 'body' => 'This text explains how to work with Eloquent.',
                 'tags' => [$tag->id()],

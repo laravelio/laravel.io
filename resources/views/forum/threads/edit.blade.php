@@ -7,26 +7,8 @@
 
     <hr>
 
-    {!! Form::open(['route' => ['threads.update', $thread->slug()], 'method' => 'PUT']) !!}
-        @formGroup('subject')
-            {!! Form::label('subject') !!}
-            {!! Form::text('subject', $thread->subject(), ['class' => 'form-control', 'required']) !!}
-            @error('subject')
-        @endFormGroup
-
-        @formGroup('body')
-            {!! Form::label('body') !!}
-            {!! Form::textarea('body', $thread->body(), ['class' => 'form-control wysiwyg', 'required']) !!}
-            @error('body')
-        @endFormGroup
-
-        @formGroup('tags')
-            {!! Form::label('tags') !!}
-            {!! Form::select('tags[]', $tags->pluck('name', 'id'), $thread->tags()->pluck('id')->toArray(), ['class' => 'form-control selectize', 'multiple']) !!}
-            @error('tags')
-        @endFormGroup
-
-        {!! Form::submit('Update', ['class' => 'btn btn-primary btn-block']) !!}
-        <a href="{{ route('thread', $thread->slug()) }}" class="btn btn-default btn-block">Cancel</a>
-    {!! Form::close() !!}
+    @include('forum.threads._form', [
+        'route' => ['threads.update', $thread->slug()],
+        'method' => 'PUT',
+    ])
 @endsection
