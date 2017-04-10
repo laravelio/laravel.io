@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Topic;
 use App\User;
 use App\Validation\DoesNotContainUrlRule;
 use App\Validation\SpamRule;
@@ -18,7 +17,6 @@ class ThreadRequest extends Request
     public function rules()
     {
         return [
-            'topic' => 'required|exists:topics,id',
             'subject' => 'required|'.DoesNotContainUrlRule::NAME.'|'.SpamRule::NAME,
             'body' => 'required|'.SpamRule::NAME,
             'tags' => 'array',
@@ -39,11 +37,6 @@ class ThreadRequest extends Request
     public function body(): string
     {
         return $this->get('body');
-    }
-
-    public function topic(): Topic
-    {
-        return Topic::find((int) $this->get('topic'));
     }
 
     public function tags(): array

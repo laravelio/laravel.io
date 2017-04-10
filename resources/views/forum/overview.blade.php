@@ -1,5 +1,4 @@
-@php($subTitle = isset($activeTopic) ? $activeTopic->name() : null)
-@php($subTitle = isset($activeTag) ? $activeTag->name() : $subTitle)
+@php($subTitle = isset($activeTag) ? $activeTag->name() : null)
 @title('Forum' . (isset($subTitle) ? ' > ' . $subTitle : ''))
 
 @extends('layouts.default')
@@ -13,7 +12,6 @@
         <div class="col-md-3">
             <a class="btn btn-success btn-block" href="{{ route('threads.create') }}">Create Thread</a>
 
-            @include('forum._topics')
             @include('forum._tags')
         </div>
         <div class="col-md-9">

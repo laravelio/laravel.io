@@ -3,7 +3,6 @@
 namespace Tests\Features;
 
 use App\Models\Thread;
-use App\Models\Topic;
 use App\Models\Tag;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;
@@ -13,14 +12,12 @@ class ForumTest extends BrowserKitTestCase
     use DatabaseMigrations;
 
     /** @test */
-    function we_can_see_a_list_of_topics_and_latest_threads()
+    function we_can_see_a_list_of_latest_threads()
     {
-        $topic = factory(Topic::class)->create(['name' => 'Eloquent']);
-        factory(Thread::class)->create(['subject' => 'The first thread', 'topic_id' => $topic->id()]);
-        factory(Thread::class)->create(['subject' => 'The second thread', 'topic_id' => $topic->id()]);
+        factory(Thread::class)->create(['subject' => 'The first thread']);
+        factory(Thread::class)->create(['subject' => 'The second thread']);
 
         $this->visit('/forum')
-            ->see('Eloquent')
             ->see('The first thread')
             ->see('The second thread');
     }
@@ -47,14 +44,12 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     function the_thread_subject_cannot_be_an_url()
     {
-        $topic = factory(Topic::class)->create(['name' => 'Eloquent']);
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
 
         $this->login();
 
         $this->visit('/forum/create-thread')
             ->submitForm('Create Thread', [
-                'topic' => $topic->id(),
                 'subject' => 'http://example.com Foo title',
                 'body' => 'This text explains how to work with Eloquent.',
                 'tags' => [$tag->id()],
@@ -66,20 +61,18 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     function we_can_create_a_thread()
     {
-        $topic = factory(Topic::class)->create(['name' => 'Eloquent']);
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
 
         $this->login();
 
         $this->visit('/forum/create-thread')
             ->submitForm('Create Thread', [
-                'topic' => $topic->id(),
                 'subject' => 'How to work with Eloquent?',
                 'body' => 'This text explains how to work with Eloquent.',
                 'tags' => [$tag->id()],
             ])
             ->seePageIs('/forum/how-to-work-with-eloquent')
-            ->see('Eloquent')
+            ->see('How to work with Eloquent?')
             ->see('Test Tag')
             ->see('Thread successfully created!');
     }
@@ -89,25 +82,20 @@ class ForumTest extends BrowserKitTestCase
     {
         $user = $this->login();
 
-        $currentTopic = factory(Topic::class)->create(['name' => 'Laravel']);
-        $newTopic = factory(Topic::class)->create(['name' => 'Spark']);
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
         factory(Thread::class)->create([
             'author_id' => $user->id(),
-            'topic_id' => $currentTopic->id(),
             'slug' => 'my-first-thread',
         ]);
 
         $this->visit('/forum/my-first-thread/edit')
             ->submitForm('Update', [
-                'topic' => $newTopic->id(),
                 'subject' => 'How to work with Eloquent?',
                 'body' => 'This text explains how to work with Eloquent.',
                 'tags' => [$tag->id()],
             ])
             ->seePageIs('/forum/how-to-work-with-eloquent')
             ->see('How to work with Eloquent?')
-            ->see('Spark')
             ->see('Test Tag')
             ->see('Thread successfully updated!');
     }

@@ -8,7 +8,6 @@ use App\Jobs\MarkThreadSolution;
 use App\Jobs\UnmarkThreadSolution;
 use App\Jobs\UpdateThread;
 use App\Models\Thread;
-use App\Models\Topic;
 use App\Http\Requests\ThreadRequest;
 use App\Jobs\DeleteThread;
 use App\Models\Reply;
@@ -33,7 +32,7 @@ class ThreadsController extends Controller
 
     public function create()
     {
-        return view('forum.threads.create', ['topics' => Topic::all(), 'tags' => Tag::all()]);
+        return view('forum.threads.create', ['tags' => Tag::all()]);
     }
 
     public function store(ThreadRequest $request)
@@ -49,7 +48,7 @@ class ThreadsController extends Controller
     {
         $this->authorize('update', $thread);
 
-        return view('forum.threads.edit', ['thread' => $thread, 'topics' => Topic::all(), 'tags' => Tag::all()]);
+        return view('forum.threads.edit', ['thread' => $thread, 'tags' => Tag::all()]);
     }
 
     public function update(ThreadRequest $request, Thread $thread)

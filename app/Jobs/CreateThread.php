@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Http\Requests\ThreadRequest;
 use App\Models\Thread;
-use App\Models\Topic;
 use App\User;
 
 class CreateThread
@@ -30,22 +29,16 @@ class CreateThread
     private $author;
 
     /**
-     * @var \App\Models\Topic
-     */
-    private $topic;
-
-    /**
      * @var array
      */
     private $tags;
 
-    public function __construct(string $subject, string $body, string $ip, User $author, Topic $topic, array $tags = [])
+    public function __construct(string $subject, string $body, string $ip, User $author, array $tags = [])
     {
         $this->subject = $subject;
         $this->body = $body;
         $this->ip = $ip;
         $this->author = $author;
-        $this->topic = $topic;
         $this->tags = $tags;
     }
 
@@ -56,7 +49,6 @@ class CreateThread
             $request->body(),
             $request->ip(),
             $request->author(),
-            $request->topic(),
             $request->tags()
         );
     }
@@ -70,7 +62,6 @@ class CreateThread
             'slug' => $this->subject,
         ]);
         $thread->authoredBy($this->author);
-        $thread->setTopic($this->topic);
         $thread->syncTags($this->tags);
         $thread->save();
 

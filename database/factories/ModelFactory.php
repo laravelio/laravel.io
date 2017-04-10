@@ -12,7 +12,6 @@
 */
 
 use App\Models\Thread;
-use App\Models\Topic;
 use App\Models\Reply;
 use App\Models\Tag;
 use App\User;
@@ -38,19 +37,11 @@ $factory->define(User::class, function (Faker\Generator $faker) {
 
 $factory->define(Thread::class, function (Faker\Generator $faker) {
     return [
-        'topic_id' => 1,
         'subject' => $faker->text(20),
         'body' => $faker->text,
         'slug' => $faker->slug,
         'author_id' => factory(User::class)->create()->id(),
         'ip' => $faker->ipv4,
-    ];
-});
-
-$factory->define(Topic::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->text(20),
-        'slug' => $faker->slug,
     ];
 });
 

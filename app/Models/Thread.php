@@ -48,21 +48,6 @@ class Thread extends Model implements ReplyAble
         return str_limit(strip_tags(md_to_html($this->body())), $limit);
     }
 
-    public function topic(): Topic
-    {
-        return $this->topicRelation;
-    }
-
-    public function setTopic(Topic $topic)
-    {
-        $this->topicRelation()->associate($topic);
-    }
-
-    public function topicRelation(): BelongsTo
-    {
-        return $this->belongsTo(Topic::class, 'topic_id');
-    }
-
     public function solutionReply(): ?Reply
     {
         return $this->solutionReplyRelation;

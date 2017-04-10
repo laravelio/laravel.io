@@ -54,9 +54,6 @@ Route::group(['namespace' => 'Forum'], function () {
     Route::put('forum/{thread}/mark-solution/{reply}', ['as' => 'threads.solution.mark', 'uses' => 'ThreadsController@markSolution']);
     Route::put('forum/{thread}/unmark-solution', ['as' => 'threads.solution.unmark', 'uses' => 'ThreadsController@unmarkSolution']);
 
-    // Topics
-    Route::get('forum/topics/{topic}', ['as' => 'forum.topic', 'uses' => 'TopicsController@show']);
-
     // Tags
     Route::get('forum/tags/{tag}', ['as' => 'forum.tag', 'uses' => 'TagsController@show']);
 });

@@ -5,7 +5,6 @@ namespace Tests\Components;
 use App\Jobs\CreateThread;
 use App\Jobs\DeleteThread;
 use App\Models\Thread;
-use App\Models\Topic;
 use App\Models\Reply;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -37,7 +36,7 @@ class ThreadsTest extends TestCase
     /** @test */
     function we_can_create_a_thread()
     {
-        $job = new CreateThread('Subject', 'Body', '', $this->createUser(), factory(Topic::class)->create());
+        $job = new CreateThread('Subject', 'Body', '', $this->createUser());
 
         $this->assertInstanceOf(Thread::class, $job->handle());
     }

@@ -8,12 +8,6 @@
     <hr>
 
     {!! Form::open(['route' => 'threads.store']) !!}
-        @formGroup('topic')
-            {!! Form::label('topic') !!}
-            {!! Form::select('topic', $topics->pluck('name', 'id'), null, ['class' => 'form-control', 'required']) !!}
-            @error('topic')
-        @endFormGroup
-
         @formGroup('subject')
             {!! Form::label('subject') !!}
             {!! Form::text('subject', null, ['class' => 'form-control', 'required']) !!}

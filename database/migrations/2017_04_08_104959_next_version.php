@@ -157,28 +157,6 @@ class NextVersion extends Migration
             $table->index('slug');
         });
 
-        // Add forum topics
-        Schema::create('topics', function(Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('slug')->unique()->index();
-            $table->timestamps();
-            $table->index('slug');
-        });
-
-        $createdAt = new DateTime();
-
-        DB::table('topics')->insert([
-            'name' => 'General',
-            'slug' => 'general',
-            'created_at' => $createdAt,
-            'updated_at' => $createdAt,
-        ]);
-
-        Schema::table('threads', function(Blueprint $table) {
-            $table->integer('topic_id')->default(1)->index();
-        });
-
         // Remove unused tables
         Schema::drop('comments');
         Schema::drop('comment_tag');

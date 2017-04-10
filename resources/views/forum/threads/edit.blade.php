@@ -8,12 +8,6 @@
     <hr>
 
     {!! Form::open(['route' => ['threads.update', $thread->slug()], 'method' => 'PUT']) !!}
-        @formGroup('topic')
-            {!! Form::label('topic') !!}
-            {!! Form::select('topic', $topics->pluck('name', 'id'), $thread->topic()->id(), ['class' => 'form-control', 'required']) !!}
-            @error('topic')
-        @endFormGroup
-
         @formGroup('subject')
             {!! Form::label('subject') !!}
             {!! Form::text('subject', $thread->subject(), ['class' => 'form-control', 'required']) !!}
