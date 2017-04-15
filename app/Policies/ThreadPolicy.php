@@ -15,7 +15,7 @@ class ThreadPolicy
      */
     public function update(User $user, Thread $thread): bool
     {
-        return $thread->isAuthoredBy($user);
+        return $thread->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
     }
 
     /**
@@ -23,6 +23,6 @@ class ThreadPolicy
      */
     public function delete(User $user, Thread $thread): bool
     {
-        return $thread->isAuthoredBy($user);
+        return $thread->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
     }
 }
