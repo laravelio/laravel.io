@@ -31,10 +31,21 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_see_the_users_overview()
     {
+        $this->loginAsAdmin();
+        $this->assertCanSeeTheUserOverview();
+    }
+
+    /** @test */
+    public function moderators_can_see_the_users_overview()
+    {
+        $this->loginAsModerator();
+        $this->assertCanSeeTheUserOverview();
+    }
+
+    private function assertCanSeeTheUserOverview()
+    {
         factory(User::class)->create(['name' => 'Freek Murze']);
         factory(User::class)->create(['name' => 'Frederick Vanbrabant']);
-
-        $this->loginAsAdmin();
 
         $this->visit('/admin')
             ->see('Freek Murze')
@@ -44,9 +55,20 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_ban_a_user()
     {
-        $user = factory(User::class)->create(['name' => 'Freek Murze']);
-
         $this->loginAsAdmin();
+        $this->assertCanBanUsers();
+    }
+
+    /** @test */
+    public function moderators_can_ban_a_user()
+    {
+        $this->loginAsModerator();
+        $this->assertCanBanUsers();
+    }
+
+    private function assertCanBanUsers()
+    {
+        $user = factory(User::class)->create(['name' => 'Freek Murze']);
 
         $this->put('/admin/users/'.$user->username().'/ban')
             ->assertRedirectedTo('/admin/users/'.$user->username());
@@ -57,9 +79,20 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_unban_a_user()
     {
-        $user = factory(User::class)->create(['name' => 'Freek Murze', 'is_banned' => true]);
-
         $this->loginAsAdmin();
+        $this->assertCanUnbanUsers();
+    }
+
+    /** @test */
+    public function moderators_can_unban_a_user()
+    {
+        $this->loginAsModerator();
+        $this->assertCanUnbanUsers();
+    }
+
+    private function assertCanUnbanUsers()
+    {
+        $user = factory(User::class)->create(['name' => 'Freek Murze', 'is_banned' => true]);
 
         $this->put('/admin/users/'.$user->username().'/unban')
             ->assertRedirectedTo('/admin/users/'.$user->username());
@@ -70,14 +103,40 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_cannot_ban_other_admins()
     {
-        $user = factory(User::class)->create(['name' => 'Freek Murze', 'type' => User::ADMIN]);
-
         $this->loginAsAdmin();
+        $this->assertCannotBanAdmins();
+    }
+
+    /** @test */
+    public function moderators_cannot_ban_admins()
+    {
+        $this->loginAsModerator();
+        $this->assertCannotBanAdmins();
+    }
+
+    /** @test */
+    public function moderators_cannot_ban_other_moderators()
+    {
+        $this->loginAsModerator();
+        $this->assertCannotBanModerators();
+    }
+
+    private function assertCannotBanAdmins()
+    {
+        $this->assertCannotBanUsersByType(User::ADMIN);
+    }
+
+    private function assertCannotBanModerators()
+    {
+        $this->assertCannotBanUsersByType(User::MODERATOR);
+    }
+
+    private function assertCannotBanUsersByType(int $type)
+    {
+        $user = factory(User::class)->create(['type' => $type]);
 
         $this->put('/admin/users/'.$user->username().'/ban')
-            ->assertRedirectedTo('/admin/users/'.$user->username());
-
-        $this->seeInDatabase('users', ['name' => 'Freek Murze']);
+            ->assertForbidden();
     }
 
     /** @test */
@@ -94,6 +153,8 @@ class AdminTest extends BrowserKitTestCase
             ->assertRedirectedTo('/admin');
 
         $this->notSeeInDatabase('users', ['name' => 'Freek Murze']);
+
+        // Make sure associated content is deleted.
         $this->notSeeInDatabase('threads', ['author_id' => $user->id()]);
         $this->notSeeInDatabase('replies', ['replyable_id' => $thread->id()]);
         $this->notSeeInDatabase('replies', ['author_id' => $user->id()]);
@@ -102,13 +163,22 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_cannot_delete_other_admins()
     {
-        $user = factory(User::class)->create(['name' => 'Freek Murze', 'type' => User::ADMIN]);
+        $user = factory(User::class)->create(['type' => User::ADMIN]);
 
         $this->loginAsAdmin();
 
         $this->delete('/admin/users/'.$user->username())
-            ->assertRedirectedTo('/admin/users/'.$user->username());
+            ->assertForbidden();
+    }
 
-        $this->seeInDatabase('users', ['name' => 'Freek Murze']);
+    /** @test */
+    public function moderators_cannot_delete_users()
+    {
+        $user = factory(User::class)->create();
+
+        $this->loginAsModerator();
+
+        $this->delete('/admin/users/'.$user->username())
+            ->assertForbidden();
     }
 }

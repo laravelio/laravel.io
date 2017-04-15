@@ -22,13 +22,11 @@ class UsersController extends Controller
 
     public function ban(User $user)
     {
-        if ($user->isAdmin()) {
-            $this->error('admin.users.cannot_ban_other_admins');
-        } else {
-            $this->dispatchNow(new BanUser($user));
+        $this->authorize('ban', $user);
 
-            $this->success('admin.users.banned', ['name' => $user->name()]);
-        }
+        $this->dispatchNow(new BanUser($user));
+
+        $this->success('admin.users.banned', ['name' => $user->name()]);
 
         return redirect()->route('admin.users.show', $user->username());
     }
@@ -44,15 +42,11 @@ class UsersController extends Controller
 
     public function delete(User $user)
     {
-        if ($user->isAdmin()) {
-            $this->error('admin.users.cannot_delete_other_admins');
+        $this->authorize('delete', $user);
 
-            return redirect()->route('admin.users.show', $user->username());
-        } else {
-            $this->dispatchNow(new DeleteUser($user));
+        $this->dispatchNow(new DeleteUser($user));
 
-            $this->success('admin.users.deleted', ['name' => $user->name()]);
-        }
+        $this->success('admin.users.deleted', ['name' => $user->name()]);
 
         return redirect()->route('admin');
     }

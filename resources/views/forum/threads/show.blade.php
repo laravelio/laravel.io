@@ -11,6 +11,9 @@
 
             @can('update', $thread)
                 <a class="btn btn-default btn-block" href="{{ route('threads.edit', $thread->slug()) }}">Edit</a>
+            @endcan
+
+            @can('delete', $thread)
                 <a class="btn btn-danger btn-block" href="#" data-toggle="modal" data-target="#deleteThread">Delete</a>
 
                 @include('_partials._delete_modal', [
