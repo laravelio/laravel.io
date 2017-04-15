@@ -80,13 +80,14 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     function we_can_edit_a_thread()
     {
-        $user = $this->login();
-
+        $user = $this->createUser();
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
         factory(Thread::class)->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-thread',
         ]);
+
+        $this->loginAs($user);
 
         $this->visit('/forum/my-first-thread/edit')
             ->submitForm('Update Thread', [

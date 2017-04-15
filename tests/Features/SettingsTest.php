@@ -37,9 +37,9 @@ class SettingsTest extends BrowserKitTestCase
     /** @test */
     function users_cannot_choose_duplicate_usernames_or_email_addresses()
     {
-        $this->login();
-
         $this->createUser(['email' => 'freek@example.com', 'username' => 'freekmurze']);
+
+        $this->login();
 
         $this->visit('/settings')
             ->submitForm('Save', [

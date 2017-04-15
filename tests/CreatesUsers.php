@@ -15,6 +15,11 @@ trait CreatesUsers
         return $user;
     }
 
+    protected function loginAs(User $user)
+    {
+        $this->be($user);
+    }
+
     protected function loginAsModerator(array $attributes = []): User
     {
         return $this->login(array_merge($attributes, ['type' => User::MODERATOR]));

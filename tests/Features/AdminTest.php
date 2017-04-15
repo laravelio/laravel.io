@@ -31,10 +31,10 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_see_the_users_overview()
     {
-        $this->loginAsAdmin();
-
         factory(User::class)->create(['name' => 'Freek Murze']);
         factory(User::class)->create(['name' => 'Frederick Vanbrabant']);
+
+        $this->loginAsAdmin();
 
         $this->visit('/admin')
             ->see('Freek Murze')
@@ -44,9 +44,9 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_ban_a_user()
     {
-        $this->loginAsAdmin();
-
         $user = factory(User::class)->create(['name' => 'Freek Murze']);
+
+        $this->loginAsAdmin();
 
         $this->put('/admin/users/'.$user->username().'/ban')
             ->assertRedirectedTo('/admin/users/'.$user->username());
@@ -57,9 +57,9 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_unban_a_user()
     {
-        $this->loginAsAdmin();
-
         $user = factory(User::class)->create(['name' => 'Freek Murze', 'is_banned' => true]);
+
+        $this->loginAsAdmin();
 
         $this->put('/admin/users/'.$user->username().'/unban')
             ->assertRedirectedTo('/admin/users/'.$user->username());
@@ -70,9 +70,9 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_cannot_ban_other_admins()
     {
-        $this->loginAsAdmin();
-
         $user = factory(User::class)->create(['name' => 'Freek Murze', 'type' => User::ADMIN]);
+
+        $this->loginAsAdmin();
 
         $this->put('/admin/users/'.$user->username().'/ban')
             ->assertRedirectedTo('/admin/users/'.$user->username());
@@ -83,12 +83,12 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_delete_a_user()
     {
-        $this->loginAsAdmin();
-
         $user = factory(User::class)->create(['name' => 'Freek Murze']);
         $thread = factory(Thread::class)->create(['author_id' => $user->id()]);
         factory(Reply::class)->create(['replyable_id' => $thread->id()]);
         factory(Reply::class)->create(['author_id' => $user->id()]);
+
+        $this->loginAsAdmin();
 
         $this->delete('/admin/users/'.$user->username())
             ->assertRedirectedTo('/admin');
@@ -102,9 +102,9 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_cannot_delete_other_admins()
     {
-        $this->loginAsAdmin();
-
         $user = factory(User::class)->create(['name' => 'Freek Murze', 'type' => User::ADMIN]);
+
+        $this->loginAsAdmin();
 
         $this->delete('/admin/users/'.$user->username())
             ->assertRedirectedTo('/admin/users/'.$user->username());

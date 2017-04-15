@@ -21,14 +21,15 @@ class DashboardTest extends BrowserKitTestCase
     /** @test */
     function users_can_see_some_statistics()
     {
-        $user = $this->login();
-
+        $user = $this->createUser();
         $thread = array_first(factory(Thread::class, 3)->create(['author_id' => $user->id()]));
         $reply = array_first(factory(Reply::class, 2)->create([
             'author_id' => $user->id(),
             'replyable_id' => $thread->id(),
         ]));
         $thread->markSolution($reply);
+
+        $this->loginAs($user);
 
         $this->visit('/dashboard')
             ->see('<div class="panel-body">3</div>') // 3 threads
