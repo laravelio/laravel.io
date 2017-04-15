@@ -1,6 +1,5 @@
 <?php
 
-use App\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -40,7 +39,7 @@ class NextVersion extends Migration
             $table->string('email')->unique()->change();
             $table->string('username', 40)->default('');
             $table->string('password')->default('');
-            $table->smallInteger('type', false, true)->default(User::DEFAULT);
+            $table->smallInteger('type', false, true)->default(1);
             $table->dateTime('created_at')->nullable()->default(NULL)->change();
             $table->dateTime('updated_at')->nullable()->default(NULL)->change();
         });
