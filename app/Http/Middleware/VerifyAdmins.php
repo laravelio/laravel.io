@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Policies\UserPolicy;
 use App\User;
 use Auth;
 use Closure;
@@ -12,7 +13,7 @@ class VerifyAdmins
 {
     public function handle(Request $request, Closure $next, $guard = null)
     {
-        if (! Auth::guard($guard)->user()->can('admin', User::class)) {
+        if (! Auth::guard($guard)->user()->can(UserPolicy::ADMIN, User::class)) {
             throw new HttpException(403, 'Forbidden');
         }
 

@@ -12,6 +12,7 @@ use App\Http\Requests\ThreadRequest;
 use App\Jobs\DeleteThread;
 use App\Models\Reply;
 use App\Models\Tag;
+use App\Policies\ThreadPolicy;
 
 class ThreadsController extends Controller
 {
@@ -46,14 +47,14 @@ class ThreadsController extends Controller
 
     public function edit(Thread $thread)
     {
-        $this->authorize('update', $thread);
+        $this->authorize(ThreadPolicy::UPDATE, $thread);
 
         return view('forum.threads.edit', ['thread' => $thread, 'tags' => Tag::all()]);
     }
 
     public function update(ThreadRequest $request, Thread $thread)
     {
-        $this->authorize('update', $thread);
+        $this->authorize(ThreadPolicy::UPDATE, $thread);
 
         $thread = $this->dispatchNow(UpdateThread::fromRequest($thread, $request));
 
@@ -64,7 +65,7 @@ class ThreadsController extends Controller
 
     public function delete(Thread $thread)
     {
-        $this->authorize('delete', $thread);
+        $this->authorize(ThreadPolicy::DELETE, $thread);
 
         $this->dispatchNow(new DeleteThread($thread));
 
@@ -75,7 +76,7 @@ class ThreadsController extends Controller
 
     public function markSolution(Thread $thread, Reply $reply)
     {
-        $this->authorize('update', $thread);
+        $this->authorize(ThreadPolicy::UPDATE, $thread);
 
         $this->dispatchNow(new MarkThreadSolution($thread, $reply));
 
@@ -84,7 +85,7 @@ class ThreadsController extends Controller
 
     public function unmarkSolution(Thread $thread)
     {
-        $this->authorize('update', $thread);
+        $this->authorize(ThreadPolicy::UPDATE, $thread);
 
         $this->dispatchNow(new UnmarkThreadSolution($thread));
 

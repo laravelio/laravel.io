@@ -50,7 +50,7 @@
                             <li class="{{ active('dashboard') }}"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="{{ active('settings.*') }}"><a href="{{ route('settings.profile') }}">Settings</a></li>
 
-                            @can('admin', App\User::class)
+                            @can(App\Policies\UserPolicy::ADMIN, App\User::class)
                                 <li class="{{ active('admin*') }}"><a href="{{ route('admin') }}">Admin</a></li>
                             @endcan
 

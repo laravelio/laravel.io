@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\BanUser;
 use App\Jobs\DeleteUser;
 use App\Jobs\UnbanUser;
+use App\Policies\UserPolicy;
 use App\User;
 
 class UsersController extends Controller
@@ -22,7 +23,7 @@ class UsersController extends Controller
 
     public function ban(User $user)
     {
-        $this->authorize('ban', $user);
+        $this->authorize(UserPolicy::BAN, $user);
 
         $this->dispatchNow(new BanUser($user));
 
@@ -42,7 +43,7 @@ class UsersController extends Controller
 
     public function delete(User $user)
     {
-        $this->authorize('delete', $user);
+        $this->authorize(UserPolicy::DELETE, $user);
 
         $this->dispatchNow(new DeleteUser($user));
 

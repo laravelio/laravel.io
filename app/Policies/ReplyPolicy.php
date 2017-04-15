@@ -10,6 +10,9 @@ class ReplyPolicy
 {
     use HandlesAuthorization;
 
+    const UPDATE = 'update';
+    const DELETE = 'delete';
+
     /**
      * Determine if the given reply can be updated by the user.
      */

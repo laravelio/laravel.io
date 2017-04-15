@@ -10,6 +10,9 @@ class ThreadPolicy
 {
     use HandlesAuthorization;
 
+    const UPDATE = 'update';
+    const DELETE = 'delete';
+
     /**
      * Determine if the given thread can be updated by the user.
      */

@@ -9,6 +9,10 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
+    const ADMIN = 'admin';
+    const BAN = 'ban';
+    const DELETE = 'delete';
+
     /**
      * Determine if the current logged in user can see the admin section.
      */

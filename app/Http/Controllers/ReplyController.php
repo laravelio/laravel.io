@@ -8,6 +8,7 @@ use App\Jobs\UpdateReply;
 use App\Models\Thread;
 use App\Http\Requests\ReplyRequest;
 use App\Models\Reply;
+use App\Policies\ReplyPolicy;
 use Illuminate\Http\RedirectResponse;
 
 class ReplyController extends Controller
@@ -28,14 +29,14 @@ class ReplyController extends Controller
 
     public function edit(Reply $reply)
     {
-        $this->authorize('update', $reply);
+        $this->authorize(ReplyPolicy::UPDATE, $reply);
 
         return view('replies.edit', compact('reply'));
     }
 
     public function update(ReplyRequest $request, Reply $reply)
     {
-        $this->authorize('update', $reply);
+        $this->authorize(ReplyPolicy::UPDATE, $reply);
 
         $this->dispatchNow(new UpdateReply($reply, $request->body()));
 
@@ -46,7 +47,7 @@ class ReplyController extends Controller
 
     public function delete(Reply $reply)
     {
-        $this->authorize('delete', $reply);
+        $this->authorize(ReplyPolicy::DELETE, $reply);
 
         $this->dispatchNow(new DeleteReply($reply));
 

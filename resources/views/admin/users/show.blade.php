@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         <a class="btn btn-default btn-block" href="{{ route('profile', $user->username()) }}">View Profile</a>
 
-                        @can('ban', $user)
+                        @can(App\Policies\UserPolicy::BAN, $user)
                             @if ($user->isBanned())
                                 <button type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#unbanUser">Unban User</button>
 
@@ -32,7 +32,7 @@
                             @endif
                         @endcan
 
-                        @can('delete', $user)
+                        @can(App\Policies\UserPolicy::DELETE, $user)
                             <button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#deleteUser">Delete User</button>
 
                             @include('_partials._delete_modal', [

@@ -9,11 +9,11 @@
 
             <hr>
 
-            @can('update', $thread)
+            @can(App\Policies\ThreadPolicy::UPDATE, $thread)
                 <a class="btn btn-default btn-block" href="{{ route('threads.edit', $thread->slug()) }}">Edit</a>
             @endcan
 
-            @can('delete', $thread)
+            @can(App\Policies\ThreadPolicy::DELETE, $thread)
                 <a class="btn btn-danger btn-block" href="#" data-toggle="modal" data-target="#deleteThread">Delete</a>
 
                 @include('_partials._delete_modal', [
@@ -48,7 +48,7 @@
                     @endif
 
                     <div class="panel-body">
-                        @can('update', $thread)
+                        @can(App\Policies\ThreadPolicy::UPDATE, $thread)
                             <div class="pull-right" style="font-size: 20px">
                                 @if ($thread->isSolutionReply($reply))
                                     <a href="#" data-toggle="modal" data-target="#unmarkSolution">
@@ -83,7 +83,7 @@
                         <a href="{{ route('profile', $reply->author()->username()) }}">{{ $reply->author()->name() }}</a>
 
                         <div class="pull-right">
-                            @can('update', $reply)
+                            @can(App\Policies\ReplyPolicy::UPDATE, $reply)
                                 <a class="btn btn-default btn-xs" href="{{ route('replies.edit', $reply->id()) }}">Edit</a>
                                 <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteReply{{ $reply->id() }}">Delete</a>
 

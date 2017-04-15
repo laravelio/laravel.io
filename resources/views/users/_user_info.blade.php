@@ -1,5 +1,5 @@
 <div class="profile-user-info">
-    @can('admin', App\User::class)
+    @can(App\Policies\UserPolicy::ADMIN, App\User::class)
         <a href="{{ route('admin.users.show', $user->username()) }}">
             <img class="img-circle" src="{{ $user->gratavarUrl($avatarSize ?? 150) }}">
         </a>
