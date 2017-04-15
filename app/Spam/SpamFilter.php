@@ -11,10 +11,7 @@ class SpamFilter implements SpamDetector
      */
     private $detectors;
 
-    /**
-     * @param \App\Spam\SpamDetector[] $detectors
-     */
-    public function __construct(array $detectors)
+    public function __construct(SpamDetector ...$detectors)
     {
         $this->detectors = $detectors;
     }

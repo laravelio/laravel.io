@@ -2,22 +2,13 @@
 
 namespace spec\App\Spam;
 
-use App\Spam\ForeignLanguageSpamDetector;
-use App\Spam\PhoneNumberSpamDetector;
+use App\Spam\DummySpamDetector;
 use App\Spam\SpamDetector;
 use App\Spam\SpamFilter;
 use PhpSpec\ObjectBehavior;
 
 class SpamFilterSpec extends ObjectBehavior
 {
-    function let()
-    {
-        $this->beConstructedWith([
-            new PhoneNumberSpamDetector,
-            new ForeignLanguageSpamDetector
-        ]);
-    }
-
     function it_is_initializable()
     {
         $this->shouldHaveType(SpamFilter::class);
@@ -26,12 +17,15 @@ class SpamFilterSpec extends ObjectBehavior
 
     function it_can_detect_spam()
     {
-        $this->detectsSpam('91+7742228242')->shouldReturn(true);
-        $this->detectsSpam('【빠나나９넷】')->shouldReturn(true);
+        $this->beConstructedWith(DummySpamDetector::withSpam());
+
+        $this->detectsSpam('some spam')->shouldReturn(true);
     }
 
     function it_passes_when_no_spam_was_detected()
     {
+        $this->beConstructedWith(DummySpamDetector::withoutSpam());
+
         $this->detectsSpam('No spam here!')->shouldReturn(false);
     }
 }
