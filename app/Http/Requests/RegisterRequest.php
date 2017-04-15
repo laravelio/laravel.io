@@ -56,7 +56,7 @@ class RegisterRequest extends FormRequest
 
     public function password(): string
     {
-        return $this->has('password') ? bcrypt($this->get('password')) : '';
+        return $this->get('password', '');
     }
 
     public function githubId(): string
