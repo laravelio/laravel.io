@@ -53,7 +53,6 @@ class Kernel extends HttpKernel
             SubstituteBindings::class,
             RedirectIfBanned::class,
         ],
-
         'api' => [
             'throttle:60,1',
             'bindings',

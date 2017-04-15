@@ -7,11 +7,6 @@ use Auth;
 
 class UpdatePasswordRequest extends Request
 {
-    public function authorize()
-    {
-        return Auth::check();
-    }
-
     public function rules()
     {
         return [

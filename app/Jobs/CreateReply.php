@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Http\Requests\ReplyRequest;
+use App\Http\Requests\CreateReplyRequest;
 use App\Models\Reply;
 use App\Models\ReplyAble;
 use App\User;
@@ -37,7 +37,7 @@ class CreateReply
         $this->replyAble = $replyAble;
     }
 
-    public static function fromRequest(ReplyRequest $request): self
+    public static function fromRequest(CreateReplyRequest $request): self
     {
         return new static($request->body(), $request->ip(), $request->author(), $request->replyAble());
     }

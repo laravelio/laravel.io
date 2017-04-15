@@ -4,14 +4,21 @@ namespace App\Policies;
 
 use App\Models\Reply;
 use App\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ReplyPolicy
 {
-    use HandlesAuthorization;
-
+    const CREATE = 'create';
     const UPDATE = 'update';
     const DELETE = 'delete';
+
+    /**
+     * Determine if replies can be created by the user.
+     */
+    public function create(User $user): bool
+    {
+        // We only need to be logged in.
+        return true;
+    }
 
     /**
      * Determine if the given reply can be updated by the user.

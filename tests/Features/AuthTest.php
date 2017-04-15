@@ -28,7 +28,7 @@ class AuthTest extends BrowserKitTestCase
             ->seePageIs('/dashboard')
             ->see('Welcome John Doe!');
 
-        $this->assertTrue(Auth::check());
+        $this->assertLoggedIn();
 
         Mail::assertSent(ConfirmEmailAddress::class);
     }
@@ -143,12 +143,12 @@ class AuthTest extends BrowserKitTestCase
     {
         $this->login();
 
-        $this->assertTrue(Auth::check());
+        $this->assertLoggedIn();
 
         $this->visit('/logout')
             ->seePageIs('/');
 
-        $this->assertFalse(Auth::check());
+        $this->assertLoggedOut();
     }
 
     /** @test */
@@ -191,5 +191,15 @@ class AuthTest extends BrowserKitTestCase
 
         $this->visit('/forum/create-thread')
             ->see('Please confirm your email address first.');
+    }
+
+    private function assertLoggedIn()
+    {
+        $this->assertTrue(Auth::check());
+    }
+
+    private function assertLoggedOut()
+    {
+        $this->assertFalse(Auth::check());
     }
 }

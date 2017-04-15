@@ -99,7 +99,7 @@
                 </div>
             @endforeach
 
-            @if (Auth::check())
+            @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
                 <hr>
                 {!! Form::open(['route' => 'replies.store']) !!}
                     @formGroup('body')

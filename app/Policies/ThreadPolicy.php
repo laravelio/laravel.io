@@ -4,12 +4,9 @@ namespace App\Policies;
 
 use App\Models\Thread;
 use App\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ThreadPolicy
 {
-    use HandlesAuthorization;
-
     const UPDATE = 'update';
     const DELETE = 'delete';
 

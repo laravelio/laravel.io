@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateReplyRequest;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
 use App\Jobs\UpdateReply;
 use App\Models\Thread;
-use App\Http\Requests\ReplyRequest;
+use App\Http\Requests\CreateReplyRequest;
 use App\Models\Reply;
 use App\Policies\ReplyPolicy;
 use Illuminate\Http\RedirectResponse;
@@ -18,8 +19,10 @@ class ReplyController extends Controller
         $this->middleware(['auth', 'confirmed']);
     }
 
-    public function store(ReplyRequest $request)
+    public function store(CreateReplyRequest $request)
     {
+        $this->authorize(ReplyPolicy::CREATE, Reply::class);
+
         $reply = $this->dispatchNow(CreateReply::fromRequest($request));
 
         $this->success('replies.created');
@@ -34,7 +37,7 @@ class ReplyController extends Controller
         return view('replies.edit', compact('reply'));
     }
 
-    public function update(ReplyRequest $request, Reply $reply)
+    public function update(UpdateReplyRequest $request, Reply $reply)
     {
         $this->authorize(ReplyPolicy::UPDATE, $reply);
 

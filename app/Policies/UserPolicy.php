@@ -3,12 +3,9 @@
 namespace App\Policies;
 
 use App\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
-    use HandlesAuthorization;
-
     const ADMIN = 'admin';
     const BAN = 'ban';
     const DELETE = 'delete';

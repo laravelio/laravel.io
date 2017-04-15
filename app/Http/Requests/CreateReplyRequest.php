@@ -7,17 +7,14 @@ use App\User;
 use App\Validation\SpamRule;
 use Auth;
 
-class ReplyRequest extends Request
+class CreateReplyRequest extends Request
 {
-    public function authorize()
-    {
-        return Auth::check();
-    }
-
     public function rules()
     {
         return [
             'body' => 'required|'.SpamRule::NAME,
+            'replyable_id' => 'required',
+            'replyable_type' => 'required|in:'.Thread::TABLE,
         ];
     }
 
