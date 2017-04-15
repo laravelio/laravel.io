@@ -5,16 +5,17 @@ namespace Tests\Features;
 use Auth;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;
-use Tests\RequiresLogin;
 
 class SettingsTest extends BrowserKitTestCase
 {
-    use DatabaseMigrations, RequiresLogin;
+    use DatabaseMigrations;
 
-    /**
-     * @var string
-     */
-    protected $uri = '/settings';
+    /** @test */
+    function requires_login()
+    {
+        $this->visit('/settings')
+            ->seePageIs('/login');
+    }
 
     /** @test */
     function users_can_update_their_profile()

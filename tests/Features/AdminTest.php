@@ -7,16 +7,17 @@ use App\Models\Thread;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;
-use Tests\RequiresLogin;
 
 class AdminTest extends BrowserKitTestCase
 {
-    use DatabaseMigrations, RequiresLogin;
+    use DatabaseMigrations;
 
-    /**
-     * @var string
-     */
-    protected $uri = '/admin';
+    /** @test */
+    function requires_login()
+    {
+        $this->visit('/admin')
+            ->seePageIs('/login');
+    }
 
     /** @test */
     public function normal_users_cannot_visit_the_admin_section()

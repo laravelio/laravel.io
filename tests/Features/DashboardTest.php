@@ -6,16 +6,17 @@ use App\Models\Thread;
 use App\Models\Reply;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;
-use Tests\RequiresLogin;
 
 class DashboardTest extends BrowserKitTestCase
 {
-    use DatabaseMigrations, RequiresLogin;
+    use DatabaseMigrations;
 
-    /**
-     * @var string
-     */
-    protected $uri = '/dashboard';
+    /** @test */
+    function requires_login()
+    {
+        $this->visit('/dashboard')
+            ->seePageIs('/login');
+    }
 
     /** @test */
     function users_can_see_some_statistics()
