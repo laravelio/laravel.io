@@ -4,7 +4,6 @@
 
 @section('content')
     <h1>{{ $title }}</h1>
-
     <hr>
 
     {!! Form::open(['route' => ['replies.update', $reply->id()], 'method' => 'PUT']) !!}

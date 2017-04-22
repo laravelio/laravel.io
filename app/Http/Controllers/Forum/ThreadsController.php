@@ -23,7 +23,7 @@ class ThreadsController extends Controller
 
     public function overview()
     {
-        return view('forum.overview', ['threads' => Thread::findAllPaginated()]);
+        return view('forum.overview', ['threads' => Thread::findForForum()]);
     }
 
     public function show(Thread $thread)

@@ -12,12 +12,12 @@ class Reply extends Model
     use HasAuthor, HasTimestamps;
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'replies';
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $fillable = ['body', 'ip'];
 

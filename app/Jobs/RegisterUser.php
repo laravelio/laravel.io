@@ -75,6 +75,7 @@ class RegisterUser
             'password' => $this->password ? $hasher->make($this->password) : '',
             'confirmation_code' => str_random(60),
             'type' => User::DEFAULT,
+            'remember_token' => '',
         ], $this->attributes));
         $user->save();
 

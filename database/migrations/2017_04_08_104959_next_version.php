@@ -46,7 +46,7 @@ class NextVersion extends Migration
             $table->dropSoftDeletes();
         });
         Schema::table('users', function(Blueprint $table) {
-            $table->dropColumn('image_url');
+            $table->dropColumn('image_url', 'spam_count');
         });
 
         if (! app()->runningUnitTests()) {
@@ -124,6 +124,11 @@ class NextVersion extends Migration
         // Fix timestamps on taggables
         if (! app()->runningUnitTests()) {
             DB::statement('UPDATE taggables, threads SET taggables.created_at = threads.created_at, taggables.updated_at = threads.updated_at WHERE taggables.thread_id = threads.id');
+        }
+
+        // Make slugs lowercase
+        if (! app()->runningUnitTests()) {
+            DB::statement('UPDATE tags SET slug = LOWER(slug)');
         }
 
         Schema::table('taggables', function(Blueprint $table) {

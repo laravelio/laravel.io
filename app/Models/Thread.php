@@ -9,6 +9,9 @@ use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
 use App\Helpers\ReceivesReplies;
 use App\Helpers\HasTags;
+use DB;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -19,12 +22,12 @@ class Thread extends Model implements ReplyAble
     const TABLE = 'threads';
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = self::TABLE;
 
     /**
-     * @var array
+     * {@inheritdoc}
      */
     protected $fillable = ['subject', 'body', 'ip', 'slug'];
 
@@ -91,5 +94,35 @@ class Thread extends Model implements ReplyAble
         $this->removeReplies();
 
         parent::delete();
+    }
+
+    public static function findForForum(int $perPage = 20): Paginator
+    {
+        return static::findForForumQuery()->paginate($perPage);
+    }
+
+    public static function findForForumByTag(Tag $tag, int $perPage = 20): Paginator
+    {
+        return static::findForForumQuery()
+            ->join('taggables', function ($join) use ($tag) {
+                $join->on('threads.id', 'taggables.taggable_id')
+                    ->where('taggable_type', static::TABLE);
+            })
+            ->where('taggables.tag_id', $tag->id())
+            ->paginate($perPage);
+    }
+
+    /**
+     * This will order the threads by creation date and latest reply.
+     */
+    private static function findForForumQuery(): Builder
+    {
+        return static::leftJoin('replies', function ($join) {
+                $join->on('threads.id', 'replies.replyable_id')
+                    ->where('replies.replyable_type', static::TABLE);
+            })
+            ->orderBy('latest_creation', 'DESC')
+            ->groupBy('threads.id')
+            ->select('threads.*', DB::raw('CASE WHEN COALESCE(MAX(replies.created_at), 0) > threads.created_at THEN COALESCE(MAX(replies.created_at), 0) ELSE threads.created_at END AS latest_creation'));
     }
 }

@@ -16,5 +16,7 @@ interface ReplyAble
      */
     public function latestReplies(int $amount = 5);
 
+    public function removeReplies();
+
     public function repliesRelation(): MorphMany;
 }

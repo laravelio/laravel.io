@@ -36,6 +36,6 @@ class ThreadRequest extends Request
 
     public function tags(): array
     {
-        return $this->get('tags');
+        return $this->get('tags', []);
     }
 }

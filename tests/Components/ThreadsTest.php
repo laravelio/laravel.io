@@ -6,24 +6,12 @@ use App\Jobs\CreateThread;
 use App\Jobs\DeleteThread;
 use App\Models\Thread;
 use App\Models\Reply;
-use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class ThreadsTest extends TestCase
 {
     use DatabaseMigrations;
-
-    /** @test */
-    public function find_all_paginated()
-    {
-        factory(Thread::class, 2)->create();
-
-        $threads = Thread::findAllPaginated();
-
-        $this->assertInstanceOf(Paginator::class, $threads);
-        $this->assertCount(2, $threads);
-    }
 
     /** @test */
     public function find_by_slug()

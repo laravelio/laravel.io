@@ -31,7 +31,6 @@ trait HasTags
 
     public function tagsRelation(): MorphToMany
     {
-        return $this->morphToMany(Tag::class, 'taggable', 'taggables', null, 'tag_id')
-            ->withTimestamps();
+        return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
     }
 }

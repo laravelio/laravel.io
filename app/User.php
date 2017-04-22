@@ -19,16 +19,12 @@ class User extends Authenticatable
     const ADMIN = 3;
 
     /**
-     * The database table used by the model.
-     *
-     * @var string
+     * {@inheritdoc}
      */
     protected $table = 'users';
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * {@inheritdoc}
      */
     protected $fillable = [
         'name',
@@ -41,12 +37,11 @@ class User extends Authenticatable
         'github_id',
         'github_url',
         'type',
+        'remember_token',
     ];
 
     /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
+     * {@inheritdoc}
      */
     protected $hidden = ['password', 'remember_token'];
 

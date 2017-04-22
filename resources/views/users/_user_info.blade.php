@@ -4,10 +4,12 @@
             <img class="img-circle" src="{{ $user->gratavarUrl($avatarSize ?? 150) }}">
         </a>
     @else
-        <img class="img-circle" src="{{ $user->gratavarUrl($avatarSize ?? 150) }}">
+        <a href="{{ route('profile', $user->username()) }}">
+            <img class="img-circle" src="{{ $user->gratavarUrl($avatarSize ?? 150) }}">
+        </a>
     @endcan
 
-    <h1>{{ $user->name() }}</h1>
+    <h2>{{ $user->name() }}</h2>
 
     @if ($user->isAdmin())
         <p><span class="label label-primary">Admin</span></p>
