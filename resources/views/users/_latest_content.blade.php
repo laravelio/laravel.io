@@ -20,7 +20,7 @@
             <div class="list-group">
                 <a href="{{ route_to_reply_able($reply->replyAble()) }}" class="list-group-item">
                     <h4 class="list-group-item-heading">{{ $reply->replyAble()->subject() }}</h4>
-                    <p class="list-group-item-text">{{ $reply->replyAble()->excerpt() }}</p>
+                    <p class="list-group-item-text">{{ $reply->excerpt() }}</p>
                 </a>
             </div>
         @empty
