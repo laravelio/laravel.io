@@ -43,19 +43,19 @@ Route::get('settings/password', ['as' => 'settings.password', 'uses' => 'Setting
 Route::put('settings/password', ['as' => 'settings.password.update', 'uses' => 'Settings\PasswordController@update']);
 
 // Forum
-Route::group(['namespace' => 'Forum'], function () {
-    Route::get('forum', ['as' => 'forum', 'uses' => 'ThreadsController@overview']);
-    Route::get('forum/create-thread', ['as' => 'threads.create', 'uses' => 'ThreadsController@create']);
-    Route::post('forum/create-thread', ['as' => 'threads.store', 'uses' => 'ThreadsController@store']);
-    Route::get('forum/{thread}', ['as' => 'thread', 'uses' => 'ThreadsController@show']);
-    Route::get('forum/{thread}/edit', ['as' => 'threads.edit', 'uses' => 'ThreadsController@edit']);
-    Route::put('forum/{thread}', ['as' => 'threads.update', 'uses' => 'ThreadsController@update']);
-    Route::delete('forum/{thread}', ['as' => 'threads.delete', 'uses' => 'ThreadsController@delete']);
-    Route::put('forum/{thread}/mark-solution/{reply}', ['as' => 'threads.solution.mark', 'uses' => 'ThreadsController@markSolution']);
-    Route::put('forum/{thread}/unmark-solution', ['as' => 'threads.solution.unmark', 'uses' => 'ThreadsController@unmarkSolution']);
+Route::group(['namespace' => 'Forum', 'prefix' => 'forum'], function () {
+    Route::get('/', ['as' => 'forum', 'uses' => 'ThreadsController@overview']);
+    Route::get('create-thread', ['as' => 'threads.create', 'uses' => 'ThreadsController@create']);
+    Route::post('create-thread', ['as' => 'threads.store', 'uses' => 'ThreadsController@store']);
 
-    // Tags
-    Route::get('forum/tags/{tag}', ['as' => 'forum.tag', 'uses' => 'TagsController@show']);
+    Route::get('{thread}', ['as' => 'thread', 'uses' => 'ThreadsController@show']);
+    Route::get('{thread}/edit', ['as' => 'threads.edit', 'uses' => 'ThreadsController@edit']);
+    Route::put('{thread}', ['as' => 'threads.update', 'uses' => 'ThreadsController@update']);
+    Route::delete('{thread}', ['as' => 'threads.delete', 'uses' => 'ThreadsController@delete']);
+    Route::put('{thread}/mark-solution/{reply}', ['as' => 'threads.solution.mark', 'uses' => 'ThreadsController@markSolution']);
+    Route::put('{thread}/unmark-solution', ['as' => 'threads.solution.unmark', 'uses' => 'ThreadsController@unmarkSolution']);
+
+    Route::get('tags/{tag}', ['as' => 'forum.tag', 'uses' => 'TagsController@show']);
 });
 
 // Replies
@@ -63,10 +63,6 @@ Route::post('replies', ['as' => 'replies.store', 'uses' => 'ReplyController@stor
 Route::get('replies/{reply}/edit', ['as' => 'replies.edit', 'uses' => 'ReplyController@edit']);
 Route::put('replies/{reply}', ['as' => 'replies.update', 'uses' => 'ReplyController@update']);
 Route::delete('replies/{reply}', ['as' => 'replies.delete', 'uses' => 'ReplyController@delete']);
-
-// Tags
-Route::get('tags', ['as' => 'tags', 'uses' => 'TagsController@overview']);
-Route::get('tags/{tag}', ['as' => 'tag', 'uses' => 'TagsController@show']);
 
 // Admin
 Route::group(['namespace' => 'Admin', 'as' => 'admin', 'prefix' => 'admin'], function () {
