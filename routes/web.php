@@ -15,11 +15,9 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::get('signup', 'RegisterController@redirectToRegistrationForm'); // BC for old links
     Route::post('register', ['as' => 'register.post', 'uses' => 'RegisterController@register']);
 
-    // Request password reset
+    // Password reset
     Route::get('password/reset', ['as' => 'password.forgot', 'uses' => 'ForgotPasswordController@showLinkRequestForm']);
     Route::post('password/email', ['as' => 'password.forgot.post', 'uses' => 'ForgotPasswordController@sendResetLinkEmail']);
-
-    // Password reset
     Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'ResetPasswordController@showResetForm']);
     Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'ResetPasswordController@reset']);
 
@@ -43,7 +41,7 @@ Route::get('settings/password', ['as' => 'settings.password', 'uses' => 'Setting
 Route::put('settings/password', ['as' => 'settings.password.update', 'uses' => 'Settings\PasswordController@update']);
 
 // Forum
-Route::group(['namespace' => 'Forum', 'prefix' => 'forum'], function () {
+Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
     Route::get('/', ['as' => 'forum', 'uses' => 'ThreadsController@overview']);
     Route::get('create-thread', ['as' => 'threads.create', 'uses' => 'ThreadsController@create']);
     Route::post('create-thread', ['as' => 'threads.store', 'uses' => 'ThreadsController@store']);
@@ -65,7 +63,7 @@ Route::put('replies/{reply}', ['as' => 'replies.update', 'uses' => 'ReplyControl
 Route::delete('replies/{reply}', ['as' => 'replies.delete', 'uses' => 'ReplyController@delete']);
 
 // Admin
-Route::group(['namespace' => 'Admin', 'as' => 'admin', 'prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', 'AdminController@index');
     Route::get('users/{username}', ['as' => '.users.show', 'uses' => 'UsersController@show']);
     Route::put('users/{username}/ban', ['as' => '.users.ban', 'uses' => 'UsersController@ban']);
