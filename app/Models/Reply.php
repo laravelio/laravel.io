@@ -4,12 +4,13 @@ namespace App\Models;
 
 use App\Helpers\HasAuthor;
 use App\Helpers\HasTimestamps;
+use App\Helpers\ModelHelpers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Reply extends Model
 {
-    use HasAuthor, HasTimestamps;
+    use HasAuthor, HasTimestamps, ModelHelpers;
 
     /**
      * {@inheritdoc}

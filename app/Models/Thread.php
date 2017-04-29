@@ -64,7 +64,7 @@ class Thread extends Model implements ReplyAble
     public function isSolutionReply(Reply $reply): bool
     {
         if ($solution = $this->solutionReply()) {
-            return $solution->id() === $reply->id();
+            return $solution->matches($reply);
         }
 
         return false;

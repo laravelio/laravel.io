@@ -24,6 +24,6 @@ trait HasAuthor
 
     public function isAuthoredBy(User $user): bool
     {
-        return $this->author()->id() === $user->id();
+        return $this->author()->matches($user);
     }
 }
