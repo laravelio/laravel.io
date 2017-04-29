@@ -59,6 +59,18 @@ class NextVersion extends Migration
             $table->index('username');
         });
 
+        if (! app()->runningUnitTests()) {
+            // Migrate moderators
+            DB::statement('UPDATE users SET type = 2 WHERE id IN (
+                SELECT user_id FROM role_user WHERE role_id = 2
+            )');
+
+            // Migrate admins
+            DB::statement('UPDATE users SET type = 3 WHERE id IN (
+                SELECT user_id FROM role_user WHERE role_id = 3
+            )');
+        }
+
         // Refactor replies
         Schema::rename('forum_replies', 'replies');
         Schema::table('replies', function (Blueprint $table) {
