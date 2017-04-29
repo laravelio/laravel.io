@@ -12,6 +12,7 @@ use App\Helpers\HasTags;
 use DB;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -96,14 +97,28 @@ class Thread extends Model implements ReplyAble
         parent::delete();
     }
 
-    public static function findForForum(int $perPage = 20): Paginator
+    /**
+     * @return \App\Models\Thread[]
+     */
+    public static function latest(int $limit = 3): Collection
     {
-        return static::findForForumQuery()->paginate($perPage);
+        return static::latestQuery()->limit($limit)->get();
     }
 
-    public static function findForForumByTag(Tag $tag, int $perPage = 20): Paginator
+    /**
+     * @return \App\Models\Thread[]
+     */
+    public static function latestPaginated(int $perPage = 20): Paginator
     {
-        return static::findForForumQuery()
+        return static::latestQuery()->paginate($perPage);
+    }
+
+    /**
+     * @return \App\Models\Thread[]
+     */
+    public static function latestByTagPaginated(Tag $tag, int $perPage = 20): Paginator
+    {
+        return static::latestQuery()
             ->join('taggables', function ($join) use ($tag) {
                 $join->on('threads.id', 'taggables.taggable_id')
                     ->where('taggable_type', static::TABLE);
@@ -115,7 +130,7 @@ class Thread extends Model implements ReplyAble
     /**
      * This will order the threads by creation date and latest reply.
      */
-    private static function findForForumQuery(): Builder
+    private static function latestQuery(): Builder
     {
         return static::leftJoin('replies', function ($join) {
                 $join->on('threads.id', 'replies.replyable_id')

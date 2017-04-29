@@ -12,13 +12,13 @@ class ThreadTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    function it_can_retrieve_paginated_results_in_a_correct_order()
+    function it_can_retrieve_the_latest_threads_in_a_correct_order()
     {
         $threadUpdatedYesterday = $this->createThreadFromYesterday();
         $threadFromToday = $this->createThreadFromToday();
         $threadFromTwoDaysAgo = $this->createThreadFromTwoDaysAgo();
 
-        $threads = Thread::findForForum();
+        $threads = Thread::latest();
 
         $this->assertTrue($threadFromToday->matches($threads->first()), 'First thread is incorrect');
         $this->assertTrue($threadUpdatedYesterday->matches($threads->slice(1)->first()), 'Second thread is incorrect');

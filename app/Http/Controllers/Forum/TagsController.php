@@ -10,6 +10,6 @@ class TagsController extends Controller
 {
     public function show(Tag $tag)
     {
-        return view('forum.overview', ['threads' => Thread::findForForumByTag($tag), 'activeTag' => $tag]);
+        return view('forum.overview', ['threads' => Thread::latestByTagPaginated($tag), 'activeTag' => $tag]);
     }
 }
