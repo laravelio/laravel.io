@@ -2,8 +2,8 @@
 
 return [
 
-    'users.banned' => ':name was banned!',
-    'users.unbanned' => ':name was unbanned!',
-    'users.deleted' => ':name was deleted and all of their content was removed!',
+    'users.banned' => ':0 was banned!',
+    'users.unbanned' => ':0 was unbanned!',
+    'users.deleted' => ':0 was deleted and all of their content was removed!',
 
 ];

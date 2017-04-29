@@ -50,9 +50,9 @@ class AuthTest extends BrowserKitTestCase
     {
         $this->login(['confirmed' => false]);
 
-        $this->visit('/email-address-confirmation')
+        $this->visit('/email-confirmation')
             ->seePageIs('/dashboard')
-            ->see('Email address confirmation sent to john@example.com');
+            ->see('Email confirmation sent to john@example.com');
     }
 
     /** @test */
@@ -60,7 +60,7 @@ class AuthTest extends BrowserKitTestCase
     {
         $this->login();
 
-        $this->visit('/email-address-confirmation')
+        $this->visit('/email-confirmation')
             ->seePageIs('/dashboard')
             ->see('Your email address is already confirmed.');
     }
@@ -70,7 +70,7 @@ class AuthTest extends BrowserKitTestCase
     {
         $user = $this->createUser(['confirmed' => false, 'confirmation_code' => 'testcode']);
 
-        $this->visit('/email-address-confirmation/john@example.com/testcode')
+        $this->visit('/email-confirmation/john@example.com/testcode')
             ->seePageIs('/')
             ->see('Your email address was successfully confirmed.');
 
@@ -82,7 +82,7 @@ class AuthTest extends BrowserKitTestCase
     {
         $this->createUser(['confirmed' => false]);
 
-        $this->visit('/email-address-confirmation/john@example.com/testcode')
+        $this->visit('/email-confirmation/john@example.com/testcode')
             ->seePageIs('/')
             ->see('We could not confirm your email address. The given email address and code did not match.');
     }

@@ -27,16 +27,18 @@ class UsersController extends Controller
 
         $this->dispatchNow(new BanUser($user));
 
-        $this->success('admin.users.banned', ['name' => $user->name()]);
+        $this->success('admin.users.banned', $user->name());
 
         return redirect()->route('admin.users.show', $user->username());
     }
 
     public function unban(User $user)
     {
+        $this->authorize(UserPolicy::BAN, $user);
+
         $this->dispatchNow(new UnbanUser($user));
 
-        $this->success('admin.users.unbanned', ['name' => $user->name()]);
+        $this->success('admin.users.unbanned', $user->name());
 
         return redirect()->route('admin.users.show', $user->username());
     }
@@ -47,7 +49,7 @@ class UsersController extends Controller
 
         $this->dispatchNow(new DeleteUser($user));
 
-        $this->success('admin.users.deleted', ['name' => $user->name()]);
+        $this->success('admin.users.deleted', $user->name());
 
         return redirect()->route('admin');
     }

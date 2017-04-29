@@ -21,17 +21,17 @@ class UserPolicy
     /**
      * Determine if the current logged in user can ban a user.
      */
-    public function ban(User $loggedInUser, User $user): bool
+    public function ban(User $user, User $subject): bool
     {
-        return ($loggedInUser->isAdmin() && ! $user->isAdmin()) ||
-            ($loggedInUser->isModerator() && ! $user->isAdmin() && ! $user->isModerator());
+        return ($user->isAdmin() && ! $subject->isAdmin()) ||
+            ($user->isModerator() && ! $subject->isAdmin() && ! $subject->isModerator());
     }
 
     /**
      * Determine if the current logged in user can delete a user.
      */
-    public function delete(User $loggedInUser, User $user): bool
+    public function delete(User $user, User $subject): bool
     {
-        return $loggedInUser->isAdmin() && ! $user->isAdmin();
+        return $user->isAdmin() && ! $subject->isAdmin();
     }
 }

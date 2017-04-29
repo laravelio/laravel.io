@@ -17,7 +17,7 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
     'confirmation' => [
-        'sent' => 'Email address confirmation sent to :emailAddress',
+        'sent' => 'Email confirmation sent to :0',
         'already_confirmed' => 'Your email address is already confirmed.',
         'success' => 'Your email address was successfully confirmed.',
         'no_match' => 'We could not confirm your email address. The given email address and code did not match.',
