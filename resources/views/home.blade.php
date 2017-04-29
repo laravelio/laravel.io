@@ -14,11 +14,14 @@
                 <a class="btn btn-info" href="{{ route('register') }}">
                     Join the Community
                 </a>
+                <a class="btn btn-default" href="{{ route('forum') }}">
+                    Visit the Forum
+                </a>
+            @else
+                <a class="btn btn-default" href="{{ route('threads.create') }}">
+                    Start a Thread
+                </a>
             @endif
-
-            <a class="btn btn-default" href="{{ route('forum') }}">
-                Start a Thread
-            </a>
         </div>
     </div>
 @endsection
