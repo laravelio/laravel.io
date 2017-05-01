@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateReplyRequest;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
 use App\Jobs\UpdateReply;
+use App\Models\ReplyAble;
 use App\Models\Thread;
 use App\Http\Requests\CreateReplyRequest;
 use App\Models\Reply;
@@ -59,12 +60,12 @@ class ReplyController extends Controller
         return $this->redirectToReplyAble($reply->replyAble());
     }
 
-    private function redirectToReplyAble($replyAble): RedirectResponse
+    private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse
     {
         if ($replyAble instanceof Thread) {
             return redirect()->route('thread', $replyAble->slug());
         }
 
-        abort(404);
+        abort(500, 'Redirect not implemented for given replyable.');
     }
 }
