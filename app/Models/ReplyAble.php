@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
+/**
+ * This interface allows models to receive replies.
+ */
 interface ReplyAble
 {
     /**
