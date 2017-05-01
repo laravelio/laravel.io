@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\RegisterRequest;
 use App\Jobs\RegisterUser;
-use App\Jobs\SendEmailAddressConfirmation;
+use App\Jobs\SendEmailConfirmation;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
@@ -58,7 +58,7 @@ class RegisterController extends Controller
     {
         $user = $this->dispatchNow(RegisterUser::fromRequest(app(RegisterRequest::class)));
 
-        $this->dispatchNow(new SendEmailAddressConfirmation($user));
+        $this->dispatchNow(new SendEmailConfirmation($user));
 
         return $user;
     }

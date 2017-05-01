@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ConfirmEmailAddress extends Mailable
+class EmailConfirmation extends Mailable
 {
     use SerializesModels;
 
@@ -27,6 +27,6 @@ class ConfirmEmailAddress extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.confirm_email_address');
+        return $this->view('emails.email_confirmation');
     }
 }

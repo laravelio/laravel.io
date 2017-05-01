@@ -2,7 +2,7 @@
 
 namespace Tests\Features;
 
-use App\Mail\ConfirmEmailAddress;
+use App\Mail\EmailConfirmation;
 use Auth;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -30,7 +30,7 @@ class AuthTest extends BrowserKitTestCase
 
         $this->assertLoggedIn();
 
-        Mail::assertSent(ConfirmEmailAddress::class);
+        Mail::assertSent(EmailConfirmation::class);
     }
 
     /** @test */
