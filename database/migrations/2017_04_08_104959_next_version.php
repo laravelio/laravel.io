@@ -171,6 +171,22 @@ class NextVersion extends Migration
             $table->index('slug');
         });
 
+        // Add new tags
+        if (! app()->runningUnitTests()) {
+            DB::table('tags')->insert([
+                ['name' => 'Laravel', 'slug' => 'laravel'],
+                ['name' => 'Lumen', 'slug' => 'lumen'],
+                ['name' => 'Spark', 'slug' => 'spark'],
+                ['name' => 'Forge', 'slug' => 'Forge'],
+                ['name' => 'Envoyer', 'slug' => 'envoyer'],
+                ['name' => 'Homestead', 'slug' => 'homestead'],
+                ['name' => 'Valet', 'slug' => 'valet'],
+                ['name' => 'Socialite', 'slug' => 'socialite'],
+                ['name' => 'Mix', 'slug' => 'mix'],
+                ['name' => 'Dusk', 'slug' => 'dusk'],
+            ]);
+        }
+
         // Remove unused tables
         Schema::drop('comments');
         Schema::drop('comment_tag');
