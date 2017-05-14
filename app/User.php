@@ -184,7 +184,7 @@ class User extends Authenticatable
      */
     public function latestReplies(int $amount = 3)
     {
-        return $this->replyAble()->orderBy('created_at', 'DESC')->limit($amount)->get();
+        return $this->replyAble()->latest()->limit($amount)->get();
     }
 
     public function deleteReplies()

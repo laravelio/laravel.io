@@ -20,7 +20,7 @@ trait ReceivesReplies
      */
     public function latestReplies(int $amount = 5)
     {
-        return $this->repliesRelation()->orderBy('created_at', 'DESC')->limit($amount)->get();
+        return $this->repliesRelation()->latest()->limit($amount)->get();
     }
 
     public function removeReplies()

@@ -8,7 +8,7 @@ trait ModelHelpers
 {
     public static function findAllPaginated(int $perPage = 20): Paginator
     {
-        return static::orderBy('created_at', 'DESC')->paginate($perPage);
+        return static::latest()->paginate($perPage);
     }
 
     public function matches(self $model): bool
