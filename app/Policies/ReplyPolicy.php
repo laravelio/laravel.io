@@ -25,7 +25,7 @@ class ReplyPolicy
      */
     public function update(User $user, Reply $reply): bool
     {
-        return $reply->isAuthoredBy($user);
+        return $reply->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
     }
 
     /**
@@ -33,6 +33,6 @@ class ReplyPolicy
      */
     public function delete(User $user, Reply $reply): bool
     {
-        return $reply->isAuthoredBy($user);
+        return $reply->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
     }
 }
