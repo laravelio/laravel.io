@@ -165,10 +165,9 @@ class NextVersion extends Migration
             $table->index('tag_id');
         });
         Schema::table('tags', function (Blueprint $table) {
-            $table->dropColumn('forum');
+            $table->dropColumn('forum', 'description');
             $table->unique('name');
             $table->unique('slug');
-            $table->text('description')->nullable(false)->change();
             $table->index('slug');
         });
 

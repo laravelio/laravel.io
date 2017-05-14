@@ -29,9 +29,4 @@ class Tag extends Model
     {
         return $this->name;
     }
-
-    public function description(): string
-    {
-        return $this->description;
-    }
 }
