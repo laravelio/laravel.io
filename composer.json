@@ -6,7 +6,6 @@
     "require": {
         "php": "^7.1",
         "bugsnag/bugsnag-laravel": "^2.4",
-        "guzzlehttp/guzzle": "^6.2",
         "laravel/framework": "5.4.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
