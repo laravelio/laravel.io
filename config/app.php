@@ -178,7 +178,6 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Markdown\MarkdownServiceProvider::class,
-        App\Social\SocialServiceProvider::class,
         App\Spam\SpamServiceProvider::class,
         App\Validation\ValidationServiceProvider::class,
 

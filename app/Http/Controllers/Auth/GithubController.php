@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Social\GithubUsers;
 use App\Social\GithubUser;
 use App\User;
 use Auth;
@@ -24,7 +23,7 @@ class GithubController extends Controller
     /**
      * Obtain the user information from GitHub.
      */
-    public function handleProviderCallback(GithubUsers $githubUsers)
+    public function handleProviderCallback()
     {
         $socialiteUser = Socialite::driver('github')->user();
 
@@ -33,9 +32,7 @@ class GithubController extends Controller
 
             return $this->userFound($user);
         } catch (ModelNotFoundException $exception) {
-            $user = $githubUsers->findByUsername($socialiteUser->getNickname());
-
-            return $this->userNotFound($user);
+            return $this->userNotFound(new GithubUser($socialiteUser->user));
         }
     }
 
