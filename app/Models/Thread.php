@@ -100,25 +100,25 @@ class Thread extends Model implements ReplyAble
     /**
      * @return \App\Models\Thread[]
      */
-    public static function latest(int $limit = 3): Collection
+    public static function feed(int $limit = 20): Collection
     {
-        return static::latestQuery()->limit($limit)->get();
+        return static::feedQuery()->limit($limit)->get();
     }
 
     /**
      * @return \App\Models\Thread[]
      */
-    public static function latestPaginated(int $perPage = 20): Paginator
+    public static function feedPaginated(int $perPage = 20): Paginator
     {
-        return static::latestQuery()->paginate($perPage);
+        return static::feedQuery()->paginate($perPage);
     }
 
     /**
      * @return \App\Models\Thread[]
      */
-    public static function latestByTagPaginated(Tag $tag, int $perPage = 20): Paginator
+    public static function feedByTagPaginated(Tag $tag, int $perPage = 20): Paginator
     {
-        return static::latestQuery()
+        return static::feedQuery()
             ->join('taggables', function ($join) use ($tag) {
                 $join->on('threads.id', 'taggables.taggable_id')
                     ->where('taggable_type', static::TABLE);
@@ -130,7 +130,7 @@ class Thread extends Model implements ReplyAble
     /**
      * This will order the threads by creation date and latest reply.
      */
-    private static function latestQuery(): Builder
+    private static function feedQuery(): Builder
     {
         return static::leftJoin('replies', function ($join) {
                 $join->on('threads.id', 'replies.replyable_id')
@@ -138,6 +138,11 @@ class Thread extends Model implements ReplyAble
             })
             ->orderBy('latest_creation', 'DESC')
             ->groupBy('threads.id')
-            ->select('threads.*', DB::raw('CASE WHEN COALESCE(MAX(replies.created_at), 0) > threads.created_at THEN COALESCE(MAX(replies.created_at), 0) ELSE threads.created_at END AS latest_creation'));
+            ->select('threads.*', DB::raw('
+                CASE WHEN COALESCE(MAX(replies.created_at), 0) > threads.created_at
+                THEN COALESCE(MAX(replies.created_at), 0)
+                ELSE threads.created_at
+                END AS latest_creation
+            '));
     }
 }

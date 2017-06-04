@@ -18,7 +18,7 @@ class ThreadTest extends TestCase
         $threadFromToday = $this->createThreadFromToday();
         $threadFromTwoDaysAgo = $this->createThreadFromTwoDaysAgo();
 
-        $threads = Thread::latest();
+        $threads = Thread::feed();
 
         $this->assertTrue($threadFromToday->matches($threads->first()), 'First thread is incorrect');
         $this->assertTrue($threadUpdatedYesterday->matches($threads->slice(1)->first()), 'Second thread is incorrect');
