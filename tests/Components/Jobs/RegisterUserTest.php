@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Components;
+namespace Tests\Components\Jobs;
 
 use App\Exceptions\CannotCreateUser;
 use App\Jobs\RegisterUser;
@@ -9,25 +9,9 @@ use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class UsersTest extends TestCase
+class RegisterUserTest extends TestCase
 {
     use DatabaseMigrations;
-
-    /** @test */
-    function find_by_username()
-    {
-        $this->createUser(['username' => 'johndoe']);
-
-        $this->assertInstanceOf(User::class, User::findByUsername('johndoe'));
-    }
-
-    /** @test */
-    function find_by_email_address()
-    {
-        $this->createUser(['email' => 'john@example.com']);
-
-        $this->assertInstanceOf(User::class, User::findByEmailAddress('john@example.com'));
-    }
 
     /** @test */
     function we_can_create_a_user()

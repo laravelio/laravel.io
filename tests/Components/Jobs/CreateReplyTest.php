@@ -1,14 +1,14 @@
 <?php
 
-namespace Tests\Components;
+namespace Tests\Components\Jobs;
 
 use App\Jobs\CreateReply;
-use App\Models\Thread;
 use App\Models\Reply;
+use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class RepliesTest extends TestCase
+class CreateReplyTest extends TestCase
 {
     use DatabaseMigrations;
 

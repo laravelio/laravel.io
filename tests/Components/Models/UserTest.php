@@ -13,6 +13,22 @@ class UserTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
+    function it_can_find_by_username()
+    {
+        $this->createUser(['username' => 'johndoe']);
+
+        $this->assertInstanceOf(User::class, User::findByUsername('johndoe'));
+    }
+
+    /** @test */
+    function it_can_find_by_email_address()
+    {
+        $this->createUser(['email' => 'john@example.com']);
+
+        $this->assertInstanceOf(User::class, User::findByEmailAddress('john@example.com'));
+    }
+
+    /** @test */
     function it_can_return_the_amount_of_solutions_that_were_given()
     {
         $user = factory(User::class)->create();
