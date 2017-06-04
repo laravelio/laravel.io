@@ -96,6 +96,10 @@ class NextVersion extends Migration
         Schema::table('replies', function (Blueprint $table) {
             $table->index('author_id');
             $table->index('replyable_id');
+            $table->integer('author_id')->unsigned()->change();
+            $table->foreign('author_id')
+                ->references('id')->on('users')
+                ->onDelete('CASCADE');
         });
 
         // Clean up forum threads
@@ -115,6 +119,10 @@ class NextVersion extends Migration
             $table->foreign('solution_reply_id')
                 ->references('id')->on('replies')
                 ->onDelete('SET NULL');
+            $table->integer('author_id')->unsigned()->change();
+            $table->foreign('author_id')
+                ->references('id')->on('users')
+                ->onDelete('CASCADE');
         });
         Schema::table('threads', function(Blueprint $table) {
             $table->dropColumn(
@@ -163,6 +171,10 @@ class NextVersion extends Migration
         Schema::table('taggables', function (Blueprint $table) {
             $table->index('taggable_id');
             $table->index('tag_id');
+            $table->integer('tag_id')->unsigned()->change();
+            $table->foreign('tag_id')
+                ->references('id')->on('tags')
+                ->onDelete('CASCADE');
         });
         Schema::table('tags', function (Blueprint $table) {
             $table->dropColumn('forum', 'description');
