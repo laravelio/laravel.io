@@ -3,8 +3,9 @@
 namespace App\Exceptions;
 
 use App\Models\Reply;
+use Exception;
 
-class CouldNotMarkReplyAsSolution extends \Exception
+class CouldNotMarkReplyAsSolution extends Exception
 {
     public static function replyAbleIsNotAThread(Reply $reply): self
     {

@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
-class CannotCreateUser extends \Exception
+use Exception;
+
+class CannotCreateUser extends Exception
 {
     public static function duplicateEmailAddress(string $emailAddress): CannotCreateUser
     {
