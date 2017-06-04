@@ -42,5 +42,10 @@
                 <img src="{{ asset('images/blackfire-io.png') }}">
             </a>
         </div>
+        <div>
+            <a href="https://helpspot.com/partner/33080">
+                <img src="{{ asset('images/helpspot.png') }}">
+            </a>
+        </div>
     </div>
 </div>
