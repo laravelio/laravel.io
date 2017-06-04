@@ -11,7 +11,7 @@
                 <tr>
                     <th>Joined On</th>
                     <th>Name</th>
-                    <th>E-mail Address</th>
+                    <th>Email Address</th>
                     <th>Status</th>
                     <th></th>
                 </tr>

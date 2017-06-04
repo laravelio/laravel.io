@@ -27,6 +27,7 @@ class EmailConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.email_confirmation');
+        return $this->subject('Confirm your Laravel.io email address')
+            ->markdown('emails.email_confirmation');
     }
 }
