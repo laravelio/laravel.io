@@ -10,7 +10,7 @@ class ProfileTest extends BrowserKitTestCase
     use DatabaseMigrations;
 
     /** @test */
-    function show_profile()
+    function anyone_can_see_a_user_profile()
     {
         $this->createUser();
 

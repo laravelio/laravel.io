@@ -13,7 +13,7 @@ class ReplyTest extends BrowserKitTestCase
     use DatabaseMigrations;
 
     /** @test */
-    function we_can_add_a_reply_to_a_thread()
+    function users_can_add_a_reply_to_a_thread()
     {
         factory(Thread::class)->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
 
@@ -28,7 +28,7 @@ class ReplyTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function we_can_edit_a_reply()
+    function users_can_edit_a_reply()
     {
         $user = $this->createUser();
         $thread = factory(Thread::class)->create(['slug' => 'the-first-thread']);
@@ -45,7 +45,7 @@ class ReplyTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function we_cannot_edit_a_reply_we_do_not_own()
+    function users_cannot_edit_a_reply_they_do_not_own()
     {
         factory(Reply::class)->create();
 
@@ -56,7 +56,7 @@ class ReplyTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function we_cannot_delete_a_reply_we_do_not_own()
+    function users_cannot_delete_a_reply_they_do_not_own()
     {
         factory(Reply::class)->create();
 
@@ -67,7 +67,7 @@ class ReplyTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function we_cannot_mark_a_reply_as_the_solution_of_the_thread_if_we_do_not_own_the_thread()
+    function users_cannot_mark_a_reply_as_the_solution_of_the_thread_if_they_do_not_own_the_thread()
     {
         $user = factory(User::class)->create();
         $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread']);

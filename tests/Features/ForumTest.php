@@ -12,7 +12,7 @@ class ForumTest extends BrowserKitTestCase
     use DatabaseMigrations;
 
     /** @test */
-    function we_can_see_a_list_of_latest_threads()
+    function users_can_see_a_list_of_latest_threads()
     {
         factory(Thread::class)->create(['subject' => 'The first thread']);
         factory(Thread::class)->create(['subject' => 'The second thread']);
@@ -23,7 +23,7 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function we_can_see_a_single_thread()
+    function users_can_see_a_single_thread()
     {
         factory(Thread::class)->create([
             'subject' => 'The first thread',
@@ -35,7 +35,7 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function we_cannot_create_a_thread_when_not_logged_in()
+    function users_cannot_create_a_thread_when_not_logged_in()
     {
         $this->visit('/forum/create-thread')
             ->seePageIs('/login');
@@ -59,7 +59,7 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function we_can_create_a_thread()
+    function users_can_create_a_thread()
     {
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
 
@@ -78,7 +78,7 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function we_can_edit_a_thread()
+    function users_can_edit_a_thread()
     {
         $user = $this->createUser();
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
@@ -102,7 +102,7 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function we_cannot_edit_a_thread_we_do_not_own()
+    function users_cannot_edit_a_thread_they_do_not_own()
     {
         factory(Thread::class)->create(['slug' => 'my-first-thread']);
 
@@ -113,7 +113,7 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function we_cannot_delete_a_thread_we_do_not_own()
+    function users_cannot_delete_a_thread_they_do_not_own()
     {
         factory(Thread::class)->create(['slug' => 'my-first-thread']);
 
