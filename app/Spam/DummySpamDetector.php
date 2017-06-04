@@ -11,7 +11,7 @@ class DummySpamDetector implements SpamDetector
      */
     private $hasSpam;
 
-    public function __construct(bool $hasSpam)
+    private function __construct(bool $hasSpam)
     {
         $this->hasSpam = $hasSpam;
     }
