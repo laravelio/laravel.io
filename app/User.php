@@ -207,9 +207,9 @@ class User extends Authenticatable
      */
     public function countSolutions(): int
     {
-        return $this->threads()->filter(function (Thread $thread) {
-            if ($solutionReply = $thread->solutionReply()) {
-                return $solutionReply->isAuthoredBy($this);
+        return $this->replies()->filter(function (Reply $reply) {
+            if ($reply->replyAble() instanceof Thread) {
+                return $reply->replyAble()->isSolutionReply($reply);
             }
 
             return false;
