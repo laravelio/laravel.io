@@ -7,12 +7,13 @@ use App\Jobs\SendEmailConfirmation;
 use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
+use Illuminate\Auth\Middleware\Authenticate;
 
 class EmailConfirmationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['only' => 'sendConfirmation']);
+        $this->middleware(Authenticate::class, ['only' => 'sendConfirmation']);
     }
 
     public function send()

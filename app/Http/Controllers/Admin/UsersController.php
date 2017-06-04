@@ -3,17 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\VerifyAdmins;
 use App\Jobs\BanUser;
 use App\Jobs\DeleteUser;
 use App\Jobs\UnbanUser;
 use App\Policies\UserPolicy;
 use App\User;
+use Illuminate\Auth\Middleware\Authenticate;
 
 class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'admin']);
+        $this->middleware([Authenticate::class, VerifyAdmins::class]);
     }
 
     public function show(User $user)

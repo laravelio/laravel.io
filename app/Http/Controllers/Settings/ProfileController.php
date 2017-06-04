@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Jobs\UpdateProfile;
 use Auth;
 use App\Http\Requests\UpdateProfileRequest;
+use Illuminate\Auth\Middleware\Authenticate;
 
 class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(Authenticate::class);
     }
 
     public function edit()

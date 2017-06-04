@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\RedirectIfUnconfirmed;
 use App\Jobs\CreateThread;
 use App\Jobs\MarkThreadSolution;
 use App\Jobs\UnmarkThreadSolution;
@@ -13,12 +14,13 @@ use App\Jobs\DeleteThread;
 use App\Models\Reply;
 use App\Models\Tag;
 use App\Policies\ThreadPolicy;
+use Illuminate\Auth\Middleware\Authenticate;
 
 class ThreadsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'confirmed'], ['except' => ['overview', 'show']]);
+        $this->middleware([Authenticate::class, RedirectIfUnconfirmed::class], ['except' => ['overview', 'show']]);
     }
 
     public function overview()

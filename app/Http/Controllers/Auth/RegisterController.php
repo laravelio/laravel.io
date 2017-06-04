@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Requests\RegisterRequest;
 use App\Jobs\RegisterUser;
 use App\Jobs\SendEmailConfirmation;
@@ -40,7 +41,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware(RedirectIfAuthenticated::class);
     }
 
     /**
