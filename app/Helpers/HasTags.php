@@ -15,7 +15,10 @@ trait HasTags
         return $this->tagsRelation;
     }
 
-    public function syncTags(Tag ...$tags)
+    /**
+     * @param \App\Models\Tag[]|int[] $tags
+     */
+    public function syncTags(array $tags)
     {
         $this->save();
         $this->tagsRelation()->sync($tags);
