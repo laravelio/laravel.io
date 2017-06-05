@@ -100,6 +100,17 @@ class Thread extends Model implements ReplyAble
     /**
      * @return \App\Models\Thread[]
      */
+    public static function search(string $keyword, int $perPage = 20): Paginator
+    {
+        return static::feedQuery()
+            ->where('threads.subject', 'LIKE', "%$keyword%")
+            ->orWhere('threads.body', 'LIKE', "%$keyword%")
+            ->paginate($perPage);
+    }
+
+    /**
+     * @return \App\Models\Thread[]
+     */
     public static function feed(int $limit = 20): Collection
     {
         return static::feedQuery()->limit($limit)->get();

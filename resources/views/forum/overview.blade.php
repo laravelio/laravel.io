@@ -9,6 +9,12 @@
 
     <div class="row">
         <div class="col-md-3">
+            {{ Form::open(['route' => 'forum', 'method' => 'GET']) }}
+                <div class="form-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search">
+                </div>
+            {{ Form::close() }}
+
             <a class="btn btn-success btn-block" href="{{ route('threads.create') }}">Create Thread</a>
 
             <h3>Tags</h3>
