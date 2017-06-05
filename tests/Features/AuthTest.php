@@ -24,6 +24,7 @@ class AuthTest extends BrowserKitTestCase
             ->type('johndoe', 'username')
             ->type('password', 'password')
             ->type('password', 'password_confirmation')
+            ->check('rules')
             ->press('Register')
             ->seePageIs('/dashboard')
             ->see('Welcome John Doe!');
@@ -42,7 +43,8 @@ class AuthTest extends BrowserKitTestCase
             ->see('The name field is required.')
             ->see('The email field is required.')
             ->see('The username field is required.')
-            ->see('The password field is required.');
+            ->see('The password field is required.')
+            ->see('The rules must be accepted.');
     }
 
     /** @test */

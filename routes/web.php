@@ -2,6 +2,7 @@
 
 // Home
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@show']);
+Route::get('rules', ['as' => 'rules', 'uses' => 'HomeController@rules']);
 
 // Authentication
 Route::group(['namespace' => 'Auth'], function () {

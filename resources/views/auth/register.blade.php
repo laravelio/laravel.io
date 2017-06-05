@@ -35,6 +35,14 @@
             </div>
         @endif
 
+        @formGroup('rules')
+            <label>
+                {!! Form::checkbox('rules') !!}
+                &nbsp; I agree to <a href="{{ route('rules') }}" target="_blank">the rules of the portal</a>
+            </label>
+            @error('rules')
+        @endFormGroup
+
         {!! Form::submit('Register', ['class' => 'btn btn-primary btn-block']) !!}
 
         @if (! session()->has('githubData'))

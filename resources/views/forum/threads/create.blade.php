@@ -8,9 +8,7 @@
 
     <div class="alert alert-info">
         <p>
-            Please read our <a href="#" class="alert-link">Forum Rules</a> and
-            <a href="https://github.com/laravelio/portal/blob/master/code_of_conduct.md" class="alert-link">Code of Conduct</a>
-            before creating a thread.
+            Please read our <a href="{{ route('rules') }}" class="alert-link">Forum Rules</a> before creating a thread.
         </p>
     </div>
 
