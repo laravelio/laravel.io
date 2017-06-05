@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use App\User;
-use App\Validation\DoesNotContainUrlRule;
 use App\Validation\SpamRule;
-use Auth;
+use App\Validation\DoesNotContainUrlRule;
 
 class ThreadRequest extends Request
 {

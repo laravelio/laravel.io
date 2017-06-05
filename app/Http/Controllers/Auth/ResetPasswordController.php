@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 class ResetPasswordController extends Controller
 {

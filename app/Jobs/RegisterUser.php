@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
+use App\User;
 use App\Exceptions\CannotCreateUser;
 use App\Http\Requests\RegisterRequest;
-use App\User;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 

@@ -2,18 +2,18 @@
 
 namespace Tests\Components\Jobs;
 
-use App\Jobs\CreateReply;
+use Tests\TestCase;
 use App\Models\Reply;
 use App\Models\Thread;
+use App\Jobs\CreateReply;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\TestCase;
 
 class CreateReplyTest extends TestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-    function we_can_create_a_reply()
+    public function we_can_create_a_reply()
     {
         $job = new CreateReply('Foo', '', $this->createUser(), factory(Thread::class)->create());
 

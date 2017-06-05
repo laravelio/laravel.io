@@ -2,8 +2,8 @@
 
 namespace App\Exceptions;
 
-use App\Models\Reply;
 use Exception;
+use App\Models\Reply;
 
 class CouldNotMarkReplyAsSolution extends Exception
 {

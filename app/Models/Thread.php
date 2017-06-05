@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use App\Exceptions\CouldNotMarkReplyAsSolution;
-use App\Helpers\HasSlug;
-use App\Helpers\HasAuthor;
-use App\Helpers\HasTimestamps;
-use App\Helpers\ModelHelpers;
-use App\Helpers\ReceivesReplies;
-use App\Helpers\HasTags;
 use DB;
-use Illuminate\Contracts\Pagination\Paginator;
+use App\Helpers\HasSlug;
+use App\Helpers\HasTags;
+use App\Helpers\HasAuthor;
+use App\Helpers\ModelHelpers;
+use App\Helpers\HasTimestamps;
+use App\Helpers\ReceivesReplies;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Pagination\Paginator;
+use App\Exceptions\CouldNotMarkReplyAsSolution;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Thread extends Model implements ReplyAble
@@ -75,7 +75,7 @@ class Thread extends Model implements ReplyAble
     {
         $thread = $reply->replyAble();
 
-        if (! $thread instanceof Thread) {
+        if (! $thread instanceof self) {
             throw CouldNotMarkReplyAsSolution::replyAbleIsNotAThread($reply);
         }
 
@@ -144,9 +144,9 @@ class Thread extends Model implements ReplyAble
     private static function feedQuery(): Builder
     {
         return static::leftJoin('replies', function ($join) {
-                $join->on('threads.id', 'replies.replyable_id')
+            $join->on('threads.id', 'replies.replyable_id')
                     ->where('replies.replyable_type', static::TABLE);
-            })
+        })
             ->orderBy('latest_creation', 'DESC')
             ->groupBy('threads.id')
             ->select('threads.*', DB::raw('

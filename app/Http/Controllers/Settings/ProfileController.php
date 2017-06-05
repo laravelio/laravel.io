@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Settings;
 
-use App\Http\Controllers\Controller;
-use App\Jobs\UpdateProfile;
 use Auth;
+use App\Jobs\UpdateProfile;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Auth\Middleware\Authenticate;
 

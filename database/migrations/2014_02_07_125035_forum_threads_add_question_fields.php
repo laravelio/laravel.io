@@ -12,7 +12,7 @@ class ForumThreadsAddQuestionFields extends Migration
      */
     public function up()
     {
-        Schema::table('forum_threads', function(Blueprint $table) {
+        Schema::table('forum_threads', function (Blueprint $table) {
             $table->boolean('is_question')->default(true);
         });
     }

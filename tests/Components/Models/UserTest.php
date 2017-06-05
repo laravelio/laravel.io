@@ -2,18 +2,18 @@
 
 namespace Tests\Components\Models;
 
+use App\User;
+use Tests\TestCase;
 use App\Models\Reply;
 use App\Models\Thread;
-use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\TestCase;
 
 class UserTest extends TestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-    function it_can_find_by_username()
+    public function it_can_find_by_username()
     {
         $this->createUser(['username' => 'johndoe']);
 
@@ -21,7 +21,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    function it_can_find_by_email_address()
+    public function it_can_find_by_email_address()
     {
         $this->createUser(['email' => 'john@example.com']);
 
@@ -29,7 +29,7 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    function it_can_return_the_amount_of_solutions_that_were_given()
+    public function it_can_return_the_amount_of_solutions_that_were_given()
     {
         $user = factory(User::class)->create();
         $this->seedTwoSolutionReplies($user);
