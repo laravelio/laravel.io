@@ -15,6 +15,7 @@ We hope to see your contribution soon!
 - [Installation](#installation)
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
+- [Code of Conduct](#code-of-conduct)
 - [Security Vulnerabilities](#security-vulnerabilities)
 - [License](#license)
 
@@ -77,6 +78,10 @@ The Laravel.io portal is currently maintained by [Dries Vints](https://github.co
 ## Contributing
 
 Please read [the contributing guide](contributing.md) before creating an issue or sending in a pull request.
+
+## Code of Conduct
+
+Please read our [Code of Conduct](code_of_conduct.md) before contributing or engaging in discussions.
 
 ## Security Vulnerabilities
 

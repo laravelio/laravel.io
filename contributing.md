@@ -1,6 +1,6 @@
 # Contributing Guide
 
-We welcome contributions to the Laravel.io project. Please read the following guide before posting an issue or sending in pull requests.
+We welcome contributions to the Laravel.io project. Please read the following guide before posting an issue or sending in pull requests. Please also read our [Code of Conduct](code_of_conduct.md) before contributing or engaging in discussions.
 
 ## Issues
 
