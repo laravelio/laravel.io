@@ -2,18 +2,18 @@
 
 namespace Tests\Features;
 
+use App\User;
 use App\Models\Reply;
 use App\Models\Thread;
-use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class AdminTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-    function requires_login()
+    public function requires_login()
     {
         $this->visit('/admin')
             ->seePageIs('/login');

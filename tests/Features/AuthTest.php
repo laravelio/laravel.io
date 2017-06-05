@@ -2,19 +2,19 @@
 
 namespace Tests\Features;
 
-use App\Mail\EmailConfirmation;
 use Auth;
-use Illuminate\Contracts\Auth\PasswordBroker;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Mail;
 use Tests\BrowserKitTestCase;
+use App\Mail\EmailConfirmation;
+use Illuminate\Contracts\Auth\PasswordBroker;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class AuthTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-    function users_can_register()
+    public function users_can_register()
     {
         Mail::fake();
 
@@ -35,7 +35,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function registration_fails_when_a_required_field_is_not_filled_in()
+    public function registration_fails_when_a_required_field_is_not_filled_in()
     {
         $this->visit('/register')
             ->press('Register')
@@ -48,7 +48,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_resend_the_email_confirmation()
+    public function users_can_resend_the_email_confirmation()
     {
         $this->login(['confirmed' => false]);
 
@@ -58,7 +58,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_do_not_need_to_confirm_their_email_address_twice()
+    public function users_do_not_need_to_confirm_their_email_address_twice()
     {
         $this->login();
 
@@ -68,7 +68,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_confirm_their_email_address()
+    public function users_can_confirm_their_email_address()
     {
         $user = $this->createUser(['confirmed' => false, 'confirmation_code' => 'testcode']);
 
@@ -80,7 +80,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_get_a_message_when_a_confirmation_code_was_not_found()
+    public function users_get_a_message_when_a_confirmation_code_was_not_found()
     {
         $this->createUser(['confirmed' => false]);
 
@@ -90,7 +90,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_login()
+    public function users_can_login()
     {
         $this->createUser();
 
@@ -103,7 +103,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function login_fails_when_a_required_field_is_not_filled_in()
+    public function login_fails_when_a_required_field_is_not_filled_in()
     {
         $this->createUser();
 
@@ -115,7 +115,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function login_fails_when_password_is_incorrect()
+    public function login_fails_when_password_is_incorrect()
     {
         $this->createUser();
 
@@ -128,7 +128,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function login_fails_when_user_is_banned()
+    public function login_fails_when_user_is_banned()
     {
         $this->createUser(['is_banned' => true]);
 
@@ -141,7 +141,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_logout()
+    public function users_can_logout()
     {
         $this->login();
 
@@ -154,7 +154,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_request_a_password_reset_link()
+    public function users_can_request_a_password_reset_link()
     {
         $this->createUser();
 
@@ -165,7 +165,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_reset_their_password()
+    public function users_can_reset_their_password()
     {
         $user = $this->createUser();
 
@@ -187,7 +187,7 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function unconfirmed_users_cannot_create_threads()
+    public function unconfirmed_users_cannot_create_threads()
     {
         $this->login(['confirmed' => false]);
 

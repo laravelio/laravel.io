@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use App\Helpers\SendsAlerts;
 use Auth;
 use Closure;
+use App\Helpers\SendsAlerts;
 
 class RedirectIfBanned
 {

@@ -2,24 +2,24 @@
 
 namespace Tests\Features;
 
-use App\Models\Thread;
 use App\Models\Reply;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Models\Thread;
 use Tests\BrowserKitTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class DashboardTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-    function requires_login()
+    public function requires_login()
     {
         $this->visit('/dashboard')
             ->seePageIs('/login');
     }
 
     /** @test */
-    function users_can_see_some_statistics()
+    public function users_can_see_some_statistics()
     {
         $user = $this->createUser();
         $thread = array_first(factory(Thread::class, 3)->create(['author_id' => $user->id()]));

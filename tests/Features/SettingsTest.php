@@ -3,22 +3,22 @@
 namespace Tests\Features;
 
 use Auth;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SettingsTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-    function requires_login()
+    public function requires_login()
     {
         $this->visit('/settings')
             ->seePageIs('/login');
     }
 
     /** @test */
-    function users_can_update_their_profile()
+    public function users_can_update_their_profile()
     {
         $this->login();
 
@@ -35,7 +35,7 @@ class SettingsTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_cannot_choose_duplicate_usernames_or_email_addresses()
+    public function users_cannot_choose_duplicate_usernames_or_email_addresses()
     {
         $this->createUser(['email' => 'freek@example.com', 'username' => 'freekmurze']);
 
@@ -54,7 +54,7 @@ class SettingsTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_update_their_password()
+    public function users_can_update_their_password()
     {
         $this->login();
 

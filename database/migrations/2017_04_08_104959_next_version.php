@@ -34,18 +34,18 @@ class NextVersion extends Migration
         });
 
         // Clean up users
-        Schema::table('users', function(Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->string('email')->unique()->change();
             $table->string('username', 40)->default('');
             $table->string('password')->default('');
             $table->smallInteger('type', false, true)->default(1);
-            $table->dateTime('created_at')->nullable()->default(NULL)->change();
-            $table->dateTime('updated_at')->nullable()->default(NULL)->change();
+            $table->dateTime('created_at')->nullable()->default(null)->change();
+            $table->dateTime('updated_at')->nullable()->default(null)->change();
         });
-        Schema::table('users', function(Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
-        Schema::table('users', function(Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('image_url', 'spam_count');
         });
 
@@ -75,8 +75,8 @@ class NextVersion extends Migration
         Schema::rename('forum_replies', 'replies');
         Schema::table('replies', function (Blueprint $table) {
             $table->string('replyable_type')->default('');
-            $table->dateTime('created_at')->nullable()->default(NULL)->change();
-            $table->dateTime('updated_at')->nullable()->default(NULL)->change();
+            $table->dateTime('created_at')->nullable()->default(null)->change();
+            $table->dateTime('updated_at')->nullable()->default(null)->change();
         });
 
         if (! app()->runningUnitTests()) {
@@ -90,7 +90,7 @@ class NextVersion extends Migration
         Schema::table('replies', function (Blueprint $table) {
             $table->renameColumn('thread_id', 'replyable_id');
         });
-        Schema::table('replies', function(Blueprint $table) {
+        Schema::table('replies', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
         Schema::table('replies', function (Blueprint $table) {
@@ -106,8 +106,8 @@ class NextVersion extends Migration
         Schema::rename('forum_threads', 'threads');
         Schema::table('threads', function (Blueprint $table) {
             $table->unique('slug');
-            $table->dateTime('created_at')->nullable()->default(NULL)->change();
-            $table->dateTime('updated_at')->nullable()->default(NULL)->change();
+            $table->dateTime('created_at')->nullable()->default(null)->change();
+            $table->dateTime('updated_at')->nullable()->default(null)->change();
         });
         Schema::table('threads', function (Blueprint $table) {
             $table->dropIndex('forum_threads_author_id_index');
@@ -124,12 +124,12 @@ class NextVersion extends Migration
                 ->references('id')->on('users')
                 ->onDelete('CASCADE');
         });
-        Schema::table('threads', function(Blueprint $table) {
+        Schema::table('threads', function (Blueprint $table) {
             $table->dropColumn(
                 'category_slug', 'most_recent_reply_id', 'reply_count', 'is_question', 'pinned', 'laravel_version'
             );
         });
-        Schema::table('threads', function(Blueprint $table) {
+        Schema::table('threads', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
         Schema::table('threads', function (Blueprint $table) {
@@ -151,16 +151,16 @@ class NextVersion extends Migration
             DB::statement('UPDATE tags SET slug = LOWER(slug)');
         }
 
-        Schema::table('taggables', function(Blueprint $table) {
+        Schema::table('taggables', function (Blueprint $table) {
             $table->string('taggable_type')->default('');
-            $table->dateTime('created_at')->nullable()->default(NULL)->change();
-            $table->dateTime('updated_at')->nullable()->default(NULL)->change();
+            $table->dateTime('created_at')->nullable()->default(null)->change();
+            $table->dateTime('updated_at')->nullable()->default(null)->change();
         });
         Schema::table('taggables', function (Blueprint $table) {
             $table->dropIndex('tagged_items_thread_id_index');
             $table->dropIndex('tagged_items_tag_id_index');
         });
-        Schema::table('taggables', function(Blueprint $table) {
+        Schema::table('taggables', function (Blueprint $table) {
             $table->renameColumn('thread_id', 'taggable_id');
         });
 

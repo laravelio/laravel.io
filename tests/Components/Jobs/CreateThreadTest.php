@@ -2,17 +2,17 @@
 
 namespace Tests\Components\Jobs;
 
-use App\Jobs\CreateThread;
-use App\Models\Thread;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
+use App\Models\Thread;
+use App\Jobs\CreateThread;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class CreateThreadTest extends TestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-    function we_can_create_a_thread()
+    public function we_can_create_a_thread()
     {
         $job = new CreateThread('Subject', 'Body', '', $this->createUser());
 

@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Http\Requests\UpdateProfileRequest;
 use App\User;
+use App\Http\Requests\UpdateProfileRequest;
 
 class UpdateProfile
 {

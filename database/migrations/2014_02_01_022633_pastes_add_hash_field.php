@@ -12,7 +12,7 @@ class PastesAddHashField extends Migration
      */
     public function up()
     {
-        Schema::table('pastes', function(Blueprint $table) {
+        Schema::table('pastes', function (Blueprint $table) {
             $table->string('hash')->nullable();
         });
     }
