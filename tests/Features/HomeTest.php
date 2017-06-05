@@ -2,15 +2,15 @@
 
 namespace Tests\Features;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class HomeTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-    function users_can_see_the_homepage()
+    public function users_can_see_the_homepage()
     {
         $this->visit('/')
             ->see('Laravel.io')
@@ -18,7 +18,7 @@ class HomeTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_see_a_login_and_registration_link_when_logged_out()
+    public function users_can_see_a_login_and_registration_link_when_logged_out()
     {
         $this->visit('/')
             ->seeLink('Login')
@@ -27,7 +27,7 @@ class HomeTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_see_a_logout_button_when_logged_in()
+    public function users_can_see_a_logout_button_when_logged_in()
     {
         $this->login();
 

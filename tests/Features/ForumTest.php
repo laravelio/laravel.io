@@ -2,17 +2,17 @@
 
 namespace Tests\Features;
 
-use App\Models\Thread;
 use App\Models\Tag;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Models\Thread;
 use Tests\BrowserKitTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ForumTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-    function users_can_see_a_list_of_latest_threads()
+    public function users_can_see_a_list_of_latest_threads()
     {
         factory(Thread::class)->create(['subject' => 'The first thread']);
         factory(Thread::class)->create(['subject' => 'The second thread']);
@@ -23,7 +23,7 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_see_a_single_thread()
+    public function users_can_see_a_single_thread()
     {
         factory(Thread::class)->create([
             'subject' => 'The first thread',
@@ -35,14 +35,14 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_cannot_create_a_thread_when_not_logged_in()
+    public function users_cannot_create_a_thread_when_not_logged_in()
     {
         $this->visit('/forum/create-thread')
             ->seePageIs('/login');
     }
 
     /** @test */
-    function the_thread_subject_cannot_be_an_url()
+    public function the_thread_subject_cannot_be_an_url()
     {
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
 
@@ -59,7 +59,7 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_create_a_thread()
+    public function users_can_create_a_thread()
     {
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
 
@@ -78,7 +78,7 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_edit_a_thread()
+    public function users_can_edit_a_thread()
     {
         $user = $this->createUser();
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
@@ -102,7 +102,7 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_cannot_edit_a_thread_they_do_not_own()
+    public function users_cannot_edit_a_thread_they_do_not_own()
     {
         factory(Thread::class)->create(['slug' => 'my-first-thread']);
 
@@ -113,7 +113,7 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_cannot_delete_a_thread_they_do_not_own()
+    public function users_cannot_delete_a_thread_they_do_not_own()
     {
         factory(Thread::class)->create(['slug' => 'my-first-thread']);
 

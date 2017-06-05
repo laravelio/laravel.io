@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\VerifyAdmins;
-use App\User;
 use Illuminate\Auth\Middleware\Authenticate;
 
 class AdminController extends Controller

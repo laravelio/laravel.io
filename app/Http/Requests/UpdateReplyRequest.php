@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Validation\SpamRule;
-use Auth;
 
 class UpdateReplyRequest extends Request
 {

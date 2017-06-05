@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
+use App\Jobs\BanUser;
+use App\Jobs\UnbanUser;
+use App\Jobs\DeleteUser;
+use App\Policies\UserPolicy;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\VerifyAdmins;
-use App\Jobs\BanUser;
-use App\Jobs\DeleteUser;
-use App\Jobs\UnbanUser;
-use App\Policies\UserPolicy;
-use App\User;
 use Illuminate\Auth\Middleware\Authenticate;
 
 class UsersController extends Controller

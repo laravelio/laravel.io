@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Thread;
 use App\User;
+use App\Models\Thread;
 use App\Validation\SpamRule;
-use Auth;
 
 class CreateReplyRequest extends Request
 {

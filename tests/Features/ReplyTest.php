@@ -2,18 +2,18 @@
 
 namespace Tests\Features;
 
-use App\Models\Thread;
-use App\Models\Reply;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Models\Reply;
+use App\Models\Thread;
 use Tests\BrowserKitTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ReplyTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 
     /** @test */
-    function users_can_add_a_reply_to_a_thread()
+    public function users_can_add_a_reply_to_a_thread()
     {
         factory(Thread::class)->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
 
@@ -28,7 +28,7 @@ class ReplyTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_can_edit_a_reply()
+    public function users_can_edit_a_reply()
     {
         $user = $this->createUser();
         $thread = factory(Thread::class)->create(['slug' => 'the-first-thread']);
@@ -45,7 +45,7 @@ class ReplyTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_cannot_edit_a_reply_they_do_not_own()
+    public function users_cannot_edit_a_reply_they_do_not_own()
     {
         factory(Reply::class)->create();
 
@@ -56,7 +56,7 @@ class ReplyTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_cannot_delete_a_reply_they_do_not_own()
+    public function users_cannot_delete_a_reply_they_do_not_own()
     {
         factory(Reply::class)->create();
 
@@ -67,7 +67,7 @@ class ReplyTest extends BrowserKitTestCase
     }
 
     /** @test */
-    function users_cannot_mark_a_reply_as_the_solution_of_the_thread_if_they_do_not_own_the_thread()
+    public function users_cannot_mark_a_reply_as_the_solution_of_the_thread_if_they_do_not_own_the_thread()
     {
         $user = factory(User::class)->create();
         $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread']);

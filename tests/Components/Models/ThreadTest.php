@@ -2,11 +2,11 @@
 
 namespace Tests\Components\Models;
 
+use Carbon\Carbon;
+use Tests\TestCase;
 use App\Models\Reply;
 use App\Models\Thread;
-use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\TestCase;
 
 class ThreadTest extends TestCase
 {
@@ -39,7 +39,7 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
-    function we_can_mark_and_unmark_a_reply_as_the_solution()
+    public function we_can_mark_and_unmark_a_reply_as_the_solution()
     {
         $thread = factory(Thread::class)->create();
         $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
@@ -56,7 +56,7 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
-    function it_can_retrieve_the_latest_threads_in_a_correct_order()
+    public function it_can_retrieve_the_latest_threads_in_a_correct_order()
     {
         $threadUpdatedYesterday = $this->createThreadFromYesterday();
         $threadFromToday = $this->createThreadFromToday();

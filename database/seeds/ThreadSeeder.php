@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Thread;
 use App\Models\Reply;
+use App\Models\Thread;
 use Illuminate\Database\Seeder;
 
 class ThreadSeeder extends Seeder
