@@ -7,6 +7,8 @@ sudo: false
 before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
+  - yarn install
+  - yarn production
 
 script:
   - vendor/bin/phpspec run --verbose
