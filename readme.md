@@ -1,11 +1,13 @@
 # Laravel.io Community Portal
 
 [![Build Status](https://travis-ci.org/laravelio/portal.svg?branch=master)](https://travis-ci.org/laravelio/portal)
-[![Code Climate](https://codeclimate.com/github/LaravelIO/laravel.io/badges/gpa.svg)](https://codeclimate.com/github/LaravelIO/laravel.io)
-[![Test Coverage](https://codeclimate.com/github/LaravelIO/laravel.io/badges/coverage.svg)](https://codeclimate.com/github/LaravelIO/laravel.io/coverage)
+[![Code Climate](https://codeclimate.com/github/LaravelIO/laravel.io/badges/gpa.svg)](https://codeclimate.com/github/laravelio/portal)
+[![Test Coverage](https://codeclimate.com/github/LaravelIO/laravel.io/badges/coverage.svg)](https://codeclimate.com/github/laravelio/portal/coverage)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](license.txt)
 
-This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and licensed under [the MIT license](license.txt). Feel free to contribute to the portal by sending in a pull request.
+This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and licensed under [the MIT license](license.txt). We welcome your contributions but we encourage you to read the [the contributing guide](contributing.md) before creating an issue or sending in a pull request. Read the installation guide below to get started with setting up the app on your machine.
+
+We hope to see your contribution soon!
 
 ## Table of Contents
 
@@ -18,14 +20,14 @@ This is the repository for the [Laravel.io](http://laravel.io) community portal.
 
 ## Requirements
 
-Please make sure you install the following tools before starting with the install procedure.
+The following tools are required in order to start the installation.
 
 - [VirtualBox](https://www.virtualbox.org/)
 - [Vagrant](https://www.vagrantup.com/)
 
 ## Installation
 
-> Note that you're free to adjust the `~/Sites/laravelio` location to any new directory you want on your machine.
+> Note that you're free to adjust the `~/Sites/laravelio` location to any directory you want on your machine.
 
 1. Clone this repository: `git clone git@github.com:laravelio/laravel-io.git ~/Sites/laravelio`
 2. Add the `Homestead.yaml` file from below to the root of your project
@@ -37,7 +39,8 @@ Please make sure you install the following tools before starting with the instal
     4. `yarn install`
     5. `yarn dev`
 5. Add `192.168.10.10 lio.app` to your computer's `/etc/hosts` file
-6. You can now visit the app in your browser by visiting [http://lio.app/](http://lio.app)
+
+You can now visit the app in your browser by visiting [http://lio.app](http://lio.app)
 
 ```yaml
 ip: 192.168.10.10
@@ -73,7 +76,7 @@ The Laravel.io portal is currently maintained by [Dries Vints](https://github.co
 
 ## Contributing
 
-Please see [the contributing guide](contributing.md) for details.
+Please read [the contributing guide](contributing.md) before creating an issue or sending in a pull request.
 
 ## Security Vulnerabilities
 

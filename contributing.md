@@ -1,6 +1,12 @@
 # Contributing Guide
 
-We welcome contributions to the Laravel.io project. Please read the following guide on how to send in pull requests.
+We welcome contributions to the Laravel.io project. Please read the following guide before posting an issue or sending in pull requests.
+
+## Issues
+
+- **Feature requests** need to describe as thoroughly as possible and perhaps contain some info on how you would implement it
+- **Bug reports** need to be described in detail what the problem is, how it was triggered and perhaps contain a possible solution
+- **Questions** are free to be asked about the internals of the codebase and about the project
 
 ## Pull Requests
 
@@ -12,13 +18,13 @@ We welcome contributions to the Laravel.io project. Please read the following gu
 
 ## Coding Standards
 
-- Follow the [PSR-2 Coding Standard](http://www.php-fig.org/psr/psr-2/)
 - It's a good practice to write tests for your contribution
 - Write the full namespace in DocBlocks for `@param`, `@var` or `@return` tags
+- The rest of the coding standards will be checked by [StyleCI](https://styleci.io/)
 
 ## Testing
 
 All tests can be run with the following commands. Make sure to run this inside the Homestead box.
 
-    $ vendor/bin/phpspec run
-    $ vendor/bin/phpunit
+    $ composer spec
+    $ composer test
