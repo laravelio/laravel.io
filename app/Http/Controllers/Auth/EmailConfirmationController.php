@@ -13,7 +13,7 @@ class EmailConfirmationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(Authenticate::class, ['only' => 'sendConfirmation']);
+        $this->middleware(Authenticate::class, ['only' => 'send']);
     }
 
     public function send()
