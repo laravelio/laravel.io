@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/laravelio/portal.svg?branch=master)](https://travis-ci.org/laravelio/portal)
 [![Code Climate](https://codeclimate.com/github/LaravelIO/laravel.io/badges/gpa.svg)](https://codeclimate.com/github/laravelio/portal)
 [![Test Coverage](https://codeclimate.com/github/LaravelIO/laravel.io/badges/coverage.svg)](https://codeclimate.com/github/laravelio/portal/coverage)
+[![Dependency Status](https://dependencyci.com/github/laravelio/portal/badge)](https://dependencyci.com/github/laravelio/portal)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](license.txt)
 
 > You're looking at the develop branch which contains the source code for the next version. If you need the source code for the current portal please switch to the master branch.
