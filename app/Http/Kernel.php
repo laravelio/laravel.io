@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\SiteIndexing;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\VerifyCsrfToken;
@@ -34,6 +35,7 @@ class Kernel extends HttpKernel
         ValidatePostSize::class,
         TrimStrings::class,
         ConvertEmptyStringsToNull::class,
+        SiteIndexing::class,
     ];
 
     /**

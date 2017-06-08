@@ -13,6 +13,7 @@
         "laravelcollective/html": "5.4.*",
         "league/commonmark": "^0.15.2",
         "spatie/laravel-migrate-fresh": "^1.4",
+        "spatie/laravel-robots-middleware": "^1.0",
         "tijsverkoyen/akismet": "^1.1"
     },
     "require-dev": {
