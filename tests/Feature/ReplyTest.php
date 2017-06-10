@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Features;
+namespace Tests\Feature;
 
 use App\User;
 use App\Models\Reply;

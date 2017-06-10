@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Features;
+namespace Tests\Feature;
 
 use Auth;
 use Tests\BrowserKitTestCase;
