@@ -1,4 +1,4 @@
-@if (app()->environment('local') && $appId = config('services.intercom.app_id'))
+@if (app()->environment('production') && $appId = config('services.intercom.app_id'))
     <script>
         window.intercomSettings = {
             @if (Auth::check())
