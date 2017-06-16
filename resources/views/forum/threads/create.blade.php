@@ -8,7 +8,9 @@
 
     <div class="alert alert-info">
         <p>
-            Please read our <a href="{{ route('rules') }}" class="alert-link">Forum Rules</a> before creating a thread.
+            Please try to search for your question first using
+            <a href="{{ route('forum') }}" class="alert-link">the search box</a> and make sure you've read our
+            <a href="{{ route('rules') }}" class="alert-link">Forum Rules</a> before creating a thread.
         </p>
     </div>
 
