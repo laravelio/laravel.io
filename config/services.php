@@ -45,4 +45,9 @@ return [
         'api_key' => env('AKISMET_API_KEY'),
     ],
 
+    'intercom' => [
+        'app_id' => env('INTERCOM_APP_ID'),
+        'secret' => env('INTERCOM_SECRET'),
+    ],
+
 ];
