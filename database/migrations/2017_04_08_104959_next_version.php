@@ -53,7 +53,7 @@ class NextVersion extends Migration
         });
 
         if (! app()->runningUnitTests()) {
-            DB::statement('UPDATE users SET username = name, github_username = name');
+            DB::statement('UPDATE users SET username = LOWER(name), github_username = name');
         }
 
         Schema::table('users', function (Blueprint $table) {

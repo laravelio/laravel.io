@@ -28,7 +28,7 @@ class UpdateProfile
         return new static($user, [
             'name' => $request->name(),
             'email' => $request->email(),
-            'username' => $request->username(),
+            'username' => strtolower($request->username()),
         ]);
     }
 

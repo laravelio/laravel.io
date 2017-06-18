@@ -70,7 +70,7 @@ class RegisterUser
         $user = new User(array_merge([
             'name' => $this->name,
             'email' => $this->email,
-            'username' => $this->username,
+            'username' => strtolower($this->username),
             'ip' => $this->ip,
             'password' => $this->password ? $hasher->make($this->password) : '',
             'confirmation_code' => str_random(60),
