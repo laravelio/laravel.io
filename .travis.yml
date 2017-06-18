@@ -12,8 +12,8 @@ cache:
 
 before_install:
   - composer self-update
-  - nvm install 6
-  - npm install -g yarn
+  - nvm install 8.1.2
+  - npm install -g yarn@0.24.5
 
 before_script:
   - composer install --prefer-source --no-interaction --dev
