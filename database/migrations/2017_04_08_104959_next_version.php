@@ -48,9 +48,12 @@ class NextVersion extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('image_url', 'spam_count');
         });
+        Schema::table('users', function (Blueprint $table) {
+            $table->renameColumn('github_url', 'github_username');
+        });
 
         if (! app()->runningUnitTests()) {
-            DB::statement('UPDATE users SET username = name');
+            DB::statement('UPDATE users SET username = name, github_username = name');
         }
 
         Schema::table('users', function (Blueprint $table) {

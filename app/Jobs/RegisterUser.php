@@ -47,7 +47,7 @@ class RegisterUser
         $this->username = $username;
         $this->ip = $ip;
         $this->password = $password;
-        $this->attributes = array_only($attributes, ['github_id', 'github_url']);
+        $this->attributes = array_only($attributes, ['github_id', 'github_username']);
     }
 
     public static function fromRequest(RegisterRequest $request): self
@@ -58,7 +58,7 @@ class RegisterUser
             $request->username(),
             $request->ip(),
             $request->password(),
-            ['github_id' => $request->githubId(), 'github_url' => $request->githubUsername()]
+            ['github_id' => $request->githubId(), 'github_username' => $request->githubUsername()]
         );
     }
 

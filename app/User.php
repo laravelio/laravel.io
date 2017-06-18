@@ -35,7 +35,7 @@ class User extends Authenticatable
         'confirmed',
         'confirmation_code',
         'github_id',
-        'github_url',
+        'github_username',
         'type',
         'remember_token',
     ];
@@ -67,7 +67,7 @@ class User extends Authenticatable
 
     public function githubUsername(): string
     {
-        return $this->github_url;
+        return $this->github_username;
     }
 
     public function gratavarUrl($size = 100): string

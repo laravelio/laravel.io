@@ -37,7 +37,7 @@ trait CreatesUsers
             'username' => 'johndoe',
             'email' => 'john@example.com',
             'password' => bcrypt('password'),
-            'github_url' => 'johndoe',
+            'github_username' => 'johndoe',
         ], $attributes));
     }
 }
