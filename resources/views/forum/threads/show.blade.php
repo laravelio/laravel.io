@@ -114,7 +114,7 @@
 
             <hr>
             
-            @if(!Auth::check())
+            @if(Auth::guest())
                 <p class="text-center"><a href="{{ route('login') }}">Sign in</a> to participate in this thread!</p>
             @endif
 
