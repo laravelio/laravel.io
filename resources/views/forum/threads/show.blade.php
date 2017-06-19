@@ -110,7 +110,14 @@
                     {!! Form::hidden('replyable_type', 'threads') !!}
                     {!! Form::submit('Reply', ['class' => 'btn btn-primary btn-block']) !!}
                 {!! Form::close() !!}
+            @endcan
+
+            <hr>
+            
+            @if(!Auth::check())
+                <p class="text-center"><a href="{{ route('login') }}">Sign in</a> to participate in this thread!</p>
             @endif
+
         </div>
     </div>
 @endsection
