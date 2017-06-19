@@ -31,7 +31,7 @@
             <hr>
 
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body forum-content">
                     @md($thread->body())
                 </div>
 
@@ -46,7 +46,7 @@
                         </div>
                     @endif
 
-                    <div class="panel-body">
+                    <div class="panel-body forum-content">
                         @can(App\Policies\ThreadPolicy::UPDATE, $thread)
                             <div class="pull-right" style="font-size: 20px">
                                 @if ($thread->isSolutionReply($reply))
