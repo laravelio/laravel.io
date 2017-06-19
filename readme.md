@@ -6,8 +6,6 @@
 [![Dependency Status](https://dependencyci.com/github/laravelio/portal/badge)](https://dependencyci.com/github/laravelio/portal)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](license.txt)
 
-> You're looking at the develop branch which contains the source code for the next version. If you need the source code for the current portal please switch to the master branch.
-
 This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and licensed under [the MIT license](license.txt). We welcome your contributions but we encourage you to read the [the contributing guide](contributing.md) before creating an issue or sending in a pull request. Read the installation guide below to get started with setting up the app on your machine.
 
 We hope to see your contribution soon!
