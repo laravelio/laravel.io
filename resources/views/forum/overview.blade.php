@@ -56,7 +56,7 @@
                 </div>
             @endif
         </div>
-        <div class="visible-xs visible-sm">
+        <div class="col-xs-12 visible-xs visible-sm">
             @include('forum._tags')
         </div>
     </div>
