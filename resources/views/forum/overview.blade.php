@@ -21,7 +21,7 @@
                 @include('forum._tags')
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 threads-column">
             @if (count($threads))
                 @foreach ($threads as $thread)
                     <div class="panel panel-default">
