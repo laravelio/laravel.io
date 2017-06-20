@@ -3,3 +3,9 @@
         max-width: 100%;
     }
 }
+
+@media (max-width: 991px) {
+  .threads-column {
+    margin-top: 10px;
+  }
+}
