@@ -1,5 +1,35 @@
-.forum-content {
-    img {
-        max-width: 100%;
+.forum {
+    .header-divider {
+        margin: 10.5px 0 20px 0;
+    }
+
+    .forum-content {
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .thread-info {
+        display: flex;
+
+        .thread-info-avatar, .thread-info-right {
+            flex: 0 0 auto;
+            margin-right: 5px;
+        }
+
+        .thread-info-content {
+            flex: 1 1 auto;
+            line-height: 1.6;
+        }
+
+        .thread-info-badge {
+            margin-left: 10px;
+        }
+    }
+
+    .panel-success {
+        .thread-info-link {
+            color: #fff;
+        }
     }
 }
