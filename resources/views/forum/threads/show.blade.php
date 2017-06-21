@@ -3,7 +3,7 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="row">
+    <div class="row forum">
         <div class="col-md-3">
             @include('users._user_info', ['user' => $thread->author(), 'avatarSize' => 100])
 
@@ -27,24 +27,44 @@
             <a class="btn btn-link btn-block" href="{{ route('forum') }}"><i class="fa fa-arrow-left"></i> Back</a></a>
         </div>
         <div class="col-md-9">
-            <h1>{{ $title }}</h1>
-            <hr>
+            @include('forum.threads._header')
+            <hr class="header-divider">
 
             <div class="panel panel-default">
                 <div class="panel-body forum-content">
                     @md($thread->body())
                 </div>
-
-                @include('forum.threads._footer')
             </div>
 
             @foreach ($thread->replies() as $reply)
                 <div class="panel {{ $thread->isSolutionReply($reply) ? 'panel-success' : 'panel-default' }}">
-                    @if ($thread->isSolutionReply($reply))
-                        <div class="panel-heading">
-                            Solution Reply
+                    <div class="panel-heading thread-info">
+                        <div class="thread-info-avatar">
+                            <img class="img-circle" src="{{ $reply->author()->gratavarUrl(25) }}">
                         </div>
-                    @endif
+
+                        <div class="thread-info-content">
+                            <a href="{{ route('profile', $reply->author()->username()) }}" class="thread-info-link">{{ $reply->author()->name() }}</a> replied
+                            {{ $reply->createdAt()->diffForHumans() }}
+                            @if($thread->isSolutionReply($reply))
+                                <span class="label label-primary thread-info-badge">Solution</span>
+                            @endif
+                        </div>
+
+                        @can(App\Policies\ReplyPolicy::UPDATE, $reply)
+                            <div class="thread-info-right">
+                                <a class="btn btn-default btn-xs" href="{{ route('replies.edit', $reply->id()) }}">Edit</a>
+                                <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteReply{{ $reply->id() }}">Delete</a>
+
+                                @include('_partials._delete_modal', [
+                                    'id' => "deleteReply{$reply->id()}",
+                                    'route' => ['replies.delete', $reply->id()],
+                                    'title' => 'Delete Reply',
+                                    'body' => '<p>Are you sure you want to delete this reply? This cannot be undone.</p>',
+                                ])
+                            </div>
+                        @endcan
+                    </div>
 
                     <div class="panel-body forum-content">
                         @can(App\Policies\ThreadPolicy::UPDATE, $thread)
@@ -77,24 +97,6 @@
 
                         @md($reply->body())
                     </div>
-                    <div class="panel-footer">
-                        Replied {{ $reply->createdAt()->diffForHumans() }} ago by
-                        <a href="{{ route('profile', $reply->author()->username()) }}">{{ $reply->author()->name() }}</a>
-
-                        <div class="pull-right">
-                            @can(App\Policies\ReplyPolicy::UPDATE, $reply)
-                                <a class="btn btn-default btn-xs" href="{{ route('replies.edit', $reply->id()) }}">Edit</a>
-                                <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteReply{{ $reply->id() }}">Delete</a>
-
-                                @include('_partials._delete_modal', [
-                                    'id' => "deleteReply{$reply->id()}",
-                                    'route' => ['replies.delete', $reply->id()],
-                                    'title' => 'Delete Reply',
-                                    'body' => '<p>Are you sure you want to delete this reply? This cannot be undone.</p>',
-                                ])
-                            @endcan
-                        </div>
-                    </div>
                 </div>
             @endforeach
 
@@ -113,7 +115,7 @@
             @endcan
 
             <hr>
-            
+
             @if (Auth::guest())
                 <p class="text-center">
                     <a href="{{ route('login') }}">Sign in</a> to participate in this thread!
