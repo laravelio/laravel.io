@@ -12,12 +12,12 @@
     .thread-info {
         display: flex;
 
-        .thread-info-avatar, .thread-info-right {
+        .thread-info-avatar, .thread-info-tags {
             flex: 0 0 auto;
             margin-right: 5px;
         }
 
-        .thread-info-content {
+        .thread-info-author {
             flex: 1 1 auto;
             line-height: 1.6;
         }

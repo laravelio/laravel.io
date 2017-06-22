@@ -7,7 +7,7 @@
     <h1>{{ $title }}</h1>
     <hr>
 
-    <div class="row">
+    <div class="row forum">
         <div class="col-md-3">
             {{ Form::open(['route' => 'forum', 'method' => 'GET']) }}
                 <div class="form-group">
@@ -33,13 +33,29 @@
             @if (count($threads))
                 @foreach ($threads as $thread)
                     <div class="panel panel-default">
+                        <div class="panel-heading thread-info">
+                            @if (count($thread->replies()))
+                                @include('forum.threads.info.avatar', ['user' => $thread->replies()->last()->author()])
+                            @else
+                                @include('forum.threads.info.avatar', ['user' => $thread->author()])
+                            @endif
+
+                            <div class="thread-info-author">
+                                @if (count($thread->replies()))
+                                    @php($lastReply = $thread->replies()->last())
+                                    <a href="{{ route('profile', $lastReply->author()->username()) }}" class="thread-info-link">{{ $lastReply->author()->name() }}</a> replied
+                                    {{ $lastReply->createdAt()->diffForHumans() }}
+                                @else
+                                    <a href="{{ route('profile', $thread->author()->username()) }}" class="thread-info-link">{{ $thread->author()->name() }}</a> posted
+                                    {{ $thread->createdAt()->diffForHumans() }}
+                                @endif
+                            </div>
+
+                            @include('forum.threads.info.tags')
+                        </div>
+
                         <div class="panel-body">
                             <div class="media">
-                                <div class="media-left">
-                                    <a href="{{ route('profile', $thread->author()->username()) }}">
-                                        <img class="media-object img-circle" src="{{ $thread->author()->gratavarUrl(45) }}">
-                                    </a>
-                                </div>
                                 <div class="media-body">
                                     <a href="{{ route('thread', $thread->slug()) }}">
                                         <span class="badge pull-right">{{ count($thread->replies()) }}</span>
@@ -49,8 +65,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        @include('forum.threads._footer')
                     </div>
                 @endforeach
 
