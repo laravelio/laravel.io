@@ -27,10 +27,19 @@
             <a class="btn btn-link btn-block" href="{{ route('forum') }}"><i class="fa fa-arrow-left"></i> Back</a></a>
         </div>
         <div class="col-md-9">
-            @include('forum.threads._header')
-            <hr class="header-divider">
+            <h1>{{ $title }}</h1>
+            <hr>
 
             <div class="panel panel-default">
+                <div class="panel-heading thread-info">
+                    <div class="thread-info-author">
+                        <a href="{{ route('profile', $thread->author()->username()) }}" class="thread-info-link">{{ $thread->author()->name() }}</a>
+                        posted {{ $thread->createdAt()->diffForHumans() }}
+                    </div>
+
+                    @include('forum.threads.info.tags')
+                </div>
+
                 <div class="panel-body forum-content">
                     @md($thread->body())
                 </div>
@@ -39,20 +48,19 @@
             @foreach ($thread->replies() as $reply)
                 <div class="panel {{ $thread->isSolutionReply($reply) ? 'panel-success' : 'panel-default' }}">
                     <div class="panel-heading thread-info">
-                        <div class="thread-info-avatar">
-                            <img class="img-circle" src="{{ $reply->author()->gratavarUrl(25) }}">
-                        </div>
+                        @include('forum.threads.info.avatar', ['user' => $reply->author()])
 
-                        <div class="thread-info-content">
+                        <div class="thread-info-author">
                             <a href="{{ route('profile', $reply->author()->username()) }}" class="thread-info-link">{{ $reply->author()->name() }}</a> replied
                             {{ $reply->createdAt()->diffForHumans() }}
-                            @if($thread->isSolutionReply($reply))
+
+                            @if ($thread->isSolutionReply($reply))
                                 <span class="label label-primary thread-info-badge">Solution</span>
                             @endif
                         </div>
 
                         @can(App\Policies\ReplyPolicy::UPDATE, $reply)
-                            <div class="thread-info-right">
+                            <div class="thread-info-tags">
                                 <a class="btn btn-default btn-xs" href="{{ route('replies.edit', $reply->id()) }}">Edit</a>
                                 <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteReply{{ $reply->id() }}">Delete</a>
 
