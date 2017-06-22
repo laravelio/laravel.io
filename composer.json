@@ -12,6 +12,7 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "5.4.*",
         "league/commonmark": "^0.15.2",
+        "roave/security-advisories": "dev-master",
         "spatie/laravel-migrate-fresh": "^1.4",
         "spatie/laravel-robots-middleware": "^1.0",
         "tijsverkoyen/akismet": "^1.1"
