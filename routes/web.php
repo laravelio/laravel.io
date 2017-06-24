@@ -3,6 +3,7 @@
 // Home
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@show']);
 Route::get('rules', ['as' => 'rules', 'uses' => 'HomeController@rules']);
+Route::get('bin', ['as' => 'bin', 'uses' => 'HomeController@redirectToPaste']);
 
 // Authentication
 Route::group(['namespace' => 'Auth'], function () {
