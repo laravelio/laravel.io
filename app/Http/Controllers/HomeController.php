@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Redirect;
-
 class HomeController extends Controller
 {
     public function show()
@@ -16,8 +14,8 @@ class HomeController extends Controller
         return view('rules');
     }
 
-    public function redirectToPaste()
+    public function pastebin()
     {
-        return Redirect::to('https://paste.laravel.io');
+        return redirect()->away('https://paste.laravel.io');
     }
 }
