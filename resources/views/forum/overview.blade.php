@@ -55,15 +55,11 @@
                         </div>
 
                         <div class="panel-body">
-                            <div class="media">
-                                <div class="media-body">
-                                    <a href="{{ route('thread', $thread->slug()) }}">
-                                        <span class="badge pull-right">{{ count($thread->replies()) }}</span>
-                                        <h4 class="media-heading">{{ $thread->subject() }}</h4>
-                                        <p>{{ $thread->excerpt() }}</p>
-                                    </a>
-                                </div>
-                            </div>
+                            <a href="{{ route('thread', $thread->slug()) }}">
+                                <span class="badge pull-right">{{ count($thread->replies()) }}</span>
+                                <h4 class="media-heading">{{ $thread->subject() }}</h4>
+                                <p>{{ $thread->excerpt() }}</p>
+                            </a>
                         </div>
                     </div>
                 @endforeach
