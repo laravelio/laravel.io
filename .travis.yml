@@ -28,6 +28,12 @@ script:
 after_script:
   - vendor/bin/test-reporter
 
+deploy:
+  provider: script
+  script: curl $ENVOYER_DEPLOYMENT_HOOK
+  on:
+    branch: master
+
 addons:
   code_climate:
     repo_token: $CODE_CLIMATE_TOKEN
