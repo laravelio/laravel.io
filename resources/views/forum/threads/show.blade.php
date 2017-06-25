@@ -32,6 +32,8 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading thread-info">
+                    @include('forum.threads.info.avatar', ['user' => $thread->author()])
+
                     <div class="thread-info-author">
                         <a href="{{ route('profile', $thread->author()->username()) }}" class="thread-info-link">{{ $thread->author()->name() }}</a>
                         posted {{ $thread->createdAt()->diffForHumans() }}
@@ -122,9 +124,8 @@
                 {!! Form::close() !!}
             @endcan
 
-            <hr>
-
             @if (Auth::guest())
+                <hr>
                 <p class="text-center">
                     <a href="{{ route('login') }}">Sign in</a> to participate in this thread!
                 </p>
