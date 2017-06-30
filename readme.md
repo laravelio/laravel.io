@@ -1,6 +1,8 @@
 # Laravel.io Community Portal
 
+[![Laravel Version](https://shield.with.social/cc/github/laravelio/portal/master.svg?style=flat-square)](https://packagist.org/packages/laravel/framework)
 [![Build Status](https://travis-ci.org/laravelio/portal.svg?branch=master)](https://travis-ci.org/laravelio/portal)
+[![StyleCI](https://styleci.io/repos/12895187/shield?branch=master)](https://styleci.io/repos/12895187)
 [![Code Climate](https://codeclimate.com/github/LaravelIO/laravel.io/badges/gpa.svg)](https://codeclimate.com/github/laravelio/portal)
 [![Test Coverage](https://codeclimate.com/github/LaravelIO/laravel.io/badges/coverage.svg)](https://codeclimate.com/github/laravelio/portal/coverage)
 [![Dependency Status](https://dependencyci.com/github/laravelio/portal/badge)](https://dependencyci.com/github/laravelio/portal)
