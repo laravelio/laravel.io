@@ -154,7 +154,7 @@ class User extends Authenticatable
      */
     public function latestThreads(int $amount = 3)
     {
-        return $this->threadsRelation()->limit($amount)->get();
+        return $this->threadsRelation()->latest()->limit($amount)->get();
     }
 
     public function deleteThreads()
