@@ -20,7 +20,7 @@
     @include('layouts._favicons')
     @include('layouts._google_analytics')
 </head>
-<body class="{{ $bodyClass or '' }}">
+<body class="{{ $bodyClass ?? '' }}">
 
 <div id="app">
     @include('layouts._nav')
