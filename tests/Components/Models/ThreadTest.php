@@ -21,16 +21,6 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
-    public function it_can_search_by_name_or_body()
-    {
-        factory(Thread::class)->create(['subject' => 'Optimizing Eloquent']);
-        factory(Thread::class)->create(['body' => 'What can we do to optimize the behavior or Eloquent?']);
-
-        $this->assertCount(1, Thread::search('optimizing'));
-        $this->assertCount(1, Thread::search('behavior'));
-    }
-
-    /** @test */
     public function it_can_give_an_excerpt_of_its_body()
     {
         $thread = factory(Thread::class)->make(['body' => 'This is a pretty long text.']);

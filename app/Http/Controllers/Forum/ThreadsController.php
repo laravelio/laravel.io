@@ -13,6 +13,7 @@ use App\Jobs\MarkThreadSolution;
 use App\Jobs\UnmarkThreadSolution;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreadRequest;
+use App\Queries\SearchThreads;
 use Illuminate\Auth\Middleware\Authenticate;
 use App\Http\Middleware\RedirectIfUnconfirmed;
 
@@ -25,7 +26,7 @@ class ThreadsController extends Controller
 
     public function overview()
     {
-        $threads = request()->has('search') ? Thread::search(request('search')) : Thread::feedPaginated();
+        $threads = request()->has('search') ? SearchThreads::get(request('search')) : Thread::feedPaginated();
 
         return view('forum.overview', compact('threads'));
     }

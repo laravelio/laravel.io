@@ -100,17 +100,6 @@ class Thread extends Model implements ReplyAble
     /**
      * @return \App\Models\Thread[]
      */
-    public static function search(string $keyword, int $perPage = 20): Paginator
-    {
-        return static::feedQuery()
-            ->where('threads.subject', 'LIKE', "%$keyword%")
-            ->orWhere('threads.body', 'LIKE', "%$keyword%")
-            ->paginate($perPage);
-    }
-
-    /**
-     * @return \App\Models\Thread[]
-     */
     public static function feed(int $limit = 20): Collection
     {
         return static::feedQuery()->limit($limit)->get();
@@ -141,7 +130,7 @@ class Thread extends Model implements ReplyAble
     /**
      * This will order the threads by creation date and latest reply.
      */
-    private static function feedQuery(): Builder
+    public static function feedQuery(): Builder
     {
         return static::leftJoin('replies', function ($join) {
             $join->on('threads.id', 'replies.replyable_id')
