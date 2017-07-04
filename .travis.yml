@@ -30,7 +30,7 @@ after_script:
 
 deploy:
   provider: script
-  script: curl ${$ENVOYER_DEPLOYMENT_HOOK}?sha=${TRAVIS_COMMIT}
+  script: curl ${ENVOYER_DEPLOYMENT_HOOK}?sha=${TRAVIS_COMMIT}
   on:
     branch: master
 
