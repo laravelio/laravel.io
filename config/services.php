@@ -50,4 +50,10 @@ return [
         'secret' => env('INTERCOM_SECRET'),
     ],
 
+    'google' => [
+        'ad_sense' => [
+            'ad_client' => env('GOOGLE_AD_SENSE_AD_CLIENT'),
+        ],
+    ],
+
 ];
