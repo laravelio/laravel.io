@@ -19,6 +19,7 @@
 
     @include('layouts._favicons')
     @include('layouts._google_analytics')
+    @include('layouts._ad_sense')
 </head>
 <body class="{{ $bodyClass ?? '' }}">
 
