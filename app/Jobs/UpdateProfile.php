@@ -20,7 +20,7 @@ class UpdateProfile
     public function __construct(User $user, array $attributes = [])
     {
         $this->user = $user;
-        $this->attributes = array_only($attributes, ['name', 'email', 'username']);
+        $this->attributes = array_only($attributes, ['name', 'email', 'username', 'github_username']);
     }
 
     public static function fromRequest(User $user, UpdateProfileRequest $request): self
