@@ -9,6 +9,7 @@ use App\Social\GithubUser;
 use App\Jobs\UpdateProfile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Laravel\Socialite\Two\User as SocialiteUser;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class GithubController extends Controller
@@ -37,7 +38,7 @@ class GithubController extends Controller
         }
     }
 
-    private function userFound(User $user, $socialiteUser): RedirectResponse
+    private function userFound(User $user, SocialiteUser $socialiteUser): RedirectResponse
     {
         $this->dispatchNow(new UpdateProfile($user, ['github_username' => $socialiteUser->nickname]));
 
