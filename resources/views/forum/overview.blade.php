@@ -17,6 +17,8 @@
 
             <a class="btn btn-success btn-block" href="{{ route('threads.create') }}">Create Thread</a>
 
+            @include('layouts.ads._forum_sidebar')
+
             <h3>Tags</h3>
             <div class="list-group">
                 <a href="{{ route('forum') }}" class="list-group-item {{ active('forum*', ! isset($activeTag) || $activeTag === null) }}">All</a>

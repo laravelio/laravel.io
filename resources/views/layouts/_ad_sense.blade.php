@@ -1,4 +1,4 @@
-@if (app()->environment('production') && $adClient = config('services.google.ad_sense.ad_client'))
+@if (app()->environment('production') && $adClient = config('services.google.ad_sense.client'))
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({
