@@ -113,6 +113,13 @@
             @endforeach
 
             @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
+                <div class="alert alert-info">
+                    <p>
+                        Please make sure you've read our
+                        <a href="{{ route('rules') }}" class="alert-link">Forum Rules</a> before replying to this thread.
+                    </p>
+                </div>
+                
                 <hr>
                 {!! Form::open(['route' => 'replies.store']) !!}
                     @formGroup('body')
@@ -124,15 +131,6 @@
                     {!! Form::hidden('replyable_type', 'threads') !!}
                     {!! Form::submit('Reply', ['class' => 'btn btn-primary btn-block']) !!}
                 {!! Form::close() !!}
-
-                <hr>
-
-                <div class="alert alert-info">
-                    <p>
-                        Please make sure you've read our
-                        <a href="{{ route('rules') }}" class="alert-link">Forum Rules</a> before replying to this thread.
-                    </p>
-                </div>
             @endcan
 
             @if (Auth::guest())
