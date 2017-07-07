@@ -44,7 +44,7 @@ The following tools are required in order to start the installation.
     5. `yarn dev`
 5. Add `192.168.10.10 lio.app` to your computer's `/etc/hosts` file
 
-You can now visit the app in your browser by visiting [http://lio.app](http://lio.app)
+You can now visit the app in your browser by visiting [http://lio.app](http://lio.app). If you seeded the database you can login into a test account with `johndoe` & `password`.
 
 ```yaml
 ip: 192.168.10.10
