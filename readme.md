@@ -64,6 +64,10 @@ name: laravelio
 hostname: laravelio
 ```
 
+### E-mail Setup
+
+Laravel.io relies on a working e-mail driver to function properly (notifications, e-mail confirmation). You can easily setup a service like [Mailtrap](https://mailtrap.io/) with the app to preview emails sent by the portal.
+
 ### Github Authentication
 
 To get Github authentication to work locally, you'll need to [register a new OAuth application on Github](https://github.com/settings/applications/new). Use `http://lio.app` for the homepage url and `http://lio.app/auth/github` for the callback url. When you've created the app, fill in the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with Github.
