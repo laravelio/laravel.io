@@ -124,6 +124,15 @@
                     {!! Form::hidden('replyable_type', 'threads') !!}
                     {!! Form::submit('Reply', ['class' => 'btn btn-primary btn-block']) !!}
                 {!! Form::close() !!}
+
+                <hr>
+
+                <div class="alert alert-info">
+                    <p>
+                        Please make sure you've read our
+                        <a href="{{ route('rules') }}" class="alert-link">Forum Rules</a> before replying to this thread.
+                    </p>
+                </div>
             @endcan
 
             @if (Auth::guest())
