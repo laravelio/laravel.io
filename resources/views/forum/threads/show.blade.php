@@ -113,14 +113,15 @@
             @endforeach
 
             @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
+                <hr>
+
                 <div class="alert alert-info">
                     <p>
                         Please make sure you've read our
                         <a href="{{ route('rules') }}" class="alert-link">Forum Rules</a> before replying to this thread.
                     </p>
                 </div>
-                
-                <hr>
+
                 {!! Form::open(['route' => 'replies.store']) !!}
                     @formGroup('body')
                         {!! Form::textarea('body', null, ['class' => 'form-control wysiwyg', 'required']) !!}
