@@ -34,37 +34,14 @@ The following tools are required in order to start the installation.
 > Note that you're free to adjust the `~/Sites/laravelio` location to any directory you want on your machine.
 
 1. Clone this repository: `git clone git@github.com:laravelio/laravel-io.git ~/Sites/laravelio`
-2. Add the `Homestead.yaml` file from below to the root of your project
-3. Run `vagrant up`
-4. SSH into your Vagrant box, go to `/home/vagrant/laravelio` and run the following commands:
-    1. `composer install`
-    2. `php artisan key:generate`
-    3. `php artisan migrate --seed`
-    4. `yarn install`
-    5. `yarn dev`
-5. Add `192.168.10.10 lio.app` to your computer's `/etc/hosts` file
-6. Setup a working e-mail driver like [Mailtrap](https://mailtrap.io/)
-7. (optional) Set up Github authentication (see below)
+2. Run `composer start` and optionally change some preferences to `Homestead.yaml`
+4. Run `vagrant up`
+5. SSH into your Vagrant box, go to `/home/vagrant/Code/laravelio` and run `composer setup`
+6. Add `192.168.10.10 laravelio.app` to your computer's `/etc/hosts` file
+7. Setup a working e-mail driver like [Mailtrap](https://mailtrap.io/)
+8. (optional) Set up Github authentication (see below)
 
-You can now visit the app in your browser by visiting [http://lio.app](http://lio.app). If you seeded the database you can login into a test account with `johndoe` & `password`.
-
-```yaml
-ip: 192.168.10.10
-memory: 2048
-cpus: 1
-provider: virtualbox
-authorize: ~/.ssh/id_rsa.pub
-keys:
-    - ~/.ssh/id_rsa
-folders:
-    - { map: ~/Sites/laravelio, to: /home/vagrant/laravelio }
-sites:
-    - { map: lio.app, to: /home/vagrant/laravelio/public }
-databases:
-    - homestead
-name: laravelio
-hostname: laravelio
-```
+You can now visit the app in your browser by visiting [http://laravelio.app](http://laravelio.app). If you seeded the database you can login into a test account with `johndoe` & `password`.
 
 ### Github Authentication (optional)
 
@@ -73,7 +50,7 @@ To get Github authentication to work locally, you'll need to [register a new OAu
 ```
 GITHUB_ID=
 GITHUB_SECRET=
-GITHUB_URL=http://lio.app/auth/github
+GITHUB_URL=http://laravelio.app/auth/github
 ```
 
 ## Maintainers

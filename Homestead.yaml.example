@@ -1,0 +1,19 @@
+ip: 192.168.10.10
+memory: 2048
+cpus: 1
+provider: virtualbox
+authorize: ~/.ssh/id_rsa.pub
+keys:
+    - ~/.ssh/id_rsa
+folders:
+    -
+        map: ~/Sites/laravelio
+        to: /home/vagrant/Code/laravelio
+sites:
+    -
+        map: laravelio.app
+        to: /home/vagrant/Code/laravelio/public
+databases:
+    - homestead
+name: laravelio
+hostname: laravelio

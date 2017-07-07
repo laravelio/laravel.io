@@ -22,7 +22,7 @@
         "jakub-onderka/php-console-highlighter": "^0.3.2",
         "jakub-onderka/php-parallel-lint": "^0.9.2",
         "laravel/browser-kit-testing": "^1.0",
-        "laravel/homestead": "^5.0",
+        "laravel/homestead": "^5",
         "mockery/mockery": "^0.9.5",
         "phpspec/phpspec": "^3.2",
         "phpunit/phpunit": "^5.7",
@@ -59,6 +59,17 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
+        ],
+        "start": [
+            "composer install",
+            "homestead make --no-after"
+        ],
+        "setup": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "php artisan key:generate",
+            "php artisan migrate --seed",
+            "yarn install",
+            "yarn dev"
         ],
         "test": "phpunit --stop-on-failure",
         "spec": "phpspec run"
