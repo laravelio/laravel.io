@@ -18,6 +18,6 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'ip' => $faker->ipv4,
         'is_banned' => false,
         'type' => User::DEFAULT,
-        'bio' => $faker->realText(140)
+        'bio' => $faker->text
     ];
 });

@@ -38,7 +38,7 @@ class User extends Authenticatable
         'github_username',
         'type',
         'remember_token',
-        'bio'
+        'bio',
     ];
 
     /**
@@ -50,7 +50,7 @@ class User extends Authenticatable
     {
         parent::boot();
 
-        $eventHandler = function($model) {
+        $eventHandler = function ($model) {
             $model->bio = empty($model->bio) ? null : trim(strip_tags($model->bio));
         };
 
@@ -161,7 +161,7 @@ class User extends Authenticatable
 
     public function hasBio(): bool
     {
-        return !empty($this->bio);
+        return ! empty($this->bio);
     }
 
     /**

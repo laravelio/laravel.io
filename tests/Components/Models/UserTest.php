@@ -41,10 +41,10 @@ class UserTest extends TestCase
     public function it_cannot_contain_htmltags_in_bio()
     {
         $user = factory(User::class)->create([
-            'bio' => '<strong>my bio</strong>'
+            'bio' => '<strong>my bio</strong>',
         ]);
 
-        $this->assertEquals("my bio", $user->bio());
+        $this->assertEquals('my bio', $user->bio());
     }
 
     private function seedTwoSolutionReplies(User $user)

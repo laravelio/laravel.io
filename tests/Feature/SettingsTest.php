@@ -27,7 +27,7 @@ class SettingsTest extends BrowserKitTestCase
                 'name' => 'Freek Murze',
                 'email' => 'freek@example.com',
                 'username' => 'freekmurze',
-                'bio' => 'My short bio text'
+                'bio' => 'My short bio text',
             ])
             ->seePageIs('/settings')
             ->see('Freek Murze')
@@ -48,7 +48,7 @@ class SettingsTest extends BrowserKitTestCase
                 'name' => 'Freek Murze',
                 'email' => 'freek@example.com',
                 'username' => 'freekmurze',
-                'bio' => 'My short bio text'
+                'bio' => 'My short bio text',
             ])
             ->seePageIs('/settings')
             ->see('Something went wrong. Please review the fields below.')
