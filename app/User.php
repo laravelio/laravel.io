@@ -51,7 +51,7 @@ class User extends Authenticatable
         parent::boot();
 
         $eventHandler = function ($model) {
-            $model->bio = empty($model->bio) ? null : trim(strip_tags($model->bio));
+            $model->bio = ! $model->hasBio() ? null : trim(strip_tags($model->bio()));
         };
 
         static::creating($eventHandler);
@@ -156,12 +156,12 @@ class User extends Authenticatable
 
     public function bio(): ?string
     {
-        return $this->bio;
+        return $this->getAttributeValue('bio');
     }
 
     public function hasBio(): bool
     {
-        return ! empty($this->bio);
+        return ! empty($this->bio());
     }
 
     /**

@@ -16,7 +16,7 @@ class RegisterUserTest extends TestCase
     /** @test */
     public function we_can_create_a_user()
     {
-        $job = new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password', 'My bio');
+        $job = new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password');
 
         $this->assertInstanceOf(User::class, $job->handle($this->app->make(Hasher::class)));
     }
@@ -26,10 +26,10 @@ class RegisterUserTest extends TestCase
     {
         $this->expectException(CannotCreateUser::class);
 
-        $job = new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password', 'My bio');
+        $job = new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password');
         $job->handle($this->app->make(Hasher::class));
 
-        $job = new RegisterUser('John Doe', 'john@example.com', 'john', '', 'password', 'My bio');
+        $job = new RegisterUser('John Doe', 'john@example.com', 'john', '', 'password');
         $job->handle($this->app->make(Hasher::class));
     }
 
@@ -38,10 +38,10 @@ class RegisterUserTest extends TestCase
     {
         $this->expectException(CannotCreateUser::class);
 
-        $job = new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password', 'My bio');
+        $job = new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password');
         $job->handle($this->app->make(Hasher::class));
 
-        $job = new RegisterUser('John Doe', 'doe@example.com', 'johndoe', '', 'password', 'My bio');
+        $job = new RegisterUser('John Doe', 'doe@example.com', 'johndoe', '', 'password');
         $job->handle($this->app->make(Hasher::class));
     }
 }
