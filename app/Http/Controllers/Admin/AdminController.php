@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use App\Queries\SearchUsers;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\VerifyAdmins;
 use Illuminate\Auth\Middleware\Authenticate;
@@ -16,8 +17,8 @@ class AdminController extends Controller
 
     public function index()
     {
-        $users = ($filter = request('filter'))
-                ? User::searchAllPaginated($filter)
+        $users = ($search = request('search'))
+                ? SearchUsers::get($search)
                 : User::findAllPaginated();
 
         return view('admin.overview', compact('users'));

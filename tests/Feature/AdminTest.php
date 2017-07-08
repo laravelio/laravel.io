@@ -53,27 +53,6 @@ class AdminTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function moderators_can_search_the_users_overview()
-    {
-        $this->loginAsModerator();
-        $this->assertCanSearchTheUserOverview();
-    }
-
-    private function assertCanSearchTheUserOverview()
-    {
-        factory(User::class)->create(['name' => 'Freek Murze', 'email' => 'freek@freek.com']);
-        factory(User::class)->create(['name' => 'Frederick Vanbrabant', 'email' => 'vanbra@vanbra.com']);
-
-        $this->visit('/admin?filter=Fre')
-            ->see('Freek Murze')
-            ->see('Frederick Vanbrabant');
-
-        $this->visit('/admin?filter=vanbra')
-            ->see('Frederick Vanbrabant')
-            ->dontSee('Freek Murze');
-    }
-
-    /** @test */
     public function admins_can_ban_a_user()
     {
         $this->loginAsAdmin();

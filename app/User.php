@@ -7,7 +7,6 @@ use App\Models\Thread;
 use App\Helpers\ModelHelpers;
 use App\Helpers\HasTimestamps;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -235,15 +234,6 @@ class User extends Authenticatable
     public static function findByGithubId(string $githubId): User
     {
         return static::where('github_id', $githubId)->firstOrFail();
-    }
-
-    public static function searchAllPaginated(string $filter, int $perPage = 20): Paginator
-    {
-        return static::where(function ($query) use ($filter) {
-            $query->where('name', 'like', $filter.'%')
-                ->orWhere('email', 'like', $filter.'%')
-                ->orWhere('username', 'like', $filter.'%');
-        })->paginate($perPage);
     }
 
     public function delete()
