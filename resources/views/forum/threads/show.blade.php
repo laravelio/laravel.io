@@ -26,7 +26,7 @@
 
             <a class="btn btn-link btn-block" href="{{ route('forum') }}"><i class="fa fa-arrow-left"></i> Back</a></a>
 
-            @include('layouts.ads._forum_sidebar')
+            @include('layouts._ads._forum_sidebar')
         </div>
         <div class="col-md-9">
             <h1>{{ $title }}</h1>

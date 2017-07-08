@@ -52,6 +52,7 @@ return [
 
     'google' => [
         'ad_sense' => [
+            'enabled' => env('GOOGLE_AD_SENSE_ENABLED', false),
             'client' => env('GOOGLE_AD_SENSE_AD_CLIENT'),
             'unit_footer' => env('GOOGLE_AD_SENSE_UNIT_FOOTER'),
             'unit_forum_sidebar' => env('GOOGLE_AD_SENSE_UNIT_FORUM_SIDEBAR'),

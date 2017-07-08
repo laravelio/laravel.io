@@ -1,4 +1,4 @@
-@include('layouts.ads._footer')
+@include('layouts._ads._footer')
 @include('layouts._sponsors')
 
 <div id="footer" class="container text-center">
