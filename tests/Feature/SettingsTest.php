@@ -27,11 +27,13 @@ class SettingsTest extends BrowserKitTestCase
                 'name' => 'Freek Murze',
                 'email' => 'freek@example.com',
                 'username' => 'freekmurze',
+                'bio' => 'My short bio text'
             ])
             ->seePageIs('/settings')
             ->see('Freek Murze')
             ->see('freekmurze')
-            ->see('Settings successfully saved!');
+            ->see('Settings successfully saved!')
+            ->see('My short bio text');
     }
 
     /** @test */
@@ -46,11 +48,13 @@ class SettingsTest extends BrowserKitTestCase
                 'name' => 'Freek Murze',
                 'email' => 'freek@example.com',
                 'username' => 'freekmurze',
+                'bio' => 'My short bio text'
             ])
             ->seePageIs('/settings')
             ->see('Something went wrong. Please review the fields below.')
             ->see('The email has already been taken.')
-            ->see('The username has already been taken.');
+            ->see('The username has already been taken.')
+            ->see('My short bio text');
     }
 
     /** @test */
