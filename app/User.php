@@ -243,8 +243,7 @@ class User extends Authenticatable
             $query->where('name', 'like', $filter.'%')
                 ->orWhere('email', 'like', $filter.'%')
                 ->orWhere('username', 'like', $filter.'%');
-            })
-            ->paginate($perPage);
+        })->paginate($perPage);
     }
 
     public function delete()
