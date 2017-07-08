@@ -8,7 +8,7 @@
             Users
             <form method="GET" action="{{ route('admin') }}">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="q" placeholder="Search for user...">
+                    <input type="text" class="form-control" name="filter" placeholder="Search for user...">
                     <span class="input-group-btn">
                         <button class="btn btn-primary" type="button">
                             <i class="fa fa-search"></i>
