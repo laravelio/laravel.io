@@ -34,7 +34,7 @@ The following tools are required in order to start the installation.
 > Note that you're free to adjust the `~/Sites/laravelio` location to any directory you want on your machine.
 
 1. Clone this repository: `git clone git@github.com:laravelio/laravel-io.git ~/Sites/laravelio`
-2. Run `composer start` and optionally change some preferences to `Homestead.yaml`
+2. Run `composer start`
 4. Run `vagrant up`
 5. SSH into your Vagrant box, go to `/home/vagrant/Code/laravelio` and run `composer setup`
 6. Add `192.168.10.10 laravelio.app` to your computer's `/etc/hosts` file
