@@ -41,6 +41,15 @@
                     </div>
                 @endFormGroup
 
+                @formGroup('bio')
+                    {!! Form::label('bio', null, ['class' => 'col-md-3 control-label']) !!}
+
+                    <div class="col-md-6">
+                        {!! Form::textarea('bio', Auth::user()->bio(), ['class' => 'form-control','rows'=>3]) !!}
+                        @error('bio')
+                    </div>
+                @endFormGroup
+
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-6">
                         {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

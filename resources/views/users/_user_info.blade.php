@@ -10,6 +10,11 @@
     @endcan
 
     <h2>{{ $user->name() }}</h2>
+    @if ($user->hasBio())
+        <p class="profile-user-bio">
+            {{ $user->bio() }}
+        </p>
+    @endif
 
     @if ($user->isAdmin())
         <p><span class="label label-primary">Admin</span></p>

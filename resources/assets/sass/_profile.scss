@@ -1,7 +1,13 @@
 .profile-user-info {
     padding-top: 25px;
     text-align: center;
+
+    .profile-user-bio {
+        margin:5px auto;
+        max-width: 300px;
+    }
 }
+
 .profile-user-info h2 {
     font-size: 30px;
 }
@@ -12,3 +18,4 @@
     margin-bottom: 30px;
     text-align: center;
 }
+

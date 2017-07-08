@@ -38,12 +38,25 @@ class User extends Authenticatable
         'github_username',
         'type',
         'remember_token',
+        'bio'
     ];
 
     /**
      * {@inheritdoc}
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        $eventHandler = function($model) {
+            $model->bio = empty($model->bio) ? null : trim(strip_tags($model->bio));
+        };
+
+        static::creating($eventHandler);
+        static::updating($eventHandler);
+    }
 
     public function id(): int
     {
@@ -139,6 +152,16 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->type() === self::ADMIN;
+    }
+
+    public function bio(): ?string
+    {
+        return $this->bio;
+    }
+
+    public function hasBio(): bool
+    {
+        return !empty($this->bio);
     }
 
     /**
