@@ -17,6 +17,8 @@ before_install:
 
 before_script:
   - composer install --prefer-source --no-interaction --dev
+  - php artisan route:cache
+  - php artisan config:cache
   - yarn install
   - yarn production
 
