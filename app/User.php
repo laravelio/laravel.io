@@ -240,9 +240,9 @@ class User extends Authenticatable
     public static function searchAllPaginated(string $filter, int $perPage = 20): Paginator
     {
         return static::where(function ($query) use ($filter) {
-                $query->where('name', 'like', $filter.'%')
-                    ->orWhere('email', 'like', $filter.'%')
-                    ->orWhere('username', 'like', $filter.'%');
+            $query->where('name', 'like', $filter.'%')
+                ->orWhere('email', 'like', $filter.'%')
+                ->orWhere('username', 'like', $filter.'%');
             })
             ->paginate($perPage);
     }

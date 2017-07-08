@@ -16,8 +16,8 @@ class AdminController extends Controller
 
     public function index()
     {
-        $users = ($filter = request('filter')) 
-                ? User::searchAllPaginated($filter) 
+        $users = ($filter = request('filter'))
+                ? User::searchAllPaginated($filter)
                 : User::findAllPaginated();
 
         return view('admin.overview', compact('users'));
