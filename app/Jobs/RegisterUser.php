@@ -40,13 +40,19 @@ class RegisterUser
      */
     private $attributes;
 
-    public function __construct(string $name, string $email, string $username, string $ip, string $password, array $attributes = [])
+    /**
+     * @var string
+     */
+    private $bio;
+
+    public function __construct(string $name, string $email, string $username, string $ip, string $password, string $bio, array $attributes = [])
     {
         $this->name = $name;
         $this->email = $email;
         $this->username = $username;
         $this->ip = $ip;
         $this->password = $password;
+        $this->bio = $bio;
         $this->attributes = array_only($attributes, ['github_id', 'github_username']);
     }
 
@@ -58,6 +64,7 @@ class RegisterUser
             $request->username(),
             $request->ip(),
             $request->password(),
+            $request->bio(),
             ['github_id' => $request->githubId(), 'github_username' => $request->githubUsername()]
         );
     }
@@ -76,6 +83,7 @@ class RegisterUser
             'confirmation_code' => str_random(60),
             'type' => User::DEFAULT,
             'remember_token' => '',
+            'bio' => $this->bio,
         ], $this->attributes));
         $user->save();
 
