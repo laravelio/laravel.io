@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Components\Jobs;
 
 use Tests\TestCase;
