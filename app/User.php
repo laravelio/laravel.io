@@ -38,6 +38,7 @@ class User extends Authenticatable
         'github_username',
         'type',
         'remember_token',
+        'bio',
     ];
 
     /**
@@ -139,6 +140,11 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->type() === self::ADMIN;
+    }
+
+    public function bio(): string
+    {
+        return $this->bio;
     }
 
     /**

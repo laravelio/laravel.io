@@ -11,6 +11,12 @@
 
     <h2>{{ $user->name() }}</h2>
 
+    @if ($bio = $user->bio())
+        <p class="profile-user-bio">
+            {{ $bio }}
+        </p>
+    @endif
+
     @if ($user->isAdmin())
         <p><span class="label label-primary">Admin</span></p>
     @elseif ($user->isModerator())

@@ -20,7 +20,7 @@ class UpdateProfile
     public function __construct(User $user, array $attributes = [])
     {
         $this->user = $user;
-        $this->attributes = array_only($attributes, ['name', 'email', 'username', 'github_username']);
+        $this->attributes = array_only($attributes, ['name', 'email', 'username', 'github_username', 'bio']);
     }
 
     public static function fromRequest(User $user, UpdateProfileRequest $request): self
@@ -29,11 +29,14 @@ class UpdateProfile
             'name' => $request->name(),
             'email' => $request->email(),
             'username' => strtolower($request->username()),
+            'bio' => trim(strip_tags($request->bio())),
         ]);
     }
 
     public function handle()
     {
         $this->user->update($this->attributes);
+
+        return $this->user;
     }
 }
