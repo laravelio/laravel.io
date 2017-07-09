@@ -8,7 +8,7 @@
             Users
             {{ Form::open(['route' => 'admin', 'method' => 'GET']) }}
                 <div class="input-group">
-                    <input type="text" class="form-control" name="search" placeholder="Search for user...">
+                    <input type="text" class="form-control" name="search" placeholder="Search for users...">
                     <span class="input-group-btn">
                         <button class="btn btn-primary" type="button">
                             <i class="fa fa-search"></i>
@@ -44,7 +44,9 @@
                             @endif
                         </td>
                         <td style="text-align:center;">
-                            <a href="{{ route('admin.users.show', $user->username()) }}" class="btn btn-xs btn-link"><i class="fa fa-gear"></i></a>
+                            <a href="{{ route('admin.users.show', $user->username()) }}" class="btn btn-xs btn-link">
+                                <i class="fa fa-gear"></i>
+                            </a>
                         </td>
                     </tr>
                 @endforeach
