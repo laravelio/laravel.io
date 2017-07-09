@@ -6,7 +6,7 @@
     <div class="panel panel-default panel-search">
         <div class="panel-heading">
             Users
-            <form method="GET" action="{{ route('admin') }}">
+            {{ Form::open(['route' => 'admin', 'method' => 'GET']) }}
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Search for user...">
                     <span class="input-group-btn">
@@ -15,7 +15,7 @@
                         </button>
                     </span>
                 </div>
-            </form>
+            {{ Form::close() }}
         </div>
 
         <table class="table table-striped table-sort">
