@@ -13,9 +13,9 @@ class SearchUsers
     public static function get(string $keyword, int $perPage = 20): Paginator
     {
         return User::where(function ($query) use ($keyword) {
-            $query->where('name', 'like', $keyword.'%')
-                ->orWhere('email', 'like', $keyword.'%')
-                ->orWhere('username', 'like', $keyword.'%');
+            $query->where('name', 'like', "%$keyword%")
+                ->orWhere('email', 'like', "%$keyword%")
+                ->orWhere('username', 'like', "%$keyword%");
         })->paginate($perPage);
     }
 }
