@@ -1,0 +1,12 @@
+.panel-search {
+    .panel-heading {
+        display: flex;
+        align-items: center;
+
+        form {
+            max-width: 340px;
+            margin-left: auto;
+            padding-left: 16px;
+        }
+    }
+}

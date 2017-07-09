@@ -3,8 +3,20 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="panel panel-default">
-        <div class="panel-heading">Users</div>
+    <div class="panel panel-default panel-search">
+        <div class="panel-heading">
+            Users
+            {{ Form::open(['route' => 'admin', 'method' => 'GET']) }}
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Search for user...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            {{ Form::close() }}
+        </div>
 
         <table class="table table-striped table-sort">
             <thead>
