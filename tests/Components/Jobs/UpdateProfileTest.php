@@ -1,8 +1,6 @@
 <?php
 namespace Tests\Components\Jobs;
 
-use App\User;
-use Mockery as m;
 use Tests\TestCase;
 use App\Jobs\UpdateProfile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
