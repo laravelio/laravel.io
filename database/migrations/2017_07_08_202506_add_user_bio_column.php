@@ -13,7 +13,7 @@ class AddUserBioColumn extends Migration
     public function up()
     {
         Schema::table('users', function ($table) {
-            $table->string('bio', 140)->nullable();
+            $table->string('bio', 160)->default('');
         });
     }
 
@@ -24,8 +24,5 @@ class AddUserBioColumn extends Migration
      */
     public function down()
     {
-        Schema::table('users', function ($table) {
-            $table->dropColumn('bio');
-        });
     }
 }

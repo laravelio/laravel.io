@@ -46,18 +46,6 @@ class User extends Authenticatable
      */
     protected $hidden = ['password', 'remember_token'];
 
-    public static function boot()
-    {
-        parent::boot();
-
-        $eventHandler = function ($model) {
-            $model->bio = ! $model->hasBio() ? null : trim(strip_tags($model->bio()));
-        };
-
-        static::creating($eventHandler);
-        static::updating($eventHandler);
-    }
-
     public function id(): int
     {
         return $this->id;
@@ -154,14 +142,9 @@ class User extends Authenticatable
         return $this->type() === self::ADMIN;
     }
 
-    public function bio(): ?string
+    public function bio(): string
     {
-        return $this->getAttributeValue('bio');
-    }
-
-    public function hasBio(): bool
-    {
-        return ! empty($this->bio());
+        return $this->bio;
     }
 
     /**

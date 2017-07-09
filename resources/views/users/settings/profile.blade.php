@@ -45,7 +45,8 @@
                     {!! Form::label('bio', null, ['class' => 'col-md-3 control-label']) !!}
 
                     <div class="col-md-6">
-                        {!! Form::textarea('bio', Auth::user()->bio(), ['class' => 'form-control','rows'=>3]) !!}
+                        {!! Form::textarea('bio', Auth::user()->bio(), ['class' => 'form-control', 'rows' => 3, 'maxlength' => 160]) !!}
+                        <span class="help-block">The user bio is limited to 160 characters.</span>
                         @error('bio')
                     </div>
                 @endFormGroup

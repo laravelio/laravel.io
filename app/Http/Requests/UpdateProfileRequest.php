@@ -12,13 +12,13 @@ class UpdateProfileRequest extends Request
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email,'.Auth::id(),
             'username' => 'required|max:255|unique:users,username,'.Auth::id(),
-            'bio' => 'sometimes|max:144',
+            'bio' => 'max:160',
         ];
     }
 
-    public function bio(): ?string
+    public function bio(): string
     {
-        return $this->get('bio');
+        return $this->get('bio', '');
     }
 
     public function name(): string

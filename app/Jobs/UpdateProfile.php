@@ -29,7 +29,7 @@ class UpdateProfile
             'name' => $request->name(),
             'email' => $request->email(),
             'username' => strtolower($request->username()),
-            'bio' => $request->bio(),
+            'bio' => trim(strip_tags($request->bio())),
         ]);
     }
 
