@@ -10,8 +10,8 @@
     @endcan
 
     <h2>{{ $user->name() }}</h2>
-    @if ($bio = $user->bio())
 
+    @if ($bio = $user->bio())
         <p class="profile-user-bio">
             {{ $bio }}
         </p>

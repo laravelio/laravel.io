@@ -16,13 +16,4 @@ class AddUserBioColumn extends Migration
             $table->string('bio', 160)->default('');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-    }
 }

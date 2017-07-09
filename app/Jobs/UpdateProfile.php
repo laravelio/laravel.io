@@ -36,5 +36,7 @@ class UpdateProfile
     public function handle()
     {
         $this->user->update($this->attributes);
+
+        return $this->user;
     }
 }
