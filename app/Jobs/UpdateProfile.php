@@ -33,7 +33,7 @@ class UpdateProfile
         ]);
     }
 
-    public function handle()
+    public function handle(): User
     {
         $this->user->update($this->attributes);
 
