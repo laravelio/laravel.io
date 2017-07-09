@@ -27,7 +27,7 @@ class SettingsTest extends BrowserKitTestCase
                 'name' => 'Freek Murze',
                 'email' => 'freek@example.com',
                 'username' => 'freekmurze',
-                'bio' => 'My bio'
+                'bio' => 'My bio',
             ])
             ->seePageIs('/settings')
             ->see('Freek Murze')
