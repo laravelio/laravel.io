@@ -16,6 +16,6 @@ class SearchThreads
             ->where('threads.subject', 'LIKE', "%$keyword%")
             ->orWhere('threads.body', 'LIKE', "%$keyword%")
             ->paginate($perPage)
-            ->appends(request()->only('search'));
+            ->appends(['search' => $keyword]);
     }
 }
