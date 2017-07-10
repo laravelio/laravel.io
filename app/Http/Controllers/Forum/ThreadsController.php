@@ -27,6 +27,7 @@ class ThreadsController extends Controller
     public function overview()
     {
         $threads = request()->has('search') ? SearchThreads::get(request('search')) : Thread::feedPaginated();
+        $threads->appends(request()->except('page'));
 
         return view('forum.overview', compact('threads'));
     }
