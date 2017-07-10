@@ -15,6 +15,7 @@ class SearchThreads
         return Thread::feedQuery()
             ->where('threads.subject', 'LIKE', "%$keyword%")
             ->orWhere('threads.body', 'LIKE', "%$keyword%")
-            ->paginate($perPage);
+            ->paginate($perPage)
+            ->appends(['search' => $keyword]);
     }
 }
