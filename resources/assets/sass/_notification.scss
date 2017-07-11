@@ -1,3 +1,23 @@
-.notification-link i {
-    padding: 0 10px;
+.notification-link {
+    position: relative;
+
+    i {
+        font-size: 19px;
+        padding: 0 10px;
+    }
+
+    .badge {
+        top: 0;
+        left: 45px;
+        padding: 3px;
+        font-size: 11px;
+        min-width: 20px;
+        position: absolute;
+    }
+
+    @media screen and (min-width: $screen-sm-min) {
+        .badge {
+            top: 10px;
+        }
+    }
 }
