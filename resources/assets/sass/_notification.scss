@@ -21,3 +21,78 @@
         }
     }
 }
+
+.notifications-container {
+    .notification {
+        display: flex;
+        padding: 10px;
+        cursor: pointer;
+        padding-left: 0;
+        margin-left: 10px;
+        align-items: center;
+        border-radius: 0 5px 5px 0;
+        border-left: 2px solid #f1f1f1;
+
+        .icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            margin-left: -17px;
+            margin-right: 10px;
+            border-radius: 50%;
+            align-items: center;
+            color: $brand-success;
+            justify-content: center;
+            background-color: #ffffff;
+            border: 1px solid $brand-success;
+
+            .fa {
+                padding: 5px 0;
+            }
+        }
+
+        .profile-image {
+            margin-right: 15px;
+
+            img {
+                max-width: 50px;
+                border-radius: 50%;
+            }
+        }
+
+        small {
+            color: $gray;
+        }
+
+        .icon-group {
+            margin-left: auto;
+
+            .fa {
+                color: rgba($gray, .4);
+                margin-left: auto;
+
+                &:hover {
+                    color: rgba($gray-dark, .4);
+                }
+            }
+        }
+
+        $types: (
+            read: #f1f1f1,
+            info: $brand-info,
+            warning: $brand-warning,
+            danger: $brand-danger,
+        );
+
+        @each $type, $color in $types {
+            &.#{$type} .icon {
+                color: $color;
+                border-color: rgba($color, .5);
+            }
+        }
+
+        &:hover {
+            background-color: #f9f9f9;
+        }
+    }
+}

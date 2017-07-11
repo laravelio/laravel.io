@@ -41,7 +41,7 @@
                     <li class="{{ active('login') }}"><a href="{{ route('login') }}">Login</a></li>
                     <li class="{{ active('register') }}"><a href="{{ route('register') }}">Register</a></li>
                 @else
-                    <li class="{{ active('notifications') }}"><a href="{{ route('notifications') }}" class="notification-link"><i class="fa fa-bell"></i><span class="badge">10</span></a></li>
+                    <li class="{{ active('notifications') }}"><a href="{{ route('notifications') }}" class="notification-link"><i class="fa fa-bell"></i><span class="badge">3</span></a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <img class="img-circle" src="{{ Auth::user()->gratavarUrl(60) }}" width="30"> <span class="caret"></span>

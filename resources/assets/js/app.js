@@ -16,6 +16,6 @@ require('./bootstrap');
 $('select.selectize').selectize({ maxItems: 3 });
 $('textarea.wysiwyg').markdown({ iconlibrary: 'fa' });
 
-// const app = new Vue({
-//     el: '#app'
-// });
+const app = new Vue({
+   el: '#app'
+});
