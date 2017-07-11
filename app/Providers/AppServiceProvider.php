@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use Auth;
 use App\Models\Thread;
+use Hash;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -7,20 +7,22 @@
         <div class="panel-heading">{{ $title }}</div>
         <div class="panel-body">
             {{ Form::open(['route' => 'settings.password.update', 'method' => 'PUT', 'class' => 'form-horizontal']) }}
-                @formGroup('current_password')
-                    {!! Form::label('current_password', null, ['class' => 'col-md-3 control-label']) !!}
+                @if (!empty($user->password))
+                    @formGroup('current_password')
+                        {!! Form::label('current_password', null, ['class' => 'col-md-3 control-label']) !!}
 
-                    <div class="col-md-6">
-                        {!! Form::password('current_password', ['class' => 'form-control', 'required']) !!}
-                        @error('current_password')
-                    </div>
-                @endFormGroup
+                        <div class="col-md-6">
+                            {!! Form::password('current_password', ['class' => 'form-control']) !!}
+                            @error('current_password')
+                        </div>
+                    @endFormGroup
+                @endif
 
                 @formGroup('password')
                     {!! Form::label('password', 'New Password', ['class' => 'col-md-3 control-label']) !!}
 
                     <div class="col-md-6">
-                        {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
+                        {!! Form::password('password', ['class' => 'form-control']) !!}
                         @error('password')
                     </div>
                 @endFormGroup
@@ -29,7 +31,7 @@
                     {!! Form::label('password_confirmation', 'Confirm New Password', ['class' => 'col-md-3 control-label']) !!}
 
                     <div class="col-md-6">
-                        {!! Form::password('password_confirmation', ['class' => 'form-control', 'required']) !!}
+                        {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                     </div>
                 @endFormGroup
 

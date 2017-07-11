@@ -3,16 +3,15 @@
 namespace App\Validation;
 
 use Auth;
-use Hash;
 
-class PasscheckRule
+class RequiredHasPassword
 {
-    const NAME = 'passcheck';
+    const NAME = 'required_has_password';
 
     public function validate($attribute, $value): bool
     {
         $password = Auth::user()->getAuthPassword();
 
-        return !empty($password) ? Hash::check($value, $password) : true;
+        return empty($password);
     }
 }
