@@ -8,7 +8,7 @@
             Users
             {{ Form::open(['route' => 'admin', 'method' => 'GET']) }}
                 <div class="input-group">
-                    <input type="text" class="form-control" name="search" placeholder="Search for users...">
+                    {{ Form::text('search', $search ?? null, ['class' => 'form-control', 'placeholder' => 'Search for users...']) }}
                     <span class="input-group-btn">
                         <button class="btn btn-primary" type="submit">
                             <i class="fa fa-search"></i>

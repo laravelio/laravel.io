@@ -11,7 +11,7 @@
         <div class="col-md-3">
             {{ Form::open(['route' => 'forum', 'method' => 'GET']) }}
                 <div class="form-group">
-                    <input type="text" name="search" class="form-control" placeholder="Search">
+                    {{ Form::text('search', $search ?? null, ['class' => 'form-control', 'placeholder' => 'Search for threads...']) }}
                 </div>
             {{ Form::close() }}
 
