@@ -3,15 +3,14 @@
 @extends('layouts.default')
 
 @section('content')
-    <h1>{{ $title }}</h1>
-    <hr>
-
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ $title }}</div>
+                <div class="panel-body">
 
-        </div>
-        </div>
-        <div class="col-md-9">
+                </div>
+            </div>
         </div>
     </div>
 @endsection
