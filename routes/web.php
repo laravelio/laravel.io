@@ -64,6 +64,9 @@ Route::get('replies/{reply}/edit', ['as' => 'replies.edit', 'uses' => 'ReplyCont
 Route::put('replies/{reply}', ['as' => 'replies.update', 'uses' => 'ReplyController@update']);
 Route::delete('replies/{reply}', ['as' => 'replies.delete', 'uses' => 'ReplyController@delete']);
 
+// Notifications
+Route::get('notifications', ['as' => 'notifications', 'uses' => 'NotificationController@index']);
+
 // Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', 'AdminController@index');
