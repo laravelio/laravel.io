@@ -13,6 +13,6 @@ class PasscheckRule
     {
         $password = Auth::user()->getAuthPassword();
 
-        return ! empty($password) ? Hash::check($value, $password) : true;
+        return empty($password) || Hash::check($value, $password);
     }
 }
