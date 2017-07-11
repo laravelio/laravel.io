@@ -11,3 +11,4 @@ Homestead.yaml
 .env
 /aliases
 /after.sh
+package-lock.json
