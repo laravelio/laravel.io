@@ -4,14 +4,14 @@ namespace App\Validation;
 
 use Auth;
 
-class RequiredHasPassword
+class RequiredUnlessNoPassword
 {
-    const NAME = 'required_has_password';
+    const NAME = 'required_unless_no_password';
 
     public function validate($attribute, $value): bool
     {
         $password = Auth::user()->getAuthPassword();
 
-        return empty($password);
+        return empty($password) || ! empty($value);
     }
 }

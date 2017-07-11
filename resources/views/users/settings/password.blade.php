@@ -12,7 +12,7 @@
                         {!! Form::label('current_password', null, ['class' => 'col-md-3 control-label']) !!}
 
                         <div class="col-md-6">
-                            {!! Form::password('current_password', ['class' => 'form-control']) !!}
+                            {!! Form::password('current_password', ['class' => 'form-control', 'required']) !!}
                             @error('current_password')
                         </div>
                     @endFormGroup
@@ -22,7 +22,7 @@
                     {!! Form::label('password', 'New Password', ['class' => 'col-md-3 control-label']) !!}
 
                     <div class="col-md-6">
-                        {!! Form::password('password', ['class' => 'form-control']) !!}
+                        {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
                         @error('password')
                     </div>
                 @endFormGroup
@@ -31,7 +31,7 @@
                     {!! Form::label('password_confirmation', 'Confirm New Password', ['class' => 'col-md-3 control-label']) !!}
 
                     <div class="col-md-6">
-                        {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                        {!! Form::password('password_confirmation', ['class' => 'form-control', 'required']) !!}
                     </div>
                 @endFormGroup
 
