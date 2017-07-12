@@ -19,8 +19,8 @@ $('textarea.wysiwyg').markdown({ iconlibrary: 'fa' });
 const app = new Vue({
    el: '#app',
    methods: {
-        emitGlobal(event, data = null) {
-            Bus.$emit(event, data);
+        emitGlobal(e, data = null) {
+            Bus.$emit(e, data);
         }
    }
 });

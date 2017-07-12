@@ -1,5 +1,5 @@
 <template>
-    <li :class="['notification',  notification.read_at ? 'read' : notification.type ]">
+    <li :class="['notification',  notification.read_at ? 'read' : notification.type]">
         <div class="icon">
             <i :class="notification.icon"></i>
         </div>
@@ -27,18 +27,19 @@
         data() {
             return {
                 notification: this.data,
+                format: 'YYYY-MM-DD HH:mm:ss',
             }
         },
 
         computed: {
             dateFromNow() {
-                return moment(this.notification.created_at, 'YYYY-MM-DD HH:mm:ss').fromNow();
+                return moment(this.notification.created_at, this.format).fromNow();
             }
         },
 
         methods: {
             markAsRead() {
-                this.notification.read_at = moment().format('YYYY-MM-DD HH:mm:ss');
+                this.notification.read_at = moment().format(this.format);
             }
         }
     }
