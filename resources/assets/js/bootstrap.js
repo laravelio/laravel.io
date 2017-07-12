@@ -18,6 +18,7 @@ require('bootstrap-sass');
  */
 
 window.Vue = require('vue');
+window.Bus = new Vue();
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -50,7 +51,6 @@ window.moment = require('moment');
 /**
  * 3rd Party Libraries.
  */
-require('vue-resource');
 require('selectize');
 require('markdown'); // This doesn't seems to work so we require it directly in base.blade.php
 require('to-markdown');
