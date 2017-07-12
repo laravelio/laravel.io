@@ -54,6 +54,7 @@
         display: flex;
         padding: 10px;
         cursor: pointer;
+        font-size: 13px;
         padding-left: 0;
         margin-left: 10px;
         align-items: center;
@@ -61,10 +62,10 @@
         border-left: 2px solid #f1f1f1;
 
         .icon {
-            height: 32px;
+            height: 25px;
             display: flex;
-            min-width: 32px;
-            margin-left: -17px;
+            min-width: 25px;
+            margin-left: -13px;
             margin-right: 10px;
             border-radius: 50%;
             align-items: center;
@@ -78,7 +79,7 @@
             margin-right: 15px;
 
             img {
-                max-width: 50px;
+                max-width: 35px;
                 border-radius: 50%;
             }
         }
@@ -124,7 +125,7 @@
         border: 0;
         padding: 0;
         width: 320px;
-        margin-top: 30px !important;
+        margin-top: 15px !important;
         border-radius: 10px 10px 0 0 !important;
 
         ul {
@@ -144,23 +145,19 @@
             }
         }
 
-        .notification {
-            font-size: 13px;
-
-            .icon {
-                height: 25px;
-                min-width: 25px;
-                margin-left: -13px;
-            }
-
-            .profile-image img {
-                max-width: 35px;
-            }
-        }
-
         .footer,
         .header {
             display: inherit;
+        }
+
+        &::before {
+            top: -10px;
+            content: '';
+            right: 25px;
+            position: absolute;
+            border-left: 9px solid transparent;
+            border-right: 9px solid transparent;
+            border-bottom: 11px solid $gray-lighter;
         }
     }
 }
