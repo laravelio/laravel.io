@@ -1,5 +1,5 @@
 <template>
-    <div :class="['notification', notification.type]">
+    <li :class="['notification',  notification.read_at ? 'read' : notification.type ]">
         <div class="icon">
             <i :class="notification.icon"></i>
         </div>
@@ -10,10 +10,10 @@
             <div v-html="notification.content"></div>
             <small v-text="dateFromNow"></small>
         </div>
-        <div class="icon-group">
-            <i class="fa fa-check"></i>
+        <div class="icon-group" v-if="typeof notification.read_at !== 'undefined' && ! notification.read_at">
+            <i class="fa fa-check" @click.stop="markAsRead"></i>
         </div>
-    </div>
+    </li>
 </template>
 
 <script>
@@ -33,6 +33,12 @@
         computed: {
             dateFromNow() {
                 return moment(this.notification.created_at, 'YYYY-MM-DD HH:mm:ss').fromNow();
+            }
+        },
+
+        methods: {
+            markAsRead() {
+                this.notification.read_at = moment().format('YYYY-MM-DD HH:mm:ss');
             }
         }
     }
