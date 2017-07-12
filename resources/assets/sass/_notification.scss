@@ -23,6 +23,33 @@
 }
 
 .notifications-container {
+    ul {
+        padding: 0;
+    }
+
+    .footer,
+    .header {
+        display: none;
+    }
+
+    .header {
+        text-align: center;
+        padding: 10px 25px;
+        margin-bottom: 15px;
+        color: $brand-success;
+        border-radius: 10px 10px 0 0;
+        background-color: $gray-lighter;
+
+        * {
+            margin: 0;
+        }
+    }
+
+    .footer {
+        margin-top: 5px;
+        padding: 10px 15px;
+    }
+
     .notification {
         display: flex;
         padding: 10px;
@@ -34,9 +61,9 @@
         border-left: 2px solid #f1f1f1;
 
         .icon {
-            width: 32px;
             height: 32px;
             display: flex;
+            min-width: 32px;
             margin-left: -17px;
             margin-right: 10px;
             border-radius: 50%;
@@ -45,10 +72,6 @@
             justify-content: center;
             background-color: #ffffff;
             border: 1px solid $brand-success;
-
-            .fa {
-                padding: 5px 0;
-            }
         }
 
         .profile-image {
@@ -66,13 +89,14 @@
 
         .icon-group {
             margin-left: auto;
+            align-self: flex-start;
 
             .fa {
+                padding: 5px;
                 color: rgba($gray, .4);
-                margin-left: auto;
 
                 &:hover {
-                    color: rgba($gray-dark, .4);
+                    color: rgba($gray-dark, .9);
                 }
             }
         }
@@ -93,6 +117,50 @@
 
         &:hover {
             background-color: #f9f9f9;
+        }
+    }
+
+    &.dropdown-menu {
+        border: 0;
+        padding: 0;
+        width: 320px;
+        margin-top: 30px !important;
+        border-radius: 10px 10px 0 0 !important;
+
+        ul {
+            padding: 0 15px;
+            max-height: 250px;
+            overflow-y: overlay;
+
+            &::-webkit-scrollbar {
+              width: 5px;
+              border-radius: 10px;
+              background: $gray-lighter;
+            }
+
+            &::-webkit-scrollbar-thumb {
+              background: $gray;
+              border-radius: 10px;
+            }
+        }
+
+        .notification {
+            font-size: 13px;
+
+            .icon {
+                height: 25px;
+                min-width: 25px;
+                margin-left: -13px;
+            }
+
+            .profile-image img {
+                max-width: 35px;
+            }
+        }
+
+        .footer,
+        .header {
+            display: inherit;
         }
     }
 }
