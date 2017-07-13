@@ -8,6 +8,7 @@ use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
 use App\Jobs\UpdateReply;
 use App\Models\ReplyAble;
+use App\Jobs\NotifyNewReply;
 use App\Policies\ReplyPolicy;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\CreateReplyRequest;
@@ -27,6 +28,8 @@ class ReplyController extends Controller
         $this->authorize(ReplyPolicy::CREATE, Reply::class);
 
         $reply = $this->dispatchNow(CreateReply::fromRequest($request));
+
+        $this->dispatchNow(new NotifyNewReply($reply));
 
         $this->success('replies.created');
 
