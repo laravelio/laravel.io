@@ -2,7 +2,6 @@
 
 namespace Tests\Components\Jobs;
 
-use App\User;
 use Tests\TestCase;
 use App\Models\Thread;
 use App\Jobs\ToggleThreadSubscription;
