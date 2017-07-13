@@ -54,6 +54,7 @@ Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
     Route::delete('{thread}', ['as' => 'threads.delete', 'uses' => 'ThreadsController@delete']);
     Route::put('{thread}/mark-solution/{reply}', ['as' => 'threads.solution.mark', 'uses' => 'ThreadsController@markSolution']);
     Route::put('{thread}/unmark-solution', ['as' => 'threads.solution.unmark', 'uses' => 'ThreadsController@unmarkSolution']);
+    Route::put('{thread}/subscription', ['as' => 'threads.subscription', 'uses' => 'ThreadsController@subscription']);
 
     Route::get('tags/{tag}', ['as' => 'forum.tag', 'uses' => 'TagsController@show']);
 });

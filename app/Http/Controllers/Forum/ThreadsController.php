@@ -14,6 +14,7 @@ use App\Jobs\MarkThreadSolution;
 use App\Jobs\UnmarkThreadSolution;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreadRequest;
+use App\Jobs\ToggleThreadSubscription;
 use Illuminate\Auth\Middleware\Authenticate;
 use App\Http\Middleware\RedirectIfUnconfirmed;
 
@@ -44,6 +45,8 @@ class ThreadsController extends Controller
     public function store(ThreadRequest $request)
     {
         $thread = $this->dispatchNow(CreateThread::fromRequest($request));
+
+        $this->dispatchNow(new ToggleThreadSubscription($thread, $thread->author()));
 
         $this->success('forum.threads.created');
 
@@ -93,6 +96,15 @@ class ThreadsController extends Controller
         $this->authorize(ThreadPolicy::UPDATE, $thread);
 
         $this->dispatchNow(new UnmarkThreadSolution($thread));
+
+        return redirect()->route('thread', $thread->slug());
+    }
+
+    public function subscription(Thread $thread)
+    {
+        $this->authorize(ThreadPolicy::SUBSCRIPTION, $thread);
+
+        $this->dispatchNow(new ToggleThreadSubscription($thread, auth()->user()));
 
         return redirect()->route('thread', $thread->slug());
     }
