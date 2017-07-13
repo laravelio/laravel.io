@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use App\Models\Tag;
 use App\Models\Thread;
 use Tests\BrowserKitTestCase;
@@ -63,7 +64,7 @@ class ForumTest extends BrowserKitTestCase
     {
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
 
-        $this->login();
+        $user = $this->login();
 
         $this->visit('/forum/create-thread')
             ->submitForm('Create Thread', [
@@ -75,6 +76,16 @@ class ForumTest extends BrowserKitTestCase
             ->see('How to work with Eloquent?')
             ->see('Test Tag')
             ->see('Thread successfully created!');
+
+        $this->userAutoSubscribesWhenCreateAThread($user);
+    }
+
+    protected function userAutoSubscribesWhenCreateAThread(User $user)
+    {
+        $subscribers = Thread::first()->subscribers()->get();
+
+        $this->assertCount(1, $subscribers);
+        $this->assertEquals($subscribers->first()->id, $user->id());
     }
 
     /** @test */
