@@ -30,6 +30,34 @@
         </div>
         <div class="col-md-9">
             <h1>{{ $title }}</h1>
+
+            <span class="pull-right">
+                @can(App\Policies\ThreadPolicy::SUBSCRIPTION, App\Models\Thread::class)
+                    @if ($thread->isSubscriber(Auth::user()))
+                        <a href="#" data-toggle="modal" data-target="#unsubscribeThread" data-tooltip data-placement="bottom" title="Unsubscribe">
+                            <i class="fa fa-bell-slash-o text-danger"></i>
+                        </a>
+
+                        @include('_partials._update_modal', [
+                            'id' => 'unsubscribeThread',
+                            'route' => ['threads.subscription', $thread->slug()],
+                            'title' => 'Unsubscribe the Thread',
+                            'body' => '<p>Confirm to unsubscribe this thread</p>',
+                        ])
+                    @else
+                        <a href="#" data-toggle="modal" data-target="#subscribeThread" data-tooltip data-placement="bottom" title="Subscribe">
+                            <i class="fa fa-bell-o text-success"></i>
+                        </a>
+
+                        @include('_partials._update_modal', [
+                            'id' => 'subscribeThread',
+                            'route' => ['threads.subscription', $thread->slug()],
+                            'title' => 'Subscribe the Thread',
+                            'body' => '<p>Confirm to subscribe this thread</p>',
+                        ])
+                    @endif
+                @endcan
+            </span>
             <hr>
 
             <div class="panel panel-default">
