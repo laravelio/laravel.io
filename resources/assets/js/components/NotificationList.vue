@@ -4,8 +4,8 @@
             <h4>Notifications</h4>
         </div>
         <ul>
-            <notification-card :data="notification" v-for="notification in notifications" v-if="notifications.length != 0"></notification-card>
-            <notification-card :data="noNotifications" v-if="notifications.length == 0"></notification-card>
+            <notification-card :data="notification" v-for="notification in notificationsIterable" v-if="hasNotifications"></notification-card>
+            <notification-card :data="noNotifications" v-if="! hasNotifications"></notification-card>
         </ul>
         <div class="footer">
             <a href="/notifications" class="btn btn-xs btn-primary">View all</a>
@@ -16,7 +16,7 @@
 <script>
     export default {
         props: ['notifications'],
-        
+
         data() {
             return {
                 noNotifications: {
@@ -31,10 +31,32 @@
             }
         },
 
+        computed: {
+            notificationsIterable() {
+                return this.notifications.data || this.notifications;
+            },
+
+            hasNotifications() {
+                let { data, length } = this.notifications;
+
+                return !! (data ? data.length : length);
+            }
+        },
+
         mounted() {
-            Bus.$on('MarkAllAsRead', () => {
-                console.log('marked');
-            })
+            Bus.$once('markAllAsRead', () => {
+                this.markAllAsRead();
+            });
+        },
+
+        methods: {
+            markAllAsRead() {
+                axios.put('/notifications/markall').then(() => {
+                    this.notificationsIterable.forEach((notification) => {
+                        notification.read_at = moment().format();
+                    });
+                });
+            }
         }
     }
 </script>

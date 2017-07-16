@@ -1,5 +1,5 @@
 <template>
-    <li :class="['notification',  notification.read_at ? 'read' : notification.data.type]" @click="">
+    <li :class="['notification',  notification.read_at ? 'read' : notification.data.type]" @click.prevent="markAsRead(true)">
         <div class="icon">
             <i :class="notification.data.icon"></i>
         </div>
@@ -11,7 +11,7 @@
             <small v-text="dateFromNow"></small>
         </div>
         <div class="icon-group" v-if="typeof notification.read_at !== 'undefined' && ! notification.read_at">
-            <i class="fa fa-check" @click.stop="markAsRead"></i>
+            <i class="fa fa-check" @click.stop="markAsRead()"></i>
         </div>
     </li>
 </template>
@@ -38,8 +38,17 @@
         },
 
         methods: {
-            markAsRead() {
-                this.notification.read_at = moment().format(this.format);
+            markAsRead(redirect = false) {
+                if (! this.notification.read_at) {
+                    window.location = this.notification.url;
+                }
+                axios.put('/notifications/' + this.notification.id).then(() => {
+                    this.notification.read_at = moment().format(this.format);
+
+                    if (redirect) {
+                        window.location = this.notification.url;
+                    }
+                });
             }
         }
     }

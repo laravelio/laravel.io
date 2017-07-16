@@ -41,12 +41,16 @@
                     <li class="{{ active('login') }}"><a href="{{ route('login') }}">Login</a></li>
                     <li class="{{ active('register') }}"><a href="{{ route('register') }}">Register</a></li>
                 @else
-                    @php 
-                        $notifications = Auth::user()->notifications()->get();
+                    @php
+                        $notifications = Auth::user()->unreadNotifications;
                     @endphp
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle notification-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge">{{ $notifications->count() }}</span></a>
+                        <a href="#" class="dropdown-toggle notification-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i>
+                            @if ($notifications->count())
+                                <span class="badge">{{ $notifications->count() }}</span>
+                            @endif
+                        </a>
                         <notification-list class="dropdown-menu" :notifications="{{ $notifications }}"></notification-list>
                     </li>
                     <li class="dropdown">

@@ -66,6 +66,8 @@ Route::delete('replies/{reply}', ['as' => 'replies.delete', 'uses' => 'ReplyCont
 
 // Notifications
 Route::get('notifications', ['as' => 'notifications', 'uses' => 'NotificationController@index']);
+Route::put('notifications/markall', ['as' => 'notifications.read.all', 'uses' => 'NotificationController@markAllAsRead']);
+Route::put('notifications/{notification}', ['as' => 'notifications.read', 'uses' => 'NotificationController@markAsRead']);
 
 // Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin', 'namespace' => 'Admin'], function () {
