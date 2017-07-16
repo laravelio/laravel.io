@@ -1,13 +1,13 @@
 <template>
-    <li :class="['notification',  notification.read_at ? 'read' : notification.type]">
+    <li :class="['notification',  notification.read_at ? 'read' : notification.data.type]" @click="">
         <div class="icon">
-            <i :class="notification.icon"></i>
+            <i :class="notification.data.icon"></i>
         </div>
-        <div class="profile-image" v-if="notification.image">
-            <img :src="notification.image">
+        <div class="profile-image" v-if="notification.data.image">
+            <img :src="notification.data.image">
         </div>
         <div class="content">
-            <div v-html="notification.content"></div>
+            <div v-html="notification.data.content"></div>
             <small v-text="dateFromNow"></small>
         </div>
         <div class="icon-group" v-if="typeof notification.read_at !== 'undefined' && ! notification.read_at">
