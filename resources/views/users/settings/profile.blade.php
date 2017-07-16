@@ -9,7 +9,7 @@
             {!! Form::open(['route' => 'settings.profile.update', 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
                 <div class="form-group">
                     <div class="col-md-6 col-md-offset-3">
-                        <img class="img-circle" src="{{ Auth::user()->gratavarUrl(100) }}">
+                        <img class="img-circle" src="{{ Auth::user()->gravatarUrl(100) }}">
                         <span class="help-block">Change your avatar on <a href="https://gravatar.com/">Gravatar</a>.</span>
                     </div>
                 </div>

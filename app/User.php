@@ -71,7 +71,7 @@ class User extends Authenticatable
         return $this->github_username;
     }
 
-    public function gratavarUrl($size = 100): string
+    public function gravatarUrl($size = 100): string
     {
         $hash = md5(strtolower(trim($this->email)));
 

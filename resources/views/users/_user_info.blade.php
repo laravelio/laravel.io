@@ -1,11 +1,11 @@
 <div class="profile-user-info">
     @can(App\Policies\UserPolicy::ADMIN, App\User::class)
         <a href="{{ route('admin.users.show', $user->username()) }}">
-            <img class="img-circle" src="{{ $user->gratavarUrl($avatarSize ?? 150) }}">
+            <img class="img-circle" src="{{ $user->gravatarUrl($avatarSize ?? 150) }}">
         </a>
     @else
         <a href="{{ route('profile', $user->username()) }}">
-            <img class="img-circle" src="{{ $user->gratavarUrl($avatarSize ?? 150) }}">
+            <img class="img-circle" src="{{ $user->gravatarUrl($avatarSize ?? 150) }}">
         </a>
     @endcan
 
