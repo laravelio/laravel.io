@@ -6,7 +6,6 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\Helpers\ModelHelpers;
 use App\Helpers\HasTimestamps;
-use App\Helpers\Subscriptions;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -14,18 +13,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasTimestamps, ModelHelpers, Notifiable, Subscriptions;
+    use HasTimestamps, ModelHelpers, Notifiable;
 
     const DEFAULT = 1;
     const MODERATOR = 2;
     const ADMIN = 3;
 
-    const TABLE = 'users';
-
     /**
      * {@inheritdoc}
      */
-    protected $table = self::TABLE;
+    protected $table = 'users';
 
     /**
      * {@inheritdoc}
@@ -184,11 +181,6 @@ class User extends Authenticatable
     public function countThreads(): int
     {
         return $this->threadsRelation()->count();
-    }
-
-    public function subscriptionThreads(): MorphToMany
-    {
-        return $this->morphedByMany(Thread::class, 'subscriptionable', 'subscriptions');
     }
 
     /**

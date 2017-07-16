@@ -8,7 +8,6 @@ use App\Helpers\HasTags;
 use App\Helpers\HasAuthor;
 use App\Helpers\ModelHelpers;
 use App\Helpers\HasTimestamps;
-use App\Helpers\Subscriptions;
 use App\Helpers\ReceivesReplies;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Thread extends Model implements ReplyAble
 {
-    use HasAuthor, HasSlug, HasTimestamps, ModelHelpers, ReceivesReplies, HasTags, Subscriptions;
+    use HasAuthor, HasSlug, HasTimestamps, ModelHelpers, ReceivesReplies, HasTags;
 
     const TABLE = 'threads';
 

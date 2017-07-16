@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\User;
 use App\Models\Thread;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -24,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             Thread::TABLE => Thread::class,
-            User::TABLE => User::class,
         ]);
     }
 
