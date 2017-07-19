@@ -49,6 +49,8 @@
                 </div>
             </div>
 
+            @include('layouts._ads._carbon')
+
             @foreach ($thread->replies() as $reply)
                 <div class="panel {{ $thread->isSolutionReply($reply) ? 'panel-success' : 'panel-default' }}">
                     <div class="panel-heading thread-info">

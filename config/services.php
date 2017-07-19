@@ -59,4 +59,8 @@ return [
         ],
     ],
 
+    'carbon' => [
+        'code' => env('CARBON_CODE'),
+    ],
+
 ];
