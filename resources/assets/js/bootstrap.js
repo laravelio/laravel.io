@@ -18,6 +18,7 @@ require('bootstrap-sass');
  */
 
 window.Vue = require('vue');
+window.Bus = new Vue();
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -29,6 +30,8 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-CSRF-TOKEN'] = window.Laravel.csrfToken;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+window.moment = require('moment');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -48,8 +51,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /**
  * 3rd Party Libraries.
  */
-require('vue-resource');
 require('selectize');
 require('markdown'); // This doesn't seems to work so we require it directly in base.blade.php
 require('to-markdown');
 require('bootstrap-markdown/js/bootstrap-markdown');
+require('./core/components');

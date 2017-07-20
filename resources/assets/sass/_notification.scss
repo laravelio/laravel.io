@@ -1,0 +1,163 @@
+.notification-link {
+    position: relative;
+
+    i {
+        font-size: 19px;
+        padding: 0 10px;
+    }
+
+    .badge {
+        top: 0;
+        left: 45px;
+        padding: 3px;
+        font-size: 11px;
+        min-width: 20px;
+        position: absolute;
+    }
+
+    @media screen and (min-width: $screen-sm-min) {
+        .badge {
+            top: 10px;
+        }
+    }
+}
+
+.notifications-container {
+    ul {
+        padding: 0;
+    }
+
+    .footer,
+    .header {
+        display: none;
+    }
+
+    .header {
+        text-align: center;
+        padding: 10px 25px;
+        margin-bottom: 15px;
+        color: $brand-success;
+        border-radius: 10px 10px 0 0;
+        background-color: $gray-lighter;
+
+        * {
+            margin: 0;
+        }
+    }
+
+    .footer {
+        margin-top: 5px;
+        padding: 10px 15px;
+    }
+
+    .notification {
+        display: flex;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 13px;
+        padding-left: 0;
+        margin-left: 10px;
+        align-items: center;
+        border-radius: 0 5px 5px 0;
+        border-left: 2px solid #f1f1f1;
+
+        .icon {
+            height: 25px;
+            display: flex;
+            min-width: 25px;
+            margin-left: -13px;
+            margin-right: 10px;
+            border-radius: 50%;
+            align-items: center;
+            color: $brand-success;
+            justify-content: center;
+            background-color: #ffffff;
+            border: 1px solid $brand-success;
+        }
+
+        .profile-image {
+            margin-right: 15px;
+
+            img {
+                max-width: 35px;
+                border-radius: 50%;
+            }
+        }
+
+        small {
+            color: $gray;
+        }
+
+        .icon-group {
+            margin-left: auto;
+            align-self: flex-start;
+
+            .fa {
+                padding: 5px;
+                color: rgba($gray, .4);
+
+                &:hover {
+                    color: rgba($gray-dark, .9);
+                }
+            }
+        }
+
+        $types: (
+            read: #f1f1f1,
+            info: $brand-info,
+            warning: $brand-warning,
+            danger: $brand-danger,
+        );
+
+        @each $type, $color in $types {
+            &.#{$type} .icon {
+                color: $color;
+                border-color: rgba($color, .5);
+            }
+        }
+
+        &:hover {
+            background-color: $gray-lighter;
+        }
+    }
+
+    &.dropdown-menu {
+        border: 0;
+        padding: 0;
+        width: 320px;
+        margin-top: 15px !important;
+        border-radius: 10px 10px 0 0 !important;
+
+        ul {
+            padding: 0 15px;
+            max-height: 250px;
+            overflow-y: overlay;
+
+            &::-webkit-scrollbar {
+              width: 5px;
+              border-radius: 10px;
+              background: $gray-lighter;
+            }
+
+            &::-webkit-scrollbar-thumb {
+              background: $gray;
+              border-radius: 10px;
+            }
+        }
+
+        .footer,
+        .header {
+            display: inherit;
+        }
+
+        &::before {
+            top: -10px;
+            content: '';
+            right: 25px;
+            position: absolute;
+            border-left: 9px solid transparent;
+            border-right: 9px solid transparent;
+            border-bottom: 11px solid $gray-lighter;
+        }
+    }
+}

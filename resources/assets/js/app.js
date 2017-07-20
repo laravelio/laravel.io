@@ -16,6 +16,15 @@ require('./bootstrap');
 $('select.selectize').selectize({ maxItems: 3 });
 $('textarea.wysiwyg').markdown({ iconlibrary: 'fa' });
 
-// const app = new Vue({
-//     el: '#app'
-// });
+$(document).ready(() => {
+    $('[data-tooltip]').tooltip();
+});
+
+const app = new Vue({
+   el: '#app',
+   methods: {
+        emitGlobal(e, data = null) {
+            Bus.$emit(e, data);
+        }
+   }
+});
