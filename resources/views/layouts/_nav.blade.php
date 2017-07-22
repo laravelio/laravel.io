@@ -46,11 +46,19 @@
                             <img class="img-circle" src="{{ Auth::user()->gravatarUrl(60) }}" width="30"> <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
+                            <li>
+                                <span>
+                                    <strong>{{ Auth::user()->name() }}</strong><br>
+                                    {{ '@'.Auth::user()->username() }}
+                                </span>
+                            </li>
+                            <li role="separator" class="divider"></li>
                             <li class="{{ active('profile') }}"><a href="{{ route('profile', Auth::user()->username()) }}">Profile</a></li>
                             <li class="{{ active('dashboard') }}"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li class="{{ active('settings.*') }}"><a href="{{ route('settings.profile') }}">Settings</a></li>
 
                             @can(App\Policies\UserPolicy::ADMIN, App\User::class)
+                                <li role="separator" class="divider"></li>
                                 <li class="{{ active('admin*') }}"><a href="{{ route('admin') }}">Admin</a></li>
                             @endcan
 
