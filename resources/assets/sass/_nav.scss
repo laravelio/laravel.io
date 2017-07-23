@@ -9,3 +9,9 @@
     clear: both;
     white-space: nowrap;
 }
+
+@media (max-width: 767px) {
+    .dropdown-menu li span {
+        color: #fff;
+    }
+}
