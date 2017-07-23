@@ -11,8 +11,6 @@ class PasscheckRule
 
     public function validate($attribute, $value): bool
     {
-        $password = Auth::user()->getAuthPassword();
-
-        return empty($password) || Hash::check($value, $password);
+        return Hash::check($value, Auth::user()->getAuthPassword());
     }
 }
