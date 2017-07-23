@@ -9,7 +9,7 @@ class UpdatePasswordRequest extends Request
     public function rules()
     {
         return [
-            'current_password' => 'required|'.PasscheckRule::NAME,
+            'current_password' => 'sometimes|required|'.PasscheckRule::NAME,
             'password' => 'required|confirmed|min:6',
         ];
     }

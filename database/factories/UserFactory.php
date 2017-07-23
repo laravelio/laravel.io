@@ -21,3 +21,9 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'bio' => $faker->sentence,
     ];
 });
+
+$factory->state(User::class, 'passwordless', function () {
+    return [
+        'password' => '',
+    ];
+});

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Auth;
 use Tests\BrowserKitTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -63,6 +64,24 @@ class SettingsTest extends BrowserKitTestCase
         $this->visit('/settings/password')
             ->submitForm('Save', [
                 'current_password' => 'password',
+                'password' => 'newpassword',
+                'password_confirmation' => 'newpassword',
+            ])
+            ->seePageIs('/settings/password')
+            ->see('Password successfully changed!');
+
+        $this->assertPasswordWasHashedAndSaved();
+    }
+
+    /** @test */
+    public function users_can_set_their_password_when_they_have_none_set_yet()
+    {
+        $user = factory(User::class)->states('passwordless')->create();
+
+        $this->loginAs($user);
+
+        $this->visit('/settings/password')
+            ->submitForm('Save', [
                 'password' => 'newpassword',
                 'password_confirmation' => 'newpassword',
             ])
