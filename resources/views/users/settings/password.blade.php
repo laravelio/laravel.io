@@ -7,7 +7,7 @@
         <div class="panel-heading">{{ $title }}</div>
         <div class="panel-body">
             {{ Form::open(['route' => 'settings.password.update', 'method' => 'PUT', 'class' => 'form-horizontal']) }}
-                @if (!empty($user->password))
+                @if (Auth::user()->hasPassword())
                     @formGroup('current_password')
                         {!! Form::label('current_password', null, ['class' => 'col-md-3 control-label']) !!}
 

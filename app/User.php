@@ -147,6 +147,13 @@ class User extends Authenticatable
         return $this->bio;
     }
 
+    public function hasPassword(): bool
+    {
+        $password = $this->getAuthPassword();
+
+        return $password !== '' && $password !== null;
+    }
+
     /**
      * @return \App\Models\Thread[]
      */
