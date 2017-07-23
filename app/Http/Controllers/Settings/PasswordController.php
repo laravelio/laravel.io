@@ -17,7 +17,9 @@ class PasswordController extends Controller
 
     public function edit()
     {
-        return view('users.settings.password');
+        $user = Auth::user();
+
+        return view('users.settings.password', ['user' => $user]);
     }
 
     public function update(UpdatePasswordRequest $request)

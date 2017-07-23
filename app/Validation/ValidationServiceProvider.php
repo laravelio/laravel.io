@@ -11,6 +11,7 @@ class ValidationServiceProvider extends ServiceProvider
     {
         Validator::extend(DoesNotContainUrlRule::NAME, DoesNotContainUrlRule::class.'@validate');
         Validator::extend(PasscheckRule::NAME, PasscheckRule::class.'@validate');
+        Validator::extend(RequiredUnlessNoPassword::NAME, RequiredUnlessNoPassword::class.'@validate');
         Validator::extend(SpamRule::NAME, SpamRule::class.'@validate');
     }
 }

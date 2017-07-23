@@ -7,14 +7,16 @@
         <div class="panel-heading">{{ $title }}</div>
         <div class="panel-body">
             {{ Form::open(['route' => 'settings.password.update', 'method' => 'PUT', 'class' => 'form-horizontal']) }}
-                @formGroup('current_password')
-                    {!! Form::label('current_password', null, ['class' => 'col-md-3 control-label']) !!}
+                @if (!empty($user->password))
+                    @formGroup('current_password')
+                        {!! Form::label('current_password', null, ['class' => 'col-md-3 control-label']) !!}
 
-                    <div class="col-md-6">
-                        {!! Form::password('current_password', ['class' => 'form-control', 'required']) !!}
-                        @error('current_password')
-                    </div>
-                @endFormGroup
+                        <div class="col-md-6">
+                            {!! Form::password('current_password', ['class' => 'form-control', 'required']) !!}
+                            @error('current_password')
+                        </div>
+                    @endFormGroup
+                @endif
 
                 @formGroup('password')
                     {!! Form::label('password', 'New Password', ['class' => 'col-md-3 control-label']) !!}
