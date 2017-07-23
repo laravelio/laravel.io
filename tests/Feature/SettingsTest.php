@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\User;
 use Auth;
+use App\User;
 use Tests\BrowserKitTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
