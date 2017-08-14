@@ -14,7 +14,14 @@
 
         .thread-info-avatar, .thread-info-tags {
             flex: 0 0 auto;
+        }
+
+        .thread-info-avatar {
             margin-right: 5px;
+        }
+
+        .thread-info-tags {
+            text-align: right;
         }
 
         .thread-info-author {
