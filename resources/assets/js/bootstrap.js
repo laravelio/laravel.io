@@ -53,3 +53,10 @@ require('selectize');
 require('markdown'); // This doesn't seems to work so we require it directly in base.blade.php
 require('to-markdown');
 require('bootstrap-markdown/js/bootstrap-markdown');
+require('prismjs');
+require('prismjs/components/prism-json');
+require('prismjs/components/prism-css');
+require('prismjs/components/prism-javascript');
+require('prismjs/components/prism-less');
+require('prismjs/components/prism-sass');
+require('prismjs/components/prism-php');
