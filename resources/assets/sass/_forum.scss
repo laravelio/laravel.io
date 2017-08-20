@@ -29,6 +29,10 @@
 
         .thread-info-tags {
             text-align: right;
+
+            * {
+                text-align: left;
+            }
         }
 
         .thread-info-author {
