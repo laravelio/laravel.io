@@ -2,9 +2,25 @@
     background-color: white;
 }
 .home .logo {
-    max-width: 400px;
-    margin-bottom: 10px;
+    padding: 10px;
+}
+.home .logo img {
+    max-width: 75%;
 }
 .home h2 {
     color: #748084;
+}
+
+@media (max-width: 767px) {
+    .home h2 {
+        font-size: 1.4em;
+    }
+}
+@media (min-width: 400px) {
+    .home .logo img {
+        max-width: 400px;
+    }
+    .home h2 {
+        color: #748084;
+    }
 }

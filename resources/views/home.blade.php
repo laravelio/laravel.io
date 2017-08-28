@@ -6,7 +6,7 @@
     </div>
 
     <div class="jumbotron text-center">
-        <h1><img class="logo" src="{{ asset('images/laravelio.png') }}" title="Laravel.io"></h1>
+        <div class="logo"><img src="{{ asset('images/laravelio.png') }}" title="Laravel.io"></div>
         <h2>The Laravel Community Portal</h2>
 
         <div style="margin-top:40px">
