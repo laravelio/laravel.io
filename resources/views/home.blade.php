@@ -6,12 +6,12 @@
     </div>
 
     <div class="jumbotron text-center">
-        <h1>Laravel.io</h1>
+        <h1><img class="logo" src="{{ asset('images/laravelio.png') }}" title="Laravel.io"></h1>
         <h2>The Laravel Community Portal</h2>
 
         <div style="margin-top:40px">
             @if (Auth::guest())
-                <a class="btn btn-info" href="{{ route('register') }}">
+                <a class="btn btn-primary" href="{{ route('register') }}">
                     Join the Community
                 </a>
                 <a class="btn btn-default" href="{{ route('forum') }}">
