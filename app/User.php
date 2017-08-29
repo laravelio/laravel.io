@@ -2,11 +2,11 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Helpers\ModelHelpers;
 use App\Helpers\HasTimestamps;
-use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -125,7 +125,7 @@ class User extends Authenticatable
 
     public function isBanned(): bool
     {
-        return !is_null($this->banned_at);
+        return ! is_null($this->banned_at);
     }
 
     public function type(): int

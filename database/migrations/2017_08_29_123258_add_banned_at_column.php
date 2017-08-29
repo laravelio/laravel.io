@@ -18,7 +18,7 @@ class AddBannedAtColumn extends Migration
             $table->dateTime('banned_at')->nullable();
         });
 
-        User::where('is_banned', 1)->each(function($user) {
+        User::where('is_banned', 1)->each(function ($user) {
             $user->banned_at = $user->updated_at;
             $user->save();
         });
