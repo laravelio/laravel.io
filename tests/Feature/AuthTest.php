@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Auth;
+use Carbon\Carbon;
 use Mail;
 use Tests\BrowserKitTestCase;
 use App\Mail\EmailConfirmation;
@@ -133,7 +134,7 @@ class AuthTest extends BrowserKitTestCase
     /** @test */
     public function login_fails_when_user_is_banned()
     {
-        $this->createUser(['is_banned' => true]);
+        $this->createUser(['banned_at' => Carbon::now()]);
 
         $this->visit('/login')
             ->type('johndoe', 'username')
