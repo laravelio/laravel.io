@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use Carbon\Carbon;
 use Auth;
 use Mail;
+use Carbon\Carbon;
 use Tests\BrowserKitTestCase;
 use App\Mail\EmailConfirmation;
 use Illuminate\Contracts\Auth\PasswordBroker;

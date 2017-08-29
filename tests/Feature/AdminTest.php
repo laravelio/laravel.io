@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Carbon\Carbon;
 use App\User;
+use Carbon\Carbon;
 use App\Models\Reply;
 use App\Models\Thread;
 use Tests\BrowserKitTestCase;
