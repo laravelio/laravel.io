@@ -105,12 +105,13 @@
                         @md($reply->body())
                     </div>
                 </div>
+
                 @include('_partials._delete_modal', [
-                                'id' => "deleteReply{$reply->id()}",
-                                'route' => ['replies.delete', $reply->id()],
-                                'title' => 'Delete Reply',
-                                'body' => '<p>Are you sure you want to delete this reply? This cannot be undone.</p>',
-                            ])
+                    'id' => "deleteReply{$reply->id()}",
+                    'route' => ['replies.delete', $reply->id()],
+                    'title' => 'Delete Reply',
+                    'body' => '<p>Are you sure you want to delete this reply? This cannot be undone.</p>',
+                ])
             @endforeach
 
             @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
