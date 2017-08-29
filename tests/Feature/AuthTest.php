@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use Auth;
 use Carbon\Carbon;
+use Auth;
 use Mail;
 use Tests\BrowserKitTestCase;
 use App\Mail\EmailConfirmation;

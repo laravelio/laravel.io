@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
+use Carbon\Carbon;
 use App\User;
 use App\Models\Reply;
 use App\Models\Thread;
-use Carbon\Carbon;
 use Tests\BrowserKitTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
