@@ -18,12 +18,14 @@ class AuthTest extends BrowserKitTestCase
     {
         Mail::fake();
 
+        session(['githubData' => ['id' => 123, 'username' => 'johndoe']]);
+
         $this->visit('/register')
             ->type('John Doe', 'name')
             ->type('john.doe@example.com', 'email')
             ->type('johndoe', 'username')
-            ->type('password', 'password')
-            ->type('password', 'password_confirmation')
+            ->type('123', 'github_id')
+            ->type('johndoe', 'github_username')
             ->check('rules')
             ->press('Register')
             ->seePageIs('/dashboard')
@@ -37,13 +39,14 @@ class AuthTest extends BrowserKitTestCase
     /** @test */
     public function registration_fails_when_a_required_field_is_not_filled_in()
     {
+        session(['githubData' => ['id' => 123]]);
+
         $this->visit('/register')
             ->press('Register')
             ->seePageIs('/register')
             ->see('The name field is required.')
             ->see('The email field is required.')
             ->see('The username field is required.')
-            ->see('The password field is required.')
             ->see('The rules must be accepted.');
     }
 

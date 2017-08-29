@@ -7,37 +7,20 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
-        $rules = [
+        return [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'username' => 'required|max:40|unique:users',
             'rules' => 'accepted',
+            'github_id' => 'required',
         ];
-
-        if (Session::has('githubData')) {
-            $rules['password'] = 'confirmed|min:6';
-        } else {
-            $rules['password'] = 'required|confirmed|min:6';
-        }
-
-        return $rules;
     }
 
     public function name(): string
@@ -55,18 +38,13 @@ class RegisterRequest extends FormRequest
         return $this->get('username');
     }
 
-    public function password(): string
-    {
-        return $this->get('password', '');
-    }
-
     public function githubId(): string
     {
-        return session('githubData.id', '');
+        return $this->get('github_id');
     }
 
     public function githubUsername(): string
     {
-        return session('githubData.username', '');
+        return $this->get('github_username', '');
     }
 }

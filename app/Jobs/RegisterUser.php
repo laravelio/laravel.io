@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\User;
 use App\Exceptions\CannotCreateUser;
 use App\Http\Requests\RegisterRequest;
-use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class RegisterUser
@@ -31,23 +30,28 @@ class RegisterUser
     private $ip;
 
     /**
-     * @var string
-     */
-    private $password;
-
-    /**
      * @var array
      */
     private $attributes;
 
-    public function __construct(string $name, string $email, string $username, string $ip, string $password, array $attributes = [])
+    /**
+     * @var string
+     */
+    private $githubId;
+
+    /**
+     * @var string
+     */
+    private $githubUsername;
+
+    public function __construct(string $name, string $email, string $username, string $ip, string $githubId, string $githubUsername)
     {
         $this->name = $name;
         $this->email = $email;
         $this->username = $username;
         $this->ip = $ip;
-        $this->password = $password;
-        $this->attributes = array_only($attributes, ['github_id', 'github_username']);
+        $this->githubId = $githubId;
+        $this->githubUsername = $githubUsername;
     }
 
     public static function fromRequest(RegisterRequest $request): self
@@ -57,26 +61,27 @@ class RegisterUser
             $request->emailAddress(),
             $request->username(),
             $request->ip(),
-            $request->password(),
-            ['github_id' => $request->githubId(), 'github_username' => $request->githubUsername()]
+            $request->githubId(),
+            $request->githubUsername()
         );
     }
 
-    public function handle(Hasher $hasher): User
+    public function handle(): User
     {
         $this->assertEmailAddressIsUnique($this->email);
         $this->assertUsernameIsUnique($this->username);
 
-        $user = new User(array_merge([
+        $user = new User([
             'name' => $this->name,
             'email' => $this->email,
             'username' => strtolower($this->username),
             'ip' => $this->ip,
-            'password' => $this->password ? $hasher->make($this->password) : '',
+            'github_id' => $this->githubId,
+            'github_username' => $this->githubUsername,
             'confirmation_code' => str_random(60),
             'type' => User::DEFAULT,
             'remember_token' => '',
-        ], $this->attributes));
+        ]);
         $user->save();
 
         return $user;
