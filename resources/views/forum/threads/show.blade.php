@@ -70,13 +70,6 @@
                                 <a class="btn btn-default btn-xs" href="{{ route('replies.edit', $reply->id()) }}">Edit</a>
                                 <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteReply{{ $reply->id() }}">Delete</a>
                             </div>
-
-                            @include('_partials._delete_modal', [
-                                'id' => "deleteReply{$reply->id()}",
-                                'route' => ['replies.delete', $reply->id()],
-                                'title' => 'Delete Reply',
-                                'body' => '<p>Are you sure you want to delete this reply? This cannot be undone.</p>',
-                            ])
                         @endcan
                     </div>
 
@@ -112,6 +105,12 @@
                         @md($reply->body())
                     </div>
                 </div>
+                @include('_partials._delete_modal', [
+                                'id' => "deleteReply{$reply->id()}",
+                                'route' => ['replies.delete', $reply->id()],
+                                'title' => 'Delete Reply',
+                                'body' => '<p>Are you sure you want to delete this reply? This cannot be undone.</p>',
+                            ])
             @endforeach
 
             @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
