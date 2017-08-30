@@ -11,6 +11,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "5.4.*",
+        "lasserafn/php-initial-avatar-generator": "^2.0",
         "league/commonmark": "^0.15.2",
         "roave/security-advisories": "dev-master",
         "spatie/laravel-migrate-fresh": "^1.4",
