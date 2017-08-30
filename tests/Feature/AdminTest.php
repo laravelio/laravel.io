@@ -74,7 +74,7 @@ class AdminTest extends BrowserKitTestCase
         $this->put('/admin/users/'.$user->username().'/ban')
             ->assertRedirectedTo('/admin/users/'.$user->username());
 
-        $this->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => Carbon::now()]);
+        $this->notSeeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
     }
 
     /** @test */
