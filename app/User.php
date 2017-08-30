@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Helpers\ModelHelpers;
@@ -110,21 +111,21 @@ class User extends Authenticatable
 
     public function ban()
     {
-        $this->is_banned = true;
+        $this->banned_at = Carbon::now();
 
         $this->save();
     }
 
     public function unban()
     {
-        $this->is_banned = false;
+        $this->banned_at = null;
 
         $this->save();
     }
 
     public function isBanned(): bool
     {
-        return (bool) $this->is_banned;
+        return ! is_null($this->banned_at);
     }
 
     public function type(): int
