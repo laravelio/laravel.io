@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Session;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
