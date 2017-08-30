@@ -23,6 +23,10 @@
 
         .thread-info-avatar {
             margin-right: 5px;
+
+            img {
+                max-width: 25px;
+            }
         }
 
         .thread-info-tags {
