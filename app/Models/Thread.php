@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Events\ThreadCreated;
+use App\Events\ThreadDeleted;
+use App\Events\ThreadUpdated;
 use DB;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
@@ -20,6 +23,14 @@ class Thread extends Model implements ReplyAble
 {
     use HasAuthor, HasSlug, HasTimestamps, ModelHelpers, ReceivesReplies, HasTags;
 
+    
+    // Standard Eloquent events mapped so they get broadcasted over the socket channels
+    protected $events = [
+        'created' => ThreadCreated::class,
+        'updated' => ThreadUpdated::class,
+        'deleted' => ThreadDeleted::class
+    ];
+    
     const TABLE = 'threads';
 
     /**

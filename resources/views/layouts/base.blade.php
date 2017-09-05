@@ -13,8 +13,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ mix('build/css/app.css') }}" rel="stylesheet">
 
+    <script src="{{ asset('js/socket.io.js') }}"></script>
+
     <script>
-        window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
+        window.Laravel = {!!
+        json_encode([
+                'csrfToken' => csrf_token() ,
+                'url' => env('APP_URL'),
+                'socket_port' => env('APP_SOCKET_PORT','6001')
+             ])
+        !!};
     </script>
 
     @include('layouts._favicons')

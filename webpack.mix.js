@@ -14,4 +14,5 @@ const { mix } = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/build/js')
     .sass('resources/assets/sass/app.scss', 'public/build/css')
     .version()
-    .copy('node_modules/markdown/lib/markdown.js', 'public/build/custom/markdown.js');
+    .copy('node_modules/markdown/lib/markdown.js', 'public/build/custom/markdown.js')
+    .copy('node_modules/socket.io-client/dist/socket.io.js','public/js');

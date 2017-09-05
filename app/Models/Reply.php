@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Events\ReplyCreated;
+use App\Events\ReplyDeleted;
+use App\Events\ReplyUpdated;
 use App\Helpers\HasAuthor;
 use App\Helpers\ModelHelpers;
 use App\Helpers\HasTimestamps;
@@ -12,6 +15,12 @@ class Reply extends Model
 {
     use HasAuthor, HasTimestamps, ModelHelpers;
 
+    // Standard Eloquent events mapped so they get broadcasted over the socket channels
+    protected $events = [
+        'created' => ReplyCreated::class,
+        'updated' => ReplyUpdated::class,
+        'deleted' => ReplyDeleted::class
+    ];
     /**
      * {@inheritdoc}
      */

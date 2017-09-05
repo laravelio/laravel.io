@@ -16,6 +16,17 @@ require('./bootstrap');
 $('select.selectize').selectize({ maxItems: 3 });
 $('textarea.wysiwyg').markdown({ iconlibrary: 'fa' });
 
-// const app = new Vue({
-//     el: '#app'
-// });
+import Echo from "laravel-echo"
+
+if (typeof io !== 'undefined') {
+    window.Echo = new Echo({
+        broadcaster: 'socket.io',
+        host: window.Laravel.url + ':' + window.Laravel.socket_port,
+    });
+    // Define which channel Echo is gonna listen to
+    window.Echo.channel('threads')
+}
+
+const app = new Vue({
+    el: '#app'
+});
