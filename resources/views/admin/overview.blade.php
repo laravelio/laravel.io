@@ -39,6 +39,8 @@
                                 <span class="label label-warning">Banned</span>
                             @elseif ($user->isAdmin())
                                 <span class="label label-primary">Admin</span>
+                            @elseif ($user->isModerator())
+                                <span class="label label-primary">Moderator</span>
                             @else
                                 <span class="label label-default">User</span>
                             @endif
