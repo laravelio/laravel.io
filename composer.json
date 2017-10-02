@@ -23,7 +23,7 @@
         "fzaninotto/faker": "^1.6",
         "jakub-onderka/php-console-highlighter": "^0.3.2",
         "jakub-onderka/php-parallel-lint": "^0.9.2",
-        "laravel/browser-kit-testing": "^1.0",
+        "laravel/browser-kit-testing": "^2.0",
         "laravel/homestead": "^5",
         "mockery/mockery": "^0.9.5",
         "phpspec/phpspec": "^3.2",
