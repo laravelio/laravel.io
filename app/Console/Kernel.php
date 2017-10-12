@@ -3,8 +3,8 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
-use Spatie\MigrateFresh\Commands\MigrateFresh;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Spatie\MigrateFresh\Commands\MigrateFresh;
 
 class Kernel extends ConsoleKernel
 {
@@ -26,8 +26,6 @@ class Kernel extends ConsoleKernel
 
     /**
      * Register the Closure based commands for the application.
-     *
-     * @return void
      */
     protected function commands()
     {

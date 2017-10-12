@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\User;
 use App\Models\Reply;
 use App\Models\Thread;
-use Tests\BrowserKitTestCase;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\BrowserKitTestCase;
 
 class ReplyTest extends BrowserKitTestCase
 {

@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Models\Thread;
 use App\Http\Requests\ThreadRequest;
+use App\Models\Thread;
 
 class UpdateThread
 {

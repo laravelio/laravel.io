@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Helpers\HasAuthor;
-use App\Helpers\ModelHelpers;
 use App\Helpers\HasTimestamps;
+use App\Helpers\ModelHelpers;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 

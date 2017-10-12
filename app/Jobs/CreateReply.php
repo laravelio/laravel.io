@@ -2,10 +2,10 @@
 
 namespace App\Jobs;
 
-use App\User;
+use App\Http\Requests\CreateReplyRequest;
 use App\Models\Reply;
 use App\Models\ReplyAble;
-use App\Http\Requests\CreateReplyRequest;
+use App\User;
 
 class CreateReply
 {

@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
-use App\User;
-use App\Models\Thread;
 use App\Http\Requests\ThreadRequest;
+use App\Models\Thread;
+use App\User;
 
 class CreateThread
 {

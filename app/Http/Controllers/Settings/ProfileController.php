@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Settings;
 
-use Auth;
-use App\Jobs\UpdateProfile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileRequest;
+use App\Jobs\UpdateProfile;
+use Auth;
 use Illuminate\Auth\Middleware\Authenticate;
 
 class ProfileController extends Controller

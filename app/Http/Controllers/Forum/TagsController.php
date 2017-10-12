@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use App\Models\Thread;
-use App\Http\Controllers\Controller;
 
 class TagsController extends Controller
 {

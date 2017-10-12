@@ -2,10 +2,10 @@
 
 namespace Tests\Components\Queries;
 
-use App\User;
-use Tests\TestCase;
 use App\Queries\SearchUsers;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class SearchUsersTest extends TestCase
 {
