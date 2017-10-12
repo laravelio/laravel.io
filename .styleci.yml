@@ -1,1 +1,12 @@
-preset: laravel
+preset: recommended
+
+enabled:
+  - not_operator_with_successor_space
+  - phpdoc_no_empty_return
+  - unalign_double_arrow
+
+disabled:
+  - align_double_arrow
+  - phpdoc_align
+  - phpdoc_separation
+  - simplified_null_return
