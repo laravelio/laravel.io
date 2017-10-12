@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Auth;
-use App\User;
-use Socialite;
-use App\Social\GithubUser;
-use App\Jobs\UpdateProfile;
 use App\Http\Controllers\Controller;
+use App\Jobs\UpdateProfile;
+use App\Social\GithubUser;
+use App\User;
+use Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Laravel\Socialite\Two\User as SocialiteUser;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Socialite;
 
 class GithubController extends Controller
 {

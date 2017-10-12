@@ -2,10 +2,10 @@
 
 namespace spec\App\Spam;
 
-use App\Spam\SpamFilter;
-use App\Spam\SpamDetector;
-use PhpSpec\ObjectBehavior;
 use App\Spam\DummySpamDetector;
+use App\Spam\SpamDetector;
+use App\Spam\SpamFilter;
+use PhpSpec\ObjectBehavior;
 
 class SpamFilterSpec extends ObjectBehavior
 {

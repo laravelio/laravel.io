@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use DB;
+use App\Exceptions\CouldNotMarkReplyAsSolution;
+use App\Helpers\HasAuthor;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
-use App\Helpers\HasAuthor;
-use App\Helpers\ModelHelpers;
 use App\Helpers\HasTimestamps;
+use App\Helpers\ModelHelpers;
 use App\Helpers\ReceivesReplies;
-use Illuminate\Database\Eloquent\Model;
+use DB;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Contracts\Pagination\Paginator;
-use App\Exceptions\CouldNotMarkReplyAsSolution;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Thread extends Model implements ReplyAble

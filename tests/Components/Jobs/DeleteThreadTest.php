@@ -2,11 +2,11 @@
 
 namespace Tests\Components\Jobs;
 
-use Tests\TestCase;
+use App\Jobs\DeleteThread;
 use App\Models\Reply;
 use App\Models\Thread;
-use App\Jobs\DeleteThread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class DeleteThreadTest extends TestCase
 {

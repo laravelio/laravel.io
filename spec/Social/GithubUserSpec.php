@@ -2,8 +2,8 @@
 
 namespace spec\App\Social;
 
-use Carbon\Carbon;
 use App\Social\GithubUser;
+use Carbon\Carbon;
 use PhpSpec\ObjectBehavior;
 
 class GithubUserSpec extends ObjectBehavior

@@ -1,7 +1,7 @@
 <?php
 
-use App\User;
 use App\Models\Thread;
+use App\User;
 
 $factory->define(Thread::class, function (Faker\Generator $faker) {
     return [

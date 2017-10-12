@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Forum;
 
-use App\Models\Tag;
-use App\Models\Reply;
-use App\Models\Thread;
+use App\Http\Controllers\Controller;
+use App\Http\Middleware\RedirectIfUnconfirmed;
+use App\Http\Requests\ThreadRequest;
 use App\Jobs\CreateThread;
 use App\Jobs\DeleteThread;
-use App\Jobs\UpdateThread;
-use App\Policies\ThreadPolicy;
-use App\Queries\SearchThreads;
 use App\Jobs\MarkThreadSolution;
 use App\Jobs\UnmarkThreadSolution;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ThreadRequest;
+use App\Jobs\UpdateThread;
+use App\Models\Reply;
+use App\Models\Tag;
+use App\Models\Thread;
+use App\Policies\ThreadPolicy;
+use App\Queries\SearchThreads;
 use Illuminate\Auth\Middleware\Authenticate;
-use App\Http\Middleware\RedirectIfUnconfirmed;
 
 class ThreadsController extends Controller
 {

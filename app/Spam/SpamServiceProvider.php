@@ -2,8 +2,8 @@
 
 namespace App\Spam;
 
-use TijsVerkoyen\Akismet\Akismet;
 use Illuminate\Support\ServiceProvider;
+use TijsVerkoyen\Akismet\Akismet;
 
 class SpamServiceProvider extends ServiceProvider
 {
