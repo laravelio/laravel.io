@@ -129,7 +129,12 @@ class NextVersion extends Migration
         });
         Schema::table('threads', function (Blueprint $table) {
             $table->dropColumn(
-                'category_slug', 'most_recent_reply_id', 'reply_count', 'is_question', 'pinned', 'laravel_version'
+                'category_slug',
+                'most_recent_reply_id',
+                'reply_count',
+                'is_question',
+                'pinned',
+                'laravel_version'
             );
         });
         Schema::table('threads', function (Blueprint $table) {

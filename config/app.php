@@ -167,9 +167,6 @@ return [
          * Package Service Providers...
          */
         Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
-        Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
          * Application Service Providers...
