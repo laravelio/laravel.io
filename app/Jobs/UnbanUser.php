@@ -16,8 +16,11 @@ class UnbanUser
         $this->user = $user;
     }
 
-    public function handle()
+    public function handle(): User
     {
-        $this->user->unban();
+        $this->user->banned_at = null;
+        $this->user->save();
+
+        return $this->user;
     }
 }

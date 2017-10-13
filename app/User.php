@@ -110,20 +110,6 @@ class User extends Authenticatable
         return $this->confirmation_code === $code;
     }
 
-    public function ban()
-    {
-        $this->banned_at = Carbon::now();
-
-        $this->save();
-    }
-
-    public function unban()
-    {
-        $this->banned_at = null;
-
-        $this->save();
-    }
-
     public function isBanned(): bool
     {
         return ! is_null($this->banned_at);

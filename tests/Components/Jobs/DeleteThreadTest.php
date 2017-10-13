@@ -8,7 +8,7 @@ use App\Models\Thread;
 use App\Jobs\DeleteThread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class DeleteThreadTest extends TestCase
+class DeleteThreadTest extends JobTestCase
 {
     use DatabaseMigrations;
 
@@ -18,7 +18,7 @@ class DeleteThreadTest extends TestCase
         $thread = factory(Thread::class)->create();
         factory(Reply::class)->create(['replyable_id' => $thread->id()]);
 
-        (new DeleteThread($thread))->handle();
+        $this->dispatch(new DeleteThread($thread));
 
         $this->assertDatabaseMissing('threads', ['id' => $thread->id()]);
         $this->assertDatabaseMissing('replies', ['replyable_id' => $thread->id()]);

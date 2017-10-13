@@ -2,20 +2,21 @@
 
 namespace Tests\Components\Jobs;
 
-use Tests\TestCase;
 use App\Jobs\UpdateProfile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class UpdateProfileTest extends TestCase
+class UpdateProfileTest extends JobTestCase
 {
     use DatabaseMigrations;
 
     /** @test */
     public function we_can_update_a_user_profile()
     {
-        $user = (new UpdateProfile($this->createUser(), ['bio' => 'my bio', 'name' => 'John Doe Junior']))->handle();
+        $user = $this->createUser();
 
-        $this->assertEquals('my bio', $user->bio());
-        $this->assertEquals('John Doe Junior', $user->name());
+        $updatedUser = $this->dispatch(new UpdateProfile($user, ['bio' => 'my bio', 'name' => 'John Doe Junior']));
+
+        $this->assertEquals('my bio', $updatedUser->bio());
+        $this->assertEquals('John Doe Junior', $updatedUser->name());
     }
 }

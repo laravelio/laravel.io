@@ -2,23 +2,22 @@
 
 namespace Tests\Components\Jobs;
 
-use App\User;
-use Tests\TestCase;
 use App\Jobs\RegisterUser;
 use App\Exceptions\CannotCreateUser;
-use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class RegisterUserTest extends TestCase
+class RegisterUserTest extends JobTestCase
 {
     use DatabaseMigrations;
 
     /** @test */
     public function we_can_create_a_user()
     {
-        $job = new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password', '123', 'johndoe');
+        $user = $this->dispatch(
+            new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password', '123', 'johndoe')
+        );
 
-        $this->assertInstanceOf(User::class, $job->handle($this->app->make(Hasher::class)));
+        $this->assertEquals('John Doe', $user->name());
     }
 
     /** @test */
@@ -26,11 +25,8 @@ class RegisterUserTest extends TestCase
     {
         $this->expectException(CannotCreateUser::class);
 
-        $job = new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password', '123', 'johndoe');
-        $job->handle($this->app->make(Hasher::class));
-
-        $job = new RegisterUser('John Doe', 'john@example.com', 'john', '', 'password', '123', 'johndoe');
-        $job->handle($this->app->make(Hasher::class));
+        $this->dispatch(new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password', '123', 'johndoe'));
+        $this->dispatch(new RegisterUser('John Doe', 'john@example.com', 'john', '', 'password', '123', 'johndoe'));
     }
 
     /** @test */
@@ -38,10 +34,7 @@ class RegisterUserTest extends TestCase
     {
         $this->expectException(CannotCreateUser::class);
 
-        $job = new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password', '123', 'johndoe');
-        $job->handle($this->app->make(Hasher::class));
-
-        $job = new RegisterUser('John Doe', 'doe@example.com', 'johndoe', '', 'password', '123', 'johndoe');
-        $job->handle($this->app->make(Hasher::class));
+        $this->dispatch(new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password', '123', 'johndoe'));
+        $this->dispatch(new RegisterUser('John Doe', 'doe@example.com', 'johndoe', '', 'password', '123', 'johndoe'));
     }
 }

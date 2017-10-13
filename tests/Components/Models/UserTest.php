@@ -32,12 +32,12 @@ class UserTest extends TestCase
     public function it_can_return_the_amount_of_solutions_that_were_given()
     {
         $user = factory(User::class)->create();
-        $this->seedTwoSolutionReplies($user);
+        $this->createTwoSolutionReplies($user);
 
         $this->assertEquals(2, $user->countSolutions());
     }
 
-    private function seedTwoSolutionReplies(User $user)
+    private function createTwoSolutionReplies(User $user)
     {
         $thread = factory(Thread::class)->create();
         $reply = factory(Reply::class)->create(['replyable_id' => $thread->id(), 'author_id' => $user->id()]);

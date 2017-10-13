@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\User;
+use Carbon\Carbon;
 
 class BanUser
 {
@@ -16,8 +17,11 @@ class BanUser
         $this->user = $user;
     }
 
-    public function handle()
+    public function handle(): User
     {
-        $this->user->ban();
+        $this->user->banned_at = Carbon::now();
+        $this->user->save();
+
+        return $this->user;
     }
 }

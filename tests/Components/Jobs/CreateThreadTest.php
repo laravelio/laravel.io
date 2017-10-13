@@ -7,15 +7,17 @@ use App\Models\Thread;
 use App\Jobs\CreateThread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class CreateThreadTest extends TestCase
+class CreateThreadTest extends JobTestCase
 {
     use DatabaseMigrations;
 
     /** @test */
     public function we_can_create_a_thread()
     {
-        $job = new CreateThread('Subject', 'Body', '', $this->createUser());
+        $user = $this->createUser();
 
-        $this->assertInstanceOf(Thread::class, $job->handle());
+        $thread = $this->dispatch(new CreateThread('Subject', 'Body', '', $user));
+
+        $this->assertEquals('Subject', $thread->subject());
     }
 }
