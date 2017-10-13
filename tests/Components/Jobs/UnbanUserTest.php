@@ -2,10 +2,8 @@
 
 namespace Tests\Components\Jobs;
 
-use App\Jobs\BanUser;
-use App\Jobs\UnbanUser;
-use App\User;
 use Carbon\Carbon;
+use App\Jobs\UnbanUser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class UnbanUserTest extends JobTestCase

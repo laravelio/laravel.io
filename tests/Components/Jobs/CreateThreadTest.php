@@ -2,8 +2,6 @@
 
 namespace Tests\Components\Jobs;
 
-use Tests\TestCase;
-use App\Models\Thread;
 use App\Jobs\CreateThread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 

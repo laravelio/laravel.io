@@ -2,7 +2,6 @@
 
 namespace Tests\Components\Jobs;
 
-use Tests\TestCase;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Jobs\DeleteThread;
