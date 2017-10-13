@@ -16,8 +16,10 @@ class ConfirmUser
         $this->user = $user;
     }
 
-    public function handle()
+    public function handle(): User
     {
-        $this->user->confirm();
+        $this->user->update(['confirmed' => true, 'confirmation_code' => null]);
+
+        return $this->user;
     }
 }

@@ -92,7 +92,7 @@ class Thread extends Model implements ReplyAble
     public function delete()
     {
         $this->removeTags();
-        $this->removeReplies();
+        $this->deleteReplies();
 
         parent::delete();
     }

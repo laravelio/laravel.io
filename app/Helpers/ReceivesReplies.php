@@ -23,7 +23,7 @@ trait ReceivesReplies
         return $this->repliesRelation()->latest()->limit($amount)->get();
     }
 
-    public function removeReplies()
+    public function deleteReplies()
     {
         $this->repliesRelation()->delete();
     }

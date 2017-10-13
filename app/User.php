@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Carbon\Carbon;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Helpers\ModelHelpers;
@@ -67,6 +66,11 @@ class User extends Authenticatable
         return $this->username;
     }
 
+    public function bio(): string
+    {
+        return $this->bio;
+    }
+
     public function githubUsername(): string
     {
         return $this->github_username;
@@ -93,11 +97,6 @@ class User extends Authenticatable
     public function isUnconfirmed(): bool
     {
         return ! $this->isConfirmed();
-    }
-
-    public function confirm()
-    {
-        $this->update(['confirmed' => true, 'confirmation_code' => null]);
     }
 
     public function confirmationCode(): string
@@ -128,11 +127,6 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->type() === self::ADMIN;
-    }
-
-    public function bio(): string
-    {
-        return $this->bio;
     }
 
     public function hasPassword(): bool
