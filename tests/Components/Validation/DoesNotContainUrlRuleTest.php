@@ -2,8 +2,8 @@
 
 namespace Tests\Components\Validation;
 
-use App\Validation\DoesNotContainUrlRule;
 use Tests\TestCase;
+use App\Validation\DoesNotContainUrlRule;
 
 class DoesNotContainUrlRuleTest extends TestCase
 {
