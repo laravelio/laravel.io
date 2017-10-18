@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class ForumThreadVisitationTimestampsCreateTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('forum_thread_visitations', function (Blueprint $table) {

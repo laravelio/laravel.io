@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateIpColumns extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {

@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class L5Cleanup extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::dropIfExists('articles');

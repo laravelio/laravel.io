@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateArticleTagTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('article_tag', function (Blueprint $table) {

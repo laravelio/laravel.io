@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateCommentTagTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('comment_tag', function (Blueprint $table) {

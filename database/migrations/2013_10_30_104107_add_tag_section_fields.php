@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddTagSectionFields extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('tags', function (Blueprint $table) {

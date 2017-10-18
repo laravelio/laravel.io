@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class ForumThreadsAddSolutionReplyId extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('forum_threads', function (Blueprint $table) {

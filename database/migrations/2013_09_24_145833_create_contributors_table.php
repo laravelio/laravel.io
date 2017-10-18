@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateContributorsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('contributors', function (Blueprint $table) {

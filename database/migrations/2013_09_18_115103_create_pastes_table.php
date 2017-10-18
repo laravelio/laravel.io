@@ -5,11 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePastesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('pastes', function (Blueprint $table) {
