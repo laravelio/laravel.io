@@ -22,7 +22,7 @@ class DoesNotContainUrlRule
     {
         return ! collect(explode(' ', $value))->contains(function ($word) {
             return $this->validator
-                ->make(compact('word'), ['word' => 'url'])
+                ->make(compact('word'), ['word' => 'url|required'])
                 ->passes();
         });
     }

@@ -59,6 +59,25 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
+    public function the_thread_subject_may_contain_multiple_spaces_between_words()
+    {
+        $tag = factory(Tag::class)->create(['name' => 'Foo Tag']);
+
+        $this->login();
+
+        $this->visit('/forum/create-thread')
+            ->submitForm('Create Thread', [
+                'subject' => 'This  is a Foo title',
+                'body' => 'This text explains how queues work in Laravel.',
+                'tags' => [$tag->id()],
+            ])
+            ->seePageIs('/forum/this-is-a-foo-title')
+            ->see('how queues work in Laravel.')
+            ->see('Foo Tag')
+            ->see('Thread successfully created!');
+    }
+
+    /** @test */
     public function users_can_create_a_thread()
     {
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
