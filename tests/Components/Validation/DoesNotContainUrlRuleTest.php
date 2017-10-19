@@ -9,7 +9,6 @@ class DoesNotContainUrlRuleTest extends TestCase
 {
     const STRING_WITH_URL = 'This is a string http://example.com with an url in it.';
     const STRING_WITHOUT_URL = 'This is a string without an url in it.';
-    const STRING_WITH_A_REGRESSION = 'JSON not possible with MSSQL running on Windows platform?';
     const STRING_WITH_EXTRA_SPACES = 'This  is a  string with extra spaces.';
 
     /** @test */
