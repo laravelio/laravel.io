@@ -6,6 +6,7 @@
 /public/mix-manifest.json
 /storage/*.key
 /vendor
+/.idea
 Homestead.json
 Homestead.yaml
 .env
