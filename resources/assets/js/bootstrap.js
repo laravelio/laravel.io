@@ -59,3 +59,4 @@ require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-less');
 require('prismjs/components/prism-sass');
 require('prismjs/components/prism-php');
+window.markdown = require('markdown').markdown;
