@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Http\Requests\ThreadRequest;
 use App\Models\Tag;
 use App\Models\Thread;
 use Tests\BrowserKitTestCase;
