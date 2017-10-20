@@ -8,12 +8,10 @@ use App\Validation\DoesNotContainUrlRule;
 
 class ThreadRequest extends Request
 {
-    const SUBJECT_SIZE = 60;
-
     public function rules()
     {
         return [
-            'subject' => 'required|max:'.self::SUBJECT_SIZE.'|'.DoesNotContainUrlRule::NAME.'|'.SpamRule::NAME,
+            'subject' => 'required|max:60|'.DoesNotContainUrlRule::NAME.'|'.SpamRule::NAME,
             'body' => 'required|'.SpamRule::NAME,
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',

@@ -139,7 +139,7 @@ class ForumTest extends BrowserKitTestCase
             ])
             ->seePageIs('/forum/create-thread')
             ->see('Something went wrong. Please review the fields below.')
-            ->see('The subject may not be greater than ' . ThreadRequest::SUBJECT_SIZE . ' characters.');
+            ->see('The subject may not be greater than 60 characters.');
     }
 
     /** @test */
@@ -162,6 +162,6 @@ class ForumTest extends BrowserKitTestCase
             ])
             ->seePageIs('/forum/my-first-thread/edit')
             ->see('Something went wrong. Please review the fields below.')
-            ->see('The subject may not be greater than ' . ThreadRequest::SUBJECT_SIZE . ' characters.');
+            ->see('The subject may not be greater than 60 characters.');
     }
 }
