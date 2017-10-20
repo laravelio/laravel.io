@@ -1,7 +1,7 @@
 {!! Form::open(['route' => $route, 'method' => $method ?? 'POST']) !!}
     @formGroup('subject')
         {!! Form::label('subject') !!}
-        {!! Form::text('subject', isset($thread) ? $thread->subject() : null, ['class' => 'form-control', 'required']) !!}
+        {!! Form::text('subject', isset($thread) ? $thread->subject() : null, ['class' => 'form-control', 'required', 'maxlength' => '60']) !!}
         @error('subject')
     @endFormGroup
 
