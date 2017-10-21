@@ -122,4 +122,45 @@ class ForumTest extends BrowserKitTestCase
         $this->delete('/forum/my-first-thread')
             ->assertForbidden();
     }
+
+    /** @test */
+    public function users_cannot_create_a_thread_with_a_subject_that_is_too_long()
+    {
+        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+
+        $this->login();
+
+        $this->visit('/forum/create-thread')
+            ->submitForm('Create Thread', [
+                'subject' => 'How to make Eloquent, Doctrine, Entities and Annotations work together in Laravel?',
+                'body' => 'This is a thread with 82 characters in the subject',
+                'tags' => [$tag->id()],
+            ])
+            ->seePageIs('/forum/create-thread')
+            ->see('Something went wrong. Please review the fields below.')
+            ->see('The subject may not be greater than 60 characters.');
+    }
+
+    /** @test */
+    public function users_cannot_edit_a_thread_with_a_subject_that_is_too_long()
+    {
+        $user = $this->createUser();
+        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+        factory(Thread::class)->create([
+            'author_id' => $user->id(),
+            'slug' => 'my-first-thread',
+        ]);
+
+        $this->loginAs($user);
+
+        $this->visit('/forum/my-first-thread/edit')
+            ->submitForm('Update Thread', [
+                'subject' => 'How to make Eloquent, Doctrine, Entities and Annotations work together in Laravel?',
+                'body' => 'This is a thread with 82 characters in the subject',
+                'tags' => [$tag->id()],
+            ])
+            ->seePageIs('/forum/my-first-thread/edit')
+            ->see('Something went wrong. Please review the fields below.')
+            ->see('The subject may not be greater than 60 characters.');
+    }
 }
