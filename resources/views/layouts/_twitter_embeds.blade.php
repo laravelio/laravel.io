@@ -16,8 +16,8 @@
         }
 
         function regexForMatch(id, content) {
-            const regex = /((http(s|):\/\/)|)twitter.com\/[^\/]*\/status\/\d*/g;
-            let match = regex.exec($(content).text())
+            var regex = /((http(s|):\/\/)|)twitter.com\/[^\/]*\/status\/\d*/g;
+            var match = regex.exec($(content).text())
             if (match && match[0]) {
                 changeMatchForEmbed(match[0], content)
                 embedTwitterWidgetScript();
