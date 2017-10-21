@@ -16,7 +16,7 @@
         }
 
         function regexForMatch(id, content) {
-            var regex = /((http(s|):\/\/)|)twitter.com\/[^\/]*\/status\/\d*/g;
+            var regex = /((http(s|):\/\/)|)twitter.com\/\w*\/status\/\d*/g;
             var match = regex.exec($(content).text())
             if (match && match[0]) {
                 changeMatchForEmbed(match[0], content)
