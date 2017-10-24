@@ -145,3 +145,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts-head')
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+@endpush

@@ -59,12 +59,6 @@ return [
         ],
     ],
 
-    'twitter' => [
-        'embeds' => [
-            'enabled' => env('TWITTER_EMBEDS_ENABLED', true),
-        ],
-    ],
-
     'carbon' => [
         'code' => env('CARBON_CODE'),
     ],
