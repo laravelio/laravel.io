@@ -53,6 +53,7 @@ require('selectize');
 require('markdown'); // This doesn't seems to work so we require it directly in base.blade.php
 require('to-markdown');
 require('bootstrap-markdown/js/bootstrap-markdown');
+require('./embed-twitter');
 require('prismjs');
 require('prismjs/components/prism-json');
 require('prismjs/components/prism-css');

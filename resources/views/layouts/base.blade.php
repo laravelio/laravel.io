@@ -36,7 +36,6 @@
 <script src="{{ mix('build/js/app.js') }}"></script>
 
 @include('layouts._intercom')
-@include('layouts._twitter_embeds')
 
 </body>
 </html>

@@ -15,6 +15,7 @@ require('./bootstrap');
 
 $('select.selectize').selectize({ maxItems: 3 });
 $('textarea.wysiwyg').markdown({ iconlibrary: 'fa' });
+$('.forum-content > p').twembed();
 
 // const app = new Vue({
 //     el: '#app'
