@@ -2,6 +2,10 @@
 
 @extends('layouts.default')
 
+@push('scripts-head')
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+@endpush
+
 @section('content')
     <div class="row forum">
         <div class="col-md-3">
@@ -145,7 +149,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts-head')
-    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-@endpush
