@@ -18,21 +18,21 @@ class UpdateProfileRequest extends Request
 
     public function bio(): string
     {
-        return $this->get('bio', '');
+        return (string) $this->get('bio', '');
     }
 
     public function name(): string
     {
-        return $this->get('name');
+        return (string) $this->get('name');
     }
 
     public function email(): string
     {
-        return $this->get('email');
+        return (string) $this->get('email');
     }
 
     public function username(): string
     {
-        return $this->get('username');
+        return (string) $this->get('username');
     }
 }
