@@ -50,7 +50,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 require('vue-resource');
 require('selectize');
-require('markdown'); // This doesn't seems to work so we require it directly in base.blade.php
 require('to-markdown');
 require('bootstrap-markdown/js/bootstrap-markdown');
 require('./embed-twitter');
@@ -61,3 +60,4 @@ require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-less');
 require('prismjs/components/prism-sass');
 require('prismjs/components/prism-php');
+window.markdown = require('markdown').markdown;
