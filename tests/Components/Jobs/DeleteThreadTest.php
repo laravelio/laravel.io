@@ -7,7 +7,7 @@ use App\Models\Thread;
 use App\Jobs\DeleteThread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class DeleteThreadTest extends JobTestCase
+class DeleteThreadTest extends TestCase
 {
     use DatabaseMigrations;
 

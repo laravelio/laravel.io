@@ -2,11 +2,12 @@
 
 namespace Tests\Components\Jobs;
 
+use Tests\TestCase;
 use App\Jobs\RegisterUser;
 use App\Exceptions\CannotCreateUser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class RegisterUserTest extends JobTestCase
+class RegisterUserTest extends TestCase
 {
     use DatabaseMigrations;
 

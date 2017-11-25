@@ -2,10 +2,11 @@
 
 namespace Tests\Components\Jobs;
 
+use Tests\TestCase;
 use App\Jobs\ConfirmUser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class ConfirmUserTest extends JobTestCase
+class ConfirmUserTest extends TestCase
 {
     use DatabaseMigrations;
 

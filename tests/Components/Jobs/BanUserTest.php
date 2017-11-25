@@ -2,10 +2,11 @@
 
 namespace Tests\Components\Jobs;
 
+use Tests\TestCase;
 use App\Jobs\BanUser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class BanUserTest extends JobTestCase
+class BanUserTest extends TestCase
 {
     use DatabaseMigrations;
 

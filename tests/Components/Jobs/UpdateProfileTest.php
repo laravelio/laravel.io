@@ -2,10 +2,11 @@
 
 namespace Tests\Components\Jobs;
 
+use Tests\TestCase;
 use App\Jobs\UpdateProfile;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class UpdateProfileTest extends JobTestCase
+class UpdateProfileTest extends TestCase
 {
     use DatabaseMigrations;
 
