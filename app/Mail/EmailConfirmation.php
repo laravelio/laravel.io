@@ -20,11 +20,6 @@ class EmailConfirmation extends Mailable
         $this->user = $user;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
         return $this->subject('Confirm your Laravel.io email address')
