@@ -22,4 +22,11 @@ interface ReplyAble
     public function deleteReplies();
 
     public function repliesRelation(): MorphMany;
+
+    /**
+     * @return \App\Models\Subscription[]
+     */
+    public function subscriptions();
+
+    public function subscriptionsRelation(): MorphMany;
 }
