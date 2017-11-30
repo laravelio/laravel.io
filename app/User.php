@@ -4,7 +4,6 @@ namespace App;
 
 use App\Models\Reply;
 use App\Models\Thread;
-use App\Models\Subscription;
 use App\Helpers\ModelHelpers;
 use App\Helpers\HasTimestamps;
 use Illuminate\Notifications\Notifiable;
@@ -238,18 +237,5 @@ final class User extends Authenticatable
         $this->deleteReplies();
 
         parent::delete();
-    }
-
-    public function isSubscribedTo($subscriptionAble): bool
-    {
-        return $this->subscriptionAble()
-            ->where('subscriptionable_id', $subscriptionAble->id())
-            ->where('subscriptionable_type', $subscriptionAble::TABLE)
-            ->exists();
-    }
-
-    public function subscriptionAble(): HasMany
-    {
-        return $this->hasMany(Subscription::class, 'user_id');
     }
 }

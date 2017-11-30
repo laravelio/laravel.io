@@ -40,6 +40,17 @@ class SubscriptionTest extends TestCase
             new CreateThread($this->faker->sentence, $this->faker->text, $this->faker->ipv4, $user)
         );
 
-        $this->assertTrue($user->isSubscribedTo($thread));
+        $this->assertTrue($thread->hasSubscriber($user));
+    }
+
+    /** @test */
+    public function users_are_automatically_subscribed_to_a_thread_after_replying_to_it()
+    {
+        $user = $this->createUser();
+        $thread = factory(Thread::class)->create();
+
+        $this->dispatch(new CreateReply($this->faker->text, $this->faker->ipv4, $user, $thread));
+
+        $this->assertTrue($thread->hasSubscriber($user));
     }
 }

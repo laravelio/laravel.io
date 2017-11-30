@@ -5,6 +5,7 @@ namespace App\Models;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Subscription extends Model
 {
@@ -12,14 +13,6 @@ class Subscription extends Model
      * {@inheritdoc}
      */
     protected $table = 'subscriptions';
-
-    /**
-     * {@inheritdoc}
-     */
-    protected $fillable = [
-        'subscriptionable_id',
-        'subscriptionable_type',
-    ];
 
     public function user(): User
     {
@@ -29,5 +22,15 @@ class Subscription extends Model
     public function userRelation(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function subscriptionAble(): SubscriptionAble
+    {
+        return $this->subscriptionAbleRelation;
+    }
+
+    public function subscriptionAbleRelation(): MorphTo
+    {
+        return $this->morphTo('subscriptionable');
     }
 }

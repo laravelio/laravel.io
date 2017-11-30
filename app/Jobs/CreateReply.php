@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Models\Subscription;
+use App\Models\SubscriptionAble;
 use App\User;
 use App\Models\Reply;
 use App\Models\ReplyAble;
@@ -51,6 +53,14 @@ final class CreateReply
         $reply->save();
 
         event(new ReplyWasCreated($reply));
+
+        if ($this->replyAble instanceof SubscriptionAble && ! $this->replyAble->hasSubscriber($this->author)) {
+            $subscription = new Subscription();
+            $subscription->userRelation()->associate($this->author);
+            $subscription->subscriptionAbleRelation()->associate($this->replyAble);
+
+            $this->replyAble->subscriptionsRelation()->save($subscription);
+        }
 
         return $reply;
     }

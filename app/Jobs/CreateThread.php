@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Subscription;
 use App\User;
 use App\Models\Thread;
 use App\Http\Requests\ThreadRequest;
@@ -66,10 +67,11 @@ final class CreateThread
         $thread->save();
 
         // Subscribe author to the thread.
-        $this->author->subscriptionAble()->create([
-            'subscriptionable_id' => $thread->id(),
-            'subscriptionable_type' => Thread::TABLE,
-        ]);
+        $subscription = new Subscription();
+        $subscription->userRelation()->associate($this->author);
+        $subscription->subscriptionAbleRelation()->associate($thread);
+
+        $thread->subscriptionsRelation()->save($subscription);
 
         return $thread;
     }

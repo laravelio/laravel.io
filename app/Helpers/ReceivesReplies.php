@@ -3,7 +3,6 @@
 namespace App\Helpers;
 
 use App\Models\Reply;
-use App\Models\Subscription;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait ReceivesReplies
@@ -32,18 +31,5 @@ trait ReceivesReplies
     public function repliesRelation(): MorphMany
     {
         return $this->morphMany(Reply::class, 'replyable');
-    }
-
-    /**
-     * @return \App\Models\Subscription[]
-     */
-    public function subscriptions()
-    {
-        return $this->subscriptionsRelation;
-    }
-
-    public function subscriptionsRelation(): MorphMany
-    {
-        return $this->morphMany(Subscription::class, 'subscriptionable');
     }
 }
