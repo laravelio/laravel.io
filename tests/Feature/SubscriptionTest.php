@@ -25,7 +25,7 @@ class SubscriptionTest extends TestCase
         factory(Subscription::class)->create(['user_id' => $userOne->id(), 'subscriptionable_id' => $thread->id()]);
         factory(Subscription::class)->create(['user_id' => $userTwo->id(), 'subscriptionable_id' => $thread->id()]);
 
-        $this->dispatch(new CreateReply('Foo', 'Bar', $author, $thread));
+        $this->dispatch(new CreateReply($this->faker->text, $this->faker->ipv4, $author, $thread));
 
         Notification::assertSentTo([$userOne, $userTwo], NewReply::class);
     }
