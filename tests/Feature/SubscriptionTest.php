@@ -10,6 +10,7 @@ use App\Jobs\CreateThread;
 use App\Models\Subscription;
 use App\Notifications\NewReply;
 use Illuminate\Support\Facades\Notification;
+use App\Jobs\UnsubscribeFromSubscriptionAble;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SubscriptionTest extends TestCase
@@ -52,5 +53,19 @@ class SubscriptionTest extends TestCase
         $this->dispatch(new CreateReply($this->faker->text, $this->faker->ipv4, $user, $thread));
 
         $this->assertTrue($thread->hasSubscriber($user));
+    }
+
+    /** @test */
+    public function users_can_unsubscribe_from_threads()
+    {
+        $user = $this->createUser();
+        $thread = factory(Thread::class)->create();
+        factory(Subscription::class)->create(['user_id' => $user->id(), 'subscriptionable_id' => $thread->id()]);
+
+        $this->assertTrue($thread->hasSubscriber($user));
+
+        $this->dispatch(new UnsubscribeFromSubscriptionAble($user, $thread));
+
+        $this->assertFalse($thread->hasSubscriber($user));
     }
 }
