@@ -10,11 +10,25 @@
             <hr>
 
             @can(App\Policies\ThreadPolicy::UPDATE, $thread)
-                <a class="btn btn-default btn-block" href="{{ route('threads.edit', $thread->slug()) }}">Edit</a>
+                <a class="btn btn-default btn-block" href="{{ route('threads.edit', $thread->slug()) }}">
+                    Edit
+                </a>
+            @endcan
+
+            @can(App\Policies\ThreadPolicy::UNSUBSCRIBE, $thread)
+                <a class="btn btn-primary btn-block" href="{{ route('threads.unsubscribe', $thread->slug()) }}">
+                    Unsubscribe
+                </a>
+            @elsecan(App\Policies\ThreadPolicy::SUBSCRIBE, $thread)
+                <a class="btn btn-primary btn-block" href="{{ route('threads.subscribe', $thread->slug()) }}">
+                    Subscribe
+                </a>
             @endcan
 
             @can(App\Policies\ThreadPolicy::DELETE, $thread)
-                <a class="btn btn-danger btn-block" href="#" data-toggle="modal" data-target="#deleteThread">Delete</a>
+                <a class="btn btn-danger btn-block" href="#" data-toggle="modal" data-target="#deleteThread">
+                    Delete
+                </a>
 
                 @include('_partials._delete_modal', [
                     'id' => 'deleteThread',
@@ -24,7 +38,9 @@
                 ])
             @endcan
 
-            <a class="btn btn-link btn-block" href="{{ route('forum') }}"><i class="fa fa-arrow-left"></i> Back</a></a>
+            <a class="btn btn-link btn-block" href="{{ route('forum') }}">
+                <i class="fa fa-arrow-left"></i> Back
+            </a>
 
             @include('layouts._ads._forum_sidebar')
         </div>
@@ -57,18 +73,26 @@
                         @include('forum.threads.info.avatar', ['user' => $reply->author()])
 
                         <div class="thread-info-author">
-                            <a href="{{ route('profile', $reply->author()->username()) }}" class="thread-info-link">{{ $reply->author()->name() }}</a> replied
+                            <a href="{{ route('profile', $reply->author()->username()) }}" class="thread-info-link">
+                                {{ $reply->author()->name() }}
+                            </a> replied
                             {{ $reply->createdAt()->diffForHumans() }}
 
                             @if ($thread->isSolutionReply($reply))
-                                <span class="label label-primary thread-info-badge">Solution</span>
+                                <span class="label label-primary thread-info-badge">
+                                    Solution
+                                </span>
                             @endif
                         </div>
 
                         @can(App\Policies\ReplyPolicy::UPDATE, $reply)
                             <div class="thread-info-tags">
-                                <a class="btn btn-default btn-xs" href="{{ route('replies.edit', $reply->id()) }}">Edit</a>
-                                <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteReply{{ $reply->id() }}">Delete</a>
+                                <a class="btn btn-default btn-xs" href="{{ route('replies.edit', $reply->id()) }}">
+                                    Edit
+                                </a>
+                                <a class="btn btn-danger btn-xs" href="#" data-toggle="modal" data-target="#deleteReply{{ $reply->id() }}">
+                                    Delete
+                                </a>
                             </div>
                         @endcan
                     </div>

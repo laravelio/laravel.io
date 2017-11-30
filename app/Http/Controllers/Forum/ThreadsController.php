@@ -14,8 +14,11 @@ use App\Jobs\MarkThreadSolution;
 use App\Jobs\UnmarkThreadSolution;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreadRequest;
+use App\Jobs\SubscribeToSubscriptionAble;
 use Illuminate\Auth\Middleware\Authenticate;
+use App\Jobs\UnsubscribeFromSubscriptionAble;
 use App\Http\Middleware\RedirectIfUnconfirmed;
+use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
 {
@@ -94,6 +97,28 @@ class ThreadsController extends Controller
         $this->authorize(ThreadPolicy::UPDATE, $thread);
 
         $this->dispatchNow(new UnmarkThreadSolution($thread));
+
+        return redirect()->route('thread', $thread->slug());
+    }
+
+    public function subscribe(Request $request, Thread $thread)
+    {
+        $this->authorize(ThreadPolicy::SUBSCRIBE, $thread);
+
+        $this->dispatchNow(new SubscribeToSubscriptionAble($request->user(), $thread));
+
+        $this->success("You're now subscribed to this thread.");
+
+        return redirect()->route('thread', $thread->slug());
+    }
+
+    public function unsubscribe(Request $request, Thread $thread)
+    {
+        $this->authorize(ThreadPolicy::UNSUBSCRIBE, $thread);
+
+        $this->dispatchNow(new UnsubscribeFromSubscriptionAble($request->user(), $thread));
+
+        $this->success("You're now unsubscribed from this thread.");
 
         return redirect()->route('thread', $thread->slug());
     }

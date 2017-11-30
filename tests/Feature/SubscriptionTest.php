@@ -3,17 +3,17 @@
 namespace Tests\Feature;
 
 use App\User;
-use Tests\TestCase;
 use App\Models\Thread;
 use App\Jobs\CreateReply;
 use App\Jobs\CreateThread;
 use App\Models\Subscription;
+use Tests\BrowserKitTestCase;
 use App\Notifications\NewReply;
 use Illuminate\Support\Facades\Notification;
 use App\Jobs\UnsubscribeFromSubscriptionAble;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class SubscriptionTest extends TestCase
+class SubscriptionTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 
@@ -56,16 +56,30 @@ class SubscriptionTest extends TestCase
     }
 
     /** @test */
+    public function users_can_manually_subscribe_to_threads()
+    {
+        factory(Thread::class)->create(['slug' => $slug = $this->faker->slug]);
+
+        $this->login();
+
+        $this->visit("/forum/$slug")
+            ->click('Subscribe')
+            ->seePageIs("/forum/$slug")
+            ->see("You're now subscribed to this thread.");
+    }
+
+    /** @test */
     public function users_can_unsubscribe_from_threads()
     {
         $user = $this->createUser();
-        $thread = factory(Thread::class)->create();
+        $thread = factory(Thread::class)->create(['slug' => $slug = $this->faker->slug]);
         factory(Subscription::class)->create(['user_id' => $user->id(), 'subscriptionable_id' => $thread->id()]);
 
-        $this->assertTrue($thread->hasSubscriber($user));
+        $this->loginAs($user);
 
-        $this->dispatch(new UnsubscribeFromSubscriptionAble($user, $thread));
-
-        $this->assertFalse($thread->hasSubscriber($user));
+        $this->visit("/forum/$slug")
+            ->click('Unsubscribe')
+            ->seePageIs("/forum/$slug")
+            ->see("You're now unsubscribed from this thread.");
     }
 }
