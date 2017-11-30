@@ -216,17 +216,17 @@ class User extends Authenticatable
         })->count();
     }
 
-    public static function findByUsername(string $username): self
+    public static function findByUsername(string $username): User
     {
         return static::where('username', $username)->firstOrFail();
     }
 
-    public static function findByEmailAddress(string $emailAddress): self
+    public static function findByEmailAddress(string $emailAddress): User
     {
         return static::where('email', $emailAddress)->firstOrFail();
     }
 
-    public static function findByGithubId(string $githubId): self
+    public static function findByGithubId(string $githubId): User
     {
         return static::where('github_id', $githubId)->firstOrFail();
     }

@@ -1,8 +1,7 @@
 {!! Form::open(['route' => $route, 'method' => $method ?? 'POST']) !!}
     @formGroup('subject')
         {!! Form::label('subject') !!}
-        {!! Form::text('subject', isset($thread) ? $thread->subject() : null, ['class' => 'form-control', 'required', 'maxlength' => '60']) !!}
-        <span class="help-block">Maximum 60 characters.</span>
+        {!! Form::text('subject', isset($thread) ? $thread->subject() : null, ['class' => 'form-control', 'required']) !!}
         @error('subject')
     @endFormGroup
 

@@ -11,7 +11,7 @@ class ThreadRequest extends Request
     public function rules()
     {
         return [
-            'subject' => 'required|max:60|'.DoesNotContainUrlRule::NAME.'|'.SpamRule::NAME,
+            'subject' => 'required|'.DoesNotContainUrlRule::NAME.'|'.SpamRule::NAME,
             'body' => 'required|'.SpamRule::NAME,
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',

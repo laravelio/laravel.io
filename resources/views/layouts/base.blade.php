@@ -33,6 +33,7 @@
     @include('layouts._footer')
 </div>
 
+<script src="{{ asset('build/custom/markdown.js') }}"></script>
 <script src="{{ mix('build/js/app.js') }}"></script>
 
 @include('layouts._intercom')
