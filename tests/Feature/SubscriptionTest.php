@@ -6,6 +6,7 @@ use App\User;
 use Tests\TestCase;
 use App\Models\Thread;
 use App\Jobs\CreateReply;
+use App\Jobs\CreateThread;
 use App\Models\Subscription;
 use App\Notifications\NewReply;
 use Illuminate\Support\Facades\Notification;
@@ -28,5 +29,17 @@ class SubscriptionTest extends TestCase
         $this->dispatch(new CreateReply($this->faker->text, $this->faker->ipv4, $author, $thread));
 
         Notification::assertSentTo([$userOne, $userTwo], NewReply::class);
+    }
+
+    /** @test */
+    public function users_are_automatically_subscribed_to_a_thread_after_creating_it()
+    {
+        $user = $this->createUser();
+
+        $thread = $this->dispatch(
+            new CreateThread($this->faker->sentence, $this->faker->text, $this->faker->ipv4, $user)
+        );
+
+        $this->assertTrue($user->isSubscribedTo($thread));
     }
 }

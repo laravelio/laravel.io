@@ -65,6 +65,12 @@ final class CreateThread
         $thread->syncTags($this->tags);
         $thread->save();
 
+        // Subscribe author to the thread.
+        $this->author->subscriptionAble()->create([
+            'subscriptionable_id' => $thread->id(),
+            'subscriptionable_type' => Thread::TABLE,
+        ]);
+
         return $thread;
     }
 }
