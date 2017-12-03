@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\HasAuthor;
+use App\Helpers\HasLikes;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,8 @@ use Illuminate\Support\Str;
 
 final class Reply extends Model
 {
-    use HasAuthor, HasTimestamps, ModelHelpers;
+    use HasLikes,
+        HasAuthor, HasTimestamps, ModelHelpers;
 
     /**
      * {@inheritdoc}
@@ -24,6 +26,10 @@ final class Reply extends Model
     protected $fillable = [
         'body',
     ];
+
+    protected $with = ['likes'];
+
+    protected $appends = ['likes_count'];
 
     public function id(): int
     {

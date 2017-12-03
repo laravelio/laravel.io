@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\RedirectIfUnconfirmed;
 use App\Http\Requests\CreateReplyRequest;
 use App\Http\Requests\UpdateReplyRequest;
+use App\Jobs\DislikeReply;
+use App\Jobs\LikeReply;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
 use App\Jobs\UpdateReply;
@@ -60,6 +62,20 @@ class ReplyController extends Controller
         $this->success('replies.deleted');
 
         return $this->redirectToReplyAble($reply->replyAble());
+    }
+
+    public function like(Reply $reply)
+    {
+        $this->dispatchNow(new LikeReply($reply, auth()->user()));
+
+        return back();
+    }
+
+    public function dislike(Reply $reply)
+    {
+        $this->dispatchNow(new DislikeReply($reply, auth()->user()));
+
+        return back();
     }
 
     private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse

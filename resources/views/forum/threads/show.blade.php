@@ -108,6 +108,19 @@
                                     </div>
                                 </div>              
                             </div>
+                        @endcan
+                        <div class="thread-info-likes">
+                            @if(!$reply->isLikedBy(auth()->user()))
+                                {{ Form::open(['route' => ['replies.like', $reply], 'method' => 'PUT']) }}
+                                <span>{{$reply->likes_count}}</span>
+                                {{ Form::submit('like', ['class' => 'btn btn-xs btn-success']) }}
+                                {{ Form::close() }}
+                            @else
+                                {{ Form::open(['route' => ['replies.dislike', $reply], 'method' => 'DELETE']) }}
+                                <span>{{$reply->likes_count}}</span>
+                                {{ Form::submit('dislike', ['class' => 'btn btn-xs btn-danger']) }}
+                                {{ Form::close() }}
+                            @endif
                         </div>
                     </div>
 

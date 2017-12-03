@@ -116,4 +116,15 @@ class ReplyTest extends BrowserKitTestCase
                 'You\'ll need to verify your account before participating in this thread.'
             );
     }
+    
+    public function user_can_like_a_reply()
+    {
+        $user = factory(User::class)->create();
+
+        $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread']);
+        $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
+
+        $this->put('/forum/the-first-thread/'.$reply->id().'/like');
+            //->assertForbidden();
+    }
 }

@@ -71,6 +71,8 @@ Route::post('replies', 'ReplyController@store')->name('replies.store');
 Route::get('replies/{reply}/edit', 'ReplyController@edit')->name('replies.edit');
 Route::put('replies/{reply}', 'ReplyController@update')->name('replies.update');
 Route::delete('replies/{reply}', 'ReplyController@delete')->name('replies.delete');
+Route::put('replies/{reply}/like', ['as' => 'replies.like', 'uses' => 'ReplyController@like']);
+Route::delete('replies/{reply}/dislike', ['as' => 'replies.dislike', 'uses' => 'ReplyController@dislike']);
 
 // Subscriptions
 Route::get('subscriptions/{subscription}/unsubscribe', 'SubscriptionController@unsubscribe')
