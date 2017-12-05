@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bobbyborisov
- * Date: 12/3/17
- * Time: 1:51 PM
- */
 
 namespace App\Helpers;
 
@@ -27,7 +21,7 @@ trait HasLikes
 
     public function dislikedBy(User $user)
     {
-        $this->likes()->where('user_id', $user->id)->get()->first()->delete();
+        optional($this->likes()->where('user_id', $user->id)->get()->first())->delete();
     }
 
     public function likes()
@@ -37,6 +31,7 @@ trait HasLikes
 
     public function isLikedBy(User $user)
     {
+        if ($user == null) return false;
         return $this->likes()->where('user_id', $user->id)->exists();
     }
 

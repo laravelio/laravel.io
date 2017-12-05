@@ -122,6 +122,12 @@
                                 {{ Form::close() }}
                             @endif
                         </div>
+                        @endcan
+                        @auth
+                            <div class="thread-info-likes">
+                                <like></like>
+                            </div>
+                        @endauth
                     </div>
 
                     @include('_partials._delete_modal', [

@@ -16,11 +16,12 @@ class DeleteThreadTest extends TestCase
     public function we_can_delete_a_thread_and_its_replies()
     {
         $thread = factory(Thread::class)->create();
-        factory(Reply::class)->create(['replyable_id' => $thread->id()]);
+        $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
 
         $this->dispatch(new DeleteThread($thread));
 
         $this->assertDatabaseMissing('threads', ['id' => $thread->id()]);
         $this->assertDatabaseMissing('replies', ['replyable_id' => $thread->id()]);
+        $this->assertDatabaseMissing('likes', ['liked_type' => get_class($reply), 'liked_id' => $reply->id()]);
     }
 }
