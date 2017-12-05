@@ -2,11 +2,8 @@
 
 namespace Tests\Components\Models;
 
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 use App\Models\Reply;
-use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ReplyTest extends TestCase

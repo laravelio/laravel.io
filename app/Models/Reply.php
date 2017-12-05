@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Helpers\HasAuthor;
 use App\Helpers\HasLikes;
+use App\Helpers\HasAuthor;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
 use Illuminate\Database\Eloquent\Model;
@@ -12,8 +12,7 @@ use Illuminate\Support\Str;
 
 final class Reply extends Model
 {
-    use HasLikes,
-        HasAuthor, HasTimestamps, ModelHelpers;
+    use HasLikes, HasAuthor, HasTimestamps, ModelHelpers;
 
     /**
      * {@inheritdoc}

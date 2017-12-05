@@ -2,18 +2,11 @@
 
 namespace App\Jobs;
 
-use App\Models\Reply;
 use App\User;
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
+use App\Models\Reply;
 
-class DislikeReply implements ShouldQueue
+class DislikeReply
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     /**
      * @var \App\Models\Reply
      */

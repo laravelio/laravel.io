@@ -2,14 +2,14 @@
 
 namespace App\Helpers;
 
-use App\Models\Like;
 use App\User;
+use App\Models\Like;
 
 trait HasLikes
 {
     protected static function bootHasLikes()
     {
-        static::deleting(function ($model){
+        static::deleting(function ($model) {
             $model->likes->each->delete();
         });
     }
@@ -31,7 +31,10 @@ trait HasLikes
 
     public function isLikedBy(User $user)
     {
-        if ($user == null) return false;
+        if ($user == null) {
+            return false;
+        }
+
         return $this->likes()->where('user_id', $user->id)->exists();
     }
 

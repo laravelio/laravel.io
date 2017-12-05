@@ -2,11 +2,11 @@
 
 namespace Tests\Components\Jobs;
 
-use App\Exceptions\CannotLikeReplyTwice;
-use App\Jobs\LikeReply;
-use App\Models\Reply;
 use App\User;
 use Tests\TestCase;
+use App\Models\Reply;
+use App\Jobs\LikeReply;
+use App\Exceptions\CannotLikeReplyTwice;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class LikeReplyTest extends TestCase

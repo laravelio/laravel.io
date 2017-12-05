@@ -2,20 +2,13 @@
 
 namespace App\Jobs;
 
-use App\Exceptions\CannotLikeReplyTwice;
-use App\Models\Reply;
 use App\User;
-use Illuminate\Bus\Queueable;
+use App\Models\Reply;
 use Illuminate\Database\QueryException;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
+use App\Exceptions\CannotLikeReplyTwice;
 
-class LikeReply implements ShouldQueue
+class LikeReply
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     /**
      * @var \App\Models\Reply
      */

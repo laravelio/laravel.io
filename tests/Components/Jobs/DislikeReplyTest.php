@@ -2,10 +2,10 @@
 
 namespace Tests\Components\Jobs;
 
-use App\Jobs\DislikeReply;
-use App\Models\Reply;
 use App\User;
 use Tests\TestCase;
+use App\Models\Reply;
+use App\Jobs\DislikeReply;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class DislikeReplyTest extends TestCase
