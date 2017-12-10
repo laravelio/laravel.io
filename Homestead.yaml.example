@@ -11,7 +11,7 @@ folders:
         to: /home/vagrant/Code/laravelio
 sites:
     -
-        map: laravelio.app
+        map: laravelio.test
         to: /home/vagrant/Code/laravelio/public
 databases:
     - homestead

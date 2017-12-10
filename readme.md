@@ -37,20 +37,20 @@ The following tools are required in order to start the installation.
 2. Run `composer start`
 4. Run `vagrant up`
 5. SSH into your Vagrant box, go to `/home/vagrant/Code/laravelio` and run `composer setup`
-6. Add `192.168.10.10 laravelio.app` to your computer's `/etc/hosts` file
+6. Add `192.168.10.10 laravelio.test` to your computer's `/etc/hosts` file
 7. Setup a working e-mail driver like [Mailtrap](https://mailtrap.io/)
 8. (optional) Set up Github authentication (see below)
 
-You can now visit the app in your browser by visiting [http://laravelio.app](http://laravelio.app). If you seeded the database you can login into a test account with `johndoe` & `password`.
+You can now visit the app in your browser by visiting [http://laravelio.test](http://laravelio.test). If you seeded the database you can login into a test account with `johndoe` & `password`.
 
 ### Github Authentication (optional)
 
-To get Github authentication to work locally, you'll need to [register a new OAuth application on Github](https://github.com/settings/applications/new). Use `http://lio.app` for the homepage url and `http://lio.app/auth/github` for the callback url. When you've created the app, fill in the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with Github.
+To get Github authentication to work locally, you'll need to [register a new OAuth application on Github](https://github.com/settings/applications/new). Use `http://laravelio.test` for the homepage url and `http://laravelio.test/auth/github` for the callback url. When you've created the app, fill in the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with Github.
 
 ```
 GITHUB_ID=
 GITHUB_SECRET=
-GITHUB_URL=http://laravelio.app/auth/github
+GITHUB_URL=http://laravelio.test/auth/github
 ```
 
 ## Maintainers
