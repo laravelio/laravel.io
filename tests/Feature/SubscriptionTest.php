@@ -8,7 +8,7 @@ use App\Jobs\CreateReply;
 use App\Jobs\CreateThread;
 use App\Models\Subscription;
 use Tests\BrowserKitTestCase;
-use App\Notifications\NewReply;
+use App\Notifications\NewReplyNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -28,8 +28,8 @@ class SubscriptionTest extends BrowserKitTestCase
 
         $this->dispatch(new CreateReply($this->faker->text, $this->faker->ipv4, $author, $thread));
 
-        Notification::assertNotSentTo($author, NewReply::class);
-        Notification::assertSentTo([$userOne, $userTwo], NewReply::class);
+        Notification::assertNotSentTo($author, NewReplyNotification::class);
+        Notification::assertSentTo([$userOne, $userTwo], NewReplyNotification::class);
     }
 
     /** @test */
@@ -53,7 +53,7 @@ class SubscriptionTest extends BrowserKitTestCase
 
         $this->dispatch(new CreateThread($this->faker->sentence, $this->faker->text, $this->faker->ipv4, $author));
 
-        Notification::assertNotSentTo($author, NewReply::class);
+        Notification::assertNotSentTo($author, NewReplyNotification::class);
     }
 
     /** @test */
@@ -67,7 +67,7 @@ class SubscriptionTest extends BrowserKitTestCase
 
         $this->dispatch(new CreateReply($this->faker->text, $this->faker->ipv4, $author, $thread));
 
-        Notification::assertNotSentTo($author, NewReply::class);
+        Notification::assertNotSentTo($author, NewReplyNotification::class);
     }
 
     /** @test */

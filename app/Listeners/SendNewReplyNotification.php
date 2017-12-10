@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\ReplyWasCreated;
-use App\Notifications\NewReply;
+use App\Notifications\NewReplyNotification;
 use App\User;
 
 class SendNewReplyNotification
@@ -12,7 +12,7 @@ class SendNewReplyNotification
     {
         foreach ($event->reply->replyAble()->subscriptions() as $subscription) {
             if ($this->replyAuthorDoesNotMatchSubscriber($event->reply->author(), $subscription)) {
-                $subscription->user()->notify(new NewReply());
+                $subscription->user()->notify(new NewReplyNotification($event->reply));
             }
         }
     }
