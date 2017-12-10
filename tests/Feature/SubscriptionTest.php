@@ -57,6 +57,20 @@ class SubscriptionTest extends BrowserKitTestCase
     }
 
     /** @test */
+    public function reply_authors_do_not_receive_a_notification_for_a_thread_they_are_subscribed_to()
+    {
+        Notification::fake();
+
+        $thread = factory(Thread::class)->create();
+        $author = factory(User::class)->create();
+        factory(Subscription::class)->create(['user_id' => $author->id(), 'subscriptionable_id' => $thread->id()]);
+
+        $this->dispatch(new CreateReply($this->faker->text, $this->faker->ipv4, $author, $thread));
+
+        Notification::assertNotSentTo($author, NewReply::class);
+    }
+
+    /** @test */
     public function users_are_automatically_subscribed_to_a_thread_after_replying_to_it()
     {
         $user = $this->createUser();
