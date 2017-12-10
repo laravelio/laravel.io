@@ -10,7 +10,6 @@ use App\Models\Subscription;
 use Tests\BrowserKitTestCase;
 use App\Notifications\NewReply;
 use Illuminate\Support\Facades\Notification;
-use App\Jobs\UnsubscribeFromSubscriptionAble;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SubscriptionTest extends BrowserKitTestCase
@@ -29,6 +28,7 @@ class SubscriptionTest extends BrowserKitTestCase
 
         $this->dispatch(new CreateReply($this->faker->text, $this->faker->ipv4, $author, $thread));
 
+        Notification::assertNotSentTo($author, NewReply::class);
         Notification::assertSentTo([$userOne, $userTwo], NewReply::class);
     }
 
@@ -42,6 +42,18 @@ class SubscriptionTest extends BrowserKitTestCase
         );
 
         $this->assertTrue($thread->hasSubscriber($user));
+    }
+
+    /** @test */
+    public function thread_authors_do_not_receive_a_notification_for_a_thread_they_create()
+    {
+        Notification::fake();
+
+        $author = $this->createUser();
+
+        $this->dispatch(new CreateThread($this->faker->sentence, $this->faker->text, $this->faker->ipv4, $author));
+
+        Notification::assertNotSentTo($author, NewReply::class);
     }
 
     /** @test */
