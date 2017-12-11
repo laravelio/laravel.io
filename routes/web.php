@@ -14,7 +14,6 @@ Route::group(['namespace' => 'Auth'], function () {
 
     // Registration
     Route::get('register', ['as' => 'register', 'uses' => 'RegisterController@showRegistrationForm']);
-    Route::get('signup', 'RegisterController@redirectToRegistrationForm'); // BC for old links
     Route::post('register', ['as' => 'register.post', 'uses' => 'RegisterController@register']);
 
     // Password reset
