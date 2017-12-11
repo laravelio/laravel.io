@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Auth;
 use App\User;
+use Laravel\Socialite\Two\InvalidStateException;
 use Socialite;
 use App\Social\GithubUser;
 use App\Jobs\UpdateProfile;
@@ -27,7 +28,13 @@ class GithubController extends Controller
      */
     public function handleProviderCallback()
     {
-        $socialiteUser = Socialite::driver('github')->user();
+        try {
+            $socialiteUser = Socialite::driver('github')->user();
+        } catch (InvalidStateException $exception) {
+            $this->error('errors.github_invalid_state');
+
+            return redirect()->route('login');
+        }
 
         try {
             $user = User::findByGithubId($socialiteUser->getId());
