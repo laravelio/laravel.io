@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use Auth;
 use App\User;
-use Laravel\Socialite\Two\InvalidStateException;
 use Socialite;
 use App\Social\GithubUser;
 use App\Jobs\UpdateProfile;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\User as SocialiteUser;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
