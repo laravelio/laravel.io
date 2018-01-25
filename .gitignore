@@ -1,9 +1,4 @@
 /node_modules
-/public/build
-/public/fonts
-/public/storage
-/public/hot
-/public/mix-manifest.json
 /storage/*.key
 /vendor
 Homestead.json
