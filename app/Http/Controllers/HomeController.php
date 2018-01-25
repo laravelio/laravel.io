@@ -16,6 +16,6 @@ class HomeController extends Controller
 
     public function pastebin(string $hash = '')
     {
-        return redirect()->away("https://paste.laravel.io/$hash");
+        return redirect()->away("https://paste.developers.mv/$hash");
     }
 }

@@ -6,8 +6,9 @@
     </div>
 
     <div class="jumbotron text-center">
-        <div class="logo"><img src="{{ asset('images/laravelio.png') }}" title="Laravel.io"></div>
-        <h2>The Laravel Community Portal</h2>
+        <div class="logo"><img src="{{ asset('images/logo.svg') }}" title="{{ config('app.name') }}"></div>
+        <h2>Maldivian Developers</h2>
+        <h4>Open community platform</h4>
 
         <div style="margin-top:40px">
             @if (Auth::guest())

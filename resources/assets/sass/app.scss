@@ -1,7 +1,8 @@
 // 3rd Party Libraries
-@import "../../../node_modules/bootswatch/flatly/variables";
+//@import "../../../node_modules/bootswatch/paper/variables";
+@import "variables";
 @import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "../../../node_modules/bootswatch/flatly/bootswatch";
+@import "../../../node_modules/bootswatch/paper/bootswatch";
 @import "../../../node_modules/selectize-scss/src/selectize.bootstrap3";
 @import "../../../node_modules/bootstrap-markdown/css/bootstrap-markdown.min";
 @import "../../../node_modules/prismjs/themes/prism.css";

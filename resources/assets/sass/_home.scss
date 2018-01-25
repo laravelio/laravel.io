@@ -5,7 +5,7 @@
     padding: 10px;
 }
 .home .logo img {
-    max-width: 75%;
+    width: 40vw;
 }
 .home h2 {
     color: #748084;
@@ -16,9 +16,9 @@
         font-size: 1.4em;
     }
 }
-@media (min-width: 400px) {
+@media (min-width: 767px) {
     .home .logo img {
-        max-width: 400px;
+        width: 20vw;
     }
     .home h2 {
         color: #748084;

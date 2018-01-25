@@ -13,8 +13,8 @@ class HomeTest extends BrowserKitTestCase
     public function users_can_see_the_homepage()
     {
         $this->visit('/')
-            ->see('Laravel.io')
-            ->see('The Laravel Community Portal');
+            ->see('Developers.mv')
+            ->see('Maldivian');
     }
 
     /** @test */
