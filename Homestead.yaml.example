@@ -7,13 +7,13 @@ keys:
     - ~/.ssh/id_rsa
 folders:
     -
-        map: ~/Sites/laravelio
-        to: /home/vagrant/Code/laravelio
+        map: ~/Sites/developers
+        to: /home/vagrant/Code/developers
 sites:
     -
-        map: laravelio.test
-        to: /home/vagrant/Code/laravelio/public
+        map: developers.test
+        to: /home/vagrant/Code/developers/public
 databases:
     - homestead
-name: laravelio
-hostname: laravelio
+name: developers
+hostname: developers

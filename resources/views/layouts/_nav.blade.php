@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse" aria-expanded="false">
@@ -7,33 +7,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home') }}">Laravel.io</a>
+            <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name') }}</a>
         </div>
 
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="{{ active(['forum', 'threads*', 'thread']) }}"><a href="{{ route('forum') }}">Forum</a></li>
-                <li><a href="https://paste.laravel.io">Pastebin</a></li>
+                {{--<li><a href="https://paste.developers.mv">Pastebin</a></li>--}}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chat <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="https://larachat.co/">Larachat</a></li>
-                        <li><a href="https://kiwiirc.com/client/irc.freenode.net/#laravel">IRC</a></li>
+                        <li><a href="https://t.me/mvdevelopers">Telegram</a></li>
                     </ul>
                 </li>
-                <li><a href="https://larajobs.com/?partner=28">Jobs</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Community <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="https://github.com/laravelio"><i class="fa fa-github"></i> Github</a></li>
-                        <li><a href="https://twitter.com/laravelio"><i class="fa fa-twitter"></i> Twitter</a></li>
-                        <li><a href="https://facebook.com/laravelio"><i class="fa fa-facebook"></i> Facebook</a></li>
-                        <li><a href="https://medium.com/laravelio"><i class="fa fa-medium"></i> Medium</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="https://laravel.com">Laravel</a></li>
-                        <li><a href="https://laracasts.com">Laracasts</a></li>
-                        <li><a href="https://laravel-news.com">Laravel News</a></li>
-                        <li><a href="http://www.laravelpodcast.com">Podcast</a></li>
+                        <li><a href="https://github.com/MaldivianDevelopers"><i class="fa fa-github"></i> Github</a></li>
+                        <li><a href="https://twitter.com/mvdevelopers"><i class="fa fa-twitter"></i> Twitter</a></li>
                     </ul>
                 </li>
             </ul>

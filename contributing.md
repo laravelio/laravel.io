@@ -1,6 +1,6 @@
 # Contributing Guide
 
-We welcome contributions to the Laravel.io project. Please read the following guide before posting an issue or sending in pull requests. Please also read our [Code of Conduct](code_of_conduct.md) before contributing or engaging in discussions.
+We welcome contributions to the Developers.mv project. Please read the following guide before posting an issue or sending in pull requests. Please also read our [Code of Conduct](code_of_conduct.md) before contributing or engaging in discussions.
 
 ## Issues
 
@@ -10,7 +10,7 @@ We welcome contributions to the Laravel.io project. Please read the following gu
 
 ## Pull Requests
 
-- **Feature requests** first need to be discussed and accepted [through an issue](https://github.com/laravelio/laravel.io/issues/new) before sending in a pull request
+- **Feature requests** first need to be discussed and accepted [through an issue](https://github.com/MaldivianDevelopers/portal/issues/new) before sending in a pull request
 - **Bug fixes** should contain [regression tests](https://laracasts.com/lessons/regression-testing)
 - All pull requests should follow the [coding standards](#coding-standards)
 - Pull requests will be merged after being reviewed by [the maintainers](readme.md#maintainers)

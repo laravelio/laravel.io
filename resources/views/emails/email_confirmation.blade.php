@@ -1,7 +1,7 @@
 @component('mail::message')
-# Welcome to Laravel.io!
+# Welcome to Developers.mv!
 
-Thanks for joining up with the [Laravel.io](https://laravel.io) community!
+Thanks for joining up with the [Developers.mv](https://Developers.mv) community!
 
 We just need to confirm your email address so please click the button below to confirm it:
 
