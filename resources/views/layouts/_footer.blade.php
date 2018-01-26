@@ -1,8 +1,7 @@
-@include('layouts._ads._footer')
-@include('layouts._sponsors')
 
-<div id="footer" class="container text-center">
-    <hr>
+
+<div id="footer" class="container-fluid text-center footer-bg footer-fixed">
+
     Copyright &copy; 2013 - {{ date('Y') }} {{ config('app.name') }}&bull;
     <a href="https://github.com/MaldivianDevelopers"><i class="fa fa-github"></i></a>
     {{--<a href="https://twitter.com/laravelio"><i class="fa fa-twitter"></i></a>--}}

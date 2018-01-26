@@ -14,7 +14,7 @@ class ThreadRequest extends Request
             'subject' => 'required|max:60|'.DoesNotContainUrlRule::NAME.'|'.SpamRule::NAME,
             'body' => 'required|'.SpamRule::NAME,
             'tags' => 'array',
-            'tags.*' => 'exists:tags,id',
+            'tags.*' => 'string',
         ];
     }
 

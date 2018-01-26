@@ -2,6 +2,20 @@
     padding-bottom: 20px;
 }
 
+.footer-bg {
+    padding: 10px;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+}
+
+.footer-fixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+}
+
 #sponsors {
     text-align: center;
 }

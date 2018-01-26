@@ -53,6 +53,10 @@
                                     <a href="{{ route('profile', $thread->author()->username()) }}" class="thread-info-link">{{ $thread->author()->name() }}</a> posted
                                     {{ $thread->createdAt()->diffForHumans() }}
                                 @endif
+
+                                    @if(!is_null($thread->solution_reply_id))
+                                        <span class="label label-primary">solved</span>
+                                    @endif
                             </div>
 
                             @include('forum.threads.info.tags')

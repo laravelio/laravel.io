@@ -1,26 +1,32 @@
 .home .jumbotron {
-    background-color: white;
+    background: none;
 }
 .home .logo {
     padding: 10px;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 .home .logo img {
-    width: 40vw;
+    width: 20vw;
 }
 .home h2 {
-    color: #748084;
+    color: #d82147;
+}
+
+.home h4 {
+    color: #d8dae0;
+}
+
+body.home {
+    background-image: url("/images/bg_image.png");
+    background-size: cover;
 }
 
 @media (max-width: 767px) {
-    .home h2 {
-        font-size: 1.4em;
-    }
+
 }
 @media (min-width: 767px) {
     .home .logo img {
-        width: 20vw;
-    }
-    .home h2 {
-        color: #748084;
+        width: 15vw;
     }
 }

@@ -7,8 +7,8 @@
 
     <div class="jumbotron text-center">
         <div class="logo"><img src="{{ asset('images/logo.svg') }}" title="{{ config('app.name') }}"></div>
-        <h2>Maldivian Developers</h2>
-        <h4>Open community platform</h4>
+        <h2>Developers</h2>
+        <h4>community in the Maldives</h4>
 
         <div style="margin-top:40px">
             @if (Auth::guest())

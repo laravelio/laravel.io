@@ -13,7 +13,7 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-$('select.selectize').selectize({ maxItems: 3 });
+$('select.selectize').selectize({ maxItems: 3, create: true });
 $('textarea.wysiwyg').markdown({ iconlibrary: 'fa' });
 
 // const app = new Vue({

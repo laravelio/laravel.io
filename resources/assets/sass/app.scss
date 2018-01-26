@@ -17,3 +17,14 @@
 @import "profile";
 @import "search";
 @import "wysiwyg";
+
+
+body {
+  margin-top: 65px;
+  margin-bottom: 65px;
+}
+
+.selectize-input.items .item {
+  background: $brand-primary !important;
+  color: #fff !important;
+}

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse" aria-expanded="false">
@@ -7,7 +7,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name') }}</a>
+            <a class="navbar-brand" href="{{ route('home') }}">
+                <span class="text-primary">{{ config('app.name') }}</span>
+            </a>
         </div>
 
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
