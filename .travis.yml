@@ -30,10 +30,6 @@ after_script:
 
 deploy:
   provider: script
-  script: curl ${ENVOYER_DEPLOYMENT_HOOK}?sha=${TRAVIS_COMMIT}
+  script: curl ${DEPLOY_HOOK}
   on:
     branch: master
-
-addons:
-  code_climate:
-    repo_token: $CODE_CLIMATE_TOKEN
