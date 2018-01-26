@@ -5,7 +5,7 @@ namespace App\Spam;
 use App\User;
 use TijsVerkoyen\Akismet\Akismet;
 
-class AkismetSpamDetector implements SpamDetector
+final class AkismetSpamDetector implements SpamDetector
 {
     /**
      * @var \TijsVerkoyen\Akismet\Akismet

@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Reply;
 
-class DeleteReply
+final class DeleteReply
 {
     /**
      * @var \App\Models\Reply

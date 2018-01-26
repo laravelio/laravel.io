@@ -7,7 +7,7 @@ use App\Models\Reply;
 use App\Models\ReplyAble;
 use App\Http\Requests\CreateReplyRequest;
 
-class CreateReply
+final class CreateReply
 {
     /**
      * @var string

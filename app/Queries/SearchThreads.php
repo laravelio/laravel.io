@@ -5,7 +5,7 @@ namespace App\Queries;
 use App\Models\Thread;
 use Illuminate\Contracts\Pagination\Paginator;
 
-class SearchThreads
+final class SearchThreads
 {
     /**
      * @return \App\Models\Thread[]

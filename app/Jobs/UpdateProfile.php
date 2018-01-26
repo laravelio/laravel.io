@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\User;
 use App\Http\Requests\UpdateProfileRequest;
 
-class UpdateProfile
+final class UpdateProfile
 {
     /**
      * @var \App\User

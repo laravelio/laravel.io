@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\User;
 
-class UnbanUser
+final class UnbanUser
 {
     /**
      * @var \App\User

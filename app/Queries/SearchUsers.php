@@ -5,7 +5,7 @@ namespace App\Queries;
 use App\User;
 use Illuminate\Contracts\Pagination\Paginator;
 
-class SearchUsers
+final class SearchUsers
 {
     /**
      * @return \App\User[]

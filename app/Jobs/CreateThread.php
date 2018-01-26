@@ -6,7 +6,7 @@ use App\User;
 use App\Models\Thread;
 use App\Http\Requests\ThreadRequest;
 
-class CreateThread
+final class CreateThread
 {
     /**
      * @var string

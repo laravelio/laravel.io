@@ -6,7 +6,7 @@ use App\Helpers\HasSlug;
 use App\Helpers\ModelHelpers;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+final class Tag extends Model
 {
     use HasSlug, ModelHelpers;
 

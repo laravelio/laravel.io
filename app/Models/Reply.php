@@ -8,7 +8,7 @@ use App\Helpers\HasTimestamps;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class Reply extends Model
+final class Reply extends Model
 {
     use HasAuthor, HasTimestamps, ModelHelpers;
 

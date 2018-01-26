@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\Models\Thread;
 use App\Http\Requests\ThreadRequest;
 
-class UpdateThread
+final class UpdateThread
 {
     /**
      * @var \App\Models\Thread

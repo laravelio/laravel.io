@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\Models\Reply;
 use App\Models\Thread;
 
-class MarkThreadSolution
+final class MarkThreadSolution
 {
     /**
      * @var \App\Models\Thread

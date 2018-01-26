@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class EmailConfirmation extends Mailable
+final class EmailConfirmation extends Mailable
 {
     use SerializesModels;
 

@@ -16,7 +16,7 @@ use Illuminate\Contracts\Pagination\Paginator;
 use App\Exceptions\CouldNotMarkReplyAsSolution;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Thread extends Model implements ReplyAble
+final class Thread extends Model implements ReplyAble
 {
     use HasAuthor, HasSlug, HasTimestamps, ModelHelpers, ReceivesReplies, HasTags;
 

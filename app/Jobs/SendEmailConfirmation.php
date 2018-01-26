@@ -7,7 +7,7 @@ use App\Mail\EmailConfirmation;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Queue\SerializesModels;
 
-class SendEmailConfirmation
+final class SendEmailConfirmation
 {
     use SerializesModels;
 
