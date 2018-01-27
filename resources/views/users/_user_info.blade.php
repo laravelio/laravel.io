@@ -17,11 +17,15 @@
         </p>
     @endif
 
-    @if ($user->isAdmin())
-        <p><span class="label label-primary">Admin</span></p>
-    @elseif ($user->isModerator())
-        <p><span class="label label-primary">Moderator</span></p>
-    @endif
+    @auth
+            @if ($user->isAdmin())
+                <p><span class="label label-primary">Admin</span></p>
+            @elseif ($user->isModerator())
+                <p><span class="label label-primary">Moderator</span></p>
+            @endif
+
+    @endauth
+
 
     <div class="profile-social-icons">
         @if ($user->githubUsername())
@@ -29,5 +33,11 @@
                 <i class="fa fa-github"></i>
             </a>
         @endif
+
+            @if ($user->twitterUsername())
+                <a href="https://twitter.com/{{ $user->twitterUsername() }}">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            @endif
     </div>
 </div>

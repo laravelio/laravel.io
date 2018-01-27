@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@show']);
 Route::get('user/{username}', ['as' => 'profile', 'uses' => 'ProfileController@show']);
 Route::get('avatar/{username}', ['as' => 'avatar', 'uses' => 'ProfileController@avatar']);
+Route::get('members', ['as' => 'members', 'uses' => 'Directory\MembersDirectory@index']);
 
 // Settings
 Route::get('settings', ['as' => 'settings.profile', 'uses' => 'Settings\ProfileController@edit']);

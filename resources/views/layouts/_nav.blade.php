@@ -15,6 +15,7 @@
         <div class="collapse navbar-collapse" id="main-navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="{{ active(['forum', 'threads*', 'thread']) }}"><a href="{{ route('forum') }}">Forum</a></li>
+                <li class="{{ active(['members']) }}"><a href="{{ route('members') }}">Members</a></li>
                 {{--<li><a href="https://paste.developers.mv">Pastebin</a></li>--}}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chat <span class="caret"></span></a>
