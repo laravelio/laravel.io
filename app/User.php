@@ -82,7 +82,7 @@ class User extends Authenticatable
         return $this->github_username;
     }
 
-    public function twitterUsername(): string
+    public function twitterUsername(): ?string
     {
         return $this->twitter_username;
     }
