@@ -13,20 +13,34 @@
         {!! Form::open(['route' => 'register.post']) !!}
             @formGroup('name')
                 {!! Form::label('name') !!}
-                {!! Form::text('name', session('githubData.name'), ['class' => 'form-control', 'required', 'placeholder' => 'John Doe']) !!}
+                {!! Form::text('name', session('githubData.name'), ['class' => 'form-control', 'required', 'placeholder' => 'Full Name']) !!}
                 @error('name')
             @endFormGroup
 
             @formGroup('email')
                 {!! Form::label('email') !!}
-                {!! Form::email('email', session('githubData.email'), ['class' => 'form-control', 'required', 'placeholder' => 'john@example.com']) !!}
+                {!! Form::email('email', session('githubData.email'), ['class' => 'form-control', 'required', 'placeholder' => 'email@example.com']) !!}
                 @error('email')
             @endFormGroup
 
             @formGroup('username')
                 {!! Form::label('username') !!}
-                {!! Form::text('username', session('githubData.username'), ['class' => 'form-control', 'required', 'placeholder' => 'johndoe']) !!}
+                {!! Form::text('username', session('githubData.username'), ['class' => 'form-control', 'required', 'placeholder' => 'username']) !!}
                 @error('username')
+            @endFormGroup
+
+            @formGroup('company')
+                {!! Form::label('company') !!}
+                {!! Form::text('company', session('company'), ['class' => 'form-control', 'placeholder' => 'Where do you work?']) !!}
+                <p><small>The name of the company if employed</small></p>
+                @error('company')
+            @endFormGroup
+
+            @formGroup('mobile')
+                {!! Form::label('Mobile') !!}
+                {!! Form::text('mobile', session('mobile'), ['class' => 'form-control', 'placeholder' => '+960 000000']) !!}
+                <p><small>Your number is kept private by default</small></p>
+                @error('mobile')
             @endFormGroup
 
             @formGroup('rules')

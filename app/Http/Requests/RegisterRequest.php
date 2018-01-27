@@ -19,6 +19,8 @@ class RegisterRequest extends FormRequest
             'username' => 'required|max:40|unique:users',
             'rules' => 'accepted',
             'github_id' => 'required',
+            'company' => 'nullable|string',
+            'mobile' => 'nullable|string'
         ];
     }
 

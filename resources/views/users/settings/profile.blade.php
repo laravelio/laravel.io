@@ -41,6 +41,37 @@
                     </div>
                 @endFormGroup
 
+                @formGroup('company')
+                    {!! Form::label('company', null, ['class' => 'col-md-3 control-label']) !!}
+
+                    <div class="col-md-6">
+                        {!! Form::text('company', Auth::user()->company, ['class' => 'form-control']) !!}
+                        <p><small>The name of the company if employed</small></p>
+                        @error('company')
+                    </div>
+                @endFormGroup
+
+                @formGroup('job_title')
+                    {!! Form::label('Job Title', null, ['class' => 'col-md-3 control-label']) !!}
+
+                    <div class="col-md-6">
+                        {!! Form::text('job_title', Auth::user()->job_title, ['class' => 'form-control']) !!}
+                        @error('job_title')
+                    </div>
+                @endFormGroup
+
+            @formGroup('mobile')
+            {!! Form::label('Mobile Number', null, ['class' => 'col-md-3 control-label']) !!}
+
+            <div class="col-md-6">
+                {!! Form::text('mobile', Auth::user()->mobile, ['class' => 'form-control', 'placeholder' => '+960 0000000']) !!}
+                @error('mobile')
+                <div>
+                    {!! Form::checkbox('keep_mobile_private', 1, Auth::user()->keep_mobile_private) !!} Kept Private
+                </div>
+            </div>
+            @endFormGroup
+
                 @formGroup('bio')
                     {!! Form::label('bio', null, ['class' => 'col-md-3 control-label']) !!}
 
@@ -50,6 +81,28 @@
                         @error('bio')
                     </div>
                 @endFormGroup
+
+            @formGroup('bio')
+
+            @formGroup('twitter_username')
+            {!! Form::label('Twitter Username', null, ['class' => 'col-md-3 control-label']) !!}
+
+            <div class="col-md-6">
+                {!! Form::text('twitter_username', Auth::user()->twitter_username, ['class' => 'form-control']) !!}
+                <p><small>If you are on twitter, others can find you and follow you</small></p>
+                @error('twitter_username')
+            </div>
+            @endFormGroup
+
+            {!! Form::label('Additional Features', null, ['class' => 'col-md-3 control-label']) !!}
+
+            <div class="col-md-6">
+                <br/>
+                <div>
+                    {!! Form::checkbox('list_on_public_directory', 1, Auth::user()->list_on_public_directory) !!} List me on members public directory
+                </div>
+            </div>
+            @endFormGroup
 
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-6">

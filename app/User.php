@@ -39,12 +39,18 @@ class User extends Authenticatable
         'type',
         'remember_token',
         'bio',
+        'company',
+        'job_title',
+        'twitter_username',
+        'mobile',
+        'keep_mobile_private',
+        'list_on_public_directory'
     ];
 
     /**
      * {@inheritdoc}
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password', 'remember_token', 'list_on_public_directory', 'keep_mobile_private'];
 
     public function id(): int
     {
