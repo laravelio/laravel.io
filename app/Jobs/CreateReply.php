@@ -4,7 +4,11 @@ namespace App\Jobs;
 
 use App\User;
 use App\Models\Reply;
+use Ramsey\Uuid\Uuid;
 use App\Models\ReplyAble;
+use App\Models\Subscription;
+use App\Events\ReplyWasCreated;
+use App\Models\SubscriptionAble;
 use App\Http\Requests\CreateReplyRequest;
 
 final class CreateReply
@@ -48,6 +52,17 @@ final class CreateReply
         $reply->authoredBy($this->author);
         $reply->to($this->replyAble);
         $reply->save();
+
+        event(new ReplyWasCreated($reply));
+
+        if ($this->replyAble instanceof SubscriptionAble && ! $this->replyAble->hasSubscriber($this->author)) {
+            $subscription = new Subscription();
+            $subscription->uuid = Uuid::uuid4()->toString();
+            $subscription->userRelation()->associate($this->author);
+            $subscription->subscriptionAbleRelation()->associate($this->replyAble);
+
+            $this->replyAble->subscriptionsRelation()->save($subscription);
+        }
 
         return $reply;
     }

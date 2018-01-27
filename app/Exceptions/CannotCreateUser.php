@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 
-class CannotCreateUser extends Exception
+final class CannotCreateUser extends Exception
 {
     public static function duplicateEmailAddress(string $emailAddress): self
     {

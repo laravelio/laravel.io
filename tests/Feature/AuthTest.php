@@ -6,7 +6,7 @@ use Auth;
 use Mail;
 use Carbon\Carbon;
 use Tests\BrowserKitTestCase;
-use App\Mail\EmailConfirmation;
+use App\Mail\EmailConfirmationEmail;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -34,7 +34,7 @@ class AuthTest extends BrowserKitTestCase
 
         $this->assertLoggedIn();
 
-        Mail::assertSent(EmailConfirmation::class);
+        Mail::assertSent(EmailConfirmationEmail::class);
     }
 
     /** @test */
