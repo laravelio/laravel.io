@@ -2,11 +2,11 @@
 
 namespace App\Jobs;
 
-use App\Models\Subscription;
 use App\User;
-use App\Models\Thread;
-use App\Http\Requests\ThreadRequest;
 use Ramsey\Uuid\Uuid;
+use App\Models\Thread;
+use App\Models\Subscription;
+use App\Http\Requests\ThreadRequest;
 
 final class CreateThread
 {

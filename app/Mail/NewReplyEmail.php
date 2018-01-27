@@ -5,9 +5,9 @@ namespace App\Mail;
 use App\Models\Reply;
 use App\Models\Subscription;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 final class NewReplyEmail extends Mailable implements ShouldQueue
 {

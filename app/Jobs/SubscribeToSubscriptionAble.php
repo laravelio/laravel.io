@@ -2,10 +2,10 @@
 
 namespace App\Jobs;
 
-use App\Models\Subscription;
 use App\User;
-use App\Models\SubscriptionAble;
 use Ramsey\Uuid\Uuid;
+use App\Models\Subscription;
+use App\Models\SubscriptionAble;
 
 final class SubscribeToSubscriptionAble
 {

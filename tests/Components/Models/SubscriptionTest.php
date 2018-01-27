@@ -2,10 +2,9 @@
 
 namespace Tests\Components\Queries;
 
-use App\Models\Subscription;
-use App\Queries\GetSubscription;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
+use App\Models\Subscription;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SubscriptionTest extends TestCase
 {
