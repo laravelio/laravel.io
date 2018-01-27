@@ -12,7 +12,7 @@ use App\Notifications\NewReplyNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class SubscriptionTest extends BrowserKitTestCase
+class SubscriptionsTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 
@@ -107,5 +107,18 @@ class SubscriptionTest extends BrowserKitTestCase
             ->click('Unsubscribe')
             ->seePageIs("/forum/$slug")
             ->see("You're now unsubscribed from this thread.");
+    }
+
+    /** @test */
+    public function users_can_unsubscribe_through_a_token_link()
+    {
+        $subscription = factory(Subscription::class)->create();
+        $thread = $subscription->subscriptionAble();
+
+        $this->visit("/subscriptions/{$subscription->uuid()}/unsubscribe")
+            ->seePageIs("/forum/{$thread->slug()}")
+            ->see("You're now unsubscribed from this thread.");
+
+        $this->notSeeInDatabase('subscriptions', ['uuid' => $subscription->uuid()]);
     }
 }

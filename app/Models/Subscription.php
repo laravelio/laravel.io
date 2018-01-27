@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Helpers\HasUuid;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class Subscription extends Model
+final class Subscription extends Model
 {
+    use HasUuid;
+
     /**
      * {@inheritdoc}
      */

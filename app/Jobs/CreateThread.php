@@ -6,6 +6,7 @@ use App\Models\Subscription;
 use App\User;
 use App\Models\Thread;
 use App\Http\Requests\ThreadRequest;
+use Ramsey\Uuid\Uuid;
 
 final class CreateThread
 {
@@ -68,6 +69,7 @@ final class CreateThread
 
         // Subscribe author to the thread.
         $subscription = new Subscription();
+        $subscription->uuid = Uuid::uuid4()->toString();
         $subscription->userRelation()->associate($this->author);
         $subscription->subscriptionAbleRelation()->associate($thread);
 

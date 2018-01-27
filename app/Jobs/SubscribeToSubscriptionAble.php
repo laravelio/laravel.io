@@ -5,8 +5,9 @@ namespace App\Jobs;
 use App\Models\Subscription;
 use App\User;
 use App\Models\SubscriptionAble;
+use Ramsey\Uuid\Uuid;
 
-class SubscribeToSubscriptionAble
+final class SubscribeToSubscriptionAble
 {
     /**
      * @var \App\User
@@ -27,6 +28,7 @@ class SubscribeToSubscriptionAble
     public function handle()
     {
         $subscription = new Subscription();
+        $subscription->uuid = Uuid::uuid4()->toString();
         $subscription->userRelation()->associate($this->user);
         $this->subscriptionAble->subscriptionsRelation()->save($subscription);
     }

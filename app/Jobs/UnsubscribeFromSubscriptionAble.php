@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\User;
 use App\Models\SubscriptionAble;
 
-class UnsubscribeFromSubscriptionAble
+final class UnsubscribeFromSubscriptionAble
 {
     /**
      * @var \App\User

@@ -66,6 +66,9 @@ Route::get('replies/{reply}/edit', ['as' => 'replies.edit', 'uses' => 'ReplyCont
 Route::put('replies/{reply}', ['as' => 'replies.update', 'uses' => 'ReplyController@update']);
 Route::delete('replies/{reply}', ['as' => 'replies.delete', 'uses' => 'ReplyController@delete']);
 
+// Subscriptions
+Route::get('subscriptions/{subscription}/unsubscribe', ['as' => 'subscriptions.unsubscribe', 'uses' => 'SubscriptionController@unsubscribe']);
+
 // Admin
 Route::group(['prefix' => 'admin', 'as' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', 'AdminController@index');

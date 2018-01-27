@@ -5,7 +5,7 @@ namespace App\Events;
 use App\Models\Reply;
 use Illuminate\Queue\SerializesModels;
 
-class ReplyWasCreated
+final class ReplyWasCreated
 {
     use SerializesModels;
 

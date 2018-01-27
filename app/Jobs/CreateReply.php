@@ -9,6 +9,7 @@ use App\Models\Reply;
 use App\Models\ReplyAble;
 use App\Events\ReplyWasCreated;
 use App\Http\Requests\CreateReplyRequest;
+use Ramsey\Uuid\Uuid;
 
 final class CreateReply
 {
@@ -56,6 +57,7 @@ final class CreateReply
 
         if ($this->replyAble instanceof SubscriptionAble && ! $this->replyAble->hasSubscriber($this->author)) {
             $subscription = new Subscription();
+            $subscription->uuid = Uuid::uuid4()->toString();
             $subscription->userRelation()->associate($this->author);
             $subscription->subscriptionAbleRelation()->associate($this->replyAble);
 
