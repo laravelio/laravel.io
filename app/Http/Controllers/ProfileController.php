@@ -14,13 +14,14 @@ class ProfileController extends Controller
 
     public function avatar(User $user)
     {
-        $avatar = new InitialAvatar();
-
-        return $avatar
-            ->name($user->name())
-            ->background('#2C3E50')
-            ->size(100)
-            ->generate()
-            ->response('png', 100);
+        return response()->file(public_path('images/no-avatar.png'));
+//        $avatar = new InitialAvatar();
+//
+//        return $avatar
+//            ->name($user->name())
+//            ->background('#2C3E50')
+//            ->size(100)
+//            ->generate()
+//            ->response('png', 100);
     }
 }
