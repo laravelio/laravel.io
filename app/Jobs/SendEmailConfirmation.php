@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\User;
-use App\Mail\EmailConfirmation;
+use App\Mail\EmailConfirmationEmail;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Queue\SerializesModels;
 
@@ -24,6 +24,6 @@ final class SendEmailConfirmation
     public function handle(Mailer $mailer)
     {
         $mailer->to($this->user->emailAddress())
-            ->send(new EmailConfirmation($this->user));
+            ->send(new EmailConfirmationEmail($this->user));
     }
 }
