@@ -17,7 +17,6 @@
         window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
     </script>
 
-    @include('layouts._favicons')
     @include('layouts._google_analytics')
     @include('layouts._ads._ad_sense')
 </head>
