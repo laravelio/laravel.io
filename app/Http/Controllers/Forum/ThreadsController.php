@@ -8,6 +8,7 @@ use App\Models\Thread;
 use App\Jobs\CreateThread;
 use App\Jobs\DeleteThread;
 use App\Jobs\UpdateThread;
+use Illuminate\Http\Request;
 use App\Policies\ThreadPolicy;
 use App\Queries\SearchThreads;
 use App\Jobs\MarkThreadSolution;
@@ -18,7 +19,6 @@ use App\Jobs\SubscribeToSubscriptionAble;
 use Illuminate\Auth\Middleware\Authenticate;
 use App\Jobs\UnsubscribeFromSubscriptionAble;
 use App\Http\Middleware\RedirectIfUnconfirmed;
-use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
 {
