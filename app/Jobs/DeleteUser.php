@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\User;
 
-class DeleteUser
+final class DeleteUser
 {
     /**
      * @var \App\User

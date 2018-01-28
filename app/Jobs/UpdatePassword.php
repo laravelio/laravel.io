@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\User;
 use Illuminate\Contracts\Hashing\Hasher;
 
-class UpdatePassword
+final class UpdatePassword
 {
     /**
      * @var \App\User

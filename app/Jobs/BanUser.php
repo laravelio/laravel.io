@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\User;
 use Carbon\Carbon;
 
-class BanUser
+final class BanUser
 {
     /**
      * @var \App\User

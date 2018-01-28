@@ -15,6 +15,7 @@
         "lasserafn/php-initial-avatar-generator": "^2.0",
         "league/commonmark": "^0.15.2",
         "predis/predis": "^1.1",
+        "ramsey/uuid": "^3.7",
         "roave/security-advisories": "dev-master",
         "spatie/laravel-robots-middleware": "^1.0",
         "tijsverkoyen/akismet": "^1.1"

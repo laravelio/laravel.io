@@ -5,7 +5,7 @@ namespace App\Validation;
 use App\Spam\SpamDetector;
 use Illuminate\Contracts\Auth\Guard;
 
-class SpamRule
+final class SpamRule
 {
     const NAME = 'spam';
 

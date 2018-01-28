@@ -3,10 +3,12 @@
 namespace App\Jobs;
 
 use App\User;
+use Ramsey\Uuid\Uuid;
 use App\Models\Thread;
+use App\Models\Subscription;
 use App\Http\Requests\ThreadRequest;
 
-class CreateThread
+final class CreateThread
 {
     /**
      * @var string
@@ -64,6 +66,14 @@ class CreateThread
         $thread->authoredBy($this->author);
         $thread->syncTags($this->tags);
         $thread->save();
+
+        // Subscribe author to the thread.
+        $subscription = new Subscription();
+        $subscription->uuid = Uuid::uuid4()->toString();
+        $subscription->userRelation()->associate($this->author);
+        $subscription->subscriptionAbleRelation()->associate($thread);
+
+        $thread->subscriptionsRelation()->save($subscription);
 
         return $thread;
     }

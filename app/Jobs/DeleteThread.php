@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Thread;
 
-class DeleteThread
+final class DeleteThread
 {
     /**
      * @var \App\Models\Thread

@@ -4,7 +4,7 @@ namespace App\Spam;
 
 use App\User;
 
-class DummySpamDetector implements SpamDetector
+final class DummySpamDetector implements SpamDetector
 {
     /**
      * @var bool

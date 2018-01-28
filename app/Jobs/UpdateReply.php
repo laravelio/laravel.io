@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Reply;
 
-class UpdateReply
+final class UpdateReply
 {
     /**
      * @var \App\Models\Reply

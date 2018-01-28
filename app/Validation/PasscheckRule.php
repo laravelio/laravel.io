@@ -5,7 +5,7 @@ namespace App\Validation;
 use Auth;
 use Hash;
 
-class PasscheckRule
+final class PasscheckRule
 {
     const NAME = 'passcheck';
 

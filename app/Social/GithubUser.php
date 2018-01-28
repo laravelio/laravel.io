@@ -5,7 +5,7 @@ namespace App\Social;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 
-class GithubUser implements Arrayable
+final class GithubUser implements Arrayable
 {
     /**
      * @var array

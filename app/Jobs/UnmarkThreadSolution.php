@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Thread;
 
-class UnmarkThreadSolution
+final class UnmarkThreadSolution
 {
     /**
      * @var \App\User

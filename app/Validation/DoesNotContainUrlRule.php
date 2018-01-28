@@ -4,7 +4,7 @@ namespace App\Validation;
 
 use Illuminate\Validation\Factory as Validator;
 
-class DoesNotContainUrlRule
+final class DoesNotContainUrlRule
 {
     const NAME = 'not_contain_url';
 

@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\User;
 
-class ConfirmUser
+final class ConfirmUser
 {
     /**
      * @var \App\User

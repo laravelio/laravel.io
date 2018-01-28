@@ -7,7 +7,7 @@ use App\Exceptions\CannotCreateUser;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class RegisterUser
+final class RegisterUser
 {
     /**
      * @var string

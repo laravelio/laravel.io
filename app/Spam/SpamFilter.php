@@ -4,7 +4,7 @@ namespace App\Spam;
 
 use App\User;
 
-class SpamFilter implements SpamDetector
+final class SpamFilter implements SpamDetector
 {
     /**
      * @var \App\Spam\SpamDetector[]

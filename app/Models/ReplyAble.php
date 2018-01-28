@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
  */
 interface ReplyAble
 {
+    public function subject(): string;
+
     /**
      * @return \App\Models\Reply[]
      */
