@@ -12,7 +12,8 @@ View Thread
 
 @component('mail::subcopy')
     {{-- On one line because otherwise Markdown will past the link to the sentence. --}}
-    You are receiving this because you are subscribed to this thread. [Unsubscribe]({{ route('subscriptions.unsubscribe', $subscription->uuid()->toString()) }}).
+    You are receiving this because you are subscribed to this thread.  
+    [Unsubscribe]({{ route('subscriptions.unsubscribe', $subscription->uuid()->toString()) }}) from this thread.
 @endcomponent
 
 @endcomponent
