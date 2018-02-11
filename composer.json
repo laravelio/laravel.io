@@ -9,11 +9,11 @@
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "^3.3",
         "guzzlehttp/guzzle": "^6.3",
-        "laravel/framework": "5.6.*",
+        "laravel/framework": "5.5.*",
         "laravel/horizon": "^1.1",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
-        "laravelcollective/html": "5.6.*",
+        "laravelcollective/html": "5.5.*",
         "lasserafn/php-initial-avatar-generator": "^2.0",
         "league/commonmark": "^0.15.2",
         "predis/predis": "^1.1",
@@ -31,10 +31,7 @@
         "laravel/homestead": "^5",
         "mockery/mockery": "^1.0",
         "phpspec/phpspec": "^3.2",
-        "phpunit/phpunit": "^6.4",
-        "symfony/css-selector": "^3.1",
-        "symfony/dom-crawler": "^3.1",
-        "nunomaduro/collision": "~1.1"
+        "phpunit/phpunit": "^6.4"
     },
     "autoload": {
         "classmap": [
