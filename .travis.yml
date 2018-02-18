@@ -7,11 +7,12 @@ sudo: false
 cache:
   yarn: true
   directories:
+    - $HOME/.composer/cache
     - node_modules
     - vendor
 
 before_install:
-  - composer self-update
+  - phpenv config-rm xdebug.ini || true
   - nvm install 8.1.2
   - npm install -g yarn@0.24.5
 
@@ -22,18 +23,10 @@ before_script:
 
 script:
   - vendor/bin/phpspec run --verbose
-  - vendor/bin/parallel-lint --exclude vendor .
-  - vendor/bin/phpunit --verbose --coverage-clover build/logs/clover.xml
-
-after_script:
-  - vendor/bin/test-reporter
+  - vendor/bin/phpunit --verbose
 
 deploy:
   provider: script
   script: curl ${ENVOYER_DEPLOYMENT_HOOK}?sha=${TRAVIS_COMMIT}
   on:
     branch: master
-
-addons:
-  code_climate:
-    repo_token: $CODE_CLIMATE_TOKEN
