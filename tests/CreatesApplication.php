@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Console\Kernel;
 
 trait CreatesApplication
@@ -18,8 +18,7 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
-        // Thanks for the tip Jeff Madsen!
-        Hash::setRounds(5);
+        Hash::driver('bcrypt')->setRounds(4);
 
         return $app;
     }
