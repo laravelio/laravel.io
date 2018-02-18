@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use Horizon;
 use App\Models\Thread;
 use Psr\Log\LoggerInterface;
-use Horizon;
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
