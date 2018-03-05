@@ -28,8 +28,14 @@ trait ReceivesReplies
         $this->repliesRelation()->delete();
     }
 
+    /**
+     * It's important to name the relationship the same as the method because otherwise
+     * eager loading of the polymorphic relationship will fail on queued jobs.
+     *
+     * @see https://github.com/laravelio/portal/issues/350
+     */
     public function repliesRelation(): MorphMany
     {
-        return $this->morphMany(Reply::class, 'replyable');
+        return $this->morphMany(Reply::class, 'repliesRelation', 'replyable_type', 'replyable_id');
     }
 }
