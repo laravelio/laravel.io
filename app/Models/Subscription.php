@@ -32,8 +32,14 @@ final class Subscription extends Model
         return $this->subscriptionAbleRelation;
     }
 
+    /**
+     * It's important to name the relationship the same as the method because otherwise
+     * eager loading of the polymorphic relationship will fail on queued jobs.
+     *
+     * @see https://github.com/laravelio/portal/issues/350
+     */
     public function subscriptionAbleRelation(): MorphTo
     {
-        return $this->morphTo('subscriptionable');
+        return $this->morphTo('subscriptionAbleRelation', 'subscriptionable_type', 'subscriptionable_id');
     }
 }

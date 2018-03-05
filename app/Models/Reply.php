@@ -47,8 +47,14 @@ final class Reply extends Model
         return $this->replyAbleRelation;
     }
 
+    /**
+     * It's important to name the relationship the same as the method because otherwise
+     * eager loading of the polymorphic relationship will fail on queued jobs.
+     *
+     * @see https://github.com/laravelio/portal/issues/350
+     */
     public function replyAbleRelation(): MorphTo
     {
-        return $this->morphTo('replyable');
+        return $this->morphTo('replyAbleRelation', 'replyable_type', 'replyable_id');
     }
 }
