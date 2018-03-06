@@ -9,6 +9,6 @@ final class HttpImageRule
 
     public function validate($attribute, $value): bool
     {
-        return !preg_match(static::HTTP_IMAGE_REGEX, $value);
+        return ! preg_match(static::HTTP_IMAGE_REGEX, $value);
     }
 }

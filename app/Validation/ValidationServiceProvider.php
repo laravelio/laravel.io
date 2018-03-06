@@ -2,9 +2,8 @@
 
 namespace App\Validation;
 
-use App\Validation\HttpImageRule;
-use Illuminate\Support\ServiceProvider;
 use Validator;
+use Illuminate\Support\ServiceProvider;
 
 class ValidationServiceProvider extends ServiceProvider
 {
