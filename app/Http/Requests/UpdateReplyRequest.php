@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Validation\HttpImageRule;
 use App\Validation\SpamRule;
+use App\Validation\HttpImageRule;
 
 class UpdateReplyRequest extends Request
 {
