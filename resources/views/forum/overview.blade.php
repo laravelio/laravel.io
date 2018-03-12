@@ -8,7 +8,7 @@
     <hr>
 
     <div class="row forum">
-        <div class="col-md-3">
+        <div class="col-lg-3">
             {{ Form::open(['route' => 'forum', 'method' => 'GET']) }}
                 <div class="form-group">
                     {{ Form::text('search', $search ?? null, ['class' => 'form-control', 'placeholder' => 'Search for threads...']) }}
@@ -31,8 +31,8 @@
                 @endforeach
             </div>
         </div>
-        <div class="col-md-9">
-            @include('layouts._ads._carbon')
+        <div class="col-lg-9">
+            @include('layouts._ads._bsa-cpc')
 
             @if (count($threads))
                 @foreach ($threads as $thread)

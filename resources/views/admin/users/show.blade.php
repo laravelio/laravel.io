@@ -5,7 +5,7 @@
 @section('body')
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-lg-3">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <a class="btn btn-default btn-block" href="{{ route('profile', $user->username()) }}">View Profile</a>
@@ -26,7 +26,7 @@
 
                 <p style="text-align:center"><a href="{{ route('admin') }}"><i class="fa fa-arrow-left"></i> Back</a></p>
             </div>
-            <div class="col-md-9">
+            <div class="col-lg-9">
                 @include('layouts._alerts')
 
                 <div class="panel panel-default">

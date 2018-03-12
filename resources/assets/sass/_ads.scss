@@ -63,3 +63,17 @@
     font-family: Verdana, sans-serif;
     line-height: 1;
 }
+
+div.bsap div.bsap_adhere a {
+    display: inline-block;
+}
+
+.ad-unit-footer-bsa {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .ad-unit-footer-bsa {
+        display: block;
+    }
+}
