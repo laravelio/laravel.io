@@ -1,6 +1,6 @@
 @title('Forum Rules')
 
-@extends('layouts.small')
+@extends('layouts.small', ['disableAds' => false])
 
 @section('small-content')
     <p>By posting to the forum and replying to threads you agree to:</p>

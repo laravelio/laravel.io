@@ -1,6 +1,6 @@
 @title('Something went wrong')
 
-@extends('layouts.base')
+@extends('layouts.base', ['disableAds' => true])
 
 @section('body')
     <div class="jumbotron text-center">

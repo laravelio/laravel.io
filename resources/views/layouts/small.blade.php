@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.base', ['disableAds' => $disableAds ?? true])
 
 @section('body')
     <div class="container">

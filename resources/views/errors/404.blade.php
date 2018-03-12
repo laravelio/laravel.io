@@ -1,6 +1,6 @@
 @title('Page not found')
 
-@extends('layouts.base')
+@extends('layouts.base', ['disableAds' => true])
 
 @section('body')
     <div class="jumbotron text-center">
