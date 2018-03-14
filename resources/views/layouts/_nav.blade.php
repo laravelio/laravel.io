@@ -14,13 +14,7 @@
             <ul class="nav navbar-nav">
                 <li class="{{ active(['forum', 'threads*', 'thread']) }}"><a href="{{ route('forum') }}">Forum</a></li>
                 <li><a href="https://paste.laravel.io">Pastebin</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chat <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="https://larachat.co/">Larachat</a></li>
-                        <li><a href="https://kiwiirc.com/client/irc.freenode.net/#laravel">IRC</a></li>
-                    </ul>
-                </li>
+                <li><a href="https://larachat.co">Chat</a></li>
                 <li><a href="https://larajobs.com/?partner=28">Jobs</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Community <span class="caret"></span></a>
