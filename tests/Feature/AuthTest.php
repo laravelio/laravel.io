@@ -28,6 +28,7 @@ class AuthTest extends BrowserKitTestCase
             ->type('123', 'github_id')
             ->type('johndoe', 'github_username')
             ->check('rules')
+            ->check('terms')
             ->press('Register')
             ->seePageIs('/dashboard')
             ->see('Welcome John Doe!');

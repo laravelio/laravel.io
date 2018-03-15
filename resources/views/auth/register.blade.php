@@ -35,6 +35,12 @@
                     &nbsp; I agree to <a href="{{ route('rules') }}" target="_blank">the rules of the portal</a>
                 </label>
                 @error('rules')
+
+                <label>
+                    {!! Form::checkbox('terms') !!}
+                    &nbsp; I agree to <a href="{{ route('terms') }}" target="_blank">Terms & Conditions</a> and <a href="{{ route('privacy') }}" target="_blank">Privacy Policy</a>.
+                </label>
+                @error('rules')
             @endFormGroup
 
             {!! Form::hidden('github_id', session('githubData.id')) !!}

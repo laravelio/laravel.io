@@ -3,6 +3,8 @@
 // Home
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@show']);
 Route::get('rules', ['as' => 'rules', 'uses' => 'HomeController@rules']);
+Route::get('terms', ['as' => 'terms', 'uses' => 'HomeController@terms']);
+Route::get('privacy', ['as' => 'privacy', 'uses' => 'HomeController@privacy']);
 Route::get('bin/{paste?}', 'HomeController@pastebin');
 
 // Authentication
