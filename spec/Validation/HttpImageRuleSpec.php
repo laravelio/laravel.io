@@ -2,8 +2,8 @@
 
 namespace spec\App\Validation;
 
-use App\Validation\HttpImageRule;
 use PhpSpec\ObjectBehavior;
+use App\Validation\HttpImageRule;
 
 class HttpImageRuleSpec extends ObjectBehavior
 {
