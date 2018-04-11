@@ -2,13 +2,15 @@
 
 namespace App\Validation;
 
+/**
+ * This rule validates Markdown for non-HTTPS image links.
+ */
 final class HttpImageRule
 {
     const NAME = 'httpimage';
-    const HTTP_IMAGE_REGEX = '/!\[.*\]\(http:\/\/.*\)/';
 
     public function validate($attribute, $value): bool
     {
-        return ! preg_match(static::HTTP_IMAGE_REGEX, $value);
+        return ! preg_match('/!\[.*\]\(http:\/\/.*\)/', $value);
     }
 }
