@@ -19,8 +19,7 @@
         "predis/predis": "^1.1",
         "ramsey/uuid": "^3.7",
         "roave/security-advisories": "dev-master",
-        "spatie/laravel-robots-middleware": "^1.0",
-        "tijsverkoyen/akismet": "^1.1"
+        "spatie/laravel-robots-middleware": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "^2.1",

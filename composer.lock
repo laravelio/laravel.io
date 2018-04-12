@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c00ddf5114b7dc8c6f56e1654e5fab1",
+    "content-hash": "ca59a9d7591b84a0a95bd89c4d79e3bf",
     "packages": [
         {
             "name": "bugsnag/bugsnag",
@@ -3806,45 +3806,6 @@
                 "dump"
             ],
             "time": "2018-04-04T05:10:37+00:00"
-        },
-        {
-            "name": "tijsverkoyen/akismet",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tijsverkoyen/Akismet.git",
-                "reference": "6f7987fe181fd0fddbc9832f2ddeaf088425c83f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tijsverkoyen/Akismet/zipball/6f7987fe181fd0fddbc9832f2ddeaf088425c83f",
-                "reference": "6f7987fe181fd0fddbc9832f2ddeaf088425c83f",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": ">=5.2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    ""
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD"
-            ],
-            "authors": [
-                {
-                    "name": "Tijs Verkoyen",
-                    "email": "akismet@verkoyen.eu",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Akismet is a wrapper-class to communicate with the Akismet API.",
-            "homepage": "https://github.com/tijsverkoyen/Akismet",
-            "time": "2016-07-19T13:50:18+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

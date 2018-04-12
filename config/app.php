@@ -160,7 +160,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Markdown\MarkdownServiceProvider::class,
-        App\Spam\SpamServiceProvider::class,
 
     ],
 
