@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Validation\SpamRule;
 use App\Validation\HttpImageRule;
 
 class UpdateReplyRequest extends Request
@@ -10,7 +9,7 @@ class UpdateReplyRequest extends Request
     public function rules()
     {
         return [
-            'body' => 'required|'.SpamRule::NAME.'|'.HttpImageRule::NAME,
+            'body' => ['required', new HttpImageRule],
         ];
     }
 

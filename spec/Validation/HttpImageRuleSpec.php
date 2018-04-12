@@ -14,11 +14,11 @@ class HttpImageRuleSpec extends ObjectBehavior
 
     public function it_passes_when_no_http_links_are_detected()
     {
-        $this->validate('body', 'some text ![](https://link.com)')->shouldReturn(true);
+        $this->passes('body', 'some text ![](https://link.com)')->shouldReturn(true);
     }
 
     public function it_fails_when_http_links_are_detected()
     {
-        $this->validate('body', 'some text ![](http://link.com)')->shouldReturn(false);
+        $this->passes('body', 'some text ![](http://link.com)')->shouldReturn(false);
     }
 }

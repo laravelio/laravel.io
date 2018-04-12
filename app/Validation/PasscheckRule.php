@@ -4,13 +4,17 @@ namespace App\Validation;
 
 use Auth;
 use Hash;
+use Illuminate\Contracts\Validation\Rule;
 
-final class PasscheckRule
+final class PasscheckRule implements Rule
 {
-    const NAME = 'passcheck';
-
-    public function validate($attribute, $value): bool
+    public function passes($attribute, $value): bool
     {
         return Hash::check($value, Auth::user()->getAuthPassword());
+    }
+
+    public function message(): string
+    {
+        return 'Your current password is incorrect.';
     }
 }

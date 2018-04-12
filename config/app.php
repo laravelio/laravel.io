@@ -161,7 +161,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Markdown\MarkdownServiceProvider::class,
         App\Spam\SpamServiceProvider::class,
-        App\Validation\ValidationServiceProvider::class,
 
     ],
 

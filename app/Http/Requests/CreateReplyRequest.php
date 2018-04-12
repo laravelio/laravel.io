@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\User;
 use App\Models\Thread;
-use App\Validation\SpamRule;
 use App\Validation\HttpImageRule;
 
 class CreateReplyRequest extends Request
@@ -12,7 +11,7 @@ class CreateReplyRequest extends Request
     public function rules()
     {
         return [
-            'body' => 'required|'.SpamRule::NAME.'|'.HttpImageRule::NAME,
+            'body' => ['required', new HttpImageRule],
             'replyable_id' => 'required',
             'replyable_type' => 'required|in:'.Thread::TABLE,
         ];

@@ -86,12 +86,6 @@ return [
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
 
-    // Custom Validation Rules
-    App\Validation\DoesNotContainUrlRule::NAME => 'The :attribute field cannot contain an url.',
-    App\Validation\PasscheckRule::NAME => 'Your current password is incorrect.',
-    App\Validation\SpamRule::NAME => 'The :attribute field contains spam.',
-    App\Validation\HttpImageRule::NAME => 'The :attribute field contains at least one image with an HTTP link.',
-
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
