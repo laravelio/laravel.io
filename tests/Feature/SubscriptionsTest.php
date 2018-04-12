@@ -7,6 +7,7 @@ use App\Models\Thread;
 use App\Jobs\CreateReply;
 use App\Jobs\CreateThread;
 use App\Models\Subscription;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\BrowserKitTestCase;
 use App\Notifications\NewReplyNotification;
 use Illuminate\Support\Facades\Notification;
@@ -14,7 +15,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SubscriptionsTest extends BrowserKitTestCase
 {
-    use DatabaseMigrations;
+    use DatabaseMigrations, WithFaker;
 
     /** @test */
     public function users_receive_notifications_for_new_replies_to_threads_where_they_are_subscribed_to()
