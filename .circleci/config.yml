@@ -1,0 +1,29 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.2-node-browsers
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-php-dependencies-{{ checksum "composer.lock" }}
+          - v1-php-dependencies-
+      - run: composer install -n --prefer-dist --ignore-platform-reqs --dev
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-php-dependencies-{{ checksum "composer.lock" }}
+      - restore_cache:
+          keys:
+          - v1-node-dependencies-{{ checksum "yarn.lock" }}
+          - v1-node-dependencies-
+      - run: yarn install
+      - run: yarn production
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: v1-node-dependencies-{{ checksum "yarn.lock" }}
+      - run: vendor/bin/phpspec run --verbose
+      - run: vendor/bin/phpunit --verbose
