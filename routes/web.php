@@ -77,5 +77,5 @@ Route::prefix('admin')->name('admin')->namespace('Admin')->group(function () {
     Route::get('users/{username}', 'UsersController@show')->name('.users.show');
     Route::put('users/{username}/ban', 'UsersController@ban')->name('.users.ban');
     Route::put('users/{username}/unban', 'UsersController@unban')->name('.users.unban');
-    Route::delete('users/{username}', 'UsersController@delete')->name('.ذمقusers.delete');
+    Route::delete('users/{username}', 'UsersController@delete')->name('.users.delete');
 });
