@@ -8,7 +8,7 @@ Route::get('privacy', 'HomeController@privacy')->name('privacy');
 Route::get('bin/{paste?}', 'HomeController@pastebin');
 
 // Authentication
-Route::namespace ('Auth')->group(function () {
+Route::namespace('Auth')->group(function () {
     // Sessions
     Route::get('login', 'LoginController@showLoginForm')->name('login');
     Route::post('login', 'LoginController@login')->name('login.post');
