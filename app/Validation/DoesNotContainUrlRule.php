@@ -9,8 +9,6 @@ final class DoesNotContainUrlRule implements Rule
 {
     use ValidatesAttributes;
 
-    const NAME = 'not_contain_url';
-
     public function passes($attribute, $value): bool
     {
         return ! collect(explode(' ', $value))->contains(function ($word) {
