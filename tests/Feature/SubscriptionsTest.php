@@ -7,9 +7,9 @@ use App\Models\Thread;
 use App\Jobs\CreateReply;
 use App\Jobs\CreateThread;
 use App\Models\Subscription;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\BrowserKitTestCase;
 use App\Notifications\NewReplyNotification;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 

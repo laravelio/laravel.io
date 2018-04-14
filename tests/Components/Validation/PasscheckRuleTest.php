@@ -2,9 +2,9 @@
 
 namespace Tests\Components\Validation;
 
+use Tests\TestCase;
 use App\Validation\PasscheckRule;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
 class PasscheckRuleTest extends TestCase
 {
