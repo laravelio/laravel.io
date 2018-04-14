@@ -5,7 +5,10 @@
 [![Laravel Version](https://shield.with.social/cc/github/laravelio/portal/master.svg?style=flat-square)](https://packagist.org/packages/laravel/framework)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](license.txt)
 
-This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and licensed under [the MIT license](license.txt). We welcome your contributions but we encourage you to read the [the contributing guide](contributing.md) before creating an issue or sending in a pull request. Read the installation guide below to get started with setting up the app on your machine.
+This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and
+licensed under [the MIT license](license.txt). We welcome your contributions but we encourage you to read the
+[the contributing guide](contributing.md) before creating an issue or sending in a pull request. Read the installation
+guide below to get started with setting up the app on your machine.
 
 We hope to see your contribution soon!
 
@@ -38,11 +41,15 @@ The following tools are required in order to start the installation.
 7. Setup a working e-mail driver like [Mailtrap](https://mailtrap.io/)
 8. (optional) Set up Github authentication (see below)
 
-You can now visit the app in your browser by visiting [http://laravelio.test](http://laravelio.test). If you seeded the database you can login into a test account with `johndoe` & `password`.
+You can now visit the app in your browser by visiting [http://laravelio.test](http://laravelio.test). If you seeded the
+database you can login into a test account with `johndoe` & `password`.
 
 ### Github Authentication (optional)
 
-To get Github authentication to work locally, you'll need to [register a new OAuth application on Github](https://github.com/settings/applications/new). Use `http://laravelio.test` for the homepage url and `http://laravelio.test/auth/github` for the callback url. When you've created the app, fill in the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with Github.
+To get Github authentication to work locally, you'll need to
+[register a new OAuth application on Github](https://github.com/settings/applications/new). Use `http://laravelio.test`
+for the homepage url and `http://laravelio.test/auth/github` for the callback url. When you've created the app, fill in
+the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with Github.
 
 ```
 GITHUB_ID=
@@ -52,7 +59,9 @@ GITHUB_URL=http://laravelio.test/auth/github
 
 ## Maintainers
 
-The Laravel.io portal is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions please don't hesitate to create an issue on this repo or ask us through the #laravelio channel on [Slack](https://larachat.slack.com).
+The Laravel.io portal is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions
+please don't hesitate to create an issue on this repo or ask us through the #laravelio channel on
+[Slack](https://larachat.slack.com).
 
 ## Contributing
 
@@ -64,7 +73,8 @@ Please read our [Code of Conduct](code_of_conduct.md) before contributing or eng
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel.io, please send an email immediately to Dries Vints at [dries.vints@gmail.com](mailto:dries.vints@gmail.com). **Do not create an issue for the vulnerability.**
+If you discover a security vulnerability within Laravel.io, please send an email immediately to Dries Vints at
+[dries.vints@gmail.com](mailto:dries.vints@gmail.com). **Do not create an issue for the vulnerability.**
 
 ## License
 
