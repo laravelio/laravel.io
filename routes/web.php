@@ -26,7 +26,8 @@ Route::namespace('Auth')->group(function () {
 
     // Email address confirmation
     Route::get('email-confirmation', 'EmailConfirmationController@send')->name('email.send_confirmation');
-    Route::get('email-confirmation/{email_address}/{code}', 'EmailConfirmationController@confirm')->name('email.confirm');
+    Route::get('email-confirmation/{email_address}/{code}', 'EmailConfirmationController@confirm')
+        ->name('email.confirm');
 
     // Social authentication
     Route::get('login/github', 'GithubController@redirectToProvider')->name('login.github');
@@ -69,7 +70,8 @@ Route::put('replies/{reply}', 'ReplyController@update')->name('replies.update');
 Route::delete('replies/{reply}', 'ReplyController@delete')->name('replies.delete');
 
 // Subscriptions
-Route::get('subscriptions/{subscription}/unsubscribe', 'SubscriptionController@unsubscribe')->name('subscriptions.unsubscribe');
+Route::get('subscriptions/{subscription}/unsubscribe', 'SubscriptionController@unsubscribe')
+    ->name('subscriptions.unsubscribe');
 
 // Admin
 Route::prefix('admin')->name('admin')->namespace('Admin')->group(function () {
