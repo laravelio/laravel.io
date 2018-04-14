@@ -1,81 +1,81 @@
 <?php
 
 // Home
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@show']);
-Route::get('rules', ['as' => 'rules', 'uses' => 'HomeController@rules']);
-Route::get('terms', ['as' => 'terms', 'uses' => 'HomeController@terms']);
-Route::get('privacy', ['as' => 'privacy', 'uses' => 'HomeController@privacy']);
+Route::get('/', 'HomeController@show')->name('home');
+Route::get('rules', 'HomeController@rules')->name('rules');
+Route::get('terms', 'HomeController@terms')->name('terms');
+Route::get('privacy', 'HomeController@privacy')->name('privacy');
 Route::get('bin/{paste?}', 'HomeController@pastebin');
 
 // Authentication
-Route::group(['namespace' => 'Auth'], function () {
+Route::namespace('Auth')->group(function () {
     // Sessions
-    Route::get('login', ['as' => 'login', 'uses' => 'LoginController@showLoginForm']);
-    Route::post('login', ['as' => 'login.post', 'uses' => 'LoginController@login']);
-    Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
+    Route::get('login', 'LoginController@showLoginForm')->name('login');
+    Route::post('login', 'LoginController@login')->name('login.post');
+    Route::get('logout', 'LoginController@logout')->name('logout');
 
     // Registration
-    Route::get('register', ['as' => 'register', 'uses' => 'RegisterController@showRegistrationForm']);
-    Route::post('register', ['as' => 'register.post', 'uses' => 'RegisterController@register']);
+    Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'RegisterController@register')->name('register.post');
 
     // Password reset
-    Route::get('password/reset', ['as' => 'password.forgot', 'uses' => 'ForgotPasswordController@showLinkRequestForm']);
-    Route::post('password/email', ['as' => 'password.forgot.post', 'uses' => 'ForgotPasswordController@sendResetLinkEmail']);
-    Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'ResetPasswordController@showResetForm']);
-    Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'ResetPasswordController@reset']);
+    Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.forgot');
+    Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.forgot.post');
+    Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'ResetPasswordController@reset')->name('password.reset.post');
 
     // Email address confirmation
-    Route::get('email-confirmation', ['as' => 'email.send_confirmation', 'uses' => 'EmailConfirmationController@send']);
-    Route::get('email-confirmation/{email_address}/{code}', ['as' => 'email.confirm', 'uses' => 'EmailConfirmationController@confirm']);
+    Route::get('email-confirmation', 'EmailConfirmationController@send')->name('email.send_confirmation');
+    Route::get('email-confirmation/{email_address}/{code}', 'EmailConfirmationController@confirm')->name('email.confirm');
 
     // Social authentication
-    Route::get('login/github', ['as' => 'login.github', 'uses' => 'GithubController@redirectToProvider']);
+    Route::get('login/github', 'GithubController@redirectToProvider')->name('login.github');
     Route::get('auth/github', 'GithubController@handleProviderCallback');
 });
 
 // Users
-Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@show']);
-Route::get('user/{username}', ['as' => 'profile', 'uses' => 'ProfileController@show']);
-Route::get('avatar/{username}', ['as' => 'avatar', 'uses' => 'ProfileController@avatar']);
+Route::get('dashboard', 'DashboardController@show')->name('dashboard');
+Route::get('user/{username}', 'ProfileController@show')->name('profile');
+Route::get('avatar/{username}', 'ProfileController@avatar')->name('avatar');
 
 // Settings
-Route::get('settings', ['as' => 'settings.profile', 'uses' => 'Settings\ProfileController@edit']);
-Route::put('settings', ['as' => 'settings.profile.update', 'uses' => 'Settings\ProfileController@update']);
-Route::get('settings/password', ['as' => 'settings.password', 'uses' => 'Settings\PasswordController@edit']);
-Route::put('settings/password', ['as' => 'settings.password.update', 'uses' => 'Settings\PasswordController@update']);
+Route::get('settings', 'Settings\ProfileController@edit')->name('settings.profile');
+Route::put('settings', 'Settings\ProfileController@update')->name('settings.profile.update');
+Route::get('settings/password', 'Settings\PasswordController@edit')->name('settings.password');
+Route::put('settings/password', 'Settings\PasswordController@update')->name('settings.password.update');
 
 // Forum
-Route::group(['prefix' => 'forum', 'namespace' => 'Forum'], function () {
-    Route::get('/', ['as' => 'forum', 'uses' => 'ThreadsController@overview']);
-    Route::get('create-thread', ['as' => 'threads.create', 'uses' => 'ThreadsController@create']);
-    Route::post('create-thread', ['as' => 'threads.store', 'uses' => 'ThreadsController@store']);
+Route::prefix('forum')->namespace('Forum')->group(function () {
+    Route::get('/', 'ThreadsController@overview')->name('forum');
+    Route::get('create-thread', 'ThreadsController@create')->name('threads.create');
+    Route::post('create-thread', 'ThreadsController@store')->name('threads.store');
 
-    Route::get('{thread}', ['as' => 'thread', 'uses' => 'ThreadsController@show']);
-    Route::get('{thread}/edit', ['as' => 'threads.edit', 'uses' => 'ThreadsController@edit']);
-    Route::put('{thread}', ['as' => 'threads.update', 'uses' => 'ThreadsController@update']);
-    Route::delete('{thread}', ['as' => 'threads.delete', 'uses' => 'ThreadsController@delete']);
-    Route::put('{thread}/mark-solution/{reply}', ['as' => 'threads.solution.mark', 'uses' => 'ThreadsController@markSolution']);
-    Route::put('{thread}/unmark-solution', ['as' => 'threads.solution.unmark', 'uses' => 'ThreadsController@unmarkSolution']);
-    Route::get('{thread}/subscribe', ['as' => 'threads.subscribe', 'uses' => 'ThreadsController@subscribe']);
-    Route::get('{thread}/unsubscribe', ['as' => 'threads.unsubscribe', 'uses' => 'ThreadsController@unsubscribe']);
+    Route::get('{thread}', 'ThreadsController@show')->name('thread');
+    Route::get('{thread}/edit', 'ThreadsController@edit')->name('threads.edit');
+    Route::put('{thread}', 'ThreadsController@update')->name('threads.update');
+    Route::delete('{thread}', 'ThreadsController@delete')->name('threads.delete');
+    Route::put('{thread}/mark-solution/{reply}', 'ThreadsController@markSolution')->name('threads.solution.mark');
+    Route::put('{thread}/unmark-solution', 'ThreadsController@unmarkSolution')->name('threads.solution.unmark');
+    Route::get('{thread}/subscribe', 'ThreadsController@subscribe')->name('threads.subscribe');
+    Route::get('{thread}/unsubscribe', 'ThreadsController@unsubscribe')->name('threads.unsubscribe');
 
-    Route::get('tags/{tag}', ['as' => 'forum.tag', 'uses' => 'TagsController@show']);
+    Route::get('tags/{tag}', 'TagsController@show')->name('forum.tag');
 });
 
 // Replies
-Route::post('replies', ['as' => 'replies.store', 'uses' => 'ReplyController@store']);
-Route::get('replies/{reply}/edit', ['as' => 'replies.edit', 'uses' => 'ReplyController@edit']);
-Route::put('replies/{reply}', ['as' => 'replies.update', 'uses' => 'ReplyController@update']);
-Route::delete('replies/{reply}', ['as' => 'replies.delete', 'uses' => 'ReplyController@delete']);
+Route::post('replies', 'ReplyController@store')->name('replies.store');
+Route::get('replies/{reply}/edit', 'ReplyController@edit')->name('replies.edit');
+Route::put('replies/{reply}', 'ReplyController@update')->name('replies.update');
+Route::delete('replies/{reply}', 'ReplyController@delete')->name('replies.delete');
 
 // Subscriptions
-Route::get('subscriptions/{subscription}/unsubscribe', ['as' => 'subscriptions.unsubscribe', 'uses' => 'SubscriptionController@unsubscribe']);
+Route::get('subscriptions/{subscription}/unsubscribe', 'SubscriptionController@unsubscribe')->name('subscriptions.unsubscribe');
 
 // Admin
-Route::group(['prefix' => 'admin', 'as' => 'admin', 'namespace' => 'Admin'], function () {
+Route::prefix('admin')->name('admin')->namespace('Admin')->group(function () {
     Route::get('/', 'AdminController@index');
-    Route::get('users/{username}', ['as' => '.users.show', 'uses' => 'UsersController@show']);
-    Route::put('users/{username}/ban', ['as' => '.users.ban', 'uses' => 'UsersController@ban']);
-    Route::put('users/{username}/unban', ['as' => '.users.unban', 'uses' => 'UsersController@unban']);
-    Route::delete('users/{username}', ['as' => '.users.delete', 'uses' => 'UsersController@delete']);
+    Route::get('users/{username}', 'UsersController@show')->name('.users.show');
+    Route::put('users/{username}/ban', 'UsersController@ban')->name('.users.ban');
+    Route::put('users/{username}/unban', 'UsersController@unban')->name('.users.unban');
+    Route::delete('users/{username}', 'UsersController@delete')->name('.users.delete');
 });
