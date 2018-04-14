@@ -6,6 +6,9 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - run:
+          name: Disable Xdebug
+          command: sudo rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
       - restore_cache:
           keys:
           - v1-php-dependencies-{{ checksum "composer.lock" }}
