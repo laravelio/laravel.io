@@ -28,6 +28,8 @@ The following tools are required in order to start the installation.
 
 - [VirtualBox](https://www.virtualbox.org/)
 - [Vagrant](https://www.vagrantup.com/)
+- [Composer](https://getcomposer.org/download/)
+- PHP >=7.1
 
 ## Installation
 
