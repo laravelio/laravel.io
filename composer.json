@@ -21,6 +21,7 @@
         "ramsey/uuid": "^3.7",
         "roave/security-advisories": "dev-master",
         "spatie/laravel-backup": "^6.4",
+        "spatie/laravel-feed": "^2.0",
         "spatie/laravel-robots-middleware": "^1.0"
     },
     "require-dev": {

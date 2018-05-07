@@ -1,5 +1,7 @@
 <?php
 
+Route::feeds();
+
 // Home
 Route::get('/', 'HomeController@show')->name('home');
 Route::get('rules', 'HomeController@rules')->name('rules');

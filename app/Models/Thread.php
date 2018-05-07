@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use App\Exceptions\CouldNotMarkReplyAsSolution;
-use App\Helpers\HasAuthor;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
-use App\Helpers\HasTimestamps;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
+use App\Helpers\HasAuthor;
 use App\Helpers\ModelHelpers;
-use App\Helpers\ProvidesSubscriptions;
+use App\Helpers\HasTimestamps;
+use Illuminate\Support\Carbon;
 use App\Helpers\ReceivesReplies;
+use App\Helpers\ProvidesSubscriptions;
 use DB;
 use Exception;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -19,11 +22,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
-final class Thread extends Model implements ReplyAble, SubscriptionAble
+final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedable
 {
     use HasAuthor, HasSlug, HasTimestamps, ModelHelpers, ProvidesSubscriptions, ReceivesReplies, HasTags;
 
     const TABLE = 'threads';
+
+    const FEED_PAGE_SIZE = 20;
 
     /**
      * {@inheritdoc}
@@ -109,6 +114,19 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble
         parent::delete();
     }
 
+    public function toFeedItem()
+    {
+        $updatedAt = Carbon::parse($this->latest_creation);
+
+        return FeedItem::create()
+            ->id($this->id)
+            ->title($this->subject)
+            ->summary($this->body)
+            ->updated($updatedAt)
+            ->link(route('thread', $this->slug))
+            ->author($this->author()->name);
+    }
+
     /**
      * @return \App\Models\Thread[]
      */
@@ -172,5 +190,16 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble
         } catch (Exception $e) {
             return false;
         }
+    }
+
+    /**
+     * retrieve 20 feed items with use of page parameter.
+     */
+    public static function getFeedItems()
+    {
+        $page = intval(request('page', 1));
+        $query = static::feedQuery();
+
+        return $query->skip(($page - 1) * static::FEED_PAGE_SIZE)->take(static::FEED_PAGE_SIZE)->get();
     }
 }
