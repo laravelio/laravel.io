@@ -3,7 +3,6 @@
 [![CircleCI](https://circleci.com/gh/laravelio/portal/tree/master.svg?style=svg)](https://circleci.com/gh/laravelio/portal/tree/master)
 [![StyleCI](https://styleci.io/repos/12895187/shield?branch=master)](https://styleci.io/repos/12895187)
 [![Laravel Version](https://shield.with.social/cc/github/laravelio/portal/master.svg?style=flat-square)](https://packagist.org/packages/laravel/framework)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](license.txt)
 
 This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and
 licensed under [the MIT license](license.txt). We welcome your contributions but we encourage you to read the
