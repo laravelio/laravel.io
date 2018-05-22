@@ -58,19 +58,13 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
         ],
-        "start": [
-            "composer install",
-            "homestead make --no-after"
-        ],
         "setup": [
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "php artisan key:generate",
             "php artisan migrate --seed",
             "yarn install",
             "yarn dev"
-        ],
-        "test": "phpunit --stop-on-failure",
-        "spec": "phpspec run"
+        ]
     },
     "config": {
         "optimize-autoloader": true,
