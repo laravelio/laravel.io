@@ -20,7 +20,9 @@ final class Reply extends Model
     /**
      * {@inheritdoc}
      */
-    protected $fillable = ['body', 'ip'];
+    protected $fillable = [
+        'body',
+    ];
 
     public function id(): int
     {

@@ -15,7 +15,7 @@ class RegisterUserTest extends TestCase
     public function we_can_create_a_user()
     {
         $user = $this->dispatch(
-            new RegisterUser('John Doe', 'john@example.com', 'johndoe', '', 'password', '123', 'johndoe')
+            new RegisterUser('John Doe', 'john@example.com', 'johndoe', 'password', '123', 'johndoe')
         );
 
         $this->assertEquals('John Doe', $user->name());

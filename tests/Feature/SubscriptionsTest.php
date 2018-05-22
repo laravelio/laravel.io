@@ -27,7 +27,7 @@ class SubscriptionsTest extends BrowserKitTestCase
         factory(Subscription::class)->create(['user_id' => $userOne->id(), 'subscriptionable_id' => $thread->id()]);
         factory(Subscription::class)->create(['user_id' => $userTwo->id(), 'subscriptionable_id' => $thread->id()]);
 
-        $this->dispatch(new CreateReply($this->faker->text, $this->faker->ipv4, $author, $thread));
+        $this->dispatch(new CreateReply($this->faker->text, $author, $thread));
 
         Notification::assertNotSentTo($author, NewReplyNotification::class);
         Notification::assertSentTo([$userOne, $userTwo], NewReplyNotification::class);
@@ -38,9 +38,7 @@ class SubscriptionsTest extends BrowserKitTestCase
     {
         $user = $this->createUser();
 
-        $thread = $this->dispatch(
-            new CreateThread($this->faker->sentence, $this->faker->text, $this->faker->ipv4, $user)
-        );
+        $thread = $this->dispatch(new CreateThread($this->faker->sentence, $this->faker->text, $user));
 
         $this->assertTrue($thread->hasSubscriber($user));
     }
@@ -52,7 +50,7 @@ class SubscriptionsTest extends BrowserKitTestCase
 
         $author = $this->createUser();
 
-        $this->dispatch(new CreateThread($this->faker->sentence, $this->faker->text, $this->faker->ipv4, $author));
+        $this->dispatch(new CreateThread($this->faker->sentence, $this->faker->text, $author));
 
         Notification::assertNotSentTo($author, NewReplyNotification::class);
     }
@@ -66,7 +64,7 @@ class SubscriptionsTest extends BrowserKitTestCase
         $author = factory(User::class)->create();
         factory(Subscription::class)->create(['user_id' => $author->id(), 'subscriptionable_id' => $thread->id()]);
 
-        $this->dispatch(new CreateReply($this->faker->text, $this->faker->ipv4, $author, $thread));
+        $this->dispatch(new CreateReply($this->faker->text, $author, $thread));
 
         Notification::assertNotSentTo($author, NewReplyNotification::class);
     }
@@ -77,7 +75,7 @@ class SubscriptionsTest extends BrowserKitTestCase
         $user = $this->createUser();
         $thread = factory(Thread::class)->create();
 
-        $this->dispatch(new CreateReply($this->faker->text, $this->faker->ipv4, $user, $thread));
+        $this->dispatch(new CreateReply($this->faker->text, $user, $thread));
 
         $this->assertTrue($thread->hasSubscriber($user));
     }

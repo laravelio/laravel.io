@@ -21,11 +21,6 @@ final class CreateThread
     private $body;
 
     /**
-     * @var string
-     */
-    private $ip;
-
-    /**
      * @var \App\User
      */
     private $author;
@@ -35,11 +30,10 @@ final class CreateThread
      */
     private $tags;
 
-    public function __construct(string $subject, string $body, string $ip, User $author, array $tags = [])
+    public function __construct(string $subject, string $body, User $author, array $tags = [])
     {
         $this->subject = $subject;
         $this->body = $body;
-        $this->ip = $ip;
         $this->author = $author;
         $this->tags = $tags;
     }
@@ -49,7 +43,6 @@ final class CreateThread
         return new static(
             $request->subject(),
             $request->body(),
-            $request->ip(),
             $request->author(),
             $request->tags()
         );
@@ -60,7 +53,6 @@ final class CreateThread
         $thread = new Thread([
             'subject' => $this->subject,
             'body' => $this->body,
-            'ip' => $this->ip,
             'slug' => $this->subject,
         ]);
         $thread->authoredBy($this->author);

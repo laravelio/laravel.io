@@ -9,6 +9,5 @@ $factory->define(Thread::class, function (Faker\Generator $faker, array $attribu
         'body' => $faker->text,
         'slug' => $faker->slug,
         'author_id' => $attributes['author_id'] ?? factory(User::class)->create()->id(),
-        'ip' => $faker->ipv4,
     ];
 });

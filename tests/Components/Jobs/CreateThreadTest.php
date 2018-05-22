@@ -15,7 +15,7 @@ class CreateThreadTest extends TestCase
     {
         $user = $this->createUser();
 
-        $thread = $this->dispatch(new CreateThread('Subject', 'Body', '', $user));
+        $thread = $this->dispatch(new CreateThread('Subject', 'Body', $user));
 
         $this->assertEquals('Subject', $thread->subject());
     }

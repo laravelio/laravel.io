@@ -20,7 +20,7 @@ class CreateReplyTest extends TestCase
 
         $this->expectsEvents(ReplyWasCreated::class);
 
-        $reply = $this->dispatch(new CreateReply('Foo', '', $user, $thread));
+        $reply = $this->dispatch(new CreateReply('Foo', $user, $thread));
 
         $this->assertEquals('Foo', $reply->body());
     }

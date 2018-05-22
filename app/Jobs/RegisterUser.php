@@ -27,16 +27,6 @@ final class RegisterUser
     /**
      * @var string
      */
-    private $ip;
-
-    /**
-     * @var array
-     */
-    private $attributes;
-
-    /**
-     * @var string
-     */
     private $githubId;
 
     /**
@@ -44,12 +34,11 @@ final class RegisterUser
      */
     private $githubUsername;
 
-    public function __construct(string $name, string $email, string $username, string $ip, string $githubId, string $githubUsername)
+    public function __construct(string $name, string $email, string $username, string $githubId, string $githubUsername)
     {
         $this->name = $name;
         $this->email = $email;
         $this->username = $username;
-        $this->ip = $ip;
         $this->githubId = $githubId;
         $this->githubUsername = $githubUsername;
     }
@@ -60,7 +49,6 @@ final class RegisterUser
             $request->name(),
             $request->emailAddress(),
             $request->username(),
-            $request->ip(),
             $request->githubId(),
             $request->githubUsername()
         );
@@ -75,7 +63,6 @@ final class RegisterUser
             'name' => $this->name,
             'email' => $this->email,
             'username' => strtolower($this->username),
-            'ip' => $this->ip,
             'github_id' => $this->githubId,
             'github_username' => $this->githubUsername,
             'confirmation_code' => str_random(60),
