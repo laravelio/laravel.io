@@ -6,13 +6,11 @@ authorize: ~/.ssh/id_rsa.pub
 keys:
     - ~/.ssh/id_rsa
 folders:
-    -
-        map: ~/Sites/laravelio
-        to: /home/vagrant/Code/laravelio
+    - map: ~/Sites/laravelio
+      to: /home/vagrant/Code/laravelio
 sites:
-    -
-        map: laravelio.test
-        to: /home/vagrant/Code/laravelio/public
+    - map: laravelio.test
+      to: /home/vagrant/Code/laravelio/public
 databases:
     - homestead
 name: laravelio

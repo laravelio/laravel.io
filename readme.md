@@ -37,7 +37,7 @@ The following tools are required in order to start the installation.
 1. Clone this repository: `git clone git@github.com:laravelio/laravel-io.git ~/Sites/laravelio`
 2. Run `composer start`
 4. Run `vagrant up`
-5. SSH into your Vagrant box, go to `/home/vagrant/Code/laravelio` and run `composer setup`
+5. SSH into your Vagrant box, go to `/home/vagrant/code` and run `composer setup`
 6. Add `192.168.10.10 laravelio.test` to your computer's `/etc/hosts` file
 7. Setup a working e-mail driver like [Mailtrap](https://mailtrap.io/)
 8. (optional) Set up Github authentication (see below)
