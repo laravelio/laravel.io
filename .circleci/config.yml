@@ -30,11 +30,16 @@ jobs:
           key: v1-node-dependencies-{{ checksum "yarn.lock" }}
       - run: vendor/bin/phpspec run --verbose
       - run: vendor/bin/phpunit --verbose
+      - store_artifacts:
+          path: ./storage/logs
+          destination: app-logs
+
   deploy:
     machine: true
     steps:
       - deploy:
           command: curl ${ENVOYER_HOOK}?sha=${CIRCLE_SHA1}
+
 workflows:
   version: 2
   build-and-deploy:
