@@ -33,6 +33,7 @@
                         <li><a href="https://laravel.com">Laravel</a></li>
                         <li><a href="https://laracasts.com">Laracasts</a></li>
                         <li><a href="https://laravel-news.com">Laravel News</a></li>
+                        <li><a href="https://laravelevents.com">Laravel Events</a></li>
                         <li><a href="http://www.laravelpodcast.com">Podcast</a></li>
                     </ul>
                 </li>
