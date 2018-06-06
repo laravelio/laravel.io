@@ -21,7 +21,6 @@
                         <li><a href="https://webchat.freenode.net/?nick=laravelnewbie&channels=%23laravel&prompt=1">IRC</a></li>
                     </ul>
                 </li>
-                <li><a href="https://larajobs.com/?partner=28">Jobs</a></li>
                 <li><a href="https://laravelevents.com">Events</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Community <span class="caret"></span></a>
