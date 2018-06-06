@@ -22,6 +22,7 @@
                     </ul>
                 </li>
                 <li><a href="https://larajobs.com/?partner=28">Jobs</a></li>
+                <li><a href="https://laravelevents.com">Events</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Community <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -33,7 +34,6 @@
                         <li><a href="https://laravel.com">Laravel</a></li>
                         <li><a href="https://laracasts.com">Laracasts</a></li>
                         <li><a href="https://laravel-news.com">Laravel News</a></li>
-                        <li><a href="https://laravelevents.com">Laravel Events</a></li>
                         <li><a href="http://www.laravelpodcast.com">Podcast</a></li>
                     </ul>
                 </li>
