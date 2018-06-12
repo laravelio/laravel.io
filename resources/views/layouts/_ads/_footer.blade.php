@@ -1,11 +1,15 @@
 @unless ($disableAds ?? false)
-    @if ($code = config('services.bsa.cpm_code'))
-        <div class="ad-unit-footer-bsa container" style="text-align:center;overflow:hidden;">
+    @if ($adSenseClient = config('services.google.ad_sense.client'))
+        <div class="container" style="text-align:center;overflow:hidden;">
             <hr>
-            <!-- BuySellAds Zone Code -->
-            <div id="bsap_{{ config("services.bsa.footer_code") }}" class="bsarocks bsap_{{ $code }}"
-                 style="display:inline-block;margin:0 auto;max-width:730px;overflow:hidden"></div>
-            <!-- End BuySellAds Zone Code -->
+            <ins class="adsbygoogle"
+                 style="display:block;margin:0 auto;max-width:728px;max-height:90px"
+                 data-ad-client="{{ $adSenseClient }}"
+                 data-ad-slot="{{ config('services.google.ad_sense.unit_footer') }}"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
     @endif
 @endif

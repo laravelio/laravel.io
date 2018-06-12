@@ -23,7 +23,6 @@
 
     @unless ($disableAds ?? false)
         @include('layouts._ads._ad_sense')
-        @include('layouts._ads._bsa')
     @endunless
 </head>
 <body class="{{ $bodyClass ?? '' }}">
