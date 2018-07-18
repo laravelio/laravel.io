@@ -6,7 +6,6 @@ use App\User;
 use App\Models\Reply;
 use App\Models\Thread;
 
-
 class ReplyPolicy
 {
     const CREATE = 'create';
@@ -18,9 +17,9 @@ class ReplyPolicy
      */
     public function create(User $user, Thread $thread): bool
     {
-        // We need to be logged in and 
+        // We need to be logged in and
         // the reply's thread should not old enough to reply
-        return !$thread->isOld();
+        return ! $thread->isOld();
     }
 
     /**
