@@ -96,7 +96,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble
     }
 
     /**
-     * It will check if the thread is older than 6 months
+     * It will check if the thread is older than 6 months.
      *
      * @return bool
      */
