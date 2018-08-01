@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Validation;
+namespace App\Rules;
 
 use Auth;
 use Hash;

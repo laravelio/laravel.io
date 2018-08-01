@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Validation;
+namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Validation\Concerns\ValidatesAttributes;

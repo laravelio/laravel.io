@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\User;
 use App\Models\Thread;
-use App\Validation\HttpImageRule;
+use App\Rules\HttpImageRule;
 
 class CreateReplyRequest extends Request
 {
