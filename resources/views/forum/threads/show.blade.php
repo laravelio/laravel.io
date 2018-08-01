@@ -138,7 +138,7 @@
                 ])
             @endforeach
 
-            @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
+            @can(App\Policies\ReplyPolicy::CREATE, [App\Models\Reply::class, $thread])
                 <hr>
 
                 <div class="alert alert-info">

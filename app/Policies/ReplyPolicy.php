@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\User;
 use App\Models\Reply;
+use App\Models\Thread;
 
 class ReplyPolicy
 {
@@ -14,10 +15,11 @@ class ReplyPolicy
     /**
      * Determine if replies can be created by the user.
      */
-    public function create(User $user): bool
+    public function create(User $user, Thread $thread): bool
     {
-        // We only need to be logged in.
-        return true;
+        // We need to be logged in and
+        // the reply's thread should not old enough to reply
+        return ! $thread->isOld();
     }
 
     /**

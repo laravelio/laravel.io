@@ -24,7 +24,7 @@ class ReplyController extends Controller
 
     public function store(CreateReplyRequest $request)
     {
-        $this->authorize(ReplyPolicy::CREATE, Reply::class);
+        $this->authorize(ReplyPolicy::CREATE, [Reply::class, $request->replyAble()]);
 
         $reply = $this->dispatchNow(CreateReply::fromRequest($request));
 

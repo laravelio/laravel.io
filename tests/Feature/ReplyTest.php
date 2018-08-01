@@ -78,4 +78,31 @@ class ReplyTest extends BrowserKitTestCase
         $this->put('/forum/the-first-thread/mark-solution/'.$reply->id())
             ->assertForbidden();
     }
+
+    /** @test */
+    public function users_cannot_reply_to_a_thread_if_it_is_older_than_6_months()
+    {
+        $user = factory(User::class)->create();
+        $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread', 'created_at' => \Carbon\Carbon::now()->subMonth(7)]);
+
+        $this->login();
+
+        $this->visit('/forum/the-first-thread')
+            ->dontSee('Reply');
+    }
+
+    /** @test */
+    public function users_can_reply_to_a_thread_if_it_is_not_older_than_6_months()
+    {
+        $user = factory(User::class)->create();
+        $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread', 'created_at' => \Carbon\Carbon::now()->subMonth(5)]);
+
+        $this->login();
+
+        $this->visit('/forum/the-first-thread')
+            ->type('The first reply', 'body')
+            ->press('Reply')
+            ->see('The first reply')
+            ->see('Reply successfully added!');
+    }
 }
