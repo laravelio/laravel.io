@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Components\Validation;
+namespace Tests\Components\Rules;
 
 use Tests\TestCase;
-use App\Validation\PasscheckRule;
+use App\Rules\PasscheckRule;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PasscheckRuleTest extends TestCase

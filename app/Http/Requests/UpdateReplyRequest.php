@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Validation\HttpImageRule;
+use App\Rules\HttpImageRule;
 
 class UpdateReplyRequest extends Request
 {

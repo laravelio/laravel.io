@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\App\Validation;
+namespace spec\App\Rules;
 
 use PhpSpec\ObjectBehavior;
-use App\Validation\DoesNotContainUrlRule;
+use App\Rules\DoesNotContainUrlRule;
 
 class DoesNotContainUrlRuleSpec extends ObjectBehavior
 {

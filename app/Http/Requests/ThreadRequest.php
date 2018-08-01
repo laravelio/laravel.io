@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use App\User;
-use App\Validation\HttpImageRule;
-use App\Validation\DoesNotContainUrlRule;
+use App\Rules\HttpImageRule;
+use App\Rules\DoesNotContainUrlRule;
 
 class ThreadRequest extends Request
 {

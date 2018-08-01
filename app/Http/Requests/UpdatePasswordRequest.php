@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Validation\PasscheckRule;
+use App\Rules\PasscheckRule;
 
 class UpdatePasswordRequest extends Request
 {
