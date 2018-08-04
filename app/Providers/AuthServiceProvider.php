@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\ReplyAble;
 use App\User;
 use App\Models\Reply;
 use App\Models\Thread;
