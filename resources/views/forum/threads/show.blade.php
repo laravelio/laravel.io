@@ -142,7 +142,6 @@
                 @if ($thread->isConversationOld())
                     <hr>
                     <p class="text-center">
-                        The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.
                         The last reply to this thread was more than six months ago. Please consider <a href="{{ route('threads.create') }}">opening a new thread</a> if you have a similar question.
                     </p>
                 @else
