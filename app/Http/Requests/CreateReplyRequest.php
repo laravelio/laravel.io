@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\ReplyAble;
 use App\User;
 use App\Models\Thread;
 use App\Rules\HttpImageRule;
@@ -17,12 +18,12 @@ class CreateReplyRequest extends Request
         ];
     }
 
-    public function replyAble()
+    public function replyAble(): ReplyAble
     {
         return $this->findReplyAble($this->get('replyable_id'), $this->get('replyable_type'));
     }
 
-    private function findReplyAble(int $id, string $type)
+    private function findReplyAble(int $id, string $type): ReplyAble
     {
         switch ($type) {
             case Thread::TABLE:

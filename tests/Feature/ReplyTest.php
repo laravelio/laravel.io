@@ -80,29 +80,16 @@ class ReplyTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function users_cannot_reply_to_a_thread_if_it_is_older_than_6_months()
+    public function users_cannot_reply_to_a_thread_if_the_last_reply_is_older_than_six_months()
     {
-        $user = factory(User::class)->create();
-        $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread', 'created_at' => \Carbon\Carbon::now()->subMonth(7)]);
+        $thread = factory(Thread::class)->states('old')->create();
 
         $this->login();
 
-        $this->visit('/forum/the-first-thread')
-            ->dontSee('Reply');
-    }
-
-    /** @test */
-    public function users_can_reply_to_a_thread_if_it_is_not_older_than_6_months()
-    {
-        $user = factory(User::class)->create();
-        $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread', 'created_at' => \Carbon\Carbon::now()->subMonth(5)]);
-
-        $this->login();
-
-        $this->visit('/forum/the-first-thread')
-            ->type('The first reply', 'body')
-            ->press('Reply')
-            ->see('The first reply')
-            ->see('Reply successfully added!');
+        $this->visit("/forum/{$thread->slug}")
+            ->dontSee('value="Reply"')
+            ->seeText(
+                'The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.'
+            );
     }
 }

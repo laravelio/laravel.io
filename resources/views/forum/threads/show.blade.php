@@ -138,26 +138,33 @@
                 ])
             @endforeach
 
-            @can(App\Policies\ReplyPolicy::CREATE, [App\Models\Reply::class, $thread])
-                <hr>
-
-                <div class="alert alert-info">
-                    <p>
-                        Please make sure you've read our
-                        <a href="{{ route('rules') }}" class="alert-link">Forum Rules</a> before replying to this thread.
+            @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
+                @if ($thread->isConversationOld())
+                    <hr>
+                    <p class="text-center">
+                        The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.
+                        The last reply to this thread was more than six months ago. Please consider <a href="{{ route('threads.create') }}">opening a new thread</a> if you have a similar question.
                     </p>
-                </div>
+                @else
+                    <hr>
 
-                {!! Form::open(['route' => 'replies.store']) !!}
-                    @formGroup('body')
-                        {!! Form::textarea('body', null, ['class' => 'form-control wysiwyg', 'required']) !!}
-                        @error('body')
-                    @endFormGroup
+                    <div class="alert alert-info">
+                        <p>
+                            Please make sure you've read our <a href="{{ route('rules') }}" class="alert-link">Forum Rules</a> before replying to this thread.
+                        </p>
+                    </div>
 
-                    {!! Form::hidden('replyable_id', $thread->id()) !!}
-                    {!! Form::hidden('replyable_type', 'threads') !!}
-                    {!! Form::submit('Reply', ['class' => 'btn btn-primary btn-block']) !!}
-                {!! Form::close() !!}
+                    {!! Form::open(['route' => 'replies.store']) !!}
+                        @formGroup('body')
+                            {!! Form::textarea('body', null, ['class' => 'form-control wysiwyg', 'required']) !!}
+                            @error('body')
+                        @endFormGroup
+
+                        {!! Form::hidden('replyable_id', $thread->id()) !!}
+                        {!! Form::hidden('replyable_type', 'threads') !!}
+                        {!! Form::submit('Reply', ['class' => 'btn btn-primary btn-block']) !!}
+                    {!! Form::close() !!}
+                @endif
             @endcan
 
             @if (Auth::guest())

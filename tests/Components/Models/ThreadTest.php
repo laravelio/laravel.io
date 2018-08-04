@@ -29,6 +29,32 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
+    public function its_conversation_is_old_when_the_oldest_reply_was_six_months_ago()
+    {
+        $thread = factory(Thread::class)->create();
+        $thread->repliesRelation()->save(factory(Reply::class)->make(['created_at' => now()->subMonths(7)]));
+
+        $this->assertTrue($thread->isConversationOld());
+
+        $thread = factory(Thread::class)->create();
+        $thread->repliesRelation()->save(factory(Reply::class)->make());
+
+        $this->assertFalse($thread->isConversationOld());
+    }
+
+    /** @test */
+    public function its_conversation_is_old_when_there_are_no_replies_but_the_creation_date_was_six_months_ago()
+    {
+        $thread = factory(Thread::class)->create(['created_at' => now()->subMonths(7)]);
+
+        $this->assertTrue($thread->isConversationOld());
+
+        $thread = factory(Thread::class)->create();
+
+        $this->assertFalse($thread->isConversationOld());
+    }
+
+    /** @test */
     public function we_can_mark_and_unmark_a_reply_as_the_solution()
     {
         $thread = factory(Thread::class)->create();

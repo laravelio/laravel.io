@@ -24,4 +24,6 @@ interface ReplyAble
     public function deleteReplies();
 
     public function repliesRelation(): MorphMany;
+
+    public function isConversationOld(): bool;
 }

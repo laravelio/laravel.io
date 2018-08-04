@@ -38,4 +38,15 @@ trait ReceivesReplies
     {
         return $this->morphMany(Reply::class, 'repliesRelation', 'replyable_type', 'replyable_id');
     }
+
+    public function isConversationOld(): bool
+    {
+        $sixMonthsAgo = now()->subMonths(6);
+
+        if ($reply = $this->repliesRelation()->latest()->first()) {
+            return $reply->createdAt()->lt($sixMonthsAgo);
+        }
+
+        return $this->createdAt()->lt($sixMonthsAgo);
+    }
 }

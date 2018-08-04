@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use DB;
-use Carbon\Carbon;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
 use App\Helpers\HasAuthor;
@@ -93,19 +92,6 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble
     {
         $this->solutionReplyRelation()->dissociate();
         $this->save();
-    }
-
-    /**
-     * It will check if the thread is older than 6 months.
-     *
-     * @return bool
-     */
-    public function isOld()
-    {
-        $date = Carbon::now();
-        $thread_date = Carbon::parse($this->created_at);
-
-        return $date->diffInMonths($thread_date) > 6;
     }
 
     public function delete()
