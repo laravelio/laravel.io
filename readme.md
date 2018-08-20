@@ -61,8 +61,7 @@ GITHUB_URL=http://laravelio.test/auth/github
 ## Maintainers
 
 The Laravel.io portal is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions
-please don't hesitate to create an issue on this repo or ask us through the #laravelio channel on
-[Slack](https://larachat.slack.com).
+please don't hesitate to create an issue on this repo.
 
 ## Contributing
 
