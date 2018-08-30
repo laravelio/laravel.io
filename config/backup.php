@@ -77,9 +77,9 @@ return [
     'notifications' => [
 
         'notifications' => [
-            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class         => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['mail'],
-            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class        => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class         => ['mail', 'slack'],
+            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['mail', 'slack'],
+            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class        => ['mail', 'slack'],
             \Spatie\Backup\Notifications\Notifications\BackupWasSuccessful::class     => [],
             \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class   => [],
             \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class    => [],
@@ -96,7 +96,7 @@ return [
         ],
 
         'slack' => [
-            'webhook_url' => '',
+            'webhook_url' => env('BACKUP_SLACK_WEBHOOK', ''),
 
             /*
              * If this is set to null the default channel of the webhook will be used.
