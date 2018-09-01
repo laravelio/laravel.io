@@ -11,3 +11,5 @@ Homestead.yaml
 .env
 /aliases
 /after.sh
+/.vagrant
+yarn-error.log
