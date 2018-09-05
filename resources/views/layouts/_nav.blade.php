@@ -17,6 +17,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chat <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li><a href="https://discord.gg/bBk6dwD">Discord</a></li>
                         <li><a href="https://larachat.co/">Larachat</a></li>
                         <li><a href="https://webchat.freenode.net/?nick=laravelnewbie&channels=%23laravel&prompt=1">IRC</a></li>
                     </ul>
