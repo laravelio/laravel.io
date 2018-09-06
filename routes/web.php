@@ -1,5 +1,25 @@
 <?php
 
+use App\User;
+use App\Models\Reply;
+use App\Mail\NewReplyEmail;
+use App\Models\Subscription;
+
+Route::get('foo', function () {
+  $user = User::first();
+  $reply = Reply::first();
+  $subscription = Subscription::first() ?: factory(Subscription::class)->create(['user_id' => $user->id]);
+  $newReplyEmail = new NewReplyEmail($reply, $subscription);
+
+  dump($reply);
+  dump($subscription);
+  dump($newReplyEmail);
+
+  Mail::to($user)->queue($newReplyEmail);
+
+  return redirect()->route('home');
+});
+
 // Home
 Route::get('/', 'HomeController@show')->name('home');
 Route::get('rules', 'HomeController@rules')->name('rules');
