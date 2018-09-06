@@ -2,7 +2,7 @@
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => config('app.url')])
-            {{ config('app.name') }}
+            <div class="logo"><img src="{{ asset('images/laravelio.png') }}" title="Laravel.io"></div>
         @endcomponent
     @endslot
 
