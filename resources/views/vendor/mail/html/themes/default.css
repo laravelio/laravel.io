@@ -116,6 +116,10 @@ img {
     text-shadow: 0 1px 0 white;
 }
 
+.header img {
+  width: 180px;
+}
+
 /* Body */
 
 .body {
