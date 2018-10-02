@@ -9,7 +9,9 @@ class FixSubscriptionIndexes extends Migration
     public function up()
     {
         Schema::table('subscriptions', function (Blueprint $table) {
-            $table->dropForeign('subscriptions_user_id_foreign');
+            if (DB::getDriverName() != 'sqlite') {
+                $table->dropForeign('subscriptions_user_id_foreign');
+            }
             $table->dropIndex(['user_id', 'uuid']);
             $table->index('uuid');
             $table->index('user_id');

@@ -5,17 +5,18 @@ namespace App\Http;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\SiteIndexing;
 use App\Http\Middleware\TrustProxies;
+use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\VerifyCsrfToken;
 use App\Http\Middleware\RedirectIfBanned;
 use Illuminate\Auth\Middleware\Authorize;
-use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\Middleware\SetCacheHeaders;
 use Illuminate\Session\Middleware\StartSession;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Foundation\Http\Middleware\ValidatePostSize;
@@ -77,5 +78,21 @@ class Kernel extends HttpKernel
         'can' => Authorize::class,
         'guest' => RedirectIfAuthenticated::class,
         'throttle' => ThrottleRequests::class,
+    ];
+
+    /**
+     * The priority-sorted list of middleware.
+     *
+     * This forces the listed middleware to always be in the given order.
+     *
+     * @var array
+     */
+    protected $middlewarePriority = [
+        StartSession::class,
+        ShareErrorsFromSession::class,
+        Authenticate::class,
+        AuthenticateSession::class,
+        SubstituteBindings::class,
+        Authorize::class,
     ];
 }
