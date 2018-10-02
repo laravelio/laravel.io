@@ -9,21 +9,22 @@
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.3",
-        "laravel/framework": "5.6.*",
+        "laravel/framework": "5.7.*",
         "laravel/horizon": "^1.1",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
-        "laravelcollective/html": "5.6.*",
+        "laravelcollective/html": "5.7.*",
         "lasserafn/php-initial-avatar-generator": "^2.0",
         "league/commonmark": "^0.17.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^3.7",
         "roave/security-advisories": "dev-master",
-        "spatie/laravel-backup": "^5.7",
+        "spatie/laravel-backup": "^5.10",
         "spatie/laravel-robots-middleware": "^1.0"
     },
     "require-dev": {
+        "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.1",
         "fzaninotto/faker": "^1.6",
         "laravel/browser-kit-testing": "^4.0",
@@ -54,11 +55,11 @@
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "php artisan key:generate"
+            "php artisan key:generate --ansi"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover"
+            "@php artisan package:discover --ansi"
         ],
         "setup": [
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
