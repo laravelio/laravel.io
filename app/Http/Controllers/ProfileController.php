@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\DeleteUser;
 use App\User;
 use LasseRafn\InitialAvatarGenerator\InitialAvatar;
 
@@ -22,5 +23,22 @@ class ProfileController extends Controller
             ->size(100)
             ->generate()
             ->response('png', 100);
+    }
+
+    /**
+     * Delete the current user profile.
+     * All related data (threads, replies, etc) will be deleted alongside.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy()
+    {
+        $user = auth()->user();
+
+        $this->dispatchNow(new DeleteUser($user));
+
+        $this->success('settings.users.left', $user->name());
+
+        return redirect()->route('login');
     }
 }

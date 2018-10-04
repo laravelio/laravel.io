@@ -38,6 +38,7 @@ Route::namespace('Auth')->group(function () {
 Route::get('dashboard', 'DashboardController@show')->name('dashboard');
 Route::get('user/{username}', 'ProfileController@show')->name('profile');
 Route::get('avatar/{username}', 'ProfileController@avatar')->name('avatar');
+Route::delete('user', 'ProfileController@destroy')->name('profile.destroy');
 
 // Settings
 Route::get('settings', 'Settings\ProfileController@edit')->name('settings.profile');

@@ -54,9 +54,24 @@
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-6">
                         {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::button('Delete Profile', [
+                            'class' => 'btn btn-danger pull-right',
+                            'data-toggle' => 'modal',
+                            'data-target' => '#deleteProfile',
+                        ]) !!}
                     </div>
                 </div>
             {!! Form::close() !!}
         </div>
     </div>
+
+    @include('_partials._delete_modal', [
+                    'id' => "deleteProfile",
+                    'route' => ['profile.destroy'],
+                    'title' => 'Delete Profile',
+                    'body' => '
+                        <p>Once you delete your profile all related data (posts, threads, etc) will be deleted alongside.</p>
+                        <p>Are you sure you want to delete your profile? This cannot be undone.</p>
+                        ',
+                ])
 @endsection
