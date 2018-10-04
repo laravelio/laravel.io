@@ -59,7 +59,7 @@ class RegisterController extends Controller
     {
         $user = $this->dispatchNow(RegisterUser::fromRequest(app(RegisterRequest::class)));
 
-        $this->dispatchNow(new SendEmailConfirmation($user));
+        $this->dispatch(new SendEmailConfirmation($user));
 
         return $user;
     }

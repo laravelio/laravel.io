@@ -21,7 +21,7 @@ class EmailConfirmationController extends Controller
         if (Auth::user()->isConfirmed()) {
             $this->error('auth.confirmation.already_confirmed');
         } else {
-            $this->dispatchNow(new SendEmailConfirmation(Auth::user()));
+            $this->dispatch(new SendEmailConfirmation(Auth::user()));
 
             $this->success('auth.confirmation.sent', Auth::user()->emailAddress());
         }
