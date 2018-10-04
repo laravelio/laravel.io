@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\DeleteUser;
 use App\User;
+use App\Jobs\DeleteUser;
 use LasseRafn\InitialAvatarGenerator\InitialAvatar;
 
 class ProfileController extends Controller

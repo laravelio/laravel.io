@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Reply;
 use App\Models\Thread;
-use Illuminate\Support\Facades\Bus;
 use Tests\BrowserKitTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -27,7 +26,7 @@ class ProfileTest extends BrowserKitTestCase
         $user = $this->login();
 
         $thread1 = factory(Thread::class)->create(['author_id' => $user->getKey()]);
-        $thread2= factory(Thread::class)->create(['author_id' => $user->getKey()]);
+        $thread2 = factory(Thread::class)->create(['author_id' => $user->getKey()]);
 
         factory(Reply::class)->create(['author_id' => $user->getKey(), 'replyable_id' => $thread1->getKey()]);
         factory(Reply::class)->create(['author_id' => $user->getKey(), 'replyable_id' => $thread1->getKey()]);
