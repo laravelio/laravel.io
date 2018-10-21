@@ -20,14 +20,14 @@ jobs:
           key: v1-php-dependencies-{{ checksum "composer.lock" }}
       - restore_cache:
           keys:
-          - v1-node-dependencies-{{ checksum "yarn.lock" }}
+          - v1-node-dependencies-{{ checksum "package-lock.json" }}
           - v1-node-dependencies-
-      - run: yarn install
-      - run: yarn production
+      - run: npm install
+      - run: npm run production
       - save_cache:
           paths:
             - ./node_modules
-          key: v1-node-dependencies-{{ checksum "yarn.lock" }}
+          key: v1-node-dependencies-{{ checksum "package-lock.json" }}
       - run: vendor/bin/phpspec run --verbose
       - run: vendor/bin/phpunit --verbose
       - store_artifacts:

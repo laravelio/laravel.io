@@ -72,8 +72,8 @@
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "php artisan key:generate",
             "php artisan migrate --seed",
-            "yarn install",
-            "yarn dev"
+            "npm install",
+            "npm run dev"
         ]
     },
     "config": {
