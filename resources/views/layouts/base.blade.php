@@ -11,7 +11,7 @@
     <title>{{ isset($title) ? $title.' | ' : '' }} {{ config('app.name') }}</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="{{ mix('build/css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     <script>
         window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
@@ -35,7 +35,7 @@
     @include('layouts._footer')
 </div>
 
-<script src="{{ mix('build/js/app.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 
 @include('layouts._intercom')
 

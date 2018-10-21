@@ -4,7 +4,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=7.1.3",
+        "php": "^7.1.3",
         "bugsnag/bugsnag-laravel": "^2.14",
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "^4.0",
@@ -24,7 +24,7 @@
         "spatie/laravel-robots-middleware": "^1.0"
     },
     "require-dev": {
-        "beyondcode/laravel-dump-server": "^1.0",
+        "beyondcode/laravel-dump-server": "^1.2",
         "filp/whoops": "^2.1",
         "fzaninotto/faker": "^1.6",
         "laravel/browser-kit-testing": "^4.0",
@@ -36,7 +36,8 @@
     },
     "autoload": {
         "classmap": [
-            "database"
+            "database/seeds",
+            "database/factories"
         ],
         "files": [
             "resources/helpers.php"
@@ -50,12 +51,18 @@
             "Tests\\": "tests/"
         }
     },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+            ]
+        }
+    },
     "scripts": {
         "post-root-package-install": [
-            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "php artisan key:generate --ansi"
+            "@php artisan key:generate --ansi"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -70,13 +77,10 @@
         ]
     },
     "config": {
-        "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "optimize-autoloader": true
     },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    }
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
