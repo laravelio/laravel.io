@@ -30,9 +30,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function bootHorizon()
     {
-        if ($horizonEmail = config('lio.horizon_email')) {
-            Horizon::routeMailNotificationsTo($horizonEmail);
-        }
+        Horizon::routeMailNotificationsTo($horizonEmail = env('LIO_HORIZON_EMAIL') ?? null);
+        Horizon::routeSlackNotificationsTo(env('LIO_HORIZON_WEBHOOK') ?? null);
 
         Horizon::auth(function ($request) use ($horizonEmail) {
             return auth()->check() && auth()->user()->emailAddress() === $horizonEmail;
