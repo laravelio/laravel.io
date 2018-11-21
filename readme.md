@@ -78,4 +78,4 @@ If you discover a security vulnerability within Laravel.io, please send an email
 
 ## License
 
-The MIT License. Please see [the license file](license.txt) for more information.
+The MIT License. Please see [the license file](license.md) for more information.
