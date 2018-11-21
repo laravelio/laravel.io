@@ -5,7 +5,7 @@
 [![Laravel Version](https://shield.with.social/cc/github/laravelio/portal/master.svg?style=flat-square)](https://packagist.org/packages/laravel/framework)
 
 This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and
-licensed under [the MIT license](license.txt). We welcome your contributions but we encourage you to read the
+licensed under [the MIT license](license.md). We welcome your contributions but we encourage you to read the
 [the contributing guide](contributing.md) before creating an issue or sending in a pull request. Read the installation
 guide below to get started with setting up the app on your machine.
 
