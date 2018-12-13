@@ -75,7 +75,7 @@ Route::get('subscriptions/{subscription}/unsubscribe', 'SubscriptionController@u
 
 // Admin
 Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function () {
-    Route::get('/', 'AdminController@index');
+    Route::get('/', 'AdminController@index')->name('overview');
     Route::get('users/{username}', 'UsersController@show')->name('users.show');
     Route::put('users/{username}/ban', 'UsersController@ban')->name('users.ban');
     Route::put('users/{username}/unban', 'UsersController@unban')->name('users.unban');
