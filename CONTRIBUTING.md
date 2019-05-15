@@ -1,7 +1,7 @@
 # Contributing Guide
 
 We welcome contributions to the Laravel.io project. Please read the following guide before posting an issue or sending
-in pull requests. Please also read our [Code of Conduct](code_of_conduct.md) before contributing or engaging in
+in pull requests. Please also read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing or engaging in
 discussions.
 
 ## Issues
@@ -15,7 +15,7 @@ discussions.
 - **Feature requests** first need to be discussed and accepted [through an issue](https://github.com/laravelio/laravel.io/issues/new) before sending in a pull request
 - **Bug fixes** should contain [regression tests](https://laracasts.com/lessons/regression-testing)
 - All pull requests should follow the [coding standards](#coding-standards)
-- Pull requests will be merged after being reviewed by [the maintainers](readme.md#maintainers)
+- Pull requests will be merged after being reviewed by [the maintainers](README.md#maintainers)
 - Please be respectful to other contributors and hold to [The Code Manifesto](http://codemanifesto.com/)
 
 ## Coding Standards
