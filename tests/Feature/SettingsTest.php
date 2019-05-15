@@ -68,6 +68,15 @@ class SettingsTest extends BrowserKitTestCase
     }
 
     /** @test */
+    public function users_cannot_delete_their_account()
+    {
+        $this->loginAsAdmin();
+
+        $this->visit('/settings')
+            ->dontSee('Delete Account');
+    }
+
+    /** @test */
     public function users_can_update_their_password()
     {
         $this->login();

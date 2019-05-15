@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Jobs\DeleteUser;
+use App\Policies\UserPolicy;
 use Auth;
 use App\Jobs\UpdateProfile;
 use App\Http\Controllers\Controller;
@@ -33,7 +34,9 @@ class ProfileController extends Controller
 
     public function destroy(Request $request)
     {
-        $this->dispatchNow(new DeleteUser($request->user()));
+        $this->authorize(UserPolicy::DELETE, $user = $request->user());
+
+        $this->dispatchNow(new DeleteUser($user));
 
         $this->success('settings.deleted');
 
