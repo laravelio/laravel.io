@@ -42,6 +42,7 @@ Route::get('avatar/{username}', 'ProfileController@avatar')->name('avatar');
 // Settings
 Route::get('settings', 'Settings\ProfileController@edit')->name('settings.profile');
 Route::put('settings', 'Settings\ProfileController@update')->name('settings.profile.update');
+Route::delete('settings', 'Settings\ProfileController@destroy')->name('settings.profile.delete');
 Route::get('settings/password', 'Settings\PasswordController@edit')->name('settings.password');
 Route::put('settings/password', 'Settings\PasswordController@update')->name('settings.password.update');
 

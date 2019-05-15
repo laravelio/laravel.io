@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\Jobs\DeleteUser;
 use Auth;
 use App\Jobs\UpdateProfile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -27,5 +29,14 @@ class ProfileController extends Controller
         $this->success('settings.updated');
 
         return redirect()->route('settings.profile');
+    }
+
+    public function destroy(Request $request)
+    {
+        $this->dispatchNow(new DeleteUser($request->user()));
+
+        $this->success('settings.deleted');
+
+        return redirect()->route('home');
     }
 }

@@ -59,4 +59,23 @@
             {!! Form::close() !!}
         </div>
     </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Security</div>
+        <div class="panel-body">
+            <div class="col-md-offset-3 col-md-6">
+                <p>Please be aware that deleting your account will also remove all of your data, including your threads and replies. This cannot be undone.</p>
+
+                <a href="javascript:" class="btn btn-danger" data-toggle="modal" data-target="#deleteUser">Delete Account</a>
+            </div>
+        </div>
+    </div>
+
+    @include('_partials._delete_modal', [
+        'id' => 'deleteUser',
+        'route' => 'settings.profile.delete',
+        'title' => 'Delete Account',
+        'submit' => 'Confirm',
+        'body' => '<p>Deleting your account will remove any related content like threads & replies. This cannot be undone.</p>',
+    ])
 @endsection

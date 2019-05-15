@@ -57,6 +57,17 @@ class SettingsTest extends BrowserKitTestCase
     }
 
     /** @test */
+    public function users_can_delete_their_account()
+    {
+        $this->login(['name' => 'Freek Murze']);
+
+        $this->delete('/settings')
+            ->assertRedirectedTo('/');
+
+        $this->notSeeInDatabase('users', ['name' => 'Freek Murze']);
+    }
+
+    /** @test */
     public function users_can_update_their_password()
     {
         $this->login();
