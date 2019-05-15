@@ -12,7 +12,7 @@
     "bootstrap-markdown": "^2.10.0",
     "bootstrap-sass": "^3.4.1",
     "bootswatch": "^3.4.1",
-    "jquery": "^3.1.1",
+    "jquery": "^3.4.1",
     "lodash": "^4.17.4",
     "markdown": "^0.5.0",
     "prismjs": "^1.6.0",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "cross-env": "^5.1.3",
-    "laravel-mix": "^4.0.14",
+    "laravel-mix": "^4.0.15",
     "resolve-url-loader": "2.3.1",
     "sass": "^1.17.2",
     "sass-loader": "7.*",
