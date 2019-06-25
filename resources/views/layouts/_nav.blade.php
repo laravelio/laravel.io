@@ -1,29 +1,24 @@
-<nav class="navbar navbar-inverse navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ route('home') }}">Laravel.io</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="main-navbar-collapse">
-            <ul class="nav navbar-nav">
+<nav>
+    <div class="container mx-auto">
+        <div class="h-16 flex justify-between items-center text-gray-600 border-b-2 border-grey-600 mx-4">
+            <a class="my-4" href="{{ route('home') }}">
+                <img src="/images/laravelio.png" alt="Laravel.io Logo" class="w-40"/>
+            </a>
+            <ul class="flex">
                 <li class="{{ active(['forum', 'threads*', 'thread']) }}"><a href="{{ route('forum') }}">Forum</a></li>
                 <li><a href="https://paste.laravel.io">Pastebin</a></li>
-                <li class="dropdown">
+                <li><a href="#">Chat</a></li>
+                {{-- <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chat <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="https://discord.gg/KxwQuKb">Discord</a></li>
                         <li><a href="https://larachat.co/">Larachat</a></li>
                         <li><a href="https://webchat.freenode.net/?nick=laravelnewbie&channels=%23laravel&prompt=1">IRC</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li><a href="https://laravelevents.com">Events</a></li>
-                <li class="dropdown">
+                <li><a href="#">Community</a></li>
+                {{-- <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Community <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="https://github.com/laravelio"><i class="fa fa-github"></i> Github</a></li>
@@ -35,9 +30,9 @@
                         <li><a href="https://laravel-news.com">Laravel News</a></li>
                         <li><a href="http://www.laravelpodcast.com">Podcast</a></li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="flex">
                 @if (Auth::guest())
                     <li class="{{ active('login') }}"><a href="{{ route('login') }}">Login</a></li>
                     <li class="{{ active('register') }}"><a href="{{ route('register') }}">Register</a></li>
@@ -69,6 +64,10 @@
                     </li>
                 @endif
             </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+            
         </div>
     </div>
 </nav>

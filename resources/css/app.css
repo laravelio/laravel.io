@@ -3,3 +3,19 @@
 @tailwind components;
 
 @tailwind utilities;
+
+nav li {
+    @apply mx-2 py-5
+}
+
+nav ul li:first-child {
+    @apply ml-0
+}
+
+nav ul li:last-child {
+    @apply mr-0
+}
+
+nav li.active {
+    @apply border-b-2 border-green-500
+}
