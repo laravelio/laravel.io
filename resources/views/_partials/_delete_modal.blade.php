@@ -1,6 +1,9 @@
 <form-modal identifier="{{ $identifier }}" :active-modal="activeModal">
     <div class="modal-content" v-cloak>
-        {{ Form::open(['route' => $route, 'method' => 'DELETE']) }}
+        <form action="{{ route(...$route) }}" method="POST">
+            @csrf
+            @method('DELETE')
+
             <div class="flex flex-col justify-between h-full">
                 <div class="overflow-auto">
                     <div class="modal-header">
@@ -13,9 +16,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="text-gray-600 mr-4" @click="activeModal = null">Cancel</button>
-                    {{ Form::submit($submit ?? $title, ['class' => 'button button-danger']) }}
+                    <button type="submit" class="button button-danger">{{ $submit ?? $title }}</button>
                 </div>
             </div>
-        {{ Form::close() }}
+        </form>
     </div>
 </form-modal>

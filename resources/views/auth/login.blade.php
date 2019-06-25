@@ -3,32 +3,33 @@
 @extends('layouts.small')
 
 @section('small-content')
-    {!! Form::open(['route' => 'login.post', 'class' => 'w-full']) !!}
+    <form action="{{ route('login.post') }}" method="POST" class="w-full">
+        @csrf
 
         @formGroup('username')
-            {!! Form::label('username') !!}
-            {!! Form::text('username', null, ['class' => 'form-control', 'required']) !!}
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required class="form-control" />
             @error('username')
         @endFormGroup
 
         @formGroup('password')
-            {!! Form::label('password') !!}
-            {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required class="form-control" />
             @error('password')
         @endFormGroup
 
         <div class="form-group">
             <label>
-                {!! Form::checkbox('remember') !!}
+                <input name="remember" type="checkbox" value="1">
                 Remember login
             </label>
         </div>
 
-        {!! Form::submit('Login', ['class' => 'w-full button button-primary mb-4']) !!}
+        <button type="submit" class="w-full button button-primary mb-4">Login</button>
         <a href="{{ route('login.github') }}" class="button button-dark mb-4">
             <i class="fa fa-github mr-1"></i> Github
         </a>
-    {!! Form::close() !!}
+    </form>
 @endsection
 
 @section('small-content-after')

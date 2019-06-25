@@ -3,26 +3,27 @@
 @extends('layouts.small')
 
 @section('small-content')
-    {!! Form::open(['route' => 'password.reset.post']) !!}
-        {!! Form::hidden('token', $token) !!}
+    <form action="{{ route('password.reset.post') }}" method="POST" class="w-full">
+        @csrf
+        <input type="hidden" name="token" value="{{ $token }}" />
 
         @formGroup('email')
-            {!! Form::label('email') !!}
-            {!! Form::email('email', null, ['class' => 'form-control', 'required']) !!}
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control" required />
             @error('email')
         @endFormGroup
 
         @formGroup('password')
-            {!! Form::label('password') !!}
-            {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" required />
             @error('password')
         @endFormGroup
 
         <div class="form-group">
-            {!! Form::label('password_confirmation') !!}
-            {!! Form::password('password_confirmation', ['class' => 'form-control', 'required']) !!}
+            <label for="password_confirmation">Password Confirmation</label>
+            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required />
         </div>
 
-        {!! Form::submit('Reset Password', ['class' => 'w-full  button-primary']) !!}
-    {!! Form::close() !!}
+        <input type="submit" class="w-full button button-primary" value="Reset Password"/>
+    </form>
 @endsection

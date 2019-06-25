@@ -24,12 +24,10 @@
             </div>
 
             <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100">
-
                 @include('forum.threads._form', [
                     'route' => ['threads.update', $thread->slug()],
                     'method' => 'PUT',
                 ])
-
             </div>
         </div>
     </div>

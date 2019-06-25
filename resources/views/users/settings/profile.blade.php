@@ -4,7 +4,10 @@
 
 @section('content')
     <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100 mb-8">
-        {!! Form::open(['route' => 'settings.profile.update', 'method' => 'PUT']) !!}
+        <form action="{{ route('settings.profile.update') }}" method="POST">
+            @csrf
+            @method('PUT')
+
             <div class="form-group">
                 <div>
                     <img class="rounded-full" src="{{ Auth::user()->gravatarUrl(100) }}">
@@ -13,34 +16,34 @@
             </div>
 
             @formGroup('name')
-                {!! Form::label('name') !!}
-                {!! Form::text('name', Auth::user()->name(), ['required']) !!}
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" value="{{ Auth::user()->name() }}" required />
                 @error('name')
             @endFormGroup
 
             @formGroup('email')
-                {!! Form::label('email') !!}
-                {!! Form::email('email', Auth::user()->emailAddress(), ['required']) !!}
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" value="{{ Auth::user()->emailAddress() }}" required />
                 @error('email')
             @endFormGroup
 
             @formGroup('username')
-                {!! Form::label('username') !!}
-                {!! Form::text('username', Auth::user()->username(), ['required']) !!}
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" value="{{ Auth::user()->username() }}" required />
                 @error('username')
             @endFormGroup
 
             @formGroup('bio')
-                {!! Form::label('bio') !!}
-                {!! Form::textarea('bio', Auth::user()->bio(), ['rows' => 3, 'maxlength' => 160]) !!}
+                <label for="bio">Bio</label>
+                <textarea name="bio" rows="3" maxlength="160">{{ Auth::user()->bio() }}</textarea>
                 <span class="text-gray-600 text-sm">The user bio is limited to 160 characters.</span>
                 @error('bio')
             @endFormGroup
 
             <div class="flex justify-end">
-                {!! Form::submit('Save', ['class' => 'button button-primary']) !!}
+                <button type="submit" class="button button-primary">Save</button>
             </div>
-        {!! Form::close() !!}
+        </form>
     </div>
 
     @unless (Auth::user()->isAdmin())
@@ -52,10 +55,9 @@
             </div>
         </div>
 
-
         @include('_partials._delete_modal', [
             'identifier' => 'delete-user',
-            'route' => 'settings.profile.delete',
+            'route' => ['settings.profile.delete'],
             'title' => 'Delete Account',
             'submit' => 'Confirm',
             'body' => '<p>Deleting your account will remove any related content like threads & replies. This cannot be undone.</p>',
