@@ -1,0 +1,27 @@
+.label {
+    @apply px-2 py-1 rounded text-xs uppercase bg-gray-300 text-gray-700 px-2 py-1 cursor-pointer;
+}
+
+.label:hover {
+    @apply bg-gray-400;
+}
+
+.label-primary {
+    @apply bg-green-primary text-white;
+}
+
+.label-primary:hover {
+    @apply bg-green-dark;
+}
+
+.label-danger {
+    @apply bg-red-primary text-white;
+}
+
+.label-danger:hover {
+    @apply bg-red-dark;
+}
+
+a.label:hover {
+    @apply no-underline;
+}

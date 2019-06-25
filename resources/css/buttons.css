@@ -1,0 +1,51 @@
+.button {
+    @apply bg-gray-300 text-gray-700 rounded px-4 py-2 block text-center cursor-pointer font-sans;
+}
+
+.button:hover {
+    @apply bg-gray-400;
+}
+
+.button-primary {
+    @apply text-white bg-green-primary;
+}
+
+.button-primary:hover {
+    @apply bg-green-dark;
+}
+
+.button-muted {
+    @apply text-white bg-gray-500;
+}
+
+.button-muted:hover {
+    @apply bg-gray-600;
+}
+
+.button-danger {
+    @apply text-white bg-red-primary;
+}
+
+.button-danger:hover {
+    @apply bg-red-dark;
+}
+
+.button-dark {
+    @apply text-white bg-gray-900;
+}
+
+.button-dark:hover {
+    @apply text-white bg-gray-800;
+}
+
+.button-full {
+    @apply w-full;
+}
+
+.button-big {
+    @apply px-6 py-4 text-lg;
+}
+
+a.button:hover {
+    @apply no-underline;
+}

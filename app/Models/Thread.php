@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use DB;
+use Exception;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
 use App\Helpers\HasAuthor;
@@ -149,5 +150,20 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble
                 ELSE threads.created_at
                 END AS latest_creation
             '));
+    }
+
+    /**
+     * This will calculate the average resolution time in days of all threads marked as resolved.
+     */
+    public static function resolutionTime()
+    {
+        try {
+            return static::join('replies', 'threads.solution_reply_id', '=', 'replies.id')
+                ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
+                ->pluck('duration')
+                ->first();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 }

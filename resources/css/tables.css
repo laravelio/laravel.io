@@ -1,0 +1,20 @@
+.table {
+    @apply w-full rounded bg-white shadow;
+}
+
+.table th,
+.table td {
+    @apply text-left p-2;
+}
+
+.table th {
+    @apply text-gray-900 p-4;
+}
+
+.table tr {
+    @apply border-b text-gray-700;
+}
+
+.table-striped tr:nth-child(even) {
+    @apply bg-gray-200;
+}
