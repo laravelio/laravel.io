@@ -89,7 +89,7 @@
 
                                                 @include('_partials._update_modal', [
                                                     'identifier' => "mark-solution-{$reply->id}",
-                                                    'route' => ['threads.solution.mark', $thread->slug(), $reply->id()],
+                                                    'route' => ['threads.solution.mark', [$thread->slug(), $reply->id()]],
                                                     'title' => 'Mark As Solution',
                                                     'body' => '<p>Confirm to mark this reply as the solution for <strong>"'.e($thread->subject()).'"</strong>.</p>',
                                                 ])
@@ -119,24 +119,26 @@
                     @else
                         <div class="my-8">
 
-                            {!! Form::open(['route' => 'replies.store']) !!}
+                            <form action="{{ route('replies.store') }}" method="POST">
+                                @csrf
+
                                 @formGroup('body')
-                                    {!! Form::label('body', 'Write a reply') !!}
-                                    {!! Form::textarea('body', null, ['class' => 'editor']) !!}
+                                    <label for="body">Write a reply</label>
+                                    <textarea name="body" id="body" class="editor"></textarea>
                                     @error('body')
                                 @endFormGroup
 
-                                {!! Form::hidden('replyable_id', $thread->id()) !!}
-                                {!! Form::hidden('replyable_type', 'threads') !!}
+                                <input type="hidden" name="replyable_id" value="{{ $thread->id() }}" />
+                                <input type="hidden" name="replyable_type" value="threads" />
 
                                 <div class="flex justify-between items-center mt-4">
                                     <p class="text-sm text-gray-500 mr-8">
                                         Please make sure you've read our <a href="{{ route('rules') }}" class="text-green-dark">Forum Rules</a> before replying to this thread.
                                     </p>
 
-                                    {!! Form::submit('Reply', ['class' => 'button button-primary']) !!}
+                                    <button type="submit" class="button button-primary">Reply</button>
                                 </div>
-                            {!! Form::close() !!}
+                            </form>
 
                         </div>
                     @endif

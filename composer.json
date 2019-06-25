@@ -14,7 +14,6 @@
         "laravel/horizon": "^1.1",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
-        "laravelcollective/html": "5.7.*",
         "lasserafn/php-initial-avatar-generator": "^2.0",
         "league/commonmark": "^0.17.0",
         "league/flysystem-aws-s3-v3": "^1.0",
@@ -54,8 +53,7 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-            ]
+            "dont-discover": []
         }
     },
     "scripts": {

@@ -10,9 +10,9 @@
                 > {{ $title }}
             </h1>
             
-            {{ Form::open(['route' => 'forum', 'method' => 'GET']) }}
-                {{ Form::text('search', $search ?? null, ['class' => 'rounded border-2 border-gray-300 py-1 px-3 focus:outline-none focus:border-blue-900', 'placeholder' => 'Search for threads...']) }}
-            {{ Form::close() }}
+            <form action="{{ route('forum') }}" method="GET">
+                <input type="text" name="search" id="search" value="{{ $search ?? null }}" class="rounded border-2 border-gray-300 py-1 px-3 focus:outline-none focus:border-blue-900" placeholder="Search for threads..." />
+            </form>
         </div>
     </div>
 @endsection
@@ -29,9 +29,9 @@
             </div>
 
             <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100">
-
-                @include('forum.threads._form', ['route' => 'threads.store'])
-
+                @include('forum.threads._form', [
+                    'route' => ['threads.store'],
+                ])
             </div>
         </div>
     </div>

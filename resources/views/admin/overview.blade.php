@@ -7,9 +7,9 @@
         <div class="container mx-auto flex justify-between items-center px-4">
             <h1 class="text-xl py-4 text-gray-900">{{ $title }}</h1>
             
-            {{ Form::open(['route' => 'admin', 'method' => 'GET']) }}
-                {{ Form::text('search', $search ?? null, ['class' => 'form-control', 'placeholder' => 'Search for users...']) }}
-            {{ Form::close() }}
+            <form action="{{ route('admin') }}" method="GET">
+                <input type="text" name="search" id="search" class="form-control" placeholder="Search for users..." value="{{ $search ?? null }}" />
+            </form>
         </div>
     </div>
 
