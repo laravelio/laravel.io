@@ -16,6 +16,7 @@
     "prismjs": "^1.6.0",
     "selectize": "^0.12.4",
     "selectize-scss": "^0.9.2",
+    "tailwindcss": "^1.0.4",
     "to-markdown": "^3.0.3",
     "vue": "^2.1.10",
     "vue-resource": "^1.0.3"
