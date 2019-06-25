@@ -42,7 +42,15 @@ class ThreadsController extends Controller
 
     public function create()
     {
-        return view('forum.threads.create', ['tags' => Tag::all()]);
+        $tags = Tag::all()->map(function ($tag) {
+            return ['name' => $tag->name, 'id' => $tag->id];
+        });
+
+        $selectedTags = collect(old('tags'))->map(function ($selected) use ($tags) {
+            return $tags->where('id', $selected)->first();
+        });
+
+        return view('forum.threads.create', ['tags' => $tags, 'selectedTags' => $selectedTags]);
     }
 
     public function store(ThreadRequest $request)
@@ -57,8 +65,11 @@ class ThreadsController extends Controller
     public function edit(Thread $thread)
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
+        $selectedTags = $thread->tags()->map(function ($tag) {
+            return ['name' => $tag->name, 'id' => $tag->id];
+        });
 
-        return view('forum.threads.edit', ['thread' => $thread, 'tags' => Tag::all()]);
+        return view('forum.threads.edit', ['thread' => $thread, 'tags' => Tag::all(), 'selectedTags' => $selectedTags]);
     }
 
     public function update(ThreadRequest $request, Thread $thread)

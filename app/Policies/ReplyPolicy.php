@@ -16,8 +16,7 @@ class ReplyPolicy
      */
     public function create(User $user): bool
     {
-        // We only need to be logged in.
-        return true;
+        return $user->isConfirmed();
     }
 
     /**

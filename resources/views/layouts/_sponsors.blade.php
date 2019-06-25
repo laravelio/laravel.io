@@ -1,6 +1,5 @@
-<div id="sponsors" class="container">
-    <hr>
-    <h2>We'd like to thank these <strong>amazing companies</strong> for supporting us</h2>
+<div id="sponsors" class="container mx-auto text-center text-gray-600 py-8 px-4">
+    <h2 class="text-4xl mb-12">We'd like to thank these <strong>amazing companies</strong> for supporting us</h2>
     <div class="sponsors-list">
         <div>
             <a href="https://m.do.co/c/a6c836a9bf72">

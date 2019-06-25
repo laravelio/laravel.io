@@ -1,0 +1,11 @@
+ul.tags li {
+    @apply w-full py-1 px-3 text-gray-700;
+}
+
+ul.tags li.active {
+    @apply bg-gray-100 rounded font-bold;
+}
+
+.thread-info-tags a:hover {
+    @apply no-underline;
+}

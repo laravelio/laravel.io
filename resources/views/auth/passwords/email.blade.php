@@ -3,7 +3,7 @@
 @extends('layouts.small')
 
 @section('small-content')
-    <p>{{ Session::get('status', 'Please fill in your email address below.') }}</p>
+    <p class="mb-4">{{ Session::get('status', 'Please fill in your email address below.') }}</p>
 
     {!! Form::open(['route' => 'password.forgot.post']) !!}
         @formGroup('email')
@@ -12,6 +12,6 @@
             @error('email')
         @endFormGroup
 
-        {!! Form::submit('Send Password Reset Link', ['class' => 'btn btn-primary btn-block']) !!}
+        {!! Form::submit('Send Password Reset Link', ['class' => 'w-full button button-primary']) !!}
     {!! Form::close() !!}
 @endsection

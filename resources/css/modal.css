@@ -1,0 +1,34 @@
+.modal {
+    @apply fixed inset-0 w-full h-screen flex items-center justify-center z-50;
+    background-color: rgba(45, 55, 72, 0.8);
+}
+
+.modal form {
+    @apply w-full;
+}
+
+.modal-content {
+    @apply w-full h-screen bg-white flex relative p-4 h-full justify-between;
+}
+
+.modal-title {
+    @apply text-2xl mb-8 border-b pb-4;
+}
+
+.modal-body {
+    @apply text-gray-700 text-lg mb-8 overflow-auto;
+}
+
+.modal-footer {
+    @apply flex justify-end border-t pt-4;
+}
+
+.modal .close {
+    @apply absolute text-2xl right-0 top-0 mx-4 my-2 text-gray-600;
+}
+
+@screen md {
+    .modal-content {
+        @apply w-1/3 h-auto rounded;
+    }
+}

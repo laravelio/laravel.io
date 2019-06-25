@@ -92,4 +92,29 @@ class ReplyTest extends BrowserKitTestCase
                 'The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.'
             );
     }
+
+    /** @test */
+    public function confirmed_users_can_see_the_reply_input()
+    {
+        $thread = factory(Thread::class)->create();
+
+        $this->login(['confirmed' => true]);
+
+        $this->visit("/forum/{$thread->slug}")
+            ->see('name="body"');
+    }
+
+    /** @test */
+    public function unconfirmed_users_cannot_see_the_reply_input()
+    {
+        $thread = factory(Thread::class)->create();
+
+        $this->login(['confirmed' => false]);
+
+        $this->visit("/forum/{$thread->slug}")
+            ->dontSee('name="body"')
+            ->seeText(
+                'You\'ll need to verify your account before participating in this thread.'
+            );
+    }
 }

@@ -2,11 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
+use App\User;
+use App\Models\Thread;
+
 class HomeController extends Controller
 {
     public function show()
     {
-        return view('home');
+        $totalUsers = Cache::remember('totalUsers', now()->addDay(), function () {
+            return number_format(User::count());
+        });
+
+        $totalThreads = Cache::remember('totalThreads', now()->addDay(), function () {
+            return number_format(Thread::count());
+        });
+
+        $resolutionTime = Cache::remember('resolutionTime', now()->addDay(), function () {
+            return number_format(Thread::resolutionTime());
+        });
+
+        $latestThreads = Cache::remember('latestThreads', now()->addHour(), function () {
+            return Thread::whereNull('solution_reply_id')
+                ->whereBetween('threads.created_at', [now()->subWeek(), now()])
+                ->inRandomOrder()
+                ->limit(3)
+                ->get();
+        });
+
+        return view('home', [
+            'totalUsers' => $totalUsers,
+            'totalThreads' => $totalThreads,
+            'resolutionTime' => $resolutionTime,
+            'latestThreads' => $latestThreads,
+        ]);
     }
 
     public function rules()

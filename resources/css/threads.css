@@ -1,0 +1,15 @@
+.thread-card {
+    @apply bg-white p-4 border border-b-0;
+}
+
+div.thread-card:first-child {
+    @apply rounded-t;
+}
+
+div.thread-card:nth-last-child(2) {
+    @apply border-b rounded-b;
+}
+
+div.forum-content div>* {
+    @apply mb-4;
+}

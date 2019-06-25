@@ -1,0 +1,11 @@
+.alert {
+    @apply w-full text-white bg-green-primary p-4;
+}
+
+.alert .close {
+    @apply text-xl;
+}
+
+.alert-danger {
+    @apply bg-red-primary;
+}

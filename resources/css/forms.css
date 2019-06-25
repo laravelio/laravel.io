@@ -1,0 +1,60 @@
+.form-group {
+    @apply flex flex-col mb-4;
+}
+
+label {
+    @apply mb-1 text-gray-600 block uppercase text-sm;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+textarea {
+    @apply rounded border-2 p-3 w-full;
+}
+
+input[type=checkbox] {
+    @apply mr-1;
+}
+
+.help-block {
+    @apply text-red-primary text-sm;
+}
+
+/** Markdown editor **/
+.form-group .editor-toolbar {
+    @apply border-2 border-b-0 rounded rounded-b-none border-gray-300;
+}
+
+.form-group .CodeMirror {
+    @apply border-2 rounded rounded-t-none border-gray-300;
+}
+
+/** Vue multiselect **/
+.multiselect .multiselect__tags {
+    @apply border-2 rounded;
+}
+
+.multiselect .multiselect__tag {
+    @apply bg-green-primary;
+}
+
+.multiselect .multiselect__content {
+    @apply border-2;
+}
+
+.multiselect .multiselect__option {
+    @apply text-gray-900;
+}
+
+.multiselect .multiselect__option--selected {
+    @apply bg-gray-300;
+}
+
+.multiselect .multiselect__option--highlight {
+    @apply bg-green-primary;
+}
+
+.multiselect .multiselect__option--selected.multiselect__option--highlight {
+    @apply bg-red-primary;
+}

@@ -20,21 +20,20 @@
     @include('layouts._favicons')
     @include('layouts._cookie_consent')
     @include('layouts._google_analytics')
-
-    @unless ($disableAds ?? false)
-        @include('layouts._ads._ad_sense')
-    @endunless
 </head>
 <body class="{{ $bodyClass ?? '' }}">
 
 <div id="app">
-    @include('layouts._nav')
+    <div id="wrapper" v-on:keyup.esc="activeModal = null">
+        @include('layouts._nav')
 
-    @yield('body')
+        @yield('body')
+    </div>
 
     @include('layouts._footer')
 </div>
 
+@include('layouts._ads')
 <script src="{{ mix('js/app.js') }}"></script>
 
 @include('layouts._intercom')

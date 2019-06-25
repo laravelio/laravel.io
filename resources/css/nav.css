@@ -1,0 +1,124 @@
+nav {
+    @apply text-gray-600 bg-white border-b;
+}
+
+nav .nav-container {
+    @apply flex justify-between items-center text-gray-600;
+}
+
+nav ul.nav {
+    @apply hidden;
+}
+
+nav ul.nav:last-child {
+    @apply mb-4;
+}
+
+nav ul.nav li {
+    @apply py-2;
+}
+
+nav ul.nav li.active {
+    @apply text-gray-900;
+}
+
+nav ul.nav.active {
+    @apply flex;
+}
+
+nav ul.nav.active {
+    @apply block;
+}
+
+nav ul.subnav {
+    @apply hidden mt-2 z-50;
+}
+
+nav ul.subnav.active {
+    @apply block;
+}
+
+nav ul.subnav li {
+    @apply pl-4;
+}
+
+nav ul.subnav li a i {
+    @apply mr-2;
+}
+
+nav ul li:last-child {
+    @apply pb-0;
+}
+
+nav ul.subnav li.divider {
+    @apply hidden;
+}
+
+@screen lg {
+    nav .nav-wrapper {
+        @apply flex justify-between items-center;
+    }
+
+    nav ul.nav {
+        @apply flex justify-between;
+    }
+
+    nav ul.nav:last-child {
+        @apply mb-0;
+    }
+
+    nav ul.nav>li {
+        @apply mx-2;
+        padding: 1.675rem 0;
+    }
+
+    nav ul.nav>li a {
+        @apply flex items-center;
+        height: 30px;
+    }
+
+    nav ul.nav>li:first-child {
+        @apply ml-0;
+    }
+
+    nav ul.nav>li:last-child {
+        @apply mr-0;
+    }
+
+    nav ul.subnav {
+        @apply absolute w-48 left-0 bg-white border border-t-0 rounded rounded-t-none hidden mt-0;
+        top: 100%;
+    }
+
+    nav ul.subnav.subnav-right {
+        @apply left-auto right-0;
+    }
+
+    nav ul.subnav.active {
+        @apply block;
+    }
+
+    nav ul.subnav li {
+        @apply border-b p-2;
+    }
+
+    nav ul.subnav li.divider {
+        @apply block p-0 border-2;
+    }
+
+    nav ul.subnav li.active {
+        @apply border-b p-2 border-gray-300;
+    }
+
+    nav ul.subnav li:last-child {
+        @apply border-none;
+    }
+
+    nav li.active {
+        @apply border-b-2 border-green-primary;
+    }
+
+    nav li.active a {
+        @apply no-underline;
+    }
+}
