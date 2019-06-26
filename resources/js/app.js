@@ -16,6 +16,21 @@ require('./bootstrap');
 $('select.selectize').selectize({ maxItems: 3 });
 $('textarea.wysiwyg').markdown({ iconlibrary: 'fa' });
 
+$('.dropdown').on('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const activate = $(this).next().hasClass('active') ? false : true;
+    $('.subnav').removeClass('active');
+    if(activate) {
+        $(this).next().addClass('active');
+    }
+});
+
+$(document).on('click', function (e) {
+    e.preventDefault();
+    $('.subnav').removeClass('active');
+});
+
 // const app = new Vue({
 //     el: '#app'
 // });

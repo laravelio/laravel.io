@@ -1,19 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
+
 @tailwind base;
 
 @tailwind components;
 
 @tailwind utilities;
 
-nav li {
+body {
+    @apply font-sans;
+}
+
+nav ul.nav>li {
     @apply mx-2 py-5
 }
 
-nav ul li:first-child {
+nav ul.nav>li:first-child {
     @apply ml-0
 }
 
-nav ul li:last-child {
+nav ul.nav>li:last-child {
     @apply mr-0
+}
+
+nav ul.subnav {
+    @apply absolute w-48 left-0 bg-white border-2 border-t-0 rounded rounded-t-none hidden;
+    top: 100%;
+}
+
+nav ul.subnav.active {
+    @apply block;
+}
+
+nav ul.subnav li {
+    @apply border-b-2 p-2;
+}
+
+nav ul.subnav li.divider {
+    @apply p-0 border-4;
+}
+
+nav ul.subnav li:last-child {
+    @apply border-none;
 }
 
 nav li.active {
