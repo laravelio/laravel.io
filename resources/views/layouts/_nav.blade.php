@@ -1,26 +1,24 @@
 <nav>
     <div class="container mx-auto">
-        <div class="h-16 flex justify-between items-center text-gray-600 border-b-2 border-grey-600 mx-4">
+        <div class="h-16 flex justify-between items-center text-gray-600 border-b-2 mx-4">
             <a class="my-4" href="{{ route('home') }}">
                 <img src="/images/laravelio.png" alt="Laravel.io Logo" class="w-40"/>
             </a>
-            <ul class="flex">
+            <ul class="flex nav">
                 <li class="{{ active(['forum', 'threads*', 'thread']) }}"><a href="{{ route('forum') }}">Forum</a></li>
                 <li><a href="https://paste.laravel.io">Pastebin</a></li>
-                <li><a href="#">Chat</a></li>
-                {{-- <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Chat <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
+                <li class="relative">
+                    <a href="#" class="dropdown">Chat</a>
+                    <ul class="subnav">
                         <li><a href="https://discord.gg/KxwQuKb">Discord</a></li>
                         <li><a href="https://larachat.co/">Larachat</a></li>
                         <li><a href="https://webchat.freenode.net/?nick=laravelnewbie&channels=%23laravel&prompt=1">IRC</a></li>
                     </ul>
-                </li> --}}
+                </li>
                 <li><a href="https://laravelevents.com">Events</a></li>
-                <li><a href="#">Community</a></li>
-                {{-- <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Community <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
+                <li class="relative">
+                    <a href="#" class="dropdown">Community</a>
+                    <ul class="subnav">
                         <li><a href="https://github.com/laravelio"><i class="fa fa-github"></i> Github</a></li>
                         <li><a href="https://twitter.com/laravelio"><i class="fa fa-twitter"></i> Twitter</a></li>
                         <li><a href="https://medium.com/laravelio"><i class="fa fa-medium"></i> Medium</a></li>
@@ -30,9 +28,9 @@
                         <li><a href="https://laravel-news.com">Laravel News</a></li>
                         <li><a href="http://www.laravelpodcast.com">Podcast</a></li>
                     </ul>
-                </li> --}}
+                </li>
             </ul>
-            <ul class="flex">
+            <ul class="flex nav">
                 @if (Auth::guest())
                     <li class="{{ active('login') }}"><a href="{{ route('login') }}">Login</a></li>
                     <li class="{{ active('register') }}"><a href="{{ route('register') }}">Register</a></li>
