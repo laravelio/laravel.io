@@ -31,6 +31,18 @@ $(document).on('click', function (e) {
     $('.subnav').removeClass('active');
 });
 
+$('#sidebar-open').on('click', function (e) {
+    $('#sidebar-open').hide();
+    $('#sidebar-close').show();
+    $('.nav').addClass('active');
+});
+
+$('#sidebar-close').on('click', function (e) {
+    $('#sidebar-open').show();
+    $('#sidebar-close').hide();
+    $('.nav').removeClass('active');
+});
+
 // const app = new Vue({
 //     el: '#app'
 // });
