@@ -6,25 +6,50 @@
 
 @tailwind utilities;
 
+@tailwind screens;
+
 body {
     @apply font-sans;
 }
 
-nav ul.nav>li {
-    @apply mx-2 py-5
+nav {
+    @apply text-gray-600 mx-4;
 }
 
-nav ul.nav>li:first-child {
-    @apply ml-0
+nav .nav-wrapper {
+    @apply border-b;
 }
 
-nav ul.nav>li:last-child {
-    @apply mr-0
+nav .nav-container {
+    @apply flex justify-between items-center text-gray-600;
+}
+
+nav ul.nav {
+    @apply hidden;
+}
+
+nav ul.nav:last-child {
+    @apply mb-4;
+}
+
+nav ul.nav li {
+    @apply py-2;
+}
+
+nav ul.nav li.active {
+    @apply text-black
+}
+
+nav ul.nav.active {
+    @apply flex;
+}
+
+nav ul.nav.active {
+    @apply block;
 }
 
 nav ul.subnav {
-    @apply absolute w-48 left-0 bg-white border-2 border-t-0 rounded rounded-t-none hidden;
-    top: 100%;
+    @apply hidden mt-2;
 }
 
 nav ul.subnav.active {
@@ -32,17 +57,62 @@ nav ul.subnav.active {
 }
 
 nav ul.subnav li {
-    @apply border-b-2 p-2;
+    @apply pl-4;
+}
+
+nav ul li:last-child {
+    @apply pb-0;
 }
 
 nav ul.subnav li.divider {
-    @apply p-0 border-4;
+    @apply hidden;
 }
 
-nav ul.subnav li:last-child {
-    @apply border-none;
-}
+@screen lg {
 
-nav li.active {
-    @apply border-b-2 border-green-500
+    nav .nav-wrapper {
+        @apply flex justify-between items-center;
+    }
+
+    nav ul.nav {
+        @apply flex justify-between;
+    }
+
+    nav ul.nav:last-child {
+        @apply mb-0;
+    }
+
+    nav ul.nav>li {
+        @apply mx-2;
+        padding: 1.675rem 0;
+    }
+
+    nav ul.nav>li:first-child {
+        @apply ml-0
+    }
+
+    nav ul.nav>li:last-child {
+        @apply mr-0
+    }
+
+    nav ul.subnav {
+        @apply absolute w-48 left-0 bg-white border-2 border-t-0 rounded rounded-t-none hidden mt-0;
+        top: 100%;
+    }
+
+    nav ul.subnav.active {
+        @apply block;
+    }
+
+    nav ul.subnav li {
+        @apply border-b-2 p-2;
+    }
+
+    nav ul.subnav li:last-child {
+        @apply border-none;
+    }
+
+    nav li.active {
+        @apply border-b-2 border-green-500
+    }
 }

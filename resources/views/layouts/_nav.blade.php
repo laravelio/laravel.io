@@ -1,10 +1,27 @@
-<nav>
+<nav class="min-h-20 mb-8">
     <div class="container mx-auto">
-        <div class="h-16 flex justify-between items-center text-gray-600 border-b-2 mx-4">
-            <a class="my-4" href="{{ route('home') }}">
-                <img src="/images/laravelio.png" alt="Laravel.io Logo" class="w-40"/>
-            </a>
-            <ul class="flex nav">
+        <div class="nav-wrapper">
+            <div class="nav-container">
+                <a class="my-4" href="{{ route('home') }}">
+                    <img src="/images/laravelio.png" alt="Laravel.io Logo" class="w-40"/>
+                </a>
+
+                <button type="button" id="sidebar-open" class="flex items-center lg:hidden text-gray-500 focus:outline-none">
+                    <svg class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+                    </svg>
+                </button>
+
+
+                <button type="button" id="sidebar-close" class="hidden flex items-center lg:hidden text-gray-500 focus:outline-none">
+                    <svg class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/>
+                    </svg>
+                </button>
+
+            </div>
+
+            <ul class="nav">
                 <li class="{{ active(['forum', 'threads*', 'thread']) }}"><a href="{{ route('forum') }}">Forum</a></li>
                 <li><a href="https://paste.laravel.io">Pastebin</a></li>
                 <li class="relative">
@@ -30,7 +47,7 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="flex nav">
+            <ul class="nav">
                 @if (Auth::guest())
                     <li class="{{ active('login') }}"><a href="{{ route('login') }}">Login</a></li>
                     <li class="{{ active('register') }}"><a href="{{ route('register') }}">Register</a></li>
@@ -62,10 +79,6 @@
                     </li>
                 @endif
             </ul>
-        </div>
-
-        <div class="collapse navbar-collapse" id="main-navbar-collapse">
-            
         </div>
     </div>
 </nav>
