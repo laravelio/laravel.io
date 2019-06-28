@@ -27,7 +27,6 @@ $('.dropdown').on('click', function(e) {
 });
 
 $(document).on('click', function (e) {
-    e.preventDefault();
     $('.subnav').removeClass('active');
 });
 
