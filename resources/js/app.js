@@ -21,7 +21,7 @@ $('.dropdown').on('click', function(e) {
     e.stopPropagation();
     const activate = $(this).next().hasClass('active') ? false : true;
     $('.subnav').removeClass('active');
-    if(activate) {
+    if (activate) {
         $(this).next().addClass('active');
     }
 });
