@@ -95,7 +95,7 @@ nav ul.subnav li.divider {
     }
 
     nav ul.subnav {
-        @apply absolute w-48 left-0 bg-white border-2 border-t-0 rounded rounded-t-none hidden mt-0;
+        @apply absolute w-48 left-0 bg-white border border-t-0 rounded rounded-t-none hidden mt-0;
         top: 100%;
     }
 
@@ -104,7 +104,7 @@ nav ul.subnav li.divider {
     }
 
     nav ul.subnav li {
-        @apply border-b-2 p-2;
+        @apply border-b p-2;
     }
 
     nav ul.subnav li:last-child {
