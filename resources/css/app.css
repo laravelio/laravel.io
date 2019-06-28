@@ -37,7 +37,7 @@ nav ul.nav li {
 }
 
 nav ul.nav li.active {
-    @apply text-black
+    @apply text-black;
 }
 
 nav ul.nav.active {
@@ -69,7 +69,6 @@ nav ul.subnav li.divider {
 }
 
 @screen lg {
-
     nav .nav-wrapper {
         @apply flex justify-between items-center;
     }
@@ -88,11 +87,11 @@ nav ul.subnav li.divider {
     }
 
     nav ul.nav>li:first-child {
-        @apply ml-0
+        @apply ml-0;
     }
 
     nav ul.nav>li:last-child {
-        @apply mr-0
+        @apply mr-0;
     }
 
     nav ul.subnav {
@@ -113,6 +112,6 @@ nav ul.subnav li.divider {
     }
 
     nav li.active {
-        @apply border-b-2 border-green-500
+        @apply border-b-2 border-green-500;
     }
 }
