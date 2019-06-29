@@ -28,9 +28,11 @@
 <body class="{{ $bodyClass ?? '' }}">
 
 <div id="app">
-    @include('layouts._nav')
+    <div id="wrapper">
+        @include('layouts._nav')
 
-    @yield('body')
+        @yield('body')
+    </div>
 
     @include('layouts._footer')
 </div>
