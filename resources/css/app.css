@@ -12,6 +12,35 @@ body {
     @apply font-sans;
 }
 
+#app {
+    @apply flex min-h-screen flex-col;
+}
+
+#wrapper {
+    @apply flex-1;
+}
+
+footer {
+    @apply flex flex-wrap items-center justify-center text-sm text-gray-600 p-8 border-t;
+}
+
+footer a {
+    @apply text-green-500;
+}
+
+footer span, 
+footer i {
+    @apply mx-1;
+}
+
+.sponsors-list {
+    @apply w-full flex flex-wrap items-center justify-center;
+}
+
+.sponsors-list div {
+    @apply w-1/2 px-4 flex justify-center mb-4;
+}
+
 nav {
     @apply text-gray-600 mx-4;
 }
@@ -66,6 +95,16 @@ nav ul li:last-child {
 
 nav ul.subnav li.divider {
     @apply hidden;
+}
+
+@screen md {
+    footer {
+        @apply text-base;
+    }
+
+    .sponsors-list div {
+        @apply w-1/4;
+    }
 }
 
 @screen lg {
