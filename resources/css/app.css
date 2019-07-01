@@ -28,7 +28,7 @@ footer a {
     @apply text-green-500;
 }
 
-footer span, 
+footer span,
 footer i {
     @apply mx-1;
 }
@@ -95,6 +95,34 @@ nav ul li:last-child {
 
 nav ul.subnav li.divider {
     @apply hidden;
+}
+
+ul.tags li {
+    @apply w-full py-1 px-3 text-gray-700;
+}
+
+ul.tags li.active {
+    @apply bg-gray-100 rounded font-bold;
+}
+
+.thread-card {
+    @apply bg-white p-4 border border-b-0;
+}
+
+div.thread-card:first-child {
+    @apply rounded-t;
+}
+
+div.thread-card:nth-last-child(2) {
+    @apply border-b rounded-b;
+}
+
+.button {
+    @apply text-white bg-green-500 rounded px-4 py-2 block text-center mb-8;
+}
+
+.button-full {
+    @apply w-full;
 }
 
 @screen md {
