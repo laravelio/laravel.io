@@ -1,5 +1,5 @@
 
-<div class="container mx-auto">
+<div class="container mx-auto px-4">
     @include('layouts._ads._footer')
     @include('layouts._sponsors')
 
