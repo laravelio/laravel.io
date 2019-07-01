@@ -1,5 +1,5 @@
-<nav class="min-h-20 mb-8">
-    <div class="container mx-auto">
+<nav>
+    <div class="container mx-auto px-4">
         <div class="nav-wrapper">
             <div class="nav-container">
                 <a class="my-4" href="{{ route('home') }}">

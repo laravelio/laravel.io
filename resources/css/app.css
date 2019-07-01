@@ -9,7 +9,7 @@
 @tailwind screens;
 
 body {
-    @apply font-sans;
+    @apply font-sans bg-gray-200;
 }
 
 #app {
@@ -42,7 +42,7 @@ footer i {
 }
 
 nav {
-    @apply text-gray-600 mx-4;
+    @apply text-gray-600 bg-white;
 }
 
 nav .nav-wrapper {
