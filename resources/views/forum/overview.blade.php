@@ -6,7 +6,7 @@
 @section('content')
     <div class="bg-white border-b">
         <div class="container mx-auto flex justify-between items-center px-4">
-            <h1 class="text-xl py-4">{{ $title }}</h1>
+            <h1 class="text-xl py-4 text-gray-900">{{ $title }}</h1>
             
             {{ Form::open(['route' => 'forum', 'method' => 'GET']) }}
                 {{ Form::text('search', $search ?? null, ['class' => 'rounded border-2 border-gray-300 py-1 px-3 focus:outline-none focus:border-blue-900', 'placeholder' => 'Search for threads...']) }}
@@ -23,8 +23,8 @@
                     <div class="thread-card">
                         <div class="flex justify-between">
                             <a href="{{ route('thread', $thread->slug()) }}">
-                                <h4 class="text-xl font-bold">{{ $thread->subject() }}</h4>
-                                <p class="text-gray-500">{{ $thread->excerpt() }}</p>
+                                <h4 class="text-xl font-bold text-gray-900">{{ $thread->subject() }}</h4>
+                                <p class="text-gray-600">{{ $thread->excerpt() }}</p>
                             </a>
                             <span class="">
                                 <i class="fa fa-comment text-gray-500 mr-2"></i>
@@ -41,10 +41,10 @@
                             <div class="mr-6 text-gray-700">
                                 @if (count($thread->replies()))
                                     @php($lastReply = $thread->replies()->last())
-                                    <a href="{{ route('profile', $lastReply->author()->username()) }}" class="text-green-500 mr-2">{{ $lastReply->author()->name() }}</a> replied
+                                    <a href="{{ route('profile', $lastReply->author()->username()) }}" class="text-green-darker mr-2">{{ $lastReply->author()->name() }}</a> replied
                                     {{ $lastReply->createdAt()->diffForHumans() }}
                                 @else
-                                    <a href="{{ route('profile', $thread->author()->username()) }}" class="text-green-500 mr-2">{{ $thread->author()->name() }}</a> posted
+                                    <a href="{{ route('profile', $thread->author()->username()) }}" class="text-green-darker mr-2">{{ $thread->author()->name() }}</a> posted
                                     {{ $thread->createdAt()->diffForHumans() }}
                                 @endif
                             </div>

@@ -25,7 +25,7 @@ footer {
 }
 
 footer a {
-    @apply text-green-500;
+    @apply text-green-darker;
 }
 
 footer span,
@@ -66,7 +66,7 @@ nav ul.nav li {
 }
 
 nav ul.nav li.active {
-    @apply text-black;
+    @apply text-gray-900;
 }
 
 nav ul.nav.active {
@@ -118,7 +118,7 @@ div.thread-card:nth-last-child(2) {
 }
 
 .button {
-    @apply text-white bg-green-500 rounded px-4 py-2 block text-center mb-8;
+    @apply text-white bg-green-primary rounded px-4 py-2 block text-center mb-8;
 }
 
 .button-full {
@@ -179,6 +179,6 @@ div.thread-card:nth-last-child(2) {
     }
 
     nav li.active {
-        @apply border-b-2 border-green-500;
+        @apply border-b-2 border-green-primary;
     }
 }
