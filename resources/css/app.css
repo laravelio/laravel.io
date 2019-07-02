@@ -153,6 +153,11 @@ div.thread-card:nth-last-child(2) {
         padding: 1.675rem 0;
     }
 
+    nav ul.nav>li a {
+        @apply flex items-center;
+        height: 30px;
+    }
+
     nav ul.nav>li:first-child {
         @apply ml-0;
     }
@@ -166,12 +171,24 @@ div.thread-card:nth-last-child(2) {
         top: 100%;
     }
 
+    nav ul.subnav.subnav-right {
+        @apply left-auto right-0;
+    }
+
     nav ul.subnav.active {
         @apply block;
     }
 
     nav ul.subnav li {
         @apply border-b p-2;
+    }
+
+    nav ul.subnav li.divider {
+        @apply block p-0 border-2;
+    }
+
+    nav ul.subnav li.active {
+        @apply border-b p-2 border-gray-300;
     }
 
     nav ul.subnav li:last-child {

@@ -50,11 +50,11 @@
                     <li class="{{ active('login') }}"><a href="{{ route('login') }}">Login</a></li>
                     <li class="{{ active('register') }}"><a href="{{ route('register') }}">Register</a></li>
                 @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle profile-image" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <img class="img-circle" src="{{ Auth::user()->gravatarUrl(60) }}" width="30"> <span class="caret"></span>
+                    <li class="relative">
+                        <a href="#" class="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-full" src="{{ Auth::user()->gravatarUrl(60) }}" style="width:30px;"> <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="subnav subnav-right">
                             <li>
                                 <span>
                                     <strong>{{ Auth::user()->name() }}</strong><br>
@@ -62,17 +62,17 @@
                                 </span>
                             </li>
                             <li role="separator" class="divider"></li>
-                            <li class="{{ active('profile') }}"><a href="{{ route('profile', Auth::user()->username()) }}"><i class="fa fa-user-circle-o dropdown-icon" aria-hidden="true"></i>Profile</a></li>
-                            <li class="{{ active('dashboard') }}"><a href="{{ route('dashboard') }}"><i class="fa fa-home dropdown-icon" aria-hidden="true"></i>Dashboard</a></li>
-                            <li class="{{ active('settings.*') }}"><a href="{{ route('settings.profile') }}"> <i class="fa fa-cog dropdown-icon" aria-hidden="true"></i>Settings</a></li>
+                            <li class="{{ active('profile') }}"><a href="{{ route('profile', Auth::user()->username()) }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a></li>
+                            <li class="{{ active('dashboard') }}"><a href="{{ route('dashboard') }}"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
+                            <li class="{{ active('settings.*') }}"><a href="{{ route('settings.profile') }}"> <i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
 
                             @can(App\Policies\UserPolicy::ADMIN, App\User::class)
                                 <li role="separator" class="divider"></li>
-                                <li class="{{ active('admin*') }}"><a href="{{ route('admin') }}"><i class="fa fa-shield dropdown-icon" aria-hidden="true"></i>Admin</a></li>
+                                <li class="{{ active('admin*') }}"><a href="{{ route('admin') }}"><i class="fa fa-shield" aria-hidden="true"></i> Admin</a></li>
                             @endcan
 
                             <li role="separator" class="divider"></li>
-                            <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out dropdown-icon" aria-hidden="true"></i>Logout</a></li>
+                            <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
                         </ul>
                     </li>
                 @endif
