@@ -33,14 +33,14 @@
                         </a>
                         <div class="flex flex-col md:flex-row md:items-center text-sm pt-5">
                             <div class="flex mb-4 md:mb-0">
-                                @if(count($thread->replies()))
+                                @if (count($thread->replies()))
                                     @include('forum.threads.info.avatar', ['user' => $thread->replies()->last()->author()])
                                 @else
                                     @include('forum.threads.info.avatar', ['user' => $thread->author()])
                                 @endif
 
                                 <div class="mr-6 text-gray-700">
-                                    @if(count($thread->replies()))
+                                    @if (count($thread->replies()))
                                         @php($lastReply = $thread->replies()->last())
                                         <a href="{{ route('profile', $lastReply->author()->username()) }}" class="text-green-500 mr-2">{{ $lastReply->author()->name() }}</a> replied
                                         {{ $lastReply->createdAt()->diffForHumans() }}
