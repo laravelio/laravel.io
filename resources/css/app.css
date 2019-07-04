@@ -89,6 +89,10 @@ nav ul.subnav li {
     @apply pl-4;
 }
 
+nav ul.subnav li a i {
+    @apply mr-2;
+}
+
 nav ul li:last-child {
     @apply pb-0;
 }
