@@ -203,3 +203,7 @@ div.thread-card:nth-last-child(2) {
         @apply border-b-2 border-green-primary;
     }
 }
+
+[v-cloak] {
+  display: none;
+}
