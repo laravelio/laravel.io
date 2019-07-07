@@ -122,7 +122,11 @@ div.thread-card:nth-last-child(2) {
 }
 
 .button {
-    @apply text-white bg-green-primary rounded px-4 py-2 block text-center mb-8;
+    @apply text-white bg-green-primary rounded px-4 py-2 block text-center cursor-pointer;
+}
+
+.button-danger {
+    @apply text-white bg-red-primary;
 }
 
 .button-full {
