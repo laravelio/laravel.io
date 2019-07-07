@@ -42,10 +42,10 @@
                                 <div class="mr-6 text-gray-700">
                                     @if (count($thread->replies()))
                                         @php($lastReply = $thread->replies()->last())
-                                        <a href="{{ route('profile', $lastReply->author()->username()) }}" class="text-green-500 mr-2">{{ $lastReply->author()->name() }}</a> replied
+                                        <a href="{{ route('profile', $lastReply->author()->username()) }}" class="text-green-darker mr-2">{{ $lastReply->author()->name() }}</a> replied
                                         {{ $lastReply->createdAt()->diffForHumans() }}
                                     @else
-                                        <a href="{{ route('profile', $thread->author()->username()) }}" class="text-green-500 mr-2">{{ $thread->author()->name() }}</a> posted
+                                        <a href="{{ route('profile', $thread->author()->username()) }}" class="text-green-darker mr-2">{{ $thread->author()->name() }}</a> posted
                                         {{ $thread->createdAt()->diffForHumans() }}
                                     @endif
                                 </div>
