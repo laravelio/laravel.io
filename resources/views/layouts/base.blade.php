@@ -28,7 +28,7 @@
 <body class="{{ $bodyClass ?? '' }}">
 
 <div id="app">
-    <div id="wrapper">
+    <div id="wrapper" v-on:keyup.esc="activeModal = null">
         @include('layouts._nav')
 
         @yield('body')
