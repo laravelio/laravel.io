@@ -121,6 +121,10 @@ div.thread-card:nth-last-child(2) {
     @apply border-b rounded-b;
 }
 
+div.reply p, div.reply pre {
+    @apply mb-4;
+}
+
 .button {
     @apply text-white bg-green-primary rounded px-4 py-2 block text-center cursor-pointer;
 }
