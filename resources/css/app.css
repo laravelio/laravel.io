@@ -125,6 +125,18 @@ div.reply p, div.reply pre {
     @apply mb-4;
 }
 
+.reply-options .label {
+    @apply mx-1;
+}
+
+.reply-options .label:first-child {
+    @apply ml-0;
+}
+
+.reply-options .label:last-child {
+    @apply mr-0;
+}
+
 .button {
     @apply text-white bg-green-primary rounded px-4 py-2 block text-center cursor-pointer;
 }
