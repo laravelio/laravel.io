@@ -40,13 +40,11 @@
                         @endif
 
                         <div class="p-4">
-                            
                             <reply>
                                 <div v-cloak>
                                     @md($reply->body())
                                 </div>
                             </reply>
-
                             <div class="flex flex-col md:flex-row md:items-center text-sm pt-5 border-t mt-4">
                                 <div class="flex flex-wrap mb-4 md:mb-0 justify-between w-full">
                                     <div class="flex">
@@ -59,7 +57,6 @@
                                             {{ $reply->createdAt()->diffForHumans() }}
                                         </div>
                                     </div>
-
                                     <div class="flex reply-options">
 
                                         @can(App\Policies\ReplyPolicy::UPDATE, $reply)
@@ -119,7 +116,6 @@
                             The last reply to this thread was more than six months ago. Please consider <a href="{{ route('threads.create') }}">opening a new thread</a> if you have a similar question.
                         </p>
                     @else
-                        
                         <div class="my-8">
 
                             {!! Form::open(['route' => 'replies.store']) !!}
