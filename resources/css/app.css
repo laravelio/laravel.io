@@ -133,6 +133,18 @@ div.thread-card:nth-last-child(2) {
     @apply w-full;
 }
 
+.label {
+    @apply px-2 py-1 rounded text-xs uppercase bg-gray-300 text-gray-700 px-2 py-1;
+}
+
+.label-primary {
+    @apply bg-green-primary text-white;
+}
+
+.label-danger {
+    @apply bg-red-primary text-white;
+}
+
 @screen md {
     footer {
         @apply text-base;
