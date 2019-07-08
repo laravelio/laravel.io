@@ -149,24 +149,25 @@
             <div class="w-full hidden md:w-1/4 md:pl-3 md:pt-4 md:flex items-center flex-col text-center mb-4">
                 @include('users._user_info', ['user' => $thread->author(), 'avatarSize' => 100])
 
+                <div class="reply-options">
                 @can(App\Policies\ThreadPolicy::UPDATE, $thread)
-                    <a class="text-gray-500" href="{{ route('threads.edit', $thread->slug()) }}">
+                    <a class="label" href="{{ route('threads.edit', $thread->slug()) }}">
                         Edit
                     </a>
                 @endcan
 
                 @can(App\Policies\ThreadPolicy::UNSUBSCRIBE, $thread)
-                    <a class="text-gray-500" href="{{ route('threads.unsubscribe', $thread->slug()) }}">
+                    <a class="label" href="{{ route('threads.unsubscribe', $thread->slug()) }}">
                         Unsubscribe
                     </a>
                 @elsecan(App\Policies\ThreadPolicy::SUBSCRIBE, $thread)
-                    <a class="text-gray-500" href="{{ route('threads.subscribe', $thread->slug()) }}">
+                    <a class="label" href="{{ route('threads.subscribe', $thread->slug()) }}">
                         Subscribe
                     </a>
                 @endcan
 
                 @can(App\Policies\ThreadPolicy::DELETE, $thread)
-                    <a class="text-red-primary cursor-pointer" @click.prevent="activeModal = 'deleteThread'">
+                    <a class="label label-danger" @click.prevent="activeModal = 'deleteThread'">
                         Delete
                     </a>
 
@@ -177,6 +178,7 @@
                         'body' => '<p>Are you sure you want to delete this thread and its replies? This cannot be undone.</p>',
                     ])
                 @endcan
+                </div>
 
                 @include('layouts._ads._forum_sidebar')
             </div>
