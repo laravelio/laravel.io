@@ -72,7 +72,7 @@
                                 
                                             @if ($thread->isSolutionReply($reply))
                                                 <a href="#" @click.prevent="activeModal = 'unmark-solution-{{ $thread->id }}'" class="label">
-                                                    Unmark solution
+                                                    Unmark As Solution
                                                 </a>
 
                                                 @include('_partials._update_modal', [
@@ -83,7 +83,7 @@
                                                 ])
                                             @else
                                                 <a href="#" @click.prevent="activeModal = 'mark-solution-{{ $reply->id }}'" class="label" >
-                                                    Mark Solution
+                                                    Mark As Solution
                                                 </a>
 
                                                 @include('_partials._update_modal', [
