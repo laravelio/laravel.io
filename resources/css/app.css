@@ -203,7 +203,9 @@ label {
     @apply mb-1 text-gray-700;
 }
 
-input[type=text], input[type=password] {
+input[type=text], 
+input[type=password],
+input[type=email] {
     @apply rounded border-2 p-3;
 }
 
