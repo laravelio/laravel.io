@@ -4,9 +4,9 @@
 
 @section('small-content')
     @if (! session()->has('githubData'))
-        <p>To register, we require you to login with your Github account. After login you can choose your password in the settings screen.</p>
+        <p class="mb-4">To register, we require you to login with your Github account. After login you can choose your password in the settings screen.</p>
 
-        <a href="{{ route('login.github') }}" class="btn btn-default btn-block">
+        <a href="{{ route('login.github') }}" class="button button-dark">
             <i class="fa fa-github"></i> Github
         </a>
     @else
@@ -45,7 +45,7 @@
 
             {!! Form::hidden('github_id', session('githubData.id')) !!}
             {!! Form::hidden('github_username', session('githubData.username')) !!}
-            {!! Form::submit('Register', ['class' => 'btn btn-primary btn-block']) !!}
+            {!! Form::submit('Register', ['class' => 'w-full button']) !!}
         {!! Form::close() !!}
     @endif
 @endsection

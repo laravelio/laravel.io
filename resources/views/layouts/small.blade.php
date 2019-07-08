@@ -7,9 +7,7 @@
             <div class="p-8 md:border-2 md:rounded md:bg-gray-100">
                 @include('layouts._alerts')
 
-                <div class="flex">
-                    @yield('small-content')
-                </div>
+                @yield('small-content')
 
                 @yield('small-content-after')
             </div>
