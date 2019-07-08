@@ -121,7 +121,8 @@ div.thread-card:nth-last-child(2) {
     @apply border-b rounded-b;
 }
 
-div.reply p, div.reply pre {
+div.reply p,
+div.reply pre {
     @apply mb-4;
 }
 
@@ -270,5 +271,5 @@ div.reply p, div.reply pre {
 }
 
 [v-cloak] {
-  display: none;
+    display: none;
 }
