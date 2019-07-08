@@ -94,7 +94,7 @@
                                                 ])
                                             @endif
                                             
-                                    @endcan
+                                        @endcan
                                     </div>
                                 </div>              
                             </div>
