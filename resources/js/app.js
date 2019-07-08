@@ -1,3 +1,6 @@
+import SimpleMDE from 'simplemde';
+import 'simplemde/dist/simplemde.min.css';
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -85,11 +88,23 @@ const app = new Vue({
                         removeClass(nav, 'active');
                     });
                 });
+        },
+        registerEditors() {
+            Array.from(this.$el.getElementsByClassName('editor')).forEach(editor => {
+                console.log(editor)
+                new SimpleMDE({
+                    showIcons: ["code"],
+                    hideIcons: ['preview', 'side-by-side', 'guide'],
+                    element: editor,
+                    status: false
+                });
+            });
         }
     },
     mounted() {
         this.addDocumentListener();
         this.addNavListeners();
         this.addSidebarListeners();
+        this.registerEditors();
     }
 });
