@@ -10,12 +10,13 @@
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
   },
   "devDependencies": {
+    "axios": "^0.19",
     "cross-env": "^5.1",
-    "laravel-mix": "^4.0.7",
-    "vue-template-compiler": "^2.6.10",
     "highlight.js": "^9.15.8",
+    "laravel-mix": "^4.0.7",
+    "simplemde": "^1.11.2",
     "tailwindcss": "^1.0.4",
     "vue": "^2.6.10",
-    "simplemde": "^1.11.2"
+    "vue-template-compiler": "^2.6.10"
   }
 }
