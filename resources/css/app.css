@@ -175,6 +175,10 @@ div.reply pre {
     @apply text-white bg-red-primary;
 }
 
+.button-dark {
+    @apply text-white bg-gray-900;
+}
+
 .button-full {
     @apply w-full;
 }
@@ -189,6 +193,26 @@ div.reply pre {
 
 .label-danger {
     @apply bg-red-primary text-white;
+}
+
+.form-group {
+    @apply flex flex-col mb-4;
+}
+
+label {
+    @apply mb-1 text-gray-700;
+}
+
+input[type=text], input[type=password] {
+    @apply rounded border-2 p-3;
+}
+
+input[type=checkbox] {
+    @apply mr-1;
+}
+
+.help-block {
+    @apply text-red-primary text-sm;
 }
 
 @screen md {
