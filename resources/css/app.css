@@ -201,9 +201,10 @@ label {
     @apply mb-1 text-gray-700;
 }
 
-input[type=text], 
+input[type=text],
 input[type=password],
-input[type=email] {
+input[type=email],
+textarea {
     @apply rounded border-2 p-3;
 }
 
@@ -231,6 +232,42 @@ input[type=checkbox] {
 .rules p,
 .rules ul {
     @apply mb-4;
+}
+
+.form-group .editor-toolbar {
+    @apply border-2 border-b-0 rounded rounded-b-none border-gray-300;
+}
+
+.form-group .CodeMirror {
+    @apply border-2 rounded rounded-t-none border-gray-300;
+}
+
+.multiselect .multiselect__tags {
+    @apply border-2 rounded;
+}
+
+.multiselect .multiselect__tag {
+    @apply bg-green-primary;
+}
+
+.multiselect .multiselect__content {
+    @apply border-2;
+}
+
+.multiselect .multiselect__option {
+    @apply text-gray-900;
+}
+
+.multiselect .multiselect__option--selected {
+    @apply bg-gray-300;
+}
+
+.multiselect .multiselect__option--highlight {
+    @apply bg-green-primary;
+}
+
+.multiselect .multiselect__option--selected.multiselect__option--highlight {
+    @apply bg-red-primary;
 }
 
 @screen md {
