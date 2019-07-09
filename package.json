@@ -17,6 +17,7 @@
     "simplemde": "^1.11.2",
     "tailwindcss": "^1.0.4",
     "vue": "^2.6.10",
+    "vue-multiselect": "^2.1.6",
     "vue-template-compiler": "^2.6.10"
   }
 }
