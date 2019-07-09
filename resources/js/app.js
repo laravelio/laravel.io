@@ -27,7 +27,8 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
 const app = new Vue({
     el: '#app',
     data: {
-        activeModal: null
+        activeModal: null,
+        value: [],
     },
     methods: {
         /**
@@ -91,7 +92,6 @@ const app = new Vue({
         },
         registerEditors() {
             Array.from(this.$el.getElementsByClassName('editor')).forEach(editor => {
-                console.log(editor)
                 new SimpleMDE({
                     showIcons: ["code"],
                     hideIcons: ['preview', 'side-by-side', 'guide'],
