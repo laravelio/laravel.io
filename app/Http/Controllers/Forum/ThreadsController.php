@@ -42,7 +42,11 @@ class ThreadsController extends Controller
 
     public function create()
     {
-        return view('forum.threads.create', ['tags' => Tag::all()]);
+        $tags = Tag::all()->map(function ($tag) {
+            return ['name' => $tag->name, 'id' => $tag->id];
+        });
+
+        return view('forum.threads.create', ['tags' => $tags]);
     }
 
     public function store(ThreadRequest $request)
