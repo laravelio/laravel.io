@@ -23,7 +23,11 @@
                 </p>
             </div>
 
-            @include('forum.threads._form', ['route' => 'threads.store'])
+            <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100">
+
+                @include('forum.threads._form', ['route' => 'threads.store'])
+
+            </div>
         </div>
     </div>
 @endsection
