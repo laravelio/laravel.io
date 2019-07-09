@@ -40,7 +40,7 @@
                     {!! Form::checkbox('terms') !!}
                     &nbsp; I agree to <a href="{{ route('terms') }}" target="_blank">Terms & Conditions</a> and <a href="{{ route('privacy') }}" target="_blank">Privacy Policy</a>.
                 </label>
-                @error('rules')
+                @error('terms')
             @endFormGroup
 
             {!! Form::hidden('github_id', session('githubData.id')) !!}
