@@ -44,7 +44,7 @@
     </div>
 
     @unless (Auth::user()->isAdmin())
-        <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100">
+        <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100 mb-8">
             <h3 class="text-red-primary uppercase mb-4">Danger Zone</h3>
             <p class="mb-8">Please be aware that deleting your account will also remove all of your data, including your threads and replies. This cannot be undone.</p>
             <div class="flex">
