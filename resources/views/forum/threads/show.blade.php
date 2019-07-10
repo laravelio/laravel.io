@@ -11,7 +11,11 @@
             <div class="w-full md:w-3/4 md:pr-3">
                 <div class="reply bg-white p-4 border rounded">
                     <div class="panel-body forum-content">
-                        @md($thread->body())
+                        <reply>
+                            <div v-cloak>
+                                @md($thread->body())
+                            </div>
+                        </reply>
                     </div>
 
                     <div class="flex flex-col md:flex-row md:items-center text-sm pt-5 border-t mt-4">
