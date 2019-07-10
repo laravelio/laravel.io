@@ -198,14 +198,14 @@ div.reply p, div.reply pre {
 }
 
 label {
-    @apply mb-1 text-gray-700;
+    @apply mb-1 text-gray-600 block uppercase text-sm;
 }
 
 input[type=text],
 input[type=password],
 input[type=email],
 textarea {
-    @apply rounded border-2 p-3;
+    @apply rounded border-2 p-3 w-full;
 }
 
 input[type=checkbox] {
