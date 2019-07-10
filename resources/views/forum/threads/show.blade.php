@@ -120,7 +120,7 @@
 
                             {!! Form::open(['route' => 'replies.store']) !!}
                                 @formGroup('body')
-                                    {!! Form::textarea('body', null, ['class' => 'editor', 'required']) !!}
+                                    {!! Form::textarea('body', null, ['class' => 'editor']) !!}
                                     @error('body')
                                 @endFormGroup
 
