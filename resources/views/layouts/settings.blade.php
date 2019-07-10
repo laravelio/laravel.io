@@ -9,11 +9,9 @@
 
     <div class="container mx-auto px-4 pt-4 flex flex-wrap">
         <div class="w-full md:w-3/4 md:pr-3">
-
             @include('layouts._alerts')
 
             @yield('content')
-
         </div>
         
         <div class="w-full md:w-1/4 md:pl-3">
