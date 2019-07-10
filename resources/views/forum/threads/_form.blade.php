@@ -15,6 +15,7 @@
     @formGroup('tags')
         {!! Form::label('tags') !!}
         <multi-select 
+            :initial-value="{{ $selectedTags ?? '[]' }}"
 e           :options="{{ $tags }}" 
             :max="3"
             placeholder="Choose up to 3 tags" 
