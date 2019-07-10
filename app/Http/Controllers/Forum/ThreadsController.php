@@ -61,8 +61,11 @@ class ThreadsController extends Controller
     public function edit(Thread $thread)
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
+        $selectedTags = $thread->tags()->map(function ($tag) {
+            return ['name' => $tag->name, 'id' => $tag->id];
+        });
 
-        return view('forum.threads.edit', ['thread' => $thread, 'tags' => Tag::all()]);
+        return view('forum.threads.edit', ['thread' => $thread, 'tags' => Tag::all(), 'selectedTags' => $selectedTags]);
     }
 
     public function update(ThreadRequest $request, Thread $thread)
