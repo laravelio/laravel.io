@@ -270,6 +270,10 @@ input[type=checkbox] {
     @apply bg-red-primary;
 }
 
+.hljs {
+    @apply text-sm rounded p-4 border-2;
+}
+
 @screen md {
     footer {
         @apply text-base;
