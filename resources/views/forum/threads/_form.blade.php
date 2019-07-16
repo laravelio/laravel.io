@@ -21,7 +21,9 @@ e           :options="{{ $tags }}"
             placeholder="Choose up to 3 tags" 
             label="name" 
             track-by="name"
-            name="tags[]">
+            name="tags[]"
+            identifier="create-thread">
+            {!! Form::select('tags[]', $tags->pluck('name', 'id'), isset($thread) ? $thread->tags()->pluck('id')->toArray() : [], ['id' => 'create-thread', 'class' => 'hidden', 'multiple']) !!}
         </multi-select>
         @error('tags')
     @endFormGroup
