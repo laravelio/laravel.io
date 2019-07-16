@@ -150,4 +150,14 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble
                 END AS latest_creation
             '));
     }
+
+    /**
+     * This will calculate the average resolution time in days of all threads marked as resolved.
+     */
+    public static function resolutionTime()
+    {
+        return static::join('replies', 'threads.solution_reply_id', '=', 'replies.id')
+            ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
+            ->pluck('duration')->first();
+    }
 }
