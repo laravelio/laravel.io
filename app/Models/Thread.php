@@ -156,8 +156,13 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble
      */
     public static function resolutionTime()
     {
-        return static::join('replies', 'threads.solution_reply_id', '=', 'replies.id')
-            ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
-            ->pluck('duration')->first();
+        try {
+            return static::join('replies', 'threads.solution_reply_id', '=', 'replies.id')
+                ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
+                ->pluck('duration')
+                ->first();
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }
