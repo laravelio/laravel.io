@@ -31,7 +31,7 @@ class HomeController extends Controller
             'totalUsers' => $totalUsers,
             'totalThreads' => $totalThreads,
             'resolutionTime' => $resolutionTime,
-            'latestThreads' => $latestThreads,    
+            'latestThreads' => $latestThreads,
         ]);
     }
 
