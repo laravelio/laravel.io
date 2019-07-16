@@ -10,7 +10,7 @@
         <div class="flex flex-wrap">
             <div class="w-full md:w-3/4 md:pr-3">
                 <div class="reply bg-white p-4 border rounded">
-                    <div class="panel-body forum-content">
+                    <div>
                         <reply>
                             <div v-cloak>
                                 @md($thread->body())

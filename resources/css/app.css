@@ -120,7 +120,7 @@ div.thread-card:nth-last-child(2) {
     @apply border-b rounded-b;
 }
 
-div.reply p, div.reply pre {
+div.forum-content div>* {
     @apply mb-4;
 }
 
