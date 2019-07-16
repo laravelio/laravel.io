@@ -46,7 +46,11 @@ class ThreadsController extends Controller
             return ['name' => $tag->name, 'id' => $tag->id];
         });
 
-        return view('forum.threads.create', ['tags' => $tags]);
+        $selectedTags = collect(old('tags'))->map(function ($selected) use ($tags) {
+            return $tags->where('id', $selected)->first();
+        });
+
+        return view('forum.threads.create', ['tags' => $tags, 'selectedTags' => $selectedTags]);
     }
 
     public function store(ThreadRequest $request)
