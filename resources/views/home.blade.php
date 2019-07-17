@@ -93,7 +93,7 @@
                 Take a look at the latest unresolved threads
             </div>
             <div class="flex flex-wrap mb-8">
-                @foreach($latestThreads as $latestThread)
+                @foreach ($latestThreads as $latestThread)
                     <div class="flex w-full md:w-1/3">
                         <div class="flex flex-col flex-grow justify-between bg-white p-4 border rounded m-2">
                             <a href="{{ route('thread', $latestThread->slug()) }}">
