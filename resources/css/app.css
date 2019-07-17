@@ -10,6 +10,8 @@
 
 @import './pagination.css';
 
+@import './tables.css';
+
 body {
     @apply font-sans bg-gray-200;
 }
