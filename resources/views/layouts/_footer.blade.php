@@ -14,5 +14,4 @@
     <span>&bull;</span>
     <a href="https://github.com/laravelio"><i class="fa fa-github"></i></a>
     <a href="https://twitter.com/laravelio"><i class="fa fa-twitter"></i></a>
-    <a href="https://medium.com/laravelio"><i class="fa fa-medium"></i></a>
 </footer>

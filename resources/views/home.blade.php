@@ -137,12 +137,6 @@
                         <span class="text-xl">Twitter</span>
                     </a>
                 </div>
-                <div class="w-1/2 md:w-1/3 mb-4">
-                    <a href="https://medium.com/laravelio">
-                        <img src="{{ asset('images/medium.png') }}" alt="Medium logo" title="Medium" class="w-24 mx-auto mb-4">
-                        <span class="text-xl">Medium</span>
-                    </a>
-                </div>
             </div>
             <div class="flex flex-wrap text-center items-center w-full lg:w-2/3 mx-auto">
                 <div class="w-1/2 md:w-1/4 mb-4">
