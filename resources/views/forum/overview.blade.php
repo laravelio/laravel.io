@@ -56,7 +56,7 @@
                     </div>
                 @endforeach
 
-                <div class="text-center">
+                <div class="flex justify-end">
                     {!! $threads->render() !!}
                 </div>
             @else
@@ -71,13 +71,13 @@
         </div>
         <div class="w-full md:w-1/4 md:pl-3 md:pt-4">
             <a href="{{ route('threads.create') }}"
-            class="button button-full">
+            class="button button-full mb-4">
                 Create Thread
             </a>
 
             @include('layouts._ads._forum_sidebar')
 
-            <h3 class="text-xs font-bold tracking-wider uppercase text-gray-500 mb-4">Tags</h3>
+            <h3 class="text-xs font-bold tracking-wider uppercase text-gray-500">Tags</h3>
             <ul class="tags">
                 <li class="{{ active('forum*', ! isset($activeTag) || $activeTag === null) }}">
                     <a href="{{ route('forum') }}">

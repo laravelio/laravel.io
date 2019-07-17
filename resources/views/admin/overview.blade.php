@@ -56,7 +56,7 @@
         </table>
     </div>
 
-    <div class="text-center">
+    <div class="flex justify-end">
         {!! $users->render() !!}
     </div>
 @endsection
