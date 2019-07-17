@@ -8,6 +8,8 @@
 
 @tailwind screens;
 
+@import './pagination.css';
+
 body {
     @apply font-sans bg-gray-200;
 }
