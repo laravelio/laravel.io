@@ -22,10 +22,13 @@ class HomeController extends Controller
             return number_format(Thread::resolutionTime());
         });
 
-        $latestThreads = Thread::feedQuery()
-            ->whereNull('solution_reply_id')
-            ->limit(3)
-            ->get();
+        $latestThreads = Cache::remember('latestThreads', now()->addHour(), function () {
+            return Thread::whereNull('solution_reply_id')
+                ->whereBetween('threads.created_at', [now()->subWeek(), now()])
+                ->inRandomOrder()
+                ->limit(3)
+                ->get();
+        });
 
         return view('home', [
             'totalUsers' => $totalUsers,
