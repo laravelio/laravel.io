@@ -127,13 +127,13 @@
             <div class="flex flex-wrap text-center justify-center items-center md:mb-20 w-full lg:w-1/2 mx-auto">
                 <div class="w-1/2 md:w-1/3 mb-4">
                     <a href="https://github.com/laravelio">
-                        <img src="{{ asset('images/octocat.png') }}" alt="Github logo" title="Github" class="w-24 mx-auto mb-4">
+                        <img src="{{ asset('images/octocat.png') }}" alt="Github logo" title="Github" class="w-16 mx-auto mb-4">
                         <span class="text-xl">Github</span>
                     </a>
                 </div>
                 <div class="w-1/2 md:w-1/3 mb-4">
                     <a href="https://twitter.com/laravelio">
-                        <img src="{{ asset('images/twitter.png') }}" alt="Twitter logo" title="Twitter" class="w-24 mx-auto mb-4">
+                        <img src="{{ asset('images/twitter.png') }}" alt="Twitter logo" title="Twitter" class="w-16 mx-auto mb-4">
                         <span class="text-xl">Twitter</span>
                     </a>
                 </div>
@@ -141,25 +141,25 @@
             <div class="flex flex-wrap text-center items-center w-full lg:w-2/3 mx-auto">
                 <div class="w-1/2 md:w-1/4 mb-4">
                     <a href="https://laravel.com">
-                        <img src="{{ asset('images/laravel.png') }}" alt="Laravel logo" title="Laravel" class="w-24 mx-auto mb-4">
+                        <img src="{{ asset('images/laravel.png') }}" alt="Laravel logo" title="Laravel" class="w-16 mx-auto mb-4">
                         <span class="text-xl">Laravel</span>
                     </a>
                 </div>
                 <div class="w-1/2 md:w-1/4 mb-4">
                     <a href="https://laracasts.com">
-                        <img src="{{ asset('images/laracasts.png') }}" alt="Laracasts logo" title="Laracasts" class="w-24 mx-auto mb-4">
+                        <img src="{{ asset('images/laracasts.png') }}" alt="Laracasts logo" title="Laracasts" class="w-16 mx-auto mb-4">
                         <span class="text-xl">Laracasts</span>
                     </a>
                 </div>
                 <div class="w-1/2 md:w-1/4 mb-4">
                     <a href="https://laravel-news.com">
-                        <img src="{{ asset('images/laravel-news.png') }}" alt="Laravel News logo" title="Laravel News" class="w-24 mx-auto mb-4">
+                        <img src="{{ asset('images/laravel-news.png') }}" alt="Laravel News logo" title="Laravel News" class="w-16 mx-auto mb-4">
                         <span class="text-xl">Laravel News</span>
                     </a>
                 </div>
                 <div class="w-1/2 md:w-1/4 mb-4">
                     <a href="https://www.laravelpodcast.com">
-                        <img src="{{ asset('images/podcast.jpg') }}" alt="Laravel Podcast logo" title="Laravel Podcast" class="w-24 mx-auto mb-4">
+                        <img src="{{ asset('images/podcast.jpg') }}" alt="Laravel Podcast logo" title="Laravel Podcast" class="w-16 mx-auto mb-4">
                         <span class="text-xl">Laravel Podcast</span>
                     </a>
                 </div>
