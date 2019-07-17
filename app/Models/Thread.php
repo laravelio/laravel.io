@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use DB;
+use Exception;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
 use App\Helpers\HasAuthor;
@@ -161,7 +162,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble
                 ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
                 ->pluck('duration')
                 ->first();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return false;
         }
     }
