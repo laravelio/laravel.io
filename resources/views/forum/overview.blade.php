@@ -3,7 +3,7 @@
 
 @extends('layouts.default')
 
-@section('content')
+@section('subnav')
     <div class="bg-white border-b">
         <div class="container mx-auto flex justify-between items-center px-4">
             <h1 class="text-xl py-4 text-gray-900">{{ $title }}</h1>
@@ -13,7 +13,9 @@
             {{ Form::close() }}
         </div>
     </div>
+@endsection
 
+@section('content')
     <div class="container mx-auto px-4 pt-4 flex flex-wrap">
         <div class="w-full md:w-3/4 md:pr-3">
             @include('layouts._ads._bsa-cpc')
