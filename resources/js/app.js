@@ -90,6 +90,15 @@ const app = new Vue({
                     });
                 });
         },
+        addAlertListeners() {
+            const closeAlertButtons = document.querySelectorAll('.alert .close');
+            // turn the html collection into an array and loop
+            Array.from(closeAlertButtons).forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.target.parentNode.parentNode.remove();
+                });
+            });
+        },
         registerEditors() {
             Array.from(this.$el.getElementsByClassName('editor')).forEach(editor => {
                 new SimpleMDE({
@@ -105,6 +114,7 @@ const app = new Vue({
         this.addDocumentListener();
         this.addNavListeners();
         this.addSidebarListeners();
+        this.addAlertListeners();
         this.registerEditors();
     }
 });
