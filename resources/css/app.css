@@ -12,6 +12,8 @@
 
 @import './tables.css';
 
+@import './alerts.css';
+
 body {
     @apply font-sans bg-gray-200;
 }
