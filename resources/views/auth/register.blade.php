@@ -45,7 +45,7 @@
 
             {!! Form::hidden('github_id', session('githubData.id')) !!}
             {!! Form::hidden('github_username', session('githubData.username')) !!}
-            {!! Form::submit('Register', ['class' => 'w-full button']) !!}
+            {!! Form::submit('Register', ['class' => 'w-full button button-primary']) !!}
         {!! Form::close() !!}
     @endif
 @endsection

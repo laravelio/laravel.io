@@ -24,7 +24,7 @@
             </label>
         </div>
 
-        {!! Form::submit('Login', ['class' => 'w-full button mb-4']) !!}
+        {!! Form::submit('Login', ['class' => 'w-full button button-primary mb-4']) !!}
         <a href="{{ route('login.github') }}" class="button button-dark mb-4">
             <i class="fa fa-github mr-1"></i> Github
         </a>
