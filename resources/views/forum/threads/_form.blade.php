@@ -30,6 +30,6 @@ e           :options="{{ $tags }}"
 
     <div class="flex justify-end items-center">
         <a href="{{ isset($thread) ? route('thread', $thread->slug()) : route('forum') }}" class="text-green-darker mr-4">Cancel</a>
-        {!! Form::submit(isset($thread) ? 'Update Thread' : 'Create Thread', ['class' => 'button']) !!}
+        {!! Form::submit(isset($thread) ? 'Update Thread' : 'Create Thread', ['class' => 'button button-primary']) !!}
     </div>
 {!! Form::close() !!}

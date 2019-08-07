@@ -34,7 +34,7 @@
             @endFormGroup
 
             <div class="flex justify-end">
-                {!! Form::submit('Save', ['class' => 'button']) !!}
+                {!! Form::submit('Save', ['class' => 'button button-primary']) !!}
             </div>
         {{ Form::close() }}
     </div>

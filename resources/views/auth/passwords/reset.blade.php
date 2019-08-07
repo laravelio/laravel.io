@@ -23,6 +23,6 @@
             {!! Form::password('password_confirmation', ['class' => 'form-control', 'required']) !!}
         </div>
 
-        {!! Form::submit('Reset Password', ['class' => 'w-full button']) !!}
+        {!! Form::submit('Reset Password', ['class' => 'w-full  button-primary']) !!}
     {!! Form::close() !!}
 @endsection

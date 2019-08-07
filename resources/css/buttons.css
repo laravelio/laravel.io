@@ -1,9 +1,13 @@
 .button {
-    @apply text-white bg-green-primary rounded px-4 py-2 block text-center cursor-pointer font-sans;
+    @apply bg-gray-300 text-gray-700 rounded px-4 py-2 block text-center cursor-pointer font-sans;
+}
+
+.button-primary {
+    @apply text-white .bg-green-primary;
 }
 
 .button-muted {
-    @apply bg-gray-500;
+    @apply text-white bg-gray-500;
 }
 
 .button-danger {

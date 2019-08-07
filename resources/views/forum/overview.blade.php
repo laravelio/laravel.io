@@ -65,7 +65,7 @@
                 <div class="flex flex-col items-center justify-center pt-4 text-gray-700">
                     <h2 class="text-2xl pb-4">No threads were found!</h2>
                     <a href="{{ route('threads.create') }}" 
-                    class="button">
+                    class="button button-primary">
                         Create a new one
                     </a>
                 </div>
@@ -73,7 +73,7 @@
         </div>
         <div class="w-full md:w-1/4 md:pl-3 md:pt-4">
             <a href="{{ route('threads.create') }}"
-            class="button button-full mb-4">
+            class="button button-primary button-full mb-4">
                 Create Thread
             </a>
 

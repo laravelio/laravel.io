@@ -22,7 +22,7 @@
 
                     <div class="flex items-center justify-end">
                         <a href="{{ route_to_reply_able($reply->replyAble()) }}" class="text-green-darker mr-4">Cancel</a>
-                        {!! Form::submit('Update', ['class' => 'button']) !!}
+                        {!! Form::submit('Update', ['class' => 'button button-primary']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>

@@ -12,6 +12,6 @@
             @error('email')
         @endFormGroup
 
-        {!! Form::submit('Send Password Reset Link', ['class' => 'w-full button']) !!}
+        {!! Form::submit('Send Password Reset Link', ['class' => 'w-full button button-primary']) !!}
     {!! Form::close() !!}
 @endsection

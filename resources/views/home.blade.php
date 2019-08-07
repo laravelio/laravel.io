@@ -11,14 +11,14 @@
             <h2 class="text-2xl text-gray-700 mb-8 text-center md:text-left">The Laravel Community Portal</h2>
             <div class="flex flex-wrap justify-center md:justify-start">
                 @if (Auth::guest())
-                    <a class="button button-big md:mr-4 mb-4" href="{{ route('register') }}">
+                    <a class="button button-big button-primary md:mr-4 mb-4" href="{{ route('register') }}">
                         Join the Community
                     </a>
                     <a class="button button-big button-muted mb-4" href="{{ route('forum') }}">
                         Visit the Forum
                     </a>
                 @else
-                    <a class="button" href="{{ route('threads.create') }}">
+                    <a class="button button-big button-primary" href="{{ route('threads.create') }}">
                         Start a Thread
                     </a>
                 @endif
@@ -114,7 +114,7 @@
                 @endforeach
             </div>
             <div class="flex justify-center">
-                <a href="{{ route('forum') }}" class="button button-big">
+                <a href="{{ route('forum') }}" class="button button-primary button-big">
                     See all threads
                 </a>
             </div>
