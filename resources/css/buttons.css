@@ -1,0 +1,23 @@
+.button {
+    @apply text-white bg-green-primary rounded px-4 py-2 block text-center cursor-pointer font-sans;
+}
+
+.button-muted {
+    @apply bg-gray-500;
+}
+
+.button-danger {
+    @apply text-white bg-red-primary;
+}
+
+.button-dark {
+    @apply text-white bg-gray-900;
+}
+
+.button-full {
+    @apply w-full;
+}
+
+.button-big {
+    @apply px-6 py-4 text-lg;
+}

@@ -1,0 +1,29 @@
+.legal-container {
+    @apply w-full my-0 mx-auto p-4 pt-8;
+}
+
+.legal-container h1 {
+    @apply text-2xl;
+}
+
+.legal-container h2 {
+    @apply text-xl mb-4;
+}
+
+.legal-container p,
+.rules p,
+.rules ul {
+    @apply mb-4;
+}
+
+@screen md {
+    .legal-container {
+        @apply w-2/3;
+    }
+}
+
+@screen lg {
+    .legal-container {
+        @apply w-1/2;
+    }
+}

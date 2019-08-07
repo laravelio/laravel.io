@@ -1,0 +1,11 @@
+.reply-options .label {
+    @apply mx-1;
+}
+
+.reply-options .label:first-child {
+    @apply ml-0;
+}
+
+.reply-options .label:last-child {
+    @apply mr-0;
+}

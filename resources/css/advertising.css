@@ -1,0 +1,13 @@
+.sponsors-list {
+    @apply w-full flex flex-wrap items-center justify-center;
+}
+
+.sponsors-list div {
+    @apply w-1/2 px-4 flex justify-center mb-4;
+}
+
+@screen md {
+    .sponsors-list div {
+        @apply w-1/4;
+    }
+}
