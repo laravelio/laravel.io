@@ -1,4 +1,4 @@
-@extends('layouts.base', ['bodyClass' => 'home'])
+@extends('layouts.base', ['bodyClass' => 'home', 'hideAds' => true])
 
 @section('body')
     <div class="container">
@@ -24,6 +24,10 @@
                 @endif
             </div>
         </div>
+    </div>
+
+    <div class="section">
+        @include('layouts._ads._footer')
     </div>
 
     <div class="section section-two">

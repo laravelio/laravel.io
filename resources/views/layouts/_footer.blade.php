@@ -1,7 +1,9 @@
 
-<div class="container mx-auto px-4">
-    @include('layouts._ads._footer')
-</div>
+@unless($hideAds ?? false)
+    <div class="container mx-auto px-4">
+        @include('layouts._ads._footer')
+    </div>
+@endif
 
 @include('layouts._sponsors')
 
