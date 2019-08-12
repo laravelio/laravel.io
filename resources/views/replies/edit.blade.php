@@ -14,17 +14,20 @@
     <div class="container mx-auto p-4 flex justify-center">
         <div class="w-full md:w-2/3 xl:w-1/2">
             <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100">
-                {!! Form::open(['route' => ['replies.update', $reply->id()], 'method' => 'PUT']) !!}
+                <form action="{{ route('replies.update', $reply->id()) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="_method" value="PUT">
+
                     @formGroup('body')
-                        {!! Form::textarea('body', $reply->body(), ['class' => 'editor']) !!}
+                        <textarea name="body" id="body" class="editor">{{ $reply->body() }}</textarea>
                         @error('body')
                     @endFormGroup
 
                     <div class="flex items-center justify-end">
                         <a href="{{ route_to_reply_able($reply->replyAble()) }}" class="text-green-darker mr-4">Cancel</a>
-                        {!! Form::submit('Update', ['class' => 'button button-primary']) !!}
+                        <button type="submit" class="button button-primary">Update</button>
                     </div>
-                {!! Form::close() !!}
+                </form>
             </div>
         </div>
     </div>

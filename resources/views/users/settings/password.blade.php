@@ -4,38 +4,32 @@
 
 @section('content')
     <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100 mb-8">
-        {{ Form::open(['route' => 'settings.password.update', 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+        <form action="{{ route('settings.password.update') }}" method="POST">
+            @csrf
+            <input type="hidden" name="_method" value="PUT">
+
             @if (Auth::user()->hasPassword())
                 @formGroup('current_password')
-                    {!! Form::label('current_password', null, ['class' => 'col-md-3 control-label']) !!}
-
-                    <div class="col-md-6">
-                        {!! Form::password('current_password', ['class' => 'form-control', 'required']) !!}
-                        @error('current_password')
-                    </div>
+                    <label for="current_password">Current Password</label>
+                    <input type="password" name="current_password" id="current_password" class="form-control" required />
+                    @error('current_password')
                 @endFormGroup
             @endif
 
             @formGroup('password')
-                {!! Form::label('password', 'New Password', ['class' => 'col-md-3 control-label']) !!}
-
-                <div class="col-md-6">
-                    {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
-                    @error('password')
-                </div>
+                <label for="password">New Password</label>
+                <input type="password" name="password" id="password" class="form-control" required />
+                @error('password')
             @endFormGroup
 
             @formGroup('password_confirmation')
-                {!! Form::label('password_confirmation', 'Confirm New Password', ['class' => 'col-md-3 control-label']) !!}
-
-                <div class="col-md-6">
-                    {!! Form::password('password_confirmation', ['class' => 'form-control', 'required']) !!}
-                </div>
+                <label for="password_confirmation">Confirm New Password</label>
+                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required />
             @endFormGroup
 
             <div class="flex justify-end">
-                {!! Form::submit('Save', ['class' => 'button button-primary']) !!}
+                <button type="submit" class="button button-primary">Save</button>
             </div>
-        {{ Form::close() }}
+        </form>
     </div>
 @endsection

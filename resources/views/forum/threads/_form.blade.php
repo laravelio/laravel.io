@@ -1,19 +1,22 @@
-{!! Form::open(['route' => $route, 'method' => $method ?? 'POST']) !!}
+<form action="{{ route($route, $routeParams) }}" method="POST">
+    @csrf
+    <input type="hidden" name="_method" value="{{ $method ?? 'POST' }}">
+
     @formGroup('subject')
-        {!! Form::label('subject') !!}
-        {!! Form::text('subject', isset($thread) ? $thread->subject() : null, ['class' => 'form-control', 'required', 'maxlength' => '60']) !!}
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" id="subject" value="{{ isset($thread) ? $thread->subject() : null }}" class="form-control" required maxlength="60" />
         <span class="text-gray-600 text-sm">Maximum 60 characters.</span>
         @error('subject')
     @endFormGroup
 
     @formGroup('body')
-        {!! Form::label('body') !!}
-        {!! Form::textarea('body', isset($thread) ? $thread->body() : null, ['class' => 'editor']) !!}
+        <label for="body">Body</label>
+        <textarea name="body" id="body" class="editor">{{ isset($thread) ? $thread->body() : null }}</textarea>
         @error('body')
     @endFormGroup
 
     @formGroup('tags')
-        {!! Form::label('tags') !!}
+        <label for="tags">Tags</label>
         <multi-select 
             :initial-value="{{ $selectedTags ?? '[]' }}"
 e           :options="{{ $tags }}" 
@@ -23,13 +26,18 @@ e           :options="{{ $tags }}"
             track-by="name"
             name="tags[]"
             identifier="create-thread">
-            {!! Form::select('tags[]', $tags->pluck('name', 'id'), isset($thread) ? $thread->tags()->pluck('id')->toArray() : [], ['id' => 'create-thread', 'class' => 'hidden', 'multiple']) !!}
+            @php($selected = isset($thread) ? $thread->tags()->pluck('id')->toArray() : [])
+            <select name="tags[]" id="create-thread" class="hidden" multiple>
+                @foreach($tags->toArray() as $tag)
+                    <option value="{{ $tag['id'] }}" @if(in_array($tag['id'], $selected)) selected @endif>{{ $tag['name'] }}</option>
+                @endforeach
+            </select>
         </multi-select>
         @error('tags')
     @endFormGroup
 
     <div class="flex justify-end items-center">
         <a href="{{ isset($thread) ? route('thread', $thread->slug()) : route('forum') }}" class="text-green-darker mr-4">Cancel</a>
-        {!! Form::submit(isset($thread) ? 'Update Thread' : 'Create Thread', ['class' => 'button button-primary']) !!}
+        <button type="submit" class="button button-primary">{{ isset($thread) ? 'Update Thread' : 'Create Thread' }}</button>
     </div>
-{!! Form::close() !!}
+</form>

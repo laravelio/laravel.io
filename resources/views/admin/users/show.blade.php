@@ -37,14 +37,16 @@
         @if ($user->isBanned())
             @include('_partials._update_modal', [
                 'identifier' => 'unbanUser',
-                'route' => ['admin.users.unban', $user->username()],
+                'route' => 'admin.users.unban',
+                'routeParams' => $user->username()
                 'title' => "Unban {$user->name()}",
                 'body' => '<p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>',
             ])
         @else
             @include('_partials._update_modal', [
                 'identifier' => 'banUser',
-                'route' => ['admin.users.ban', $user->username()],
+                'route' => 'admin.users.ban',
+                'routeParams' => $user->username(),
                 'title' => "Ban {$user->name()}",
                 'body' => '<p>Unbanning this user will allow them to login again and post content.</p>',
             ])
@@ -54,7 +56,8 @@
     @can(App\Policies\UserPolicy::DELETE, $user)
         @include('_partials._delete_modal', [
             'identifier' => 'deleteUser',
-            'route' => ['admin.users.delete', $user->username()],
+            'route' => 'admin.users.delete',
+            'routeParams' => $user->username(),
             'title' => "Delete {$user->name()}",
             'body' => '<p>Deleting this user will remove their account and any related content like threads & replies. This cannot be undone.</p>',
         ])
