@@ -1,5 +1,6 @@
 import SimpleMDE from 'simplemde';
 import 'simplemde/dist/simplemde.min.css';
+import Adsense from 'vue-google-adsense/dist/Adsense.min.js'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -18,6 +19,9 @@ require('./bootstrap');
  */
 const files = require.context('./', true, /\.vue$/i);
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+
+Vue.use(require('vue-script2'));
+Vue.use(Adsense);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
