@@ -28,6 +28,7 @@ const app = new Vue({
     el: '#app',
     data: {
         activeModal: null,
+        navOpen: false,
         value: [],
     },
     methods: {
@@ -43,6 +44,26 @@ const app = new Vue({
         removeClass(element, className) {
             element.classList.remove(className);
         },
+        hideSidebar() {
+            this.navOpen = false;
+            Array.from(document.getElementsByClassName('subnav')).forEach(subnav => {
+                this.toggleNav();
+                Array.from(document.getElementsByClassName('nav')).forEach(nav => {
+                    this.removeClass(nav, 'active');
+                });
+            });
+        },
+        showSidebar() {
+            this.navOpen = true;
+            this.toggleNav();
+            Array.from(document.getElementsByClassName('nav')).forEach(nav => {
+                nav.classList.add('active');
+            });
+        },
+        toggleNav() {
+            document.getElementById('sidebar-open').style.display = this.navOpen ? 'none' : 'block';
+            document.getElementById('sidebar-close').style.display = this.navOpen ? 'block' : 'none';
+        },
         addDocumentListener() {
             // when clicking anywhere on the page, remove all subnavs
             // this will not be fired if a dropdown item is clicked as we stop the propogation of the event 
@@ -51,13 +72,23 @@ const app = new Vue({
                     this.removeClass(subnav, 'active');
                 });
             });
+            window.addEventListener('resize', (e) => {
+                // if the window is a large viewport, hide the sidebar and hamburger
+                if (window.innerWidth >= 1024) {
+                    this.hideSidebar();
+                    document.getElementById('sidebar-open').style.display = 'none';
+                } else {
+                    // if not, show the nav
+                    this.toggleNav();
+                }
+            });
         },
         addNavListeners() {
             // get all the dropdown elements on the page
             const dropdowns = document.getElementsByClassName('dropdown');
             // turn the html collection into an array and loop
             Array.from(dropdowns).forEach(dropdown => {
-                    dropdown.addEventListener('click', (e) => {
+                dropdown.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     // hide any currently active subnavs
@@ -73,28 +104,20 @@ const app = new Vue({
             // open the sidebar
             document.getElementById('sidebar-open')
                 .addEventListener('click', (e) => {
-                    document.getElementById('sidebar-open').style.display = 'none';
-                    document.getElementById('sidebar-close').style.display = 'block';
-                    Array.from(document.getElementsByClassName('nav')).forEach(nav => {
-                        nav.classList.add('active');
-                    });
+                    this.showSidebar();
                 });
 
             // close the sidebar
             document.getElementById('sidebar-close')
                 .addEventListener('click', (e) => {
-                    document.getElementById('sidebar-open').style.display = 'block';
-                    document.getElementById('sidebar-close').style.display = 'none';
-                    Array.from(document.getElementsByClassName('nav')).forEach(nav => {
-                        removeClass(nav, 'active');
-                    });
+                    this.hideSidebar();
                 });
         },
         addAlertListeners() {
             const closeAlertButtons = document.querySelectorAll('.alert .close');
             // turn the html collection into an array and loop
             Array.from(closeAlertButtons).forEach(button => {
-                button.addEventListener('click', function(e) {
+                button.addEventListener('click', function (e) {
                     e.target.parentNode.parentNode.remove();
                 });
             });
