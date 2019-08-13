@@ -14,8 +14,9 @@
     "cross-env": "^5.1",
     "highlight.js": "^9.15.8",
     "laravel-mix": "^4.0.7",
+    "postcss-import": "^12.0.1",
     "simplemde": "^1.11.2",
-    "tailwindcss": "^1.0.4",
+    "tailwindcss": "^1.1.1",
     "vue": "^2.6.10",
     "vue-multiselect": "^2.1.6",
     "vue-template-compiler": "^2.6.10"

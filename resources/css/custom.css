@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
+
+@import './alerts.css';
+
+@import './advertising.css';
+
+@import './buttons.css';
+
+@import './footer.css';
+
+@import './forms.css';
+
+@import './home.css';
+
+@import './labels.css';
+
+@import './legals.css';
+
+@import './modal.css';
+
+@import './nav.css';
+
+@import './pagination.css';
+
+@import './replies.css';
+
+@import './tables.css';
+
+@import './tags.css';
+
+@import './threads.css';
+
+body {
+    @apply font-sans bg-gray-200;
+}
+
+#app {
+    @apply flex min-h-screen flex-col;
+}
+
+#wrapper {
+    @apply flex-1;
+}
+
+pre .hljs {
+    @apply text-sm rounded p-4 border-2;
+}
+
+svg {
+    @apply w-32;
+}
+
+svg .primary {
+    @apply text-gray-800 fill-current;
+}
+
+svg .secondary {
+    @apply text-green-primary fill-current;
+}
+
+[v-cloak] {
+    display: none;
+}
