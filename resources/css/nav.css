@@ -31,7 +31,7 @@ nav ul.nav.active {
 }
 
 nav ul.subnav {
-    @apply hidden mt-2;
+    @apply hidden mt-2 z-50;
 }
 
 nav ul.subnav.active {
