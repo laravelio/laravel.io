@@ -20,10 +20,6 @@
     @include('layouts._favicons')
     @include('layouts._cookie_consent')
     @include('layouts._google_analytics')
-
-    @unless ($disableAds ?? false)
-        @include('layouts._ads._ad_sense')
-    @endunless
 </head>
 <body class="{{ $bodyClass ?? '' }}">
 

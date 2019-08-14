@@ -1,6 +1,6 @@
 import SimpleMDE from 'simplemde';
 import 'simplemde/dist/simplemde.min.css';
-import Adsense from 'vue-google-adsense/dist/Adsense.min.js'
+import Adsense from 'vue-google-adsense/dist/Adsense.min.js';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
