@@ -7,7 +7,7 @@
 }
 
 .bsa-cpc #_default_ {
-    @apply relative p-2 mb-2 rounded bg-gray-300;
+    @apply relative p-2 rounded bg-gray-300;
 }
 
 .bsa-cpc .default-ad,

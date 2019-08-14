@@ -18,7 +18,7 @@
                         </reply>
                     </div>
 
-                    <div class="flex flex-col md:flex-row md:items-center text-sm pt-5 border-t mt-4">
+                    <div class="flex flex-col md:flex-row md:items-center text-sm pt-5 border-t my-4">
                         <div class="flex mb-4 md:mb-0">
                             @include('forum.threads.info.avatar', ['user' => $thread->author()])
 
