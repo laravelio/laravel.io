@@ -42,6 +42,10 @@ body {
     @apply flex-1;
 }
 
+a:hover {
+    @apply underline;
+}
+
 pre .hljs {
     @apply text-sm rounded p-4 border-2;
 }

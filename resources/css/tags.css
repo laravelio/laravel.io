@@ -5,3 +5,7 @@ ul.tags li {
 ul.tags li.active {
     @apply bg-gray-100 rounded font-bold;
 }
+
+.thread-info-tags a:hover {
+    @apply no-underline;
+}

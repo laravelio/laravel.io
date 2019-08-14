@@ -7,9 +7,11 @@
     <div class="bg-white border-b">
         <div class="container mx-auto flex justify-between items-center px-4">
             <h1 class="text-xl py-4 text-gray-900">
-                <a href="{{ route('forum') }}">Forum</a>
                 @if(isset($subTitle))
-                > {{ $subTitle }}
+                    <a href="{{ route('forum') }}">Forum</a>
+                    > {{ $subTitle }}
+                @else
+                    Forum
                 @endif
             </h1>
             

@@ -117,4 +117,8 @@ nav ul.subnav li.divider {
     nav li.active {
         @apply border-b-2 border-green-primary;
     }
+
+    nav li.active a {
+        @apply no-underline;
+    }
 }
