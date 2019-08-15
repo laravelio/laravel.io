@@ -33,6 +33,7 @@
     @include('layouts._footer')
 </div>
 
+@include('layouts._ads')
 <script src="{{ mix('js/app.js') }}"></script>
 
 @include('layouts._intercom')

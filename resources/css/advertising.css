@@ -30,3 +30,10 @@
         @apply w-1/4;
     }
 }
+
+ins {
+    min-width: 300px;
+    min-height: 50px;
+    max-width: 100%;
+    @apply max-w-full text-center my-4 mx-auto;
+}
