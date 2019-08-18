@@ -19,6 +19,7 @@
     "tailwindcss": "^1.1.1",
     "vue": "^2.6.10",
     "vue-multiselect": "^2.1.6",
+    "vue-script2": "^2.1.0",
     "vue-template-compiler": "^2.6.10"
   },
   "dependencies": {}

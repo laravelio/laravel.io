@@ -1,5 +1,9 @@
 <template>
-  <div v-html="content"></div>
+  <div>
+    <script2 async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script2>
+    <div v-html="content"></div>
+    <script2>(adsbygoogle = window.adsbygoogle || []).push({});</script2>
+  </div>
 </template>
 
 <script>
