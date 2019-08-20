@@ -25,15 +25,25 @@
     content: "\A0\2014\A0";
 }
 
+.footer-ad {
+    @apply block w-full my-4 mx-auto;
+}
+
+.sidebar-ad {
+    @apply block max-w-full my-4;
+}
+
 @screen md {
     .sponsors-list div {
         @apply w-1/4;
     }
+    .footer-ad {
+        @apply w-11/12;
+    }
 }
 
-ins {
-    min-width: 300px;
-    min-height: 50px;
-    max-width: 100%;
-    @apply max-w-full text-center my-4 mx-auto;
+@screen lg {
+    .footer-ad {
+        @apply w-3/4;
+    }
 }
