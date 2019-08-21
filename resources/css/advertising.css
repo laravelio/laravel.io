@@ -26,7 +26,7 @@
 }
 
 .footer-ad {
-    @apply block w-full my-4 mx-auto;
+    @apply block w-full my-4 mx-auto text-center;
 }
 
 .sidebar-ad {
