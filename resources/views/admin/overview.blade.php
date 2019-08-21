@@ -50,7 +50,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="flex justify-end">
+        <div class="flex justify-center">
             {!! $users->render() !!}
         </div>
     </div>
