@@ -17,7 +17,7 @@
 @endif
 
 @if ($user->isAdmin())
-    <p><span class="label label-primary">Admin</span></p>
+    <p><span class="px-2 py-1 rounded text-xs uppercase bg-green-primary text-white px-2 py-1">Admin</span></p>
 @elseif ($user->isModerator())
     <p><span class="label">Moderator</span></p>
 @endif
