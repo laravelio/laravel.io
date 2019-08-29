@@ -127,14 +127,17 @@ const app = new Vue({
             });
         },
         registerEditors() {
-            Array.from(this.$el.getElementsByClassName('editor')).forEach(editor => {
-                new SimpleMDE({
-                    showIcons: ["code"],
-                    hideIcons: ['preview', 'side-by-side', 'guide'],
-                    element: editor,
-                    status: false
+            const editors = document.getElementsByClassName('editor');
+            if (editors) {
+                Array.from(editors).forEach(editor => {
+                    new SimpleMDE({
+                        showIcons: ["code"],
+                        hideIcons: ['preview', 'side-by-side', 'guide'],
+                        element: editor,
+                        status: false
+                    });
                 });
-            });
+            }
         }
     },
     mounted() {
