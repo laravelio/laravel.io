@@ -16,7 +16,7 @@
             <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100">
                 {!! Form::open(['route' => ['replies.update', $reply->id()], 'method' => 'PUT']) !!}
                     @formGroup('body')
-                        {!! Form::textarea('body', $reply->body(), ['class' => 'editor']) !!}
+                        {{ Form::textarea('body', $reply->body(), ['class' => 'editor', 'v-pre']) }}
                         @error('body')
                     @endFormGroup
 
