@@ -50,6 +50,11 @@ pre .hljs {
     @apply text-sm rounded p-4 border-2;
 }
 
+.forum-content code {
+    background: #f8f8f8;
+    color: #333;
+}
+
 svg {
     @apply w-32;
 }

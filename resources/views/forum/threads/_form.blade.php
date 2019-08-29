@@ -8,7 +8,7 @@
 
     @formGroup('body')
         {!! Form::label('body') !!}
-        {!! Form::textarea('body', isset($thread) ? $thread->body() : null, ['class' => 'editor']) !!}
+        {!! Form::textarea('body', isset($thread) ? $thread->body() : null, ['class' => 'editor', 'v-pre']) !!}
         @error('body')
     @endFormGroup
 
