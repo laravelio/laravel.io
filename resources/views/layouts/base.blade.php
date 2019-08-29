@@ -34,7 +34,7 @@
 </div>
 
 @include('layouts._ads')
-<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/app.js') }}" defer></script>
 
 @include('layouts._intercom')
 
