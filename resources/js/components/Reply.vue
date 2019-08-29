@@ -1,18 +1,19 @@
 <template>
-    <div class="forum-content">
-        <slot/>
-    </div>
+  <div class="forum-content">
+    <div v-html="content"></div>
+  </div>
 </template>
 
 <script>
-    import hljs from 'highlight.js';
-    import 'highlight.js/styles/github.css';
+import hljs from "highlight.js";
+import "highlight.js/styles/github.css";
 
-    export default {
-        mounted() {
-            this.$el.querySelectorAll('pre code').forEach(block => {
-                hljs.highlightBlock(block);
-            });
-        }
-    }
+export default {
+  props: ["content"],
+  mounted() {
+    this.$el.querySelectorAll("pre code").forEach(block => {
+      hljs.highlightBlock(block);
+    });
+  }
+};
 </script>
