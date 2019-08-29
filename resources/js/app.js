@@ -102,16 +102,20 @@ const app = new Vue({
         },
         addSidebarListeners() {
             // open the sidebar
-            document.getElementById('sidebar-open')
-                .addEventListener('click', (e) => {
+            const openButton = document.getElementById('sidebar-open');
+            if (typeof openButton != 'undefined') {
+                openButton.addEventListener('click', (e) => {
                     this.showSidebar();
                 });
+            }
 
             // close the sidebar
-            document.getElementById('sidebar-close')
-                .addEventListener('click', (e) => {
+            const closeButton = document.getElementById('sidebar-close');
+            if (typeof closeButton != 'undefined') {
+                closeButton.addEventListener('click', (e) => {
                     this.hideSidebar();
                 });
+            }
         },
         addAlertListeners() {
             const closeAlertButtons = document.querySelectorAll('.alert .close');
