@@ -103,7 +103,7 @@ const app = new Vue({
         addSidebarListeners() {
             // open the sidebar
             const openButton = document.getElementById('sidebar-open');
-            if (typeof openButton != 'undefined') {
+            if (openButton) {
                 openButton.addEventListener('click', (e) => {
                     this.showSidebar();
                 });
@@ -111,7 +111,7 @@ const app = new Vue({
 
             // close the sidebar
             const closeButton = document.getElementById('sidebar-close');
-            if (typeof closeButton != 'undefined') {
+            if (closeButton) {
                 closeButton.addEventListener('click', (e) => {
                     this.hideSidebar();
                 });
