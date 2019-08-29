@@ -120,6 +120,7 @@
 
                             {!! Form::open(['route' => 'replies.store']) !!}
                                 @formGroup('body')
+                                    {!! Form::label('body', 'Write a reply') !!}
                                     {!! Form::textarea('body', null, ['class' => 'editor']) !!}
                                     @error('body')
                                 @endFormGroup
