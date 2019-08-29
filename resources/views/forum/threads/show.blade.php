@@ -11,11 +11,7 @@
             <div class="w-full md:w-3/4 md:pr-3">
                 <div class="reply bg-white p-4 border rounded">
                     <div>
-                        <reply>
-                            <div v-cloak>
-                                @md($thread->body())
-                            </div>
-                        </reply>
+                        <reply :content="{{ json_encode(md_to_html($thread->body())) }}"/>
                     </div>
 
                     <div class="flex flex-col md:flex-row md:items-center text-sm pt-5 border-t mt-4">
@@ -46,15 +42,13 @@
                         @endif
 
                         <div class="p-4">
-                            <reply>
-                                <div v-cloak>
-                                    @md($reply->body())
-                                </div>
-                            </reply>
+                            <div>
+                                <reply :content="{{ json_encode(md_to_html($reply->body())) }}"/>
+                            </div>
                             <div class="flex flex-col md:flex-row md:items-center text-sm pt-5 border-t mt-4">
                                 <div class="flex flex-wrap mb-4 md:mb-0 justify-between w-full">
                                     <div class="flex">
-                                        @include('forum.threads.info.avatar', ['user' => $reply->author()])
+                                        @include('forum.threads.info.avatar', ['user' => $thread->author()])
 
                                         <div class="mr-6 mb-4 md:mb-0 text-gray-700">
                                             <a href="{{ route('profile', $reply->author()->username()) }}" class="text-green-darker">
