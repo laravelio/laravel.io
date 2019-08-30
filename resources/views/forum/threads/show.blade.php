@@ -186,7 +186,9 @@
                 @endcan
                 </div>
 
-                @include('layouts._ads._forum_sidebar')
+                <div class="w-full">
+                    @include('layouts._ads._forum_sidebar')
+                </div>
             </div>
         </div>
     </div>
