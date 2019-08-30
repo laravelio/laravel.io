@@ -3,7 +3,8 @@ ul.pagination {
 }
 
 li.page-item {
-    @apply flex items-center justify-center mx-1 text-lg border rounded w-10 h-10 text-center bg-white text-green-dark mb-2;
+    @apply flex items-center justify-center mx-1 text-lg border rounded h-6 py-4 px-3 text-center bg-white text-green-dark mb-2;
+    min-width: 1.5rem;
 }
 
 li.page-item:first-child {
