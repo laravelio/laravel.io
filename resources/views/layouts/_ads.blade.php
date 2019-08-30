@@ -11,7 +11,7 @@
         <ins class="adsbygoogle footer-ad"
             data-ad-client="{{ $adSenseClient }}"
             data-ad-slot="{{ config('services.google.ad_sense.unit_footer') }}"
-            data-ad-format="auto">
+            data-ad-format="fluid">
         </ins>
     </div>
     @endif
