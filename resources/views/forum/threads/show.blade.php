@@ -27,9 +27,10 @@
                         @include('forum.threads.info.tags')
                     </div>
 
-                    <div class="mt-4">
-                        @include('layouts._ads._bsa-cpc')
-                    </div>
+                </div>
+
+                <div class="mt-4">
+                    @include('layouts._ads._bsa-cpc')
                 </div>
 
                 @foreach ($thread->replies() as $reply)
