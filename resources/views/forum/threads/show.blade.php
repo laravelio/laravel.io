@@ -3,10 +3,19 @@
 @extends('layouts.default')
 
 @section('content')
+    <div class="bg-white border-b">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-xl py-4 text-gray-900">
+                <a href="{{ route('forum') }}">Forum</a>
+                > {{ $title }}
+            </h1>
+            
+            <form action="{{ route('forum') }}" method="GET">
+                <input type="text" name="search" id="search" value="{{ $search ?? null }}" class="rounded border-2 border-gray-300 py-1 px-3 focus:outline-none focus:border-blue-900" placeholder="Search for threads..." />
+            </form>
+        </div>
+    </div>
     <div class="container mx-auto px-4 pt-4">
-        <h1 class="text-3xl text-gray-900 mb-4">
-            {{ $title }}
-        </h1>
         <div class="flex flex-wrap">
             <div class="w-full md:w-3/4 md:pr-3">
                 <div class="reply bg-white p-4 border rounded">
