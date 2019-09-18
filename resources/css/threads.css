@@ -10,6 +10,10 @@ div.thread-card:nth-last-child(2) {
     @apply border-b rounded-b;
 }
 
+div.forum-content {
+    @apply break-words;
+}
+
 div.forum-content div>* {
     @apply mb-4;
 }
