@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Reply;
 use App\Models\Thread;
+use Illuminate\Support\Arr;
 use Tests\BrowserKitTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -22,8 +23,8 @@ class DashboardTest extends BrowserKitTestCase
     public function users_can_see_some_statistics()
     {
         $user = $this->createUser();
-        $thread = array_first(factory(Thread::class, 3)->create(['author_id' => $user->id()]));
-        $reply = array_first(factory(Reply::class, 2)->create([
+        $thread = Arr::first(factory(Thread::class, 3)->create(['author_id' => $user->id()]));
+        $reply = Arr::first(factory(Reply::class, 2)->create([
             'author_id' => $user->id(),
             'replyable_id' => $thread->id(),
         ]));

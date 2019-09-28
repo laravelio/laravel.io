@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\User;
+use Illuminate\Support\Arr;
 use App\Http\Requests\UpdateProfileRequest;
 
 final class UpdateProfile
@@ -20,7 +21,7 @@ final class UpdateProfile
     public function __construct(User $user, array $attributes = [])
     {
         $this->user = $user;
-        $this->attributes = array_only($attributes, ['name', 'email', 'username', 'github_username', 'bio']);
+        $this->attributes = Arr::only($attributes, ['name', 'email', 'username', 'github_username', 'bio']);
     }
 
     public static function fromRequest(User $user, UpdateProfileRequest $request): self

@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\User;
+use Illuminate\Support\Str;
 use App\Exceptions\CannotCreateUser;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -65,7 +66,7 @@ final class RegisterUser
             'username' => strtolower($this->username),
             'github_id' => $this->githubId,
             'github_username' => $this->githubUsername,
-            'confirmation_code' => str_random(60),
+            'confirmation_code' => Str::random(60),
             'type' => User::DEFAULT,
             'remember_token' => '',
         ]);

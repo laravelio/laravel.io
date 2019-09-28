@@ -10,7 +10,7 @@ class UpdatePasswordRequest extends Request
     {
         return [
             'current_password' => ['sometimes', 'required', new PasscheckRule],
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|min:8',
         ];
     }
 
