@@ -15,7 +15,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
         "lasserafn/php-initial-avatar-generator": "^2.0",
-        "league/commonmark": "^0.17.0",
+        "league/commonmark": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^3.7",
