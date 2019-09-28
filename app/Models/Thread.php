@@ -7,6 +7,7 @@ use Exception;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
 use App\Helpers\HasAuthor;
+use Illuminate\Support\Str;
 use App\Helpers\ModelHelpers;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ReceivesReplies;
@@ -55,7 +56,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble
 
     public function excerpt(int $limit = 100): string
     {
-        return str_limit(strip_tags(md_to_html($this->body())), $limit);
+        return Str::limit(strip_tags(md_to_html($this->body())), $limit);
     }
 
     public function solutionReply(): ?Reply

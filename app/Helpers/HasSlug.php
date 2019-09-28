@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use Illuminate\Support\Str;
+
 trait HasSlug
 {
     public function slug(): string
@@ -21,7 +23,7 @@ trait HasSlug
 
     private function generateUniqueSlug(string $value): string
     {
-        $slug = $originalSlug = str_slug($value);
+        $slug = $originalSlug = Str::slug($value);
         $counter = 0;
 
         while ($this->slugExists($slug, $this->exists ? $this->id() : null)) {
