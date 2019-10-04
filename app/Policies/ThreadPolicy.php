@@ -2,14 +2,17 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Models\Thread;
+use App\User;
 
 class ThreadPolicy
 {
     const UPDATE = 'update';
+
     const DELETE = 'delete';
+
     const SUBSCRIBE = 'subscribe';
+
     const UNSUBSCRIBE = 'unsubscribe';
 
     public function update(User $user, Thread $thread): bool

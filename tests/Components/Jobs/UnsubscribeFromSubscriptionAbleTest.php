@@ -2,11 +2,11 @@
 
 namespace Tests\Components\Jobs;
 
-use Tests\TestCase;
-use App\Models\Thread;
-use App\Models\Subscription;
 use App\Jobs\UnsubscribeFromSubscriptionAble;
+use App\Models\Subscription;
+use App\Models\Thread;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UnsubscribeFromSubscriptionAbleTest extends TestCase
 {

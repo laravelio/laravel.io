@@ -2,13 +2,15 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Models\Reply;
+use App\User;
 
 class ReplyPolicy
 {
     const CREATE = 'create';
+
     const UPDATE = 'update';
+
     const DELETE = 'delete';
 
     /**

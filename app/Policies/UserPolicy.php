@@ -7,7 +7,9 @@ use App\User;
 class UserPolicy
 {
     const ADMIN = 'admin';
+
     const BAN = 'ban';
+
     const DELETE = 'delete';
 
     public function admin(User $user): bool

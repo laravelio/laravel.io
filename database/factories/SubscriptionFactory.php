@@ -1,9 +1,9 @@
 <?php
 
+use App\Models\Subscription;
+use App\Models\Thread;
 use App\User;
 use Ramsey\Uuid\Uuid;
-use App\Models\Thread;
-use App\Models\Subscription;
 
 $factory->define(Subscription::class, function (Faker\Generator $faker, array $attributes = []) {
     return [

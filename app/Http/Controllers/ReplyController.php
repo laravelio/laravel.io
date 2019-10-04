@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reply;
-use App\Models\Thread;
+use App\Http\Middleware\RedirectIfUnconfirmed;
+use App\Http\Requests\CreateReplyRequest;
+use App\Http\Requests\UpdateReplyRequest;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
 use App\Jobs\UpdateReply;
+use App\Models\Reply;
 use App\Models\ReplyAble;
+use App\Models\Thread;
 use App\Policies\ReplyPolicy;
-use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\CreateReplyRequest;
-use App\Http\Requests\UpdateReplyRequest;
 use Illuminate\Auth\Middleware\Authenticate;
-use App\Http\Middleware\RedirectIfUnconfirmed;
+use Illuminate\Http\RedirectResponse;
 
 class ReplyController extends Controller
 {

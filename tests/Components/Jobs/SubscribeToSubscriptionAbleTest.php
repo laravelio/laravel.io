@@ -2,10 +2,10 @@
 
 namespace Tests\Components\Jobs;
 
-use Tests\TestCase;
-use App\Models\Thread;
 use App\Jobs\SubscribeToSubscriptionAble;
+use App\Models\Thread;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class SubscribeToSubscriptionAbleTest extends TestCase
 {

@@ -2,16 +2,16 @@
 
 namespace Tests\Feature;
 
-use App\User;
-use App\Models\Thread;
 use App\Jobs\CreateReply;
 use App\Jobs\CreateThread;
 use App\Models\Subscription;
-use Tests\BrowserKitTestCase;
+use App\Models\Thread;
 use App\Notifications\NewReplyNotification;
+use App\User;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\BrowserKitTestCase;
 
 class SubscriptionsTest extends BrowserKitTestCase
 {

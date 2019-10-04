@@ -2,14 +2,14 @@
 
 namespace App\Jobs;
 
-use App\User;
+use App\Events\ReplyWasCreated;
+use App\Http\Requests\CreateReplyRequest;
 use App\Models\Reply;
-use Ramsey\Uuid\Uuid;
 use App\Models\ReplyAble;
 use App\Models\Subscription;
-use App\Events\ReplyWasCreated;
 use App\Models\SubscriptionAble;
-use App\Http\Requests\CreateReplyRequest;
+use App\User;
+use Ramsey\Uuid\Uuid;
 
 final class CreateReply
 {
