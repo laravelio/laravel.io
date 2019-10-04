@@ -8,9 +8,9 @@ return [
     |--------------------------------------------------------------------------
     |
     | This file is for storing the credentials for third party services such
-    | as Stripe, Mailgun, SparkPost and others. This file provides a sane
-    | default location for this type of information, allowing packages
-    | to have a conventional place to find your various credentials.
+    | as Mailgun, Postmark, AWS and more. This file provides the de facto
+    | location for this type of information, allowing packages to have
+    | a conventional file to locate the various service credentials.
     |
     */
 
@@ -28,43 +28,6 @@ return [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
-    ],
-
-    'sparkpost' => [
-        'secret' => env('SPARKPOST_SECRET'),
-    ],
-
-    'stripe' => [
-        'model' => App\User::class,
-        'key' => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
-        'webhook' => [
-            'secret' => env('STRIPE_WEBHOOK_SECRET'),
-            'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
-        ],
-    ],
-
-    'github' => [
-        'client_id' => env('GITHUB_ID'),
-        'client_secret' => env('GITHUB_SECRET'),
-        'redirect' => env('GITHUB_URL'),
-    ],
-
-    'intercom' => [
-        'app_id' => env('INTERCOM_APP_ID'),
-        'secret' => env('INTERCOM_SECRET'),
-    ],
-
-    'google' => [
-        'ad_sense' => [
-            'client' => env('GOOGLE_AD_SENSE_AD_CLIENT'),
-            'unit_footer' => env('GOOGLE_AD_SENSE_UNIT_FOOTER'),
-            'unit_forum_sidebar' => env('GOOGLE_AD_SENSE_UNIT_FORUM_SIDEBAR'),
-        ],
-    ],
-
-    'bsa' => [
-        'cpc_code' => env('BSA_CPC_CODE'),
     ],
 
 ];
