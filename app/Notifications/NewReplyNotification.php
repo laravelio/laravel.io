@@ -2,13 +2,13 @@
 
 namespace App\Notifications;
 
-use App\Mail\NewReplyEmail;
-use App\Models\Reply;
-use App\Models\Subscription;
 use App\User;
+use App\Models\Reply;
+use App\Mail\NewReplyEmail;
+use App\Models\Subscription;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 final class NewReplyNotification extends Notification implements ShouldQueue
 {

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Settings;
 
+use Auth;
+use App\Jobs\UpdatePassword;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdatePasswordRequest;
-use App\Jobs\UpdatePassword;
-use Auth;
 use Illuminate\Auth\Middleware\Authenticate;
 
 class PasswordController extends Controller

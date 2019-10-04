@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Settings;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateProfileRequest;
+use Auth;
 use App\Jobs\DeleteUser;
 use App\Jobs\UpdateProfile;
 use App\Policies\UserPolicy;
-use Auth;
-use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateProfileRequest;
+use Illuminate\Auth\Middleware\Authenticate;
 
 class ProfileController extends Controller
 {

@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\Tag;
 use App\Models\Thread;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\BrowserKitTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ForumTest extends BrowserKitTestCase
 {

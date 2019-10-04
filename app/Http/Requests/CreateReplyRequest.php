@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Models\ReplyAble;
-use App\Models\Thread;
-use App\Rules\HttpImageRule;
 use App\User;
+use App\Models\Thread;
+use App\Models\ReplyAble;
+use App\Rules\HttpImageRule;
 
 class CreateReplyRequest extends Request
 {

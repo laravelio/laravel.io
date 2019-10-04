@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Mail\EmailConfirmationEmail;
 use App\User;
+use App\Mail\EmailConfirmationEmail;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Queue\SerializesModels;
 

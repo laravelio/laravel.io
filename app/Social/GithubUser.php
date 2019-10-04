@@ -3,8 +3,8 @@
 namespace App\Social;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
+use Illuminate\Contracts\Support\Arrayable;
 
 final class GithubUser implements Arrayable
 {

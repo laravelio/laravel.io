@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Helpers\HasAuthor;
-use App\Helpers\HasTimestamps;
+use Illuminate\Support\Str;
 use App\Helpers\ModelHelpers;
+use App\Helpers\HasTimestamps;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Support\Str;
 
 final class Reply extends Model
 {

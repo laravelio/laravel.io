@@ -2,9 +2,9 @@
 
 namespace App\Listeners;
 
+use App\User;
 use App\Events\ReplyWasCreated;
 use App\Notifications\NewReplyNotification;
-use App\User;
 
 final class SendNewReplyNotification
 {

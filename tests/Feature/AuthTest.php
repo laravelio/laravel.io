@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use App\Mail\EmailConfirmationEmail;
 use Auth;
+use Mail;
 use Carbon\Carbon;
+use Tests\BrowserKitTestCase;
+use App\Mail\EmailConfirmationEmail;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Mail;
-use Tests\BrowserKitTestCase;
 
 class AuthTest extends BrowserKitTestCase
 {

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use Auth;
+use App\User;
 use App\Jobs\ConfirmUser;
 use App\Jobs\SendEmailConfirmation;
-use App\User;
-use Auth;
+use App\Http\Controllers\Controller;
 use Illuminate\Auth\Middleware\Authenticate;
 
 class EmailConfirmationController extends Controller

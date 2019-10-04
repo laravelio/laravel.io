@@ -2,11 +2,11 @@
 
 namespace Tests\Components\Models;
 
+use Carbon\Carbon;
+use Tests\TestCase;
 use App\Models\Reply;
 use App\Models\Thread;
-use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\TestCase;
 
 class ThreadTest extends TestCase
 {

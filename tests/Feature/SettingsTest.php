@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\User;
 use Auth;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\User;
 use Tests\BrowserKitTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SettingsTest extends BrowserKitTestCase
 {
