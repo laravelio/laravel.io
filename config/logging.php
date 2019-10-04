@@ -1,5 +1,6 @@
 <?php
 
+use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
 
@@ -36,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single', 'bugsnag', 'flare'],
+            'channels' => ['daily'],
             'ignore_exceptions' => false,
         ],
 
@@ -50,7 +51,7 @@ return [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
-            'days' => 7,
+            'days' => 14,
         ],
 
         'slack' => [
@@ -90,12 +91,9 @@ return [
             'level' => 'debug',
         ],
 
-        'bugsnag' => [
-            'driver' => 'bugsnag',
-        ],
-
-        'flare' => [
-            'driver' => 'flare',
+        'null' => [
+            'driver' => 'monolog',
+            'handler' => NullHandler::class,
         ],
     ],
 
