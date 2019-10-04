@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use Horizon;
 use App\Models\Thread;
-use Illuminate\Support\ServiceProvider;
+use Horizon;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {

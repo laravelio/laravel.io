@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subscription;
 use App\Jobs\UnsubscribeFromSubscriptionAble;
+use App\Models\Subscription;
 
 class SubscriptionController extends Controller
 {

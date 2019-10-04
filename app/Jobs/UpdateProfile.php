@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Http\Requests\UpdateProfileRequest;
 use App\User;
 use Illuminate\Support\Arr;
-use App\Http\Requests\UpdateProfileRequest;
 
 final class UpdateProfile
 {
