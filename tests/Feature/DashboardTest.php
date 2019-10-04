@@ -4,9 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Reply;
 use App\Models\Thread;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Arr;
 use Tests\BrowserKitTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class DashboardTest extends BrowserKitTestCase
 {

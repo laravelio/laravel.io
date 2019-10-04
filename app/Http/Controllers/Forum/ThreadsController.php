@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\Forum;
 
-use App\Http\Controllers\Controller;
-use App\Http\Middleware\RedirectIfUnconfirmed;
-use App\Http\Requests\ThreadRequest;
+use App\Models\Tag;
+use App\Models\Reply;
+use App\Models\Thread;
 use App\Jobs\CreateThread;
 use App\Jobs\DeleteThread;
-use App\Jobs\MarkThreadSolution;
-use App\Jobs\SubscribeToSubscriptionAble;
-use App\Jobs\UnmarkThreadSolution;
-use App\Jobs\UnsubscribeFromSubscriptionAble;
 use App\Jobs\UpdateThread;
-use App\Models\Reply;
-use App\Models\Tag;
-use App\Models\Thread;
+use Illuminate\Http\Request;
 use App\Policies\ThreadPolicy;
 use App\Queries\SearchThreads;
+use App\Jobs\MarkThreadSolution;
+use App\Jobs\UnmarkThreadSolution;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ThreadRequest;
+use App\Jobs\SubscribeToSubscriptionAble;
 use Illuminate\Auth\Middleware\Authenticate;
-use Illuminate\Http\Request;
+use App\Jobs\UnsubscribeFromSubscriptionAble;
+use App\Http\Middleware\RedirectIfUnconfirmed;
 
 class ThreadsController extends Controller
 {

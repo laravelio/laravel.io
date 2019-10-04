@@ -2,22 +2,22 @@
 
 namespace App\Models;
 
-use App\Exceptions\CouldNotMarkReplyAsSolution;
-use App\Helpers\HasAuthor;
-use App\Helpers\HasSlug;
-use App\Helpers\HasTags;
-use App\Helpers\HasTimestamps;
-use App\Helpers\ModelHelpers;
-use App\Helpers\ProvidesSubscriptions;
-use App\Helpers\ReceivesReplies;
 use DB;
 use Exception;
-use Illuminate\Contracts\Pagination\Paginator;
+use App\Helpers\HasSlug;
+use App\Helpers\HasTags;
+use App\Helpers\HasAuthor;
+use Illuminate\Support\Str;
+use App\Helpers\ModelHelpers;
+use App\Helpers\HasTimestamps;
+use App\Helpers\ReceivesReplies;
+use App\Helpers\ProvidesSubscriptions;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Pagination\Paginator;
+use App\Exceptions\CouldNotMarkReplyAsSolution;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Str;
 
 final class Thread extends Model implements ReplyAble, SubscriptionAble
 {

@@ -1,8 +1,8 @@
 <?php
 
+use App\User;
 use App\Models\Reply;
 use App\Models\Thread;
-use App\User;
 
 $factory->define(Reply::class, function (Faker\Generator $faker, array $attributes = []) {
     return [

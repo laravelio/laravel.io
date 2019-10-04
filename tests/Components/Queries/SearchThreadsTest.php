@@ -2,10 +2,10 @@
 
 namespace Tests\Components\Queries;
 
+use Tests\TestCase;
 use App\Models\Thread;
 use App\Queries\SearchThreads;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\TestCase;
 
 class SearchThreadsTest extends TestCase
 {

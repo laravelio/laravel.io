@@ -2,13 +2,13 @@
 
 namespace App;
 
-use App\Helpers\HasTimestamps;
-use App\Helpers\ModelHelpers;
 use App\Models\Reply;
 use App\Models\Thread;
+use App\Helpers\ModelHelpers;
+use App\Helpers\HasTimestamps;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 final class User extends Authenticatable
 {

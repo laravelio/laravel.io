@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\DoesNotContainUrlRule;
-use App\Rules\HttpImageRule;
 use App\User;
+use App\Rules\HttpImageRule;
+use App\Rules\DoesNotContainUrlRule;
 
 class ThreadRequest extends Request
 {

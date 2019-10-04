@@ -2,11 +2,11 @@
 
 namespace Tests\Components\Jobs;
 
-use App\Events\ReplyWasCreated;
-use App\Jobs\CreateReply;
-use App\Models\Thread;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
+use App\Models\Thread;
+use App\Jobs\CreateReply;
+use App\Events\ReplyWasCreated;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class CreateReplyTest extends TestCase
 {

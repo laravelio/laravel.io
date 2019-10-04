@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Http\Requests\ThreadRequest;
 use App\Models\Thread;
 use Illuminate\Support\Arr;
+use App\Http\Requests\ThreadRequest;
 
 final class UpdateThread
 {
