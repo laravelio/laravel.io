@@ -34,27 +34,35 @@
                                 </h4>
                                 <p class="text-gray-600">{{ $thread->excerpt() }}</p>
                             </a>
-                            <div class="flex flex-col md:flex-row md:items-center text-sm pt-5">
-                                <div class="flex mb-4 md:mb-0">
-                                    @if (count($thread->replies()))
-                                        @include('forum.threads.info.avatar', ['user' => $thread->replies()->last()->author()])
-                                    @else
-                                        @include('forum.threads.info.avatar', ['user' => $thread->author()])
-                                    @endif
-
-                                    <div class="mr-6 text-gray-700">
+                            <div class="flex flex-col justify-between md:flex-row md:items-center text-sm pt-5">
+                                <div class="flex flex-col md:flex-row md:items-center">
+                                    <div class="flex mb-4 md:mb-0">
                                         @if (count($thread->replies()))
-                                            @php($lastReply = $thread->replies()->last())
-                                            <a href="{{ route('profile', $lastReply->author()->username()) }}" class="text-green-darker mr-2">{{ $lastReply->author()->name() }}</a> replied
-                                            {{ $lastReply->createdAt()->diffForHumans() }}
+                                            @include('forum.threads.info.avatar', ['user' => $thread->replies()->last()->author()])
                                         @else
-                                            <a href="{{ route('profile', $thread->author()->username()) }}" class="text-green-darker mr-2">{{ $thread->author()->name() }}</a> posted
-                                            {{ $thread->createdAt()->diffForHumans() }}
+                                            @include('forum.threads.info.avatar', ['user' => $thread->author()])
                                         @endif
+
+                                        <div class="mr-6 text-gray-700">
+                                            @if (count($thread->replies()))
+                                                @php($lastReply = $thread->replies()->last())
+                                                <a href="{{ route('profile', $lastReply->author()->username()) }}" class="text-green-darker mr-2">{{ $lastReply->author()->name() }}</a> replied
+                                                {{ $lastReply->createdAt()->diffForHumans() }}
+                                            @else
+                                                <a href="{{ route('profile', $thread->author()->username()) }}" class="text-green-darker mr-2">{{ $thread->author()->name() }}</a> posted
+                                                {{ $thread->createdAt()->diffForHumans() }}
+                                            @endif
+                                        </div>
                                     </div>
+                                    @include('forum.threads.info.tags')
                                 </div>
 
-                                @include('forum.threads.info.tags')
+                                @if ($thread->isSolved())
+                                    <a class="label label-primary text-center mt-4 md:mt-0" href="{{ route('thread', $thread->slug()) }}#{{ $thread->solutionReplyRelation->id }}">
+                                        <i class="fa fa-check mr-2"></i>
+                                        View solution
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     @endforeach

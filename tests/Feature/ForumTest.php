@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Reply;
 use App\Models\Tag;
 use App\Models\Thread;
 use Tests\BrowserKitTestCase;
@@ -20,6 +21,22 @@ class ForumTest extends BrowserKitTestCase
         $this->visit('/forum')
             ->see('The first thread')
             ->see('The second thread');
+    }
+
+    /** @test */
+    public function users_can_see_when_a_thread_is_resolved()
+    {
+        factory(Thread::class)->create(['subject' => 'The first thread']);
+        $thread = factory(Thread::class)->create(['subject' => 'The second thread']);
+        $reply = factory(Reply::class)->create();
+        $thread->solutionReplyRelation()->associate($reply)->save();
+
+        $this->visit('/forum')
+            ->see('The first thread')
+            ->see('The second thread')
+            ->see('View solution')
+            ->click('View solution')
+            ->seeRouteIs('thread', ['thread' => $thread->slug()]);
     }
 
     /** @test */

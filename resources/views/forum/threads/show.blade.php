@@ -43,7 +43,7 @@
                 </div>
 
                 @foreach ($thread->replies() as $reply)
-                    <div class="reply mt-8 bg-white rounded {{ $thread->isSolutionReply($reply) ? 'border-2 border-green-primary' : 'border' }}">
+                    <div class="reply mt-8 bg-white rounded {{ $thread->isSolutionReply($reply) ? 'border-2 border-green-primary' : 'border' }}" id="{{ $reply->id }}">
                         
                         @if ($thread->isSolutionReply($reply))
                             <div class="bg-green-primary text-white uppercase px-4 py-2 opacity-75">
