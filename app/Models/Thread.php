@@ -69,6 +69,11 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble
         return $this->belongsTo(Reply::class, 'solution_reply_id');
     }
 
+    public function isSolved(): bool
+    {
+        return ! is_null($this->solution_reply_id);
+    }
+
     public function isSolutionReply(Reply $reply): bool
     {
         if ($solution = $this->solutionReply()) {
@@ -139,10 +144,11 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble
      */
     public static function feedQuery(): Builder
     {
-        return static::leftJoin('replies', function ($join) {
-            $join->on('threads.id', 'replies.replyable_id')
+        return static::with('solutionReplyRelation')
+            ->leftJoin('replies', function ($join) {
+                $join->on('threads.id', 'replies.replyable_id')
                     ->where('replies.replyable_type', static::TABLE);
-        })
+            })
             ->orderBy('latest_creation', 'DESC')
             ->groupBy('threads.id')
             ->select('threads.*', DB::raw('
