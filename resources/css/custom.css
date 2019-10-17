@@ -1,34 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap');
 
-@import './alerts.css';
-
-@import './advertising.css';
-
-@import './buttons.css';
-
-@import './footer.css';
-
-@import './forms.css';
-
-@import './home.css';
-
-@import './labels.css';
-
-@import './legals.css';
-
-@import './modal.css';
-
-@import './nav.css';
-
-@import './pagination.css';
-
-@import './replies.css';
-
-@import './tables.css';
-
-@import './tags.css';
-
-@import './threads.css';
+@import 'alerts.css';
+@import 'advertising.css';
+@import 'buttons.css';
+@import 'footer.css';
+@import 'forms.css';
+@import 'labels.css';
+@import 'legals.css';
+@import 'modal.css';
+@import 'nav.css';
+@import 'pagination.css';
+@import 'replies.css';
+@import 'tables.css';
+@import 'tags.css';
+@import 'threads.css';
 
 body {
     @apply font-sans bg-gray-200;

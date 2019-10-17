@@ -1,15 +1,15 @@
-@extends('layouts.base', ['bodyClass' => 'home', 'hideAds' => true])
+@extends('layouts.base', ['bodyClass' => 'home', 'disableFooterAds' => true])
 
 @section('body')
     @include('layouts._alerts')
 
-    <div class="section section-one">
+    <div class="border-b bg-white border-b-8 border-gray-600">
         <div class="container mx-auto flex flex-col items-center py-20 px-4">
             <img src="{{ asset('images/laravelio.png') }}" title="Laravel.io" alt="Laravel.io logo" class="w-full md:w-2/5 mb-8">
             <h2 class="text-2xl text-gray-700 mb-8 text-center md:text-left">The Laravel Community Portal</h2>
             <div class="flex flex-wrap justify-center md:justify-start">
                 @if (Auth::guest())
-                    <a class="button button-big button-primary md:mr-4 mb-4" href="{{ route('register') }}">
+                    <a class="button button-big button-primary mr-4 mb-4" href="{{ route('register') }}">
                         Join the Community
                     </a>
                     <a class="button button-big button-muted mb-4" href="{{ route('forum') }}">
@@ -24,11 +24,11 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="border-b">
         @include('layouts._ads._footer')
     </div>
 
-    <div class="section section-two">
+    <div class="border-b bg-gray-100">
         <div class="container mx-auto py-12 px-4">
             <h2 class="text-4xl text-gray-800 mb-12 text-center">Laravel.io in numbers</h2>
             <div class="flex flex-wrap w-full md:w-2/3 mx-auto justify-center">
@@ -63,7 +63,7 @@
         </div>
     </div>
 
-    <div class="section section-three">
+    <div class="border-b bg-white text-gray-700">
         <div class="container mx-auto py-12 px-4">
             <h2 class="text-4xl text-center">Need help?</h2>
             <div class="text-xl text-center mb-8 text-gray-700">
@@ -88,7 +88,7 @@
         </div>
     </div>
 
-    <div class="section section-four">
+    <div class="border-b">
         <div class="container mx-auto py-12 px-4">
             <h2 class="text-4xl text-center text-gray-800">You can help others</h2>
             <div class="text-xl text-center mb-8 text-gray-800">
@@ -123,7 +123,7 @@
         </div>
     </div>
 
-    <div class="section section-five">
+    <div class="border-b bg-gray-100 text-gray-700">
         <div class="container mx-auto py-12 px-4">
             <h2 class="text-4xl pb-8 mb-8 text-center">More from the community</h2>
             <div class="flex flex-wrap text-center justify-center items-center md:mb-20 w-full lg:w-1/2 mx-auto">
@@ -168,5 +168,4 @@
             </div>
         </div>
     </div>
-
 @endsection
