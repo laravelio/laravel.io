@@ -1,6 +1,6 @@
 @title('Forum Rules')
 
-@extends('layouts.small', ['disableAds' => false])
+@extends('layouts.small')
 
 @section('small-content')
     <div class="flex-col rules">

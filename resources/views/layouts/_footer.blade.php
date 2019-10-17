@@ -1,4 +1,4 @@
-@unless($hideAds ?? false)
+@unless($disableFooterAds ?? false)
     <div class="container mx-auto px-4">
         @include('layouts._ads._footer')
     </div>
