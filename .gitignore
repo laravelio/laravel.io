@@ -12,3 +12,4 @@ Homestead.yaml
 .env
 /aliases
 /after.sh
+.phpunit.result.cache
