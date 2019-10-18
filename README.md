@@ -1,6 +1,6 @@
 # Laravel.io Community Portal
 
-[![CircleCI](https://circleci.com/gh/laravelio/portal/tree/master.svg?style=svg)](https://circleci.com/gh/laravelio/portal/tree/master)
+[![CircleCI](https://img.shields.io/circleci/build/github/laravelio/portal/master)](https://circleci.com/gh/laravelio/portal/tree/master)
 [![StyleCI](https://styleci.io/repos/12895187/shield?branch=master)](https://styleci.io/repos/12895187)
 [![Laravel Version](https://shield.with.social/cc/github/laravelio/portal/master.svg?style=flat-square)](https://packagist.org/packages/laravel/framework)
 
