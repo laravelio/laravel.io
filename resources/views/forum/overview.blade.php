@@ -32,7 +32,7 @@
                                         {{ count($thread->replies()) }}
                                     </span>
                                 </h4>
-                                <p class="text-gray-600" v-pre>{{ $thread->excerpt() }}</p>
+                                <p class="text-gray-600" v-pre>{!! $thread->excerpt() !!}</p>
                             </a>
                             <div class="flex flex-col justify-between md:flex-row md:items-center text-sm pt-5">
                                 <div class="flex flex-col md:flex-row md:items-center">
