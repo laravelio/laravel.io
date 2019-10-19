@@ -3,9 +3,7 @@
 @extends('layouts.default')
 
 @section('content')
-
-    <div class="legal-container"> 
-
+    <div class="legal-container">
         <h1>Terms and Conditions</h1>
 
         <p class="mb-8">
@@ -91,6 +89,5 @@
         <h2>Contact Us</h2>
 
         <p>If you have any questions about these Terms, please contact us.</p>
-
     </div>
 @endsection

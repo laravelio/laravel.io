@@ -3,7 +3,7 @@
 @section('body')
     @include('layouts._alerts')
 
-    <div class="border-b bg-white border-b-8 border-gray-600">
+    <div class="border-b bg-white">
         <div class="container mx-auto flex flex-col items-center py-20 px-4">
             <img src="{{ asset('images/laravelio.png') }}" title="Laravel.io" alt="Laravel.io logo" class="w-full md:w-2/5 mb-8">
             <h2 class="text-2xl text-gray-700 mb-8 text-center md:text-left">The Laravel Community Portal</h2>
