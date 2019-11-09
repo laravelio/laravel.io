@@ -2,11 +2,11 @@
 
 namespace Tests\Components\Models;
 
-use App\User;
-use Tests\TestCase;
 use App\Models\Reply;
 use App\Models\Thread;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class UserTest extends TestCase
 {

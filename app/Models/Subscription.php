@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\User;
 use App\Helpers\HasUuid;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 final class Subscription extends Model
 {

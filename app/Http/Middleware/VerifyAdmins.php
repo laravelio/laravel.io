@@ -2,10 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Policies\UserPolicy;
+use App\User;
 use Auth;
 use Closure;
-use App\User;
-use App\Policies\UserPolicy;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 

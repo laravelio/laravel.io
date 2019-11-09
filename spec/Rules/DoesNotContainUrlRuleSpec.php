@@ -2,8 +2,8 @@
 
 namespace spec\App\Rules;
 
-use PhpSpec\ObjectBehavior;
 use App\Rules\DoesNotContainUrlRule;
+use PhpSpec\ObjectBehavior;
 
 class DoesNotContainUrlRuleSpec extends ObjectBehavior
 {

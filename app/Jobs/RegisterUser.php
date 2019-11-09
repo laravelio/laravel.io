@@ -2,11 +2,11 @@
 
 namespace App\Jobs;
 
-use App\User;
-use Illuminate\Support\Str;
 use App\Exceptions\CannotCreateUser;
 use App\Http\Requests\RegisterRequest;
+use App\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Str;
 
 final class RegisterUser
 {
