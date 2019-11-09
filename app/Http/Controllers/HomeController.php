@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Cache;
-use App\User;
 use App\Models\Thread;
+use App\User;
+use Cache;
 
 class HomeController extends Controller
 {

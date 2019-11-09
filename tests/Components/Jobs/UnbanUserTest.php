@@ -2,10 +2,10 @@
 
 namespace Tests\Components\Jobs;
 
-use Carbon\Carbon;
-use Tests\TestCase;
 use App\Jobs\UnbanUser;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class UnbanUserTest extends TestCase
 {

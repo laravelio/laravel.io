@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Models\Tag;
 use App\Models\Reply;
+use App\Models\Tag;
 use App\Models\Thread;
-use Tests\BrowserKitTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\BrowserKitTestCase;
 
 class ForumTest extends BrowserKitTestCase
 {

@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\User;
 use App\Models\SubscriptionAble;
+use App\User;
 
 final class UnsubscribeFromSubscriptionAble
 {

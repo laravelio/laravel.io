@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Http\Controllers\Controller;
+use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Requests\RegisterRequest;
 use App\Jobs\RegisterUser;
 use App\Jobs\SendEmailConfirmation;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterRequest;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Http\Middleware\RedirectIfAuthenticated;
+use App\User;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {

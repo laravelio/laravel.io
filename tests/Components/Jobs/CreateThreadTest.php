@@ -2,9 +2,9 @@
 
 namespace Tests\Components\Jobs;
 
-use Tests\TestCase;
 use App\Jobs\CreateThread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class CreateThreadTest extends TestCase
 {

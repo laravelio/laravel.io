@@ -2,8 +2,8 @@
 
 namespace spec\App\Rules;
 
-use PhpSpec\ObjectBehavior;
 use App\Rules\HttpImageRule;
+use PhpSpec\ObjectBehavior;
 
 class HttpImageRuleSpec extends ObjectBehavior
 {
