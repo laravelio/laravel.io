@@ -11,7 +11,11 @@
 
     @formGroup('body')
         <label for="body">Body</label>
-        <textarea name="body" id="body" class="editor" v-pre>{{ isset($thread) ? $thread->body() : null }}</textarea>
+        <editor
+            name="body"
+            id="body"
+            content="{{ isset($thread) ? $thread->body() : null }}"
+        />
         @error('body')
     @endFormGroup
 
