@@ -133,7 +133,11 @@
 
                                 @formGroup('body')
                                     <label for="body">Write a reply</label>
-                                    <textarea name="body" id="body" class="editor"></textarea>
+                                    <editor 
+                                        name="body" 
+                                        id="body"
+                                        content="{{ old('body') }}"
+                                    ></editor>
                                     @error('body')
                                 @endFormGroup
 

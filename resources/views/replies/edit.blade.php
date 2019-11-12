@@ -19,7 +19,11 @@
                     @method('PUT')
 
                     @formGroup('body')
-                        <textarea name="body" id="body" class="editor" v-pre>{{ $reply->body() }}</textarea>
+                        <editor
+                            name="body" 
+                            id="body"
+                            content="{{ old('body') ?: $reply->body() }}"
+                        ></editor>
                         @error('body')
                     @endFormGroup
 
