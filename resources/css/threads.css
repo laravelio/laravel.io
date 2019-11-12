@@ -17,3 +17,15 @@ div.forum-content {
 div.forum-content div>* {
     @apply mb-4;
 }
+
+div.forum-content h3 {
+    @apply text-xl font-bold;
+}
+
+div.forum-content a {
+    @apply text-green-dark;
+}
+
+div.forum-content blockquote {
+    @apply border-l-2 border-gray-500 pl-2 italic;
+}

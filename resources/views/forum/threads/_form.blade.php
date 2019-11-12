@@ -14,8 +14,8 @@
         <editor
             name="body"
             id="body"
-            content="{{ isset($thread) ? $thread->body() : null }}"
-        />
+            content="{{ old('body') ?: isset($thread) ? $thread->body() : null }}"
+        ></editor>
         @error('body')
     @endFormGroup
 
