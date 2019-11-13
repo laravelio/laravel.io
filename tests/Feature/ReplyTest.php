@@ -15,16 +15,16 @@ class ReplyTest extends BrowserKitTestCase
     /** @test */
     public function users_can_add_a_reply_to_a_thread()
     {
-        factory(Thread::class)->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
+        $thread = factory(Thread::class)->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
 
         $this->login();
 
-        $this->visit('/forum/the-first-thread')
-            ->type('The first reply', 'body')
-            ->press('Reply')
-            ->see('The first thread')
-            ->see('The first reply')
-            ->see('Reply successfully added!');
+        $this->post('/replies', [
+                'body' => 'The first reply',
+                'replyable_id' => $thread->id,
+                'replyable_type' => Thread::TABLE,
+            ])
+            ->assertSessionHas('success', 'Reply successfully added!');
     }
 
     /** @test */
@@ -36,12 +36,11 @@ class ReplyTest extends BrowserKitTestCase
 
         $this->loginAs($user);
 
-        $this->visit('/replies/1/edit')
-            ->type('The edited reply', 'body')
-            ->press('Update')
-            ->seePageIs('/forum/the-first-thread')
-            ->see('The edited reply')
-            ->see('Reply successfully updated!');
+        $this->put('/replies/1', [
+                'body' => 'The edited reply',
+            ])
+            ->assertRedirectedTo('/forum/the-first-thread')
+            ->assertSessionHas('success', 'Reply successfully updated!');
     }
 
     /** @test */

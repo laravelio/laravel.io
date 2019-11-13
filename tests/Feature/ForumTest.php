@@ -65,14 +65,12 @@ class ForumTest extends BrowserKitTestCase
 
         $this->login();
 
-        $this->visit('/forum/create-thread')
-            ->submitForm('Create Thread', [
+        $this->post('/forum/create-thread', [
                 'subject' => 'http://example.com Foo title',
                 'body' => 'This text explains how to work with Eloquent.',
                 'tags' => [$tag->id()],
             ])
-            ->seePageIs('/forum/create-thread')
-            ->see('The subject field cannot contain an url.');
+            ->assertSessionHasErrors(['subject' => 'The subject field cannot contain an url.']);
     }
 
     /** @test */
@@ -82,16 +80,13 @@ class ForumTest extends BrowserKitTestCase
 
         $this->login();
 
-        $this->visit('/forum/create-thread')
-            ->submitForm('Create Thread', [
+        $this->post('/forum/create-thread', [
                 'subject' => 'How to work with Eloquent?',
                 'body' => 'This text explains how to work with Eloquent.',
                 'tags' => [$tag->id()],
             ])
-            ->seePageIs('/forum/how-to-work-with-eloquent')
-            ->see('How to work with Eloquent?')
-            ->see('Test Tag')
-            ->see('Thread successfully created!');
+            ->assertRedirectedTo('/forum/how-to-work-with-eloquent')
+            ->assertSessionHas('success', 'Thread successfully created!');
     }
 
     /** @test */
@@ -106,16 +101,13 @@ class ForumTest extends BrowserKitTestCase
 
         $this->loginAs($user);
 
-        $this->visit('/forum/my-first-thread/edit')
-            ->submitForm('Update Thread', [
+        $this->put('/forum/my-first-thread', [
                 'subject' => 'How to work with Eloquent?',
                 'body' => 'This text explains how to work with Eloquent.',
                 'tags' => [$tag->id()],
             ])
-            ->seePageIs('/forum/how-to-work-with-eloquent')
-            ->see('How to work with Eloquent?')
-            ->see('Test Tag')
-            ->see('Thread successfully updated!');
+            ->assertRedirectedTo('/forum/how-to-work-with-eloquent')
+            ->assertSessionHas('success', 'Thread successfully updated!');
     }
 
     /** @test */
@@ -147,15 +139,14 @@ class ForumTest extends BrowserKitTestCase
 
         $this->login();
 
-        $this->visit('/forum/create-thread')
-            ->submitForm('Create Thread', [
-                'subject' => 'How to make Eloquent, Doctrine, Entities and Annotations work together in Laravel?',
-                'body' => 'This is a thread with 82 characters in the subject',
-                'tags' => [$tag->id()],
-            ])
-            ->seePageIs('/forum/create-thread')
-            ->see('Something went wrong. Please review the fields below.')
-            ->see('The subject may not be greater than 60 characters.');
+        $response = $this->post('/forum/create-thread', [
+            'subject' => 'How to make Eloquent, Doctrine, Entities and Annotations work together in Laravel?',
+            'body' => 'This is a thread with 82 characters in the subject',
+            'tags' => [$tag->id()],
+        ]);
+
+        $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
+        $response->assertSessionHasErrors(['subject' => 'The subject may not be greater than 60 characters.']);
     }
 
     /** @test */
@@ -170,14 +161,13 @@ class ForumTest extends BrowserKitTestCase
 
         $this->loginAs($user);
 
-        $this->visit('/forum/my-first-thread/edit')
-            ->submitForm('Update Thread', [
-                'subject' => 'How to make Eloquent, Doctrine, Entities and Annotations work together in Laravel?',
-                'body' => 'This is a thread with 82 characters in the subject',
-                'tags' => [$tag->id()],
-            ])
-            ->seePageIs('/forum/my-first-thread/edit')
-            ->see('Something went wrong. Please review the fields below.')
-            ->see('The subject may not be greater than 60 characters.');
+        $response = $this->put('/forum/my-first-thread', [
+            'subject' => 'How to make Eloquent, Doctrine, Entities and Annotations work together in Laravel?',
+            'body' => 'This is a thread with 82 characters in the subject',
+            'tags' => [$tag->id()],
+        ]);
+
+        $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
+        $response->assertSessionHasErrors(['subject' => 'The subject may not be greater than 60 characters.']);
     }
 }
