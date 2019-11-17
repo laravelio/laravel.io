@@ -2,7 +2,9 @@
     {{-- Header --}}
     @slot('header')
         @component('mail::header', ['url' => config('app.url')])
-            <div class="logo"><img src="{{ asset('images/laravelio.png') }}" title="Laravel.io"></div>
+            <div class="logo">
+                <img src="{{ asset('images/laravelio.png') }}" title="Laravel.io">
+            </div>
         @endcomponent
     @endslot
 
@@ -21,7 +23,7 @@
     {{-- Footer --}}
     @slot('footer')
         @component('mail::footer')
-            &copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
+            © {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
         @endcomponent
     @endslot
 @endcomponent
