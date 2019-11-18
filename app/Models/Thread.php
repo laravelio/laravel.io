@@ -3,16 +3,13 @@
 namespace App\Models;
 
 use App\Exceptions\CouldNotMarkReplyAsSolution;
+use App\Helpers\HasAuthor;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
-use Spatie\Feed\Feedable;
-use Spatie\Feed\FeedItem;
-use App\Helpers\HasAuthor;
-use App\Helpers\ModelHelpers;
 use App\Helpers\HasTimestamps;
-use Illuminate\Support\Carbon;
-use App\Helpers\ReceivesReplies;
+use App\Helpers\ModelHelpers;
 use App\Helpers\ProvidesSubscriptions;
+use App\Helpers\ReceivesReplies;
 use DB;
 use Exception;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -20,7 +17,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 
 final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedable
 {
