@@ -197,9 +197,8 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
      */
     public static function getFeedItems()
     {
-        $page = intval(request('page', 1));
-        $query = static::feedQuery();
-
-        return $query->skip(($page - 1) * static::FEED_PAGE_SIZE)->take(static::FEED_PAGE_SIZE)->get();
+        return static::feedQuery()
+            ->paginate(static::FEED_PAGE_SIZE)
+            ->getCollection();
     }
 }
