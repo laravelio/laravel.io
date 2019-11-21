@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Thread;
+
 return [
     'feeds' => [
         'forum' => [
@@ -11,14 +13,14 @@ return [
              * You can also pass an argument to that method:
              * ['App\Model@getAllFeedItems', 'argument']
              */
-            'items' => ['App\Models\Thread@getFeedItems'],
+            'items' => [Thread::class.'@getFeedItems'],
 
             /*
              * The feed will be available on this url.
              */
-            'url' => '/forum/rss',
+            'url' => '/forum/feed',
 
-            'title' => 'laravel.io Forum RSS Feed',
+            'title' => 'Laravel.io Forum RSS Feed',
         ],
     ],
 ];

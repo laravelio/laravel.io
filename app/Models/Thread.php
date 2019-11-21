@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
@@ -114,7 +115,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         parent::delete();
     }
 
-    public function toFeedItem()
+    public function toFeedItem(): FeedItem
     {
         $updatedAt = Carbon::parse($this->latest_creation);
 
@@ -192,10 +193,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         }
     }
 
-    /**
-     * retrieve 20 feed items with use of page parameter.
-     */
-    public static function getFeedItems()
+    public static function getFeedItems(): SupportCollection
     {
         return static::feedQuery()
             ->paginate(static::FEED_PAGE_SIZE)
