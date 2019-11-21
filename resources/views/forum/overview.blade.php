@@ -82,9 +82,17 @@
             </div>
         </div>
         <div class="w-full md:w-1/4 md:pl-3 md:pt-4">
-            <a href="{{ route('threads.create') }}"
-            class="button button-primary button-full mb-4">
-                Create Thread
+            <a 
+                href="{{ route('threads.create') }}"
+                class="button button-primary button-full mb-4">
+                    Create Thread
+            </a>
+            <a 
+                href="{{ route("feeds.forum") }}"
+                class="button button-muted button-full mb-4"
+                target="_blank">
+                    <i class="fa fa-feed"></i>
+                    Feed
             </a>
 
             @include('layouts._ads._forum_sidebar')
