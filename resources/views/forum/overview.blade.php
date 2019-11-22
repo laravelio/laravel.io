@@ -92,7 +92,7 @@
                 class="button button-muted button-full mb-4"
                 target="_blank">
                     <i class="fa fa-feed"></i>
-                    Feed
+                    RSS Feed
             </a>
 
             @include('layouts._ads._forum_sidebar')
