@@ -2,7 +2,7 @@
     <h2 class="text-4xl mb-12">We'd like to thank these <strong>amazing companies</strong> for supporting us</h2>
     <div class="sponsors-list">
         <div>
-            <a href="https://m.do.co/c/a6c836a9bf72">
+            <a href="https://m.do.co/c/7922b1dff899">
                 <img src="{{ asset('images/digitalocean.png') }}">
             </a>
         </div>
