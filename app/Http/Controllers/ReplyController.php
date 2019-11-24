@@ -68,14 +68,14 @@ class ReplyController extends Controller
     {
         $this->dispatchNow(new LikeReply($reply, auth()->user()));
 
-        return back();
+        return redirect()->to(url()->previous() . "#{$reply->id}");
     }
 
     public function unlike(Reply $reply)
     {
         $this->dispatchNow(new UnlikeReply($reply, auth()->user()));
 
-        return back();
+        return redirect()->to(url()->previous() . "#{$reply->id}");
     }
 
     private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse
