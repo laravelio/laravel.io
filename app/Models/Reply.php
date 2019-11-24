@@ -14,10 +14,12 @@ final class Reply extends Model
 {
     use HasLikes, HasAuthor, HasTimestamps, ModelHelpers;
 
+    const TABLE = 'replies';
+
     /**
      * {@inheritdoc}
      */
-    protected $table = 'replies';
+    protected $table = self::TABLE;
 
     /**
      * {@inheritdoc}

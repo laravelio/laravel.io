@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Reply;
 use App\Models\Thread;
 use Horizon;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Relation::morphMap([
             Thread::TABLE => Thread::class,
+            Reply::TABLE => Reply::class,
         ]);
     }
 
