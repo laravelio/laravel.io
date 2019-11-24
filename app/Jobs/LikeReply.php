@@ -2,10 +2,10 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\CannotLikeReplyMultipleTimes;
 use App\User;
 use App\Models\Reply;
 use Illuminate\Database\QueryException;
-use App\Exceptions\CannotLikeReplyTwice;
 
 class LikeReply
 {
@@ -42,7 +42,7 @@ class LikeReply
         try {
             $this->reply->likedBy($this->user);
         } catch (QueryException $exception) {
-            throw new CannotLikeReplyTwice('Sorry, you cannot like a reply twice');
+            throw new CannotLikeReplyMultipleTimes();
         }
     }
 }
