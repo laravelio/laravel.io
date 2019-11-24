@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Helpers\HasLikes;
 use App\Helpers\HasAuthor;
+use App\Helpers\HasLikes;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
 use Illuminate\Database\Eloquent\Model;

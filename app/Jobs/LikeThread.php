@@ -2,10 +2,10 @@
 
 namespace App\Jobs;
 
-use App\User;
-use Illuminate\Database\QueryException;
 use App\Exceptions\CannotLikeThreadMultipleTimes;
 use App\Models\Thread;
+use App\User;
+use Illuminate\Database\QueryException;
 
 class LikeThread
 {

@@ -116,7 +116,7 @@ class ReplyTest extends BrowserKitTestCase
                 'You\'ll need to verify your account before participating in this thread.'
             );
     }
-    
+
     /** @test */
     public function user_can_like_a_reply()
     {
@@ -125,7 +125,9 @@ class ReplyTest extends BrowserKitTestCase
         $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread']);
         $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
 
-        $this->put('/forum/the-first-thread/'.$reply->id().'/like')
-            ->assertOk();
+        $this->login();
+        $this->visit("/forum/{$thread->slug}");
+        $this->put("/replies/{$reply->id()}/like")
+            ->assertRedirectedTo("/forum/the-first-thread#{$reply->id}");
     }
 }

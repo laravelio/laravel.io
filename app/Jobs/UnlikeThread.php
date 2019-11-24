@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\User;
 use App\Models\Thread;
+use App\User;
 
 class UnlikeThread
 {

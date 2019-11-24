@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\RedirectIfUnconfirmed;
 use App\Http\Requests\CreateReplyRequest;
 use App\Http\Requests\UpdateReplyRequest;
-use App\Jobs\LikeReply;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
+use App\Jobs\LikeReply;
+use App\Jobs\UnlikeReply;
 use App\Jobs\UpdateReply;
 use App\Models\Reply;
 use App\Models\ReplyAble;
 use App\Models\Thread;
-use App\Jobs\UnlikeReply;
 use App\Policies\ReplyPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\RedirectResponse;
@@ -68,14 +68,14 @@ class ReplyController extends Controller
     {
         $this->dispatchNow(new LikeReply($reply, auth()->user()));
 
-        return redirect()->to(url()->previous() . "#{$reply->id}");
+        return redirect()->to(url()->previous()."#{$reply->id}");
     }
 
     public function unlike(Reply $reply)
     {
         $this->dispatchNow(new UnlikeReply($reply, auth()->user()));
 
-        return redirect()->to(url()->previous() . "#{$reply->id}");
+        return redirect()->to(url()->previous()."#{$reply->id}");
     }
 
     private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse

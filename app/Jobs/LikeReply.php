@@ -3,9 +3,8 @@
 namespace App\Jobs;
 
 use App\Exceptions\CannotLikeReplyMultipleTimes;
-use App\User;
 use App\Models\Reply;
-use Illuminate\Database\QueryException;
+use App\User;
 
 class LikeReply
 {
@@ -39,7 +38,7 @@ class LikeReply
      */
     public function handle()
     {
-        if($this->reply->isLikedBy($this->user)) {
+        if ($this->reply->isLikedBy($this->user)) {
             throw new CannotLikeReplyMultipleTimes();
         }
 

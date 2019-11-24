@@ -2,9 +2,9 @@
 
 namespace Tests\Components\Models;
 
-use Tests\TestCase;
 use App\Models\Reply;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class ReplyTest extends TestCase
 {

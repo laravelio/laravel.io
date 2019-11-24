@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\User;
 use App\Models\Reply;
+use App\User;
 
 class UnlikeReply
 {

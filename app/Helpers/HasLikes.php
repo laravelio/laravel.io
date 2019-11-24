@@ -2,8 +2,8 @@
 
 namespace App\Helpers;
 
-use App\User;
 use App\Models\Like;
+use App\User;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait HasLikes
