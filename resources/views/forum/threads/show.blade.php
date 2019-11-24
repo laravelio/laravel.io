@@ -18,12 +18,8 @@
     <div class="container mx-auto px-4 pt-4">
         <div class="flex flex-wrap">
             <div class="w-full md:w-3/4 md:pr-3">
-                <div class="reply bg-white p-4 border rounded">
-                    <div>
-                        <reply :content="{{ json_encode(md_to_html($thread->body())) }}"/>
-                    </div>
-
-                    <div class="flex flex-col md:flex-row md:items-center text-sm pt-5 border-t mt-4">
+                <div class="reply bg-white border rounded">
+                    <div class="flex flex-col md:flex-row md:items-center text-sm p-4 border-b">
                         <div class="flex mb-4 md:mb-0">
                             @include('forum.threads.info.avatar', ['user' => $thread->author()])
 
@@ -35,7 +31,16 @@
 
                         @include('forum.threads.info.tags')
                     </div>
-
+                    <div class="p-4">
+                        <reply :content="{{ json_encode(md_to_html($thread->body())) }}"/>
+                    </div>
+                    <div class="border-t">
+                        @include('forum.threads.info.likes', [
+                            'like'=> ['threads.like', $thread->slug()],
+                            'unlike' => ['threads.unlike', $thread->slug()],
+                            'likeable' => $thread
+                        ])
+                    </div>
                 </div>
 
                 <div class="mt-4">
@@ -51,12 +56,9 @@
                             </div>
                         @endif
 
-                        <div class="p-4">
-                            <div>
-                                <reply :content="{{ json_encode(md_to_html($reply->body())) }}"/>
-                            </div>
-                            <div class="flex flex-col md:flex-row md:items-center text-sm pt-5 border-t mt-4">
-                                <div class="flex flex-wrap mb-4 md:mb-0 justify-between w-full">
+                        <div>
+                            <div class="flex flex-col md:flex-row md:items-center text-sm p-4 border-b">
+                                <div class="flex flex-wrap mb-4 md:mb-0 justify-between w-full items-center">
                                     <div class="flex">
                                         @include('forum.threads.info.avatar', ['user' => $reply->author()])
 
@@ -108,26 +110,17 @@
                                     </div>
                                 </div>              
                             </div>
-                        @endcan
-                        <div class="thread-info-likes">
-                            @if(!$reply->isLikedBy(auth()->user()))
-                                {{ Form::open(['route' => ['replies.like', $reply], 'method' => 'PUT']) }}
-                                <span>{{$reply->likes_count}}</span>
-                                {{ Form::submit('like', ['class' => 'btn btn-xs btn-success']) }}
-                                {{ Form::close() }}
-                            @else
-                                {{ Form::open(['route' => ['replies.dislike', $reply], 'method' => 'DELETE']) }}
-                                <span>{{$reply->likes_count}}</span>
-                                {{ Form::submit('dislike', ['class' => 'btn btn-xs btn-danger']) }}
-                                {{ Form::close() }}
-                            @endif
-                        </div>
-                        @endcan
-                        @auth
-                            <div class="thread-info-likes">
-                                <like></like>
+                            <div class="p-4">
+                                <reply :content="{{ json_encode(md_to_html($reply->body())) }}"/>
+                            </div>                            
+                            <div class="border-t">
+                                @include('forum.threads.info.likes', [
+                                    'like'=> ['replies.like', $reply],
+                                    'unlike' => ['replies.unlike', $reply],
+                                    'likeable' => $reply
+                                ])
                             </div>
-                        @endauth
+                        </div>
                     </div>
 
                     @include('_partials._delete_modal', [
