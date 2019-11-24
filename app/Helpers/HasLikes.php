@@ -26,7 +26,7 @@ trait HasLikes
 
     public function likes()
     {
-        return $this->morphMany(Like::class, 'liked');
+        return $this->morphMany(Like::class, 'likeable');
     }
 
     public function isLikedBy(User $user)
