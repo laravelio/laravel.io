@@ -7,8 +7,10 @@ use App\Http\Middleware\RedirectIfUnconfirmed;
 use App\Http\Requests\ThreadRequest;
 use App\Jobs\CreateThread;
 use App\Jobs\DeleteThread;
+use App\Jobs\LikeThread;
 use App\Jobs\MarkThreadSolution;
 use App\Jobs\SubscribeToSubscriptionAble;
+use App\Jobs\UnlikeThread;
 use App\Jobs\UnmarkThreadSolution;
 use App\Jobs\UnsubscribeFromSubscriptionAble;
 use App\Jobs\UpdateThread;
@@ -132,5 +134,19 @@ class ThreadsController extends Controller
         $this->success("You're now unsubscribed from this thread.");
 
         return redirect()->route('thread', $thread->slug());
+    }
+
+    public function like(Thread $thread)
+    {
+        $this->dispatchNow(new LikeThread($thread, auth()->user()));
+
+        return back();
+    }
+
+    public function unlike(Thread $thread)
+    {
+        $this->dispatchNow(new UnlikeThread($thread, auth()->user()));
+
+        return back();
     }
 }

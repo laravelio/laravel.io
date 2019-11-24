@@ -62,6 +62,8 @@ Route::prefix('forum')->namespace('Forum')->group(function () {
     Route::put('{thread}/unmark-solution', 'ThreadsController@unmarkSolution')->name('threads.solution.unmark');
     Route::get('{thread}/subscribe', 'ThreadsController@subscribe')->name('threads.subscribe');
     Route::get('{thread}/unsubscribe', 'ThreadsController@unsubscribe')->name('threads.unsubscribe');
+    Route::put('{thread}/like', 'ThreadsController@like')->name('threads.like');
+    Route::delete('{thread}/unlike', 'ThreadsController@unlike')->name('threads.unlike');
 
     Route::get('tags/{tag}', 'TagsController@show')->name('forum.tag');
 });
