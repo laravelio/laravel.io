@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\User;
 use App\Models\Like;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait HasLikes
 {
@@ -24,12 +25,12 @@ trait HasLikes
         optional($this->likes()->where('user_id', $user->id)->get()->first())->delete();
     }
 
-    public function likes()
+    public function likes(): MorphMany
     {
         return $this->morphMany(Like::class, 'likeable');
     }
 
-    public function isLikedBy(User $user)
+    public function isLikedBy(User $user): bool
     {
         if ($user == null) {
             return false;
@@ -38,7 +39,7 @@ trait HasLikes
         return $this->likes()->where('user_id', $user->id)->exists();
     }
 
-    public function getLikesCountAttribute()
+    public function getLikesCountAttribute(): int
     {
         return $this->likes->count();
     }
