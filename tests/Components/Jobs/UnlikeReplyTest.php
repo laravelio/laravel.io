@@ -2,13 +2,13 @@
 
 namespace Tests\Components\Jobs;
 
-use App\User;
-use Tests\TestCase;
+use App\Jobs\UnlikeReply;
 use App\Models\Reply;
-use App\Jobs\DislikeReply;
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
-class DislikeReplyTest extends TestCase
+class UnlikeReplyTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -21,7 +21,7 @@ class DislikeReplyTest extends TestCase
         $reply->likedBy($user);
         $this->assertTrue($reply->fresh()->isLikedBy($user));
 
-        $this->dispatch(new DislikeReply($reply, $user));
+        $this->dispatch(new UnlikeReply($reply, $user));
 
         $this->assertFalse($reply->fresh()->isLikedBy($user));
     }
@@ -35,9 +35,9 @@ class DislikeReplyTest extends TestCase
         $reply->likedBy($user);
         $this->assertTrue($reply->fresh()->isLikedBy($user));
 
-        $this->dispatch(new DislikeReply($reply, $user));
+        $this->dispatch(new UnlikeReply($reply, $user));
 
-        $this->dispatch(new DislikeReply($reply, $user));
+        $this->dispatch(new UnlikeReply($reply, $user));
 
         //$this->assertFalse($reply->fresh()->isLikedBy($user));
     }

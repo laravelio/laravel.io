@@ -34,7 +34,7 @@ class LikeReplyTest extends TestCase
 
         $this->assertTrue($reply->fresh()->isLikedBy($user));
 
-        $this->expectException(CannotLikeReplyTwice::class);
+        $this->expectException(CannotLikeReplyMultipleTimes::class);
 
         $this->dispatch(new LikeReply($reply, $user));
     }

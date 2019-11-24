@@ -39,10 +39,10 @@ class LikeReply
      */
     public function handle()
     {
-        try {
-            $this->reply->likedBy($this->user);
-        } catch (QueryException $exception) {
+        if($this->reply->isLikedBy($this->user)) {
             throw new CannotLikeReplyMultipleTimes();
         }
+
+        $this->reply->likedBy($this->user);
     }
 }
