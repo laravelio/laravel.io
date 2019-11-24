@@ -12,7 +12,7 @@ use App\Jobs\UpdateReply;
 use App\Models\Reply;
 use App\Models\ReplyAble;
 use App\Models\Thread;
-use App\Jobs\DislikeReply;
+use App\Jobs\UnlikeReply;
 use App\Policies\ReplyPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\RedirectResponse;
@@ -71,9 +71,9 @@ class ReplyController extends Controller
         return back();
     }
 
-    public function dislike(Reply $reply)
+    public function unlike(Reply $reply)
     {
-        $this->dispatchNow(new DislikeReply($reply, auth()->user()));
+        $this->dispatchNow(new UnlikeReply($reply, auth()->user()));
 
         return back();
     }

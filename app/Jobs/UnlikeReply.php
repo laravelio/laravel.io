@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\User;
 use App\Models\Reply;
 
-class DislikeReply
+class UnlikeReply
 {
     /**
      * @var \App\Models\Reply
@@ -13,7 +13,7 @@ class DislikeReply
     private $reply;
 
     /**
-     * @var \App\Jobs\User
+     * @var \App\User
      */
     private $user;
 
@@ -21,7 +21,7 @@ class DislikeReply
      * Create a new job instance.
      *
      * @param \App\Models\Reply $reply
-     * @param \App\Jobs\User $user
+     * @param \App\User $user
      */
     public function __construct(Reply $reply, User $user)
     {
