@@ -11,7 +11,7 @@ trait HasLikes
     protected static function bootHasLikes()
     {
         static::deleting(function ($model) {
-            $model->likes->each->delete();
+            $model->likes()->delete();
         });
     }
 

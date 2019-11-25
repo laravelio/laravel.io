@@ -3,6 +3,7 @@
 namespace Tests\Components\Jobs;
 
 use App\Jobs\DeleteThread;
+use App\Models\Like;
 use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -17,11 +18,14 @@ class DeleteThreadTest extends TestCase
     {
         $thread = factory(Thread::class)->create();
         $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
+        factory(Like::class)->states('thread')->create(['likeable_id' => $thread->id()]);
+        factory(Like::class)->states('reply')->create(['likeable_id' => $reply->id()]);
 
         $this->dispatch(new DeleteThread($thread));
-
+        
         $this->assertDatabaseMissing('threads', ['id' => $thread->id()]);
         $this->assertDatabaseMissing('replies', ['replyable_id' => $thread->id()]);
-        $this->assertDatabaseMissing('likes', ['liked_type' => get_class($reply), 'liked_id' => $reply->id()]);
+        $this->assertDatabaseMissing('likes', ['likeable_type' => 'threads', 'likeable_id' => $thread->id()]);
+        $this->assertDatabaseMissing('likes', ['likeable_type' => 'replies', 'likeable_id' => $reply->id()]);
     }
 }
