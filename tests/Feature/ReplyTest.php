@@ -133,7 +133,7 @@ class ReplyTest extends BrowserKitTestCase
         $this->seeInDatabase('likes', [
             'user_id' => $user->id,
             'likeable_id' => $reply->id,
-            'likeable_type' => 'replies'
+            'likeable_type' => 'replies',
         ]);
     }
 
@@ -153,7 +153,7 @@ class ReplyTest extends BrowserKitTestCase
         $this->notSeeInDatabase('likes', [
             'user_id' => $user->id,
             'likeable_id' => $reply->id,
-            'likeable_type' => 'replies'
+            'likeable_type' => 'replies',
         ]);
     }
 }

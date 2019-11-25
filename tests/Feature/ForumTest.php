@@ -181,12 +181,12 @@ class ForumTest extends BrowserKitTestCase
 
         $this->loginAs($user);
         $this->put("/forum/{$thread->slug}/like")
-            ->assertRedirectedTo("/forum/the-first-thread");
+            ->assertRedirectedTo('/forum/the-first-thread');
 
         $this->seeInDatabase('likes', [
             'user_id' => $user->id,
             'likeable_id' => $thread->id,
-            'likeable_type' => 'threads'
+            'likeable_type' => 'threads',
         ]);
     }
 
@@ -199,12 +199,12 @@ class ForumTest extends BrowserKitTestCase
 
         $this->loginAs($user);
         $this->delete("/forum/{$thread->slug}/unlike")
-            ->assertRedirectedTo("/forum/the-first-thread");
+            ->assertRedirectedTo('/forum/the-first-thread');
 
         $this->notSeeInDatabase('likes', [
             'user_id' => $user->id,
             'likeable_id' => $thread->id,
-            'likeable_type' => 'threads'
+            'likeable_type' => 'threads',
         ]);
     }
 }

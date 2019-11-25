@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Exceptions\CannotLikeThreadMultipleTimes;
 use App\Models\Thread;
 use App\User;
-use Illuminate\Database\QueryException;
 
 class LikeThread
 {
