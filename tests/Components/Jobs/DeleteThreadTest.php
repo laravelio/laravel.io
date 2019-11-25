@@ -22,7 +22,7 @@ class DeleteThreadTest extends TestCase
         factory(Like::class)->states('reply')->create(['likeable_id' => $reply->id()]);
 
         $this->dispatch(new DeleteThread($thread));
-        
+
         $this->assertDatabaseMissing('threads', ['id' => $thread->id()]);
         $this->assertDatabaseMissing('replies', ['replyable_id' => $thread->id()]);
         $this->assertDatabaseMissing('likes', ['likeable_type' => 'threads', 'likeable_id' => $thread->id()]);

@@ -2,7 +2,6 @@
 
 namespace App\Helpers;
 
-use App\Models\Like;
 use App\Models\Reply;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
