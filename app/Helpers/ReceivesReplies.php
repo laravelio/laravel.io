@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Like;
 use App\Models\Reply;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -25,7 +26,11 @@ trait ReceivesReplies
 
     public function deleteReplies()
     {
-        $this->repliesRelation()->delete();
+        // We need to explicitly iterate over the repies and delete them
+        // separately because all related models need to be deleted.
+        foreach ($this->repliesRelation()->get() as $reply) {
+            $reply->delete();
+        }
     }
 
     /**
