@@ -13,7 +13,7 @@ class UnlikeReplyTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function we_can_dislike_a_reply()
+    public function we_can_unlike_a_reply()
     {
         $user = factory(User::class)->create();
         $reply = factory(Reply::class)->create();
@@ -24,21 +24,5 @@ class UnlikeReplyTest extends TestCase
         $this->dispatch(new UnlikeReply($reply, $user));
 
         $this->assertFalse($reply->fresh()->isLikedBy($user));
-    }
-
-    /** @test */
-    public function we_cannot_dislike_a_reply()
-    {
-        $user = factory(User::class)->create();
-        $reply = factory(Reply::class)->create();
-
-        $reply->likedBy($user);
-        $this->assertTrue($reply->fresh()->isLikedBy($user));
-
-        $this->dispatch(new UnlikeReply($reply, $user));
-
-        $this->dispatch(new UnlikeReply($reply, $user));
-
-        //$this->assertFalse($reply->fresh()->isLikedBy($user));
     }
 }

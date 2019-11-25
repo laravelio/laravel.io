@@ -39,10 +39,10 @@ class LikeThread
      */
     public function handle()
     {
-        try {
-            $this->thread->likedBy($this->user);
-        } catch (QueryException $exception) {
+        if ($this->thread->isLikedBy($this->user)) {
             throw new CannotLikeThreadMultipleTimes();
         }
+
+        $this->thread->likedBy($this->user);
     }
 }
