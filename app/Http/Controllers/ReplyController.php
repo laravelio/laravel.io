@@ -68,14 +68,16 @@ class ReplyController extends Controller
     {
         $this->dispatchNow(new LikeReply($reply, auth()->user()));
 
-        return redirect()->to(url()->previous()."#{$reply->id}");
+        return redirect()
+            ->to(route('thread', $reply->replyAble()->slug())."#{$reply->id}");
     }
 
     public function unlike(Reply $reply)
     {
         $this->dispatchNow(new UnlikeReply($reply, auth()->user()));
 
-        return redirect()->to(url()->previous()."#{$reply->id}");
+        return redirect()
+            ->to(route('thread', $reply->replyAble()->slug())."#{$reply->id}");
     }
 
     private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse
