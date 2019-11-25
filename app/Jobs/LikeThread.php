@@ -34,7 +34,7 @@ class LikeThread
      * Execute the job.
      *
      * @return void
-     * @throws \App\Exceptions\CannotLikeReplyTwice
+     * @throws \App\Exceptions\CannotLikeThreadMultipleTimes
      */
     public function handle()
     {

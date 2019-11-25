@@ -34,7 +34,7 @@ class LikeReply
      * Execute the job.
      *
      * @return void
-     * @throws \App\Exceptions\CannotLikeReplyTwice
+     * @throws \App\Exceptions\CannotLikeReplyMultipleTimes
      */
     public function handle()
     {
