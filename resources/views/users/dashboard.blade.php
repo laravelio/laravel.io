@@ -4,8 +4,6 @@
 
 @section('content')
     <div class="container mx-auto px-4">
-        <h1 class="text-xl py-4 text-gray-900 mb-8">Welcome back, {{ Auth::user()->name() }}!</h1>
-
         <div class="flex flex-wrap w-full md:w-2/3 mx-auto justify-center mb-8">
             <div class="w-full md:w-1/3 h-48 flex justify-center mb-4">
                 <div class="flex flex-col items-center text-center">
