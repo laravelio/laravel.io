@@ -25,7 +25,7 @@ trait ReceivesReplies
 
     public function deleteReplies()
     {
-        // We need to explicitly iterate over the repies and delete them
+        // We need to explicitly iterate over the replies and delete them
         // separately because all related models need to be deleted.
         foreach ($this->repliesRelation()->get() as $reply) {
             $reply->delete();

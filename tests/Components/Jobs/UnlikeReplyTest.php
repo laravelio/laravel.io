@@ -5,12 +5,12 @@ namespace Tests\Components\Jobs;
 use App\Jobs\UnlikeReply;
 use App\Models\Reply;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UnlikeReplyTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function we_can_unlike_a_reply()

@@ -2,16 +2,16 @@
 
 namespace Tests\Components\Jobs;
 
-use App\Exceptions\CannotLikeThreadMultipleTimes;
+use App\Exceptions\CannotLikeItem;
 use App\Jobs\LikeThread;
 use App\Models\Thread;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class LikeThreadTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function we_can_like_a_thread()
@@ -34,7 +34,7 @@ class LikeThreadTest extends TestCase
 
         $this->assertTrue($thread->fresh()->isLikedBy($user));
 
-        $this->expectException(CannotLikeThreadMultipleTimes::class);
+        $this->expectException(CannotLikeItem::class);
 
         $this->dispatch(new LikeThread($thread, $user));
     }

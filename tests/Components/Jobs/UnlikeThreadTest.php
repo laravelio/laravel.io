@@ -5,12 +5,12 @@ namespace Tests\Components\Jobs;
 use App\Jobs\UnlikeThread;
 use App\Models\Thread;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UnlikeThreadTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function we_can_unlike_a_thread()

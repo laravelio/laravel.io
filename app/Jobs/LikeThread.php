@@ -2,11 +2,11 @@
 
 namespace App\Jobs;
 
-use App\Exceptions\CannotLikeThreadMultipleTimes;
+use App\Exceptions\CannotLikeItem;
 use App\Models\Thread;
 use App\User;
 
-class LikeThread
+final class LikeThread
 {
     /**
      * @var \App\Models\Thread
@@ -18,12 +18,6 @@ class LikeThread
      */
     private $user;
 
-    /**
-     * Create a new job instance.
-     *
-     * @param \App\Models\Thread $thread
-     * @param \App\User $user
-     */
     public function __construct(Thread $thread, User $user)
     {
         $this->thread = $thread;
@@ -31,15 +25,12 @@ class LikeThread
     }
 
     /**
-     * Execute the job.
-     *
-     * @return void
-     * @throws \App\Exceptions\CannotLikeThreadMultipleTimes
+     * @throws \App\Exceptions\CannotLikeItem
      */
-    public function handle()
+    public function handle(): void
     {
         if ($this->thread->isLikedBy($this->user)) {
-            throw new CannotLikeThreadMultipleTimes();
+            throw CannotLikeItem::alreadyLiked('thread');
         }
 
         $this->thread->likedBy($this->user);

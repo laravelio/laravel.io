@@ -26,7 +26,14 @@ use Spatie\Feed\FeedItem;
 
 final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedable
 {
-    use HasAuthor, HasSlug, HasTimestamps, ModelHelpers, ProvidesSubscriptions, ReceivesReplies, HasTags, HasLikes;
+    use HasAuthor;
+    use HasLikes;
+    use HasSlug;
+    use HasTags;
+    use HasTimestamps;
+    use ModelHelpers;
+    use ProvidesSubscriptions;
+    use ReceivesReplies;
 
     const TABLE = 'threads';
 

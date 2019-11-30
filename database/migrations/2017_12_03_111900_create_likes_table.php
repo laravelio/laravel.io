@@ -15,12 +15,5 @@ class CreateLikesTable extends Migration
             $table->string('likeable_type');
             $table->timestamps();
         });
-
-        Schema::table('subscriptions', function (Blueprint $table) {
-            $table->index(['user_id', 'uuid']);
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('CASCADE');
-        });
     }
 }

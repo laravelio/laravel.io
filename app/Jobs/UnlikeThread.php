@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\Models\Thread;
 use App\User;
 
-class UnlikeThread
+final class UnlikeThread
 {
     /**
      * @var \App\Models\Thread
@@ -17,24 +17,13 @@ class UnlikeThread
      */
     private $user;
 
-    /**
-     * Create a new job instance.
-     *
-     * @param \App\Models\Thread $thread
-     * @param \App\User $user
-     */
     public function __construct(Thread $thread, User $user)
     {
         $this->thread = $thread;
         $this->user = $user;
     }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
-    public function handle()
+    public function handle(): void
     {
         $this->thread->dislikedBy($this->user);
     }

@@ -2,11 +2,11 @@
 
 namespace App\Jobs;
 
-use App\Exceptions\CannotLikeReplyMultipleTimes;
+use App\Exceptions\CannotLikeItem;
 use App\Models\Reply;
 use App\User;
 
-class LikeReply
+final class LikeReply
 {
     /**
      * @var \App\Models\Reply
@@ -18,12 +18,6 @@ class LikeReply
      */
     private $user;
 
-    /**
-     * Create a new job instance.
-     *
-     * @param \App\Models\Reply $reply
-     * @param \App\User $user
-     */
     public function __construct(Reply $reply, User $user)
     {
         $this->reply = $reply;
@@ -31,15 +25,12 @@ class LikeReply
     }
 
     /**
-     * Execute the job.
-     *
-     * @return void
-     * @throws \App\Exceptions\CannotLikeReplyMultipleTimes
+     * @throws \App\Exceptions\CannotLikeItem
      */
-    public function handle()
+    public function handle(): void
     {
         if ($this->reply->isLikedBy($this->user)) {
-            throw new CannotLikeReplyMultipleTimes();
+            throw CannotLikeItem::alreadyLiked('reply');
         }
 
         $this->reply->likedBy($this->user);

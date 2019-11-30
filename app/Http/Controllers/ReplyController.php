@@ -16,6 +16,7 @@ use App\Models\Thread;
 use App\Policies\ReplyPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class ReplyController extends Controller
 {
@@ -64,17 +65,17 @@ class ReplyController extends Controller
         return $this->redirectToReplyAble($reply->replyAble());
     }
 
-    public function like(Reply $reply)
+    public function like(Request $request, Reply $reply)
     {
-        $this->dispatchNow(new LikeReply($reply, auth()->user()));
+        $this->dispatchNow(new LikeReply($reply, $request->user()));
 
         return redirect()
             ->to(route('thread', $reply->replyAble()->slug())."#{$reply->id}");
     }
 
-    public function unlike(Reply $reply)
+    public function unlike(Request $request, Reply $reply)
     {
-        $this->dispatchNow(new UnlikeReply($reply, auth()->user()));
+        $this->dispatchNow(new UnlikeReply($reply, $request->user()));
 
         return redirect()
             ->to(route('thread', $reply->replyAble()->slug())."#{$reply->id}");

@@ -3,12 +3,12 @@
 namespace Tests\Components\Models;
 
 use App\Models\Reply;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ReplyTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function we_can_like_and_unlike_reply()

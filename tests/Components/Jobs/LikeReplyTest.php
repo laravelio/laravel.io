@@ -2,16 +2,16 @@
 
 namespace Tests\Components\Jobs;
 
-use App\Exceptions\CannotLikeReplyMultipleTimes;
+use App\Exceptions\CannotLikeItem;
 use App\Jobs\LikeReply;
 use App\Models\Reply;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class LikeReplyTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function we_can_like_a_reply()
@@ -34,7 +34,7 @@ class LikeReplyTest extends TestCase
 
         $this->assertTrue($reply->fresh()->isLikedBy($user));
 
-        $this->expectException(CannotLikeReplyMultipleTimes::class);
+        $this->expectException(CannotLikeItem::class);
 
         $this->dispatch(new LikeReply($reply, $user));
     }

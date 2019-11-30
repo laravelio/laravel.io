@@ -38,7 +38,7 @@
                         @include('forum.threads.info.likes', [
                             'like'=> ['threads.like', $thread->slug()],
                             'unlike' => ['threads.unlike', $thread->slug()],
-                            'likeable' => $thread
+                            'likeable' => $thread,
                         ])
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                                 @include('forum.threads.info.likes', [
                                     'like'=> ['replies.like', $reply],
                                     'unlike' => ['replies.unlike', $reply],
-                                    'likeable' => $reply
+                                    'likeable' => $reply,
                                 ])
                             </div>
                         </div>

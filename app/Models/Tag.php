@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 final class Tag extends Model
 {
-    use HasSlug, ModelHelpers;
+    use HasSlug;
+    use ModelHelpers;
 
     /**
      * {@inheritdoc}

@@ -136,16 +136,16 @@ class ThreadsController extends Controller
         return redirect()->route('thread', $thread->slug());
     }
 
-    public function like(Thread $thread)
+    public function like(Request $request, Thread $thread)
     {
-        $this->dispatchNow(new LikeThread($thread, auth()->user()));
+        $this->dispatchNow(new LikeThread($thread, $request->user()));
 
         return redirect()->route('thread', $thread->slug());
     }
 
-    public function unlike(Thread $thread)
+    public function unlike(Request $request, Thread $thread)
     {
-        $this->dispatchNow(new UnlikeThread($thread, auth()->user()));
+        $this->dispatchNow(new UnlikeThread($thread, $request->user()));
 
         return redirect()->route('thread', $thread->slug());
     }

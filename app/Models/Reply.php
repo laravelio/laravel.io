@@ -12,7 +12,10 @@ use Illuminate\Support\Str;
 
 final class Reply extends Model
 {
-    use HasLikes, HasAuthor, HasTimestamps, ModelHelpers;
+    use HasAuthor;
+    use HasLikes;
+    use HasTimestamps;
+    use ModelHelpers;
 
     const TABLE = 'replies';
 
