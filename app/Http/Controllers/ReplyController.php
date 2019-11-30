@@ -7,6 +7,8 @@ use App\Http\Requests\CreateReplyRequest;
 use App\Http\Requests\UpdateReplyRequest;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
+use App\Jobs\LikeReply;
+use App\Jobs\UnlikeReply;
 use App\Jobs\UpdateReply;
 use App\Models\Reply;
 use App\Models\ReplyAble;
@@ -14,6 +16,7 @@ use App\Models\Thread;
 use App\Policies\ReplyPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class ReplyController extends Controller
 {
@@ -60,6 +63,22 @@ class ReplyController extends Controller
         $this->success('replies.deleted');
 
         return $this->redirectToReplyAble($reply->replyAble());
+    }
+
+    public function like(Request $request, Reply $reply)
+    {
+        $this->dispatchNow(new LikeReply($reply, $request->user()));
+
+        return redirect()
+            ->to(route('thread', $reply->replyAble()->slug())."#{$reply->id}");
+    }
+
+    public function unlike(Request $request, Reply $reply)
+    {
+        $this->dispatchNow(new UnlikeReply($reply, $request->user()));
+
+        return redirect()
+            ->to(route('thread', $reply->replyAble()->slug())."#{$reply->id}");
     }
 
     private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse

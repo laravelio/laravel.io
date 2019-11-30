@@ -189,7 +189,11 @@ final class User extends Authenticatable
 
     public function deleteReplies()
     {
-        $this->replyAble()->delete();
+        // We need to explicitly iterate over the replies and delete them
+        // separately because all related models need to be deleted.
+        foreach ($this->replyAble()->get() as $reply) {
+            $reply->delete();
+        }
     }
 
     public function countReplies(): int

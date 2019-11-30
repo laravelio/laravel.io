@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Helpers\HasAuthor;
+use App\Helpers\HasLikes;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
 use App\Helpers\HasTimestamps;
@@ -25,7 +26,14 @@ use Spatie\Feed\FeedItem;
 
 final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedable
 {
-    use HasAuthor, HasSlug, HasTimestamps, ModelHelpers, ProvidesSubscriptions, ReceivesReplies, HasTags;
+    use HasAuthor;
+    use HasLikes;
+    use HasSlug;
+    use HasTags;
+    use HasTimestamps;
+    use ModelHelpers;
+    use ProvidesSubscriptions;
+    use ReceivesReplies;
 
     const TABLE = 'threads';
 
