@@ -1,4 +1,4 @@
-<nav>
+<nav class="text-gray-600 bg-white border-b">
     <div class="container mx-auto px-4">
         <div class="nav-wrapper">
             <div class="nav-container">

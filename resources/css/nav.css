@@ -1,7 +1,3 @@
-nav {
-    @apply text-gray-600 bg-white border-b;
-}
-
 nav .nav-container {
     @apply flex justify-between items-center text-gray-600;
 }
@@ -46,7 +42,8 @@ nav ul.subnav li a i {
     @apply mr-2;
 }
 
-nav ul li:last-child {
+nav ul.nav li:last-child,
+nav ul.subnav li:last-child {
     @apply pb-0;
 }
 
@@ -67,7 +64,8 @@ nav ul.subnav li.divider {
         @apply mb-0;
     }
 
-    nav ul.nav>li {
+    nav ul.nav>li,
+    nav ul.nav>li:last-child {
         @apply mx-2;
         padding: 1.675rem 0;
     }
