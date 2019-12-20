@@ -21,6 +21,7 @@
     @include('layouts._favicons')
     @include('layouts._cookie_consent')
     @include('layouts._google_analytics')
+    @livewireAssets
 </head>
 <body class="{{ $bodyClass ?? '' }}">
 
