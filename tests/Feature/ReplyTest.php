@@ -117,43 +117,4 @@ class ReplyTest extends BrowserKitTestCase
                 'You\'ll need to verify your account before participating in this thread.'
             );
     }
-
-    /** @test */
-    public function users_can_like_a_reply()
-    {
-        $user = factory(User::class)->create();
-
-        $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread']);
-        $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
-
-        $this->loginAs($user);
-        $this->put("/replies/{$reply->id()}/like")
-            ->assertRedirectedTo("/forum/the-first-thread#{$reply->id}");
-
-        $this->seeInDatabase('likes', [
-            'user_id' => $user->id,
-            'likeable_id' => $reply->id,
-            'likeable_type' => 'replies',
-        ]);
-    }
-
-    /** @test */
-    public function users_can_unlike_a_reply()
-    {
-        $user = factory(User::class)->create();
-
-        $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread']);
-        $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
-        factory(Like::class)->states('reply')->create(['user_id' => $user->id, 'likeable_id' => $reply->id]);
-
-        $this->loginAs($user);
-        $this->delete("/replies/{$reply->id()}/unlike")
-            ->assertRedirectedTo("/forum/the-first-thread#{$reply->id}");
-
-        $this->notSeeInDatabase('likes', [
-            'user_id' => $user->id,
-            'likeable_id' => $reply->id,
-            'likeable_type' => 'replies',
-        ]);
-    }
 }

@@ -172,39 +172,4 @@ class ForumTest extends BrowserKitTestCase
         $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
         $response->assertSessionHasErrors(['subject' => 'The subject may not be greater than 60 characters.']);
     }
-
-    /** @test */
-    public function users_can_like_a_thread()
-    {
-        $user = factory(User::class)->create();
-        $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread']);
-
-        $this->loginAs($user);
-        $this->put("/forum/{$thread->slug}/like")
-            ->assertRedirectedTo('/forum/the-first-thread');
-
-        $this->seeInDatabase('likes', [
-            'user_id' => $user->id,
-            'likeable_id' => $thread->id,
-            'likeable_type' => 'threads',
-        ]);
-    }
-
-    /** @test */
-    public function users_can_unlike_a_thread()
-    {
-        $user = factory(User::class)->create();
-        $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread']);
-        factory(Like::class)->states('thread')->create(['user_id' => $user->id, 'likeable_id' => $thread->id]);
-
-        $this->loginAs($user);
-        $this->delete("/forum/{$thread->slug}/unlike")
-            ->assertRedirectedTo('/forum/the-first-thread');
-
-        $this->notSeeInDatabase('likes', [
-            'user_id' => $user->id,
-            'likeable_id' => $thread->id,
-            'likeable_type' => 'threads',
-        ]);
-    }
 }
