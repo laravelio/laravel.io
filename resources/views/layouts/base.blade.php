@@ -21,7 +21,6 @@
     @include('layouts._favicons')
     @include('layouts._cookie_consent')
     @include('layouts._google_analytics')
-    @livewireAssets
 </head>
 <body class="{{ $bodyClass ?? '' }}">
 
@@ -37,6 +36,7 @@
 
 @include('layouts._ads')
 <script src="{{ mix('js/app.js') }}" defer></script>
+@livewireAssets
 
 @include('layouts._intercom')
 

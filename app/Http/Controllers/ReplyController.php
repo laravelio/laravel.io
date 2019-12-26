@@ -14,7 +14,6 @@ use App\Models\Thread;
 use App\Policies\ReplyPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class ReplyController extends Controller
 {

@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Like;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\User;

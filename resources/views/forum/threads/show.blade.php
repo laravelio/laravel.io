@@ -35,11 +35,7 @@
                         <reply :content="{{ json_encode(md_to_html($thread->body())) }}"/>
                     </div>
                     <div class="border-t">
-                        @include('forum.threads.info.likes', [
-                            'like'=> ['threads.like', $thread->slug()],
-                            'unlike' => ['threads.unlike', $thread->slug()],
-                            'likeable' => $thread,
-                        ])
+                        @livewire('like-thread', $thread)
                     </div>
                 </div>
 
@@ -114,11 +110,7 @@
                                 <reply :content="{{ json_encode(md_to_html($reply->body())) }}"/>
                             </div>                            
                             <div class="border-t">
-                                @include('forum.threads.info.likes', [
-                                    'like'=> ['replies.like', $reply],
-                                    'unlike' => ['replies.unlike', $reply],
-                                    'likeable' => $reply,
-                                ])
+                                @livewire('like-reply', $reply)
                             </div>
                         </div>
                     </div>
