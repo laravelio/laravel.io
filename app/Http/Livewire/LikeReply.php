@@ -13,7 +13,7 @@ use Livewire\Component;
 class LikeReply extends Component
 {
     use DispatchesJobs;
-    
+
     public $likes;
 
     public $replyId;
