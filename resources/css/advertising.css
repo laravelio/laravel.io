@@ -6,29 +6,6 @@
     @apply w-1/2 px-4 flex justify-center mb-4;
 }
 
-.bsa-cpc #_default_ {
-    @apply relative p-2 rounded bg-gray-300;
-}
-
-.bsa-cpc a:hover {
-    @apply no-underline;
-}
-
-.bsa-cpc .default-ad,
-.bsa-cpc .default-image {
-    @apply hidden;
-}
-
-.bsa-cpc .default-title:before {
-    @apply relative text-xs text-green-primary uppercase border border-green-primary rounded p-1 mr-2;
-    top: -1px;
-    content: "Sponsor";
-}
-
-.bsa-cpc .default-title:after {
-    content: "\A0\2014\A0";
-}
-
 .footer-ad {
     @apply block w-full my-4 mx-auto text-center;
     height: 90px;
