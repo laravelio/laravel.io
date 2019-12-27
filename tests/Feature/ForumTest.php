@@ -2,10 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\LikeReply;
+use App\Http\Livewire\LikeThread;
 use App\Models\Reply;
 use App\Models\Tag;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Livewire\Livewire;
 use Tests\BrowserKitTestCase;
 
 class ForumTest extends BrowserKitTestCase
@@ -169,5 +172,55 @@ class ForumTest extends BrowserKitTestCase
 
         $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
         $response->assertSessionHasErrors(['subject' => 'The subject may not be greater than 60 characters.']);
+    }
+
+    /** @test */
+    public function a_user_can_toggle_a_like_on_a_thread()
+    {
+        $this->login();
+        $thread = factory(Thread::class)->create();
+
+        Livewire::test(LikeThread::class, $thread)
+            ->assertSee("0\n")
+            ->call('toggleLike')
+            ->assertSee("1\n")
+            ->call('toggleLike')
+            ->assertSee("0\n");
+    }
+
+    /** @test */
+    public function a_logged_out_user_cannot_toggle_a_like_on_a_thread()
+    {
+        $thread = factory(Thread::class)->create();
+
+        Livewire::test(LikeThread::class, $thread)
+            ->assertSee("0\n")
+            ->call('toggleLike')
+            ->assertSee("0\n");
+    }
+
+    /** @test */
+    public function a_user_can_toggle_a_like_on_a_reply()
+    {
+        $this->login();
+        $reply = factory(Reply::class)->create();
+
+        Livewire::test(LikeReply::class, $reply)
+            ->assertSee("0\n")
+            ->call('toggleLike')
+            ->assertSee("1\n")
+            ->call('toggleLike')
+            ->assertSee("0\n");
+    }
+
+    /** @test */
+    public function a_logged_out_user_cannot_toggle_a_like_on_a_reply()
+    {
+        $reply = factory(Reply::class)->create();
+
+        Livewire::test(LikeReply::class, $reply)
+            ->assertSee("0\n")
+            ->call('toggleLike')
+            ->assertSee("0\n");
     }
 }
