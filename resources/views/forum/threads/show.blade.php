@@ -39,10 +39,6 @@
                     </div>
                 </div>
 
-                <div class="mt-4">
-                    @include('layouts._ads._bsa-cpc')
-                </div>
-
                 @foreach ($thread->replies() as $reply)
                     <div class="reply mt-8 bg-white rounded {{ $thread->isSolutionReply($reply) ? 'border-2 border-green-primary' : 'border' }}" id="{{ $reply->id }}">
                         

@@ -49,8 +49,4 @@ return [
         ],
     ],
 
-    'bsa' => [
-        'cpc_code' => env('BSA_CPC_CODE'),
-    ],
-
 ];
