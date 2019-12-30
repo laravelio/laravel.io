@@ -62,8 +62,6 @@ Route::prefix('forum')->namespace('Forum')->group(function () {
     Route::put('{thread}/unmark-solution', 'ThreadsController@unmarkSolution')->name('threads.solution.unmark');
     Route::get('{thread}/subscribe', 'ThreadsController@subscribe')->name('threads.subscribe');
     Route::get('{thread}/unsubscribe', 'ThreadsController@unsubscribe')->name('threads.unsubscribe');
-    Route::put('{thread}/like', 'ThreadsController@like')->name('threads.like');
-    Route::delete('{thread}/unlike', 'ThreadsController@unlike')->name('threads.unlike');
 
     Route::get('tags/{tag}', 'TagsController@show')->name('forum.tag');
 });
@@ -73,8 +71,6 @@ Route::post('replies', 'ReplyController@store')->name('replies.store');
 Route::get('replies/{reply}/edit', 'ReplyController@edit')->name('replies.edit');
 Route::put('replies/{reply}', 'ReplyController@update')->name('replies.update');
 Route::delete('replies/{reply}', 'ReplyController@delete')->name('replies.delete');
-Route::put('replies/{reply}/like', 'ReplyController@like')->name('replies.like');
-Route::delete('replies/{reply}/unlike', 'ReplyController@unlike')->name('replies.unlike');
 
 // Subscriptions
 Route::get('subscriptions/{subscription}/unsubscribe', 'SubscriptionController@unsubscribe')

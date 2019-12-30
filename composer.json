@@ -17,6 +17,7 @@
         "lasserafn/php-initial-avatar-generator": "^2.0",
         "league/commonmark": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "livewire/livewire": "^0.5.2",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^3.7",
         "roave/security-advisories": "dev-master",

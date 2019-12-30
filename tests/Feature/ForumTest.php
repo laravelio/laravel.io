@@ -2,12 +2,13 @@
 
 namespace Tests\Feature;
 
-use App\Models\Like;
+use App\Http\Livewire\LikeReply;
+use App\Http\Livewire\LikeThread;
 use App\Models\Reply;
 use App\Models\Tag;
 use App\Models\Thread;
-use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Livewire\Livewire;
 use Tests\BrowserKitTestCase;
 
 class ForumTest extends BrowserKitTestCase
@@ -174,37 +175,52 @@ class ForumTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function users_can_like_a_thread()
+    public function a_user_can_toggle_a_like_on_a_thread()
     {
-        $user = factory(User::class)->create();
-        $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread']);
+        $this->login();
+        $thread = factory(Thread::class)->create();
 
-        $this->loginAs($user);
-        $this->put("/forum/{$thread->slug}/like")
-            ->assertRedirectedTo('/forum/the-first-thread');
-
-        $this->seeInDatabase('likes', [
-            'user_id' => $user->id,
-            'likeable_id' => $thread->id,
-            'likeable_type' => 'threads',
-        ]);
+        Livewire::test(LikeThread::class, $thread)
+            ->assertSee("0\n")
+            ->call('toggleLike')
+            ->assertSee("1\n")
+            ->call('toggleLike')
+            ->assertSee("0\n");
     }
 
     /** @test */
-    public function users_can_unlike_a_thread()
+    public function a_logged_out_user_cannot_toggle_a_like_on_a_thread()
     {
-        $user = factory(User::class)->create();
-        $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread']);
-        factory(Like::class)->states('thread')->create(['user_id' => $user->id, 'likeable_id' => $thread->id]);
+        $thread = factory(Thread::class)->create();
 
-        $this->loginAs($user);
-        $this->delete("/forum/{$thread->slug}/unlike")
-            ->assertRedirectedTo('/forum/the-first-thread');
+        Livewire::test(LikeThread::class, $thread)
+            ->assertSee("0\n")
+            ->call('toggleLike')
+            ->assertSee("0\n");
+    }
 
-        $this->notSeeInDatabase('likes', [
-            'user_id' => $user->id,
-            'likeable_id' => $thread->id,
-            'likeable_type' => 'threads',
-        ]);
+    /** @test */
+    public function a_user_can_toggle_a_like_on_a_reply()
+    {
+        $this->login();
+        $reply = factory(Reply::class)->create();
+
+        Livewire::test(LikeReply::class, $reply)
+            ->assertSee("0\n")
+            ->call('toggleLike')
+            ->assertSee("1\n")
+            ->call('toggleLike')
+            ->assertSee("0\n");
+    }
+
+    /** @test */
+    public function a_logged_out_user_cannot_toggle_a_like_on_a_reply()
+    {
+        $reply = factory(Reply::class)->create();
+
+        Livewire::test(LikeReply::class, $reply)
+            ->assertSee("0\n")
+            ->call('toggleLike')
+            ->assertSee("0\n");
     }
 }

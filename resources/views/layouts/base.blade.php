@@ -36,6 +36,7 @@
 
 @include('layouts._ads')
 <script src="{{ mix('js/app.js') }}" defer></script>
+@livewireAssets
 
 @include('layouts._intercom')
 
