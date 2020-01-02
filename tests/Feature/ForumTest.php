@@ -69,10 +69,10 @@ class ForumTest extends BrowserKitTestCase
         $this->login();
 
         $this->post('/forum/create-thread', [
-                'subject' => 'http://example.com Foo title',
-                'body' => 'This text explains how to work with Eloquent.',
-                'tags' => [$tag->id()],
-            ])
+            'subject' => 'http://example.com Foo title',
+            'body' => 'This text explains how to work with Eloquent.',
+            'tags' => [$tag->id()],
+        ])
             ->assertSessionHasErrors(['subject' => 'The subject field cannot contain an url.']);
     }
 
@@ -84,10 +84,10 @@ class ForumTest extends BrowserKitTestCase
         $this->login();
 
         $this->post('/forum/create-thread', [
-                'subject' => 'How to work with Eloquent?',
-                'body' => 'This text explains how to work with Eloquent.',
-                'tags' => [$tag->id()],
-            ])
+            'subject' => 'How to work with Eloquent?',
+            'body' => 'This text explains how to work with Eloquent.',
+            'tags' => [$tag->id()],
+        ])
             ->assertRedirectedTo('/forum/how-to-work-with-eloquent')
             ->assertSessionHas('success', 'Thread successfully created!');
     }
@@ -105,10 +105,10 @@ class ForumTest extends BrowserKitTestCase
         $this->loginAs($user);
 
         $this->put('/forum/my-first-thread', [
-                'subject' => 'How to work with Eloquent?',
-                'body' => 'This text explains how to work with Eloquent.',
-                'tags' => [$tag->id()],
-            ])
+            'subject' => 'How to work with Eloquent?',
+            'body' => 'This text explains how to work with Eloquent.',
+            'tags' => [$tag->id()],
+        ])
             ->assertRedirectedTo('/forum/how-to-work-with-eloquent')
             ->assertSessionHas('success', 'Thread successfully updated!');
     }
