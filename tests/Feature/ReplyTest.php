@@ -20,10 +20,10 @@ class ReplyTest extends BrowserKitTestCase
         $this->login();
 
         $this->post('/replies', [
-                'body' => 'The first reply',
-                'replyable_id' => $thread->id,
-                'replyable_type' => Thread::TABLE,
-            ])
+            'body' => 'The first reply',
+            'replyable_id' => $thread->id,
+            'replyable_type' => Thread::TABLE,
+        ])
             ->assertSessionHas('success', 'Reply successfully added!');
     }
 
@@ -37,8 +37,8 @@ class ReplyTest extends BrowserKitTestCase
         $this->loginAs($user);
 
         $this->put('/replies/1', [
-                'body' => 'The edited reply',
-            ])
+            'body' => 'The edited reply',
+        ])
             ->assertRedirectedTo('/forum/the-first-thread')
             ->assertSessionHas('success', 'Reply successfully updated!');
     }
