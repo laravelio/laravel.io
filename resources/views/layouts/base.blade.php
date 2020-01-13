@@ -23,6 +23,8 @@
     @include('layouts._google_analytics')
 </head>
 <body class="{{ $bodyClass ?? '' }}">
+    
+@include('layouts._ads._banner')
 
 <div id="app">
     <div id="wrapper" v-on:keyup.esc="activeModal = null">
