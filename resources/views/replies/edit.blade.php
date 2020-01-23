@@ -19,11 +19,11 @@
                     @method('PUT')
 
                     @formGroup('body')
-                        <editor
-                            name="body" 
-                            id="body"
-                            content="{{ old('body') ?: $reply->body() }}"
-                        ></editor>
+
+                        @include('_partials._editor', [
+                            'content' => old('body') ?: $reply->body()
+                        ])
+                        
                         @error('body')
                     @endFormGroup
 

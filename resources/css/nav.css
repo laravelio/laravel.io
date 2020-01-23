@@ -27,11 +27,7 @@ nav ul.nav.active {
 }
 
 nav ul.subnav {
-    @apply hidden mt-2 z-50;
-}
-
-nav ul.subnav.active {
-    @apply block;
+    @apply mt-2 z-50;
 }
 
 nav ul.subnav li {
@@ -84,7 +80,7 @@ nav ul.subnav li.divider {
     }
 
     nav ul.subnav {
-        @apply absolute w-48 left-0 bg-white border border-t-0 rounded rounded-t-none hidden mt-0;
+        @apply absolute w-48 left-0 bg-white border border-t-0 rounded rounded-t-none mt-0;
         top: 100%;
     }
 

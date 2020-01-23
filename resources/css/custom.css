@@ -52,6 +52,6 @@ svg .secondary {
     @apply text-green-primary fill-current;
 }
 
-[v-cloak] {
+[x-cloak] {
     display: none;
 }

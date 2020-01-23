@@ -30,31 +30,27 @@ input[type=checkbox] {
     @apply border-2 rounded rounded-t-none border-gray-300;
 }
 
-/** Vue multiselect **/
-.multiselect .multiselect__tags {
-    @apply border-2 rounded;
+/** Choices.js **/
+.choices__input.choices__input--cloned {
+    @apply hidden;
 }
 
-.multiselect .multiselect__tag {
-    @apply bg-green-primary;
+.choices__item {
+    @apply text-xs uppercase bg-gray-200 text-gray-700 cursor-pointer rounded px-2 py-1 !important;
 }
 
-.multiselect .multiselect__content {
-    @apply border-2;
+.choices__item.choices__item--choice.choices__item--selectable {
+    @apply bg-white rounded-none text-gray-700 p-2 !important;
 }
 
-.multiselect .multiselect__option {
-    @apply text-gray-900;
+.choices__item.choices__item--choice.choices__item--selectable:hover {
+    @apply bg-gray-200 !important;
 }
 
-.multiselect .multiselect__option--selected {
-    @apply bg-gray-300;
+.choices__item.choices__item--selectable {
+    @apply bg-green-primary border-green-primary text-white !important;
 }
 
-.multiselect .multiselect__option--highlight {
-    @apply bg-green-primary;
-}
-
-.multiselect .multiselect__option--selected.multiselect__option--highlight {
-    @apply bg-red-primary;
+.choices__item.is-highlighted {
+    @apply bg-green-dark border-green-dark text-white !important;
 }

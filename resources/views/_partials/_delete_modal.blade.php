@@ -1,5 +1,5 @@
-<form-modal identifier="{{ $identifier }}" :active-modal="activeModal">
-    <div class="modal-content" v-cloak>
+<div class="modal" x-show="activeModal === '{{ $identifier }}'" x-cloak>
+    <div class="modal-content">
         <form action="{{ route(...$route) }}" method="POST">
             @csrf
             @method('DELETE')
@@ -21,4 +21,4 @@
             </div>
         </form>
     </div>
-</form-modal>
+</div>
