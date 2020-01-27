@@ -44,10 +44,9 @@
     @include('layouts._footer')
 </div>
 
-</div>
-
 @include('layouts._ads')
 
 @include('layouts._intercom')
+
 </body>
 </html>
