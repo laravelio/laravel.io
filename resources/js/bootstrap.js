@@ -1,3 +1,10 @@
+import { flare } from "@flareapp/flare-client";
+
+// Setup exception handling.
+if (process.env.NODE_ENV === 'production') {
+    flare.light(process.env.MIX_FLARE_KEY);
+}
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

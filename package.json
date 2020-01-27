@@ -17,6 +17,7 @@
     "postcss-import": "^12.0.1"
   },
   "dependencies": {
+    "@flareapp/flare-client": "^1.0.0",
     "alpinejs": "^1.9.5",
     "choices.js": "^9.0.1",
     "tailwindcss": "^1.1.4"
