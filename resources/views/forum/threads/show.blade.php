@@ -32,7 +32,13 @@
                         @include('forum.threads.info.tags')
                     </div>
                     <div class="p-4">
-                        <reply :content="{{ json_encode(md_to_html($thread->body())) }}"/>
+                        <div 
+                            class="forum-content" 
+                            x-data="{}" 
+                            x-init="function () { highlightCode($el); }"
+                            x-html="{{ json_encode(md_to_html($thread->body())) }}"
+                        >
+                        </div>
                     </div>
                     <div class="border-t">
                         @livewire('like-thread', $thread)
@@ -103,7 +109,13 @@
                                 </div>              
                             </div>
                             <div class="p-4">
-                                <reply :content="{{ json_encode(md_to_html($reply->body())) }}"/>
+                                <div 
+                                    class="forum-content" 
+                                    x-data="{}" 
+                                    x-init="function () { highlightCode($el); }"
+                                    x-html="{{ json_encode(md_to_html($reply->body())) }}"
+                                >
+                                </div>
                             </div>                            
                             <div class="border-t">
                                 @livewire('like-reply', $reply)
@@ -133,11 +145,11 @@
 
                                 @formGroup('body')
                                     <label for="body">Write a reply</label>
-                                    <editor 
-                                        name="body" 
-                                        id="body"
-                                        content="{{ old('body') }}"
-                                    ></editor>
+
+                                    @include('_partials._editor', [
+                                        'content' => old('body')
+                                    ])
+                                    
                                     @error('body')
                                 @endFormGroup
 

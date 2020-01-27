@@ -1,133 +1,119 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+import 'alpinejs'
+import hljs from "highlight.js";
+import Choices from "choices.js"
+import "highlight.js/styles/github.css";
+import "choices.js/public/assets/styles/choices.css";
 
 require('./bootstrap');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-const files = require.context('./', true, /\.vue$/i);
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+// Create a multiselect element.
+window.choices = (element) => { return new Choices(element, { maxItemCount: 3, removeItemButton: true }) };
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-const app = new Vue({
-    el: '#app',
-    data: {
-        activeModal: null,
-        navOpen: false,
-        value: [],
-    },
-    methods: {
-        /**
-         * Add a class to an HTML element
-         */
-        addClass(element, className) {
-            element.classList.add(className);
-        },
-        /**
-         * Remove a class from an HTML element
-         */
-        removeClass(element, className) {
-            element.classList.remove(className);
-        },
-        hideSidebar() {
-            this.navOpen = false;
-            Array.from(document.getElementsByClassName('subnav')).forEach(subnav => {
-                this.toggleNav();
-                Array.from(document.getElementsByClassName('nav')).forEach(nav => {
-                    this.removeClass(nav, 'active');
-                });
-            });
-        },
-        showSidebar() {
-            this.navOpen = true;
-            this.toggleNav();
-            Array.from(document.getElementsByClassName('nav')).forEach(nav => {
-                nav.classList.add('active');
-            });
-        },
-        toggleNav() {
-            document.getElementById('sidebar-open').style.display = this.navOpen ? 'none' : 'block';
-            document.getElementById('sidebar-close').style.display = this.navOpen ? 'block' : 'none';
-        },
-        addDocumentListener() {
-            // when clicking anywhere on the page, remove all subnavs
-            // this will not be fired if a dropdown item is clicked as we stop the propogation of the event 
-            document.addEventListener('click', (e) => {
-                Array.from(document.getElementsByClassName('subnav')).forEach(subnav => {
-                    this.removeClass(subnav, 'active');
-                });
-            });
-            window.addEventListener('resize', (e) => {
-                // if the window is a large viewport, hide the sidebar and hamburger
-                if (window.innerWidth >= 1024) {
-                    this.hideSidebar();
-                    document.getElementById('sidebar-open').style.display = 'none';
-                } else {
-                    // if not, show the nav
-                    this.toggleNav();
+// Syntax highlight code blocks.
+window.highlightCode = (element) => {
+    element.querySelectorAll("pre code").forEach(block => {
+        hljs.highlightBlock(block);
+    });
+}
+
+// Handle the click event of the style buttons inside the editor.
+window.handleClick = (style, element) => {
+    const { styles } = editorConfig();
+    const input = element.querySelectorAll("textarea")[0];
+
+    // Get the start and end positions of the current selection.
+    const selectionStart = input.selectionStart;
+    const selectionEnd = input.selectionEnd;
+
+    // Find the style in the configuration.
+    const styleFormat = styles[style];
+
+    // Get any prefix and/or suffix characters from the selected style.
+    const prefix = styleFormat.before ? styleFormat.before : "";
+    const suffix = styleFormat.after ? styleFormat.after : "";
+
+    // Insert the prefix at the relevant position.
+    input.value = insertCharactersAtPosition(
+        input.value,
+        prefix,
+        selectionStart
+    );
+
+    // Insert the suffix at the relevant position.
+    input.value = insertCharactersAtPosition(
+        input.value,
+        suffix,
+        selectionEnd + prefix.length
+    );
+
+    // Reselect the selection and focus the input.
+    input.setSelectionRange(
+        selectionStart + prefix.length,
+        selectionEnd + prefix.length
+    );
+    input.focus();
+}
+
+// Insert provided characters at the desired place in a string.
+const insertCharactersAtPosition = (string, character, position) => {
+    return [
+        string.slice(0, position),
+        character,
+        string.slice(position)
+    ].join("");
+}
+
+// Configuration object for the text editor.
+window.editorConfig = () => {
+    return {
+        styles: {
+            header: {
+                before: "### ",
+                class: {
+                    "fa-header": true
                 }
-            });
-        },
-        addNavListeners() {
-            // get all the dropdown elements on the page
-            const dropdowns = document.getElementsByClassName('dropdown');
-            // turn the html collection into an array and loop
-            Array.from(dropdowns).forEach(dropdown => {
-                dropdown.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    // hide any currently active subnavs
-                    Array.from(document.getElementsByClassName('subnav')).forEach(subnav => {
-                        this.removeClass(subnav, 'active');
-                    });
-                    // activer the subnav of the selected dropdown
-                    this.addClass(dropdown.nextElementSibling, 'active');
-                });
-            });
-        },
-        addSidebarListeners() {
-            // open the sidebar
-            const openButton = document.getElementById('sidebar-open');
-            if (openButton) {
-                openButton.addEventListener('click', (e) => {
-                    this.showSidebar();
-                });
+            },
+            bold: {
+                before: "**",
+                after: "**",
+                class: {
+                    "fa-bold": true
+                }
+            },
+            italic: {
+                before: "_",
+                after: "_",
+                class: {
+                    "fa-italic": true
+                }
+            },
+            quote: {
+                before: "> ",
+                class: {
+                    "fa-quote-left": true
+                }
+            },
+            code: {
+                before: "`",
+                after: "`",
+                class: {
+                    "fa-code": true
+                }
+            },
+            link: {
+                before: "[](",
+                after: ")",
+                class: {
+                    "fa-link": true
+                }
+            },
+            image: {
+                before: "![](",
+                after: ")",
+                class: {
+                    "fa-file-image-o": true
+                }
             }
-
-            // close the sidebar
-            const closeButton = document.getElementById('sidebar-close');
-            if (closeButton) {
-                closeButton.addEventListener('click', (e) => {
-                    this.hideSidebar();
-                });
-            }
-        },
-        addAlertListeners() {
-            const closeAlertButtons = document.querySelectorAll('.alert .close');
-            // turn the html collection into an array and loop
-            Array.from(closeAlertButtons).forEach(button => {
-                button.addEventListener('click', function (e) {
-                    e.target.parentNode.parentNode.remove();
-                });
-            });
-        },
-    },
-    mounted() {
-        this.addDocumentListener();
-        this.addNavListeners();
-        this.addSidebarListeners();
-        this.addAlertListeners();
+        }
     }
-});
+}

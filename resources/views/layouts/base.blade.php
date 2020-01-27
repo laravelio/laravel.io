@@ -10,6 +10,10 @@
 
     <title>{{ isset($title) ? $title.' | ' : '' }} {{ config('app.name') }}</title>
 
+    <!-- Scripts -->
+    <script src="{{ mix('js/app.js') }}" defer></script>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
@@ -21,24 +25,26 @@
     @include('layouts._favicons')
     @include('layouts._cookie_consent')
     @include('layouts._google_analytics')
-</head>
-<body class="{{ $bodyClass ?? '' }}">
+    @include('layouts._ads._ad_sense')
     
+    @livewireAssets
+</head>
+    
+<body class="{{ $bodyClass ?? '' }}" x-data="{ activeModal: null }">
+
 @include('layouts._ads._banner')
 
 <div id="app">
-    <div id="wrapper" v-on:keyup.esc="activeModal = null">
+    <div id="wrapper">
         @include('layouts._nav')
 
         @yield('body')
     </div>
-
+    
     @include('layouts._footer')
 </div>
 
 @include('layouts._ads')
-<script src="{{ mix('js/app.js') }}" defer></script>
-@livewireAssets
 
 @include('layouts._intercom')
 
