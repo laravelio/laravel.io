@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@flareapp/flare-client": "^1.0.0",
-    "alpinejs": "^1.9.5",
+    "alpinejs": "^1.9.7",
     "choices.js": "^9.0.1",
     "tailwindcss": "^1.1.4"
   }
