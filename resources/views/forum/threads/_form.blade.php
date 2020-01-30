@@ -13,7 +13,7 @@
         <label for="body">Body</label>
 
         @include('_partials._editor', [
-            'content' => old('body') ?: isset($thread) ? $thread->body() : null
+            'content' => isset($thread) ? $thread->body() : null
         ])
         
         @error('body')
@@ -22,11 +22,9 @@
     @formGroup('tags')
         <label for="tags">Tags</label>
 
-        @php($selected = isset($thread) ? $thread->tags()->pluck('id')->toArray() : [])
-
         <select name="tags[]" id="create-thread" multiple x-data="{}" x-init="function () { choices($el) }">
             @foreach($tags as $tag)
-                <option value="{{ $tag->id }}" @if(in_array($tag->id, $selected)) selected @endif>{{ $tag->name }}</option>
+                <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>{{ $tag->name }}</option>
             @endforeach
         </select>
 
