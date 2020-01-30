@@ -21,5 +21,5 @@
         name="body"
         id="body"
         class="editor rounded-t-none resize-none h-40"
-    >{{ $content }}</textarea>
+    >{{ old('body') ?: $content }}</textarea>
 </div>
