@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@flareapp/flare-client": "^1.0.0",
+    "@flareapp/flare-webpack-plugin-sourcemap": "^1.0.0",
     "alpinejs": "^1.9.7",
     "choices.js": "^9.0.1",
     "cookieconsent": "^3.1.1",
