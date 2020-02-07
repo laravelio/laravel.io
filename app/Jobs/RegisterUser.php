@@ -68,6 +68,7 @@ final class RegisterUser
             'github_username' => $this->githubUsername,
             'confirmation_code' => Str::random(60),
             'type' => User::DEFAULT,
+            'bio' => '',
             'remember_token' => '',
         ]);
         $user->save();
