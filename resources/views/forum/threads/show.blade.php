@@ -181,7 +181,7 @@
                 @endcan
             </div>  
             <div class="w-full hidden md:w-1/4 md:pl-3 md:pt-4 md:flex items-center flex-col text-center mb-4">
-                @include('users._user_info', ['user' => $thread->author(), 'avatarSize' => 100])
+                @include('users._user_info', ['user' => $thread->author(), 'avatarSize' => 200, 'centered' => true])
 
                 <div class="reply-options">
                 @can(App\Policies\ThreadPolicy::UPDATE, $thread)
