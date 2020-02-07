@@ -6,7 +6,7 @@ div.thread-card:first-child {
     @apply rounded-t;
 }
 
-div.thread-card:nth-last-child(2) {
+div.thread-card:last-child {
     @apply border-b rounded-b;
 }
 
