@@ -32,15 +32,17 @@ The following tools are required in order to start the installation.
 
 ## Installation
 
-> Note that you're free to adjust the `~/Sites/laravelio` location to any directory you want on your machine.
+> Note that you're free to adjust the `~/Sites/laravelio` location to any directory you want on your machine. In doing so, be sure to run the `valet park` command inside the desired directory.
 
-1. Clone this repository: `git clone git@github.com:laravelio/laravel-io.git ~/Sites/laravelio`
-2. Run `composer install && homestead make --no-after`
-4. Run `vagrant up`
-5. SSH into your Vagrant box, go to `/home/vagrant/code` and run `composer setup`
-6. Add `192.168.10.10 laravelio.test` to your computer's `/etc/hosts` file
-7. Setup a working e-mail driver like [Mailtrap](https://mailtrap.io/)
-8. (optional) Set up Github authentication (see below)
+1. Install Laravel Valet as per the [installation instructions](https://laravel.com/docs/valet#installation)
+2. Clone this repository: `git clone git@github.com:laravelio/laravel-io.git ~/Sites/laravelio`
+3. Run `composer install`
+4. Copy the `.env.example` to a file called `.env` in the same directory
+5. Run `php artisan key:generate` to set the application key
+6. Setup a database for the app in your development environment and update the database credentials in the `.env` file accordingly
+7. run `php artisan migrate --seed`
+8. Setup a working e-mail driver like [Mailtrap](https://mailtrap.io/)
+9. (optional) Set up Github authentication (see below)
 
 You can now visit the app in your browser by visiting [http://laravelio.test](http://laravelio.test). If you seeded the
 database you can login into a test account with `johndoe` & `password`.
@@ -60,7 +62,7 @@ GITHUB_URL=http://laravelio.test/auth/github
 
 ## Maintainers
 
-The Laravel.io portal is currently maintained by [Dries Vints](https://github.com/driesvints). If you have any questions
+The Laravel.io portal is currently maintained by [Dries Vints](https://github.com/driesvints) and [Joe Dixon](https://github.com/joedixon). If you have any questions
 please don't hesitate to create an issue on this repo.
 
 ## Contributing
