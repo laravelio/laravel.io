@@ -7,19 +7,25 @@
                         <h4 class="text-xl font-bold text-gray-900">
                             {{ $thread->subject() }}
                         </h4>
-                        <p class="text-gray-600" v-pre>{!! $thread->excerpt() !!}</p>
+
+                        <p class="text-gray-600">
+                            {!! $thread->excerpt() !!}
+                        </p>
                     </a>
+
                     <div>
                         <span class="text-base font-normal mr-2">
                             <i class="fa fa-comment text-gray-500 mr-1"></i>
                             {{ count($thread->replies()) }}
                         </span>
+
                         <span class="text-base font-normal">
                             <i class="fa fa-thumbs-up text-gray-500 mr-1"></i>
                             {{ $thread->likes_count }}
                         </span>
                     </div>
                 </div>
+
                 <div class="flex flex-col justify-between md:flex-row md:items-center text-sm pt-5">
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="flex mb-4 md:mb-0">
@@ -32,19 +38,25 @@
                             <div class="mr-6 text-gray-700">
                                 @if (count($thread->replies()))
                                     @php($lastReply = $thread->replies()->last())
-                                    <a href="{{ route('profile', $lastReply->author()->username()) }}" class="text-green-darker">{{ $lastReply->author()->name() }}</a> replied
-                                    {{ $lastReply->createdAt()->diffForHumans() }}
+                                    <a href="{{ route('profile', $lastReply->author()->username()) }}"
+                                       class="text-green-darker">
+                                        {{ $lastReply->author()->name() }}
+                                    </a> replied {{ $lastReply->createdAt()->diffForHumans() }}
                                 @else
-                                    <a href="{{ route('profile', $thread->author()->username()) }}" class="text-green-darker">You</a> posted
-                                    {{ $thread->createdAt()->diffForHumans() }}
+                                    <a href="{{ route('profile', $thread->author()->username()) }}"
+                                       class="text-green-darker">
+                                        You
+                                    </a> posted {{ $thread->createdAt()->diffForHumans() }}
                                 @endif
                             </div>
                         </div>
+
                         @include('forum.threads.info.tags')
                     </div>
 
                     @if ($thread->isSolved())
-                        <a class="label label-primary text-center mt-4 md:mt-0" href="{{ route('thread', $thread->slug()) }}#{{ $thread->solutionReplyRelation->id }}">
+                        <a class="label label-primary text-center mt-4 md:mt-0"
+                           href="{{ route('thread', $thread->slug()) }}#{{ $thread->solutionReplyRelation->id }}">
                             <i class="fa fa-check mr-2"></i>
                             View solution
                         </a>
@@ -52,7 +64,9 @@
                 </div>
             </div>
         @empty
-            <p class="text-gray-600 text-lg">{{ $user->name() }} has not posted any threads yet.</p>
+            <p class="text-gray-600 text-lg">
+                {{ $user->name() }} has not posted any threads yet.
+            </p>
         @endforelse
     </div>
 </div>
