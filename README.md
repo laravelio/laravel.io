@@ -25,39 +25,36 @@ We hope to see your contribution soon!
 
 The following tools are required in order to start the installation.
 
-- [VirtualBox](https://www.virtualbox.org/)
-- [Vagrant](https://www.vagrantup.com/)
 - [Composer](https://getcomposer.org/download/)
-- PHP >=7.1
+- [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [Valet](https://laravel.com/docs/valet#installation)
+- PHP >=7.3
 
 ## Installation
 
-> Note that you're free to adjust the `~/Sites/laravelio` location to any directory you want on your machine. In doing so, be sure to run the `valet park` command inside the desired directory.
+> Note that you're free to adjust the `~/Sites/laravelio` location to any directory you want on your machine. In doing so, be sure to run the `valet link` command inside the desired directory.
 
-1. Install Laravel Valet as per the [installation instructions](https://laravel.com/docs/valet#installation)
-2. Clone this repository: `git clone git@github.com:laravelio/laravel-io.git ~/Sites/laravelio`
-3. Run `composer install`
-4. Copy the `.env.example` to a file called `.env` in the same directory
-5. Run `php artisan key:generate` to set the application key
-6. Setup a database for the app in your development environment and update the database credentials in the `.env` file accordingly
-7. run `php artisan migrate --seed`
-8. Setup a working e-mail driver like [Mailtrap](https://mailtrap.io/)
-9. (optional) Set up Github authentication (see below)
+1. Clone this repository with `git clone git@github.com:laravelio/portal.git ~/Sites/laravel.io`
+2. Run `composer install` to install the PHP dependencies
+3. Setup a local database called `laravelio`
+4. Run `composer setup` to setup the application
+5. Setup a working e-mail driver like [Mailtrap](https://mailtrap.io/)
+6. (optional) Set up Github authentication (see below)
 
-You can now visit the app in your browser by visiting [http://laravelio.test](http://laravelio.test). If you seeded the
-database you can login into a test account with `johndoe` & `password`.
+You can now visit the app in your browser by visiting [http://laravel.io.test](http://laravel.io.test). If you seeded the
+database you can login into a test account with **`johndoe`** & **`password`**.
 
 ### Github Authentication (optional)
 
 To get Github authentication to work locally, you'll need to
-[register a new OAuth application on Github](https://github.com/settings/applications/new). Use `http://laravelio.test`
-for the homepage url and `http://laravelio.test/auth/github` for the callback url. When you've created the app, fill in
+[register a new OAuth application on Github](https://github.com/settings/applications/new). Use `http://laravel.io.test`
+for the homepage url and `http://laravel.io.test/auth/github` for the callback url. When you've created the app, fill in
 the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with Github.
 
 ```
 GITHUB_ID=
 GITHUB_SECRET=
-GITHUB_URL=http://laravelio.test/auth/github
+GITHUB_URL=http://laravel.io.test/auth/github
 ```
 
 ## Maintainers
