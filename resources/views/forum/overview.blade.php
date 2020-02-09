@@ -32,6 +32,7 @@
                                 </h4>
                                 <p class="text-gray-600">{!! $thread->excerpt() !!}</p>
                             </a>
+
                             <div class="flex flex-col justify-between md:flex-row md:items-center text-sm pt-5">
                                 <div class="flex flex-col md:flex-row md:items-center">
                                     <div class="flex mb-4 md:mb-0">
@@ -54,11 +55,11 @@
                                     </div>
 
                                     @include('forum.threads.info.tags')
-
                                 </div>
 
                                 @if ($thread->isSolved())
-                                    <a class="label label-primary text-center mt-4 md:mt-0" href="{{ route('thread', $thread->slug()) }}#{{ $thread->solutionReplyRelation->id }}">
+                                    <a class="label label-primary text-center mt-4 md:mt-0"
+                                       href="{{ route('thread', $thread->slug()) }}#{{ $thread->solutionReplyRelation->id }}">
                                         <i class="fa fa-check mr-2"></i>
                                         View solution
                                     </a>
@@ -99,6 +100,7 @@
             @include('layouts._ads._forum_sidebar')
 
             <h3 class="text-xs font-bold tracking-wider uppercase text-gray-500">Tags</h3>
+
             <ul class="tags">
                 <li class="{{ active('forum*', ! isset($activeTag) || $activeTag === null) }}">
                     <a href="{{ route('forum') }}">

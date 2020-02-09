@@ -147,7 +147,7 @@ final class User extends Authenticatable
     /**
      * @return \App\Models\Thread[]
      */
-    public function latestThreads(int $amount = 3)
+    public function latestThreads(int $amount = 5)
     {
         return $this->threadsRelation()->latest()->limit($amount)->get();
     }
@@ -182,7 +182,7 @@ final class User extends Authenticatable
     /**
      * @return \App\Models\Reply[]
      */
-    public function latestReplies(int $amount = 3)
+    public function latestReplies(int $amount = 10)
     {
         return $this->replyAble()->latest()->limit($amount)->get();
     }
