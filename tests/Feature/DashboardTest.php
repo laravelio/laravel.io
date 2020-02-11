@@ -33,8 +33,8 @@ class DashboardTest extends BrowserKitTestCase
         $this->loginAs($user);
 
         $this->visit('/dashboard')
-            ->see('<span class="text-2xl block">3</span>') // 3 threads
-            ->see('<span class="text-2xl block">2</span>') // 2 posts
-            ->see('<span class="text-2xl block">1</span>'); // 1 solution
+            ->see('3 threads')
+            ->see('2 replies')
+            ->see('1 solution');
     }
 }
