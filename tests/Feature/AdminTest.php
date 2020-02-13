@@ -71,7 +71,7 @@ class AdminTest extends BrowserKitTestCase
         $user = factory(User::class)->create(['name' => 'Freek Murze']);
 
         $this->put('/admin/users/'.$user->username().'/ban')
-            ->assertRedirectedTo('/admin/users/'.$user->username());
+            ->assertRedirectedTo('/user/'.$user->username());
 
         $this->notSeeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
     }
@@ -95,7 +95,7 @@ class AdminTest extends BrowserKitTestCase
         $user = factory(User::class)->create(['name' => 'Freek Murze', 'banned_at' => Carbon::now()]);
 
         $this->put('/admin/users/'.$user->username().'/unban')
-            ->assertRedirectedTo('/admin/users/'.$user->username());
+            ->assertRedirectedTo('/user/'.$user->username());
 
         $this->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
     }
