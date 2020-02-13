@@ -3,11 +3,11 @@
 namespace Tests\Feature;
 
 use App\Mail\EmailConfirmationEmail;
-use Auth;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Mail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AuthTest extends BrowserKitTestCase
 {
@@ -199,12 +199,12 @@ class AuthTest extends BrowserKitTestCase
             ->see('Please confirm your email address first.');
     }
 
-    private function assertLoggedIn()
+    private function assertLoggedIn(): void
     {
         $this->assertTrue(Auth::check());
     }
 
-    private function assertLoggedOut()
+    private function assertLoggedOut(): void
     {
         $this->assertFalse(Auth::check());
     }

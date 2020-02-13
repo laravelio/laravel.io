@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\User;
-use Auth;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Auth;
 
 class SettingsTest extends BrowserKitTestCase
 {
@@ -110,8 +110,8 @@ class SettingsTest extends BrowserKitTestCase
         $this->assertPasswordWasHashedAndSaved();
     }
 
-    private function assertPasswordWasHashedAndSaved()
+    private function assertPasswordWasHashedAndSaved(): void
     {
-        return $this->assertTrue($this->app['hash']->check('newpassword', Auth::user()->getAuthPassword()));
+        $this->assertTrue($this->app['hash']->check('newpassword', Auth::user()->getAuthPassword()));
     }
 }
