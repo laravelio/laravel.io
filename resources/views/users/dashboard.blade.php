@@ -5,7 +5,6 @@
 @section('content')
     <div class="border-b">
         <div class="container mx-auto px-4 flex flex-col py-8">
-
             <div class="flex flex-wrap">
                 @include('users._metrics', ['user' => Auth::user()])
             </div>
@@ -36,7 +35,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection

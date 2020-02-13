@@ -12,7 +12,6 @@
             </div>
 
             <div class="w-full md:w-4/5 px-0 md:pl-8">
-
                 <div class="flex flex-wrap">
                     @include('users._metrics')
                 </div>
@@ -43,7 +42,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
