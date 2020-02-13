@@ -26,7 +26,6 @@ discussions.
 
 ## Testing
 
-All tests can be run with the following commands. Make sure to run this inside the Homestead box.
+All tests can be run with the following commands.
 
-    $ vendor/bin/phpspec run
     $ vendor/bin/phpunit

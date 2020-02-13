@@ -28,7 +28,6 @@ jobs:
           paths:
             - ./node_modules
           key: v1-node-dependencies-{{ checksum "package-lock.json" }}
-      - run: vendor/bin/phpspec run --verbose
       - run: vendor/bin/phpunit --verbose
       - store_artifacts:
           path: ./storage/logs
