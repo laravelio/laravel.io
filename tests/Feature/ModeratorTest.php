@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\BrowserKitTestCase;
 
 class ModeratorTest extends BrowserKitTestCase
 {

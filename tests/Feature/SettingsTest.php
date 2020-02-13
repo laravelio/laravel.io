@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\User;
 use Auth;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\BrowserKitTestCase;
 
 class SettingsTest extends BrowserKitTestCase
 {

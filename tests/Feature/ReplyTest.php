@@ -6,7 +6,6 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\BrowserKitTestCase;
 
 class ReplyTest extends BrowserKitTestCase
 {

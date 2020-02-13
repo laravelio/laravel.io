@@ -6,7 +6,6 @@ use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Arr;
-use Tests\BrowserKitTestCase;
 
 class DashboardTest extends BrowserKitTestCase
 {

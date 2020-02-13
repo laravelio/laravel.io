@@ -7,7 +7,6 @@ use App\Models\Thread;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\BrowserKitTestCase;
 
 class AdminTest extends BrowserKitTestCase
 {

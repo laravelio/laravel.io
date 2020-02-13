@@ -9,7 +9,6 @@ use App\Models\Tag;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Livewire\Livewire;
-use Tests\BrowserKitTestCase;
 
 class ForumTest extends BrowserKitTestCase
 {

@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Mail;
-use Tests\BrowserKitTestCase;
 
 class AuthTest extends BrowserKitTestCase
 {

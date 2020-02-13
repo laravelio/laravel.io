@@ -1,9 +1,12 @@
 <?php
 
-namespace Tests;
+namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\WithFaker;
 use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
+use Tests\CreatesApplication;
+use Tests\CreatesUsers;
+use Tests\HttpAssertions;
 
 abstract class BrowserKitTestCase extends BaseTestCase
 {

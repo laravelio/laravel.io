@@ -11,7 +11,6 @@ use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
-use Tests\BrowserKitTestCase;
 
 class SubscriptionsTest extends BrowserKitTestCase
 {
