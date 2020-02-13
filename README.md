@@ -11,16 +11,6 @@ guide below to get started with setting up the app on your machine.
 
 We hope to see your contribution soon!
 
-## Table of Contents
-
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Maintainers](#maintainers)
-- [Contributing](#contributing)
-- [Code of Conduct](#code-of-conduct)
-- [Security Vulnerabilities](#security-vulnerabilities)
-- [License](#license)
-
 ## Requirements
 
 The following tools are required in order to start the installation.
