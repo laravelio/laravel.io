@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Components\Jobs;
+namespace Tests\Integration\Jobs;
 
 use App\Events\ReplyWasCreated;
 use App\Jobs\CreateReply;

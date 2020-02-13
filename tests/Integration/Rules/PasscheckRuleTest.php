@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Components\Rules;
+namespace Tests\Integration\Rules;
 
 use App\Rules\PasscheckRule;
 use Illuminate\Foundation\Testing\RefreshDatabase;

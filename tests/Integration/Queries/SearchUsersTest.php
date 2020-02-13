@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Components\Queries;
+namespace Tests\Integration\Queries;
 
 use App\Queries\SearchUsers;
 use App\User;

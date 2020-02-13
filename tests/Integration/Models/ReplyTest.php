@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Components\Models;
+namespace Tests\Integration\Models;
 
 use App\Models\Reply;
 use Illuminate\Foundation\Testing\RefreshDatabase;

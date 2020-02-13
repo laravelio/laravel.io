@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Components\Jobs;
+namespace Tests\Integration\Jobs;
 
 use App\Jobs\BanUser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

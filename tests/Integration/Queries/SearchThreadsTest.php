@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Components\Queries;
+namespace Tests\Integration\Queries;
 
 use App\Models\Thread;
 use App\Queries\SearchThreads;
