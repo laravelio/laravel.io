@@ -22,7 +22,7 @@ The following tools are required in order to start the installation.
 
 ## Installation
 
-> Note that you're free to adjust the `~/Sites/laravelio` location to any directory you want on your machine. In doing so, be sure to run the `valet link` command inside the desired directory.
+> Note that you're free to adjust the `~/Sites/laravel.io` location to any directory you want on your machine. In doing so, be sure to run the `valet link` command inside the desired directory.
 
 1. Clone this repository with `git clone git@github.com:laravelio/portal.git ~/Sites/laravel.io`
 2. Run `composer install` to install the PHP dependencies
