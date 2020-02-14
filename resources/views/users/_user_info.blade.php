@@ -27,9 +27,11 @@
         @endif
     @endcan
 
-    @can(App\Policies\UserPolicy::DELETE, $user)
-        <button type="button" class="button button-danger w-full mb-4" @click.prevent="activeModal = 'deleteUser'">Delete User</button>
-    @endcan
+    @if(Auth::check() && Auth::user()->isAdmin())
+        @can(App\Policies\UserPolicy::DELETE, $user)
+            <button type="button" class="button button-danger w-full mb-4" @click.prevent="activeModal = 'deleteUser'">Delete User</button>
+        @endcan
+    @endif
 
     @if ($bio = $user->bio())
         <p class="text-gray-900 mb-1">
