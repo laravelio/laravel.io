@@ -18,11 +18,6 @@ class UsersController extends Controller
         $this->middleware([Authenticate::class, VerifyAdmins::class]);
     }
 
-    public function show(User $user)
-    {
-        return view('admin.users.show', compact('user'));
-    }
-
     public function ban(User $user)
     {
         $this->authorize(UserPolicy::BAN, $user);
@@ -31,7 +26,7 @@ class UsersController extends Controller
 
         $this->success('admin.users.banned', $user->name());
 
-        return redirect()->route('admin.users.show', $user->username());
+        return redirect()->route('profile', $user->username());
     }
 
     public function unban(User $user)
@@ -42,7 +37,7 @@ class UsersController extends Controller
 
         $this->success('admin.users.unbanned', $user->name());
 
-        return redirect()->route('admin.users.show', $user->username());
+        return redirect()->route('profile', $user->username());
     }
 
     public function delete(User $user)

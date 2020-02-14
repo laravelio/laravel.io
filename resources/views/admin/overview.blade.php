@@ -42,7 +42,7 @@
                             @endif
                         </td>
                         <td style="text-align:center;">
-                            <a href="{{ route('admin.users.show', $user->username()) }}" class="text-green-dark">
+                            <a href="{{ route('profile', $user->username()) }}" class="text-green-dark">
                                 <i class="fa fa-gear"></i>
                             </a>
                         </td>
