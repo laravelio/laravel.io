@@ -45,7 +45,6 @@
 
 @include('layouts._ads')
 @include('layouts._intercom')
-@include('layouts._fathom')
 
 </body>
 </html>
