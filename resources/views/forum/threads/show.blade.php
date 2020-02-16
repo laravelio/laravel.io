@@ -133,10 +133,9 @@
 
                 @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
                     @if ($thread->isConversationOld())
-                        <hr>
-                        <p class="text-center">
-                            The last reply to this thread was more than six months ago. Please consider <a href="{{ route('threads.create') }}">opening a new thread</a> if you have a similar question.
-                        </p>
+                        <div class="bg-gray-400 rounded p-4 text-gray-700 my-8">
+                            The last reply to this thread was more than six months ago. Please consider <a href="{{ route('threads.create') }}" class="text-green-dark">opening a new thread</a> if you have a similar question.
+                        </div>
                     @else
                         <div class="my-8">
 
