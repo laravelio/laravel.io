@@ -37,6 +37,26 @@ class UserTest extends TestCase
         $this->assertEquals(2, $user->countSolutions());
     }
 
+    /** @test */
+    public function it_can_determine_if_a_given_user_is_the_logged_in_user()
+    {
+        $user = $this->login();
+
+        $this->assertTrue($user->isLoggedInUser());
+    }
+
+    /** @test */
+    public function it_can_determine_if_a_given_user_is_not_the_logged_in_user()
+    {
+        $user = $this->createUser();
+        $this->login([
+            'username' => 'janedoe',
+            'email' => 'jane@example.com',
+        ]);
+
+        $this->assertFalse($user->isLoggedInUser());
+    }
+
     private function createTwoSolutionReplies(User $user)
     {
         $thread = factory(Thread::class)->create();

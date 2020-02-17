@@ -13,7 +13,7 @@
 
     <h2 class="text-2xl text-gray-900 mb-4">{{ $user->name() }}</h2>
 
-    @if (Auth::id() === $user->id)
+    @if ($user->isLoggedInUser())
         <a class="button mb-4" href="{{ route('settings.profile') }}">
             Edit profile
         </a>
