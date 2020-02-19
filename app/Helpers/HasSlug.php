@@ -21,9 +21,9 @@ trait HasSlug
         return static::where('slug', $slug)->firstOrFail();
     }
 
-    private function generateUniqueSlug(string $value): string
+    private function generateUniqueSlug(string $value, string $default = 'thread'): string
     {
-        $slug = $originalSlug = Str::slug($value);
+        $slug = $originalSlug = Str::slug($value) ?: $default;
         $counter = 0;
 
         while ($this->slugExists($slug, $this->exists ? $this->id() : null)) {

@@ -85,6 +85,31 @@ class ThreadTest extends TestCase
         $this->assertTrue($threadFromTwoDaysAgo->matches($threads->last()), 'Last thread is incorrect');
     }
 
+    /** @test */
+    public function it_generates_a_slug_when_valid_url_characters_provided()
+    {
+        $thread = factory(Thread::class)->make(['slug' => 'Help with eloquent']);
+
+        $this->assertEquals('help-with-eloquent', $thread->slug());
+    }
+
+    /** @test */
+    public function it_generates_a_unique_slug_when_valid_url_characters_provided()
+    {
+        $threadOne = factory(Thread::class)->create(['slug' => 'Help with eloquent']);
+        $threadTwo = factory(Thread::class)->create(['slug' => 'Help with eloquent']);
+
+        $this->assertEquals('help-with-eloquent-1', $threadTwo->slug());
+    }
+
+    /** @test */
+    public function it_generates_a_slug_when_invalid_url_characters_provided()
+    {
+        $thread = factory(Thread::class)->make(['slug' => '한글 테스트']);
+
+        $this->assertEquals('thread', $thread->slug());
+    }
+
     private function createThreadFromToday(): Thread
     {
         $today = Carbon::now();
