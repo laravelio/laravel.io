@@ -7,6 +7,11 @@
             </a>
         </div>
         <div>
+            <a href="https://usefathom.com/ref/7A8QGC">
+                <img src="{{ asset('images/fathom.png') }}">
+            </a>
+        </div>
+        <div>
             <a href="https://forge.laravel.com/">
                 <img src="{{ asset('images/forge.png') }}">
             </a>
@@ -16,7 +21,7 @@
                 <img src="{{ asset('images/envoyer.png') }}">
             </a>
         </div>
-        <div>
+        <div class="blackfire">
             <a href="https://blackfire.io/">
                 <img src="{{ asset('images/blackfire-io.png') }}">
             </a>
