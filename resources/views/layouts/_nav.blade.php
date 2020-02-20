@@ -50,7 +50,9 @@
                 </li>
                 <li><a href="https://laravelevents.com">Events</a></li>
                 <li class="relative" x-data="{ open: false }">
-                    <a href="#" role="button" aria-haspopup="true" aria-expanded="false" @click="open = true">Community</a>
+                    <a href="#" role="button" aria-haspopup="true" aria-expanded="false" @click="open = true">
+                        Community <i class="fa fa-caret-down ml-2"></i>
+                    </a>
                     <ul 
                         class="subnav"
                         x-show="open"
