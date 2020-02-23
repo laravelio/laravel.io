@@ -5,7 +5,6 @@
     "type": "project",
     "require": {
         "php": "^7.3",
-        "bugsnag/bugsnag-laravel": "^2.14",
         "doctrine/dbal": "^2.5",
         "facade/ignition": "^1.0",
         "fideloper/proxy": "^4.0",

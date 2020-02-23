@@ -37,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single', 'bugsnag', 'flare'],
+            'channels' => ['single', 'flare'],
             'ignore_exceptions' => false,
         ],
 
@@ -94,10 +94,6 @@ return [
         'null' => [
             'driver' => 'monolog',
             'handler' => NullHandler::class,
-        ],
-
-        'bugsnag' => [
-            'driver' => 'bugsnag',
         ],
 
         'flare' => [
