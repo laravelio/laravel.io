@@ -29,20 +29,15 @@
     
     @livewireAssets
 </head>
-    
-<body class="{{ $bodyClass ?? '' }}" x-data="{ activeModal: null }">
+
+<body class="{{ $bodyClass ?? '' }} font-sans bg-white" x-data="{ activeModal: null }">
 
 @include('layouts._ads._banner')
+@include('layouts._nav')
 
-<div id="app">
-    <div id="wrapper">
-        @include('layouts._nav')
+@yield('body')
 
-        @yield('body')
-    </div>
-    
-    @include('layouts._footer')
-</div>
+@include('layouts._footer')
 
 @include('layouts._ads')
 @include('layouts._intercom')

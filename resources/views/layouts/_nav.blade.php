@@ -1,112 +1,188 @@
-<nav class="text-gray-600 bg-white border-b" x-data="{ mobileActive: false }" @click.away="mobileActive = false">
-    <div class="container mx-auto px-4">
-        <div class="nav-wrapper">
-            <div class="nav-container">
-                <a class="my-4" href="{{ route('home') }}">
-                    <img src="{{ asset('images/laravelio.png') }}" alt="Laravel.io Logo" class="w-40"/>
-                </a>
+<nav x-data="{ open: false }" class="bg-white shadow">
+    <div class="max-w-6xl mx-auto px-2 sm:px-4 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex px-2 lg:px-0">
+                <div class="flex-shrink-0 flex items-center">
+                    <a class="my-4" href="{{ route('home') }}">
+                        <img class="block lg:hidden h-8 w-auto" src="{{ asset('images/laravelio-icon.svg') }}" alt="" />
+                        <img class="hidden lg:block h-8 w-auto" src="{{ asset('images/laravelio-logo.svg') }}" alt="" />
+                    </a>
+                </div>
+                <div class="hidden lg:ml-6 lg:flex">
+                    <a href="{{ route('forum') }}" class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out {{ active(['forum', 'threads*', 'thread']) }}">
+                        Forum
+                    </a>
+                    <a href="https://paste.laravel.io" class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                        Pastebin
+                    </a>
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <div class="ml-8 h-full flex items-center px-1 pt-1 border-b-2 border-transparent">
+                            <button @click="open = !open" class="flex text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                Chat
 
-                <button 
-                    type="button" 
-                    id="sidebar-open" 
-                    class="flex items-center lg:hidden text-gray-500 focus:outline-none cursor-pointer"
-                    @click="mobileActive = true"
-                    x-show="!mobileActive"
-                >
-                    <svg class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
-                    </svg>
-                </button>
+                                <svg viewBox="0 0 20 20" class="w-5 h-5 text-gray-500" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+                            <div class="py-1 rounded-md bg-white shadow-xs">
+                                <a href="https://discord.gg/KxwQuKb" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Discord</a>
+                                <a href="https://larachat.co" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Larachat</a>
+                                <a href="https://webchat.freenode.net/?nick=laravelnewbie&channels=%23laravel&prompt=1" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">IRC</a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://laravelevents.com" class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                        Events
+                    </a>
+                    <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                        <div class="ml-8 h-full flex items-center px-1 pt-1 border-b-2 border-transparent">
+                            <button @click="open = !open" class="flex text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                Community
 
-                <button 
-                    type="button" 
-                    id="sidebar-close" 
-                    class="flex items-center lg:hidden text-gray-500 focus:outline-none cursor-pointer"
-                    @click="mobileActive = false"
-                    x-show="mobileActive"
-                    x-cloak
-                >
-                    <svg class="fill-current w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                        <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/>
+                                <svg viewBox="0 0 20 20" class="w-5 h-5 text-gray-500" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+                            <div class="py-1 rounded-md bg-white shadow-xs">
+                                <a href="https://github.com/laravelio" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Github</a>
+                                <a href="https://larachat.co" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Twitter</a>
+                                <div class="border-t border-gray-100"></div>
+                                <a href="https://laravel.com" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Laravel</a>
+                                <a href="https://laracasts.com" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Laracasts</a>
+                                <a href="https://laravel-news.com" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Laravel News</a>
+                                <a href="https://www.laravelpodcast.com" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Podcast</a>
+                                <a href="https://ecosystem.laravel.io" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Ecosystem</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
+                <div class="max-w-lg w-full lg:max-w-xs">
+                    <form action="{{ route('forum') }}" method="GET">
+                        <label for="search" class="sr-only">Search</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <input type="text" name="search" id="search" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-blue-300 focus:shadow-outline-blue sm:text-sm transition duration-150 ease-in-out" placeholder="Search for threads..." />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="flex items-center lg:hidden">
+                <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path :class="{'hidden': open, 'inline-flex': !open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <path :class="{'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
-
-            <ul class="nav" :class="{ active: mobileActive }">
-                <li class="{{ active(['forum', 'threads*', 'thread']) }}"><a href="{{ route('forum') }}">Forum</a></li>
-                <li><a href="https://paste.laravel.io">Pastebin</a></li>
-                <li class="relative" x-data="{ open: false }">
-                    <a href="#" role="button" aria-haspopup="true" aria-expanded="false" @click="open = true">Chat</a>
-                    <ul 
-                        class="subnav"
-                        x-show="open"
-                        @click.away="open = false"
-                        x-cloak
-                    >
-                        <li><a href="https://discord.gg/KxwQuKb">Discord</a></li>
-                        <li><a href="https://larachat.co/">Larachat</a></li>
-                        <li><a href="https://webchat.freenode.net/?nick=laravelnewbie&channels=%23laravel&prompt=1">IRC</a></li>
-                    </ul>
-                </li>
-                <li><a href="https://laravelevents.com">Events</a></li>
-                <li class="relative" x-data="{ open: false }">
-                    <a href="#" role="button" aria-haspopup="true" aria-expanded="false" @click="open = true">
-                        Community <i class="fa fa-caret-down ml-2"></i>
-                    </a>
-                    <ul 
-                        class="subnav"
-                        x-show="open"
-                        @click.away="open = false"
-                        x-cloak
-                    >
-                        <li><a href="https://github.com/laravelio"><i class="fa fa-github"></i> Github</a></li>
-                        <li><a href="https://twitter.com/laravelio"><i class="fa fa-twitter"></i> Twitter</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="https://laravel.com">Laravel</a></li>
-                        <li><a href="https://laracasts.com">Laracasts</a></li>
-                        <li><a href="https://laravel-news.com">Laravel News</a></li>
-                        <li><a href="https://www.laravelpodcast.com">Podcast</a></li>
-                        <li><a href="https://ecosystem.laravel.io">Ecosystem</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav" :class="{ active: mobileActive }">
+            <div class="hidden lg:ml-4 lg:flex lg:items-center">
                 @if (Auth::guest())
-                    <li class="{{ active('login') }}"><a href="{{ route('login') }}">Login</a></li>
-                    <li class="{{ active('register') }}"><a href="{{ route('register') }}">Register</a></li>
+                    <a href="{{ route('login') }}" class="{{ active('login') }} inline-flex lg:h-full items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out">
+                        Login
+                    </a>
+                    <a href="{{ route('register') }}" class="{{ active('register') }} ml-8 inline-flex lg:h-full items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out">
+                        Register
+                    </a>
                 @else
-                    <li class="relative" x-data="{ open: false }">
-                        <a href="#" role="button" aria-haspopup="true" aria-expanded="false" @click="open = true">
-                            <img class="rounded-full" src="{{ Auth::user()->gravatarUrl(60) }}" style="width:30px;"> <span class="caret"></span>
-                        </a>
-                        <ul 
-                            class="subnav subnav-right"
-                            x-show="open"
-                            @click.away="open = false"
-                            x-cloak
-                        >
-                            <li>
-                                <span>
-                                    <strong>{{ Auth::user()->name() }}</strong><br>
-                                    {{ '@'.Auth::user()->username() }}
-                                </span>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li class="{{ active('profile') }}"><a href="{{ route('profile', Auth::user()->username()) }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Profile</a></li>
-                            <li class="{{ active('dashboard') }}"><a href="{{ route('dashboard') }}"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
-                            <li class="{{ active('settings.*') }}"><a href="{{ route('settings.profile') }}"> <i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
+                    {{--                Notifications--}}
+{{--                    <button class="flex-shrink-0 p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:text-gray-500 focus:bg-gray-100 transition duration-150 ease-in-out">--}}
+{{--                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">--}}
+{{--                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />--}}
+{{--                        </svg>--}}
+{{--                    </button>--}}
 
-                            @can(App\Policies\UserPolicy::ADMIN, App\User::class)
-                                <li role="separator" class="divider"></li>
-                                <li class="{{ active('admin*') }}"><a href="{{ route('admin') }}"><i class="fa fa-shield" aria-hidden="true"></i> Admin</a></li>
-                            @endcan
+                    <div @click.away="open = false" class="ml-4 relative flex-shrink-0" x-data="{ open: false }">
+                        <div>
+                            <button @click="open = !open" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
+                                <img class="h-8 w-8 rounded-full" src="{{ Auth::user()->gravatarUrl(256) }}" alt="" />
+                            </button>
+                        </div>
+                        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+                            <div class="py-1 rounded-md bg-white shadow-xs">
+                                <a href="{{ route('profile', Auth::user()->username()) }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Your Profile</a>
+                                <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Dashboard</a>
+                                <a href="{{ route('settings.profile') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Settings</a>
 
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
-                        </ul>
-                    </li>
+                                @can(App\Policies\UserPolicy::ADMIN, App\User::class)
+                                    <div class="border-t border-gray-100"></div>
+                                    <a href="{{ route('admin') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Admin</a>
+                                @endcan
+
+                                <div class="border-t border-gray-100"></div>
+                                <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Sign out</a>
+                            </div>
+                        </div>
+                    </div>
                 @endif
-            </ul>
+            </div>
+        </div>
+    </div>
+    <div :class="{'block': open, 'hidden': !open}" class="hidden lg:hidden">
+        <div class="pt-2 pb-3">
+            <a href="{{ route('forum') }}" class="{{ active(['forum', 'threads*', 'thread']) }} block pl-3 pr-4 py-2 border-l-4 text-base font-medium bg-indigo-50 focus:outline-none transition duration-150 ease-in-out">Forum</a>
+            <a href="https://paste.laravel.io" class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Pastebin</a>
+
+            <div class="mt-1">
+                <div class="pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 transition duration-150 ease-in-out">
+                    Chat
+                </div>
+
+                <div>
+                    <a href="https://discord.gg/KxwQuKb" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Discord</a>
+                    <a href="https://larachat.co" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Larachat</a>
+                    <a href="https://webchat.freenode.net/?nick=laravelnewbie&channels=%23laravel&prompt=1" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">IRC</a>
+                </div>
+            </div>
+
+            <a href="https://laravelevents.com" class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Events</a>
+
+            <div class="mt-1">
+                <div class="pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 transition duration-150 ease-in-out">
+                    Community
+                </div>
+
+                <div>
+                    <a href="https://github.com/laravelio" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Github</a>
+                    <a href="https://larachat.co" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Twitter</a>
+                    <a href="https://laravel.com" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Laravel</a>
+                    <a href="https://laracasts.com" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Laracasts</a>
+                    <a href="https://laravel-news.com" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Laravel News</a>
+                    <a href="https://www.laravelpodcast.com" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Podcast</a>
+                    <a href="https://ecosystem.laravel.io" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Ecosystem</a>
+                </div>
+            </div>
+        </div>
+        <div class="pt-4 pb-3 border-t border-gray-200">
+            @if (Auth::guest())
+                <div class="mt-3">
+                    <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">Your Profile</a>
+                    <a href="#" class="mt-1 block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">Settings</a>
+                </div>
+            @else
+                <div class="flex items-center px-4">
+                    <div class="flex-shrink-0">
+                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                    </div>
+                    <div class="ml-3">
+                        <div class="text-base font-medium leading-6 text-gray-800">{{ Auth::user()->name() }}</div>
+                        <div class="text-sm font-medium leading-5 text-gray-500">{{ '@'.Auth::user()->username() }}</div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <a href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">Your Profile</a>
+                    <a href="#" class="mt-1 block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">Settings</a>
+                    <a href="#" class="mt-1 block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">Sign out</a>
+                </div>
+            @endif
         </div>
     </div>
 </nav>

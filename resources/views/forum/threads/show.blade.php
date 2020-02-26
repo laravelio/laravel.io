@@ -9,10 +9,6 @@
                 <a href="{{ route('forum') }}">Forum</a>
                 > {{ $title }}
             </h1>
-            
-            <form action="{{ route('forum') }}" method="GET">
-                <input type="text" name="search" id="search" value="{{ $search ?? null }}" class="rounded border-2 border-gray-300 py-1 px-3 focus:outline-none focus:border-blue-900" placeholder="Search for threads..." />
-            </form>
         </div>
     </div>
     <div class="container mx-auto px-4 pt-4">

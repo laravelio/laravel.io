@@ -1,33 +1,20 @@
 @import 'alerts.css';
 @import 'advertising.css';
-@import 'buttons.css';
+/*@import 'buttons.css';*/
 @import 'footer.css';
-@import 'forms.css';
-@import 'labels.css';
+/*@import 'forms.css';*/
+/*@import 'labels.css';*/
 @import 'legals.css';
 @import 'modal.css';
-@import 'nav.css';
 @import 'pagination.css';
 @import 'replies.css';
 @import 'tables.css';
 @import 'tags.css';
 @import 'threads.css';
 
-body {
-    @apply font-sans bg-gray-200;
-}
-
-#app {
-    @apply flex min-h-screen flex-col;
-}
-
-#wrapper {
-    @apply flex-1;
-}
-
-a:hover {
-    @apply underline;
-}
+/*a:hover {*/
+/*    @apply underline;*/
+/*}*/
 
 pre .hljs {
     @apply text-sm rounded p-4 border-2;
@@ -36,10 +23,6 @@ pre .hljs {
 .forum-content code {
     background: #f8f8f8;
     color: #333;
-}
-
-svg {
-    @apply w-32;
 }
 
 svg .primary {
