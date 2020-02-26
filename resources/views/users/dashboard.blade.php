@@ -9,9 +9,15 @@
                 @include('users._metrics', ['user' => Auth::user()])
             </div>
 
-            <div class="w-full px-0" x-data="{ tab: 'threads' }">
+            <div class="w-full px-0" x-data="{ tab: 'notifications' }">
                 <nav class="mb-4 border-b border-gray-500 overflow-x-scroll">
                     <ul class="dashboard-nav text-gray-700">
+                        <li class="mr-8" :class="{ 'active': tab === 'notifications' }">
+                            <button @click="tab = 'notifications'">
+                                Notifications
+                                @livewire('notification-count', 100, 'label')
+                            </button>
+                        </li>
                         <li class="mr-8" :class="{ 'active': tab === 'threads' }">
                             <button @click="tab = 'threads'">
                                 Latest Threads
@@ -26,6 +32,10 @@
                 </nav>
 
                 <div>
+                    <div x-show="tab === 'notifications'">
+                        @livewire('notifications')
+                    </div>
+
                     <div x-show="tab === 'threads'">
                         @include('users._latest_threads', ['user' => Auth::user()])
                     </div>
