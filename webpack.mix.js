@@ -13,10 +13,6 @@ const FlareWebpackPluginSourcemap = require("@flareapp/flare-webpack-plugin-sour
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .webpackConfig({
-        plugins: [new FlareWebpackPluginSourcemap({ key: process.env.FLARE_KEY })],
-    })
-    .sourceMaps(true, 'hidden-source-map')
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),
