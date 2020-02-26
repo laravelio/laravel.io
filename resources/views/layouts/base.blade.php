@@ -14,6 +14,7 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 

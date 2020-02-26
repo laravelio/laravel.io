@@ -8,25 +8,24 @@ module.exports = {
       green: {
         primary: '#18bc9c',
         dark: '#15a589',
-        darker: '#12826c'
+        darker: '#12826c',
       },
       red: {
         primary: '#e53e3e',
-        dark: '#c53030'
+        dark: '#c53030',
       },
       gray: {
-        ...defaultTheme.colors.gray
-      }
+        ...defaultTheme.colors.gray,
+      },
     },
     extend: {
       fontFamily: {
-        sans: [
-          'Lato',
-          ...defaultTheme.fontFamily.sans,
-        ]
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
-    }
+    },
   },
   variants: {},
-  plugins: []
-}
+  plugins: [
+    require('@tailwindcss/ui'),
+  ],
+};
