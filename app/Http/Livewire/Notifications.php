@@ -25,7 +25,7 @@ class Notifications extends Component
 
     public function mount()
     {
-        if (!$this->user) {
+        if (! $this->user) {
             abort(403);
         }
     }

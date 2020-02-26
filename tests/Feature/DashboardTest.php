@@ -3,13 +3,13 @@
 namespace Tests\Feature;
 
 use App\Http\Livewire\NotificationCount;
-use Illuminate\Support\Str;
 use App\Http\Livewire\Notifications;
 use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Livewire\Livewire;
 
 class DashboardTest extends BrowserKitTestCase
@@ -56,13 +56,13 @@ class DashboardTest extends BrowserKitTestCase
 
         $userOne->notifications()->create([
             'id' => Str::random(),
-            'type' => "App\\Notifications\\NewReplyNotification",
+            'type' => 'App\\Notifications\\NewReplyNotification',
             'data' => [
                 'type' => 'reply',
                 'author' => $reply->author(),
                 'reply' => $reply,
                 'thread' => $reply->replyAble(),
-            ]
+            ],
         ]);
 
         $profileRoute = route('profile', $userTwo->username());
@@ -88,13 +88,13 @@ class DashboardTest extends BrowserKitTestCase
 
         $notification = $userOne->notifications()->create([
             'id' => Str::random(),
-            'type' => "App\\Notifications\\NewReplyNotification",
+            'type' => 'App\\Notifications\\NewReplyNotification',
             'data' => [
                 'type' => 'reply',
                 'author' => $reply->author(),
                 'reply' => $reply,
                 'thread' => $reply->replyAble(),
-            ]
+            ],
         ]);
 
         $profileRoute = route('profile', $userTwo->username());
@@ -130,13 +130,13 @@ class DashboardTest extends BrowserKitTestCase
 
         $notification = $userOne->notifications()->create([
             'id' => Str::random(),
-            'type' => "App\\Notifications\\NewReplyNotification",
+            'type' => 'App\\Notifications\\NewReplyNotification',
             'data' => [
                 'type' => 'reply',
                 'author' => $reply->author(),
                 'reply' => $reply,
                 'thread' => $reply->replyAble(),
-            ]
+            ],
         ]);
 
         $this->loginAs($userTwo);
@@ -162,13 +162,13 @@ class DashboardTest extends BrowserKitTestCase
         for ($i = 0; $i < 10; $i++) {
             $userOne->notifications()->create([
                 'id' => Str::random(),
-                'type' => "App\\Notifications\\NewReplyNotification",
+                'type' => 'App\\Notifications\\NewReplyNotification',
                 'data' => [
                     'type' => 'reply',
                     'author' => $reply->author(),
                     'reply' => $reply,
                     'thread' => $reply->replyAble(),
-                ]
+                ],
             ]);
         }
 
