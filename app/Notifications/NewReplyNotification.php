@@ -32,7 +32,7 @@ final class NewReplyNotification extends Notification implements ShouldQueue
 
     public function via(User $user)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     public function toMail(User $user)
@@ -44,7 +44,10 @@ final class NewReplyNotification extends Notification implements ShouldQueue
     public function toArray(User $user)
     {
         return [
-            //
+            'type' => 'reply',
+            'author' => $this->reply->author(),
+            'reply' => $this->reply,
+            'thread' => $this->reply->replyAble(),
         ];
     }
 }
