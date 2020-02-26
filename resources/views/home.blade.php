@@ -3,23 +3,39 @@
 @section('body')
     @include('layouts._alerts')
 
-    <div class="border-b bg-white">
-        <div class="container mx-auto flex flex-col items-center py-20 px-4">
-            <img src="{{ asset('images/laravelio.png') }}" title="Laravel.io" alt="Laravel.io logo" class="w-full md:w-2/5 mb-8">
-            <h2 class="text-2xl text-gray-700 mb-8 text-center md:text-left">The Laravel Community Portal</h2>
-            <div class="flex flex-wrap justify-center md:justify-start">
-                @if (Auth::guest())
-                    <a class="button button-big button-primary mr-4 mb-4" href="{{ route('register') }}">
-                        Join the Community
-                    </a>
-                    <a class="button button-big button-muted mb-4" href="{{ route('forum') }}">
-                        Visit the Forum
-                    </a>
-                @else
-                    <a class="button button-big button-primary" href="{{ route('threads.create') }}">
-                        Start a Thread
-                    </a>
-                @endif
+    <div class="relative bg-gray-50 overflow-hidden">
+        <div x-data="{ open: false }" class="relative pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
+            <div class="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 xl:mt-28">
+                <div class="text-center">
+                    <img src="{{ asset('images/laravelio.png') }}" title="Laravel.io" alt="Laravel.io" class="block md:max-w-2xl mx-auto mb-10">
+
+                    <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none">
+                        The Laravel Community Portal
+                    </h2>
+                    <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-2xl">
+                        The Laravel portal for problem solving, knowledge sharing and community building. <strong>Join {{ $totalUsers }} other artisans.</strong>
+                    </p>
+                    <div class="mt-5 max-w-lg mx-auto sm:flex sm:justify-center md:mt-8">
+                        @if (Auth::guest())
+                            <div class="rounded-md shadow">
+                                <a href="{{ route('register') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-dark hover:bg-green-primary focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                    Join the Community
+                                </a>
+                            </div>
+                            <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+                                <a href="{{ route('forum') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-green-primary bg-white hover:text-green-dark focus:outline-none focus:shadow-outline-blue transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                    Visit the Forum
+                                </a>
+                            </div>
+                        @else
+                            <div class="rounded-md shadow">
+                                <a href="{{ route('threads.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-dark hover:bg-green-primary focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                    Start a Thread
+                                </a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
     </div>
