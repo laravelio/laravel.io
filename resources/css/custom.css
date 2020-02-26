@@ -1,9 +1,9 @@
 @import 'alerts.css';
 @import 'advertising.css';
-/*@import 'buttons.css';*/
+@import 'buttons.css';
 @import 'footer.css';
-/*@import 'forms.css';*/
-/*@import 'labels.css';*/
+@import 'forms.css';
+@import 'labels.css';
 @import 'legals.css';
 @import 'modal.css';
 @import 'pagination.css';

@@ -13,6 +13,10 @@ textarea {
     @apply rounded border-2 p-3 w-full;
 }
 
+input.nav-search {
+    @apply pl-10 pr-3 py-2;
+}
+
 input[type=checkbox] {
     @apply mr-1;
 }

@@ -22,7 +22,7 @@ class HomeTest extends BrowserKitTestCase
         $this->visit('/')
             ->seeLink('Login')
             ->seeLink('Register')
-            ->dontSeeLink('Logout');
+            ->dontSeeLink('Sign out');
     }
 
     /** @test */
@@ -31,7 +31,7 @@ class HomeTest extends BrowserKitTestCase
         $this->login();
 
         $this->visit('/')
-            ->seeLink('Logout')
+            ->seeLink('Sign out')
             ->dontSeeLink('Login')
             ->dontSeeLink('Register')
             ->seeLink('Dashboard', '/dashboard');

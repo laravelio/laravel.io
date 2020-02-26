@@ -96,7 +96,7 @@
             <div class="flex flex-col items-center">
                 <div class="text-lg text-center mb-8 text-gray-700">
                     Can't find what you're looking for?
-                    <a href="#" class="text-green-darker">
+                    <a href="{{ route('threads.create') }}" class="text-green-darker">
                         Create a new thread
                     </a>
                 </div>
