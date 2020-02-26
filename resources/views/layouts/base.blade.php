@@ -27,7 +27,9 @@
     @include('layouts._google_analytics')
     @include('layouts._ads._ad_sense')
     
-    @livewireAssets
+    {{-- @livewireAssets --}}
+    {{-- shows up in login page, dont know why this is here tho --}}
+
 </head>
 
 <body class="{{ $bodyClass ?? '' }} font-sans bg-white" x-data="{ activeModal: null }">
