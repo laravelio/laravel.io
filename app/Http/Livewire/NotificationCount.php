@@ -7,9 +7,7 @@ use Livewire\Component;
 
 class NotificationCount extends Component
 {
-    public $max = 9;
-
-    public $class;
+    public $count;
 
     protected $listeners = [
         'notificationMarkedAsRead' => 'updateCount',
@@ -17,18 +15,11 @@ class NotificationCount extends Component
 
     public function render()
     {
-        $notificationCount = Auth::user()->unreadNotifications()->count();
+        $this->count = Auth::user()->unreadNotifications()->count();
 
-        return view('livewire.notification-count', [
-            'count' => ($notificationCount > $this->max) ? "{$this->max}+" : $notificationCount,
-            'class' => $this->class,
+        return view('livewire.notification_count', [
+            'count' => $this->count
         ]);
-    }
-
-    public function mount($max, $class = null)
-    {
-        $this->max = $max;
-        $this->class = $class;
     }
 
     public function updateCount($count)

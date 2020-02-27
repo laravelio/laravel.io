@@ -15,7 +15,7 @@
                         <li class="mr-8" :class="{ 'active': tab === 'notifications' }">
                             <button @click="tab = 'notifications'">
                                 Notifications
-                                @livewire('notification-count', 100, 'label')
+                                @livewire('notification-count')
                             </button>
                         </li>
                         <li class="mr-8" :class="{ 'active': tab === 'threads' }">

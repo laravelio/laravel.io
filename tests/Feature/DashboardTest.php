@@ -174,10 +174,7 @@ class DashboardTest extends BrowserKitTestCase
 
         $this->loginAs($userOne);
 
-        Livewire::test(NotificationCount::class, 100)
+        Livewire::test(NotificationCount::class)
             ->assertSee('10');
-
-        Livewire::test(NotificationCount::class, 9)
-            ->assertSee('9+');
     }
 }
