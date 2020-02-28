@@ -18,7 +18,7 @@ class NotificationCount extends Component
         $this->count = Auth::user()->unreadNotifications()->count();
 
         return view('livewire.notification_count', [
-            'count' => $this->count
+            'count' => $this->count,
         ]);
     }
 

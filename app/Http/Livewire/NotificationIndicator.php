@@ -18,7 +18,7 @@ class NotificationIndicator extends Component
         $this->hasNotification = Auth::user()->unreadNotifications()->count() > 0;
 
         return view('livewire.notification_indicator', [
-            'hasNotification' => $this->hasNotification
+            'hasNotification' => $this->hasNotification,
         ]);
     }
 
