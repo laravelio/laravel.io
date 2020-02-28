@@ -28,10 +28,10 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-suggest
 
-#      - name: Cache Routes & Config
-#        run: |
-#          php artisan route:cache
-#          php artisan config:cache
+      - name: Cache Routes & Config
+        run: |
+          php artisan route:cache
+          php artisan config:cache
 
       - name: Install NPM dependencies
         run: npm install
