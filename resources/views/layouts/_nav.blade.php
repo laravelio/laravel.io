@@ -105,7 +105,7 @@
                     <div @click.away="open = false" class="ml-4 relative flex-shrink-0" x-data="{ open: false }">
                         <div>
                             <button @click="open = !open" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                <img class="h-8 w-8 rounded-full" src="{{ Auth::user()->gravatarUrl(256) }}" alt="" />
+                                <img class="h-8 w-8 rounded-full" src="{{ Auth::user()->gravatarUrl(256) }}" alt="{{ Auth::user()->name() }}" />
                             </button>
                         </div>
                         <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50">
@@ -172,7 +172,7 @@
             @else
                 <div class="flex items-center px-4">
                     <div class="flex-shrink-0">
-                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                        <img class="h-10 w-10 rounded-full" src="{{ Auth::user()->gravatarUrl(256) }}" alt="{{ Auth::user()->name() }}" />
                     </div>
                     <div class="ml-3">
                         <div class="text-base font-medium leading-6 text-gray-800">{{ Auth::user()->name() }}</div>
