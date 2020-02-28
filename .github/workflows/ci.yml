@@ -33,11 +33,11 @@ jobs:
 #          php artisan route:cache
 #          php artisan config:cache
 
-#      - name: Install NPM dependencies
-#        run: npm install
-#
-#      - name: Compile assets
-#        run: npm run production
+      - name: Install NPM dependencies
+        run: npm install
+
+      - name: Compile assets
+        run: npm run production
 
       - name: Execute tests
         run: vendor/bin/phpunit --verbose
