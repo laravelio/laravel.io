@@ -37,18 +37,6 @@ svg .secondary {
     display: none;
 }
 
-nav ul.dashboard-nav {
-    @apply flex;
-}
-
-nav ul.dashboard-nav li {
-    @apply pb-2;
-}
-
-nav ul.dashboard-nav li button {
-    @apply outline-none;
-}
-
-nav ul.dashboard-nav li.active {
-    @apply border-b-2 border-green-primary;
+nav.dashboard-nav a.active {
+    @apply border-green-primary text-green-primary;
 }

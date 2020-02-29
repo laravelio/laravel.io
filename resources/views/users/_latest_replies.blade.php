@@ -39,8 +39,8 @@
                 </div>
             </div>
         @empty
-            <p class="text-gray-600 text-lg">
-                {{ $user->name() }} has not posted any threads yet.
+            <p class="text-gray-600 text-base">
+                {{ $user->name() }} has not posted any replies yet
             </p>
         @endforelse
     </div>

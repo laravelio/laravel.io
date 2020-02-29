@@ -17,20 +17,18 @@
                 </div>
 
                 <div x-data="{ tab: 'threads' }">
-                    <nav class="mb-4 border-b border-gray-500 overflow-x-scroll">
-                        <ul class="dashboard-nav text-gray-700">
-                            <li class="mr-8" :class="{ 'active': tab === 'threads' }">
-                                <button @click="tab = 'threads'">
+                    <div class="block mb-4">
+                        <div class="border-b border-gray-200">
+                            <nav class="-mb-px flex dashboard-nav">
+                                <a href="#" @click="tab = 'threads'" :class="{ 'active': tab === 'threads' }"  class="whitespace-no-wrap py-4 px-1 border-b-2 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">
                                     Latest Threads
-                                </button>
-                            </li>
-                            <li :class="{ 'active': tab === 'replies' }">
-                                <button @click="tab = 'replies'">
+                                </a>
+                                <a href="#" @click="tab = 'replies'" :class="{ 'active': tab === 'replies' }"  class="whitespace-no-wrap ml-8 py-4 px-1 border-b-2 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">
                                     Latest Replies
-                                </button>
-                            </li>
-                        </ul>
-                    </nav>
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
 
                     <div>
                         <div x-show="tab === 'threads'">
