@@ -52,6 +52,24 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
+    public function registration_fails_with_non_alpha_dash_username()
+    {
+        session(['githubData' => ['id' => 123, 'username' => 'johndoe']]);
+
+        $this->visit('/register')
+            ->type('John Doe', 'name')
+            ->type('john.doe@example.com', 'email')
+            ->type('john foo', 'username')
+            ->type('123', 'github_id')
+            ->type('johndoe', 'github_username')
+            ->check('rules')
+            ->check('terms')
+            ->press('Register')
+            ->seePageIs('/register')
+            ->see('The username may only contain letters, numbers, dashes and underscores.');
+    }
+
+    /** @test */
     public function users_can_resend_the_email_confirmation()
     {
         $this->login(['confirmed' => false]);

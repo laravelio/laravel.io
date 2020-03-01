@@ -7,6 +7,5 @@
 /public/mix-manifest.json
 /storage/*.key
 /vendor
-/laradock
 .env
 .phpunit.result.cache
