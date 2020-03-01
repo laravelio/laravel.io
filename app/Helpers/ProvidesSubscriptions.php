@@ -20,7 +20,7 @@ trait ProvidesSubscriptions
      * It's important to name the relationship the same as the method because otherwise
      * eager loading of the polymorphic relationship will fail on queued jobs.
      *
-     * @see https://github.com/laravelio/portal/issues/350
+     * @see https://github.com/laravelio/laravel.io/issues/350
      */
     public function subscriptionsRelation(): MorphMany
     {

@@ -7,7 +7,7 @@
         <h1 class="text-5xl">{{ $title }}</h1>
         <p class="text-lg">
             We've been notified and will try to fix the problem as soon as possible.<br>
-            Please <a href="https://github.com/laravelio/portal/issues/new" class="text-green-darker">open a Github issue</a> if the problem persists.
+            Please <a href="https://github.com/laravelio/laravel.io/issues/new" class="text-green-darker">open a Github issue</a> if the problem persists.
         </p>
     </div>
 @endsection
