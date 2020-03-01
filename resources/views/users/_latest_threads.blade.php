@@ -21,7 +21,7 @@
 
                         <span class="text-base font-normal">
                             <i class="fa fa-thumbs-up text-gray-500 mr-1"></i>
-                            {{ $thread->likes_count }}
+                            {{ $thread->likesCount() }}
                         </span>
                     </div>
                 </div>

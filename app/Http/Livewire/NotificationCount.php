@@ -3,17 +3,18 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 use Livewire\Component;
 
-class NotificationCount extends Component
+final class NotificationCount extends Component
 {
     public $count;
 
     protected $listeners = [
-        'notificationMarkedAsRead' => 'updateCount',
+        'NotificationMarkedAsRead' => 'updateCount',
     ];
 
-    public function render()
+    public function render(): View
     {
         $this->count = Auth::user()->unreadNotifications()->count();
 
@@ -22,7 +23,7 @@ class NotificationCount extends Component
         ]);
     }
 
-    public function updateCount($count)
+    public function updateCount(int $count): int
     {
         return $count;
     }

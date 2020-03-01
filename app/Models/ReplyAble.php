@@ -26,4 +26,6 @@ interface ReplyAble
     public function repliesRelation(): MorphMany;
 
     public function isConversationOld(): bool;
+
+    public function replyAbleSubject(): string;
 }

@@ -15,6 +15,8 @@ final class User extends Authenticatable
 {
     use HasTimestamps, ModelHelpers, Notifiable;
 
+    const TABLE = 'users';
+
     const DEFAULT = 1;
     const MODERATOR = 2;
     const ADMIN = 3;

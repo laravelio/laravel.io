@@ -5,47 +5,32 @@ namespace App\Http\Livewire;
 use App\Jobs\LikeThread as LikeThreadJob;
 use App\Jobs\UnlikeThread as UnlikeThreadJob;
 use App\Models\Thread;
-use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class LikeThread extends Component
+final class LikeThread extends Component
 {
     use DispatchesJobs;
 
-    public $likes;
-
-    public $threadId;
+    /** @var \App\Models\Thread */
+    public $thread;
 
     public function mount(Thread $thread): void
     {
-        $this->threadId = $thread->id;
-        $this->likes = $this->thread->likes_count;
-    }
-
-    public function getThreadProperty(): Thread
-    {
-        return Thread::findOrFail($this->threadId);
-    }
-
-    public function getUserProperty(): ?User
-    {
-        return Auth::user();
+        $this->thread = $thread;
     }
 
     public function toggleLike(): void
     {
-        if (! $this->user) {
+        if (Auth::guest()) {
             return;
         }
 
-        if ($this->thread->isLikedBy($this->user)) {
-            $this->dispatchNow(new UnlikeThreadJob($this->thread, $this->user));
+        if ($this->thread->isLikedBy(Auth::user())) {
+            $this->dispatchNow(new UnlikeThreadJob($this->thread, Auth::user()));
         } else {
-            $this->dispatchNow(new LikeThreadJob($this->thread, $this->user));
+            $this->dispatchNow(new LikeThreadJob($this->thread, Auth::user()));
         }
-
-        $this->likes = $this->thread->likes_count;
     }
 }

@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Models\Thread;
 use App\User;
 
-class ThreadPolicy
+final class ThreadPolicy
 {
     const UPDATE = 'update';
     const DELETE = 'delete';

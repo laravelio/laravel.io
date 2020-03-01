@@ -41,13 +41,14 @@ final class NewReplyNotification extends Notification implements ShouldQueue
             ->to($user->emailAddress(), $user->name());
     }
 
-    public function toArray(User $user)
+    public function toDatabase(User $user)
     {
         return [
-            'type' => 'reply',
-            'author' => $this->reply->author(),
-            'reply' => $this->reply,
-            'thread' => $this->reply->replyAble(),
+            'type' => 'new_reply',
+            'reply' => $this->reply->id(),
+            'replyable_id' => $this->reply->replyable_id,
+            'replyable_type' => $this->reply->replyable_type,
+            'replyable_subject' => $this->reply->replyAble()->replyAbleSubject(),
         ];
     }
 }

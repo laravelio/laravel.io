@@ -3,26 +3,29 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 use Livewire\Component;
 
-class NotificationIndicator extends Component
+final class NotificationIndicator extends Component
 {
     public $hasNotification;
 
     protected $listeners = [
-        'notificationMarkedAsRead' => 'setHasNotification',
+        'NotificationMarkedAsRead' => 'setHasNotification',
     ];
 
-    public function render()
+    public function render(): View
     {
-        $this->hasNotification = Auth::user()->unreadNotifications()->count() > 0;
+        $this->hasNotification = $this->setHasNotification(
+            Auth::user()->unreadNotifications()->count()
+        );
 
         return view('livewire.notification_indicator', [
             'hasNotification' => $this->hasNotification,
         ]);
     }
 
-    public function setHasNotification($count)
+    public function setHasNotification(int $count): bool
     {
         return $count > 0;
     }

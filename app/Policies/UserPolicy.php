@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\User;
 
-class UserPolicy
+final class UserPolicy
 {
     const ADMIN = 'admin';
     const BAN = 'ban';

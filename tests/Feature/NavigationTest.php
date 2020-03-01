@@ -5,11 +5,12 @@ namespace Tests\Feature;
 use App\Http\Livewire\NotificationIndicator;
 use App\Models\Reply;
 use App\Models\Thread;
+use App\Notifications\NewReplyNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 
-class NavTest extends BrowserKitTestCase
+class NavigationTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
 
@@ -17,7 +18,11 @@ class NavTest extends BrowserKitTestCase
     public function a_user_sees_the_correct_number_of_notifications()
     {
         $userOne = $this->createUser();
-        $userTwo = $this->createUser(['name' => 'Jane Doe', 'username' => 'janedoe', 'email' => 'jane@example.com']);
+        $userTwo = $this->createUser([
+            'name' => 'Jane Doe',
+            'username' => 'janedoe',
+            'email' => 'jane@example.com',
+        ]);
 
         $thread = factory(Thread::class)->create(['author_id' => $userOne->id()]);
         $reply = factory(Reply::class)->create([
@@ -33,12 +38,13 @@ class NavTest extends BrowserKitTestCase
         for ($i = 0; $i < 10; $i++) {
             $userOne->notifications()->create([
                 'id' => Str::random(),
-                'type' => 'App\\Notifications\\NewReplyNotification',
+                'type' => NewReplyNotification::class,
                 'data' => [
-                    'type' => 'reply',
-                    'author' => $reply->author(),
-                    'reply' => $reply,
-                    'thread' => $reply->replyAble(),
+                    'type' => 'new_reply',
+                    'reply' => $reply->id(),
+                    'replyable_id' => $reply->replyable_id,
+                    'replyable_type' => $reply->replyable_type,
+                    'replyable_subject' => $reply->replyAble()->replyAbleSubject(),
                 ],
             ]);
         }

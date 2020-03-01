@@ -11,13 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if (App::environment('production')) {
-            exit('I just stopped you getting fired. Love Phil');
-            // Thanks Phil!
+        if (! App::environment('production')) {
+            $this->call(UserSeeder::class);
+            $this->call(TagSeeder::class);
+            $this->call(ThreadSeeder::class);
+            $this->call(NotificationSeeder::class);
         }
-
-        $this->call(UserSeeder::class);
-        $this->call(TagSeeder::class);
-        $this->call(ThreadSeeder::class);
     }
 }

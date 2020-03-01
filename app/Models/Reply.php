@@ -31,9 +31,10 @@ final class Reply extends Model
         'body',
     ];
 
+    /**
+     * {@inheritdoc}
+     */
     protected $with = ['likes'];
-
-    protected $appends = ['likes_count'];
 
     public function id(): int
     {

@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Models\Reply;
 use App\User;
 
-class ReplyPolicy
+final class ReplyPolicy
 {
     const CREATE = 'create';
     const UPDATE = 'update';

@@ -4,35 +4,30 @@ namespace App\Http\Livewire;
 
 use App\Policies\NotificationPolicy;
 use App\User;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Notifications extends Component
+final class Notifications extends Component
 {
     use WithPagination, AuthorizesRequests;
 
     public $notificationId;
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.notifications', [
-            'notifications' => $this->user->unreadNotifications()->paginate(10),
+            'notifications' => Auth::user()->unreadNotifications()->paginate(10),
         ]);
     }
 
-    public function mount()
+    public function mount(): void
     {
-        if (! $this->user) {
-            abort(403);
-        }
-    }
-
-    public function getUserProperty(): ?User
-    {
-        return Auth::user();
+        abort_if(Auth::guest(), 403);
     }
 
     public function getNotificationProperty(): DatabaseNotification
@@ -40,14 +35,17 @@ class Notifications extends Component
         return DatabaseNotification::findOrFail($this->notificationId);
     }
 
-    public function markAsRead($notificationId)
+    public function markAsRead(string $notificationId): LengthAwarePaginator
     {
         $this->notificationId = $notificationId;
+
         $this->authorize(NotificationPolicy::MARK_AS_READ, $this->notification);
 
         $this->notification->markAsRead();
-        $unreadNotifications = $this->user->unreadNotifications()->paginate(10);
-        $this->emit('notificationMarkedAsRead', $unreadNotifications->total());
+
+        $unreadNotifications = Auth::user()->unreadNotifications()->paginate(10);
+
+        $this->emit('NotificationMarkedAsRead', $unreadNotifications->total());
 
         return $unreadNotifications;
     }

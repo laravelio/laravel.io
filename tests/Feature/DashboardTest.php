@@ -6,9 +6,9 @@ use App\Http\Livewire\NotificationCount;
 use App\Http\Livewire\Notifications;
 use App\Models\Reply;
 use App\Models\Thread;
+use App\Notifications\NewReplyNotification;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 
@@ -27,11 +27,12 @@ class DashboardTest extends BrowserKitTestCase
     public function users_can_see_some_statistics()
     {
         $user = $this->createUser();
-        $thread = Arr::first(factory(Thread::class, 3)->create(['author_id' => $user->id()]));
-        $reply = Arr::first(factory(Reply::class, 2)->create([
+        $thread = factory(Thread::class, 3)->create(['author_id' => $user->id()])->first();
+        $reply = factory(Reply::class, 2)->create([
             'author_id' => $user->id(),
             'replyable_id' => $thread->id(),
-        ]));
+        ])->first();
+
         $thread->markSolution($reply);
 
         $this->loginAs($user);
@@ -46,67 +47,65 @@ class DashboardTest extends BrowserKitTestCase
     public function users_can_see_notifications()
     {
         $userOne = $this->createUser();
-        $userTwo = $this->createUser(['name' => 'Jane Doe', 'username' => 'janedoe', 'email' => 'jane@example.com']);
 
         $thread = factory(Thread::class)->create(['author_id' => $userOne->id()]);
-        $reply = factory(Reply::class)->create([
-            'author_id' => $userTwo->id(),
-            'replyable_id' => $thread->id(),
-        ]);
+        $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
 
         $userOne->notifications()->create([
             'id' => Str::random(),
-            'type' => 'App\\Notifications\\NewReplyNotification',
+            'type' => NewReplyNotification::class,
             'data' => [
-                'type' => 'reply',
-                'author' => $reply->author(),
-                'reply' => $reply,
-                'thread' => $reply->replyAble(),
+                'type' => 'new_reply',
+                'reply' => $reply->id(),
+                'replyable_id' => $reply->replyable_id,
+                'replyable_type' => $reply->replyable_type,
+                'replyable_subject' => $reply->replyAble()->replyAbleSubject(),
             ],
         ]);
 
-        $profileRoute = route('profile', $userTwo->username());
-        $threadRoute = route('thread', $thread->slug());
+        $replyAbleRoute = route('replyable', [$reply->replyable_id, $reply->replyable_type]);
 
         $this->loginAs($userOne);
 
         Livewire::test(Notifications::class)
-            ->assertSee("<a href=\"{$profileRoute}\" class=\"text-green-darker\">Jane Doe</a> replied to your <a href=\"{$threadRoute}\" class=\"text-green-darker\">thread</a>");
+            ->assertSee(
+                "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-green-darker\">\"{$thread->subject()}\"</a>."
+            );
     }
 
     /** @test */
     public function users_can_mark_notifications_as_read()
     {
         $userOne = $this->createUser();
-        $userTwo = $this->createUser(['name' => 'Jane Doe', 'username' => 'janedoe', 'email' => 'jane@example.com']);
 
         $thread = factory(Thread::class)->create(['author_id' => $userOne->id()]);
-        $reply = factory(Reply::class)->create([
-            'author_id' => $userTwo->id(),
-            'replyable_id' => $thread->id(),
-        ]);
+        $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
 
         $notification = $userOne->notifications()->create([
             'id' => Str::random(),
-            'type' => 'App\\Notifications\\NewReplyNotification',
+            'type' => NewReplyNotification::class,
             'data' => [
-                'type' => 'reply',
-                'author' => $reply->author(),
-                'reply' => $reply,
-                'thread' => $reply->replyAble(),
+                'type' => 'new_reply',
+                'reply' => $reply->id(),
+                'replyable_id' => $reply->replyable_id,
+                'replyable_type' => $reply->replyable_type,
+                'replyable_subject' => $reply->replyAble()->replyAbleSubject(),
             ],
         ]);
 
-        $profileRoute = route('profile', $userTwo->username());
-        $threadRoute = route('thread', $thread->slug());
+        $replyAbleRoute = route('replyable', [$reply->replyable_id, $reply->replyable_type]);
 
         $this->loginAs($userOne);
 
         Livewire::test(Notifications::class)
-            ->assertSee("<a href=\"{$profileRoute}\" class=\"text-green-darker\">Jane Doe</a> replied to your <a href=\"{$threadRoute}\" class=\"text-green-darker\">thread</a>")
+            ->assertSee(
+                "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-green-darker\">\"{$thread->subject()}\"</a>."
+            )
             ->call('markAsRead', $notification->id)
-            ->assertDontSee("<a href=\"{$profileRoute}\" class=\"text-green-darker\">Jane Doe</a> replied to your <a href=\"{$threadRoute}\" class=\"text-green-darker\">thread</a>")
-            ->assertEmitted('notificationMarkedAsRead');
+            ->assertDontSee(
+                "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-green-darker\">\"{$thread->subject()}\"</a>."
+            )
+            ->assertEmitted('NotificationMarkedAsRead');
     }
 
     /** @test */
@@ -120,7 +119,11 @@ class DashboardTest extends BrowserKitTestCase
     public function a_user_cannot_mark_other_users_notifications_as_read()
     {
         $userOne = $this->createUser();
-        $userTwo = $this->createUser(['name' => 'Jane Doe', 'username' => 'janedoe', 'email' => 'jane@example.com']);
+        $userTwo = $this->createUser([
+            'name' => 'Jane Doe',
+            'username' => 'janedoe',
+            'email' => 'jane@example.com',
+        ]);
 
         $thread = factory(Thread::class)->create(['author_id' => $userOne->id()]);
         $reply = factory(Reply::class)->create([
@@ -130,12 +133,13 @@ class DashboardTest extends BrowserKitTestCase
 
         $notification = $userOne->notifications()->create([
             'id' => Str::random(),
-            'type' => 'App\\Notifications\\NewReplyNotification',
+            'type' => NewReplyNotification::class,
             'data' => [
-                'type' => 'reply',
-                'author' => $reply->author(),
-                'reply' => $reply,
-                'thread' => $reply->replyAble(),
+                'type' => 'new_reply',
+                'reply' => $reply->id(),
+                'replyable_id' => $reply->replyable_id,
+                'replyable_type' => $reply->replyable_type,
+                'replyable_subject' => $reply->replyAble()->replyAbleSubject(),
             ],
         ]);
 
@@ -151,7 +155,11 @@ class DashboardTest extends BrowserKitTestCase
     public function a_user_sees_the_correct_number_of_notifications()
     {
         $userOne = $this->createUser();
-        $userTwo = $this->createUser(['name' => 'Jane Doe', 'username' => 'janedoe', 'email' => 'jane@example.com']);
+        $userTwo = $this->createUser([
+            'name' => 'Jane Doe',
+            'username' => 'janedoe',
+            'email' => 'jane@example.com',
+        ]);
 
         $thread = factory(Thread::class)->create(['author_id' => $userOne->id()]);
         $reply = factory(Reply::class)->create([
@@ -162,12 +170,13 @@ class DashboardTest extends BrowserKitTestCase
         for ($i = 0; $i < 10; $i++) {
             $userOne->notifications()->create([
                 'id' => Str::random(),
-                'type' => 'App\\Notifications\\NewReplyNotification',
+                'type' => NewReplyNotification::class,
                 'data' => [
-                    'type' => 'reply',
-                    'author' => $reply->author(),
-                    'reply' => $reply,
-                    'thread' => $reply->replyAble(),
+                    'type' => 'new_reply',
+                    'reply' => $reply->id(),
+                    'replyable_id' => $reply->replyable_id,
+                    'replyable_type' => $reply->replyable_type,
+                    'replyable_subject' => $reply->replyAble()->replyAbleSubject(),
                 ],
             ]);
         }

@@ -35,7 +35,7 @@ trait HasLikes
         return $this->likes()->where('user_id', $user->id)->exists();
     }
 
-    public function getLikesCountAttribute(): int
+    public function likesCount(): int
     {
         return $this->likes()->count();
     }

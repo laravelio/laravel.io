@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\User;
 use Illuminate\Notifications\DatabaseNotification;
 
-class NotificationPolicy
+final class NotificationPolicy
 {
     const MARK_AS_READ = 'markAsRead';
 
@@ -14,6 +14,6 @@ class NotificationPolicy
      */
     public function markAsRead(User $user, DatabaseNotification $notification): bool
     {
-        return $notification->notifiable->id() === $user->id();
+        return $notification->notifiable->is($user);
     }
 }

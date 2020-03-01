@@ -16,7 +16,7 @@
                     <div>
                         <span class="text-base font-normal">
                             <i class="fa fa-thumbs-up text-gray-500 mr-1"></i>
-                            {{ $reply->likes_count }}
+                            {{ $reply->likesCount() }}
                         </span>
                     </div>
                 </div>

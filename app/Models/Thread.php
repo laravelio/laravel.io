@@ -11,7 +11,6 @@ use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
 use App\Helpers\ProvidesSubscriptions;
 use App\Helpers\ReceivesReplies;
-use DB;
 use Exception;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
@@ -20,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection as SupportCollection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
@@ -206,5 +206,10 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         return static::feedQuery()
             ->paginate(static::FEED_PAGE_SIZE)
             ->getCollection();
+    }
+
+    public function replyAbleSubject(): string
+    {
+        return $this->subject();
     }
 }

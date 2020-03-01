@@ -4,9 +4,10 @@ namespace App\Providers;
 
 use App\Models\Reply;
 use App\Models\Thread;
-use Horizon;
+use App\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Horizon\Horizon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             Thread::TABLE => Thread::class,
             Reply::TABLE => Reply::class,
+            User::TABLE => User::class,
         ]);
     }
 

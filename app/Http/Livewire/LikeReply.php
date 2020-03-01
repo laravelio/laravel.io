@@ -5,47 +5,32 @@ namespace App\Http\Livewire;
 use App\Jobs\LikeReply as LikeReplyJob;
 use App\Jobs\UnlikeReply as UnlikeReplyJob;
 use App\Models\Reply;
-use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class LikeReply extends Component
+final class LikeReply extends Component
 {
     use DispatchesJobs;
 
-    public $likes;
-
-    public $replyId;
+    /** @var \App\Models\Reply */
+    public $reply;
 
     public function mount(Reply $reply): void
     {
-        $this->replyId = $reply->id;
-        $this->likes = $this->reply->likes_count;
-    }
-
-    public function getReplyProperty(): Reply
-    {
-        return Reply::findOrFail($this->replyId);
-    }
-
-    public function getUserProperty(): ?User
-    {
-        return Auth::user();
+        $this->reply = $reply;
     }
 
     public function toggleLike(): void
     {
-        if (! $this->user) {
+        if (Auth::guest()) {
             return;
         }
 
-        if ($this->reply->isLikedBy($this->user)) {
-            $this->dispatchNow(new UnlikeReplyJob($this->reply, $this->user));
+        if ($this->reply->isLikedBy(Auth::user())) {
+            $this->dispatchNow(new UnlikeReplyJob($this->reply, Auth::user()));
         } else {
-            $this->dispatchNow(new LikeReplyJob($this->reply, $this->user));
+            $this->dispatchNow(new LikeReplyJob($this->reply, Auth::user()));
         }
-
-        $this->likes = $this->reply->likes_count;
     }
 }
