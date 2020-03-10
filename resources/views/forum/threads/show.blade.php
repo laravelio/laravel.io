@@ -15,7 +15,7 @@
         <div class="flex flex-wrap">
             <div class="w-full md:w-3/4 md:pr-3">
                 <div class="reply bg-white border rounded">
-                    <div class="flex flex-col md:flex-row md:items-center text-sm p-4 border-b">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between text-sm p-4 border-b">
                         <div class="flex mb-4 md:mb-0">
                             @include('forum.threads.info.avatar', ['user' => $thread->author()])
 
@@ -24,6 +24,13 @@
                                 {{ $thread->createdAt()->diffForHumans() }}
                             </div>
                         </div>
+                        @if ($thread->isSolved())
+                            <div class="label label-primary">
+                                <a href="#{{ $thread->solution_reply_id }}">
+                                    View Solution
+                                </a>
+                            </div>
+                        @endif
 
                         @include('forum.threads.info.tags')
                     </div>
