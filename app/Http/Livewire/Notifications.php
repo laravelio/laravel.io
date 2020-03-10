@@ -34,7 +34,7 @@ final class Notifications extends Component
         return DatabaseNotification::findOrFail($this->notificationId);
     }
 
-    public function markAsRead(string $notificationId): LengthAwarePaginator
+    public function markAsRead(string $notificationId): void
     {
         $this->notificationId = $notificationId;
 
@@ -42,10 +42,6 @@ final class Notifications extends Component
 
         $this->notification->markAsRead();
 
-        $unreadNotifications = Auth::user()->unreadNotifications()->paginate(10);
-
-        $this->emit('NotificationMarkedAsRead', $unreadNotifications->total());
-
-        return $unreadNotifications;
+        $this->emit('NotificationMarkedAsRead', Auth::user()->unreadNotifications()->count());
     }
 }
