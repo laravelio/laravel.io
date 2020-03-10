@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Policies\NotificationPolicy;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
