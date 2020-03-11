@@ -16,7 +16,7 @@
             <div class="w-full md:w-3/4 md:pr-3">
                 <div class="reply bg-white border rounded">
                     <div class="flex flex-col md:flex-row md:items-center text-sm p-4 border-b">
-                        <div class="flex flex-wrap mb-4 md:mb-0 justify-between w-full items-center">
+                        <div class="flex flex-col flex-wrap flex-1 justify-between md:flex-row md:items-center mb-4 md:mb-0 md:mr-2">
                             <div class="flex">
                                 @include('forum.threads.info.avatar', ['user' => $thread->author()])
 
@@ -28,10 +28,13 @@
                                 </div>
                             </div>
 
-                            @include('forum.threads._view_solution')
+                            <div class="flex flex-col items-start sm:flex-row sm:items-center">
+                                <div class="mr-2">
+                                    @include('forum.threads.info.tags')
+                                </div>
+                                @include('forum.threads._view_solution')
+                            </div>
                         </div>
-
-                        @include('forum.threads.info.tags')
                     </div>
                     <div class="p-4">
                         <div 
