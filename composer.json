@@ -24,7 +24,8 @@
         "roave/security-advisories": "dev-master",
         "spatie/laravel-backup": "^6.4",
         "spatie/laravel-feed": "^2.0",
-        "spatie/laravel-robots-middleware": "^1.0"
+        "spatie/laravel-robots-middleware": "^1.0",
+        "laravel/ui": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
