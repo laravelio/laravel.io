@@ -40,3 +40,7 @@ svg .secondary {
 nav.dashboard-nav a.active {
     @apply border-green-primary text-green-primary;
 }
+
+a > span > em {
+    @apply bg-green-light;
+}

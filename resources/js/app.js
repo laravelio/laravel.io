@@ -8,6 +8,7 @@ import "cookieconsent/build/cookieconsent.min.css";
 import "choices.js/public/assets/styles/choices.css";
 
 require('./bootstrap');
+require('./search');
 
 // Initialise cookie consent.
 document.addEventListener('DOMContentLoaded', () => {
