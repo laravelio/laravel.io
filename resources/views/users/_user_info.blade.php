@@ -1,14 +1,8 @@
-<div class="flex flex-col mb-4 w-full @if(isset($centered) && $centered) items-center @endif">
+<div class="flex flex-col mb-4 w-full @if (isset($centered) && $centered) items-center @endif">
     <div class="mb-4">
-        @can(App\Policies\UserPolicy::ADMIN, App\User::class)
-            <a href="{{ route('admin.users.show', $user->username()) }}">
-                <img src="{{ $user->gravatarUrl($avatarSize ?? 250) }}" class="w-full">
-            </a>
-        @else
-            <a href="{{ route('profile', $user->username()) }}">
-                <img src="{{ $user->gravatarUrl($avatarSize ?? 250) }}" class="w-full">
-            </a>
-        @endcan
+        <a href="{{ route('profile', $user->username()) }}">
+            <img src="{{ $user->gravatarUrl($avatarSize ?? 250) }}" class="w-full">
+        </a>
     </div>
 
     <h2 class="text-2xl text-gray-900 mb-4">{{ $user->name() }}</h2>
@@ -27,7 +21,7 @@
         @endif
     @endcan
 
-    @if(Auth::check() && Auth::user()->isAdmin())
+    @if (Auth::check() && Auth::user()->isAdmin())
         @can(App\Policies\UserPolicy::DELETE, $user)
             <button type="button" class="button button-danger w-full mb-4" @click.prevent="activeModal = 'deleteUser'">Delete User</button>
         @endcan
