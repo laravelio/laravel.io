@@ -21,6 +21,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
@@ -34,6 +35,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     use ModelHelpers;
     use ProvidesSubscriptions;
     use ReceivesReplies;
+    use Searchable;
 
     const TABLE = 'threads';
 
@@ -211,5 +213,14 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     public function replyAbleSubject(): string
     {
         return $this->subject();
+    }
+    
+    public function toSearchableArray(): array
+    {
+        return [
+            'subject' => $this->subject(),
+            'body' => $this->body(),
+            'url' => route('thread', $this->slug())
+        ];
     }
 }
