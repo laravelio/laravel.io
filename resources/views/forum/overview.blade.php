@@ -53,14 +53,7 @@
                                     @include('forum.threads.info.tags')
                                 </div>
 
-                                @if ($thread->isSolved())
-                                    <a class="label label-primary text-center mt-4 md:mt-0"
-                                       href="{{ route('thread', $thread->slug()) }}#{{ $thread->solutionReplyRelation->id }}">
-                                        <i class="fa fa-check mr-2"></i>
-                                        View solution
-                                    </a>
-                                @endif
-
+                                @include('forum.threads._view_solution')
                             </div>
                         </div>
                     @endforeach

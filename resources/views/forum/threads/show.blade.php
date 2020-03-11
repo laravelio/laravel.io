@@ -28,13 +28,7 @@
                                 </div>
                             </div>
 
-                            @if ($thread->isSolved())
-                                <div class="label label-primary">
-                                    <a href="#{{ $thread->solution_reply_id }}">
-                                        View Solution
-                                    </a>
-                                </div>
-                            @endif
+                            @include('forum.threads._view_solution')
                         </div>
 
                         @include('forum.threads.info.tags')
