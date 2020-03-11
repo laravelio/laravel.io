@@ -21,7 +21,8 @@
                                 @include('forum.threads.info.avatar', ['user' => $thread->author()])
 
                                 <div class="mr-6 mb-4 md:mb-0 text-gray-700">
-                                    <a href="{{ route('profile', $thread->author()->username()) }}" class="text-green-darker mr-2">
+                                    <a href="{{ route('profile', $thread->author()->username()) }}"
+                                       class="text-green-darker mr-2">
                                         {{ $thread->author()->name() }}
                                     </a> posted {{ $thread->createdAt()->diffForHumans() }}
                                 </div>
