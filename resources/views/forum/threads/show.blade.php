@@ -16,13 +16,19 @@
             <div class="w-full md:w-3/4 md:pr-3">
                 <div class="reply bg-white border rounded">
                     <div class="flex flex-col md:flex-row md:items-center text-sm p-4 border-b">
-                        <div class="flex mb-4 md:mb-0">
-                            @include('forum.threads.info.avatar', ['user' => $thread->author()])
+                        <div class="flex flex-wrap mb-4 md:mb-0 justify-between w-full items-center">
+                            <div class="flex">
+                                @include('forum.threads.info.avatar', ['user' => $thread->author()])
 
-                            <div class="mr-6 text-gray-700">
-                                <a href="{{ route('profile', $thread->author()->username()) }}" class="text-green-darker mr-2">{{ $thread->author()->name() }}</a> posted
-                                {{ $thread->createdAt()->diffForHumans() }}
+                                <div class="mr-6 mb-4 md:mb-0 text-gray-700">
+                                    <a href="{{ route('profile', $thread->author()->username()) }}"
+                                       class="text-green-darker mr-2">
+                                        {{ $thread->author()->name() }}
+                                    </a> posted {{ $thread->createdAt()->diffForHumans() }}
+                                </div>
                             </div>
+
+                            @include('forum.threads._view_solution')
                         </div>
 
                         @include('forum.threads.info.tags')
