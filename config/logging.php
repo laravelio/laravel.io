@@ -37,7 +37,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single', 'flare'],
+            'channels' => ['single'],
             'ignore_exceptions' => false,
         ],
 
@@ -51,7 +51,7 @@ return [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
             'level' => 'debug',
-            'days' => 7,
+            'days' => 14,
         ],
 
         'slack' => [
@@ -96,8 +96,8 @@ return [
             'handler' => NullHandler::class,
         ],
 
-        'flare' => [
-            'driver' => 'flare',
+        'emergency' => [
+            'path' => storage_path('logs/laravel.log'),
         ],
     ],
 
