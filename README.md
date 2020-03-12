@@ -39,6 +39,34 @@ GITHUB_SECRET=
 GITHUB_URL=http://laravel.io.test/auth/github
 ```
 
+### Algolia search (optional)
+
+To get Algolia search running locally, you'll need to [register for a new account](https://www.algolia.com/users/sign_up) and create an index called `threads`. Algolia have a free tier which satisfies all of the requirements needed for a development environment. Now update the following variables in your `.env` file. The App ID and secret keys can be found in the `API Keys` section of the Algoila UI. 
+
+```
+SCOUT_DRIVER=algolia
+SCOUT_QUEUE=true
+
+ALGOLIA_APP_ID=
+// Use the Write API Key
+ALGOLIA_SECRET=
+
+MIX_ALGOLIA_APP_ID="${ALGOLIA_APP_ID}"
+// Use the Search API Key
+MIX_ALGOLIA_SECRET=
+MIX_ALGOLIA_INDEX=threads
+```
+
+In order to index your existing threads, run the following command.
+
+`php artisan scout:import`
+
+New threads will be automatically added to the index and threads which get edited will be automatically updated.
+
+If you need to flush your index and start again, you can run the following command:
+
+`php artisan scout:flush`
+
 ## Maintainers
 
 The Laravel.io portal is currently maintained by [Dries Vints](https://github.com/driesvints) and [Joe Dixon](https://github.com/joedixon). If you have any questions please don't hesitate to create an issue on this repo.
