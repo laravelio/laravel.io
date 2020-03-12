@@ -214,13 +214,13 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     {
         return $this->subject();
     }
-    
+
     public function toSearchableArray(): array
     {
         return [
             'subject' => $this->subject(),
             'body' => $this->body(),
-            'url' => route('thread', $this->slug())
+            'url' => route('thread', $this->slug()),
         ];
     }
 }
