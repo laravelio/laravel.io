@@ -84,7 +84,7 @@
                                 <div class="rounded-md bg-white shadow-xs w-full">
                                     <div class="py-1">
                                         <template x-for="result in results" :key="result.subject">
-                                            <a :href="result.url" class="block px-4 py-2 text-base leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
+                                            <a :href="'/forum/'+result.slug" class="block px-4 py-2 text-base leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
                                                 <span class="block font-bold" x-html="result._highlightResult.subject.value"></span>
                                                 <span class="block text-sm txt-gray-400" x-html="result._snippetResult.body.value"></span>
                                             </a>

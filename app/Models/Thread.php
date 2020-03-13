@@ -218,9 +218,10 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     public function toSearchableArray(): array
     {
         return [
+            'id' => $this->id(),
             'subject' => $this->subject(),
             'body' => $this->body(),
-            'url' => route('thread', $this->slug()),
+            'slug' => $this->slug(),
         ];
     }
 }
