@@ -89,6 +89,9 @@
                                                 <span class="block text-sm txt-gray-400" x-html="result._snippetResult.body.value"></span>
                                             </a>
                                         </template>
+                                        <a href="https://algolia.com" class="flex justify-end" target="_blank">
+                                            <img src="{{ asset('images/algolia.svg') }}" class="h-4 mx-4 my-2" />
+                                        </a>
                                     </div>
                                 </div>
                             </div>
