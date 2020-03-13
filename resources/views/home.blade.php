@@ -3,8 +3,8 @@
 @section('body')
     @include('layouts._alerts')
 
-    <div class="relative bg-gray-50 overflow-hidden">
-        <div x-data="{ open: false }" class="relative pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
+    <div class="bg-gray-50 overflow-hidden">
+        <div x-data="{ open: false }" class="pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
             <div class="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 xl:mt-28">
                 <div class="text-center">
                     <img src="{{ asset('images/laravelio.png') }}" title="Laravel.io" alt="Laravel.io" class="block md:max-w-2xl mx-auto mb-10">
