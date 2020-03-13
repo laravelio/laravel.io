@@ -48,24 +48,20 @@ SCOUT_DRIVER=algolia
 SCOUT_QUEUE=true
 
 ALGOLIA_APP_ID=
-// Use the Write API Key
-ALGOLIA_SECRET=
+ALGOLIA_SECRET="Use the Write API Key"
 
 MIX_ALGOLIA_APP_ID="${ALGOLIA_APP_ID}"
-// Use the Search API Key
-MIX_ALGOLIA_SECRET=
+MIX_ALGOLIA_SECRET="Use the Search API Key"
 MIX_ALGOLIA_INDEX=threads
 ```
 
-In order to index your existing threads, run the following command.
+In order to index your existing threads, run the following command:
 
-`php artisan scout:import`
+`php artisan scout:import App\\Models\\Thread`
 
-New threads will be automatically added to the index and threads which get edited will be automatically updated.
+New threads will be automatically added to the index and threads which get edited will be automatically updated. If you need to flush your index and start again, you can run the following command:
 
-If you need to flush your index and start again, you can run the following command:
-
-`php artisan scout:flush`
+`php artisan scout:flush App\\Models\\Thread`
 
 ## Maintainers
 
