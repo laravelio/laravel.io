@@ -21,8 +21,8 @@
                     <div class="py-1">
                         <template x-for="result in results" :key="result.subject">
                             <a :href="'/forum/'+result.slug" class="block px-4 py-2 text-base leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
-                                <span class="block font-bold" x-html="result._highlightResult.subject.value"></span>
-                                <span class="block text-sm txt-gray-400" x-html="result._snippetResult.body.value"></span>
+                                <span class="block font-bold break-words" x-html="result._highlightResult.subject.value"></span>
+                                <span class="block text-sm txt-gray-400 break-words" x-html="result._snippetResult.body.value"></span>
                             </a>
                         </template>
                         <a href="https://algolia.com" class="flex justify-end">
