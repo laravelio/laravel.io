@@ -224,4 +224,23 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
             'slug' => $this->slug(),
         ];
     }
+
+    public function splitBody($value): array
+    {
+        // First split on new paragraph.
+        return collect(preg_split("/\r\n\r\n/", $value))
+            ->flatMap(function ($chunk) {
+                // If the chunk is still too long, split it on new line.
+                if (strlen($chunk) > 5000) {
+                    return preg_split("/\r\n/", $chunk);
+                }
+
+                return [$chunk];
+            })
+            ->filter(function ($chunk) {
+                // Ensure there are no empty rows.
+                return $chunk !== "";
+            })
+            ->toArray();
+    }
 }
