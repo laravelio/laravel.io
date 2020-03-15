@@ -16,13 +16,13 @@
             placeholder="Search for threads..." 
         />
         <template x-if="results.length > 0">
-            <div x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="mt-2 origin-top-right absolute right-0 w-full rounded-md shadow-lg">
+            <div x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="mt-2 origin-top-right absolute right-0 w-full rounded-md shadow-lg z-10">
                 <div class="rounded-md bg-white shadow-xs w-full">
                     <div class="py-1">
                         <template x-for="result in results" :key="result.subject">
                             <a :href="'/forum/'+result.slug" class="block px-4 py-2 text-base leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
-                                <span class="block font-bold" x-html="result._highlightResult.subject.value"></span>
-                                <span class="block text-sm txt-gray-400" x-html="result._snippetResult.body.value"></span>
+                                <span class="block font-bold break-words" x-html="result._highlightResult.subject.value"></span>
+                                <span class="block text-sm txt-gray-400 break-words" x-html="result._snippetResult.body.value"></span>
                             </a>
                         </template>
                         <a href="https://algolia.com" class="flex justify-end">
