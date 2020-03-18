@@ -239,7 +239,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
             })
             ->filter(function ($chunk) {
                 // Ensure there are no empty rows.
-                return $chunk !== "";
+                return $chunk !== '';
             })
             ->toArray();
     }
