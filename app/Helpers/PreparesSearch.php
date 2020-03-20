@@ -42,7 +42,7 @@ trait PreparesSearch
             }
 
             // Append current item to last element of carry if the combination is < 5000 characters.
-            if (strlen(Arr::last($carry) . $item) < $limit) {
+            if (strlen(Arr::last($carry).$item) < $limit) {
                 $carry[count($carry) - 1] .= "\r\n{$item}";
 
                 return $carry;
@@ -50,6 +50,7 @@ trait PreparesSearch
 
             // Add the current item to the carry.
             array_push($carry, $item);
+
             return $carry;
         });
     }
