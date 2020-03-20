@@ -9,6 +9,7 @@ use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
+use App\Helpers\PreparesSearch;
 use App\Helpers\ProvidesSubscriptions;
 use App\Helpers\ReceivesReplies;
 use Exception;
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Facades\DB;
@@ -33,6 +35,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     use HasTags;
     use HasTimestamps;
     use ModelHelpers;
+    use PreparesSearch;
     use ProvidesSubscriptions;
     use ReceivesReplies;
     use Searchable;
@@ -225,22 +228,8 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         ];
     }
 
-    public function splitBody($value): array
+    public function splitBody($value)
     {
-        // First split on new paragraph.
-        return collect(preg_split("/\r\n\r\n/", $value))
-            ->flatMap(function ($chunk) {
-                // If the chunk is still too long, split it on new line.
-                if (strlen($chunk) > 5000) {
-                    return preg_split("/\r\n/", $chunk);
-                }
-
-                return [$chunk];
-            })
-            ->filter(function ($chunk) {
-                // Ensure there are no empty rows.
-                return $chunk !== '';
-            })
-            ->toArray();
+        return $this->split($value);
     }
 }
