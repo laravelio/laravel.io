@@ -1,7 +1,7 @@
 # Laravel.io Community Portal
 
 
-[![Github Actions](https://github.com/laravelio/laravel.io/workflows/tests/badge.svg)](https://github.com/laravelio/laravel.io/actions)
+[![Github Actions](https://github.com/laravelio/laravel.io/workflows/CI/badge.svg)](https://github.com/laravelio/laravel.io/actions)
 [![StyleCI](https://styleci.io/repos/12895187/shield?branch=master)](https://styleci.io/repos/12895187)
 [![Laravel Version](https://shield.with.social/cc/github/laravelio/laravel.io/master.svg?style=flat-square)](https://packagist.org/packages/laravel/framework)
 
