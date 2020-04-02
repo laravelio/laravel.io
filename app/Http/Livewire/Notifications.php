@@ -12,7 +12,8 @@ use Livewire\WithPagination;
 
 final class Notifications extends Component
 {
-    use WithPagination, AuthorizesRequests;
+    use AuthorizesRequests;
+    use WithPagination;
 
     public $notificationId;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Integration\Queries;
+namespace Tests\Integration\Models;
 
 use App\Models\Subscription;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

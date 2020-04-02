@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Jobs\ConfirmUser;
 use App\Jobs\SendEmailConfirmation;
 use App\User;
-use Auth;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Support\Facades\Auth;
 
 class EmailConfirmationController extends Controller
 {
