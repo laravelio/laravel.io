@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@flareapp/flare-client": "^1.0.0",
-    "@flareapp/flare-webpack-plugin-sourcemap": "^1.0.13",
+    "@flareapp/flare-webpack-plugin-sourcemap": "^1.0.14",
     "@tailwindcss/ui": "^0.1.2",
     "algoliasearch": "^4.0.3",
     "alpinejs": "^1.12.0",
