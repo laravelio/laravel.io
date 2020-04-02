@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="border-t">
-                        @livewire('like-thread', $thread)
+                        <livewire:like-thread :thread="$thread"/>
                     </div>
                 </div>
 
@@ -123,7 +123,7 @@
                                 </div>
                             </div>                            
                             <div class="border-t">
-                                @livewire('like-reply', $reply)
+                                <livewire:like-reply :reply="$reply"/>
                             </div>
                         </div>
                     </div>

@@ -179,7 +179,7 @@ class ForumTest extends BrowserKitTestCase
         $this->login();
         $thread = factory(Thread::class)->create();
 
-        Livewire::test(LikeThread::class, $thread)
+        Livewire::test(LikeThread::class, ['thread' => $thread])
             ->assertSee("0\n")
             ->call('toggleLike')
             ->assertSee("1\n")
@@ -192,7 +192,7 @@ class ForumTest extends BrowserKitTestCase
     {
         $thread = factory(Thread::class)->create();
 
-        Livewire::test(LikeThread::class, $thread)
+        Livewire::test(LikeThread::class, ['thread' => $thread])
             ->assertSee("0\n")
             ->call('toggleLike')
             ->assertSee("0\n");
@@ -204,7 +204,7 @@ class ForumTest extends BrowserKitTestCase
         $this->login();
         $reply = factory(Reply::class)->create();
 
-        Livewire::test(LikeReply::class, $reply)
+        Livewire::test(LikeReply::class, ['reply' => $reply])
             ->assertSee("0\n")
             ->call('toggleLike')
             ->assertSee("1\n")
@@ -217,7 +217,7 @@ class ForumTest extends BrowserKitTestCase
     {
         $reply = factory(Reply::class)->create();
 
-        Livewire::test(LikeReply::class, $reply)
+        Livewire::test(LikeReply::class, ['reply' => $reply])
             ->assertSee("0\n")
             ->call('toggleLike')
             ->assertSee("0\n");

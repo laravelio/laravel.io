@@ -34,7 +34,9 @@ final class Reply extends Model
     /**
      * {@inheritdoc}
      */
-    protected $with = ['likes'];
+    protected $with = [
+        'likes',
+    ];
 
     public function id(): int
     {

@@ -17,12 +17,12 @@ trait HasLikes
 
     public function likedBy(User $user)
     {
-        $this->likes()->create(['user_id' => $user->id]);
+        $this->likes()->create(['user_id' => $user->id()]);
     }
 
     public function dislikedBy(User $user)
     {
-        optional($this->likes()->where('user_id', $user->id)->first())->delete();
+        optional($this->likes()->where('user_id', $user->id())->first())->delete();
     }
 
     public function likes(): MorphMany
@@ -32,7 +32,7 @@ trait HasLikes
 
     public function isLikedBy(User $user): bool
     {
-        return $this->likes()->where('user_id', $user->id)->exists();
+        return $this->likes()->where('user_id', $user->id())->exists();
     }
 
     public function likesCount(): int

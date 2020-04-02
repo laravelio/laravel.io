@@ -26,8 +26,8 @@
     @include('layouts._favicons')
     @include('layouts._google_analytics')
     @include('layouts._ads._ad_sense')
-    
-    @livewireAssets
+
+    @livewireStyles
 </head>
 
 <body class="{{ $bodyClass ?? '' }} font-sans bg-white" x-data="{ activeModal: null }">
@@ -42,6 +42,8 @@
 @include('layouts._ads')
 @include('layouts._intercom')
 @include('layouts._fathom')
+
+@livewireScripts
 
 </body>
 </html>
