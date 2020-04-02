@@ -7,7 +7,6 @@ use App\Http\Livewire\Notifications;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Notifications\NewReplyNotification;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
