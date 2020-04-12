@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             $this->call(TagSeeder::class);
             $this->call(ThreadSeeder::class);
             $this->call(NotificationSeeder::class);
+            $this->call(ArticleSeeder::class);
         }
     }
 }
