@@ -1,0 +1,61 @@
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\Tag;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+
+class ArticleTest extends BrowserKitTestCase
+{
+    use DatabaseMigrations;
+
+    /** @test */
+    public function users_cannot_create_an_article_when_not_logged_in()
+    {
+        $this->visit('/articles/create')
+            ->seePageIs('/login');
+    }
+
+    /** @test */
+    public function users_can_create_an_article()
+    {
+        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+
+        $this->login();
+
+        $this->post('/articles', [
+            'title' => 'Using database migrations',
+            'body' => 'This article will go into depth on working with database migrations.',
+            'tags' => [$tag->id()],
+        ])
+            ->assertRedirectedTo('/articles/using-database-migrations')
+            ->assertSessionHas('success', 'Article successfully created!');
+    }
+
+    /** @test */
+    public function users_cannot_create_an_article_with_a_title_that_is_too_long()
+    {
+        $this->login();
+
+        $response = $this->post('/articles', [
+            'title' => 'Adding Notifications to make a really engaging UI for Laravel.io users using Livewire, Alpine.js and Tailwind UI',
+            'body' => 'The title of this article is too long',
+        ]);
+
+        $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
+        $response->assertSessionHasErrors(['title' => 'The title may not be greater than 100 characters.']);
+    }
+
+    /** @test */
+    public function an_article_may_not_contain_an_http_image_url()
+    {
+        $this->login();
+
+        $response = $this->post('/articles', [
+            'body' => 'This is a really interesting article about images. Here is ![an image](http://example.com/image.jpg).',
+        ]);
+
+        $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
+        $response->assertSessionHasErrors(['body' => 'The body field contains at least one image with an HTTP link.']);
+    }
+}
