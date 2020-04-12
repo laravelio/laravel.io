@@ -6,6 +6,14 @@ ul.tags li.active {
     @apply bg-gray-100 rounded font-bold;
 }
 
+ul.tags li.active button {
+    @apply font-bold;
+}
+
+ul.tags li button:focus {
+    @apply outline-none;
+}
+
 .thread-info-tags a:hover {
     @apply no-underline;
 }

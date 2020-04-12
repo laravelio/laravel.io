@@ -1,5 +1,5 @@
 <nav x-data="{ open: false }" class="bg-white shadow">
-    <div class="max-w-6xl mx-auto px-2 sm:px-4 lg:px-8">
+    <div class="container mx-auto px-4">
         <div class="flex justify-between h-16">
             <div class="flex px-2 lg:px-0">
                 <div class="flex-shrink-0 flex items-center">
@@ -11,6 +11,9 @@
                 <div class="hidden lg:ml-6 lg:flex">
                     <a href="{{ route('forum') }}" class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out {{ active(['forum', 'threads*', 'thread']) }}">
                         Forum
+                    </a>
+                    <a href="{{ route('articles') }}" class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out {{ active(['articles', 'articles*']) }}">
+                        Articles
                     </a>
                     <a href="https://paste.laravel.io" class="ml-8 inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                         Pastebin
@@ -97,13 +100,16 @@
                                 <img class="h-8 w-8 rounded-full" src="{{ Auth::user()->gravatarUrl(256) }}" alt="{{ Auth::user()->name() }}" />
                             </button>
                         </div>
-                        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50">
+                        <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50" x-cloak>
                             <div class="py-1 rounded-md bg-white shadow-xs">
                                 <a href="{{ route('profile', Auth::user()->username()) }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                                     Your Profile
                                 </a>
                                 <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                                     Dashboard
+                                </a>
+                                <a href="{{ route('user.articles') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                    Articles
                                 </a>
                                 <a href="{{ route('settings.profile') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
                                     Settings
@@ -129,8 +135,15 @@
     </div>
     <div :class="{'block': open, 'hidden': !open}" class="hidden lg:hidden">
         <div class="pt-2 pb-3">
-            <a href="{{ route('forum') }}" class="{{ active(['forum', 'threads*', 'thread']) }} block pl-3 pr-4 py-2 border-l-4 text-base font-medium bg-indigo-50 focus:outline-none transition duration-150 ease-in-out">Forum</a>
-            <a href="https://paste.laravel.io" class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Pastebin</a>
+            <a href="{{ route('forum') }}" class="{{ active(['forum', 'threads*', 'thread']) }} block pl-3 pr-4 py-2 border-l-4 text-base font-medium bg-indigo-50 focus:outline-none transition duration-150 ease-in-out">
+                Forum
+            </a>
+            <a href="{{ route('articles') }}" class="{{ active(['articles', 'articles*']) }} block pl-3 pr-4 py-2 border-l-4 text-base font-medium bg-indigo-50 focus:outline-none transition duration-150 ease-in-out">
+                Articles
+            </a>
+            <a href="https://paste.laravel.io" class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">
+                Pastebin
+            </a>
 
             <div class="mt-1">
                 <div class="pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 transition duration-150 ease-in-out">
@@ -188,6 +201,9 @@
                     </a>
                     <a href="{{ route('dashboard') }}" class="mt-1 block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">
                         Dashboard
+                    </a>
+                    <a href="{{ route('user.articles') }}" class="mt-1 block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">
+                        Articles
                     </a>
                     <a href="{{ route('settings.profile') }}" class="mt-1 block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">
                         Settings

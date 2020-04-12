@@ -12,3 +12,8 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-check h-12 w-12 mr-2"><circle cx="12" cy="12" r="10" class="primary"/><path class="secondary" d="M10 14.59l6.3-6.3a1 1 0 0 1 1.4 1.42l-7 7a1 1 0 0 1-1.4 0l-3-3a1 1 0 0 1 1.4-1.42l2.3 2.3z"/></svg>
     <p class="tex-xl uppercase">{{ $user->countSolutions() }} {{ Str::plural('solution', $user->countSolutions()) }}</p>
 </div>
+
+<div class="flex items-center mr-8 mb-4 md:mb-8">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-edit h-12 w-12 mr-2"><path class="primary" d="M4 14a1 1 0 0 1 .3-.7l11-11a1 1 0 0 1 1.4 0l3 3a1 1 0 0 1 0 1.4l-11 11a1 1 0 0 1-.7.3H5a1 1 0 0 1-1-1v-3z"/><rect width="20" height="2" x="2" y="20" class="secondary" rx="1"/></svg>
+    <p class="tex-xl uppercase">{{ $user->countArticles() }} {{ Str::plural('article', $user->countArticles()) }}</p>
+</div>

@@ -1,7 +1,6 @@
 import algoliasearch from 'algoliasearch/lite';
 
 const client = algoliasearch(process.env.MIX_ALGOLIA_APP_ID, process.env.MIX_ALGOLIA_SECRET);
-const index = client.initIndex(process.env.MIX_ALGOLIA_INDEX);
 
 window.search = (event) => {
     // If the input is empty, return no results.
@@ -10,8 +9,22 @@ window.search = (event) => {
     }
 
     // Perform the search using the provided input.
-    return index.search(event.target.value, {
-        hitsPerPage: 5,
-        attributesToSnippet: ['body:10'],
-    });
+    return client.multipleQueries([
+        {
+            indexName: process.env.MIX_ALGOLIA_THREADS_INDEX,
+            query: event.target.value,
+            params: {
+                hitsPerPage: 5,
+                attributesToSnippet: ['body:10'],
+            },
+        },
+        {
+            indexName: process.env.MIX_ALGOLIA_ARTICLES_INDEX,
+            query: event.target.value,
+            params: {
+                hitsPerPage: 5,
+                attributesToSnippet: ['body:10'],
+            },
+        },
+    ]);
 };

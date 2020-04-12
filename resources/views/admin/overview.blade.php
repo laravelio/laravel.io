@@ -13,46 +13,52 @@
         </div>
     </div>
 
-    <div class="container mx-auto px-4">
-        <table class="table table-striped mt-8">
-            <thead>
-                <tr>
-                    <th>Joined On</th>
-                    <th>Name</th>
-                    <th>Email Address</th>
-                    <th>Status</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
+    <div class="container mx-auto px-4 pt-4 flex flex-wrap flex-col-reverse md:flex-row">
+        <div class="w-full md:w-3/4 md:pr-3">
+            <table class="table table-striped mt-8">
+                <thead>
                     <tr>
-                        <td>{{ $user->createdAt() }}</td>
-                        <td>{{ $user->name() }}</td>
-                        <td>{{ $user->emailAddress() }}</td>
-                        <td>
-                            @if ($user->isBanned())
-                                <span class="label label-warning">Banned</span>
-                            @elseif ($user->isAdmin())
-                                <span class="label label-primary">Admin</span>
-                            @elseif ($user->isModerator())
-                                <span class="label label-primary">Moderator</span>
-                            @else
-                                <span class="label label-default">User</span>
-                            @endif
-                        </td>
-                        <td style="text-align:center;">
-                            <a href="{{ route('profile', $user->username()) }}" class="text-green-dark">
-                                <i class="fa fa-gear"></i>
-                            </a>
-                        </td>
+                        <th>Joined On</th>
+                        <th>Name</th>
+                        <th>Email Address</th>
+                        <th>Status</th>
+                        <th></th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $user->createdAt() }}</td>
+                            <td>{{ $user->name() }}</td>
+                            <td>{{ $user->emailAddress() }}</td>
+                            <td>
+                                @if ($user->isBanned())
+                                    <span class="label label-warning">Banned</span>
+                                @elseif ($user->isAdmin())
+                                    <span class="label label-primary">Admin</span>
+                                @elseif ($user->isModerator())
+                                    <span class="label label-primary">Moderator</span>
+                                @else
+                                    <span class="label label-default">User</span>
+                                @endif
+                            </td>
+                            <td style="text-align:center;">
+                                <a href="{{ route('profile', $user->username()) }}" class="text-green-dark">
+                                    <i class="fa fa-gear"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
-        <div class="flex justify-center">
-            {!! $users->render() !!}
+            <div class="flex justify-center">
+                {!! $users->render() !!}
+            </div>
+        </div>
+        <div class="w-full md:w-1/4 md:pl-3 md:pt-4">
+            @include('admin.partials._navigation')
         </div>
     </div>
+
 @endsection
