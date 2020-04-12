@@ -19,12 +19,13 @@ class ArticlesController extends Controller
 
     public function index()
     {
-    
     }
 
     public function show(Article $article)
     {
-        
+        return view('articles.show', [
+            'article' => $article,
+        ]);
     }
 
     public function create()
@@ -46,16 +47,13 @@ class ArticlesController extends Controller
 
     public function edit(Article $article)
     {
-
     }
 
     public function update(Article $article)
     {
-
     }
 
     public function delete(Article $article)
     {
-
     }
 }
