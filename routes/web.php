@@ -79,11 +79,41 @@ Route::get('replyable/{id}/{type}', 'ReplyAbleController@redirect')->name('reply
 Route::get('subscriptions/{subscription}/unsubscribe', 'SubscriptionController@unsubscribe')
     ->name('subscriptions.unsubscribe');
 
+// Articles
+Route::prefix('articles')->namespace('Articles')->group(function () {
+    Route::get('authored', 'AuthoredArticles')->name('user.articles');
+    Route::get('/', 'ArticlesController@index')->name('articles');
+    Route::get('create', 'ArticlesController@create')->name('articles.create');
+    Route::post('/', 'ArticlesController@store')->name('articles.store');
+    Route::get('{article}', 'ArticlesController@show')->name('articles.show');
+    Route::get('{article}/edit', 'ArticlesController@edit')->name('articles.edit');
+    Route::put('{article}', 'ArticlesController@update')->name('articles.update');
+    Route::delete('{article}', 'ArticlesController@delete')->name('articles.delete');
+});
+
+// Series
+Route::prefix('series')->namespace('Articles')->group(function () {
+    Route::get('authored', 'AuthoredSeries')->name('user.series');
+    Route::get('create', 'SeriesController@create')->name('series.create');
+    Route::post('/', 'SeriesController@store')->name('series.store');
+    Route::get('{series}/edit', 'SeriesController@edit')->name('series.edit');
+    Route::put('{series}', 'SeriesController@update')->name('series.update');
+    Route::delete('{series}', 'SeriesController@delete')->name('series.delete');
+});
+
 // Admin
 Route::prefix('admin')->name('admin')->namespace('Admin')->group(function () {
     Route::get('/', 'AdminController@index');
+
+    // Users
     Route::get('users/{username}', 'UsersController@show')->name('.users.show');
     Route::put('users/{username}/ban', 'UsersController@ban')->name('.users.ban');
     Route::put('users/{username}/unban', 'UsersController@unban')->name('.users.unban');
     Route::delete('users/{username}', 'UsersController@delete')->name('.users.delete');
+
+    // Articles
+    Route::get('articles', 'ArticlesController@index')->name('.articles');
+    Route::put('articles/{article}/approve', 'ArticlesController@approve')->name('.articles.approve');
+    Route::put('articles/{article}/disapprove', 'ArticlesController@disapprove')->name('.articles.disapprove');
+    Route::put('articles/{article}/pinned', 'ArticlesController@togglePinnedStatus')->name('.articles.pinned');
 });

@@ -12,3 +12,8 @@
     <x-heroicon-o-check-circle class="text-green-primary h-12 w-12 mr-2"/>
     <p class="tex-xl uppercase">{{ $user->countSolutions() }} {{ Str::plural('solution', $user->countSolutions()) }}</p>
 </div>
+
+<div class="flex items-center mr-8 mb-4 md:mb-8">
+    <x-heroicon-o-document-duplicate class="text-green-primary h-12 w-12 mr-2"/>
+    <p class="tex-xl uppercase">{{ $user->countArticles() }} {{ Str::plural('article', $user->countArticles()) }}</p>
+</div>

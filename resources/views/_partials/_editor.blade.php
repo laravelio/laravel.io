@@ -1,4 +1,4 @@
-<div x-data="editorConfig()">
+<div x-data="editorConfig()" x-init="minHeight = $refs.editor.scrollHeight">
     <div class="border-2 border-b-0 rounded-t p-2 bg-gray-200">
         <ul>
             <li>
@@ -18,8 +18,11 @@
         </ul>
     </div>
     <textarea
+        @keyup.prevent="expand($refs.editor, minHeight)"
+        @load.window="expand($refs.editor, minHeight)"
+        x-ref="editor"
         name="body"
         id="body"
-        class="editor rounded-t-none resize-none h-40"
+        class="editor rounded-t-none resize-none h-40 focus:outline-none"
     >{{ old('body') ?: $content }}</textarea>
 </div>
