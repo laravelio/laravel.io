@@ -77,6 +77,17 @@ Route::get('replyable/{id}/{type}', 'ReplyAbleController@redirect')->name('reply
 Route::get('subscriptions/{subscription}/unsubscribe', 'SubscriptionController@unsubscribe')
     ->name('subscriptions.unsubscribe');
 
+// Articles
+Route::prefix('articles')->namespace('Articles')->group(function () {
+    Route::get('/', 'ArticlesController@index')->name('articles');
+    Route::get('/create', 'ArticlesController@create')->name('articles.create');
+    Route::post('/', 'ArticlesController@store')->name('articles.store');
+    Route::get('{article}', 'ArticlesController@show')->name('articles.show');
+    Route::get('{article}/edit', 'ArticlesController@edit')->name('articles.edit');
+    Route::put('{article}/update', 'ArticlesController@update')->name('articles.update');
+    Route::delete('{article}', 'ArticlesController@delete')->name('articles.delete');
+});
+
 // Admin
 Route::prefix('admin')->name('admin')->namespace('Admin')->group(function () {
     Route::get('/', 'AdminController@index');
