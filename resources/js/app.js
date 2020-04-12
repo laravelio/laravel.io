@@ -7,6 +7,7 @@ import 'choices.js/public/assets/styles/choices.css';
 
 require('./bootstrap');
 require('./search');
+require('./editor');
 
 // Create a multiselect element.
 window.choices = (element) => {

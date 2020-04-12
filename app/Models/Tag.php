@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helpers\HasSlug;
 use App\Helpers\ModelHelpers;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class Tag extends Model
 {
@@ -29,5 +30,15 @@ final class Tag extends Model
     public function name(): string
     {
         return $this->name;
+    }
+
+    public function slug(): string
+    {
+        return $this->slug;
+    }
+
+    public function articles(): MorphToMany
+    {
+        return $this->morphedByMany(Article::class, 'taggable');
     }
 }
