@@ -84,7 +84,7 @@ Route::prefix('articles')->namespace('Articles')->group(function () {
     Route::post('/', 'ArticlesController@store')->name('articles.store');
     Route::get('{article}', 'ArticlesController@show')->name('articles.show');
     Route::get('{article}/edit', 'ArticlesController@edit')->name('articles.edit');
-    Route::put('{article}/update', 'ArticlesController@update')->name('articles.update');
+    Route::put('{article}', 'ArticlesController@update')->name('articles.update');
     Route::delete('{article}', 'ArticlesController@delete')->name('articles.delete');
 });
 
