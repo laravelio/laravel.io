@@ -119,4 +119,31 @@ class ArticleTest extends BrowserKitTestCase
         $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
         $response->assertSessionHasErrors(['body' => 'The body field contains at least one image with an HTTP link.']);
     }
+
+    /** @test */
+    public function users_can_delete_their_own_articles()
+    {
+        $user = $this->createUser();
+        factory(Article::class)->create([
+            'author_id' => $user->id(),
+            'slug' => 'my-first-article',
+        ]);
+
+        $this->loginAs($user);
+
+        $this->delete('/articles/my-first-article')
+            ->assertRedirectedTo('/articles')
+            ->assertSessionHas('success', 'Article successfully deleted!');
+    }
+
+    /** @test */
+    public function users_cannot_delete_an_article_they_do_not_own()
+    {
+        factory(Article::class)->create(['slug' => 'my-first-thread']);
+
+        $this->login();
+
+        $this->delete('/articles/my-first-thread')
+            ->assertForbidden();
+    }
 }

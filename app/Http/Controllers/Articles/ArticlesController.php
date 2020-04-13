@@ -7,6 +7,7 @@ use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\RedirectIfUnconfirmed;
 use App\Http\Requests\ArticleRequest;
 use App\Jobs\CreateArticle;
+use App\Jobs\DeleteArticle;
 use App\Jobs\UpdateArticle;
 use App\Models\Article;
 use App\Models\Tag;
@@ -68,5 +69,12 @@ class ArticlesController extends Controller
 
     public function delete(Article $article)
     {
+        $this->authorize(ArticlePolicy::DELETE, $article);
+
+        $this->dispatchNow(new DeleteArticle($article));
+
+        $this->success('articles.deleted');
+
+        return redirect()->route('articles');
     }
 }
