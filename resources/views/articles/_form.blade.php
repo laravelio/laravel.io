@@ -29,7 +29,7 @@
     @formGroup('tags')
         <label for="tags">Tags</label>
 
-        <select name="tags[]" id="create-thread" multiple x-data="{}" x-init="function () { choices($el) }">
+        <select name="tags[]" id="create-article" multiple x-data="{}" x-init="function () { choices($el) }">
             @foreach($tags as $tag)
                 <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>{{ $tag->name }}</option>
             @endforeach
@@ -39,7 +39,7 @@
     @endFormGroup
 
     <div class="flex justify-end items-center">
-        <a href="{{ isset($thread) ? route('thread', $thread->slug()) : route('forum') }}" class="text-green-darker mr-4">Cancel</a>
-        <button type="submit" class="button button-primary">{{ isset($thread) ? 'Update Thread' : 'Create Thread' }}</button>
+        <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('articles') }}" class="text-green-darker mr-4">Cancel</a>
+        <button type="submit" class="button button-primary">{{ isset($article) ? 'Update Article' : 'Create Article' }}</button>
     </div>
 </form>
