@@ -79,15 +79,6 @@ Route::get('subscriptions/{subscription}/unsubscribe', 'SubscriptionController@u
 
 // Articles
 Route::prefix('articles')->namespace('Articles')->group(function () {
-    // Series
-    Route::prefix('series')->group(function () {
-        Route::get('/create', 'SeriesController@create')->name('series.create');
-        Route::post('/', 'SeriesController@store')->name('series.store');
-        Route::get('{series}', 'SeriesController@show')->name('series.show');
-        Route::get('{series}/edit', 'SeriesController@edit')->name('series.edit');
-        Route::put('{series}', 'SeriesController@update')->name('series.update');
-    });
-
     Route::get('/', 'ArticlesController@index')->name('articles');
     Route::get('/create', 'ArticlesController@create')->name('articles.create');
     Route::post('/', 'ArticlesController@store')->name('articles.store');
@@ -95,6 +86,15 @@ Route::prefix('articles')->namespace('Articles')->group(function () {
     Route::get('{article}/edit', 'ArticlesController@edit')->name('articles.edit');
     Route::put('{article}', 'ArticlesController@update')->name('articles.update');
     Route::delete('{article}', 'ArticlesController@delete')->name('articles.delete');
+});
+
+// Series
+Route::prefix('series')->namespace('Articles')->group(function () {
+    Route::get('/create', 'SeriesController@create')->name('series.create');
+    Route::post('/', 'SeriesController@store')->name('series.store');
+    Route::get('{series}', 'SeriesController@show')->name('series.show');
+    Route::get('{series}/edit', 'SeriesController@edit')->name('series.edit');
+    Route::put('{series}', 'SeriesController@update')->name('series.update');
 });
 
 // Admin

@@ -15,13 +15,14 @@ final class UpdateSeries
     public function __construct(Series $series, array $attributes = [])
     {
         $this->series = $series;
-        $this->attributes = Arr::only($attributes, ['title', 'tags']);
+        $this->attributes = Arr::only($attributes, ['title', 'slug', 'tags']);
     }
 
     public static function fromRequest(Series $series, SeriesRequest $request): self
     {
         return new static($series, [
             'title' => $request->title(),
+            'slug' => $request->title(),
             'tags' => $request->tags(),
         ]);
     }
