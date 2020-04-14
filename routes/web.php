@@ -79,6 +79,12 @@ Route::get('subscriptions/{subscription}/unsubscribe', 'SubscriptionController@u
 
 // Articles
 Route::prefix('articles')->namespace('Articles')->group(function () {
+    // Series
+    Route::prefix('series')->group(function () {
+        Route::get('/create', 'SeriesController@create')->name('series.create');
+        Route::post('/', 'SeriesController@store')->name('series.store');
+    });
+
     Route::get('/', 'ArticlesController@index')->name('articles');
     Route::get('/create', 'ArticlesController@create')->name('articles.create');
     Route::post('/', 'ArticlesController@store')->name('articles.store');
