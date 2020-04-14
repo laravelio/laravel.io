@@ -12,7 +12,7 @@ class UpdateArticleTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function we_can_create_an_article()
+    public function we_can_update_an_article()
     {
         $user = $this->createUser();
         $article = factory(Article::class)->create(['author_id' => $user->id()]);
