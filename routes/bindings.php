@@ -24,3 +24,6 @@ Route::bind('username', function (string $username) {
 Route::bind('article', function (string $slug) {
     return App\Models\Article::findBySlug($slug);
 });
+Route::bind('series', function (string $id) {
+    return App\Models\Series::findOrFail($id);
+});
