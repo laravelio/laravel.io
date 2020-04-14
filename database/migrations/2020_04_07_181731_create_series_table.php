@@ -17,6 +17,7 @@ class CreateSeriesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('author_id');
             $table->string('title');
+            $table->string('slug')->unique();
             $table->timestamps();
 
             $table->foreign('author_id')

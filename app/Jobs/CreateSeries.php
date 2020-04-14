@@ -43,6 +43,7 @@ final class CreateSeries
     {
         $series = new Series([
             'title' => $this->title,
+            'slug' => $this->title,
         ]);
         $series->authoredBy($this->author);
         $series->syncTags($this->tags);

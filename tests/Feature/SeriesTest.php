@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Article;
 use App\Models\Series;
 use App\Models\Tag;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -14,7 +13,7 @@ class SeriesTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_create_a_series_when_not_logged_in()
     {
-        $this->visit('/articles/series/create')
+        $this->visit('/series/create')
             ->seePageIs('/login');
     }
 
@@ -25,11 +24,11 @@ class SeriesTest extends BrowserKitTestCase
 
         $this->login();
 
-        $this->post('/articles/series', [
+        $this->post('/series', [
             'title' => 'A developers guide to SVG',
             'tags' => [$tag->id()],
         ])
-            ->assertRedirectedTo('/articles/series/1')
+            ->assertRedirectedTo('/series/a-developers-guide-to-svg')
             ->assertSessionHas('success', 'Series successfully created!');
     }
 
@@ -38,7 +37,7 @@ class SeriesTest extends BrowserKitTestCase
     {
         $this->login();
 
-        $response = $this->post('/articles/series', [
+        $response = $this->post('/series', [
             'title' => 'A developers guide to SVG which is an image format written in XML which is highly customisable and flexible',
         ]);
 
@@ -53,15 +52,16 @@ class SeriesTest extends BrowserKitTestCase
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
         factory(Series::class)->create([
             'author_id' => $user->id(),
+            'slug' => 'my-first-series',
         ]);
 
         $this->loginAs($user);
 
-        $this->put('/articles/series/1', [
+        $this->put('/series/my-first-series', [
             'title' => 'A developers guide to SVG',
             'tags' => [$tag->id()],
         ])
-            ->assertRedirectedTo('/articles/series/1')
+            ->assertRedirectedTo('/series/a-developers-guide-to-svg')
             ->assertSessionHas('success', 'Series successfully updated!');
     }
 
@@ -70,12 +70,13 @@ class SeriesTest extends BrowserKitTestCase
     {
         $user = $this->createUser();
         factory(Series::class)->create([
-            'author_id' => $user->id()
+            'author_id' => $user->id(),
+            'slug' => 'my-first-series',
         ]);
 
         $this->loginAs($user);
 
-        $response = $this->put('/articles/series/1', [
+        $response = $this->put('/series/my-first-series', [
             'title' => 'A developers guide to SVG which is an image format written in XML which is highly customisable and flexible',
         ]);
 

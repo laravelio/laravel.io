@@ -29,7 +29,7 @@ class SeriesController extends Controller
         $tags = Tag::all();
         $selectedTags = old('tags') ?: [];
 
-        return view('articles.series.create', ['tags' => $tags, 'selectedTags' => $selectedTags]);
+        return view('series.create', ['tags' => $tags, 'selectedTags' => $selectedTags]);
     }
 
     public function store(SeriesRequest $request)
@@ -38,7 +38,7 @@ class SeriesController extends Controller
 
         $this->success('series.created');
 
-        return redirect()->route('series.show', $series->id());
+        return redirect()->route('series.show', $series->slug());
     }
 
     public function edit(Series $series)
@@ -46,7 +46,7 @@ class SeriesController extends Controller
         $this->authorize(SeriesPolicy::UPDATE, $series);
         $selectedTags = $series->tags()->pluck('id')->toArray();
 
-        return view('articles.series.edit', ['series' => $series, 'tags' => Tag::all(), 'selectedTags' => $selectedTags]);
+        return view('series.edit', ['series' => $series, 'tags' => Tag::all(), 'selectedTags' => $selectedTags]);
     }
 
     public function update(SeriesRequest $request, Series $series)
@@ -57,6 +57,6 @@ class SeriesController extends Controller
 
         $this->success('series.updated');
 
-        return redirect()->route('series.show', $series->id());
+        return redirect()->route('series.show', $series->slug());
     }
 }
