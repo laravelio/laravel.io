@@ -83,4 +83,31 @@ class SeriesTest extends BrowserKitTestCase
         $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
         $response->assertSessionHasErrors(['title' => 'The title may not be greater than 100 characters.']);
     }
+
+    /** @test */
+    public function users_can_delete_their_own_series()
+    {
+        $user = $this->createUser();
+        factory(Series::class)->create([
+            'author_id' => $user->id(),
+            'slug' => 'my-first-series',
+        ]);
+
+        $this->loginAs($user);
+
+        $this->delete('/series/my-first-series')
+            ->assertRedirectedTo('/series')
+            ->assertSessionHas('success', 'Series successfully deleted!');
+    }
+
+    /** @test */
+    public function users_cannot_delete_a_series_they_do_not_own()
+    {
+        factory(Series::class)->create(['slug' => 'my-first-thread']);
+
+        $this->login();
+
+        $this->delete('/series/my-first-thread')
+            ->assertForbidden();
+    }
 }

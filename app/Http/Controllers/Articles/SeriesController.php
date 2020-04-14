@@ -7,6 +7,7 @@ use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\RedirectIfUnconfirmed;
 use App\Http\Requests\SeriesRequest;
 use App\Jobs\CreateSeries;
+use App\Jobs\DeleteSeries;
 use App\Jobs\UpdateSeries;
 use App\Models\Series;
 use App\Models\Tag;
@@ -17,6 +18,11 @@ class SeriesController extends Controller
     public function __construct()
     {
         $this->middleware([Authenticate::class, RedirectIfUnconfirmed::class], ['except' => ['index', 'show']]);
+    }
+
+    public function index()
+    {
+        
     }
 
     public function show(Series $series)
@@ -58,5 +64,16 @@ class SeriesController extends Controller
         $this->success('series.updated');
 
         return redirect()->route('series.show', $series->slug());
+    }
+
+    public function delete(Series $series)
+    {
+        $this->authorize(SeriesPolicy::DELETE, $series);
+        
+        $this->dispatchNow(new DeleteSeries($series));
+        
+        $this->success('series.deleted');
+
+        return redirect()->route('series');
     }
 }
