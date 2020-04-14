@@ -4,10 +4,12 @@ namespace App\Providers;
 
 use App\Models\Article;
 use App\Models\Reply;
+use App\Models\Series;
 use App\Models\Thread;
 use App\Policies\ArticlePolicy;
 use App\Policies\NotificationPolicy;
 use App\Policies\ReplyPolicy;
+use App\Policies\SeriesPolicy;
 use App\Policies\ThreadPolicy;
 use App\Policies\UserPolicy;
 use App\User;
@@ -22,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         Thread::class => ThreadPolicy::class,
         User::class => UserPolicy::class,
         Article::class => ArticlePolicy::class,
+        Series::class => SeriesPolicy::class,
     ];
 
     /**

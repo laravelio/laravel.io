@@ -1,6 +1,6 @@
 <?php
 
-use App\Series;
+use App\Models\Series;
 use Faker\Generator as Faker;
 
 $factory->define(Series::class, function (Faker $faker) {

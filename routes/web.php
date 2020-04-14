@@ -83,6 +83,9 @@ Route::prefix('articles')->namespace('Articles')->group(function () {
     Route::prefix('series')->group(function () {
         Route::get('/create', 'SeriesController@create')->name('series.create');
         Route::post('/', 'SeriesController@store')->name('series.store');
+        Route::get('{series}', 'SeriesController@show')->name('series.show');
+        Route::get('{series}/edit', 'SeriesController@edit')->name('series.edit');
+        Route::put('{series}', 'SeriesController@update')->name('series.update');
     });
 
     Route::get('/', 'ArticlesController@index')->name('articles');
