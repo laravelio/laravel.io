@@ -2,9 +2,7 @@
 
 namespace Tests\Integration\Jobs;
 
-use App\Jobs\UpdateArticle;
 use App\Jobs\UpdateSeries;
-use App\Models\Article;
 use App\Models\Series;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;

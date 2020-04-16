@@ -4,36 +4,28 @@ namespace App\Jobs;
 
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
+use App\Models\Series;
 use App\User;
 
 final class CreateArticle
 {
-    /**
-     * @var string
-     */
     private $title;
 
-    /**
-     * @var string
-     */
     private $body;
 
-    /**
-     * @var \App\User
-     */
     private $author;
 
-    /**
-     * @var array
-     */
     private $tags;
 
-    public function __construct(string $title, string $body, User $author, array $tags = [])
+    private $series;
+
+    public function __construct(string $title, string $body, User $author, array $tags = [], string $series = null)
     {
         $this->title = $title;
         $this->body = $body;
         $this->author = $author;
         $this->tags = $tags;
+        $this->series = $series;
     }
 
     public static function fromRequest(ArticleRequest $request): self
@@ -42,7 +34,8 @@ final class CreateArticle
             $request->title(),
             $request->body(),
             $request->author(),
-            $request->tags()
+            $request->tags(),
+            $request->series()
         );
     }
 
@@ -55,6 +48,7 @@ final class CreateArticle
         ]);
         $article->authoredBy($this->author);
         $article->syncTags($this->tags);
+        $article->updateSeries(Series::find($this->series));
         $article->save();
 
         return $article;

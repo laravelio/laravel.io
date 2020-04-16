@@ -22,12 +22,10 @@ class SeriesController extends Controller
 
     public function index()
     {
-        
     }
 
     public function show(Series $series)
     {
-    
     }
 
     public function create()
@@ -69,9 +67,9 @@ class SeriesController extends Controller
     public function delete(Series $series)
     {
         $this->authorize(SeriesPolicy::DELETE, $series);
-        
+
         $this->dispatchNow(new DeleteSeries($series));
-        
+
         $this->success('series.deleted');
 
         return redirect()->route('series');

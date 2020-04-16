@@ -36,4 +36,9 @@ class ArticleRequest extends Request
     {
         return $this->get('tags', []);
     }
+
+    public function series(): ?string
+    {
+        return $this->get('series');
+    }
 }

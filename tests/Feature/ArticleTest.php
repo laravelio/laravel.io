@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Article;
+use App\Models\Series;
 use App\Models\Tag;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -21,6 +22,7 @@ class ArticleTest extends BrowserKitTestCase
     public function users_can_create_an_article()
     {
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+        $series = factory(Series::class)->create(['title' => 'Test series']);
 
         $this->login();
 
@@ -28,6 +30,7 @@ class ArticleTest extends BrowserKitTestCase
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
             'tags' => [$tag->id()],
+            'series' => $series->id(),
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->assertSessionHas('success', 'Article successfully created!');
@@ -65,6 +68,8 @@ class ArticleTest extends BrowserKitTestCase
     {
         $user = $this->createUser();
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+        $series = factory(Series::class)->create(['title' => 'Test series']);
+
         factory(Article::class)->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
@@ -76,6 +81,7 @@ class ArticleTest extends BrowserKitTestCase
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
             'tags' => [$tag->id()],
+            'series' => $series->id(),
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->assertSessionHas('success', 'Article successfully updated!');
