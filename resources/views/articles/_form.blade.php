@@ -38,6 +38,21 @@
         @error('tags')
     @endFormGroup
 
+    @if($series->count() > 0)
+        @formGroup('series')
+            <label for="series">Series</label>
+
+            <select name="series">
+                <option value="">Select a series</option>
+                @foreach($series as $s)
+                    <option value="{{ $s->id }}" @if(isset($article) && $article->series_id === $s->id) selected @endif>{{ $s->title }}</option>
+                @endforeach
+            </select>
+
+            @error('tags')
+        @endFormGroup
+    @endif
+
     <div class="flex justify-end items-center">
         <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('articles') }}" class="text-green-darker mr-4">Cancel</a>
         <button type="submit" class="button button-primary">{{ isset($article) ? 'Update Article' : 'Create Article' }}</button>

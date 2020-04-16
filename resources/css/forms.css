@@ -9,8 +9,9 @@ label {
 input[type=text],
 input[type=password],
 input[type=email],
-textarea {
-    @apply rounded border-2 p-3 w-full;
+textarea,
+select {
+    @apply rounded border-2 p-3 w-full appearance-none;
 }
 
 input.nav-search {

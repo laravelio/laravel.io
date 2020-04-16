@@ -41,4 +41,29 @@ final class Article extends Model
     {
         return $this->belongsTo(Series::class);
     }
+
+    public function updateSeries(Series $series = null): self
+    {
+        if (is_null($series)) {
+            return $this->removeSeries();
+        }
+
+        return $this->addToSeries($series);
+    }
+
+    public function addToSeries(Series $series): self
+    {
+        $this->series()->associate($series);
+        $this->save();
+
+        return $this;
+    }
+
+    public function removeSeries(): self
+    {
+        $this->series()->dissociate();
+        $this->save();
+
+        return $this;
+    }
 }

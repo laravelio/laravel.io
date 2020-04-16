@@ -10,6 +10,7 @@ use App\Jobs\CreateArticle;
 use App\Jobs\DeleteArticle;
 use App\Jobs\UpdateArticle;
 use App\Models\Article;
+use App\Models\Series;
 use App\Models\Tag;
 use App\Policies\ArticlePolicy;
 
@@ -35,8 +36,13 @@ class ArticlesController extends Controller
     {
         $tags = Tag::all();
         $selectedTags = old('tags') ?: [];
+        $series = Series::all();
 
-        return view('articles.create', ['tags' => $tags, 'selectedTags' => $selectedTags]);
+        return view('articles.create', [
+            'tags' => $tags,
+            'selectedTags' => $selectedTags,
+            'series' => $series,
+        ]);
     }
 
     public function store(ArticleRequest $request)
@@ -52,8 +58,14 @@ class ArticlesController extends Controller
     {
         $this->authorize(ArticlePolicy::UPDATE, $article);
         $selectedTags = $article->tags()->pluck('id')->toArray();
+        $series = Series::all();
 
-        return view('articles.edit', ['article' => $article, 'tags' => Tag::all(), 'selectedTags' => $selectedTags]);
+        return view('articles.edit', [
+            'article' => $article,
+            'tags' => Tag::all(),
+            'selectedTags' => $selectedTags,
+            'series' => $series,
+        ]);
     }
 
     public function update(ArticleRequest $request, Article $article)
