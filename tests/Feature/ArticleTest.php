@@ -145,11 +145,29 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_delete_an_article_they_do_not_own()
     {
-        factory(Article::class)->create(['slug' => 'my-first-thread']);
+        factory(Article::class)->create(['slug' => 'my-first-article']);
 
         $this->login();
 
-        $this->delete('/articles/my-first-thread')
+        $this->delete('/articles/my-first-article')
             ->assertForbidden();
+    }
+
+    /** @test */
+    public function canonical_urls_are_rendered()
+    {
+        factory(Article::class)->create(['slug' => 'my-first-article']);
+
+        $this->get('/articles/my-first-article')
+            ->see('<link rel="canonical" href="http://localhost/articles/my-first-article" />');
+    }
+
+    /** @test */
+    public function custom_canonical_urls_are_rendered()
+    {
+        factory(Article::class)->create(['slug' => 'my-first-article', 'canonical_url' => 'https://joedixon.co.uk/my-first-article']);
+
+        $this->get('/articles/my-first-article')
+            ->see('<link rel="canonical" href="https://joedixon.co.uk/my-first-article" />');
     }
 }

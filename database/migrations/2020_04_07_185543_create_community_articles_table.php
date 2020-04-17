@@ -19,6 +19,7 @@ class CreateCommunityArticlesTable extends Migration
             $table->unsignedInteger('author_id');
             $table->string('title');
             $table->text('body');
+            $table->string('canonical_url')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
 

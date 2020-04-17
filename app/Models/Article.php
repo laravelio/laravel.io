@@ -19,6 +19,7 @@ final class Article extends Model
     protected $fillable = [
         'title',
         'body',
+        'canonical_url',
         'slug',
     ];
 
@@ -35,6 +36,11 @@ final class Article extends Model
     public function body(): string
     {
         return $this->body;
+    }
+
+    public function canonicalUrl(): string
+    {
+        return $this->canonical_url ?: route('articles.show', $this->slug);
     }
 
     public function series()
