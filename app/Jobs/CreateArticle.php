@@ -15,15 +15,18 @@ final class CreateArticle
 
     private $author;
 
+    private $canonicalUrl;
+
     private $tags;
 
     private $series;
 
-    public function __construct(string $title, string $body, User $author, array $tags = [], string $series = null)
+    public function __construct(string $title, string $body, User $author, string $canonicalUrl = null, array $tags = [], string $series = null)
     {
         $this->title = $title;
         $this->body = $body;
         $this->author = $author;
+        $this->canonicalUrl = $canonicalUrl;
         $this->tags = $tags;
         $this->series = $series;
     }
@@ -34,6 +37,7 @@ final class CreateArticle
             $request->title(),
             $request->body(),
             $request->author(),
+            $request->canonicalUrl(),
             $request->tags(),
             $request->series()
         );
@@ -44,6 +48,7 @@ final class CreateArticle
         $article = new Article([
             'title' => $this->title,
             'body' => $this->body,
+            'canonical_url' => $this->canonicalUrl,
             'slug' => $this->title,
         ]);
         $article->authoredBy($this->author);

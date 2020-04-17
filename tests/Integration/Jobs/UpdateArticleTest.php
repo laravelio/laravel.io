@@ -31,10 +31,11 @@ class UpdateArticleTest extends TestCase
         $article = factory(Article::class)->create(['author_id' => $user->id()]);
         $series = factory(Series::class)->create(['author_id' => $user->id()]);
 
-        $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', [], $series->id));
+        $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', 'https://laravel.io', [], $series->id));
 
         $this->assertEquals('Title', $article->title());
         $this->assertEquals('Body', $article->body());
+        $this->assertEquals('https://laravel.io', $article->canonicalUrl());
         $this->assertEquals($series->id, $article->id());
     }
 
@@ -43,7 +44,6 @@ class UpdateArticleTest extends TestCase
     {
         $user = $this->createUser();
         $article = factory(Article::class)->create(['author_id' => $user->id()]);
-        $series = factory(Series::class)->create(['author_id' => $user->id()]);
 
         $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body'));
 

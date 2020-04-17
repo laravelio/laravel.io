@@ -14,6 +14,8 @@ class ArticleRequest extends Request
             'body' => ['required', new HttpImageRule],
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',
+            'series' => 'exists:series,id',
+            'canonical_url' => 'url',
         ];
     }
 
@@ -40,5 +42,10 @@ class ArticleRequest extends Request
     public function series(): ?string
     {
         return $this->get('series');
+    }
+
+    public function canonicalUrl(): ?string
+    {
+        return $this->get('canonical_url');
     }
 }

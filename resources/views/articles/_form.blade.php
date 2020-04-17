@@ -26,6 +26,20 @@
         @error('body')
     @endFormGroup
 
+    @formGroup('canonical_url')
+        <label for="canonical_url">Canonical URL</label>
+        <input 
+            type="text" 
+            name="canonical_url" 
+            id="canonical_url" 
+            value="{{ isset($article) ? $article->canonicalUrl() : null }}" 
+            class="form-control" 
+            required maxlength="60" 
+        />
+        <span class="text-gray-600 text-sm">If you have already posted this article on your own site, enter the URL here and the content will be attributed to you.</span>
+        @error('canonical_url')
+    @endFormGroup
+
     @formGroup('tags')
         <label for="tags">Tags</label>
 
