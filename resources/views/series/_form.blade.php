@@ -8,11 +8,11 @@
             type="text" 
             name="title" 
             id="title" 
-            value="{{ isset($series) ? $series->title() : null }}" 
+            value="{{ old('title', isset($series) ? $series->title() : null) }}" 
             class="form-control" 
-            required maxlength="60" 
+            required maxlength="100" 
         />
-        <span class="text-gray-600 text-sm">Maximum 60 characters.</span>
+        <span class="text-gray-600 text-sm mt-1">Maximum 100 characters.</span>
         @error('title')
     @endFormGroup
 

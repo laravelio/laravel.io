@@ -20,7 +20,7 @@ class CreateArticleTest extends TestCase
 
         $this->assertEquals('Title', $article->title());
         $this->assertEquals('Body', $article->body());
-        $this->assertEquals('https://laravel.io', $article->originalUrl());
+        $this->assertEquals('https://laravel.io', $article->canonicalUrl());
     }
 
     /** @test */
@@ -36,7 +36,7 @@ class CreateArticleTest extends TestCase
 
         $this->assertEquals('Title', $article->title());
         $this->assertEquals('Body', $article->body());
-        $this->assertEquals('https://laravel.io', $article->originalUrl());
+        $this->assertEquals('https://laravel.io', $article->canonicalUrl());
         $this->assertEquals($series->id, $article->id());
     }
 }

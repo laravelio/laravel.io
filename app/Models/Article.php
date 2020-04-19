@@ -38,9 +38,14 @@ final class Article extends Model
         return $this->body;
     }
 
-    public function originalUrl(): string
+    public function originalUrl(): ?string
     {
-        return $this->original_url ?: route('articles.show', $this->slug);
+        return $this->original_url;
+    }
+
+    public function canonicalUrl(): string
+    {
+        return $this->originalUrl() ?: route('articles.show', $this->slug);
     }
 
     public function series()
