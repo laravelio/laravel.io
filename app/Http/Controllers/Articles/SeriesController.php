@@ -49,7 +49,7 @@ class SeriesController extends Controller
     {
         $this->authorize(SeriesPolicy::UPDATE, $series);
 
-        $selectedTags = $series->tags()->pluck('id')->toArray();
+        $selectedTags = old('tags', $series->tags()->pluck('id')->toArray());
 
         return view('series.edit', ['series' => $series, 'tags' => Tag::all(), 'selectedTags' => $selectedTags]);
     }

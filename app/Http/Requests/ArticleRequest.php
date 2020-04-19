@@ -12,10 +12,10 @@ class ArticleRequest extends Request
         return [
             'title' => ['required', 'max:100'],
             'body' => ['required', new HttpImageRule],
-            'tags' => 'array',
+            'tags' => 'array|nullable',
             'tags.*' => 'exists:tags,id',
-            'series' => 'exists:series,id',
-            'original_url' => 'url',
+            'series' => 'exists:series,id|nullable',
+            'original_url' => 'url|nullable',
         ];
     }
 

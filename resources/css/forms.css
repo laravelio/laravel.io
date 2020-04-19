@@ -8,10 +8,20 @@ label {
 
 input[type=text],
 input[type=password],
+input[type=email] {
+    @apply h-12;
+}
+
+input[type=text],
+input[type=password],
 input[type=email],
 textarea,
 select {
-    @apply rounded border-2 p-3 w-full appearance-none;
+    @apply rounded border-2 p-3 w-full;
+}
+
+select {
+    @apply appearance-none;
 }
 
 input.nav-search {
@@ -27,6 +37,10 @@ input[type=checkbox] {
 }
 
 /** Markdown editor **/
+.form-group .editor {
+    @apply rounded-t-none;
+}
+
 .form-group .editor-toolbar {
     @apply border-2 border-b-0 rounded rounded-b-none border-gray-300;
 }
@@ -40,8 +54,24 @@ input[type=checkbox] {
     @apply hidden;
 }
 
+.choices__inner {
+    @apply rounded border-2 border-gray-300 w-full bg-white h-12 p-2 flex items-center !important;
+}
+
+.choices__list--dropdown {
+    @apply border-2 border-gray-300 !important;
+}
+
+.choices__list--single {
+    @apply p-0 !important;
+}
+
 .choices__item {
-    @apply text-xs uppercase bg-gray-200 text-gray-700 cursor-pointer rounded px-2 py-1 !important;
+    @apply text-sm bg-gray-200 text-gray-700 cursor-pointer rounded px-2 py-1 my-0 border-0 !important;
+}
+
+.choices__item.choices__item--choice {
+    @apply rounded-none py-2 !important;
 }
 
 .choices__item.choices__item--choice.choices__item--selectable {
@@ -56,6 +86,18 @@ input[type=checkbox] {
     @apply bg-green-primary border-green-primary text-white !important;
 }
 
+.choices__list--single > .choices__item.choices__item--selectable {
+    @apply bg-white text-gray-700 !important;
+}
+
 .choices__item.is-highlighted {
     @apply bg-green-dark border-green-dark text-white !important;
+}
+
+.choices[data-type*='select-one']:after {
+    border-color: theme('colors.gray.500') transparent transparent transparent !important;
+}
+
+.choices[data-type*='select-one'] .choices__input {
+    @apply rounded-none border-b-2 border-gray-300 !important;
 }
