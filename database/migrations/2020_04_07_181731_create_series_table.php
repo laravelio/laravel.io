@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateSeriesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('series', function (Blueprint $table) {
@@ -24,15 +19,5 @@ class CreateSeriesTable extends Migration
                 ->references('id')->on('users')
                 ->onDelete('CASCADE');
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('series');
     }
 }
