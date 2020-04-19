@@ -14,20 +14,20 @@ final class UpdateArticle
 
     private $body;
 
-    private $canonicalUrl;
+    private $originalUrl;
 
     private $tags;
 
     private $series;
 
-    public function __construct(Article $article, string $title, string $body, string $canonicalUrl = null, array $tags = [], string $series = null)
+    public function __construct(Article $article, string $title, string $body, array $options = [])
     {
         $this->article = $article;
         $this->title = $title;
         $this->body = $body;
-        $this->canonicalUrl = $canonicalUrl;
-        $this->tags = $tags;
-        $this->series = $series;
+        $this->originalUrl = $options['original_url'] ?? null;
+        $this->tags = $options['tags'] ?? [];
+        $this->series = $options['series'] ?? null;
     }
 
     public static function fromRequest(Article $article, ArticleRequest $request): self
@@ -36,9 +36,11 @@ final class UpdateArticle
             $article,
             $request->title(),
             $request->body(),
-            $request->canonicalUrl(),
-            $request->tags(),
-            $request->series()
+            [
+                'original_url' => $request->originalUrl(),
+                'tags' => $request->tags(),
+                'series' => $request->series(),
+            ]
         );
     }
 
@@ -47,7 +49,7 @@ final class UpdateArticle
         $this->article->update([
             'title' => $this->title,
             'body' => $this->body,
-            'canonical_url' => $this->canonicalUrl,
+            'original_url' => $this->originalUrl,
             'slug' => $this->title,
         ]);
         $this->article->syncTags($this->tags);

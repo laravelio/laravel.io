@@ -16,11 +16,11 @@ class CreateArticleTest extends TestCase
     {
         $user = $this->createUser();
 
-        $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, 'https://laravel.io'));
+        $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, ['original_url' => 'https://laravel.io']));
 
         $this->assertEquals('Title', $article->title());
         $this->assertEquals('Body', $article->body());
-        $this->assertEquals('https://laravel.io', $article->canonicalUrl());
+        $this->assertEquals('https://laravel.io', $article->originalUrl());
     }
 
     /** @test */
@@ -29,11 +29,14 @@ class CreateArticleTest extends TestCase
         $user = $this->createUser();
         $series = factory(Series::class)->create(['author_id' => $user->id()]);
 
-        $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, 'https://laravel.io', [], $series->id));
+        $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, [
+            'original_url' => 'https://laravel.io',
+            'series_id' => $series->id,
+        ]));
 
         $this->assertEquals('Title', $article->title());
         $this->assertEquals('Body', $article->body());
-        $this->assertEquals('https://laravel.io', $article->canonicalUrl());
+        $this->assertEquals('https://laravel.io', $article->originalUrl());
         $this->assertEquals($series->id, $article->id());
     }
 }

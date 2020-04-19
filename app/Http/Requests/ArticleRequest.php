@@ -15,7 +15,7 @@ class ArticleRequest extends Request
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',
             'series' => 'exists:series,id',
-            'canonical_url' => 'url',
+            'original_url' => 'url',
         ];
     }
 
@@ -44,8 +44,8 @@ class ArticleRequest extends Request
         return $this->get('series');
     }
 
-    public function canonicalUrl(): ?string
+    public function originalUrl(): ?string
     {
-        return $this->get('canonical_url');
+        return $this->get('original_url');
     }
 }

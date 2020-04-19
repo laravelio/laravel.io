@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @push('meta')
-<link rel="canonical" href="{{ $article->canonicalUrl() }}" />
+<link rel="canonical" href="{{ $article->originalUrl() }}" />
 @endpush
 
 @section('content')
