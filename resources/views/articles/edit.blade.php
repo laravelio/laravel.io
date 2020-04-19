@@ -1,4 +1,4 @@
-@title('Write your article')
+@title('Edit your article')
 
 @extends('layouts.default')
 

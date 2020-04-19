@@ -31,11 +31,14 @@ class UpdateArticleTest extends TestCase
         $article = factory(Article::class)->create(['author_id' => $user->id()]);
         $series = factory(Series::class)->create(['author_id' => $user->id()]);
 
-        $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', 'https://laravel.io', [], $series->id));
+        $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', [
+            'original_url' => 'https://laravel.io',
+            'series' => $series->id,
+        ]));
 
         $this->assertEquals('Title', $article->title());
         $this->assertEquals('Body', $article->body());
-        $this->assertEquals('https://laravel.io', $article->canonicalUrl());
+        $this->assertEquals('https://laravel.io', $article->originalUrl());
         $this->assertEquals($series->id, $article->id());
     }
 
@@ -43,7 +46,8 @@ class UpdateArticleTest extends TestCase
     public function we_can_remove_an_article_from_a_series()
     {
         $user = $this->createUser();
-        $article = factory(Article::class)->create(['author_id' => $user->id()]);
+        $series = factory(Series::class)->create();
+        $article = factory(Article::class)->create(['author_id' => $user->id(), 'series_id' => $series->id]);
 
         $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body'));
 

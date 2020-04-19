@@ -48,6 +48,7 @@ class SeriesController extends Controller
     public function edit(Series $series)
     {
         $this->authorize(SeriesPolicy::UPDATE, $series);
+
         $selectedTags = $series->tags()->pluck('id')->toArray();
 
         return view('series.edit', ['series' => $series, 'tags' => Tag::all(), 'selectedTags' => $selectedTags]);

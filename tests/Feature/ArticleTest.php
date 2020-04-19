@@ -165,7 +165,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function custom_canonical_urls_are_rendered()
     {
-        factory(Article::class)->create(['slug' => 'my-first-article', 'canonical_url' => 'https://joedixon.co.uk/my-first-article']);
+        factory(Article::class)->create(['slug' => 'my-first-article', 'original_url' => 'https://joedixon.co.uk/my-first-article']);
 
         $this->get('/articles/my-first-article')
             ->see('<link rel="canonical" href="https://joedixon.co.uk/my-first-article" />');
