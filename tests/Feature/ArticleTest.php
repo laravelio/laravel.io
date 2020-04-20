@@ -19,12 +19,30 @@ class ArticleTest extends BrowserKitTestCase
     }
 
     /** @test */
+    public function users_cannot_see_series_they_do_not_own_when_creating_a_series()
+    {
+        $user = $this->createUser();
+        factory(Series::class)->create(['title' => 'This should be seen', 'author_id' => $user->id]);
+        factory(Series::class)->create(['title' => 'This should not be seen']);
+
+        $this->loginAs($user);
+
+        $this->get('/articles/create')
+            ->see('This should be seen')
+            ->dontSee('This should not be seen');
+    }
+
+    /** @test */
     public function users_can_create_an_article()
     {
+        $user = $this->createUser();
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
-        $series = factory(Series::class)->create(['title' => 'Test series']);
+        $series = factory(Series::class)->create([
+            'title' => 'Test series',
+            'author_id' => $user->id,
+        ]);
 
-        $this->login();
+        $this->loginAs($user);
 
         $this->post('/articles', [
             'title' => 'Using database migrations',
@@ -34,6 +52,25 @@ class ArticleTest extends BrowserKitTestCase
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->assertSessionHas('success', 'Article successfully created!');
+    }
+
+    /** @test */
+    public function users_cannot_create_an_article_using_a_series_they_do_not_own()
+    {
+        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+        $series = factory(Series::class)->create(['title' => 'Test series']);
+
+        $this->login();
+
+        $response = $this->post('/articles', [
+            'title' => 'Using database migrations',
+            'body' => 'This article will go into depth on working with database migrations.',
+            'tags' => [$tag->id()],
+            'series' => $series->id(),
+        ]);
+
+        $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
+        $response->assertSessionHasErrors(['series' => 'The series field does not belong to you.']);
     }
 
     /** @test */
@@ -64,11 +101,29 @@ class ArticleTest extends BrowserKitTestCase
     }
 
     /** @test */
+    public function users_cannot_see_series_they_do_not_own_when_editing_an_article()
+    {
+        $user = $this->createUser();
+        factory(Article::class)->create(['slug' => 'my-first-article', 'author_id' => $user->id]);
+        factory(Series::class)->create(['title' => 'This should be seen', 'author_id' => $user->id]);
+        factory(Series::class)->create(['title' => 'This should not be seen']);
+
+        $this->loginAs($user);
+
+        $this->get('/articles/my-first-article/edit')
+            ->see('This should be seen')
+            ->dontSee('This should not be seen');
+    }
+
+    /** @test */
     public function users_can_edit_an_article()
     {
         $user = $this->createUser();
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
-        $series = factory(Series::class)->create(['title' => 'Test series']);
+        $series = factory(Series::class)->create([
+            'title' => 'Test series',
+            'author_id' => $user->id,
+        ]);
 
         factory(Article::class)->create([
             'author_id' => $user->id(),
@@ -85,6 +140,31 @@ class ArticleTest extends BrowserKitTestCase
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->assertSessionHas('success', 'Article successfully updated!');
+    }
+
+    /** @test */
+    public function users_cannot_edit_an_article_using_a_series_they_do_not_own()
+    {
+        $user = $this->createUser();
+        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+        $series = factory(Series::class)->create(['title' => 'Test series']);
+
+        factory(Article::class)->create([
+            'author_id' => $user->id(),
+            'slug' => 'my-first-article',
+        ]);
+
+        $this->loginAs($user);
+
+        $response = $this->put('/articles/my-first-article', [
+            'title' => 'Using database migrations',
+            'body' => 'This article will go into depth on working with database migrations.',
+            'tags' => [$tag->id()],
+            'series' => $series->id(),
+        ]);
+
+        $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
+        $response->assertSessionHasErrors(['series' => 'The series field does not belong to you.']);
     }
 
     /** @test */
