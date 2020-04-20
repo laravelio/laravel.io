@@ -13,6 +13,7 @@ use App\Models\Article;
 use App\Models\Series;
 use App\Models\Tag;
 use App\Policies\ArticlePolicy;
+use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
@@ -32,11 +33,11 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $tags = Tag::all();
         $selectedTags = old('tags', []);
-        $series = Series::all();
+        $series = $request->user()->series;
         $selectedSeries = old('series');
 
         return view('articles.create', [
@@ -56,13 +57,13 @@ class ArticlesController extends Controller
         return redirect()->route('articles.show', $article->slug());
     }
 
-    public function edit(Article $article)
+    public function edit(Request $request, Article $article)
     {
         $this->authorize(ArticlePolicy::UPDATE, $article);
 
         $selectedTags = old('tags', $article->tags()->pluck('id')->toArray());
-        $series = Series::all();
-        $selectedSeries = old('series', $article->series->id);
+        $series = $request->user()->series;
+        $selectedSeries = old('series', $article->series_id);
 
         return view('articles.edit', [
             'article' => $article,

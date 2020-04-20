@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AuthorOwnsSeriesRule;
 use App\Rules\HttpImageRule;
 use App\User;
 
@@ -14,8 +15,8 @@ class ArticleRequest extends Request
             'body' => ['required', new HttpImageRule],
             'tags' => 'array|nullable',
             'tags.*' => 'exists:tags,id',
-            'series' => 'exists:series,id|nullable',
             'original_url' => 'url|nullable',
+            'series' => ['nullable', new AuthorOwnsSeriesRule],
         ];
     }
 
