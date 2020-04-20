@@ -10,7 +10,6 @@ use App\Jobs\CreateArticle;
 use App\Jobs\DeleteArticle;
 use App\Jobs\UpdateArticle;
 use App\Models\Article;
-use App\Models\Series;
 use App\Models\Tag;
 use App\Policies\ArticlePolicy;
 use Illuminate\Http\Request;
