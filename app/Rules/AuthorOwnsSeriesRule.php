@@ -18,6 +18,6 @@ final class AuthorOwnsSeriesRule implements Rule
 
     public function message(): string
     {
-        return 'The :attribute field does not belong to you.';
+        return 'The selected series does not belong to you.';
     }
 }
