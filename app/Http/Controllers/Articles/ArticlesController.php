@@ -34,16 +34,11 @@ class ArticlesController extends Controller
 
     public function create(Request $request)
     {
-        $tags = Tag::all();
-        $selectedTags = old('tags', []);
-        $series = $request->user()->series;
-        $selectedSeries = old('series');
-
         return view('articles.create', [
-            'tags' => $tags,
-            'selectedTags' => $selectedTags,
-            'series' => $series,
-            'selectedSeries' => $selectedSeries,
+            'tags' => Tag::all(),
+            'selectedTags' => old('tags', []),
+            'series' => $request->user()->series,
+            'selectedSeries' => old('series'),
         ]);
     }
 
@@ -60,16 +55,12 @@ class ArticlesController extends Controller
     {
         $this->authorize(ArticlePolicy::UPDATE, $article);
 
-        $selectedTags = old('tags', $article->tags()->pluck('id')->toArray());
-        $series = $request->user()->series;
-        $selectedSeries = old('series', $article->series_id);
-
         return view('articles.edit', [
             'article' => $article,
             'tags' => Tag::all(),
-            'selectedTags' => $selectedTags,
-            'series' => $series,
-            'selectedSeries' => $selectedSeries,
+            'selectedTags' => old('tags', $article->tags()->pluck('id')->toArray()),
+            'series' => $request->user()->series,
+            'selectedSeries' => old('series', $article->series_id),
         ]);
     }
 
