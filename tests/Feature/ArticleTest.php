@@ -70,7 +70,7 @@ class ArticleTest extends BrowserKitTestCase
         ]);
 
         $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
-        $response->assertSessionHasErrors(['series' => 'The series field does not belong to you.']);
+        $response->assertSessionHasErrors(['series' => 'The selected series does not belong to you.']);
     }
 
     /** @test */
@@ -164,7 +164,7 @@ class ArticleTest extends BrowserKitTestCase
         ]);
 
         $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
-        $response->assertSessionHasErrors(['series' => 'The series field does not belong to you.']);
+        $response->assertSessionHasErrors(['series' => 'The selected series does not belong to you.']);
     }
 
     /** @test */
