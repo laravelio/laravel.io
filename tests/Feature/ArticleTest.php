@@ -19,7 +19,7 @@ class ArticleTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function users_cannot_see_series_they_do_not_own_when_creating_a_series()
+    public function users_cannot_see_series_they_do_not_own_when_creating_an_article()
     {
         $user = $this->createUser();
         factory(Series::class)->create(['title' => 'This should be seen', 'author_id' => $user->id]);
@@ -49,9 +49,40 @@ class ArticleTest extends BrowserKitTestCase
             'body' => 'This article will go into depth on working with database migrations.',
             'tags' => [$tag->id()],
             'series' => $series->id(),
+            'status' => 'draft',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->assertSessionHas('success', 'Article successfully created!');
+    }
+
+    /** @test */
+    public function users_can_publish_an_article()
+    {
+        $this->login();
+
+        $this->post('/articles', [
+            'title' => 'Using database migrations',
+            'body' => 'This article will go into depth on working with database migrations.',
+            'status' => 'publish',
+        ])
+            ->assertRedirectedTo('/articles/using-database-migrations')
+            ->followRedirects()
+            ->dontSee('Draft');
+    }
+
+    /** @test */
+    public function users_can_create_a_draft_article()
+    {
+        $this->login();
+
+        $this->post('/articles', [
+            'title' => 'Using database migrations',
+            'body' => 'This article will go into depth on working with database migrations.',
+            'status' => 'draft',
+        ])
+            ->assertRedirectedTo('/articles/using-database-migrations')
+            ->followRedirects()
+            ->see('Draft');
     }
 
     /** @test */
@@ -137,9 +168,56 @@ class ArticleTest extends BrowserKitTestCase
             'body' => 'This article will go into depth on working with database migrations.',
             'tags' => [$tag->id()],
             'series' => $series->id(),
+            'status' => 'publish',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->assertSessionHas('success', 'Article successfully updated!');
+    }
+
+    /** @test */
+    public function users_can_publish_an_existing_article()
+    {
+        $user = $this->createUser();
+
+        factory(Article::class)->create([
+            'author_id' => $user->id(),
+            'slug' => 'my-first-article',
+            'published_at' => null,
+        ]);
+
+        $this->loginAs($user);
+
+        $this->put('/articles/my-first-article', [
+            'title' => 'Using database migrations',
+            'body' => 'This article will go into depth on working with database migrations.',
+            'status' => 'publish',
+        ])
+            ->assertRedirectedTo('/articles/using-database-migrations')
+            ->followRedirects()
+            ->dontSee('Draft');
+    }
+
+    /** @test */
+    public function users_can_unpublish_an_existing_article()
+    {
+        $user = $this->createUser();
+
+        factory(Article::class)->create([
+            'author_id' => $user->id(),
+            'slug' => 'my-first-article',
+            'published_at' => now(),
+        ]);
+
+        $this->loginAs($user);
+
+        $this->put('/articles/my-first-article', [
+            'title' => 'Using database migrations',
+            'body' => 'This article will go into depth on working with database migrations.',
+            'status' => 'draft',
+        ])
+            ->assertRedirectedTo('/articles/using-database-migrations')
+            ->followRedirects()
+            ->see('Draft');
     }
 
     /** @test */
@@ -236,7 +314,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function canonical_urls_are_rendered()
     {
-        factory(Article::class)->create(['slug' => 'my-first-article']);
+        factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => now()]);
 
         $this->get('/articles/my-first-article')
             ->see('<link rel="canonical" href="http://localhost/articles/my-first-article" />');
@@ -245,9 +323,49 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function custom_canonical_urls_are_rendered()
     {
-        factory(Article::class)->create(['slug' => 'my-first-article', 'original_url' => 'https://joedixon.co.uk/my-first-article']);
+        factory(Article::class)->create(['slug' => 'my-first-article', 'original_url' => 'https://joedixon.co.uk/my-first-article', 'published_at' => now()]);
 
         $this->get('/articles/my-first-article')
             ->see('<link rel="canonical" href="https://joedixon.co.uk/my-first-article" />');
+    }
+
+    /** @test */
+    public function draft_articles_cannot_be_viewed_by_guests()
+    {
+        factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => null]);
+
+        $this->get('/articles/my-first-article')
+            ->assertResponseStatus(404);
+    }
+
+    /** @test */
+    public function draft_articles_can_be_viewed_by_the_article_owner()
+    {
+        $user = $this->createUser();
+        factory(Article::class)->create([
+            'author_id' => $user->id(),
+            'slug' => 'my-first-article',
+            'published_at' => null,
+        ]);
+
+        $this->loginAs($user);
+
+        $this->get('/articles/my-first-article')
+            ->assertResponseStatus(200)
+            ->see('Draft');
+    }
+
+    /** @test */
+    public function draft_articles_cannot_be_viewed_by_logged_in_users()
+    {
+        factory(Article::class)->create([
+            'slug' => 'my-first-article',
+            'published_at' => null,
+        ]);
+
+        $this->login();
+
+        $this->get('/articles/my-first-article')
+            ->assertResponseStatus(404);
     }
 }

@@ -17,6 +17,7 @@ class ArticleRequest extends Request
             'tags.*' => 'exists:tags,id',
             'original_url' => 'url|nullable',
             'series' => ['nullable', new AuthorOwnsSeriesRule],
+            'status' => ['required', 'in:draft,publish'],
         ];
     }
 
@@ -48,5 +49,10 @@ class ArticleRequest extends Request
     public function originalUrl(): ?string
     {
         return $this->get('original_url');
+    }
+
+    public function shouldBePublished(): bool
+    {
+        return $this->get('status') === 'publish';
     }
 }
