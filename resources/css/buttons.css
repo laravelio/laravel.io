@@ -49,3 +49,11 @@
 a.button:hover {
     @apply no-underline;
 }
+
+.button-dropdown-left {
+    @apply rounded-r-none px-2;
+}
+
+.button-dropdown-right {
+    @apply rounded-l-none px-2;
+}

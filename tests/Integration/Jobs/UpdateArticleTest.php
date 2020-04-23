@@ -18,10 +18,34 @@ class UpdateArticleTest extends TestCase
         $user = $this->createUser();
         $article = factory(Article::class)->create(['author_id' => $user->id()]);
 
-        $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body'));
+        $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', false));
 
         $this->assertEquals('Title', $article->title());
         $this->assertEquals('Body', $article->body());
+    }
+
+    /** @test */
+    public function we_can_publish_an_existing_article()
+    {
+        $user = $this->createUser();
+        $article = factory(Article::class)->create(['author_id' => $user->id()]);
+
+        $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', true));
+
+        $this->assertNotNull($article->publishedAt());
+        $this->assertTrue($article->isPublished());
+    }
+
+    /** @test */
+    public function we_can_unpublish_an_existing_article()
+    {
+        $user = $this->createUser();
+        $article = factory(Article::class)->create(['author_id' => $user->id(), 'published_at' => now()]);
+
+        $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', false));
+
+        $this->assertNull($article->publishedAt());
+        $this->assertTrue($article->isNotPublished());
     }
 
     /** @test */
@@ -31,7 +55,7 @@ class UpdateArticleTest extends TestCase
         $article = factory(Article::class)->create(['author_id' => $user->id()]);
         $series = factory(Series::class)->create(['author_id' => $user->id()]);
 
-        $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', [
+        $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', true, [
             'original_url' => 'https://laravel.io',
             'series' => $series->id,
         ]));
@@ -49,7 +73,7 @@ class UpdateArticleTest extends TestCase
         $series = factory(Series::class)->create();
         $article = factory(Article::class)->create(['author_id' => $user->id(), 'series_id' => $series->id]);
 
-        $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body'));
+        $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', true));
 
         $this->assertEquals('Title', $article->title());
         $this->assertEquals('Body', $article->body());
