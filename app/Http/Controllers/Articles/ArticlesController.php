@@ -13,6 +13,7 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Policies\ArticlePolicy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
@@ -27,9 +28,13 @@ class ArticlesController extends Controller
 
     public function show(Article $article)
     {
-        return view('articles.show', [
-            'article' => $article,
-        ]);
+        if ($article->isPublished() || (Auth::check() && $article->isAuthoredBy(Auth::user()))) {
+            return view('articles.show', [
+                'article' => $article,
+            ]);
+        }
+
+        abort(404);
     }
 
     public function create(Request $request)

@@ -7,6 +7,8 @@ use App\Helpers\HasLikes;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
 use App\Helpers\HasTimestamps;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 final class Article extends Model
@@ -21,6 +23,14 @@ final class Article extends Model
         'body',
         'original_url',
         'slug',
+        'published_at',
+    ];
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $dates = [
+        'published_at',
     ];
 
     public function id(): int
@@ -76,5 +86,30 @@ final class Article extends Model
         $this->save();
 
         return $this;
+    }
+
+    public function publishedAt(): ?Carbon
+    {
+        return $this->published_at;
+    }
+
+    public function isPublished(): bool
+    {
+        return ! $this->isNotPublished();
+    }
+
+    public function isNotPublished(): bool
+    {
+        return is_null($this->published_at);
+    }
+
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query->whereNotNull('published_at');
+    }
+
+    public function scopeNotPublished(Builder $query): Builder
+    {
+        return $query->whereNull('published_at');
     }
 }
