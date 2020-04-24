@@ -32,7 +32,7 @@ class ArticlesController extends Controller
             $article->isPublished() || (Auth::check() && $article->isAuthoredBy(Auth::user())),
             404
         );
-        
+
         return view('articles.show', [
             'article' => $article,
         ]);

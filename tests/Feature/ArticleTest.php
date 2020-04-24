@@ -326,7 +326,7 @@ class ArticleTest extends BrowserKitTestCase
         factory(Article::class)->create([
             'slug' => 'my-first-article',
             'original_url' => 'https://joedixon.co.uk/my-first-article',
-            'published_at' => now()
+            'published_at' => now(),
         ]);
 
         $this->get('/articles/my-first-article')
