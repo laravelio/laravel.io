@@ -49,7 +49,7 @@ class ArticleTest extends BrowserKitTestCase
             'body' => 'This article will go into depth on working with database migrations.',
             'tags' => [$tag->id()],
             'series' => $series->id(),
-            'status' => 'draft',
+            'published' => '0',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->assertSessionHas('success', 'Article successfully created!');
@@ -63,7 +63,7 @@ class ArticleTest extends BrowserKitTestCase
         $this->post('/articles', [
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
-            'status' => 'publish',
+            'published' => '1',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->followRedirects()
@@ -78,7 +78,7 @@ class ArticleTest extends BrowserKitTestCase
         $this->post('/articles', [
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
-            'status' => 'draft',
+            'published' => '0',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->followRedirects()
@@ -168,7 +168,7 @@ class ArticleTest extends BrowserKitTestCase
             'body' => 'This article will go into depth on working with database migrations.',
             'tags' => [$tag->id()],
             'series' => $series->id(),
-            'status' => 'publish',
+            'published' => '1',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->assertSessionHas('success', 'Article successfully updated!');
@@ -190,7 +190,7 @@ class ArticleTest extends BrowserKitTestCase
         $this->put('/articles/my-first-article', [
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
-            'status' => 'publish',
+            'published' => '1',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->followRedirects()
@@ -213,7 +213,7 @@ class ArticleTest extends BrowserKitTestCase
         $this->put('/articles/my-first-article', [
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
-            'status' => 'draft',
+            'published' => '0',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->followRedirects()
@@ -323,7 +323,11 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function custom_canonical_urls_are_rendered()
     {
-        factory(Article::class)->create(['slug' => 'my-first-article', 'original_url' => 'https://joedixon.co.uk/my-first-article', 'published_at' => now()]);
+        factory(Article::class)->create([
+            'slug' => 'my-first-article',
+            'original_url' => 'https://joedixon.co.uk/my-first-article',
+            'published_at' => now()
+        ]);
 
         $this->get('/articles/my-first-article')
             ->see('<link rel="canonical" href="https://joedixon.co.uk/my-first-article" />');
