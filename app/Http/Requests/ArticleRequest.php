@@ -5,9 +5,12 @@ namespace App\Http\Requests;
 use App\Rules\AuthorOwnsSeriesRule;
 use App\Rules\HttpImageRule;
 use App\User;
+use Illuminate\Http\Concerns\InteractsWithInput;
 
 class ArticleRequest extends Request
 {
+    use InteractsWithInput;
+
     public function rules()
     {
         return [
@@ -17,7 +20,7 @@ class ArticleRequest extends Request
             'tags.*' => 'exists:tags,id',
             'original_url' => 'url|nullable',
             'series' => ['nullable', new AuthorOwnsSeriesRule],
-            'status' => ['required', 'in:draft,publish'],
+            'published' => ['required', 'boolean'],
         ];
     }
 
@@ -53,6 +56,6 @@ class ArticleRequest extends Request
 
     public function shouldBePublished(): bool
     {
-        return $this->get('status') === 'publish';
+        return $this->boolean('published');
     }
 }
