@@ -28,13 +28,14 @@ class ArticlesController extends Controller
 
     public function show(Article $article)
     {
-        if ($article->isPublished() || (Auth::check() && $article->isAuthoredBy(Auth::user()))) {
-            return view('articles.show', [
-                'article' => $article,
-            ]);
-        }
-
-        abort(404);
+        abort_unless(
+            $article->isPublished() || (Auth::check() && $article->isAuthoredBy(Auth::user())),
+            404
+        );
+        
+        return view('articles.show', [
+            'article' => $article,
+        ]);
     }
 
     public function create(Request $request)
