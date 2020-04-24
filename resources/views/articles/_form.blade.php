@@ -80,11 +80,11 @@
 
         <div class="flex justify-end items-center">
             <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('articles') }}" class="text-green-darker mr-4">Cancel</a>
-            @if(isset($article) && $article->isPublished())
+            @if (isset($article) && $article->isPublished())
                 <button 
                     type="submit" 
-                    name="status" 
-                    value="publish" 
+                    name="published" 
+                    value="1" 
                     class="button button-primary"
                 >
                     Save changes
@@ -93,8 +93,8 @@
                 <span class="relative z-0 inline-flex shadow-sm" x-data="{ showDropdown: false }" @click.away="showDropdown = false">
                     <button 
                         type="submit" 
-                        name="status" 
-                        value="draft" 
+                        name="published" 
+                        value="0" 
                         class="button button-primary button-dropdown-left relative inline-flex items-center focus:outline-none"
                     >
                         Save draft
@@ -114,8 +114,8 @@
                                 <div class="py-1">
                                     <button 
                                         type="submit" 
-                                        name="status" 
-                                        value="publish" 
+                                        name="published" 
+                                        value="1" 
                                         class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 w-full text-left"
                                     >
                                         Save and publish
