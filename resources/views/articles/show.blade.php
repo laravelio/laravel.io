@@ -1,3 +1,5 @@
+@title($article->title())
+
 @extends('layouts.default')
 
 @push('meta')
