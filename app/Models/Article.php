@@ -10,6 +10,7 @@ use App\Helpers\HasTimestamps;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 final class Article extends Model
 {
@@ -46,6 +47,11 @@ final class Article extends Model
     public function body(): string
     {
         return $this->body;
+    }
+
+    public function excerpt(int $limit = 100): string
+    {
+        return Str::limit(strip_tags(md_to_html($this->body())), $limit);
     }
 
     public function originalUrl(): ?string
@@ -103,6 +109,13 @@ final class Article extends Model
         return is_null($this->published_at);
     }
 
+    public function readTime()
+    {
+        $minutes = round(str_word_count($this->body()) / 200);
+
+        return $minutes == 0 ? 1 : $minutes;
+    }
+
     public function scopePublished(Builder $query): Builder
     {
         return $query->whereNotNull('published_at');
@@ -111,5 +124,33 @@ final class Article extends Model
     public function scopeNotPublished(Builder $query): Builder
     {
         return $query->whereNull('published_at');
+    }
+
+    public function scopeForTag(Builder $query, string $tag): Builder
+    {
+        return $query->whereHas('tagsRelation', function ($query) use ($tag) {
+            $query->where('tags.slug', $tag);
+        });
+    }
+
+    public function scopeRecent(Builder $query): Builder
+    {
+        return $query->orderBy('published_at', 'desc');
+    }
+
+    public function scopePopular(Builder $query): Builder
+    {
+        return $query->withCount('likes')
+            ->orderBy('likes_count', 'desc')
+            ->orderBy('published_at', 'desc');
+    }
+
+    public function scopeTrending(Builder $query): Builder
+    {
+        return $query->withCount(['likes' => function ($query) {
+            $query->where('created_at', '>=', now()->subWeek());
+        }])
+            ->orderBy('likes_count', 'desc')
+            ->orderBy('published_at', 'desc');
     }
 }

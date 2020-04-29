@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\ShowArticles;
 use App\Models\Article;
 use App\Models\Series;
 use App\Models\Tag;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Livewire\Livewire;
 
 class ArticleTest extends BrowserKitTestCase
 {
@@ -371,5 +373,38 @@ class ArticleTest extends BrowserKitTestCase
 
         $this->get('/articles/my-first-article')
             ->assertResponseStatus(404);
+    }
+
+    /** @test */
+    public function sort_parameters_are_set_correctly()
+    {
+        Livewire::test(ShowArticles::class)
+            ->assertSet('sortBy', 'recent')
+            ->call('sortBy', 'popular')
+            ->assertSet('sortBy', 'popular')
+            ->call('sortBy', 'trending')
+            ->assertSet('sortBy', 'trending')
+            ->call('sortBy', 'recent')
+            ->assertSet('sortBy', 'recent');
+    }
+
+    /** @test */
+    public function tags_can_be_toggled()
+    {
+        $tag = factory(Tag::class)->create();
+
+        Livewire::test(ShowArticles::class)
+            ->call('toggleTag', $tag->slug)
+            ->assertSet('tag', $tag->slug)
+            ->call('toggleTag', $tag->slug)
+            ->assertSet('tag', null);
+    }
+
+    /** @test */
+    public function invalid_sort_parameter_defaults_to_recent()
+    {
+        Livewire::test(ShowArticles::class)
+            ->call('sortBy', 'something-invalid')
+            ->assertSet('sortBy', 'recent');
     }
 }
