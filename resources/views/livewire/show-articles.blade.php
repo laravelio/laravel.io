@@ -1,34 +1,5 @@
-<div class="container mx-auto px-4 pt-4 flex flex-wrap flex-col-reverse md:flex-row">
-    <div class="w-full lg:w-1/4 lg:pt-8 pr-4">
-        <span class="relative z-0 inline-flex shadow-sm mb-8">
-            <button wire:click="sortBy('recent')" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-green-light focus:shadow-outline-green active:bg-green-primary active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'recent' ? 'bg-green-primary text-white border-green-primary shadow-outline-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
-                Recent
-            </button>
-            <button wire:click="sortBy('popular')" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-green-light focus:shadow-outline-green active:bg-green-primary active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'popular' ? 'bg-green-primary text-white border-green-primary shadow-outline-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
-                Popular
-            </button>
-            <button wire:click="sortBy('trending')" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-green-light focus:shadow-outline-green active:bg-green-primary active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'trending' ? 'bg-green-primary text-white border-green-primary shadow-outline-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
-                Trending 🔥
-            </button>
-        </span>
-
-        <ul class="tags">
-            <li class="{{ ! $selectedTag ? ' active' : '' }}">
-                <button wire:click="toggleTag('')">
-                    All
-                </button>
-            </li>   
-
-            @foreach (App\Models\Tag::whereHas('articles')->orderBy('name')->get() as $tag)
-                <li class="{{ $selectedTag === $tag->slug() ? ' active' : '' }}">
-                    <button wire:click="toggleTag('{{ $tag->slug() }}')">
-                        {{ $tag->name() }}
-                    </button>
-                </li>
-            @endforeach
-        </ul>
-    </div>
-    <div class="w-full lg:w-3/4 py-8 pl-4">
+<div class="container mx-auto px-4 pt-4 flex flex-wrap flex-col-reverse lg:flex-row">
+    <div class="w-full lg:w-3/4 py-8 lg:pr-4">
         <div wire:loading class="flex w-full h-full text-2xl text-gray-700">
             Loading...
         </div>
@@ -91,5 +62,35 @@
 
         {{ $articles->links() }}
         
+    </div>
+
+    <div class="w-full lg:w-1/4 lg:pt-8 lg:pl-4">
+        <span class="relative z-0 inline-flex shadow-sm mb-8">
+            <button wire:click="sortBy('recent')" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-green-light focus:shadow-outline-green active:bg-green-primary active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'recent' ? 'bg-green-primary text-white border-green-primary shadow-outline-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
+                Recent
+            </button>
+            <button wire:click="sortBy('popular')" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-green-light focus:shadow-outline-green active:bg-green-primary active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'popular' ? 'bg-green-primary text-white border-green-primary shadow-outline-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
+                Popular
+            </button>
+            <button wire:click="sortBy('trending')" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-green-light focus:shadow-outline-green active:bg-green-primary active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'trending' ? 'bg-green-primary text-white border-green-primary shadow-outline-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
+                Trending 🔥
+            </button>
+        </span>
+
+        <ul class="tags">
+            <li class="{{ ! $selectedTag ? ' active' : '' }}">
+                <button wire:click="toggleTag('')">
+                    All
+                </button>
+            </li>   
+
+            @foreach (App\Models\Tag::whereHas('articles')->orderBy('name')->get() as $tag)
+                <li class="{{ $selectedTag === $tag->slug() ? ' active' : '' }}">
+                    <button wire:click="toggleTag('{{ $tag->slug() }}')">
+                        {{ $tag->name() }}
+                    </button>
+                </li>
+            @endforeach
+        </ul>
     </div>
 </div>
