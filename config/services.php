@@ -36,11 +36,6 @@ return [
         'redirect' => env('GITHUB_URL'),
     ],
 
-    'intercom' => [
-        'app_id' => env('INTERCOM_APP_ID'),
-        'secret' => env('INTERCOM_SECRET'),
-    ],
-
     'google' => [
         'ad_sense' => [
             'client' => env('GOOGLE_AD_SENSE_AD_CLIENT'),

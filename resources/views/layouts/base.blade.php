@@ -41,7 +41,6 @@
 @include('layouts._footer')
 
 @include('layouts._ads')
-@include('layouts._intercom')
 @include('layouts._fathom')
 
 @livewireScripts

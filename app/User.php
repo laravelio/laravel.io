@@ -87,11 +87,6 @@ final class User extends Authenticatable
         return "https://www.gravatar.com/avatar/$hash?s=$size&d=$default";
     }
 
-    public function intercomHash(): string
-    {
-        return hash_hmac('sha256', $this->id(), config('services.intercom.secret'));
-    }
-
     public function isConfirmed(): bool
     {
         return (bool) $this->confirmed;
