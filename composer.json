@@ -30,6 +30,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
+        "barryvdh/laravel-debugbar": "^3.3",
         "fzaninotto/faker": "^1.9",
         "laravel/browser-kit-testing": "^6.0",
         "mockery/mockery": "^1.3.1",
