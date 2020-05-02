@@ -10,7 +10,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Fix style
+      - name: Run PHP CS Fixer
         uses: docker://oskarstark/php-cs-fixer-ga
         with:
           args: --config=.php_cs.dist --allow-risky=yes

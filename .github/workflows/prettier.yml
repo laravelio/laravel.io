@@ -7,15 +7,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Install
+      - name: Install NPM dependencies
         run: npm ci
 
-      - name: Run prettier
+      - name: Run Prettier
         run: npm run format
 
-      - uses: stefanzweifel/git-auto-commit-action@v2.1.0
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v2.3.0
         with:
           commit_message: Apply prettier changes
           branch: ${{ github.head_ref }}

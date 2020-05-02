@@ -22,7 +22,7 @@ discussions.
 
 - It's a good practice to write tests for your contribution
 - Write the full namespace in DocBlocks for `@param`, `@var` or `@return` tags
-- The rest of the coding standards will be checked by [StyleCI](https://styleci.io/)
+- The rest of the coding standards will automatically fixed by [Github Actions](https://github.com/laravelio/laravel.io/actions)
 
 ## Testing
 
