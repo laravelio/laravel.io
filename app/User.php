@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Auth;
 
 final class User extends Authenticatable
 {
-    use HasTimestamps, ModelHelpers, Notifiable;
+    use HasTimestamps;
+    use ModelHelpers;
+    use Notifiable;
 
     const TABLE = 'users';
 

@@ -10,7 +10,9 @@ use Tests\HttpAssertions;
 
 abstract class BrowserKitTestCase extends BaseTestCase
 {
-    use CreatesApplication, CreatesUsers, HttpAssertions;
+    use CreatesApplication;
+    use CreatesUsers;
+    use HttpAssertions;
 
     public $baseUrl = 'http://localhost';
 
