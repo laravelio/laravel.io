@@ -13,7 +13,7 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
-        "laravel/horizon": "^4.0",
+        "laravel/horizon": "^4.3",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
@@ -21,6 +21,7 @@
         "league/commonmark": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^1.0",
+        "nesbot/carbon": "^2.33",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^3.7",
         "roave/security-advisories": "dev-master",
@@ -33,7 +34,8 @@
         "laravel/browser-kit-testing": "^6.0",
         "mockery/mockery": "^1.3.1",
         "nunomaduro/collision": "^4.1",
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^8.5",
+        "vimeo/psalm": "^3.11"
     },
     "autoload": {
         "classmap": [
