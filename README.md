@@ -1,6 +1,7 @@
 # Laravel.io Community Portal
 
-[![Github Actions](https://github.com/laravelio/laravel.io/workflows/Tests%20and%20Deploy/badge.svg)](https://github.com/laravelio/laravel.io/actions)
+[![Tests](https://github.com/laravelio/laravel.io/workflows/Tests%20and%20Deploy/badge.svg)](https://github.com/laravelio/laravel.io/actions?query=workflow%3A%22Tests+and+Deploy%22)
+[![Code Style](https://github.com/laravelio/laravel.io/workflows/Code%20Style/badge.svg)](https://github.com/laravelio/laravel.io/actions?query=workflow%3AFormatting)
 [![Laravel Version](https://shield.with.social/cc/github/laravelio/laravel.io/master.svg?style=flat-square)](https://packagist.org/packages/laravel/framework)
 
 This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and licensed under [the MIT license](LICENSE.md). We welcome your contributions but we encourage you to read the [the contributing guide](CONTRIBUTING.md) before creating an issue or sending in a pull request. Read the installation guide below to get started with setting up the app on your machine.

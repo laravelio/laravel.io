@@ -1,4 +1,4 @@
-name: Formatting
+name: Code Style
 
 on: [push]
 
