@@ -3,11 +3,12 @@
   "scripts": {
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "watch": "npm run development -- --watch",
-    "watch-poll": "npm run watch -- --watch-poll",
+    "format": "prettier --write 'resources/**/*.{css,js,vue}'",
     "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
     "prod": "npm run production",
-    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "watch-poll": "npm run watch -- --watch-poll"
   },
   "devDependencies": {
     "axios": "^0.19.2",
@@ -15,6 +16,7 @@
     "highlight.js": "^9.18.0",
     "laravel-mix": "^5.0.1",
     "postcss-import": "^12.0.1",
+    "prettier": "2.0.5",
     "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {

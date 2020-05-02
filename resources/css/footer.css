@@ -6,7 +6,8 @@ footer a {
     @apply text-green-darker;
 }
 
-footer span, footer i {
+footer span,
+footer i {
     @apply mx-1;
 }
 
