@@ -33,7 +33,7 @@ final class GithubUser implements Arrayable
         return Carbon::now()->subDays(14);
     }
 
-    private function get($name)
+    private function get(string $name)
     {
         return Arr::get($this->attributes, $name);
     }

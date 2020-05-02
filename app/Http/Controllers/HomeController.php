@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Thread;
 use App\User;
-use Cache;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {

@@ -2,9 +2,9 @@
 
 namespace App\Rules;
 
-use Auth;
-use Hash;
 use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 final class PasscheckRule implements Rule
 {

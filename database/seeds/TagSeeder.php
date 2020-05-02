@@ -12,7 +12,7 @@ class TagSeeder extends Seeder
         $this->createTag('Cache', 'cache');
     }
 
-    private function createTag($name, $slug)
+    private function createTag(string $name, string $slug)
     {
         factory(Tag::class)->create(compact('name', 'slug'));
     }

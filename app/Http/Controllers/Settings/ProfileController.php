@@ -7,9 +7,9 @@ use App\Http\Requests\UpdateProfileRequest;
 use App\Jobs\DeleteUser;
 use App\Jobs\UpdateProfile;
 use App\Policies\UserPolicy;
-use Auth;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {

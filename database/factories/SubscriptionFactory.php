@@ -5,6 +5,7 @@ use App\Models\Thread;
 use App\User;
 use Ramsey\Uuid\Uuid;
 
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(Subscription::class, function (Faker\Generator $faker, array $attributes = []) {
     return [
         'uuid' => Uuid::uuid4()->toString(),

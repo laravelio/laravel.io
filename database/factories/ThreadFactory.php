@@ -3,6 +3,7 @@
 use App\Models\Thread;
 use App\User;
 
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(Thread::class, function (Faker\Generator $faker, array $attributes = []) {
     return [
         'subject' => $faker->text(20),

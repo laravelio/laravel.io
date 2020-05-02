@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Jobs\UpdateProfile;
 use App\Social\GithubUser;
 use App\User;
-use Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\User as SocialiteUser;
-use Socialite;
 
 class GithubController extends Controller
 {

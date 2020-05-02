@@ -4,6 +4,7 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\User;
 
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(Reply::class, function (Faker\Generator $faker, array $attributes = []) {
     return [
         'body' => $faker->text(),

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateProfileRequest extends Request
 {
