@@ -9,7 +9,7 @@ class UpdateReplyRequest extends Request
     public function rules()
     {
         return [
-            'body' => ['required', new HttpImageRule],
+            'body' => ['required', new HttpImageRule()],
         ];
     }
 

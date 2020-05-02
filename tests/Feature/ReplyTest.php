@@ -73,7 +73,7 @@ class ReplyTest extends BrowserKitTestCase
 
         $this->login();
 
-        $this->put('/forum/the-first-thread/mark-solution/'.$reply->id())
+        $this->put('/forum/the-first-thread/mark-solution/' . $reply->id())
             ->assertForbidden();
     }
 
