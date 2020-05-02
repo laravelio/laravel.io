@@ -12,9 +12,9 @@ class CreateReplyRequest extends Request
     public function rules()
     {
         return [
-            'body' => ['required', new HttpImageRule],
+            'body' => ['required', new HttpImageRule()],
             'replyable_id' => 'required',
-            'replyable_type' => 'required|in:'.Thread::TABLE,
+            'replyable_type' => 'required|in:' . Thread::TABLE,
         ];
     }
 

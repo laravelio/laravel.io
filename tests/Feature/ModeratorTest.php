@@ -16,7 +16,7 @@ class ModeratorTest extends BrowserKitTestCase
 
         $this->loginAsModerator();
 
-        $this->visit('/forum/'.$thread->slug().'/edit')
+        $this->visit('/forum/' . $thread->slug() . '/edit')
             ->assertResponseOk();
     }
 
@@ -27,7 +27,7 @@ class ModeratorTest extends BrowserKitTestCase
 
         $this->loginAsModerator();
 
-        $this->delete('/forum/'.$thread->slug())
+        $this->delete('/forum/' . $thread->slug())
             ->assertRedirectedTo('/forum');
     }
 }

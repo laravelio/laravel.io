@@ -14,7 +14,7 @@ class PasscheckRuleTest extends TestCase
     public function it_passes_when_the_password_is_correct()
     {
         $this->login(['password' => bcrypt('foo')]);
-        $rule = new PasscheckRule;
+        $rule = new PasscheckRule();
 
         $result = $rule->passes('password', 'foo');
 
@@ -25,7 +25,7 @@ class PasscheckRuleTest extends TestCase
     public function it_fails_when_the_password_is_incorrect()
     {
         $this->login();
-        $rule = new PasscheckRule;
+        $rule = new PasscheckRule();
 
         $result = $rule->passes('password', 'foo');
 

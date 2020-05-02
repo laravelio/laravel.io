@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Notification;
 
 class SubscriptionsTest extends BrowserKitTestCase
 {
-    use DatabaseMigrations, WithFaker;
+    use DatabaseMigrations;
+    use WithFaker;
 
     /** @test */
     public function users_receive_notifications_for_new_replies_to_threads_where_they_are_subscribed_to()

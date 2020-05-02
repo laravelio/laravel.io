@@ -1,4 +1,4 @@
-import { flare } from "@flareapp/flare-client";
+import { flare } from '@flareapp/flare-client';
 
 // Setup exception handling.
 if (process.env.NODE_ENV === 'production') {
