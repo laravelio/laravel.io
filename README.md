@@ -1,6 +1,6 @@
 # Laravel.io Community Portal
 
-[![Tests](https://github.com/laravelio/laravel.io/workflows/Tests%20and%20Deploy/badge.svg)](https://github.com/laravelio/laravel.io/actions?query=workflow%3A%22Tests+and+Deploy%22)
+[![Tests](https://github.com/laravelio/laravel.io/workflows/Tests/badge.svg)](https://github.com/laravelio/laravel.io/actions?query=workflow%3A%22Tests)
 [![Code Style](https://github.com/laravelio/laravel.io/workflows/Code%20Style/badge.svg)](https://github.com/laravelio/laravel.io/actions?query=workflow%3AFormatting)
 [![Laravel Version](https://shield.with.social/cc/github/laravelio/laravel.io/master.svg?style=flat-square)](https://packagist.org/packages/laravel/framework)
 
