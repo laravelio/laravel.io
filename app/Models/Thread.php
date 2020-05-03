@@ -175,7 +175,13 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
      */
     public static function feedQuery(): Builder
     {
-        return static::with('solutionReplyRelation')
+        return static::with([
+            'solutionReplyRelation',
+            'repliesRelation',
+            'repliesRelation.authorRelation',
+            'tagsRelation',
+            'authorRelation',
+        ])
             ->leftJoin('replies', function ($join) {
                 $join->on('threads.id', 'replies.replyable_id')
                     ->where('replies.replyable_type', static::TABLE);
