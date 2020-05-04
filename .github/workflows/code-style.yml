@@ -21,9 +21,9 @@ jobs:
         id: extract_branch
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v2.3.0
+        uses: stefanzweifel/git-auto-commit-action@v4.1.6
         with:
-          commit_message: Fix styling
+          commit_message: Apply PHP CS Fixer changes
           branch: ${{ steps.extract_branch.outputs.branch }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -42,9 +42,9 @@ jobs:
         run: npm run format
 
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v2.3.0
+        uses: stefanzweifel/git-auto-commit-action@v4.1.6
         with:
-          commit_message: Apply prettier changes
+          commit_message: Apply Prettier changes
           branch: ${{ github.head_ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
