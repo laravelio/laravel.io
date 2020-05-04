@@ -1,7 +1,7 @@
 // Handle the click event of the style buttons inside the editor.
 window.handleClick = (style, element) => {
     const { styles } = editorConfig();
-    const input = element.querySelectorAll("textarea")[0];
+    const input = element.querySelectorAll('textarea')[0];
 
     // Get the start and end positions of the current selection.
     const selectionStart = input.selectionStart;
@@ -11,94 +11,79 @@ window.handleClick = (style, element) => {
     const styleFormat = styles[style];
 
     // Get any prefix and/or suffix characters from the selected style.
-    const prefix = styleFormat.before ? styleFormat.before : "";
-    const suffix = styleFormat.after ? styleFormat.after : "";
+    const prefix = styleFormat.before ? styleFormat.before : '';
+    const suffix = styleFormat.after ? styleFormat.after : '';
 
     // Insert the prefix at the relevant position.
-    input.value = insertCharactersAtPosition(
-        input.value,
-        prefix,
-        selectionStart
-    );
+    input.value = insertCharactersAtPosition(input.value, prefix, selectionStart);
 
     // Insert the suffix at the relevant position.
-    input.value = insertCharactersAtPosition(
-        input.value,
-        suffix,
-        selectionEnd + prefix.length
-    );
+    input.value = insertCharactersAtPosition(input.value, suffix, selectionEnd + prefix.length);
 
     // Reselect the selection and focus the input.
-    input.setSelectionRange(
-        selectionStart + prefix.length,
-        selectionEnd + prefix.length
-    );
+    input.setSelectionRange(selectionStart + prefix.length, selectionEnd + prefix.length);
     input.focus();
-}
+};
 
 // Insert provided characters at the desired place in a string.
 const insertCharactersAtPosition = (string, character, position) => {
-    return [
-        string.slice(0, position),
-        character,
-        string.slice(position)
-    ].join("");
-}
+    return [string.slice(0, position), character, string.slice(position)].join('');
+};
 
 // Configuration object for the text editor.
 window.editorConfig = () => {
     return {
         styles: {
             header: {
-                before: "### ",
+                before: '### ',
                 class: {
-                    "fa-header": true
-                }
+                    'fa-header': true,
+                },
             },
             bold: {
-                before: "**",
-                after: "**",
+                before: '**',
+                after: '**',
                 class: {
-                    "fa-bold": true
-                }
+                    'fa-bold': true,
+                },
             },
             italic: {
-                before: "_",
-                after: "_",
+                before: '_',
+                after: '_',
                 class: {
-                    "fa-italic": true
-                }
+                    'fa-italic': true,
+                },
             },
             quote: {
-                before: "> ",
+                before: '> ',
                 class: {
-                    "fa-quote-left": true
-                }
+                    'fa-quote-left': true,
+                },
             },
             code: {
-                before: "`",
-                after: "`",
+                before: '`',
+                after: '`',
                 class: {
-                    "fa-code": true
-                }
+                    'fa-code': true,
+                },
             },
             link: {
-                before: "[](",
-                after: ")",
+                before: '[](',
+                after: ')',
                 class: {
-                    "fa-link": true
-                }
+                    'fa-link': true,
+                },
             },
             image: {
-                before: "![](",
-                after: ")",
+                before: '![](',
+                after: ')',
                 class: {
-                    "fa-file-image-o": true
-                }
-            }
-        }
-    }
-}
+                    'fa-file-image-o': true,
+                },
+            },
+        },
+    };
+};
 
 window.expand = (event, minHeight) => {
     setTimeout(function () {
@@ -109,4 +94,4 @@ window.expand = (event, minHeight) => {
         event.target.style.cssText = 'height:auto;';
         event.target.style.cssText = 'height:' + event.target.scrollHeight + 'px';
     }, 0);
-}
+};
