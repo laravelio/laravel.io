@@ -14,7 +14,11 @@ use Illuminate\Support\Str;
 
 final class Article extends Model
 {
-    use HasAuthor, HasSlug, HasLikes, HasTimestamps, HasTags;
+    use HasAuthor;
+    use HasSlug;
+    use HasLikes;
+    use HasTimestamps;
+    use HasTags;
 
     /**
      * {@inheritdoc}
