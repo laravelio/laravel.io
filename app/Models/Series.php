@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Series extends Model
 {
-    use HasAuthor, HasTags, HasSlug;
+    use HasAuthor;
+    use HasTags;
+    use HasSlug;
 
     /**
      * {@inheritdoc}
