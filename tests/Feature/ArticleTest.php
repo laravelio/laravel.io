@@ -149,6 +149,26 @@ class ArticleTest extends BrowserKitTestCase
     }
 
     /** @test */
+    public function guests_can_view_an_article()
+    {
+        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => now()]);
+
+        $this->get('/articles/my-first-article')
+            ->see($article->title());
+    }
+
+    /** @test */
+    public function logged_in_users_can_view_an_article()
+    {
+        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => now()]);
+
+        $this->login();
+
+        $this->get('/articles/my-first-article')
+            ->see($article->title());
+    }
+
+    /** @test */
     public function users_can_edit_an_article()
     {
         $user = $this->createUser();
