@@ -157,4 +157,24 @@ final class Article extends Model
             ->orderBy('likes_count', 'desc')
             ->orderBy('published_at', 'desc');
     }
+
+    public function previousInSeries(): ?Article
+    {
+        return $this->series
+            ->articles()
+            ->published()
+            ->where('published_at', '<', $this->publishedAt())
+            ->orderByDesc('published_at')
+            ->first();
+    }
+
+    public function nextInSeries(): ?Article
+    {
+        return $this->series
+            ->articles()
+            ->published()
+            ->where('published_at', '>', $this->publishedAt())
+            ->orderBy('published_at')
+            ->first();
+    }
 }

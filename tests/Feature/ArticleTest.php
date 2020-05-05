@@ -427,4 +427,84 @@ class ArticleTest extends BrowserKitTestCase
             ->call('sortBy', 'something-invalid')
             ->assertSet('sortBy', 'recent');
     }
+
+    /** @test */
+    public function readers_can_navigate_to_the_next_article_in_a_series()
+    {
+        $series = factory(Series::class)->create();
+        $articleOne = factory(Article::class)->create([
+            'series_id' => $series->id,
+            'published_at' => now()->subWeek(),
+        ]);
+        $articleTwo = factory(Article::class)->create([
+            'series_id' => $series->id,
+            'published_at' => now(),
+        ]);
+
+        $this->visit("/articles/{$articleOne->slug()}")
+            ->click($articleTwo->title())
+            ->seePageIs("/articles/{$articleTwo->slug()}");
+    }
+
+    /** @test */
+    public function readers_can_navigate_to_the_previous_article_in_a_series()
+    {
+        $series = factory(Series::class)->create();
+        $articleOne = factory(Article::class)->create([
+            'series_id' => $series->id,
+            'published_at' => now()->subWeek(),
+        ]);
+        $articleTwo = factory(Article::class)->create([
+            'series_id' => $series->id,
+            'published_at' => now(),
+        ]);
+
+        $this->visit("/articles/{$articleTwo->slug()}")
+            ->click($articleOne->title())
+            ->seePageIs("/articles/{$articleOne->slug()}");
+    }
+
+    /** @test */
+    public function readers_can_see_next_and_previous_links_in_a_series()
+    {
+        $series = factory(Series::class)->create();
+        $articleOne = factory(Article::class)->create([
+            'series_id' => $series->id,
+            'published_at' => now()->subWeeks(2),
+        ]);
+        $articleTwo = factory(Article::class)->create([
+            'series_id' => $series->id,
+            'published_at' => now()->subWeek(),
+        ]);
+        $articleThree = factory(Article::class)->create([
+            'series_id' => $series->id,
+            'published_at' => now(),
+        ]);
+
+        $this->visit("/articles/{$articleTwo->slug()}")
+            ->see($articleOne->title())
+            ->see($articleThree->title());
+    }
+
+    /** @test */
+    public function unpublished_articles_are_not_rendered_in_next_and_previous_links()
+    {
+        $series = factory(Series::class)->create();
+        $articleOne = factory(Article::class)->create([
+            'series_id' => $series->id,
+            'published_at' => now()->subWeek(),
+        ]);
+        $articleTwo = factory(Article::class)->create([
+            'series_id' => $series->id,
+            'published_at' => null,
+        ]);
+        $articleThree = factory(Article::class)->create([
+            'series_id' => $series->id,
+            'published_at' => now(),
+        ]);
+
+        $this->visit("/articles/{$articleOne->slug()}")
+            ->dontSee($articleTwo->title())
+            ->see($articleThree->title());
+    }
 }

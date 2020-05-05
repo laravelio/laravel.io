@@ -49,5 +49,6 @@
         <span class="text-gray-500 text-sm">
             Like this article?<br>Let the author know and give them a clap!
         </span>
+        @include('articles._series_nav')
     </div>
 @endsection
