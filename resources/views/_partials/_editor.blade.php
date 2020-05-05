@@ -18,7 +18,8 @@
         </ul>
     </div>
     <textarea
-        @keyup="expand(event, minHeight)"
+        @keyup.prevent="expand($refs.editor, minHeight)"
+        @load.window="expand($refs.editor, minHeight)"
         x-ref="editor"
         name="body"
         id="body"

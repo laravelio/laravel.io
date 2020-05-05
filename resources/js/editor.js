@@ -85,13 +85,10 @@ window.editorConfig = () => {
     };
 };
 
-window.expand = (event, minHeight) => {
-    setTimeout(function () {
-        if (event.target.scrollHeight <= minHeight) {
-            return;
-        }
+window.expand = (element, minHeight) => {
+    if (element.scrollHeight < minHeight) {
+        return;
+    }
 
-        event.target.style.cssText = 'height:auto;';
-        event.target.style.cssText = 'height:' + event.target.scrollHeight + 'px';
-    }, 0);
-};
+    element.style.cssText = 'height:' + element.scrollHeight + 'px';
+}
