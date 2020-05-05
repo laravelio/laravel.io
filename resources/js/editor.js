@@ -91,4 +91,4 @@ window.expand = (element, minHeight) => {
     }
 
     element.style.cssText = 'height:' + element.scrollHeight + 'px';
-}
+};
