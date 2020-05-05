@@ -3,6 +3,7 @@
 namespace Tests\Integration\Models;
 
 use App\Models\Article;
+use App\Models\Series;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -55,5 +56,49 @@ class ArticleTest extends TestCase
         $this->assertEquals($articles[1]->title, $trendingArticles[0]->title);
         $this->assertEquals($articles[2]->title, $trendingArticles[1]->title);
         $this->assertEquals($articles[0]->title, $trendingArticles[2]->title);
+    }
+
+    /** @test */
+    public function we_can_get_the_next_article_in_a_series()
+    {
+        $series = factory(Series::class)->create();
+        $articleOne = factory(Article::class)->create([
+            'published_at' => now()->subDays(2),
+            'series_id' => $series->id,
+        ]);
+        $articleTwo = factory(Article::class)->create([
+            'published_at' => now()->subDay(),
+            'series_id' => $series->id,
+        ]);
+        $articleThree = factory(Article::class)->create([
+            'published_at' => now(),
+            'series_id' => $series->id,
+        ]);
+
+        $this->assertEquals($articleTwo->id, $articleOne->nextInSeries()->id);
+        $this->assertEquals($articleThree->id, $articleTwo->nextInSeries()->id);
+        $this->assertNull($articleThree->nextInSeries());
+    }
+
+    /** @test */
+    public function we_can_get_the_previous_article_in_a_series()
+    {
+        $series = factory(Series::class)->create();
+        $articleOne = factory(Article::class)->create([
+            'published_at' => now()->subDays(2),
+            'series_id' => $series->id,
+        ]);
+        $articleTwo = factory(Article::class)->create([
+            'published_at' => now()->subDay(),
+            'series_id' => $series->id,
+        ]);
+        $articleThree = factory(Article::class)->create([
+            'published_at' => now(),
+            'series_id' => $series->id,
+        ]);
+
+        $this->assertNull($articleOne->previousInSeries());
+        $this->assertEquals($articleTwo->id, $articleThree->previousInSeries()->id);
+        $this->assertEquals($articleOne->id, $articleTwo->previousInSeries()->id);
     }
 }
