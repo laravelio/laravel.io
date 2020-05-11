@@ -507,4 +507,41 @@ class ArticleTest extends BrowserKitTestCase
             ->dontSee($articleTwo->title())
             ->see($articleThree->title());
     }
+
+    /** @test */
+    public function a_user_can_view_their_articles()
+    {
+        $user = $this->createUser();
+
+        $articles = factory(Article::class, 3)->create([
+            'author_id' => $user->id,
+        ]);
+
+        $this->loginAs($user);
+
+        $this->visit('/articles/me')
+            ->see($articles[0]->title())
+            ->see($articles[1]->title())
+            ->see($articles[2]->title());
+    }
+
+    /** @test */
+    public function a_user_can_another_users_articles()
+    {
+        $articles = factory(Article::class, 3)->create();
+
+        $this->login();
+
+        $this->visit('/articles/me')
+            ->dontSee($articles[0]->title())
+            ->dontSee($articles[1]->title())
+            ->dontSee($articles[2]->title());
+    }
+
+    /** @test */
+    public function a_guest_cannot_see_articles()
+    {
+        $this->visit('/articles/me')
+            ->seePageIs('/login');
+    }
 }
