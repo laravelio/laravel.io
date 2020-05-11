@@ -14,6 +14,11 @@
                 Draft
             </span>
         @endif
+        @if ($article->isAuthoredBy(Auth::user()))
+            <a href="{{ route('articles.edit', $article->slug()) }}" class="label label-primary inline-flex">
+                Edit
+            </a>
+        @endif
         <div class="mb-8 text-gray-700 flex items-center">
             @include('forum.threads.info.avatar', ['user' => $article->author(), 'size' => 50])
             <div class="mr-12">
