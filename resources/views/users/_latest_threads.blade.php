@@ -13,16 +13,19 @@
                         </p>
                     </a>
 
-                    <div>
-                        <span class="text-base font-normal mr-2">
-                            <i class="fa fa-comment text-gray-500 mr-1"></i>
-                            {{ count($thread->replies()) }}
-                        </span>
-
-                        <span class="text-base font-normal">
-                            <i class="fa fa-thumbs-up text-gray-500 mr-1"></i>
-                            {{ $thread->likesCount() }}
-                        </span>
+                    <div class="flex">
+                        <div class="flex items-center mr-4">
+                            <span class="text-2xl mr-2">💬</span>
+                            <span class="text-base font-normal">
+                                {{ count($thread->replies()) }}
+                            </span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-2xl mr-2">👍</span>
+                            <span class="text-base font-normal">
+                                {{ $thread->likesCount() }}
+                            </span>
+                        </div>
                     </div>
                 </div>
 
