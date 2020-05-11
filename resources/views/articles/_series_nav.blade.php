@@ -1,4 +1,4 @@
-@if ($article->series)
+@if ($article->series && $article->isPublished())
     <div class="flex items-center mt-12">
         @if ($previous = $article->previousInSeries())
             <a href="{{ route('articles.show', $previous->slug()) }}" class="flex justify-start w-full items-center text-green-dark">
