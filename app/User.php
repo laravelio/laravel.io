@@ -4,6 +4,7 @@ namespace App;
 
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
+use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Series;
 use App\Models\Thread;
@@ -210,6 +211,16 @@ final class User extends Authenticatable
     public function replyAble(): HasMany
     {
         return $this->hasMany(Reply::class, 'author_id');
+    }
+
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class, 'author_id');
+    }
+
+    public function latestArticles(int $amount = 10)
+    {
+        return $this->articles()->latest()->limit($amount)->get();
     }
 
     public function series(): HasMany
