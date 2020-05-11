@@ -89,9 +89,7 @@
                             </div>
                         </div>
                         <div class="flex items-center text-gray-500">
-                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 mr-2">
-                                <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </svg>
+                            <span class="text-2xl mr-2">👏</span>
                             {{ $article->likesCount() }}
                         </div>
                     </div>
