@@ -223,6 +223,11 @@ final class User extends Authenticatable
         return $this->articles()->latest()->limit($amount)->get();
     }
 
+    public function countArticles(): int
+    {
+        return $this->articles()->count();
+    }
+
     public function series(): HasMany
     {
         return $this->hasMany(Series::class, 'author_id');
