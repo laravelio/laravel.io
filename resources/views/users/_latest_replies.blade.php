@@ -1,6 +1,6 @@
 <div class="container mx-auto flex flex-wrap mb-2">
     <div class="w-full">
-        @forelse ($user->latestReplies() as $reply)
+        @forelse ($user->latestReplies(5) as $reply)
             <div class="thread-card">
                 <div class="flex justify-between">
                     <a href="{{ route('thread', $reply->replyAble()->slug()) }}">
@@ -13,9 +13,9 @@
                         </p>
                     </a>
 
-                    <div>
+                    <div class="flex items-center">
+                        <span class="text-2xl mr-2">👍</span>
                         <span class="text-base font-normal">
-                            <i class="fa fa-thumbs-up text-gray-500 mr-1"></i>
                             {{ $reply->likesCount() }}
                         </span>
                     </div>
