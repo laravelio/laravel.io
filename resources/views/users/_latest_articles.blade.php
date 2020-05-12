@@ -8,6 +8,7 @@
                             <h4 class="text-xl font-bold text-gray-900">
                                 {{ $article->title() }}
                             </h4>
+
                             @if ($article->isNotPublished())
                                 <span class="label inline-flex ml-4">
                                     Draft
@@ -54,7 +55,7 @@
             </div>
         @empty
             <p class="text-gray-600 text-base">
-                {{ $user->name() }} has not posted any threads yet
+                {{ $user->name() }} has not posted any articles yet
             </p>
         @endforelse
     </div>
