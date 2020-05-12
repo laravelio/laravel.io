@@ -81,7 +81,7 @@ Route::get('subscriptions/{subscription}/unsubscribe', 'SubscriptionController@u
 
 // Articles
 Route::prefix('articles')->namespace('Articles')->group(function () {
-    Route::get('me', 'MyArticles')->name('user.articles');
+    Route::get('authored', 'AuthoredArticles')->name('user.articles');
     Route::get('/', 'ArticlesController@index')->name('articles');
     Route::get('/create', 'ArticlesController@create')->name('articles.create');
     Route::post('/', 'ArticlesController@store')->name('articles.store');

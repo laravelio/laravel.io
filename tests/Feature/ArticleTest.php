@@ -519,7 +519,7 @@ class ArticleTest extends BrowserKitTestCase
 
         $this->loginAs($user);
 
-        $this->visit('/articles/me')
+        $this->visit('/articles/authored')
             ->see($articles[0]->title())
             ->see($articles[1]->title())
             ->see($articles[2]->title());
@@ -532,7 +532,7 @@ class ArticleTest extends BrowserKitTestCase
 
         $this->login();
 
-        $this->visit('/articles/me')
+        $this->visit('/articles/authored')
             ->dontSee($articles[0]->title())
             ->dontSee($articles[1]->title())
             ->dontSee($articles[2]->title());
@@ -541,7 +541,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function a_guest_cannot_see_articles()
     {
-        $this->visit('/articles/me')
+        $this->visit('/articles/authored')
             ->seePageIs('/login');
     }
 }

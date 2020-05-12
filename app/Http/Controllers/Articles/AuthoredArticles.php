@@ -7,7 +7,7 @@ use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\RedirectIfUnconfirmed;
 use Illuminate\Http\Request;
 
-class MyArticles extends Controller
+class AuthoredArticles extends Controller
 {
     public function __construct()
     {
