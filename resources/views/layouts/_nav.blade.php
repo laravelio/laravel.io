@@ -141,7 +141,9 @@
             <a href="{{ route('articles') }}" class="{{ active(['articles', 'articles*']) }} block pl-3 pr-4 py-2 border-l-4 text-base font-medium bg-indigo-50 focus:outline-none transition duration-150 ease-in-out">
                 Articles
             </a>
-            <a href="https://paste.laravel.io" class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Pastebin</a>
+            <a href="https://paste.laravel.io" class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">
+                Pastebin
+            </a>
 
             <div class="mt-1">
                 <div class="pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 transition duration-150 ease-in-out">

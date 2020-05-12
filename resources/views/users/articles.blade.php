@@ -26,12 +26,13 @@
             @foreach($articles as $article)
                 <div class="pb-8 mb-8 border-b-2">
                     <div>
-                        @if($article->isNotPublished())
+                        @if ($article->isNotPublished())
                             <span class="label mr-2">
                                 Draft
                             </span>
                         @endif
-                        @foreach($article->tags() as $tag)
+
+                        @foreach ($article->tags() as $tag)
                             <span class="rounded-full bg-green-light text-green-primary inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5">
                                 {{ $tag->name() }}
                             </span>
@@ -79,6 +80,7 @@
                                             Drafted {{ $article->updatedAt()->format('j M, Y') }}
                                         </time>
                                     @endif
+                                    
                                     <span class="mx-1">
                                         &middot;
                                     </span>
