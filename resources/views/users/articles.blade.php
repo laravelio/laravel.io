@@ -9,10 +9,10 @@
                 {{ $title }}
             </h1>
             <div class="flex">
-                <a href="{{ route('articles.create') }}" class="button mr-2">
+                <a href="{{ route('series.create') }}" class="button mr-2">
                     Create Series
                 </a>
-                <a href="{{ route('series.create') }}" class="button button-primary">
+                <a href="{{ route('articles.create') }}" class="button button-primary">
                     Create Article
                 </a>
             </div>
