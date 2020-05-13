@@ -10,3 +10,10 @@
         </script>
     </div>
 @endif
+
+@if (config('app.debug'))
+    <div class="container mx-auto text-center overflow-hidden bg-green-light" style="width:300px;height:250px;margin-top:25px">
+    </div>
+@endif
+
+@include('layouts._ads._cta', ['text' => 'Your banner here?'])

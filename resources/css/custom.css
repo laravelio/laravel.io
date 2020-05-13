@@ -12,10 +12,6 @@
 @import 'tags.css';
 @import 'threads.css';
 
-/*a:hover {*/
-/*    @apply underline;*/
-/*}*/
-
 pre .hljs {
     @apply text-sm rounded p-4 border-2;
 }
