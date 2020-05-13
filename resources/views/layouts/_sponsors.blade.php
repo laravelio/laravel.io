@@ -4,30 +4,35 @@
             We'd like to thank these <strong>amazing companies</strong> for supporting us
         </p>
 
-        <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
+        <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-3">
+            <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
+                <a class="flex items-center" href="https://laravelshift.com">
+                    <img class="max-h-12" src="{{ asset('images/sponsors/laravel-shift.png') }}" alt="Laravel Shift">
+                </a>
+            </div>
             <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
                 <a class="flex items-center" href="https://m.do.co/c/7922b1dff899">
-                    <img class="max-h-12" src="{{ asset('images/digitalocean.png') }}" alt="DigitalOcean">
+                    <img class="max-h-12" src="{{ asset('images/sponsors/digitalocean.png') }}" alt="DigitalOcean">
                 </a>
             </div>
             <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
                 <a class="flex items-center" href="https://usefathom.com/ref/7A8QGC">
-                    <img class="max-h-12" src="{{ asset('images/fathom.png') }}" alt="Fathom">
+                    <img class="max-h-12" src="{{ asset('images/sponsors/fathom.png') }}" alt="Fathom">
                 </a>
             </div>
             <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
                 <a class="flex items-center" href="https://forge.laravel.com/">
-                    <img class="max-h-12" src="{{ asset('images/forge.png') }}" alt="Forge">
+                    <img class="max-h-12" src="{{ asset('images/sponsors/forge.png') }}" alt="Forge">
                 </a>
             </div>
             <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1 px-2">
                 <a class="flex items-center" href="https://envoyer.io/">
-                    <img class="max-h-12" src="{{ asset('images/envoyer.png') }}" alt="Envoyer">
+                    <img class="max-h-12" src="{{ asset('images/sponsors/envoyer.png') }}" alt="Envoyer">
                 </a>
             </div>
             <div class="col-span-2 flex justify-center md:col-span-3 lg:col-span-1 px-2">
                 <a class="flex items-center" href="https://blackfire.io/">
-                    <img class="max-h-12" src="{{ asset('images/blackfire-io.png') }}" alt="Blackfire.io">
+                    <img class="max-h-12" src="{{ asset('images/sponsors/blackfire-io.png') }}" alt="Blackfire.io">
                 </a>
             </div>
         </div>

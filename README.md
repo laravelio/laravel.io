@@ -1,8 +1,14 @@
-# Laravel.io Community Portal
+<p align="center">
+    <img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400">
+</p>
+
+<p align="center">
 
 [![Tests](https://github.com/laravelio/laravel.io/workflows/Tests/badge.svg)](https://github.com/laravelio/laravel.io/actions?query=workflow%3ATests)
 [![Code Style](https://github.com/laravelio/laravel.io/workflows/Code%20Style/badge.svg)](https://github.com/laravelio/laravel.io/actions?query=workflow%3A%22Code+Style%22)
 [![Laravel Version](https://shield.with.social/cc/github/laravelio/laravel.io/master.svg?style=flat-square)](https://packagist.org/packages/laravel/framework)
+
+</p>
 
 This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and licensed under [the MIT license](LICENSE.md). We welcome your contributions but we encourage you to read the [the contributing guide](CONTRIBUTING.md) before creating an issue or sending in a pull request. Read the installation guide below to get started with setting up the app on your machine.
 
@@ -14,6 +20,7 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Envoyer](https://envoyer.io)
 - [Fathom](https://usefathom.com)
 - [Blackfire.io](https://blackfire.io)
+- [Laravel Shift](https://laravelshift.com)
 
 ## Requirements
 
