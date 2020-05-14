@@ -4,10 +4,15 @@
             We'd like to thank these <strong>amazing companies</strong> for supporting us
         </p>
 
-        <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-3">
+        <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-4">
             <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
                 <a class="flex items-center" href="https://laravelshift.com">
                     <img class="max-h-12" src="{{ asset('images/sponsors/laravel-shift.png') }}" alt="Laravel Shift">
+                </a>
+            </div>
+            <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
+                <a class="flex items-center" href="https://tinkerwell.app">
+                    <img class="max-h-12" src="{{ asset('images/sponsors/tinkerwell.jpg') }}" alt="Tinkerwell">
                 </a>
             </div>
             <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
@@ -20,6 +25,8 @@
                     <img class="max-h-12" src="{{ asset('images/sponsors/fathom.png') }}" alt="Fathom">
                 </a>
             </div>
+        </div>
+        <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-3">
             <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
                 <a class="flex items-center" href="https://forge.laravel.com/">
                     <img class="max-h-12" src="{{ asset('images/sponsors/forge.png') }}" alt="Forge">
@@ -30,7 +37,7 @@
                     <img class="max-h-12" src="{{ asset('images/sponsors/envoyer.png') }}" alt="Envoyer">
                 </a>
             </div>
-            <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
+            <div class="col-span-2 flex justify-center md:col-span-2 lg:col-span-1 px-2">
                 <a class="flex items-center" href="https://blackfire.io/">
                     <img class="max-h-12" src="{{ asset('images/sponsors/blackfire-io.png') }}" alt="Blackfire.io">
                 </a>

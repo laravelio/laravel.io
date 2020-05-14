@@ -11,7 +11,7 @@
 @endif
 
 @if (config('app.debug'))
-    <div class="container mx-auto text-center overflow-hidden bg-green-light" style="width:950px;height:88px">
+    <div class="container mx-auto text-center overflow-hidden bg-green-light" style="max-width:950px;height:88px">
     </div>
 @endif
 
