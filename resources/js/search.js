@@ -16,7 +16,7 @@ window.search = (event) => {
             params: {
                 hitsPerPage: 5,
                 attributesToSnippet: ['body:10'],
-            }
+            },
         },
         {
             indexName: process.env.MIX_ALGOLIA_ARTICLES_INDEX,
@@ -24,7 +24,7 @@ window.search = (event) => {
             params: {
                 hitsPerPage: 5,
                 attributesToSnippet: ['body:10'],
-            }
+            },
         },
-    ])
+    ]);
 };
