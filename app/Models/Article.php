@@ -7,10 +7,12 @@ use App\Helpers\HasLikes;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
 use App\Helpers\HasTimestamps;
+use App\Helpers\PreparesSearch;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 final class Article extends Model
 {
@@ -19,6 +21,8 @@ final class Article extends Model
     use HasLikes;
     use HasTimestamps;
     use HasTags;
+    use PreparesSearch;
+    use Searchable;
 
     /**
      * {@inheritdoc}
@@ -176,5 +180,25 @@ final class Article extends Model
             ->where('published_at', '>', $this->publishedAt())
             ->orderBy('published_at')
             ->first();
+    }
+
+    public function shouldBeSearchable()
+    {
+        return $this->isPublished();
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id(),
+            'title' => $this->title(),
+            'body' => $this->body(),
+            'slug' => $this->slug(),
+        ];
+    }
+
+    public function splitBody($value)
+    {
+        return $this->split($value);
     }
 }
