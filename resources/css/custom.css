@@ -45,3 +45,13 @@ nav.dashboard-nav a.active {
 a > span > em {
     @apply bg-green-light;
 }
+
+.search {
+    @apply w-full;
+}
+
+@screen lg {
+    .search {
+        width: 720px;
+    }
+}
