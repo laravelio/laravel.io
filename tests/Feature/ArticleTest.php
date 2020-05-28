@@ -69,7 +69,8 @@ class ArticleTest extends BrowserKitTestCase
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->followRedirects()
-            ->dontSee('Draft');
+            ->dontSee('Draft')
+            ->see('Awaiting approval');
     }
 
     /** @test */
@@ -151,7 +152,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function guests_can_view_an_article()
     {
-        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => now()]);
+        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => now(), 'approved_at' => now()]);
 
         $this->get('/articles/my-first-article')
             ->see($article->title());
@@ -160,7 +161,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function logged_in_users_can_view_an_article()
     {
-        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => now()]);
+        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => now(), 'approved_at' => now()]);
 
         $this->login();
 
@@ -336,7 +337,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function canonical_urls_are_rendered()
     {
-        factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => now()]);
+        factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => now(), 'approved_at' => now()]);
 
         $this->get('/articles/my-first-article')
             ->see('<link rel="canonical" href="http://localhost/articles/my-first-article" />');
@@ -349,6 +350,7 @@ class ArticleTest extends BrowserKitTestCase
             'slug' => 'my-first-article',
             'original_url' => 'https://joedixon.co.uk/my-first-article',
             'published_at' => now(),
+            'approved_at' => now(),
         ]);
 
         $this->get('/articles/my-first-article')
@@ -435,10 +437,12 @@ class ArticleTest extends BrowserKitTestCase
         $articleOne = factory(Article::class)->create([
             'series_id' => $series->id,
             'published_at' => now()->subWeek(),
+            'approved_at' => now(),
         ]);
         $articleTwo = factory(Article::class)->create([
             'series_id' => $series->id,
             'published_at' => now(),
+            'approved_at' => now(),
         ]);
 
         $this->visit("/articles/{$articleOne->slug()}")
@@ -453,10 +457,12 @@ class ArticleTest extends BrowserKitTestCase
         $articleOne = factory(Article::class)->create([
             'series_id' => $series->id,
             'published_at' => now()->subWeek(),
+            'approved_at' => now(),
         ]);
         $articleTwo = factory(Article::class)->create([
             'series_id' => $series->id,
             'published_at' => now(),
+            'approved_at' => now(),
         ]);
 
         $this->visit("/articles/{$articleTwo->slug()}")
@@ -471,14 +477,17 @@ class ArticleTest extends BrowserKitTestCase
         $articleOne = factory(Article::class)->create([
             'series_id' => $series->id,
             'published_at' => now()->subWeeks(2),
+            'approved_at' => now(),
         ]);
         $articleTwo = factory(Article::class)->create([
             'series_id' => $series->id,
             'published_at' => now()->subWeek(),
+            'approved_at' => now(),
         ]);
         $articleThree = factory(Article::class)->create([
             'series_id' => $series->id,
             'published_at' => now(),
+            'approved_at' => now(),
         ]);
 
         $this->visit("/articles/{$articleTwo->slug()}")
@@ -493,6 +502,7 @@ class ArticleTest extends BrowserKitTestCase
         $articleOne = factory(Article::class)->create([
             'series_id' => $series->id,
             'published_at' => now()->subWeek(),
+            'approved_at' => now(),
         ]);
         $articleTwo = factory(Article::class)->create([
             'series_id' => $series->id,
@@ -501,6 +511,7 @@ class ArticleTest extends BrowserKitTestCase
         $articleThree = factory(Article::class)->create([
             'series_id' => $series->id,
             'published_at' => now(),
+            'approved_at' => now(),
         ]);
 
         $this->visit("/articles/{$articleOne->slug()}")

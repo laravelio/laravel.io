@@ -64,14 +64,17 @@ class ArticleTest extends TestCase
         $series = factory(Series::class)->create();
         $articleOne = factory(Article::class)->create([
             'published_at' => now()->subDays(2),
+            'approved_at' => now(),
             'series_id' => $series->id,
         ]);
         $articleTwo = factory(Article::class)->create([
             'published_at' => now()->subDay(),
+            'approved_at' => now(),
             'series_id' => $series->id,
         ]);
         $articleThree = factory(Article::class)->create([
             'published_at' => now(),
+            'approved_at' => now(),
             'series_id' => $series->id,
         ]);
 
@@ -86,14 +89,17 @@ class ArticleTest extends TestCase
         $series = factory(Series::class)->create();
         $articleOne = factory(Article::class)->create([
             'published_at' => now()->subDays(2),
+            'approved_at' => now(),
             'series_id' => $series->id,
         ]);
         $articleTwo = factory(Article::class)->create([
             'published_at' => now()->subDay(),
+            'approved_at' => now(),
             'series_id' => $series->id,
         ]);
         $articleThree = factory(Article::class)->create([
             'published_at' => now(),
+            'approved_at' => now(),
             'series_id' => $series->id,
         ]);
 

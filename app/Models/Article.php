@@ -33,6 +33,7 @@ final class Article extends Model
         'original_url',
         'slug',
         'published_at',
+        'approved_at',
     ];
 
     /**
@@ -40,6 +41,7 @@ final class Article extends Model
      */
     protected $dates = [
         'published_at',
+        'approved_at',
     ];
 
     public function id(): int
@@ -107,6 +109,11 @@ final class Article extends Model
         return $this->published_at;
     }
 
+    public function approvedAt(): ?Carbon
+    {
+        return $this->approved_at;
+    }
+
     public function isPublished(): bool
     {
         return ! $this->isNotPublished();
@@ -114,7 +121,17 @@ final class Article extends Model
 
     public function isNotPublished(): bool
     {
-        return is_null($this->published_at);
+        return is_null($this->published_at) || is_null($this->approved_at);
+    }
+
+    public function isAwaitingApproval(): bool
+    {
+        return ! is_null($this->published_at) && is_null($this->approved_at);
+    }
+
+    public function isNotAwaitingApproval(): bool
+    {
+        return ! $this->isAwaitingApproval();
     }
 
     public function readTime()
@@ -126,12 +143,16 @@ final class Article extends Model
 
     public function scopePublished(Builder $query): Builder
     {
-        return $query->whereNotNull('published_at');
+        return $query->whereNotNull('published_at')
+            ->whereNotNull('approved_at');
     }
 
     public function scopeNotPublished(Builder $query): Builder
     {
-        return $query->whereNull('published_at');
+        return $query->where(function ($query) {
+            $query->whereNull('published_at')
+                ->orWhereNull('approved_at');
+        });
     }
 
     public function scopeForTag(Builder $query, string $tag): Builder

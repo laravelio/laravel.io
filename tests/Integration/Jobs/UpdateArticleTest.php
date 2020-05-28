@@ -33,7 +33,6 @@ class UpdateArticleTest extends TestCase
         $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', true));
 
         $this->assertNotNull($article->publishedAt());
-        $this->assertTrue($article->isPublished());
     }
 
     /** @test */

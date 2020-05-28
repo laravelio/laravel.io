@@ -31,7 +31,6 @@ class CreateArticleTest extends TestCase
         $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, true, ['original_url' => 'https://laravel.io']));
 
         $this->assertNotNull($article->publishedAt());
-        $this->assertTrue($article->isPublished());
     }
 
     /** @test */

@@ -17,6 +17,7 @@ class CreateCommunityArticlesTable extends Migration
             $table->string('original_url')->nullable();
             $table->string('slug')->unique();
             $table->timestamp('published_at')->nullable();
+            $table->timestamp('approved_at')->nullable();
             $table->timestamps();
 
             $table->foreign('series_id')

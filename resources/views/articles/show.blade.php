@@ -11,9 +11,15 @@
         <h1 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none mb-4">{{ $article->title() }}</h1>
         
         @if ($article->isNotPublished())
-            <span class="label inline-flex mb-4">
-                Draft
-            </span>
+            @if($article->isAwaitingApproval())
+                <span class="label inline-flex mb-4">
+                    Awaiting Approval
+                </span>
+            @else
+                <span class="label inline-flex mb-4">
+                    Draft
+                </span>
+            @endif
         @endif
 
         @if (Auth::check() && $article->isAuthoredBy(Auth::user()))
