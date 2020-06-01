@@ -15,7 +15,7 @@ final class CreateArticle
 
     private $author;
 
-    private $shouldBePublished;
+    private $shouldBeSubmitted;
 
     private $originalUrl;
 
@@ -23,12 +23,12 @@ final class CreateArticle
 
     private $series;
 
-    public function __construct(string $title, string $body, User $author, bool $shouldBePublished, array $options = [])
+    public function __construct(string $title, string $body, User $author, bool $shouldBeSubmitted, array $options = [])
     {
         $this->title = $title;
         $this->body = $body;
         $this->author = $author;
-        $this->shouldBePublished = $shouldBePublished;
+        $this->shouldBeSubmitted = $shouldBeSubmitted;
         $this->originalUrl = $options['original_url'] ?? null;
         $this->tags = $options['tags'] ?? [];
         $this->series = $options['series'] ?? null;
@@ -40,7 +40,7 @@ final class CreateArticle
             $request->title(),
             $request->body(),
             $request->author(),
-            $request->shouldBePublished(),
+            $request->shouldBeSubmitted(),
             [
                 'original_url' => $request->originalUrl(),
                 'tags' => $request->tags(),
@@ -56,7 +56,7 @@ final class CreateArticle
             'body' => $this->body,
             'original_url' => $this->originalUrl,
             'slug' => $this->title,
-            'published_at' => $this->shouldBePublished ? now() : null,
+            'submitted_at' => $this->shouldBeSubmitted ? now() : null,
         ]);
         $article->authoredBy($this->author);
         $article->syncTags($this->tags);

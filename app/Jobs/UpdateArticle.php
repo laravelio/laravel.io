@@ -14,7 +14,7 @@ final class UpdateArticle
 
     private $body;
 
-    private $shouldBePublished;
+    private $shouldBeSubmitted;
 
     private $originalUrl;
 
@@ -22,12 +22,12 @@ final class UpdateArticle
 
     private $series;
 
-    public function __construct(Article $article, string $title, string $body, bool $shouldBePublished, array $options = [])
+    public function __construct(Article $article, string $title, string $body, bool $shouldBeSubmitted, array $options = [])
     {
         $this->article = $article;
         $this->title = $title;
         $this->body = $body;
-        $this->shouldBePublished = $shouldBePublished;
+        $this->shouldBeSubmitted = $shouldBeSubmitted;
         $this->originalUrl = $options['original_url'] ?? null;
         $this->tags = $options['tags'] ?? [];
         $this->series = $options['series'] ?? null;
@@ -39,7 +39,7 @@ final class UpdateArticle
             $article,
             $request->title(),
             $request->body(),
-            $request->shouldBePublished(),
+            $request->shouldBeSubmitted(),
             [
                 'original_url' => $request->originalUrl(),
                 'tags' => $request->tags(),
@@ -55,7 +55,7 @@ final class UpdateArticle
             'body' => $this->body,
             'original_url' => $this->originalUrl,
             'slug' => $this->title,
-            'published_at' => $this->shouldBePublished ? now() : null,
+            'submitted_at' => $this->shouldBeSubmitted ? now() : null,
         ]);
         $this->article->syncTags($this->tags);
         $this->article->updateSeries(Series::find($this->series));

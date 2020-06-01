@@ -32,7 +32,7 @@ final class Article extends Model
         'body',
         'original_url',
         'slug',
-        'published_at',
+        'submitted_at',
         'approved_at',
     ];
 
@@ -40,7 +40,7 @@ final class Article extends Model
      * {@inheritdoc}
      */
     protected $dates = [
-        'published_at',
+        'submitted_at',
         'approved_at',
     ];
 
@@ -104,9 +104,9 @@ final class Article extends Model
         return $this;
     }
 
-    public function publishedAt(): ?Carbon
+    public function submittedAt(): ?Carbon
     {
-        return $this->published_at;
+        return $this->submitted_at;
     }
 
     public function approvedAt(): ?Carbon
@@ -121,12 +121,12 @@ final class Article extends Model
 
     public function isNotPublished(): bool
     {
-        return is_null($this->published_at) || is_null($this->approved_at);
+        return is_null($this->submitted_at) || is_null($this->approved_at);
     }
 
     public function isAwaitingApproval(): bool
     {
-        return ! is_null($this->published_at) && is_null($this->approved_at);
+        return ! is_null($this->submitted_at) && is_null($this->approved_at);
     }
 
     public function isNotAwaitingApproval(): bool
@@ -143,14 +143,14 @@ final class Article extends Model
 
     public function scopePublished(Builder $query): Builder
     {
-        return $query->whereNotNull('published_at')
+        return $query->whereNotNull('submitted_at')
             ->whereNotNull('approved_at');
     }
 
     public function scopeNotPublished(Builder $query): Builder
     {
         return $query->where(function ($query) {
-            $query->whereNull('published_at')
+            $query->whereNull('submitted_at')
                 ->orWhereNull('approved_at');
         });
     }
@@ -164,14 +164,14 @@ final class Article extends Model
 
     public function scopeRecent(Builder $query): Builder
     {
-        return $query->orderBy('published_at', 'desc');
+        return $query->orderBy('submitted_at', 'desc');
     }
 
     public function scopePopular(Builder $query): Builder
     {
         return $query->withCount('likes')
             ->orderBy('likes_count', 'desc')
-            ->orderBy('published_at', 'desc');
+            ->orderBy('submitted_at', 'desc');
     }
 
     public function scopeTrending(Builder $query): Builder
@@ -180,7 +180,7 @@ final class Article extends Model
             $query->where('created_at', '>=', now()->subWeek());
         }])
             ->orderBy('likes_count', 'desc')
-            ->orderBy('published_at', 'desc');
+            ->orderBy('submitted_at', 'desc');
     }
 
     public function previousInSeries(): ?Article
@@ -188,8 +188,8 @@ final class Article extends Model
         return $this->series
             ->articles()
             ->published()
-            ->where('published_at', '<', $this->publishedAt())
-            ->orderByDesc('published_at')
+            ->where('submitted_at', '<', $this->submittedAt())
+            ->orderByDesc('submitted_at')
             ->first();
     }
 
@@ -198,8 +198,8 @@ final class Article extends Model
         return $this->series
             ->articles()
             ->published()
-            ->where('published_at', '>', $this->publishedAt())
-            ->orderBy('published_at')
+            ->where('submitted_at', '>', $this->submittedAt())
+            ->orderBy('submitted_at')
             ->first();
     }
 

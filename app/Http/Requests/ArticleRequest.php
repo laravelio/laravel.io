@@ -54,7 +54,7 @@ class ArticleRequest extends Request
         return $this->get('original_url');
     }
 
-    public function shouldBePublished(): bool
+    public function shouldBeSubmitted(): bool
     {
         return $this->boolean('published');
     }

@@ -72,13 +72,19 @@
                                 </p>
                                 <div class="flex text-sm leading-5 text-gray-500">
                                     @if ($article->isPublished())
-                                        <time datetime="{{ $article->publishedAt()->format('Y-m-d') }}">
-                                            Published {{ $article->publishedAt()->format('j M, Y') }}
+                                        <time datetime="{{ $article->submittedAt()->format('Y-m-d') }}">
+                                            Published {{ $article->submittedAt()->format('j M, Y') }}
                                         </time>
                                     @else
-                                        <time datetime="{{ $article->updatedAt()->format('Y-m-d') }}">
-                                            Drafted {{ $article->updatedAt()->format('j M, Y') }}
-                                        </time>
+                                        @if ($article->isAwaitingApproval()))
+                                            <span>
+                                                Awaiting Approval
+                                            </span>
+                                        @else
+                                            <time datetime="{{ $article->updatedAt()->format('Y-m-d') }}">
+                                                Drafted {{ $article->updatedAt()->format('j M, Y') }}
+                                            </time>
+                                        @endif
                                     @endif
                                     
                                     <span class="mx-1">

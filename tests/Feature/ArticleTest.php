@@ -152,7 +152,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function guests_can_view_an_article()
     {
-        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => now(), 'approved_at' => now()]);
+        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
 
         $this->get('/articles/my-first-article')
             ->see($article->title());
@@ -161,7 +161,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function logged_in_users_can_view_an_article()
     {
-        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => now(), 'approved_at' => now()]);
+        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
 
         $this->login();
 
@@ -205,7 +205,7 @@ class ArticleTest extends BrowserKitTestCase
         factory(Article::class)->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
-            'published_at' => null,
+            'submitted_at' => null,
         ]);
 
         $this->loginAs($user);
@@ -228,7 +228,7 @@ class ArticleTest extends BrowserKitTestCase
         factory(Article::class)->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
-            'published_at' => now(),
+            'submitted_at' => now(),
         ]);
 
         $this->loginAs($user);
@@ -337,7 +337,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function canonical_urls_are_rendered()
     {
-        factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => now(), 'approved_at' => now()]);
+        factory(Article::class)->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
 
         $this->get('/articles/my-first-article')
             ->see('<link rel="canonical" href="http://localhost/articles/my-first-article" />');
@@ -349,7 +349,7 @@ class ArticleTest extends BrowserKitTestCase
         factory(Article::class)->create([
             'slug' => 'my-first-article',
             'original_url' => 'https://joedixon.co.uk/my-first-article',
-            'published_at' => now(),
+            'submitted_at' => now(),
             'approved_at' => now(),
         ]);
 
@@ -360,7 +360,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function draft_articles_cannot_be_viewed_by_guests()
     {
-        factory(Article::class)->create(['slug' => 'my-first-article', 'published_at' => null]);
+        factory(Article::class)->create(['slug' => 'my-first-article', 'submitted_at' => null]);
 
         $this->get('/articles/my-first-article')
             ->assertResponseStatus(404);
@@ -373,7 +373,7 @@ class ArticleTest extends BrowserKitTestCase
         factory(Article::class)->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
-            'published_at' => null,
+            'submitted_at' => null,
         ]);
 
         $this->loginAs($user);
@@ -388,7 +388,7 @@ class ArticleTest extends BrowserKitTestCase
     {
         factory(Article::class)->create([
             'slug' => 'my-first-article',
-            'published_at' => null,
+            'submitted_at' => null,
         ]);
 
         $this->login();
@@ -436,12 +436,12 @@ class ArticleTest extends BrowserKitTestCase
         $series = factory(Series::class)->create();
         $articleOne = factory(Article::class)->create([
             'series_id' => $series->id,
-            'published_at' => now()->subWeek(),
+            'submitted_at' => now()->subWeek(),
             'approved_at' => now(),
         ]);
         $articleTwo = factory(Article::class)->create([
             'series_id' => $series->id,
-            'published_at' => now(),
+            'submitted_at' => now(),
             'approved_at' => now(),
         ]);
 
@@ -456,12 +456,12 @@ class ArticleTest extends BrowserKitTestCase
         $series = factory(Series::class)->create();
         $articleOne = factory(Article::class)->create([
             'series_id' => $series->id,
-            'published_at' => now()->subWeek(),
+            'submitted_at' => now()->subWeek(),
             'approved_at' => now(),
         ]);
         $articleTwo = factory(Article::class)->create([
             'series_id' => $series->id,
-            'published_at' => now(),
+            'submitted_at' => now(),
             'approved_at' => now(),
         ]);
 
@@ -476,17 +476,17 @@ class ArticleTest extends BrowserKitTestCase
         $series = factory(Series::class)->create();
         $articleOne = factory(Article::class)->create([
             'series_id' => $series->id,
-            'published_at' => now()->subWeeks(2),
+            'submitted_at' => now()->subWeeks(2),
             'approved_at' => now(),
         ]);
         $articleTwo = factory(Article::class)->create([
             'series_id' => $series->id,
-            'published_at' => now()->subWeek(),
+            'submitted_at' => now()->subWeek(),
             'approved_at' => now(),
         ]);
         $articleThree = factory(Article::class)->create([
             'series_id' => $series->id,
-            'published_at' => now(),
+            'submitted_at' => now(),
             'approved_at' => now(),
         ]);
 
@@ -501,16 +501,16 @@ class ArticleTest extends BrowserKitTestCase
         $series = factory(Series::class)->create();
         $articleOne = factory(Article::class)->create([
             'series_id' => $series->id,
-            'published_at' => now()->subWeek(),
+            'submitted_at' => now()->subWeek(),
             'approved_at' => now(),
         ]);
         $articleTwo = factory(Article::class)->create([
             'series_id' => $series->id,
-            'published_at' => null,
+            'submitted_at' => null,
         ]);
         $articleThree = factory(Article::class)->create([
             'series_id' => $series->id,
-            'published_at' => now(),
+            'submitted_at' => now(),
             'approved_at' => now(),
         ]);
 

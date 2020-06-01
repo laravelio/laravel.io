@@ -25,25 +25,25 @@ class UpdateArticleTest extends TestCase
     }
 
     /** @test */
-    public function we_can_publish_an_existing_article()
+    public function we_can_submit_an_existing_article_for_approval()
     {
         $user = $this->createUser();
         $article = factory(Article::class)->create(['author_id' => $user->id()]);
 
         $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', true));
 
-        $this->assertNotNull($article->publishedAt());
+        $this->assertNotNull($article->submittedAt());
     }
 
     /** @test */
     public function we_can_unpublish_an_existing_article()
     {
         $user = $this->createUser();
-        $article = factory(Article::class)->create(['author_id' => $user->id(), 'published_at' => now()]);
+        $article = factory(Article::class)->create(['author_id' => $user->id(), 'submitted_at' => now()]);
 
         $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', false));
 
-        $this->assertNull($article->publishedAt());
+        $this->assertNull($article->submittedAt());
         $this->assertTrue($article->isNotPublished());
     }
 

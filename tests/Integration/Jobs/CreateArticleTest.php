@@ -24,13 +24,13 @@ class CreateArticleTest extends TestCase
     }
 
     /** @test */
-    public function we_can_create_an_article_and_publish_it()
+    public function we_can_create_an_article_and_submit_it_for_approval()
     {
         $user = $this->createUser();
 
         $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, true, ['original_url' => 'https://laravel.io']));
 
-        $this->assertNotNull($article->publishedAt());
+        $this->assertNotNull($article->submittedAt());
     }
 
     /** @test */
@@ -40,7 +40,7 @@ class CreateArticleTest extends TestCase
 
         $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, false, ['original_url' => 'https://laravel.io']));
 
-        $this->assertNull($article->publishedAt());
+        $this->assertNull($article->submittedAt());
         $this->assertTrue($article->isNotPublished());
     }
 

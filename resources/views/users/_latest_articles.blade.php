@@ -11,7 +11,11 @@
 
                             @if ($article->isNotPublished())
                                 <span class="label inline-flex ml-4">
-                                    Draft
+                                    @if ($article->isAwaitingApproval()))
+                                        Awaiting Approval
+                                    @else
+                                        Draft
+                                    @endif
                                 </span>
                             @endif
                         </div>
@@ -34,9 +38,13 @@
                         <div class="flex mb-4 md:mb-0">
                             <div class="text-gray-700">
                                 @if ($article->isPublished())
-                                    Published {{ $article->publishedAt()->diffForHumans() }}
+                                    Published {{ $article->submittedAt()->diffForHumans() }}
                                 @else
-                                    Drafted {{ $article->updatedAt()->diffForHumans() }}
+                                    @if($article->isAwaitingApproval())
+                                        Awaiting Approval
+                                    @else
+                                        Drafted {{ $article->updatedAt()->diffForHumans() }}
+                                    @endif
                                 @endif
                             </div>
                         </div>

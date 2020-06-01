@@ -19,7 +19,7 @@ class AuthoredArticles extends Controller
         return view('users.articles', [
             'articles' => $request->user()
                 ->articles()
-                ->orderByDesc('published_at')
+                ->orderByDesc('submitted_at')
                 ->orderByDesc('created_at')
                 ->paginate(10)
         ]);

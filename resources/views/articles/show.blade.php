@@ -38,8 +38,8 @@
                 </p>
                 <div class="flex text-sm leading-5 text-gray-500">
                     @if($article->isPublished())
-                        <time datetime="{{ $article->publishedAt()->format('Y-m-d') }}">
-                            {{ $article->publishedAt()->format('j M, Y') }}
+                        <time datetime="{{ $article->submittedAt()->format('Y-m-d') }}">
+                            {{ $article->submittedAt()->format('j M, Y') }}
                         </time>
                         <span class="mx-1">
                             &middot;
