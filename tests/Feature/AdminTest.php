@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\User;
@@ -180,5 +181,108 @@ class AdminTest extends BrowserKitTestCase
 
         $this->delete('/admin/users/' . $user->username())
             ->assertForbidden();
+    }
+
+    /** @test */
+    public function admins_can_view_submitted_articles()
+    {
+        $article = factory(Article::class)->create(['submitted_at' => now()]);
+
+        $this->loginAsAdmin();
+
+        $this->get("articles/{$article->slug()}")
+            ->see('Awaiting Approval');
+    }
+
+    /** @test */
+    public function admins_can_approve_articles()
+    {
+        $article = factory(Article::class)->create(['submitted_at' => now()]);
+
+        $this->loginAsAdmin();
+
+        $this->put("/admin/articles/{$article->slug()}/approve");
+
+        $this->assertNotNull($article->fresh()->approvedAt());
+    }
+
+    /** @test */
+    public function moderators_can_approve_articles()
+    {
+        $article = factory(Article::class)->create(['submitted_at' => now()]);
+
+        $this->loginAsModerator();
+
+        $this->put("/admin/articles/{$article->slug()}/approve");
+
+        $this->assertNotNull($article->fresh()->approvedAt());
+    }
+
+    /** @test */
+    public function users_cannot_approve_articles()
+    {
+        $article = factory(Article::class)->create(['submitted_at' => now()]);
+
+        $this->login();
+
+        $this->put("/admin/articles/{$article->slug()}/approve")
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function guests_cannot_approve_articles()
+    {
+        $article = factory(Article::class)->create(['submitted_at' => now()]);
+
+        $this->put("/admin/articles/{$article->slug()}/approve")
+            ->assertRedirectedTo('/login');
+
+        $this->assertNull($article->fresh()->approvedAt());
+    }
+
+    /** @test */
+    public function admins_can_disapprove_articles()
+    {
+        $article = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+
+        $this->loginAsAdmin();
+
+        $this->put("/admin/articles/{$article->slug()}/disapprove");
+
+        $this->assertNull($article->fresh()->approvedAt());
+    }
+
+    /** @test */
+    public function moderators_can_disapprove_articles()
+    {
+        $article = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+
+        $this->loginAsModerator();
+
+        $this->put("/admin/articles/{$article->slug()}/disapprove");
+
+        $this->assertNull($article->fresh()->approvedAt());
+    }
+
+    /** @test */
+    public function users_cannot_disapprove_articles()
+    {
+        $article = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+
+        $this->login();
+
+        $this->put("/admin/articles/{$article->slug()}/disapprove")
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function guests_cannot_disapprove_articles()
+    {
+        $article = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+
+        $this->put("/admin/articles/{$article->slug()}/disapprove")
+            ->assertRedirectedTo('/login');
+
+        $this->assertNotNull($article->fresh()->approvedAt());
     }
 }

@@ -29,8 +29,10 @@ class ArticlesController extends Controller
 
     public function show(Article $article)
     {
+        $user = Auth::user();
+
         abort_unless(
-            $article->isPublished() || (Auth::check() && $article->isAuthoredBy(Auth::user())),
+            $article->isPublished() || ($user && ($article->isAuthoredBy($user) || $user->isAdmin() || $user->isModerator())),
             404
         );
 

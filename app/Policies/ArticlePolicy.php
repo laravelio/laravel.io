@@ -9,6 +9,8 @@ final class ArticlePolicy
 {
     const UPDATE = 'update';
     const DELETE = 'delete';
+    const APPROVE = 'approve';
+    const DISAPPROVE = 'disapprove';
 
     public function update(User $user, Article $article): bool
     {
@@ -18,5 +20,15 @@ final class ArticlePolicy
     public function delete(User $user, Article $article): bool
     {
         return $article->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
+    }
+
+    public function approve(User $user, Article $article): bool
+    {
+        return $user->isModerator() || $user->isAdmin();
+    }
+
+    public function disapprove(User $user, Article $article): bool
+    {
+        return $user->isModerator() || $user->isAdmin();
     }
 }

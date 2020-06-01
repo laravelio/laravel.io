@@ -105,8 +105,14 @@ Route::prefix('series')->namespace('Articles')->group(function () {
 // Admin
 Route::prefix('admin')->name('admin')->namespace('Admin')->group(function () {
     Route::get('/', 'AdminController@index');
+
+    // Users
     Route::get('users/{username}', 'UsersController@show')->name('.users.show');
     Route::put('users/{username}/ban', 'UsersController@ban')->name('.users.ban');
     Route::put('users/{username}/unban', 'UsersController@unban')->name('.users.unban');
     Route::delete('users/{username}', 'UsersController@delete')->name('.users.delete');
+
+    // Articles
+    Route::put('articles/{article}/approve', 'ArticlesController@approve')->name('articles.approve');
+    Route::put('articles/{article}/disapprove', 'ArticlesController@disapprove')->name('articles.disapprove');
 });
