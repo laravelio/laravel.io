@@ -20,6 +20,17 @@
                     Draft
                 </span>
             @endif
+            @can(App\Policies\ArticlePolicy::APPROVE, $article)
+                <button type="button" class="label label-primary inline-flex mb-4" @click.prevent="activeModal = 'approveArticle'">
+                    Approve
+                </button>
+            @endcan
+        @else
+            @can(App\Policies\ArticlePolicy::DISAPPROVE, $article)
+                <button type="button" class="label label-danger inline-flex mb-4" @click.prevent="activeModal = 'disapproveArticle'">
+                    Disapprove
+                </button>
+            @endcan
         @endif
 
         @if (Auth::check() && $article->isAuthoredBy(Auth::user()))
@@ -65,4 +76,26 @@
         </span>
         @include('articles._series_nav')
     </div>
+
+    @can(App\Policies\ArticlePolicy::APPROVE, $article)
+        @if ($article->isAwaitingApproval())
+            @include('_partials._update_modal', [
+                'identifier' => 'approveArticle',
+                'route' => ['admin.articles.approve', $article->slug()],
+                'title' => "Approve article",
+                'body' => '<p>Are you sure you want to approve this article?</p>',
+            ])
+        @endif
+    @endcan
+
+    @can(App\Policies\ArticlePolicy::DISAPPROVE, $article)
+        @if ($article->isPublished())
+            @include('_partials._update_modal', [
+                'identifier' => 'disapproveArticle',
+                'route' => ['admin.articles.disapprove', $article->slug()],
+                'title' => "Disapprove article",
+                'body' => '<p>Are you sure you want to disapprove this article?</p><p>Doing so will mean it is no longer live on the site.</p>',
+            ])
+        @endif
+    @endcan
 @endsection
