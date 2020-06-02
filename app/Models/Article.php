@@ -141,10 +141,31 @@ final class Article extends Model
         return $minutes == 0 ? 1 : $minutes;
     }
 
+    public function scopeSubmitted(Builder $query): Builder
+    {
+        return $query->whereNotNull('submitted_at');
+    }
+
+    public function scopeApproved(Builder $query): Builder
+    {
+        return $query->whereNotNull('approved_at');
+    }
+
+    public function scopeNotApproved(Builder $query): Builder
+    {
+        return $query->whereNull('approved_at');
+    }
+
+    public function scopeAwaitingApproval(Builder $query): Builder
+    {
+        return $query->submitted()
+            ->notApproved();
+    }
+
     public function scopePublished(Builder $query): Builder
     {
-        return $query->whereNotNull('submitted_at')
-            ->whereNotNull('approved_at');
+        return $query->submitted()
+            ->approved();
     }
 
     public function scopeNotPublished(Builder $query): Builder

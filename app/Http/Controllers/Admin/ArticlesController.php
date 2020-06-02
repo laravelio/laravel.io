@@ -17,6 +17,17 @@ class ArticlesController extends Controller
         $this->middleware([Authenticate::class, VerifyAdmins::class]);
     }
 
+    public function index()
+    {
+        $articles = Article::awaitingApproval()
+            ->orderBy('submitted_at', 'asc')
+            ->paginate();
+
+        return view('admin.articles', [
+            'articles' => $articles,
+        ]);
+    }
+
     public function approve(Article $article)
     {
         $this->authorize(ArticlePolicy::APPROVE, $article);

@@ -113,6 +113,7 @@ Route::prefix('admin')->name('admin')->namespace('Admin')->group(function () {
     Route::delete('users/{username}', 'UsersController@delete')->name('.users.delete');
 
     // Articles
-    Route::put('articles/{article}/approve', 'ArticlesController@approve')->name('articles.approve');
-    Route::put('articles/{article}/disapprove', 'ArticlesController@disapprove')->name('articles.disapprove');
+    Route::get('articles', 'ArticlesController@index')->name('.articles');
+    Route::put('articles/{article}/approve', 'ArticlesController@approve')->name('.articles.approve');
+    Route::put('articles/{article}/disapprove', 'ArticlesController@disapprove')->name('.articles.disapprove');
 });

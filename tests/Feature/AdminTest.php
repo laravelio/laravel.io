@@ -184,6 +184,52 @@ class AdminTest extends BrowserKitTestCase
     }
 
     /** @test */
+    public function admins_can_list_submitted_articles()
+    {
+        $submittedArticle = factory(Article::class)->create(['submitted_at' => now()]);
+        $draftArticle = factory(Article::class)->create();
+        $liveArticle = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+
+        $this->loginAsAdmin();
+
+        $this->get('admin/articles')
+            ->see($submittedArticle->title())
+            ->dontSee($draftArticle->title())
+            ->dontSee($liveArticle->title());
+    }
+
+    /** @test */
+    public function moderators_can_list_submitted_articles()
+    {
+        $submittedArticle = factory(Article::class)->create(['submitted_at' => now()]);
+        $draftArticle = factory(Article::class)->create();
+        $liveArticle = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+
+        $this->loginAsModerator();
+
+        $this->get('admin/articles')
+            ->see($submittedArticle->title())
+            ->dontSee($draftArticle->title())
+            ->dontSee($liveArticle->title());
+    }
+
+    /** @test */
+    public function users_cannot_list_submitted_articles()
+    {
+        $this->login();
+
+        $this->get('admin/articles')
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function guests_cannot_list_submitted_articles()
+    {
+        $this->get('admin/articles')
+            ->assertRedirectedTo('login');
+    }
+
+    /** @test */
     public function admins_can_view_submitted_articles()
     {
         $article = factory(Article::class)->create(['submitted_at' => now()]);
