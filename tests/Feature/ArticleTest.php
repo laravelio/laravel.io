@@ -6,7 +6,9 @@ use App\Http\Livewire\ShowArticles;
 use App\Models\Article;
 use App\Models\Series;
 use App\Models\Tag;
+use App\Notifications\ArticleApprovedNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 
 class ArticleTest extends BrowserKitTestCase
@@ -51,21 +53,21 @@ class ArticleTest extends BrowserKitTestCase
             'body' => 'This article will go into depth on working with database migrations.',
             'tags' => [$tag->id()],
             'series' => $series->id(),
-            'published' => '0',
+            'submitted' => '0',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
-            ->assertSessionHas('success', 'Article successfully created!');
+            ->assertSessionHas('success', 'Article successfully created! If you submitted your article, we\'ll let you know once it\'s been approved.');
     }
 
     /** @test */
-    public function users_can_publish_an_article()
+    public function users_can_submit_an_article_for_approval()
     {
         $this->login();
 
         $this->post('/articles', [
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
-            'published' => '1',
+            'submitted' => '1',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->followRedirects()
@@ -81,7 +83,7 @@ class ArticleTest extends BrowserKitTestCase
         $this->post('/articles', [
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
-            'published' => '0',
+            'submitted' => '0',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->followRedirects()
@@ -191,14 +193,14 @@ class ArticleTest extends BrowserKitTestCase
             'body' => 'This article will go into depth on working with database migrations.',
             'tags' => [$tag->id()],
             'series' => $series->id(),
-            'published' => '1',
+            'submitted' => '1',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
-            ->assertSessionHas('success', 'Article successfully updated!');
+            ->assertSessionHas('success', 'Article successfully updated! If you submitted your article, we\'ll let you know once it\'s been approved.');
     }
 
     /** @test */
-    public function users_can_publish_an_existing_article()
+    public function users_can_submit_an_existing_article_for_approval()
     {
         $user = $this->createUser();
 
@@ -213,7 +215,7 @@ class ArticleTest extends BrowserKitTestCase
         $this->put('/articles/my-first-article', [
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
-            'published' => '1',
+            'submitted' => '1',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->followRedirects()
@@ -221,7 +223,7 @@ class ArticleTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function users_can_unpublish_an_existing_article()
+    public function users_can_unsubmit_an_existing_article()
     {
         $user = $this->createUser();
 
@@ -236,7 +238,7 @@ class ArticleTest extends BrowserKitTestCase
         $this->put('/articles/my-first-article', [
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
-            'published' => '0',
+            'submitted' => '0',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->followRedirects()
@@ -554,5 +556,23 @@ class ArticleTest extends BrowserKitTestCase
     {
         $this->visit('/articles/authored')
             ->seePageIs('/login');
+    }
+
+    /** @test */
+    public function users_get_a_mail_notification_when_their_article_is_approved()
+    {
+        Notification::fake();
+
+        $user = $this->createUser([
+            'name' => 'Joe Dixon',
+            'username' => 'joedixon',
+            'email' => 'hello@joedixon.co.uk',
+        ]);
+        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'author_id' => $user->id]);
+
+        $this->loginAsAdmin();
+        $this->put("/admin/articles/{$article->slug()}/approve");
+
+        Notification::assertSentTo($user, ArticleApprovedNotification::class);
     }
 }

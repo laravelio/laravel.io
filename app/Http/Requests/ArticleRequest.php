@@ -20,7 +20,7 @@ class ArticleRequest extends Request
             'tags.*' => 'exists:tags,id',
             'original_url' => 'url|nullable',
             'series' => ['nullable', new AuthorOwnsSeriesRule()],
-            'published' => ['required', 'boolean'],
+            'submitted' => ['required', 'boolean'],
         ];
     }
 
@@ -56,6 +56,6 @@ class ArticleRequest extends Request
 
     public function shouldBeSubmitted(): bool
     {
-        return $this->boolean('published');
+        return $this->boolean('submitted');
     }
 }
