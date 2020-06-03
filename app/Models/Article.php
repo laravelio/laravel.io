@@ -114,6 +114,26 @@ final class Article extends Model
         return $this->approved_at;
     }
 
+    public function isSubmitted(): bool
+    {
+        return ! $this->isNotSubmitted();
+    }
+
+    public function isNotSubmitted(): bool
+    {
+        return is_null($this->submitted_at);
+    }
+
+    public function isApproved(): bool
+    {
+        return ! $this->isNotApproved();
+    }
+
+    public function isNotApproved(): bool
+    {
+        return is_null($this->approved_at);
+    }
+
     public function isPublished(): bool
     {
         return ! $this->isNotPublished();
@@ -121,12 +141,12 @@ final class Article extends Model
 
     public function isNotPublished(): bool
     {
-        return is_null($this->submitted_at) || is_null($this->approved_at);
+        return $this->isNotSubmitted() || $this->isNotApproved();
     }
 
     public function isAwaitingApproval(): bool
     {
-        return ! is_null($this->submitted_at) && is_null($this->approved_at);
+        return $this->isSubmitted() && $this->isNotApproved();
     }
 
     public function isNotAwaitingApproval(): bool
