@@ -11,8 +11,8 @@
                 </a>
             </div>
             <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
-                <a class="flex items-center" href="https://tinkerwell.app">
-                    <img class="max-h-12" src="{{ asset('images/sponsors/tinkerwell.jpg') }}" alt="Tinkerwell">
+                <a class="flex items-center" href="https://beyondco.de">
+                    <img class="max-h-12" src="{{ asset('images/sponsors/beyondcode.png') }}" alt="Beyond Code">
                 </a>
             </div>
             <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
