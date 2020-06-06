@@ -568,7 +568,11 @@ class ArticleTest extends BrowserKitTestCase
             'username' => 'joedixon',
             'email' => 'hello@joedixon.co.uk',
         ]);
-        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'author_id' => $user->id]);
+        $article = factory(Article::class)->create([
+            'slug' => 'my-first-article',
+            'submitted_at' => now(),
+            'author_id' => $user->id
+        ]);
 
         $this->loginAsAdmin();
         $this->put("/admin/articles/{$article->slug()}/approve");

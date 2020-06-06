@@ -8,7 +8,9 @@
             </svg>
 
             <div>
-                Your article: <a href="{{ route('articles.show', $data['article_slug']) }}" class="text-green-darker">{{ $data['article_title'] }}</a> has been approved.
+                Your article: <a href="{{ route('articles.show', $data['article_slug']) }}" class="text-green-darker">
+                    {{ $data['article_title'] }}
+                </a> has been approved.
             </div>
         </div>
     </td>

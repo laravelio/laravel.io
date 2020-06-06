@@ -20,6 +20,7 @@
                     Draft
                 </span>
             @endif
+            
             @can(App\Policies\ArticlePolicy::APPROVE, $article)
                 <button type="button" class="label label-primary inline-flex mb-4" @click.prevent="activeModal = 'approveArticle'">
                     Approve
