@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="container mx-auto px-4 pt-4 flex flex-wrap flex-col-reverse md:flex-row">
+    <div class="container mx-auto p-4 flex flex-wrap flex-col-reverse md:flex-row">
         <div class="w-full md:w-3/4 md:pr-3">
             <table class="table table-striped mt-8">
                 <thead>

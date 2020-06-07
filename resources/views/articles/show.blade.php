@@ -7,7 +7,7 @@
 @endpush
 
 @section('content')
-    <div class="max-w-screen-md mx-auto p-4 pt-8">
+    <div class="max-w-screen-md mx-auto px-4 py-8 mb-8">
         <h1 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none mb-4">{{ $article->title() }}</h1>
         
         @if ($article->isNotPublished())

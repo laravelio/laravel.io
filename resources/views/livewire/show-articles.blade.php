@@ -1,4 +1,4 @@
-<div class="container mx-auto px-4 pt-4 flex flex-wrap flex-col-reverse lg:flex-row">
+<div class="container mx-auto px-4 pt-4 flex flex-wrap flex-col-reverse lg:flex-row mb-8">
     <div class="w-full lg:w-3/4 py-8 lg:pr-4">
         <div wire:loading class="flex w-full h-full text-2xl text-gray-700">
             Loading...
