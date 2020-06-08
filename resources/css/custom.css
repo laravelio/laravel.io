@@ -47,7 +47,7 @@ nav.dashboard-nav a.active {
 }
 
 .nav a.active {
-    @apply border-green-primary text-gray-900
+    @apply border-green-primary text-gray-900;
 }
 
 .nav a.active:focus {
@@ -59,7 +59,7 @@ nav.dashboard-nav a.active {
 }
 
 .nav .dropdown a:hover {
-    @apply bg-gray-100
+    @apply bg-gray-100;
 }
 
 .nav .dropdown a:focus {

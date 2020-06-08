@@ -8,7 +8,7 @@ button.label:hover {
 }
 
 span.label:hover {
-    @apply cursor-auto;   
+    @apply cursor-auto;
 }
 
 .label-primary {
