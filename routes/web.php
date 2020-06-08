@@ -96,7 +96,6 @@ Route::prefix('series')->namespace('Articles')->group(function () {
     Route::get('authored', 'AuthoredSeries')->name('user.series');
     Route::get('/create', 'SeriesController@create')->name('series.create');
     Route::post('/', 'SeriesController@store')->name('series.store');
-    Route::get('{series}', 'SeriesController@show')->name('series.show');
     Route::get('{series}/edit', 'SeriesController@edit')->name('series.edit');
     Route::put('{series}', 'SeriesController@update')->name('series.update');
     Route::delete('{series}', 'SeriesController@delete')->name('series.delete');

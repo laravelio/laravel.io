@@ -28,7 +28,7 @@ class SeriesTest extends BrowserKitTestCase
             'title' => 'A developers guide to SVG',
             'tags' => [$tag->id()],
         ])
-            ->assertRedirectedTo('/series/a-developers-guide-to-svg')
+            ->assertRedirectedTo('/series/authored')
             ->assertSessionHas('success', 'Series successfully created!');
     }
 
@@ -61,7 +61,7 @@ class SeriesTest extends BrowserKitTestCase
             'title' => 'A developers guide to SVG',
             'tags' => [$tag->id()],
         ])
-            ->assertRedirectedTo('/series/a-developers-guide-to-svg')
+            ->assertRedirectedTo('/series/authored')
             ->assertSessionHas('success', 'Series successfully updated!');
     }
 

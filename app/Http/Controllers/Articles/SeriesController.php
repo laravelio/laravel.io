@@ -17,7 +17,7 @@ class SeriesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware([Authenticate::class, RedirectIfUnconfirmed::class], ['except' => ['index', 'show']]);
+        $this->middleware([Authenticate::class, RedirectIfUnconfirmed::class], ['except' => ['index']]);
     }
 
     public function create()
@@ -34,7 +34,7 @@ class SeriesController extends Controller
 
         $this->success('series.created');
 
-        return redirect()->route('series.show', $series->slug());
+        return redirect()->route('user.series');
     }
 
     public function edit(Series $series)
@@ -54,7 +54,7 @@ class SeriesController extends Controller
 
         $this->success('series.updated');
 
-        return redirect()->route('series.show', $series->slug());
+        return redirect()->route('user.series');
     }
 
     public function delete(Series $series)
