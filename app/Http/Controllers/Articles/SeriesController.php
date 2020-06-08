@@ -20,14 +20,6 @@ class SeriesController extends Controller
         $this->middleware([Authenticate::class, RedirectIfUnconfirmed::class], ['except' => ['index', 'show']]);
     }
 
-    public function index()
-    {
-    }
-
-    public function show(Series $series)
-    {
-    }
-
     public function create()
     {
         $tags = Tag::all();
@@ -73,6 +65,6 @@ class SeriesController extends Controller
 
         $this->success('series.deleted');
 
-        return redirect()->route('series');
+        return redirect()->route('user.series');
     }
 }

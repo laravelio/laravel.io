@@ -96,7 +96,7 @@ class SeriesTest extends BrowserKitTestCase
         $this->loginAs($user);
 
         $this->delete('/series/my-first-series')
-            ->assertRedirectedTo('/series')
+            ->assertRedirectedTo('/series/authored')
             ->assertSessionHas('success', 'Series successfully deleted!');
     }
 

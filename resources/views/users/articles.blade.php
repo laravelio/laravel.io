@@ -21,8 +21,8 @@
 @endsection
 
 @section('content')
-    <div class="container mx-auto px-4 pt-8 flex flex-wrap flex-col-reverse lg:flex-row">
-        <div class="w-full">
+    <div class="container mx-auto px-4 py-8 flex flex-wrap flex-col-reverse lg:flex-row">
+        <div class="w-full md:w-3/4 md:pr-3">
             @foreach($articles as $article)
                 <div class="pb-8 mb-8 border-b-2">
                     <div>
@@ -105,6 +105,9 @@
             @endforeach
 
             {{ $articles->links() }}
+        </div>
+        <div class="w-full md:w-1/4 md:pl-3 md:pt-4">
+            @include('users.partials._navigation')
         </div>
     </div>
 @endsection
