@@ -38,6 +38,34 @@ nav.dashboard-nav a.active {
     @apply border-green-primary text-green-primary;
 }
 
+.nav a {
+    @apply border-transparent text-gray-500;
+}
+
+.nav a:hover {
+    @apply text-gray-700 border-green-primary;
+}
+
+.nav a.active {
+    @apply border-green-primary text-gray-900
+}
+
+.nav a.active:focus {
+    @apply border-green-dark;
+}
+
+.nav .dropdown a {
+    @apply block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out;
+}
+
+.nav .dropdown a:hover {
+    @apply bg-gray-100
+}
+
+.nav .dropdown a:focus {
+    @apply outline-none bg-gray-100;
+}
+
 a > span > em {
     @apply bg-green-light;
 }

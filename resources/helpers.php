@@ -6,7 +6,7 @@ if (! function_exists('active')) {
      */
     function active($routes, bool $condition = true): string
     {
-        return call_user_func_array([app('router'), 'is'], (array) $routes) && $condition ? ' border-green-primary focus:border-green-dark text-gray-900' : ' border-transparent text-gray-500 hover:text-gray-700 hover:border-green-primary';
+        return call_user_func_array([app('router'), 'is'], (array) $routes) && $condition ? 'active' : '';
     }
 }
 
