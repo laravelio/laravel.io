@@ -30,9 +30,9 @@
                         </div>
                         <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="dropdown absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50" x-cloak>
                             <div class="py-1 rounded-md bg-white shadow-xs">
-                                <a href="https://discord.gg/KxwQuKb" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Discord</a>
-                                <a href="https://larachat.co" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Larachat</a>
-                                <a href="https://webchat.freenode.net/?nick=laravelnewbie&channels=%23laravel&prompt=1" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">IRC</a>
+                                <a href="https://discord.gg/KxwQuKb">Discord</a>
+                                <a href="https://larachat.co">Larachat</a>
+                                <a href="https://webchat.freenode.net/?nick=laravelnewbie&channels=%23laravel&prompt=1">IRC</a>
                             </div>
                         </div>
                     </div>
@@ -51,14 +51,14 @@
                         </div>
                         <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="dropdown absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50" x-cloak>
                             <div class="py-1 rounded-md bg-white shadow-xs">
-                                <a href="https://github.com/laravelio" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Github</a>
-                                <a href="https://larachat.co" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Twitter</a>
+                                <a href="https://github.com/laravelio">Github</a>
+                                <a href="https://larachat.co">Twitter</a>
                                 <div class="border-t border-gray-100"></div>
-                                <a href="https://laravel.com" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Laravel</a>
-                                <a href="https://laracasts.com" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Laracasts</a>
-                                <a href="https://laravel-news.com" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Laravel News</a>
-                                <a href="https://www.laravelpodcast.com" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Podcast</a>
-                                <a href="https://ecosystem.laravel.io" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">Ecosystem</a>
+                                <a href="https://laravel.com">Laravel</a>
+                                <a href="https://laracasts.com">Laracasts</a>
+                                <a href="https://laravel-news.com">Laravel News</a>
+                                <a href="https://www.laravelpodcast.com">Podcast</a>
+                                <a href="https://ecosystem.laravel.io">Ecosystem</a>
                             </div>
                         </div>
                     </div>
@@ -102,28 +102,28 @@
                         </div>
                         <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="dropdown origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg z-50" x-cloak>
                             <div class="py-1 rounded-md bg-white shadow-xs">
-                                <a href="{{ route('profile', Auth::user()->username()) }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                <a href="{{ route('profile', Auth::user()->username()) }}">
                                     Your Profile
                                 </a>
-                                <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                <a href="{{ route('dashboard') }}">
                                     Dashboard
                                 </a>
-                                <a href="{{ route('user.articles') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                <a href="{{ route('user.articles') }}">
                                     My Articles
                                 </a>
-                                <a href="{{ route('settings.profile') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                <a href="{{ route('settings.profile') }}">
                                     Settings
                                 </a>
 
                                 @can(App\Policies\UserPolicy::ADMIN, App\User::class)
                                     <div class="border-t border-gray-100"></div>
-                                    <a href="{{ route('admin') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                    <a href="{{ route('admin') }}">
                                         Admin
                                     </a>
                                 @endcan
 
                                 <div class="border-t border-gray-100"></div>
-                                <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                <a href="{{ route('logout') }}">
                                     Sign out
                                 </a>
                             </div>
