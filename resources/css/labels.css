@@ -2,15 +2,21 @@
     @apply px-2 py-1 rounded text-xs uppercase bg-gray-300 text-gray-700 px-2 py-1 cursor-pointer;
 }
 
-.label:hover {
-    @apply bg-gray-400;
+a.label:hover,
+button.label:hover {
+    @apply bg-gray-400 no-underline;
+}
+
+span.label:hover {
+    @apply cursor-auto;   
 }
 
 .label-primary {
     @apply bg-green-primary text-white;
 }
 
-.label-primary:hover {
+a.label-primary:hover,
+button.label-primary:hover {
     @apply bg-green-dark;
 }
 
@@ -18,10 +24,7 @@
     @apply bg-red-primary text-white;
 }
 
-.label-danger:hover {
+a.label-danger:hover,
+button.label-danger:hover {
     @apply bg-red-dark;
-}
-
-a.label:hover {
-    @apply no-underline;
 }
