@@ -22,7 +22,7 @@
                                 <h4 class="flex justify-between text-xl font-bold text-gray-900">
                                     {{ $thread->subject() }}
                                     <span class="text-base font-normal">
-                                        <i class="fa fa-comment text-gray-500 mr-2"></i>
+                                        <x-heroicon-s-chat class="inline text-gray-500 h-5 w-5 mr-1"/>
                                         {{ count($thread->replies()) }}
                                     </span>
                                 </h4>

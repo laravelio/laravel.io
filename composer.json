@@ -7,6 +7,7 @@
         "php": "^7.3",
         "algolia/algoliasearch-client-php": "^2.2",
         "algolia/scout-extended": "^1.9",
+        "blade-ui-kit/blade-heroicons": "^0.1.0",
         "doctrine/dbal": "^2.5",
         "facade/ignition": "^2.0",
         "fideloper/proxy": "^4.2",

@@ -50,7 +50,8 @@
             <div class="flex flex-wrap w-full md:w-2/3 mx-auto justify-center">
                 <div class="w-full md:w-1/3 h-48 flex justify-center mb-4">
                     <div class="flex flex-col items-center text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-user-group w-32"><path class="primary" d="M12 13a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v3a1 1 0 0 1-1 1h-8a1 1 0 0 1-1-1 1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-3a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3zM7 9a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm10 0a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/><path class="secondary" d="M12 13a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm-3 1h6a3 3 0 0 1 3 3v3a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-3a3 3 0 0 1 3-3z"/></svg>
+                        <x-heroicon-s-user-group class="text-green-primary w-32"/>
+
                         <div class="text-gray-800 uppercase mt-4">
                             <span class="text-2xl block">{{ $totalUsers }}</span>
                             <span class="text-gray-600">users</span>
@@ -59,7 +60,7 @@
                 </div>
                 <div class="w-full md:w-1/3 h-48 flex justify-center mb-4">
                     <div class="flex flex-col items-center text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-document-notes w-32"><path class="primary" d="M6 2h6v6c0 1.1.9 2 2 2h6v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2zm2 11a1 1 0 0 0 0 2h8a1 1 0 0 0 0-2H8zm0 4a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2H8z"/><polygon class="secondary" points="14 2 20 8 14 8"/></svg>
+                        <x-heroicon-o-document-report class="text-green-primary w-32"/>
                         <div class="text-gray-800 uppercase mt-4">
                             <span class="text-2xl block">{{ $totalThreads }}</span>
                             <span class="text-gray-600">threads</span>
@@ -68,7 +69,7 @@
                 </div>
                 <div class="w-full md:w-1/3 h-48 flex justify-center">
                     <div class="flex flex-col items-center text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-history w-32"><path class="primary" d="M6.55 6.14l1.16 1.15A1 1 0 0 1 7 9H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1.7-.7l1.44 1.42A10 10 0 1 1 2 12a1 1 0 0 1 2 0 8 8 0 1 0 2.55-5.86z"/><path class="secondary" d="M15.7 14.3a1 1 0 0 1-1.4 1.4l-3-3a1 1 0 0 1-.3-.7V7a1 1 0 0 1 2 0v4.59l2.7 2.7z"/></svg>
+                        <x-heroicon-o-clock class="text-green-primary w-32"/>
                         <div class="text-gray-800 uppercase mt-4">
                             <span class="text-2xl block">{{ $resolutionTime }} days</span>
                             <span class="text-gray-600">average resolution</span>
@@ -89,7 +90,7 @@
                 <form action="{{ route('forum') }}" method="GET">
                     <input type="search" class="rounded-full border-2 w-full p-3 text-xl bg-gray-100" placeholder="Search for threads..." name="search">
                     <button type="submit" class="absolute top-0 right-0 w-10 h-10 my-2 mx-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon-search w-full"><circle cx="10" cy="10" r="7" class="primary"/><path class="secondary" d="M16.32 14.9l1.1 1.1c.4-.02.83.13 1.14.44l3 3a1.5 1.5 0 0 1-2.12 2.12l-3-3a1.5 1.5 0 0 1-.44-1.14l-1.1-1.1a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/></svg>
+                        <x-heroicon-o-search class="w-full"/>
                     </button>
                 </form>
             </div>
