@@ -83,7 +83,7 @@ Route::get('subscriptions/{subscription}/unsubscribe', 'SubscriptionController@u
 Route::prefix('articles')->namespace('Articles')->group(function () {
     Route::get('authored', 'AuthoredArticles')->name('user.articles');
     Route::get('/', 'ArticlesController@index')->name('articles');
-    Route::get('/create', 'ArticlesController@create')->name('articles.create');
+    Route::get('create', 'ArticlesController@create')->name('articles.create');
     Route::post('/', 'ArticlesController@store')->name('articles.store');
     Route::get('{article}', 'ArticlesController@show')->name('articles.show');
     Route::get('{article}/edit', 'ArticlesController@edit')->name('articles.edit');
@@ -94,7 +94,7 @@ Route::prefix('articles')->namespace('Articles')->group(function () {
 // Series
 Route::prefix('series')->namespace('Articles')->group(function () {
     Route::get('authored', 'AuthoredSeries')->name('user.series');
-    Route::get('/create', 'SeriesController@create')->name('series.create');
+    Route::get('create', 'SeriesController@create')->name('series.create');
     Route::post('/', 'SeriesController@store')->name('series.store');
     Route::get('{series}/edit', 'SeriesController@edit')->name('series.edit');
     Route::put('{series}', 'SeriesController@update')->name('series.update');

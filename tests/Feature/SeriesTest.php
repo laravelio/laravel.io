@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Article;
 use App\Models\Series;
 use App\Models\Tag;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -9,6 +10,57 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class SeriesTest extends BrowserKitTestCase
 {
     use DatabaseMigrations;
+
+    /** @test */
+    public function users_can_view_their_series()
+    {
+        $user = $this->createUser();
+        factory(Series::class)->create([
+            'author_id' => $user->id(),
+            'title' => 'My first series',
+            'slug' => 'my-first-series',
+        ]);
+
+        $this->loginAs($user);
+
+        $this->visit('/series/authored')
+            ->see('My first series');
+    }
+
+    /** @test */
+    public function users_cannot_view_the_series_of_other_users()
+    {
+        $user = $this->createUser();
+        factory(Series::class)->create([
+            'title' => 'Another users series',
+            'slug' => 'another-users-series',
+        ]);
+
+        $this->loginAs($user);
+
+        $this->visit('/series/authored')
+            ->dontSee('Another users series');
+    }
+
+    /** @test */
+    public function users_can_see_how_many_articles_in_a_series()
+    {
+        $user = $this->createUser();
+        $series = factory(Series::class)->create([
+            'author_id' => $user->id(),
+            'title' => 'My first series',
+            'slug' => 'my-first-series',
+        ]);
+        factory(Article::class, 2)->create([
+            'author_id' => $user->id(),
+            'series_id' => $series->id(),
+        ]);
+
+        $this->loginAs($user);
+
+        $this->visit('/series/authored')
+            ->see('2 articles in series');
+    }
 
     /** @test */
     public function users_cannot_create_a_series_when_not_logged_in()
