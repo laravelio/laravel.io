@@ -15,12 +15,12 @@
 
                     <div>
                         <span class="text-base font-normal mr-2">
-                            <i class="fa fa-comment text-gray-500 mr-1"></i>
+                            <x-heroicon-s-chat class="inline text-gray-500 h-5 w-5 mr-1"/>
                             {{ count($thread->replies()) }}
                         </span>
 
                         <span class="text-base font-normal">
-                            <i class="fa fa-thumbs-up text-gray-500 mr-1"></i>
+                            <x-heroicon-s-thumb-up class="inline h-5 w-5 text-gray-500 mr-1"/>
                             {{ $thread->likesCount() }}
                         </span>
                     </div>
@@ -57,7 +57,7 @@
                     @if ($thread->isSolved())
                         <a class="label label-primary text-center mt-4 md:mt-0"
                            href="{{ route('thread', $thread->slug()) }}#{{ $thread->solutionReplyRelation->id }}">
-                            <i class="fa fa-check mr-2"></i>
+                            <x-heroicon-s-check class="inline w-4 h-4" />
                             View solution
                         </a>
                     @endif

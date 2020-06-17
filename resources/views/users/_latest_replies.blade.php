@@ -15,7 +15,7 @@
 
                     <div>
                         <span class="text-base font-normal">
-                            <i class="fa fa-thumbs-up text-gray-500 mr-1"></i>
+                            <x-heroicon-s-thumb-up class="inline h-5 w-5 text-gray-500 mr-1"/>
                             {{ $reply->likesCount() }}
                         </span>
                     </div>
@@ -32,7 +32,7 @@
 
                     @if ($reply->replyAble()->isSolutionReply($reply))
                         <span class="label label-primary text-center mt-4 md:mt-0">
-                            <i class="fa fa-check mr-2"></i>
+                            <x-heroicon-s-check class="inline w-4 h-4" />
                             Solution
                         </span>
                     @endif
