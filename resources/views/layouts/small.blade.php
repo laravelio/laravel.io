@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.base', ['disableAds' => true])
 
 @section('body')
     <div class="flex items-center justify-center my-8 md:my-20">

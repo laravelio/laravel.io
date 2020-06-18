@@ -1,4 +1,4 @@
-@if ($adSenseClient = config('services.google.ad_sense.client'))
+@if (! isset($disableAds) && $adSenseClient = config('services.google.ad_sense.client'))
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({
