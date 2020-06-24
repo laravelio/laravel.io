@@ -29,7 +29,7 @@
     @endFormGroup
 
     <div class="flex justify-end items-center">
-        <a href="{{ isset($series) ? route('series.show', $series->id()) : route('series') }}" class="text-green-darker mr-4">Cancel</a>
+        <a href="{{ isset($series) ? route('series.show', $series->id()) : route('user.series') }}" class="text-green-darker mr-4">Cancel</a>
         <button type="submit" class="button button-primary">{{ isset($series) ? 'Update series' : 'Create series' }}</button>
     </div>
 </form>
