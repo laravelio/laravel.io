@@ -82,8 +82,10 @@
                 href="{{ route("feeds.forum") }}"
                 class="button button-muted button-full mb-4"
                 target="_blank">
-                    <i class="fa fa-feed"></i>
-                    RSS Feed
+                    <span class="flex items-center justify-center">
+                        <x-icon-rss class="inline w-3 h-3 mr-2"/>
+                        RSS Feed
+                    </span>
             </a>
 
             @include('layouts._ads._forum_sidebar')

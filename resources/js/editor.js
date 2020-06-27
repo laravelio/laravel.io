@@ -35,51 +35,30 @@ window.editorConfig = () => {
     return {
         styles: {
             header: {
-                before: '### ',
-                class: {
-                    'fa-header': true,
-                },
+                before: '### '
             },
             bold: {
                 before: '**',
-                after: '**',
-                class: {
-                    'fa-bold': true,
-                },
+                after: '**'
             },
             italic: {
                 before: '_',
-                after: '_',
-                class: {
-                    'fa-italic': true,
-                },
+                after: '_'
             },
             quote: {
-                before: '> ',
-                class: {
-                    'fa-quote-left': true,
-                },
+                before: '> '
             },
             code: {
                 before: '`',
-                after: '`',
-                class: {
-                    'fa-code': true,
-                },
+                after: '`'
             },
             link: {
                 before: '[](',
-                after: ')',
-                class: {
-                    'fa-link': true,
-                },
+                after: ')'
             },
             image: {
                 before: '![](',
-                after: ')',
-                class: {
-                    'fa-file-image-o': true,
-                },
+                after: ')'
             },
         },
     };
