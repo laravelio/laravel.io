@@ -35,30 +35,30 @@ window.editorConfig = () => {
     return {
         styles: {
             header: {
-                before: '### '
+                before: '### ',
             },
             bold: {
                 before: '**',
-                after: '**'
+                after: '**',
             },
             italic: {
                 before: '_',
-                after: '_'
+                after: '_',
             },
             quote: {
-                before: '> '
+                before: '> ',
             },
             code: {
                 before: '`',
-                after: '`'
+                after: '`',
             },
             link: {
                 before: '[](',
-                after: ')'
+                after: ')',
             },
             image: {
                 before: '![](',
-                after: ')'
+                after: ')',
             },
         },
     };
