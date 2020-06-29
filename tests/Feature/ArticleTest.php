@@ -618,4 +618,18 @@ class ArticleTest extends BrowserKitTestCase
 
         Notification::assertSentTo($user, ArticleApprovedNotification::class);
     }
+
+    /** @test */
+    public function tags_are_not_rendered_for_unpublished_articles()
+    {
+        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+        $article = factory(Article::class)->create([
+            'slug' => 'my-first-article',
+            'submitted_at' => now()
+        ]);
+        $article->syncTags([$tag->id]);
+
+        $this->get('/articles')
+            ->dontSee('Test Tag');
+    }
 }

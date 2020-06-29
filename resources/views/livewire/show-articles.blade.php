@@ -82,7 +82,7 @@
                 </button>
             </li>   
 
-            @foreach (App\Models\Tag::whereHas('articles')->orderBy('name')->get() as $tag)
+            @foreach ($tags as $tag)
                 <li class="{{ $selectedTag === $tag->slug() ? ' active' : '' }}">
                     <button wire:click="toggleTag('{{ $tag->slug() }}')">
                         {{ $tag->name() }}
