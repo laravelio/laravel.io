@@ -7,7 +7,10 @@
         <p class="mb-4">To register, we require you to login with your Github account. After login you can choose your password in the settings screen.</p>
 
         <a href="{{ route('login.github') }}" class="button button-dark">
-            <i class="fa fa-github"></i> Github
+            <span class="flex items-center justify-center">
+                <x-icon-github class="inline h-5 w-5 mr-2" />
+                Github
+            </span>
         </a>
     @else
         <form action="{{ route('register.post') }}" method="POST" class="w-full">

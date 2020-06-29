@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "329eb4450ac8d99fa6a5af7e2f8eaebb",
+    "content-hash": "ca914930452b10dee333d8d99ce5d849",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -355,16 +355,16 @@
         },
         {
             "name": "blade-ui-kit/blade-icons",
-            "version": "0.4.0",
+            "version": "0.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/blade-ui-kit/blade-icons.git",
-                "reference": "5547d8e7ec1424168d945a02c253b18b27bded0b"
+                "reference": "2bd05e9cbe026f38a11cd26221e287f5ce678af4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blade-ui-kit/blade-icons/zipball/5547d8e7ec1424168d945a02c253b18b27bded0b",
-                "reference": "5547d8e7ec1424168d945a02c253b18b27bded0b",
+                "url": "https://api.github.com/repos/blade-ui-kit/blade-icons/zipball/2bd05e9cbe026f38a11cd26221e287f5ce678af4",
+                "reference": "2bd05e9cbe026f38a11cd26221e287f5ce678af4",
                 "shasum": ""
             },
             "require": {
@@ -420,7 +420,77 @@
                 "laravel",
                 "svg"
             ],
-            "time": "2020-06-17T18:41:21+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/driesvints",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-06-27T17:30:25+00:00"
+        },
+        {
+            "name": "blade-ui-kit/blade-zondicons",
+            "version": "0.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blade-ui-kit/blade-zondicons.git",
+                "reference": "a7a81093d25ffcf062b760de3a73ac1d89f5c49b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blade-ui-kit/blade-zondicons/zipball/a7a81093d25ffcf062b760de3a73ac1d89f5c49b",
+                "reference": "a7a81093d25ffcf062b760de3a73ac1d89f5c49b",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^0.4.0",
+                "illuminate/support": "^7.14",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "orchestra/testbench": "^5.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BladeUI\\Zondicons\\BladeZondiconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BladeUI\\Zondicons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dries Vints",
+                    "email": "dries@vints.io",
+                    "homepage": "https://driesvints.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A package to easily make use of Zondicons in your Laravel Blade views.",
+            "homepage": "https://github.com/blade-ui-kit/blade-zondicons",
+            "keywords": [
+                "Zondicons",
+                "blade",
+                "laravel"
+            ],
+            "funding": [
+                {
+                    "url": "https://github.com/driesvints",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-06-27T17:39:52+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1120,12 +1190,6 @@
                 "facade",
                 "flare",
                 "reporting"
-            ],
-            "funding": [
-                {
-                    "url": "https://www.patreon.com/spatie",
-                    "type": "patreon"
-                }
             ],
             "time": "2020-03-02T15:52:04+00:00"
         },
@@ -4021,12 +4085,6 @@
                 "highlight.php",
                 "syntax"
             ],
-            "funding": [
-                {
-                    "url": "https://github.com/allejo",
-                    "type": "github"
-                }
-            ],
             "time": "2020-03-02T05:59:21+00:00"
         },
         {
@@ -4295,12 +4353,6 @@
                 "robots",
                 "seo",
                 "spatie"
-            ],
-            "funding": [
-                {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "custom"
-                }
             ],
             "time": "2020-03-03T08:39:21+00:00"
         },

@@ -27,7 +27,10 @@
 
         <button type="submit" class="w-full button button-primary mb-4">Login</button>
         <a href="{{ route('login.github') }}" class="button button-dark mb-4">
-            <i class="fa fa-github mr-1"></i> Github
+            <span class="flex items-center justify-center">
+                <x-icon-github class="inline h-4 w-4 mr-2" />
+                Github
+            </span>
         </a>
     </form>
 @endsection

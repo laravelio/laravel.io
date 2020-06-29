@@ -29,12 +29,11 @@
         <div class="mt-8 flex justify-center">
             <a href="https://twitter.com/laravelio" class="text-gray-400 hover:text-gray-500">
                 <span class="sr-only">Twitter</span>
-                <i class="fa fa-twitter text-2xl"></i>
-
+                <x-icon-twitter class="text-gray-500 w-6 h-6"/>
             </a>
             <a href="https://github.com/laravelio" class="ml-6 text-gray-400 hover:text-gray-500">
                 <span class="sr-only">GitHub</span>
-                <i class="fa fa-github text-2xl"></i>
+                <x-icon-github class="text-gray-500 w-6 h-6"/>
             </a>
         </div>
         <div class="mt-8">
