@@ -10,7 +10,6 @@
             <span class="flex items-center justify-center">
                 <x-icon-github class="inline h-5 w-5 mr-2" />
                 Github
-
             </span>
         </a>
     @else
