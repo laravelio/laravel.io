@@ -27,13 +27,13 @@
                 <div class="flex items-center justify-between mt-6">
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
-                            <a href="#">
+                            <a href="{{ route('profile', $article->author()->username()) }}">
                                 <img class="h-10 w-10 rounded-full" src="{{ $article->author()->gravatarUrl($avatarSize ?? 250) }}" alt="{{ $article->author()->name }}" />
                             </a>
                         </div>
                         <div class="ml-3">
                             <p class="text-sm leading-5 font-medium text-gray-900">
-                                <a href="#">
+                                <a href="{{ route('profile', $article->author()->username()) }}">
                                     {{ $article->author()->name() }}
                                 </a>
                             </p>
