@@ -75,6 +75,13 @@
             </button>
         </span>
 
+        <a 
+            href="{{ route('articles.create') }}"
+            class="button button-primary button-full mb-4"
+        >
+            Create Article
+        </a>
+
         <ul class="tags">
             <li class="{{ ! $selectedTag ? ' active' : '' }}">
                 <button wire:click="toggleTag('')">
