@@ -16,8 +16,8 @@
                 </a>
             </div>
             <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
-                <a class="flex items-center" href="https://m.do.co/c/7922b1dff899">
-                    <img class="max-h-12" src="{{ asset('images/sponsors/digitalocean.png') }}" alt="DigitalOcean">
+                <a class="flex items-center" href="https://devsquad.com">
+                    <img class="max-h-12" src="{{ asset('images/sponsors/devsquad.png') }}" alt="Devsquad">
                 </a>
             </div>
             <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
