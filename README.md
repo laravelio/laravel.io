@@ -27,6 +27,7 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Blackfire.io](https://blackfire.io)
 - [Laravel Shift](https://laravelshift.com)
 - [Tinkerwell](https://tinkerwell.app)
+- [Ploi](https://ploi.io)
 
 ## Requirements
 
