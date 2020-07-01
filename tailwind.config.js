@@ -13,10 +13,7 @@ module.exports = {
         red: {
           primary: '#e53e3e',
           dark: '#c53030',
-        },
-        gray: {
-          ...defaultTheme.colors.gray,
-        },
+        }
       },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],

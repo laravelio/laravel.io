@@ -79,7 +79,10 @@
         ></button>
 
         <div class="flex justify-end items-center">
-            <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('articles') }}" class="text-green-darker mr-4">Cancel</a>
+            <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('user.articles') }}" class="text-green-darker mr-4">
+                Cancel
+            </a>
+
             @if (isset($article) && $article->isSubmitted())
                 <button 
                     type="submit" 

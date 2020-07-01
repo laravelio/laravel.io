@@ -107,7 +107,7 @@
                 'identifier' => 'disapproveArticle',
                 'route' => ['admin.articles.disapprove', $article->slug()],
                 'title' => "Disapprove article",
-                'body' => '<p>Are you sure you want to disapprove this article?</p><p>Doing so will mean it is no longer live on the site.</p>',
+                'body' => '<p>Are you sure you want to disapprove this article? Doing so will mean it is no longer live on the site.</p>',
             ])
         @endif
     @endcan
@@ -117,7 +117,7 @@
             'identifier' => 'deleteArticle',
             'route' => ['articles.delete', $article->slug()],
             'title' => "Delete article",
-            'body' => '<p>Are you sure you want to delete this article?</p><p>Doing so will mean it is permanently removed from the site.</p>',
+            'body' => '<p>Are you sure you want to delete this article? Doing so will mean it is permanently removed from the site.</p>',
         ])
     @endcan
 

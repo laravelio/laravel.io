@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('body')
-    <div>
+    <div class="bg-gray-50">
         @yield('subnav')
         
         @include('layouts._alerts')

@@ -3,7 +3,7 @@
 @section('body')
     @include('layouts._alerts')
 
-    <div class="bg-gray-50 overflow-hidden">
+    <div class="bg-white overflow-hidden">
         <div x-data="{ open: false }" class="pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
             <div class="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 xl:mt-28">
                 <div class="text-center">
@@ -31,6 +31,11 @@
                             <div class="rounded-md shadow">
                                 <a href="{{ route('threads.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-dark hover:bg-green-primary focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                     Start a Thread
+                                </a>
+                            </div>
+                            <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+                                <a href="{{ route('articles.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-dark hover:bg-green-primary focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                    Share an Article
                                 </a>
                             </div>
                         @endif

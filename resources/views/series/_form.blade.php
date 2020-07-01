@@ -19,9 +19,11 @@
     @formGroup('tags')
         <label for="tags">Tags</label>
 
-        <select name="tags[]" id="create-series" multiple x-data="{}" x-init="function () { choices($el) }">
-            @foreach($tags as $tag)
-                <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>{{ $tag->name }}</option>
+        <select id="tags" name="tags[]" id="create-series" multiple x-data="{}" x-init="function () { choices($el) }">
+            @foreach ($tags as $tag)
+                <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>
+                    {{ $tag->name }}
+                </option>
             @endforeach
         </select>
 
@@ -29,7 +31,14 @@
     @endFormGroup
 
     <div class="flex justify-end items-center">
-        <a href="{{ isset($series) ? route('series.show', $series->id()) : route('user.series') }}" class="text-green-darker mr-4">Cancel</a>
-        <button type="submit" class="button button-primary">{{ isset($series) ? 'Update series' : 'Create series' }}</button>
+        <a
+            href="{{ isset($series) ? route('series.show', $series->id()) : route('user.series') }}"
+            class="text-green-darker mr-4"
+        >
+            Cancel
+        </a>
+        <button type="submit" class="button button-primary">
+            {{ isset($series) ? 'Update series' : 'Create series' }}
+        </button>
     </div>
 </form>
