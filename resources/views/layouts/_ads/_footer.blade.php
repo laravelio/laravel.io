@@ -1,20 +1,12 @@
-@if (! isset($disableAds))
-    @if ($adSenseClient = config('services.google.ad_sense.client'))
-        <div class="container mx-auto text-center overflow-hidden">
-            <ins class="adsbygoogle footer-ad"
-                data-ad-client="{{ $adSenseClient }}"
-                data-ad-slot="{{ config('services.google.ad_sense.unit_footer') }}"
-                data-ad-format="fluid"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-    @endif
+<a
+    href="https://devsquad.com"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    {{-- Show the banner on bigger displays. --}}
+    <img class="hidden md:block my-4 mx-auto w-full" style="max-width:1200px" src="{{ asset('/images/ads/devsquad-long.jpg') }}" alt="Devsquad">
+    {{-- Show the square on mobile. --}}
+    <img class="md:hidden my-4 mx-auto w-full" style="max-width:300px" src="{{ asset('/images/ads/devsquad-small.jpg') }}" alt="Devsquad">
+</a>
 
-    @if (config('app.debug'))
-        <div class="container mx-auto text-center overflow-hidden bg-green-light" style="max-width:950px;height:88px">
-        </div>
-    @endif
-
-    @include('layouts._ads._cta', ['text' => 'Your banner here?'])
-@endif
+@include('layouts._ads._cta', ['text' => 'Your banner here too?'])
