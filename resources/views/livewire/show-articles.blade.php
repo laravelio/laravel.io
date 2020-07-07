@@ -16,9 +16,14 @@
                     @endforeach
                 </div>
                 <a href="{{ route('articles.show', $article->slug()) }}" class="block">
-                    <h3 class="mt-4 text-xl leading-7 font-semibold text-gray-900">
-                        {{ $article->title() }}
-                    </h3>
+                    <span class="mt-4 flex items-center">
+                        @if($article->isPinned())
+                            <x-zondicon-pin class="w-5 h-5 text-green-primary mr-2"/>
+                        @endif
+                        <h3 class="text-xl leading-7 font-semibold text-gray-900">
+                            {{ $article->title() }}
+                        </h3>
+                    </span>
                     <p class="mt-3 text-base leading-6 text-gray-500">
                         {{ $article->excerpt() }}
                     </p>
