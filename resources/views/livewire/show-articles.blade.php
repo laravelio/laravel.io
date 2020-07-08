@@ -7,7 +7,7 @@
         @foreach($articles as $article)
             <div class="pb-8 mb-8 border-b-2">
                 <div>
-                    @foreach($article->tags() as $tag)
+                    @foreach ($article->tags() as $tag)
                         <button class="inline-block focus:outline-none rounded-full {{ $tag->slug() === $selectedTag ? 'bg-green-primary text-white shadow-outline-green' : 'bg-green-light text-green-primary' }}" wire:click="toggleTag('{{ $tag->slug() }}')">
                             <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5">
                                 {{ $tag->name() }}
@@ -16,9 +16,15 @@
                     @endforeach
                 </div>
                 <a href="{{ route('articles.show', $article->slug()) }}" class="block">
-                    <h3 class="mt-4 text-xl leading-7 font-semibold text-gray-900">
-                        {{ $article->title() }}
-                    </h3>
+                    <span class="mt-4 flex items-center">
+                        @if ($article->isPinned())
+                            <x-zondicon-pin class="w-5 h-5 text-green-primary mr-2"/>
+                        @endif
+                        
+                        <h3 class="text-xl leading-7 font-semibold text-gray-900">
+                            {{ $article->title() }}
+                        </h3>
+                    </span>
                     <p class="mt-3 text-base leading-6 text-gray-500">
                         {{ $article->excerpt() }}
                     </p>
