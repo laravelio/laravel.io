@@ -121,7 +121,7 @@
                     <div class="flex w-full md:w-1/3">
                         <div class="flex flex-col flex-grow justify-between bg-white p-4 border rounded m-2">
                             <a href="{{ route('thread', $latestThread->slug()) }}">
-                                <h3 class="text-2xl text-gray-800 mb-8">
+                                <h3 class="text-2xl text-gray-800 mb-8 break-all">
                                     {{ $latestThread->subject() }}
                                 </h3>
                             </a>
