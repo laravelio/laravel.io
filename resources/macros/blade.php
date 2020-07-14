@@ -21,3 +21,7 @@ Blade::directive('endFormGroup', function ($expression) {
 Blade::directive('title', function ($expression) {
     return "<?php \$title = $expression ?>";
 });
+
+Blade::directive('shareImage', function ($expression) {
+    return "<?php \$shareImage = $expression ?>";
+});
