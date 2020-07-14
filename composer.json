@@ -14,6 +14,8 @@
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
+        "intervention/image": "^2.5",
+        "intervention/imagecache": "^2.4",
         "laravel/framework": "^7.0",
         "laravel/horizon": "^4.0",
         "laravel/socialite": "^4.3",
