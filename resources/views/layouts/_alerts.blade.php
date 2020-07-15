@@ -1,10 +1,10 @@
 @if (session()->has('error'))
-    <div class="alert alert-danger" x-data="{}">
+    <div class="w-full text-white bg-green-primary p-4 bg-red-primary" x-data="{}">
         <div class="flex items-center justify-between container mx-auto px-4">
             {!! session()->pull('error') !!}
             <button 
                 type="button" 
-                class="close" 
+                class="text-xl"
                 data-dismiss="alert"
                 aria-hidden="true" 
                 @click="$el.remove()"
@@ -16,12 +16,12 @@
 @endif
 
 @if (session()->has('success'))
-    <div class="alert alert-primary" x-data="{}">
+    <div class="w-full text-white bg-green-primary p-4" x-data="{}">
         <div class="flex items-center justify-between container mx-auto px-4">
             {!! session()->pull('success') !!}
             <button 
                 type="button" 
-                class="close" 
+                class="text-xl"
                 data-dismiss="alert" 
                 aria-hidden="true"
                 @click="$el.remove()"
