@@ -1,4 +1,5 @@
 @title($article->title())
+@shareImage(route('articles.image', $article->slug()))
 
 @extends('layouts.default')
 

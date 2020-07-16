@@ -632,4 +632,26 @@ class ArticleTest extends BrowserKitTestCase
         $this->get('/articles')
             ->dontSee('Test Tag');
     }
+
+    /** @test */
+    public function share_image_url_is_rendered_correctly()
+    {
+        factory(Article::class)->create([
+            'slug' => 'my-first-article',
+            'submitted_at' => now(),
+            'approved_at' => now(),
+        ]);
+
+        $this->get('/articles/my-first-article')
+            ->see('articles/my-first-article/social.png')
+            ->dontSee('images/laravelio-share.png');
+    }
+
+    /** @test */
+    public function default_share_image_is_used_on_non_article_pages()
+    {
+        $this->get('/')
+            ->see('images/laravelio-share.png')
+            ->dontSee('articles/my-first-article/social.png');
+    }
 }

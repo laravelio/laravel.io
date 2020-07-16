@@ -11,6 +11,8 @@ Route::get('terms', 'HomeController@terms')->name('terms');
 Route::get('privacy', 'HomeController@privacy')->name('privacy');
 Route::get('bin/{paste?}', 'HomeController@pastebin');
 
+Route::get('articles/{article}/social.png', 'SocialImageController')->name('articles.image');
+
 // Authentication
 Route::namespace('Auth')->group(function () {
     // Sessions
