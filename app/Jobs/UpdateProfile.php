@@ -22,7 +22,7 @@ final class UpdateProfile
     public function __construct(User $user, array $attributes = [])
     {
         $this->user = $user;
-        $this->attributes = Arr::only($attributes, ['name', 'email', 'username', 'github_username', 'bio']);
+        $this->attributes = Arr::only($attributes, ['name', 'email', 'username', 'github_username', 'bio', 'twitter_handle']);
     }
 
     public static function fromRequest(User $user, UpdateProfileRequest $request): self
@@ -32,6 +32,7 @@ final class UpdateProfile
             'email' => $request->email(),
             'username' => strtolower($request->username()),
             'bio' => trim(strip_tags($request->bio())),
+            'twitter_handle' => $request->twitterHandle(),
         ]);
     }
 
