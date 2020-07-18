@@ -20,6 +20,7 @@
         "laravel/framework": "^8.10",
         "laravel/horizon": "^5.2",
         "laravel/socialite": "^5.0",
+        "laravel-notification-channels/twitter": "^5.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "lasserafn/php-initial-avatar-generator": "^2.0",
