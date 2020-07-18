@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\Article;
+use App\Notifications\PostArticleToTwitter as PostArticleToTwitterNotification;
 use Illuminate\Console\Command;
 use Illuminate\Notifications\AnonymousNotifiable;
-use App\Notifications\PostArticleToTwitter as PostArticleToTwitterNotification;
 
 final class PostArticleToTwitter extends Command
 {
