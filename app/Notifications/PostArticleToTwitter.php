@@ -26,10 +26,16 @@ class PostArticleToTwitter extends Notification
 
     public function toTwitter($notifiable)
     {
+        return new TwitterStatusUpdate($this->generateTweet());
+    }
+
+    public function generateTweet()
+    {
         $title = $this->article->title();
         $url = route('articles.show', $this->article->slug());
-        $author = $this->article->author()->name();
+        $author = $this->article->author();
+        $author = $author->twitterHandle() ? "@{$author->twitterHandle()}" : $author->name();
 
-        return new TwitterStatusUpdate("{$title} - {$author}\n\n{$url}");
+        return "{$title} - {$author}\n\n{$url}";
     }
 }

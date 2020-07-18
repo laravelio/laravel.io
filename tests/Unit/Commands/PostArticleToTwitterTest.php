@@ -2,13 +2,14 @@
 
 namespace Tests\Unit\Commands;
 
-use Tests\TestCase;
-use App\Models\Article;
-use Illuminate\Support\Facades\Notification;
 use App\Console\Commands\PostArticleToTwitter;
-use Illuminate\Notifications\AnonymousNotifiable;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Models\Article;
 use App\Notifications\PostArticleToTwitter as PostArticleToTwitterNotification;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Notifications\AnonymousNotifiable;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
+use Tests\TestCase;
 
 class PostArticleToTwitterTest extends TestCase
 {
@@ -24,6 +25,7 @@ class PostArticleToTwitterTest extends TestCase
     public function published_articles_can_be_shared_on_twitter()
     {
         $article = factory(Article::class)->create([
+            'title' => 'My First Article',
             'submitted_at' => now(),
             'approved_at' => now(),
         ]);
@@ -31,11 +33,64 @@ class PostArticleToTwitterTest extends TestCase
         (new PostArticleToTwitter(new AnonymousNotifiable()))->handle();
 
         Notification::assertSentTo(
-            new AnonymousNotifiable,
-            PostArticleToTwitterNotification::class
+            new AnonymousNotifiable(),
+            PostArticleToTwitterNotification::class,
+            function ($notification, $channels, $notifiable) use ($article) {
+                $tweet = $notification->generateTweet();
+                return Str::contains($tweet, 'My First Article') &&
+                Str::contains($tweet, route('articles.show', $article->slug()));
+            }
         );
 
         $this->assertTrue($article->fresh()->isShared());
+    }
+
+    /** @test */
+    public function articles_are_shared_with_twitter_handle()
+    {
+        $user = $this->createUser([
+            'twitter_handle' => '_joedixon',
+        ]);
+
+        factory(Article::class)->create([
+            'author_id' => $user->id(),
+            'submitted_at' => now(),
+            'approved_at' => now(),
+        ]);
+
+        (new PostArticleToTwitter(new AnonymousNotifiable()))->handle();
+
+        Notification::assertSentTo(
+            new AnonymousNotifiable(),
+            PostArticleToTwitterNotification::class,
+            function ($notification, $channels, $notifiable) use ($user) {
+                return Str::contains($notification->generateTweet(), '@_joedixon');
+            }
+        );
+    }
+
+    /** @test */
+    public function articles_are_shared_with_name_when_no_twitter_handle()
+    {
+        $user = $this->createUser([
+            'name' => 'Joe Dixon',
+        ]);
+
+        factory(Article::class)->create([
+            'author_id' => $user->id(),
+            'submitted_at' => now(),
+            'approved_at' => now(),
+        ]);
+
+        (new PostArticleToTwitter(new AnonymousNotifiable()))->handle();
+
+        Notification::assertSentTo(
+            new AnonymousNotifiable(),
+            PostArticleToTwitterNotification::class,
+            function ($notification, $channels, $notifiable) use ($user) {
+                return Str::contains($notification->generateTweet(), 'Joe Dixon');
+            }
+        );
     }
 
     /** @test */
