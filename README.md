@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/laravelio/laravel.io/master/public/images/laravelio-logo.svg" width="400" />
+    <img src="https://github.com/laravelio/art/blob/master/laravelio-logo-lg.svg" width="400" />
 </p>
 
 <p align="center">
