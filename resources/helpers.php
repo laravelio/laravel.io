@@ -31,3 +31,17 @@ if (! function_exists('route_to_reply_able')) {
         }
     }
 }
+
+if (! function_exists('linkyfy')) {
+    /**
+     * Convert Standalone Urls to HTML.
+     */
+    function linkyfy(string $markdown): string
+    {
+        $lf=new LinkFinder([
+                "attrs" => ["class" => "external-link", "target" => "_blank", "rel" => "nofollow"],
+                "mailto_attrs" => ["class" => "external-email"]
+                ]);
+        return $lf->processHtml($markdown);
+    }
+}

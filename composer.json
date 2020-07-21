@@ -30,7 +30,8 @@
         "roave/security-advisories": "dev-master",
         "spatie/laravel-backup": "^6.8",
         "spatie/laravel-feed": "^2.6",
-        "spatie/laravel-robots-middleware": "^1.2"
+        "spatie/laravel-robots-middleware": "^1.2",
+        "yarri/link-finder": "^2.5"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
