@@ -222,4 +222,24 @@ class ForumTest extends BrowserKitTestCase
             ->call('toggleLike')
             ->assertSee("0\n");
     }
+
+    /** @test */
+    public function user_can_see_standalone_links_in_reply()
+    {
+        $user = $this->createUser();
+        $thread = factory(Thread::class)->create(['slug' => 'the-first-thread']);
+        factory(Reply::class)->create(['body'=>'https://github.com/laravelio/laravel.io check this cool project','author_id' => $user->id(), 'replyable_id' => $thread->id()]);
+        $this->visit("/forum/{$thread->slug}")
+            ->see('&lt;p&gt;&lt;a href=\"https:\/\/github.com\/laravelio\/laravel.io\" rel=\"nofollow\" target=\"_blank\"&gt;https:\/\/github.com\/laravelio\/laravel.io&lt;\/a&gt; check this cool project&lt;\/p&gt;\n');
+    }
+
+    /** @test */
+    public function user_can_see_standalone_links_in_thread()
+    {
+        $user = $this->createUser();
+        $thread = factory(Thread::class)->create(['slug' => 'the-first-thread','body'=> 'https://github.com/laravelio/laravel.io check this cool project']);
+        factory(Reply::class)->create(['author_id' => $user->id(), 'replyable_id' => $thread->id()]);
+        $this->visit("/forum/{$thread->slug}")
+            ->see('&lt;p&gt;&lt;a href=\"https:\/\/github.com\/laravelio\/laravel.io\" rel=\"nofollow\" target=\"_blank\"&gt;https:\/\/github.com\/laravelio\/laravel.io&lt;\/a&gt; check this cool project&lt;\/p&gt;\n');
+    }
 }
