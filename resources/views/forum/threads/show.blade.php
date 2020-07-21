@@ -41,7 +41,7 @@
                             class="forum-content" 
                             x-data="{}" 
                             x-init="function () { highlightCode($el); }"
-                            x-html="{{ json_encode(md_to_html($thread->body())) }}"
+                            x-html="{{ json_encode(linkyfy(md_to_html($thread->body()))) }}"
                         >
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                                     class="forum-content" 
                                     x-data="{}" 
                                     x-init="function () { highlightCode($el); }"
-                                    x-html="{{ json_encode(md_to_html($reply->body())) }}"
+                                    x-html="{{ json_encode(linkyfy(md_to_html($reply->body()))) }}"
                                 >
                                 </div>
                             </div>                            
