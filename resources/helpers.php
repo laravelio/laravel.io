@@ -32,16 +32,14 @@ if (! function_exists('route_to_reply_able')) {
     }
 }
 
-if (! function_exists('linkyfy')) {
+if (! function_exists('replace_links')) {
     /**
      * Convert Standalone Urls to HTML.
      */
-    function linkyfy(string $markdown): string
+    function replace_links(string $markdown): string
     {
-        $lf=new LinkFinder([
-                "attrs" => ["class" => "external-link", "target" => "_blank", "rel" => "nofollow"],
-                "mailto_attrs" => ["class" => "external-email"]
-                ]);
-        return $lf->processHtml($markdown);
+        return (new LinkFinder([
+            "attrs" => ["target" => "_blank", "rel" => "nofollow"],
+        ]))->processHtml($markdown);
     }
 }
