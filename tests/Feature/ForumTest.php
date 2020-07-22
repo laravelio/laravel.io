@@ -226,20 +226,28 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function user_can_see_standalone_links_in_reply()
     {
-        $user = $this->createUser();
         $thread = factory(Thread::class)->create(['slug' => 'the-first-thread']);
-        factory(Reply::class)->create(['body'=>'https://github.com/laravelio/laravel.io check this cool project','author_id' => $user->id(), 'replyable_id' => $thread->id()]);
+        factory(Reply::class)->create([
+            'body'=>'https://github.com/laravelio/laravel.io check this cool project',
+            'replyable_id' => $thread->id()
+        ]);
+
         $this->visit("/forum/{$thread->slug}")
-            ->see('&lt;p&gt;&lt;a href=\"https:\/\/github.com\/laravelio\/laravel.io\" rel=\"nofollow\" target=\"_blank\"&gt;https:\/\/github.com\/laravelio\/laravel.io&lt;\/a&gt; check this cool project&lt;\/p&gt;\n');
+            ->see('&lt;a href=\"https:\/\/github.com\/laravelio\/laravel.io\" rel=\"nofollow\" target=\"_blank\"&gt;https:\/\/github.com\/laravelio\/laravel.io&lt;\/a&gt;');
     }
 
     /** @test */
     public function user_can_see_standalone_links_in_thread()
     {
-        $user = $this->createUser();
-        $thread = factory(Thread::class)->create(['slug' => 'the-first-thread','body'=> 'https://github.com/laravelio/laravel.io check this cool project']);
-        factory(Reply::class)->create(['author_id' => $user->id(), 'replyable_id' => $thread->id()]);
-        $this->visit("/forum/{$thread->slug}")
-            ->see('&lt;p&gt;&lt;a href=\"https:\/\/github.com\/laravelio\/laravel.io\" rel=\"nofollow\" target=\"_blank\"&gt;https:\/\/github.com\/laravelio\/laravel.io&lt;\/a&gt; check this cool project&lt;\/p&gt;\n');
+        $thread = factory(Thread::class)->create([
+            'slug' => 'the-first-thread',
+            'body'=> 'https://github.com/laravelio/laravel.io check this cool project'
+        ]);
+        factory(Reply::class)->create([
+            'replyable_id' => $thread->id()
+        ]);
+
+        $this->visit("/forum/{$thread->slug()}")
+            ->see('&lt;a href=\"https:\/\/github.com\/laravelio\/laravel.io\" rel=\"nofollow\" target=\"_blank\"&gt;https:\/\/github.com\/laravelio\/laravel.io&lt;\/a&gt;');
     }
 }
