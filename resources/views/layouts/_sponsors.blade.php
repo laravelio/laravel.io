@@ -4,12 +4,7 @@
             We'd like to thank these <strong>amazing companies</strong> for supporting us
         </p>
 
-        <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-4">
-            <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
-                <a class="flex items-center" href="https://laravelshift.com">
-                    <img class="max-h-12" src="{{ asset('images/sponsors/laravel-shift.png') }}" alt="Laravel Shift">
-                </a>
-            </div>
+        <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-3">
             <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1 px-2">
                 <a class="flex items-center" href="https://beyondco.de">
                     <img class="max-h-12" src="{{ asset('images/sponsors/beyondcode.png') }}" alt="Beyond Code">
