@@ -27,7 +27,6 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Envoyer](https://envoyer.io)
 - [Fathom](https://usefathom.com)
 - [Blackfire.io](https://blackfire.io)
-- [Laravel Shift](https://laravelshift.com)
 - [Tinkerwell](https://tinkerwell.app)
 - [Ploi](https://ploi.io)
 
