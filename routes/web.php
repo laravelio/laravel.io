@@ -31,9 +31,8 @@ Route::namespace('Auth')->group(function () {
     Route::post('password/reset', 'ResetPasswordController@reset')->name('password.reset.post');
 
     // Email address confirmation
-    Route::get('email-confirmation', 'EmailConfirmationController@send')->name('email.send_confirmation');
-    Route::get('email-confirmation/{email_address}/{code}', 'EmailConfirmationController@confirm')
-        ->name('email.confirm');
+    Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
+    Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
 
     // Social authentication
     Route::get('login/github', 'GithubController@redirectToProvider')->name('login.github');

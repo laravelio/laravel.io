@@ -107,7 +107,7 @@ class ReplyTest extends BrowserKitTestCase
     {
         $thread = factory(Thread::class)->create();
 
-        $this->login(['confirmed' => false]);
+        $this->login(['email_verified_at' => null]);
 
         $this->visit("/forum/{$thread->slug}")
             ->dontSee('name="body"')

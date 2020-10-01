@@ -8,12 +8,13 @@ use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Series;
 use App\Models\Thread;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 
-final class User extends Authenticatable
+final class User extends Authenticatable implements MustVerifyEmail
 {
     use HasTimestamps;
     use ModelHelpers;
@@ -83,6 +84,11 @@ final class User extends Authenticatable
         return $this->github_username;
     }
 
+    public function emailVerifiedAt(): ?string
+    {
+        return $this->email_verified_at;
+    }
+
     public function gravatarUrl($size = 100): string
     {
         $hash = md5(strtolower(trim($this->email)));
@@ -93,12 +99,12 @@ final class User extends Authenticatable
 
     public function isConfirmed(): bool
     {
-        return (bool) $this->confirmed;
+        return ! $this->isUnconfirmed();
     }
 
     public function isUnconfirmed(): bool
     {
-        return ! $this->isConfirmed();
+        return is_null($this->emailVerifiedAt());
     }
 
     public function confirmationCode(): string
