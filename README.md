@@ -99,7 +99,7 @@ Please read our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing or eng
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel.io, please send an email immediately to Dries Vints at [dries@vints.io](mailto:dries@vints.io). **Do not create an issue for the vulnerability.**
+If you discover a security vulnerability within Laravel.io, please send an email immediately to [security@laravel.io](mailto:security@laravel.io). **Do not create an issue for the vulnerability.**
 
 ## License
 
