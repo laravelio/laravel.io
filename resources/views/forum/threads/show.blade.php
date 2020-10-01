@@ -179,7 +179,7 @@
                     @else
                         <div class="bg-gray-400 rounded p-4 text-gray-700 my-8">
                             <p>You'll need to verify your account before participating in this thread.</p>
-                            <p><a href="{{ route('email.send_confirmation') }}" class="text-green-dark">Click here to resend the verification link.</p>
+                            <p><a href="{{ route('verification.resend') }}" class="text-green-dark">Click here to resend the verification link.</p>
                         </div>
                     @endif
                 @endcan

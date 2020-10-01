@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Requests\RegisterRequest;
 use App\Jobs\RegisterUser;
-use App\Jobs\SendEmailConfirmation;
 use App\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
@@ -59,7 +59,7 @@ class RegisterController extends Controller
     {
         $user = $this->dispatchNow(RegisterUser::fromRequest(app(RegisterRequest::class)));
 
-        $this->dispatch(new SendEmailConfirmation($user));
+        event(new Registered($user));
 
         return $user;
     }
