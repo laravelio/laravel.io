@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Mail\EmailConfirmationEmail;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Event;
 
 class AuthTest extends BrowserKitTestCase
 {
@@ -16,7 +16,7 @@ class AuthTest extends BrowserKitTestCase
     /** @test */
     public function users_can_register()
     {
-        Mail::fake();
+        Event::fake();
 
         session(['githubData' => ['id' => 123, 'username' => 'johndoe']]);
 
@@ -34,7 +34,7 @@ class AuthTest extends BrowserKitTestCase
 
         $this->assertLoggedIn();
 
-        Mail::assertSent(EmailConfirmationEmail::class);
+        Event::assertDispatched(Registered::class);
     }
 
     /** @test */
@@ -72,9 +72,9 @@ class AuthTest extends BrowserKitTestCase
     /** @test */
     public function users_can_resend_the_email_confirmation()
     {
-        $this->login(['confirmed' => false]);
+        $this->login(['email_verified_at' => null]);
 
-        $this->visit('/email-confirmation')
+        $this->visit('/email/resend')
             ->seePageIs('/dashboard')
             ->see('Email confirmation sent to john@example.com');
     }
@@ -84,32 +84,32 @@ class AuthTest extends BrowserKitTestCase
     {
         $this->login();
 
-        $this->visit('/email-confirmation')
+        $this->visit('/email/resend')
             ->seePageIs('/dashboard')
             ->see('Your email address is already confirmed.');
     }
 
-    /** @test */
-    public function users_can_confirm_their_email_address()
-    {
-        $user = $this->createUser(['confirmed' => false, 'confirmation_code' => 'testcode']);
+    // /** @test */
+    // public function users_can_confirm_their_email_address()
+    // {
+    //     $user = $this->createUser(['confirmed' => false, 'confirmation_code' => 'testcode']);
 
-        $this->visit('/email-confirmation/john@example.com/testcode')
-            ->seePageIs('/')
-            ->see('Your email address was successfully confirmed.');
+    //     $this->visit('/email-confirmation/john@example.com/testcode')
+    //         ->seePageIs('/')
+    //         ->see('Your email address was successfully confirmed.');
 
-        $this->seeInDatabase('users', ['id' => $user->id(), 'confirmed' => true]);
-    }
+    //     $this->seeInDatabase('users', ['id' => $user->id(), 'confirmed' => true]);
+    // }
 
-    /** @test */
-    public function users_get_a_message_when_a_confirmation_code_was_not_found()
-    {
-        $this->createUser(['confirmed' => false]);
+    // /** @test */
+    // public function users_get_a_message_when_a_confirmation_code_was_not_found()
+    // {
+    //     $this->createUser(['confirmed' => false]);
 
-        $this->visit('/email-confirmation/john@example.com/testcode')
-            ->seePageIs('/')
-            ->see('We could not confirm your email address. The given email address and code did not match.');
-    }
+    //     $this->visit('/email-confirmation/john@example.com/testcode')
+    //         ->seePageIs('/')
+    //         ->see('We could not confirm your email address. The given email address and code did not match.');
+    // }
 
     /** @test */
     public function users_can_login()
@@ -211,7 +211,7 @@ class AuthTest extends BrowserKitTestCase
     /** @test */
     public function unconfirmed_users_cannot_create_threads()
     {
-        $this->login(['confirmed' => false]);
+        $this->login(['email_verified_at' => null]);
 
         $this->visit('/forum/create-thread')
             ->see('Please confirm your email address first.');
