@@ -31,6 +31,7 @@ Route::namespace('Auth')->group(function () {
     Route::post('password/reset', 'ResetPasswordController@reset')->name('password.reset.post');
 
     // Email address confirmation
+    Route::get('email-confirmation', 'EmailConfirmationController@send')->name('email.send_confirmation');
     Route::get('email/verify/{id}', 'VerificationController@verify')->name('verification.verify');
     Route::get('email/resend', 'VerificationController@resend')->name('verification.resend');
 
