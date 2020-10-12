@@ -92,18 +92,18 @@ class ReplyTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function confirmed_users_can_see_the_reply_input()
+    public function verified_users_can_see_the_reply_input()
     {
         $thread = factory(Thread::class)->create();
 
-        $this->login(['confirmed' => true]);
+        $this->login();
 
         $this->visit("/forum/{$thread->slug}")
             ->see('name="body"');
     }
 
     /** @test */
-    public function unconfirmed_users_cannot_see_the_reply_input()
+    public function unverified_users_cannot_see_the_reply_input()
     {
         $thread = factory(Thread::class)->create();
 

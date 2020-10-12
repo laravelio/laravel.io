@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\EmailAddressWasChanged;
 use App\Http\Requests\UpdateProfileRequest;
 use App\User;
 use Illuminate\Support\Arr;
@@ -36,7 +37,16 @@ final class UpdateProfile
 
     public function handle(): User
     {
+        $emailAddress = $this->user->emailAddress();
+
         $this->user->update($this->attributes);
+
+        if ($emailAddress !== $this->user->emailAddress()) {
+            $this->user->email_verified_at = null;
+            $this->user->save();
+
+            event(new EmailAddressWasChanged($this->user));
+        }
 
         return $this->user;
     }

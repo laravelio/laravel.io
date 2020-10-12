@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Requests\RegisterRequest;
 use App\Jobs\RegisterUser;
+use App\Providers\RouteServiceProvider;
 use App\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -57,10 +57,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        $user = $this->dispatchNow(RegisterUser::fromRequest(app(RegisterRequest::class)));
-
-        event(new Registered($user));
-
-        return $user;
+        return $this->dispatchNow(RegisterUser::fromRequest(app(RegisterRequest::class)));
     }
 }

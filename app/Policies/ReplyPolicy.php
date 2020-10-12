@@ -16,7 +16,7 @@ final class ReplyPolicy
      */
     public function create(User $user): bool
     {
-        return $user->isConfirmed();
+        return $user->hasVerifiedEmail();
     }
 
     /**

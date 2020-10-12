@@ -6,6 +6,9 @@ use App\Models\Article;
 
 final class DisapproveArticle
 {
+    /**
+     * @var \App\Models\Thread
+     */
     private $article;
 
     public function __construct(Article $article)

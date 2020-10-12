@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Articles;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
-use App\Http\Middleware\RedirectIfUnconfirmed;
 use App\Http\Requests\SeriesRequest;
 use App\Jobs\CreateSeries;
 use App\Jobs\DeleteSeries;
@@ -12,12 +11,13 @@ use App\Jobs\UpdateSeries;
 use App\Models\Series;
 use App\Models\Tag;
 use App\Policies\SeriesPolicy;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 
 class SeriesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware([Authenticate::class, RedirectIfUnconfirmed::class], ['except' => ['index']]);
+        $this->middleware([Authenticate::class, EnsureEmailIsVerified::class], ['except' => ['index']]);
     }
 
     public function create()

@@ -4,6 +4,7 @@ use App\Models\Series;
 use App\User;
 use Faker\Generator as Faker;
 
+/* @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(Series::class, function (Faker $faker) {
     return [
         'author_id' => function () {
