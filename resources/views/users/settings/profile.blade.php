@@ -24,6 +24,14 @@
             @formGroup('email')
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" value="{{ Auth::user()->emailAddress() }}" required />
+
+                @unless(Auth::user()->hasVerifiedEmail())
+                    <span class="text-gray-600 text-sm">
+                        This email address is not verified yet.
+                        <a href="{{ route('verification.notice') }}" class="text-green-primary">Resend verification email.</a>
+                    </span>
+                @endunless
+
                 @error('email')
             @endFormGroup
 

@@ -16,11 +16,11 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
-    'confirmation' => [
-        'sent' => 'Email confirmation sent to :0',
-        'already_confirmed' => 'Your email address is already confirmed.',
-        'success' => 'Your email address was successfully confirmed.',
-        'no_match' => 'We could not confirm your email address. The given email address and code did not match.',
+    'verification' => [
+        'sent' => 'Email verification sent to :0. You can change your email address in your profile settings.',
+        'already_verified' => 'Your email address is already verified.',
+        'success' => 'Your email address was successfully verified.',
+        'no_match' => 'We could not verify your email address. The given email address and code did not match.',
     ],
 
 ];

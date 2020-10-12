@@ -40,8 +40,6 @@ final class User extends Authenticatable implements MustVerifyEmail
         'username',
         'password',
         'ip',
-        'confirmed',
-        'confirmation_code',
         'github_id',
         'github_username',
         'type',
@@ -84,37 +82,12 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->github_username;
     }
 
-    public function emailVerifiedAt(): ?string
-    {
-        return $this->email_verified_at;
-    }
-
     public function gravatarUrl($size = 100): string
     {
         $hash = md5(strtolower(trim($this->email)));
         $default = urlencode(route('avatar', ['username' => $this->username()]));
 
         return "https://www.gravatar.com/avatar/$hash?s=$size&d=$default";
-    }
-
-    public function isConfirmed(): bool
-    {
-        return ! $this->isUnconfirmed();
-    }
-
-    public function isUnconfirmed(): bool
-    {
-        return is_null($this->emailVerifiedAt());
-    }
-
-    public function confirmationCode(): string
-    {
-        return (string) $this->confirmation_code;
-    }
-
-    public function matchesConfirmationCode(string $code): bool
-    {
-        return $this->confirmation_code === $code;
     }
 
     public function isBanned(): bool

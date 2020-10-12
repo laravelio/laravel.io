@@ -7,6 +7,9 @@ use Intervention\Image\ImageManager;
 
 final class GenerateSocialShareImage
 {
+    /**
+     * @var \App\Models\Thread
+     */
     private $article;
 
     const TEXT_X_POSITION = 50;

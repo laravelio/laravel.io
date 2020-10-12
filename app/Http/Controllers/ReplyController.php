@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\RedirectIfUnconfirmed;
 use App\Http\Requests\CreateReplyRequest;
 use App\Http\Requests\UpdateReplyRequest;
 use App\Jobs\CreateReply;
@@ -13,13 +12,14 @@ use App\Models\ReplyAble;
 use App\Models\Thread;
 use App\Policies\ReplyPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\RedirectResponse;
 
 class ReplyController extends Controller
 {
     public function __construct()
     {
-        $this->middleware([Authenticate::class, RedirectIfUnconfirmed::class]);
+        $this->middleware([Authenticate::class, EnsureEmailIsVerified::class]);
     }
 
     public function store(CreateReplyRequest $request)

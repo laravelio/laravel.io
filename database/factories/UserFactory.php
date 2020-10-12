@@ -4,7 +4,6 @@ use App\User;
 use Illuminate\Support\Str;
 
 /* @var \Illuminate\Database\Eloquent\Factory $factory */
-
 $factory->define(User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -14,14 +13,12 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'username' => $faker->userName,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => Str::random(10),
-        'confirmed' => true,
-        'confirmation_code' => $faker->md5,
         'github_id' => $faker->numberBetween(10000, 99999),
         'github_username' => $faker->userName,
         'banned_at' => null,
         'type' => User::DEFAULT,
         'bio' => $faker->sentence,
-        'email_verified_at' => null,
+        'email_verified_at' => now()->subDay(),
     ];
 });
 

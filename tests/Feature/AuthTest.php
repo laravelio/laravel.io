@@ -70,45 +70,46 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function users_can_resend_the_email_confirmation()
+    public function users_can_resend_the_email_verification()
     {
         $this->login(['email_verified_at' => null]);
 
-        $this->visit('/email/resend')
-            ->seePageIs('/dashboard')
-            ->see('Email confirmation sent to john@example.com');
+        $this->post('/email/resend')
+            ->assertSessionHas('success', 'Email verification sent to john@example.com. You can change your email address in your profile settings.');
     }
 
     /** @test */
-    public function users_do_not_need_to_confirm_their_email_address_twice()
+    public function users_do_not_need_to_verify_their_email_address_twice()
     {
         $this->login();
 
-        $this->visit('/email/resend')
-            ->seePageIs('/dashboard')
-            ->see('Your email address is already confirmed.');
+        $this->post('/email/resend')
+            ->assertRedirectedTo('/dashboard')
+            ->assertSessionHas('error', 'Your email address is already verified.');
     }
 
     // /** @test */
-    // public function users_can_confirm_their_email_address()
+    // public function users_can_verify_their_email_address()
     // {
-    //     $user = $this->createUser(['confirmed' => false, 'confirmation_code' => 'testcode']);
-
-    //     $this->visit('/email-confirmation/john@example.com/testcode')
-    //         ->seePageIs('/')
-    //         ->see('Your email address was successfully confirmed.');
-
-    //     $this->seeInDatabase('users', ['id' => $user->id(), 'confirmed' => true]);
+    //     $user = $this->login(['email_verified_at' => null]);
+    //
+    //     $id = $user->getKey();
+    //     $hash = sha1('john@example.com');
+    //
+    //     $this->get("/email/verify/$id/$hash")
+    //         ->see('Your email address was successfully verified.');
+    //
+    //     $this->assertTrue($user->refresh()->hasVerifiedEmail());
     // }
 
     // /** @test */
-    // public function users_get_a_message_when_a_confirmation_code_was_not_found()
+    // public function users_get_a_message_when_an_invalid_has_is_provided()
     // {
-    //     $this->createUser(['confirmed' => false]);
-
-    //     $this->visit('/email-confirmation/john@example.com/testcode')
+    //     $this->createUser(['email_verified_at' => null]);
+    //
+    //     $this->visit('/email/verify/john@example.com/incorrect')
     //         ->seePageIs('/')
-    //         ->see('We could not confirm your email address. The given email address and code did not match.');
+    //         ->see('We could not verify your email address. The given email address and code did not match.');
     // }
 
     /** @test */
@@ -209,12 +210,12 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function unconfirmed_users_cannot_create_threads()
+    public function unverified_users_cannot_create_threads()
     {
         $this->login(['email_verified_at' => null]);
 
         $this->visit('/forum/create-thread')
-            ->see('Please confirm your email address first.');
+            ->see('Before proceeding, please check your email for a verification link.');
     }
 
     private function assertLoggedIn(): void
