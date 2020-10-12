@@ -32,7 +32,7 @@
 
     <div class="flex justify-end items-center">
         <a
-            href="{{ isset($series) ? route('series.show', $series->id()) : route('user.series') }}"
+            href="{{ route('user.series') }}"
             class="text-green-darker mr-4"
         >
             Cancel
