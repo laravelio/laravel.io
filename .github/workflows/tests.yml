@@ -36,5 +36,5 @@ jobs:
         run: vendor/bin/phpunit --verbose
 
       - name: Deploy
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         run: curl ${{ secrets.ENVOYER_HOOK }}?sha=${{ github.sha }}
