@@ -10,7 +10,7 @@
         <img src="https://github.com/laravelio/laravel.io/workflows/Code%20Style/badge.svg" alt="Code Style" />
     </a>
     <a href="https://packagist.org/packages/laravel/framework">
-        <img src="https://shield.with.social/cc/github/laravelio/laravel.io/main.svg?style=flat-square" alt="Laravel Version" />
+        <img src="https://shield.with.social/cc/github/laravelio/laravel.io/main.svg" alt="Laravel Version" />
     </a>
 </p>
 
