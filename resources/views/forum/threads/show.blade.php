@@ -37,9 +37,9 @@
                         </div>
                     </div>
                     <div class="p-4">
-                        <div 
-                            class="forum-content" 
-                            x-data="{}" 
+                        <div
+                            class="forum-content"
+                            x-data="{}"
                             x-init="function () { highlightCode($el); }"
                             x-html="{{ json_encode(replace_links(md_to_html($thread->body()))) }}"
                         >
@@ -52,7 +52,7 @@
 
                 @foreach ($thread->replies() as $reply)
                     <div class="reply mt-8 bg-white rounded {{ $thread->isSolutionReply($reply) ? 'border-2 border-green-primary' : 'border' }}" id="{{ $reply->id }}">
-                        
+
                         @if ($thread->isSolutionReply($reply))
                             <div class="bg-green-primary text-white uppercase px-4 py-2 opacity-75">
                                 Solution
@@ -84,7 +84,7 @@
                                         @endcan
 
                                         @can(App\Policies\ThreadPolicy::UPDATE, $thread)
-                                
+
                                             @if ($thread->isSolutionReply($reply))
                                                 <a href="#" @click.prevent="activeModal = 'unmark-solution-{{ $thread->id }}'" class="label">
                                                     Unmark As Solution
@@ -108,20 +108,20 @@
                                                     'body' => '<p>Confirm to mark this reply as the solution for <strong>"'.e($thread->subject()).'"</strong>.</p>',
                                                 ])
                                             @endif
-                                            
+
                                         @endcan
                                     </div>
-                                </div>              
+                                </div>
                             </div>
                             <div class="p-4">
-                                <div 
-                                    class="forum-content" 
-                                    x-data="{}" 
+                                <div
+                                    class="forum-content"
+                                    x-data="{}"
                                     x-init="function () { highlightCode($el); }"
                                     x-html="{{ json_encode(replace_links(md_to_html($reply->body()))) }}"
                                 >
                                 </div>
-                            </div>                            
+                            </div>
                             <div class="border-t">
                                 <livewire:like-reply :reply="$reply"/>
                             </div>
@@ -153,7 +153,7 @@
                                     @include('_partials._editor', [
                                         'content' => old('body')
                                     ])
-                                    
+
                                     @error('body')
                                 @endFormGroup
 
@@ -179,11 +179,14 @@
                     @else
                         <div class="bg-gray-400 rounded p-4 text-gray-700 my-8">
                             <p>You'll need to verify your account before participating in this thread.</p>
-                            <p><a href="{{ route('verification.resend') }}" class="text-green-dark">Click here to resend the verification link.</p>
+                            <form action="{{ route('verification.resend') }}" method="POST" class="w-full">
+                                @csrf
+                                <button type="submit" class="text-green-dark">Click here to resend the verification link.</button>
+                            </form>
                         </div>
                     @endif
                 @endcan
-            </div>  
+            </div>
             <div class="w-full hidden md:w-1/4 md:pl-3 md:pt-4 md:flex items-center flex-col text-center mb-4">
                 @include('users._user_info', ['user' => $thread->author(), 'avatarSize' => 200, 'centered' => true])
 
