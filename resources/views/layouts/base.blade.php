@@ -28,6 +28,7 @@
     @include('layouts._favicons')
     @include('layouts._social')
     @include('layouts._google_analytics')
+    @include('layouts._fathom')
 
     @livewireStyles
 </head>
@@ -40,8 +41,6 @@
 @yield('body')
 
 @include('layouts._footer')
-
-@include('layouts._fathom')
 
 @livewireScripts
 
