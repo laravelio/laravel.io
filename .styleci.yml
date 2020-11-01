@@ -1,0 +1,4 @@
+preset: laravel
+enabled:
+  - heredoc_indentation
+  - trailing_comma_in_multiline_call
