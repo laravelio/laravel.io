@@ -33,7 +33,7 @@ class ArticlesController extends Controller
 
         abort_unless(
             $article->isPublished() || ($user && ($article->isAuthoredBy($user) || $user->isAdmin() || $user->isModerator())),
-            404
+            404,
         );
 
         return view('articles.show', [

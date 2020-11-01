@@ -21,7 +21,7 @@ class AuthoredArticles extends Controller
                 ->articles()
                 ->orderByDesc('submitted_at')
                 ->orderByDesc('created_at')
-                ->paginate(10)
+                ->paginate(10),
         ]);
     }
 }

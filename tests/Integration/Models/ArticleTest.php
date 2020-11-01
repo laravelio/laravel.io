@@ -122,7 +122,7 @@ class ArticleTest extends TestCase
         $articleThree = factory(Article::class)->create([
             'submitted_at' => now()->subDays(3),
             'approved_at' => now(),
-            'is_pinned' => true
+            'is_pinned' => true,
         ]);
 
         $recentArticles = Article::recent()->get();

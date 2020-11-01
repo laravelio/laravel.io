@@ -11,7 +11,7 @@ class HttpImageRuleTest extends TestCase
     public function it_passes_when_no_http_links_are_detected()
     {
         $this->assertTrue(
-            (new HttpImageRule())->passes('body', 'some text ![](https://link.com)')
+            (new HttpImageRule())->passes('body', 'some text ![](https://link.com)'),
         );
     }
 
@@ -19,7 +19,7 @@ class HttpImageRuleTest extends TestCase
     public function it_fails_when_http_links_are_detected()
     {
         $this->assertFalse(
-            (new HttpImageRule())->passes('body', 'some text ![](http://link.com)')
+            (new HttpImageRule())->passes('body', 'some text ![](http://link.com)'),
         );
     }
 }

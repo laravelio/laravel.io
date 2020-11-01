@@ -334,7 +334,7 @@ class ArticleTest extends BrowserKitTestCase
         $article = factory(Article::class)->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
-            'submitted_at' => '2020-06-19 00:00:00'
+            'submitted_at' => '2020-06-19 00:00:00',
         ]);
 
         $this->loginAs($user);
@@ -610,7 +610,7 @@ class ArticleTest extends BrowserKitTestCase
         $article = factory(Article::class)->create([
             'slug' => 'my-first-article',
             'submitted_at' => now(),
-            'author_id' => $user->id
+            'author_id' => $user->id,
         ]);
 
         $this->loginAsAdmin();
@@ -625,7 +625,7 @@ class ArticleTest extends BrowserKitTestCase
         $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
         $article = factory(Article::class)->create([
             'slug' => 'my-first-article',
-            'submitted_at' => now()
+            'submitted_at' => now(),
         ]);
         $article->syncTags([$tag->id]);
 

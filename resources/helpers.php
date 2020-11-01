@@ -39,7 +39,7 @@ if (! function_exists('replace_links')) {
     function replace_links(string $markdown): string
     {
         return (new LinkFinder([
-            "attrs" => ["target" => "_blank", "rel" => "nofollow"],
+            'attrs' => ['target' => '_blank', 'rel' => 'nofollow'],
         ]))->processHtml($markdown);
     }
 }

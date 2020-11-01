@@ -195,7 +195,7 @@ class AuthTest extends BrowserKitTestCase
         // Insert a password reset token into the database.
         $token = $this->app[PasswordBroker::class]->getRepository()->create($user);
 
-        $this->visit('/password/reset/' . $token)
+        $this->visit('/password/reset/'.$token)
             ->type('john@example.com', 'email')
             ->type('foopassword', 'password')
             ->type('foopassword', 'password_confirmation')

@@ -28,7 +28,7 @@ trait ProvidesSubscriptions
             Subscription::class,
             'subscriptionsRelation',
             'subscriptionable_type',
-            'subscriptionable_id'
+            'subscriptionable_id',
         );
     }
 

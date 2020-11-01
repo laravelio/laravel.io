@@ -13,7 +13,7 @@ return [
              * You can also pass an argument to that method:
              * ['App\Model@getAllFeedItems', 'argument']
              */
-            'items' => [Thread::class . '@getFeedItems'],
+            'items' => [Thread::class.'@getFeedItems'],
 
             /*
              * The feed will be available on this url.

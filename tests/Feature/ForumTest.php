@@ -229,7 +229,7 @@ class ForumTest extends BrowserKitTestCase
         $thread = factory(Thread::class)->create(['slug' => 'the-first-thread']);
         factory(Reply::class)->create([
             'body'=>'https://github.com/laravelio/laravel.io check this cool project',
-            'replyable_id' => $thread->id()
+            'replyable_id' => $thread->id(),
         ]);
 
         $this->visit("/forum/{$thread->slug}")
@@ -241,10 +241,10 @@ class ForumTest extends BrowserKitTestCase
     {
         $thread = factory(Thread::class)->create([
             'slug' => 'the-first-thread',
-            'body'=> 'https://github.com/laravelio/laravel.io check this cool project'
+            'body'=> 'https://github.com/laravelio/laravel.io check this cool project',
         ]);
         factory(Reply::class)->create([
-            'replyable_id' => $thread->id()
+            'replyable_id' => $thread->id(),
         ]);
 
         $this->visit("/forum/{$thread->slug()}")

@@ -17,7 +17,7 @@ class AuthoredSeries extends Controller
     public function __invoke(Request $request)
     {
         return view('users.series', [
-            'series' => $request->user()->series
+            'series' => $request->user()->series,
         ]);
     }
 }

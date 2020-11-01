@@ -73,7 +73,7 @@ class ReplyTest extends BrowserKitTestCase
 
         $this->login();
 
-        $this->put('/forum/the-first-thread/mark-solution/' . $reply->id())
+        $this->put('/forum/the-first-thread/mark-solution/'.$reply->id())
             ->assertForbidden();
     }
 
@@ -87,7 +87,7 @@ class ReplyTest extends BrowserKitTestCase
         $this->visit("/forum/{$thread->slug}")
             ->dontSee('value="Reply"')
             ->seeText(
-                'The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.'
+                'The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.',
             );
     }
 
@@ -112,7 +112,7 @@ class ReplyTest extends BrowserKitTestCase
         $this->visit("/forum/{$thread->slug}")
             ->dontSee('name="body"')
             ->seeText(
-                'You\'ll need to verify your account before participating in this thread.'
+                'You\'ll need to verify your account before participating in this thread.',
             );
     }
 }

@@ -14,7 +14,7 @@ class CreateReplyRequest extends Request
         return [
             'body' => ['required', new HttpImageRule()],
             'replyable_id' => 'required',
-            'replyable_type' => 'required|in:' . Thread::TABLE,
+            'replyable_type' => 'required|in:'.Thread::TABLE,
         ];
     }
 

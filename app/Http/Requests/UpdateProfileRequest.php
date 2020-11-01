@@ -10,8 +10,8 @@ class UpdateProfileRequest extends Request
     {
         return [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users,email,' . Auth::id(),
-            'username' => 'required|alpha_dash|max:255|unique:users,username,' . Auth::id(),
+            'email' => 'required|email|max:255|unique:users,email,'.Auth::id(),
+            'username' => 'required|alpha_dash|max:255|unique:users,username,'.Auth::id(),
             'bio' => 'max:160',
         ];
     }

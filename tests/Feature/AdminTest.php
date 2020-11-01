@@ -71,8 +71,8 @@ class AdminTest extends BrowserKitTestCase
     {
         $user = factory(User::class)->create(['name' => 'Freek Murze']);
 
-        $this->put('/admin/users/' . $user->username() . '/ban')
-            ->assertRedirectedTo('/user/' . $user->username());
+        $this->put('/admin/users/'.$user->username().'/ban')
+            ->assertRedirectedTo('/user/'.$user->username());
 
         $this->notSeeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
     }
@@ -95,8 +95,8 @@ class AdminTest extends BrowserKitTestCase
     {
         $user = factory(User::class)->create(['name' => 'Freek Murze', 'banned_at' => Carbon::now()]);
 
-        $this->put('/admin/users/' . $user->username() . '/unban')
-            ->assertRedirectedTo('/user/' . $user->username());
+        $this->put('/admin/users/'.$user->username().'/unban')
+            ->assertRedirectedTo('/user/'.$user->username());
 
         $this->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
     }
@@ -136,7 +136,7 @@ class AdminTest extends BrowserKitTestCase
     {
         $user = factory(User::class)->create(['type' => $type]);
 
-        $this->put('/admin/users/' . $user->username() . '/ban')
+        $this->put('/admin/users/'.$user->username().'/ban')
             ->assertForbidden();
     }
 
@@ -150,7 +150,7 @@ class AdminTest extends BrowserKitTestCase
 
         $this->loginAsAdmin();
 
-        $this->delete('/admin/users/' . $user->username())
+        $this->delete('/admin/users/'.$user->username())
             ->assertRedirectedTo('/admin');
 
         $this->notSeeInDatabase('users', ['name' => 'Freek Murze']);
@@ -168,7 +168,7 @@ class AdminTest extends BrowserKitTestCase
 
         $this->loginAsAdmin();
 
-        $this->delete('/admin/users/' . $user->username())
+        $this->delete('/admin/users/'.$user->username())
             ->assertForbidden();
     }
 
@@ -179,7 +179,7 @@ class AdminTest extends BrowserKitTestCase
 
         $this->loginAsModerator();
 
-        $this->delete('/admin/users/' . $user->username())
+        $this->delete('/admin/users/'.$user->username())
             ->assertForbidden();
     }
 
@@ -384,7 +384,7 @@ class AdminTest extends BrowserKitTestCase
         $article = factory(Article::class)->create([
             'submitted_at' => now(),
             'approved_at' => now(),
-            'is_pinned' => true
+            'is_pinned' => true,
         ]);
 
         $this->loginAsAdmin();
@@ -400,7 +400,7 @@ class AdminTest extends BrowserKitTestCase
         $article = factory(Article::class)->create([
             'submitted_at' => now(),
             'approved_at' => now(),
-            'is_pinned' => true
+            'is_pinned' => true,
         ]);
 
         $this->loginAsModerator();
@@ -416,7 +416,7 @@ class AdminTest extends BrowserKitTestCase
         $article = factory(Article::class)->create([
             'submitted_at' => now(),
             'approved_at' => now(),
-            'is_pinned' => true
+            'is_pinned' => true,
         ]);
 
         $this->login();
@@ -432,7 +432,7 @@ class AdminTest extends BrowserKitTestCase
         $article = factory(Article::class)->create([
             'submitted_at' => now(),
             'approved_at' => now(),
-            'is_pinned' => true
+            'is_pinned' => true,
         ]);
 
         $this->put("/admin/articles/{$article->slug()}/pinned");

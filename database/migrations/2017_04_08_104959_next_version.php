@@ -136,7 +136,7 @@ class NextVersion extends Migration
                 'reply_count',
                 'is_question',
                 'pinned',
-                'laravel_version'
+                'laravel_version',
             );
         });
         Schema::table('threads', function (Blueprint $table) {
