@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Helpers\HasAuthor;
 use App\Helpers\HasLikes;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
 final class Reply extends Model
 {
     use HasFactory;
-
     use HasAuthor;
     use HasLikes;
     use HasTimestamps;

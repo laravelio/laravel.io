@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Article;
 use App\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /* @var \Illuminate\Database\Eloquent\Factory $factory */
 
