@@ -43,15 +43,13 @@
         "phpunit/phpunit": "^8.5"
     },
     "autoload": {
-        "classmap": [
-            "database/seeds",
-            "database/factories"
-        ],
         "files": [
             "resources/helpers.php"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
