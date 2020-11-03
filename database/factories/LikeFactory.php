@@ -2,11 +2,11 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Like;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LikeFactory extends Factory
 {
@@ -25,10 +25,10 @@ class LikeFactory extends Factory
     public function definition()
     {
         return [
-        'user_id' => function () {
-            return User::factory()->create()->id;
-        },
-    ];
+            'user_id' => function () {
+                return User::factory()->create()->id;
+            },
+        ];
     }
 
     public function reply()
@@ -37,8 +37,8 @@ class LikeFactory extends Factory
             return [
                 'likeable_id' => function () {
                     return Reply::factory()->create()->id;
-                }, 
-                'likeable_type' => 'replies'
+                },
+                'likeable_type' => 'replies',
             ];
         });
     }
@@ -49,8 +49,8 @@ class LikeFactory extends Factory
             return [
                 'likeable_id' => function () {
                     return Thread::factory()->create()->id;
-                }, 
-                'likeable_type' => 'threads'
+                },
+                'likeable_type' => 'threads',
             ];
         });
     }
