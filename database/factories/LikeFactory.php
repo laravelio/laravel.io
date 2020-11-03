@@ -34,18 +34,24 @@ class LikeFactory extends Factory
     public function reply()
     {
         return $this->state(function () {
-            ['likeable_id' => function () {
-    return Reply::factory()->create()->id;
-}, 'likeable_type' => 'replies']
+            return [
+                'likeable_id' => function () {
+                    return Reply::factory()->create()->id;
+                }, 
+                'likeable_type' => 'replies'
+            ];
         });
     }
 
     public function thread()
     {
         return $this->state(function () {
-            ['likeable_id' => function () {
-    return Thread::factory()->create()->id;
-}, 'likeable_type' => 'threads']
+            return [
+                'likeable_id' => function () {
+                    return Thread::factory()->create()->id;
+                }, 
+                'likeable_type' => 'threads'
+            ];
         });
     }
 }
