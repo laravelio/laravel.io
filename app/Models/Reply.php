@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Helpers\HasAuthor;
 use App\Helpers\HasLikes;
 use App\Helpers\HasTimestamps;
@@ -12,6 +13,8 @@ use Illuminate\Support\Str;
 
 final class Reply extends Model
 {
+    use HasFactory;
+
     use HasAuthor;
     use HasLikes;
     use HasTimestamps;

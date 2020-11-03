@@ -15,7 +15,7 @@ class SubscribeToSubscriptionAbleTest extends TestCase
     public function it_can_subscribe_a_user_to_a_thread()
     {
         $user = $this->createUser();
-        $thread = factory(Thread::class)->create();
+        $thread = Thread::factory()->create();
 
         $this->assertFalse($thread->hasSubscriber($user));
 

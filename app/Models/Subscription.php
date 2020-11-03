@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Helpers\HasUuid;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 final class Subscription extends Model
 {
+    use HasFactory;
+
     use HasUuid;
 
     /**

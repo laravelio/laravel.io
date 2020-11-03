@@ -16,8 +16,8 @@ class LikeThreadTest extends TestCase
     /** @test */
     public function we_can_like_a_thread()
     {
-        $user = factory(User::class)->create();
-        $thread = factory(Thread::class)->create();
+        $user = User::factory()->create();
+        $thread = Thread::factory()->create();
 
         $this->dispatch(new LikeThread($thread, $user));
 
@@ -27,8 +27,8 @@ class LikeThreadTest extends TestCase
     /** @test */
     public function we_cannot_like_a_thread_twice()
     {
-        $user = factory(User::class)->create();
-        $thread = factory(Thread::class)->create();
+        $user = User::factory()->create();
+        $thread = Thread::factory()->create();
 
         $this->dispatch(new LikeThread($thread, $user));
 

@@ -26,8 +26,8 @@ class ArticleTest extends BrowserKitTestCase
     public function users_cannot_see_series_they_do_not_own_when_creating_an_article()
     {
         $user = $this->createUser();
-        factory(Series::class)->create(['title' => 'This should be seen', 'author_id' => $user->id]);
-        factory(Series::class)->create(['title' => 'This should not be seen']);
+        Series::factory()->create(['title' => 'This should be seen', 'author_id' => $user->id]);
+        Series::factory()->create(['title' => 'This should not be seen']);
 
         $this->loginAs($user);
 
@@ -40,8 +40,8 @@ class ArticleTest extends BrowserKitTestCase
     public function users_can_create_an_article()
     {
         $user = $this->createUser();
-        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
-        $series = factory(Series::class)->create([
+        $tag = Tag::factory()->create(['name' => 'Test Tag']);
+        $series = Series::factory()->create([
             'title' => 'Test series',
             'author_id' => $user->id,
         ]);
@@ -109,8 +109,8 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_create_an_article_using_a_series_they_do_not_own()
     {
-        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
-        $series = factory(Series::class)->create(['title' => 'Test series']);
+        $tag = Tag::factory()->create(['name' => 'Test Tag']);
+        $series = Series::factory()->create(['title' => 'Test series']);
 
         $this->login();
 
@@ -157,9 +157,9 @@ class ArticleTest extends BrowserKitTestCase
     public function users_cannot_see_series_they_do_not_own_when_editing_an_article()
     {
         $user = $this->createUser();
-        factory(Article::class)->create(['slug' => 'my-first-article', 'author_id' => $user->id]);
-        factory(Series::class)->create(['title' => 'This should be seen', 'author_id' => $user->id]);
-        factory(Series::class)->create(['title' => 'This should not be seen']);
+        Article::factory()->create(['slug' => 'my-first-article', 'author_id' => $user->id]);
+        Series::factory()->create(['title' => 'This should be seen', 'author_id' => $user->id]);
+        Series::factory()->create(['title' => 'This should not be seen']);
 
         $this->loginAs($user);
 
@@ -171,7 +171,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function guests_can_view_an_article()
     {
-        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
+        $article = Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
 
         $this->get('/articles/my-first-article')
             ->see($article->title());
@@ -180,7 +180,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function logged_in_users_can_view_an_article()
     {
-        $article = factory(Article::class)->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
+        $article = Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
 
         $this->login();
 
@@ -192,13 +192,13 @@ class ArticleTest extends BrowserKitTestCase
     public function users_can_edit_an_article()
     {
         $user = $this->createUser();
-        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
-        $series = factory(Series::class)->create([
+        $tag = Tag::factory()->create(['name' => 'Test Tag']);
+        $series = Series::factory()->create([
             'title' => 'Test series',
             'author_id' => $user->id,
         ]);
 
-        factory(Article::class)->create([
+        Article::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
         ]);
@@ -221,7 +221,7 @@ class ArticleTest extends BrowserKitTestCase
     {
         $user = $this->createUser();
 
-        factory(Article::class)->create([
+        Article::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
         ]);
@@ -244,7 +244,7 @@ class ArticleTest extends BrowserKitTestCase
     {
         $user = $this->createUser();
 
-        factory(Article::class)->create([
+        Article::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
             'submitted_at' => null,
@@ -266,10 +266,10 @@ class ArticleTest extends BrowserKitTestCase
     public function users_cannot_edit_an_article_using_a_series_they_do_not_own()
     {
         $user = $this->createUser();
-        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
-        $series = factory(Series::class)->create(['title' => 'Test series']);
+        $tag = Tag::factory()->create(['name' => 'Test Tag']);
+        $series = Series::factory()->create(['title' => 'Test series']);
 
-        factory(Article::class)->create([
+        Article::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
         ]);
@@ -291,7 +291,7 @@ class ArticleTest extends BrowserKitTestCase
     public function users_cannot_edit_an_article_with_a_title_that_is_too_long()
     {
         $user = $this->createUser();
-        factory(Article::class)->create([
+        Article::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
         ]);
@@ -311,7 +311,7 @@ class ArticleTest extends BrowserKitTestCase
     public function an_article_may_not_updated_to_contain_an_http_image_url()
     {
         $user = $this->createUser();
-        factory(Article::class)->create([
+        Article::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
         ]);
@@ -331,7 +331,7 @@ class ArticleTest extends BrowserKitTestCase
     public function an_already_submitted_article_should_not_have_timestamp_updated_on_update()
     {
         $user = $this->createUser();
-        $article = factory(Article::class)->create([
+        $article = Article::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
             'submitted_at' => '2020-06-19 00:00:00',
@@ -352,7 +352,7 @@ class ArticleTest extends BrowserKitTestCase
     public function users_can_delete_their_own_articles()
     {
         $user = $this->createUser();
-        factory(Article::class)->create([
+        Article::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
         ]);
@@ -367,7 +367,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_delete_an_article_they_do_not_own()
     {
-        factory(Article::class)->create(['slug' => 'my-first-article']);
+        Article::factory()->create(['slug' => 'my-first-article']);
 
         $this->login();
 
@@ -378,7 +378,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function canonical_urls_are_rendered()
     {
-        factory(Article::class)->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
+        Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
 
         $this->get('/articles/my-first-article')
             ->see('<link rel="canonical" href="http://localhost/articles/my-first-article" />');
@@ -387,7 +387,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function custom_canonical_urls_are_rendered()
     {
-        factory(Article::class)->create([
+        Article::factory()->create([
             'slug' => 'my-first-article',
             'original_url' => 'https://joedixon.co.uk/my-first-article',
             'submitted_at' => now(),
@@ -401,7 +401,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function draft_articles_cannot_be_viewed_by_guests()
     {
-        factory(Article::class)->create(['slug' => 'my-first-article', 'submitted_at' => null]);
+        Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => null]);
 
         $this->get('/articles/my-first-article')
             ->assertResponseStatus(404);
@@ -411,7 +411,7 @@ class ArticleTest extends BrowserKitTestCase
     public function draft_articles_can_be_viewed_by_the_article_owner()
     {
         $user = $this->createUser();
-        factory(Article::class)->create([
+        Article::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-article',
             'submitted_at' => null,
@@ -427,7 +427,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function draft_articles_cannot_be_viewed_by_logged_in_users()
     {
-        factory(Article::class)->create([
+        Article::factory()->create([
             'slug' => 'my-first-article',
             'submitted_at' => null,
         ]);
@@ -454,7 +454,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function tags_can_be_toggled()
     {
-        $tag = factory(Tag::class)->create();
+        $tag = Tag::factory()->create();
 
         Livewire::test(ShowArticles::class)
             ->call('toggleTag', $tag->slug)
@@ -474,13 +474,13 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function readers_can_navigate_to_the_next_article_in_a_series()
     {
-        $series = factory(Series::class)->create();
-        $articleOne = factory(Article::class)->create([
+        $series = Series::factory()->create();
+        $articleOne = Article::factory()->create([
             'series_id' => $series->id,
             'submitted_at' => now()->subWeek(),
             'approved_at' => now(),
         ]);
-        $articleTwo = factory(Article::class)->create([
+        $articleTwo = Article::factory()->create([
             'series_id' => $series->id,
             'submitted_at' => now(),
             'approved_at' => now(),
@@ -494,13 +494,13 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function readers_can_navigate_to_the_previous_article_in_a_series()
     {
-        $series = factory(Series::class)->create();
-        $articleOne = factory(Article::class)->create([
+        $series = Series::factory()->create();
+        $articleOne = Article::factory()->create([
             'series_id' => $series->id,
             'submitted_at' => now()->subWeek(),
             'approved_at' => now(),
         ]);
-        $articleTwo = factory(Article::class)->create([
+        $articleTwo = Article::factory()->create([
             'series_id' => $series->id,
             'submitted_at' => now(),
             'approved_at' => now(),
@@ -514,18 +514,18 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function readers_can_see_next_and_previous_links_in_a_series()
     {
-        $series = factory(Series::class)->create();
-        $articleOne = factory(Article::class)->create([
+        $series = Series::factory()->create();
+        $articleOne = Article::factory()->create([
             'series_id' => $series->id,
             'submitted_at' => now()->subWeeks(2),
             'approved_at' => now(),
         ]);
-        $articleTwo = factory(Article::class)->create([
+        $articleTwo = Article::factory()->create([
             'series_id' => $series->id,
             'submitted_at' => now()->subWeek(),
             'approved_at' => now(),
         ]);
-        $articleThree = factory(Article::class)->create([
+        $articleThree = Article::factory()->create([
             'series_id' => $series->id,
             'submitted_at' => now(),
             'approved_at' => now(),
@@ -539,17 +539,17 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function unpublished_articles_are_not_rendered_in_next_and_previous_links()
     {
-        $series = factory(Series::class)->create();
-        $articleOne = factory(Article::class)->create([
+        $series = Series::factory()->create();
+        $articleOne = Article::factory()->create([
             'series_id' => $series->id,
             'submitted_at' => now()->subWeek(),
             'approved_at' => now(),
         ]);
-        $articleTwo = factory(Article::class)->create([
+        $articleTwo = Article::factory()->create([
             'series_id' => $series->id,
             'submitted_at' => null,
         ]);
-        $articleThree = factory(Article::class)->create([
+        $articleThree = Article::factory()->create([
             'series_id' => $series->id,
             'submitted_at' => now(),
             'approved_at' => now(),
@@ -565,7 +565,7 @@ class ArticleTest extends BrowserKitTestCase
     {
         $user = $this->createUser();
 
-        $articles = factory(Article::class, 3)->create([
+        $articles = Article::factory()->count(3)->create([
             'author_id' => $user->id,
         ]);
 
@@ -580,7 +580,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function a_user_can_another_users_articles()
     {
-        $articles = factory(Article::class, 3)->create();
+        $articles = Article::factory()->count(3)->create();
 
         $this->login();
 
@@ -607,7 +607,7 @@ class ArticleTest extends BrowserKitTestCase
             'username' => 'joedixon',
             'email' => 'hello@joedixon.co.uk',
         ]);
-        $article = factory(Article::class)->create([
+        $article = Article::factory()->create([
             'slug' => 'my-first-article',
             'submitted_at' => now(),
             'author_id' => $user->id,
@@ -622,8 +622,8 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function tags_are_not_rendered_for_unpublished_articles()
     {
-        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
-        $article = factory(Article::class)->create([
+        $tag = Tag::factory()->create(['name' => 'Test Tag']);
+        $article = Article::factory()->create([
             'slug' => 'my-first-article',
             'submitted_at' => now(),
         ]);
@@ -636,7 +636,7 @@ class ArticleTest extends BrowserKitTestCase
     /** @test */
     public function share_image_url_is_rendered_correctly()
     {
-        factory(Article::class)->create([
+        Article::factory()->create([
             'slug' => 'my-first-article',
             'submitted_at' => now(),
             'approved_at' => now(),

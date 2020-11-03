@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Helpers\HasAuthor;
 use App\Helpers\HasLikes;
@@ -28,6 +29,8 @@ use Spatie\Feed\FeedItem;
 
 final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedable
 {
+    use HasFactory;
+
     use HasAuthor;
     use HasLikes;
     use HasSlug;

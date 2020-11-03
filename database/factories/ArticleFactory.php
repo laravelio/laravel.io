@@ -1,17 +1,36 @@
 <?php
 
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Article;
 use App\User;
-use Faker\Generator as Faker;
 
 /* @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(Article::class, function (Faker $faker) {
-    return [
-        'author_id' => function () {
-            return factory(User::class)->create()->id;
-        },
-        'title' => $faker->sentence,
-        'body' => $faker->paragraphs(3, true),
-        'slug' => $faker->unique()->slug,
-    ];
-});
+
+class ArticleFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Article::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'author_id' => function () {
+                return User::factory()->create()->id;
+            },
+            'title' => $this->faker->sentence,
+            'body' => $this->faker->paragraphs(3, true),
+            'slug' => $this->faker->unique()->slug,
+        ];
+    }
+}

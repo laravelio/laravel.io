@@ -14,6 +14,6 @@ class TagSeeder extends Seeder
 
     private function createTag(string $name, string $slug)
     {
-        factory(Tag::class)->create(compact('name', 'slug'));
+        Tag::factory()->create(compact('name', 'slug'));
     }
 }

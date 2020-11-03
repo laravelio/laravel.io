@@ -45,8 +45,8 @@ class AdminTest extends BrowserKitTestCase
 
     private function assertCanSeeTheUserOverview()
     {
-        factory(User::class)->create(['name' => 'Freek Murze']);
-        factory(User::class)->create(['name' => 'Frederick Vanbrabant']);
+        User::factory()->create(['name' => 'Freek Murze']);
+        User::factory()->create(['name' => 'Frederick Vanbrabant']);
 
         $this->visit('/admin')
             ->see('Freek Murze')
@@ -69,7 +69,7 @@ class AdminTest extends BrowserKitTestCase
 
     private function assertCanBanUsers()
     {
-        $user = factory(User::class)->create(['name' => 'Freek Murze']);
+        $user = User::factory()->create(['name' => 'Freek Murze']);
 
         $this->put('/admin/users/'.$user->username().'/ban')
             ->assertRedirectedTo('/user/'.$user->username());
@@ -93,7 +93,7 @@ class AdminTest extends BrowserKitTestCase
 
     private function assertCanUnbanUsers()
     {
-        $user = factory(User::class)->create(['name' => 'Freek Murze', 'banned_at' => Carbon::now()]);
+        $user = User::factory()->create(['name' => 'Freek Murze', 'banned_at' => Carbon::now()]);
 
         $this->put('/admin/users/'.$user->username().'/unban')
             ->assertRedirectedTo('/user/'.$user->username());
@@ -134,7 +134,7 @@ class AdminTest extends BrowserKitTestCase
 
     private function assertCannotBanUsersByType(int $type)
     {
-        $user = factory(User::class)->create(['type' => $type]);
+        $user = User::factory()->create(['type' => $type]);
 
         $this->put('/admin/users/'.$user->username().'/ban')
             ->assertForbidden();
@@ -143,10 +143,10 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_delete_a_user()
     {
-        $user = factory(User::class)->create(['name' => 'Freek Murze']);
-        $thread = factory(Thread::class)->create(['author_id' => $user->id()]);
-        factory(Reply::class)->create(['replyable_id' => $thread->id()]);
-        factory(Reply::class)->create(['author_id' => $user->id()]);
+        $user = User::factory()->create(['name' => 'Freek Murze']);
+        $thread = Thread::factory()->create(['author_id' => $user->id()]);
+        Reply::factory()->create(['replyable_id' => $thread->id()]);
+        Reply::factory()->create(['author_id' => $user->id()]);
 
         $this->loginAsAdmin();
 
@@ -164,7 +164,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_cannot_delete_other_admins()
     {
-        $user = factory(User::class)->create(['type' => User::ADMIN]);
+        $user = User::factory()->create(['type' => User::ADMIN]);
 
         $this->loginAsAdmin();
 
@@ -175,7 +175,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function moderators_cannot_delete_users()
     {
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->loginAsModerator();
 
@@ -186,9 +186,9 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_list_submitted_articles()
     {
-        $submittedArticle = factory(Article::class)->create(['submitted_at' => now()]);
-        $draftArticle = factory(Article::class)->create();
-        $liveArticle = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+        $submittedArticle = Article::factory()->create(['submitted_at' => now()]);
+        $draftArticle = Article::factory()->create();
+        $liveArticle = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
         $this->loginAsAdmin();
 
@@ -201,9 +201,9 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function moderators_can_list_submitted_articles()
     {
-        $submittedArticle = factory(Article::class)->create(['submitted_at' => now()]);
-        $draftArticle = factory(Article::class)->create();
-        $liveArticle = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+        $submittedArticle = Article::factory()->create(['submitted_at' => now()]);
+        $draftArticle = Article::factory()->create();
+        $liveArticle = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
         $this->loginAsModerator();
 
@@ -232,7 +232,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_view_submitted_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now()]);
 
         $this->loginAsAdmin();
 
@@ -243,7 +243,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_approve_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now()]);
 
         $this->loginAsAdmin();
 
@@ -255,7 +255,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function moderators_can_approve_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now()]);
 
         $this->loginAsModerator();
 
@@ -267,7 +267,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_approve_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now()]);
 
         $this->login();
 
@@ -278,7 +278,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function guests_cannot_approve_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now()]);
 
         $this->put("/admin/articles/{$article->slug()}/approve")
             ->assertRedirectedTo('/login');
@@ -289,7 +289,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_disapprove_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
         $this->loginAsAdmin();
 
@@ -301,7 +301,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function moderators_can_disapprove_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
         $this->loginAsModerator();
 
@@ -313,7 +313,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_disapprove_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
         $this->login();
 
@@ -324,7 +324,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function guests_cannot_disapprove_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
         $this->put("/admin/articles/{$article->slug()}/disapprove")
             ->assertRedirectedTo('/login');
@@ -335,7 +335,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_pin_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
         $this->loginAsAdmin();
 
@@ -347,7 +347,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function moderators_can_pin_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
         $this->loginAsModerator();
 
@@ -359,7 +359,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_pin_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
         $this->login();
 
@@ -371,7 +371,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function guests_cannot_pin_articles()
     {
-        $article = factory(Article::class)->create(['submitted_at' => now(), 'approved_at' => now()]);
+        $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
         $this->put("/admin/articles/{$article->slug()}/pinned");
 
@@ -381,7 +381,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function admins_can_unpin_articles()
     {
-        $article = factory(Article::class)->create([
+        $article = Article::factory()->create([
             'submitted_at' => now(),
             'approved_at' => now(),
             'is_pinned' => true,
@@ -397,7 +397,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function moderators_can_unpin_articles()
     {
-        $article = factory(Article::class)->create([
+        $article = Article::factory()->create([
             'submitted_at' => now(),
             'approved_at' => now(),
             'is_pinned' => true,
@@ -413,7 +413,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_unpin_articles()
     {
-        $article = factory(Article::class)->create([
+        $article = Article::factory()->create([
             'submitted_at' => now(),
             'approved_at' => now(),
             'is_pinned' => true,
@@ -429,7 +429,7 @@ class AdminTest extends BrowserKitTestCase
     /** @test */
     public function guests_cannot_unpin_articles()
     {
-        $article = factory(Article::class)->create([
+        $article = Article::factory()->create([
             'submitted_at' => now(),
             'approved_at' => now(),
             'is_pinned' => true,

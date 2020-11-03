@@ -95,7 +95,7 @@ class SettingsTest extends BrowserKitTestCase
     /** @test */
     public function users_can_set_their_password_when_they_have_none_set_yet()
     {
-        $user = factory(User::class)->states('passwordless')->create();
+        $user = User::factory()->passwordless()->create();
 
         $this->loginAs($user);
 

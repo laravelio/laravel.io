@@ -15,7 +15,7 @@ class UpdateSeriesTest extends TestCase
     public function we_can_update_a_series()
     {
         $user = $this->createUser();
-        $series = factory(Series::class)->create(['author_id' => $user->id()]);
+        $series = Series::factory()->create(['author_id' => $user->id()]);
 
         $series = $this->dispatch(new UpdateSeries($series, ['title' => 'Title']));
 

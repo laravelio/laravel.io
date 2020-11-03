@@ -14,7 +14,7 @@ class DeleteArticleTest extends TestCase
     /** @test */
     public function an_article_can_be_deleted()
     {
-        $article = factory(Article::class)->create();
+        $article = Article::factory()->create();
 
         $this->dispatch(new DeleteArticle($article));
 

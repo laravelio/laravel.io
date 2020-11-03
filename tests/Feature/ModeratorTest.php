@@ -12,7 +12,7 @@ class ModeratorTest extends BrowserKitTestCase
     /** @test */
     public function moderators_can_edit_any_thread()
     {
-        $thread = factory(Thread::class)->create();
+        $thread = Thread::factory()->create();
 
         $this->loginAsModerator();
 
@@ -23,7 +23,7 @@ class ModeratorTest extends BrowserKitTestCase
     /** @test */
     public function moderators_can_delete_any_thread()
     {
-        $thread = factory(Thread::class)->create();
+        $thread = Thread::factory()->create();
 
         $this->loginAsModerator();
 

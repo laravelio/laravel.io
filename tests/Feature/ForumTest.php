@@ -17,8 +17,8 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function users_can_see_a_list_of_latest_threads()
     {
-        factory(Thread::class)->create(['subject' => 'The first thread']);
-        factory(Thread::class)->create(['subject' => 'The second thread']);
+        Thread::factory()->create(['subject' => 'The first thread']);
+        Thread::factory()->create(['subject' => 'The second thread']);
 
         $this->visit('/forum')
             ->see('The first thread')
@@ -28,9 +28,9 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function users_can_see_when_a_thread_is_resolved()
     {
-        factory(Thread::class)->create(['subject' => 'The first thread']);
-        $thread = factory(Thread::class)->create(['subject' => 'The second thread']);
-        $reply = factory(Reply::class)->create();
+        Thread::factory()->create(['subject' => 'The first thread']);
+        $thread = Thread::factory()->create(['subject' => 'The second thread']);
+        $reply = Reply::factory()->create();
         $thread->solutionReplyRelation()->associate($reply)->save();
 
         $this->visit('/forum')
@@ -44,7 +44,7 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function users_can_see_a_single_thread()
     {
-        factory(Thread::class)->create([
+        Thread::factory()->create([
             'subject' => 'The first thread',
             'slug' => 'the-first-thread',
         ]);
@@ -63,7 +63,7 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function the_thread_subject_cannot_be_an_url()
     {
-        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+        $tag = Tag::factory()->create(['name' => 'Test Tag']);
 
         $this->login();
 
@@ -78,7 +78,7 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function users_can_create_a_thread()
     {
-        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+        $tag = Tag::factory()->create(['name' => 'Test Tag']);
 
         $this->login();
 
@@ -95,8 +95,8 @@ class ForumTest extends BrowserKitTestCase
     public function users_can_edit_a_thread()
     {
         $user = $this->createUser();
-        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
-        factory(Thread::class)->create([
+        $tag = Tag::factory()->create(['name' => 'Test Tag']);
+        Thread::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-thread',
         ]);
@@ -115,7 +115,7 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_edit_a_thread_they_do_not_own()
     {
-        factory(Thread::class)->create(['slug' => 'my-first-thread']);
+        Thread::factory()->create(['slug' => 'my-first-thread']);
 
         $this->login();
 
@@ -126,7 +126,7 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_delete_a_thread_they_do_not_own()
     {
-        factory(Thread::class)->create(['slug' => 'my-first-thread']);
+        Thread::factory()->create(['slug' => 'my-first-thread']);
 
         $this->login();
 
@@ -137,7 +137,7 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_create_a_thread_with_a_subject_that_is_too_long()
     {
-        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+        $tag = Tag::factory()->create(['name' => 'Test Tag']);
 
         $this->login();
 
@@ -155,8 +155,8 @@ class ForumTest extends BrowserKitTestCase
     public function users_cannot_edit_a_thread_with_a_subject_that_is_too_long()
     {
         $user = $this->createUser();
-        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
-        factory(Thread::class)->create([
+        $tag = Tag::factory()->create(['name' => 'Test Tag']);
+        Thread::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-thread',
         ]);
@@ -177,7 +177,7 @@ class ForumTest extends BrowserKitTestCase
     public function a_user_can_toggle_a_like_on_a_thread()
     {
         $this->login();
-        $thread = factory(Thread::class)->create();
+        $thread = Thread::factory()->create();
 
         Livewire::test(LikeThread::class, ['thread' => $thread])
             ->assertSee("0\n")
@@ -190,7 +190,7 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function a_logged_out_user_cannot_toggle_a_like_on_a_thread()
     {
-        $thread = factory(Thread::class)->create();
+        $thread = Thread::factory()->create();
 
         Livewire::test(LikeThread::class, ['thread' => $thread])
             ->assertSee("0\n")
@@ -202,7 +202,7 @@ class ForumTest extends BrowserKitTestCase
     public function a_user_can_toggle_a_like_on_a_reply()
     {
         $this->login();
-        $reply = factory(Reply::class)->create();
+        $reply = Reply::factory()->create();
 
         Livewire::test(LikeReply::class, ['reply' => $reply])
             ->assertSee("0\n")
@@ -215,7 +215,7 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function a_logged_out_user_cannot_toggle_a_like_on_a_reply()
     {
-        $reply = factory(Reply::class)->create();
+        $reply = Reply::factory()->create();
 
         Livewire::test(LikeReply::class, ['reply' => $reply])
             ->assertSee("0\n")
@@ -226,8 +226,8 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function user_can_see_standalone_links_in_reply()
     {
-        $thread = factory(Thread::class)->create(['slug' => 'the-first-thread']);
-        factory(Reply::class)->create([
+        $thread = Thread::factory()->create(['slug' => 'the-first-thread']);
+        Reply::factory()->create([
             'body'=>'https://github.com/laravelio/laravel.io check this cool project',
             'replyable_id' => $thread->id(),
         ]);
@@ -239,11 +239,11 @@ class ForumTest extends BrowserKitTestCase
     /** @test */
     public function user_can_see_standalone_links_in_thread()
     {
-        $thread = factory(Thread::class)->create([
+        $thread = Thread::factory()->create([
             'slug' => 'the-first-thread',
             'body'=> 'https://github.com/laravelio/laravel.io check this cool project',
         ]);
-        factory(Reply::class)->create([
+        Reply::factory()->create([
             'replyable_id' => $thread->id(),
         ]);
 

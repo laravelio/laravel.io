@@ -15,8 +15,8 @@ class UnlikeReplyTest extends TestCase
     /** @test */
     public function we_can_unlike_a_reply()
     {
-        $user = factory(User::class)->create();
-        $reply = factory(Reply::class)->create();
+        $user = User::factory()->create();
+        $reply = Reply::factory()->create();
 
         $reply->likedBy($user);
         $this->assertTrue($reply->fresh()->isLikedBy($user));
