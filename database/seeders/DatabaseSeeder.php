@@ -1,5 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
+use Database\Seeders\ArticleSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 

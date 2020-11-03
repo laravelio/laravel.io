@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Reply;
 use App\Notifications\NewReplyNotification;
 use Illuminate\Database\Seeder;
