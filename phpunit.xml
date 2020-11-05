@@ -15,11 +15,6 @@
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./app</directory>
-        </whitelist>
-    </filter>
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="APP_KEY" value="base64:NXoQgjw2ZlOxnGbo5ZRhYgTdM6xLYsgYElNAgcTQJkE="/>

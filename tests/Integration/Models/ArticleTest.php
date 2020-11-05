@@ -15,8 +15,8 @@ class ArticleTest extends TestCase
     /** @test */
     public function we_can_get_most_popular_articles()
     {
-        $users = factory(User::class, 2)->create();
-        $articles = factory(Article::class, 3)->create();
+        $users = User::factory()->count(2)->create();
+        $articles = Article::factory()->count(3)->create();
 
         // Like the second article twice.
         $articles[1]->likedBy($users[0]);
@@ -35,8 +35,8 @@ class ArticleTest extends TestCase
     /** @test */
     public function we_can_get_trending_articles()
     {
-        $users = factory(User::class, 3)->create();
-        $articles = factory(Article::class, 3)->create();
+        $users = User::factory()->count(3)->create();
+        $articles = Article::factory()->count(3)->create();
 
         // Like the first article by two users.
         $articles[0]->likedBy($users[0]);
@@ -61,18 +61,18 @@ class ArticleTest extends TestCase
     /** @test */
     public function we_can_get_the_next_article_in_a_series()
     {
-        $series = factory(Series::class)->create();
-        $articleOne = factory(Article::class)->create([
+        $series = Series::factory()->create();
+        $articleOne = Article::factory()->create([
             'submitted_at' => now()->subDays(2),
             'approved_at' => now(),
             'series_id' => $series->id,
         ]);
-        $articleTwo = factory(Article::class)->create([
+        $articleTwo = Article::factory()->create([
             'submitted_at' => now()->subDay(),
             'approved_at' => now(),
             'series_id' => $series->id,
         ]);
-        $articleThree = factory(Article::class)->create([
+        $articleThree = Article::factory()->create([
             'submitted_at' => now(),
             'approved_at' => now(),
             'series_id' => $series->id,
@@ -86,18 +86,18 @@ class ArticleTest extends TestCase
     /** @test */
     public function we_can_get_the_previous_article_in_a_series()
     {
-        $series = factory(Series::class)->create();
-        $articleOne = factory(Article::class)->create([
+        $series = Series::factory()->create();
+        $articleOne = Article::factory()->create([
             'submitted_at' => now()->subDays(2),
             'approved_at' => now(),
             'series_id' => $series->id,
         ]);
-        $articleTwo = factory(Article::class)->create([
+        $articleTwo = Article::factory()->create([
             'submitted_at' => now()->subDay(),
             'approved_at' => now(),
             'series_id' => $series->id,
         ]);
-        $articleThree = factory(Article::class)->create([
+        $articleThree = Article::factory()->create([
             'submitted_at' => now(),
             'approved_at' => now(),
             'series_id' => $series->id,
@@ -111,15 +111,15 @@ class ArticleTest extends TestCase
     /** @test */
     public function pinned_articles_are_returned_first()
     {
-        $articleOne = factory(Article::class)->create([
+        $articleOne = Article::factory()->create([
             'submitted_at' => now(),
             'approved_at' => now(),
         ]);
-        $articleTwo = factory(Article::class)->create([
+        $articleTwo = Article::factory()->create([
             'submitted_at' => now()->subDay(),
             'approved_at' => now(),
         ]);
-        $articleThree = factory(Article::class)->create([
+        $articleThree = Article::factory()->create([
             'submitted_at' => now()->subDays(3),
             'approved_at' => now(),
             'is_pinned' => true,

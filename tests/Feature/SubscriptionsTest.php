@@ -22,10 +22,10 @@ class SubscriptionsTest extends BrowserKitTestCase
     {
         Notification::fake();
 
-        $thread = factory(Thread::class)->create();
-        [$author, $userOne, $userTwo] = factory(User::class)->times(3)->create();
-        factory(Subscription::class)->create(['user_id' => $userOne->id(), 'subscriptionable_id' => $thread->id()]);
-        factory(Subscription::class)->create(['user_id' => $userTwo->id(), 'subscriptionable_id' => $thread->id()]);
+        $thread = Thread::factory()->create();
+        [$author, $userOne, $userTwo] = User::factory()->times(3)->create();
+        Subscription::factory()->create(['user_id' => $userOne->id(), 'subscriptionable_id' => $thread->id()]);
+        Subscription::factory()->create(['user_id' => $userTwo->id(), 'subscriptionable_id' => $thread->id()]);
 
         $this->dispatch(new CreateReply($this->faker->text, $author, $thread));
 
@@ -60,9 +60,9 @@ class SubscriptionsTest extends BrowserKitTestCase
     {
         Notification::fake();
 
-        $thread = factory(Thread::class)->create();
-        $author = factory(User::class)->create();
-        factory(Subscription::class)->create(['user_id' => $author->id(), 'subscriptionable_id' => $thread->id()]);
+        $thread = Thread::factory()->create();
+        $author = User::factory()->create();
+        Subscription::factory()->create(['user_id' => $author->id(), 'subscriptionable_id' => $thread->id()]);
 
         $this->dispatch(new CreateReply($this->faker->text, $author, $thread));
 
@@ -73,7 +73,7 @@ class SubscriptionsTest extends BrowserKitTestCase
     public function users_are_automatically_subscribed_to_a_thread_after_replying_to_it()
     {
         $user = $this->createUser();
-        $thread = factory(Thread::class)->create();
+        $thread = Thread::factory()->create();
 
         $this->dispatch(new CreateReply($this->faker->text, $user, $thread));
 
@@ -83,7 +83,7 @@ class SubscriptionsTest extends BrowserKitTestCase
     /** @test */
     public function users_can_manually_subscribe_to_threads()
     {
-        factory(Thread::class)->create(['slug' => $slug = $this->faker->slug]);
+        Thread::factory()->create(['slug' => $slug = $this->faker->slug]);
 
         $this->login();
 
@@ -97,8 +97,8 @@ class SubscriptionsTest extends BrowserKitTestCase
     public function users_can_unsubscribe_from_threads()
     {
         $user = $this->createUser();
-        $thread = factory(Thread::class)->create(['slug' => $slug = $this->faker->slug]);
-        factory(Subscription::class)->create(['user_id' => $user->id(), 'subscriptionable_id' => $thread->id()]);
+        $thread = Thread::factory()->create(['slug' => $slug = $this->faker->slug]);
+        Subscription::factory()->create(['user_id' => $user->id(), 'subscriptionable_id' => $thread->id()]);
 
         $this->loginAs($user);
 
@@ -111,7 +111,7 @@ class SubscriptionsTest extends BrowserKitTestCase
     /** @test */
     public function users_can_unsubscribe_through_a_token_link()
     {
-        $subscription = factory(Subscription::class)->create();
+        $subscription = Subscription::factory()->create();
         $thread = $subscription->subscriptionAble();
 
         $this->visit("/subscriptions/{$subscription->uuid()}/unsubscribe")

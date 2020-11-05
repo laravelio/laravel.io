@@ -15,8 +15,8 @@ class UnlikeThreadTest extends TestCase
     /** @test */
     public function we_can_unlike_a_thread()
     {
-        $user = factory(User::class)->create();
-        $thread = factory(Thread::class)->create();
+        $user = User::factory()->create();
+        $thread = Thread::factory()->create();
 
         $thread->likedBy($user);
         $this->assertTrue($thread->fresh()->isLikedBy($user));

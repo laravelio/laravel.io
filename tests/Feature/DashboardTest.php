@@ -27,8 +27,8 @@ class DashboardTest extends BrowserKitTestCase
     public function users_can_see_some_statistics()
     {
         $user = $this->createUser();
-        $thread = factory(Thread::class, 3)->create(['author_id' => $user->id()])->first();
-        $reply = factory(Reply::class, 2)->create([
+        $thread = Thread::factory()->count(3)->create(['author_id' => $user->id()])->first();
+        $reply = Reply::factory()->count(2)->create([
             'author_id' => $user->id(),
             'replyable_id' => $thread->id(),
         ])->first();
@@ -50,8 +50,8 @@ class DashboardTest extends BrowserKitTestCase
 
         $userOne = $this->createUser();
 
-        $thread = factory(Thread::class)->create(['author_id' => $userOne->id()]);
-        $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
+        $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
+        $reply = Reply::factory()->create(['replyable_id' => $thread->id()]);
 
         $userOne->notifications()->create([
             'id' => Str::random(),
@@ -82,8 +82,8 @@ class DashboardTest extends BrowserKitTestCase
 
         $userOne = $this->createUser();
 
-        $thread = factory(Thread::class)->create(['author_id' => $userOne->id()]);
-        $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
+        $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
+        $reply = Reply::factory()->create(['replyable_id' => $thread->id()]);
 
         $notification = $userOne->notifications()->create([
             'id' => Str::random(),
@@ -129,8 +129,8 @@ class DashboardTest extends BrowserKitTestCase
             'email' => 'jane@example.com',
         ]);
 
-        $thread = factory(Thread::class)->create(['author_id' => $userOne->id()]);
-        $reply = factory(Reply::class)->create([
+        $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
+        $reply = Reply::factory()->create([
             'author_id' => $userTwo->id(),
             'replyable_id' => $thread->id(),
         ]);
@@ -164,8 +164,8 @@ class DashboardTest extends BrowserKitTestCase
             'email' => 'jane@example.com',
         ]);
 
-        $thread = factory(Thread::class)->create(['author_id' => $userOne->id()]);
-        $reply = factory(Reply::class)->create([
+        $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
+        $reply = Reply::factory()->create([
             'author_id' => $userTwo->id(),
             'replyable_id' => $thread->id(),
         ]);

@@ -16,7 +16,7 @@ class CreateReplyTest extends TestCase
     public function we_can_create_a_reply()
     {
         $user = $this->createUser();
-        $thread = factory(Thread::class)->create();
+        $thread = Thread::factory()->create();
 
         $this->expectsEvents(ReplyWasCreated::class);
 

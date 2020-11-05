@@ -9,6 +9,7 @@ use App\Models\Reply;
 use App\Models\Series;
 use App\Models\Thread;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 
 final class User extends Authenticatable implements MustVerifyEmail
 {
+    use HasFactory;
     use HasTimestamps;
     use ModelHelpers;
     use Notifiable;

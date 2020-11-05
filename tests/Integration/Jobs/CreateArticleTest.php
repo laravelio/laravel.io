@@ -48,7 +48,7 @@ class CreateArticleTest extends TestCase
     public function we_can_create_an_article_with_a_series()
     {
         $user = $this->createUser();
-        $series = factory(Series::class)->create(['author_id' => $user->id()]);
+        $series = Series::factory()->create(['author_id' => $user->id()]);
 
         $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, false, [
             'original_url' => 'https://laravel.io',

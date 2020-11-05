@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +16,6 @@ class TagSeeder extends Seeder
 
     private function createTag(string $name, string $slug)
     {
-        factory(Tag::class)->create(compact('name', 'slug'));
+        Tag::factory()->create(compact('name', 'slug'));
     }
 }

@@ -24,8 +24,8 @@ class NavigationTest extends BrowserKitTestCase
             'email' => 'jane@example.com',
         ]);
 
-        $thread = factory(Thread::class)->create(['author_id' => $userOne->id()]);
-        $reply = factory(Reply::class)->create([
+        $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
+        $reply = Reply::factory()->create([
             'author_id' => $userTwo->id(),
             'replyable_id' => $thread->id(),
         ]);

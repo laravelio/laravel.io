@@ -9,7 +9,6 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -38,23 +37,12 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-     * Report or log an exception.
+     * Register the exception handling callbacks for the application.
      *
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
+     * @return void
      */
-    public function report(Throwable $exception)
+    public function register()
     {
-        parent::report($exception);
-    }
-
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function render($request, Throwable $exception)
-    {
-        return parent::render($request, $exception);
+        //
     }
 }

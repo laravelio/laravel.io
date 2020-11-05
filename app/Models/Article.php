@@ -10,12 +10,14 @@ use App\Helpers\HasTimestamps;
 use App\Helpers\PreparesSearch;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 
 final class Article extends Model
 {
+    use HasFactory;
     use HasAuthor;
     use HasSlug;
     use HasLikes;
@@ -231,7 +233,7 @@ final class Article extends Model
             ->orderBy('submitted_at', 'desc');
     }
 
-    public function previousInSeries(): ?Article
+    public function previousInSeries(): ?self
     {
         return $this->series
             ->articles()
@@ -241,7 +243,7 @@ final class Article extends Model
             ->first();
     }
 
-    public function nextInSeries(): ?Article
+    public function nextInSeries(): ?self
     {
         return $this->series
             ->articles()

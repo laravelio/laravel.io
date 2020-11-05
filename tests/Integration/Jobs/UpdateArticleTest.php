@@ -16,7 +16,7 @@ class UpdateArticleTest extends TestCase
     public function we_can_update_an_article()
     {
         $user = $this->createUser();
-        $article = factory(Article::class)->create(['author_id' => $user->id()]);
+        $article = Article::factory()->create(['author_id' => $user->id()]);
 
         $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', false));
 
@@ -28,7 +28,7 @@ class UpdateArticleTest extends TestCase
     public function we_can_submit_an_existing_article_for_approval()
     {
         $user = $this->createUser();
-        $article = factory(Article::class)->create(['author_id' => $user->id()]);
+        $article = Article::factory()->create(['author_id' => $user->id()]);
 
         $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', true));
 
@@ -39,7 +39,7 @@ class UpdateArticleTest extends TestCase
     public function we_cannot_update_sumbitted_at_when_saving_changes()
     {
         $user = $this->createUser();
-        $article = factory(Article::class)->create(['author_id' => $user->id(), 'submitted_at' => '2020-06-20 00:00:00']);
+        $article = Article::factory()->create(['author_id' => $user->id(), 'submitted_at' => '2020-06-20 00:00:00']);
 
         $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', false));
 
@@ -51,8 +51,8 @@ class UpdateArticleTest extends TestCase
     public function we_can_update_an_article_with_a_series()
     {
         $user = $this->createUser();
-        $article = factory(Article::class)->create(['author_id' => $user->id()]);
-        $series = factory(Series::class)->create(['author_id' => $user->id()]);
+        $article = Article::factory()->create(['author_id' => $user->id()]);
+        $series = Series::factory()->create(['author_id' => $user->id()]);
 
         $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', true, [
             'original_url' => 'https://laravel.io',
@@ -69,8 +69,8 @@ class UpdateArticleTest extends TestCase
     public function we_can_remove_an_article_from_a_series()
     {
         $user = $this->createUser();
-        $series = factory(Series::class)->create();
-        $article = factory(Article::class)->create(['author_id' => $user->id(), 'series_id' => $series->id]);
+        $series = Series::factory()->create();
+        $article = Article::factory()->create(['author_id' => $user->id(), 'series_id' => $series->id]);
 
         $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', true));
 

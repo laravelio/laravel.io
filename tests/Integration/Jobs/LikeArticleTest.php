@@ -16,8 +16,8 @@ class LikeArticleTest extends TestCase
     /** @test */
     public function we_can_like_an_article()
     {
-        $user = factory(User::class)->create();
-        $article = factory(Article::class)->create();
+        $user = User::factory()->create();
+        $article = Article::factory()->create();
 
         $this->dispatch(new LikeArticle($article, $user));
 
@@ -27,8 +27,8 @@ class LikeArticleTest extends TestCase
     /** @test */
     public function we_cannot_like_an_article_twice()
     {
-        $user = factory(User::class)->create();
-        $article = factory(Article::class)->create();
+        $user = User::factory()->create();
+        $article = Article::factory()->create();
 
         $this->dispatch(new LikeArticle($article, $user));
 

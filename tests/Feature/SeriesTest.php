@@ -15,7 +15,7 @@ class SeriesTest extends BrowserKitTestCase
     public function users_can_view_their_series()
     {
         $user = $this->createUser();
-        factory(Series::class)->create([
+        Series::factory()->create([
             'author_id' => $user->id(),
             'title' => 'My first series',
             'slug' => 'my-first-series',
@@ -31,7 +31,7 @@ class SeriesTest extends BrowserKitTestCase
     public function users_cannot_view_the_series_of_other_users()
     {
         $user = $this->createUser();
-        factory(Series::class)->create([
+        Series::factory()->create([
             'title' => 'Another users series',
             'slug' => 'another-users-series',
         ]);
@@ -46,12 +46,12 @@ class SeriesTest extends BrowserKitTestCase
     public function users_can_see_how_many_articles_in_a_series()
     {
         $user = $this->createUser();
-        $series = factory(Series::class)->create([
+        $series = Series::factory()->create([
             'author_id' => $user->id(),
             'title' => 'My first series',
             'slug' => 'my-first-series',
         ]);
-        factory(Article::class, 2)->create([
+        Article::factory()->count(2)->create([
             'author_id' => $user->id(),
             'series_id' => $series->id(),
         ]);
@@ -72,7 +72,7 @@ class SeriesTest extends BrowserKitTestCase
     /** @test */
     public function users_can_create_a_series()
     {
-        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
+        $tag = Tag::factory()->create(['name' => 'Test Tag']);
 
         $this->login();
 
@@ -101,8 +101,8 @@ class SeriesTest extends BrowserKitTestCase
     public function users_can_edit_a_series()
     {
         $user = $this->createUser();
-        $tag = factory(Tag::class)->create(['name' => 'Test Tag']);
-        factory(Series::class)->create([
+        $tag = Tag::factory()->create(['name' => 'Test Tag']);
+        Series::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-series',
         ]);
@@ -121,7 +121,7 @@ class SeriesTest extends BrowserKitTestCase
     public function users_cannot_edit_a_series_with_a_title_that_is_too_long()
     {
         $user = $this->createUser();
-        factory(Series::class)->create([
+        Series::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-series',
         ]);
@@ -140,7 +140,7 @@ class SeriesTest extends BrowserKitTestCase
     public function users_can_delete_their_own_series()
     {
         $user = $this->createUser();
-        factory(Series::class)->create([
+        Series::factory()->create([
             'author_id' => $user->id(),
             'slug' => 'my-first-series',
         ]);
@@ -155,7 +155,7 @@ class SeriesTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_delete_a_series_they_do_not_own()
     {
-        factory(Series::class)->create(['slug' => 'my-first-thread']);
+        Series::factory()->create(['slug' => 'my-first-thread']);
 
         $this->login();
 

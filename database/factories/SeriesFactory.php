@@ -1,16 +1,35 @@
 <?php
 
+namespace Database\Factories;
+
 use App\Models\Series;
 use App\User;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /* @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(Series::class, function (Faker $faker) {
-    return [
-        'author_id' => function () {
-            return factory(User::class)->create()->id;
-        },
-        'title' => $faker->word,
-        'slug' => $faker->unique()->slug,
-    ];
-});
+
+class SeriesFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Series::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'author_id' => function () {
+                return User::factory()->create()->id;
+            },
+            'title' => $this->faker->word,
+            'slug' => $this->faker->unique()->slug,
+        ];
+    }
+}

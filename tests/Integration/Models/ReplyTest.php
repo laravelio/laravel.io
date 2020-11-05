@@ -15,7 +15,7 @@ class ReplyTest extends TestCase
     {
         $user = $this->createUser();
 
-        $reply = factory(Reply::class)->create();
+        $reply = Reply::factory()->create();
 
         $this->assertFalse($reply->isLikedBy($user));
 

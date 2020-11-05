@@ -16,8 +16,8 @@ class LikeReplyTest extends TestCase
     /** @test */
     public function we_can_like_a_reply()
     {
-        $user = factory(User::class)->create();
-        $reply = factory(Reply::class)->create();
+        $user = User::factory()->create();
+        $reply = Reply::factory()->create();
 
         $this->dispatch(new LikeReply($reply, $user));
 
@@ -27,8 +27,8 @@ class LikeReplyTest extends TestCase
     /** @test */
     public function we_cannot_like_a_reply_twice()
     {
-        $user = factory(User::class)->create();
-        $reply = factory(Reply::class)->create();
+        $user = User::factory()->create();
+        $reply = Reply::factory()->create();
 
         $this->dispatch(new LikeReply($reply, $user));
 

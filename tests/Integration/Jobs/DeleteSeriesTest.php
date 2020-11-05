@@ -14,7 +14,7 @@ class DeleteSeriesTest extends TestCase
     /** @test */
     public function a_series_can_be_deleted()
     {
-        $series = factory(Series::class)->create();
+        $series = Series::factory()->create();
 
         $this->dispatch(new DeleteSeries($series));
 

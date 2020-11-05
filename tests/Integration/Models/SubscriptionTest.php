@@ -13,7 +13,7 @@ class SubscriptionTest extends TestCase
     /** @test */
     public function it_can_get_a_subscription_by_its_uuid()
     {
-        $uuid = factory(Subscription::class)->create()->uuid();
+        $uuid = Subscription::factory()->create()->uuid();
 
         $subscription = Subscription::findByUuidOrFail($uuid);
 

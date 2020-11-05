@@ -16,10 +16,10 @@ class DeleteThreadTest extends TestCase
     /** @test */
     public function we_can_delete_a_thread_and_its_replies()
     {
-        $thread = factory(Thread::class)->create();
-        $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
-        factory(Like::class)->states('thread')->create(['likeable_id' => $thread->id()]);
-        factory(Like::class)->states('reply')->create(['likeable_id' => $reply->id()]);
+        $thread = Thread::factory()->create();
+        $reply = Reply::factory()->create(['replyable_id' => $thread->id()]);
+        Like::factory()->thread()->create(['likeable_id' => $thread->id()]);
+        Like::factory()->reply()->create(['likeable_id' => $reply->id()]);
 
         $this->dispatch(new DeleteThread($thread));
 

@@ -15,8 +15,8 @@ class UnlikeArticleTest extends TestCase
     /** @test */
     public function we_can_unlike_an_article()
     {
-        $user = factory(User::class)->create();
-        $article = factory(Article::class)->create();
+        $user = User::factory()->create();
+        $article = Article::factory()->create();
 
         $article->likedBy($user);
         $this->assertTrue($article->fresh()->isLikedBy($user));

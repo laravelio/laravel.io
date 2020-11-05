@@ -16,8 +16,8 @@ class UnsubscribeFromSubscriptionAbleTest extends TestCase
     public function it_can_unsubscribe_a_user_from_a_thread()
     {
         $user = $this->createUser();
-        $thread = factory(Thread::class)->create();
-        factory(Subscription::class)->create(['user_id' => $user->id(), 'subscriptionable_id' => $thread->id()]);
+        $thread = Thread::factory()->create();
+        Subscription::factory()->create(['user_id' => $user->id(), 'subscriptionable_id' => $thread->id()]);
 
         $this->assertTrue($thread->hasSubscriber($user));
 

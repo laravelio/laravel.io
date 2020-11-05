@@ -14,7 +14,7 @@ class ReplyTest extends BrowserKitTestCase
     /** @test */
     public function users_can_add_a_reply_to_a_thread()
     {
-        $thread = factory(Thread::class)->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
+        $thread = Thread::factory()->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
 
         $this->login();
 
@@ -30,8 +30,8 @@ class ReplyTest extends BrowserKitTestCase
     public function users_can_edit_a_reply()
     {
         $user = $this->createUser();
-        $thread = factory(Thread::class)->create(['slug' => 'the-first-thread']);
-        factory(Reply::class)->create(['author_id' => $user->id(), 'replyable_id' => $thread->id()]);
+        $thread = Thread::factory()->create(['slug' => 'the-first-thread']);
+        Reply::factory()->create(['author_id' => $user->id(), 'replyable_id' => $thread->id()]);
 
         $this->loginAs($user);
 
@@ -45,7 +45,7 @@ class ReplyTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_edit_a_reply_they_do_not_own()
     {
-        factory(Reply::class)->create();
+        Reply::factory()->create();
 
         $this->login();
 
@@ -56,7 +56,7 @@ class ReplyTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_delete_a_reply_they_do_not_own()
     {
-        factory(Reply::class)->create();
+        Reply::factory()->create();
 
         $this->login();
 
@@ -67,9 +67,9 @@ class ReplyTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_mark_a_reply_as_the_solution_of_the_thread_if_they_do_not_own_the_thread()
     {
-        $user = factory(User::class)->create();
-        $thread = factory(Thread::class)->create(['author_id' => $user->id(), 'slug' => 'the-first-thread']);
-        $reply = factory(Reply::class)->create(['replyable_id' => $thread->id()]);
+        $user = User::factory()->create();
+        $thread = Thread::factory()->create(['author_id' => $user->id(), 'slug' => 'the-first-thread']);
+        $reply = Reply::factory()->create(['replyable_id' => $thread->id()]);
 
         $this->login();
 
@@ -80,7 +80,7 @@ class ReplyTest extends BrowserKitTestCase
     /** @test */
     public function users_cannot_reply_to_a_thread_if_the_last_reply_is_older_than_six_months()
     {
-        $thread = factory(Thread::class)->states('old')->create();
+        $thread = Thread::factory()->old()->create();
 
         $this->login();
 
@@ -94,7 +94,7 @@ class ReplyTest extends BrowserKitTestCase
     /** @test */
     public function verified_users_can_see_the_reply_input()
     {
-        $thread = factory(Thread::class)->create();
+        $thread = Thread::factory()->create();
 
         $this->login();
 
@@ -105,7 +105,7 @@ class ReplyTest extends BrowserKitTestCase
     /** @test */
     public function unverified_users_cannot_see_the_reply_input()
     {
-        $thread = factory(Thread::class)->create();
+        $thread = Thread::factory()->create();
 
         $this->login(['email_verified_at' => null]);
 
