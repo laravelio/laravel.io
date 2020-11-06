@@ -28,6 +28,7 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Fathom](https://usefathom.com)
 - [Blackfire.io](https://blackfire.io)
 - [Tinkerwell](https://tinkerwell.app)
+- [Scout APM](https://ter.li/o1adaj)
 
 ## Requirements
 
