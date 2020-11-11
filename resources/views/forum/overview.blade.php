@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-    <div class="container mx-auto px-4 pt-4 flex flex-wrap flex-col-reverse md:flex-row">
+    <div class="container mx-auto px-4 py-4 flex flex-wrap flex-col-reverse md:flex-row">
         <div class="w-full md:w-3/4 md:pr-3">
             @if (count($threads))
                 <div>
@@ -59,7 +59,7 @@
                     @endforeach
                 </div>
 
-                <div class="flex justify-center">
+                <div class="flex justify-center pt-4">
                     {!! $threads->render() !!}
                 </div>
             @else
@@ -71,6 +71,7 @@
                 </div>
             @endif
         </div>
+
         <div class="w-full md:w-1/4 md:pl-3 md:pt-4">
             <a 
                 href="{{ route('threads.create') }}"
