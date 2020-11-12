@@ -21,10 +21,10 @@
   "dependencies": {
     "@flareapp/flare-client": "^1.0.0",
     "@flareapp/flare-webpack-plugin-sourcemap": "^1.0.14",
-    "@tailwindcss/ui": "^0.1.2",
+    "@tailwindcss/ui": "^0.1.4",
     "algoliasearch": "^4.0.3",
     "alpinejs": "^1.12.0",
     "choices.js": "^9.0.1",
-    "tailwindcss": "^1.2.0"
+    "tailwindcss": "^1.9.6"
   }
 }
