@@ -39,7 +39,7 @@
 
     @if ($user->isAdmin())
         <p class="mb-2">
-            <span class="px-2 py-1 rounded text-xs uppercase bg-green-primary text-white px-2 py-1">
+            <span class="px-2 py-1 rounded text-xs uppercase bg-green-500 text-white px-2 py-1">
                 Admin
             </span>
         </p>
@@ -52,7 +52,7 @@
     <div>
         @if ($user->githubUsername())
             <a href="https://github.com/{{ $user->githubUsername() }}"
-               class="text-green-darker text-3xl block flex items-center">
+               class="text-green-700 text-3xl block flex items-center">
                 <span class="flex items-center justify-center">
                     <x-icon-github class="h-5 w-5 mr-2" />
                     <span class="text-base">

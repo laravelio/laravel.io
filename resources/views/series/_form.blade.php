@@ -33,7 +33,7 @@
     <div class="flex justify-end items-center">
         <a
             href="{{ route('user.series') }}"
-            class="text-green-darker mr-4"
+            class="text-green-700 mr-4"
         >
             Cancel
         </a>

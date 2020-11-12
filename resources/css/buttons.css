@@ -7,11 +7,11 @@
 }
 
 .button-primary {
-    @apply text-white bg-green-primary;
+    @apply text-white bg-green-500;
 }
 
 .button-primary:hover {
-    @apply bg-green-dark;
+    @apply bg-green-600;
 }
 
 .button-muted {
@@ -23,11 +23,11 @@
 }
 
 .button-danger {
-    @apply text-white bg-red-primary;
+    @apply text-white bg-red-600;
 }
 
 .button-danger:hover {
-    @apply bg-red-dark;
+    @apply bg-red-600;
 }
 
 .button-dark {

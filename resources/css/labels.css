@@ -12,19 +12,19 @@ span.label:hover {
 }
 
 .label-primary {
-    @apply bg-green-primary text-white;
+    @apply bg-green-500 text-white;
 }
 
 a.label-primary:hover,
 button.label-primary:hover {
-    @apply bg-green-dark;
+    @apply bg-green-600;
 }
 
 .label-danger {
-    @apply bg-red-primary text-white;
+    @apply bg-red-600 text-white;
 }
 
 a.label-danger:hover,
 button.label-danger:hover {
-    @apply bg-red-dark;
+    @apply bg-red-600;
 }

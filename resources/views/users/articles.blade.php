@@ -33,7 +33,7 @@
                         @endif
 
                         @foreach ($article->tags() as $tag)
-                            <span class="rounded-full bg-green-light text-green-primary inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5">
+                            <span class="rounded-full bg-green-200 text-green-500 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5">
                                 {{ $tag->name() }}
                             </span>
                         @endforeach
