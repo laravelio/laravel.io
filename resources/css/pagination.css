@@ -3,7 +3,7 @@ ul.pagination {
 }
 
 li.page-item {
-    @apply flex items-center justify-center mx-1 text-lg border rounded h-6 py-4 px-3 text-center bg-white text-green-dark mb-2;
+    @apply flex items-center justify-center mx-1 text-lg border rounded h-6 py-4 px-3 text-center bg-white text-green-600 mb-2;
     min-width: 1.5rem;
 }
 
@@ -16,7 +16,7 @@ li.page-item:last-child {
 }
 
 li.page-item.active {
-    @apply bg-green-dark text-white;
+    @apply bg-green-600 text-white;
 }
 
 li.page-item.disabled {

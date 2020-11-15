@@ -43,7 +43,7 @@
                                 @endif
                             </td>
                             <td style="text-align:center;">
-                                <a href="{{ route('profile', $user->username()) }}" class="text-green-dark">
+                                <a href="{{ route('profile', $user->username()) }}" class="text-green-600">
                                     <x-heroicon-o-cog class="h-5 w-5"/>
                                 </a>
                             </td>

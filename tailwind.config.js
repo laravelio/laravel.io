@@ -5,14 +5,15 @@ module.exports = {
         extend: {
             colors: {
                 green: {
-                    light: '#baebe1',
-                    primary: '#18bc9c',
-                    dark: '#15a589',
-                    darker: '#12826c',
-                },
-                red: {
-                    primary: '#e53e3e',
-                    dark: '#c53030',
+                    100: '#d1f2eb',
+                    200: '#a3e4d7',
+                    300: '#74d7c4',
+                    400: '#46c9b0',
+                    500: '#18bc9c',
+                    600: '#15a589',
+                    700: '#0e715e',
+                    800: '#0a4b3e',
+                    900: '#05261f',
                 },
             },
             fontFamily: {

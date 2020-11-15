@@ -36,5 +36,5 @@
 @endsection
 
 @section('small-content-after')
-    <a href="{{ route('password.forgot') }}" class="block text-center text-green-darker">Forgot your password?</a>
+    <a href="{{ route('password.forgot') }}" class="block text-center text-green-700">Forgot your password?</a>
 @endsection

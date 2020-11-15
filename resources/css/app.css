@@ -30,7 +30,7 @@ svg .primary {
 }
 
 svg .secondary {
-    @apply text-green-primary fill-current;
+    @apply text-green-500 fill-current;
 }
 
 [x-cloak] {
@@ -38,7 +38,7 @@ svg .secondary {
 }
 
 nav.dashboard-nav a.active {
-    @apply border-green-primary text-green-primary;
+    @apply border-green-500 text-green-500;
 }
 
 .nav a {
@@ -46,15 +46,15 @@ nav.dashboard-nav a.active {
 }
 
 .nav a:hover {
-    @apply text-gray-700 border-green-primary;
+    @apply text-gray-700 border-green-500;
 }
 
 .nav a.active {
-    @apply border-green-primary text-gray-900;
+    @apply border-green-500 text-gray-900;
 }
 
 .nav a.active:focus {
-    @apply border-green-dark;
+    @apply border-green-600;
 }
 
 .nav .dropdown a {
@@ -70,7 +70,7 @@ nav.dashboard-nav a.active {
 }
 
 a > span > em {
-    @apply bg-green-light;
+    @apply bg-green-200;
 }
 
 .search {

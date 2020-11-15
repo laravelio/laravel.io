@@ -27,7 +27,7 @@ div.forum-content h3 {
 }
 
 div.forum-content a {
-    @apply text-green-dark;
+    @apply text-green-600;
 }
 
 div.forum-content blockquote {

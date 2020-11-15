@@ -34,7 +34,7 @@ input[type='checkbox'] {
 }
 
 .help-block {
-    @apply text-red-primary text-sm;
+    @apply text-red-500 text-sm;
 }
 
 /** Markdown editor **/
@@ -84,7 +84,7 @@ input[type='checkbox'] {
 }
 
 .choices__item.choices__item--selectable {
-    @apply bg-green-primary border-green-primary text-white !important;
+    @apply bg-green-500 border-green-500 text-white !important;
 }
 
 .choices__list--single > .choices__item.choices__item--selectable {
@@ -92,7 +92,7 @@ input[type='checkbox'] {
 }
 
 .choices__item.is-highlighted {
-    @apply bg-green-dark border-green-dark text-white !important;
+    @apply bg-green-600 border-green-600 text-white !important;
 }
 
 .choices[data-type*='select-one']:after {

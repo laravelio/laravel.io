@@ -11,7 +11,7 @@
             <div class="form-group">
                 <div>
                     <img class="rounded-full" src="{{ Auth::user()->gravatarUrl(100) }}">
-                    <span class="text-gray-600 text-sm">Change your avatar on <a href="https://gravatar.com/" class="text-green-darker">Gravatar</a>.</span>
+                    <span class="text-gray-600 text-sm">Change your avatar on <a href="https://gravatar.com/" class="text-green-700">Gravatar</a>.</span>
                 </div>
             </div>
 
@@ -28,7 +28,7 @@
                 @unless(Auth::user()->hasVerifiedEmail())
                     <span class="text-gray-600 text-sm">
                         This email address is not verified yet.
-                        <a href="{{ route('verification.notice') }}" class="text-green-primary">Resend verification email.</a>
+                        <a href="{{ route('verification.notice') }}" class="text-green-500">Resend verification email.</a>
                     </span>
                 @endunless
 
@@ -56,7 +56,7 @@
 
     @unless (Auth::user()->isAdmin())
         <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100 mb-8">
-            <h3 class="text-red-primary uppercase mb-4">Danger Zone</h3>
+            <h3 class="text-red-500 uppercase mb-4">Danger Zone</h3>
             <p class="mb-8">Please be aware that deleting your account will also remove all of your data, including your threads and replies. This cannot be undone.</p>
             <div class="flex">
                 <a href="javascript:" class="button button-danger" @click.prevent="activeModal = 'delete-user'">Delete Account</a>

@@ -19,7 +19,7 @@
             <div class="bg-gray-400 rounded p-2 mb-4 text-gray-700">
                 <p>
                     Please make sure you've read our
-                    <a href="{{ route('rules') }}" class="text-green-darker">Forum Rules</a> before updating this thread.
+                    <a href="{{ route('rules') }}" class="text-green-700">Forum Rules</a> before updating this thread.
                 </p>
             </div>
 
