@@ -2,15 +2,15 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\NotificationCount;
+use App\Http\Livewire\Notifications;
 use App\Models\Reply;
 use App\Models\Thread;
-use Livewire\Livewire;
-use Illuminate\Support\Str;
-use Illuminate\Support\HtmlString;
-use App\Http\Livewire\Notifications;
-use App\Http\Livewire\NotificationCount;
 use App\Notifications\NewReplyNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
+use Livewire\Livewire;
 
 class DashboardTest extends BrowserKitTestCase
 {
@@ -170,7 +170,7 @@ class DashboardTest extends BrowserKitTestCase
             'replyable_id' => $thread->id(),
         ]);
 
-        for ($i = 0; $i < 10; ++$i) {
+        for ($i = 0; $i < 10; $i++) {
             $userOne->notifications()->create([
                 'id' => Str::random(),
                 'type' => NewReplyNotification::class,
