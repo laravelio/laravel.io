@@ -45,7 +45,7 @@
                         @endif
                         <div class="w-full flex justify-end">
                             <a href="{{ route('series.edit', $set->slug()) }}">
-                                <span class="bg-green-500 text-white rounded px-2 py-1">
+                                <span class="bg-lio-500 text-white rounded px-2 py-1">
                                     Edit
                                 </span>
                             </a>

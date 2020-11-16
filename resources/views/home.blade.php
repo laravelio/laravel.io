@@ -18,23 +18,23 @@
                     <div class="mt-5 max-w-lg mx-auto sm:flex sm:justify-center md:mt-8">
                         @if (Auth::guest())
                             <div class="rounded-md shadow">
-                                <a href="{{ route('register') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                <a href="{{ route('register') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-lio-600 hover:bg-lio-500 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                     Join the Community
                                 </a>
                             </div>
                             <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                                <a href="{{ route('forum') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-green-500 bg-white hover:text-green-600 focus:outline-none focus:shadow-outline-blue transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                <a href="{{ route('forum') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-lio-500 bg-white hover:text-lio-600 focus:outline-none focus:shadow-outline-blue transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                     Visit the Forum
                                 </a>
                             </div>
                         @else
                             <div class="rounded-md shadow">
-                                <a href="{{ route('threads.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                <a href="{{ route('threads.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-lio-600 hover:bg-lio-500 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                     Start a Thread
                                 </a>
                             </div>
                             <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                                <a href="{{ route('articles.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                <a href="{{ route('articles.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-lio-600 hover:bg-lio-500 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                     Share an Article
                                 </a>
                             </div>
@@ -55,7 +55,7 @@
             <div class="flex flex-wrap w-full md:w-2/3 mx-auto justify-center">
                 <div class="w-full md:w-1/3 h-48 flex justify-center mb-4">
                     <div class="flex flex-col items-center text-center">
-                        <x-heroicon-s-user-group class="text-green-500 w-32"/>
+                        <x-heroicon-s-user-group class="text-lio-500 w-32"/>
 
                         <div class="text-gray-800 uppercase mt-4">
                             <span class="text-2xl block">{{ $totalUsers }}</span>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="w-full md:w-1/3 h-48 flex justify-center mb-4">
                     <div class="flex flex-col items-center text-center">
-                        <x-heroicon-o-document-report class="text-green-500 w-32"/>
+                        <x-heroicon-o-document-report class="text-lio-500 w-32"/>
                         <div class="text-gray-800 uppercase mt-4">
                             <span class="text-2xl block">{{ $totalThreads }}</span>
                             <span class="text-gray-600">threads</span>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="w-full md:w-1/3 h-48 flex justify-center">
                     <div class="flex flex-col items-center text-center">
-                        <x-heroicon-o-clock class="text-green-500 w-32"/>
+                        <x-heroicon-o-clock class="text-lio-500 w-32"/>
                         <div class="text-gray-800 uppercase mt-4">
                             <span class="text-2xl block">{{ $resolutionTime }} days</span>
                             <span class="text-gray-600">average resolution</span>
@@ -102,7 +102,7 @@
             <div class="flex flex-col items-center">
                 <div class="text-lg text-center mb-8 text-gray-700">
                     Can't find what you're looking for?
-                    <a href="{{ route('threads.create') }}" class="text-green-700">
+                    <a href="{{ route('threads.create') }}" class="text-lio-700">
                         Create a new thread
                     </a>
                 </div>
@@ -129,7 +129,7 @@
                                 @include('forum.threads.info.avatar', ['user' => $latestThread->author()])
 
                                 <div class="mr-6 text-gray-700">
-                                    <a href="{{ route('profile', $latestThread->author()->username()) }}" class="text-green-700 mr-2">{{ $latestThread->author()->name() }}</a> posted
+                                    <a href="{{ route('profile', $latestThread->author()->username()) }}" class="text-lio-700 mr-2">{{ $latestThread->author()->name() }}</a> posted
                                     {{ $latestThread->createdAt()->diffForHumans() }}
                                 </div>
                             </div>

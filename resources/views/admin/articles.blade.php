@@ -31,7 +31,7 @@
                             <td>{{ $article->author()->name() }}</td>
                             <td>{{ $article->submittedAt()->format('j M Y H:i:s') }}</td>
                             <td style="text-align:center;">
-                                <a href="{{ route('articles.show', $article->slug()) }}" class="text-green-600">
+                                <a href="{{ route('articles.show', $article->slug()) }}" class="text-lio-600">
                                     <x-heroicon-o-cog class="h-5 w-5"/>
                                 </a>
                             </td>

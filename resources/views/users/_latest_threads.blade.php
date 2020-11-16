@@ -39,12 +39,12 @@
                                 @if (count($thread->replies()))
                                     @php($lastReply = $thread->replies()->last())
                                     <a href="{{ route('profile', $lastReply->author()->username()) }}"
-                                       class="text-green-700">
+                                       class="text-lio-700">
                                         {{ $lastReply->author()->isLoggedInUser() ? 'You' : $lastReply->author()->name() }}
                                     </a> replied {{ $lastReply->createdAt()->diffForHumans() }}
                                 @else
                                     <a href="{{ route('profile', $thread->author()->username()) }}"
-                                       class="text-green-700">
+                                       class="text-lio-700">
                                         {{ $thread->author()->isLoggedInUser() ? 'You' : $thread->author()->name() }}
                                     </a> posted {{ $thread->createdAt()->diffForHumans() }}
                                 @endif

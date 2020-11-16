@@ -12,12 +12,12 @@ span.label:hover {
 }
 
 .label-primary {
-    @apply bg-green-500 text-white;
+    @apply bg-lio-500 text-white;
 }
 
 a.label-primary:hover,
 button.label-primary:hover {
-    @apply bg-green-600;
+    @apply bg-lio-600;
 }
 
 .label-danger {
