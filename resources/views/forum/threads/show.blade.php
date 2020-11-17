@@ -22,7 +22,7 @@
 
                                 <div class="mr-6 mb-4 md:mb-0 text-gray-700">
                                     <a href="{{ route('profile', $thread->author()->username()) }}"
-                                       class="text-green-700 mr-2">
+                                       class="text-lio-700 mr-2">
                                         {{ $thread->author()->name() }}
                                     </a> posted {{ $thread->createdAt()->diffForHumans() }}
                                 </div>
@@ -51,10 +51,10 @@
                 </div>
 
                 @foreach ($thread->replies() as $reply)
-                    <div class="reply mt-8 bg-white rounded {{ $thread->isSolutionReply($reply) ? 'border-2 border-green-500' : 'border' }}" id="{{ $reply->id }}">
+                    <div class="reply mt-8 bg-white rounded {{ $thread->isSolutionReply($reply) ? 'border-2 border-lio-500' : 'border' }}" id="{{ $reply->id }}">
 
                         @if ($thread->isSolutionReply($reply))
-                            <div class="bg-green-500 text-white uppercase px-4 py-2 opacity-75">
+                            <div class="bg-lio-500 text-white uppercase px-4 py-2 opacity-75">
                                 Solution
                             </div>
                         @endif
@@ -66,7 +66,7 @@
                                         @include('forum.threads.info.avatar', ['user' => $reply->author()])
 
                                         <div class="mr-6 mb-4 md:mb-0 text-gray-700">
-                                            <a href="{{ route('profile', $reply->author()->username()) }}" class="text-green-700">
+                                            <a href="{{ route('profile', $reply->author()->username()) }}" class="text-lio-700">
                                                 {{ $reply->author()->name() }}
                                             </a> replied
                                             {{ $reply->createdAt()->diffForHumans() }}
@@ -139,7 +139,7 @@
                 @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
                     @if ($thread->isConversationOld())
                         <div class="bg-gray-400 rounded p-4 text-gray-700 my-8">
-                            The last reply to this thread was more than six months ago. Please consider <a href="{{ route('threads.create') }}" class="text-green-600">opening a new thread</a> if you have a similar question.
+                            The last reply to this thread was more than six months ago. Please consider <a href="{{ route('threads.create') }}" class="text-lio-600">opening a new thread</a> if you have a similar question.
                         </div>
                     @else
                         <div class="my-8">
@@ -162,7 +162,7 @@
 
                                 <div class="flex justify-between items-center mt-4">
                                     <p class="text-sm text-gray-500 mr-8">
-                                        Please make sure you've read our <a href="{{ route('rules') }}" class="text-green-600">Forum Rules</a> before replying to this thread.
+                                        Please make sure you've read our <a href="{{ route('rules') }}" class="text-lio-600">Forum Rules</a> before replying to this thread.
                                     </p>
 
                                     <button type="submit" class="button button-primary">Reply</button>
@@ -174,14 +174,14 @@
                 @else
                     @if (Auth::guest())
                         <p class="text-center text-gray-800 border-t py-8">
-                            <a href="{{ route('login') }}" class="text-green-700">Sign in</a> to participate in this thread!
+                            <a href="{{ route('login') }}" class="text-lio-700">Sign in</a> to participate in this thread!
                         </p>
                     @else
                         <div class="bg-gray-400 rounded p-4 text-gray-700 my-8">
                             <p>You'll need to verify your account before participating in this thread.</p>
                             <form action="{{ route('verification.resend') }}" method="POST" class="w-full">
                                 @csrf
-                                <button type="submit" class="text-green-600">Click here to resend the verification link.</button>
+                                <button type="submit" class="text-lio-600">Click here to resend the verification link.</button>
                             </form>
                         </div>
                     @endif

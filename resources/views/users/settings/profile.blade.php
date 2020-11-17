@@ -11,7 +11,7 @@
             <div class="form-group">
                 <div>
                     <img class="rounded-full" src="{{ Auth::user()->gravatarUrl(100) }}">
-                    <span class="text-gray-600 text-sm">Change your avatar on <a href="https://gravatar.com/" class="text-green-700">Gravatar</a>.</span>
+                    <span class="text-gray-600 text-sm">Change your avatar on <a href="https://gravatar.com/" class="text-lio-700">Gravatar</a>.</span>
                 </div>
             </div>
 
@@ -28,7 +28,7 @@
                 @unless(Auth::user()->hasVerifiedEmail())
                     <span class="text-gray-600 text-sm">
                         This email address is not verified yet.
-                        <a href="{{ route('verification.notice') }}" class="text-green-500">Resend verification email.</a>
+                        <a href="{{ route('verification.notice') }}" class="text-lio-500">Resend verification email.</a>
                     </span>
                 @endunless
 

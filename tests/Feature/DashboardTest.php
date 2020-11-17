@@ -71,7 +71,7 @@ class DashboardTest extends BrowserKitTestCase
 
         Livewire::test(Notifications::class)
             ->assertSee(new HtmlString(
-                "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-green-700\">\"{$thread->subject()}\"</a>.",
+                "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-lio-700\">\"{$thread->subject()}\"</a>.",
             ));
     }
 
@@ -103,11 +103,11 @@ class DashboardTest extends BrowserKitTestCase
 
         Livewire::test(Notifications::class)
             ->assertSee(new HtmlString(
-                "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-green-700\">\"{$thread->subject()}\"</a>.",
+                "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-lio-700\">\"{$thread->subject()}\"</a>.",
             ))
             ->call('markAsRead', $notification->id)
             ->assertDontSee(new HtmlString(
-                "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-green-700\">\"{$thread->subject()}\"</a>.",
+                "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-lio-700\">\"{$thread->subject()}\"</a>.",
             ))
             ->assertEmitted('NotificationMarkedAsRead');
     }

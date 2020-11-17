@@ -7,11 +7,11 @@
 }
 
 .button-primary {
-    @apply text-white bg-green-500;
+    @apply text-white bg-lio-500;
 }
 
 .button-primary:hover {
-    @apply bg-green-600;
+    @apply bg-lio-600;
 }
 
 .button-muted {

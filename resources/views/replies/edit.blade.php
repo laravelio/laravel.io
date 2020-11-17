@@ -28,7 +28,7 @@
                     @endFormGroup
 
                     <div class="flex items-center justify-end">
-                        <a href="{{ route_to_reply_able($reply->replyAble()) }}" class="text-green-700 mr-4">Cancel</a>
+                        <a href="{{ route_to_reply_able($reply->replyAble()) }}" class="text-lio-700 mr-4">Cancel</a>
                         <button type="submit" class="button button-primary">Update</button>
                     </div>
                 </form>

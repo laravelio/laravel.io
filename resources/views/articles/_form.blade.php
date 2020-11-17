@@ -73,13 +73,13 @@
     <div class="px-4 pb-4">
         <button 
             type="button" 
-            class="text-green-700" 
+            class="text-lio-700" 
             @click="showAdvanced = !showAdvanced" 
             x-text="showAdvanced ? 'Hide advanced options' : 'Show advanced options'"
         ></button>
 
         <div class="flex justify-end items-center">
-            <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('user.articles') }}" class="text-green-700 mr-4">
+            <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('user.articles') }}" class="text-lio-700 mr-4">
                 Cancel
             </a>
 

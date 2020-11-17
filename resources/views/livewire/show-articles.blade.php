@@ -8,7 +8,7 @@
             <div class="pb-8 mb-8 border-b-2">
                 <div>
                     @foreach ($article->tags() as $tag)
-                        <button class="inline-block focus:outline-none rounded-full {{ $tag->slug() === $selectedTag ? 'bg-green-500 text-white shadow-outline-green' : 'bg-green-200 text-green-500' }}" wire:click="toggleTag('{{ $tag->slug() }}')">
+                        <button class="inline-block focus:outline-none rounded-full {{ $tag->slug() === $selectedTag ? 'bg-lio-500 text-white shadow-outline-green' : 'bg-lio-200 text-lio-500' }}" wire:click="toggleTag('{{ $tag->slug() }}')">
                             <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5">
                                 {{ $tag->name() }}
                             </span>
@@ -18,7 +18,7 @@
                 <a href="{{ route('articles.show', $article->slug()) }}" class="block">
                     <span class="mt-4 flex items-center">
                         @if ($article->isPinned())
-                            <x-zondicon-pin class="w-5 h-5 text-green-500 mr-2"/>
+                            <x-zondicon-pin class="w-5 h-5 text-lio-500 mr-2"/>
                         @endif
                         
                         <h3 class="text-xl leading-7 font-semibold text-gray-900">
@@ -70,13 +70,13 @@
 
     <div class="w-full lg:w-1/4 lg:pt-8 lg:pl-4">
         <span class="relative z-0 inline-flex shadow-sm mb-8">
-            <button wire:click="sortBy('recent')" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-green-200 focus:shadow-outline-green active:bg-green-500 active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'recent' ? 'bg-green-500 text-white border-green-500 shadow-outline-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
+            <button wire:click="sortBy('recent')" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-lio-200 focus:shadow-outline-green active:bg-lio-500 active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'recent' ? 'bg-lio-500 text-white border-lio-500 shadow-outline-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
                 Recent
             </button>
-            <button wire:click="sortBy('popular')" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-green-200 focus:shadow-outline-green active:bg-green-500 active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'popular' ? 'bg-green-500 text-white border-green-500 shadow-outline-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
+            <button wire:click="sortBy('popular')" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-lio-200 focus:shadow-outline-green active:bg-lio-500 active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'popular' ? 'bg-lio-500 text-white border-lio-500 shadow-outline-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
                 Popular
             </button>
-            <button wire:click="sortBy('trending')" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-green-200 focus:shadow-outline-green active:bg-green-500 active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'trending' ? 'bg-green-500 text-white border-green-500 shadow-outline-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
+            <button wire:click="sortBy('trending')" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-lio-200 focus:shadow-outline-green active:bg-lio-500 active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'trending' ? 'bg-lio-500 text-white border-lio-500 shadow-outline-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
                 Trending 🔥
             </button>
         </span>

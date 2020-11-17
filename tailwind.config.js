@@ -4,7 +4,7 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                green: {
+                lio: {
                     100: '#d1f2eb',
                     200: '#a3e4d7',
                     300: '#74d7c4',

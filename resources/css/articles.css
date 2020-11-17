@@ -43,7 +43,7 @@
 }
 
 .article p code {
-    @apply bg-green-200 px-1 text-base;
+    @apply bg-lio-200 px-1 text-base;
 }
 
 .article ul {
@@ -65,9 +65,9 @@
 }
 
 .article blockquote {
-    @apply border-l-4 border-green-500 pl-4 ml-4;
+    @apply border-l-4 border-lio-500 pl-4 ml-4;
 }
 
 .article a {
-    @apply underline text-green-700;
+    @apply underline text-lio-700;
 }

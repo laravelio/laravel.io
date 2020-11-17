@@ -84,7 +84,7 @@ input[type='checkbox'] {
 }
 
 .choices__item.choices__item--selectable {
-    @apply bg-green-500 border-green-500 text-white !important;
+    @apply bg-lio-500 border-lio-500 text-white !important;
 }
 
 .choices__list--single > .choices__item.choices__item--selectable {
@@ -92,7 +92,7 @@ input[type='checkbox'] {
 }
 
 .choices__item.is-highlighted {
-    @apply bg-green-600 border-green-600 text-white !important;
+    @apply bg-lio-600 border-lio-600 text-white !important;
 }
 
 .choices[data-type*='select-one']:after {
