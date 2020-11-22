@@ -26,12 +26,14 @@
         "league/commonmark": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^1.0",
+        "ohdearapp/ohdear-php-sdk": "^3.0",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^4.1",
         "roave/security-advisories": "dev-master",
         "spatie/laravel-backup": "^6.11",
         "spatie/laravel-feed": "^2.6",
         "spatie/laravel-robots-middleware": "^1.2",
+        "spatie/laravel-schedule-monitor": "^2.0",
         "yarri/link-finder": "^2.5"
     },
     "require-dev": {
