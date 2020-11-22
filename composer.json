@@ -32,7 +32,6 @@
         "spatie/laravel-backup": "^6.11",
         "spatie/laravel-feed": "^2.6",
         "spatie/laravel-robots-middleware": "^1.2",
-        "thenpingme/laravel": "^2.2",
         "yarri/link-finder": "^2.5"
     },
     "require-dev": {
