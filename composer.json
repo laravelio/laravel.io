@@ -30,7 +30,6 @@
         "predis/predis": "^1.1",
         "ramsey/uuid": "^4.1",
         "roave/security-advisories": "dev-master",
-        "spatie/laravel-backup": "^6.11",
         "spatie/laravel-feed": "^2.6",
         "spatie/laravel-robots-middleware": "^1.2",
         "spatie/laravel-schedule-monitor": "^2.0",
