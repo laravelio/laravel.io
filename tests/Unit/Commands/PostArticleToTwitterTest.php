@@ -18,7 +18,7 @@ class PostArticleToTwitterTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         Notification::fake();
     }
 
@@ -38,11 +38,11 @@ class PostArticleToTwitterTest extends TestCase
             PostArticleToTwitterNotification::class,
             function ($notification, $channels, $notifiable) use ($article) {
                 $tweet = $notification->generateTweet();
-                return (
+
+                return
                     Str::contains($tweet, 'My First Article') &&
-                    Str::contains($tweet, route('articles.show', $article->slug()))
-                );
-            }
+                    Str::contains($tweet, route('articles.show', $article->slug()));
+            },
         );
 
         $this->assertTrue($article->fresh()->isShared());
@@ -66,9 +66,9 @@ class PostArticleToTwitterTest extends TestCase
         Notification::assertSentTo(
             new AnonymousNotifiable(),
             PostArticleToTwitterNotification::class,
-            function ($notification, $channels, $notifiable) use ($user) {
+            function ($notification, $channels, $notifiable) {
                 return Str::contains($notification->generateTweet(), '@_joedixon');
-            }
+            },
         );
     }
 
@@ -91,9 +91,9 @@ class PostArticleToTwitterTest extends TestCase
         Notification::assertSentTo(
             new AnonymousNotifiable(),
             PostArticleToTwitterNotification::class,
-            function ($notification, $channels, $notifiable) use ($user) {
+            function ($notification, $channels, $notifiable) {
                 return Str::contains($notification->generateTweet(), 'Joe Dixon');
-            }
+            },
         );
     }
 
