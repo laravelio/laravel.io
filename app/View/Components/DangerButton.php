@@ -8,7 +8,6 @@ class DangerButton extends Component
 {
     public $type;
 
-
     public function __construct(?string $type = 'button')
     {
         $this->type = $type;

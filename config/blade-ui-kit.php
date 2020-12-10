@@ -1,8 +1,6 @@
 <?php
 
 use BladeUIKit\Components;
-use App\View\Components\Forms\Label;
-use App\View\Components\Forms\Inputs\Textarea;
 
 return [
 
