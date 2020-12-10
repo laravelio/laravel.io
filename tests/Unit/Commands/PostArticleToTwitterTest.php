@@ -18,6 +18,7 @@ class PostArticleToTwitterTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        
         Notification::fake();
     }
 

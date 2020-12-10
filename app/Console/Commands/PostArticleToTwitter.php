@@ -18,6 +18,7 @@ final class PostArticleToTwitter extends Command
     public function __construct(AnonymousNotifiable $notifiable)
     {
         parent::__construct();
+        
         $this->notifiable = $notifiable;
     }
 
