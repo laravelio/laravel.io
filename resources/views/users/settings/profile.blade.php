@@ -41,9 +41,9 @@
                 @error('username')
             @endFormGroup
 
-            @formGroup('twitter_handle')
-                <label for="twitter_handle">Twitter handle</label>
-                <input type="text" name="twitter_handle" id="twitter_handle" value="{{ Auth::user()->twitterHandle() }}" />
+            @formGroup('twitter')
+                <label for="twitter">Twitter handle</label>
+                <input type="text" name="twitter" id="twitter" value="{{ Auth::user()->twitter() }}" />
                 @error('twitter_handle')
             @endFormGroup
 

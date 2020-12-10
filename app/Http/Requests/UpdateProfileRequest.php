@@ -12,7 +12,7 @@ class UpdateProfileRequest extends Request
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email,'.Auth::id(),
             'username' => 'required|alpha_dash|max:255|unique:users,username,'.Auth::id(),
-            'twitter_handle' => 'max:255|nullable|unique:users,twitter_handle,'.Auth::id(),
+            'twitter' => 'max:255|nullable|unique:users,twitter,'.Auth::id(),
             'bio' => 'max:160',
         ];
     }
@@ -37,8 +37,8 @@ class UpdateProfileRequest extends Request
         return (string) $this->get('username');
     }
 
-    public function twitterHandle(): ?string
+    public function twitter(): ?string
     {
-        return $this->get('twitter_handle');
+        return $this->get('twitter');
     }
 }

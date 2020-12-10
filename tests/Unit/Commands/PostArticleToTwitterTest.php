@@ -38,8 +38,10 @@ class PostArticleToTwitterTest extends TestCase
             PostArticleToTwitterNotification::class,
             function ($notification, $channels, $notifiable) use ($article) {
                 $tweet = $notification->generateTweet();
-                return Str::contains($tweet, 'My First Article') &&
-                Str::contains($tweet, route('articles.show', $article->slug()));
+                return (
+                    Str::contains($tweet, 'My First Article') &&
+                    Str::contains($tweet, route('articles.show', $article->slug()))
+                );
             }
         );
 
@@ -50,7 +52,7 @@ class PostArticleToTwitterTest extends TestCase
     public function articles_are_shared_with_twitter_handle()
     {
         $user = $this->createUser([
-            'twitter_handle' => '_joedixon',
+            'twitter' => '_joedixon',
         ]);
 
         factory(Article::class)->create([

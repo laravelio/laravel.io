@@ -34,7 +34,7 @@ class PostArticleToTwitter extends Notification
         $title = $this->article->title();
         $url = route('articles.show', $this->article->slug());
         $author = $this->article->author();
-        $author = $author->twitterHandle() ? "@{$author->twitterHandle()}" : $author->name();
+        $author = $author->twitter() ? "@{$author->twitter()}" : $author->name();
 
         return "{$title} by {$author}\n\n{$url}";
     }

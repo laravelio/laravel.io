@@ -27,13 +27,13 @@ class SettingsTest extends BrowserKitTestCase
                 'name' => 'Freek Murze',
                 'email' => 'freek@example.com',
                 'username' => 'freekmurze',
-                'twitter_handle' => 'freek-murze',
+                'twitter' => 'freektwitter',
                 'bio' => 'My bio',
             ])
             ->seePageIs('/settings')
             ->see('Freek Murze')
             ->see('freekmurze')
-            ->see('freek-murze')
+            ->see('freektwitter')
             ->see('Settings successfully saved!')
             ->see('My bio');
     }
@@ -113,9 +113,9 @@ class SettingsTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function twitter_handle_is_optional()
+    public function twitter_is_optional()
     {
-        $user = $this->createUser(['email' => 'freek@example.com', 'username' => 'freekmurze', 'twitter_handle' => 'freek-murze']);
+        $user = $this->createUser(['email' => 'freek@example.com', 'username' => 'freekmurze', 'twitter' => 'freektwitter']);
 
         $this->loginAs($user);
 
@@ -124,12 +124,12 @@ class SettingsTest extends BrowserKitTestCase
                 'name' => 'Freek Murze',
                 'email' => 'freek@example.com',
                 'username' => 'freekmurze',
-                'twitter_handle' => '',
+                'twitter' => '',
             ])
             ->seePageIs('/settings')
-            ->dontSee('freek-murze');
+            ->dontSee('freektwitter');
 
-        $this->assertNull($user->fresh()->twitterHandle());
+        $this->assertNull($user->fresh()->twitter());
     }
 
     private function assertPasswordWasHashedAndSaved(): void

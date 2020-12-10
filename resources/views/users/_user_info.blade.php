@@ -62,13 +62,13 @@
             </a>
         @endif
 
-        @if ($user->twitterHandle())
-            <a href="https://twitter.com/{{ $user->twitterHandle() }}"
+        @if ($user->twitter())
+            <a href="https://twitter.com/{{ $user->twitter() }}"
                class="text-lio-700 text-3xl block flex items-center">
                 <span class="flex items-center justify-center mb-1">
                     <x-icon-twitter class="h-5 w-5 mr-2" />
                     <span class="text-base">
-                        {{ '@' . $user->twitterHandle() }}
+                        {{ '@' . $user->twitter() }}
                     </span>
                 </span>
             </a>

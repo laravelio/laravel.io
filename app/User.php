@@ -39,7 +39,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
-        'twitter_handle',
+        'twitter',
         'username',
         'password',
         'ip',
@@ -85,9 +85,9 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->github_username;
     }
 
-    public function twitterHandle(): ?string
+    public function twitter(): ?string
     {
-        return $this->twitter_handle;
+        return $this->twitter;
     }
 
     public function gravatarUrl($size = 100): string
