@@ -20,7 +20,7 @@ class ProfileController extends Controller
 
     public function edit()
     {
-        return view('users.settings.profile');
+        return view('users.settings.settings');
     }
 
     public function update(UpdateProfileRequest $request)
