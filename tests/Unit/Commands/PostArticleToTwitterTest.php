@@ -25,7 +25,7 @@ class PostArticleToTwitterTest extends TestCase
     /** @test */
     public function published_articles_can_be_shared_on_twitter()
     {
-        $article = factory(Article::class)->create([
+        $article = Article::factory()->create([
             'title' => 'My First Article',
             'submitted_at' => now(),
             'approved_at' => now(),
@@ -55,7 +55,7 @@ class PostArticleToTwitterTest extends TestCase
             'twitter' => '_joedixon',
         ]);
 
-        factory(Article::class)->create([
+        Article::factory()->create([
             'author_id' => $user->id(),
             'submitted_at' => now(),
             'approved_at' => now(),
@@ -79,7 +79,7 @@ class PostArticleToTwitterTest extends TestCase
             'name' => 'Joe Dixon',
         ]);
 
-        factory(Article::class)->create([
+        Article::factory()->create([
             'author_id' => $user->id(),
             'submitted_at' => now(),
             'approved_at' => now(),
@@ -99,7 +99,7 @@ class PostArticleToTwitterTest extends TestCase
     /** @test */
     public function already_shared_articles_are_not_shared_again()
     {
-        factory(Article::class)->create([
+        Article::factory()->create([
             'submitted_at' => now(),
             'approved_at' => now(),
             'shared_at' => now(),
@@ -113,7 +113,7 @@ class PostArticleToTwitterTest extends TestCase
     /** @test */
     public function unapproved_articles_are_not_shared()
     {
-        factory(Article::class)->create([
+        Article::factory()->create([
             'submitted_at' => now(),
         ]);
 
@@ -125,7 +125,7 @@ class PostArticleToTwitterTest extends TestCase
     /** @test */
     public function unsubmitted_articles_are_not_shared()
     {
-        factory(Article::class)->create();
+        Article::factory()->create();
 
         (new PostArticleToTwitter(new AnonymousNotifiable()))->handle();
 
