@@ -1,35 +1,41 @@
 @title('Password')
 
-@extends('layouts.settings')
+<section aria-labelledby="password_settings_heading">
+    <x-form method="PUT" action="{{ route('settings.password.update') }}">
+        <div class="shadow sm:rounded-md sm:overflow-hidden">
+            <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
+                <div>
+                    <h2 id="profile_settings_heading" class="text-lg leading-6 font-medium text-gray-900">Password Settings</h2>
+                    <p class="mt-1 text-sm leading-5 text-gray-500">Update the password used for logging into your account.</p>
+                </div>
 
-@section('content')
-    <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100 mb-8">
-        <form action="{{ route('settings.password.update') }}" method="POST">
-            @csrf
-            @method('PUT')
+                <div class="grid grid-cols-12 gap-6">
 
-            @if (Auth::user()->hasPassword())
-                @formGroup('current_password')
-                    <label for="current_password">Current Password</label>
-                    <input type="password" name="current_password" id="current_password" class="form-control" required />
-                    @error('current_password')
-                @endFormGroup
-            @endif
+                    @if (Auth::user()->hasPassword())
+                        <div class="col-span-12">
+                            <x-label for="current_password">Current Password</x-label>
+                            <x-input type="password" name="current_password" required />
+                        </div>
+                    @endif
 
-            @formGroup('password')
-                <label for="password">New Password</label>
-                <input type="password" name="password" id="password" class="form-control" required />
-                @error('password')
-            @endFormGroup
+                    <div class="col-span-12">
+                        <x-label for="password">New Password</x-label>
+                        <x-input type="password" name="password" required />
+                    </div>
 
-            @formGroup('password_confirmation')
-                <label for="password_confirmation">Confirm New Password</label>
-                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required />
-            @endFormGroup
+                    <div class="col-span-12">
+                        <x-label for="password_confirmation">Confirm New Password</x-label>
+                        <x-input type="password" name="password_confirmation" required />
+                    </div>
 
-            <div class="flex justify-end">
-                <button type="submit" class="button button-primary">Save</button>
+                </div>
             </div>
-        </form>
-    </div>
-@endsection
+
+            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <x-primary-button type="submit">
+                    Save
+                </x-primary-button>
+            </div>
+        </div>
+    </x-form>
+</div>
