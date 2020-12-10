@@ -77,6 +77,7 @@ class PostArticleToTwitterTest extends TestCase
     {
         $user = $this->createUser([
             'name' => 'Joe Dixon',
+            'twitter' => null,
         ]);
 
         Article::factory()->create([
