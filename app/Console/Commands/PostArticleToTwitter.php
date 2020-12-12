@@ -24,7 +24,7 @@ final class PostArticleToTwitter extends Command
 
     public function handle(): void
     {
-        if ($article = Article::nextForSharing()) {     
+        if ($article = Article::nextForSharing()) {
             $this->notifiable->notify(new PostArticleToTwitterNotification($article));
 
             $article->markAsShared();
