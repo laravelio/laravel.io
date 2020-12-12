@@ -37,7 +37,7 @@ The following tools are required in order to start the installation.
 - [Composer](https://getcomposer.org/download/)
 - [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - [Valet](https://laravel.com/docs/valet#installation)
-- PHP >=7.3
+- PHP >=7.4
 
 ## Installation
 
