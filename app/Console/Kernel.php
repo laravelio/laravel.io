@@ -24,11 +24,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('schedule-monitor:clean')->daily();
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
         $schedule->command('post-article-to-twitter')
-            ->everyMinute()
-            ->when(function () {
-                // ~2 posts every 24 hours.
-                return random_int(1, 1440) <= 2;
-            });
+            ->twiceDaily(14, 18);
     }
 
     /**
