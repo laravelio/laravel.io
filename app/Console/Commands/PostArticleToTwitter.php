@@ -22,14 +22,12 @@ final class PostArticleToTwitter extends Command
         $this->notifiable = $notifiable;
     }
 
-    public function handle()
+    public function handle(): void
     {
-        if (! $article = Article::nextForSharing()) {
-            return;
+        if ($article = Article::nextForSharing()) {     
+            $this->notifiable->notify(new PostArticleToTwitterNotification($article));
+
+            $article->markAsShared();
         }
-
-        $this->notifiable->notify(new PostArticleToTwitterNotification($article));
-
-        $article->markAsShared();
     }
 }
