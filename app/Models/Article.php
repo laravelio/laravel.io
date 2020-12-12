@@ -86,7 +86,7 @@ final class Article extends Model
 
     public function updateSeries(Series $series = null): self
     {
-        if (null === $series) {
+        if ($series === null) {
             return $this->removeSeries();
         }
 
@@ -126,7 +126,7 @@ final class Article extends Model
 
     public function isNotSubmitted(): bool
     {
-        return null === $this->submitted_at;
+        return $this->submitted_at === null;
     }
 
     public function isApproved(): bool
@@ -136,7 +136,7 @@ final class Article extends Model
 
     public function isNotApproved(): bool
     {
-        return null === $this->approved_at;
+        return $this->approved_at === null;
     }
 
     public function isPublished(): bool
@@ -156,7 +156,7 @@ final class Article extends Model
 
     public function isNotShared(): bool
     {
-        return null === $this->shared_at;
+        return $this->shared_at === null;
     }
 
     public function isShared(): bool
