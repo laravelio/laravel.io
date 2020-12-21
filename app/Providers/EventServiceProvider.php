@@ -7,8 +7,8 @@ use App\Events\ReplyWasCreated;
 use App\Listeners\PersistTweetId;
 use App\Listeners\SendArticleApprovedNotification;
 use App\Listeners\SendNewReplyNotification;
-use Illuminate\Notifications\Events\NotificationSent;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Notifications\Events\NotificationSent;
 
 class EventServiceProvider extends ServiceProvider
 {

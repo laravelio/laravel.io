@@ -11,10 +11,10 @@ final class PersistTweetId
 {
     public function handle(NotificationSent $event): void
     {
-        if(! $event->notification instanceof PostArticleToTwitter) {
+        if (! $event->notification instanceof PostArticleToTwitter) {
             return;
         }
-        
+
         $event->notification
             ->getArticle()
             ->update([
