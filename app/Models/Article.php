@@ -35,6 +35,7 @@ final class Article extends Model
         'original_url',
         'slug',
         'is_pinned',
+        'tweet_id',
         'submitted_at',
         'approved_at',
         'shared_at',

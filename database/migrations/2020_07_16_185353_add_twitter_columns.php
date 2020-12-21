@@ -9,6 +9,7 @@ class AddTwitterColumns extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
+            $table->unsignedBigInteger('tweet_id')->after('is_pinned')->nullable();
             $table->dateTime('shared_at')->after('approved_at')->nullable();
         });
 

@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Events\ArticleWasApproved;
 use App\Events\ReplyWasCreated;
+use App\Listeners\PersistTweetId;
 use App\Listeners\SendArticleApprovedNotification;
 use App\Listeners\SendNewReplyNotification;
+use Illuminate\Notifications\Events\NotificationSent;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -21,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         ArticleWasApproved::class => [
             SendArticleApprovedNotification::class,
+        ],
+        NotificationSent::class => [
+            PersistTweetId::class,
         ],
     ];
 }
