@@ -11,7 +11,7 @@ final class StoreTweetIdentifier
 {
     public function handle(NotificationSent $event): void
     {
-        if($event->notification instanceof PostArticleToTwitter) {
+        if ($event->notification instanceof PostArticleToTwitter) {
             $event->notification->article()->update([
                 'tweet_id' => $event->response->id,
             ]);
