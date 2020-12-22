@@ -7,18 +7,14 @@ namespace App\Listeners;
 use App\Notifications\PostArticleToTwitter;
 use Illuminate\Notifications\Events\NotificationSent;
 
-final class PersistTweetId
+final class StoreTweetIdentifier
 {
     public function handle(NotificationSent $event): void
     {
-        if (! $event->notification instanceof PostArticleToTwitter) {
-            return;
-        }
-
-        $event->notification
-            ->getArticle()
-            ->update([
+        if($event->notification instanceof PostArticleToTwitter) {
+            $event->notification->article()->update([
                 'tweet_id' => $event->response->id,
             ]);
+        }
     }
 }

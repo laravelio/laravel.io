@@ -39,7 +39,7 @@ class PostArticleToTwitter extends Notification
         return "{$title} by {$author}\n\n{$url}";
     }
 
-    public function getArticle()
+    public function article()
     {
         return $this->article;
     }
