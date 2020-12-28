@@ -51,12 +51,22 @@
 
     <div>
         @if ($user->githubUsername())
-            <a href="https://github.com/{{ $user->githubUsername() }}"
-               class="text-lio-700 text-3xl block flex items-center">
-                <span class="flex items-center justify-center">
+            <a href="https://github.com/{{ $user->githubUsername() }}" class="text-lio-700 text-3xl block flex items-center">
+                <span class="flex items-center justify-center mb-1">
                     <x-icon-github class="h-5 w-5 mr-2" />
                     <span class="text-base">
                         {{ '@' . $user->githubUsername() }}
+                    </span>
+                </span>
+            </a>
+        @endif
+
+        @if ($user->twitter())
+            <a href="https://twitter.com/{{ $user->twitter() }}" class="text-lio-700 text-3xl block flex items-center">
+                <span class="flex items-center justify-center mb-1">
+                    <x-icon-twitter class="h-5 w-5 mr-2" />
+                    <span class="text-base">
+                        {{ '@' . $user->twitter() }}
                     </span>
                 </span>
             </a>

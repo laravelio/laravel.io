@@ -34,6 +34,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'github_id' => $this->faker->numberBetween(10000, 99999),
             'github_username' => $this->faker->userName,
+            'twitter' => $this->faker->userName,
             'banned_at' => null,
             'type' => User::DEFAULT,
             'bio' => $this->faker->sentence,

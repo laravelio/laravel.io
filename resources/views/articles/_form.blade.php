@@ -130,5 +130,13 @@
                 </span>
             @endif
         </div>
+
+        @unless (Auth::user()->twitter())
+            <span class="text-gray-600 text-sm mt-4 block">
+                Articles will be shared on Twitter. 
+                <a href="{{ route('settings.profile') }}" class="text-green-darker">Add your Twitter handle</a> 
+                and we'll include that too.
+            </span>
+        @endunless
     </div>
 </form>

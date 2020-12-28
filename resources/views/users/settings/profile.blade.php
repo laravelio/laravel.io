@@ -41,6 +41,12 @@
                 @error('username')
             @endFormGroup
 
+            @formGroup('twitter')
+                <label for="twitter">Twitter handle</label>
+                <input type="text" name="twitter" id="twitter" value="{{ Auth::user()->twitter() }}" />
+                @error('twitter_handle')
+            @endFormGroup
+
             @formGroup('bio')
                 <label for="bio">Bio</label>
                 <textarea name="bio" rows="3" maxlength="160">{{ Auth::user()->bio() }}</textarea>
