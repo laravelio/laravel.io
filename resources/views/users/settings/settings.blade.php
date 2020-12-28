@@ -12,10 +12,8 @@
 
         @include('layouts._alerts')
 
-        <main class="max-w-7xl mx-auto pb-10 lg:py-12 lg:px-8">
-            <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
-                @include('users.partials._sidebar')
-
+        <main class="max-w-4xl mx-auto pt-10 pb-12 px-4 lg:pb-16">
+            <div class="lg:grid lg:gap-x-5">
                 <div class="sm:px-6 lg:px-0 lg:col-span-9">
                     @include('users.settings.profile')
                     @include('users.settings.password')
