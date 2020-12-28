@@ -62,7 +62,7 @@ GITHUB_SECRET=
 GITHUB_URL=http://laravel.io.test/auth/github
 ```
 
-### Algolia search (optional)
+### Algolia Search (optional)
 
 To get Algolia search running locally, you'll need to [register for a new account](https://www.algolia.com/users/sign_up) and create an index called `threads`. Algolia has a free tier which satisfies all of the requirements needed for a development environment. Now update the below variables in your `.env` file. The App ID and secret keys can be found in the `API Keys` section of the Algoila UI. 
 
