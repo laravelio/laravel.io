@@ -23,8 +23,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('schedule-monitor:sync')->dailyAt('04:56');
         $schedule->command('schedule-monitor:clean')->daily();
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
-        $schedule->command('post-article-to-twitter')
-            ->twiceDaily(14, 18);
+        $schedule->command('post-article-to-twitter')->twiceDaily(14, 18);
     }
 
     /**
