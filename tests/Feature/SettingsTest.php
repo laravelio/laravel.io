@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SettingsTest extends BrowserKitTestCase
 {
@@ -120,7 +120,7 @@ class SettingsTest extends BrowserKitTestCase
         $this->loginAs($user);
 
         $this->visit('/settings')
-            ->submitForm('Save', [
+            ->submitForm('Update Profile', [
                 'name' => 'Freek Murze',
                 'email' => 'freek@example.com',
                 'username' => 'freekmurze',

@@ -13,7 +13,7 @@
 
                     @if (Auth::user()->hasPassword())
                         <div class="col-span-12">
-                            <x-label for="current_password">Current Password</x-label>
+                            <x-label for="current_password" />
                             <x-input type="password" name="current_password" required />
                         </div>
                     @endif

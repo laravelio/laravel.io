@@ -13,12 +13,12 @@
                 <div class="flex flex-col space-y-6 lg:flex-row lg:space-y-0 lg:space-x-6">
                     <div class="flex-grow space-y-6">
                         <div class="space-y-1">
-                            <x-label for="name">Name</x-label>
+                            <x-label for="name"/>
                             <x-input name="name" value="{{ Auth::user()->name() }}" required />
                         </div>
 
                         <div class="space-y-1">
-                            <x-label for="bio">Bio</x-label>
+                            <x-label for="bio"/>
                             <x-textarea name="bio" rows="3" maxlength="160">
                                 {{ Auth::user()->bio() }}
                             </x-textarea>
@@ -39,8 +39,8 @@
                 </div>
 
                 <div class="grid grid-cols-12 gap-6">
-                    <div class="col-span-12 sm:col-span-6">
-                        <x-label for="email">Email</x-label>
+                    <div class="col-span-12">
+                        <x-label for="email" />
                         <x-input type="email" name="email" value="{{ Auth::user()->emailAddress() }}" required />
                         @unless(Auth::user()->hasVerifiedEmail())
                             <span class="mt-2 text-sm text-gray-500">
@@ -51,10 +51,17 @@
                     </div>
 
                     <div class="col-span-12 sm:col-span-6">
-                        <x-label for="username">Username</x-label>
+                        <x-label for="username" />
                         <x-input name="username" value="{{ Auth::user()->username() }}" required />
                     </div>
 
+                    <div class="col-span-12 sm:col-span-6">
+                        <x-label for="twitter">Twitter handle</x-label>
+                        <x-input name="twitter" value="{{ Auth::user()->twitter() }}" prefix-icon="heroicon-o-at-symbol" />
+                        <span class="mt-2 text-sm text-gray-500">
+                            Enter your Twitter handle without the leading @ symbol
+                        </span>
+                    </div>
                 </div>
                 
             </div>
