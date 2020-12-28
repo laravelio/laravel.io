@@ -48,7 +48,7 @@ The following tools are required in order to start the installation.
 3. Setup a local database called `laravelio`
 4. Run `composer setup` to setup the application
 5. Setup a working e-mail driver like [Mailtrap](https://mailtrap.io/)
-6. (optional) Set up Github authentication (see below)
+6. Set up the (optional) features from below
 
 You can now visit the app in your browser by visiting [http://laravel.io.test](http://laravel.io.test). If you seeded the database you can login into a test account with **`johndoe`** & **`password`**.
 
