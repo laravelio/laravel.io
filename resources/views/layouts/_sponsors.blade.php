@@ -40,6 +40,11 @@
                     <img class="max-h-12" src="{{ asset('images/sponsors/scout-apm.jpg') }}" alt="Scout APM">
                 </a>
             </div>
+            <div class="col-span-2 flex justify-center lg:col-span-1 px-2">
+                <a class="flex items-center" href="https://akaunting.com/developers?utm_source=Laravelio&utm_medium=Banner&utm_campaign=Developers">
+                    <img class="max-h-12" src="{{ asset('images/sponsors/akaunting.png') }}" alt="Akaunting">
+                </a>
+            </div>
         </div>
 
         <div class="mt-4">
