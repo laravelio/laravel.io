@@ -29,6 +29,7 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Blackfire.io](https://blackfire.io)
 - [Tinkerwell](https://tinkerwell.app)
 - [Scout APM](https://ter.li/o1adaj)
+- [Akaunting](https://akaunting.com/developers?utm_source=Laravelio&utm_medium=Banner&utm_campaign=Developers)
 
 ## Requirements
 
