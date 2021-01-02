@@ -9,9 +9,6 @@
     <a href="https://github.styleci.io/repos/12895187">
         <img src="https://github.styleci.io/repos/12895187/shield?style=flat" alt="Code Style">
     </a>
-    <a href="https://packagist.org/packages/laravel/framework">
-        <img src="https://shield.with.social/cc/github/laravelio/laravel.io/main.svg" alt="Laravel Version" />
-    </a>
 </p>
 
 # Laravel.io
