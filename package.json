@@ -11,7 +11,7 @@
     "watch-poll": "npm run watch -- --watch-poll"
   },
   "devDependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cross-env": "^5.2.1",
     "highlight.js": "^10.4.1",
     "laravel-mix": "^5.0.5",
