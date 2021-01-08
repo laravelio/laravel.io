@@ -17,7 +17,7 @@ return [
 
     'components' => [
         // 'alert' => Components\Alerts\Alert::class,
-        // 'avatar' => Components\Support\Avatar::class,
+        'avatar' => Components\Support\Avatar::class,
         // 'carbon' => Components\DateTime\Carbon::class,
         // 'checkbox' => Components\Forms\Inputs\Checkbox::class,
         // 'color-picker' => Components\Forms\Inputs\ColorPicker::class,
@@ -27,7 +27,7 @@ return [
         // 'easy-mde' => Components\Editors\EasyMDE::class,
         'email' => Components\Forms\Inputs\Email::class,
         // 'error' => Components\Forms\Error::class,
-        // 'form' => Components\Forms\Form::class,
+        'form' => Components\Forms\Form::class,
         // 'form-button' => Components\Buttons\FormButton::class,
         // 'html' => Components\Layouts\Html::class,
         'input' => Components\Forms\Inputs\Input::class,
