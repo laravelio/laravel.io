@@ -41,7 +41,7 @@
                 <div class="grid grid-cols-12 gap-6">
                     <div class="col-span-12">
                         <x-label for="email" />
-                        <x-input type="email" name="email" value="{{ Auth::user()->emailAddress() }}" required />
+                        <x-email name="email" value="{{ Auth::user()->emailAddress() }}" required />
                         @unless(Auth::user()->hasVerifiedEmail())
                             <span class="mt-2 text-sm text-gray-500">
                                 This email address is not verified yet.

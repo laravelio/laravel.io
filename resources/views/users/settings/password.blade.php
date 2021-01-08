@@ -14,18 +14,18 @@
                     @if (Auth::user()->hasPassword())
                         <div class="col-span-12">
                             <x-label for="current_password" />
-                            <x-input type="password" name="current_password" required />
+                            <x-password type="password" name="current_password" required />
                         </div>
                     @endif
 
                     <div class="col-span-12">
                         <x-label for="password">New Password</x-label>
-                        <x-input type="password" name="password" required />
+                        <x-password type="password" name="password" required />
                     </div>
 
                     <div class="col-span-12">
                         <x-label for="password_confirmation">Confirm New Password</x-label>
-                        <x-input type="password" name="password_confirmation" required />
+                        <x-password type="password" name="password_confirmation" required />
                     </div>
 
                 </div>

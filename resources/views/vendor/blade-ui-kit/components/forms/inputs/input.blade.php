@@ -12,7 +12,7 @@
             @if($value)value="{{ $value }}"@endif
             {{ $attributes->merge([
                 'class' => 'form-input block w-full sm:text-sm sm:leading-5 mt-1' . ($attributes->get('prefix-icon') ? ' pl-10' : '') . ($errors->has($name) ? ' border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : '')
-            ]) }}"
+            ]) }}
         />
         @if ($errors->has($name))
             <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
