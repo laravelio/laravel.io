@@ -108,7 +108,7 @@ class ThreadTest extends TestCase
         $thread = Thread::factory()->make(['slug' => '한글 테스트']);
 
         // When providing a slug with invalid url characters, a random 5 character string is returned.
-        $this->assertRegExp('/\w{5}/', $thread->slug());
+        $this->assertMatchesRegularExpression('/\w{5}/', $thread->slug());
     }
 
     private function createThreadFromToday(): Thread
