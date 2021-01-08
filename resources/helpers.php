@@ -3,8 +3,6 @@
 if (! function_exists('active')) {
     /**
      * Sets the menu item class for an active route.
-     *
-     * @param mixed $routes
      */
     function active($routes, bool $condition = true): string
     {
@@ -15,8 +13,6 @@ if (! function_exists('active')) {
 if (! function_exists('is_active')) {
     /**
      * Determines if the given routes are active.
-     *
-     * @param mixed $routes
      */
     function is_active($routes): string
     {
@@ -37,8 +33,6 @@ if (! function_exists('md_to_html')) {
 if (! function_exists('route_to_reply_able')) {
     /**
      * Returns the route for the replyAble.
-     *
-     * @param mixed $replyAble
      */
     function route_to_reply_able($replyAble): string
     {
