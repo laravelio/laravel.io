@@ -1,5 +1,6 @@
 <x-input 
     type="email" 
-    name="{{ $name }}" 
+    name="{{ $name }}"
+    :value="$value"
     {{ $attributes}} 
 />

@@ -14,7 +14,7 @@
                     <div class="flex-grow space-y-6">
                         <div class="space-y-1">
                             <x-label for="name"/>
-                            <x-input name="name" value="{{ Auth::user()->name() }}" required />
+                            <x-input name="name" :value="Auth::user()->name()" required />
                         </div>
 
                         <div class="space-y-1">
@@ -31,7 +31,7 @@
                         </p>
                         <div class="flex items-center">
                             <div class="flex-shrink-0 inline-block overflow-hidden" aria-hidden="true">
-                                <x-avatar search="{{ Auth::user()->emailAddress() }}" provider="gravatar" class="rounded-full h-32 w-32" />
+                                <x-avatar :search="Auth::user()->emailAddress()" provider="gravatar" class="rounded-full h-32 w-32" />
                                 <span class="mt-2 text-sm text-gray-500">Change your avatar on <a href="https://gravatar.com/" class="text-lio-700">Gravatar</a>.</span>
                             </div>
                         </div>
@@ -41,8 +41,8 @@
                 <div class="grid grid-cols-12 gap-6">
                     <div class="col-span-12">
                         <x-label for="email" />
-                        <x-email name="email" value="{{ Auth::user()->emailAddress() }}" required />
-                            
+                        <x-email name="email" :value="Auth::user()->emailAddress()" required />
+
                         @unless(Auth::user()->hasVerifiedEmail())
                             <span class="mt-2 text-sm text-gray-500">
                                 This email address is not verified yet.
@@ -53,12 +53,12 @@
 
                     <div class="col-span-12 sm:col-span-6">
                         <x-label for="username" />
-                        <x-input name="username" value="{{ Auth::user()->username() }}" required />
+                        <x-input name="username" :value="Auth::user()->username()" required />
                     </div>
 
                     <div class="col-span-12 sm:col-span-6">
                         <x-label for="twitter">Twitter handle</x-label>
-                        <x-input name="twitter" value="{{ Auth::user()->twitter() }}" prefix-icon="heroicon-o-at-symbol" />
+                        <x-input name="twitter" :value="Auth::user()->twitter()" prefix-icon="heroicon-o-at-symbol" />
                         <span class="mt-2 text-sm text-gray-500">
                             Enter your Twitter handle without the leading @ symbol
                         </span>
