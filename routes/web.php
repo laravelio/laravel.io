@@ -73,7 +73,6 @@ Route::get('avatar/{username}', [ProfileController::class, 'avatar'])->name('ava
 Route::get('settings', [ProfileSettingsController::class, 'edit'])->name('settings.profile');
 Route::put('settings', [ProfileSettingsController::class, 'update'])->name('settings.profile.update');
 Route::delete('settings', [ProfileSettingsController::class, 'destroy'])->name('settings.profile.delete');
-Route::get('settings/password', [PasswordController::class, 'edit'])->name('settings.password');
 Route::put('settings/password', [PasswordController::class, 'update'])->name('settings.password.update');
 
 // Forum

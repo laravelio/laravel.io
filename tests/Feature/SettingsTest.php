@@ -23,7 +23,7 @@ class SettingsTest extends BrowserKitTestCase
         $this->login();
 
         $this->visit('/settings')
-            ->submitForm('Save', [
+            ->submitForm('Update Profile', [
                 'name' => 'Freek Murze',
                 'email' => 'freek@example.com',
                 'username' => 'freekmurze',
@@ -46,7 +46,7 @@ class SettingsTest extends BrowserKitTestCase
         $this->login();
 
         $this->visit('/settings')
-            ->submitForm('Save', [
+            ->submitForm('Update Profile', [
                 'name' => 'Freek Murze',
                 'email' => 'freek@example.com',
                 'username' => 'freekmurze',
@@ -82,13 +82,13 @@ class SettingsTest extends BrowserKitTestCase
     {
         $this->login();
 
-        $this->visit('/settings/password')
-            ->submitForm('Save', [
+        $this->visit('/settings')
+            ->submitForm('Update Password', [
                 'current_password' => 'password',
                 'password' => 'newpassword',
                 'password_confirmation' => 'newpassword',
             ])
-            ->seePageIs('/settings/password')
+            ->seePageIs('/settings')
             ->see('Password successfully changed!');
 
         $this->assertPasswordWasHashedAndSaved();
@@ -101,12 +101,12 @@ class SettingsTest extends BrowserKitTestCase
 
         $this->loginAs($user);
 
-        $this->visit('/settings/password')
-            ->submitForm('Save', [
+        $this->visit('/settings')
+            ->submitForm('Update Password', [
                 'password' => 'newpassword',
                 'password_confirmation' => 'newpassword',
             ])
-            ->seePageIs('/settings/password')
+            ->seePageIs('/settings')
             ->see('Password successfully changed!');
 
         $this->assertPasswordWasHashedAndSaved();
@@ -120,7 +120,7 @@ class SettingsTest extends BrowserKitTestCase
         $this->loginAs($user);
 
         $this->visit('/settings')
-            ->submitForm('Save', [
+            ->submitForm('Update Profile', [
                 'name' => 'Freek Murze',
                 'email' => 'freek@example.com',
                 'username' => 'freekmurze',

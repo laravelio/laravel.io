@@ -10,6 +10,16 @@ if (! function_exists('active')) {
     }
 }
 
+if (! function_exists('is_active')) {
+    /**
+     * Determines if the given routes are active.
+     */
+    function is_active($routes): string
+    {
+        return call_user_func_array([app('router'), 'is'], (array) $routes);
+    }
+}
+
 if (! function_exists('md_to_html')) {
     /**
      * Convert Markdown to HTML.
