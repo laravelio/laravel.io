@@ -19,8 +19,6 @@
     "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
-    "@flareapp/flare-client": "^1.0.0",
-    "@flareapp/flare-webpack-plugin-sourcemap": "^1.0.14",
     "@tailwindcss/ui": "^0.1.4",
     "algoliasearch": "^4.0.3",
     "alpinejs": "^1.12.0",
