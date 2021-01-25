@@ -10,12 +10,12 @@
             type="text" 
             name="search" 
             id="search" 
-            class="nav-search block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-blue-300 focus:shadow-outline-blue sm:text-sm transition duration-150 ease-in-out" 
+            class="nav-search block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-blue-300 focus:ring-blue-500 sm:text-sm transition duration-150 ease-in-out" 
             placeholder="Search for threads..." 
         />
         <template x-if="results">
             <div x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="search mt-1 origin-top-right absolute right-0 rounded-md shadow-lg z-10">
-                <div class="rounded-md bg-white shadow-xs w-full">
+                <div class="rounded-md bg-white ring-1 ring-black ring-opacity-5 w-full">
                     <div class="flex flex-col border-b md:flex-row">
                         <div class="py-1 w-full border-b md:w-1/2 md:border-r md:border-b-0">
                             <span class="text-xl px-4 py-2 text-gray-700">Threads</span>

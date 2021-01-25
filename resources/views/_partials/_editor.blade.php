@@ -1,5 +1,5 @@
 <div x-data="editorConfig()" x-init="minHeight = $refs.editor.scrollHeight">
-    <div class="border-2 border-b-0 rounded-t p-2 bg-gray-200">
+    <div class="border-gray-300 border-2 border-b-0 rounded-t p-2 bg-gray-200">
         <ul class="flex">
             <li>
                 <button 

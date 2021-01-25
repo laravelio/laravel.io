@@ -113,7 +113,7 @@
                             </svg>
                         </button>
                         <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg" x-show="showDropdown" x-cloak>
-                            <div class="rounded-md bg-white shadow-xs">
+                            <div class="rounded-md bg-white ring-1 ring-black ring-opacity-5">
                                 <div class="py-1">
                                     <button 
                                         type="submit" 

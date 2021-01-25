@@ -18,7 +18,7 @@
 .standard input[type='email'],
 .standard textarea,
 .standard select {
-    @apply rounded border-2 p-3 w-full;
+    @apply rounded border-2 p-3 w-full border-gray-300;
 }
 
 .standard select {
@@ -30,7 +30,7 @@
 }
 
 .standard input[type='checkbox'] {
-    @apply mr-1;
+    @apply mr-1 rounded border border-gray-300;
 }
 
 .standard .help-block {
