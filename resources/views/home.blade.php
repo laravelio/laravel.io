@@ -93,7 +93,7 @@
             </div>
             <div class="w-full md:w-1/2 mx-auto relative mb-8">
                 <form action="{{ route('forum') }}" method="GET">
-                    <input type="search" class="rounded-full border-2 w-full p-3 text-xl bg-gray-100" placeholder="Search for threads..." name="search">
+                    <input type="search" class="rounded-full border-gray-300 border-2 w-full p-3 text-xl bg-gray-100" placeholder="Search for threads..." name="search">
                     <button type="submit" class="absolute top-0 right-0 w-10 h-10 my-2 mx-3">
                         <x-heroicon-o-search class="w-full"/>
                     </button>
