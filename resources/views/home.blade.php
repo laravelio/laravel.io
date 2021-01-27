@@ -18,23 +18,23 @@
                     <div class="mt-5 max-w-lg mx-auto sm:flex sm:justify-center md:mt-8">
                         @if (Auth::guest())
                             <div class="rounded-md shadow">
-                                <a href="{{ route('register') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-lio-600 hover:bg-lio-500 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                <a href="{{ route('register') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-lio-600 hover:bg-lio-500 focus:outline-none-500 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                     Join the Community
                                 </a>
                             </div>
                             <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                                <a href="{{ route('forum') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-lio-500 bg-white hover:text-lio-600 focus:outline-none focus:shadow-outline-blue transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                <a href="{{ route('forum') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-lio-500 bg-white hover:text-lio-600 focus:outline-none transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                     Visit the Forum
                                 </a>
                             </div>
                         @else
                             <div class="rounded-md shadow">
-                                <a href="{{ route('threads.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-lio-600 hover:bg-lio-500 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                <a href="{{ route('threads.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-lio-600 hover:bg-lio-500 focus:outline-none transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                     Start a Thread
                                 </a>
                             </div>
                             <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                                <a href="{{ route('articles.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-lio-600 hover:bg-lio-500 focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
+                                <a href="{{ route('articles.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-lio-600 hover:bg-lio-500 focus:outline-none transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
                                     Share an Article
                                 </a>
                             </div>
@@ -93,7 +93,7 @@
             </div>
             <div class="w-full md:w-1/2 mx-auto relative mb-8">
                 <form action="{{ route('forum') }}" method="GET">
-                    <input type="search" class="rounded-full border-2 w-full p-3 text-xl bg-gray-100" placeholder="Search for threads..." name="search">
+                    <input type="search" class="rounded-full border-gray-300 border-2 w-full p-3 text-xl bg-gray-100" placeholder="Search for threads..." name="search">
                     <button type="submit" class="absolute top-0 right-0 w-10 h-10 my-2 mx-3">
                         <x-heroicon-o-search class="w-full"/>
                     </button>

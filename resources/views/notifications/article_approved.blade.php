@@ -1,7 +1,7 @@
 @php($data = $notification->data)
 
 <tr>
-    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-600">
+    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200 text-sm leading-5 text-gray-600">
         <div class="flex items-center">
             <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 mr-4">
                 <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"></path>
@@ -15,11 +15,11 @@
         </div>
     </td>
 
-    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-600">
+    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200 text-sm leading-5 text-gray-600">
         {{ $notification->created_at->diffForHumans() }}
     </td>
 
-    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-600 text-right">
+    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200 text-sm leading-5 text-gray-600 text-right">
         <div class="flex justify-end">
             <button wire:click="markAsRead('{{ $notification->id }}')" class="text-lio-500">
                 <svg viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">

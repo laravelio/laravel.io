@@ -11,16 +11,20 @@
   },
   "devDependencies": {
     "axios": "^0.21.1",
-    "highlight.js": "^10.4.1",
+    "highlight.js": "^10.5.0",
     "laravel-mix": "^6.0.6",
     "postcss-import": "^12.0.1",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
-    "@tailwindcss/ui": "^0.1.4",
-    "algoliasearch": "^4.0.3",
+    "@tailwindcss/aspect-ratio": "^0.2.0",
+    "@tailwindcss/forms": "^0.2.1",
+    "@tailwindcss/typography": "^0.4.0",
+    "algoliasearch": "^4.8.4",
     "alpinejs": "^1.12.0",
+    "autoprefixer": "^10.2.3",
     "choices.js": "^9.0.1",
-    "tailwindcss": "^1.9.6"
+    "postcss": "^8.2.4",
+    "tailwindcss": "^2.0.2"
   }
 }

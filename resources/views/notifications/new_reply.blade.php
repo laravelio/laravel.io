@@ -1,7 +1,7 @@
 @php($data = $notification->data)
 
 <tr>
-    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-600">
+    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200 text-sm leading-5 text-gray-600">
         <div class="flex items-center">
             <x-heroicon-s-reply class="w-5 h-5 mr-4"/>
 
@@ -11,11 +11,11 @@
         </div>
     </td>
 
-    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-600">
+    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200 text-sm leading-5 text-gray-600">
         {{ $notification->created_at->diffForHumans() }}
     </td>
 
-    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-600 text-right">
+    <td class="px-6 py-4 whitespace-nowrap border-b border-gray-200 text-sm leading-5 text-gray-600 text-right">
         <div class="flex justify-end">
             <button wire:click="markAsRead('{{ $notification->id }}')" class="text-lio-500">
                 <x-heroicon-s-check class="w-5 h-5"/>

@@ -1,6 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
+    purge: ['./resources/**/*.blade.php', './resources/**/*.js'],
     theme: {
         extend: {
             colors: {
@@ -22,5 +23,5 @@ module.exports = {
         },
     },
     variants: {},
-    plugins: [require('@tailwindcss/ui')],
+    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };
