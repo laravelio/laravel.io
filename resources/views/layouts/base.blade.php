@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ App::getLocale() }}">
 <head>
-    @include('layouts._metomic')
+    @include('layouts._iubenda')
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
