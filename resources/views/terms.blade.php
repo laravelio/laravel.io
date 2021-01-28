@@ -3,7 +3,7 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="legal-container">
+    <div class="legal-container prose">
         <h1>Terms and Conditions</h1>
 
         <p class="mb-8">
