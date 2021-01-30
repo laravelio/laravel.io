@@ -59,12 +59,13 @@
                     @endforeach
                 </div>
 
-                <div class="flex justify-center pt-4">
-                    {!! $threads->render() !!}
+                <div class="pt-4 px-2">
+                    {{ $threads->render() }}
                 </div>
             @else
                 <div class="flex flex-col items-center justify-center pt-4 text-gray-700">
                     <h2 class="text-2xl pb-4">No threads were found!</h2>
+
                     <a href="{{ route('threads.create') }}" class="button button-primary">
                         Create a new one
                     </a>
@@ -73,17 +74,11 @@
         </div>
 
         <div class="w-full md:w-1/4 md:pl-3 md:pt-4">
-            <a 
-                href="{{ route('threads.create') }}"
-                class="button button-primary button-full mb-4"
-            >
+            <a href="{{ route('threads.create') }}" class="button button-primary button-full mb-4">
                 Create Thread
             </a>
-            <a 
-                href="{{ route("feeds.forum") }}"
-                class="button button-muted button-full mb-4"
-                target="_blank"
-            >
+
+            <a href="{{ route("feeds.forum") }}" class="button button-muted button-full mb-4" target="_blank">
                 <span class="flex items-center justify-center">
                     <x-icon-rss class="inline w-3 h-3 mr-2"/>
                     RSS Feed
@@ -92,7 +87,9 @@
 
             @include('layouts._ads._forum_sidebar')
 
-            <h3 class="text-xs font-bold tracking-wider uppercase text-gray-500">Tags</h3>
+            <h3 class="text-xs font-bold tracking-wider uppercase text-gray-500">
+                Tags
+            </h3>
 
             <ul class="tags">
                 <li class="{{ active('forum*', ! isset($activeTag) || $activeTag === null) }}">

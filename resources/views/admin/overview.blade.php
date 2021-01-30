@@ -52,8 +52,8 @@
                 </tbody>
             </table>
 
-            <div class="flex justify-center">
-                {!! $users->render() !!}
+            <div class="pt-4 px-2">
+                {{ $users->render() }}
             </div>
         </div>
         <div class="w-full md:w-1/4 md:pl-3 md:pt-4">

@@ -40,8 +40,8 @@
                 </tbody>
             </table>
 
-            <div class="flex justify-center">
-                {!! $articles->render() !!}
+            <div class="pt-4 px-2">
+                {{ $articles->render() }}
             </div>
         </div>
         <div class="w-full md:w-1/4 md:pl-3 md:pt-4">
