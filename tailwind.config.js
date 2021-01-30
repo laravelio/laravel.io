@@ -1,7 +1,11 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    purge: ['./resources/**/*.blade.php', './resources/**/*.js'],
+    purge: [
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+    ],
     theme: {
         extend: {
             colors: {
