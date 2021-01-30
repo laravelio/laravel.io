@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use LasseRafn\InitialAvatarGenerator\InitialAvatar;
 
 class ProfileController extends Controller
 {
