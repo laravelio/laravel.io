@@ -17,7 +17,7 @@ return [
 
     'components' => [
         // 'alert' => Components\Alerts\Alert::class,
-        'avatar' => Components\Support\Avatar::class,
+        'buk-avatar' => Components\Support\Avatar::class,
         // 'carbon' => Components\DateTime\Carbon::class,
         // 'checkbox' => Components\Forms\Inputs\Checkbox::class,
         // 'color-picker' => Components\Forms\Inputs\ColorPicker::class,

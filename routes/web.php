@@ -67,7 +67,6 @@ Route::namespace('Auth')->group(function () {
 // Users
 Route::get('dashboard', [DashboardController::class, 'show'])->name('dashboard');
 Route::get('user/{username}', [ProfileController::class, 'show'])->name('profile');
-Route::get('avatar/{username}', [ProfileController::class, 'avatar'])->name('avatar');
 
 // Settings
 Route::get('settings', [ProfileSettingsController::class, 'edit'])->name('settings.profile');

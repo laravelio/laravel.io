@@ -1,7 +1,7 @@
 <div class="flex flex-col mb-4 w-full @if (isset($centered) && $centered) items-center @endif">
     <div class="mb-4">
         <a href="{{ route('profile', $user->username()) }}">
-            <img src="{{ $user->gravatarUrl($avatarSize ?? 250) }}" class="w-full">
+            <x-avatar :user="$user" class="w-56 h-56" />
         </a>
     </div>
 

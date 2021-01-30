@@ -34,7 +34,7 @@
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
                             <a href="{{ route('profile', $article->author()->username()) }}">
-                                <img class="h-10 w-10 rounded-full" src="{{ $article->author()->gravatarUrl($avatarSize ?? 250) }}" alt="{{ $article->author()->name }}" />
+                                <x-avatar :user="$article->author()" class="h-10 w-10" />
                             </a>
                         </div>
                         <div class="ml-3">

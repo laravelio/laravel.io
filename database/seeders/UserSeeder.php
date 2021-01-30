@@ -13,6 +13,7 @@ class UserSeeder extends Seeder
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'username' => 'johndoe',
+            'github_username' => 'driesvints',
             'password' => bcrypt('password'),
             'type' => User::ADMIN,
         ]);
