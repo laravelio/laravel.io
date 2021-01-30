@@ -148,20 +148,6 @@
     <div class="border-b bg-gray-100 text-gray-700">
         <div class="container mx-auto py-12 px-4">
             <h2 class="text-4xl pb-8 mb-8 text-center">More from the community</h2>
-            <div class="flex flex-wrap text-center justify-center items-center md:mb-20 w-full lg:w-1/2 mx-auto">
-                <div class="w-1/2 md:w-1/3 mb-4">
-                    <a href="https://github.com/laravelio">
-                        <img src="{{ asset('images/octocat.png') }}" alt="Github logo" title="Github" class="w-16 mx-auto mb-4">
-                        <span class="text-xl">Github</span>
-                    </a>
-                </div>
-                <div class="w-1/2 md:w-1/3 mb-4">
-                    <a href="https://twitter.com/laravelio">
-                        <img src="{{ asset('images/twitter.png') }}" alt="Twitter logo" title="Twitter" class="w-16 mx-auto mb-4">
-                        <span class="text-xl">Twitter</span>
-                    </a>
-                </div>
-            </div>
             <div class="flex flex-wrap text-center items-center w-full lg:w-2/3 mx-auto">
                 <div class="w-1/2 md:w-1/4 mb-4">
                     <a href="https://laravel.com">
