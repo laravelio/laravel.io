@@ -23,6 +23,7 @@
 @section('content')
     <div class="container mx-auto px-4 py-8 flex flex-wrap flex-col-reverse lg:flex-row">
         <div class="w-full md:w-3/4 md:pr-3">
+            @include('articles.twitter_tip')
             @forelse($articles as $article)
                 <div class="pb-8 mb-8 border-b-2">
                     <div>

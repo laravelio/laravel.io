@@ -90,6 +90,11 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->twitter;
     }
 
+    public function hasTwitterAccount(): bool
+    {
+        return ! empty($this->twitter());
+    }
+
     public function isBanned(): bool
     {
         return ! is_null($this->banned_at);
