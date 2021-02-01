@@ -97,6 +97,14 @@ TWITTER_ACCESS_SECRET=
 
 Approved articles are shared in the order they were submitted for approval. Articles are shared twice per day at 14:00 and 18:00 UTC. Once an article has been shared, it will not be shared again.
 
+## Commands
+
+Command | Description
+--- | ---
+**`php artisan test --parallel`** | Run the tests
+`php artisan migrate:fresh --seed` | Reset the database
+`npm run watch` | Watch for changes in CSS and JS files
+
 ## Maintainers
 
 The Laravel.io portal is currently maintained by [Dries Vints](https://github.com/driesvints) and [Joe Dixon](https://github.com/joedixon). If you have any questions please don't hesitate to create an issue on this repo.
