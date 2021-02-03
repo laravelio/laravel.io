@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Http\Requests\SeriesRequest;
 use App\Models\Series;
-use App\User;
+use App\Models\User;
 
 final class CreateSeries
 {
@@ -14,7 +14,7 @@ final class CreateSeries
     private $title;
 
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $author;
 

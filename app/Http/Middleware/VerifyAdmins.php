@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Policies\UserPolicy;
-use App\User;
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Exceptions\CannotLikeItem;
 use App\Models\Article;
-use App\User;
+use App\Models\User;
 
 final class LikeArticle
 {
@@ -14,7 +14,7 @@ final class LikeArticle
     private $article;
 
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $user;
 

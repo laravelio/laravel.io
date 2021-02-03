@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Reply;
-use App\User;
+use App\Models\User;
 
 final class ReplyPolicy
 {

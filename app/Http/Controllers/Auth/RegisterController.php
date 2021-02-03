@@ -7,7 +7,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Requests\RegisterRequest;
 use App\Jobs\RegisterUser;
 use App\Providers\RouteServiceProvider;
-use App\User;
+use App\Models\User;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;

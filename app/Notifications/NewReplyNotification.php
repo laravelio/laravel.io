@@ -5,7 +5,7 @@ namespace App\Notifications;
 use App\Mail\NewReplyEmail;
 use App\Models\Reply;
 use App\Models\Subscription;
-use App\User;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;

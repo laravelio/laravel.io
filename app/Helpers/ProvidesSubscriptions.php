@@ -3,7 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\Subscription;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait ProvidesSubscriptions

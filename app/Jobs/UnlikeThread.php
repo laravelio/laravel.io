@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Thread;
-use App\User;
+use App\Models\User;
 
 final class UnlikeThread
 {
@@ -13,7 +13,7 @@ final class UnlikeThread
     private $thread;
 
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $user;
 

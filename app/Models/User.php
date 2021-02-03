@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;

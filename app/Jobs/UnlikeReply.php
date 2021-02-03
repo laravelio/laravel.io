@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Reply;
-use App\User;
+use App\Models\User;
 
 final class UnlikeReply
 {
@@ -13,7 +13,7 @@ final class UnlikeReply
     private $reply;
 
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $user;
 

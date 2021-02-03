@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\VerifyAdmins;
 use App\Queries\SearchUsers;
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Middleware\Authenticate;
 
 class AdminController extends Controller

@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Subscription;
 use App\Models\Thread;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Ramsey\Uuid\Uuid;
 

@@ -4,7 +4,7 @@ namespace App\Notifications;
 
 use App\Mail\ArticleApprovedEmail;
 use App\Models\Article;
-use App\User;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;

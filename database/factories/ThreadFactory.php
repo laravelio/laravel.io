@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Thread;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ThreadFactory extends Factory

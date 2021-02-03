@@ -7,7 +7,7 @@ use App\Jobs\CreateThread;
 use App\Models\Subscription;
 use App\Models\Thread;
 use App\Notifications\NewReplyNotification;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;

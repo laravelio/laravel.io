@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Exceptions\CannotLikeItem;
 use App\Models\Thread;
-use App\User;
+use App\Models\User;
 
 final class LikeThread
 {
@@ -14,7 +14,7 @@ final class LikeThread
     private $thread;
 
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $user;
 

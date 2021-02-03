@@ -6,7 +6,7 @@ namespace App\Listeners;
 
 use App\Events\ReplyWasCreated;
 use App\Notifications\NewReplyNotification;
-use App\User;
+use App\Models\User;
 
 final class SendNewReplyNotification
 {

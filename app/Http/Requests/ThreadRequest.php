@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\DoesNotContainUrlRule;
 use App\Rules\HttpImageRule;
-use App\User;
+use App\Models\User;
 
 class ThreadRequest extends Request
 {

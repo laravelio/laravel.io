@@ -4,7 +4,7 @@ namespace App\Jobs;
 
 use App\Exceptions\CannotCreateUser;
 use App\Http\Requests\RegisterRequest;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 final class RegisterUser

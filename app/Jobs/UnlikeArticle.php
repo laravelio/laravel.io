@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Article;
-use App\User;
+use App\Models\User;
 
 final class UnlikeArticle
 {
@@ -13,7 +13,7 @@ final class UnlikeArticle
     private $article;
 
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $user;
 
