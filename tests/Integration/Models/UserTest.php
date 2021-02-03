@@ -4,7 +4,7 @@ namespace Tests\Integration\Models;
 
 use App\Models\Reply;
 use App\Models\Thread;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

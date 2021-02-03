@@ -8,7 +8,7 @@ use App\Models\Reply;
 use App\Models\ReplyAble;
 use App\Models\Subscription;
 use App\Models\SubscriptionAble;
-use App\User;
+use App\Models\User;
 use Ramsey\Uuid\Uuid;
 
 final class CreateReply
@@ -19,7 +19,7 @@ final class CreateReply
     private $body;
 
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $author;
 

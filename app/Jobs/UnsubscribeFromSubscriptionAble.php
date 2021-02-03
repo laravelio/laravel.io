@@ -3,12 +3,12 @@
 namespace App\Jobs;
 
 use App\Models\SubscriptionAble;
-use App\User;
+use App\Models\User;
 
 final class UnsubscribeFromSubscriptionAble
 {
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $user;
 

@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\Http\Requests\ThreadRequest;
 use App\Models\Subscription;
 use App\Models\Thread;
-use App\User;
+use App\Models\User;
 use Ramsey\Uuid\Uuid;
 
 final class CreateThread
@@ -21,7 +21,7 @@ final class CreateThread
     private $body;
 
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $author;
 

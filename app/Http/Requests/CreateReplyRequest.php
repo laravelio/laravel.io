@@ -4,8 +4,8 @@ namespace App\Http\Requests;
 
 use App\Models\ReplyAble;
 use App\Models\Thread;
+use App\Models\User;
 use App\Rules\HttpImageRule;
-use App\User;
 
 class CreateReplyRequest extends Request
 {

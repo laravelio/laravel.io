@@ -4,13 +4,13 @@ namespace App\Jobs;
 
 use App\Events\EmailAddressWasChanged;
 use App\Http\Requests\UpdateProfileRequest;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Arr;
 
 final class UpdateProfile
 {
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $user;
 

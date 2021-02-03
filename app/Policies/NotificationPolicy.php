@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Notifications\DatabaseNotification;
 
 final class NotificationPolicy

@@ -4,13 +4,13 @@ namespace App\Jobs;
 
 use App\Models\Subscription;
 use App\Models\SubscriptionAble;
-use App\User;
+use App\Models\User;
 use Ramsey\Uuid\Uuid;
 
 final class SubscribeToSubscriptionAble
 {
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $user;
 

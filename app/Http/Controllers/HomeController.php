@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Thread;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller

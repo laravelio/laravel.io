@@ -5,7 +5,7 @@ namespace Tests\Integration\Jobs;
 use App\Exceptions\CannotLikeItem;
 use App\Jobs\LikeArticle;
 use App\Models\Article;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

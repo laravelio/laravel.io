@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\User;
+use App\Models\User;
 
 class SeriesRequest extends Request
 {

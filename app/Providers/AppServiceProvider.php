@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Models\Reply;
 use App\Models\Thread;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Horizon\Horizon;

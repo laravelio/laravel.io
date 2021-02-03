@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\Series;
-use App\User;
+use App\Models\User;
 
 final class CreateArticle
 {

@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 

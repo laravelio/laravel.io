@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
@@ -12,7 +12,7 @@ class EmailAddressWasChanged
     use SerializesModels;
 
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     public $user;
 

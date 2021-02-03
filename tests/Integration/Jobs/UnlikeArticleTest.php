@@ -4,7 +4,7 @@ namespace Tests\Integration\Jobs;
 
 use App\Jobs\UnlikeArticle;
 use App\Models\Article;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

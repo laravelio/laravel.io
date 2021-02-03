@@ -2,12 +2,12 @@
 
 namespace App\Jobs;
 
-use App\User;
+use App\Models\User;
 
 final class DeleteUser
 {
     /**
-     * @var \App\User
+     * @var \App\Models\User
      */
     private $user;
 
