@@ -656,7 +656,7 @@ class ArticleTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function user_can_see_tip_if_he_has_not_set_the_twitter_handle()
+    public function user_see_a_tip_if_they_have_not_set_the_twitter_handle()
     {
         $this->login(['twitter' => null]);
 
@@ -666,7 +666,7 @@ class ArticleTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function user_can_not_see_tip_if_he_has_set_the_twitter_handle()
+    public function user_do_not_see_tip_if_they_have_set_the_twitter_handle()
     {
         $this->login();
 
