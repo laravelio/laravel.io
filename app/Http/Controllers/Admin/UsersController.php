@@ -7,8 +7,8 @@ use App\Http\Middleware\VerifyAdmins;
 use App\Jobs\BanUser;
 use App\Jobs\DeleteUser;
 use App\Jobs\UnbanUser;
-use App\Policies\UserPolicy;
 use App\Models\User;
+use App\Policies\UserPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 
 class UsersController extends Controller

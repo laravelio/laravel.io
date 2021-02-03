@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use App\Rules\AuthorOwnsSeriesRule;
 use App\Rules\HttpImageRule;
-use App\Models\User;
 use Illuminate\Http\Concerns\InteractsWithInput;
 
 class ArticleRequest extends Request

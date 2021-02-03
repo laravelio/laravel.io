@@ -2,8 +2,8 @@
 
 namespace Tests\Integration\Queries;
 
-use App\Queries\SearchUsers;
 use App\Models\User;
+use App\Queries\SearchUsers;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

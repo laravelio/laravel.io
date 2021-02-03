@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use App\Policies\UserPolicy;
 use App\Models\User;
+use App\Policies\UserPolicy;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

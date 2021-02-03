@@ -4,10 +4,6 @@ namespace App\Models;
 
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
-use App\Models\Article;
-use App\Models\Reply;
-use App\Models\Series;
-use App\Models\Thread;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
