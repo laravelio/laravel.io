@@ -16,16 +16,10 @@ final class ShowArticles extends Component
 
     public $sortBy = 'recent';
 
-    protected $updatesQueryString = [
+    protected $queryString = [
         'tag' => ['except' => ''],
         'sortBy' => ['except' => 'recent'],
     ];
-
-    public function mount(): void
-    {
-        $this->toggleTag(request()->query('tag', $this->tag));
-        $this->sortBy(request()->query('sortBy') ?: $this->sortBy);
-    }
 
     public function render(): View
     {

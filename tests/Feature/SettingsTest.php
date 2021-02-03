@@ -129,7 +129,7 @@ class SettingsTest extends BrowserKitTestCase
             ->seePageIs('/settings')
             ->dontSee('freektwitter');
 
-        $this->assertNull($user->fresh()->twitter());
+        $this->assertEmpty($user->fresh()->twitter());
     }
 
     private function assertPasswordWasHashedAndSaved(): void
