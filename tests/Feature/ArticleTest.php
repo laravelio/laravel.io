@@ -654,4 +654,24 @@ class ArticleTest extends BrowserKitTestCase
             ->see('images/laravelio-share.png')
             ->dontSee('articles/my-first-article/social.png');
     }
+
+    /** @test */
+    public function user_see_a_tip_if_they_have_not_set_the_twitter_handle()
+    {
+        $this->login(['twitter' => null]);
+
+        $this->get('/articles/authored')
+            ->seeLink('Twitter handle')
+            ->see('so we can link to your profile when we tweet out your article.');
+    }
+
+    /** @test */
+    public function user_do_not_see_tip_if_they_have_set_the_twitter_handle()
+    {
+        $this->login();
+
+        $this->get('/articles/authored')
+            ->dontSeeLink('Twitter handle')
+            ->dontSee('so we can link to your profile when we tweet out your article.');
+    }
 }

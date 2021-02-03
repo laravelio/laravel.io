@@ -23,6 +23,14 @@
 @section('content')
     <div class="container mx-auto px-4 py-8 flex flex-wrap flex-col-reverse lg:flex-row">
         <div class="w-full md:w-3/4 md:pr-3">
+            @unless(Auth::user()->hasTwitterAccount())
+                <div class="bg-lio-500 text-white text-sm p-3">
+                    <x-heroicon-s-information-circle class="h-5 w-5 inline-block mr-1" />
+
+                    Set your <a href="{{ route('settings.profile') }}" class="underline">Twitter handle</a> so we can link to your profile when we tweet out your article.
+                </div>
+            @endunless
+
             @forelse($articles as $article)
                 <div class="pb-8 mb-8 border-b-2">
                     <div>
