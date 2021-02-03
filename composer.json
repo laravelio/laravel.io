@@ -25,7 +25,7 @@
         "laravel/ui": "^3.0",
         "league/commonmark": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
-        "livewire/livewire": "^1.0",
+        "livewire/livewire": "^2.0",
         "ohdearapp/ohdear-php-sdk": "^3.0",
         "predis/predis": "^1.1",
         "ramsey/uuid": "^4.1",

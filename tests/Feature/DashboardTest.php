@@ -46,8 +46,6 @@ class DashboardTest extends BrowserKitTestCase
     /** @test */
     public function users_can_see_notifications()
     {
-        $this->markTestSkipped('Skipped until Livewire v1.0.13 is released.');
-
         $userOne = $this->createUser();
 
         $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
@@ -78,8 +76,6 @@ class DashboardTest extends BrowserKitTestCase
     /** @test */
     public function users_can_mark_notifications_as_read()
     {
-        $this->markTestSkipped('Skipped until Livewire v1.0.13 is released.');
-
         $userOne = $this->createUser();
 
         $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
