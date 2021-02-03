@@ -1,4 +1,4 @@
-@title('My Articles')
+@title('Your Articles')
 
 @extends('layouts.default')
 

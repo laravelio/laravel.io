@@ -1,4 +1,4 @@
-@title('My Series')
+@title('Your Series')
 
 @extends('layouts.default')
 

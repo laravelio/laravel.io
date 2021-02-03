@@ -6,7 +6,7 @@
     <div class="bg-white border-b">
         <div class="container mx-auto flex justify-between items-center px-4">
             <h1 class="text-xl py-4 text-gray-900">
-                <a href="{{ route('user.series') }}">My Series</a>
+                <a href="{{ route('user.series') }}">Your Series</a>
                 > {{ $title }}
             </h1>
         </div>
