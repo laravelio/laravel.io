@@ -1,5 +1,7 @@
 @import 'tailwindcss/base';
 
+@import '~highlight.js/styles/hybrid.css';
+
 @import 'tailwindcss/components';
 
 @import 'tailwindcss/utilities';
