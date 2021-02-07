@@ -1,13 +1,13 @@
 <div>
     @guest
         <div class="text-gray-600 mr-2 py-2 inline-block flex items-center">
-            <span class="text-3xl mr-3">👏</span>
+            <x-heroicon-o-thumb-up class="w-6 h-6" />
             {{ $this->article->likesCount() }}
         </div>
     @else
-        <button type="button" wire:click="toggleLike" class="text-lio-600 mr-2 py-2 flex items-center">
-            <span class="text-3xl mr-3">👏</span>
+        <x-buttons.primary-menu-button tag="button" wire:click="toggleLike" :selected="$article->isLikedBy(Auth::user())">
+            <x-heroicon-o-thumb-up class="w-6 h-6" />
             {{ $this->article->likesCount() }}
-        </button>
+        </x-buttons.primary-menu-button>
     @endGuest
 </div>

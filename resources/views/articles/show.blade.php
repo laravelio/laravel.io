@@ -8,65 +8,36 @@
 @endpush
 
 @section('content')
-    <div class="max-w-screen-md mx-auto px-4 py-8 mb-8">
-        <h1 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none mb-4">{{ $article->title() }}</h1>
-
-        @if (Auth::check() && $article->isAuthoredBy(Auth::user()))
-            <a href="{{ route('articles.edit', $article->slug()) }}" class="label label-primary inline-flex">
-                Edit
-            </a>
-        @endif
-        
-        @if ($article->isNotPublished())
-            @if($article->isAwaitingApproval())
-                <span class="label inline-flex mb-4">
-                    Awaiting Approval
+    <div class="relative py-16 bg-white">
+        <div class="text-lg max-w-prose mx-auto">
+            <h1>
+                <span class="block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    {{ $article->title() }}
                 </span>
-                @can(App\Policies\ArticlePolicy::APPROVE, $article)
-                    <button type="button" class="label label-primary inline-flex mb-4" @click.prevent="activeModal = 'approveArticle'">
-                        Approve
-                    </button>
-                @endcan
-            @else
-                <span class="label inline-flex mb-4">
-                    Draft
-                </span>
-            @endif
-            
-        @else
-            @can(App\Policies\ArticlePolicy::DISAPPROVE, $article)
-                <button type="button" class="label label-danger inline-flex mb-4" @click.prevent="activeModal = 'disapproveArticle'">
-                    Disapprove
-                </button>
-            @endcan
-        @endif
+            </h1>
+        </div>
 
-        @can(App\Policies\ArticlePolicy::DELETE, $article)
-            <button type="button" class="label label-danger inline-flex mb-4" @click.prevent="activeModal = 'deleteArticle'">
-                Delete
-            </button>
-        @endcan
-
-        @can(App\Policies\ArticlePolicy::PINNED, $article)
-            <button type="button" class="label inline-flex mb-4" @click.prevent="activeModal = 'togglePinnedStatus'">
-                {{ $article->isPinned() ? 'Unpin' : 'Pin' }}
-            </button>
-        @endcan
-
-        <div class="mb-8 text-gray-700 flex items-center">
-            @include('forum.threads.info.avatar', ['user' => $article->author(), 'size' => 50])
-            <div class="mr-12">
-                <p class="text-sm leading-5 font-medium text-gray-900">
-                    <a href="#">
+        <div class="mt-6 pb-6 flex items-center justify-center border-b">
+            <div class="flex-shrink-0">
+                <a href="{{ route('profile', $article->author()->username()) }}">
+                    <span class="sr-only">
+                        {{ $article->author()->name() }}
+                    </span>
+                    <x-avatar :user="$article->author()" class="h-10 w-10 rounded-full" />
+                </a>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm font-medium text-gray-900">
+                    <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
                         {{ $article->author()->name() }}
                     </a>
                 </p>
-                <div class="flex text-sm leading-5 text-gray-500">
-                    @if($article->isPublished())
+                <div class="flex space-x-1 text-sm text-gray-500">
+                    @if ($article->isPublished())
                         <time datetime="{{ $article->submittedAt()->format('Y-m-d') }}">
                             {{ $article->submittedAt()->format('j M, Y') }}
                         </time>
-                        <span class="mx-1">
+                        <span aria-hidden="true">
                             &middot;
                         </span>
                     @endif
@@ -75,20 +46,29 @@
                     </span>
                 </div>
             </div>
-            <livewire:like-article :article="$article" />
         </div>
-        <div 
-            class="article text-lg"
-            x-data="{}" 
-            x-init="function () { highlightCode($el); }"
-        >
-            {!! md_to_html($article->body()) !!}
+
+        <div class="flex flex-col md:flex-row mx-auto justify-center">
+            <div class="md:sticky md:top-0 md:self-start pt-2 md:pt-6 w-full md:w-16">
+                @include('articles._sidebar')
+            </div>
+            <div
+                class="prose prose-lg text-gray-500 prose-lio px-4 pt-2 md:pt-6"
+                x-data="{}" 
+                    x-data="{}" 
+                x-data="{}" 
+                x-init="function () { highlightCode($el); }"
+            >
+                {!! md_to_html($article->body()) !!}
+                <div class="flex items-center">
+                    <livewire:like-article :article="$article" />
+                    <span class="text-gray-500 text-sm ml-2">
+                        Like this article?<br>Let the author know and give them a clap!
+                    </span>
+                </div>
+                @include('articles._series_nav')
+            </div>
         </div>
-        <livewire:like-article :article="$article"/>
-        <span class="text-gray-500 text-sm">
-            Like this article?<br>Let the author know and give them a clap!
-        </span>
-        @include('articles._series_nav')
     </div>
 
     @can(App\Policies\ArticlePolicy::APPROVE, $article)
