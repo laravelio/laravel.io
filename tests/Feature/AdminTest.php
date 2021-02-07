@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Models\Article;
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Reply;
 use App\Models\Thread;
-use App\Models\User;
-use Carbon\Carbon;
+use App\Models\Article;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class AdminTest extends BrowserKitTestCase

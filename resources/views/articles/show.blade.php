@@ -17,35 +17,50 @@
             </h1>
         </div>
 
-        <div class="mt-6 pb-6 flex items-center justify-center border-b">
-            <div class="flex-shrink-0">
-                <a href="{{ route('profile', $article->author()->username()) }}">
-                    <span class="sr-only">
-                        {{ $article->author()->name() }}
-                    </span>
-                    <x-avatar :user="$article->author()" class="h-10 w-10 rounded-full" />
-                </a>
-            </div>
-            <div class="ml-3">
-                <p class="text-sm font-medium text-gray-900">
-                    <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
-                        {{ $article->author()->name() }}
-                    </a>
-                </p>
-                <div class="flex space-x-1 text-sm text-gray-500">
-                    @if ($article->isPublished())
-                        <time datetime="{{ $article->submittedAt()->format('Y-m-d') }}">
-                            {{ $article->submittedAt()->format('j M, Y') }}
-                        </time>
-                        <span aria-hidden="true">
-                            &middot;
+        <div class="flex flex-col items-center mt-6 pb-6 border-b">
+            <div class="flex items-center justify-center">
+                <div class="flex-shrink-0">
+                    <a href="{{ route('profile', $article->author()->username()) }}">
+                        <span class="sr-only">
+                            {{ $article->author()->name() }}
                         </span>
-                    @endif
-                    <span>
-                        {{ $article->readTime() }} min read
-                    </span>
+                        <x-avatar :user="$article->author()" class="h-10 w-10 rounded-full" />
+                    </a>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm font-medium text-gray-900">
+                        <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
+                            {{ $article->author()->name() }}
+                        </a>
+                    </p>
+                    <div class="flex space-x-1 text-sm text-gray-500">
+                        @if ($article->isPublished())
+                            <time datetime="{{ $article->submittedAt()->format('Y-m-d') }}">
+                                {{ $article->submittedAt()->format('j M, Y') }}
+                            </time>
+                            <span aria-hidden="true">
+                                &middot;
+                            </span>
+                        @endif
+                        <span>
+                            {{ $article->readTime() }} min read
+                        </span>
+                    </div>
                 </div>
             </div>
+
+            @if ($article->isNotPublished())
+                <div class="mt-4">
+                    <x-badges.badge>
+                        @if ($article->isAwaitingApproval())
+                            Awaiting Approval
+                        @else
+                            Draft
+                        @endif
+                    </x-badges.badge>
+                    @else
+                </div>
+            @endif
         </div>
 
         <div class="flex flex-col md:flex-row mx-auto justify-center">
