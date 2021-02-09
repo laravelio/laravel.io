@@ -1,12 +1,9 @@
-<ul class="tags">
-    <li class="{{ active('admin') }}">
-        <a href="{{ route('admin') }}">
-            Users
-        </a>
-    </li>
-    <li class="{{ active('admin.articles') }}">
-        <a href="{{ route('admin.articles') }}">
-            Articles
-        </a>
-    </li>
-</ul>
+<nav class="space-y-1">
+    <x-sidebar-link href="{{ route('admin') }}" icon="heroicon-o-user-group" :active="is_active('admin')">
+        Users
+    </x-sidebar-link>
+
+    <x-sidebar-link href="{{ route('admin.articles') }}" icon="heroicon-o-document-duplicate" :active="is_active('admin.articles')">
+        Articles
+    </x-sidebar-link>
+</nav>
