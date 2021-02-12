@@ -13,13 +13,13 @@
 
 @section('content')
     <div class="py-4 sm:py-10">
-        <div class="container mx-auto sm:px-4 lg:grid lg:grid-cols-12 lg:gap-8">
+        <div class="flex flex-col flex-col-reverse container mx-auto sm:px-4 lg:grid lg:grid-cols-12 lg:gap-8">
             <div class="hidden lg:block lg:col-span-3 xl:col-span-2">
                 <nav aria-label="Sidebar" class="sticky top-4 divide-y divide-gray-300">
                     @include('forum._tags')
                 </nav>
             </div>
-            <main class="lg:col-span-9 xl:col-span-6">
+            <main class="lg:col-span-6">
                 <div class="px-4 sm:px-0">
                     <div class="sm:hidden" x-data="{}">
                         <label for="sort-by-tabs" class="sr-only">Select a tab</label>
@@ -82,9 +82,14 @@
                     </ul>
                 </div>
             </main>
-            <aside class="hidden xl:block xl:col-span-4">
+            <aside class="xl:col-span-4 lg:col-span-3">
                 <div class="sticky top-4 space-y-4">
-                    @include('forum._community_heroes')
+                    <div class="mb-8 lg:mb-0">
+                        @include('layouts._ads._forum_sidebar')
+                    </div>
+                    <div class="hidden lg:block">
+                        @include('forum._community_heroes')
+                    </div>
                 </div>
             </aside>
         </div>
