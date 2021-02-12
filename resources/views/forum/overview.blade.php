@@ -12,100 +12,56 @@
 @endsection
 
 @section('content')
-    <div class="container mx-auto px-4 py-4 flex flex-wrap flex-col-reverse md:flex-row">
-        <div class="w-full md:w-3/4 md:pr-3">
-            @if (count($threads))
-                <div>
-                    @foreach ($threads as $thread)
-                        <div class="thread-card">
-                            <a href="{{ route('thread', $thread->slug()) }}">
-                                <h4 class="flex justify-between text-xl font-bold text-gray-900 break-all">
-                                    {{ $thread->subject() }}
-                                    <span class="text-base font-normal">
-                                        <x-heroicon-s-chat class="inline text-gray-500 h-5 w-5 mr-1"/>
-                                        {{ count($thread->replies()) }}
-                                    </span>
-                                </h4>
-                                <p class="text-gray-600 break-all">{!! $thread->excerpt() !!}</p>
+    <div class="py-10">
+        <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
+            <div class="hidden lg:block lg:col-span-3 xl:col-span-2">
+                <nav aria-label="Sidebar" class="sticky top-4 divide-y divide-gray-300">
+                    @include('forum._tags')
+                </nav>
+            </div>
+            <main class="lg:col-span-9 xl:col-span-6">
+                <div class="px-4 sm:px-0">
+                    <div class="sm:hidden">
+                        <label for="question-tabs" class="sr-only">Select a tab</label>
+                        <select id="question-tabs" class="block w-full rounded-md border-gray-300 text-base font-medium text-gray-900 shadow-sm focus:border-rose-500 focus:ring-rose-500">
+                            <option value="#/recent">Recent</option>
+                            <option value="#/most-liked">Solved</option>
+                            <option value="#/most-answers">Active</option>
+                        </select>
+                    </div>
+                    <div class="hidden sm:block">
+                        <nav class="relative z-0 rounded-lg shadow flex divide-x divide-gray-200" aria-label="Tabs">
+                            <a href="#" aria-current="page" class="text-gray-900 rounded-l-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
+                                <span>Recent</span>
+                                <span aria-hidden="true" class="bg-lio-500 absolute inset-x-0 bottom-0 h-0.5"></span>
                             </a>
 
-                            <div class="flex flex-col justify-between md:flex-row md:items-center text-sm pt-5">
-                                <div class="flex flex-col md:flex-row md:items-center">
-                                    <div class="flex mb-4 md:mb-0">
-                                        @if (count($thread->replies()))
-                                            @include('forum.threads.info.avatar', ['user' => $thread->replies()->last()->author()])
-                                        @else
-                                            @include('forum.threads.info.avatar', ['user' => $thread->author()])
-                                        @endif
+                            <a href="#" aria-current="false" class="text-gray-500 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
+                                <span>Solved</span>
+                                <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+                            </a>
 
-                                        <div class="mr-6 text-gray-700">
-                                            @if (count($thread->replies()))
-                                                @php($lastReply = $thread->replies()->last())
-                                                <a href="{{ route('profile', $lastReply->author()->username()) }}" class="text-lio-700 mr-2">{{ $lastReply->author()->name() }}</a> replied
-                                                {{ $lastReply->createdAt()->diffForHumans() }}
-                                            @else
-                                                <a href="{{ route('profile', $thread->author()->username()) }}" class="text-lio-700 mr-2">{{ $thread->author()->name() }}</a> posted
-                                                {{ $thread->createdAt()->diffForHumans() }}
-                                            @endif
-                                        </div>
-                                    </div>
-
-                                    @include('forum.threads.info.tags')
-                                </div>
-
-                                @include('forum.threads._view_solution')
-                            </div>
-                        </div>
-                    @endforeach
+                            <a href="#" aria-current="false" class="text-gray-500 hover:text-gray-700 rounded-r-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
+                                <span>Active</span>
+                                <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+                            </a>
+                        </nav>
+                    </div>
                 </div>
-
-                <div class="pt-4 px-2">
-                    {{ $threads->render() }}
+                <div class="mt-4">
+                    <h1 class="sr-only">Recent questions</h1>
+                    <ul class="space-y-4">
+                        @foreach ($threads as $thread)
+                            @include('forum._thread')
+                        @endforeach
+                    </ul>
                 </div>
-            @else
-                <div class="flex flex-col items-center justify-center pt-4 text-gray-700">
-                    <h2 class="text-2xl pb-4">No threads were found!</h2>
-
-                    <a href="{{ route('threads.create') }}" class="button button-primary">
-                        Create a new one
-                    </a>
+            </main>
+            <aside class="hidden xl:block xl:col-span-4">
+                <div class="sticky top-4 space-y-4">
+                    @include('forum._community_heroes')
                 </div>
-            @endif
-        </div>
-
-        <div class="w-full md:w-1/4 md:pl-3 md:pt-4">
-            <a href="{{ route('threads.create') }}" class="button button-primary button-full mb-4">
-                Create Thread
-            </a>
-
-            <a href="{{ route("feeds.forum") }}" class="button button-muted button-full mb-4" target="_blank">
-                <span class="flex items-center justify-center">
-                    <x-icon-rss class="inline w-3 h-3 mr-2"/>
-                    RSS Feed
-                </span>
-            </a>
-
-            @include('layouts._ads._forum_sidebar')
-
-            <h3 class="text-xs font-bold tracking-wider uppercase text-gray-500">
-                Tags
-            </h3>
-
-            <ul class="tags">
-                <li class="{{ active('forum*', ! isset($activeTag) || $activeTag === null) }}">
-                    <a href="{{ route('forum') }}">
-                        All
-                    </a>
-                </li>   
-
-                @foreach (App\Models\Tag::orderBy('name')->get() as $tag)
-                    <li class="{{ isset($activeTag) && $tag->matches($activeTag) ? ' active' : '' }}">
-                        <a href="{{ route('forum.tag', $tag->slug()) }}">
-                            {{ $tag->name() }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
+            </aside>
         </div>
     </div>
 @endsection
