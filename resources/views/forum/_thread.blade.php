@@ -12,9 +12,7 @@
                         </a>
                     </p>
                     <p class="text-sm text-gray-500">
-                        <a href="{{ route('profile', $thread->author()->username()) }}" class="hover:underline">
-                            {{ $thread->created_at->format('F j Y \a\t h:i A') }}
-                        </a>
+                        {{ $thread->created_at->format('F j Y \a\t h:i A') }}
                     </p>
                 </div>
 
@@ -22,13 +20,13 @@
                     <div class="flex-shrink-0 self-center flex">
                         <a href="{{ route('thread', $thread->slug()) }}#{{ $thread->solution_reply_id }}">
                             <x-badges.primary-badge hasDot>
-                                Solved
+                                Resolved
                             </x-badges.primary-badge>
                         </a>
                     </div>
                 @endif
             </div>
-            <a href="{{ route('thread', $thread->slug()) }}">
+            <a href="{{ route('thread', $thread->slug()) }}" class="hover:underline">
                 <h2 class="mt-4 text-base font-medium text-gray-900">
                     {{ $thread->subject() }}
                 </h2>
@@ -36,7 +34,7 @@
         </div>
         <div class="mt-2 text-sm text-gray-700 space-y-4">
             <p>
-                <a href="{{ route('thread', $thread->slug()) }}">
+                <a href="{{ route('thread', $thread->slug()) }}" class="hover:underline">
                     {{ $thread->excerpt() }}
                 </a>
             </p>
@@ -44,14 +42,14 @@
         <div class="mt-6 flex justify-between space-x-8">
             <div class="flex space-x-6">
                 <span class="inline-flex items-center text-sm">
-                    <div class="inline-flex space-x-2 text-gray-400 hover:text-gray-500">
+                    <div class="inline-flex space-x-2 text-gray-400">
                         <x-heroicon-s-thumb-up class="h-5 w-5" />
                         <span class="font-medium text-gray-900">{{ $thread->likesCount() }}</span>
                         <span class="sr-only">likes</span>
                     </div>
                 </span>
                 <span class="inline-flex items-center text-sm">
-                    <div class="inline-flex space-x-2 text-gray-400 hover:text-gray-500">
+                    <div class="inline-flex space-x-2 text-gray-400">
                         <x-heroicon-s-chat-alt class="h-5 w-5" />
                         <span class="font-medium text-gray-900">{{ $thread->repliesCount() }}</span>
                         <span class="sr-only">replies</span>
