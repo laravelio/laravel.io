@@ -37,7 +37,7 @@ class ForumTest extends BrowserKitTestCase
             ->see('The first thread')
             ->see('The second thread')
             ->see('Resolved')
-            ->see(route('thread', $thread->slug()) . '#' . $thread->solution_reply_id);
+            ->see(route('thread', $thread->slug()).'#'.$thread->solution_reply_id);
     }
 
     /** @test */
