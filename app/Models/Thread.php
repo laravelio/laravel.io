@@ -163,13 +163,18 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
      */
     public static function feedByTagPaginated(Tag $tag, int $perPage = 20): Paginator
     {
+        return static::feedByTagQuery($tag)
+            ->paginate($perPage);
+    }
+
+    public static function feedByTagQuery(Tag $tag): Builder
+    {
         return static::feedQuery()
             ->join('taggables', function ($join) {
                 $join->on('threads.id', 'taggables.taggable_id')
                     ->where('taggable_type', static::TABLE);
             })
-            ->where('taggables.tag_id', $tag->id())
-            ->paginate($perPage);
+            ->where('taggables.tag_id', $tag->id());
     }
 
     /**
@@ -238,5 +243,15 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     public function splitBody($value)
     {
         return $this->split($value);
+    }
+
+    public function scopeResolved(Builder $query): Builder
+    {
+        return $query->whereNotNull('solution_reply_id');
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->has('repliesRelation');
     }
 }

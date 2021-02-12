@@ -1,7 +1,7 @@
 @php($subTitle = isset($activeTag) ? $activeTag->name() : null)
 @title('Forum' . (isset($subTitle) ? ' > ' . $subTitle : ''))
 
-@extends('layouts.default')
+@extends('layouts.default', ['isTailwindUi' => true])
 
 @section('subnav')
     <div class="bg-white border-b">
@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-    <div class="py-10">
+    <div class="py-4 sm:py-10">
         <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
             <div class="hidden lg:block lg:col-span-3 xl:col-span-2">
                 <nav aria-label="Sidebar" class="sticky top-4 divide-y divide-gray-300">
@@ -21,29 +21,54 @@
             </div>
             <main class="lg:col-span-9 xl:col-span-6">
                 <div class="px-4 sm:px-0">
-                    <div class="sm:hidden">
-                        <label for="question-tabs" class="sr-only">Select a tab</label>
-                        <select id="question-tabs" class="block w-full rounded-md border-gray-300 text-base font-medium text-gray-900 shadow-sm focus:border-rose-500 focus:ring-rose-500">
-                            <option value="#/recent">Recent</option>
-                            <option value="#/most-liked">Solved</option>
-                            <option value="#/most-answers">Active</option>
+                    <div class="sm:hidden" x-data="{}">
+                        <label for="sort-by-tabs" class="sr-only">Select a tab</label>
+                        <select 
+                            id="sort-by-tabs" 
+                            class="block w-full rounded-md border-gray-300 text-base font-medium text-gray-900 shadow-sm focus:border-lio-500 focus:ring-lio-500" 
+                            @change="window.location = $event.target.value"
+                        >
+                            <option value="{{ url(request()->url() . '?filter=recent') }}" @if($filter === 'recent') selected="selected" @endif>Recent</option>
+                            <option value="{{ url(request()->url() . '?filter=resolved') }}" @if($filter === 'resolved') selected="selected" @endif>Resolved</option>
+                            <option value="{{ url(request()->url() . '?filter=active') }}" @if($filter === 'active') selected="selected" @endif>Active</option>
                         </select>
                     </div>
                     <div class="hidden sm:block">
                         <nav class="relative z-0 rounded-lg shadow flex divide-x divide-gray-200" aria-label="Tabs">
-                            <a href="#" aria-current="page" class="text-gray-900 rounded-l-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
+                            <a 
+                                href="{{ url(request()->url() . '?filter=recent') }}" 
+                                aria-current="{{ $filter === 'recent' ? 'page' : 'false' }}" 
+                                class="text-gray-900 rounded-l-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"
+                            >
                                 <span>Recent</span>
-                                <span aria-hidden="true" class="bg-lio-500 absolute inset-x-0 bottom-0 h-0.5"></span>
+                                <span 
+                                    aria-hidden="true" 
+                                    class="{{ $filter === 'recent' ? 'bg-lio-500' : 'bg-transparent'}} absolute inset-x-0 bottom-0 h-0.5"
+                                ></span>
                             </a>
 
-                            <a href="#" aria-current="false" class="text-gray-500 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
-                                <span>Solved</span>
-                                <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+                            <a 
+                                href="{{ url(request()->url() . '?filter=resolved') }}" 
+                                aria-current="{{ $filter === 'resolved' ? 'page' : 'false' }}"
+                                class="text-gray-500 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"
+                            >
+                                <span>Resolved</span>
+                                <span 
+                                    aria-hidden="true" 
+                                    class="{{ $filter === 'resolved' ? 'bg-lio-500' : 'bg-transparent'}} absolute inset-x-0 bottom-0 h-0.5"
+                                ></span>
                             </a>
 
-                            <a href="#" aria-current="false" class="text-gray-500 hover:text-gray-700 rounded-r-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
+                            <a 
+                                href="{{ url(request()->url() . '?filter=active') }}"
+                                aria-current="{{ $filter === 'active' ? 'page' : 'false' }}"
+                                class="text-gray-500 hover:text-gray-700 rounded-r-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"
+                            >
                                 <span>Active</span>
-                                <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+                                <span 
+                                    aria-hidden="true" 
+                                    class="{{ $filter === 'active' ? 'bg-lio-500' : 'bg-transparent'}} absolute inset-x-0 bottom-0 h-0.5"
+                                ></span>
                             </a>
                         </nav>
                     </div>
