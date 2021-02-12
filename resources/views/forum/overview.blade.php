@@ -7,6 +7,10 @@
     <div class="bg-white border-b">
         <div class="container mx-auto flex justify-between items-center px-4">
             <h1 class="text-xl py-4 text-gray-900">{{ $title }}</h1>
+
+            <x-buttons.primary-button href="{{ route('threads.create') }}" tag="a">
+                Create Thread
+            </x-buttons.primary-button>
         </div>
     </div>
 @endsection
@@ -89,6 +93,14 @@
                     </div>
                     <div class="hidden lg:block">
                         @include('forum._community_heroes')
+                    </div>
+                    <div class="mt-4 hidden lg:block">
+                        <a href="{{ route("feeds.forum") }}" class="text-gray-500 text-sm">
+                            <span class="flex items-center">
+                                <x-icon-rss class="inline w-3 h-3 mr-2"/>
+                                RSS Feed
+                            </span>
+                        </a>
                     </div>
                 </div>
             </aside>
