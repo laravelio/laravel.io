@@ -7,7 +7,6 @@ use App\Http\Middleware\VerifyAdmins;
 use App\Jobs\ApproveArticle;
 use App\Jobs\DisapproveArticle;
 use App\Models\Article;
-use App\Models\User;
 use App\Policies\ArticlePolicy;
 use App\Queries\SearchArticles;
 use Illuminate\Auth\Middleware\Authenticate;
