@@ -30,6 +30,7 @@
 
                         <input type="text" name="admin_search" id="adminSearch" class="focus:ring-lio-500 focus:border-lio-500 block w-full rounded-md pl-10 sm:hidden border-gray-300" placeholder="{{ $placeholder }}" value="{{ $search ?? null }}" />
                         <input type="text" name="admin_search" id="adminSearch" class="hidden focus:ring-lio-500 focus:border-lio-500 w-full rounded-md pl-10 sm:block sm:text-sm border-gray-300" placeholder="{{ $placeholder }}" value="{{ $search ?? null }}" />
+                        <input type="submit" class="hidden" />
                     </div>
                 </div>
             </form>
