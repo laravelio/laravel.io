@@ -1,64 +1,86 @@
 @title('Users')
 
-@extends('layouts.default')
+@extends('layouts.default', ['isTailwindUi' => true])
 
 @section('content')
-    <div class="bg-white border-b">
-        <div class="container mx-auto flex justify-between items-center px-4">
-            <h1 class="text-xl py-4 text-gray-900">{{ $title }}</h1>
-            
-            <form action="{{ route('admin') }}" method="GET">
-                <input type="text" name="search" id="search" class="form-control" placeholder="Search for users..." value="{{ $search ?? null }}" />
-            </form>
-        </div>
+    <div class="container mx-auto px-4 pt-6">
+        @include('admin.partials._navigation', [
+            'query' => route('admin'),
+            'search' => $adminSearch,
+            'placeholder' => 'Search for users...',
+        ])
     </div>
 
-    <div class="container mx-auto p-4 flex flex-wrap flex-col-reverse md:flex-row">
-        <div class="w-full md:w-3/4 md:pr-3">
-            <table class="table table-striped mt-8">
-                <thead>
-                    <tr>
-                        <th>Joined On</th>
-                        <th>Name</th>
-                        <th>Email Address</th>
-                        <th>Status</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($users as $user)
-                        <tr>
-                            <td>{{ $user->createdAt() }}</td>
-                            <td>{{ $user->name() }}</td>
-                            <td>{{ $user->emailAddress() }}</td>
-                            <td>
-                                @if ($user->isBanned())
-                                    <span class="label label-warning">Banned</span>
-                                @elseif ($user->isAdmin())
-                                    <span class="label label-primary">Admin</span>
-                                @elseif ($user->isModerator())
-                                    <span class="label label-primary">Moderator</span>
-                                @else
-                                    <span class="label label-default">User</span>
-                                @endif
-                            </td>
-                            <td style="text-align:center;">
-                                <a href="{{ route('profile', $user->username()) }}" class="text-lio-600">
-                                    <x-heroicon-o-cog class="h-5 w-5"/>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    <main class="container mx-auto pb-10 lg:py-6 sm:px-4">
+        <div class="flex flex-col">
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <x-tables.table-head>Name</x-tables.table-head>
+                                    <x-tables.table-head>Role</x-tables.table-head>
+                                    <x-tables.table-head>Joined On</x-tables.table-head>
+                                    <x-tables.table-head class="text-center">Profile</x-tables.table-head>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <x-tables.table-data>
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10">
+                                                    <x-avatar :user="$user" class="h-10 w-10 rounded-full" />
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        {{ $user->name() }}
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">
+                                                        {{ $user->username() }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </x-tables.table-data>
 
-            <div class="pt-4 px-2">
-                {{ $users->render() }}
+                                        <x-tables.table-data>
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                                @if ($user->isBanned())
+                                                    banned
+                                                @elseif ($user->isAdmin())
+                                                    admin
+                                                @elseif ($user->isModerator())
+                                                    moderator
+                                                @else
+                                                    user
+                                                @endif
+                                            </span>
+                                        </x-tables.table-data>
+
+                                        <x-tables.table-data>
+                                            {{ $user->createdAt()->format('j M Y H:i:s') }}
+                                        </x-tables.table-data>
+
+                                        <x-tables.table-data class="text-center w-10">
+                                            <a
+                                                href="{{ route('profile', $user->username()) }}"
+                                                class="text-lio-600 hover:text-lio-800"
+                                            >
+                                                <x-heroicon-o-user-circle class="w-5 h-5 inline" />
+                                            </a>
+                                        </x-tables.table-data>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="w-full md:w-1/4 md:pl-3 md:pt-4">
-            @include('admin.partials._navigation')
-        </div>
-    </div>
 
+        <div class="p-4">
+            {{ $users->render() }}
+        </div>
+    </main>
 @endsection

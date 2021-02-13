@@ -8,6 +8,7 @@ use App\Jobs\ApproveArticle;
 use App\Jobs\DisapproveArticle;
 use App\Models\Article;
 use App\Policies\ArticlePolicy;
+use App\Queries\SearchArticles;
 use Illuminate\Auth\Middleware\Authenticate;
 
 class ArticlesController extends Controller
@@ -19,13 +20,15 @@ class ArticlesController extends Controller
 
     public function index()
     {
-        $articles = Article::awaitingApproval()
-            ->orderBy('submitted_at', 'asc')
-            ->paginate();
+        if ($adminSearch = request('admin_search')) {
+            $articles = SearchArticles::get($adminSearch)->appends(['admin_search' => $adminSearch]);
+        } else {
+            $articles = Article::awaitingApproval()
+                ->orderBy('submitted_at', 'asc')
+                ->paginate();
+        }
 
-        return view('admin.articles', [
-            'articles' => $articles,
-        ]);
+        return view('admin.articles', compact('articles', 'adminSearch'));
     }
 
     public function approve(Article $article)

@@ -15,7 +15,6 @@ final class SearchUsers
         return User::where('name', 'like', "%$keyword%")
             ->orWhere('email', 'like', "%$keyword%")
             ->orWhere('username', 'like', "%$keyword%")
-            ->paginate($perPage)
-            ->appends(['search' => $keyword]);
+            ->paginate($perPage);
     }
 }
