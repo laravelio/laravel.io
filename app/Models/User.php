@@ -250,10 +250,4 @@ final class User extends Authenticatable implements MustVerifyEmail
 
         parent::delete();
     }
-
-    public function scopeMostReplies(Builder $query): Builder
-    {
-        return $query->withCount('replyable')
-            ->orderBy('replyable_count', 'desc');
-    }
 }

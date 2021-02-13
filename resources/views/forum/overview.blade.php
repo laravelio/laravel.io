@@ -17,16 +17,18 @@
 
 @section('content')
     <div class="py-4 sm:py-10">
-        <div class="flex flex-col flex-col-reverse container mx-auto sm:px-4 lg:grid lg:grid-cols-12 lg:gap-8">
-            <div class="hidden lg:block lg:col-span-3 xl:col-span-2">
+        <div class="flex flex-col flex-col-reverse container mx-auto lg:grid lg:grid-cols-12 lg:gap-8">
+            <div class="hidden lg:block lg:col-span-2">
                 <nav aria-label="Sidebar" class="sticky top-4 divide-y divide-gray-300">
                     @include('forum._tags')
                 </nav>
             </div>
-            <main class="lg:col-span-6">
-                <div class="px-4 sm:px-0">
+
+            <main class="lg:col-span-7 mt-6 lg:mt-0">
+                <div class="px-4 lg:px-0">
                     <div class="sm:hidden" x-data="{}">
                         <label for="sort-by-tabs" class="sr-only">Select a tab</label>
+
                         <select 
                             id="sort-by-tabs" 
                             class="block w-full rounded-md border-gray-300 text-base font-medium text-gray-900 shadow-sm focus:border-lio-500 focus:ring-lio-500" 
@@ -37,6 +39,7 @@
                             <option value="{{ url(request()->url() . '?filter=active') }}" @if($filter === 'active') selected="selected" @endif>Active</option>
                         </select>
                     </div>
+
                     <div class="hidden sm:block">
                         <nav class="relative z-0 rounded-lg shadow flex divide-x divide-gray-200" aria-label="Tabs">
                             <a 
@@ -77,8 +80,10 @@
                         </nav>
                     </div>
                 </div>
+
                 <div class="mt-4">
                     <h1 class="sr-only">Recent questions</h1>
+
                     <ul class="space-y-4">
                         @foreach ($threads as $thread)
                             @include('forum._thread')
@@ -86,20 +91,19 @@
                     </ul>
                 </div>
             </main>
-            <aside class="xl:col-span-4 lg:col-span-3">
+
+            <aside class="lg:col-span-3">
                 <div class="sticky top-4 space-y-4">
-                    <div class="mb-8 lg:mb-0">
-                        @include('layouts._ads._forum_sidebar')
-                    </div>
-                    <div class="hidden lg:block">
+                    @include('layouts._ads._forum_sidebar')
+
+                    <div class="mt-8 lg:mt-0 hidden lg:block">
                         @include('forum._community_heroes')
                     </div>
-                    <div class="mt-4 hidden lg:block">
-                        <a href="{{ route("feeds.forum") }}" class="text-gray-500 text-sm">
-                            <span class="flex items-center">
-                                <x-icon-rss class="inline w-3 h-3 mr-2"/>
-                                RSS Feed
-                            </span>
+
+                    <div class="mt-4 text-center">
+                        <a href="{{ route("feeds.forum") }}" class="inline-flex lg:flex items-center inline-block text-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-lio-600 hover:bg-lio-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lio-500">
+                            <x-icon-rss class="-ml-1 mr-3 h-5 w-5"/>
+                            RSS Feed
                         </a>
                     </div>
                 </div>

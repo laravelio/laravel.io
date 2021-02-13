@@ -1,5 +1,5 @@
 @props([
-    'hasDot' => false
+    'hasDot' => false,
 ])
 
 <span

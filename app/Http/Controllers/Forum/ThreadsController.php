@@ -14,6 +14,7 @@ use App\Jobs\UpdateThread;
 use App\Models\Reply;
 use App\Models\Tag;
 use App\Models\Thread;
+use App\Models\User;
 use App\Policies\ThreadPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
@@ -46,7 +47,11 @@ class ThreadsController extends Controller
                 ->paginate();
         }
 
-        return view('forum.overview', compact('threads', 'filter'));
+        /** @todo Implement a way to retrieve the top 5 users with the most solutions to threads */
+        $mostSolutions = [];
+        $mostSolutions = User::take(3)->get();
+
+        return view('forum.overview', compact('threads', 'filter', 'mostSolutions'));
     }
 
     public function show(Thread $thread)
