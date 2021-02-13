@@ -8,7 +8,7 @@
 @endpush
 
 @section('content')
-    <div class="relative py-16 bg-white">
+    <div class="relative pt-16 bg-white">
         <div class="text-lg max-w-prose mx-auto">
             <h1>
                 <span class="block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
@@ -63,7 +63,7 @@
             @endif
         </div>
 
-        <div class="flex flex-col md:flex-row mx-auto justify-center">
+        <div class="flex flex-col md:flex-row mx-auto justify-center bg-white">
             <div class="md:sticky md:top-0 md:self-start pt-2 md:pt-6 w-full md:w-16">
                 @include('articles._sidebar')
             </div>
@@ -75,7 +75,7 @@
                 x-init="function () { highlightCode($el); }"
             >
                 {!! md_to_html($article->body()) !!}
-                <div class="flex items-center">
+                <div class="flex items-center pt-6 pb-10">
                     <livewire:like-article :article="$article" />
                     <span class="text-gray-500 text-sm ml-2">
                         Like this article?<br>Let the author know and give them a clap!
