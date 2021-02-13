@@ -14,5 +14,10 @@ class ArticleSeeder extends Seeder
             'submitted_at' => now(),
             'approved_at' => now(),
         ]);
+
+        Article::factory()->count(20)->create([
+            'author_id' => 1,
+            'submitted_at' => now(),
+        ]);
     }
 }
