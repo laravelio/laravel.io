@@ -8,7 +8,7 @@
         <div class="container mx-auto flex justify-between items-center px-4">
             <h1 class="text-xl py-4 text-gray-900">{{ $title }}</h1>
 
-            <x-buttons.primary-button href="{{ route('threads.create') }}" tag="a">
+            <x-buttons.primary-button href="{{ route('threads.create') }}">
                 Create Thread
             </x-buttons.primary-button>
         </div>
