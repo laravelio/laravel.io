@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -248,5 +249,13 @@ final class User extends Authenticatable implements MustVerifyEmail
         $this->deleteReplies();
 
         parent::delete();
+    }
+
+    public function scopeMostSolutions(Builder $query)
+    {
+        return $query->withCount(['replyAble as most_solutions' => function ($query) {
+            return $query->join('threads', 'threads.solution_reply_id', '=', 'replies.id')
+                ->where('replyable_type', 'threads');
+        }])->orderBy('most_solutions', 'desc');
     }
 }
