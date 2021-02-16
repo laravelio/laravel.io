@@ -29,9 +29,7 @@ class TagsController extends Controller
                 ->get();
         }
 
-        /** @todo Implement a way to retrieve the top 5 users with the most solutions to threads */
-        $mostSolutions = [];
-        $mostSolutions = User::take(3)->get();
+        $mostSolutions = User::mostSolutions()->take(3)->get();
 
         return view('forum.overview', compact('threads', 'filter', 'mostSolutions') + ['activeTag' => $tag]);
     }
