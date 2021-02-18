@@ -68,7 +68,7 @@
         </div>
 
         <div class="flex flex-col md:flex-row mx-auto justify-center bg-white">
-            <div class="md:sticky md:top-0 md:self-start pt-6 md:pt-14 w-full md:w-16">
+            <div class="md:sticky md:top-0 md:self-start pt-6 w-full md:w-16">
                 @include('articles._sidebar')
             </div>
 
