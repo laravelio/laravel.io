@@ -34,7 +34,7 @@ return [
         'label' => Components\Forms\Label::class,
         // 'logout' => Components\Buttons\Logout::class,
         // 'mapbox' => Components\Maps\Mapbox::class,
-        // 'markdown' => Components\Markdown\Markdown::class,
+        'buk-markdown' => Components\Markdown\Markdown::class,
         'password' => Components\Forms\Inputs\Password::class,
         // 'pikaday' => Components\Forms\Inputs\Pikaday::class,
         // 'social-meta' => Components\Layouts\SocialMeta::class,
