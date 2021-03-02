@@ -119,9 +119,6 @@ return [
             ['path' => 'app/Models/Reply.php', 'details' => 'Method * returns mixed.'],
             ['path' => 'app/Models/Subscription.php', 'details' => 'Method * returns mixed.']
         ],
-        Enlightn\EnlightnPro\Analyzers\Performance\CommandConstructorInjectionAnalyzer::class => [
-            ['path' => 'app/Console/Commands/PostArticleToTwitter.php', 'details' => '*'],
-        ],
         Enlightn\EnlightnPro\Analyzers\Security\HardCodedCredentialsAnalyzer::class => [
             ['path' => 'database/seeders/UserSeeder.php', 'details' => '*'],
         ],

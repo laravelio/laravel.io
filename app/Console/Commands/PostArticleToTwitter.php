@@ -15,15 +15,10 @@ final class PostArticleToTwitter extends Command
 
     private $notifiable;
 
-    public function __construct(AnonymousNotifiable $notifiable)
+    public function handle(AnonymousNotifiable $notifiable): void
     {
-        parent::__construct();
-
         $this->notifiable = $notifiable;
-    }
 
-    public function handle(): void
-    {
         if ($article = Article::nextForSharing()) {
             $this->notifiable->notify(new PostArticleToTwitterNotification($article));
 
