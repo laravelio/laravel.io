@@ -24,8 +24,7 @@ jobs:
         run: |
           composer config http-basic.satis.laravel-enlightn.com "$ENLIGHTN_USERNAME" "$ENLIGHTN_API_TOKEN"
           composer config repositories.enlightn composer https://satis.laravel-enlightn.com
-          composer require --no-interaction --no-update enlightn/enlightnpro
-          composer install --prefer-dist --no-interaction
+          composer require --prefer-dist --no-interaction enlightn/enlightnpro
 
       - name: Install NPM dependencies
         run: npm ci
