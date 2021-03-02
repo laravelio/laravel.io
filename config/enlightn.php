@@ -117,7 +117,7 @@ return [
             ['path' => 'app/Http/Requests/UpdateProfileRequest.php', 'details' => '*'],
             ['path' => 'app/Http/Requests/UpdateReplyRequest.php', 'details' => '*'],
             ['path' => 'app/Models/Reply.php', 'details' => 'Method * returns mixed.'],
-            ['path' => 'app/Models/Subscription.php', 'details' => 'Method * returns mixed.']
+            ['path' => 'app/Models/Subscription.php', 'details' => 'Method * returns mixed.'],
         ],
         Enlightn\EnlightnPro\Analyzers\Security\HardCodedCredentialsAnalyzer::class => [
             ['path' => 'database/seeders/UserSeeder.php', 'details' => '*'],
