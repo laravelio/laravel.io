@@ -7,7 +7,7 @@ use App\Models\Article;
 final class DisapproveArticle
 {
     /**
-     * @var \App\Models\Thread
+     * @var \App\Models\Article
      */
     private $article;
 

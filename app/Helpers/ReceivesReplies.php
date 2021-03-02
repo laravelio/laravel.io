@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 trait ReceivesReplies
 {
     /**
-     * @return \App\Models\Reply[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function replies()
     {
@@ -16,7 +16,7 @@ trait ReceivesReplies
     }
 
     /**
-     * @return \App\Models\Reply[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function latestReplies(int $amount = 5)
     {

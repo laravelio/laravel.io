@@ -12,7 +12,10 @@ final class SendNewReplyNotification
 {
     public function handle(ReplyWasCreated $event): void
     {
-        foreach ($event->reply->replyAble()->subscriptions() as $subscription) {
+        /** @var \App\Models\Thread $thread */
+        $thread = $event->reply->replyAble();
+
+        foreach ($thread->subscriptions() as $subscription) {
             if ($this->replyAuthorDoesNotMatchSubscriber($event->reply->author(), $subscription)) {
                 $subscription->user()->notify(new NewReplyNotification($event->reply, $subscription));
             }

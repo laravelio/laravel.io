@@ -42,6 +42,6 @@ trait HasSlug
             $query->where('id', '!=', $ignoreId);
         }
 
-        return $query->count();
+        return $query->exists();
     }
 }
