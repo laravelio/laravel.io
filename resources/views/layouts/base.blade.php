@@ -27,7 +27,6 @@
     @include('feed::links')
     @include('layouts._favicons')
     @include('layouts._social')
-    @include('layouts._google_analytics')
     @include('layouts._fathom')
 
     @livewireStyles
