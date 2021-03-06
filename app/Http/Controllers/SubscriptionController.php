@@ -9,6 +9,7 @@ class SubscriptionController extends Controller
 {
     public function unsubscribe(Subscription $subscription)
     {
+        /** @var \App\Models\Thread $thread */
         $thread = $subscription->subscriptionAble();
 
         $this->dispatch(new UnsubscribeFromSubscriptionAble($subscription->user(), $thread));

@@ -130,7 +130,6 @@ Route::prefix('admin')->name('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index']);
 
     // Users
-    Route::get('users/{username}', [UsersController::class, 'show'])->name('.users.show');
     Route::put('users/{username}/ban', [UsersController::class, 'ban'])->name('.users.ban');
     Route::put('users/{username}/unban', [UsersController::class, 'unban'])->name('.users.unban');
     Route::delete('users/{username}', [UsersController::class, 'delete'])->name('.users.delete');

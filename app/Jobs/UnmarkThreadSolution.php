@@ -7,7 +7,7 @@ use App\Models\Thread;
 final class UnmarkThreadSolution
 {
     /**
-     * @var \App\User
+     * @var \App\Models\Thread
      */
     private $thread;
 

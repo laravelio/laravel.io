@@ -206,8 +206,8 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         try {
             return static::join('replies', 'threads.solution_reply_id', '=', 'replies.id')
                 ->select(DB::raw('avg(datediff(replies.created_at, threads.created_at)) as duration'))
-                ->pluck('duration')
-                ->first();
+                ->first()
+                ->duration;
         } catch (Exception $e) {
             return false;
         }

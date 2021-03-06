@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 trait ProvidesSubscriptions
 {
     /**
-     * @return \App\Models\Subscription[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function subscriptions()
     {

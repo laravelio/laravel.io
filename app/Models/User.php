@@ -124,7 +124,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * @return \App\Models\Thread[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function threads()
     {
@@ -132,7 +132,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * @return \App\Models\Thread[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function latestThreads(int $amount = 5)
     {
@@ -159,7 +159,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * @return \App\Models\Reply[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function replies()
     {
@@ -167,7 +167,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * @return \App\Models\Reply[]
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function latestReplies(int $amount = 10)
     {

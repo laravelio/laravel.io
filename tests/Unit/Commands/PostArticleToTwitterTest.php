@@ -31,7 +31,7 @@ class PostArticleToTwitterTest extends TestCase
             'approved_at' => now(),
         ]);
 
-        (new PostArticleToTwitter(new AnonymousNotifiable()))->handle();
+        (new PostArticleToTwitter())->handle(new AnonymousNotifiable());
 
         Notification::assertSentTo(
             new AnonymousNotifiable(),
@@ -61,7 +61,7 @@ class PostArticleToTwitterTest extends TestCase
             'approved_at' => now(),
         ]);
 
-        (new PostArticleToTwitter(new AnonymousNotifiable()))->handle();
+        (new PostArticleToTwitter())->handle(new AnonymousNotifiable());
 
         Notification::assertSentTo(
             new AnonymousNotifiable(),
@@ -86,7 +86,7 @@ class PostArticleToTwitterTest extends TestCase
             'approved_at' => now(),
         ]);
 
-        (new PostArticleToTwitter(new AnonymousNotifiable()))->handle();
+        (new PostArticleToTwitter())->handle(new AnonymousNotifiable());
 
         Notification::assertSentTo(
             new AnonymousNotifiable(),
@@ -106,7 +106,7 @@ class PostArticleToTwitterTest extends TestCase
             'shared_at' => now(),
         ]);
 
-        (new PostArticleToTwitter(new AnonymousNotifiable()))->handle();
+        (new PostArticleToTwitter())->handle(new AnonymousNotifiable());
 
         Notification::assertNothingSent();
     }
@@ -118,7 +118,7 @@ class PostArticleToTwitterTest extends TestCase
             'submitted_at' => now(),
         ]);
 
-        (new PostArticleToTwitter(new AnonymousNotifiable()))->handle();
+        (new PostArticleToTwitter())->handle(new AnonymousNotifiable());
 
         Notification::assertNothingSent();
     }
@@ -128,7 +128,7 @@ class PostArticleToTwitterTest extends TestCase
     {
         Article::factory()->create();
 
-        (new PostArticleToTwitter(new AnonymousNotifiable()))->handle();
+        (new PostArticleToTwitter())->handle(new AnonymousNotifiable());
 
         Notification::assertNothingSent();
     }
