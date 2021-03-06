@@ -13,14 +13,10 @@ final class PostArticleToTwitter extends Command
 
     protected $description = 'Posts the latest unshared article to Twitter';
 
-    private $notifiable;
-
     public function handle(AnonymousNotifiable $notifiable): void
     {
-        $this->notifiable = $notifiable;
-
         if ($article = Article::nextForSharing()) {
-            $this->notifiable->notify(new PostArticleToTwitterNotification($article));
+            $notifiable->notify(new PostArticleToTwitterNotification($article));
 
             $article->markAsShared();
         }

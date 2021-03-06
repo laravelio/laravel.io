@@ -12,6 +12,7 @@ return [
     | various methods such as static analysis. Feel free to customize it.
     |
     */
+
     'analyzers' => ['*'],
 
     // If you wish to skip running some analyzers, list the classes in the array below.
@@ -31,6 +32,7 @@ return [
     | key is the base namespace to resolve the class name.
     |
     */
+
     'analyzer_paths' => [
         'Enlightn\\Enlightn\\Analyzers' => base_path('vendor/enlightn/enlightn/src/Analyzers'),
         'Enlightn\\EnlightnPro\\Analyzers' => base_path('vendor/enlightn/enlightnpro/src/Analyzers'),
@@ -46,6 +48,7 @@ return [
     | folder, migrations folder and the seeders folder.
     |
     */
+
     'base_path' => [
         app_path(),
         database_path('migrations'),
@@ -62,6 +65,7 @@ return [
     | analyzers if the environment does not match.
     |
     */
+
     'skip_env_specific' => env('ENLIGHTN_SKIP_ENVIRONMENT_SPECIFIC', false),
 
     /*
@@ -74,6 +78,7 @@ return [
     | Example: '/login'.
     |
     */
+
     'guest_url' => null,
 
     /*
@@ -88,6 +93,7 @@ return [
     | Example: [\Enlightn\Enlightn\Analyzers\Security\XSSAnalyzer::class].
     |
     */
+
     'dont_report' => [
         Enlightn\Enlightn\Analyzers\Performance\QueueDriverAnalyzer::class,
         Enlightn\Enlightn\Analyzers\Security\FillableForeignKeyAnalyzer::class,
@@ -105,6 +111,7 @@ return [
     | to auto-generate this. Patterns are supported in details.
     |
     */
+
     'ignore_errors' => [
         Enlightn\Enlightn\Analyzers\Reliability\InvalidReturnTypeAnalyzer::class => [
             ['path' => 'app/Http/Livewire/Notifications.php', 'details' => '* should return *'],
@@ -134,6 +141,7 @@ return [
     | on your application needs.
     |
     */
+
     'license_whitelist' => [
         'Apache-2.0', 'Apache2', 'BSD-2-Clause', 'BSD-3-Clause', 'LGPL-2.1-only', 'LGPL-2.1',
         'LGPL-2.1-or-later', 'LGPL-3.0', 'LGPL-3.0-only', 'LGPL-3.0-or-later', 'MIT', 'ISC',
@@ -150,6 +158,7 @@ return [
     | and add review comments on your pull requests.
     |
     */
+
     'credentials' => [
         'username' => env('ENLIGHTN_USERNAME'),
         'api_token' => env('ENLIGHTN_API_TOKEN'),
@@ -190,4 +199,5 @@ return [
         storage_path(),
         app()->bootstrapPath('cache'),
     ],
+
 ];
