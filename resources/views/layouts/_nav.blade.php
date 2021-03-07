@@ -80,9 +80,9 @@
                         Register
                     </a>
                 @else
-                    <a href="{{ route('dashboard') }}" class="flex-shrink-0 border-2 border-transparent text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:text-gray-500 focus:bg-gray-100 transition duration-150 ease-in-out">
+                    <a href="{{ route('dashboard') }}" class="flex-shrink-0 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:text-lio-500 focus:bg-lio-100 transition duration-150 ease-in-out">
                         <span class="block relative">
-                            <x-heroicon-o-bell  class="h-5 w-5"/>
+                            <x-heroicon-o-bell  class="h-5 w-5 hover:fill-current hover:text-lio-500"/>
 
                             <livewire:notification-indicator/>
                         </span>
