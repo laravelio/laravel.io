@@ -94,8 +94,22 @@ TWITTER_CONSUMER_SECRET=
 TWITTER_ACCESS_TOKEN=
 TWITTER_ACCESS_SECRET=
 ```
-
 Approved articles are shared in the order they were submitted for approval. Articles are shared twice per day at 14:00 and 18:00 UTC. Once an article has been shared, it will not be shared again.
+
+### Installation with Laravel sail (optional)
+
+To install the application through laravel sail:
+1. Run `composer sail-install` to install the PHP dependencies
+2. Run `./vendor/bin/sail up -d` to run the docker containers.
+3. Setup local database `laravelio` in mysql container and add `DB_HOST` in `.env` file
+```
+DB_HOST=mysql
+```
+4. Run `composer sail-setup` to setup the application
+5. Set up a working e-mail driver like [Mailtrap](https://mailtrap.io/)
+6. Configure the (optional) features from above.
+<br><br>
+For more information you can follow [Laravel Sail Docs](https://laravel.com/docs/8.x/sail)
 
 ## Commands
 
