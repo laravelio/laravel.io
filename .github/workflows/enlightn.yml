@@ -1,4 +1,4 @@
-name: Enlightn Checks
+name: Enlightn
 
 on: [push, pull_request]
 
