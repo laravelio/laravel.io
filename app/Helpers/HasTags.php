@@ -33,4 +33,9 @@ trait HasTags
     {
         return $this->morphToMany(Tag::class, 'taggable')->withTimestamps();
     }
+
+    public function hasTags(): bool
+    {
+        return $this->tagsRelation()->count() > 0;
+    }
 }

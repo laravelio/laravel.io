@@ -86,6 +86,30 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
+    public function it_can_retrieve_only_resolved_threads()
+    {
+        $this->createThreadFromToday();
+        $resolvedThread = $this->createResolvedThread();
+
+        $threads = Thread::feedQuery()->resolved()->get();
+
+        $this->assertCount(1, $threads);
+        $this->assertTrue($resolvedThread->matches($threads->first()));
+    }
+
+    /** @test */
+    public function it_can_retrieve_only_active_threads()
+    {
+        $this->createThreadFromToday();
+        $activeThread = $this->createActiveThread();
+
+        $threads = Thread::feedQuery()->active()->get();
+
+        $this->assertCount(1, $threads);
+        $this->assertTrue($activeThread->matches($threads->first()));
+    }
+
+    /** @test */
     public function it_generates_a_slug_when_valid_url_characters_provided()
     {
         $thread = Thread::factory()->make(['slug' => 'Help with eloquent']);
@@ -130,5 +154,24 @@ class ThreadTest extends TestCase
         $twoDaysAgo = Carbon::now()->subDay(2);
 
         return Thread::factory()->create(['created_at' => $twoDaysAgo]);
+    }
+
+    private function createResolvedThread()
+    {
+        $thread = $this->createThreadFromToday();
+        $reply = Reply::factory()->create();
+        $thread->markSolution($reply);
+
+        return $thread;
+    }
+
+    private function createActiveThread()
+    {
+        $thread = $this->createThreadFromToday();
+        $reply = Reply::factory()->create();
+        $reply->to($thread);
+        $reply->save();
+
+        return $thread;
     }
 }

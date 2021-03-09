@@ -14,8 +14,8 @@ use App\Jobs\UpdateThread;
 use App\Models\Reply;
 use App\Models\Tag;
 use App\Models\Thread;
+use App\Models\User;
 use App\Policies\ThreadPolicy;
-use App\Queries\SearchThreads;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
@@ -29,10 +29,29 @@ class ThreadsController extends Controller
 
     public function overview()
     {
-        $search = (string) request('search');
-        $threads = $search ? SearchThreads::get($search)->appends(['search' => $search]) : Thread::feedPaginated();
+        $threads = [];
+        $filter = (string) request('filter') ?: 'recent';
 
-        return view('forum.overview', compact('threads', 'search'));
+        if ($filter === 'recent') {
+            $threads = Thread::feedPaginated();
+        }
+
+        if ($filter === 'resolved') {
+            $threads = Thread::feedQuery()
+                ->resolved()
+                ->paginate();
+        }
+
+        if ($filter === 'active') {
+            $threads = Thread::feedQuery()
+                ->active()
+                ->paginate();
+        }
+
+        $tags = Tag::orderBy('name')->get();
+        $mostSolutions = User::mostSolutions()->take(3)->get();
+
+        return view('forum.overview', compact('threads', 'filter', 'tags', 'mostSolutions'));
     }
 
     public function show(Thread $thread)

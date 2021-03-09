@@ -36,9 +36,8 @@ class ForumTest extends BrowserKitTestCase
         $this->visit('/forum')
             ->see('The first thread')
             ->see('The second thread')
-            ->see('View solution')
-            ->click('View solution')
-            ->seeRouteIs('thread', ['thread' => $thread->slug()]);
+            ->see('Resolved')
+            ->see(route('thread', $thread->slug()).'#'.$thread->solution_reply_id);
     }
 
     /** @test */
