@@ -29,6 +29,7 @@ class ThreadsController extends Controller
 
     public function overview()
     {
+        $threads = [];
         $filter = (string) request('filter') ?: 'recent';
 
         if ($filter === 'recent') {
@@ -47,9 +48,10 @@ class ThreadsController extends Controller
                 ->paginate();
         }
 
+        $tags = Tag::orderBy('name')->get();
         $mostSolutions = User::mostSolutions()->take(3)->get();
 
-        return view('forum.overview', compact('threads', 'filter', 'mostSolutions'));
+        return view('forum.overview', compact('threads', 'filter', 'tags', 'mostSolutions'));
     }
 
     public function show(Thread $thread)

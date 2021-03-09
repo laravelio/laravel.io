@@ -1,6 +1,4 @@
-@props([
-    'hasDot' => false,
-])
+@props(['hasDot' => false])
 
 <span {{ $attributes->merge(['class' => 'inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-lio-100 text-lio-800']) }}>
     @if ($hasDot)

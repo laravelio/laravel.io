@@ -11,6 +11,7 @@ class TagsController extends Controller
 {
     public function show(Tag $tag)
     {
+        $threads = [];
         $filter = (string) request('filter') ?: 'recent';
 
         if ($filter === 'recent') {
@@ -29,8 +30,9 @@ class TagsController extends Controller
                 ->get();
         }
 
+        $tags = Tag::orderBy('name')->get();
         $mostSolutions = User::mostSolutions()->take(3)->get();
 
-        return view('forum.overview', compact('threads', 'filter', 'mostSolutions') + ['activeTag' => $tag]);
+        return view('forum.overview', compact('threads', 'filter', 'tags', 'mostSolutions') + ['activeTag' => $tag]);
     }
 }
