@@ -49,7 +49,8 @@ class ThreadsController extends Controller
         }
 
         $tags = Tag::orderBy('name')->get();
-        $mostSolutions = User::mostSolutions()->take(3)->get();
+        $mostSolutions = [];
+        // $mostSolutions = User::mostSolutions()->take(3)->get();
 
         return view('forum.overview', compact('threads', 'filter', 'tags', 'mostSolutions'));
     }

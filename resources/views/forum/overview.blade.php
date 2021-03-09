@@ -96,9 +96,9 @@
                 <div class="sticky top-4 space-y-4">
                     @include('layouts._ads._forum_sidebar')
 
-                    <div class="mt-8 lg:mt-0 hidden lg:block">
-                        @include('forum._community_heroes')
-                    </div>
+{{--                    <div class="mt-8 lg:mt-0 hidden lg:block">--}}
+{{--                        @include('forum._community_heroes')--}}
+{{--                    </div>--}}
 
                     <div class="mt-4 text-center">
                         <a href="{{ route("feeds.forum") }}" class="inline-flex lg:flex items-center inline-block text-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-lio-600 hover:bg-lio-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lio-500">
