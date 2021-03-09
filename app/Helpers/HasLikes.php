@@ -8,16 +8,24 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait HasLikes
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function likes()
+    {
+        return $this->likesRelation;
+    }
+
     protected static function bootHasLikes()
     {
         static::deleting(function ($model) {
-            $model->likes()->delete();
+            $model->likesRelation()->delete();
         });
     }
 
     public function likedBy(User $user)
     {
-        $this->likes()->create(['user_id' => $user->id()]);
+        $this->likesRelation()->create(['user_id' => $user->id()]);
     }
 
     public function dislikedBy(User $user)
@@ -25,18 +33,19 @@ trait HasLikes
         optional($this->likes()->where('user_id', $user->id())->first())->delete();
     }
 
-    public function likes(): MorphMany
+    /**
+     * It's important to name the relationship the same as the method because otherwise
+     * eager loading of the polymorphic relationship will fail on queued jobs.
+     *
+     * @see https://github.com/laravelio/laravel.io/issues/350
+     */
+    public function likesRelation(): MorphMany
     {
-        return $this->morphMany(Like::class, 'likeable');
+        return $this->morphMany(Like::class, 'likesRelation', 'likeable_type', 'likeable_id');
     }
 
     public function isLikedBy(User $user): bool
     {
-        return $this->likes()->where('user_id', $user->id())->exists();
-    }
-
-    public function likesCount(): int
-    {
-        return $this->likes()->count();
+        return $this->likes()->where('user_id', $user->id())->isNotEmpty();
     }
 }

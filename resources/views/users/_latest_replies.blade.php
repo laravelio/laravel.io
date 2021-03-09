@@ -16,7 +16,7 @@
                     <div>
                         <span class="text-base font-normal">
                             <x-heroicon-s-thumb-up class="inline h-5 w-5 text-gray-500 mr-1"/>
-                            {{ $reply->likesCount() }}
+                            {{ count($reply->likes()) }}
                         </span>
                     </div>
                 </div>

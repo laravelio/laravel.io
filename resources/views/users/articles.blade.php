@@ -106,7 +106,7 @@
                         </div>
                         <div class="flex items-center text-gray-500">
                             <span class="text-2xl mr-2">👏</span>
-                            {{ $article->likesCount() }}
+                            {{ count($article->likes()) }}
                         </div>
                     </div>
                 </div>

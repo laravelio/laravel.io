@@ -59,6 +59,14 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         'subject',
     ];
 
+    /**
+     * {@inheritdoc}
+     */
+    protected $with = [
+        'likesRelation',
+        'repliesRelation',
+    ];
+
     public function id(): int
     {
         return $this->id;
@@ -184,6 +192,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     {
         return static::with([
             'solutionReplyRelation',
+            'likesRelation',
             'repliesRelation',
             'repliesRelation.authorRelation',
             'tagsRelation',

@@ -8,9 +8,9 @@
             </a>
 
             <div class="md:flex-shrink-0 md:self-center md:flex mt-2 md:mt-0">
-                @if ($thread->hasTags())
+                @if (count($tags = $thread->tags()))
                     <div class="flex text-sm space-x-2">
-                        @foreach ($thread->tags() as $tag)
+                        @foreach ($tags as $tag)
                             <x-badges.badge>
                                 {{ $tag->name() }}
                             </x-badges.badge>
@@ -68,7 +68,7 @@
                 <span class="inline-flex items-center text-sm">
                     <div class="inline-flex space-x-2 text-gray-400">
                         <x-heroicon-s-thumb-up class="h-5 w-5" />
-                        <span class="font-medium text-gray-900">{{ $thread->likesCount() }}</span>
+                        <span class="font-medium text-gray-900">{{ count($thread->likes()) }}</span>
                         <span class="sr-only">Likes</span>
                     </div>
                 </span>
@@ -76,7 +76,7 @@
                 <span class="inline-flex items-center text-sm">
                     <div class="inline-flex space-x-2 text-gray-400">
                         <x-heroicon-s-chat-alt class="h-5 w-5" />
-                        <span class="font-medium text-gray-900">{{ $thread->repliesCount() }}</span>
+                        <span class="font-medium text-gray-900">{{ count($thread->replies()) }}</span>
                         <span class="sr-only">Replies</span>
                     </div>
                 </span>
