@@ -1,5 +1,5 @@
-<li class="bg-white p-4 shadow sm:rounded-lg">
-    <article aria-labelledby="{{ $thread->slug() }}">
+<li class="px-4 lg:px-0">
+    <article class="bg-white p-4 shadow rounded-lg" aria-labelledby="{{ $thread->slug() }}">
         <div class="flex justify-between">
             <a href="http://laravelio.test/forum/trhwrthwrthw" class="hover:underline">
                 <h2 class="text-xl font-medium text-gray-900">
@@ -31,16 +31,21 @@
         <div class="mt-4 flex justify-between space-x-8">
             <div class="flex space-x-3">
                 <div class="flex-shrink-0">
-                    <x-avatar :user="$thread->author()" class="h-10 w-10 rounded-full" />
+                    <a href="{{ route('profile', $thread->author()->username()) }}">
+                        <x-avatar :user="$thread->author()" class="h-10 w-10 sm:h-5 sm:w-5 rounded-full" />
+                    </a>
                 </div>
                 <div class="min-w-0 flex-1">
-                    <p class="text-sm font-medium text-gray-900">
-                        <a href="{{ route('profile', $thread->author()->username()) }}" class="hover:underline">
+                    <p class="text-sm text-gray-900">
+                        <a href="{{ route('profile', $thread->author()->username()) }}" class="font-medium hover:underline">
                             {{ $thread->author()->name() }}
                         </a>
-                    </p>
-                    <p class="text-sm text-gray-500">
-                        {{ $thread->created_at->format('F j Y \a\t h:i A') }}
+
+                        &bull;
+
+                        <span class="text-sm text-gray-500">
+                            {{ $thread->created_at->format('F j, Y \a\t h:i A') }}
+                        </span>
                     </p>
                 </div>
             </div>

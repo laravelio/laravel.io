@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <h1 class="sr-only">Recent questions</h1>
+                    <h1 class="sr-only">Recent threads</h1>
 
                     <ul class="space-y-4">
                         @foreach ($threads as $thread)
