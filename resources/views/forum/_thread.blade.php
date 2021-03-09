@@ -1,13 +1,13 @@
 <li class="px-4 lg:px-0">
     <article class="bg-white p-4 shadow rounded-lg" aria-labelledby="{{ $thread->slug() }}">
-        <div class="flex justify-between">
+        <div class="md:flex md:justify-between">
             <a href="{{ route('thread', $thread->slug()) }}" class="hover:underline">
                 <h2 class="text-xl font-medium text-gray-900">
                     {{ $thread->subject() }}
                 </h2>
             </a>
 
-            <div class="flex-shrink-0 self-center flex">
+            <div class="md:flex-shrink-0 md:self-center md:flex mt-2 md:mt-0">
                 @if ($thread->hasTags())
                     <div class="flex text-sm space-x-2">
                         @foreach ($thread->tags() as $tag)
