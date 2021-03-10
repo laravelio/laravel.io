@@ -94,7 +94,6 @@
                         {{ $threads->links() }}
                     </div>
                 </div>
-
             </main>
 
             <aside class="lg:col-span-3">
