@@ -54,14 +54,9 @@ final class Article extends Model
      * {@inheritdoc}
      */
     protected $with = [
+        'authorRelation',
         'likesRelation',
-    ];
-
-    /**
-     * {@inheritdoc}
-     */
-    protected $withCount = [
-        'likesRelation',
+        'tagsRelation',
     ];
 
     public function id(): int

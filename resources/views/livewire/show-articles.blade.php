@@ -4,7 +4,7 @@
             Loading...
         </div>
 
-        @foreach($articles as $article)
+        @foreach ($articles as $article)
             <div class="pb-8 mb-8 border-b-2">
                 <div>
                     @foreach ($article->tags() as $tag)
@@ -56,6 +56,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="flex items-center text-gray-500">
                         <span class="text-2xl mr-2">👏</span>
                         {{ count($article->likes()) }}
@@ -65,7 +66,6 @@
         @endforeach
 
         {{ $articles->links() }}
-        
     </div>
 
     <div class="w-full lg:w-1/4 lg:pt-8 lg:pl-4">
@@ -73,9 +73,11 @@
             <button wire:click="sortBy('recent')" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-lio-200 focus:ring focus:ring-lio-200 focus:ring-opacity-50 active:bg-lio-500 active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'recent' ? 'bg-lio-500 text-white border-lio-500 ring-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
                 Recent
             </button>
+
             <button wire:click="sortBy('popular')" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-lio-200 focus:ring focus:ring-lio-200 focus:ring-opacity-50 active:bg-lio-500 active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'popular' ? 'bg-lio-500 text-white border-lio-500 ring-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
                 Popular
             </button>
+
             <button wire:click="sortBy('trending')" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border focus:border-lio-200 focus:ring focus:ring-lio-200 focus:ring-opacity-50 active:bg-lio-500 active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'trending' ? 'bg-lio-500 text-white border-lio-500 ring-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
                 Trending 🔥
             </button>

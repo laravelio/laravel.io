@@ -65,6 +65,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     protected $with = [
         'likesRelation',
         'repliesRelation',
+        'tagsRelation',
     ];
 
     public function id(): int

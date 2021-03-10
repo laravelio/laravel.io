@@ -145,6 +145,7 @@ CREATE TABLE `replies` (
   PRIMARY KEY (`id`),
   KEY `replies_author_id_index` (`author_id`),
   KEY `replies_replyable_id_index` (`replyable_id`),
+  KEY `replies_replyable_type_index` (`replyable_type`),
   CONSTRAINT `replies_author_id_foreign` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -323,3 +324,4 @@ INSERT INTO `migrations` VALUES (55,'2020_07_16_185353_add_twitter_columns',1);
 INSERT INTO `migrations` VALUES (56,'2020_10_01_093001_add_email_verified_at_column_to_users',1);
 INSERT INTO `migrations` VALUES (57,'2020_11_03_205735_add_uuid_to_failed_jobs_table',1);
 INSERT INTO `migrations` VALUES (58,'2020_11_22_194212_create_schedule_monitor_tables',1);
+INSERT INTO `migrations` VALUES (59,'2021_03_10_161050_add_index_to_replyable_type',2);

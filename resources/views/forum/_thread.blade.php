@@ -35,6 +35,7 @@
                         <x-avatar :user="$thread->author()" class="h-10 w-10 sm:h-5 sm:w-5 rounded-full" />
                     </a>
                 </div>
+
                 <div class="min-w-0 flex-1">
                     <p class="text-sm text-gray-900">
                         <a href="{{ route('profile', $thread->author()->username()) }}" class="font-medium hover:underline">
