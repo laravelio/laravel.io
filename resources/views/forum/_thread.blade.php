@@ -23,7 +23,7 @@
         <div class="mt-2 text-sm text-gray-700 space-y-4">
             <p>
                 <a href="{{ route('thread', $thread->slug()) }}" class="hover:underline">
-                    {{ $thread->excerpt() }}
+                    {!! $thread->excerpt() !!}
                 </a>
             </p>
         </div>
