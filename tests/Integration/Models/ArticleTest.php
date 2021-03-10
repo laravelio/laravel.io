@@ -43,7 +43,8 @@ class ArticleTest extends TestCase
         $articles[0]->likedBy($users[1]);
 
         // Update the like timestamp outside of the trending window.
-        $articles[0]->likes()->update(['created_at' => now()->subWeeks(2)]);
+        $articles[0]->likesRelation()->update(['created_at' => now()->subWeeks(2)]);
+        $articles[0]->unsetRelation('likesRelation');
 
         // Like the remaining articles once, but inside the trending window.
         $articles[1]->likedBy($users[0]);

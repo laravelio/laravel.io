@@ -8,9 +8,9 @@
             </a>
 
             <div class="md:flex-shrink-0 md:self-center md:flex mt-2 md:mt-0">
-                @if ($thread->hasTags())
+                @if (count($tags = $thread->tags()))
                     <div class="flex text-sm space-x-2">
-                        @foreach ($thread->tags() as $tag)
+                        @foreach ($tags as $tag)
                             <x-badges.badge>
                                 {{ $tag->name() }}
                             </x-badges.badge>
@@ -35,6 +35,7 @@
                         <x-avatar :user="$thread->author()" class="h-10 w-10 sm:h-5 sm:w-5 rounded-full" />
                     </a>
                 </div>
+
                 <div class="min-w-0 flex-1">
                     <p class="text-sm text-gray-900">
                         <a href="{{ route('profile', $thread->author()->username()) }}" class="font-medium hover:underline">
@@ -68,7 +69,7 @@
                 <span class="inline-flex items-center text-sm">
                     <div class="inline-flex space-x-2 text-gray-400">
                         <x-heroicon-s-thumb-up class="h-5 w-5" />
-                        <span class="font-medium text-gray-900">{{ $thread->likesCount() }}</span>
+                        <span class="font-medium text-gray-900">{{ count($thread->likes()) }}</span>
                         <span class="sr-only">Likes</span>
                     </div>
                 </span>
@@ -76,7 +77,7 @@
                 <span class="inline-flex items-center text-sm">
                     <div class="inline-flex space-x-2 text-gray-400">
                         <x-heroicon-s-chat-alt class="h-5 w-5" />
-                        <span class="font-medium text-gray-900">{{ $thread->repliesCount() }}</span>
+                        <span class="font-medium text-gray-900">{{ count($thread->replies()) }}</span>
                         <span class="sr-only">Replies</span>
                     </div>
                 </span>

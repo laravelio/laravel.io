@@ -30,6 +30,8 @@ trait ReceivesReplies
         foreach ($this->repliesRelation()->get() as $reply) {
             $reply->delete();
         }
+
+        $this->unsetRelation('repliesRelation');
     }
 
     /**
@@ -52,10 +54,5 @@ trait ReceivesReplies
         }
 
         return $this->createdAt()->lt($sixMonthsAgo);
-    }
-
-    public function repliesCount(): int
-    {
-        return $this->repliesRelation()->count();
     }
 }

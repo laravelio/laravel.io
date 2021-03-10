@@ -50,6 +50,15 @@ final class Article extends Model
         'shared_at',
     ];
 
+    /**
+     * {@inheritdoc}
+     */
+    protected $with = [
+        'authorRelation',
+        'likesRelation',
+        'tagsRelation',
+    ];
+
     public function id(): int
     {
         return $this->id;
@@ -242,17 +251,17 @@ final class Article extends Model
 
     public function scopePopular(Builder $query): Builder
     {
-        return $query->withCount('likes')
-            ->orderBy('likes_count', 'desc')
+        return $query->withCount('likesRelation')
+            ->orderBy('likes_relation_count', 'desc')
             ->orderBy('submitted_at', 'desc');
     }
 
     public function scopeTrending(Builder $query): Builder
     {
-        return $query->withCount(['likes' => function ($query) {
+        return $query->withCount(['likesRelation' => function ($query) {
             $query->where('created_at', '>=', now()->subWeek());
         }])
-            ->orderBy('likes_count', 'desc')
+            ->orderBy('likes_relation_count', 'desc')
             ->orderBy('submitted_at', 'desc');
     }
 

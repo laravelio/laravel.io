@@ -15,6 +15,8 @@ trait HasAuthor
     public function authoredBy(User $author)
     {
         $this->authorRelation()->associate($author);
+
+        $this->unsetRelation('authorRelation');
     }
 
     public function authorRelation(): BelongsTo

@@ -214,20 +214,6 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Series::class, 'author_id');
     }
 
-    /**
-     * @todo Make this work with Eloquent instead of a collection
-     */
-    public function countSolutions(): int
-    {
-        return $this->replies()->filter(function (Reply $reply) {
-            if ($reply->replyAble() instanceof Thread) {
-                return $reply->replyAble()->isSolutionReply($reply);
-            }
-
-            return false;
-        })->count();
-    }
-
     public static function findByUsername(string $username): self
     {
         return static::where('username', $username)->firstOrFail();
@@ -249,6 +235,20 @@ final class User extends Authenticatable implements MustVerifyEmail
         $this->deleteReplies();
 
         parent::delete();
+    }
+
+    /**
+     * @todo Make this work with Eloquent instead of a collection
+     */
+    public function countSolutions(): int
+    {
+        return $this->replies()->filter(function (Reply $reply) {
+            if ($reply->replyAble() instanceof Thread) {
+                return $reply->replyAble()->isSolutionReply($reply);
+            }
+
+            return false;
+        })->count();
     }
 
     public function scopeMostSolutions(Builder $query)
