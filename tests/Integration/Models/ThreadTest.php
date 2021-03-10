@@ -29,6 +29,14 @@ class ThreadTest extends TestCase
     }
 
     /** @test */
+    public function html_in_excerpts_is_html_encoded()
+    {
+        $thread = Thread::factory()->make(['body' => '<p>Thread body</p>']);
+
+        $this->assertEquals("&lt;p&gt;Thread body&lt;/p&gt;\n", $thread->excerpt());
+    }
+
+    /** @test */
     public function its_conversation_is_old_when_the_oldest_reply_was_six_months_ago()
     {
         $thread = Thread::factory()->create();
