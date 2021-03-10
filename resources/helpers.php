@@ -14,9 +14,9 @@ if (! function_exists('is_active')) {
     /**
      * Determines if the given routes are active.
      */
-    function is_active($routes): string
+    function is_active($routes): bool
     {
-        return call_user_func_array([app('router'), 'is'], (array) $routes);
+        return (bool) call_user_func_array([app('router'), 'is'], (array) $routes);
     }
 }
 
