@@ -252,7 +252,7 @@ final class Article extends Model
     public function scopePopular(Builder $query): Builder
     {
         return $query->withCount('likesRelation')
-            ->orderBy('likes_count', 'desc')
+            ->orderBy('likes_relation_count', 'desc')
             ->orderBy('submitted_at', 'desc');
     }
 
@@ -261,7 +261,7 @@ final class Article extends Model
         return $query->withCount(['likesRelation' => function ($query) {
             $query->where('created_at', '>=', now()->subWeek());
         }])
-            ->orderBy('likes_count', 'desc')
+            ->orderBy('likes_relation_count', 'desc')
             ->orderBy('submitted_at', 'desc');
     }
 
