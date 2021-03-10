@@ -30,6 +30,8 @@ trait ReceivesReplies
         foreach ($this->repliesRelation()->get() as $reply) {
             $reply->delete();
         }
+
+        $this->unsetRelation('repliesRelation');
     }
 
     /**

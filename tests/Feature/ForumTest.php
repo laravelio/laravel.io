@@ -176,6 +176,7 @@ class ForumTest extends BrowserKitTestCase
     public function a_user_can_toggle_a_like_on_a_thread()
     {
         $this->login();
+
         $thread = Thread::factory()->create();
 
         Livewire::test(LikeThread::class, ['thread' => $thread])
@@ -201,6 +202,7 @@ class ForumTest extends BrowserKitTestCase
     public function a_user_can_toggle_a_like_on_a_reply()
     {
         $this->login();
+
         $reply = Reply::factory()->create();
 
         Livewire::test(LikeReply::class, ['reply' => $reply])
@@ -242,9 +244,7 @@ class ForumTest extends BrowserKitTestCase
             'slug' => 'the-first-thread',
             'body'=> 'https://github.com/laravelio/laravel.io check this cool project',
         ]);
-        Reply::factory()->create([
-            'replyable_id' => $thread->id(),
-        ]);
+        Reply::factory()->create(['replyable_id' => $thread->id()]);
 
         $this->visit("/forum/{$thread->slug()}")
             ->see('&lt;a href=\"https:\/\/github.com\/laravelio\/laravel.io\" rel=\"nofollow\" target=\"_blank\"&gt;https:\/\/github.com\/laravelio\/laravel.io&lt;\/a&gt;');

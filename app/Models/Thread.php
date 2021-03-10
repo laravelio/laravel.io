@@ -63,6 +63,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
      * {@inheritdoc}
      */
     protected $with = [
+        'authorRelation',
         'likesRelation',
         'repliesRelation',
         'tagsRelation',

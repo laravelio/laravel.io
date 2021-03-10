@@ -20,17 +20,23 @@ trait HasLikes
     {
         static::deleting(function ($model) {
             $model->likesRelation()->delete();
+
+            $model->unsetRelation('likesRelation');
         });
     }
 
     public function likedBy(User $user)
     {
         $this->likesRelation()->create(['user_id' => $user->id()]);
+
+        $this->unsetRelation('likesRelation');
     }
 
     public function dislikedBy(User $user)
     {
-        optional($this->likes()->where('user_id', $user->id())->first())->delete();
+        optional($this->likesRelation()->where('user_id', $user->id())->first())->delete();
+
+        $this->unsetRelation('likesRelation');
     }
 
     /**
@@ -46,6 +52,6 @@ trait HasLikes
 
     public function isLikedBy(User $user): bool
     {
-        return $this->likes()->where('user_id', $user->id())->isNotEmpty();
+        return $this->likesRelation()->where('user_id', $user->id())->exists();
     }
 }
