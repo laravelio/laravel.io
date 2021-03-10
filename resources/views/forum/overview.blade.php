@@ -89,7 +89,12 @@
                             @include('forum._thread')
                         @endforeach
                     </ul>
+
+                    <div class="mt-8 px-4 lg:px-0">
+                        {{ $threads->links() }}
+                    </div>
                 </div>
+
             </main>
 
             <aside class="lg:col-span-3">
