@@ -21,13 +21,13 @@ class TagsController extends Controller
         if ($filter === 'resolved') {
             $threads = Thread::feedByTagQuery($tag)
                 ->resolved()
-                ->get();
+                ->paginate(20);
         }
 
         if ($filter === 'active') {
             $threads = Thread::feedByTagQuery($tag)
                 ->active()
-                ->get();
+                ->paginate(20);
         }
 
         $tags = Tag::orderBy('name')->get();
