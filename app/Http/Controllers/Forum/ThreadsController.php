@@ -53,7 +53,7 @@ class ThreadsController extends Controller
         }
 
         $tags = Tag::orderBy('name')->get();
-        $mostSolutions = Cache::remember('mostSolutions', now()->addDay(), function() {
+        $mostSolutions = Cache::remember('mostSolutions', now()->addDay(), function () {
             return User::mostSolutions()->take(5)->get();
         });
 
