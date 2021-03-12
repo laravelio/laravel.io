@@ -25,6 +25,8 @@
                     <img class="max-h-12" src="{{ asset('images/sponsors/forge.png') }}" alt="Forge">
                 </a>
             </div>
+        </div>
+        <div class="mt-6 grid grid-cols-2 gap-8 lg:grid-cols-3">
             <div class="col-span-2 flex justify-center lg:col-span-1 px-2">
                 <a class="flex items-center" href="https://envoyer.io/">
                     <img class="max-h-12" src="{{ asset('images/sponsors/envoyer.png') }}" alt="Envoyer">
@@ -33,11 +35,6 @@
             <div class="col-span-2 flex justify-center lg:col-span-1 px-2">
                 <a class="flex items-center" href="https://blackfire.io/">
                     <img class="max-h-12" src="{{ asset('images/sponsors/blackfire-io.png') }}" alt="Blackfire.io">
-                </a>
-            </div>
-            <div class="col-span-2 flex justify-center lg:col-span-1 px-2">
-                <a class="flex items-center" href="https://ter.li/vj4bxb">
-                    <img class="max-h-12" src="{{ asset('images/sponsors/scout-apm.jpg') }}" alt="Scout APM">
                 </a>
             </div>
             <div class="col-span-2 flex justify-center lg:col-span-1 px-2">

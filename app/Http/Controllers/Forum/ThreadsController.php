@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Helpers\UsesFilters;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreadRequest;
 use App\Jobs\CreateThread;
@@ -22,6 +23,8 @@ use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
 {
+    use UsesFilters;
+
     public function __construct()
     {
         $this->middleware([Authenticate::class, EnsureEmailIsVerified::class], ['except' => ['overview', 'show']]);
@@ -30,7 +33,7 @@ class ThreadsController extends Controller
     public function overview()
     {
         $threads = [];
-        $filter = (string) request('filter') ?: 'recent';
+        $filter = $this->getFilter();
 
         if ($filter === 'recent') {
             $threads = Thread::feedPaginated();
@@ -39,13 +42,13 @@ class ThreadsController extends Controller
         if ($filter === 'resolved') {
             $threads = Thread::feedQuery()
                 ->resolved()
-                ->paginate();
+                ->paginate(20);
         }
 
         if ($filter === 'active') {
             $threads = Thread::feedQuery()
                 ->active()
-                ->paginate();
+                ->paginate(20);
         }
 
         $tags = Tag::orderBy('name')->get();

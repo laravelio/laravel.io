@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Helpers\UsesFilters;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use App\Models\Thread;
@@ -9,10 +10,12 @@ use App\Models\User;
 
 class TagsController extends Controller
 {
+    use UsesFilters;
+
     public function show(Tag $tag)
     {
         $threads = [];
-        $filter = (string) request('filter') ?: 'recent';
+        $filter = $this->getFilter();
 
         if ($filter === 'recent') {
             $threads = Thread::feedByTagPaginated($tag);
