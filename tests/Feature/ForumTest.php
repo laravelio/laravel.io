@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use App\Models\Tag;
-use App\Models\Reply;
-use App\Models\Thread;
-use Livewire\Livewire;
 use App\Http\Livewire\LikeReply;
 use App\Http\Livewire\LikeThread;
+use App\Models\Reply;
+use App\Models\Tag;
+use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Livewire\Livewire;
 
 class ForumTest extends BrowserKitTestCase
 {
@@ -264,7 +264,7 @@ class ForumTest extends BrowserKitTestCase
     public function an_invalid_filter_on_tag_view_defaults_to_the_most_recent_threads()
     {
         $tag = Tag::factory()->create();
-        
+
         $this->visit("/forum/tags/{$tag->slug}?filter=something-invalid")
             ->see('href="http://localhost/forum/tags/'.$tag->slug.'?filter=recent" aria-current="page"');
     }
