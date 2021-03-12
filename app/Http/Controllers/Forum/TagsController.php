@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use App\Models\Thread;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 
 class TagsController extends Controller
 {
@@ -34,7 +35,9 @@ class TagsController extends Controller
         }
 
         $tags = Tag::orderBy('name')->get();
-        $mostSolutions = User::mostSolutions()->take(3)->get();
+        $mostSolutions = Cache::remember('mostSolutions', now()->addDay(), function () {
+            return User::mostSolutions()->take(5)->get();
+        });
 
         return view('forum.overview', compact('threads', 'filter', 'tags', 'mostSolutions') + ['activeTag' => $tag]);
     }
