@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 final class User extends Authenticatable implements MustVerifyEmail
 {
@@ -253,9 +254,10 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     public function scopeMostSolutions(Builder $query)
     {
-        return $query->withCount(['replyAble as most_solutions' => function ($query) {
-            return $query->join('threads', 'threads.solution_reply_id', '=', 'replies.id')
-                ->where('replyable_type', 'threads');
-        }])->orderBy('most_solutions', 'desc');
+        return $query->select(DB::raw('users.*, count(*) as most_solutions'))
+            ->join('replies', 'replies.author_id', '=', 'users.id')
+            ->join('threads', 'threads.solution_reply_id', '=', 'replies.id')
+            ->groupBy('users.id')
+            ->orderBy('most_solutions', 'desc');
     }
 }
