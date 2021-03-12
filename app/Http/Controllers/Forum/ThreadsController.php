@@ -20,7 +20,6 @@ use App\Policies\ThreadPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class ThreadsController extends Controller
 {
@@ -53,9 +52,8 @@ class ThreadsController extends Controller
         }
 
         $tags = Tag::orderBy('name')->get();
-        $mostSolutions = Cache::remember('mostSolutions', now()->addDay(), function () {
-            return User::mostSolutions()->take(5)->get();
-        });
+        $mostSolutions = [];
+        // $mostSolutions = User::mostSolutions()->take(3)->get();
 
         return view('forum.overview', compact('threads', 'filter', 'tags', 'mostSolutions'));
     }
