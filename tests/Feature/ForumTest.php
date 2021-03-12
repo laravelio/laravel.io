@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Models\Tag;
+use App\Models\Reply;
+use App\Models\Thread;
+use Livewire\Livewire;
 use App\Http\Livewire\LikeReply;
 use App\Http\Livewire\LikeThread;
-use App\Models\Reply;
-use App\Models\Tag;
-use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Livewire\Livewire;
 
 class ForumTest extends BrowserKitTestCase
 {
@@ -229,12 +229,12 @@ class ForumTest extends BrowserKitTestCase
     {
         $thread = Thread::factory()->create(['slug' => 'the-first-thread']);
         Reply::factory()->create([
-            'body'=>'https://github.com/laravelio/laravel.io check this cool project',
+            'body' => 'https://github.com/laravelio/laravel.io check this cool project',
             'replyable_id' => $thread->id(),
         ]);
 
         $this->visit("/forum/{$thread->slug}")
-            ->see('&lt;a href=\"https:\/\/github.com\/laravelio\/laravel.io\" rel=\"nofollow\" target=\"_blank\"&gt;https:\/\/github.com\/laravelio\/laravel.io&lt;\/a&gt;');
+            ->see('&lt;a href=\\"https:\\/\\/github.com\\/laravelio\\/laravel.io\\" rel=\\"nofollow\\" target=\\"_blank\\"&gt;https:\\/\\/github.com\\/laravelio\\/laravel.io&lt;\\/a&gt;');
     }
 
     /** @test */
@@ -242,11 +242,30 @@ class ForumTest extends BrowserKitTestCase
     {
         $thread = Thread::factory()->create([
             'slug' => 'the-first-thread',
-            'body'=> 'https://github.com/laravelio/laravel.io check this cool project',
+            'body' => 'https://github.com/laravelio/laravel.io check this cool project',
         ]);
         Reply::factory()->create(['replyable_id' => $thread->id()]);
 
         $this->visit("/forum/{$thread->slug()}")
-            ->see('&lt;a href=\"https:\/\/github.com\/laravelio\/laravel.io\" rel=\"nofollow\" target=\"_blank\"&gt;https:\/\/github.com\/laravelio\/laravel.io&lt;\/a&gt;');
+            ->see('&lt;a href=\\"https:\\/\\/github.com\\/laravelio\\/laravel.io\\" rel=\\"nofollow\\" target=\\"_blank\\"&gt;https:\\/\\/github.com\\/laravelio\\/laravel.io&lt;\\/a&gt;');
+    }
+
+    /** @test */
+    public function an_invalid_filter_defaults_to_the_most_recent_threads()
+    {
+        Thread::factory()->create(['subject' => 'The first thread']);
+        Thread::factory()->create(['subject' => 'The second thread']);
+
+        $this->visit('/forum?filter=something-invalid')
+            ->see('href="http://localhost/forum?filter=recent" aria-current="page"');
+    }
+
+    /** @test */
+    public function an_invalid_filter_on_tag_view_defaults_to_the_most_recent_threads()
+    {
+        $tag = Tag::factory()->create();
+        
+        $this->visit("/forum/tags/{$tag->slug}?filter=something-invalid")
+            ->see('href="http://localhost/forum/tags/'.$tag->slug.'?filter=recent" aria-current="page"');
     }
 }
