@@ -8,10 +8,12 @@
             <h1 class="text-xl py-4 text-gray-900">
                 {{ $title }}
             </h1>
+
             <div class="flex">
                 <a href="{{ route('series.create') }}" class="button mr-2">
                     Create Series
                 </a>
+
                 <a href="{{ route('articles.create') }}" class="button button-primary">
                     Create Article
                 </a>
@@ -41,9 +43,9 @@
                         @endif
 
                         @foreach ($article->tags() as $tag)
-                            <span class="rounded-full bg-lio-200 text-lio-500 inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5">
+                            <x-tag>
                                 {{ $tag->name() }}
-                            </span>
+                            </x-tag>
                         @endforeach
                     </div>
                     <a href="{{ route('articles.show', $article->slug()) }}" class="block">

@@ -11,9 +11,9 @@
                 @if (count($tags = $thread->tags()))
                     <div class="flex text-sm space-x-2">
                         @foreach ($tags as $tag)
-                            <x-badges.badge>
+                            <x-tag>
                                 {{ $tag->name() }}
-                            </x-badges.badge>
+                            </x-tag>
                         @endforeach
                     </div>
                 @endif

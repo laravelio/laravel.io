@@ -56,13 +56,13 @@
 
             @if ($article->isNotPublished())
                 <div class="mt-6">
-                    <x-badges.badge>
+                    <x-tag>
                         @if ($article->isAwaitingApproval())
                             Awaiting Approval
                         @else
                             Draft
                         @endif
-                    </x-badges.badge>
+                    </x-tag>
                 </div>
             @endif
         </div>

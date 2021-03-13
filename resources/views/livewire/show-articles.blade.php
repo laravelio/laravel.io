@@ -8,10 +8,10 @@
             <div class="pb-8 mb-8 border-b-2">
                 <div>
                     @foreach ($article->tags() as $tag)
-                        <button class="inline-block focus:outline-none rounded-full {{ $tag->slug() === $selectedTag ? 'bg-lio-500 text-white ring-green' : 'bg-lio-200 text-lio-500' }}" wire:click="toggleTag('{{ $tag->slug() }}')">
-                            <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5">
+                        <button wire:click="toggleTag('{{ $tag->slug() }}')">
+                            <x-tag class="{{ $tag->slug() === $selectedTag ? 'bg-white text-lio-600' : '' }}">
                                 {{ $tag->name() }}
-                            </span>
+                            </x-tag>
                         </button>
                     @endforeach
                 </div>
