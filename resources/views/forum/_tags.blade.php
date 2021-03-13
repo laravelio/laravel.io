@@ -5,7 +5,7 @@
 <div class="mt-3 space-y-2" aria-labelledby="tags-menu">
     <a 
         href="{{ route('forum', ['filter' => $filter]) }}" 
-        class="group flex items-center px-2.5 py-1 text-sm font-medium text-gray-600 hover:bg-white {{ (! isset($activeTag) ? 'bg-white text-lio-500 border-lio-500 border-l-2' : '') }}"
+        class="group flex items-center px-2.5 py-1 text-sm font-medium text-gray-600 hover:bg-white {{ ! isset($activeTag) ? 'bg-white text-lio-500 border-lio-500 border-l-2' : '' }}"
     >
         <span class="truncate">
             All
