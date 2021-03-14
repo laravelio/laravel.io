@@ -6,8 +6,10 @@ use App\Helpers\HasAuthor;
 use App\Helpers\HasLikes;
 use App\Helpers\HasTimestamps;
 use App\Helpers\ModelHelpers;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 
@@ -39,6 +41,11 @@ final class Reply extends Model
     protected $with = [
         'likesRelation',
     ];
+
+    public function solutionTo(): HasOne
+    {
+        return $this->hasOne(Thread::class, 'solution_reply_id');
+    }
 
     public function id(): int
     {
@@ -74,5 +81,10 @@ final class Reply extends Model
     public function replyAbleRelation(): MorphTo
     {
         return $this->morphTo('replyAbleRelation', 'replyable_type', 'replyable_id');
+    }
+
+    public function scopeIsSolution(Builder $builder): Builder
+    {
+        return $builder->has('solutionTo');
     }
 }
