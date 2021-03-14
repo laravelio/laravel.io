@@ -237,18 +237,9 @@ final class User extends Authenticatable implements MustVerifyEmail
         parent::delete();
     }
 
-    /**
-     * @todo Make this work with Eloquent instead of a collection
-     */
     public function countSolutions(): int
     {
-        return $this->replies()->filter(function (Reply $reply) {
-            if ($reply->replyAble() instanceof Thread) {
-                return $reply->replyAble()->isSolutionReply($reply);
-            }
-
-            return false;
-        })->count();
+        return $this->replyAble()->isSolution()->count();
     }
 
     public function scopeMostSolutions(Builder $query)
