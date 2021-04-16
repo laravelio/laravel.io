@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        {{ $notifications->links() }}
+        {{ $notifications->onEachSide(config('lio.pagination.onEachSide'))->links() }}
     @else
         <p class="text-gray-600 text-base">
             You have no unread notifications

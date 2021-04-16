@@ -12,4 +12,9 @@ return [
         'webhook' => env('LIO_HORIZON_WEBHOOK'),
     ],
 
+    'pagination' => [
+        'onEachSide' => env('PAGINATION_ON_EACH_SIDE_COUNT', 5),
+        'count' => env('PAGINATION_COUNT', 20),
+    ],
+
 ];

@@ -43,8 +43,6 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
 
     const TABLE = 'threads';
 
-    const FEED_PAGE_SIZE = 20;
-
     /**
      * {@inheritdoc}
      */
@@ -232,7 +230,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     public static function getFeedItems(): SupportCollection
     {
         return static::feedQuery()
-            ->paginate(static::FEED_PAGE_SIZE)
+            ->paginate(config('lio.pagination.count'))
             ->getCollection();
     }
 

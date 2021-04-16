@@ -24,13 +24,13 @@ class TagsController extends Controller
         if ($filter === 'resolved') {
             $threads = Thread::feedByTagQuery($tag)
                 ->resolved()
-                ->paginate(20);
+                ->paginate(config('lio.pagination.count'));
         }
 
         if ($filter === 'active') {
             $threads = Thread::feedByTagQuery($tag)
                 ->active()
-                ->paginate(20);
+                ->paginate(config('lio.pagination.count'));
         }
 
         $tags = Tag::orderBy('name')->get();

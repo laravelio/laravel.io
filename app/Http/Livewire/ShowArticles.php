@@ -35,7 +35,7 @@ final class ShowArticles extends Component
         $articles->{$this->sortBy}();
 
         return view('livewire.show-articles', [
-            'articles' => $articles->paginate(10),
+            'articles' => $articles->paginate(config('lio.pagination.count')),
             'tags' => $tags,
             'selectedTag' => $this->tag,
             'selectedSortBy' => $this->sortBy,

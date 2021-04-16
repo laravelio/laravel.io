@@ -42,13 +42,13 @@ class ThreadsController extends Controller
         if ($filter === 'resolved') {
             $threads = Thread::feedQuery()
                 ->resolved()
-                ->paginate(20);
+                ->paginate(config('lio.pagination.count'));
         }
 
         if ($filter === 'active') {
             $threads = Thread::feedQuery()
                 ->active()
-                ->paginate(20);
+                ->paginate(config('lio.pagination.count'));
         }
 
         $tags = Tag::orderBy('name')->get();

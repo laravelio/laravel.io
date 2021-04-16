@@ -20,7 +20,7 @@ final class Notifications extends Component
     public function render(): View
     {
         return view('livewire.notifications', [
-            'notifications' => Auth::user()->unreadNotifications()->paginate(10),
+            'notifications' => Auth::user()->unreadNotifications()->paginate(config('lio.pagination.count')),
         ]);
     }
 
