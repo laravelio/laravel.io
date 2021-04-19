@@ -91,7 +91,7 @@
                     </ul>
 
                     <div class="mt-8 px-4 lg:px-0">
-                        {{ $threads->links() }}
+                        {{ $threads->onEachSide(1)->links() }}
                     </div>
                 </div>
             </main>
