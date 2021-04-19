@@ -20,7 +20,7 @@
                         @if ($article->isPinned())
                             <x-zondicon-pin class="w-5 h-5 text-lio-500 mr-2"/>
                         @endif
-                        
+
                         <h3 class="text-xl leading-7 font-semibold text-gray-900">
                             {{ $article->title() }}
                         </h3>
@@ -65,7 +65,7 @@
             </div>
         @endforeach
 
-        {{ $articles->links() }}
+        {{ $articles->onEachSide(config('lio.pagination.onEachSide'))->links() }}
     </div>
 
     <div class="w-full lg:w-1/4 lg:pt-8 lg:pl-4">
@@ -83,7 +83,7 @@
             </button>
         </span>
 
-        <a 
+        <a
             href="{{ route('articles.create') }}"
             class="button button-primary button-full mb-4"
         >
@@ -95,7 +95,7 @@
                 <button wire:click="toggleTag('')">
                     All
                 </button>
-            </li>   
+            </li>
 
             @foreach ($tags as $tag)
                 <li class="{{ $selectedTag === $tag->slug() ? ' active' : '' }}">

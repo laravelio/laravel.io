@@ -96,7 +96,7 @@
                                             </time>
                                         @endif
                                     @endif
-                                    
+
                                     <span class="mx-1">
                                         &middot;
                                     </span>
@@ -118,7 +118,7 @@
                 </p>
             @endforelse
 
-            {{ $articles->links() }}
+                {{ $articles->onEachSide(config('lio.pagination.onEachSide'))->links() }}
         </div>
         <div class="w-full md:w-1/4 md:pl-3 md:pt-4">
             @include('users.partials._navigation')
