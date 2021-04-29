@@ -210,6 +210,23 @@ class AuthTest extends BrowserKitTestCase
     }
 
     /** @test */
+    public function users_cannot_reset_their_password_when_it_has_been_compromised_in_data_leaks()
+    {
+        $user = $this->createUser();
+
+        // Insert a password reset token into the database.
+        $token = $this->app[PasswordBroker::class]->getRepository()->create($user);
+
+        $this->visit('/password/reset/'.$token)
+            ->type('john@example.com', 'email')
+            ->type('password', 'password')
+            ->type('password', 'password_confirmation')
+            ->press('Reset Password')
+            ->seePageIs('/password/reset/'.$token)
+            ->see('The given password has appeared in a data leak. Please choose a different password.');
+    }
+
+    /** @test */
     public function unverified_users_cannot_create_threads()
     {
         $this->login(['email_verified_at' => null]);

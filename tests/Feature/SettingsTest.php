@@ -95,6 +95,22 @@ class SettingsTest extends BrowserKitTestCase
     }
 
     /** @test */
+    public function users_cannot_update_their_password_when_it_has_been_compromised_in_data_leaks()
+    {
+        $this->login();
+
+        $this->visit('/settings')
+            ->submitForm('Update Password', [
+                'current_password' => 'password',
+                'password' => 'newpassword',
+                'password_confirmation' => 'newpassword',
+            ])
+            ->seePageIs('/settings')
+            ->see('Something went wrong. Please review the fields below.')
+            ->see('The given password has appeared in a data leak. Please choose a different password.');
+    }
+
+    /** @test */
     public function users_can_set_their_password_when_they_have_none_set_yet()
     {
         $user = User::factory()->passwordless()->create();
