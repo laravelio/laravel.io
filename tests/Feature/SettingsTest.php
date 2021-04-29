@@ -85,8 +85,8 @@ class SettingsTest extends BrowserKitTestCase
         $this->visit('/settings')
             ->submitForm('Update Password', [
                 'current_password' => 'password',
-                'password' => 'newpassword',
-                'password_confirmation' => 'newpassword',
+                'password' => 'QFq^$cz#P@MZa5z7',
+                'password_confirmation' => 'QFq^$cz#P@MZa5z7',
             ])
             ->seePageIs('/settings')
             ->see('Password successfully changed!');
@@ -119,8 +119,8 @@ class SettingsTest extends BrowserKitTestCase
 
         $this->visit('/settings')
             ->submitForm('Update Password', [
-                'password' => 'newpassword',
-                'password_confirmation' => 'newpassword',
+                'password' => 'QFq^$cz#P@MZa5z7',
+                'password_confirmation' => 'QFq^$cz#P@MZa5z7',
             ])
             ->seePageIs('/settings')
             ->see('Password successfully changed!');
@@ -150,6 +150,6 @@ class SettingsTest extends BrowserKitTestCase
 
     private function assertPasswordWasHashedAndSaved(): void
     {
-        $this->assertTrue($this->app['hash']->check('newpassword', Auth::user()->getAuthPassword()));
+        $this->assertTrue($this->app['hash']->check('QFq^$cz#P@MZa5z7', Auth::user()->getAuthPassword()));
     }
 }

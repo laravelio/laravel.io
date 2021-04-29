@@ -197,14 +197,14 @@ class AuthTest extends BrowserKitTestCase
 
         $this->visit('/password/reset/'.$token)
             ->type('john@example.com', 'email')
-            ->type('foopassword', 'password')
-            ->type('foopassword', 'password_confirmation')
+            ->type('QFq^$cz#P@MZa5z7', 'password')
+            ->type('QFq^$cz#P@MZa5z7', 'password_confirmation')
             ->press('Reset Password')
             ->seePageIs('/dashboard')
             ->visit('/logout')
             ->visit('/login')
             ->type('johndoe', 'username')
-            ->type('foopassword', 'password')
+            ->type('QFq^$cz#P@MZa5z7', 'password')
             ->press('Login')
             ->seePageIs('/dashboard');
     }
