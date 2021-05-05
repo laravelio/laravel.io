@@ -147,7 +147,7 @@ class ForumTest extends BrowserKitTestCase
         ]);
 
         $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
-        $response->assertSessionHasErrors(['subject' => 'The subject may not be greater than 60 characters.']);
+        $response->assertSessionHasErrors(['subject' => 'The subject must not be greater than 60 characters.']);
     }
 
     /** @test */
@@ -169,7 +169,7 @@ class ForumTest extends BrowserKitTestCase
         ]);
 
         $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
-        $response->assertSessionHasErrors(['subject' => 'The subject may not be greater than 60 characters.']);
+        $response->assertSessionHasErrors(['subject' => 'The subject must not be greater than 60 characters.']);
     }
 
     /** @test */

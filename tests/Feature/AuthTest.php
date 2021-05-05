@@ -66,7 +66,7 @@ class AuthTest extends BrowserKitTestCase
             ->check('terms')
             ->press('Register')
             ->seePageIs('/register')
-            ->see('The username may only contain letters, numbers, dashes and underscores.');
+            ->see('The username must only contain letters, numbers, dashes and underscores.');
     }
 
     /** @test */
@@ -184,7 +184,7 @@ class AuthTest extends BrowserKitTestCase
         $this->visit('/password/reset')
             ->type('john@example.com', 'email')
             ->press('Send Password Reset Link')
-            ->see('We have e-mailed your password reset link!');
+            ->see('We have emailed your password reset link!');
     }
 
     /** @test */
