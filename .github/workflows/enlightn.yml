@@ -36,4 +36,4 @@ jobs:
       - name: Run Enlightn Checks
         run: |
           cp .env.example .env
-          php artisan enlightn --ci —report
+          php artisan enlightn --ci --report
