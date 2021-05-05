@@ -30,7 +30,7 @@ jobs:
           composer require --prefer-dist --no-interaction enlightn/enlightnpro
 
       - name: Install Composer dependencies
-        if: ${{ ! env.ENLIGHTN_API_TOKEN }}
+        if: ${{ !env.ENLIGHTN_API_TOKEN }}
         run: composer install --prefer-dist --no-interaction
 
       - name: Run Enlightn Checks and Report
@@ -40,7 +40,7 @@ jobs:
           php artisan enlightn --ci --report
 
       - name: Run Enlightn Checks
-        if: ! env.ENLIGHTN_API_TOKEN
+        if: ${{ !env.ENLIGHTN_API_TOKEN }}
         run: |
           cp .env.example .env
           php artisan enlightn --ci
