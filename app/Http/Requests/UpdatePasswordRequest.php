@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\PasscheckRule;
+use Illuminate\Validation\Rules\Password;
 
 class UpdatePasswordRequest extends Request
 {
@@ -10,7 +11,7 @@ class UpdatePasswordRequest extends Request
     {
         return [
             'current_password' => ['sometimes', 'required', new PasscheckRule()],
-            'password' => 'required|confirmed|min:8',
+            'password' => ['required', 'confirmed', Password::min(8)->uncompromised()],
         ];
     }
 

@@ -136,7 +136,7 @@ class ArticleTest extends BrowserKitTestCase
         ]);
 
         $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
-        $response->assertSessionHasErrors(['title' => 'The title may not be greater than 100 characters.']);
+        $response->assertSessionHasErrors(['title' => 'The title must not be greater than 100 characters.']);
     }
 
     /** @test */
@@ -304,7 +304,7 @@ class ArticleTest extends BrowserKitTestCase
         ]);
 
         $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
-        $response->assertSessionHasErrors(['title' => 'The title may not be greater than 100 characters.']);
+        $response->assertSessionHasErrors(['title' => 'The title must not be greater than 100 characters.']);
     }
 
     /** @test */

@@ -66,7 +66,7 @@ class AuthTest extends BrowserKitTestCase
             ->check('terms')
             ->press('Register')
             ->seePageIs('/register')
-            ->see('The username may only contain letters, numbers, dashes and underscores.');
+            ->see('The username must only contain letters, numbers, dashes and underscores.');
     }
 
     /** @test */
@@ -184,7 +184,7 @@ class AuthTest extends BrowserKitTestCase
         $this->visit('/password/reset')
             ->type('john@example.com', 'email')
             ->press('Send Password Reset Link')
-            ->see('We have e-mailed your password reset link!');
+            ->see('We have emailed your password reset link!');
     }
 
     /** @test */
@@ -197,16 +197,33 @@ class AuthTest extends BrowserKitTestCase
 
         $this->visit('/password/reset/'.$token)
             ->type('john@example.com', 'email')
-            ->type('foopassword', 'password')
-            ->type('foopassword', 'password_confirmation')
+            ->type('QFq^$cz#P@MZa5z7', 'password')
+            ->type('QFq^$cz#P@MZa5z7', 'password_confirmation')
             ->press('Reset Password')
             ->seePageIs('/dashboard')
             ->visit('/logout')
             ->visit('/login')
             ->type('johndoe', 'username')
-            ->type('foopassword', 'password')
+            ->type('QFq^$cz#P@MZa5z7', 'password')
             ->press('Login')
             ->seePageIs('/dashboard');
+    }
+
+    /** @test */
+    public function users_cannot_reset_their_password_when_it_has_been_compromised_in_data_leaks()
+    {
+        $user = $this->createUser();
+
+        // Insert a password reset token into the database.
+        $token = $this->app[PasswordBroker::class]->getRepository()->create($user);
+
+        $this->visit('/password/reset/'.$token)
+            ->type('john@example.com', 'email')
+            ->type('password', 'password')
+            ->type('password', 'password_confirmation')
+            ->press('Reset Password')
+            ->seePageIs('/password/reset/'.$token)
+            ->see('The given password has appeared in a data leak. Please choose a different password.');
     }
 
     /** @test */
