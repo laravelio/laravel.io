@@ -33,14 +33,7 @@ jobs:
         if: ${{ !env.ENLIGHTN_API_TOKEN }}
         run: composer install --prefer-dist --no-interaction
 
-      - name: Run Enlightn Checks and Trigger the Enlightn Bot
-        if: github.event_name == 'pull_request' && env.ENLIGHTN_API_TOKEN
-        run: |
-          cp .env.example .env
-          php artisan enlightn --ci --report --review --issue=${{ github.event.number }}
-
       - name: Run Enlightn Checks
-        if: ${{ github.event_name != 'pull_request' || !env.ENLIGHTN_API_TOKEN }}
         run: |
           cp .env.example .env
-          php artisan enlightn --ci
+          php artisan enlightn --ci —report
