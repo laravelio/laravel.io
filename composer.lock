@@ -8660,16 +8660,16 @@
         },
         {
             "name": "yarri/link-finder",
-            "version": "v2.7",
+            "version": "v2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yarri/LinkFinder.git",
-                "reference": "9d6434dae4d527fbcfff1e177905780babeaf2e5"
+                "reference": "56dc51dc92dc4730a8372c584522f44b8ed6204b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yarri/LinkFinder/zipball/9d6434dae4d527fbcfff1e177905780babeaf2e5",
-                "reference": "9d6434dae4d527fbcfff1e177905780babeaf2e5",
+                "url": "https://api.github.com/repos/yarri/LinkFinder/zipball/56dc51dc92dc4730a8372c584522f44b8ed6204b",
+                "reference": "56dc51dc92dc4730a8372c584522f44b8ed6204b",
                 "shasum": ""
             },
             "require": {
@@ -8707,9 +8707,9 @@
             ],
             "support": {
                 "issues": "https://github.com/yarri/LinkFinder/issues",
-                "source": "https://github.com/yarri/LinkFinder/tree/v2.7"
+                "source": "https://github.com/yarri/LinkFinder/tree/v2.7.1"
             },
-            "time": "2021-04-26T09:06:03+00:00"
+            "time": "2021-05-06T10:46:12+00:00"
         }
     ],
     "packages-dev": [
