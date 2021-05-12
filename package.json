@@ -23,7 +23,7 @@
     "alpinejs": "^2.0",
     "autoprefixer": "^10.2.4",
     "choices.js": "^9.0.1",
-    "postcss": "^8.2.4",
+    "postcss": "^8.2.10",
     "tailwindcss": "^2.0.2"
   }
 }
