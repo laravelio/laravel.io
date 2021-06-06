@@ -44,10 +44,11 @@ The following tools are required in order to start the installation.
 
 1. Clone this repository with `git clone git@github.com:laravelio/laravel.io.git ~/Sites/laravel.io`
 2. Run `composer install` to install the PHP dependencies
-3. Set up a local database called `laravelio`
+3. Set up a local database called `laravel`
 4. Run `composer setup` to setup the application
 5. Set up a working e-mail driver like [Mailtrap](https://mailtrap.io/)
-6. Configure the (optional) features from below
+6. Run `valet link` to link the site to a testing web address
+7. Configure the (optional) features from below
 
 You can now visit the app in your browser by visiting [http://laravel.io.test](http://laravel.io.test). If you seeded the database you can login into a test account with **`johndoe`** & **`password`**.
 
