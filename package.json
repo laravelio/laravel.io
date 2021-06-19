@@ -12,7 +12,7 @@
   "devDependencies": {
     "axios": "^0.21.1",
     "highlight.js": "^10.5.0",
-    "laravel-mix": "^6.0.11",
+    "laravel-mix": "^6.0.23",
     "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
