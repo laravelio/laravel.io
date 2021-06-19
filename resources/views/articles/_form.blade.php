@@ -65,7 +65,7 @@
                     @endforeach
                 </select>
 
-                @error('tags')
+                @error('series')
             @endFormGroup
         @endif
     </div>
