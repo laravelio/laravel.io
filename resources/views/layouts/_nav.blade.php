@@ -30,7 +30,7 @@
                             <div class="py-1 rounded-md bg-white ring-1 ring-black ring-opacity-5">
                                 <a href="https://discord.gg/KxwQuKb">Discord</a>
                                 <a href="https://larachat.co">Larachat</a>
-                                <a href="https://webchat.freenode.net/?nick=laravelnewbie&channels=%23laravel&prompt=1">IRC</a>
+                                <a href="https://web.libera.chat/?nick=laravelnewbie&channels=#laravel">IRC</a>
                             </div>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                 <div>
                     <a href="https://discord.gg/KxwQuKb" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Discord</a>
                     <a href="https://larachat.co" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Larachat</a>
-                    <a href="https://webchat.freenode.net/?nick=laravelnewbie&channels=%23laravel&prompt=1" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">IRC</a>
+                    <a href="https://web.libera.chat/?nick=laravelnewbie&channels=#laravel" class="pl-6 block pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">IRC</a>
                 </div>
             </div>
 
