@@ -1,4 +1,4 @@
-<p class="px-2 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="communities-headline">
+<p class="px-2 text-xs font-semibold text-gray-800 uppercase tracking-wider" id="communities-headline">
     Tags
 </p>
 

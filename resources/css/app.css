@@ -17,6 +17,24 @@
 @import 'tags.css';
 @import 'threads.css';
 
+.number-block {
+    box-shadow: 20px 0 40px 5px #e6f6f3 inset, -20px 0 10px 5px #e6f6f3 inset;
+}
+
+a > span > em {
+    @apply bg-lio-100;
+}
+
+.search {
+    @apply w-full;
+}
+
+@screen lg {
+    .search {
+        width: 720px;
+    }
+}
+
 pre .hljs {
     @apply text-sm rounded p-4 border-2;
 }
@@ -70,16 +88,13 @@ nav.dashboard-nav a.active {
     @apply outline-none bg-gray-100;
 }
 
-a > span > em {
-    @apply bg-lio-200;
-}
-
-.search {
-    @apply w-full;
-}
-
-@screen lg {
-    .search {
-        width: 720px;
-    }
+.member:after {
+    bottom: -1rem;
+    content: ' ';
+    display: block;
+    left: 7rem;
+    position: absolute;
+    border-color: #f9fafb transparent transparent transparent;
+    border-style: solid;
+    border-width: 0.5rem;
 }

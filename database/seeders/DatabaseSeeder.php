@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
         if (! App::environment('production')) {
             $this->call(UserSeeder::class);
             $this->call(TagSeeder::class);
-            $this->call(ThreadSeeder::class);
+            $this->call(ReplySeeder::class);
             $this->call(NotificationSeeder::class);
-            $this->call(ArticleSeeder::class);
+            $this->call(LikeSeeder::class);
         }
     }
 }

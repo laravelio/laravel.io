@@ -1,6 +1,6 @@
 @title('Articles')
 
-@extends('layouts.default', ['isTailwindUi' => true])
+@extends('layouts.default')
 
 @section('content')
     <div class="container mx-auto px-4 pt-6">

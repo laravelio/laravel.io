@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Support\Facades\Cache;
@@ -10,6 +12,14 @@ class HomeController extends Controller
 {
     public function show()
     {
+        $communityMembers = Cache::remember('communityMembers', now()->addDay(), function () {
+            return User::withCounts()
+                ->inRandomOrder()
+                ->take(100)
+                ->get()
+                ->chunk(20);
+        });
+
         $totalUsers = Cache::remember('totalUsers', now()->addDay(), function () {
             return number_format(User::count());
         });
@@ -18,8 +28,8 @@ class HomeController extends Controller
             return number_format(Thread::count());
         });
 
-        $resolutionTime = Cache::remember('resolutionTime', now()->addDay(), function () {
-            return number_format(Thread::resolutionTime());
+        $totalReplies = Cache::remember('totalReplies', now()->addDay(), function () {
+            return number_format(Reply::count());
         });
 
         $latestThreads = Cache::remember('latestThreads', now()->addHour(), function () {
@@ -30,11 +40,20 @@ class HomeController extends Controller
                 ->get();
         });
 
+        $latestArticles = Cache::remember('latestArticles', now()->addHour(), function () {
+            return Article::published()
+                ->trending()
+                ->limit(4)
+                ->get();
+        });
+
         return view('home', [
+            'communityMembers' => $communityMembers,
             'totalUsers' => $totalUsers,
             'totalThreads' => $totalThreads,
-            'resolutionTime' => $resolutionTime,
+            'totalReplies' => $totalReplies,
             'latestThreads' => $latestThreads,
+            'latestArticles' => $latestArticles,
         ]);
     }
 

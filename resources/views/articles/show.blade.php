@@ -36,7 +36,7 @@
                         </a>
                     </p>
 
-                    <div class="flex space-x-1 text-sm text-gray-500">
+                    <div class="flex space-x-1 text-sm text-gray-800">
                         @if ($article->isPublished())
                             <time datetime="{{ $article->submittedAt()->format('Y-m-d') }}">
                                 {{ $article->submittedAt()->format('j M, Y') }}
@@ -75,7 +75,7 @@
             <div
                 x-data="{}"
                 x-init="function () { highlightCode($el); }"
-                class="prose prose-lg text-gray-500 prose-lio px-4"
+                class="prose prose-lg text-gray-800 prose-lio px-4"
             >
                 <x-buk-markdown>{!! $article->body() !!}</x-buk-markdown>
 

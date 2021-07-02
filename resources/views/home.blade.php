@@ -1,202 +1,195 @@
-@extends('layouts.base', ['bodyClass' => 'home', 'disableFooterAds' => true])
+@extends('layouts.base', ['bodyClass' => 'home', 'disableFooterAds' => true, 'isTailwindUi' => true])
 
 @section('body')
     @include('layouts._alerts')
 
-    <div class="bg-white overflow-hidden">
-        <div x-data="{ open: false }" class="pt-6 pb-12 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
-            <div class="mt-10 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 xl:mt-28">
-                <div class="text-center">
-                    <img src="{{ asset('images/laravelio.png') }}" title="Laravel.io" alt="Laravel.io" class="block md:max-w-2xl mx-auto mb-10">
-
-                    <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none">
+    <!-- Head section -->
+    <section class="overflow-x-hidden mt-6 lg:mt-20">
+        <div class="container mx-auto lg:px-16">
+            <div class="flex flex-col items-center px-4 lg:flex-row lg:px-0">
+                <div class="w-full mb-8 lg:w-1/2 lg:mb-0 lg:mr-16">
+                    <h1 class="text-3xl font-bold text-gray-900 leading-tight mb-3 lg:text-6xl">
                         The Laravel Community Portal
-                    </h2>
+                    </h1>
 
-                    <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-2xl">
-                        The Laravel portal for problem solving, knowledge sharing and community building. <strong>Join {{ $totalUsers }} other artisans.</strong>
-                    </p>
+                    <div class="mb-5">
+                        <p class="text-gray-800 text-lg leading-8 font-medium">
+                            The Laravel portal for problem solving, knowledge sharing
+                            and community building. Join <x-accent-text>{{ $totalUsers }}</x-accent-text> other artisans.
+                        </p>
+                    </div>
 
-                    <div class="mt-5 max-w-lg mx-auto sm:flex sm:justify-center md:mt-8">
+                    <div>
                         @if (Auth::guest())
-                            <div class="rounded-md shadow">
-                                <a href="{{ route('register') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-lio-600 hover:bg-lio-500 focus:outline-none-500 transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
-                                    Join the Community
-                                </a>
-                            </div>
+                            <x-buttons.primary-cta href="{{ route('register') }}" class="w-full mb-3 lg:w-auto lg:mr-2">
+                                Join the community
+                            </x-buttons.primary-cta>
 
-                            <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                                <a href="{{ route('forum') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-lio-500 bg-white hover:text-lio-600 focus:outline-none transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
-                                    Visit the Forum
-                                </a>
-                            </div>
+                            <x-buttons.secondary-cta href="{{ route('forum') }}" class="w-full lg:w-auto">
+                                Visit the forum
+                            </x-buttons.secondary-cta>
                         @else
-                            <div class="rounded-md shadow">
-                                <a href="{{ route('threads.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-lio-600 hover:bg-lio-500 focus:outline-none transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
-                                    Start a Thread
-                                </a>
-                            </div>
+                            <x-buttons.primary-cta href="{{ route('threads.create') }}" class="w-full mb-3 lg:w-auto lg:mr-2">
+                                Start a Thread
+                            </x-buttons.primary-cta>
 
-                            <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                                <a href="{{ route('articles.create') }}" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-lio-600 hover:bg-lio-500 focus:outline-none transition duration-150 ease-in-out md:py-4 md:text-lg md:px-10">
-                                    Share an Article
-                                </a>
-                            </div>
+                            <x-buttons.primary-cta href="{{ route('articles.create') }}" class="w-full mb-3 lg:w-auto lg:mr-2">
+                                Share an Article
+                            </x-buttons.primary-cta>
                         @endif
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="border-b">
-        @include('layouts._ads._footer')
-    </div>
-
-    <div class="border-b bg-gray-100">
-        <div class="container mx-auto py-12 px-4">
-            <h2 class="text-4xl text-gray-800 mb-12 text-center">
-                Laravel.io in numbers
-            </h2>
-
-            <div class="flex flex-wrap w-full md:w-2/3 mx-auto justify-center">
-                <div class="w-full md:w-1/3 h-48 flex justify-center mb-4">
-                    <div class="flex flex-col items-center text-center">
-                        <x-heroicon-s-user-group class="text-lio-500 w-32"/>
-
-                        <div class="text-gray-800 uppercase mt-4">
-                            <span class="text-2xl block">{{ $totalUsers }}</span>
-                            <span class="text-gray-600">users</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w-full md:w-1/3 h-48 flex justify-center mb-4">
-                    <div class="flex flex-col items-center text-center">
-                        <x-heroicon-o-document-report class="text-lio-500 w-32"/>
-
-                        <div class="text-gray-800 uppercase mt-4">
-                            <span class="text-2xl block">{{ $totalThreads }}</span>
-                            <span class="text-gray-600">threads</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w-full md:w-1/3 h-48 flex justify-center">
-                    <div class="flex flex-col items-center text-center">
-                        <x-heroicon-o-clock class="text-lio-500 w-32"/>
-
-                        <div class="text-gray-800 uppercase mt-4">
-                            <span class="text-2xl block">{{ $resolutionTime }} days</span>
-                            <span class="text-gray-600">average resolution</span>
-                        </div>
-                    </div>
+                <div class="lg:w-1/2">
+                    <x-community-members :members="$communityMembers" />
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- /Head section -->
 
-    <div class="border-b bg-white text-gray-700">
-        <div class="container mx-auto py-12 px-4">
-            <h2 class="text-4xl text-center">Need help?</h2>
-
-            <div class="text-xl text-center mb-8 text-gray-700">
-                Search for the solution
-            </div>
-
-            <div class="w-full md:w-1/2 mx-auto relative mb-8">
-                <form action="{{ route('forum') }}" method="GET">
-                    <input type="search" class="rounded-full border-gray-300 border-2 w-full p-3 text-xl bg-gray-100" placeholder="Search for threads..." name="search">
-
-                    <button type="submit" class="absolute top-0 right-0 w-10 h-10 my-2 mx-3">
-                        <x-heroicon-o-search class="w-full"/>
-                    </button>
-                </form>
-            </div>
-
-            <div class="flex flex-col items-center">
-                <div class="text-lg text-center mb-8 text-gray-700">
-                    Can't find what you're looking for?
-
-                    <a href="{{ route('threads.create') }}" class="text-lio-700">
-                        Create a new thread
-                    </a>
-                </div>
-            </div>
+    <!-- Banner ad -->
+    <section class="container mx-auto mt-10 lg:mt-40 lg:px-16">
+        <div class="px-4 lg:px-10">
+            @include('layouts._ads._footer')
         </div>
-    </div>
+    </section>
+    <!-- /Banner ad -->
 
-    <div class="border-b">
-        <div class="container mx-auto py-12 px-4">
-            <h2 class="text-4xl text-center text-gray-800">You can help others</h2>
+    <!-- Search -->
+    <section class="mt-10 lg:mt-16">
+        <div class="bg-lio-500 text-white transform -skew-y-1">
+            <div class="container mx-auto transform skew-y-1">
+                <div class="flex flex-col items-center py-10 text-center lg:py-20">
+                    <div class="w-full px-4 lg:w-1/2 lg:px-0">
+                        <div class="mb-8">
+                            <h2 class="text-3xl lg:text-4xl font-bold mb-3">Looking for a solution?</h2>
+                            <p class="text-lg lg:text-xl opacity-80">Search the forum for the answer to your question</p>
+                        </div>
 
-            <div class="text-xl text-center mb-8 text-gray-800">
-                Take a look at the latest unresolved threads
-            </div>
-
-            <div class="flex flex-wrap mb-8">
-                @foreach ($latestThreads as $latestThread)
-                    <div class="flex w-full md:w-1/3">
-                        <div class="flex flex-col flex-grow justify-between bg-white p-4 border rounded m-2">
-                            <a href="{{ route('thread', $latestThread->slug()) }}">
-                                <h3 class="text-2xl text-gray-800 mb-8 break-all">
-                                    {{ $latestThread->subject() }}
-                                </h3>
-                            </a>
-
-                            <div class="flex mb-4 md:mb-0">
-                                @include('forum.threads.info.avatar', ['user' => $latestThread->author()])
-
-                                <div class="mr-6 text-gray-700">
-                                    <a href="{{ route('profile', $latestThread->author()->username()) }}" class="text-lio-700 mr-2">{{ $latestThread->author()->name() }}</a> posted
-                                    {{ $latestThread->createdAt()->diffForHumans() }}
+                        <div class="mb-10">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <x-heroicon-o-search class="w-4 h-4 text-gray-900" />
                                 </div>
+
+                                <form action="{{ route('forum') }}" method="GET">
+                                    <input 
+                                        type="search"
+                                        name="search"
+                                        placeholder="Search here for threads" 
+                                        class="p-4 pl-10 text-gray-600 rounded w-full border-gray-100" 
+                                    />
+                                </form>
                             </div>
                         </div>
+
+                        <div class="text-lg">
+                            <p>
+                                Can't find what you're looking for? 
+                                <a href="{{ route('threads.create') }}" class="border-b border-white pb-1">
+                                    Create a new thread
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Search -->
+
+    <!-- Help others -->
+    <section class="mt-14 container mx-auto lg:mt-36 lg:px-16">
+        <div class="px-4 lg:px-0">
+            <div class="flex flex-col lg:flex-row items-center mb-4 lg:mb-12">
+                <h2 class="w-full text-3xl font-bold text-gray-900 lg:w-1/2 lg:text-4xl">Or you can help others</h2>
+                <p class="w-full text-gray-800 text-lg lg:w-1/2">By joining our platform, you can take a look at the latest unresolved threads</p>
+            </div>
+        
+            <div class="flex mb-4 -mx-4 p-4 overflow-x-scroll lg:mb-10 lg:gap-8">
+
+                @foreach ($latestThreads as $thread)
+                    <div class="flex-shrink-0 w-11/12 lg:w-full lg:flex-shrink">
+                        <x-threads.summary
+                            :thread="$thread"
+                        />
                     </div>
                 @endforeach
-            </div>
 
+            </div>
+        
             <div class="flex justify-center">
-                <a href="{{ route('forum') }}" class="button button-primary button-big">
-                    See all threads
-                </a>
+                <x-buttons.primary-cta href="{{ route('forum') }}" class="w-full lg:w-auto">
+                    View all threads
+                </x-buttons.primary-cta>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- /Help others -->
 
-    <div class="border-b bg-gray-100 text-gray-700">
-        <div class="container mx-auto py-12 px-4">
-            <h2 class="text-4xl pb-8 mb-8 text-center">More from the community</h2>
-            <div class="flex flex-wrap text-center items-center w-full lg:w-2/3 mx-auto">
-                <div class="w-1/2 md:w-1/4 mb-4">
-                    <a href="https://laravel.com">
-                        <img src="{{ asset('images/laravel.png') }}" alt="Laravel logo" title="Laravel" class="w-16 mx-auto mb-4">
-                        <span class="text-xl">Laravel</span>
-                    </a>
-                </div>
+    <!-- Laravel.io in numbers -->
+    <section class="mt-12 container mx-auto px-4 lg:mt-40 lg:px-16">
+        <h2 class="text-4xl leading-tight font-bold text-center text-gray-900 mb-6 lg:mb-12">Laravel.io in numbers</h2>
 
-                <div class="w-1/2 md:w-1/4 mb-4">
-                    <a href="https://laracasts.com">
-                        <img src="{{ asset('images/laracasts.png') }}" alt="Laracasts logo" title="Laracasts" class="w-16 mx-auto mb-4">
-                        <span class="text-xl">Laracasts</span>
-                    </a>
-                </div>
+        <div class="flex flex-col lg:mb-10 lg:flex-row lg:gap-x-8">
+            <div class="w-full">
+                <x-number-block title="Users" :total="$totalUsers" :background="asset('images/users.png')" />
+            </div>
 
-                <div class="w-1/2 md:w-1/4 mb-4">
-                    <a href="https://laravel-news.com">
-                        <img src="{{ asset('images/laravel-news.png') }}" alt="Laravel News logo" title="Laravel News" class="w-16 mx-auto mb-4">
-                        <span class="text-xl">Laravel News</span>
-                    </a>
-                </div>
+            <div class="w-full">
+                <x-number-block title="Threads" :total="$totalThreads" :background="asset('images/threads.png')" />
+            </div>
 
-                <div class="w-1/2 md:w-1/4 mb-4">
-                    <a href="https://www.laravelpodcast.com">
-                        <img src="{{ asset('images/podcast.jpg') }}" alt="Laravel Podcast logo" title="Laravel Podcast" class="w-16 mx-auto mb-4">
-                        <span class="text-xl">Laravel Podcast</span>
-                    </a>
-                </div>
+            <div class="w-full">
+                <x-number-block title="Replies" :total="$totalReplies" :background="asset('images/replies.png')" />
             </div>
         </div>
-    </div>
+    </section>
+    <!-- /Laravel.io in numbers -->
+
+    <!-- Popular articles -->
+    <section class="my-12 container mx-auto px-4 lg:my-40 lg:px-16">
+        <div class="flex flex-col items-center mb-8 lg:flex-row lg:mb-16">
+            <h2 class="w-full text-3xl font-bold text-gray-900 mb-2 lg:text-4xl lg:w-1/2 lg:mb-0">Popular articles</h2>
+            <p class="w-full text-gray-800 text-lg lg:w-1/2">Have a look a the latest shared articles by our community members</p>
+        </div>
+
+        @unless($latestArticles->count() === 0)
+            <div class="flex flex-col lg:flex-row lg:gap-x-8 lg:mb-16">
+                <div class="w-full">
+                    <x-articles.summary 
+                        image="https://images.unsplash.com/photo-1541280910158-c4e14f9c94a3?auto=format&fit=crop&w=1000&q=80" 
+                        :article="$latestArticles->first()"
+                        is-featured
+                    />
+                </div>
+
+                <div class="w-full">
+                    <x-articles.summary 
+                        image="https://images.unsplash.com/photo-1584824486516-0555a07fc511?auto=format&fit=crop&w=1000&q=80" 
+                        :article="$latestArticles->get(1)"
+                        is-featured
+                    />
+                </div>
+
+                <div class="w-full">
+                    <div class="lg:border-b-2 lg:border-gray-200 lg:h-72">
+                        <x-articles.summary  :article="$latestArticles->get(2)" />
+                    </div>
+
+                    <div class="lg:pt-6">
+                        <x-articles.summary :article="$latestArticles->get(3)" />
+                    </div>
+                </div>
+            </div>
+        @endunless
+
+        <div class="flex justify-center">
+            <x-buttons.primary-cta href="{{ route('articles') }}" class="w-full lg:w-auto">
+                View all articles
+            </x-buttons.primary-cta>
+        </div>
+    </section>
+    <!-- /Popular articles -->
 @endsection

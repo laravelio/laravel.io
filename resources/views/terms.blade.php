@@ -3,11 +3,11 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="legal-container prose">
-        <h1>Terms and Conditions</h1>
+    <div class="legal-container prose text-gray-800">
+        <h1 class="text-gray-900">Terms and Conditions</h1>
 
         <p class="mb-8">
-            <strong class="text-gray-500 uppercase text-xs">Last updated: May 22, 2018</strong>
+            <strong class="uppercase text-xs">Last updated: May 22, 2018</strong>
         </p>
 
         <p>These Terms and Conditions ("Terms", "Terms and Conditions") govern your relationship with https://laravel.io website (the "Service") operated by Laravel.io ("us", "we", or "our").</p>
