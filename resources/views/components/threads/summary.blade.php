@@ -17,20 +17,15 @@
         </div>
     </div>
 
-    <div class="flex-auto flex flex-col justify-between">
-        <div>
-            <h3 class="text-gray-900 text-2xl mb-2 leading-8">
-                {{ $thread->subject() }}
-            </h3>
+    <h3 class="text-gray-900 text-2xl mb-2 leading-8">
+        {{ $thread->subject() }}
+    </h3>
 
-            <p class="text-gray-800 text-base leading-7">
-                {{ $thread->excerpt() }}
-            </p>
-        </div>
-        <a href="{{ route('thread', $thread->slug()) }}" class="flex items-center text-base text-gray-300">
-            <span class="text-gray-700 mr-1">Open thread</span>
-            
-            <x-heroicon-s-arrow-right class="w-4 h-4 fill-current" />
-        </a>
-    </div>
+    <p class="text-gray-800 text-base leading-7 mb-3">
+        {{ $thread->excerpt() }}
+    </p>
+
+    <x-buttons.arrow-button href="{{ route('thread', $thread->slug()) }}">
+        Open thread
+    </x-buttons.arrow-button>
 </div>

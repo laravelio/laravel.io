@@ -14,8 +14,7 @@
 
                     <div class="mb-5">
                         <p class="text-gray-800 text-lg leading-8 font-medium">
-                            The Laravel portal for problem solving, knowledge sharing
-                            and community building. Join <x-accent-text>{{ $totalUsers }}</x-accent-text> other artisans.
+                            The Laravel portal for problem solving, knowledge sharing and community building. Join <x-accent-text>{{ $totalUsers }}</x-accent-text> other artisans.
                         </p>
                     </div>
 
@@ -111,9 +110,7 @@
 
                 @foreach ($latestThreads as $thread)
                     <div class="flex-shrink-0 w-11/12 lg:w-full lg:flex-shrink">
-                        <x-threads.summary
-                            :thread="$thread"
-                        />
+                        <x-threads.summary :thread="$thread" />
                     </div>
                 @endforeach
 
@@ -175,7 +172,7 @@
 
                 <div class="w-full">
                     <div class="lg:border-b-2 lg:border-gray-200 lg:h-72">
-                        <x-articles.summary  :article="$latestArticles->get(2)" />
+                        <x-articles.summary :article="$latestArticles->get(2)" />
                     </div>
 
                     <div class="lg:pt-6">

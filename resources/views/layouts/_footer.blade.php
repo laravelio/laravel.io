@@ -12,9 +12,7 @@
                     </a>
 
                     <p class="text-gray-100 lg:leading-loose">
-                        The Laravel portal for problem solving,
-                        knowledge sharing and community
-                        building.
+                        The Laravel portal for problem solving, knowledge sharing and community building.
                     </p>
                 </div>
 
@@ -92,12 +90,20 @@
             </div>
 
             <div class="text-gray-100 flex flex-col lg:flex-row">
-                <span class="mb-5 lg:mb-0 lg:mr-5">© 2021 Laravel.io - All rights reserved.</span>
+                <span class="mb-5 lg:mb-0 lg:mr-5">
+                    &copy; {{ date('Y') }} Laravel.io - All rights reserved.
+                </span>
 
                 <div class="flex flex-wrap lg:block">
-                    <a href="https://laravel.io/terms" class="w-1/2 mb-4 hover:text-gray-200 lg:w-full lg:mb-0 lg:mr-8">Terms of service</a>
-                    <a href="https://laravel.io/privacy" class="w-1/2 mb-4 hover:text-gray-200 lg:w-full lg:mb-0 lg:mr-8">Privacy policy</a>
-                    <a href="https://github.com/sponsors/laravelio" class="w-1/2 hover:text-gray-200 lg:w-full lg:mb-0">Advertise</a>
+                    <a href="{{ route('terms') }}" class="w-1/2 mb-4 hover:text-gray-200 lg:w-full lg:mb-0 lg:mr-8">
+                        Terms of service
+                    </a>
+                    <a href="{{ route('privacy') }}" class="w-1/2 mb-4 hover:text-gray-200 lg:w-full lg:mb-0 lg:mr-8">
+                        Privacy policy
+                    </a>
+                    <a href="https://github.com/sponsors/laravelio" class="w-1/2 hover:text-gray-200 lg:w-full lg:mb-0">
+                        Advertise
+                    </a>
                 </div>
             </div>
         </div>

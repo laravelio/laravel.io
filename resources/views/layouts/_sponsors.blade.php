@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://devsquad.com" logo="{{ asset('images/sponsors/devsquad.png') }}" company="Beyond Code" />
+                <x-sponsor-logo url="https://devsquad.com" logo="{{ asset('images/sponsors/devsquad.png') }}" company="DevSquad" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">

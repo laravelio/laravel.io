@@ -30,9 +30,9 @@ Route::feeds();
 
 // Home
 Route::get('/', [HomeController::class, 'show'])->name('home');
-Route::get('rules', [HomeController::class, 'rules'])->name('rules');
-Route::get('terms', [HomeController::class, 'terms'])->name('terms');
-Route::get('privacy', [HomeController::class, 'privacy'])->name('privacy');
+Route::view('rules', 'rules')->name('rules');
+Route::view('terms', 'terms')->name('terms');
+Route::view('privacy', 'privacy')->name('privacy');
 Route::get('bin/{paste?}', [HomeController::class, 'pastebin']);
 
 Route::get('articles/{article}/social.png', SocialImageController::class)->name('articles.image');

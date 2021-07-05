@@ -118,7 +118,7 @@
                 </div>
             </div>
 
-            <div class="w-full block gap-x-6 lg:flex lg:items-center lg:justify-end">
+            <div class="w-full block gap-x-4 lg:flex lg:items-center lg:justify-end">
                 <div class="lg:block" x-cloak :class="{ 'block': search, 'hidden': !search }" @click.away="search = false">
                     @include('_partials._search')
                 </div>
