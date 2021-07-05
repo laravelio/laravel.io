@@ -89,36 +89,6 @@ final class Article extends Model
         return $this->originalUrl() ?: route('articles.show', $this->slug);
     }
 
-    public function series()
-    {
-        return $this->belongsTo(Series::class);
-    }
-
-    public function updateSeries(Series $series = null): self
-    {
-        if ($series === null) {
-            return $this->removeSeries();
-        }
-
-        return $this->addToSeries($series);
-    }
-
-    public function addToSeries(Series $series): self
-    {
-        $this->series()->associate($series);
-        $this->save();
-
-        return $this;
-    }
-
-    public function removeSeries(): self
-    {
-        $this->series()->dissociate();
-        $this->save();
-
-        return $this;
-    }
-
     public function submittedAt(): ?Carbon
     {
         return $this->submitted_at;
@@ -263,26 +233,6 @@ final class Article extends Model
         }])
             ->orderBy('likes_relation_count', 'desc')
             ->orderBy('submitted_at', 'desc');
-    }
-
-    public function previousInSeries(): ?self
-    {
-        return $this->series
-            ->articles()
-            ->published()
-            ->where('submitted_at', '<', $this->submittedAt())
-            ->orderByDesc('submitted_at')
-            ->first();
-    }
-
-    public function nextInSeries(): ?self
-    {
-        return $this->series
-            ->articles()
-            ->published()
-            ->where('submitted_at', '>', $this->submittedAt())
-            ->orderBy('submitted_at')
-            ->first();
     }
 
     public function shouldBeSearchable()

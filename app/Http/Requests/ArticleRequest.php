@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Models\User;
-use App\Rules\AuthorOwnsSeriesRule;
 use App\Rules\HttpImageRule;
 use Illuminate\Http\Concerns\InteractsWithInput;
 
@@ -19,7 +18,6 @@ class ArticleRequest extends Request
             'tags' => 'array|nullable',
             'tags.*' => 'exists:tags,id',
             'original_url' => 'url|nullable',
-            'series' => ['nullable', new AuthorOwnsSeriesRule()],
             'submitted' => ['required', 'boolean'],
         ];
     }
@@ -42,11 +40,6 @@ class ArticleRequest extends Request
     public function tags(): array
     {
         return $this->get('tags', []);
-    }
-
-    public function series(): ?string
-    {
-        return $this->get('series');
     }
 
     public function originalUrl(): ?string

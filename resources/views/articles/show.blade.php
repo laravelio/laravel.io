@@ -87,8 +87,6 @@
                         Let the author know and give them a clap!
                     </span>
                 </div>
-
-                @include('articles._series_nav')
             </div>
         </div>
     </div>

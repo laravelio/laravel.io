@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
-use App\Models\Series;
 
 final class UpdateArticle
 {
@@ -20,8 +19,6 @@ final class UpdateArticle
 
     private $tags;
 
-    private $series;
-
     public function __construct(Article $article, string $title, string $body, bool $shouldBeSubmitted, array $options = [])
     {
         $this->article = $article;
@@ -30,7 +27,6 @@ final class UpdateArticle
         $this->shouldBeSubmitted = $shouldBeSubmitted;
         $this->originalUrl = $options['original_url'] ?? null;
         $this->tags = $options['tags'] ?? [];
-        $this->series = $options['series'] ?? null;
     }
 
     public static function fromRequest(Article $article, ArticleRequest $request): self
@@ -43,7 +39,6 @@ final class UpdateArticle
             [
                 'original_url' => $request->originalUrl(),
                 'tags' => $request->tags(),
-                'series' => $request->series(),
             ]
         );
     }
@@ -58,8 +53,6 @@ final class UpdateArticle
             'submitted_at' => $this->shouldUpdateSubmittedAt() ? now() : $this->article->submittedAt(),
         ]);
         $this->article->syncTags($this->tags);
-        $this->article->updateSeries(Series::find($this->series));
-        $this->article->save();
 
         return $this->article;
     }
