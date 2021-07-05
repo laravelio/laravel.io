@@ -12,7 +12,6 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Policies\ArticlePolicy;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
