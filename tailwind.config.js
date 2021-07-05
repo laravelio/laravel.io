@@ -44,6 +44,9 @@ module.exports = {
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
             },
+            maxWidth: {
+                '14': '14rem',
+            },
         },
     },
     variants: {},
