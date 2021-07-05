@@ -12,7 +12,6 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Policies\ArticlePolicy;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
@@ -41,13 +40,11 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create()
     {
         return view('articles.create', [
             'tags' => Tag::all(),
             'selectedTags' => old('tags', []),
-            'series' => $request->user()->series,
-            'selectedSeries' => old('series'),
         ]);
     }
 
@@ -60,7 +57,7 @@ class ArticlesController extends Controller
         return redirect()->route('articles.show', $article->slug());
     }
 
-    public function edit(Request $request, Article $article)
+    public function edit(Article $article)
     {
         $this->authorize(ArticlePolicy::UPDATE, $article);
 
@@ -68,14 +65,13 @@ class ArticlesController extends Controller
             'article' => $article,
             'tags' => Tag::all(),
             'selectedTags' => old('tags', $article->tags()->pluck('id')->toArray()),
-            'series' => $request->user()->series,
-            'selectedSeries' => old('series', $article->series_id),
         ]);
     }
 
     public function update(ArticleRequest $request, Article $article)
     {
         $this->authorize(ArticlePolicy::UPDATE, $article);
+
         $wasNotPreviouslySubmitted = $article->isNotSubmitted();
 
         $article = $this->dispatchNow(UpdateArticle::fromRequest($article, $request));

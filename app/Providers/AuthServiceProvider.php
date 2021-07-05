@@ -4,13 +4,11 @@ namespace App\Providers;
 
 use App\Models\Article;
 use App\Models\Reply;
-use App\Models\Series;
 use App\Models\Thread;
 use App\Models\User;
 use App\Policies\ArticlePolicy;
 use App\Policies\NotificationPolicy;
 use App\Policies\ReplyPolicy;
-use App\Policies\SeriesPolicy;
 use App\Policies\ThreadPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -24,12 +22,8 @@ class AuthServiceProvider extends ServiceProvider
         Thread::class => ThreadPolicy::class,
         User::class => UserPolicy::class,
         Article::class => ArticlePolicy::class,
-        Series::class => SeriesPolicy::class,
     ];
 
-    /**
-     * Register any authentication / authorization services.
-     */
     public function boot()
     {
         $this->registerPolicies();

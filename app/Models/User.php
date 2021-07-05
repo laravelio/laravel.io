@@ -209,11 +209,6 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->articles()->count();
     }
 
-    public function series(): HasMany
-    {
-        return $this->hasMany(Series::class, 'author_id');
-    }
-
     public static function findByUsername(string $username): self
     {
         return static::where('username', $username)->firstOrFail();

@@ -3,7 +3,6 @@
 namespace Tests\Integration\Jobs;
 
 use App\Jobs\CreateArticle;
-use App\Models\Series;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -12,15 +11,19 @@ class CreateArticleTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function we_can_create_an_article()
+    public function we_can_create_a_draft_article()
     {
         $user = $this->createUser();
 
-        $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, false, ['original_url' => 'https://laravel.io']));
+        $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, false, [
+            'original_url' => 'https://laravel.io',
+        ]));
 
         $this->assertEquals('Title', $article->title());
         $this->assertEquals('Body', $article->body());
         $this->assertEquals('https://laravel.io', $article->canonicalUrl());
+        $this->assertNull($article->submittedAt());
+        $this->assertTrue($article->isNotPublished());
     }
 
     /** @test */
@@ -28,36 +31,10 @@ class CreateArticleTest extends TestCase
     {
         $user = $this->createUser();
 
-        $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, true, ['original_url' => 'https://laravel.io']));
-
-        $this->assertNotNull($article->submittedAt());
-    }
-
-    /** @test */
-    public function we_can_create_a_draft_article()
-    {
-        $user = $this->createUser();
-
-        $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, false, ['original_url' => 'https://laravel.io']));
-
-        $this->assertNull($article->submittedAt());
-        $this->assertTrue($article->isNotPublished());
-    }
-
-    /** @test */
-    public function we_can_create_an_article_with_a_series()
-    {
-        $user = $this->createUser();
-        $series = Series::factory()->create(['author_id' => $user->id()]);
-
-        $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, false, [
+        $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, true, [
             'original_url' => 'https://laravel.io',
-            'series_id' => $series->id,
         ]));
 
-        $this->assertEquals('Title', $article->title());
-        $this->assertEquals('Body', $article->body());
-        $this->assertEquals('https://laravel.io', $article->canonicalUrl());
-        $this->assertEquals($series->id, $article->id());
+        $this->assertNotNull($article->submittedAt());
     }
 }

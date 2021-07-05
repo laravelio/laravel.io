@@ -53,21 +53,6 @@
 
             @error('tags')
         @endFormGroup
-
-        @if($series->count() > 0)
-            @formGroup('series')
-                <label for="series">Series</label>
-
-                <select name="series" x-data="{}" x-init="function () { choices($el) }">
-                    <option value="">Select a series</option>
-                    @foreach($series as $s)
-                        <option value="{{ $s->id }}" @if($selectedSeries == $s->id) selected @endif>{{ $s->title }}</option>
-                    @endforeach
-                </select>
-
-                @error('series')
-            @endFormGroup
-        @endif
     </div>
 
     <div class="px-4 pb-4">

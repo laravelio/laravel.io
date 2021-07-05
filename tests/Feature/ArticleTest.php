@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Http\Livewire\ShowArticles;
 use App\Models\Article;
-use App\Models\Series;
 use App\Models\Tag;
 use App\Notifications\ArticleApprovedNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -23,28 +22,10 @@ class ArticleTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function users_cannot_see_series_they_do_not_own_when_creating_an_article()
-    {
-        $user = $this->createUser();
-        Series::factory()->create(['title' => 'This should be seen', 'author_id' => $user->id]);
-        Series::factory()->create(['title' => 'This should not be seen']);
-
-        $this->loginAs($user);
-
-        $this->get('/articles/create')
-            ->see('This should be seen')
-            ->dontSee('This should not be seen');
-    }
-
-    /** @test */
     public function users_can_create_an_article()
     {
         $user = $this->createUser();
         $tag = Tag::factory()->create(['name' => 'Test Tag']);
-        $series = Series::factory()->create([
-            'title' => 'Test series',
-            'author_id' => $user->id,
-        ]);
 
         $this->loginAs($user);
 
@@ -52,7 +33,6 @@ class ArticleTest extends BrowserKitTestCase
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
             'tags' => [$tag->id()],
-            'series' => $series->id(),
             'submitted' => '0',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
@@ -68,7 +48,6 @@ class ArticleTest extends BrowserKitTestCase
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
             'tags' => [],
-            'series' => null,
             'submitted' => '1',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
@@ -107,25 +86,6 @@ class ArticleTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function users_cannot_create_an_article_using_a_series_they_do_not_own()
-    {
-        $tag = Tag::factory()->create(['name' => 'Test Tag']);
-        $series = Series::factory()->create(['title' => 'Test series']);
-
-        $this->login();
-
-        $response = $this->post('/articles', [
-            'title' => 'Using database migrations',
-            'body' => 'This article will go into depth on working with database migrations.',
-            'tags' => [$tag->id()],
-            'series' => $series->id(),
-        ]);
-
-        $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
-        $response->assertSessionHasErrors(['series' => 'The selected series does not belong to you.']);
-    }
-
-    /** @test */
     public function users_cannot_create_an_article_with_a_title_that_is_too_long()
     {
         $this->login();
@@ -154,21 +114,6 @@ class ArticleTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function users_cannot_see_series_they_do_not_own_when_editing_an_article()
-    {
-        $user = $this->createUser();
-        Article::factory()->create(['slug' => 'my-first-article', 'author_id' => $user->id]);
-        Series::factory()->create(['title' => 'This should be seen', 'author_id' => $user->id]);
-        Series::factory()->create(['title' => 'This should not be seen']);
-
-        $this->loginAs($user);
-
-        $this->get('/articles/my-first-article/edit')
-            ->see('This should be seen')
-            ->dontSee('This should not be seen');
-    }
-
-    /** @test */
     public function guests_can_view_an_article()
     {
         $article = Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
@@ -193,10 +138,6 @@ class ArticleTest extends BrowserKitTestCase
     {
         $user = $this->createUser();
         $tag = Tag::factory()->create(['name' => 'Test Tag']);
-        $series = Series::factory()->create([
-            'title' => 'Test series',
-            'author_id' => $user->id,
-        ]);
 
         Article::factory()->create([
             'author_id' => $user->id(),
@@ -209,7 +150,6 @@ class ArticleTest extends BrowserKitTestCase
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
             'tags' => [$tag->id()],
-            'series' => $series->id(),
             'submitted' => '0',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
@@ -232,7 +172,6 @@ class ArticleTest extends BrowserKitTestCase
             'title' => 'Using database migrations',
             'body' => 'This article will go into depth on working with database migrations.',
             'tags' => [],
-            'series' => null,
             'submitted' => '1',
         ])
             ->assertRedirectedTo('/articles/using-database-migrations')
@@ -260,31 +199,6 @@ class ArticleTest extends BrowserKitTestCase
             ->assertRedirectedTo('/articles/using-database-migrations')
             ->followRedirects()
             ->dontSee('Draft');
-    }
-
-    /** @test */
-    public function users_cannot_edit_an_article_using_a_series_they_do_not_own()
-    {
-        $user = $this->createUser();
-        $tag = Tag::factory()->create(['name' => 'Test Tag']);
-        $series = Series::factory()->create(['title' => 'Test series']);
-
-        Article::factory()->create([
-            'author_id' => $user->id(),
-            'slug' => 'my-first-article',
-        ]);
-
-        $this->loginAs($user);
-
-        $response = $this->put('/articles/my-first-article', [
-            'title' => 'Using database migrations',
-            'body' => 'This article will go into depth on working with database migrations.',
-            'tags' => [$tag->id()],
-            'series' => $series->id(),
-        ]);
-
-        $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
-        $response->assertSessionHasErrors(['series' => 'The selected series does not belong to you.']);
     }
 
     /** @test */
@@ -469,95 +383,6 @@ class ArticleTest extends BrowserKitTestCase
         Livewire::test(ShowArticles::class)
             ->call('sortBy', 'something-invalid')
             ->assertSet('sortBy', 'recent');
-    }
-
-    /** @test */
-    public function readers_can_navigate_to_the_next_article_in_a_series()
-    {
-        $series = Series::factory()->create();
-        $articleOne = Article::factory()->create([
-            'series_id' => $series->id,
-            'submitted_at' => now()->subWeek(),
-            'approved_at' => now(),
-        ]);
-        $articleTwo = Article::factory()->create([
-            'series_id' => $series->id,
-            'submitted_at' => now(),
-            'approved_at' => now(),
-        ]);
-
-        $this->visit("/articles/{$articleOne->slug()}")
-            ->click($articleTwo->title())
-            ->seePageIs("/articles/{$articleTwo->slug()}");
-    }
-
-    /** @test */
-    public function readers_can_navigate_to_the_previous_article_in_a_series()
-    {
-        $series = Series::factory()->create();
-        $articleOne = Article::factory()->create([
-            'series_id' => $series->id,
-            'submitted_at' => now()->subWeek(),
-            'approved_at' => now(),
-        ]);
-        $articleTwo = Article::factory()->create([
-            'series_id' => $series->id,
-            'submitted_at' => now(),
-            'approved_at' => now(),
-        ]);
-
-        $this->visit("/articles/{$articleTwo->slug()}")
-            ->click($articleOne->title())
-            ->seePageIs("/articles/{$articleOne->slug()}");
-    }
-
-    /** @test */
-    public function readers_can_see_next_and_previous_links_in_a_series()
-    {
-        $series = Series::factory()->create();
-        $articleOne = Article::factory()->create([
-            'series_id' => $series->id,
-            'submitted_at' => now()->subWeeks(2),
-            'approved_at' => now(),
-        ]);
-        $articleTwo = Article::factory()->create([
-            'series_id' => $series->id,
-            'submitted_at' => now()->subWeek(),
-            'approved_at' => now(),
-        ]);
-        $articleThree = Article::factory()->create([
-            'series_id' => $series->id,
-            'submitted_at' => now(),
-            'approved_at' => now(),
-        ]);
-
-        $this->visit("/articles/{$articleTwo->slug()}")
-            ->see($articleOne->title())
-            ->see($articleThree->title());
-    }
-
-    /** @test */
-    public function unpublished_articles_are_not_rendered_in_next_and_previous_links()
-    {
-        $series = Series::factory()->create();
-        $articleOne = Article::factory()->create([
-            'series_id' => $series->id,
-            'submitted_at' => now()->subWeek(),
-            'approved_at' => now(),
-        ]);
-        $articleTwo = Article::factory()->create([
-            'series_id' => $series->id,
-            'submitted_at' => null,
-        ]);
-        $articleThree = Article::factory()->create([
-            'series_id' => $series->id,
-            'submitted_at' => now(),
-            'approved_at' => now(),
-        ]);
-
-        $this->visit("/articles/{$articleOne->slug()}")
-            ->dontSee($articleTwo->title())
-            ->see($articleThree->title());
     }
 
     /** @test */
