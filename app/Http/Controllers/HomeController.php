@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function show()
     {
-        $communityMembers = Cache::remember('communityMembers', now()->addDay(), function () {
+        $communityMembers = Cache::remember('communityMembers', now()->addMinutes(10), function () {
             return User::withCounts()
                 ->inRandomOrder()
                 ->take(100)
