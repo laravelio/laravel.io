@@ -14,7 +14,8 @@
 
                     <div class="mb-5">
                         <p class="text-gray-800 text-lg leading-8 font-medium">
-                            The Laravel portal for problem solving, knowledge sharing and community building. Join <x-accent-text>{{ $totalUsers }}</x-accent-text> other artisans.
+                            The Laravel portal for problem solving, knowledge sharing and community building.
+                            Join <x-accent-text>{{ $totalUsers }}</x-accent-text> other artisans.
                         </p>
                     </div>
 
@@ -62,8 +63,12 @@
                 <div class="flex flex-col items-center py-10 text-center lg:py-20">
                     <div class="w-full px-4 lg:w-1/2 lg:px-0">
                         <div class="mb-8">
-                            <h2 class="text-3xl lg:text-4xl font-bold mb-3">Looking for a solution?</h2>
-                            <p class="text-lg lg:text-xl opacity-80">Search the forum for the answer to your question</p>
+                            <h2 class="text-3xl lg:text-4xl font-bold mb-3">
+                                Looking for a solution?
+                            </h2>
+                            <p class="text-lg lg:text-xl opacity-80">
+                                Search the forum for the answer to your question
+                            </p>
                         </div>
 
                         <div class="mb-10">
@@ -85,7 +90,7 @@
 
                         <div class="text-lg">
                             <p>
-                                Can't find what you're looking for? 
+                                Can't find what you're looking for?<br class="sm:hidden">
                                 <a href="{{ route('threads.create') }}" class="border-b border-white pb-1">
                                     Create a new thread
                                 </a>
@@ -102,18 +107,20 @@
     <section class="mt-14 container mx-auto lg:mt-36 lg:px-16">
         <div class="px-4 lg:px-0">
             <div class="flex flex-col lg:flex-row items-center mb-4 lg:mb-12">
-                <h2 class="w-full text-3xl font-bold text-gray-900 lg:w-1/2 lg:text-4xl">Or you can help others</h2>
-                <p class="w-full text-gray-800 text-lg lg:w-1/2">By joining our platform, you can take a look at the latest unresolved threads</p>
+                <h2 class="w-full text-3xl font-bold text-gray-900 lg:w-1/2 lg:text-4xl">
+                    Or you can help others
+                </h2>
+                <p class="w-full text-gray-800 text-lg lg:w-1/2">
+                    By joining our platform, you can take a look at the latest unresolved threads
+                </p>
             </div>
         
             <div class="flex gap-4 mb-4 -mx-4 p-4 overflow-x-scroll lg:mb-10 lg:gap-8">
-
                 @foreach ($latestThreads as $thread)
                     <div class="flex-shrink-0 w-11/12 lg:w-full lg:flex-shrink">
                         <x-threads.summary :thread="$thread" />
                     </div>
                 @endforeach
-
             </div>
         
             <div class="flex justify-center">
@@ -127,7 +134,9 @@
 
     <!-- Laravel.io in numbers -->
     <section class="mt-12 container mx-auto px-4 lg:mt-40 lg:px-16">
-        <h2 class="text-4xl leading-tight font-bold text-center text-gray-900 mb-6 lg:mb-12">Laravel.io in numbers</h2>
+        <h2 class="text-4xl leading-tight font-bold text-center text-gray-900 mb-6 lg:mb-12">
+            Laravel.io in numbers
+        </h2>
 
         <div class="flex flex-col lg:mb-10 lg:flex-row lg:gap-x-8">
             <div class="w-full">
@@ -148,11 +157,15 @@
     <!-- Popular articles -->
     <section class="my-12 container mx-auto px-4 lg:my-40 lg:px-16">
         <div class="flex flex-col items-center mb-8 lg:flex-row lg:mb-16">
-            <h2 class="w-full text-3xl font-bold text-gray-900 mb-2 lg:text-4xl lg:w-1/2 lg:mb-0">Popular articles</h2>
-            <p class="w-full text-gray-800 text-lg lg:w-1/2">Have a look a the latest shared articles by our community members</p>
+            <h2 class="w-full text-3xl font-bold text-gray-900 mb-2 lg:text-4xl lg:w-1/2 lg:mb-0">
+                Popular articles
+            </h2>
+            <p class="w-full text-gray-800 text-lg lg:w-1/2">
+                Have a look a the latest shared articles by our community members
+            </p>
         </div>
 
-        @unless($latestArticles->count() === 0)
+        @if ($latestArticles->isNotEmpty())
             <div class="flex flex-col lg:flex-row lg:gap-x-8 lg:mb-16">
                 <div class="w-full">
                     <x-articles.summary 
@@ -180,7 +193,7 @@
                     </div>
                 </div>
             </div>
-        @endunless
+        @endif
 
         <div class="flex justify-center">
             <x-buttons.primary-cta href="{{ route('articles') }}" class="w-full lg:w-auto">
