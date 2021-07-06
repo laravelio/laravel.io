@@ -261,4 +261,12 @@ final class User extends Authenticatable implements MustVerifyEmail
             },
         ]);
     }
+
+    public function scopeHasActivity(Builder $query)
+    {
+        return $query->where(function ($query) {
+            $query->has('threadsRelation')
+                ->orHas('replyAble');
+        });
+    }
 }
