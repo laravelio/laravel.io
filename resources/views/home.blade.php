@@ -106,7 +106,7 @@
                 <p class="w-full text-gray-800 text-lg lg:w-1/2">By joining our platform, you can take a look at the latest unresolved threads</p>
             </div>
         
-            <div class="flex mb-4 -mx-4 p-4 overflow-x-scroll lg:mb-10 lg:gap-8">
+            <div class="flex gap-4 mb-4 -mx-4 p-4 overflow-x-scroll lg:mb-10 lg:gap-8">
 
                 @foreach ($latestThreads as $thread)
                     <div class="flex-shrink-0 w-11/12 lg:w-full lg:flex-shrink">
@@ -170,12 +170,12 @@
                     />
                 </div>
 
-                <div class="w-full">
+                <div class="w-full flex flex-col">
                     <div class="lg:border-b-2 lg:border-gray-200 lg:h-72">
                         <x-articles.summary :article="$latestArticles->get(2)" />
                     </div>
 
-                    <div class="lg:pt-6">
+                    <div class="lg:pt-6 flex-1">
                         <x-articles.summary :article="$latestArticles->get(3)" />
                     </div>
                 </div>
