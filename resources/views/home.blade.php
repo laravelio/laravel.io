@@ -170,12 +170,12 @@
                     />
                 </div>
 
-                <div class="w-full">
+                <div class="w-full flex flex-col">
                     <div class="lg:border-b-2 lg:border-gray-200 lg:h-72">
                         <x-articles.summary :article="$latestArticles->get(2)" />
                     </div>
 
-                    <div class="lg:pt-6">
+                    <div class="lg:pt-6 flex-1">
                         <x-articles.summary :article="$latestArticles->get(3)" />
                     </div>
                 </div>
