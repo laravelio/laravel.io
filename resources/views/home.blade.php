@@ -106,7 +106,7 @@
                 <p class="w-full text-gray-800 text-lg lg:w-1/2">By joining our platform, you can take a look at the latest unresolved threads</p>
             </div>
         
-            <div class="flex mb-4 -mx-4 p-4 overflow-x-scroll lg:mb-10 lg:gap-8">
+            <div class="flex gap-4 mb-4 -mx-4 p-4 overflow-x-scroll lg:mb-10 lg:gap-8">
 
                 @foreach ($latestThreads as $thread)
                     <div class="flex-shrink-0 w-11/12 lg:w-full lg:flex-shrink">
