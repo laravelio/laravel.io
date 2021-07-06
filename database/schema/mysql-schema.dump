@@ -9,7 +9,6 @@ DROP TABLE IF EXISTS `articles`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `articles` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `series_id` int unsigned DEFAULT NULL,
   `author_id` int unsigned NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -24,10 +23,8 @@ CREATE TABLE `articles` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `articles_slug_unique` (`slug`),
-  KEY `articles_series_id_foreign` (`series_id`),
   KEY `articles_author_id_foreign` (`author_id`),
-  CONSTRAINT `articles_author_id_foreign` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `articles_series_id_foreign` FOREIGN KEY (`series_id`) REFERENCES `series` (`id`) ON DELETE SET NULL
+  CONSTRAINT `articles_author_id_foreign` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `failed_jobs`;
@@ -147,22 +144,6 @@ CREATE TABLE `replies` (
   KEY `replies_replyable_id_index` (`replyable_id`),
   KEY `replies_replyable_type_index` (`replyable_type`),
   CONSTRAINT `replies_author_id_foreign` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-DROP TABLE IF EXISTS `series`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `series` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `author_id` int unsigned NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `series_slug_unique` (`slug`),
-  KEY `series_author_id_foreign` (`author_id`),
-  CONSTRAINT `series_author_id_foreign` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `subscriptions`;
@@ -325,3 +306,4 @@ INSERT INTO `migrations` VALUES (56,'2020_10_01_093001_add_email_verified_at_col
 INSERT INTO `migrations` VALUES (57,'2020_11_03_205735_add_uuid_to_failed_jobs_table',1);
 INSERT INTO `migrations` VALUES (58,'2020_11_22_194212_create_schedule_monitor_tables',1);
 INSERT INTO `migrations` VALUES (59,'2021_03_10_161050_add_index_to_replyable_type',2);
+INSERT INTO `migrations` VALUES (60,'2021_07_05_205125_remove_series',3);
