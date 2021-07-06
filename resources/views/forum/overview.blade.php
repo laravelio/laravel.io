@@ -1,7 +1,7 @@
 @php($subTitle = isset($activeTag) ? $activeTag->name() : null)
 @title('Forum' . (isset($subTitle) ? ' > ' . $subTitle : ''))
 
-@extends('layouts.default', ['isTailwindUi' => true])
+@extends('layouts.default')
 
 @section('subnav')
     <div class="bg-white border-b">

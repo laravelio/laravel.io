@@ -25,8 +25,8 @@ class ReplyFactory extends Factory
     {
         return [
             'body' => $this->faker->text(),
-            'author_id' => $attributes['author_id'] ?? User::factory()->create()->id(),
-            'replyable_id' =>  $attributes['replyable_id'] ?? Thread::factory()->create()->id(),
+            'author_id' => User::factory(),
+            'replyable_id' =>  Thread::factory(),
             'replyable_type' => Thread::TABLE,
         ];
     }

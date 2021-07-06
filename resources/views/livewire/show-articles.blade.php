@@ -25,7 +25,7 @@
                             {{ $article->title() }}
                         </h3>
                     </span>
-                    <p class="mt-3 text-base leading-6 text-gray-500">
+                    <p class="mt-3 text-base leading-6 text-gray-800">
                         {{ $article->excerpt() }}
                     </p>
                 </a>

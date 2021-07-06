@@ -30,7 +30,7 @@ class AuthTest extends BrowserKitTestCase
             ->check('terms')
             ->press('Register')
             ->seePageIs('/dashboard')
-            ->see('@johndoe');
+            ->see('John Doe');
 
         $this->assertLoggedIn();
 
@@ -122,7 +122,7 @@ class AuthTest extends BrowserKitTestCase
             ->type('password', 'password')
             ->press('Login')
             ->seePageIs('/dashboard')
-            ->see('@johndoe');
+            ->see('John Doe');
     }
 
     /** @test */
