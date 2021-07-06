@@ -14,6 +14,8 @@
         {{ is_active('home') ? '- The Laravel Community Portal' : '' }}
     </title>
 
+    <meta name="description" content="The Laravel portal for problem solving, knowledge sharing and community building." />
+
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
 

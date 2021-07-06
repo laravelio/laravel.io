@@ -13,5 +13,4 @@
 @else
     <meta property="og:image" content="{{ asset('images/laravelio-share.png') }}" />
 @endif
-
 <!-- /Facebook sharing -->
