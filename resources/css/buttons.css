@@ -14,14 +14,6 @@
     @apply bg-lio-600;
 }
 
-.button-muted {
-    @apply text-white bg-gray-500;
-}
-
-.button-muted:hover {
-    @apply bg-gray-600;
-}
-
 .button-danger {
     @apply text-white bg-red-600;
 }
@@ -40,10 +32,6 @@
 
 .button-full {
     @apply w-full;
-}
-
-.button-big {
-    @apply px-6 py-4 text-lg;
 }
 
 a.button:hover {
