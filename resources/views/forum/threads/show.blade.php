@@ -3,7 +3,81 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="bg-white border-b">
+
+    <section>
+        <div class="container mx-auto">
+            <h1 class="">
+                <a href="{{ route('forum') }}">Forum</a>
+                > {{ $title }}
+            </h1>
+        </div>
+    </section>
+
+    <section class="container mx-auto flex gap-x-12">
+        <div class="w-3/4">
+            <x-threads.thread :thread="$thread" />
+
+            @foreach ($thread->replies() as $reply)
+                <x-threads.reply :thread="$thread" :reply="$reply" />
+            @endforeach
+
+            @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
+                @if ($thread->isConversationOld())
+                    <div class="bg-gray-400 rounded p-4 text-gray-700 my-8">
+                        The last reply to this thread was more than six months ago. Please consider <a href="{{ route('threads.create') }}" class="text-lio-600">opening a new thread</a> if you have a similar question.
+                    </div>
+                @else
+                    <div class="my-8">
+                        <form action="{{ route('replies.store') }}" method="POST">
+                            @csrf
+
+                            @formGroup('body')
+                                <label for="body">Write a reply</label>
+
+                                @include('_partials._editor', ['content' => old('body')])
+
+                                @error('body')
+                            @endFormGroup
+
+                            <input type="hidden" name="replyable_id" value="{{ $thread->id() }}" />
+                            <input type="hidden" name="replyable_type" value="threads" />
+
+                            <div class="flex justify-between items-center mt-4">
+                                <p class="text-sm text-gray-500 mr-8">
+                                    Please make sure you've read our <a href="{{ route('rules') }}" class="text-lio-600">Forum Rules</a> before replying to this thread.
+                                </p>
+
+                                <button type="submit" class="button button-primary">Reply</button>
+                            </div>
+                        </form>
+                    </div>
+                @endif
+            @else
+                @if (Auth::guest())
+                    <p class="text-center text-gray-800 border-t py-8">
+                        <a href="{{ route('login') }}" class="text-lio-700">Sign in</a> to participate in this thread!
+                    </p>
+                @else
+                    <div class="bg-gray-400 rounded p-4 text-gray-700 my-8">
+                        <p>You'll need to verify your account before participating in this thread.</p>
+                        <form action="{{ route('verification.resend') }}" method="POST" class="w-full">
+                            @csrf
+                            <button type="submit" class="text-lio-600">Click here to resend the verification link.</button>
+                        </form>
+                    </div>
+                @endif
+            @endcan
+        </div>
+
+        <div class="w-1/4">
+            @include('layouts._ads._forum_sidebar')
+
+            <x-users.profile-block />
+
+            <x-moderators :moderators="$moderators" />
+        </div>
+    </section>
+    {{-- <div class="bg-white border-b">
         <div class="container mx-auto flex justify-between items-center px-4">
             <h1 class="text-xl py-4 text-gray-900">
                 <a href="{{ route('forum') }}">Forum</a>
@@ -226,5 +300,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

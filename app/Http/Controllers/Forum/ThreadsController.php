@@ -60,7 +60,9 @@ class ThreadsController extends Controller
 
     public function show(Thread $thread)
     {
-        return view('forum.threads.show', compact('thread'));
+        $moderators = User::moderators()->get();
+
+        return view('forum.threads.show', compact('thread', 'moderators'));
     }
 
     public function create()
