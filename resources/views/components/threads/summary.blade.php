@@ -4,7 +4,7 @@
 
 <div class="h-full rounded shadow-lg p-5">
     <div class="h-full flex flex-col place-content-between">
-        <div>
+        <div class="break-all">
             <div class="flex items-center justify-between mb-2.5">
                 <div class="flex items-center">
                     <x-avatar :user="$thread->author()" class="w-8 h-8 rounded-full mr-2" />
