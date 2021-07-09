@@ -5,7 +5,7 @@
 ])
 
 <div class="h-full mb-8 md:mb-0 flex flex-col place-content-between">
-    <div class="break-all">
+    <div class="break-words">
         @if ($image)
             <div class="w-full h-72 mb-6 rounded-lg bg-center bg-cover" style="background-image: url({{ $image }});"></div>
         @endif
