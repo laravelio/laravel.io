@@ -10,6 +10,6 @@ trait UsesFilters
     {
         $filter = (string) request('filter');
 
-        return in_array($filter, ['recent', 'resolved', 'active']) ? $filter : $default;
+        return in_array($filter, ['recent', 'resolved', 'unresolved']) ? $filter : $default;
     }
 }

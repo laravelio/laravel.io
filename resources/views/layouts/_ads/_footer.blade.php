@@ -8,4 +8,6 @@
     <img class="md:hidden mx-auto w-full" style="max-width:300px" src="{{ asset("/images/showcase/{$banner['image']}-small.png") }}" alt="{{ $banner['alt'] }}">
 </a>
 
-@include('layouts._ads._cta', ['text' => 'Your banner here too?'])
+<x-ads.cta primary class="mt-4 md:mt-12">
+    Your banner here too?
+</x-ads.cta>

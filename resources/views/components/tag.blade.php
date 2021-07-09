@@ -1,11 +1,3 @@
-@props(['hasDot' => false])
-
-<span {{ $attributes->merge(['class' => 'inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-200 text-gray-800']) }}>
-    @if ($hasDot)
-        <svg class="-ml-1 mr-1.5 h-2 w-2 text-gray-400" fill="currentColor" viewBox="0 0 8 8">
-            <circle cx="4" cy="4" r="3" />
-        </svg>
-    @endif
-
+<span class="text-sm text-gray-900 bg-gray-100 border border-gray-200 rounded py-1.5 px-3 leading-none">
     {{ $slot }}
 </span>

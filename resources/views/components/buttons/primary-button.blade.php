@@ -1,10 +1,10 @@
 <span class="inline-flex rounded-md shadow-sm">
     @if ($attributes->has('href'))
-        <a {{ $attributes->merge(['class' => 'bg-lio-600 border border-transparent rounded-md py-2 px-4 inline-flex justify-center text-sm leading-5 font-medium text-white hover:bg-lio-700 focus:outline-none focus:border-lio-900 focus:ring-lio-900 active:bg-lio-900 transition duration-150 ease-in-out']) }}>
+        <a {{ $attributes->merge(['class' => 'bg-lio-500 border border-transparent rounded py-2 px-4 inline-flex justify-center text-base text-white hover:bg-lio-600 font-medium']) }}>
             {{ $slot }}
         </a>
     @else
-        <button {{ $attributes->merge(['class' => 'bg-lio-600 border border-transparent rounded-md py-2 px-4 inline-flex justify-center text-sm leading-5 font-medium text-white hover:bg-lio-700 focus:outline-none focus:border-lio-900 focus:ring-lio-900 active:bg-lio-900 transition duration-150 ease-in-out']) }}>
+        <button {{ $attributes->merge(['class' => 'bg-lio-500 border border-transparent rounded py-2 px-4 inline-flex justify-center text-base text-white hover:bg-lio-600 font-medium']) }}>
             {{ $slot }}
         </button>
     @endif

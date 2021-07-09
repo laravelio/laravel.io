@@ -45,7 +45,7 @@ class ThreadsController extends Controller
                 ->paginate(20);
         }
 
-        if ($filter === 'active') {
+        if ($filter === 'unresolved') {
             $threads = Thread::feedQuery()
                 ->active()
                 ->paginate(20);

@@ -1,9 +1,183 @@
 @php($subTitle = isset($activeTag) ? $activeTag->name() : null)
 @title('Forum' . (isset($subTitle) ? ' > ' . $subTitle : ''))
 
-@extends('layouts.default')
+@extends('layouts.default', ['hasShadow' => true])
 
-@section('subnav')
+@section('content')
+    <div class="bg-gray-100 pt-11">
+        <div class="container mx-auto flex gap-x-12">
+            <div class="w-3/4">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-4xl text-gray-900 font-bold">Forum</h1>
+
+                    <x-buttons.primary-button href="{{ route('threads.create') }}">
+                        Create Thread
+                    </x-buttons.primary-button>
+                </div>
+
+                <div class="mt-6 flex justify-between">
+                    <h3 class="text-gray-800 text-xl font-semibold">18,185 Threads</h3>
+
+                    <div class="flex">
+                        <x-threads.filter :filter="$filter" />
+                    </div>
+                </div>
+
+                <section class="mt-8 mb-32">
+                    <div class="flex flex-col gap-y-4">
+                        @foreach ($threads as $thread)
+                            <x-threads.overview-summary :thread="$thread" />
+                        @endforeach
+                    </div>
+
+                    <div class="mt-10">
+                        {{ $threads->onEachSide(1)->links() }}
+                    </div>
+                </section>
+            </div>
+
+            <div class="w-1/4">
+                @include('layouts._ads._forum_sidebar')
+
+                <div class="bg-white shadow mt-6">
+                    <h3 class="text-xl font-semibold px-5 pt-5">Thanks to our community</h3>
+                    <ul>
+                        <li class="border-b pb-3 pt-5">
+                            <div class="flex justify-between items-center px-5">
+                                <div class="flex items-center gap-x-5">
+                                    <x-avatar :user="App\Models\User::first()" class="w-10 h-10" />
+                                    <span class="flex flex-col">
+                                        <span class="text-gray-900 font-medium">
+                                            Joe Dixon
+                                        </span>
+
+                                        <span class="text-gray-700">
+                                            55 Solutions
+                                        </span>
+                                    </span>
+                                </div>
+                                
+                                <div>
+                                    <span class="flex items-center gap-x-3 text-lio-500">
+                                        <span class="text-xl font-medium">
+                                            1
+                                        </span>
+                                        <x-icon-trophy class="w-6 h-6" />
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="border-b pb-3 pt-5">
+                            <div class="flex justify-between items-center px-5">
+                                <div class="flex items-center gap-x-5">
+                                    <x-avatar :user="App\Models\User::first()" class="w-10 h-10" />
+                                    <span class="flex flex-col">
+                                        <span class="text-gray-900 font-medium">
+                                            Joe Dixon
+                                        </span>
+
+                                        <span class="text-gray-700">
+                                            55 Solutions
+                                        </span>
+                                    </span>
+                                </div>
+                                
+                                <div>
+                                    <span class="flex items-center gap-x-3 text-lio-500">
+                                        <span class="text-xl font-medium">
+                                            1
+                                        </span>
+                                        <x-icon-trophy class="w-6 h-6" />
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="pb-3 pt-5">
+                            <div class="flex justify-between items-center px-5">
+                                <div class="flex items-center gap-x-5">
+                                    <x-avatar :user="App\Models\User::first()" class="w-10 h-10" />
+                                    <span class="flex flex-col">
+                                        <span class="text-gray-900 font-medium">
+                                            Joe Dixon
+                                        </span>
+
+                                        <span class="text-gray-700">
+                                            55 Solutions
+                                        </span>
+                                    </span>
+                                </div>
+                                
+                                <div>
+                                    <span class="flex items-center gap-x-3 text-lio-500">
+                                        <span class="text-xl font-medium">
+                                            1
+                                        </span>
+                                        <x-icon-trophy class="w-6 h-6" />
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white shadow mt-6">
+                    <h3 class="text-xl font-semibold px-5 pt-5">Moderators</h3>
+                    <ul>
+                        <li class="flex items-center gap-x-5 border-b pb-3 pt-5 px-5">
+                            <x-avatar :user="App\Models\User::first()" class="w-10 h-10" />
+                            <span class="flex flex-col">
+                                <span class="text-gray-900 font-medium">
+                                    Joe Dixon
+                                </span>
+
+                                <span class="text-gray-700">
+                                    Joined 21 May 1986
+                                </span>
+                            </span>
+                        </li>
+
+                        <li class="flex items-center gap-x-5 border-b pb-3 pt-5 px-5">
+                            <x-avatar :user="App\Models\User::first()" class="w-10 h-10" />
+                            <span class="flex flex-col">
+                                <span class="text-gray-900 font-medium">
+                                    Joe Dixon
+                                </span>
+
+                                <span class="text-gray-700">
+                                    Joined 21 May 1986
+                                </span>
+                            </span>
+                        </li>
+
+                        <li class="flex items-center gap-x-5 pb-3 pt-5 px-5">
+                            <x-avatar :user="App\Models\User::first()" class="w-10 h-10" />
+                            <span class="flex flex-col">
+                                <span class="text-gray-900 font-medium">
+                                    Joe Dixon
+                                </span>
+
+                                <span class="text-gray-700">
+                                    Joined 21 May 1986
+                                </span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-6">
+                    <x-buttons.dark-cta class="w-full">
+                        <x-heroicon-s-rss class="w-6 h-6 mr-2" />
+                        RSS Feed
+                    </x-buttons.dark-cta>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+{{-- @section('subnav')
     <div class="bg-white border-b">
         <div class="container mx-auto flex justify-between items-center px-4">
             <h1 class="text-xl py-4 text-gray-900">{{ $title }}</h1>
@@ -114,4 +288,4 @@
             </aside>
         </div>
     </div>
-@endsection
+@endsection --}}
