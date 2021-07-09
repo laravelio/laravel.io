@@ -1,4 +1,4 @@
-<nav class="@isset ($hasShadow)shadow @endisset">
+<nav class="{{ isset($hasShadow) ? 'shadow mb-1' : '' }}">
     <div class="container mx-auto text-gray-800 lg:block lg:py-8" x-data="{ nav: false, search: false, community: false, chat: false, settings: false }" @click.away="nav = false">
         <div class="block bg-white 2xl:-mx-10">
             <div class="lg:px-4 lg:flex">
@@ -126,7 +126,7 @@
 
                     <ul class="block lg:flex lg:items-center gap-x-8" x-cloak :class="{ 'block': nav, 'hidden': !nav }">
                         @if (Auth::guest())
-                            <li class="w-full rounded py-1 px-2 text-center p-2.5 lg:hover:bg-gray-100">
+                            <li class="w-full rounded text-center p-2.5 lg:hover:bg-gray-100">
                                 <a href="{{ route('register') }}">
                                     Register
                                 </a>
@@ -146,7 +146,7 @@
                             </li>
                         @else
                             <li class="relative p-4 lg:p-0" x-data="{ settings: false }">
-                                <div class="flex items-center justify-center gap-3 mb-4 lg:mb-0">
+                                <div class="flex items-center justify-center gap-3">
                                     <a href="{{ route('dashboard') }}" class="hidden flex-shrink-0 rounded-full lg:block">
                                         <span class="block relative">
                                             <x-heroicon-o-bell  class="h-5 w-5 hover:fill-current hover:text-lio-500"/>
@@ -166,7 +166,7 @@
                                     </div>
                                 </div>
 
-                                <div x-show="settings" x-cloak>
+                                <div x-show="settings" x-cloak class="mt-4 lg:mt-0">
                                     <ul class="flex flex-col items-center lg:absolute lg:items-stretch lg:ml-0 lg:mt-2 lg:w-36 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
                                         <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
                                             <a href="{{ route('dashboard') }}">

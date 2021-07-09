@@ -1,4 +1,4 @@
-<div class="shadow" x-data="{}">
+<div class="shadow">
     <a 
         href="{{ url(request()->url() . '?filter=recent') }}"
         aria-current="{{ $filter === 'recent' ? 'page' : 'false' }}"
