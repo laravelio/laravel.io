@@ -15,6 +15,7 @@ class HomeController extends Controller
         $communityMembers = Cache::remember('communityMembers', now()->addMinutes(5), function () {
             return User::withCounts()
                 ->hasActivity()
+                ->whereNull('banned_at')
                 ->inRandomOrder()
                 ->take(100)
                 ->get()
