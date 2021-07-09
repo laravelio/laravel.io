@@ -261,6 +261,11 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         return $query->whereNotNull('solution_reply_id');
     }
 
+    public function scopeUnresolved(Builder $query): Builder
+    {
+        return $query->whereNull('solution_reply_id');
+    }
+
     public function scopeActive(Builder $query): Builder
     {
         return $query->has('repliesRelation');

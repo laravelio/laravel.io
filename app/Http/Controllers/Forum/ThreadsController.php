@@ -47,14 +47,15 @@ class ThreadsController extends Controller
 
         if ($filter === 'unresolved') {
             $threads = Thread::feedQuery()
-                ->active()
+                ->unresolved()
                 ->paginate(20);
         }
 
         $tags = Tag::orderBy('name')->get();
-        $mostSolutions = User::mostSolutions()->take(5)->get();
+        $topMembers = User::mostSolutionsInLastDays(365)->take(5)->get();
+        $moderators = User::moderators()->get();
 
-        return view('forum.overview', compact('threads', 'filter', 'tags', 'mostSolutions'));
+        return view('forum.overview', compact('threads', 'filter', 'tags', 'topMembers', 'moderators'));
     }
 
     public function show(Thread $thread)

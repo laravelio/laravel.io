@@ -42,127 +42,57 @@
                 <div class="bg-white shadow mt-6">
                     <h3 class="text-xl font-semibold px-5 pt-5">Thanks to our community</h3>
                     <ul>
-                        <li class="border-b pb-3 pt-5">
-                            <div class="flex justify-between items-center px-5">
-                                <div class="flex items-center gap-x-5">
-                                    <x-avatar :user="App\Models\User::first()" class="w-10 h-10" />
-                                    <span class="flex flex-col">
-                                        <span class="text-gray-900 font-medium">
-                                            Joe Dixon
-                                        </span>
+                        @foreach ($topMembers as $member)
+                            <li class="{{ ! $loop->last ? 'border-b ' : '' }}pb-3 pt-5">
+                                <div class="flex justify-between items-center px-5">
+                                    <div class="flex items-center gap-x-5">
+                                        <x-avatar :user="$member" class="w-10 h-10" />
+                                        <span class="flex flex-col">
+                                            <a href="{{ route('profile', $member->username()) }}" class="hover:underline">
+                                                <span class="text-gray-900 font-medium">
+                                                    {{ $member->name() }}
+                                                </span>
+                                            </a>
 
-                                        <span class="text-gray-700">
-                                            55 Solutions
+                                            <span class="text-gray-700">
+                                                {{ $member->solutions_count }} {{ Str::plural('Solution', $member->solutions_count) }}
+                                            </span>
                                         </span>
-                                    </span>
+                                    </div>
+                                    
+                                    <div>
+                                        <span class="flex items-center gap-x-3 text-lio-500">
+                                            <span class="text-xl font-medium">
+                                                {{ $loop->iteration }}
+                                            </span>
+                                            <x-icon-trophy class="w-6 h-6" />
+                                        </span>
+                                    </div>
                                 </div>
-                                
-                                <div>
-                                    <span class="flex items-center gap-x-3 text-lio-500">
-                                        <span class="text-xl font-medium">
-                                            1
-                                        </span>
-                                        <x-icon-trophy class="w-6 h-6" />
-                                    </span>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="border-b pb-3 pt-5">
-                            <div class="flex justify-between items-center px-5">
-                                <div class="flex items-center gap-x-5">
-                                    <x-avatar :user="App\Models\User::first()" class="w-10 h-10" />
-                                    <span class="flex flex-col">
-                                        <span class="text-gray-900 font-medium">
-                                            Joe Dixon
-                                        </span>
-
-                                        <span class="text-gray-700">
-                                            55 Solutions
-                                        </span>
-                                    </span>
-                                </div>
-                                
-                                <div>
-                                    <span class="flex items-center gap-x-3 text-lio-500">
-                                        <span class="text-xl font-medium">
-                                            1
-                                        </span>
-                                        <x-icon-trophy class="w-6 h-6" />
-                                    </span>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="pb-3 pt-5">
-                            <div class="flex justify-between items-center px-5">
-                                <div class="flex items-center gap-x-5">
-                                    <x-avatar :user="App\Models\User::first()" class="w-10 h-10" />
-                                    <span class="flex flex-col">
-                                        <span class="text-gray-900 font-medium">
-                                            Joe Dixon
-                                        </span>
-
-                                        <span class="text-gray-700">
-                                            55 Solutions
-                                        </span>
-                                    </span>
-                                </div>
-                                
-                                <div>
-                                    <span class="flex items-center gap-x-3 text-lio-500">
-                                        <span class="text-xl font-medium">
-                                            1
-                                        </span>
-                                        <x-icon-trophy class="w-6 h-6" />
-                                    </span>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 
                 <div class="bg-white shadow mt-6">
                     <h3 class="text-xl font-semibold px-5 pt-5">Moderators</h3>
                     <ul>
-                        <li class="flex items-center gap-x-5 border-b pb-3 pt-5 px-5">
-                            <x-avatar :user="App\Models\User::first()" class="w-10 h-10" />
-                            <span class="flex flex-col">
-                                <span class="text-gray-900 font-medium">
-                                    Joe Dixon
-                                </span>
+                        @foreach ($moderators as $moderator)
+                            <li class="{{ ! $loop->last ? 'border-b ' : '' }}flex items-center gap-x-5 pb-3 pt-5 px-5">
+                                <x-avatar :user="$moderator" class="w-10 h-10" />
+                                <span class="flex flex-col">
+                                    <a href="{{ route('profile', $moderator->username()) }}" class="hover:underline">
+                                        <span class="text-gray-900 font-medium">
+                                            {{ $moderator->name() }}
+                                        </span>
+                                    </a>
 
-                                <span class="text-gray-700">
-                                    Joined 21 May 1986
+                                    <span class="text-gray-700">
+                                        Joined {{ $moderator->createdAt()->format('j M Y') }}
+                                    </span>
                                 </span>
-                            </span>
-                        </li>
-
-                        <li class="flex items-center gap-x-5 border-b pb-3 pt-5 px-5">
-                            <x-avatar :user="App\Models\User::first()" class="w-10 h-10" />
-                            <span class="flex flex-col">
-                                <span class="text-gray-900 font-medium">
-                                    Joe Dixon
-                                </span>
-
-                                <span class="text-gray-700">
-                                    Joined 21 May 1986
-                                </span>
-                            </span>
-                        </li>
-
-                        <li class="flex items-center gap-x-5 pb-3 pt-5 px-5">
-                            <x-avatar :user="App\Models\User::first()" class="w-10 h-10" />
-                            <span class="flex flex-col">
-                                <span class="text-gray-900 font-medium">
-                                    Joe Dixon
-                                </span>
-
-                                <span class="text-gray-700">
-                                    Joined 21 May 1986
-                                </span>
-                            </span>
-                        </li>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 

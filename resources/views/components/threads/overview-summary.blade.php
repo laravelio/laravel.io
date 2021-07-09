@@ -8,7 +8,9 @@
             <div class="flex items-center">
                 <x-avatar :user="$thread->author()" class="w-6 h-6 rounded-full mr-3" />
 
-                <span class="text-gray-900 mr-5">{{ $thread->author()->name() }}</span>
+                <a href="{{ route('profile', $thread->author()->username()) }}" class="hover:underline">
+                    <span class="text-gray-900 mr-5">{{ $thread->author()->name() }}</span>
+                </a>
 
                 <span class="font-mono text-gray-700">
                     {{ $thread->createdAt()->format('j M, Y \a\t h:i') }}
@@ -32,13 +34,18 @@
     </div>
 
     <div class="mt-3">
-        <h3 class="text-xl text-gray-900 font-semibold">
-            {{ $thread->subject() }}
-        </h3>
+            <a href="{{ route('thread', $thread->slug()) }}" class="hover:underline">
+                <h3 class="text-xl text-gray-900 font-semibold">
+                    {{ $thread->subject() }}
+                </h3>
+            </a>
 
-        <p class="text-gray-800 leading-7 mt-1">
-            {{ $thread->excerpt() }}
-        </p>
+            <a href="{{ route('thread', $thread->slug()) }}" class="hover:underline">
+                <p class="text-gray-800 leading-7 mt-1">
+                    {{ $thread->excerpt() }}
+                </p>
+            </a>
+        </a>
     </div>
 
     <div class="flex gap-x-5 mt-4">
