@@ -27,15 +27,16 @@ class TagsController extends Controller
                 ->paginate(20);
         }
 
-        if ($filter === 'active') {
+        if ($filter === 'unresolved') {
             $threads = Thread::feedByTagQuery($tag)
-                ->active()
+                ->unresolved()
                 ->paginate(20);
         }
 
         $tags = Tag::orderBy('name')->get();
-        $mostSolutions = User::mostSolutions()->take(5)->get();
+        $topMembers = User::mostSolutionsInLastDays(365)->take(5)->get();
+        $moderators = User::moderators()->get();
 
-        return view('forum.overview', compact('threads', 'filter', 'tags', 'mostSolutions') + ['activeTag' => $tag]);
+        return view('forum.overview', compact('threads', 'filter', 'tags', 'topMembers', 'moderators') + ['activeTag' => $tag]);
     }
 }
