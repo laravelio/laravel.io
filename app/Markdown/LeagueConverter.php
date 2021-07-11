@@ -6,10 +6,7 @@ use League\CommonMark\CommonMarkConverter;
 
 final class LeagueConverter implements Converter
 {
-    /**
-     * @var \League\CommonMark\CommonMarkConverter
-     */
-    private $converter;
+    private CommonMarkConverter $converter;
 
     public function __construct(CommonMarkConverter $converter)
     {
