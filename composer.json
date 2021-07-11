@@ -22,7 +22,7 @@
         "laravel/horizon": "^5.2",
         "laravel/socialite": "^5.0",
         "laravel/ui": "^3.0",
-        "league/commonmark": "^1.0",
+        "league/commonmark": "^1.6.6",
         "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^2.0",
         "ohdearapp/ohdear-php-sdk": "^3.0",
