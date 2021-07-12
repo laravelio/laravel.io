@@ -24,7 +24,7 @@
             </h3>
 
             <p class="text-gray-800 text-base leading-7 mb-3">
-                {{ $thread->excerpt() }}
+                {!! $thread->excerpt() !!}
             </p>
         </div>
 
