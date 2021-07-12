@@ -17,7 +17,9 @@
                     </div>
 
                     <div class="flex items-center justify-between lg:mt-6">
-                        <h3 class="text-gray-800 text-xl font-semibold">18,185 Threads</h3>
+                        <h3 class="text-gray-800 text-xl font-semibold">
+                            {{ number_format($threads->total()) }} Threads
+                        </h3>
 
                         <div class="flex hidden lg:block">
                             <x-threads.filter :filter="$filter" />
