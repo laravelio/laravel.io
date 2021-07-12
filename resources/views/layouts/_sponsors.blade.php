@@ -42,8 +42,8 @@
             </div>
         </div>
 
-        <div class="mt-4">
-            @include('layouts._ads._cta', ['text' => 'Your logo here?', 'primary' => true])
-        </div>
+        <x-ads.cta primary class="mt-8 md:mt-12">
+            Your logo here?
+        </x-ads.cta>
     </div>
 </div>
