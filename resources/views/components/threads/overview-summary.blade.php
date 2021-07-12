@@ -40,7 +40,7 @@
 
             <a href="{{ route('thread', $thread->slug()) }}" class="hover:underline">
                 <p class="text-gray-800 leading-7 mt-1">
-                    {{ $thread->excerpt() }}
+                    {!! $thread->excerpt() !!}
                 </p>
             </a>
         </a>
