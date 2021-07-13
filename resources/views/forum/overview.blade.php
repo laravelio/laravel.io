@@ -1,7 +1,7 @@
 @php($subTitle = isset($activeTag) ? $activeTag->name() : null)
 @title('Forum' . (isset($subTitle) ? ' > ' . $subTitle : ''))
 
-@extends('layouts.default', ['hasShadow' => true])
+@extends('layouts.default', ['hasShadow' => true, 'isTailwindUi' => true])
 
 @section('content')
     <div class="pt-5 pb-10 lg:pt-10 lg:pb-0">
@@ -23,10 +23,31 @@
                             {{ number_format($threads->total()) }} Threads
                         </h3>
 
-                        <div class="flex hidden lg:block">
+                        <div class="hidden lg:flex gap-x-2">
                             <x-threads.filter :filter="$filter" />
+
+                            <div class="flex-shrink-0">
+                                <x-buttons.secondary-button class="flex items-center gap-x-2" @click="activeModal = 'tag-filter'">
+                                    <x-heroicon-o-filter class="w-5 h-5" />
+                                    Tag filter
+                                </x-buttons.secondary-button>
+                            </div>
                         </div>
                     </div>
+
+                    @isset ($activeTag)
+                        <div class="hidden lg:flex gap-x-4 items-center mt-4 pt-5 border-t">
+                            Filter applied
+                            <x-tag>
+                                <span class="flex items-center gap-x-1">
+                                    {{ $activeTag->name() }}
+                                    <a href="{{ route('forum') }}">
+                                        <x-heroicon-o-x class="w-5 h-5" />
+                                    </a>
+                                </span>
+                            </x-tag>
+                        </div>
+                    @endisset
                 </div>
 
                 <div class="pt-2 lg:hidden">
@@ -39,15 +60,40 @@
                         </x-buttons.dark-cta>
                     </div>
 
-                    <div class="mt-10">
-                        <x-buttons.primary-cta href="{{ route('threads.create') }}" class="w-full">
-                            Create Thread
-                        </x-buttons.primary-cta>
+                    <div class="flex gap-x-4 mt-10">
+                        <div class="w-1/2">
+                            <x-buttons.secondary-cta class="w-full" @click="activeModal = 'tag-filter'">
+                                <span class="flex items-center gap-x-2">
+                                    <x-heroicon-o-filter class="w-5 h-5" />
+                                    Tag filter
+                                </span>
+                            </x-buttons.secondary-cta>
+                        </div>
+
+                        <div class="w-1/2">
+                            <x-buttons.primary-cta href="{{ route('threads.create') }}" class="w-full">
+                                Create Thread
+                            </x-buttons.primary-cta>
+                        </div>
                     </div>
 
                     <div class="flex mt-4">
                         <x-threads.filter :filter="$filter" />
                     </div>
+
+                    @isset ($activeTag)
+                        <div class="flex gap-x-4 items-center mt-4">
+                            Filter applied
+                            <x-tag>
+                                <span class="flex items-center gap-x-1">
+                                    {{ $activeTag->name() }}
+                                    <a href="{{ route('forum') }}">
+                                        <x-heroicon-o-x class="w-5 h-5" />
+                                    </a>
+                                </span>
+                            </x-tag>
+                        </div>
+                    @endisset
                 </div>
 
                 <section class="mt-8 mb-5 lg:mb-32">
@@ -144,6 +190,12 @@
                     </x-buttons.dark-cta>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="modal" x-show="activeModal === 'tag-filter'" x-cloak>
+        <div class="w-full h-full p-8 lg:w-96 lg:h-3/4 overflow-y-scroll">
+            <x-tag-filter :activeTag="$activeTag ?? null" :tags="$tags" :filter="$filter" />
         </div>
     </div>
 @endsection
