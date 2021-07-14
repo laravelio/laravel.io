@@ -9,7 +9,9 @@
             <div class="lg:w-3/4">
                 <div class="flex justify-between items-center lg:block">
                     <div class="flex justify-between items-center">
-                        <h1 class="text-4xl text-gray-900 font-bold">Forum</h1>
+                        <h1 class="text-4xl text-gray-900 font-bold">
+                            Forum
+                        </h1>
 
                         <x-buttons.primary-button href="{{ route('threads.create') }}" class="hidden lg:block">
                             Create Thread
@@ -67,13 +69,17 @@
                 </div>
 
                 <div class="bg-white shadow mt-6">
-                    <h3 class="text-xl font-semibold px-5 pt-5">Thanks to our community</h3>
+                    <h3 class="text-xl font-semibold px-5 pt-5">
+                        Thanks to our community
+                    </h3>
+
                     <ul>
                         @foreach ($topMembers as $member)
                             <li class="{{ ! $loop->last ? 'border-b ' : '' }}pb-3 pt-5">
                                 <div class="flex justify-between items-center px-5">
                                     <div class="flex items-center gap-x-5">
                                         <x-avatar :user="$member" class="w-10 h-10" />
+
                                         <span class="flex flex-col">
                                             <a href="{{ route('profile', $member->username()) }}" class="hover:underline">
                                                 <span class="text-gray-900 font-medium">
@@ -86,12 +92,13 @@
                                             </span>
                                         </span>
                                     </div>
-                                    
+
                                     <div>
                                         <span class="flex items-center gap-x-3 text-lio-500">
                                             <span class="text-xl font-medium">
                                                 {{ $loop->iteration }}
                                             </span>
+
                                             <x-icon-trophy class="w-6 h-6" />
                                         </span>
                                     </div>
@@ -99,10 +106,17 @@
                             </li>
                         @endforeach
                     </ul>
+
+                    <p class="px-5 pt-3 pb-5 text-center text-xs text-gray-700">
+                        Solutions given in the past year.
+                    </p>
                 </div>
 
-                <div class="bg-white shadow mt-6">
-                    <h3 class="text-xl font-semibold px-5 pt-5">Moderators</h3>
+                <div class="bg-white shadow mt-6 pb-4">
+                    <h3 class="text-xl font-semibold px-5 pt-5">
+                        Moderators
+                    </h3>
+
                     <ul>
                         @foreach ($moderators as $moderator)
                             <li class="{{ ! $loop->last ? 'border-b ' : '' }}flex items-center gap-x-5 pb-3 pt-5 px-5">
