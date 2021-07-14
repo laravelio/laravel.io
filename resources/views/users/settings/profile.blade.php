@@ -13,23 +13,28 @@
                     <div class="flex-grow space-y-6">
                         <div class="space-y-1">
                             <x-label for="name"/>
+
                             <x-input name="name" :value="Auth::user()->name()" required />
                         </div>
 
                         <div class="space-y-1">
                             <x-label for="bio"/>
+
                             <x-textarea name="bio" rows="3" maxlength="160">
                                 {{ Auth::user()->bio() }}
                             </x-textarea>
+
                             <span class="mt-2 text-sm text-gray-500">
                                 The user bio is limited to 160 characters.
                             </span>
                         </div>
                     </div>
+
                     <div class="flex-grow space-y-1 lg:flex-grow-0 lg:flex-shrink-0">
                         <p class="block text-sm leading-5 font-medium text-gray-700" aria-hidden="true">
                             Profile Image
                         </p>
+
                         <div class="flex items-center mt-2">
                             <div class="flex-shrink-0 inline-block overflow-hidden" aria-hidden="true">
                                 <x-avatar :user="Auth::user()" class="h-32 w-32 mt-4" />
@@ -48,6 +53,7 @@
                 <div class="grid grid-cols-12 gap-6">
                     <div class="col-span-12">
                         <x-label for="email" />
+
                         <x-email name="email" :value="Auth::user()->emailAddress()" required />
 
                         @unless(Auth::user()->hasVerifiedEmail())
@@ -62,18 +68,20 @@
 
                     <div class="col-span-12 sm:col-span-6">
                         <x-label for="username" />
+
                         <x-input name="username" :value="Auth::user()->username()" required />
                     </div>
 
                     <div class="col-span-12 sm:col-span-6">
                         <x-label for="twitter">Twitter handle</x-label>
-                        <x-input name="twitter" :value="Auth::user()->twitter()" prefix-icon="heroicon-o-at-symbol" />
+
+                        <x-input name="twitter" :value="Auth::user()->twitter()" prefix-icon="heroicon-o-at-symbol" class="nav-search" />
+
                         <span class="mt-2 text-sm text-gray-500">
                             Enter your Twitter handle without the leading @ symbol
                         </span>
                     </div>
                 </div>
-                
             </div>
 
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
