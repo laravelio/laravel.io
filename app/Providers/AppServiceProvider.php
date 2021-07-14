@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
@@ -21,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
     private function bootEloquentMorphs()
     {
         Relation::morphMap([
+            Article::TABLE => Article::class,
             Thread::TABLE => Thread::class,
             Reply::TABLE => Reply::class,
             User::TABLE => User::class,

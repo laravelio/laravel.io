@@ -26,6 +26,8 @@ final class Article extends Model
     use PreparesSearch;
     use Searchable;
 
+    const TABLE = 'articles';
+
     /**
      * {@inheritdoc}
      */
