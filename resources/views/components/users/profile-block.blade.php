@@ -1,14 +1,14 @@
 @props(['user'])
 
-<div class="flex flex-col rounded-md shadow">
+<div class="flex flex-col rounded-md shadow mt-6">
     <div class="bg-gray-800 rounded-t-md h-28"></div>
 
     <div class="flex flex-col items-center justify-center bg-white rounded-b-md pb-8">
         <x-avatar :user="$user" class="w-32 h-32 rounded-full -mt-16 mb-6" />
 
-        <span class="text-xl font-medium mb-2">
+        <a href="{{ route('profile', $user->username()) }}" class="text-xl font-medium mb-2">
             {{ $user->name() }}
-        </span>
+        </a>
 
         <span class="text-gray-600 mb-4">
             Joined {{ $user->createdAt()->format('j M Y') }}

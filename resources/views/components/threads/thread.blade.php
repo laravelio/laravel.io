@@ -20,7 +20,7 @@
             </div>
 
             @if (count($tags = $thread->tags()))
-                <div class="flex gap-x-4 mt-2 lg:mt-0">
+                <div class="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-4">
                     @foreach ($tags as $tag)
                         <x-tag>
                             {{ $tag->name() }}
