@@ -40,6 +40,7 @@ module.exports = {
                     800: '#484a4a',
                     900: '#343636',
                 },
+                twitter: "#00aaec"
             },
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],

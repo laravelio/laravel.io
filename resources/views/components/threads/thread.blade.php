@@ -1,6 +1,6 @@
 @props(['thread'])
 
-<div class="bg-white shadow">
+<div class="thread bg-white shadow rounded">
     <div class="border-b">
         <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center px-6 py-4">
             <div>
@@ -39,7 +39,7 @@
     >
     </div>
 
-    <div class="p-6">
+    <div class="px-6 pb-6">
         <livewire:like-thread :thread="$thread"/>
     </div>
 </div>
