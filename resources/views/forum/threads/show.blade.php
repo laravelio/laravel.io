@@ -126,9 +126,13 @@
         <div class="w-full lg:w-1/4">
             @include('layouts._ads._forum_sidebar')
 
-            <x-users.profile-block :user="$thread->author()" />
+            <div class="mt-6">
+                <x-users.profile-block :user="$thread->author()" />
+            </div>
 
-            <x-moderators :moderators="$moderators" />
+            <div class="my-6">
+                <x-moderators :moderators="$moderators" />
+            </div>
         </div>
     </section>
 @endsection

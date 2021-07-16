@@ -8,7 +8,7 @@
                 <a href="{{ route('profile', $moderator->username()) }}" class="hover:underline">
                     <x-avatar :user="$moderator" class="w-10 h-10" />
                 </a>
-                
+
                 <span class="flex flex-col">
                     <a href="{{ route('profile', $moderator->username()) }}" class="hover:underline">
                         <span class="text-gray-900 font-medium">
