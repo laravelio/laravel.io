@@ -47,6 +47,22 @@ module.exports = {
             maxWidth: {
                 14: '14rem',
             },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        color: '#343636',
+                        a: {
+                            "text-decoration": "none",
+                            color: '#18bc9c',
+                            "border-bottom": '2px solid #e6f6f3',
+                            "padding-bottom": "0.125rem",
+                            '&:hover': {
+                                color: '#0e8b73',
+                            },
+                        },
+                    },
+                },
+            }
         },
     },
     variants: {},
