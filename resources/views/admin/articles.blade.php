@@ -31,17 +31,23 @@
                                         <x-tables.table-data>
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 h-10 w-10">
-                                                    <x-avatar
-                                                        :user="$article->author()"
-                                                        class="h-10 w-10 rounded-full"
-                                                    />
+                                                    <a href="{{ route('profile', $article->author()->username()) }}">
+                                                        <x-avatar
+                                                            :user="$article->author()"
+                                                            class="h-10 w-10 rounded-full"
+                                                        />
+                                                    </a>
                                                 </div>
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $article->author()->name() }}
+                                                        <a href="{{ route('profile', $article->author()->username()) }}">
+                                                            {{ $article->author()->name() }}
+                                                        </a>
                                                     </div>
                                                     <div class="text-sm text-gray-500">
-                                                        {{ $article->author()->username() }}
+                                                        <a href="{{ route('profile', $article->author()->username()) }}">
+                                                            {{ $article->author()->username() }}
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

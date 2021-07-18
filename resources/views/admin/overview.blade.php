@@ -31,14 +31,20 @@
                                         <x-tables.table-data>
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 h-10 w-10">
-                                                    <x-avatar :user="$user" class="h-10 w-10 rounded-full" />
+                                                    <a href="{{ route('profile', $user->username()) }}">
+                                                        <x-avatar :user="$user" class="h-10 w-10 rounded-full" />
+                                                    </a>
                                                 </div>
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $user->name() }}
+                                                        <a href="{{ route('profile', $user->username()) }}">
+                                                            {{ $user->name() }}
+                                                        </a>
                                                     </div>
                                                     <div class="text-sm text-gray-500">
-                                                        {{ $user->username() }}
+                                                        <a href="{{ route('profile', $user->username()) }}">
+                                                            {{ $user->username() }}
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
