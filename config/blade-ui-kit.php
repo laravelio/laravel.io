@@ -17,7 +17,7 @@ return [
 
     'components' => [
         // 'alert' => Components\Alerts\Alert::class,
-        'buk-avatar' => Components\Support\Avatar::class,
+        'avatar' => Components\Support\Avatar::class,
         // 'carbon' => Components\DateTime\Carbon::class,
         // 'checkbox' => Components\Forms\Inputs\Checkbox::class,
         // 'color-picker' => Components\Forms\Inputs\ColorPicker::class,
@@ -34,7 +34,7 @@ return [
         'label' => Components\Forms\Label::class,
         // 'logout' => Components\Buttons\Logout::class,
         // 'mapbox' => Components\Maps\Mapbox::class,
-        'buk-markdown' => Components\Markdown\Markdown::class,
+        'markdown' => Components\Markdown\Markdown::class,
         'password' => Components\Forms\Inputs\Password::class,
         // 'pikaday' => Components\Forms\Inputs\Pikaday::class,
         // 'social-meta' => Components\Layouts\SocialMeta::class,
@@ -73,7 +73,7 @@ return [
     |
     */
 
-    'prefix' => '',
+    'prefix' => 'buk',
 
     /*
     |--------------------------------------------------------------------------
