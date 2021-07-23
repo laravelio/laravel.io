@@ -1,12 +1,15 @@
 @props([
-    'image',
     'article',
 ])
 
 <div class="h-full rounded-lg shadow-lg bg-white lg:p-5">
     <div class="flex flex-col gap-x-8 lg:flex-row">
         <a href="{{ route('articles.show', $article->slug()) }}" class="block">
-            <div class="w-full h-32 rounded-t-lg bg-center bg-cover lg:w-48 lg:h-full lg:rounded-lg" style="background-image: url({{ $image }});"></div>
+            <div 
+                class="w-full h-32 rounded-t-lg bg-center bg-cover bg-gray-900 lg:w-48 lg:h-full lg:rounded-lg" 
+                style="background-image: url({{ $article->heroImage() }});"
+            >
+            </div>
         </a>
 
         <div class="flex flex-col gap-y-3 p-4 lg:p-0 lg:gap-y-3.5">

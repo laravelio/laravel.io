@@ -122,10 +122,7 @@
                 <section class="mt-8 mb-5 lg:mb-16">
                     <div class="flex flex-col gap-y-4">
                         @foreach ($articles as $article)
-                            <x-articles.overview-summary 
-                                :article="$article"
-                                image="https://images.unsplash.com/photo-1541280910158-c4e14f9c94a3?auto=format&fit=crop&w=1000&q=80" 
-                            />
+                            <x-articles.overview-summary :article="$article" />
                         @endforeach
                     </div>
 
