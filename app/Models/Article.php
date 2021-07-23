@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use App\Helpers\HasAuthor;
+use App\Helpers\HasLikes;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
-use App\Helpers\HasLikes;
-use App\Helpers\HasAuthor;
-use Illuminate\Support\Str;
-use Laravel\Scout\Searchable;
 use App\Helpers\HasTimestamps;
 use App\Helpers\PreparesSearch;
-use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
 
 final class Article extends Model
 {

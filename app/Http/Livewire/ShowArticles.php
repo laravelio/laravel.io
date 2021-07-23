@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Article;
 use App\Models\Tag;
 use App\Models\User;
-use App\Models\Article;
-use Livewire\Component;
 use Illuminate\View\View;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 final class ShowArticles extends Component
