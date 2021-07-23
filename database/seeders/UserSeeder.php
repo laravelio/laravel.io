@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Article;
-use App\Models\Thread;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Sequence;
+use App\Models\Thread;
+use App\Models\Article;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class UserSeeder extends Seeder
 {
@@ -35,5 +35,10 @@ class UserSeeder extends Seeder
                     ),
             )
             ->create();
+
+        Article::published()
+            ->inRandomOrder()
+            ->take(4)
+            ->update(['is_pinned' => true]);
     }
 }
