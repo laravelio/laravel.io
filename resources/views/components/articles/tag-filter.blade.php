@@ -1,12 +1,11 @@
 @props([
-    'activeTag', 
+    'selectedTag', 
     'tags', 
-    'filter'
 ])
 
 <div 
     class="flex flex-col bg-white rounded-md shadow max-h-full" 
-    x-data="{ activeTag: '{{ $activeTag ? $activeTag->id() : null }}', filter: '', isFiltered(value) { return !this.filter || value.toLowerCase().includes(this.filter.toLowerCase()) } }"
+    x-data="{ selectedTag: '{{ $selectedTag ? $selectedTag->id() : null }}', filter: '', isFiltered(value) { return !this.filter || value.toLowerCase().includes(this.filter.toLowerCase()) } }"
     x-cloak
 >
     <div class="border-b">
@@ -43,19 +42,21 @@
     <div class="border-b overflow-y-scroll">
         <div class="flex flex-col text-lg p-4">
             @foreach ($tags as $tag)
-                <a 
-                    href="{{ route('forum.tag', [$tag->slug(), 'filter' => $filter]) }}" 
+                <button 
+                    type="button"
+                    wire:click="toggleTag('{{ $tag->slug() }}')"
+                    @click="$dispatch('close-modal')"
                     class="flex items-center py-3.5 hover:text-lio-500"
-                    :class="{ 'text-lio-500': '{{ $tag->id() }}' === activeTag }"  
+                    :class="{ 'text-lio-500': '{{ $tag->id() }}' === selectedTag }"  
                     x-show="isFiltered('{{ $tag->name() }}')"
                 >
                     {{ $tag->name() }}
                     <x-heroicon-o-check-circle 
                         class="ml-3 w-6 h-6 text-lio-500" 
                         x-cloak 
-                        x-show="'{{ $tag->id() }}' === activeTag" 
+                        x-show="'{{ $tag->id() }}' === selectedTag" 
                     />
-                </a>
+                </button>
             @endforeach
         </div>
     </div>
@@ -65,7 +66,7 @@
             Cancel
         </x-buttons.secondary-button>
 
-        <x-buttons.secondary-button href="{{ route('forum') }}" x-show="activeTag">
+        <x-buttons.secondary-button wire:click="toggleTag('')" @click="$dispatch('close-modal')">
             Remove filter
         </x-buttons.secondary-button>
     </div>

@@ -42,6 +42,12 @@
             </h3>
         </a>
 
+        <a href="{{ route('thread', $thread->slug()) }}" class="hover:underline">
+            <p class="text-gray-800 leading-7 mt-1">
+                {!! $thread->excerpt() !!}
+            </p>
+        </a>
+
         <p class="text-gray-800 leading-7 mt-1">
             {!! $thread->excerpt() !!}
         </p>

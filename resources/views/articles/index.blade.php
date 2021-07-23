@@ -1,6 +1,6 @@
 @title('Community Articles')
 
-@extends('layouts.default')
+@extends('layouts.default', ['isTailwindUi' => true])
 
 @section('content')
     <livewire:show-articles>
