@@ -1,6 +1,6 @@
-<div class="pb-10 lg:pb-0">
+<div>
     <!-- Pinned articles -->
-    <div class="bg-white pt-5 lg:pt-10">
+    <div class="bg-white pt-5 lg:pt-2">
         <div class="container mx-auto flex flex-col gap-x-12 px-4 lg:flex-row">
             <div class="flex flex-col lg:flex-row lg:gap-x-8 lg:mb-16">
                 <div class="w-full lg:w-1/3">
@@ -34,7 +34,7 @@
     <!-- /Pinned articles -->
 
     <!-- Filtered articles -->
-    <div class="pt-5 pb-10 shadow-inner lg:pt-10 lg:pb-0">
+    <div class="pt-5 pb-10 shadow-inner lg:pt-16 lg:pb-0">
         <div class="container mx-auto flex flex-col gap-x-12 px-4 lg:flex-row">
             <div class="lg:w-3/4">
                 <div class="flex justify-between items-center lg:block">
@@ -119,7 +119,7 @@
                     @endif
                 </div>
 
-                <section class="mt-8 mb-5 lg:mb-32">
+                <section class="mt-8 mb-5 lg:mb-16">
                     <div class="flex flex-col gap-y-4">
                         @foreach ($articles as $article)
                             <x-articles.overview-summary 
