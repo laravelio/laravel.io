@@ -70,43 +70,4 @@
             </div>
         </div>
     </div>
-    {{-- <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">
-        
-
-        
-
-        @if (count($tags = $article->tags()))
-            <div class="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-4">
-                @foreach ($tags as $tag)
-                    <x-tag>
-                        {{ $tag->name() }}
-                    </x-tag>
-                @endforeach
-            </div>
-        @endif
-    </div>
-
-    <div class="mt-3 break-words">
-        <a href="{{ route('articles.show', $article->slug()) }}" class="hover:underline">
-            <h3 class="text-xl text-gray-900 font-semibold">
-                {{ $article->title() }}
-            </h3>
-        </a>
-
-        <a href="{{ route('articles.show', $article->slug()) }}" class="hover:underline">
-            <p class="text-gray-800 leading-7 mt-1">
-                {!! $article->excerpt() !!}
-            </p>
-        </a>
-    </div>
-
-    <div class="flex justify-between items-center mt-4">
-        <div class="flex gap-x-5">
-            <span class="flex items-center gap-x-2">
-                <x-heroicon-o-thumb-up class="w-6 h-6" />
-                <span>{{ count($article->likes()) }}</span>
-                <span class="sr-only">Likes</span>
-            </span>
-        </div>
-    </div> --}}
 </div>
