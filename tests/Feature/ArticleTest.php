@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use App\Http\Livewire\ShowArticles;
-use App\Models\Article;
 use App\Models\Tag;
+use Livewire\Livewire;
+use App\Models\Article;
+use App\Http\Livewire\ShowArticles;
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\ArticleApprovedNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Notification;
-use Livewire\Livewire;
 
 class ArticleTest extends BrowserKitTestCase
 {
