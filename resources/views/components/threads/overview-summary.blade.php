@@ -23,27 +23,26 @@
         @if (count($tags = $thread->tags()))
             <div class="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-4">
                 @foreach ($tags as $tag)
-                    <x-tag>
-                        {{ $tag->name() }}
-                    </x-tag>
+                    <a href="{{ route('forum.tag', $tag->name()) }}">
+                        <x-tag>
+                            {{ $tag->name() }}
+                        </x-tag>
+                    </a>
                 @endforeach
             </div>
         @endif
     </div>
 
     <div class="mt-3 break-words">
-            <a href="{{ route('thread', $thread->slug()) }}" class="hover:underline">
-                <h3 class="text-xl text-gray-900 font-semibold">
-                    {{ $thread->subject() }}
-                </h3>
-            </a>
-
-            <a href="{{ route('thread', $thread->slug()) }}" class="hover:underline">
-                <p class="text-gray-800 leading-7 mt-1">
-                    {!! $thread->excerpt() !!}
-                </p>
-            </a>
+        <a href="{{ route('thread', $thread->slug()) }}" class="hover:underline">
+            <h3 class="text-xl text-gray-900 font-semibold">
+                {{ $thread->subject() }}
+            </h3>
         </a>
+
+        <p class="text-gray-800 leading-7 mt-1">
+            {!! $thread->excerpt() !!}
+        </p>
     </div>
 
     <div class="flex justify-between items-center mt-4">
@@ -55,15 +54,15 @@
             </span>
 
             <span class="flex items-center gap-x-2">
-                <x-heroicon-o-chat-alt-2 class="w-6 h-6" /> 
+                <x-heroicon-o-chat-alt-2 class="w-6 h-6" />
                 <span>{{ count($thread->replies()) }}</span>
                 <span class="sr-only">Replies</span>
             </span>
         </div>
 
         @if ($thread->isSolved())
-            <a 
-                href="{{ route('thread', $thread->slug()) }}#{{ $thread->solution_reply_id }}" 
+            <a
+                href="{{ route('thread', $thread->slug()) }}#{{ $thread->solution_reply_id }}"
                 class="flex items-center gap-x-2 font-medium text-lio-500"
             >
                 <x-heroicon-o-badge-check class="w-6 h-6" />
