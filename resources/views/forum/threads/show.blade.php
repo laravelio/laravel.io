@@ -162,7 +162,7 @@
 
                                 <div class="flex justify-between items-center mt-4">
                                     <p class="text-sm text-gray-500 mr-8">
-                                        Please make sure you've read our <a href="{{ route('rules') }}" class="text-lio-600">Forum Rules</a> before replying to this thread.
+                                        Please make sure you've read our <a href="{{ route('rules') }}" class="text-lio-600">rules</a> before replying to this thread.
                                     </p>
 
                                     <button type="submit" class="button button-primary">Reply</button>

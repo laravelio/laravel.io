@@ -3,10 +3,10 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="legal-container prose text-gray-800">
-        <h1 class="text-gray-900">Terms and Conditions</h1>
+    <div class="container mx-auto px-4 py-10 prose">
+        <h1>Terms and Conditions</h1>
 
-        <p class="mb-8">
+        <p>
             <strong class="uppercase text-xs">Last updated: May 22, 2018</strong>
         </p>
 
