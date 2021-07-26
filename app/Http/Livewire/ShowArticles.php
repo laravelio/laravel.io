@@ -28,11 +28,14 @@ final class ShowArticles extends Component
             ->pinned()
             ->take(4)
             ->get();
+
         $articles = Article::published()
             ->notPinned();
+
         $tags = Tag::whereHas('articles', function ($query) {
             $query->published();
         })->orderBy('name')->get();
+
         $moderators = User::moderators()->get();
         $selectedTag = Tag::where('name', $this->tag)->first();
 
