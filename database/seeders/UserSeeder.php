@@ -31,8 +31,8 @@ class UserSeeder extends Seeder
                         new Sequence(
                             [
                                 'submitted_at' => now(),
-                                 'approved_at' => now(),
-                                  'hero_image' => 'https://source.unsplash.com/800x450/?programming,laravel',
+                                'approved_at' => now(),
+                                'hero_image' => 'https://source.unsplash.com/800x450/?programming,laravel',
                             ],
                             ['submitted_at' => now(), 'approved_at' => now()],
                             ['submitted_at' => now()],
