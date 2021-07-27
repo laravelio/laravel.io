@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Article;
 use App\Models\Tag;
 use App\Models\User;
-use Illuminate\View\View;
+use App\Models\Article;
 use Livewire\Component;
+use Illuminate\View\View;
 use Livewire\WithPagination;
 
 final class ShowArticles extends Component
@@ -24,11 +24,6 @@ final class ShowArticles extends Component
 
     public function render(): View
     {
-        $pinnedArticles = Article::published()
-            ->pinned()
-            ->take(4)
-            ->get();
-
         $articles = Article::published()
             ->notPinned();
 
@@ -46,7 +41,6 @@ final class ShowArticles extends Component
         $articles->{$this->sortBy}();
 
         return view('livewire.show-articles', [
-            'pinnedArticles' => $pinnedArticles,
             'articles' => $articles->paginate(10),
             'tags' => $tags,
             'moderators' => $moderators,
