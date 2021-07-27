@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Articles;
 
 use App\Models\Tag;
+use App\Models\User;
 use App\Models\Article;
 use App\Jobs\CreateArticle;
 use App\Jobs\DeleteArticle;
@@ -27,9 +28,11 @@ class ArticlesController extends Controller
             ->pinned()
             ->take(4)
             ->get();
+        $moderators = User::moderators()->get();
 
         return view('articles.index', [
             'pinnedArticles' => $pinnedArticles,
+            'moderators' => $moderators,
         ]);
     }
 

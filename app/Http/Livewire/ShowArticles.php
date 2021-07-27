@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Tag;
-use App\Models\User;
 use App\Models\Article;
 use Livewire\Component;
 use Illuminate\View\View;
@@ -31,7 +30,6 @@ final class ShowArticles extends Component
             $query->published();
         })->orderBy('name')->get();
 
-        $moderators = User::moderators()->get();
         $selectedTag = Tag::where('name', $this->tag)->first();
 
         if ($this->tag) {
@@ -43,7 +41,6 @@ final class ShowArticles extends Component
         return view('livewire.show-articles', [
             'articles' => $articles->paginate(10),
             'tags' => $tags,
-            'moderators' => $moderators,
             'selectedTag' => $selectedTag,
             'selectedSortBy' => $this->sortBy,
         ]);
