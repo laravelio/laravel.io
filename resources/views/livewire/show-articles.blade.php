@@ -103,29 +103,8 @@
                     @include('layouts._ads._forum_sidebar')
                 </div>
 
-                <div class="bg-white shadow mt-6 pb-4">
-                    <h3 class="text-xl font-semibold px-5 pt-5">
-                        Moderators
-                    </h3>
-
-                    <ul>
-                        @foreach ($moderators as $moderator)
-                            <li class="{{ ! $loop->last ? 'border-b ' : '' }}flex items-center gap-x-5 pb-3 pt-5 px-5">
-                                <x-avatar :user="$moderator" class="w-10 h-10" />
-                                <span class="flex flex-col">
-                                    <a href="{{ route('profile', $moderator->username()) }}" class="hover:underline">
-                                        <span class="text-gray-900 font-medium">
-                                            {{ $moderator->name() }}
-                                        </span>
-                                    </a>
-
-                                    <span class="text-gray-700">
-                                        Joined {{ $moderator->createdAt()->format('j M Y') }}
-                                    </span>
-                                </span>
-                            </li>
-                        @endforeach
-                    </ul>
+                <div class="mt-6">
+                    <x-moderators :moderators="$moderators" />
                 </div>
             </div>
         </div>
