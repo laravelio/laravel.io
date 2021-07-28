@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Article;
-use App\Models\Thread;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Sequence;
+use App\Models\Thread;
+use App\Models\Article;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class UserSeeder extends Seeder
 {
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
                             [
                                 'submitted_at' => now(),
                                 'approved_at' => now(),
-                                'hero_image' => 'https://source.unsplash.com/800x450/?programming,laravel',
+                                'hero_image' => 'sxiSod0tyYQ',
                             ],
                             ['submitted_at' => now(), 'approved_at' => now()],
                             ['submitted_at' => now()],

@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use App\Helpers\HasAuthor;
-use App\Helpers\HasLikes;
+use Carbon\Carbon;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
-use App\Helpers\HasTimestamps;
-use App\Helpers\PreparesSearch;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Helpers\HasLikes;
+use App\Helpers\HasAuthor;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
+use App\Helpers\HasTimestamps;
+use App\Helpers\PreparesSearch;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 final class Article extends Model
 {
@@ -82,9 +82,13 @@ final class Article extends Model
         return Str::limit(strip_tags(md_to_html($this->body())), $limit);
     }
 
-    public function heroImage(): string
+    public function heroImage($width = 400, $height = 300): string
     {
-        return $this->hero_image ?: asset('images/default-background.svg');
+        if ($this->hero_image) {
+            return "https://source.unsplash.com/{$this->hero_image}/{$width}x{$height}";
+        }
+
+        return asset('images/default-background.svg');
     }
 
     public function originalUrl(): ?string
