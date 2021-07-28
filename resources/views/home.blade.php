@@ -29,11 +29,11 @@
                                 Visit the forum
                             </x-buttons.secondary-cta>
                         @else
-                            <x-buttons.primary-cta href="{{ route('threads.create') }}" class="w-full mb-3 lg:w-auto lg:mr-2">
+                            <x-buttons.primary-cta href="{{ route('forum') }}" class="w-full mb-3 lg:w-auto lg:mr-2">
                                 Start a Thread
                             </x-buttons.primary-cta>
 
-                            <x-buttons.primary-cta href="{{ route('articles.create') }}" class="w-full mb-3 lg:w-auto lg:mr-2">
+                            <x-buttons.primary-cta href="{{ route('articles') }}" class="w-full mb-3 lg:w-auto lg:mr-2">
                                 Share an Article
                             </x-buttons.primary-cta>
                         @endif
@@ -78,11 +78,11 @@
                                 </div>
 
                                 <form action="{{ route('forum') }}" method="GET">
-                                    <input 
+                                    <input
                                         type="search"
                                         name="search"
-                                        placeholder="Search here for threads" 
-                                        class="p-4 pl-10 text-gray-600 rounded w-full border-gray-100" 
+                                        placeholder="Search here for threads"
+                                        class="p-4 pl-10 text-gray-600 rounded w-full border-gray-100"
                                     />
                                 </form>
                             </div>
@@ -114,7 +114,7 @@
                     By joining our platform, you can take a look at the latest unresolved threads
                 </p>
             </div>
-        
+
             <div class="flex gap-4 mb-4 -mx-4 p-4 overflow-x-scroll lg:mb-10 lg:gap-8">
                 @foreach ($latestThreads as $thread)
                     <div class="flex-shrink-0 w-11/12 lg:w-1/3 lg:flex-shrink">
@@ -122,7 +122,7 @@
                     </div>
                 @endforeach
             </div>
-        
+
             <div class="flex justify-center">
                 <x-buttons.primary-cta href="{{ route('forum') }}" class="w-full lg:w-auto">
                     View all threads
