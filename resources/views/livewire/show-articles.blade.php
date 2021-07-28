@@ -1,109 +1,101 @@
-<div class="container mx-auto px-4 pt-4 flex flex-wrap flex-col-reverse lg:flex-row mb-8">
-    <div class="w-full lg:w-3/4 py-8 lg:pr-4">
-        <div wire:loading class="flex w-full h-full text-2xl text-gray-700">
-            Loading...
+<div>    
+    <div class="flex justify-between items-center lg:block">
+        <div class="flex justify-between items-center">
+            <h1 class="text-4xl text-gray-900 font-bold">
+                Articles
+            </h1>
+
+            <x-buttons.primary-button href="{{ route('articles.create') }}" class="hidden lg:block">
+                Create Article
+            </x-buttons.primary-button>
         </div>
 
-        @foreach ($articles as $article)
-            <div class="pb-8 mb-8 border-b-2">
-                <div>
-                    @foreach ($article->tags() as $tag)
-                        <button wire:click="toggleTag('{{ $tag->slug() }}')">
-                            <x-tag class="{{ $tag->slug() === $selectedTag ? 'bg-white text-lio-600' : '' }}">
-                                {{ $tag->name() }}
-                            </x-tag>
-                        </button>
-                    @endforeach
-                </div>
-                <a href="{{ route('articles.show', $article->slug()) }}" class="block">
-                    <span class="mt-4 flex items-center">
-                        @if ($article->isPinned())
-                            <x-zondicon-pin class="w-5 h-5 text-lio-500 mr-2"/>
-                        @endif
-                        
-                        <h3 class="text-xl leading-7 font-semibold text-gray-900">
-                            {{ $article->title() }}
-                        </h3>
-                    </span>
-                    <p class="mt-3 text-base leading-6 text-gray-800">
-                        {{ $article->excerpt() }}
-                    </p>
-                </a>
+        <div class="flex items-center justify-between lg:mt-6">
+            <h3 class="text-gray-800 text-xl font-semibold">
+                {{ number_format($articles->total()) }} Articles
+            </h3>
 
-                <div class="flex items-center justify-between mt-6">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <a href="{{ route('profile', $article->author()->username()) }}">
-                                <x-avatar :user="$article->author()" class="h-10 w-10" />
-                            </a>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm leading-5 font-medium text-gray-900">
-                                <a href="{{ route('profile', $article->author()->username()) }}">
-                                    {{ $article->author()->name() }}
-                                </a>
-                            </p>
-                            <div class="flex text-sm leading-5 text-gray-500">
-                                <time datetime="{{ $article->submittedAt()->format('Y-m-d') }}">
-                                    {{ $article->submittedAt()->format('j M, Y') }}
-                                </time>
-                                <span class="mx-1">
-                                    &middot;
-                                </span>
-                                <span>
-                                    {{ $article->readTime() }} min read
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+            <div class="hidden lg:flex gap-x-2">
+                <x-articles.filter :selectedSortBy="$selectedSortBy" />
 
-                    <div class="flex items-center text-gray-500">
-                        <span class="text-2xl mr-2">👏</span>
-                        {{ count($article->likes()) }}
-                    </div>
+                <div class="flex-shrink-0">
+                    <x-buttons.secondary-button class="flex items-center gap-x-2" @click="activeModal = 'tag-filter'">
+                        <x-heroicon-o-filter class="w-5 h-5" />
+                        Tag filter
+                    </x-buttons.secondary-button>
                 </div>
             </div>
-        @endforeach
+        </div>
 
-        {{ $articles->links() }}
+        @if ($selectedTag)
+            <div class="hidden lg:flex gap-x-4 items-center mt-4 pt-5 border-t">
+                Filter applied
+                <x-tag>
+                    <span class="flex items-center gap-x-1">
+                        {{ $selectedTag->name() }}
+                        <button type="button" wire:click="toggleTag('')">
+                            <x-heroicon-o-x class="w-5 h-5" />
+                        </button>
+                    </span>
+                </x-tag>
+            </div>
+        @endisset
     </div>
 
-    <div class="w-full lg:w-1/4 lg:pt-8 lg:pl-4">
-        <span class="relative z-0 inline-flex shadow-sm mb-8">
-            <button wire:click="sortBy('recent')" type="button" class="relative inline-flex items-center px-4 py-2 rounded-l-md border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-lio-200 focus:ring focus:ring-lio-200 focus:ring-opacity-50 active:bg-lio-500 active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'recent' ? 'bg-lio-500 text-white border-lio-500 ring-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
-                Recent
-            </button>
+    <div class="pt-2 lg:hidden">
+        @include('layouts._ads._forum_sidebar')
 
-            <button wire:click="sortBy('popular')" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-lio-200 focus:ring focus:ring-lio-200 focus:ring-opacity-50 active:bg-lio-500 active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'popular' ? 'bg-lio-500 text-white border-lio-500 ring-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
-                Popular
-            </button>
+        <div class="flex gap-x-4 mt-10">
+            <div class="w-1/2">
+                <x-buttons.secondary-cta class="w-full" @click="activeModal = 'tag-filter'">
+                    <span class="flex items-center gap-x-2">
+                        <x-heroicon-o-filter class="w-5 h-5" />
+                        Tag filter
+                    </span>
+                </x-buttons.secondary-cta>
+            </div>
 
-            <button wire:click="sortBy('trending')" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border focus:border-lio-200 focus:ring focus:ring-lio-200 focus:ring-opacity-50 active:bg-lio-500 active:text-white transition ease-in-out duration-150 {{ $selectedSortBy === 'trending' ? 'bg-lio-500 text-white border-lio-500 ring-green z-10' : 'bg-white text-gray-700 border-gray-300' }}">
-                Trending 🔥
-            </button>
-        </span>
+            <div class="w-1/2">
+                <x-buttons.primary-cta href="{{ route('articles.create') }}" class="w-full">
+                    Create Article
+                </x-buttons.primary-cta>
+            </div>
+        </div>
 
-        <a 
-            href="{{ route('articles.create') }}"
-            class="button button-primary button-full mb-4"
-        >
-            Create Article
-        </a>
+        <div class="flex mt-4">
+            <x-articles.filter :selectedSortBy="$selectedSortBy" />
+        </div>
 
-        <ul class="tags">
-            <li class="{{ ! $selectedTag ? ' active' : '' }}">
-                <button wire:click="toggleTag('')">
-                    All
-                </button>
-            </li>   
+        @if ($selectedTag)
+            <div class="flex gap-x-4 items-center mt-4">
+                Filter applied
+                <x-tag>
+                    <span class="flex items-center gap-x-1">
+                        {{ $selectedTag->name() }}
+                        <button type="button" wire:click="toggleTag('')">
+                            <x-heroicon-o-x class="w-5 h-5" />
+                        </button>
+                    </span>
+                </x-tag>
+            </div>
+        @endif
+    </div>
 
-            @foreach ($tags as $tag)
-                <li class="{{ $selectedTag === $tag->slug() ? ' active' : '' }}">
-                    <button wire:click="toggleTag('{{ $tag->slug() }}')">
-                        {{ $tag->name() }}
-                    </button>
-                </li>
+    <section class="mt-8 mb-5 lg:mb-16">
+        <div class="flex flex-col gap-y-4">
+            @foreach ($articles as $article)
+                <x-articles.overview-summary :article="$article" />
             @endforeach
-        </ul>
+        </div>
+
+        <div class="mt-10">
+            {{ $articles->onEachSide(1)->links() }}
+        </div>
+    </section>
+
+    <div class="modal" x-show="activeModal === 'tag-filter'" x-cloak>
+        <div class="w-full h-full p-8 lg:w-96 lg:h-3/4 overflow-y-scroll">
+            <x-articles.tag-filter :selectedTag="$selectedTag ?? null" :tags="$tags" />
+        </div>
     </div>
 </div>

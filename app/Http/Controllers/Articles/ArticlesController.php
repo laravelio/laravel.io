@@ -10,6 +10,7 @@ use App\Jobs\DeleteArticle;
 use App\Jobs\UpdateArticle;
 use App\Models\Article;
 use App\Models\Tag;
+use App\Models\User;
 use App\Policies\ArticlePolicy;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,16 @@ class ArticlesController extends Controller
 
     public function index()
     {
-        return view('articles.index');
+        $pinnedArticles = Article::published()
+            ->pinned()
+            ->take(4)
+            ->get();
+        $moderators = User::moderators()->get();
+
+        return view('articles.index', [
+            'pinnedArticles' => $pinnedArticles,
+            'moderators' => $moderators,
+        ]);
     }
 
     public function show(Article $article)

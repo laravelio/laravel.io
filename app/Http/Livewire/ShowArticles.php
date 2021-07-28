@@ -23,10 +23,14 @@ final class ShowArticles extends Component
 
     public function render(): View
     {
-        $articles = Article::published();
+        $articles = Article::published()
+            ->notPinned();
+
         $tags = Tag::whereHas('articles', function ($query) {
             $query->published();
         })->orderBy('name')->get();
+
+        $selectedTag = Tag::where('name', $this->tag)->first();
 
         if ($this->tag) {
             $articles->forTag($this->tag);
@@ -37,7 +41,7 @@ final class ShowArticles extends Component
         return view('livewire.show-articles', [
             'articles' => $articles->paginate(10),
             'tags' => $tags,
-            'selectedTag' => $this->tag,
+            'selectedTag' => $selectedTag,
             'selectedSortBy' => $this->sortBy,
         ]);
     }

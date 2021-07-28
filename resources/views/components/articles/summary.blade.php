@@ -18,13 +18,13 @@
 
         @if ($isFeatured)
             <h3 class="text-gray-900 text-3xl font-bold leading-10 mb-2">
-                <a href="{{ route('articles.show', $article->slug()) }}">
+                <a href="{{ route('articles.show', $article->slug()) }}" class="hover:underline">
                     {{ $article->title() }}
                 </a>
             </h3>
         @else
             <h4 class="text-gray-900 text-2xl font-bold leading-8 mb-3">
-                <a href="{{ route('articles.show', $article->slug()) }}">
+                <a href="{{ route('articles.show', $article->slug()) }}" class="hover:underline">
                     {{ $article->title() }}
                 </a>
             </h4>

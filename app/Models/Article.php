@@ -36,6 +36,7 @@ final class Article extends Model
         'body',
         'original_url',
         'slug',
+        'hero_image',
         'is_pinned',
         'tweet_id',
         'submitted_at',
@@ -79,6 +80,11 @@ final class Article extends Model
     public function excerpt(int $limit = 100): string
     {
         return Str::limit(strip_tags(md_to_html($this->body())), $limit);
+    }
+
+    public function heroImage(): string
+    {
+        return $this->hero_image ?: asset('images/default-background.svg');
     }
 
     public function originalUrl(): ?string
@@ -196,6 +202,16 @@ final class Article extends Model
             $query->whereNull('submitted_at')
                 ->orWhereNull('approved_at');
         });
+    }
+
+    public function scopePinned(Builder $query): Builder
+    {
+        return $query->where('is_pinned', true);
+    }
+
+    public function scopeNotPinned(Builder $query): Builder
+    {
+        return $query->where('is_pinned', false);
     }
 
     public function scopeShared(Builder $query): Builder
