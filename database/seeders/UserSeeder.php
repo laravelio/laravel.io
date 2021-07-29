@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
                             [
                                 'submitted_at' => now(),
                                 'approved_at' => now(),
-                                'hero_image' => 'https://source.unsplash.com/800x450/?programming,laravel',
+                                'hero_image' => 'sxiSod0tyYQ',
                             ],
                             ['submitted_at' => now(), 'approved_at' => now()],
                             ['submitted_at' => now()],

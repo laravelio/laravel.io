@@ -1,14 +1,13 @@
 @props([
-    'image' => null,
     'article',
     'isFeatured' => false,
 ])
 
 <div class="h-full mb-8 md:mb-0 flex flex-col place-content-between">
     <div class="break-words">
-        @if ($image)
+        @if ($isFeatured)
             <a href="{{ route('articles.show', $article->slug()) }}">
-                <div class="w-full h-72 mb-6 rounded-lg bg-center bg-cover" style="background-image: url({{ $image }});"></div>
+                <div class="w-full h-72 mb-6 rounded-lg bg-center bg-cover bg-gray-900" style="background-image: url({{ $article->heroImage() }});"></div>
             </a>
         @endif
 

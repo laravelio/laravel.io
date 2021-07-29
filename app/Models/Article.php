@@ -82,9 +82,13 @@ final class Article extends Model
         return Str::limit(strip_tags(md_to_html($this->body())), $limit);
     }
 
-    public function heroImage(): string
+    public function heroImage($width = 400, $height = 300): string
     {
-        return $this->hero_image ?: asset('images/default-background.svg');
+        if ($this->hero_image) {
+            return "https://source.unsplash.com/{$this->hero_image}/{$width}x{$height}";
+        }
+
+        return asset('images/default-background.svg');
     }
 
     public function originalUrl(): ?string
