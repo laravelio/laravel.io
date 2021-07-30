@@ -2,7 +2,7 @@
 
 <div class="bg-white shadow rounded">
     <div class="border-b">
-        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center px-6 py-4">
+        <div class="flex flex-row justify-between items-center px-6 py-2.5">
             <div>
                 <div class="flex flex-col lg:flex-row lg:items-center">
                     <div>
@@ -18,12 +18,7 @@
                 </div>
             </div>
 
-            @if ($thread->isSolutionReply($reply))
-                <span class="flex items-center gap-x-2 font-medium text-lio-500">
-                    <x-heroicon-o-badge-check class="w-6 h-6" />
-                    <span class="hover:underline">Solution</span>
-                </span>
-            @endif
+            <x-threads.reply-menu :thread="$thread" :reply="$reply" />
         </div>
     </div>
 

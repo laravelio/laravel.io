@@ -2,7 +2,8 @@
 
 <div class="thread bg-white shadow rounded">
     <div class="border-b">
-        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center px-6 py-4">
+        <div class="px-6 pt-4 pb-0 lg:py-4">
+        <div class="flex flex-row justify-between items-start">
             <div>
                 <div class="flex flex-col lg:flex-row lg:items-center">
                     <div>
@@ -18,15 +19,30 @@
                 </div>
             </div>
 
-            @if (count($tags = $thread->tags()))
-                <div class="flex flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-4">
-                    @foreach ($tags as $tag)
-                        <x-tag>
-                            {{ $tag->name() }}
-                        </x-tag>
-                    @endforeach
-                </div>
-            @endif
+            <div class="flex items-center gap-x-2">
+                @if (count($tags = $thread->tags()))
+                    <div class="hidden lg:flex flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-4">
+                        @foreach ($tags as $tag)
+                            <x-tag>
+                                {{ $tag->name() }}
+                            </x-tag>
+                        @endforeach
+                    </div>
+                @endif
+
+                <x-threads.thread-menu :thread="$thread" />
+            </div>
+        </div>
+
+        @if (count($tags = $thread->tags()))
+            <div class="flex flex-wrap gap-2 my-2 lg:hidden">
+                @foreach ($tags as $tag)
+                    <x-tag>
+                        {{ $tag->name() }}
+                    </x-tag>
+                @endforeach
+            </div>
+        @endif
         </div>
     </div>
 
