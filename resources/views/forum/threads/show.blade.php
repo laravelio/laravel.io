@@ -55,53 +55,13 @@
 
                             <div class="flex justify-between items-start mt-4 gap-x-8 lg:items-center">
                                 <p>
-                                    Please make sure you've read our <a href="{{ route('rules') }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">Forum Rules</a> before replying to this thread.
+                                    Please make sure you've read our <a href="{{ route('rules') }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">rules</a> before replying to this thread.
                                 </p>
 
                                 <button type="submit" class="button button-primary">Reply</button>
                             </div>
                         </form>
                     </div>
-
-                    @include('_partials._delete_modal', [
-                        'identifier' => "delete-reply-{$reply->id}",
-                        'route' => ['replies.delete', $reply->id()],
-                        'title' => 'Delete Reply',
-                        'body' => '<p>Are you sure you want to delete this reply? This cannot be undone.</p>',
-                    ])
-                @endforeach
-
-                @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
-                    @if ($thread->isConversationOld())
-                        <div class="bg-gray-400 rounded p-4 text-gray-700 my-8">
-                            The last reply to this thread was more than six months ago. Please consider <a href="{{ route('threads.create') }}" class="text-lio-600">opening a new thread</a> if you have a similar question.
-                        </div>
-                    @else
-                        <div class="my-8">
-                            <form action="{{ route('replies.store') }}" method="POST">
-                                @csrf
-
-                                @formGroup('body')
-                                    <label for="body">Write a reply</label>
-
-                                    @include('_partials._editor', ['content' => old('body')])
-
-                                    @error('body')
-                                @endFormGroup
-
-                                <input type="hidden" name="replyable_id" value="{{ $thread->id() }}" />
-                                <input type="hidden" name="replyable_type" value="threads" />
-
-                                <div class="flex justify-between items-center mt-4">
-                                    <p class="text-sm text-gray-500 mr-8">
-                                        Please make sure you've read our <a href="{{ route('rules') }}" class="text-lio-600">rules</a> before replying to this thread.
-                                    </p>
-
-                                    <button type="submit" class="button button-primary">Reply</button>
-                                </div>
-                            </form>
-                        </div>
-                    @endif
                 @endif
             @else
                 @if (Auth::guest())
