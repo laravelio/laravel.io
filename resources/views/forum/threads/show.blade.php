@@ -90,6 +90,10 @@
                 <x-users.profile-block :user="$thread->author()" />
             </div>
 
+            <div class="mt-6">
+                <x-threads.subscribe :thread="$thread" />
+            </div>
+
             <div class="my-6">
                 <x-moderators :moderators="$moderators" />
             </div>
