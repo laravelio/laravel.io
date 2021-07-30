@@ -1,6 +1,6 @@
 @props(['thread', 'reply'])
 
-<div class="bg-white shadow rounded">
+<div class="bg-white shadow rounded @if ($thread->isSolutionReply($reply)) border-2 border-lio-200 @endif">
     <div class="border-b">
         <div class="flex flex-row justify-between items-center px-6 py-2.5">
             <div>
