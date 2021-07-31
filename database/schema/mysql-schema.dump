@@ -14,6 +14,7 @@ CREATE TABLE `articles` (
   `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `original_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hero_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_pinned` tinyint(1) NOT NULL DEFAULT '0',
   `tweet_id` bigint unsigned DEFAULT NULL,
   `submitted_at` timestamp NULL DEFAULT NULL,
@@ -236,6 +237,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
   UNIQUE KEY `users_username_unique` (`username`),
+  UNIQUE KEY `users_github_id_unique` (`github_id`),
   KEY `users_email_index` (`email`),
   KEY `users_username_index` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -307,3 +309,5 @@ INSERT INTO `migrations` VALUES (57,'2020_11_03_205735_add_uuid_to_failed_jobs_t
 INSERT INTO `migrations` VALUES (58,'2020_11_22_194212_create_schedule_monitor_tables',1);
 INSERT INTO `migrations` VALUES (59,'2021_03_10_161050_add_index_to_replyable_type',2);
 INSERT INTO `migrations` VALUES (60,'2021_07_05_205125_remove_series',3);
+INSERT INTO `migrations` VALUES (61,'2021_07_23_110409_update_articles_table_add_hero_image_field',4);
+INSERT INTO `migrations` VALUES (62,'2021_07_31_183222_unique_github_ids',4);
