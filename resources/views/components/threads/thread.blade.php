@@ -23,9 +23,11 @@
                 @if (count($tags = $thread->tags()))
                     <div class="hidden lg:flex flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-4">
                         @foreach ($tags as $tag)
-                            <x-tag>
-                                {{ $tag->name() }}
-                            </x-tag>
+                            <a href="{{ route('forum.tag', $tag->slug()) }}">
+                                <x-tag>
+                                    {{ $tag->name() }}
+                                </x-tag>
+                            </a>
                         @endforeach
                     </div>
                 @endif
