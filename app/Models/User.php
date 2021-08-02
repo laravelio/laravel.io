@@ -79,7 +79,7 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     public function githubUsername(): string
     {
-        return $this->github_username;
+        return $this->github_username ?? '';
     }
 
     public function twitter(): ?string
