@@ -15,7 +15,7 @@
         @include('_partials._editor', [
             'content' => isset($thread) ? $thread->body() : null
         ])
-        
+
         @error('body')
     @endFormGroup
 

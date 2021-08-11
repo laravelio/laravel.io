@@ -24,6 +24,10 @@
                     'method' => 'PUT',
                 ])
             </div>
+
+            <x-forms.info>
+                After submission for approval, articles are reviewed before being published. No notification of declined articles will be provided. Instead, we encourage to also cross-post articles on your own channel as well.
+            </x-forms.info>
         </div>
     </div>
 @endsection

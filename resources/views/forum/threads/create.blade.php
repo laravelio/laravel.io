@@ -23,6 +23,10 @@
                     'route' => ['threads.store'],
                 ])
             </div>
+
+            <x-forms.info>
+                Please search for your question before posting your thread by using the search box in the navigation bar.
+            </x-forms.info>
         </div>
     </div>
 @endsection
