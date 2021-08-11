@@ -3,7 +3,7 @@
 <div class="thread bg-white shadow rounded">
     <div class="border-b">
         <div class="px-6 pt-4 pb-0 lg:py-4">
-        <div class="flex flex-row justify-between items-start">
+        <div class="flex flex-row justify-between items-start lg:items-center">
             <div>
                 <div class="flex flex-col lg:flex-row lg:items-center">
                     <div>
