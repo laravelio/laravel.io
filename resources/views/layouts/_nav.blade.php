@@ -214,4 +214,6 @@
             </div>
         </div>
     </div>
+
+    @yield('subnav')
 </nav>

@@ -114,7 +114,7 @@
                     @include('layouts._ads._forum_sidebar')
                 </div>
 
-                <div class="bg-white shadow mt-6">
+                <div class="bg-white shadow rounded-md mt-6">
                     <h3 class="text-xl font-semibold px-5 pt-5">
                         Thanks to our community
                     </h3>

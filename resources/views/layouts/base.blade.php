@@ -37,7 +37,7 @@
     @livewireStyles
 </head>
 
-<body class="{{ $bodyClass ?? '' }} {{ isset($isTailwindUi) && $isTailwindUi ? '' : 'standard' }} font-sans bg-white antialiased" x-data="{ activeModal: null }" @close-modal.window="activeModal = false">
+<body class="{{ $bodyClass ?? '' }} {{ isset($isTailwindUi) && $isTailwindUi ? '' : 'standard' }} font-sans bg-white antialiased" x-data="{ activeModal: null }" @close-modal.window="activeModal = false"  @open-modal.window="activeModal = $event.detail">
 
 @include('layouts._ads._banner')
 @include('layouts._nav')

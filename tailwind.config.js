@@ -40,12 +40,29 @@ module.exports = {
                     800: '#484a4a',
                     900: '#343636',
                 },
+                twitter: '#00aaec',
             },
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
             },
             maxWidth: {
                 14: '14rem',
+            },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        color: '#343636',
+                        a: {
+                            'text-decoration': 'none',
+                            color: '#18bc9c',
+                            'border-bottom': '2px solid #e6f6f3',
+                            'padding-bottom': '0.125rem',
+                            '&:hover': {
+                                color: '#0e8b73',
+                            },
+                        },
+                    },
+                },
             },
         },
     },

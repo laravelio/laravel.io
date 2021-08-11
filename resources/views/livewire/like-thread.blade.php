@@ -1,13 +1,23 @@
-<div class="thread-info-likes">
+<div>
     @if (Auth::guest())
-        <div class="text-gray-600 px-4 py-2 border-r inline-block">
-            <span class="text-2xl mr-1">👍</span>
-            {{ count($this->thread->likes()) }}
+        <div class="flex items-center gap-x-2">
+            <x-heroicon-o-thumb-up class="w-6 h-6" />
+            
+            <span class="font-medium">
+                {{ count($this->thread->likes()) }}
+            </span>
         </div>
     @else 
-        <button type="button" wire:click="toggleLike" class="text-lio-600 px-4 py-2 border-r">
-            <span class="text-2xl mr-1">👍</span>
-            {{ count($this->thread->likes()) }}
+        <button type="button" wire:click="toggleLike" class="flex items-center gap-x-2 text-lio-500">
+            <x-heroicon-o-thumb-up class="w-6 h-6" />
+            
+            <span class="font-medium">
+                {{ count($this->thread->likes()) }}
+            </span>
+            
+            @if ($this->thread->isLikedBy(Auth::user()))
+                <span class="text-gray-400 text-sm italic ml-1">You liked this thread</span>
+            @endif
         </button>
     @endif
 </div>
