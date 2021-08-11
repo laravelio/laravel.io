@@ -24,7 +24,7 @@ class ArticlesController extends Controller
             $articles = SearchArticles::get($adminSearch)->appends(['admin_search' => $adminSearch]);
         } else {
             $articles = Article::awaitingApproval()
-                ->orderBy('submitted_at', 'asc')
+                ->orderByDesc('submitted_at')
                 ->paginate();
         }
 

@@ -15,6 +15,7 @@ final class SearchArticles
         return Article::where('title', 'like', "%$keyword%")
             ->orWhere('body', 'like', "%$keyword%")
             ->orWhere('slug', 'like', "%$keyword%")
+            ->orderByDesc('submitted_at')
             ->paginate($perPage);
     }
 }
