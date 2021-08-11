@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ArticlesController as AdminArticlesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Articles\ArticlesController;
@@ -115,7 +114,7 @@ Route::prefix('articles')->group(function () {
 
 // Admin
 Route::prefix('admin')->name('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index']);
+    Route::get('/', [UsersController::class, 'index']);
 
     // Users
     Route::put('users/{username}/ban', [UsersController::class, 'ban'])->name('.users.ban');

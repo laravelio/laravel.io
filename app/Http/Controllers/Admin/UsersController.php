@@ -18,6 +18,17 @@ class UsersController extends Controller
         $this->middleware([Authenticate::class, VerifyAdmins::class]);
     }
 
+    public function index()
+    {
+        if ($adminSearch = request('admin_search')) {
+            $users = SearchUsers::get($adminSearch)->appends(['admin_search' => $adminSearch]);
+        } else {
+            $users = User::findAllPaginated();
+        }
+
+        return view('admin.users', compact('users', 'adminSearch'));
+    }
+
     public function ban(User $user)
     {
         $this->authorize(UserPolicy::BAN, $user);
