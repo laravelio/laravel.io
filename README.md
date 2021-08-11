@@ -80,11 +80,15 @@ MIX_ALGOLIA_INDEX=threads
 
 In order to index your existing threads, run the following command:
 
-`php artisan scout:import App\\Models\\Thread`
+```bash
+php artisan scout:import App\\Models\\Thread
+```
 
 New threads will be automatically added to the index and threads which get edited will be automatically updated. If you need to flush your index and start again, you can run the following command:
 
-`php artisan scout:flush App\\Models\\Thread`
+```bash
+php artisan scout:flush App\\Models\\Thread
+```
 
 ### Twitter Sharing (optional)
 
