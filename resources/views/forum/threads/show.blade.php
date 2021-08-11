@@ -2,7 +2,7 @@
 
 @extends('layouts.default', ['hasShadow' => true])
 
-@section('subnav')            
+@section('subnav')
     <section class="container mx-auto bg-white pb-4 px-4 lg:pb-10">
         <h1 class="flex items-center gap-x-3.5 text-xl font-semibold lg:text-3xl">
             <a href="{{ route('forum') }}" class="text-gray-400 hover:underline">Forum</a>
@@ -31,7 +31,7 @@
                 @if ($thread->isConversationOld())
                     <x-info-panel class="flex justify-between gap-x-16">
                         <p>The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.</p>
-                        
+
                         <x-buttons.arrow-button href="{{ route('threads.create') }}" class="flex-shrink-0">
                             Create thread
                         </x-buttons.arrow-button>
@@ -90,9 +90,11 @@
                 <x-users.profile-block :user="$thread->author()" />
             </div>
 
-            <div class="mt-6">
-                <x-threads.subscribe :thread="$thread" />
-            </div>
+            @auth
+                <div class="mt-6">
+                    <x-threads.subscribe :thread="$thread" />
+                </div>
+            @endauth
 
             <div class="my-6">
                 <x-moderators :moderators="$moderators" />
