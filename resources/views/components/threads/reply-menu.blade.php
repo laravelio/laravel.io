@@ -1,6 +1,6 @@
 @props(['thread', 'reply'])
 
-<div class="flex items-center gap-x-3">
+<div class="flex items-center lg:gap-x-3">
     @can(App\Policies\ThreadPolicy::UPDATE, $thread)
         @if ($thread->isSolutionReply($reply))      
             <button 
@@ -8,7 +8,7 @@
                 @click="$dispatch('open-modal', 'unmark-solution-{{ $thread->id }}')"
             >
                 <x-heroicon-o-badge-check class="w-6 h-6" />
-                <span>Unmark Solution</span>
+                <span class="hidden lg:block">Unmark Solution</span>
             </button>
 
             @include('_partials._update_modal', [
@@ -23,7 +23,7 @@
                 @click="$dispatch('open-modal', 'mark-solution-{{ $reply->id }}')"
             >
                 <x-heroicon-o-badge-check class="w-6 h-6" />
-                Mark Solution
+                <span class="hidden lg:block">Mark Solution</span>
             </button>
 
             @include('_partials._update_modal', [
