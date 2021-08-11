@@ -88,9 +88,9 @@ class ThreadTest extends TestCase
 
         $threads = Thread::feed();
 
-        $this->assertTrue($threadFromToday->matches($threads->first()), 'First thread is incorrect');
-        $this->assertTrue($threadUpdatedYesterday->matches($threads->slice(1)->first()), 'Second thread is incorrect');
-        $this->assertTrue($threadFromTwoDaysAgo->matches($threads->last()), 'Last thread is incorrect');
+        $this->assertTrue($threadFromToday->is($threads->first()), 'First thread is incorrect');
+        $this->assertTrue($threadUpdatedYesterday->is($threads->slice(1)->first()), 'Second thread is incorrect');
+        $this->assertTrue($threadFromTwoDaysAgo->is($threads->last()), 'Last thread is incorrect');
     }
 
     /** @test */
@@ -102,7 +102,7 @@ class ThreadTest extends TestCase
         $threads = Thread::feedQuery()->resolved()->get();
 
         $this->assertCount(1, $threads);
-        $this->assertTrue($resolvedThread->matches($threads->first()));
+        $this->assertTrue($resolvedThread->is($threads->first()));
     }
 
     /** @test */
@@ -114,7 +114,7 @@ class ThreadTest extends TestCase
         $threads = Thread::feedQuery()->active()->get();
 
         $this->assertCount(1, $threads);
-        $this->assertTrue($activeThread->matches($threads->first()));
+        $this->assertTrue($activeThread->is($threads->first()));
     }
 
     /** @test */

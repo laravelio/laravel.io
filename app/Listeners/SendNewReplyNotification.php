@@ -24,6 +24,6 @@ final class SendNewReplyNotification
 
     private function replyAuthorDoesNotMatchSubscriber(User $author, $subscription): bool
     {
-        return ! $author->matches($subscription->user());
+        return ! $author->is($subscription->user());
     }
 }

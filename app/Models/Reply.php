@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Helpers\HasAuthor;
 use App\Helpers\HasLikes;
 use App\Helpers\HasTimestamps;
-use App\Helpers\ModelHelpers;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +18,6 @@ final class Reply extends Model
     use HasAuthor;
     use HasLikes;
     use HasTimestamps;
-    use ModelHelpers;
 
     const TABLE = 'replies';
 

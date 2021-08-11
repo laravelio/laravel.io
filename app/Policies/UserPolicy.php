@@ -23,6 +23,6 @@ final class UserPolicy
 
     public function delete(User $user, User $subject): bool
     {
-        return ($user->isAdmin() || $user->matches($subject)) && ! $subject->isAdmin();
+        return ($user->isAdmin() || $user->is($subject)) && ! $subject->isAdmin();
     }
 }

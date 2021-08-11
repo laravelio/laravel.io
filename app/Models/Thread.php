@@ -8,7 +8,6 @@ use App\Helpers\HasLikes;
 use App\Helpers\HasSlug;
 use App\Helpers\HasTags;
 use App\Helpers\HasTimestamps;
-use App\Helpers\ModelHelpers;
 use App\Helpers\PreparesSearch;
 use App\Helpers\ProvidesSubscriptions;
 use App\Helpers\ReceivesReplies;
@@ -35,7 +34,6 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     use HasSlug;
     use HasTags;
     use HasTimestamps;
-    use ModelHelpers;
     use PreparesSearch;
     use ProvidesSubscriptions;
     use ReceivesReplies;
@@ -107,7 +105,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     public function isSolutionReply(Reply $reply): bool
     {
         if ($solution = $this->solutionReply()) {
-            return $solution->matches($reply);
+            return $solution->is($reply);
         }
 
         return false;

@@ -23,7 +23,7 @@ class UsersController extends Controller
         if ($adminSearch = request('admin_search')) {
             $users = SearchUsers::get($adminSearch)->appends(['admin_search' => $adminSearch]);
         } else {
-            $users = User::findAllPaginated();
+            $users = User::latest()->paginate(20);
         }
 
         return view('admin.users', compact('users', 'adminSearch'));

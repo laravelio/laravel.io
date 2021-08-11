@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Helpers\HasSlug;
-use App\Helpers\ModelHelpers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -12,7 +11,6 @@ final class Tag extends Model
 {
     use HasFactory;
     use HasSlug;
-    use ModelHelpers;
 
     /**
      * {@inheritdoc}

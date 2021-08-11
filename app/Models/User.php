@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Helpers\HasTimestamps;
-use App\Helpers\ModelHelpers;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,7 +15,6 @@ final class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory;
     use HasTimestamps;
-    use ModelHelpers;
     use Notifiable;
 
     const TABLE = 'users';
