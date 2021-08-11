@@ -21,7 +21,7 @@
 
             <div class="flex items-center gap-x-2">
                 @if (count($tags = $thread->tags()))
-                    <div class="hidden lg:flex flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-4">
+                    <div class="hidden flex-wrap gap-2 mt-2 lg:mt-0 lg:gap-x-4 lg:flex lg:flex-nowrap">
                         @foreach ($tags as $tag)
                             <a href="{{ route('forum.tag', $tag->slug()) }}">
                                 <x-tag>
