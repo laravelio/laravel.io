@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Articles;
 
-use App\Http\Controllers\Controller;
-use App\Http\Middleware\Authenticate;
-use App\Http\Requests\ArticleRequest;
+use App\Models\Tag;
+use App\Models\User;
+use App\Models\Article;
 use App\Jobs\CreateArticle;
 use App\Jobs\DeleteArticle;
 use App\Jobs\UpdateArticle;
-use App\Models\Article;
-use App\Models\Tag;
-use App\Models\User;
 use App\Policies\ArticlePolicy;
-use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\Authenticate;
+use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 
 class ArticlesController extends Controller
 {
@@ -45,8 +46,16 @@ class ArticlesController extends Controller
             404,
         );
 
+        $trendingArticles = Cache::remember('trendingArticles', now()->addHour(), function () {
+            return Article::published()
+                ->trending()
+                ->limit(3)
+                ->get();
+        });
+
         return view('articles.show', [
             'article' => $article,
+            'trendingArticles' => $trendingArticles,
         ]);
     }
 

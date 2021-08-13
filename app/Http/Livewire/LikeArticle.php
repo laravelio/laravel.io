@@ -15,6 +15,8 @@ final class LikeArticle extends Component
 
     public $article;
 
+    public $isSidebar = true;
+
     protected $listeners = ['likeToggled'];
 
     public function mount(Article $article): void
