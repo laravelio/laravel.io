@@ -40,7 +40,7 @@
             </div>
         @empty
             <p class="text-gray-600 text-base">
-                {{ $user->name() }} has not posted any replies yet
+                {{ $user->username() }} has not posted any replies yet
             </p>
         @endforelse
     </div>

@@ -11,7 +11,7 @@
                         <x-avatar :user="$thread->author()" class="w-8 h-8 rounded-full mr-2" />
                     </a>
                     <a href="{{ route('profile', $thread->author()->username()) }}">
-                        <span class="font-heading text-sm text-black">{{ $thread->author()->name() }}</span>
+                        <span class="font-heading text-sm text-black">{{ $thread->author()->username() }}</span>
                     </a>
                 </div>
 

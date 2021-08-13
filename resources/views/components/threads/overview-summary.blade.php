@@ -12,7 +12,7 @@
                     </a>
 
                     <a href="{{ route('profile', $thread->author()->username()) }}" class="hover:underline">
-                        <span class="text-gray-900 mr-5">{{ $thread->author()->name() }}</span>
+                        <span class="text-gray-900 mr-5">{{ $thread->author()->username() }}</span>
                     </a>
                 </div>
 

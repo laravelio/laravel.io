@@ -9,7 +9,7 @@
                     <div>
                         <a href="{{ route('profile', $thread->author()->username()) }}" class="flex items-center hover:underline">
                             <x-avatar :user="$thread->author()" class="w-6 h-6 rounded-full mr-3" />
-                            <span class="text-gray-900 mr-5">{{ $thread->author()->name() }}</span>
+                            <span class="text-gray-900 mr-5">{{ $thread->author()->username() }}</span>
                         </a>
                     </div>
 

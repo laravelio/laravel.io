@@ -1,6 +1,6 @@
 @component('mail::message')
 
-**{{ $reply->author()->name() }}** has replied to this thread.
+**{{ $reply->author()->username() }}** has replied to this thread.
 
 @component('mail::panel')
 {{ $reply->excerpt(200) }}
