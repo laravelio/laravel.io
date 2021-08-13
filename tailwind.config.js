@@ -71,8 +71,8 @@ module.exports = {
                             color: '#ec4073',
                             'background-color': 'rgba(236, 64, 115, 0.1)',
                             'border-radius': theme('borderRadius.DEFAULT'),
-                            'padding': `${theme('padding')[0.5]}`
-                        }
+                            padding: `${theme('padding')[0.5]}`,
+                        },
                     },
                 },
             }),
