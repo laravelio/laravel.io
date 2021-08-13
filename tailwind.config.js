@@ -48,22 +48,34 @@ module.exports = {
             maxWidth: {
                 14: '14rem',
             },
-            typography: {
+            typography: (theme) => ({
                 DEFAULT: {
                     css: {
-                        color: '#343636',
+                        color: theme('colors.gray.900'),
                         a: {
                             'text-decoration': 'none',
-                            color: '#18bc9c',
-                            'border-bottom': '2px solid #e6f6f3',
-                            'padding-bottom': '0.125rem',
+                            color: theme('colors.lio.500'),
+                            'border-bottom': `2px solid ${theme('colors.lio.100')}`,
+                            'padding-bottom': theme('padding')['0.5'],
                             '&:hover': {
-                                color: '#0e8b73',
+                                color: theme('colors.lio.700'),
                             },
+                        },
+                        'code::before': {
+                            content: '""',
+                        },
+                        'code::after': {
+                            content: '""',
+                        },
+                        code: {
+                            color: '#ec4073',
+                            'background-color': 'rgba(236, 64, 115, 0.1)',
+                            'border-radius': theme('borderRadius.DEFAULT'),
+                            padding: `${theme('padding')[0.5]}`,
                         },
                     },
                 },
-            },
+            }),
         },
     },
     variants: {},
