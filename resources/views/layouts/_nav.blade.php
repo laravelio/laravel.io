@@ -159,7 +159,7 @@
 
                                     <div @click.away="settings = false">
                                         <button @click="settings = !settings" class="flex items-center">
-                                            {{ Auth::user()->name() }}
+                                            {{ Auth::user()->username() }}
                                             <x-heroicon-s-chevron-down x-show="!settings" class="w-4 h-4 ml-1"/>
                                             <x-heroicon-s-chevron-left x-show="settings" class="w-4 h-4 ml-1"/>
                                         </button>

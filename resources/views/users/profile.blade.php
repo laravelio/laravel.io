@@ -1,4 +1,4 @@
-@title($user->name())
+@title($user->username())
 
 @extends('layouts.default')
 

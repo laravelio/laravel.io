@@ -40,12 +40,12 @@
                                     @php($lastReply = $thread->replies()->last())
                                     <a href="{{ route('profile', $lastReply->author()->username()) }}"
                                        class="text-lio-700">
-                                        {{ $lastReply->author()->isLoggedInUser() ? 'You' : $lastReply->author()->name() }}
+                                        {{ $lastReply->author()->isLoggedInUser() ? 'You' : $lastReply->author()->username() }}
                                     </a> replied {{ $lastReply->createdAt()->diffForHumans() }}
                                 @else
                                     <a href="{{ route('profile', $thread->author()->username()) }}"
                                        class="text-lio-700">
-                                        {{ $thread->author()->isLoggedInUser() ? 'You' : $thread->author()->name() }}
+                                        {{ $thread->author()->isLoggedInUser() ? 'You' : $thread->author()->username() }}
                                     </a> posted {{ $thread->createdAt()->diffForHumans() }}
                                 @endif
                             </div>

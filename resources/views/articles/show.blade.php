@@ -22,7 +22,7 @@
                 <div class="flex-shrink-0">
                     <a href="{{ route('profile', $article->author()->username()) }}">
                         <span class="sr-only">
-                            {{ $article->author()->name() }}
+                            {{ $article->author()->username() }}
                         </span>
 
                         <x-avatar :user="$article->author()" class="h-10 w-10 rounded-full" />
@@ -32,7 +32,7 @@
                 <div class="ml-3">
                     <p class="text-sm font-medium text-gray-900">
                         <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
-                            {{ $article->author()->name() }}
+                            {{ $article->author()->username() }}
                         </a>
                     </p>
 

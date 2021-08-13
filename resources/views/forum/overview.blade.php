@@ -131,7 +131,7 @@
                                         <span class="flex flex-col">
                                             <a href="{{ route('profile', $member->username()) }}" class="hover:underline">
                                                 <span class="text-gray-900 font-medium">
-                                                    {{ $member->name() }}
+                                                    {{ $member->username() }}
                                                 </span>
                                             </a>
 

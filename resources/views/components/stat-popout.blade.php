@@ -30,7 +30,7 @@
     </div>
 
     <div class="flex flex-col bg-gray-100 p-3 text-sm rounded-b">
-        <span>{{ $user->name() }}</span>
+        <span>{{ $user->username() }}</span>
 
         <span class="text-gray-500">Active since: {{ $user->createdAt()->format('F Y') }}</span>
     </div>
