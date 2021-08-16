@@ -9,7 +9,7 @@
 
 @section('content')
     <article class="bg-white">
-        <div class="w-full bg-center bg-cover bg-gray-900" style="background-image: url({{ $article->heroImage(2000, 384) }});">
+        <div class="w-full bg-center bg-cover bg-gray-900" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url({{ $article->heroImage(2000, 384) }});">
             <div class="container mx-auto">
                 <div class="px-4 lg:px-0 lg:mx-48">
                     <div class="flex items-center justify-between pt-6 mb-28">
@@ -59,7 +59,7 @@
                                 {{ $article->createdAt()->format('j M, Y') }}
                             </span>
 
-                            <span class="text-gray-500 text-sm">
+                            <span class="text-sm">
                                 {{ $article->readTime() }} min read
                             </span>
                         </div>
