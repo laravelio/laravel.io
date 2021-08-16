@@ -103,7 +103,7 @@
                             <div class="flex items-center gap-x-4">
                                 <x-avatar :user="$article->author()" class="hidden w-16 h-16 lg:block" />
                                 
-                                <div class="flex flex-col items-center text-gray-900 text-xl font-semibold">
+                                <div class="flex flex-col items-center text-gray-900 text-xl font-semibold lg:items-start">
                                     {{ $article->author()->username() }} ({{ $article->author()->name() }})
                                     <span class="text-lg text-gray-700 font-medium">
                                         {{ $article->author()->bio() }}
