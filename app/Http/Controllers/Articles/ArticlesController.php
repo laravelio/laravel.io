@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Policies\ArticlePolicy;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class ArticlesController extends Controller
 {
@@ -45,8 +46,16 @@ class ArticlesController extends Controller
             404,
         );
 
+        $trendingArticles = Cache::remember('trendingArticles', now()->addHour(), function () {
+            return Article::published()
+                ->trending()
+                ->limit(3)
+                ->get();
+        });
+
         return view('articles.show', [
             'article' => $article,
+            'trendingArticles' => $trendingArticles,
         ]);
     }
 

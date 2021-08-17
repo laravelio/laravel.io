@@ -3,7 +3,7 @@
     'isFeatured' => false,
 ])
 
-<div class="h-full mb-8 md:mb-0 flex flex-col place-content-between">
+<div class="h-full flex flex-1 flex-col flex-grow place-content-between">
     <div class="break-words">
         @if ($isFeatured)
             <a href="{{ route('articles.show', $article->slug()) }}">
