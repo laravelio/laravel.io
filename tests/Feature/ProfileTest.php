@@ -66,4 +66,20 @@ class ProfileTest extends BrowserKitTestCase
             ->see('Ban user')
             ->dontSee('Delete user');
     }
+
+    /** @test */
+    public function a_logged_in_user_can_see_their_profile_without_a_username()
+    {
+        $this->login(['name' => 'Jane Doe']);
+
+        $this->visit('/user')
+            ->see('Jane Doe');
+    }
+
+    /** @test */
+    public function a_logged_out_user_cannot_see_a_profile_without_a_username()
+    {
+        $this->get('/user')
+            ->assertResponseStatus(404);
+    }
 }

@@ -3,11 +3,11 @@
 namespace Tests\Feature;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Event;
 
 class AuthTest extends BrowserKitTestCase
 {
@@ -29,7 +29,7 @@ class AuthTest extends BrowserKitTestCase
             ->check('rules')
             ->check('terms')
             ->press('Register')
-            ->seePageIs('/dashboard')
+            ->seePageIs('/user')
             ->see('John Doe');
 
         $this->assertLoggedIn();
@@ -84,7 +84,7 @@ class AuthTest extends BrowserKitTestCase
         $this->login();
 
         $this->post('/email/resend')
-            ->assertRedirectedTo('/dashboard')
+            ->assertRedirectedTo('/user')
             ->assertSessionHas('error', 'Your email address is already verified.');
     }
 
@@ -121,7 +121,7 @@ class AuthTest extends BrowserKitTestCase
             ->type('johndoe', 'username')
             ->type('password', 'password')
             ->press('Login')
-            ->seePageIs('/dashboard')
+            ->seePageIs('/user')
             ->see('John Doe');
     }
 
@@ -200,13 +200,13 @@ class AuthTest extends BrowserKitTestCase
             ->type('QFq^$cz#P@MZa5z7', 'password')
             ->type('QFq^$cz#P@MZa5z7', 'password_confirmation')
             ->press('Reset Password')
-            ->seePageIs('/dashboard')
+            ->seePageIs('/user')
             ->visit('/logout')
             ->visit('/login')
             ->type('johndoe', 'username')
             ->type('QFq^$cz#P@MZa5z7', 'password')
             ->press('Login')
-            ->seePageIs('/dashboard');
+            ->seePageIs('/user');
     }
 
     /** @test */

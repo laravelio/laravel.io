@@ -34,6 +34,6 @@ class HomeTest extends BrowserKitTestCase
             ->seeLink('Sign out')
             ->dontSeeLink('Login')
             ->dontSeeLink('Register')
-            ->seeLink('Dashboard', '/dashboard');
+            ->seeLink('Profile', '/user');
     }
 }

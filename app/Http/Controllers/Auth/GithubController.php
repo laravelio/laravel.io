@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Jobs\UpdateProfile;
 use App\Models\User;
 use App\Social\GithubUser;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\RedirectResponse;
+use App\Jobs\UpdateProfile;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\User as SocialiteUser;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class GithubController extends Controller
 {
@@ -56,7 +56,7 @@ class GithubController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('profile');
     }
 
     private function userNotFound(GithubUser $user): RedirectResponse
