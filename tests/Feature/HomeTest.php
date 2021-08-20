@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\Feature\BrowserKitTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 uses(BrowserKitTestCase::class);
 uses(DatabaseMigrations::class);
@@ -26,5 +26,5 @@ test('users can see a logout button when logged in', function () {
         ->seeLink('Sign out')
         ->dontSeeLink('Login')
         ->dontSeeLink('Register')
-        ->seeLink('Dashboard', '/dashboard');
+        ->seeLink('Profile', '/user');
 });

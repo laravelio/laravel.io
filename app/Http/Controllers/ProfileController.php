@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function show(User $user)
+    public function show(User $user, Request $request)
     {
-        $articles = $user->latestArticles(3);
+        abort_unless($user = $user->exists ? $user : $request->user(), 404);
+        // $user = $user->exists ? $user : $request->user();
 
-        return view('users.profile', compact('user', 'articles'));
+        // if (! $user) {
+        //     abort(404);
+        // }
+
+        return view('users.profile', compact('user'));
     }
 }

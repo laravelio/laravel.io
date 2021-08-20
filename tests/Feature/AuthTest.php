@@ -1,12 +1,12 @@
 <?php
 
 use Carbon\Carbon;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Contracts\Auth\PasswordBroker;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Tests\Feature\BrowserKitTestCase;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Contracts\Auth\PasswordBroker;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 uses(BrowserKitTestCase::class);
 uses(DatabaseMigrations::class);

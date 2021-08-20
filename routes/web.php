@@ -1,27 +1,26 @@
 <?php
 
-use App\Http\Controllers\Admin\ArticlesController as AdminArticlesController;
-use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Articles\ArticlesController;
-use App\Http\Controllers\Articles\AuthoredArticles;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\GithubController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\VerificationController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Forum\TagsController;
-use App\Http\Controllers\Forum\ThreadsController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReplyAbleController;
-use App\Http\Controllers\ReplyController;
-use App\Http\Controllers\Settings\PasswordController;
-use App\Http\Controllers\Settings\ProfileController as ProfileSettingsController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Forum\TagsController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\SocialImageController;
 use App\Http\Controllers\SubscriptionController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Forum\ThreadsController;
+use App\Http\Controllers\Articles\AuthoredArticles;
+use App\Http\Controllers\Articles\ArticlesController;
+use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Settings\PasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Admin\ArticlesController as AdminArticlesController;
+use App\Http\Controllers\Settings\ProfileController as ProfileSettingsController;
 
 Route::feeds();
 
@@ -62,8 +61,7 @@ Route::namespace('Auth')->group(function () {
 });
 
 // Users
-Route::get('dashboard', [DashboardController::class, 'show'])->name('dashboard');
-Route::get('user/{username}', [ProfileController::class, 'show'])->name('profile');
+Route::get('user/{username?}', [ProfileController::class, 'show'])->name('profile');
 
 // Settings
 Route::get('settings', [ProfileSettingsController::class, 'edit'])->name('settings.profile');

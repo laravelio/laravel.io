@@ -149,7 +149,7 @@
                         @else
                             <li class="relative p-4 lg:p-0" x-data="{ settings: false }">
                                 <div class="flex items-center justify-center gap-3">
-                                    <a href="{{ route('dashboard') }}" class="hidden flex-shrink-0 rounded-full lg:block">
+                                    <a href="#" class="hidden flex-shrink-0 rounded-full lg:block">
                                         <span class="block relative">
                                             <x-heroicon-o-bell  class="h-5 w-5 hover:fill-current hover:text-lio-500"/>
 
@@ -170,14 +170,8 @@
 
                                 <div x-show="settings" x-cloak class="mt-4 lg:mt-0">
                                     <ul class="flex flex-col items-center lg:absolute lg:items-stretch lg:ml-0 lg:mt-2 lg:w-36 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
-                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                            <a href="{{ route('dashboard') }}" class="inline-block w-full lg:px-4 lg:py-3">
-                                                Dashboard
-                                            </a>
-                                        </li>
-
-                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                            <a href="{{ route('profile', Auth::user()->username()) }}" class="inline-block w-full lg:px-4 lg:py-3">
+                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
+                                            <a href="{{ route('profile') }}">
                                                 Your Profile
                                             </a>
                                         </li>
