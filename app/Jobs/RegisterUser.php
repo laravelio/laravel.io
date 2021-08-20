@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Models\User;
 use App\Exceptions\CannotCreateUser;
 use App\Http\Requests\RegisterRequest;
+use App\Models\User;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 final class RegisterUser
@@ -50,7 +50,7 @@ final class RegisterUser
             $request->emailAddress(),
             $request->username(),
             $request->githubId(),
-            $request->githubUsername()
+            $request->githubUsername(),
         );
     }
 
