@@ -149,7 +149,7 @@
                         @else
                             <li class="relative p-4 lg:p-0" x-data="{ settings: false }">
                                 <div class="flex items-center justify-center gap-3">
-                                    <a href="#" class="hidden flex-shrink-0 rounded-full lg:block">
+                                    <a href="{{ route('notifications') }}" class="hidden flex-shrink-0 rounded-full lg:block">
                                         <span class="block relative">
                                             <x-heroicon-o-bell  class="h-5 w-5 hover:fill-current hover:text-lio-500"/>
 

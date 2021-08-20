@@ -10,6 +10,7 @@ use App\Http\Controllers\Forum\TagsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\SocialImageController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Forum\ThreadsController;
@@ -62,6 +63,9 @@ Route::namespace('Auth')->group(function () {
 
 // Users
 Route::get('user/{username?}', [ProfileController::class, 'show'])->name('profile');
+
+// Notifications
+Route::get('notifications', NotificationController::class)->name('notifications');
 
 // Settings
 Route::get('settings', [ProfileSettingsController::class, 'edit'])->name('settings.profile');
