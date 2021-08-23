@@ -21,6 +21,7 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 
 - **[Devsquad](https://devsquad.com)**
 - **[LaraJobs](https://larajobs.com)**
+- **[Cloudways](https://www.cloudways.com/en/?id=972670)**
 - [Forge](https://forge.laravel.com)
 - [Envoyer](https://envoyer.io)
 - [Fathom](https://usefathom.com)

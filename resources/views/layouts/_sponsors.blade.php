@@ -28,7 +28,7 @@
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://blackfire.io/" logo="{{ asset('images/sponsors/blackfire-io.png') }}" company="Blackfire.io" />
             </div>
-        
+
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://akaunting.com/developers?utm_source=Laravelio&utm_medium=Banner&utm_campaign=Developers" logo="{{ asset('images/sponsors/akaunting.png') }}" company="Akaunting" />
             </div>
@@ -37,8 +37,12 @@
                 <x-sponsor-logo url="https://larajobs.com" logo="{{ asset('images/sponsors/larajobs.svg') }}" company="LaraJobs" />
             </div>
 
-            <div class="col-span-2 flex justify-center lg:col-span-4">
+            <div class="col-span-2 flex justify-center lg:col-span-1 lg:col-start-2">
                 <x-sponsor-logo url="https://ter.li/vj4bxb" logo="{{ asset('images/sponsors/scout-apm.jpg') }}" company="Scout APM" />
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo url="https://www.cloudways.com/en/?id=972670" logo="{{ asset('images/sponsors/cloudways.png') }}" company="Cloudways" />
             </div>
         </div>
 
