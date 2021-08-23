@@ -36,7 +36,7 @@
                     </h3>
                 </a>
 
-                <a href="{{ route('articles.show', $article->slug()) }}" class="hover:underline">
+                <a href="{{ route('articles.show', $article->slug()) }}">
                     <p class="text-gray-800 leading-7 mt-1">
                         {!! $article->excerpt() !!}
                     </p>
