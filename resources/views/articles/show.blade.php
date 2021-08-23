@@ -138,9 +138,9 @@
             </h2>
 
             <div class="flex flex-col gap-y-4 gap-x-6 mt-6 lg:flex-row lg:mt-12">
-                @foreach ($trendingArticles as $article)
+                @foreach ($trendingArticles as $trendingArticle)
                     <x-articles.summary 
-                        :article="$article"
+                        :article="$trendingArticle"
                         is-featured
                     />
                 @endforeach
