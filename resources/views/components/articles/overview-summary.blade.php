@@ -36,11 +36,9 @@
                     </h3>
                 </a>
 
-                <a href="{{ route('articles.show', $article->slug()) }}" class="hover:underline">
-                    <p class="text-gray-800 leading-7 mt-1">
-                        {!! $article->excerpt() !!}
-                    </p>
-                </a>
+                <p class="text-gray-800 leading-7 mt-1">
+                    {!! $article->excerpt() !!}
+                </p>
             </div>
 
             <div class="flex flex-col gap-y-3 lg:flex-row lg:items-center lg:justify-between lg:flex-row-reverse">
