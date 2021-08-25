@@ -27,6 +27,7 @@ class ArticlesController extends Controller
     {
         $pinnedArticles = Article::published()
             ->pinned()
+            ->latest('submitted_at')
             ->take(4)
             ->get();
         $moderators = User::moderators()->get();
