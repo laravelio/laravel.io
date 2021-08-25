@@ -54,10 +54,6 @@ svg .secondary {
     display: none;
 }
 
-nav.dashboard-nav a.active {
-    @apply border-lio-500 text-lio-500;
-}
-
 .nav a {
     @apply border-transparent text-gray-500;
 }

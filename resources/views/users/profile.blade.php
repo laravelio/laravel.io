@@ -3,44 +3,200 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="border-b">
-        <div class="container mx-auto px-4 flex flex-col md:flex-row py-8">
-            <div class="w-full md:w-1/5 mb-8">
-                <div class="flex">
-                    @include('users._user_info')
+    <section class="bg-white">
+        <div 
+            class="bg-gray-900 bg-contain h-60 w-full" 
+            style="background-image: url('{{ asset('images/profile-background.svg') }}')"
+        ></div>
+
+        <div class="container mx-auto">
+            <div class="flex justify-center lg:justify-start">
+                <x-avatar :user="$user" class="-mt-24 w-48 h-48 rounded-full border-8 border-white" />
+            </div>
+
+            <div class="flex flex-col mt-5 p-4 lg:flex-row lg:gap-x-12">
+                <div class="w-full mb-10 lg:w-1/3 lg:mb-0">
+                    <div>
+                        <div class="flex items-center gap-x-4">
+                            <h1 class="text-4xl font-bold">{{ $user->name() }}</h1>
+
+                            @if ($user->isAdmin() || $user->isModerator())
+                                <span class="border border-lio-500 text-lio-500 rounded px-3 py-1">
+                                    {{ $user->isAdmin() ? 'Admin' : 'Moderator' }}
+                                </span>
+                            @endif
+                        </div>
+
+                        <span class="text-gray-600">
+                            Joined {{ $user->createdAt()->format('j M Y') }}
+                        </span>
+                    </div>
+
+                    <div class="mt-4">
+                        <span class="text-gray-900">
+                            {{ $user->bio() }}
+                        </span>
+                    </div>
+
+                    <div class="mt-4 mb-6 flex items-center gap-x-3">
+                        @if ($user->githubUsername())
+                            <a href="https://github.com/{{ $user->githubUsername() }}">
+                                <x-icon-github class="w-6 h-6" />
+                            </a>
+                        @endif
+
+                        @if ($user->hasTwitterAccount())
+                            <a href="https://twitter.com/{{ $user->twitter() }}" class="text-twitter">
+                                <x-icon-twitter class="w-6 h-6" />
+                            </a>
+                        @endif
+                    </div>
+
+                    <div class="flex flex-col gap-y-4">
+                        @if ($user->isLoggedInUser())
+                            <x-buttons.secondary-button class="w-full">
+                                <span class="flex items-center gap-x-2">
+                                    <x-heroicon-o-pencil class="w-5 h-5" />
+                                    Edit profile
+                                </span>
+                            </x-buttons.secondary-button>
+                        @endif
+
+                        @can(App\Policies\UserPolicy::BAN, $user)
+                            @if ($user->isBanned())
+                                <x-buttons.secondary-button class="w-full" @click.prevent="activeModal = 'unbanUser'">
+                                    <span class="flex items-center gap-x-2">
+                                        <x-heroicon-o-check class="w-5 h-5" />
+                                        Unban User
+                                    </span>
+                                </x-buttons.secondary-button>
+                            @else
+                                <x-buttons.danger-button class="w-full" @click.prevent="activeModal = 'banUser'">
+                                    <span class="flex items-center gap-x-2">
+                                        <x-icon-hammer class="w-5 h-5" />
+                                        Ban User
+                                    </span>
+                                </x-buttons.danger-button>
+                            @endif
+                        @endcan
+
+                        @if (Auth::check() && Auth::user()->isAdmin())
+                            @can(App\Policies\UserPolicy::DELETE, $user)
+                                <x-buttons.danger-button class="w-full" @click.prevent="activeModal = 'deleteUser'">
+                                    <span class="flex items-center gap-x-2">
+                                        <x-heroicon-o-trash class="w-5 h-5" />
+                                        Delete User
+                                    </span>
+                                </x-buttons.danger-button>
+                            @endcan
+                        @endif
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-2/3">
+                    <h2 class="text-3xl font-semibold">
+                        Statistics
+                    </h2>
+
+                    <div class="mt-4 grid grid-cols-1 lg:grid-cols-2">
+                        <div class="w-full flex justify-between px-5 py-2.5 bg-gray-100">
+                            <span>Threads</span>
+                            <span class="text-lio-500">
+                                {{ number_format($user->countThreads()) }}
+                            </span>
+                        </div>
+
+                        <div class="w-full flex justify-between px-5 py-2.5 bg-white lg:bg-gray-100">
+                            <span>Replies</span>
+                            <span class="text-lio-500">
+                                {{ number_format($user->countReplies()) }}
+                            </span>
+                        </div>
+
+                        <div class="w-full flex justify-between px-5 py-2.5 bg-gray-100 lg:bg-white">
+                            <span>Solutions</span>
+                            <span class="text-lio-500">
+                                {{ number_format($user->countSolutions()) }}
+                            </span>
+                        </div>
+
+                        <div class="w-full flex justify-between px-5 py-2.5">
+                            <span>Articles</span>
+                            <span class="text-lio-500">
+                                {{ number_format($user->countArticles()) }}
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="w-full md:w-4/5 px-0 md:pl-8">
-                <div class="flex flex-wrap">
-                    @include('users._metrics')
-                </div>
+            @if ($articles->count() > 0)
+                <div class="mt-10 px-4 lg:mt-28">
+                    <h2 class="text-3xl font-semibold">
+                        Articles
+                    </h2>
 
-                <div x-data="{ tab: 'threads' }">
-                    <div class="block mb-4">
-                        <div class="border-b border-gray-200">
-                            <nav class="-mb-px flex dashboard-nav">
-                                <a href="#" @click="tab = 'threads'" :class="{ 'active': tab === 'threads' }"  class="whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">
-                                    Latest Threads
-                                </a>
-                                <a href="#" @click="tab = 'replies'" :class="{ 'active': tab === 'replies' }"  class="whitespace-nowrap ml-8 py-4 px-1 border-b-2 border-transparent font-medium text-sm leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">
-                                    Latest Replies
-                                </a>
-                            </nav>
-                        </div>
+                    <div class="mt-8 flex flex-col gap-y-8 lg:flex-row lg:gap-x-8 lg:mb-16">
+                        @foreach ($articles as $article)
+                            <div class="w-full lg:w-1/3">
+                                <x-articles.user-summary :article="$article" />
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
+
+        <div class="mt-16 lg:mt-32" x-data="{ tab: 'threads' }">
+            <div class="container mx-auto">
+                <nav class="flex items-center justify-between lg:justify-start">
+                    <button @click="tab = 'threads'" :class="{ 'text-lio-500 border-lio-500 border-b-2': tab === 'threads' }"  class="px-4 whitespace-nowrap py-5 font-medium text-lg text-gray-900 hover:text-lio-500 hover:border-lio-500 focus:outline-none focus:text-lio-500 focus:border-lio-500 lg:w-1/3">
+                        Threads posted
+                    </button>
+                    <button @click="tab = 'replies'" :class="{ 'text-lio-500 border-lio-500 border-b-2': tab === 'replies' }"  class="px-4 whitespace-nowrap py-5 font-medium text-lg text-gray-900 hover:text-lio-500 hover:border-lio-500 focus:outline-none focus:text-lio-500 focus:border-lio-500 lg:w-1/3">
+                        Replies posted
+                    </button>
+                </nav>
+            </div>
+
+            <div class="bg-gray-100 py-14 px-4">
+                <div class="container mx-auto">
+                    <div x-show="tab === 'threads'">
+                        @include('users._latest_threads')
                     </div>
 
-                    <div>
-                        <div x-show="tab === 'threads'">
-                            @include('users._latest_threads')
-                        </div>
-
-                        <div x-show="tab === 'replies'">
-                            @include('users._latest_replies')
-                        </div>
+                    <div x-show="tab === 'replies'" x-cloak>
+                        @include('users._latest_replies')
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    @can(App\Policies\UserPolicy::BAN, $user)
+        @if ($user->isBanned())
+            @include('_partials._update_modal', [
+                'identifier' => 'unbanUser',
+                'route' => ['admin.users.unban', $user->username()],
+                'title' => "Unban {$user->username()}",
+                'body' => '<p>Unbanning this user will allow them to login again and post content.</p>',
+            ])
+        @else
+            @include('_partials._update_modal', [
+                'identifier' => 'banUser',
+                'route' => ['admin.users.ban', $user->username()],
+                'title' => "Ban {$user->username()}",
+                'body' => '<p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>',
+            ])
+        @endif
+    @endcan
+
+    @can(App\Policies\UserPolicy::DELETE, $user)
+        @include('_partials._delete_modal', [
+            'identifier' => 'deleteUser',
+            'route' => ['admin.users.delete', $user->username()],
+            'title' => "Delete {$user->username()}",
+            'body' => '<p>Deleting this user will remove their account and any related content like threads & replies. This cannot be undone.</p>',
+        ])
+    @endcan
 @endsection

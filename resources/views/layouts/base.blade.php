@@ -46,6 +46,8 @@
 
 @include('layouts._footer')
 
+@stack('modals')
+
 @livewireScripts
 
 </body>
