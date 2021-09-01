@@ -71,10 +71,10 @@
         </div>
 
         @include('_partials._delete_modal', [
-                'identifier' => "delete-reply-{$reply->id}",
-                'route' => ['replies.delete', $reply->id()],
-                'title' => 'Delete Reply',
-                'body' => '<p>Are you sure you want to delete this reply? This cannot be undone.</p>',
-            ])
-        @endcan
+            'identifier' => "delete-reply-{$reply->id}",
+            'route' => ['replies.delete', $reply->id()],
+            'title' => 'Delete Reply',
+            'body' => '<p>Are you sure you want to delete this reply? This cannot be undone.</p>',
+        ])
+    @endcan
 </div>
