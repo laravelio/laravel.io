@@ -12,56 +12,56 @@ uses(DatabaseMigrations::class);
 it('can find by slug', function () {
     Thread::factory()->create(['slug' => 'foo']);
 
-    $this->assertInstanceOf(Thread::class, Thread::findBySlug('foo'));
+    expect(Thread::findBySlug('foo'))->toBeInstanceOf(Thread::class);
 });
 
 it('can give an excerpt of its body', function () {
     $thread = Thread::factory()->make(['body' => 'This is a pretty long text.']);
 
-    $this->assertEquals('This is...', $thread->excerpt(7));
+    expect($thread->excerpt(7))->toEqual('This is...');
 });
 
 test('html in excerpts is html encoded', function () {
     $thread = Thread::factory()->make(['body' => '<p>Thread body</p>']);
 
-    $this->assertEquals("&lt;p&gt;Thread body&lt;/p&gt;\n", $thread->excerpt());
+    expect($thread->excerpt())->toEqual("&lt;p&gt;Thread body&lt;/p&gt;\n");
 });
 
 test('its conversation is old when the oldest reply was six months ago', function () {
     $thread = Thread::factory()->create();
     $thread->repliesRelation()->save(Reply::factory()->make(['created_at' => now()->subMonths(7)]));
 
-    $this->assertTrue($thread->isConversationOld());
+    expect($thread->isConversationOld())->toBeTrue();
 
     $thread = Thread::factory()->create();
     $thread->repliesRelation()->save(Reply::factory()->make());
 
-    $this->assertFalse($thread->isConversationOld());
+    expect($thread->isConversationOld())->toBeFalse();
 });
 
 test('its conversation is old when there are no replies but the creation date was six months ago', function () {
     $thread = Thread::factory()->create(['created_at' => now()->subMonths(7)]);
 
-    $this->assertTrue($thread->isConversationOld());
+    expect($thread->isConversationOld())->toBeTrue();
 
     $thread = Thread::factory()->create();
 
-    $this->assertFalse($thread->isConversationOld());
+    expect($thread->isConversationOld())->toBeFalse();
 });
 
 test('we can mark and unmark a reply as the solution', function () {
     $thread = Thread::factory()->create();
     $reply = Reply::factory()->create(['replyable_id' => $thread->id()]);
 
-    $this->assertFalse($thread->isSolutionReply($reply));
+    expect($thread->isSolutionReply($reply))->toBeFalse();
 
     $thread->markSolution($reply);
 
-    $this->assertTrue($thread->isSolutionReply($reply));
+    expect($thread->isSolutionReply($reply))->toBeTrue();
 
     $thread->unmarkSolution();
 
-    $this->assertFalse($thread->isSolutionReply($reply));
+    expect($thread->isSolutionReply($reply))->toBeFalse();
 });
 
 it('can retrieve the latest threads in a correct order', function () {
@@ -82,8 +82,8 @@ it('can retrieve only resolved threads', function () {
 
     $threads = Thread::feedQuery()->resolved()->get();
 
-    $this->assertCount(1, $threads);
-    $this->assertTrue($resolvedThread->is($threads->first()));
+    expect($threads)->toHaveCount(1);
+    expect($resolvedThread->is($threads->first()))->toBeTrue();
 });
 
 it('can retrieve only active threads', function () {
@@ -92,28 +92,28 @@ it('can retrieve only active threads', function () {
 
     $threads = Thread::feedQuery()->active()->get();
 
-    $this->assertCount(1, $threads);
-    $this->assertTrue($activeThread->is($threads->first()));
+    expect($threads)->toHaveCount(1);
+    expect($activeThread->is($threads->first()))->toBeTrue();
 });
 
 it('generates a slug when valid url characters provided', function () {
     $thread = Thread::factory()->make(['slug' => 'Help with eloquent']);
 
-    $this->assertEquals('help-with-eloquent', $thread->slug());
+    expect($thread->slug())->toEqual('help-with-eloquent');
 });
 
 it('generates a unique slug when valid url characters provided', function () {
     $threadOne = Thread::factory()->create(['slug' => 'Help with eloquent']);
     $threadTwo = Thread::factory()->create(['slug' => 'Help with eloquent']);
 
-    $this->assertEquals('help-with-eloquent-1', $threadTwo->slug());
+    expect($threadTwo->slug())->toEqual('help-with-eloquent-1');
 });
 
 it('generates a slug when invalid url characters provided', function () {
     $thread = Thread::factory()->make(['slug' => '한글 테스트']);
 
     // When providing a slug with invalid url characters, a random 5 character string is returned.
-    $this->assertMatchesRegularExpression('/\w{5}/', $thread->slug());
+    expect($thread->slug())->toMatch('/\w{5}/');
 });
 
 // Helpers

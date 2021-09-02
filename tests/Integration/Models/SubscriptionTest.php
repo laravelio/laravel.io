@@ -12,5 +12,5 @@ it('can get a subscription by its uuid', function () {
 
     $subscription = Subscription::findByUuidOrFail($uuid);
 
-    $this->assertEquals($uuid, $subscription->uuid());
+    expect($subscription->uuid())->toEqual($uuid);
 });

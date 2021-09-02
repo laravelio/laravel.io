@@ -13,7 +13,7 @@ it('passes when the password is correct', function () {
 
     $result = $rule->passes('password', 'foo');
 
-    $this->assertTrue($result);
+    expect($result)->toBeTrue();
 });
 
 it('fails when the password is incorrect', function () {
@@ -22,5 +22,5 @@ it('fails when the password is incorrect', function () {
 
     $result = $rule->passes('password', 'foo');
 
-    $this->assertFalse($result);
+    expect($result)->toBeFalse();
 });

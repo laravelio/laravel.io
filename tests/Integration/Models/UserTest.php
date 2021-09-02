@@ -12,26 +12,26 @@ uses(DatabaseMigrations::class);
 it('can find by username', function () {
     $this->createUser(['username' => 'johndoe']);
 
-    $this->assertInstanceOf(User::class, User::findByUsername('johndoe'));
+    expect(User::findByUsername('johndoe'))->toBeInstanceOf(User::class);
 });
 
 it('can find by email address', function () {
     $this->createUser(['email' => 'john@example.com']);
 
-    $this->assertInstanceOf(User::class, User::findByEmailAddress('john@example.com'));
+    expect(User::findByEmailAddress('john@example.com'))->toBeInstanceOf(User::class);
 });
 
 it('can return the amount of solutions that were given', function () {
     $user = User::factory()->create();
     createTwoSolutionReplies($user);
 
-    $this->assertEquals(2, $user->countSolutions());
+    expect($user->countSolutions())->toEqual(2);
 });
 
 it('can determine if a given user is the logged in user', function () {
     $user = $this->login();
 
-    $this->assertTrue($user->isLoggedInUser());
+    expect($user->isLoggedInUser())->toBeTrue();
 });
 
 it('can determine if a given user is not the logged in user', function () {
@@ -41,7 +41,7 @@ it('can determine if a given user is not the logged in user', function () {
         'email' => 'jane@example.com',
     ]);
 
-    $this->assertFalse($user->isLoggedInUser());
+    expect($user->isLoggedInUser())->toBeFalse();
 });
 
 // Helpers

@@ -14,9 +14,9 @@ test('we can unlike an article', function () {
     $article = Article::factory()->create();
 
     $article->likedBy($user);
-    $this->assertTrue($article->fresh()->isLikedBy($user));
+    expect($article->fresh()->isLikedBy($user))->toBeTrue();
 
     $this->dispatch(new UnlikeArticle($article, $user));
 
-    $this->assertFalse($article->fresh()->isLikedBy($user));
+    expect($article->fresh()->isLikedBy($user))->toBeFalse();
 });

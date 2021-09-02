@@ -14,9 +14,9 @@ test('we can unlike a reply', function () {
     $reply = Reply::factory()->create();
 
     $reply->likedBy($user);
-    $this->assertTrue($reply->fresh()->isLikedBy($user));
+    expect($reply->fresh()->isLikedBy($user))->toBeTrue();
 
     $this->dispatch(new UnlikeReply($reply, $user));
 
-    $this->assertFalse($reply->fresh()->isLikedBy($user));
+    expect($reply->fresh()->isLikedBy($user))->toBeFalse();
 });

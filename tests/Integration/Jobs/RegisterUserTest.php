@@ -13,7 +13,7 @@ test('we can create a user', function () {
         new RegisterUser('John Doe', 'john@example.com', 'johndoe', 'password', '123', 'johndoe'),
     );
 
-    $this->assertEquals('John Doe', $user->name());
+    expect($user->name())->toEqual('John Doe');
 });
 
 test('we cannot create a user with the same email address', function () {

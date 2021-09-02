@@ -12,13 +12,13 @@ test('we can like and unlike reply', function () {
 
     $reply = Reply::factory()->create();
 
-    $this->assertFalse($reply->isLikedBy($user));
+    expect($reply->isLikedBy($user))->toBeFalse();
 
     $reply->likedBy($user);
 
-    $this->assertTrue($reply->isLikedBy($user));
+    expect($reply->isLikedBy($user))->toBeTrue();
 
     $reply->dislikedBy($user);
 
-    $this->assertFalse($reply->isLikedBy($user));
+    expect($reply->isLikedBy($user))->toBeFalse();
 });

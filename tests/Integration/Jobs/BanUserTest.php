@@ -12,5 +12,5 @@ it('can ban a user', function () {
 
     $bannedUser = $this->dispatch(new BanUser($user));
 
-    $this->assertTrue($bannedUser->isBanned());
+    expect($bannedUser->isBanned())->toBeTrue();
 });

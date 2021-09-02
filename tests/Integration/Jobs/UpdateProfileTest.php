@@ -16,8 +16,8 @@ test('we can update a user profile', function () {
 
     $updatedUser = $this->dispatch(new UpdateProfile($user, ['bio' => 'my bio', 'name' => 'John Doe Junior']));
 
-    $this->assertEquals('my bio', $updatedUser->bio());
-    $this->assertEquals('John Doe Junior', $updatedUser->name());
+    expect($updatedUser->bio())->toEqual('my bio');
+    expect($updatedUser->name())->toEqual('John Doe Junior');
     $this->assertDatabaseMissing('users', ['id' => $user->id, 'email_verified_at' => null]);
 
     Event::assertNotDispatched(EmailAddressWasChanged::class);

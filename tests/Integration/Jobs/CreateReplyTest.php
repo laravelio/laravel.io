@@ -17,5 +17,5 @@ test('we can create a reply', function () {
 
     $reply = $this->dispatch(new CreateReply('Foo', $user, $thread));
 
-    $this->assertEquals('Foo', $reply->body());
+    expect($reply->body())->toEqual('Foo');
 });

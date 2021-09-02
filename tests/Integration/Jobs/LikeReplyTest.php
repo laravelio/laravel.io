@@ -16,7 +16,7 @@ test('we can like a reply', function () {
 
     $this->dispatch(new LikeReply($reply, $user));
 
-    $this->assertTrue($reply->fresh()->isLikedBy($user));
+    expect($reply->fresh()->isLikedBy($user))->toBeTrue();
 });
 
 test('we cannot like a reply twice', function () {
@@ -25,7 +25,7 @@ test('we cannot like a reply twice', function () {
 
     $this->dispatch(new LikeReply($reply, $user));
 
-    $this->assertTrue($reply->fresh()->isLikedBy($user));
+    expect($reply->fresh()->isLikedBy($user))->toBeTrue();
 
     $this->expectException(CannotLikeItem::class);
 

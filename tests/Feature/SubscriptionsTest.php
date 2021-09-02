@@ -33,7 +33,7 @@ test('users are automatically subscribed to a thread after creating it', functio
 
     $thread = $this->dispatch(new CreateThread($this->faker->sentence, $this->faker->text, $user));
 
-    $this->assertTrue($thread->hasSubscriber($user));
+    expect($thread->hasSubscriber($user))->toBeTrue();
 });
 
 test('thread authors do not receive a notification for a thread they create', function () {
@@ -64,7 +64,7 @@ test('users are automatically subscribed to a thread after replying to it', func
 
     $this->dispatch(new CreateReply($this->faker->text, $user, $thread));
 
-    $this->assertTrue($thread->hasSubscriber($user));
+    expect($thread->hasSubscriber($user))->toBeTrue();
 });
 
 test('users can manually subscribe to threads', function () {

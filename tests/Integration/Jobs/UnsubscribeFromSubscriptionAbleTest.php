@@ -14,9 +14,9 @@ it('can unsubscribe a user from a thread', function () {
     $thread = Thread::factory()->create();
     Subscription::factory()->create(['user_id' => $user->id(), 'subscriptionable_id' => $thread->id()]);
 
-    $this->assertTrue($thread->hasSubscriber($user));
+    expect($thread->hasSubscriber($user))->toBeTrue();
 
     $this->dispatch(new UnsubscribeFromSubscriptionAble($user, $thread));
 
-    $this->assertFalse($thread->hasSubscriber($user));
+    expect($thread->hasSubscriber($user))->toBeFalse();
 });

@@ -186,7 +186,7 @@ test('guests cannot approve articles', function () {
     $this->put("/admin/articles/{$article->slug()}/approve")
         ->assertRedirectedTo('/login');
 
-    $this->assertNull($article->fresh()->approvedAt());
+    expect($article->fresh()->approvedAt())->toBeNull();
 });
 
 test('admins can disapprove articles', function () {
@@ -196,7 +196,7 @@ test('admins can disapprove articles', function () {
 
     $this->put("/admin/articles/{$article->slug()}/disapprove");
 
-    $this->assertNull($article->fresh()->approvedAt());
+    expect($article->fresh()->approvedAt())->toBeNull();
 });
 
 test('moderators can disapprove articles', function () {
@@ -206,7 +206,7 @@ test('moderators can disapprove articles', function () {
 
     $this->put("/admin/articles/{$article->slug()}/disapprove");
 
-    $this->assertNull($article->fresh()->approvedAt());
+    expect($article->fresh()->approvedAt())->toBeNull();
 });
 
 test('users cannot disapprove articles', function () {
@@ -234,7 +234,7 @@ test('admins can pin articles', function () {
 
     $this->put("/admin/articles/{$article->slug()}/pinned");
 
-    $this->assertTrue($article->fresh()->isPinned());
+    expect($article->fresh()->isPinned())->toBeTrue();
 });
 
 test('moderators can pin articles', function () {
@@ -244,7 +244,7 @@ test('moderators can pin articles', function () {
 
     $this->put("/admin/articles/{$article->slug()}/pinned");
 
-    $this->assertTrue($article->fresh()->isPinned());
+    expect($article->fresh()->isPinned())->toBeTrue();
 });
 
 test('users cannot pin articles', function () {
@@ -254,7 +254,7 @@ test('users cannot pin articles', function () {
 
     $this->put("/admin/articles/{$article->slug()}/pinned");
 
-    $this->assertFalse($article->fresh()->isPinned());
+    expect($article->fresh()->isPinned())->toBeFalse();
 });
 
 test('guests cannot pin articles', function () {
@@ -262,7 +262,7 @@ test('guests cannot pin articles', function () {
 
     $this->put("/admin/articles/{$article->slug()}/pinned");
 
-    $this->assertFalse($article->fresh()->isPinned());
+    expect($article->fresh()->isPinned())->toBeFalse();
 });
 
 test('admins can unpin articles', function () {
@@ -276,7 +276,7 @@ test('admins can unpin articles', function () {
 
     $this->put("/admin/articles/{$article->slug()}/pinned");
 
-    $this->assertFalse($article->fresh()->isPinned());
+    expect($article->fresh()->isPinned())->toBeFalse();
 });
 
 test('moderators can unpin articles', function () {
@@ -290,7 +290,7 @@ test('moderators can unpin articles', function () {
 
     $this->put("/admin/articles/{$article->slug()}/pinned");
 
-    $this->assertFalse($article->fresh()->isPinned());
+    expect($article->fresh()->isPinned())->toBeFalse();
 });
 
 test('users cannot unpin articles', function () {
@@ -304,7 +304,7 @@ test('users cannot unpin articles', function () {
 
     $this->put("/admin/articles/{$article->slug()}/pinned");
 
-    $this->assertTrue($article->fresh()->isPinned());
+    expect($article->fresh()->isPinned())->toBeTrue();
 });
 
 test('guests cannot unpin articles', function () {
@@ -316,7 +316,7 @@ test('guests cannot unpin articles', function () {
 
     $this->put("/admin/articles/{$article->slug()}/pinned");
 
-    $this->assertTrue($article->fresh()->isPinned());
+    expect($article->fresh()->isPinned())->toBeTrue();
 });
 
 // Helpers

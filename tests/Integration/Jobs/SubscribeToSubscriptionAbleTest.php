@@ -12,9 +12,9 @@ it('can subscribe a user to a thread', function () {
     $user = $this->createUser();
     $thread = Thread::factory()->create();
 
-    $this->assertFalse($thread->hasSubscriber($user));
+    expect($thread->hasSubscriber($user))->toBeFalse();
 
     $this->dispatch(new SubscribeToSubscriptionAble($user, $thread));
 
-    $this->assertTrue($thread->hasSubscriber($user));
+    expect($thread->hasSubscriber($user))->toBeTrue();
 });

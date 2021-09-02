@@ -14,11 +14,11 @@ test('we can create a draft article', function () {
         'original_url' => 'https://laravel.io',
     ]));
 
-    $this->assertEquals('Title', $article->title());
-    $this->assertEquals('Body', $article->body());
-    $this->assertEquals('https://laravel.io', $article->canonicalUrl());
-    $this->assertNull($article->submittedAt());
-    $this->assertTrue($article->isNotPublished());
+    expect($article->title())->toEqual('Title');
+    expect($article->body())->toEqual('Body');
+    expect($article->canonicalUrl())->toEqual('https://laravel.io');
+    expect($article->submittedAt())->toBeNull();
+    expect($article->isNotPublished())->toBeTrue();
 });
 
 test('we can create an article and submit it for approval', function () {

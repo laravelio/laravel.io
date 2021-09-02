@@ -183,10 +183,10 @@ test('unverified users cannot create threads', function () {
 // Helpers
 function assertLoggedIn(): void
 {
-    $this->assertTrue(Auth::check());
+    expect(Auth::check())->toBeTrue();
 }
 
 function assertLoggedOut(): void
 {
-    $this->assertFalse(Auth::check());
+    expect(Auth::check())->toBeFalse();
 }

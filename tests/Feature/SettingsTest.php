@@ -124,11 +124,11 @@ test('twitter is optional', function () {
         ->seePageIs('/settings')
         ->dontSee('freektwitter');
 
-    $this->assertEmpty($user->fresh()->twitter());
+    expect($user->fresh()->twitter())->toBeEmpty();
 });
 
 // Helpers
 function assertPasswordWasHashedAndSaved(): void
 {
-    $this->assertTrue($this->app['hash']->check('QFq^$cz#P@MZa5z7', Auth::user()->getAuthPassword()));
+    expect($this->app['hash']->check('QFq^$cz#P@MZa5z7', Auth::user()->getAuthPassword()))->toBeTrue();
 }

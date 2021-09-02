@@ -12,5 +12,5 @@ test('we can create a thread', function () {
 
     $thread = $this->dispatch(new CreateThread('Subject', 'Body', $user));
 
-    $this->assertEquals('Subject', $thread->subject());
+    expect($thread->subject())->toEqual('Subject');
 });

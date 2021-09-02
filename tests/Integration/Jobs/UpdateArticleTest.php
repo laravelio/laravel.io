@@ -14,8 +14,8 @@ test('we can update an article', function () {
 
     $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', false));
 
-    $this->assertEquals('Title', $article->title());
-    $this->assertEquals('Body', $article->body());
+    expect($article->title())->toEqual('Title');
+    expect($article->body())->toEqual('Body');
 });
 
 test('we can submit an existing article for approval', function () {
@@ -33,6 +33,6 @@ test('we cannot update the submission time when saving changes', function () {
 
     $article = $this->dispatch(new UpdateArticle($article, 'Title', 'Body', false));
 
-    $this->assertSame('2020-06-20 00:00:00', $article->submittedAt()->format('Y-m-d H:i:s'));
-    $this->assertTrue($article->isNotPublished());
+    expect($article->submittedAt()->format('Y-m-d H:i:s'))->toBe('2020-06-20 00:00:00');
+    expect($article->isNotPublished())->toBeTrue();
 });

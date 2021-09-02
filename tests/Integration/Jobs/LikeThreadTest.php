@@ -16,7 +16,7 @@ test('we can like a thread', function () {
 
     $this->dispatch(new LikeThread($thread, $user));
 
-    $this->assertTrue($thread->fresh()->isLikedBy($user));
+    expect($thread->fresh()->isLikedBy($user))->toBeTrue();
 });
 
 test('we cannot like a thread twice', function () {
@@ -25,7 +25,7 @@ test('we cannot like a thread twice', function () {
 
     $this->dispatch(new LikeThread($thread, $user));
 
-    $this->assertTrue($thread->fresh()->isLikedBy($user));
+    expect($thread->fresh()->isLikedBy($user))->toBeTrue();
 
     $this->expectException(CannotLikeItem::class);
 

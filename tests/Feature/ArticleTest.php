@@ -226,7 +226,7 @@ test('an already submitted article should not have timestamp updated on update',
         'submitted' => true,
     ]);
 
-    $this->assertSame('2020-06-19 00:00:00', $article->fresh()->submittedAt()->format('Y-m-d H:i:s'));
+    expect($article->fresh()->submittedAt()->format('Y-m-d H:i:s'))->toBe('2020-06-19 00:00:00');
 });
 
 test('users can delete their own articles', function () {

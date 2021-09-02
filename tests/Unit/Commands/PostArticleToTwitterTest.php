@@ -37,7 +37,7 @@ test('published articles can be shared on twitter', function () {
         },
     );
 
-    $this->assertTrue($article->fresh()->isShared());
+    expect($article->fresh()->isShared())->toBeTrue();
 });
 
 test('articles are shared with twitter handle', function () {

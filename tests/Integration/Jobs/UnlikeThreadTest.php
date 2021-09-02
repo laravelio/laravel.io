@@ -14,9 +14,9 @@ test('we can unlike a thread', function () {
     $thread = Thread::factory()->create();
 
     $thread->likedBy($user);
-    $this->assertTrue($thread->fresh()->isLikedBy($user));
+    expect($thread->fresh()->isLikedBy($user))->toBeTrue();
 
     $this->dispatch(new UnlikeThread($thread, $user));
 
-    $this->assertFalse($thread->fresh()->isLikedBy($user));
+    expect($thread->fresh()->isLikedBy($user))->toBeFalse();
 });

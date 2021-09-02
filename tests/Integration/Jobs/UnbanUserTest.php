@@ -13,5 +13,5 @@ it('can unban a user', function () {
 
     $unbannedUser = $this->dispatch(new UnbanUser($user));
 
-    $this->assertFalse($unbannedUser->isBanned());
+    expect($unbannedUser->isBanned())->toBeFalse();
 });

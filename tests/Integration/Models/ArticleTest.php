@@ -21,9 +21,9 @@ test('we can get most popular articles', function () {
 
     $popularArticles = Article::popular()->get();
 
-    $this->assertEquals($articles[1]->title, $popularArticles[0]->title);
-    $this->assertEquals($articles[0]->title, $popularArticles[1]->title);
-    $this->assertEquals($articles[2]->title, $popularArticles[2]->title);
+    expect($popularArticles[0]->title)->toEqual($articles[1]->title);
+    expect($popularArticles[1]->title)->toEqual($articles[0]->title);
+    expect($popularArticles[2]->title)->toEqual($articles[2]->title);
 });
 
 test('we can get trending articles', function () {
@@ -46,9 +46,9 @@ test('we can get trending articles', function () {
 
     // The first article has more likes, but outside the trending window
     // so should be returned last.
-    $this->assertEquals($articles[1]->title, $trendingArticles[0]->title);
-    $this->assertEquals($articles[2]->title, $trendingArticles[1]->title);
-    $this->assertEquals($articles[0]->title, $trendingArticles[2]->title);
+    expect($trendingArticles[0]->title)->toEqual($articles[1]->title);
+    expect($trendingArticles[1]->title)->toEqual($articles[2]->title);
+    expect($trendingArticles[2]->title)->toEqual($articles[0]->title);
 });
 
 test('pinned articles are returned first', function () {
@@ -68,7 +68,7 @@ test('pinned articles are returned first', function () {
 
     $recentArticles = Article::recent()->get();
 
-    $this->assertEquals($articleThree->title, $recentArticles[0]->title);
-    $this->assertEquals($articleOne->title, $recentArticles[1]->title);
-    $this->assertEquals($articleTwo->title, $recentArticles[2]->title);
+    expect($recentArticles[0]->title)->toEqual($articleThree->title);
+    expect($recentArticles[1]->title)->toEqual($articleOne->title);
+    expect($recentArticles[2]->title)->toEqual($articleTwo->title);
 });
