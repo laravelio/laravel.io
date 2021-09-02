@@ -1,23 +1,17 @@
 <?php
 
-namespace Tests\Integration\Jobs;
-
 use App\Jobs\DeleteArticle;
 use App\Models\Article;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class DeleteArticleTest extends TestCase
-{
-    use DatabaseMigrations;
+uses(TestCase::class);
+uses(DatabaseMigrations::class);
 
-    /** @test */
-    public function an_article_can_be_deleted()
-    {
-        $article = Article::factory()->create();
+test('an article can be deleted', function () {
+    $article = Article::factory()->create();
 
-        $this->dispatch(new DeleteArticle($article));
+    $this->dispatch(new DeleteArticle($article));
 
-        $this->assertDatabaseMissing('articles', ['id' => $article->id()]);
-    }
-}
+    $this->assertDatabaseMissing('articles', ['id' => $article->id()]);
+});
