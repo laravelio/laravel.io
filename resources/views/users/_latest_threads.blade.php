@@ -2,8 +2,6 @@
     @forelse ($user->latestThreads() as $thread)
         <x-threads.overview-summary :thread="$thread" />
     @empty
-        <p class="text-gray-600 text-base">
-            {{ $user->username() }} has not posted any threads yet
-        </p>
+        <x-empty-state title="{{ $user->username() }} has not posted any threads yet" icon="heroicon-o-document-text" />
     @endforelse
 </div>
