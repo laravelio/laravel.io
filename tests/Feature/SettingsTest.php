@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
@@ -131,5 +132,5 @@ test('twitter is optional', function () {
 // Helpers
 function assertPasswordWasHashedAndSaved(): void
 {
-    expect($this->app['hash']->check('QFq^$cz#P@MZa5z7', Auth::user()->getAuthPassword()))->toBeTrue();
+    expect(Hash::check('QFq^$cz#P@MZa5z7', Auth::user()->getAuthPassword()))->toBeTrue();
 }
