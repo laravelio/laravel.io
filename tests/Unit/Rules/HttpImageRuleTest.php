@@ -2,7 +2,6 @@
 
 use App\Rules\HttpImageRule;
 
-
 it('passes when no http links are detected', function () {
     $this->assertTrue(
         (new HttpImageRule())->passes('body', 'some text ![](https://link.com)'),

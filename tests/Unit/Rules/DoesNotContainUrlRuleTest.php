@@ -2,7 +2,6 @@
 
 use App\Rules\DoesNotContainUrlRule;
 
-
 it('detects a url in a string', function () {
     $this->assertFalse(
         (new DoesNotContainUrlRule())->passes('foo', 'This is a string http://example.com with an url in it.'),
