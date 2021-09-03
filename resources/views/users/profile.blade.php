@@ -54,7 +54,7 @@
 
                     <div class="flex flex-col gap-y-4">
                         @if ($user->isLoggedInUser())
-                            <x-buttons.secondary-button class="w-full">
+                            <x-buttons.secondary-button href="{{ route('settings.profile') }}" class="w-full">
                                 <span class="flex items-center gap-x-2">
                                     <x-heroicon-o-pencil class="w-5 h-5" />
                                     Edit profile
