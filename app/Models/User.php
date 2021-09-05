@@ -25,7 +25,7 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     const LABELS = [
         self::MODERATOR => 'moderator',
-        self::ADMIN => 'moderator'
+        self::ADMIN => 'moderator',
     ];
 
     /**
