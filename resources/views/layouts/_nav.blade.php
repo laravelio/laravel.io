@@ -85,7 +85,7 @@
                                             </li>
                                             
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                                <a href="https://larachat.co">Twitter</a>
+                                                <a href="https://twitter.com/laravelio">Twitter</a>
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
