@@ -25,28 +25,28 @@
 
                     <div class="mt-2 border-b lg:block lg:mt-0 lg:border-0" x-cloak :class="{ 'block': nav, 'hidden': !nav }">
                         <ul class="flex flex-col px-4 mb-2 gap-y-2 lg:flex-row lg:mb-0 lg:gap-6">
-                            <li class="rounded py-1 px-2 lg:mb-0 lg:hover:bg-gray-100 @if(is_active(['forum', 'threads*', 'thread'])) bg-gray-100 @endif">
-                                <a href="{{ route('forum') }}">
+                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100 @if(is_active(['forum', 'threads*', 'thread'])) bg-gray-100 @endif">
+                                <a href="{{ route('forum') }}" class="inline-block w-full px-2 py-1">
                                     Forum
                                 </a>
                             </li>
 
-                            <li class="rounded py-1 px-2 lg:mb-0 lg:hover:bg-gray-100 @if(is_active(['articles', 'articles*'])) bg-gray-100 @endif">
-                                <a href="{{ route('articles') }}" >
+                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100 @if(is_active(['articles', 'articles*'])) bg-gray-100 @endif">
+                                <a href="{{ route('articles') }}" class="inline-block w-full px-2 py-1">
                                     Articles
                                 </a>
                             </li>
 
-                            <li class="rounded py-1 px-2 lg:mb-0 lg:hover:bg-gray-100">
-                                <a href="https://paste.laravel.io">
+                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100">
+                                <a href="https://paste.laravel.io" class="inline-block w-full px-2 py-1">
                                     Pastebin
                                 </a>
                             </li>
 
-                            <li class="rounded py-1 px-2 lg:mb-0 lg:hover:bg-gray-100">
+                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100">
                                 <div @click.away="chat = false" class="relative">
                                     <div>
-                                        <button @click="chat = !chat" class="flex items-center lg:mb-0">
+                                        <button @click="chat = !chat" class="flex items-center lg:mb-0 py-1 px-2">
                                             Chat
                                             <x-heroicon-s-chevron-down x-show="!chat" class="w-4 h-4 ml-1"/>
                                             <x-heroicon-s-chevron-left x-cloak x-show="chat" class="w-4 h-4 ml-1"/>
@@ -54,25 +54,25 @@
                                     </div>
                                     <div x-show="chat" x-cloak>
                                         <ul class="ml-4 lg:absolute lg:flex lg:flex-col lg:ml-0 lg:mt-2 lg:w-36 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
-                                            <li class="my-4 lg:hover:bg-gray-100 lg:my-0 lg:px-4 lg:py-3">
-                                                <a href="https://discord.gg/KxwQuKb">Discord</a>
+                                            <li class="my-4 lg:hover:bg-gray-100 lg:my-0">
+                                                <a href="https://discord.gg/KxwQuKb" class="inline-block w-full lg:px-4 lg:py-3">Discord</a>
                                             </li>
 
-                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                                <a href="https://larachat.co">Larachat</a>
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://larachat.co" class="inline-block w-full lg:px-4 lg:py-3">Larachat</a>
                                             </li>
 
-                                            <li class="hover:bg-gray-100 lg:px-4 lg:py-3">
-                                                <a href="https://web.libera.chat/?nick=laravelnewbie&channels=#laravel">IRC</a>
+                                            <li class="hover:bg-gray-100">
+                                                <a href="https://web.libera.chat/?nick=laravelnewbie&channels=#laravel" class="inline-block w-full lg:px-4 lg:py-3">IRC</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </li>
 
-                            <li class="rounded py-1 px-2 lg:mb-0 lg:hover:bg-gray-100">
+                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100">
                                 <div @click.away="community = false" class="relative" x-data="{ community: false }">
-                                    <button @click="community = !community" class="flex items-center lg:mb-0">
+                                    <button @click="community = !community" class="flex items-center lg:mb-0 py-1 px-2">
                                         Community
                                         <x-heroicon-s-chevron-down x-show="!community" class="w-4 h-4 ml-1"/>
                                         <x-heroicon-s-chevron-left x-cloak x-show="community" class="w-4 h-4 ml-1"/>
@@ -80,36 +80,36 @@
 
                                     <div x-show="community" x-cloak>
                                         <ul class="ml-4 lg:absolute lg:flex lg:flex-col lg:ml-0 lg:mt-2 lg:w-36 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
-                                            <li class="my-4 lg:hover:bg-gray-100 lg:my-0 lg:px-4 lg:py-3">
-                                                <a href="https://github.com/laravelio">Github</a>
+                                            <li class="my-4 lg:hover:bg-gray-100 lg:my-0">
+                                                <a href="https://github.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">Github</a>
                                             </li>
                                             
-                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                                <a href="https://twitter.com/laravelio">Twitter</a>
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://twitter.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">Twitter</a>
                                             </li>
 
-                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                                <a href="https://laravel.com">Laravel</a>
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://laravel.com" class="inline-block w-full lg:px-4 lg:py-3">Laravel</a>
                                             </li>
 
-                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                                <a href="https://laracasts.com">Laracasts</a>
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://laracasts.com" class="inline-block w-full lg:px-4 lg:py-3">Laracasts</a>
                                             </li>
                                             
-                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                                <a href="https://laravel-news.com">Laravel News</a>
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://laravel-news.com" class="inline-block w-full lg:px-4 lg:py-3">Laravel News</a>
                                             </li>
 
-                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                                <a href="https://laravelevents.com">Laravel Events</a>
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://laravelevents.com" class="inline-block w-full lg:px-4 lg:py-3">Laravel Events</a>
                                             </li>
                                             
-                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                                <a href="https://www.laravelpodcast.com">Podcast</a>
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                                <a href="https://www.laravelpodcast.com" class="inline-block w-full lg:px-4 lg:py-3">Podcast</a>
                                             </li>
                                             
-                                            <li class="hover:bg-gray-100 lg:px-4 lg:py-3">
-                                                <a href="https://ecosystem.laravel.io">Ecosystem</a>
+                                            <li class="hover:bg-gray-100">
+                                                <a href="https://ecosystem.laravel.io" class="inline-block w-full lg:px-4 lg:py-3">Ecosystem</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -170,40 +170,40 @@
 
                                 <div x-show="settings" x-cloak class="mt-4 lg:mt-0">
                                     <ul class="flex flex-col items-center lg:absolute lg:items-stretch lg:ml-0 lg:mt-2 lg:w-36 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
-                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                            <a href="{{ route('dashboard') }}">
+                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                            <a href="{{ route('dashboard') }}" class="inline-block w-full lg:px-4 lg:py-3">
                                                 Dashboard
                                             </a>
                                         </li>
 
-                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                            <a href="{{ route('profile', Auth::user()->username()) }}">
+                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                            <a href="{{ route('profile', Auth::user()->username()) }}" class="inline-block w-full lg:px-4 lg:py-3">
                                                 Your Profile
                                             </a>
                                         </li>
 
-                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                            <a href="{{ route('user.articles') }}">
+                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                            <a href="{{ route('user.articles') }}" class="inline-block w-full lg:px-4 lg:py-3">
                                                 Your Articles
                                             </a>
                                         </li>
 
-                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                            <a href="{{ route('settings.profile') }}">
+                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                            <a href="{{ route('settings.profile') }}" class="inline-block w-full lg:px-4 lg:py-3">
                                                 Settings
                                             </a>
                                         </li>
 
                                         @can(App\Policies\UserPolicy::ADMIN, App\Models\User::class)
-                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3 lg:border-t lg:border-b">
-                                                <a href="{{ route('admin') }}">
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:border-t lg:border-b">
+                                                <a href="{{ route('admin') }}" class="inline-block w-full lg:px-4 lg:py-3">
                                                     Admin
                                                 </a>
                                             </li>
                                         @endcan
 
-                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                            <a href="{{ route('logout') }}">
+                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                            <a href="{{ route('logout') }}" class="inline-block w-full lg:px-4 lg:py-3">
                                                 Sign out
                                             </a>
                                         </li>
