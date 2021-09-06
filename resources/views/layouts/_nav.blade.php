@@ -126,8 +126,8 @@
 
                     <ul class="block lg:flex lg:items-center gap-x-8" x-cloak :class="{ 'block': nav, 'hidden': !nav }">
                         @if (Auth::guest())
-                            <li class="w-full rounded text-center p-2.5 lg:hover:bg-gray-100">
-                                <a href="{{ route('register') }}">
+                            <li class="w-full rounded text-center lg:hover:bg-gray-100">
+                                <a href="{{ route('register') }}" class="inline-block w-full  p-2.5">
                                     Register
                                 </a>
                             </li>
