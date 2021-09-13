@@ -2,9 +2,9 @@
 
 namespace App\Helpers;
 
+use App\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Models\Reply;
 use App\Models\User;
-use App\Exceptions\CouldNotMarkReplyAsSolution;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait HasSolutions
@@ -61,7 +61,7 @@ trait HasSolutions
         }
 
         $this->update([
-            'solution_selector_id' => $user->id()
+            'solution_selector_id' => $user->id(),
         ]);
         $this->solutionReplyRelation()->associate($reply);
         $this->save();
@@ -70,7 +70,7 @@ trait HasSolutions
     public function unmarkSolution()
     {
         $this->update([
-            'solution_selector_id' => null
+            'solution_selector_id' => null,
         ]);
 
         $this->solutionReplyRelation()->dissociate();
