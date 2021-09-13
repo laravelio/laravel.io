@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Reply;
 use App\Models\Thread;
+use Illuminate\Support\Facades\Auth;
 
 final class MarkThreadSolution
 {
@@ -25,6 +26,6 @@ final class MarkThreadSolution
 
     public function handle()
     {
-        $this->thread->markSolution($this->solution);
+        $this->thread->markSolution($this->solution, Auth::user());
     }
 }

@@ -30,7 +30,15 @@
     >
     </div>
 
-    <div class="px-6 pb-6">
-        <livewire:like-reply :reply="$reply"/>
+    <div class="flex justify-between">
+        <div class="px-6 pb-6">
+            <livewire:like-reply :reply="$reply"/>
+        </div>
+    
+        @if ($thread->isSolutionReply($reply))
+            <div class="px-6 pb-6 text-lio-500">
+                Solution selected by <a href="{{ route('profile', $thread->solutionSelector()->username()) }}" class="font-bold">{{ $thread->solutionSelector()->username() }}</a>
+            </div>
+        @endif
     </div>
 </div>
