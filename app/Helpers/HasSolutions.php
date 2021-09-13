@@ -43,6 +43,15 @@ trait HasSolutions
         return false;
     }
 
+    public function isSolutionSelector(User $user): bool
+    {
+        if ($selector = $this->solutionSelector()) {
+            return $selector->is($user);
+        }
+
+        return false;
+    }
+
     public function markSolution(Reply $reply, User $user)
     {
         $thread = $reply->replyAble();
