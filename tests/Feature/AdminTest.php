@@ -1,12 +1,12 @@
 <?php
 
-use App\Models\Article;
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Reply;
 use App\Models\Thread;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Models\Article;
 use Tests\Feature\BrowserKitTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 uses(BrowserKitTestCase::class);
 uses(DatabaseMigrations::class);
@@ -326,7 +326,7 @@ function assertCanSeeTheUserOverview()
     User::factory()->create(['name' => 'Freek Murze']);
     User::factory()->create(['name' => 'Frederick Vanbrabant']);
 
-    $this->visit('/admin')
+    test()->visit('/admin')
         ->see('Freek Murze')
         ->see('Frederick Vanbrabant');
 }
@@ -335,20 +335,20 @@ function assertCanBanUsers()
 {
     $user = User::factory()->create(['name' => 'Freek Murze']);
 
-    $this->put('/admin/users/'.$user->username().'/ban')
+    test()->put('/admin/users/'.$user->username().'/ban')
         ->assertRedirectedTo('/user/'.$user->username());
 
-    $this->notSeeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
+    test()->notSeeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
 }
 
 function assertCanUnbanUsers()
 {
     $user = User::factory()->create(['name' => 'Freek Murze', 'banned_at' => Carbon::now()]);
 
-    $this->put('/admin/users/'.$user->username().'/unban')
+    test()->put('/admin/users/'.$user->username().'/unban')
         ->assertRedirectedTo('/user/'.$user->username());
 
-    $this->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
+    test()->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
 }
 
 function assertCannotBanAdmins()
@@ -365,6 +365,6 @@ function assertCannotBanUsersByType(int $type)
 {
     $user = User::factory()->create(['type' => $type]);
 
-    $this->put('/admin/users/'.$user->username().'/ban')
+    test()->put('/admin/users/'.$user->username().'/ban')
         ->assertForbidden();
 }
