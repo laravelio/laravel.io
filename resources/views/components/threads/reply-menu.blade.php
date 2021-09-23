@@ -3,7 +3,7 @@
 <div class="flex items-center lg:gap-x-3">
 
     @if($reply->author()->isModerator() || $reply->author()->isAdmin())
-        <x-users.label>{{ $reply->author()->label() }}</x-users.label>
+        <x-lio-tag>{{ $reply->author()->label() }}</x-lio-tag>
     @endif
     
     @can(App\Policies\ThreadPolicy::UPDATE, $thread)
