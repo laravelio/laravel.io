@@ -23,11 +23,6 @@ final class User extends Authenticatable implements MustVerifyEmail
     const MODERATOR = 2;
     const ADMIN = 3;
 
-    const LABELS = [
-        self::MODERATOR => 'moderator',
-        self::ADMIN => 'moderator',
-    ];
-
     /**
      * {@inheritdoc}
      */
@@ -113,11 +108,6 @@ final class User extends Authenticatable implements MustVerifyEmail
     public function isAdmin(): bool
     {
         return $this->type() === self::ADMIN;
-    }
-
-    public function label(): string
-    {
-        return self::LABELS[$this->type()] ?? '';
     }
 
     public function isLoggedInUser(): bool
