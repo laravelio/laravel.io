@@ -1,6 +1,11 @@
 @props(['thread', 'reply'])
 
 <div class="flex items-center lg:gap-x-3">
+
+    @if($reply->author()->isModerator() || $reply->author()->isAdmin())
+        <x-lio-tag>moderator</x-lio-tag>
+    @endif
+    
     @can(App\Policies\ThreadPolicy::UPDATE, $thread)
         @if ($thread->isSolutionReply($reply))      
             <button 
