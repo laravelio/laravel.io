@@ -29,7 +29,7 @@
                         </div>
 
                         <input
-                            type="text"
+                            type="search"
                             name="admin_search"
                             id="adminSearch"
                             placeholder="{{ $placeholder }}"
