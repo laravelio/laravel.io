@@ -5,7 +5,7 @@
 <div {{ $attributes->merge(['class' => 'member w-64 shadow-xl rounded']) }}>
     <div class="flex justify-between border-b p-3 bg-white rounded-t">
         <div class="flex flex-col items-center text-lio-500 text-center">
-            <span class="flex w-8 h-8 bg-lio-100 font-bold rounded items-center justify-center mb-1.5">
+            <span class="flex min-w-8 h-8 px-2 bg-lio-100 font-bold rounded items-center justify-center mb-1.5">
                 {{ $user->solutions_count }}
             </span>
 
@@ -13,7 +13,7 @@
         </div>
 
         <div class="flex flex-col items-center text-lio-500 text-center">
-            <span class="flex w-8 h-8 bg-lio-100 font-bold rounded items-center justify-center mb-1.5">
+            <span class="flex min-w-8 h-8 px-2 bg-lio-100 font-bold rounded items-center justify-center mb-1.5">
                 {{ $user->threads_count }}
             </span>
 
@@ -21,7 +21,7 @@
         </div>
 
         <div class="flex flex-col items-center text-lio-500 text-center">
-            <span class="flex w-8 h-8 bg-lio-100 font-bold rounded items-center justify-center mb-1.5">
+            <span class="flex min-w-8 h-8 px-2 bg-lio-100 font-bold rounded items-center justify-center mb-1.5">
                 {{ $user->replies_count }}
             </span>
 
