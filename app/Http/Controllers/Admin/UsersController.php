@@ -9,6 +9,7 @@ use App\Jobs\DeleteUser;
 use App\Jobs\UnbanUser;
 use App\Models\User;
 use App\Policies\UserPolicy;
+use App\Queries\SearchUsers;
 use Illuminate\Auth\Middleware\Authenticate;
 
 class UsersController extends Controller
