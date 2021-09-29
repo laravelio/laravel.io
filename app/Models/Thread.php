@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Exceptions\CouldNotMarkReplyAsSolution;
 use App\Helpers\HasAuthor;
 use App\Helpers\HasLikes;
 use App\Helpers\HasSlug;
-use App\Helpers\HasSolutions;
 use App\Helpers\HasTags;
 use App\Helpers\HasTimestamps;
 use App\Helpers\PreparesSearch;
@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +33,6 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     use HasLikes;
     use HasSlug;
     use HasTags;
-    use HasSolutions;
     use HasTimestamps;
     use PreparesSearch;
     use ProvidesSubscriptions;
@@ -86,6 +86,74 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     public function excerpt(int $limit = 100): string
     {
         return Str::limit(strip_tags(md_to_html($this->body())), $limit);
+    }
+
+    public function solutionReply(): ?Reply
+    {
+        return $this->solutionReplyRelation;
+    }
+
+    public function solutionReplyRelation(): BelongsTo
+    {
+        return $this->belongsTo(Reply::class, 'solution_reply_id');
+    }
+
+    public function isSolved(): bool
+    {
+        return ! is_null($this->solution_reply_id);
+    }
+
+    public function isSolutionReply(Reply $reply): bool
+    {
+        if ($solution = $this->solutionReply()) {
+            return $solution->is($reply);
+        }
+
+        return false;
+    }
+
+    public function markSolution(Reply $reply, User $user)
+    {
+        $thread = $reply->replyAble();
+
+        if (! $thread instanceof self) {
+            throw CouldNotMarkReplyAsSolution::replyAbleIsNotAThread($reply);
+        }
+
+        $this->update([
+            'solution_selector_id' => $user->id(),
+        ]);
+        $this->solutionReplyRelation()->associate($reply);
+        $this->save();
+    }
+
+    public function unmarkSolution()
+    {
+        $this->update([
+            'solution_selector_id' => null,
+        ]);
+
+        $this->solutionReplyRelation()->dissociate();
+        $this->save();
+    }
+
+    public function solutionSelector(): ?User
+    {
+        return $this->solutionSelectorRelation;
+    }
+
+    public function solutionSelectorRelation(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'solution_selector_id');
+    }
+
+    public function isSolutionSelector(User $user): bool
+    {
+        if ($selector = $this->solutionSelector()) {
+            return $selector->is($user);
+        }
+
+        return false;
     }
 
     public function delete()
