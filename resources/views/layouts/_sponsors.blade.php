@@ -37,12 +37,16 @@
                 <x-sponsor-logo url="https://larajobs.com" logo="{{ asset('images/sponsors/larajobs.svg') }}" company="LaraJobs" />
             </div>
 
-            <div class="col-span-2 flex justify-center lg:col-span-1 lg:col-start-2">
+            <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://ter.li/vj4bxb" logo="{{ asset('images/sponsors/scout-apm.jpg') }}" company="Scout APM" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://www.cloudways.com/en/?id=972670" logo="{{ asset('images/sponsors/cloudways.png') }}" company="Cloudways" />
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo url="https://red-amber.green" logo="{{ asset('images/sponsors/red-amber.green.svg') }}" company="red-amber.green" />
             </div>
         </div>
 
