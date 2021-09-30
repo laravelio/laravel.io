@@ -20,6 +20,7 @@ use App\Policies\ThreadPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ThreadsController extends Controller
 {
@@ -116,7 +117,7 @@ class ThreadsController extends Controller
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
 
-        $this->dispatchNow(new MarkThreadSolution($thread, $reply));
+        $this->dispatchNow(new MarkThreadSolution($thread, $reply, Auth::user()));
 
         return redirect()->route('thread', $thread->slug());
     }

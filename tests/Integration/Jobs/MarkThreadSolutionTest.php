@@ -19,9 +19,9 @@ class MarkThreadSolutionTest extends TestCase
         $thread = Thread::factory()->create();
         $reply = Reply::factory()->create();
 
-        $this->dispatch(new MarkThreadSolution($thread, $reply));
+        $this->dispatch(new MarkThreadSolution($thread, $reply, $user));
 
         $this->assertTrue($thread->isSolutionReply($reply));
-        $this->assertTrue($thread->isSolutionSelector($user));
+        $this->assertTrue($thread->wasAnsweredBy($user));
     }
 }

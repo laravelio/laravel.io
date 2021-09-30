@@ -21,11 +21,11 @@ class UnmarkThreadSolutionTest extends TestCase
 
         $thread->markSolution($reply, $user);
         $this->assertTrue($thread->isSolutionReply($reply));
-        $this->assertTrue($thread->isSolutionSelector($user));
+        $this->assertTrue($thread->wasAnsweredBy($user));
 
         $this->dispatch(new UnmarkThreadSolution($thread));
 
         $this->assertFalse($thread->isSolutionReply($reply));
-        $this->assertFalse($thread->fresh()->isSolutionSelector($user));
+        $this->assertFalse($thread->fresh()->wasAnsweredBy($user));
     }
 }

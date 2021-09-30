@@ -55,7 +55,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         'body',
         'slug',
         'subject',
-        'solution_selector_id',
+        'answered_by',
     ];
 
     /**
@@ -121,7 +121,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         }
 
         $this->update([
-            'solution_selector_id' => $user->id(),
+            'answered_by' => $user->id(),
         ]);
         $this->solutionReplyRelation()->associate($reply);
         $this->save();
@@ -130,27 +130,27 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     public function unmarkSolution()
     {
         $this->update([
-            'solution_selector_id' => null,
+            'answered_by' => null,
         ]);
 
         $this->solutionReplyRelation()->dissociate();
         $this->save();
     }
 
-    public function solutionSelector(): ?User
+    public function answeredBy(): ?User
     {
-        return $this->solutionSelectorRelation;
+        return $this->answeredByRelation;
     }
 
-    public function solutionSelectorRelation(): BelongsTo
+    public function answeredByRelation(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'solution_selector_id');
+        return $this->belongsTo(User::class, 'answered_by');
     }
 
-    public function isSolutionSelector(User $user): bool
+    public function wasAnsweredBy(User $user): bool
     {
-        if ($selector = $this->solutionSelector()) {
-            return $selector->is($user);
+        if ($answeredBy = $this->answeredBy()) {
+            return $answeredBy->is($user);
         }
 
         return false;
