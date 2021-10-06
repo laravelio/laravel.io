@@ -1,12 +1,12 @@
 <?php
 
-use App\Models\Article;
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Reply;
 use App\Models\Thread;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Models\Article;
 use Tests\Feature\BrowserKitTestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 uses(BrowserKitTestCase::class);
 uses(DatabaseMigrations::class);
@@ -25,46 +25,55 @@ test('normal users cannot visit the admin section', function () {
 
 test('admins can see the users overview', function () {
     $this->loginAsAdmin();
+
     assertCanSeeTheUserOverview();
 });
 
 test('moderators can see the users overview', function () {
     $this->loginAsModerator();
+
     assertCanSeeTheUserOverview();
 });
 
 test('admins can ban a user', function () {
     $this->loginAsAdmin();
+
     assertCanBanUsers();
 });
 
 test('moderators can ban a user', function () {
     $this->loginAsModerator();
+
     assertCanBanUsers();
 });
 
 test('admins can unban a user', function () {
     $this->loginAsAdmin();
+
     assertCanUnbanUsers();
 });
 
 test('moderators can unban a user', function () {
     $this->loginAsModerator();
+
     assertCanUnbanUsers();
 });
 
 test('admins cannot ban other admins', function () {
     $this->loginAsAdmin();
+
     assertCannotBanAdmins();
 });
 
 test('moderators cannot ban admins', function () {
     $this->loginAsModerator();
+
     assertCannotBanAdmins();
 });
 
 test('moderators cannot ban other moderators', function () {
     $this->loginAsModerator();
+    
     assertCannotBanModerators();
 });
 
