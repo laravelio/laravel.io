@@ -1,12 +1,12 @@
 <?php
 
-use Carbon\Carbon;
-use App\Models\User;
+use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
-use App\Models\Article;
-use Tests\Feature\BrowserKitTestCase;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
 uses(DatabaseMigrations::class);
@@ -73,7 +73,7 @@ test('moderators cannot ban admins', function () {
 
 test('moderators cannot ban other moderators', function () {
     $this->loginAsModerator();
-    
+
     assertCannotBanModerators();
 });
 
