@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\WithFaker;
-use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
-use Tests\CreatesApplication;
 use Tests\CreatesUsers;
 use Tests\HttpAssertions;
+use Tests\CreatesApplication;
+use Illuminate\Foundation\Testing\WithFaker;
+use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 
-abstract class BrowserKitTestCase extends BaseTestCase
+class BrowserKitTestCase extends BaseTestCase
 {
     use CreatesApplication;
     use CreatesUsers;
