@@ -1,69 +1,56 @@
 <?php
 
-namespace Tests\Feature;
-
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\Feature\BrowserKitTestCase;
 
-class ProfileTest extends BrowserKitTestCase
-{
-    use DatabaseMigrations;
+uses(BrowserKitTestCase::class);
+uses(DatabaseMigrations::class);
 
-    /** @test */
-    public function anyone_can_see_a_user_profile()
-    {
-        $this->createUser();
+test('anyone can see a user profile', function () {
+    $this->createUser();
 
-        $this->visit('/user/johndoe')
-            ->see('John Doe');
-    }
+    $this->visit('/user/johndoe')
+        ->see('John Doe');
+});
 
-    /** @test */
-    public function admin_buttons_are_not_shown_to_logged_out_users()
-    {
-        $this->createUser();
+test('admin buttons are not shown to logged out users', function () {
+    $this->createUser();
 
-        $this->visit('/user/johndoe')
-            ->dontSee('Ban user')
-            ->dontSee('Unban user')
-            ->dontSee('Delete user');
-    }
+    $this->visit('/user/johndoe')
+        ->dontSee('Ban user')
+        ->dontSee('Unban user')
+        ->dontSee('Delete user');
+});
 
-    /** @test */
-    public function admin_buttons_are_not_shown_to_non_admin_users()
-    {
-        $this->login();
+test('admin buttons are not shown to non admin users', function () {
+    $this->login();
 
-        $this->visit('/user/johndoe')
-            ->dontSee('Ban user')
-            ->dontSee('Unban user')
-            ->dontSee('Delete user');
-    }
+    $this->visit('/user/johndoe')
+        ->dontSee('Ban user')
+        ->dontSee('Unban user')
+        ->dontSee('Delete user');
+});
 
-    /** @test */
-    public function admin_buttons_are_shown_to_admin_users()
-    {
-        $this->createUser([
-            'username' => 'janedoe',
-            'email' => 'jane@example.com',
-        ]);
-        $this->loginAsAdmin();
+test('admin buttons are shown to admin users', function () {
+    $this->createUser([
+        'username' => 'janedoe',
+        'email' => 'jane@example.com',
+    ]);
+    $this->loginAsAdmin();
 
-        $this->visit('/user/janedoe')
-            ->see('Ban user')
-            ->see('Delete user');
-    }
+    $this->visit('/user/janedoe')
+        ->see('Ban user')
+        ->see('Delete user');
+});
 
-    /** @test */
-    public function delete_button_is_not_shown_to_moderators()
-    {
-        $this->createUser([
-            'username' => 'janedoe',
-            'email' => 'jane@example.com',
-        ]);
-        $this->loginAsModerator();
+test('delete button is not shown to moderators', function () {
+    $this->createUser([
+        'username' => 'janedoe',
+        'email' => 'jane@example.com',
+    ]);
+    $this->loginAsModerator();
 
-        $this->visit('/user/janedoe')
-            ->see('Ban user')
-            ->dontSee('Delete user');
-    }
-}
+    $this->visit('/user/janedoe')
+        ->see('Ban user')
+        ->dontSee('Delete user');
+});

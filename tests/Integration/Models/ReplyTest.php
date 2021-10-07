@@ -1,30 +1,24 @@
 <?php
 
-namespace Tests\Integration\Models;
-
 use App\Models\Reply;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ReplyTest extends TestCase
-{
-    use RefreshDatabase;
+uses(TestCase::class);
+uses(RefreshDatabase::class);
 
-    /** @test */
-    public function we_can_like_and_unlike_reply()
-    {
-        $user = $this->createUser();
+test('we can like and unlike reply', function () {
+    $user = $this->createUser();
 
-        $reply = Reply::factory()->create();
+    $reply = Reply::factory()->create();
 
-        $this->assertFalse($reply->isLikedBy($user));
+    expect($reply->isLikedBy($user))->toBeFalse();
 
-        $reply->likedBy($user);
+    $reply->likedBy($user);
 
-        $this->assertTrue($reply->isLikedBy($user));
+    expect($reply->isLikedBy($user))->toBeTrue();
 
-        $reply->dislikedBy($user);
+    $reply->dislikedBy($user);
 
-        $this->assertFalse($reply->isLikedBy($user));
-    }
-}
+    expect($reply->isLikedBy($user))->toBeFalse();
+});

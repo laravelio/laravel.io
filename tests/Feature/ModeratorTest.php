@@ -1,33 +1,26 @@
 <?php
 
-namespace Tests\Feature;
-
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\Feature\BrowserKitTestCase;
 
-class ModeratorTest extends BrowserKitTestCase
-{
-    use DatabaseMigrations;
+uses(BrowserKitTestCase::class);
+uses(DatabaseMigrations::class);
 
-    /** @test */
-    public function moderators_can_edit_any_thread()
-    {
-        $thread = Thread::factory()->create();
+test('moderators can edit any thread', function () {
+    $thread = Thread::factory()->create();
 
-        $this->loginAsModerator();
+    $this->loginAsModerator();
 
-        $this->visit('/forum/'.$thread->slug().'/edit')
-            ->assertResponseOk();
-    }
+    $this->visit('/forum/'.$thread->slug().'/edit')
+        ->assertResponseOk();
+});
 
-    /** @test */
-    public function moderators_can_delete_any_thread()
-    {
-        $thread = Thread::factory()->create();
+test('moderators can delete any thread', function () {
+    $thread = Thread::factory()->create();
 
-        $this->loginAsModerator();
+    $this->loginAsModerator();
 
-        $this->delete('/forum/'.$thread->slug())
-            ->assertRedirectedTo('/forum');
-    }
-}
+    $this->delete('/forum/'.$thread->slug())
+        ->assertRedirectedTo('/forum');
+});

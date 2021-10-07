@@ -1,22 +1,15 @@
 <?php
 
-namespace Tests\Feature;
-
 use Tests\TestCase;
 
-class PastebinRedirectTest extends TestCase
-{
-    /** @test */
-    public function it_redirects_to_the_paste_bin_website_when_accessing_the_old_url()
-    {
-        $this->get('/bin')
-            ->assertRedirect('https://paste.laravel.io/');
-    }
+uses(TestCase::class);
 
-    /** @test */
-    public function it_redirects_to_the_paste_bin_website_when_accessing_a_hash()
-    {
-        $this->get('/bin/some-hash')
-            ->assertRedirect('https://paste.laravel.io/some-hash');
-    }
-}
+it('redirects to the paste bin website when accessing the old url', function () {
+    $this->get('/bin')
+        ->assertRedirect('https://paste.laravel.io/');
+});
+
+it('redirects to the paste bin website when accessing a hash', function () {
+    $this->get('/bin/some-hash')
+        ->assertRedirect('https://paste.laravel.io/some-hash');
+});

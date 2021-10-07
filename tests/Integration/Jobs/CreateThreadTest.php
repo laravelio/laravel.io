@@ -1,22 +1,16 @@
 <?php
 
-namespace Tests\Integration\Jobs;
-
 use App\Jobs\CreateThread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class CreateThreadTest extends TestCase
-{
-    use DatabaseMigrations;
+uses(TestCase::class);
+uses(DatabaseMigrations::class);
 
-    /** @test */
-    public function we_can_create_a_thread()
-    {
-        $user = $this->createUser();
+test('we can create a thread', function () {
+    $user = $this->createUser();
 
-        $thread = $this->dispatch(new CreateThread('Subject', 'Body', $user));
+    $thread = $this->dispatch(new CreateThread('Subject', 'Body', $user));
 
-        $this->assertEquals('Subject', $thread->subject());
-    }
-}
+    expect($thread->subject())->toEqual('Subject');
+});

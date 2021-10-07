@@ -1,28 +1,22 @@
 <?php
 
-namespace Tests\Integration\Jobs;
-
 use App\Jobs\UnlikeReply;
 use App\Models\Reply;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class UnlikeReplyTest extends TestCase
-{
-    use RefreshDatabase;
+uses(TestCase::class);
+uses(RefreshDatabase::class);
 
-    /** @test */
-    public function we_can_unlike_a_reply()
-    {
-        $user = User::factory()->create();
-        $reply = Reply::factory()->create();
+test('we can unlike a reply', function () {
+    $user = User::factory()->create();
+    $reply = Reply::factory()->create();
 
-        $reply->likedBy($user);
-        $this->assertTrue($reply->fresh()->isLikedBy($user));
+    $reply->likedBy($user);
+    expect($reply->fresh()->isLikedBy($user))->toBeTrue();
 
-        $this->dispatch(new UnlikeReply($reply, $user));
+    $this->dispatch(new UnlikeReply($reply, $user));
 
-        $this->assertFalse($reply->fresh()->isLikedBy($user));
-    }
-}
+    expect($reply->fresh()->isLikedBy($user))->toBeFalse();
+});

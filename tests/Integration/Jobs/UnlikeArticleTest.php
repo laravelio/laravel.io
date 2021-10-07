@@ -1,28 +1,22 @@
 <?php
 
-namespace Tests\Integration\Jobs;
-
 use App\Jobs\UnlikeArticle;
 use App\Models\Article;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class UnlikeArticleTest extends TestCase
-{
-    use RefreshDatabase;
+uses(TestCase::class);
+uses(RefreshDatabase::class);
 
-    /** @test */
-    public function we_can_unlike_an_article()
-    {
-        $user = User::factory()->create();
-        $article = Article::factory()->create();
+test('we can unlike an article', function () {
+    $user = User::factory()->create();
+    $article = Article::factory()->create();
 
-        $article->likedBy($user);
-        $this->assertTrue($article->fresh()->isLikedBy($user));
+    $article->likedBy($user);
+    expect($article->fresh()->isLikedBy($user))->toBeTrue();
 
-        $this->dispatch(new UnlikeArticle($article, $user));
+    $this->dispatch(new UnlikeArticle($article, $user));
 
-        $this->assertFalse($article->fresh()->isLikedBy($user));
-    }
-}
+    expect($article->fresh()->isLikedBy($user))->toBeFalse();
+});

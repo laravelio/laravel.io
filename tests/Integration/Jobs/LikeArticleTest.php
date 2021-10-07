@@ -1,7 +1,5 @@
 <?php
 
-namespace Tests\Integration\Jobs;
-
 use App\Exceptions\CannotLikeItem;
 use App\Jobs\LikeArticle;
 use App\Models\Article;
@@ -9,33 +7,27 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class LikeArticleTest extends TestCase
-{
-    use RefreshDatabase;
+uses(TestCase::class);
+uses(RefreshDatabase::class);
 
-    /** @test */
-    public function we_can_like_an_article()
-    {
-        $user = User::factory()->create();
-        $article = Article::factory()->create();
+test('we can like an article', function () {
+    $user = User::factory()->create();
+    $article = Article::factory()->create();
 
-        $this->dispatch(new LikeArticle($article, $user));
+    $this->dispatch(new LikeArticle($article, $user));
 
-        $this->assertTrue($article->fresh()->isLikedBy($user));
-    }
+    expect($article->fresh()->isLikedBy($user))->toBeTrue();
+});
 
-    /** @test */
-    public function we_cannot_like_an_article_twice()
-    {
-        $user = User::factory()->create();
-        $article = Article::factory()->create();
+test('we cannot like an article twice', function () {
+    $user = User::factory()->create();
+    $article = Article::factory()->create();
 
-        $this->dispatch(new LikeArticle($article, $user));
+    $this->dispatch(new LikeArticle($article, $user));
 
-        $this->assertTrue($article->fresh()->isLikedBy($user));
+    expect($article->fresh()->isLikedBy($user))->toBeTrue();
 
-        $this->expectException(CannotLikeItem::class);
+    $this->expectException(CannotLikeItem::class);
 
-        $this->dispatch(new LikeArticle($article, $user));
-    }
-}
+    $this->dispatch(new LikeArticle($article, $user));
+});

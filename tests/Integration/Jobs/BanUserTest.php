@@ -1,22 +1,16 @@
 <?php
 
-namespace Tests\Integration\Jobs;
-
 use App\Jobs\BanUser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class BanUserTest extends TestCase
-{
-    use DatabaseMigrations;
+uses(TestCase::class);
+uses(DatabaseMigrations::class);
 
-    /** @test */
-    public function it_can_ban_a_user()
-    {
-        $user = $this->createUser(['banned_at' => null]);
+it('can ban a user', function () {
+    $user = $this->createUser(['banned_at' => null]);
 
-        $bannedUser = $this->dispatch(new BanUser($user));
+    $bannedUser = $this->dispatch(new BanUser($user));
 
-        $this->assertTrue($bannedUser->isBanned());
-    }
-}
+    expect($bannedUser->isBanned())->toBeTrue();
+});

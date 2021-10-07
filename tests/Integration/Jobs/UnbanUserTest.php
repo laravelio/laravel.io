@@ -1,23 +1,17 @@
 <?php
 
-namespace Tests\Integration\Jobs;
-
 use App\Jobs\UnbanUser;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
-class UnbanUserTest extends TestCase
-{
-    use DatabaseMigrations;
+uses(TestCase::class);
+uses(DatabaseMigrations::class);
 
-    /** @test */
-    public function it_can_unban_a_user()
-    {
-        $user = $this->createUser(['banned_at' => Carbon::yesterday()]);
+it('can unban a user', function () {
+    $user = $this->createUser(['banned_at' => Carbon::yesterday()]);
 
-        $unbannedUser = $this->dispatch(new UnbanUser($user));
+    $unbannedUser = $this->dispatch(new UnbanUser($user));
 
-        $this->assertFalse($unbannedUser->isBanned());
-    }
-}
+    expect($unbannedUser->isBanned())->toBeFalse();
+});

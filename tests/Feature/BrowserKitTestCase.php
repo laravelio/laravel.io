@@ -8,7 +8,7 @@ use Tests\CreatesApplication;
 use Tests\CreatesUsers;
 use Tests\HttpAssertions;
 
-abstract class BrowserKitTestCase extends BaseTestCase
+class BrowserKitTestCase extends BaseTestCase
 {
     use CreatesApplication;
     use CreatesUsers;

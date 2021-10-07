@@ -1,28 +1,22 @@
 <?php
 
-namespace Tests\Integration\Jobs;
-
 use App\Jobs\UnsubscribeFromSubscriptionAble;
 use App\Models\Subscription;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class UnsubscribeFromSubscriptionAbleTest extends TestCase
-{
-    use RefreshDatabase;
+uses(TestCase::class);
+uses(RefreshDatabase::class);
 
-    /** @test */
-    public function it_can_unsubscribe_a_user_from_a_thread()
-    {
-        $user = $this->createUser();
-        $thread = Thread::factory()->create();
-        Subscription::factory()->create(['user_id' => $user->id(), 'subscriptionable_id' => $thread->id()]);
+it('can unsubscribe a user from a thread', function () {
+    $user = $this->createUser();
+    $thread = Thread::factory()->create();
+    Subscription::factory()->create(['user_id' => $user->id(), 'subscriptionable_id' => $thread->id()]);
 
-        $this->assertTrue($thread->hasSubscriber($user));
+    expect($thread->hasSubscriber($user))->toBeTrue();
 
-        $this->dispatch(new UnsubscribeFromSubscriptionAble($user, $thread));
+    $this->dispatch(new UnsubscribeFromSubscriptionAble($user, $thread));
 
-        $this->assertFalse($thread->hasSubscriber($user));
-    }
-}
+    expect($thread->hasSubscriber($user))->toBeFalse();
+});
