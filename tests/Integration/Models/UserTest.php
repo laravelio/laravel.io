@@ -49,9 +49,9 @@ function createTwoSolutionReplies(User $user)
 {
     $thread = Thread::factory()->create();
     $reply = Reply::factory()->create(['replyable_id' => $thread->id(), 'author_id' => $user->id()]);
-    $thread->markSolution($reply);
+    $thread->markSolution($reply, $user);
 
     $thread = Thread::factory()->create();
     $reply = Reply::factory()->create(['replyable_id' => $thread->id(), 'author_id' => $user->id()]);
-    $thread->markSolution($reply);
+    $thread->markSolution($reply, $user);
 }

@@ -1,27 +1,21 @@
 <?php
 
-namespace Tests\Integration\Jobs;
-
 use App\Jobs\MarkThreadSolution;
 use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class MarkThreadSolutionTest extends TestCase
-{
-    use RefreshDatabase;
+uses(TestCase::class);
+uses(RefreshDatabase::class);
 
-    /** @test */
-    public function we_can_mark_thread_solution()
-    {
-        $user = $this->login();
-        $thread = Thread::factory()->create();
-        $reply = Reply::factory()->create();
+test('we can mark thread solution', function () {
+    $user = $this->login();
+    $thread = Thread::factory()->create();
+    $reply = Reply::factory()->create();
 
-        $this->dispatch(new MarkThreadSolution($thread, $reply, $user));
+    $this->dispatch(new MarkThreadSolution($thread, $reply, $user));
 
-        $this->assertTrue($thread->isSolutionReply($reply));
-        $this->assertTrue($thread->wasAnsweredBy($user));
-    }
-}
+    expect($thread->isSolutionReply($reply))->toBeTrue();
+    expect($thread->wasAnsweredBy($user))->toBeTrue();
+});

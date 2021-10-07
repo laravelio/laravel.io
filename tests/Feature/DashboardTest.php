@@ -27,7 +27,7 @@ test('users can see some statistics', function () {
         'replyable_id' => $thread->id(),
     ])->first();
 
-    $thread->markSolution($reply);
+    $thread->markSolution($reply, $user);
 
     $this->loginAs($user);
 

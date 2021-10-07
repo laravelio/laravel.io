@@ -1,31 +1,25 @@
 <?php
 
-namespace Tests\Integration\Jobs;
-
 use App\Jobs\UnmarkThreadSolution;
 use App\Models\Reply;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class UnmarkThreadSolutionTest extends TestCase
-{
-    use RefreshDatabase;
+uses(TestCase::class);
+uses(RefreshDatabase::class);
 
-    /** @test */
-    public function we_can_unmark_thread_solution()
-    {
-        $user = $this->login();
-        $thread = Thread::factory()->create();
-        $reply = Reply::factory()->create();
+test('we can unmark thread solution', function () {
+    $user = $this->login();
+    $thread = Thread::factory()->create();
+    $reply = Reply::factory()->create();
 
-        $thread->markSolution($reply, $user);
-        $this->assertTrue($thread->isSolutionReply($reply));
-        $this->assertTrue($thread->wasAnsweredBy($user));
+    $thread->markSolution($reply, $user);
+    expect($thread->isSolutionReply($reply))->toBeTrue();
+    expect($thread->wasAnsweredBy($user))->toBeTrue();
 
-        $this->dispatch(new UnmarkThreadSolution($thread));
+    $this->dispatch(new UnmarkThreadSolution($thread));
 
-        $this->assertFalse($thread->isSolutionReply($reply));
-        $this->assertFalse($thread->fresh()->wasAnsweredBy($user));
-    }
-}
+    expect($thread->isSolutionReply($reply))->toBeFalse();
+    expect($thread->fresh()->wasAnsweredBy($user))->toBeFalse();
+});
