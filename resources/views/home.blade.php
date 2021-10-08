@@ -1,5 +1,9 @@
 @extends('layouts.base', ['bodyClass' => 'home', 'disableFooterAds' => true, 'isTailwindUi' => true])
 
+@push('meta')
+    <meta name="google-site-verification" content="LR29frqES-MZYtn3iZ6PtobclBfThr83rlNF4huiu0s" />
+@endpush
+
 @section('body')
     @include('layouts._alerts')
 
