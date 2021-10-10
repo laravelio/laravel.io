@@ -94,7 +94,7 @@
     </section>
 
     <div class="modal" x-show="activeModal === 'tag-filter'" x-cloak>
-        <div class="w-full h-full p-8 lg:w-96 lg:h-3/4 overflow-y-scroll">
+        <div class="w-full h-full p-8 lg:w-96 lg:h-3/4">
             <x-articles.tag-filter :selectedTag="$selectedTag ?? null" :tags="$tags" />
         </div>
     </div>
