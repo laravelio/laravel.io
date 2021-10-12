@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreadRequest;
 use App\Jobs\CreateThread;
 use App\Jobs\DeleteThread;
+use App\Jobs\LockThread;
 use App\Jobs\MarkThreadSolution;
 use App\Jobs\SubscribeToSubscriptionAble;
 use App\Jobs\UnmarkThreadSolution;
