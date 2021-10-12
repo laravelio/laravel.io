@@ -25,7 +25,7 @@ test('users can register', function () {
         ->check('rules')
         ->check('terms')
         ->press('Register')
-        ->seePageIs('/dashboard')
+        ->seePageIs('/user/johndoe')
         ->see('John Doe');
 
     assertLoggedIn();
@@ -71,9 +71,12 @@ test('users can resend the email verification', function () {
 test('users do not need to verify their email address twice', function () {
     $this->login();
 
-    $this->post('/email/resend')
-        ->assertRedirectedTo('/dashboard')
-        ->assertSessionHas('error', 'Your email address is already verified.');
+    $response = $this->post('/email/resend');
+    
+    $response->assertSessionHas('error', 'Your email address is already verified.');
+    $response->followRedirects()
+        ->seePageIs('/user/johndoe');
+        
 });
 
 test('users can login', function () {
@@ -83,7 +86,7 @@ test('users can login', function () {
         ->type('johndoe', 'username')
         ->type('password', 'password')
         ->press('Login')
-        ->seePageIs('/dashboard')
+        ->seePageIs('/user/johndoe')
         ->see('John Doe');
 });
 
@@ -150,13 +153,13 @@ test('users can reset their password', function () {
         ->type('QFq^$cz#P@MZa5z7', 'password')
         ->type('QFq^$cz#P@MZa5z7', 'password_confirmation')
         ->press('Reset Password')
-        ->seePageIs('/dashboard')
+        ->seePageIs('/user/johndoe')
         ->visit('/logout')
         ->visit('/login')
         ->type('johndoe', 'username')
         ->type('QFq^$cz#P@MZa5z7', 'password')
         ->press('Login')
-        ->seePageIs('/dashboard');
+        ->seePageIs('/user/johndoe');
 });
 
 test('users cannot reset their password when it has been compromised in data leaks', function () {

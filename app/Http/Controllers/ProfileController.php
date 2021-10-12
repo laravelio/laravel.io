@@ -9,8 +9,16 @@ class ProfileController extends Controller
 {
     public function show(User $user, Request $request)
     {
-        abort_unless($user = $user->exists ? $user : $request->user(), 404);
+        if ($user->exists) {
+            $articles = $user->latestArticles(3);
 
-        return view('users.profile', compact('user'));
+            return view('users.profile', compact('user', 'articles'));
+        }
+
+        if ($request->user()) {
+            return redirect()->route('profile', $request->user()->username());
+        }
+
+        abort(404);
     }
 }
