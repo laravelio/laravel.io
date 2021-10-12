@@ -315,6 +315,16 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
         return ! is_null($this->locked_by);
     }
 
+    public function locker(): ?User
+    {
+        return $this->lockedRelation;
+    }
+
+    public function lockedRelation(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'locked_by');
+    }
+
     public function lockedBy(User $user)
     {
         $this->update([

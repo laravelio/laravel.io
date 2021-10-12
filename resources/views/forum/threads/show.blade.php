@@ -10,9 +10,7 @@
             <x-heroicon-o-chevron-right class="w-6 h-6" />
             <span class="break-all">{{ $title }}</span>
         </h1>
-        @can(App\Policies\ThreadPolicy::LOCK, $thread)
-            <livewire:lock-thread :thread="$thread" />
-        @endcan
+        <livewire:lock-thread :thread="$thread" />
     </section>
 @endsection
 
