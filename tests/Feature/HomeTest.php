@@ -1,7 +1,7 @@
 <?php
 
-use Tests\Feature\BrowserKitTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
 uses(DatabaseMigrations::class);
