@@ -240,6 +240,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
             'tagsRelation',
             'authorRelation',
         ])
+            ->unlocked()
             ->withCount(['repliesRelation as reply_count', 'likesRelation as like_count'])
             ->latest('last_activity_at');
     }
