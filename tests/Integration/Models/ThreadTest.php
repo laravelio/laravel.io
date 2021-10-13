@@ -2,6 +2,7 @@
 
 use App\Models\Reply;
 use App\Models\Thread;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -52,16 +53,20 @@ test('its conversation is old when there are no replies but the creation date wa
 test('we can mark and unmark a reply as the solution', function () {
     $thread = Thread::factory()->create();
     $reply = Reply::factory()->create(['replyable_id' => $thread->id()]);
+    $user = $this->createUser();
 
     expect($thread->isSolutionReply($reply))->toBeFalse();
+    expect($thread->fresh()->wasResolvedBy($user))->toBeFalse();
 
-    $thread->markSolution($reply);
+    $thread->markSolution($reply, $user);
 
     expect($thread->isSolutionReply($reply))->toBeTrue();
+    expect($thread->wasResolvedBy($user))->toBeTrue();
 
     $thread->unmarkSolution();
 
     expect($thread->isSolutionReply($reply))->toBeFalse();
+    expect($thread->fresh()->wasResolvedBy($user))->toBeFalse();
 });
 
 it('can retrieve the latest threads in a correct order', function () {
@@ -142,7 +147,8 @@ function createResolvedThread()
 {
     $thread = createThreadFromToday();
     $reply = Reply::factory()->create();
-    $thread->markSolution($reply);
+    $user = User::factory()->create();
+    $thread->markSolution($reply, $user);
 
     return $thread;
 }
