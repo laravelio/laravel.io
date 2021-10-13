@@ -13,7 +13,6 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Forum\TagsController;
 use App\Http\Controllers\Forum\ThreadsController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\ReplyController;
@@ -61,14 +60,12 @@ Route::namespace('Auth')->group(function () {
     Route::get('auth/github', [GithubController::class, 'handleProviderCallback']);
 });
 
-// Redirect the old dashboard route to /user
-Route::redirect('/dashboard', '/user');
-
 // Users
+Route::redirect('/dashboard', '/user');
 Route::get('user/{username?}', [ProfileController::class, 'show'])->name('profile');
 
 // Notifications
-Route::get('notifications', NotificationController::class)->name('notifications');
+Route::view('notifications', 'users.notifications')->name('notifications');
 
 // Settings
 Route::get('settings', [ProfileSettingsController::class, 'edit'])->name('settings.profile');
