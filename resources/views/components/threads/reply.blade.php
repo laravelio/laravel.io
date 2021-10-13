@@ -35,14 +35,14 @@
             <livewire:like-reply :reply="$reply"/>
         </div>
 
-        @if ($thread->isSolutionReply($reply))
+        @if ($thread->isSolutionReply($reply) && $resolvedBy = $reply->resolvedBy())
             <div class="px-6 pb-6 text-lio-500">
                 Solution selected by
                 <a
-                    href="{{ route('profile', $thread->resolvedBy()->username()) }}"
+                    href="{{ route('profile', $resolvedBy->username()) }}"
                     class="font-bold text-lio-600 hover:text-lio-800"
                 >
-                    {{ '@'.$thread->resolvedBy()->username() }}
+                    {{ '@'.$resolvedBy->username() }}
                 </a>
             </div>
         @endif
