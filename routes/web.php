@@ -10,7 +10,6 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Forum\TagsController;
 use App\Http\Controllers\Forum\ThreadsController;
 use App\Http\Controllers\HomeController;
@@ -62,8 +61,11 @@ Route::namespace('Auth')->group(function () {
 });
 
 // Users
-Route::get('dashboard', [DashboardController::class, 'show'])->name('dashboard');
-Route::get('user/{username}', [ProfileController::class, 'show'])->name('profile');
+Route::redirect('/dashboard', '/user');
+Route::get('user/{username?}', [ProfileController::class, 'show'])->name('profile');
+
+// Notifications
+Route::view('notifications', 'users.notifications')->name('notifications');
 
 // Settings
 Route::get('settings', [ProfileSettingsController::class, 'edit'])->name('settings.profile');

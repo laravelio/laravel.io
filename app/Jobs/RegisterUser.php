@@ -45,12 +45,12 @@ final class RegisterUser
 
     public static function fromRequest(RegisterRequest $request): self
     {
-        return new static(
+        return new self(
             $request->name(),
             $request->emailAddress(),
             $request->username(),
             $request->githubId(),
-            $request->githubUsername()
+            $request->githubUsername(),
         );
     }
 
@@ -62,9 +62,10 @@ final class RegisterUser
         $user = new User([
             'name' => $this->name,
             'email' => $this->email,
-            'username' => strtolower($this->username),
+            'username' => mb_strtolower($this->username),
             'github_id' => $this->githubId,
             'github_username' => $this->githubUsername,
+            'twitter' => null,
             'type' => User::DEFAULT,
             'bio' => '',
             'remember_token' => '',

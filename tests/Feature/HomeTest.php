@@ -26,5 +26,5 @@ test('users can see a logout button when logged in', function () {
         ->seeLink('Sign out')
         ->dontSeeLink('Login')
         ->dontSeeLink('Register')
-        ->seeLink('Dashboard', '/dashboard');
+        ->seeLink('Profile', '/user');
 });
