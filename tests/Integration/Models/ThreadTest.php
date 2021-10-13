@@ -56,17 +56,17 @@ test('we can mark and unmark a reply as the solution', function () {
     $user = $this->createUser();
 
     expect($thread->isSolutionReply($reply))->toBeFalse();
-    expect($thread->fresh()->wasAnsweredBy($user))->toBeFalse();
+    expect($thread->fresh()->wasResolvedBy($user))->toBeFalse();
 
     $thread->markSolution($reply, $user);
 
     expect($thread->isSolutionReply($reply))->toBeTrue();
-    expect($thread->wasAnsweredBy($user))->toBeTrue();
+    expect($thread->wasResolvedBy($user))->toBeTrue();
 
     $thread->unmarkSolution();
 
     expect($thread->isSolutionReply($reply))->toBeFalse();
-    expect($thread->fresh()->wasAnsweredBy($user))->toBeFalse();
+    expect($thread->fresh()->wasResolvedBy($user))->toBeFalse();
 });
 
 it('can retrieve the latest threads in a correct order', function () {

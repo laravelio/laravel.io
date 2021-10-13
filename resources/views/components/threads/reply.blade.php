@@ -34,12 +34,15 @@
         <div class="px-6 pb-6">
             <livewire:like-reply :reply="$reply"/>
         </div>
-    
+
         @if ($thread->isSolutionReply($reply))
             <div class="px-6 pb-6 text-lio-500">
                 Solution selected by
-                <a href="{{ route('profile', $thread->answeredBy()->username()) }}" class="font-bold">
-                    {{ '@'.$thread->answeredBy()->username() }}
+                <a
+                    href="{{ route('profile', $thread->resolvedBy()->username()) }}"
+                    class="font-bold text-lio-600 hover:text-lio-800"
+                >
+                    {{ '@'.$thread->resolvedBy()->username() }}
                 </a>
             </div>
         @endif

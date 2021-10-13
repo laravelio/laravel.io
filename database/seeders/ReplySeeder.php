@@ -29,8 +29,8 @@ class ReplySeeder extends Seeder
         });
 
         // Give 10 random threads a solution.
-        $threads->random(20)->each(function ($thread) {
-            $thread->markSolution($thread->repliesRelation()->get()->random());
+        $threads->random(20)->each(function (Thread $thread) {
+            $thread->markSolution($thread->repliesRelation()->get()->random(), $thread->author());
         });
     }
 }

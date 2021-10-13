@@ -16,10 +16,10 @@ test('we can unmark thread solution', function () {
 
     $thread->markSolution($reply, $user);
     expect($thread->isSolutionReply($reply))->toBeTrue();
-    expect($thread->wasAnsweredBy($user))->toBeTrue();
+    expect($thread->wasResolvedBy($user))->toBeTrue();
 
     $this->dispatch(new UnmarkThreadSolution($thread));
 
     expect($thread->isSolutionReply($reply))->toBeFalse();
-    expect($thread->fresh()->wasAnsweredBy($user))->toBeFalse();
+    expect($thread->fresh()->wasResolvedBy($user))->toBeFalse();
 });

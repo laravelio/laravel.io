@@ -17,5 +17,5 @@ test('we can mark thread solution', function () {
     $this->dispatch(new MarkThreadSolution($thread, $reply, $user));
 
     expect($thread->isSolutionReply($reply))->toBeTrue();
-    expect($thread->wasAnsweredBy($user))->toBeTrue();
+    expect($thread->wasResolvedBy($user))->toBeTrue();
 });
