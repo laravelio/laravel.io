@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Exceptions\CouldNotMarkReplyAsSolution;
-use App\Helpers\HasAuthor;
-use App\Helpers\HasLikes;
-use App\Helpers\HasSlug;
-use App\Helpers\HasTags;
-use App\Helpers\HasTimestamps;
-use App\Helpers\PreparesSearch;
-use App\Helpers\ProvidesSubscriptions;
-use App\Helpers\ReceivesReplies;
+use App\Concerns\HasAuthor;
+use App\Concerns\HasLikes;
+use App\Concerns\HasSlug;
+use App\Concerns\HasTags;
+use App\Concerns\HasTimestamps;
+use App\Concerns\PreparesSearch;
+use App\Concerns\ProvidesSubscriptions;
+use App\Concerns\ReceivesReplies;
 use Exception;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;

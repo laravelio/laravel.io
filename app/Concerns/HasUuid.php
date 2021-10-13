@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Concerns;
 
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;

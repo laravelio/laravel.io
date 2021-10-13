@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Concerns;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;

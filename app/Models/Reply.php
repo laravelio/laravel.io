@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Helpers\HasAuthor;
-use App\Helpers\HasLikes;
-use App\Helpers\HasTimestamps;
+use App\Concerns\HasAuthor;
+use App\Concerns\HasLikes;
+use App\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

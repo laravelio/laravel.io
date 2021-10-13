@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Helpers\HasAuthor;
-use App\Helpers\HasLikes;
-use App\Helpers\HasSlug;
-use App\Helpers\HasTags;
-use App\Helpers\HasTimestamps;
-use App\Helpers\PreparesSearch;
+use App\Concerns\HasAuthor;
+use App\Concerns\HasLikes;
+use App\Concerns\HasSlug;
+use App\Concerns\HasTags;
+use App\Concerns\HasTimestamps;
+use App\Concerns\PreparesSearch;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

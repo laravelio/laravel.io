@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Forum;
 
-use App\Helpers\UsesFilters;
+use App\Concerns\UsesFilters;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use App\Models\Thread;

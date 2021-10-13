@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Helpers\SendsAlerts;
+use App\Concerns\SendsAlerts;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 

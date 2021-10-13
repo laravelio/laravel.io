@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Helpers\HasAuthor;
-use App\Helpers\HasSlug;
-use App\Helpers\HasTags;
+use App\Concerns\HasAuthor;
+use App\Concerns\HasSlug;
+use App\Concerns\HasTags;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
