@@ -35,7 +35,7 @@
             <livewire:like-reply :reply="$reply"/>
         </div>
 
-        @if ($thread->isSolutionReply($reply) && $resolvedBy = $reply->resolvedBy())
+        @if ($thread->isSolutionReply($reply) && $resolvedBy = $thread->resolvedBy())
             <div class="px-6 pb-6 text-lio-500">
                 Solution selected by
                 <a
