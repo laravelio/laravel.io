@@ -22,4 +22,3 @@ test('we can unlock a thread', function () {
 
     expect($thread->isUnlocked())->toBeTrue();
 });
-

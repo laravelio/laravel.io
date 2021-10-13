@@ -56,7 +56,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
         'slug',
         'subject',
         'last_activity_at',
-        'locked_by'
+        'locked_by',
     ];
 
     /**
@@ -329,14 +329,14 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
     public function lockedBy(User $user)
     {
         $this->update([
-            'locked_by' => $user->id()
+            'locked_by' => $user->id(),
         ]);
     }
 
     public function unlock()
     {
         $this->update([
-            'locked_by' => null
+            'locked_by' => null,
         ]);
     }
 
