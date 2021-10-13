@@ -349,4 +349,9 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
     {
         return is_null($this->locked_by);
     }
+
+    public function scopeUnlocked(Builder $query): Builder
+    {
+        return $query->whereNull('locked_by');
+    }
 }

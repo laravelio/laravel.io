@@ -137,7 +137,7 @@ final class User extends Authenticatable implements MustVerifyEmail
      */
     public function latestThreads(int $amount = 5)
     {
-        return $this->threadsRelation()->latest()->limit($amount)->get();
+        return $this->threadsRelation()->unlocked()->latest()->limit($amount)->get();
     }
 
     public function deleteThreads()
