@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Support\Str;
-use Spatie\Sitemap\Tags\Url;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Psr\Http\Message\UriInterface;
 use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Tags\Url;
 
 class GenerateSitemap extends Command
 {
