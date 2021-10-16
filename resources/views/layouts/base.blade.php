@@ -15,6 +15,7 @@
     </title>
 
     <meta name="description" content="The Laravel portal for problem solving, knowledge sharing and community building." />
+    <link rel="canonical" href="{{ $canonical ?? Request::url() }}" />
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
@@ -23,7 +24,6 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
-    @stack('meta')
 
     <script>
         window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
