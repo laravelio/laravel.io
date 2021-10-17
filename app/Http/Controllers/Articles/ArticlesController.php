@@ -13,6 +13,7 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Policies\ArticlePolicy;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
@@ -23,7 +24,7 @@ class ArticlesController extends Controller
         $this->middleware([Authenticate::class, EnsureEmailIsVerified::class], ['except' => ['index', 'show']]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $pinnedArticles = Article::published()
             ->pinned()
@@ -31,10 +32,12 @@ class ArticlesController extends Controller
             ->take(4)
             ->get();
         $moderators = User::moderators()->get();
+        $canonical = canonical_route('articles', ['sortBy' => $request->sortBy, 'tag' => $request->tag]);
 
         return view('articles.index', [
             'pinnedArticles' => $pinnedArticles,
             'moderators' => $moderators,
+            'canonical' => $canonical,
         ]);
     }
 

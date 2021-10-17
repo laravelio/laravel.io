@@ -1,5 +1,5 @@
 @title('Community Articles')
-@canonical(Request::get('page') == 1 ? route('articles') : Request::fullUrl())
+@canonical($canonical)
 
 @extends('layouts.default', ['isTailwindUi' => true])
 

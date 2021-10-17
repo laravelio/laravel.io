@@ -1,6 +1,6 @@
 @php($subTitle = isset($activeTag) ? $activeTag->name() : null)
 @title('Forum' . (isset($subTitle) ? ' > ' . $subTitle : ''))
-@canonical(Request::get('page') == 1 ? route('forum') : Request::fullUrl())
+@canonical($canonical)
 
 @extends('layouts.default', ['hasShadow' => true, 'isTailwindUi' => true])
 

@@ -55,8 +55,9 @@ class ThreadsController extends Controller
         $tags = Tag::orderBy('name')->get();
         $topMembers = User::mostSolutionsInLastDays(365)->take(5)->get();
         $moderators = User::moderators()->get();
+        $canonical = canonical_route('forum', ['filter' => $filter]);
 
-        return view('forum.overview', compact('threads', 'filter', 'tags', 'topMembers', 'moderators'));
+        return view('forum.overview', compact('threads', 'filter', 'tags', 'topMembers', 'moderators', 'canonical'));
     }
 
     public function show(Thread $thread)
