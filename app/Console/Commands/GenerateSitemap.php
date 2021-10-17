@@ -36,12 +36,12 @@ class GenerateSitemap extends Command
             ->writeToFile(public_path('sitemap.xml'));
     }
 
-    private function shouldNotIndex($path)
+    private function shouldNotIndex($path): bool
     {
         return Str::is($this->noIndexPaths, $path);
     }
 
-    private function shouldIndex($path)
+    private function shouldIndex($path): bool
     {
         return ! $this->shouldNotIndex($path);
     }
