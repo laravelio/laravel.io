@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Forum;
 
-use App\Models\Tag;
-use App\Models\User;
-use App\Models\Thread;
 use App\Concerns\UsesFilters;
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
+use App\Models\Thread;
+use App\Models\User;
 
 class TagsController extends Controller
 {

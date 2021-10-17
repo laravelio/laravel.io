@@ -2,8 +2,8 @@
 
 use App\Models\Tag;
 use App\Models\Thread;
-use Tests\Feature\BrowserKitTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
 uses(DatabaseMigrations::class);
