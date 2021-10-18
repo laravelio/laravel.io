@@ -5,6 +5,7 @@
 /public/storage
 /public/hot
 /public/mix-manifest.json
+/public/sitemap.xml
 /storage/*.key
 /vendor
 .env
