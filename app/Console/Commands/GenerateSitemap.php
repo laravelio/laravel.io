@@ -14,13 +14,13 @@ class GenerateSitemap extends Command
 
     protected $description = 'Crawl the site to generate a sitemap.xml file';
 
-    private $noIndexPaths = [
+    private array $noIndexPaths = [
         '',
         '/forum/*',
         '/user/*',
     ];
 
-    public function handle()
+    public function handle(): void
     {
         SitemapGenerator::create(config('app.url'))
             ->shouldCrawl(function (UriInterface $url) {
@@ -36,12 +36,12 @@ class GenerateSitemap extends Command
             ->writeToFile(public_path('sitemap.xml'));
     }
 
-    private function shouldNotIndex($path): bool
+    private function shouldNotIndex(string $path): bool
     {
         return Str::is($this->noIndexPaths, $path);
     }
 
-    private function shouldIndex($path): bool
+    private function shouldIndex(string $path): bool
     {
         return ! $this->shouldNotIndex($path);
     }
