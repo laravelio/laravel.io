@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Articles;
 
-use App\Http\Controllers\Controller;
-use App\Http\Middleware\Authenticate;
-use App\Http\Requests\ArticleRequest;
+use App\Models\Tag;
+use App\Models\User;
+use App\Models\Article;
 use App\Jobs\CreateArticle;
 use App\Jobs\DeleteArticle;
 use App\Jobs\UpdateArticle;
-use App\Models\Article;
-use App\Models\Tag;
-use App\Models\User;
-use App\Policies\ArticlePolicy;
-use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
+use App\Policies\ArticlePolicy;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\Authenticate;
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 
 class ArticlesController extends Controller
 {
@@ -32,7 +32,7 @@ class ArticlesController extends Controller
             ->take(4)
             ->get();
         $moderators = User::moderators()->get();
-        $canonical = canonical_route('articles', ['sortBy' => $request->sortBy, 'tag' => $request->tag]);
+        $canonical = canonical_route('articles', $request->only('sortBy', 'tag'));
 
         return view('articles.index', [
             'pinnedArticles' => $pinnedArticles,
