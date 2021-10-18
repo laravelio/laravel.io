@@ -3,10 +3,8 @@
 if (! function_exists('active')) {
     /**
      * Sets the menu item class for an active route.
-     *
-     * @param mixed $routes
      */
-    function active($routes, bool $condition = true): string
+    function active(mixed $routes, bool $condition = true): string
     {
         return call_user_func_array([app('router'), 'is'], (array) $routes) && $condition ? 'active' : '';
     }
@@ -15,10 +13,8 @@ if (! function_exists('active')) {
 if (! function_exists('is_active')) {
     /**
      * Determines if the given routes are active.
-     *
-     * @param mixed $routes
      */
-    function is_active($routes): bool
+    function is_active(mixed $routes): bool
     {
         return (bool) call_user_func_array([app('router'), 'is'], (array) $routes);
     }
@@ -37,10 +33,8 @@ if (! function_exists('md_to_html')) {
 if (! function_exists('route_to_reply_able')) {
     /**
      * Returns the route for the replyAble.
-     *
-     * @param mixed $replyAble
      */
-    function route_to_reply_able($replyAble): string
+    function route_to_reply_able(mixed $replyAble): string
     {
         if ($replyAble instanceof App\Models\Thread) {
             return route('thread', $replyAble->slug());
