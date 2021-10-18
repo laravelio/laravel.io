@@ -12,9 +12,7 @@
     @formGroup('body')
         <label for="body">Body</label>
 
-        @include('_partials._editor', [
-            'content' => isset($thread) ? $thread->body() : null
-        ])
+        <x-editor :content="isset($thread) ? $thread->body() : null"/>
 
         @error('body')
     @endFormGroup

@@ -19,10 +19,8 @@
                     @method('PUT')
 
                     @formGroup('body')
+                        <x-editor :content="old('body') ?: $reply->body()"/>
 
-                        @include('_partials._editor', [
-                            'content' => old('body') ?: $reply->body()
-                        ])
                         
                         @error('body')
                     @endFormGroup

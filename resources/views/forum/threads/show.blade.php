@@ -42,9 +42,7 @@
                             @csrf
 
                             @formGroup('body')
-                                <label for="body">Write a reply</label>
-
-                                @include('_partials._editor', ['content' => old('body')])
+                                <x-editor :content="old('body')" enableActionButton actionButtonLabel="Reply" actionButtonIcon="send" label="Write a reply" />
 
                                 @error('body')
                             @endFormGroup
@@ -57,8 +55,6 @@
                                 <p>
                                     Please make sure you've read our <a href="{{ route('rules') }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">rules</a> before replying to this thread.
                                 </p>
-
-                                <button type="submit" class="button button-primary">Reply</button>
                             </div>
                         </form>
                     </div>
