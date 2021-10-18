@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Articles;
 
-use App\Models\Tag;
-use App\Models\User;
-use App\Models\Article;
+use App\Http\Controllers\Controller;
+use App\Http\Middleware\Authenticate;
+use App\Http\Requests\ArticleRequest;
 use App\Jobs\CreateArticle;
 use App\Jobs\DeleteArticle;
 use App\Jobs\UpdateArticle;
-use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Models\Tag;
+use App\Models\User;
 use App\Policies\ArticlePolicy;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Middleware\Authenticate;
-use App\Http\Requests\ArticleRequest;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class ArticlesController extends Controller
 {
