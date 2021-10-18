@@ -32,7 +32,7 @@ class ArticlesController extends Controller
             ->take(4)
             ->get();
         $moderators = User::moderators()->get();
-        $canonical = canonical_route('articles', $request->only('sortBy', 'tag'));
+        $canonical = canonical('articles', $request->only('sortBy', 'tag'));
 
         return view('articles.index', [
             'pinnedArticles' => $pinnedArticles,
