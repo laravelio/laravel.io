@@ -1,4 +1,5 @@
 @title("{$user->username()} ({$user->name()})")
+@canonical(route('profile', $user->username()))
 
 @extends('layouts.default')
 

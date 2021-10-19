@@ -1,4 +1,5 @@
 @title('Community Articles')
+@canonical($canonical)
 
 @extends('layouts.default', ['isTailwindUi' => true])
 

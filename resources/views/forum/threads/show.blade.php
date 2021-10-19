@@ -1,4 +1,5 @@
 @title($thread->subject())
+@canonical(route('thread', $thread->slug()))
 
 @extends('layouts.default', ['hasShadow' => true])
 

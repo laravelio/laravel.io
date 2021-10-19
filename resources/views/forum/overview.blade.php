@@ -1,5 +1,6 @@
 @php($subTitle = isset($activeTag) ? $activeTag->name() : null)
 @title('Forum' . (isset($subTitle) ? ' > ' . $subTitle : ''))
+@canonical($canonical)
 
 @extends('layouts.default', ['hasShadow' => true, 'isTailwindUi' => true])
 

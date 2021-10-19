@@ -1,11 +1,8 @@
 @title($article->title())
+@canonical($article->canonicalUrl())
 @shareImage(route('articles.image', $article->slug()))
 
 @extends('layouts.default')
-
-@push('meta')
-    <link rel="canonical" href="{{ $article->canonicalUrl() }}" />
-@endpush
 
 @section('content')
     <article class="bg-white">
