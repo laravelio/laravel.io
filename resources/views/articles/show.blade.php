@@ -98,10 +98,12 @@
                     <div class="border-t-2 border-gray-200 py-8 lg:pt-14 lg:pb-16">
                         <div class="flex flex-col items-center justify-center gap-y-4 lg:flex-row lg:justify-between">
                             <div class="flex items-center gap-x-4">
-                                <x-avatar :user="$article->author()" class="hidden w-16 h-16 lg:block" />
+                                <x-avatar-link :user="$article->author()" class="hidden w-16 h-16 lg:block" />
                                 
                                 <div class="flex flex-col items-center text-gray-900 text-xl font-semibold lg:items-start">
-                                    {{ $article->author()->username() }} ({{ $article->author()->name() }})
+                                    <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
+                                        {{ $article->author()->username() }} ({{ $article->author()->name() }})
+                                    </a>
                                     <span class="text-lg text-gray-700 font-medium">
                                         {{ $article->author()->bio() }}
                                     </span>
