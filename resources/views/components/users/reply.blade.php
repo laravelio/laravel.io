@@ -5,9 +5,7 @@
         <div>
             <div class="flex flex-col lg:flex-row lg:items-center">
                 <div class="flex">
-                    <a href="{{ route('profile', $reply->author()->username()) }}">
-                        <x-avatar :user="$reply->author()" class="w-6 h-6 rounded-full mr-3" />
-                    </a>
+                    <x-avatar-link :user="$reply->author()" class="w-6 h-6 rounded-full mr-3" />
 
                     <a href="{{ route('profile', $reply->author()->username()) }}" class="hover:underline">
                         <span class="text-gray-900 mr-5">{{ $reply->author()->username() }}</span>

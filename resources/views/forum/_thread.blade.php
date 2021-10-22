@@ -31,9 +31,7 @@
         <div class="mt-4 flex justify-between space-x-8">
             <div class="flex space-x-3">
                 <div class="flex-shrink-0">
-                    <a href="{{ route('profile', $thread->author()->username()) }}">
-                        <x-avatar :user="$thread->author()" class="h-10 w-10 sm:h-5 sm:w-5 rounded-full" />
-                    </a>
+                    <x-avatar-link :user="$thread->author()" class="h-10 w-10 sm:h-5 sm:w-5 rounded-full" />
                 </div>
 
                 <div class="min-w-0 flex-1">

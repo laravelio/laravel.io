@@ -157,7 +157,7 @@
                                         </span>
                                     </a>
 
-                                    <x-avatar :user="Auth::user()" class="h-8 w-8" />
+                                    <x-avatar-link :user="Auth::user()" class="h-8 w-8" />
 
                                     <div @click.away="settings = false">
                                         <button @click="settings = !settings" class="flex items-center">
