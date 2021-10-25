@@ -1,13 +1,13 @@
 <?php
 
-use App\Models\Tag;
-use Livewire\Livewire;
-use App\Models\Article;
 use App\Http\Livewire\ShowArticles;
-use Tests\Feature\BrowserKitTestCase;
-use Illuminate\Support\Facades\Notification;
+use App\Models\Article;
+use App\Models\Tag;
 use App\Notifications\ArticleApprovedNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Notification;
+use Livewire\Livewire;
+use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
 uses(DatabaseMigrations::class);
