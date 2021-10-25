@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Livewire\ShowArticles;
-use App\Models\Article;
 use App\Models\Tag;
+use Livewire\Livewire;
+use App\Models\Article;
+use App\Http\Livewire\ShowArticles;
+use Tests\Feature\BrowserKitTestCase;
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\ArticleApprovedNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Notification;
-use Livewire\Livewire;
-use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
 uses(DatabaseMigrations::class);
@@ -325,6 +325,12 @@ test('tags can be toggled', function () {
         ->assertSet('tag', $tag->slug)
         ->call('toggleTag', $tag->slug)
         ->assertSet('tag', null);
+});
+
+test('loading page with invalid sort parameter defaults to recent', function () {
+    Livewire::withQueryParams(['sortBy' => 'something-invalid'])
+        ->test(ShowArticles::class)
+        ->assertSet('sortBy', 'recent');
 });
 
 test('invalid sort parameter defaults to recent', function () {
