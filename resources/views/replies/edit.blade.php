@@ -19,8 +19,7 @@
                     @method('PUT')
 
                     @formGroup('body')
-                        <x-editor :content="old('body') ?: $reply->body()"/>
-
+                        <livewire:editor enableActionButton actionButtonLabel="Update reply" actionButtonIcon="send" label="Write a reply" :body="$reply->body()" />
                         
                         @error('body')
                     @endFormGroup

@@ -5,28 +5,28 @@
         </span>
     @endif
 
-    <div x-data="editorConfig()" x-init="minHeight = $refs.editor.scrollHeight" class="bg-white rounded-md shadow-md">
+    <div x-data="editorConfig($wire.entangle('body'))" class="bg-white rounded-md shadow-md">
         <ul class="flex p-5 gap-x-4">
             <li>
                 <button type="button" @click="mode = 'write'">Write</button>
             </li>
 
             <li>
-                <button type="button" @click="mode = 'preview'">Preview</button>
+                <button type="button" @click="mode = 'preview'" wire:click="preview">Preview</button>
             </li>
         </ul>
 
         <div x-show="mode === 'write'">
-            <div x-ref="editor">
-                <textarea
-                    @keyup.prevent="expand($refs.editor, minHeight)"
-                    @load.window="expand($refs.editor, minHeight)"
-                    name="body"
+            <div class="flex flex-col relative">
+                <div x-text="body" class="invisible whitespace-pre-wrap p-5 min-h-[5rem]"></div>
+                <textarea 
+                    class="w-full h-full absolute left-0 top-0 right-0 bottom-0 overflow-y-hidden resize-none border-none p-5"
                     id="body"
-                    class="w-full resize-none h-40 focus:outline-none border-none p-5"
+                    name="body"
                     placeholder="Write a reply..."
-                    wire:model.debounce.500ms="content"
-                >{{ old('body') ?: $content }}</textarea>
+                    wire:model.defer="body"
+                    x-model='body'
+                >{{ $body }}</textarea>
             </div>
 
             <div class="flex flex-col items-center justify-end gap-y-4 gap-x-5 p-5 md:flex-row">
@@ -125,7 +125,7 @@
             </div>
         </div>
 
-        <div class="prose w-full p-5" x-show="mode === 'preview'" x-cloak>
+        <div class="prose prose-lio max-w-none p-6 break-words" x-show="mode === 'preview'" x-cloak id="editor-preview">
             {!! $this->preview !!}
         </div>
     </div>

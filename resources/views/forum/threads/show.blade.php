@@ -1,6 +1,6 @@
 @title($thread->subject())
 
-@extends('layouts.default', ['hasShadow' => true])
+@extends('layouts.default', ['hasShadow' => true, 'isTailwindUi' => true])
 
 @section('subnav')
     <section class="container mx-auto bg-white pb-4 px-4 lg:pb-10">
@@ -42,7 +42,7 @@
                             @csrf
 
                             @formGroup('body')
-                                <x-editor :content="old('body')" enableActionButton actionButtonLabel="Reply" actionButtonIcon="send" label="Write a reply" />
+                                <livewire:editor enableActionButton actionButtonLabel="Reply" actionButtonIcon="send" label="Write a reply" />
 
                                 @error('body')
                             @endFormGroup
