@@ -327,6 +327,12 @@ test('tags can be toggled', function () {
         ->assertSet('tag', null);
 });
 
+test('loading page with invalid sort parameter defaults to recent', function () {
+    Livewire::withQueryParams(['sortBy' => 'something-invalid'])
+        ->test(ShowArticles::class)
+        ->assertSet('sortBy', 'recent');
+});
+
 test('invalid sort parameter defaults to recent', function () {
     Livewire::test(ShowArticles::class)
         ->call('sortBy', 'something-invalid')

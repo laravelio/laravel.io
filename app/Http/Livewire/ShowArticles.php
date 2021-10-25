@@ -23,6 +23,7 @@ final class ShowArticles extends Component
 
     public function render(): View
     {
+        $this->sortBy($this->sortBy);
         $articles = Article::published()
             ->notPinned();
 
