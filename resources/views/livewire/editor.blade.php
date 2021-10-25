@@ -8,11 +8,11 @@
     <div x-data="editorConfig($wire.entangle('body'))" class="bg-white rounded-md shadow-md">
         <ul class="flex p-5 gap-x-4">
             <li>
-                <button type="button" @click="mode = 'write'">Write</button>
+                <button type="button" @click="mode = 'write'" :class="{ 'text-lio-500 border-lio-500 border-b-2': mode === 'write' }">Write</button>
             </li>
 
             <li>
-                <button type="button" @click="mode = 'preview'" wire:click="preview">Preview</button>
+                <button type="button" @click="mode = 'preview'" wire:click="preview" :class="{ 'text-lio-500 border-lio-500 border-b-2': mode === 'preview' }">Preview</button>
             </li>
         </ul>
 
