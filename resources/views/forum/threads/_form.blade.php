@@ -1,36 +1,49 @@
-<form action="{{ route(...$route) }}" method="POST">
-    @csrf
-    @method($method ?? 'POST')
+<x-buk-form action="{{ route(...$route) }}" :method="$method ?? 'POST'">
+    <div class="bg-gray-100 py-6 px-4 space-y-6 sm:p-6">
+        <div>
+            <h2 id="create_thread_heading" class="text-lg leading-6 font-medium text-gray-900">
+                Create a new thread
+            </h2>
+        </div>
 
-    @formGroup('subject')
-        <label for="subject">Subject</label>
-        <input type="text" name="subject" id="subject" value="{{ isset($thread) ? $thread->subject() : null }}" class="form-control" required maxlength="60" />
-        <span class="text-gray-600 text-sm">Maximum 60 characters.</span>
-        @error('subject')
-    @endFormGroup
+        <div class="flex flex-col space-y-6">
+            <div class="flex-grow space-y-6">
+                <div class="space-y-1">
+                    <x-forms.label for="subject"/>
 
-    @formGroup('body')
-        <label for="body">Body</label>
+                    <x-forms.inputs.input name="subject" :value="isset($thread) ? $thread->subject() : null" required maxlength="60" />
 
-        <x-editor :content="isset($thread) ? $thread->body() : null"/>
+                    <span class="mt-2 text-sm text-gray-500">
+                        Maximum 60 characters.
+                    </span>
+                </div>
+            </div>
 
-        @error('body')
-    @endFormGroup
+            <div class="flex-grow space-y-6">
+                <div class="space-y-1">
+                    <x-forms.label for="tags">Tags</x-forms.label>
 
-    @formGroup('tags')
-        <label for="tags">Tags</label>
+                    <select name="tags[]" id="create-thread" multiple x-data="{}" x-init="function () { choices($el) }">
+                        @foreach($tags as $tag)
+                            <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>{{ $tag->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
 
-        <select name="tags[]" id="create-thread" multiple x-data="{}" x-init="function () { choices($el) }">
-            @foreach($tags as $tag)
-                <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>{{ $tag->name }}</option>
-            @endforeach
-        </select>
+            <div class="flex-grow space-y-6">
+                <div class="space-y-1">
+                    <x-forms.label for="body">Compose your question</x-forms.label>
 
-        @error('tags')
-    @endFormGroup
-
-    <div class="flex justify-end items-center">
-        <a href="{{ isset($thread) ? route('thread', $thread->slug()) : route('forum') }}" class="text-lio-700 mr-4">Cancel</a>
-        <button type="submit" class="button button-primary">{{ isset($thread) ? 'Update Thread' : 'Create Thread' }}</button>
+                    <livewire:editor 
+                        :body="isset($thread) ? $thread->body() : null" 
+                        placeholder="Compose your thread..."
+                        hasButton
+                        :buttonLabel="isset($thread) ? 'Update thread' : 'Create thread'"
+                        buttonIcon="heroicon-o-arrow-right"
+                    />
+                </div>
+            </div>
+        </div>
     </div>
-</form>
+</x-buk-form>

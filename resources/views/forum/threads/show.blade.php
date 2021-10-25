@@ -42,7 +42,7 @@
                             @csrf
 
                             @formGroup('body')
-                                <livewire:editor enableActionButton actionButtonLabel="Reply" actionButtonIcon="send" label="Write a reply" />
+                                <livewire:editor hasButton buttonLabel="Reply" buttonIcon="send" label="Write a reply" />
 
                                 @error('body')
                             @endFormGroup

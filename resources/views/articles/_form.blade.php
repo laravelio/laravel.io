@@ -20,7 +20,7 @@
         @formGroup('body')
             <label for="body">Body</label>
 
-            <x-editor :content="isset($article) ? $article->body() : null"/>
+            <livewire-editor :content="isset($article) ? $article->body() : null"/>
             
             @error('body')
         @endFormGroup

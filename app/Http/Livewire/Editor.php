@@ -8,15 +8,17 @@ class Editor extends Component
 {
     public $label;
 
+    public $placeholder = 'Write a reply...';
+
     public $body = '';
 
-    public $enableActionButton = false;
+    public $hasButton;
 
-    public $actionButtonLabel = 'Submit';
+    public $buttonType = 'submit';
 
-    public $actionButtonType = 'submit';
+    public $buttonLabel = 'Submit';
 
-    public $actionButtonIcon;
+    public $buttonIcon;
 
     public function render()
     {
