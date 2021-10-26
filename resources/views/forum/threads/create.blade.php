@@ -14,15 +14,10 @@
 @endsection
 
 @section('content')
-    <x-rules-banner />
-
-    <main class="max-w-4xl mx-auto pt-10 pb-12 px-4 lg:pb-16">
+    <main class="max-w-4xl mx-auto pt-10 pb-12 px-4 lg:pb-16">        
         <div class="lg:grid lg:gap-x-5">
             <div class="sm:px-6 lg:px-0 lg:col-span-9">
-
-                @include('forum.threads._form', [
-                    'route' => ['threads.store'],
-                ])
+                <x-threads.form :tags="$tags" :route="['threads.store']" />
 
                 <x-forms.info>
                     Please search for your question before posting your thread by using the search box in the navigation bar.

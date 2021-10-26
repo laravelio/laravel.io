@@ -1,6 +1,6 @@
 @title('Edit your reply')
 
-@extends('layouts.default')
+@extends('layouts.default', ['isTailwindUi' => true])
 
 @section('subnav')
     <div class="bg-white border-b">
@@ -11,25 +11,23 @@
 @endsection
 
 @section('content')
-    <div class="container mx-auto p-4 flex justify-center">
-        <div class="w-full md:w-2/3 xl:w-1/2">
-            <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100">
-                <form action="{{ route('replies.update', $reply->id()) }}" method="POST">
-                    @csrf
-                    @method('PUT')
+    <main class="max-w-4xl mx-auto pt-10 pb-12 px-4 lg:pb-16">        
+        <div class="lg:grid lg:gap-x-5">
+            <div class="sm:px-6 lg:px-0 lg:col-span-9">
+                <x-buk-form action="{{ route('replies.update', $reply->id()) }}" method="PUT">
 
-                    @formGroup('body')
-                        <livewire:editor enableActionButton actionButtonLabel="Update reply" actionButtonIcon="send" label="Write a reply" :body="$reply->body()" />
-                        
-                        @error('body')
-                    @endFormGroup
-
-                    <div class="flex items-center justify-end">
-                        <a href="{{ route_to_reply_able($reply->replyAble()) }}" class="text-lio-700 mr-4">Cancel</a>
-                        <button type="submit" class="button button-primary">Update</button>
-                    </div>
-                </form>
+                    <livewire:editor 
+                        label="Upate your reply"
+                        :body="$reply->body() ?: ''" 
+                        placeholder="Update your reply..."
+                        hasButton 
+                        buttonLabel="Update reply"
+                        buttonIcon="send"
+                    />
+                    
+                    @error('body')
+                </x-buk-form>
             </div>
         </div>
-    </div>
+    </main>
 @endsection
