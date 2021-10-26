@@ -10,7 +10,7 @@ class Editor extends Component
 
     public $placeholder = 'Write a reply...';
 
-    public $body = '';
+    public $body;
 
     public $hasButton;
 
@@ -27,7 +27,7 @@ class Editor extends Component
 
     public function getPreviewProperty()
     {
-        return replace_links(md_to_html($this->body));
+        return replace_links(md_to_html($this->body ?: ''));
     }
 
     public function preview()

@@ -49,7 +49,7 @@
                     <x-forms.label for="body">Compose your question</x-forms.label>
 
                     <livewire:editor 
-                        :body="$thread?->body() ?? ''" 
+                        :body="$thread?->body()" 
                         placeholder="Compose your thread..."
                         hasButton
                         :buttonLabel="$thread ? 'Update thread' : 'Create thread'"

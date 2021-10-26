@@ -18,7 +18,7 @@
 
                     <livewire:editor 
                         label="Upate your reply"
-                        :body="$reply->body() ?: ''" 
+                        :body="$reply->body()" 
                         placeholder="Update your reply..."
                         hasButton 
                         buttonLabel="Update reply"
