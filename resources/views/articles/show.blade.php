@@ -104,6 +104,7 @@
                                     <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
                                         {{ $article->author()->username() }} ({{ $article->author()->name() }})
                                     </a>
+
                                     <span class="text-lg text-gray-700 font-medium">
                                         {{ $article->author()->bio() }}
                                     </span>
