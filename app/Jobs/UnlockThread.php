@@ -8,7 +8,8 @@ final class UnlockThread
 {
     public function __construct(
         private Thread $thread
-    ) {}
+    ) {
+    }
 
     public function handle(): void
     {
