@@ -16,13 +16,13 @@ final class LockThread extends Component
     /** @var \App\Models\Thread */
     public $thread;
 
-    /** @var \App\Models\User */
-    public $locker;
+    /** @var string|null */
+    public $lockedBy;
 
     public function mount(Thread $thread): void
     {
         $this->thread = $thread;
-        $this->locker = $thread->locker()?->username();
+        $this->lockedBy = $thread->lockedBy()?->username();
     }
 
     public function toggleLock(): void
@@ -35,7 +35,7 @@ final class LockThread extends Component
             $this->dispatchNow(new UnlockThreadJob($this->thread));
         } else {
             $this->dispatchNow(new LockThreadJob(Auth::user(), $this->thread));
-            $this->locker = Auth::user()->username;
+            $this->lockedBy = Auth::user()->username;
         }
     }
 

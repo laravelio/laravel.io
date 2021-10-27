@@ -17,8 +17,10 @@ test('we can unlock a thread', function () {
     $this->dispatch(new LockThread($user, $thread));
 
     expect($thread->isLockedBy($user))->toBeTrue();
+    expect($thread->locked_at)->not()->toBeNull();
 
     $this->dispatch(new UnlockThread($thread));
 
     expect($thread->isUnlocked())->toBeTrue();
+    expect($thread->locked_at)->toBeNull();
 });

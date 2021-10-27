@@ -2,34 +2,22 @@
 
 namespace App\Jobs;
 
-use App\Exceptions\CannotLockItem;
 use App\Models\Thread;
 use App\Models\User;
 
 final class LockThread
 {
-    /**
-     * @var \App\Models\User
-     */
-    private $user;
+    public function __construct(
+        private User $user,
+        private Thread $thread
+    ) {}
 
-    /**
-     * @var \App\Models\Thread
-     */
-    private $thread;
-
-    public function __construct(User $user, Thread $thread)
+    public function handle(): void
     {
-        $this->user = $user;
-        $this->thread = $thread;
-    }
-
-    public function handle()
-    {
-        if ($this->thread->isLocked()) {
-            throw CannotLockItem::alreadyLocked('thread');
+        if (! $this->thread->isLocked()) {
+            $this->thread->lockedByRelation()->associate($this->user);
+            $this->thread->locked_at = now();
+            $this->thread->save();
         }
-
-        $this->thread->lockedBy($this->user);
     }
 }

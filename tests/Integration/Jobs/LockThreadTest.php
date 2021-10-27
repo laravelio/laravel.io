@@ -1,6 +1,5 @@
 <?php
 
-use App\Exceptions\CannotLockItem;
 use App\Jobs\LockThread;
 use App\Models\Thread;
 use App\Models\User;
@@ -14,12 +13,15 @@ test('we can lock a thread', function () {
     $user = User::factory()->create();
     $thread = Thread::factory()->create();
 
+    expect($thread->locked_at)->toBeNull();
+
     $this->dispatch(new LockThread($user, $thread));
 
     expect($thread->isLockedBy($user))->toBeTrue();
+    expect($thread->locked_at)->not()->toBeNull();
 });
 
-test('we cannot lock a locked thread', function () {
+test('locking an already locked thread has no side effects', function () {
     $user = User::factory()->create();
     $thread = Thread::factory()->create();
 
@@ -27,7 +29,9 @@ test('we cannot lock a locked thread', function () {
 
     expect($thread->isLockedBy($user))->toBeTrue();
 
-    $this->expectException(CannotLockItem::class);
+    $lockedAt = $thread->locked_at;
 
     $this->dispatch(new LockThread($user, $thread));
+
+    expect($thread->locked_at)->toEqual($lockedAt);
 });

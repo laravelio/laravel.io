@@ -6,16 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 class AddLockedByColumnToThreadsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('threads', function (Blueprint $table) {
+            $table->timestamp('locked_at')->nullable()->default(null);
             $table->integer('locked_by')->unsigned()->nullable()->default(null);
-            $table->foreign('locked_by')->references('id')->on('users')->onDelete('SET NULL');
+
+            $table->foreign('locked_by')
+                ->references('id')
+                ->on('users')
+                ->onDelete('SET NULL');
         });
     }
 }

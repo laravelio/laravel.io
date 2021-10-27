@@ -6,18 +6,14 @@ use App\Models\Thread;
 
 final class UnlockThread
 {
-    /**
-     * @var \App\Models\Thread
-     */
-    private $thread;
+    public function __construct(
+        private Thread $thread
+    ) {}
 
-    public function __construct(Thread $thread)
+    public function handle(): void
     {
-        $this->thread = $thread;
-    }
-
-    public function handle()
-    {
-        $this->thread->unlock();
+        $this->thread->lockedByRelation()->dissociate();
+        $this->thread->locked_at = null;
+        $this->thread->save();
     }
 }
