@@ -7,9 +7,8 @@
         <div class="break-words">
             <div class="flex items-center justify-between mb-2.5">
                 <div class="flex items-center">
-                    <a href="{{ route('profile', $thread->author()->username()) }}">
-                        <x-avatar :user="$thread->author()" class="w-8 h-8 rounded-full mr-2" />
-                    </a>
+                    <x-avatar :user="$thread->author()" class="w-8 h-8 rounded-full mr-2" />
+
                     <a href="{{ route('profile', $thread->author()->username()) }}">
                         <span class="font-heading text-sm text-black">{{ $thread->author()->username() }}</span>
                     </a>

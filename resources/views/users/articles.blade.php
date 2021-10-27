@@ -43,11 +43,13 @@
                         </x-tag>
                     @endforeach
                 </div>
+
                 <a href="{{ route('articles.show', $article->slug()) }}" class="block">
                     <div class="mt-4 flex justify-between items-center">
                         <h3 class="text-xl leading-7 font-semibold text-gray-900">
                             {{ $article->title() }}
                         </h3>
+
                         <div class="flex">
                             <a href="{{ route('articles.show', $article->slug()) }}" class="button mr-2">
                                 View
@@ -57,6 +59,7 @@
                             </a>
                         </div>
                     </div>
+
                     <p class="mt-3 text-base leading-6 text-gray-500">
                         {{ $article->excerpt() }}
                     </p>
@@ -65,16 +68,16 @@
                 <div class="flex items-center justify-between mt-6">
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
-                            <a href="#">
-                                <x-avatar :user="$article->author()" class="h-10 w-10" />
-                            </a>
+                            <x-avatar :user="$article->author()" class="h-10 w-10 rounded-full"/>
                         </div>
+
                         <div class="ml-3">
                             <p class="text-sm leading-5 font-medium text-gray-900">
-                                <a href="#">
+                                <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
                                     {{ $article->author()->name() }}
                                 </a>
                             </p>
+
                             <div class="flex text-sm leading-5 text-gray-500">
                                 @if ($article->isPublished())
                                     <time datetime="{{ $article->submittedAt()->format('Y-m-d') }}">
@@ -95,12 +98,14 @@
                                 <span class="mx-1">
                                     &middot;
                                 </span>
+
                                 <span>
                                     {{ $article->readTime() }} min read
                                 </span>
                             </div>
                         </div>
                     </div>
+
                     <div class="flex items-center text-gray-500">
                         <span class="text-2xl mr-2">👏</span>
                         {{ count($article->likes()) }}

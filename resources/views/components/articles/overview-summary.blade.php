@@ -5,8 +5,8 @@
 <div class="h-full rounded-lg shadow-lg bg-white lg:p-5">
     <div class="flex flex-col gap-x-8 lg:flex-row">
         <a href="{{ route('articles.show', $article->slug()) }}" class="block">
-            <div 
-                class="w-full h-32 rounded-t-lg bg-center bg-cover bg-gray-900 lg:w-48 lg:h-full lg:rounded-lg" 
+            <div
+                class="w-full h-32 rounded-t-lg bg-center bg-cover bg-gray-900 lg:w-48 lg:h-full lg:rounded-lg"
                 style="background-image: url({{ $article->heroImage() }});"
             >
             </div>

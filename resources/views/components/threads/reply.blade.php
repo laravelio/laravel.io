@@ -5,9 +5,10 @@
         <div class="flex flex-row justify-between items-center px-6 py-2.5">
             <div>
                 <div class="flex flex-col lg:flex-row lg:items-center">
-                    <div>
-                        <a href="{{ route('profile', $reply->author()->username()) }}" class="flex items-center hover:underline">
-                            <x-avatar :user="$reply->author()" class="w-6 h-6 rounded-full mr-3" />
+                    <div class="flex items-center">
+                        <x-avatar :user="$reply->author()" class="w-6 h-6 rounded-full mr-3" />
+
+                        <a href="{{ route('profile', $reply->author()->username()) }}" class="hover:underline">
                             <span class="text-gray-900 mr-5">{{ $reply->author()->username() }}</span>
                         </a>
                     </div>

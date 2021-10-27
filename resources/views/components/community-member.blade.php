@@ -6,12 +6,10 @@
         :user="$member"
     />
 
-    <a href="{{ route('profile', $member->username) }}">
-        <x-avatar
-            :user="$member"
-            class="inset-0 w-14 h-14 md:w-20 md:h-20"
-            x-on:mouseover="active = {{ $member->id }}"
-            x-on:mouseout="active = false"
-        />
-    </a>
+    <x-avatar
+        :user="$member"
+        class="inset-0 w-14 h-14 md:w-20 md:h-20"
+        x-on:mouseover="active = {{ $member->id }}"
+        x-on:mouseout="active = false"
+    />
 </div>

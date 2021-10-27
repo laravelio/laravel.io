@@ -31,9 +31,7 @@
         <div class="mt-4 flex justify-between space-x-8">
             <div class="flex space-x-3">
                 <div class="flex-shrink-0">
-                    <a href="{{ route('profile', $thread->author()->username()) }}">
-                        <x-avatar :user="$thread->author()" class="h-10 w-10 sm:h-5 sm:w-5 rounded-full" />
-                    </a>
+                    <x-avatar :user="$thread->author()" class="h-10 w-10 sm:h-5 sm:w-5 rounded-full" />
                 </div>
 
                 <div class="min-w-0 flex-1">
@@ -55,8 +53,8 @@
                 @if ($thread->isSolved())
                     <span class="inline-flex items-center text-sm">
                         <div class="inline-flex space-x-2">
-                            <a 
-                                href="{{ route('thread', $thread->slug()) }}#{{ $thread->solution_reply_id }}" 
+                            <a
+                                href="{{ route('thread', $thread->slug()) }}#{{ $thread->solution_reply_id }}"
                                 class="rounded-full p-1 bg-lio-100 text-lio-500"
                                 title="Resolved"
                             >

@@ -125,9 +125,7 @@
                             <li class="{{ ! $loop->last ? 'border-b ' : '' }}pb-3 pt-5">
                                 <div class="flex justify-between items-center px-5">
                                     <div class="flex items-center gap-x-5">
-                                        <a href="{{ route('profile', $member->username()) }}">
-                                            <x-avatar :user="$member" class="w-10 h-10" />
-                                        </a>
+                                        <x-avatar :user="$member" class="w-10 h-10" />
 
                                         <span class="flex flex-col">
                                             <a href="{{ route('profile', $member->username()) }}" class="hover:underline">

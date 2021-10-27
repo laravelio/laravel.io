@@ -4,9 +4,7 @@
     <div class="bg-gray-900 rounded-t-md h-28" style="background-image: url('{{ asset('images/profile-background.svg') }}')"></div>
 
     <div class="flex flex-col items-center justify-center bg-white rounded-b-md pb-8">
-        <a href="{{ route('profile', $user->username()) }}">
-            <x-avatar :user="$user" class="w-32 h-32 rounded-full -mt-16 mb-6" />
-        </a>
+        <x-avatar :user="$user" class="w-32 h-32 rounded-full -mt-16 mb-6" />
 
         <a href="{{ route('profile', $user->username()) }}" class="flex flex-col text-center text-xl font-medium mb-4 hover:underline">
             {{ $user->name() }}
