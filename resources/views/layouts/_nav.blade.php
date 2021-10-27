@@ -170,8 +170,8 @@
 
                                 <div x-show="settings" x-cloak class="mt-4 lg:mt-0">
                                     <ul class="flex flex-col items-center lg:absolute lg:items-stretch lg:ml-0 lg:mt-2 lg:w-36 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
-                                        <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:px-4 lg:py-3">
-                                            <a href="{{ route('profile') }}">
+                                         <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
+                                             <a href="{{ route('profile') }}" class="inline-block w-full lg:px-4 lg:py-3">
                                                 Your Profile
                                             </a>
                                         </li>
