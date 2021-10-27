@@ -5,8 +5,8 @@
 <div class="h-full rounded-lg shadow-lg bg-white">
     <div class="flex flex-col h-full gap-x-8">
         <a href="{{ route('articles.show', $article->slug()) }}" class="block">
-            <div 
-                class="w-full h-32 rounded-t-lg bg-center bg-cover bg-gray-900 lg:h-40" 
+            <div
+                class="w-full h-32 rounded-t-lg bg-center bg-cover bg-gray-900 lg:h-40"
                 style="background-image: url({{ $article->heroImage() }});"
             >
             </div>
@@ -16,7 +16,7 @@
             <div>
                 <div class="flex flex-col gap-y-2">
                     <div class="flex">
-                        <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-3" />
+                        <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-3" unlinked />
 
                         <span class="text-gray-900 mr-5">{{ $article->author()->username() }}</span>
                     </div>

@@ -6,7 +6,7 @@
         :user="$member"
     />
 
-    <x-avatar-link
+    <x-avatar
         :user="$member"
         class="inset-0 w-14 h-14 md:w-20 md:h-20"
         x-on:mouseover="active = {{ $member->id }}"

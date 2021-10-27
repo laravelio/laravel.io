@@ -83,7 +83,7 @@
                                             <li class="my-4 lg:hover:bg-gray-100 lg:my-0">
                                                 <a href="https://github.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">Github</a>
                                             </li>
-                                            
+
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://twitter.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">Twitter</a>
                                             </li>
@@ -95,7 +95,7 @@
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://laracasts.com" class="inline-block w-full lg:px-4 lg:py-3">Laracasts</a>
                                             </li>
-                                            
+
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://laravel-news.com" class="inline-block w-full lg:px-4 lg:py-3">Laravel News</a>
                                             </li>
@@ -103,11 +103,11 @@
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://laravelevents.com" class="inline-block w-full lg:px-4 lg:py-3">Laravel Events</a>
                                             </li>
-                                            
+
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://www.laravelpodcast.com" class="inline-block w-full lg:px-4 lg:py-3">Podcast</a>
                                             </li>
-                                            
+
                                             <li class="hover:bg-gray-100">
                                                 <a href="https://ecosystem.laravel.io" class="inline-block w-full lg:px-4 lg:py-3">Ecosystem</a>
                                             </li>
@@ -157,7 +157,7 @@
                                         </span>
                                     </a>
 
-                                    <x-avatar-link :user="Auth::user()" class="h-8 w-8" />
+                                    <x-avatar :user="Auth::user()" class="h-8 w-8" />
 
                                     <div @click.away="settings = false">
                                         <button @click="settings = !settings" class="flex items-center">

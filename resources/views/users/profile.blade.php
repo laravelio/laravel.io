@@ -5,14 +5,14 @@
 
 @section('content')
     <section class="bg-white">
-        <div 
-            class="bg-gray-900 bg-contain h-60 w-full" 
+        <div
+            class="bg-gray-900 bg-contain h-60 w-full"
             style="background-image: url('{{ asset('images/profile-background.svg') }}')"
         ></div>
 
         <div class="container mx-auto">
             <div class="flex justify-center lg:justify-start">
-                <x-avatar :user="$user" class="-mt-24 w-48 h-48 rounded-full border-8 border-white" />
+                <x-avatar :user="$user" class="-mt-24 w-48 h-48 rounded-full border-8 border-white" unlinked />
             </div>
 
             <div class="flex flex-col mt-5 p-4 lg:flex-row lg:gap-x-12">

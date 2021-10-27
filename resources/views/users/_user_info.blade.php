@@ -1,6 +1,6 @@
 <div class="flex flex-col mb-4 w-full @if (isset($centered) && $centered) items-center @endif">
     <div class="mb-4">
-        <x-avatar-link :user="$user" class="w-56 h-56" />
+        <x-avatar :user="$user" class="w-56 h-56" />
     </div>
 
     <h2 class="flex flex-col text-2xl text-gray-900 mb-4">
