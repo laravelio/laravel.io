@@ -21,6 +21,48 @@
                     @include('layouts._ads._forum_sidebar')
                 </div>
 
+                <div class="bg-white shadow rounded-md mt-6">
+                    <h3 class="text-xl font-semibold px-5 pt-5">
+                        Top article submitters
+                    </h3>
+
+                    <ul>
+                        @foreach ($topSubmitters as $submitter)
+                            <li class="{{ ! $loop->last ? 'border-b ' : '' }}pb-3 pt-5">
+                                <div class="flex justify-between items-center px-5">
+                                    <div class="flex items-center gap-x-5">
+                                        <a href="{{ route('profile', $submitter->username()) }}">
+                                            <x-avatar :user="$submitter" class="w-10 h-10" />
+                                        </a>
+
+                                        <span class="flex flex-col">
+                                            <a href="{{ route('profile', $submitter->username()) }}" class="hover:underline">
+                                                <span class="text-gray-900 font-medium">
+                                                    {{ $submitter->username() }}
+                                                </span>
+                                            </a>
+
+                                            <span class="text-gray-700">
+                                                {{ $submitter->articles_count }} {{ Str::plural('Article', $submitter->articles_count) }}
+                                            </span>
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <span class="flex items-center gap-x-3 text-lio-500">
+                                            <span class="text-xl font-medium">
+                                                {{ $loop->iteration }}
+                                            </span>
+
+                                            <x-icon-trophy class="w-6 h-6" />
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
                 <div class="mt-6">
                     <x-moderators :moderators="$moderators" />
                 </div>
