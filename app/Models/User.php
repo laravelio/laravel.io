@@ -199,12 +199,12 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     public function latestArticles(int $amount = 10)
     {
-        return $this->articles()->latest()->limit($amount)->get();
+        return $this->articles()->approved()->latest()->limit($amount)->get();
     }
 
     public function countArticles(): int
     {
-        return $this->articles()->count();
+        return $this->articles()->approved()->count();
     }
 
     public static function findByUsername(string $username): self

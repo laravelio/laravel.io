@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
@@ -36,12 +37,23 @@ it('can determine if a given user is the logged in user', function () {
 
 it('can determine if a given user is not the logged in user', function () {
     $user = $this->createUser();
+
     $this->login([
         'username' => 'janedoe',
         'email' => 'jane@example.com',
     ]);
 
     expect($user->isLoggedInUser())->toBeFalse();
+});
+
+it('only returns approved articles for a user', function () {
+    $user = $this->createUser();
+
+    Article::factory()->approved()->create(['author_id' => $user->id]);
+    Article::factory()->unapproved()->create(['author_id' => $user->id]);
+
+    expect($user->latestArticles())->toHaveCount(1);
+    expect($user->countArticles())->toBe(1);
 });
 
 // Helpers
