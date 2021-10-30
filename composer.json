@@ -18,7 +18,7 @@
         "intervention/image": "^2.5",
         "intervention/imagecache": "^2.5",
         "laravel-notification-channels/twitter": "^5.0",
-        "laravel/framework": "^8.40",
+        "laravel/framework": "8.66.0",
         "laravel/horizon": "^5.2",
         "laravel/socialite": "^5.0",
         "laravel/ui": "^3.0",

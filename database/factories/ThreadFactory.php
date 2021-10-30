@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Thread;
@@ -8,19 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ThreadFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Thread::class;
-
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
             'subject' => $this->faker->text(20),
@@ -30,7 +20,7 @@ class ThreadFactory extends Factory
         ];
     }
 
-    public function old()
+    public function old(): self
     {
         return $this->state(['created_at' => now()->subMonths(7)]);
     }

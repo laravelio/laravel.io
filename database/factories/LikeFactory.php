@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Like;
@@ -10,19 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LikeFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Like::class;
-
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         return [
             'user_id' => function () {
@@ -31,7 +21,7 @@ class LikeFactory extends Factory
         ];
     }
 
-    public function reply()
+    public function reply(): self
     {
         return $this->state(function () {
             return [
@@ -43,7 +33,7 @@ class LikeFactory extends Factory
         });
     }
 
-    public function thread()
+    public function thread(): self
     {
         return $this->state(function () {
             return [
