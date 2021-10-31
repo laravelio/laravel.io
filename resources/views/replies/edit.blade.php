@@ -5,7 +5,7 @@
 @section('subnav')
     <div class="bg-white border-b">
         <div class="container mx-auto flex justify-between items-center px-4">
-            <h1 class="text-xl py-4 text-gray-900">{{ $title }}</h1>
+            <h1 class="text-xl py-4 text-gray-900 break-all">{{ $title }}</h1>
         </div>
     </div>
 @endsection

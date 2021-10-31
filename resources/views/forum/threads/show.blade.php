@@ -8,7 +8,7 @@
         <h1 class="flex items-center gap-x-3.5 text-xl font-semibold lg:text-3xl">
             <a href="{{ route('forum') }}" class="text-gray-400 hover:underline">Forum</a>
             <x-heroicon-o-chevron-right class="w-6 h-6" />
-            {{ $title }}
+            <span class="break-all">{{ $title }}</span>
         </h1>
     </section>
 @endsection

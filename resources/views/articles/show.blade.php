@@ -38,7 +38,7 @@
                         </div>
                     @endif
 
-                    <h1 class="text-white text-5xl font-bold mb-4">
+                    <h1 class="text-white text-5xl font-bold mb-4 break-all">
                         {{ $article->title() }}
                     </h1>
 
