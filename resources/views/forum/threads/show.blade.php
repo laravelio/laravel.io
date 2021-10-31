@@ -41,16 +41,14 @@
                         <form action="{{ route('replies.store') }}" method="POST">
                             @csrf
 
-                            @formGroup('body')
-                                <livewire:editor 
-                                    hasButton 
-                                    buttonLabel="Reply" 
-                                    buttonIcon="send" 
-                                    label="Write a reply" 
-                                />
+                            <livewire:editor 
+                                hasButton 
+                                buttonLabel="Reply" 
+                                buttonIcon="send" 
+                                label="Write a reply" 
+                            />
 
-                                @error('body')
-                            @endFormGroup
+                            @error('body')
 
                             <input type="hidden" name="replyable_id" value="{{ $thread->id() }}" />
 
@@ -65,7 +63,7 @@
                     </div>
                 @endif
             @else
-                @if (Auth::guest())
+                @guest
                     <p class="text-center py-8">
                         <a href="{{ route('login') }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">Sign in</a> to participate in this thread!
                     </p>
@@ -80,7 +78,7 @@
                             </x-buttons.arrow-button>
                         </form>
                     </x-info-panel>
-                @endif
+                @endguest
             @endcan
         </div>
 
