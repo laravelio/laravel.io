@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Models\Article;
-use function now;
 
 class UndeclineArticle
 {

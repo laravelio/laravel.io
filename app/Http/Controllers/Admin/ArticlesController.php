@@ -12,7 +12,6 @@ use App\Models\Article;
 use App\Policies\ArticlePolicy;
 use App\Queries\SearchArticles;
 use Illuminate\Auth\Middleware\Authenticate;
-use function redirect;
 
 class ArticlesController extends Controller
 {
