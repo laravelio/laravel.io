@@ -41,6 +41,7 @@ final class Article extends Model
         'tweet_id',
         'submitted_at',
         'approved_at',
+        'declined_at',
         'shared_at',
     ];
 
@@ -131,6 +132,16 @@ final class Article extends Model
         return $this->approved_at === null;
     }
 
+    public function isDeclined(): bool
+    {
+        return ! $this->isNotDeclined();
+    }
+
+    public function isNotDeclined(): bool
+    {
+        return $this->declined_at === null;
+    }
+
     public function isPublished(): bool
     {
         return ! $this->isNotPublished();
@@ -138,7 +149,7 @@ final class Article extends Model
 
     public function isNotPublished(): bool
     {
-        return $this->isNotSubmitted() || $this->isNotApproved();
+        return $this->isNotSubmitted() || $this->isNotApproved() || $this->isDeclined();
     }
 
     public function isPinned(): bool
@@ -158,7 +169,7 @@ final class Article extends Model
 
     public function isAwaitingApproval(): bool
     {
-        return $this->isSubmitted() && $this->isNotApproved();
+        return $this->isSubmitted() && $this->isNotApproved() && $this->isNotDeclined();
     }
 
     public function isNotAwaitingApproval(): bool
@@ -180,7 +191,7 @@ final class Article extends Model
 
     public function scopeApproved(Builder $query): Builder
     {
-        return $query->whereNotNull('approved_at');
+        return $query->whereNotNull('approved_at')->whereNull('declined_at');
     }
 
     public function scopeNotApproved(Builder $query): Builder
@@ -188,10 +199,21 @@ final class Article extends Model
         return $query->whereNull('approved_at');
     }
 
+    public function scopeDeclined(Builder $query): Builder
+    {
+        return $query->whereNotNull('declined_at');
+    }
+
+    public function scopeNotDeclined(Builder $query): Builder
+    {
+        return $query->whereNull('declined_at');
+    }
+
     public function scopeAwaitingApproval(Builder $query): Builder
     {
         return $query->submitted()
-            ->notApproved();
+            ->notApproved()
+            ->notDeclined();
     }
 
     public function scopePublished(Builder $query): Builder
@@ -204,7 +226,8 @@ final class Article extends Model
     {
         return $query->where(function ($query) {
             $query->whereNull('submitted_at')
-                ->orWhereNull('approved_at');
+                ->orWhereNull('approved_at')
+                ->orWhereNotNull('declined_at');
         });
     }
 

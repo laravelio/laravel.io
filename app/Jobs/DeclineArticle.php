@@ -2,12 +2,13 @@
 
 namespace App\Jobs;
 
-use App\Events\ArticleWasApproved;
 use App\Models\Article;
-use Carbon\Carbon;
 
-final class ApproveArticle
+final class DeclineArticle
 {
+    /**
+     * @var \App\Models\Article
+     */
     private $article;
 
     public function __construct(Article $article)
@@ -17,11 +18,8 @@ final class ApproveArticle
 
     public function handle(): Article
     {
-        $this->article->approved_at = Carbon::now();
-        $this->article->declined_at = null;
+        $this->article->declined_at = now();
         $this->article->save();
-
-        event(new ArticleWasApproved($this->article));
 
         return $this->article;
     }

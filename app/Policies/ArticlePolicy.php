@@ -11,6 +11,8 @@ final class ArticlePolicy
     const DELETE = 'delete';
     const APPROVE = 'approve';
     const DISAPPROVE = 'disapprove';
+    const DECLINE = 'decline';
+    const UNDECLINE = 'undecline';
     const PINNED = 'togglePinnedStatus';
 
     public function update(User $user, Article $article): bool
@@ -29,6 +31,16 @@ final class ArticlePolicy
     }
 
     public function disapprove(User $user, Article $article): bool
+    {
+        return $user->isModerator() || $user->isAdmin();
+    }
+
+    public function decline(User $user, Article $article): bool
+    {
+        return $user->isModerator() || $user->isAdmin();
+    }
+
+    public function undecline(User $user, Article $article): bool
     {
         return $user->isModerator() || $user->isAdmin();
     }

@@ -170,6 +170,28 @@
         @endif
     @endcan
 
+    @can(App\Policies\ArticlePolicy::DECLINE, $article)
+        @if ($article->isNotDeclined())
+            @include('_partials._update_modal', [
+                'identifier' => 'declineArticle',
+                'route' => ['admin.articles.decline', $article->slug()],
+                'title' => "Decline article",
+                'body' => '<p>Are you sure you want to decline this article? Doing so will mean it is no longer live on the site.</p>',
+            ])
+        @endif
+    @endcan
+
+    @can(App\Policies\ArticlePolicy::UNDECLINE, $article)
+        @if ($article->isDeclined())
+            @include('_partials._update_modal', [
+                'identifier' => 'undeclineArticle',
+                'route' => ['admin.articles.undecline', $article->slug()],
+                'title' => "Undecline article",
+                'body' => '<p>Are you sure you want to undecline this article? Doing so will mean it is visible on the site.</p>',
+            ])
+        @endif
+    @endcan
+
     @can(App\Policies\ArticlePolicy::DELETE, $article)
         @include('_partials._delete_modal', [
             'identifier' => 'deleteArticle',

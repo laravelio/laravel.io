@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\VerifyAdmins;
 use App\Jobs\ApproveArticle;
+use App\Jobs\DeclineArticle;
 use App\Jobs\DisapproveArticle;
+use App\Jobs\UndeclineArticle;
 use App\Models\Article;
 use App\Policies\ArticlePolicy;
 use App\Queries\SearchArticles;
 use Illuminate\Auth\Middleware\Authenticate;
+use function redirect;
 
 class ArticlesController extends Controller
 {
@@ -49,6 +52,28 @@ class ArticlesController extends Controller
         $this->dispatchNow(new DisapproveArticle($article));
 
         $this->success('admin.articles.disapproved', $article->title());
+
+        return redirect()->route('articles.show', $article->slug());
+    }
+
+    public function decline(Article $article)
+    {
+        $this->authorize(ArticlePolicy::DECLINE, $article);
+
+        $this->dispatchNow(new DeclineArticle($article));
+
+        $this->success('admin.articles.declined', $article->title());
+
+        return redirect()->route('articles.show', $article->slug());
+    }
+
+    public function undecline(Article $article)
+    {
+        $this->authorize(ArticlePolicy::UNDECLINE, $article);
+
+        $this->dispatchNow(new UndeclineArticle($article));
+
+        $this->success('admin.articles.undeclined', $article->title());
 
         return redirect()->route('articles.show', $article->slug());
     }
