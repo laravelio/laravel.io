@@ -13,7 +13,7 @@
 
 # Laravel.io
 
-This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and licensed under [the MIT license](LICENSE.md). We welcome your contributions but we encourage you to read the [the contributing guide](CONTRIBUTING.md) before creating an issue or sending in a pull request. Read the installation guide below to get started with setting up the app on your machine.
+This is the repository for the [Laravel.io](http://laravel.io) community portal. The code is entirely open source and licensed under [the MIT license](LICENSE.md). We welcome your contributions but we encourage you to read [the contributing guide](CONTRIBUTING.md) before creating an issue or sending in a pull request. Read the installation guide below to get started with setting up the app on your machine.
 
 ## Sponsors
 
@@ -66,7 +66,7 @@ GITHUB_URL=http://laravel.io.test/auth/github
 
 ### Algolia Search (optional)
 
-To get Algolia search running locally, you'll need to [register for a new account](https://www.algolia.com/users/sign_up) and create an index called `threads`. Algolia has a free tier which satisfies all of the requirements needed for a development environment. Now update the below variables in your `.env` file. The App ID and secret keys can be found in the `API Keys` section of the Algoila UI. 
+To get Algolia search running locally, you'll need to [register for a new account](https://www.algolia.com/users/sign_up) and create an index called `threads`. Algolia has a free tier that satisfies all of the requirements needed for a development environment. Now update the below variables in your `.env` file. The App ID and secret keys can be found in the `API Keys` section of the Algoila UI. 
 
 ```
 SCOUT_DRIVER=algolia
@@ -94,7 +94,7 @@ php artisan scout:flush App\\Models\\Thread
 
 ### Twitter Sharing (optional)
 
-To enable published articles to be automatically shared to on Twitter, you'll need to [create a Twitter app](https://developer.twitter.com/apps/). Once the app has been created, update the below variables in your `.env` file. The consumer key and secret and access token and secret can be found in the `Keys and tokens` section of the Twitter developers UI. 
+To enable published articles to be automatically shared on Twitter, you'll need to [create a Twitter app](https://developer.twitter.com/apps/). Once the app has been created, update the below variables in your `.env` file. The consumer key and secret and access token and secret can be found in the `Keys and tokens` section of the Twitter developers UI. 
 
 ```
 TWITTER_CONSUMER_KEY=
