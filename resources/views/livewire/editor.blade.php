@@ -38,7 +38,10 @@
                     id="body"
                     name="body"
                     placeholder="{{ $placeholder }}"
-                    x-model='body'
+                    x-model=body
+                    required
+                    @keydown.cmd.enter="submit($event)"
+                    @keydown.ctrl.enter="submit($event)"
                 ></textarea>
             </div>
 

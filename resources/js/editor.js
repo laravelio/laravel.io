@@ -63,6 +63,9 @@ window.editorConfig = (body) => {
         },
         body: body,
         mode: 'write',
+        submit: function (event) {
+            event.target.closest('form').submit();
+        }
     };
 };
 
