@@ -35,14 +35,6 @@
                     </span>
                 </x-buttons.secondary-button>
             @endcan
-            @can(App\Policies\ArticlePolicy::UNDECLINE, $article)
-                <x-buttons.secondary-button tag="button" @click.prevent="activeModal = 'undeclineArticle'" class="w-full">
-                    <span class="flex items-center gap-x-2">
-                        <x-heroicon-o-eye class="w-5 h-5" title="Undecline"/>
-                        Undecline article
-                    </span>
-                </x-buttons.secondary-button>
-            @endcan
         @endif
 
         @can(App\Policies\ArticlePolicy::PINNED, $article)

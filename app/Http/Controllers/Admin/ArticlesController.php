@@ -7,7 +7,6 @@ use App\Http\Middleware\VerifyAdmins;
 use App\Jobs\ApproveArticle;
 use App\Jobs\DeclineArticle;
 use App\Jobs\DisapproveArticle;
-use App\Jobs\UndeclineArticle;
 use App\Models\Article;
 use App\Policies\ArticlePolicy;
 use App\Queries\SearchArticles;
@@ -62,17 +61,6 @@ class ArticlesController extends Controller
         $this->dispatchNow(new DeclineArticle($article));
 
         $this->success('admin.articles.declined', $article->title());
-
-        return redirect()->route('articles.show', $article->slug());
-    }
-
-    public function undecline(Article $article)
-    {
-        $this->authorize(ArticlePolicy::UNDECLINE, $article);
-
-        $this->dispatchNow(new UndeclineArticle($article));
-
-        $this->success('admin.articles.undeclined', $article->title());
 
         return redirect()->route('articles.show', $article->slug());
     }

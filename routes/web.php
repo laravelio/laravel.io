@@ -128,6 +128,5 @@ Route::prefix('admin')->name('admin')->group(function () {
     Route::put('articles/{article}/approve', [AdminArticlesController::class, 'approve'])->name('.articles.approve');
     Route::put('articles/{article}/disapprove', [AdminArticlesController::class, 'disapprove'])->name('.articles.disapprove');
     Route::put('articles/{article}/decline', [AdminArticlesController::class, 'decline'])->name('.articles.decline');
-    Route::put('articles/{article}/undecline', [AdminArticlesController::class, 'undecline'])->name('.articles.undecline');
     Route::put('articles/{article}/pinned', [AdminArticlesController::class, 'togglePinnedStatus'])->name('.articles.pinned');
 });
