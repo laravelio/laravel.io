@@ -17,7 +17,5 @@ final class DeclineArticle
     {
         $this->article->declined_at = now();
         $this->article->save();
-
-        return $this->article;
     }
 }

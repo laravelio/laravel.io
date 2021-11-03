@@ -18,7 +18,6 @@ final class ApproveArticle
     public function handle(): Article
     {
         $this->article->approved_at = Carbon::now();
-        $this->article->declined_at = null;
         $this->article->save();
 
         event(new ArticleWasApproved($this->article));
