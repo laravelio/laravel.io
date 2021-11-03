@@ -23,25 +23,25 @@
 
                 <div class="bg-white shadow rounded-md mt-6">
                     <h3 class="text-xl font-semibold px-5 pt-5">
-                        Top article submitters
+                        Top authors
                     </h3>
 
                     <ul>
-                        @foreach ($topSubmitters as $submitter)
+                        @foreach ($topAuthors as $author)
                             <li class="{{ ! $loop->last ? 'border-b ' : '' }}pb-3 pt-5">
                                 <div class="flex justify-between items-center px-5">
                                     <div class="flex items-center gap-x-5">
-                                        <x-avatar :user="$submitter" class="w-10 h-10" />
+                                        <x-avatar :user="$author" class="w-10 h-10" />
 
                                         <span class="flex flex-col">
-                                            <a href="{{ route('profile', $submitter->username()) }}" class="hover:underline">
+                                            <a href="{{ route('profile', $author->username()) }}" class="hover:underline">
                                                 <span class="text-gray-900 font-medium">
-                                                    {{ $submitter->username() }}
+                                                    {{ $author->username() }}
                                                 </span>
                                             </a>
 
                                             <span class="text-gray-700">
-                                                {{ $submitter->articles_count }} {{ Str::plural('Article', $submitter->articles_count) }}
+                                                {{ $author->articles_count }} {{ Str::plural('Article', $author->articles_count) }}
                                             </span>
                                         </span>
                                     </div>
