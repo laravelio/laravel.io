@@ -31,7 +31,7 @@ const insertCharactersAtPosition = (string, character, position) => {
 };
 
 // Configuration object for the text editor.
-window.editorConfig = () => {
+window.editorConfig = (body) => {
     return {
         styles: {
             header: {
@@ -61,13 +61,14 @@ window.editorConfig = () => {
                 after: ')',
             },
         },
+        body: body,
+        mode: 'write',
+        submit: function (event) {
+            event.target.closest('form').submit();
+        },
     };
 };
 
-window.expand = (element, minHeight) => {
-    if (element.scrollHeight < minHeight) {
-        return;
-    }
-
-    element.style.cssText = 'height:' + element.scrollHeight + 'px';
-};
+Livewire.on('previewRequested', () => {
+    highlightCode(document.getElementById('editor-preview'));
+});

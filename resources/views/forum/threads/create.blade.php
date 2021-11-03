@@ -1,6 +1,6 @@
 @title('Create your thread')
 
-@extends('layouts.default')
+@extends('layouts.default', ['isTailwindUi' => true])
 
 @section('subnav')
     <div class="bg-white border-b">
@@ -14,19 +14,15 @@
 @endsection
 
 @section('content')
-    <div class="container mx-auto p-4 flex justify-center">
-        <div class="w-full md:w-2/3 xl:w-1/2">
-            <x-rules-banner />
+    <main class="max-w-4xl mx-auto pt-10 pb-12 px-4 lg:pb-16">        
+        <div class="lg:grid lg:gap-x-5">
+            <div class="sm:px-6 lg:px-0 lg:col-span-9">
+                <x-threads.form :tags="$tags" :route="['threads.store']" />
 
-            <div class="md:p-4 md:border-2 md:rounded md:bg-gray-100">
-                @include('forum.threads._form', [
-                    'route' => ['threads.store'],
-                ])
+                <x-forms.info>
+                    Please search for your question before posting your thread by using the search box in the navigation bar.
+                </x-forms.info>
             </div>
-
-            <x-forms.info>
-                Please search for your question before posting your thread by using the search box in the navigation bar.
-            </x-forms.info>
         </div>
-    </div>
+    </main>
 @endsection

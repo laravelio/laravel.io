@@ -1,6 +1,6 @@
 @title('Settings')
 
-@extends('layouts.base')
+@extends('layouts.base', ['isTailwindUi' => true])
 
 @section('body')
     <div class="bg-gray-50">

@@ -20,9 +20,7 @@
         @formGroup('body')
             <label for="body">Body</label>
 
-            @include('_partials._editor', [
-                'content' => isset($article) ? $article->body() : null
-            ])
+            <livewire-editor :content="isset($article) ? $article->body() : ''"/>
             
             @error('body')
         @endFormGroup

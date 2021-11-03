@@ -1,7 +1,7 @@
 @title($thread->subject())
 @canonical(route('thread', $thread->slug()))
 
-@extends('layouts.default', ['hasShadow' => true])
+@extends('layouts.default', ['hasShadow' => true, 'isTailwindUi' => true])
 
 @section('subnav')
     <section class="container mx-auto bg-white pb-4 px-4 lg:pb-10">
@@ -42,13 +42,14 @@
                         <form action="{{ route('replies.store') }}" method="POST">
                             @csrf
 
-                            @formGroup('body')
-                                <label for="body">Write a reply</label>
+                            <livewire:editor 
+                                hasButton 
+                                buttonLabel="Reply" 
+                                buttonIcon="send" 
+                                label="Write a reply" 
+                            />
 
-                                @include('_partials._editor', ['content' => old('body')])
-
-                                @error('body')
-                            @endFormGroup
+                            @error('body')
 
                             <input type="hidden" name="replyable_id" value="{{ $thread->id() }}" />
 
@@ -58,14 +59,12 @@
                                 <p>
                                     Please make sure you've read our <a href="{{ route('rules') }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">rules</a> before replying to this thread.
                                 </p>
-
-                                <button type="submit" class="button button-primary">Reply</button>
                             </div>
                         </form>
                     </div>
                 @endif
             @else
-                @if (Auth::guest())
+                @guest
                     <p class="text-center py-8">
                         <a href="{{ route('login') }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">Sign in</a> to participate in this thread!
                     </p>
@@ -80,7 +79,7 @@
                             </x-buttons.arrow-button>
                         </form>
                     </x-info-panel>
-                @endif
+                @endguest
             @endcan
         </div>
 
