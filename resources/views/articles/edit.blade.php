@@ -7,7 +7,7 @@
         <div class="container mx-auto flex justify-between items-center px-4">
             <h1 class="text-xl py-4 text-gray-900">
                 <a href="{{ route('user.articles') }}">Your Articles</a>
-                > {{ $title }}
+                > <span class="break-all">{{ $title }}</span>
             </h1>
         </div>
     </div>
