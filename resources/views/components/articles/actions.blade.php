@@ -18,6 +18,7 @@
                     </span>
                 </x-buttons.secondary-button>
             @endcan
+
             @can(App\Policies\ArticlePolicy::DECLINE, $article)
                 <x-buttons.secondary-button tag="button" @click.prevent="activeModal = 'declineArticle'" class="w-full">
                     <span class="flex items-center gap-x-2">
