@@ -31,11 +31,11 @@ class ArticlesController extends Controller
             ->latest('submitted_at')
             ->take(4)
             ->get();
-        $moderators = Cache::remember('moderators', now()->addMinutes(30), function(){
+        $moderators = Cache::remember('moderators', now()->addMinutes(30), function () {
             return User::moderators()->get();
         });
         $canonical = canonical('articles', $request->only('sortBy', 'tag'));
-        $topAuthors = Cache::remember('topAuthors', now()->addMinutes(30), function(){
+        $topAuthors = Cache::remember('topAuthors', now()->addMinutes(30), function () {
             return User::mostSubmissionsInLastDays(365)->take(5)->get();
         });
 
