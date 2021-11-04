@@ -33,11 +33,13 @@ class ArticlesController extends Controller
             ->get();
         $moderators = User::moderators()->get();
         $canonical = canonical('articles', $request->only('sortBy', 'tag'));
+        $topAuthors = User::mostSubmissionsInLastDays(365)->take(5)->get();
 
         return view('articles.index', [
             'pinnedArticles' => $pinnedArticles,
             'moderators' => $moderators,
             'canonical' => $canonical,
+            'topAuthors' => $topAuthors,
         ]);
     }
 
