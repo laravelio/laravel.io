@@ -253,7 +253,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     {
         return $query->withCount(['articles as articles_count' => function ($query) use ($inLastDays) {
             if ($inLastDays) {
-                $query->where('articles.submitted_at', '>', now()->subDays($inLastDays));
+                $query->where('articles.approved_at', '>', now()->subDays($inLastDays));
             }
 
             return $query;
