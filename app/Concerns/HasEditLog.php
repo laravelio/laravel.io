@@ -31,7 +31,7 @@ trait HasEditLog
         return $this->morphMany(Edit::class, 'editable');
     }
 
-    public function getLatestEditAttribute()
+    public function getLatestEditAttribute(): ?Edit
     {
         $cacheKey = sprintf('%s-%s', Str::slug($this::class), $this->id);
 

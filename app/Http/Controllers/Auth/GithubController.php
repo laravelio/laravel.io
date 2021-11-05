@@ -19,7 +19,7 @@ class GithubController extends Controller
     /**
      * Redirect the user to the GitHub authentication page.
      */
-    public function redirectToProvider(Request $request)
+    public function redirectToProvider()
     {
         return Socialite::driver('github')->redirect();
     }
