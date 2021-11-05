@@ -38,8 +38,8 @@ trait HasEditLog
     {
         $cacheKey = sprintf('%s-%s', Str::slug($this::class), $this->id);
 
-        //return Cache::rememberForever($cacheKey, function() {
+        return Cache::rememberForever($cacheKey, function() {
             return $this->edits()->latest('edited_at')->first();
-        //});
+        });
     }
 }
