@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Concerns\HasAuthor;
+use App\Concerns\HasEditLog;
 use App\Concerns\HasLikes;
 use App\Concerns\HasSlug;
 use App\Concerns\HasTags;
@@ -19,6 +20,7 @@ final class Article extends Model
 {
     use HasFactory;
     use HasAuthor;
+    use HasEditLog;
     use HasSlug;
     use HasLikes;
     use HasTimestamps;

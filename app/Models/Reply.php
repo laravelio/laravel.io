@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Concerns\HasAuthor;
+use App\Concerns\HasEditLog;
 use App\Concerns\HasLikes;
 use App\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,6 +17,7 @@ final class Reply extends Model
 {
     use HasFactory;
     use HasAuthor;
+    use HasEditLog;
     use HasLikes;
     use HasTimestamps;
 

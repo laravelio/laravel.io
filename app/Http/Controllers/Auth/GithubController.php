@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Request;
 use App\Jobs\UpdateProfile;
 use App\Models\User;
 use App\Social\GithubUser;
@@ -18,7 +19,7 @@ class GithubController extends Controller
     /**
      * Redirect the user to the GitHub authentication page.
      */
-    public function redirectToProvider()
+    public function redirectToProvider(Request $request)
     {
         return Socialite::driver('github')->redirect();
     }

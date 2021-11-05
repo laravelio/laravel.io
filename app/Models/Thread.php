@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Concerns\HasAuthor;
+use App\Concerns\HasEditLog;
 use App\Concerns\HasLikes;
 use App\Concerns\HasSlug;
 use App\Concerns\HasTags;
@@ -30,6 +31,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
 {
     use HasFactory;
     use HasAuthor;
+    use HasEditLog;
     use HasLikes;
     use HasSlug;
     use HasTags;

@@ -84,6 +84,14 @@
                         <x-buk-markdown>{!! $article->body() !!}</x-buk-markdown>
                     </div>
 
+                    @if($article->latestEditLog)
+                        <div class="text-sm text-gray-900">
+                            Last edit by
+                            <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">{{ $article->latestEditLog->author()->name() }}</a>
+                            on {{ $article->latestEditLog->edited_at->format('j M, Y') }}
+                        </div>
+                    @endif
+
                     <div class="flex items-center gap-x-6 pt-6 pb-10">
                         <livewire:like-article :article="$article" :isSidebar="false" />
 
