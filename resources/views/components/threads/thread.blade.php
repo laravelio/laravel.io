@@ -57,6 +57,14 @@
     >
     </div>
 
+    @if($thread->latestEdit)
+        <div class="text-sm text-gray-900 p-6">
+            Last edit by
+            <a href="{{ route('profile', $thread->latestEdit->author()->username()) }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">{{ $thread->latestEdit->author()->name() }}</a>
+            on {{ $thread->latestEdit->edited_at->format('j M, Y') }}.
+        </div>
+    @endif
+
     <div class="px-6 pb-6">
         <livewire:like-thread :thread="$thread"/>
     </div>

@@ -6,7 +6,7 @@ use App\Concerns\HasAuthor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EditLog extends Model
+class Edit extends Model
 {
     use HasAuthor;
     use HasFactory;

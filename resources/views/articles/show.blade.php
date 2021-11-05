@@ -84,11 +84,11 @@
                         <x-buk-markdown>{!! $article->body() !!}</x-buk-markdown>
                     </div>
 
-                    @if($article->latestEditLog)
-                        <div class="text-sm text-gray-900">
+                    @if($article->latestEdit)
+                        <div class="text-sm text-gray-900 py-6">
                             Last edit by
-                            <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">{{ $article->latestEditLog->author()->name() }}</a>
-                            on {{ $article->latestEditLog->edited_at->format('j M, Y') }}
+                            <a href="{{ route('profile', $article->latestEdit->author()->username()) }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">{{ $article->latestEdit->author()->name() }}</a>
+                            on {{ $article->latestEdit->edited_at->format('j M, Y') }}.
                         </div>
                     @endif
 
