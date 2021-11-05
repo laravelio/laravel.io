@@ -11,9 +11,9 @@ trait HasEditLog
 {
     public static function bootHasEditLog()
     {
-        static::updating(function ($model) {
+        static::updated(function ($model) {
             Edit::create([
-                'author_id' => auth()->id(),
+                'author_id' => $model->author_id,
                 'editable_id' => $model->id,
                 'editable_type' => constant($model::class.'::TABLE') ?? $model::class,
                 'edited_at' => now(),
