@@ -31,9 +31,13 @@ class ArticlesController extends Controller
             ->latest('submitted_at')
             ->take(4)
             ->get();
-        $moderators = User::moderators()->get();
+        $moderators = Cache::remember('moderators', now()->addMinutes(30), function () {
+            return User::moderators()->get();
+        });
         $canonical = canonical('articles', $request->only('sortBy', 'tag'));
-        $topAuthors = User::mostSubmissionsInLastDays(365)->take(5)->get();
+        $topAuthors = Cache::remember('topAuthors', now()->addMinutes(30), function () {
+            return User::mostSubmissionsInLastDays(365)->take(5)->get();
+        });
 
         return view('articles.index', [
             'pinnedArticles' => $pinnedArticles,
