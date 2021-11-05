@@ -8,7 +8,6 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use function call_user_func;
 
 class EditFactory extends Factory
 {
@@ -30,13 +29,13 @@ class EditFactory extends Factory
         $editableFactory = call_user_func([$editableClass, 'factory']);
 
         return [
-            'author_id' => function() {
+            'author_id' => function () {
                 return User::factory()->create()->id;
             },
-            'editable_id' => function() use($editableFactory) {
+            'editable_id' => function () use ($editableFactory) {
                 return $editableFactory->create()->id;
             },
-            'editable_type' => function() use($editableClass) {
+            'editable_type' => function () use ($editableClass) {
                 return constant($editableClass.'::TABLE') ?? $editableClass;
             },
             'edited_at' => $this->faker->dateTimeThisMonth(),
