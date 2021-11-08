@@ -54,7 +54,7 @@ class GithubController extends Controller
     {
         $this->dispatchNow(new UpdateProfile($user, ['github_username' => $socialiteUser->getNickname()]));
 
-        Auth::login($user);
+        Auth::login($user, true);
 
         return redirect()->route('profile');
     }
