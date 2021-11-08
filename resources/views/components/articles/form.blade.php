@@ -6,7 +6,7 @@
     'selectedTags' => []
 ])
 
-<x-buk-form action="{{ route(...$route) }}" :method="$method" x-data="{ showAdvanced: false }">
+<x-buk-form action="{{ route(...$route) }}" :method="$method">
     <div class="bg-gray-100 py-6 px-4 space-y-6 sm:p-6">
         <div>
             <h2 id="create_thread_heading" class="text-lg leading-6 font-medium text-gray-900">
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <div x-show="showAdvanced" x-cloak class="flex-grow space-y-6">
+            <div class="flex-grow space-y-6">
                 <div class="flex-grow space-y-6">
                     <div class="space-y-1">
                         <x-forms.label for="original_url">Original URL</x-forms.label>
@@ -70,13 +70,7 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-between">
-                <button 
-                    type="button" 
-                    class="text-lio-700" 
-                    @click="showAdvanced = !showAdvanced" 
-                    x-text="showAdvanced ? 'Hide advanced options' : 'Show advanced options'"
-                ></button>
+            <div class="flex items-center justify-end">
 
                 <div class="flex justify-end items-center">
                     <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('user.articles') }}" class="text-lio-700 mr-4">
