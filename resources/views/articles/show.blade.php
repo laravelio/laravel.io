@@ -176,7 +176,7 @@
                 'identifier' => 'declineArticle',
                 'route' => ['admin.articles.decline', $article->slug()],
                 'title' => "Decline article",
-                'body' => '<p>Are you sure you want to decline this article? Doing so will mean it is no longer live on the site.</p>',
+                'body' => '<p>Are you sure you want to decline this article? Doing so will permanently remove it from the review queue.</p>',
             ])
         @endif
     @endcan
