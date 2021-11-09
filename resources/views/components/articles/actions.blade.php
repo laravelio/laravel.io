@@ -1,8 +1,8 @@
-<div class="flex flex-col gap-x-4 gap-y-3 lg:flex-row lg:justify-between">
-    <div
-        class="flex flex-col gap-x-4 gap-y-3 lg:flex-row"
-        x-data="{ hovered:false }"
-    >
+<div
+    class="flex flex-col gap-x-4 gap-y-3 lg:flex-row lg:justify-between"
+    x-data="{ hovered:false }"
+>
+    <div class="flex flex-col gap-x-4 gap-y-3 lg:flex-row">
         @if (Auth::check() && $article->isAuthoredBy(Auth::user()))
             <x-buttons.secondary-button
                 href="{{ route('articles.edit', $article->slug()) }}"
@@ -65,20 +65,33 @@
         @endif
 
         @can(App\Policies\ArticlePolicy::PINNED, $article)
-            <x-buttons.secondary-button tag="button" @click.prevent="activeModal = 'togglePinnedStatus'" :selected="$article->isPinned()" class="w-full">
+            <x-buttons.secondary-button
+                tag="button"
+                @click.prevent="activeModal = 'togglePinnedStatus'"
+                @mouseover="hovered = 'pin'"
+                @mouseleave="hovered = false"
+                :selected="$article->isPinned()"
+                class="w-full"
+            >
                 <span class="flex items-center gap-x-2">
-                    <x-icon-pin class="w-5 h-5" title="{{ $article->isPinned() ? 'Unpin' : 'Pin' }}"/> 
-                    {{ $article->isPinned() ? 'Unpin article' : 'Pin article' }}
+                    <x-icon-pin class="w-5 h-5" title="{{ $article->isPinned() ? 'Unpin' : 'Pin' }}"/>
+                        <span x-show="hovered === 'pin'">{{ $article->isPinned() ? 'Unpin article' : 'Pin article' }}</span>
                 </span>
             </x-buttons.secondary-button>
         @endcan
     </div>
 
     @can(App\Policies\ArticlePolicy::DELETE, $article)
-        <x-buttons.danger-button tag="button" @click.prevent="activeModal = 'deleteArticle'" class="w-full">
+        <x-buttons.danger-button
+            tag="button"
+            @click.prevent="activeModal = 'deleteArticle'"
+            @mouseover="hovered = 'delete'"
+            @mouseleave="hovered = false"
+            class="w-full"
+        >
             <span class="flex items-center gap-x-2">
                 <x-heroicon-o-trash class="w-5 h-5" title="Delete"/>
-                Delete article
+                <span x-show="hovered === 'delete'">Delete article</span>
             </span>
         </x-buttons.danger-button>
     @endcan
