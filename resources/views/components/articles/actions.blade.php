@@ -27,7 +27,7 @@
                     class="w-full"
                 >
                     <span class="flex items-center gap-x-2">
-                        <x-heroicon-o-eye class="w-5 h-5" title="Publish"/>
+                        <x-heroicon-s-check class="w-5 h-5" title="Publish"/>
                         <span x-show="hovered === 'publish'">Publish article</span>
                     </span>
                 </x-buttons.secondary-button>
@@ -42,7 +42,7 @@
                     class="w-full"
                 >
                     <span class="flex items-center gap-x-2">
-                        <x-heroicon-o-eye-off class="w-5 h-5" title="Decline"/>
+                        <x-heroicon-s-x class="w-5 h-5" title="Decline"/>
                         <span x-show="hovered === 'decline'">Decline article</span>
                     </span>
                 </x-buttons.secondary-button>
