@@ -12,6 +12,8 @@ discussions.
 
 ## Pull Requests
 
+We very much appreciate any help with [open issues labeled with "help wanted"](https://github.com/laravelio/laravel.io/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
+
 - **Feature requests** first need to be discussed and accepted [through an issue](https://github.com/laravelio/laravel.io/issues/new) before sending in a pull request
 - **Bug fixes** should contain [regression tests](https://laracasts.com/lessons/regression-testing)
 - All pull requests should follow the [coding standards](#coding-standards)
