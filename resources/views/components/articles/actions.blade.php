@@ -1,6 +1,6 @@
 <div
     class="flex flex-col gap-x-4 gap-y-3 lg:flex-row lg:justify-between"
-    x-data="{ hovered:false }"
+    x-data="{ hovered: false }"
 >
     <div class="flex flex-col gap-x-4 gap-y-3 lg:flex-row">
         @if (Auth::check() && $article->isAuthoredBy(Auth::user()))
@@ -75,7 +75,7 @@
             >
                 <span class="flex items-center gap-x-2">
                     <x-icon-pin class="w-5 h-5" title="{{ $article->isPinned() ? 'Unpin' : 'Pin' }}"/>
-                        <span x-show="hovered === 'pin'">{{ $article->isPinned() ? 'Unpin article' : 'Pin article' }}</span>
+                    <span x-show="hovered === 'pin'">{{ $article->isPinned() ? 'Unpin article' : 'Pin article' }}</span>
                 </span>
             </x-buttons.secondary-button>
         @endcan
