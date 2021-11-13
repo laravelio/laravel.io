@@ -12,7 +12,7 @@
             >
                 <span class="flex items-center gap-x-2">
                     <x-heroicon-o-pencil class="w-5 h-5" title="Edit" />
-                    <span x-show="hovered === 'edit'">Edit article</span>
+                    <span x-show="hovered === 'edit'" class="leading-5">Edit article</span>
                 </span>
             </x-buttons.primary-menu-button>
         @endif
@@ -28,7 +28,7 @@
                 >
                     <span class="flex items-center gap-x-2">
                         <x-heroicon-s-check class="w-5 h-5" title="Publish"/>
-                        <span x-show="hovered === 'publish'">Publish article</span>
+                        <span x-show="hovered === 'publish'" class="leading-5">Publish article</span>
                     </span>
                 </x-buttons.secondary-button>
             @endcan
@@ -43,7 +43,7 @@
                 >
                     <span class="flex items-center gap-x-2">
                         <x-heroicon-s-x class="w-5 h-5" title="Decline"/>
-                        <span x-show="hovered === 'decline'">Decline article</span>
+                        <span x-show="hovered === 'decline'" class="leading-5">Decline article</span>
                     </span>
                 </x-buttons.secondary-button>
             @endcan
@@ -58,7 +58,7 @@
                 >
                     <span class="flex items-center gap-x-2">
                         <x-heroicon-o-eye-off class="w-5 h-5" title="Unpublish"/>
-                        <span x-show="hovered === 'unpublish'">Unpublish article</span>
+                        <span x-show="hovered === 'unpublish'" class="leading-5">Unpublish article</span>
                     </span>
                 </x-buttons.secondary-button>
             @endcan
@@ -75,7 +75,7 @@
             >
                 <span class="flex items-center gap-x-2">
                     <x-icon-pin class="w-5 h-5" title="{{ $article->isPinned() ? 'Unpin' : 'Pin' }}"/>
-                    <span x-show="hovered === 'pin'">{{ $article->isPinned() ? 'Unpin article' : 'Pin article' }}</span>
+                    <span x-show="hovered === 'pin'" class="leading-5">{{ $article->isPinned() ? 'Unpin article' : 'Pin article' }}</span>
                 </span>
             </x-buttons.secondary-button>
         @endcan
@@ -91,7 +91,7 @@
         >
             <span class="flex items-center gap-x-2">
                 <x-heroicon-o-trash class="w-5 h-5" title="Delete"/>
-                <span x-show="hovered === 'delete'">Delete article</span>
+                <span x-show="hovered === 'delete'" class="leading-5">Delete article</span>
             </span>
         </x-buttons.danger-button>
     @endcan
