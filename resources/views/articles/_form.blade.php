@@ -95,7 +95,7 @@
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
                             </svg>
                         </button>
-                        <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg" x-show="showDropdown" x-cloak>
+                        <div class="origin-top-right absolute right-0 mt-2 w-60 rounded-md shadow-lg" x-show="showDropdown" x-cloak>
                             <div class="rounded-md bg-white ring-1 ring-black ring-opacity-5">
                                 <div class="py-1">
                                     <button 
