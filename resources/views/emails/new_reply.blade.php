@@ -6,6 +6,10 @@
 {{ $reply->excerpt(200) }}
 @endcomponent
 
+@if($thread->isAuthoredBy($user))
+    Make sure to mark the correct reply as the solution when your question gets answered.
+@endif
+
 @component('mail::button', ['url' => route('thread', $reply->replyAble()->slug())])
 View Thread
 @endcomponent
