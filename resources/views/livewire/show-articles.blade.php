@@ -6,7 +6,7 @@
             </h1>
 
             <x-buttons.primary-button href="{{ route('articles.create') }}" class="hidden lg:block">
-                Create Article
+                Share your article with our 45.000 Twitter followers.
             </x-buttons.primary-button>
         </div>
 
