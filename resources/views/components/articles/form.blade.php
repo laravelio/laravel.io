@@ -59,7 +59,7 @@
                     <div class="space-y-1">
                         <x-forms.label for="tags">Tags</x-forms.label>
 
-                        <select name="tags[]" id="create-article" multiple x-data="{}" x-init="function () { choices($el) }">
+                        <select name="tags[]" id="create-article" multiple x-data="{}" x-init="$nextTick(function () { choices($el) })">
                             @foreach($tags as $tag)
                                 <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>{{ $tag->name }}</option>
                             @endforeach
@@ -87,7 +87,7 @@
                             Save changes
                         </button>
                     @else
-                        <span class="relative z-0 inline-flex shadow-sm" x-data="{ showDropdown: false }" @click.away="showDropdown = false">
+                        <span class="relative z-0 inline-flex shadow-sm" x-data="{ showDropdown: false }" @click.outside="showDropdown = false">
                             <button 
                                 type="submit" 
                                 name="submitted" 

@@ -7,7 +7,7 @@
                 class="text-xl"
                 data-dismiss="alert"
                 aria-hidden="true" 
-                @click="$el.remove()"
+                @click="$root.remove()"
             >
                 &times;
             </button>
@@ -24,7 +24,7 @@
                 class="text-xl"
                 data-dismiss="alert" 
                 aria-hidden="true"
-                @click="$el.remove()"
+                @click="$root.remove()"
             >
                 &times;
             </button>

@@ -49,7 +49,7 @@
     @endcan
 
     @can(App\Policies\ReplyPolicy::UPDATE, $reply)
-        <div class="relative -mr-3" x-data="{ open: false }" @click.away="open = false">
+        <div class="relative -mr-3" x-data="{ open: false }" @click.outside="open = false">
 
             <button
                 class="p-2 rounded hover:bg-gray-100"
