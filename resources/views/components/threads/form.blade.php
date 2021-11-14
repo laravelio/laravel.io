@@ -38,8 +38,8 @@
                         Tags
                     </x-forms.label>
 
-                    <select name="tags[]" id="create-thread" multiple x-data="{}" x-init="function () { choices($el) }">
-                        @foreach ($tags as $tag)
+                    <select name="tags[]" id="create-thread" multiple x-data="{}" x-init="$nextTick(function () { choices($el) })">
+                        @foreach($tags as $tag)
                             <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>{{ $tag->name }}</option>
                         @endforeach
                     </select>

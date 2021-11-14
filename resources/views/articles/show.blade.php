@@ -80,7 +80,7 @@
 
                     <div
                         x-data="{}"
-                        x-init="function () { highlightCode($el); }"
+                        x-init="$nextTick(function () { highlightCode($el); })"
                         class="prose prose-lg text-gray-800 prose-lio"
                     >
                         <x-buk-markdown>{!! $article->body() !!}</x-buk-markdown>

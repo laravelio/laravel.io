@@ -1,5 +1,5 @@
 <nav class="{{ isset($hasShadow) ? 'shadow mb-1' : '' }}">
-    <div class="container mx-auto text-gray-800 lg:block lg:py-8" x-data="{ nav: false, search: false, community: false, chat: false, settings: false }" @click.away="nav = false">
+    <div class="container mx-auto text-gray-800 lg:block lg:py-8" x-data="{ nav: false, search: false, community: false, chat: false, settings: false }" @click.outside="nav = false">
         <div class="block bg-white 2xl:-mx-10">
             <div class="lg:px-4 lg:flex">
                 <div class="block lg:flex lg:items-center lg:flex-shrink-0">
@@ -44,7 +44,7 @@
                             </li>
 
                             <li class="rounded lg:mb-0 lg:hover:bg-gray-100">
-                                <div @click.away="chat = false" class="relative">
+                                <div @click.outside="chat = false" class="relative">
                                     <div>
                                         <button @click="chat = !chat" class="flex items-center lg:mb-0 py-1 px-2">
                                             Chat
@@ -71,7 +71,7 @@
                             </li>
 
                             <li class="rounded lg:mb-0 lg:hover:bg-gray-100">
-                                <div @click.away="community = false" class="relative" x-data="{ community: false }">
+                                <div @click.outside="community = false" class="relative" x-data="{ community: false }">
                                     <button @click="community = !community" class="flex items-center lg:mb-0 py-1 px-2">
                                         Community
                                         <x-heroicon-s-chevron-down x-show="!community" class="w-4 h-4 ml-1"/>
@@ -120,7 +120,7 @@
                 </div>
 
                 <div class="w-full block gap-x-4 lg:flex lg:items-center lg:justify-end">
-                    <div class="lg:block" x-cloak :class="{ 'block': search, 'hidden': !search }" @click.away="search = false">
+                    <div class="lg:block" x-cloak :class="{ 'block': search, 'hidden': !search }" @click.outside="search = false">
                         @include('_partials._search')
                     </div>
 
@@ -159,7 +159,7 @@
 
                                     <x-avatar :user="Auth::user()" class="h-8 w-8" />
 
-                                    <div @click.away="settings = false">
+                                    <div @click.outside="settings = false">
                                         <button @click="settings = !settings" class="flex items-center">
                                             {{ Auth::user()->username() }}
                                             <x-heroicon-s-chevron-down x-show="!settings" class="w-4 h-4 ml-1"/>
