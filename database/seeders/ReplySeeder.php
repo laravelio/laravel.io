@@ -25,7 +25,7 @@ class ReplySeeder extends Seeder
                         'replyable_id' => $thread->id,
                     ],
                 ))
-                ->create();
+                ->createQuietly();
         });
 
         // Give 10 random threads a solution.
