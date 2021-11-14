@@ -10,7 +10,7 @@
     "production": "mix --production"
   },
   "devDependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "highlight.js": "^10.5.0",
     "laravel-mix": "^6.0.23",
     "vue-template-compiler": "^2.6.12"
@@ -20,7 +20,7 @@
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.4.0",
     "algoliasearch": "^4.8.4",
-    "alpinejs": "^2.0",
+    "alpinejs": "^3.0",
     "autoprefixer": "^10.2.4",
     "choices.js": "^9.0.1",
     "postcss": "^8.2.10",
