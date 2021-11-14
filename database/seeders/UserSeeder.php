@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        User::factory()->create([
+        User::factory()->createQuietly([
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'username' => 'johndoe',
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
                         ),
                     ),
             )
-            ->create();
+            ->createQuietly();
 
         Article::published()
             ->inRandomOrder()
