@@ -19,6 +19,8 @@ final class UpdateArticle
 
     private $tags;
 
+    private $updatedBy;
+
     public function __construct(Article $article, string $title, string $body, bool $shouldBeSubmitted, array $options = [])
     {
         $this->article = $article;
@@ -27,6 +29,7 @@ final class UpdateArticle
         $this->shouldBeSubmitted = $shouldBeSubmitted;
         $this->originalUrl = $options['original_url'] ?? null;
         $this->tags = $options['tags'] ?? [];
+        $this->updatedBy = $options['updated_by'] ?? null;
     }
 
     public static function fromRequest(Article $article, ArticleRequest $request): self
@@ -39,6 +42,7 @@ final class UpdateArticle
             [
                 'original_url' => $request->originalUrl(),
                 'tags' => $request->tags(),
+                'updated_by' => $request->user(),
             ]
         );
     }
@@ -51,6 +55,7 @@ final class UpdateArticle
             'original_url' => $this->originalUrl,
             'slug' => $this->title,
             'submitted_at' => $this->shouldUpdateSubmittedAt() ? now() : $this->article->submittedAt(),
+            'updated_by' => optional($this->updatedBy)->id
         ]);
         $this->article->syncTags($this->tags);
 
