@@ -1,3 +1,5 @@
+import getCaretCoordinates from 'textarea-caret';
+
 // Handle the click event of the style buttons inside the editor.
 window.handleClick = (style, element) => {
     const { styles } = editorConfig();
@@ -61,11 +63,31 @@ window.editorConfig = (body) => {
                 after: ')',
             },
         },
+        cursorTop: 0,
+        cursorLeft: 0,
+        cursorPosition: 0,
         body: body,
         mode: 'write',
+        showMentions: false,
+        search: '',
         submit: function (event) {
             event.target.closest('form').submit();
         },
+        updateCursorPosition: function (event) {
+            const coordinates = getCaretCoordinates(event.target);
+            this.cursorTop = coordinates.top+20+'px';
+            this.cursorLeft = coordinates.left+20+'px';
+        },
+        updateSearch: function (event) {
+            if(this.showMentions) {
+                this.search += event.key
+                this.$wire.getUsers(this.search)
+            } else {
+                this.search = '';
+            }
+
+            console.log(this.search)
+        }
     };
 };
 

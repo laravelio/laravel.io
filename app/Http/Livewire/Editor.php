@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class Editor extends Component
 {
@@ -20,11 +22,29 @@ class Editor extends Component
 
     public $buttonIcon;
 
+    public $users;
+
+    public function mount()
+    {
+        $this->users = collect();
+    }
+
     public function render()
     {
         $this->body = old('body', $this->body);
 
         return view('livewire.editor');
+    }
+
+    public function getUsers($search)
+    {
+        if (! $search) {
+            return;
+        }
+
+        $search = Str::after($search, '@');
+
+        return $this->users = User::where('username', 'like', "{$search}%")->take(5)->get();
     }
 
     public function getPreviewProperty()

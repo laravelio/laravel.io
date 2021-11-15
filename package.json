@@ -21,6 +21,7 @@
     "tailwindcss": "^3.0.2",
     "algoliasearch": "^4.8.4",
     "alpinejs": "^3.0",
-    "choices.js": "^9.0.1"
+    "choices.js": "^9.0.1",
+    "textarea-caret": "^3.1.0"
   }
 }

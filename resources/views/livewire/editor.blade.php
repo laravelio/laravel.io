@@ -42,8 +42,24 @@
                     required
                     @keydown.cmd.enter="submit($event)"
                     @keydown.ctrl.enter="submit($event)"
+                    @keydown.@="updateCursorPosition($event); showMentions = true;"
+                    @keydown.space="showMentions = false"
+                    @click.away="showMentions = false"
+                    @keydown.debounce="updateSearch($event)"
                 ></textarea>
-            </div>
+
+                <ul x-cloak x-show="showMentions && $wire.users.length > 0" class="absolute flex flex-col gap-y-2 bg-white p-2 rounded shadow" x-ref="users" :style="`top: ${cursorTop}; left: ${cursorLeft}`  ">
+                    @foreach ($users as $user)
+                        <li class="flex items-center gap-x-2">
+                            <x-avatar :user="$user" class="w-5 h-5" />
+
+                            <span class="text-gray-900">
+                                {{ $user->username() }}
+                            </span>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>            
 
             <div class="flex flex-col items-center justify-end gap-y-4 gap-x-5 p-5 md:flex-row">
                 <x-forms.editor.controls />
