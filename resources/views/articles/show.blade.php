@@ -87,7 +87,7 @@
                     @if($article->updatedBy())
                         <div class="text-sm text-gray-900 py-6">
                             Last edit by
-                            <a href="{{ route('profile', $article->updatedBy()->name()) }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">{{ $article->updatedBy()->name() }}</a>
+                            <a href="{{ route('profile', $article->updatedBy()->username()) }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">{{ $article->updatedBy()->name() }}</a>
                             on {{ $article->updated_at->format('j M, Y') }}.
                         </div>
                     @endif

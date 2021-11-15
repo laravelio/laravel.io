@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Concerns\HasAuthor;
 use App\Concerns\HasLikes;
 use App\Concerns\HasTimestamps;
+use App\Concerns\HasUpdatedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,7 @@ final class Reply extends Model
     use HasAuthor;
     use HasLikes;
     use HasTimestamps;
+    use HasUpdatedBy;
 
     const TABLE = 'replies';
 
@@ -31,6 +33,7 @@ final class Reply extends Model
      */
     protected $fillable = [
         'body',
+        'updated_by'
     ];
 
     /**
@@ -38,6 +41,7 @@ final class Reply extends Model
      */
     protected $with = [
         'likesRelation',
+        'updatedByRelation',
     ];
 
     public function solutionTo(): HasOne
