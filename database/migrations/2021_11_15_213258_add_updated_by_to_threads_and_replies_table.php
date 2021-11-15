@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUpdatedByToArticlesThreadsAndRepliesTable extends Migration
+class AddUpdatedByToThreadsAndRepliesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,6 @@ class AddUpdatedByToArticlesThreadsAndRepliesTable extends Migration
      */
     public function up()
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->foreignId('updated_by')->nullable();
-        });
-
         Schema::table('threads', function (Blueprint $table) {
             $table->foreignId('updated_by')->nullable();
         });
@@ -34,10 +30,6 @@ class AddUpdatedByToArticlesThreadsAndRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function (Blueprint $table) {
-            $table->dropColumn('updated_by');
-        });
-
         Schema::table('threads', function (Blueprint $table) {
             $table->dropColumn('updated_by');
         });

@@ -7,7 +7,6 @@ use App\Concerns\HasLikes;
 use App\Concerns\HasSlug;
 use App\Concerns\HasTags;
 use App\Concerns\HasTimestamps;
-use App\Concerns\HasUpdatedBy;
 use App\Concerns\PreparesSearch;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -26,7 +25,6 @@ final class Article extends Model
     use HasTags;
     use PreparesSearch;
     use Searchable;
-    use HasUpdatedBy;
 
     const TABLE = 'articles';
 
@@ -45,7 +43,6 @@ final class Article extends Model
         'approved_at',
         'declined_at',
         'shared_at',
-        'updated_by',
     ];
 
     /**
