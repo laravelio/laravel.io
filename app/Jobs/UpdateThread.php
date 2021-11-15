@@ -21,7 +21,7 @@ final class UpdateThread
     public function __construct(Thread $thread, array $attributes = [])
     {
         $this->thread = $thread;
-        $this->attributes = Arr::only($attributes, ['subject', 'body', 'slug', 'tags']);
+        $this->attributes = Arr::only($attributes, ['subject', 'body', 'slug', 'tags', 'updated_by']);
     }
 
     public static function fromRequest(Thread $thread, ThreadRequest $request): self
@@ -31,6 +31,7 @@ final class UpdateThread
             'body' => $request->body(),
             'slug' => $request->subject(),
             'tags' => $request->tags(),
+            'updated_by' => $request->user()->id,
         ]);
     }
 

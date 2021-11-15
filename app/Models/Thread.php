@@ -7,6 +7,7 @@ use App\Concerns\HasLikes;
 use App\Concerns\HasSlug;
 use App\Concerns\HasTags;
 use App\Concerns\HasTimestamps;
+use App\Concerns\HasUpdatedBy;
 use App\Concerns\PreparesSearch;
 use App\Concerns\ProvidesSubscriptions;
 use App\Concerns\ReceivesReplies;
@@ -38,6 +39,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     use ProvidesSubscriptions;
     use ReceivesReplies;
     use Searchable;
+    use HasUpdatedBy;
 
     const TABLE = 'threads';
 
@@ -55,6 +57,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         'body',
         'slug',
         'subject',
+        'updated_by',
     ];
 
     /**
@@ -65,6 +68,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         'likesRelation',
         'repliesRelation',
         'tagsRelation',
+        'updatedByRelation',
     ];
 
     public function id(): int
