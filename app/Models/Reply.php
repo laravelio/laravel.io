@@ -33,7 +33,7 @@ final class Reply extends Model
      */
     protected $fillable = [
         'body',
-        'updated_by'
+        'updated_by',
     ];
 
     /**

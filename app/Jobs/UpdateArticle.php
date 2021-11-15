@@ -55,7 +55,7 @@ final class UpdateArticle
             'original_url' => $this->originalUrl,
             'slug' => $this->title,
             'submitted_at' => $this->shouldUpdateSubmittedAt() ? now() : $this->article->submittedAt(),
-            'updated_by' => optional($this->updatedBy)->id
+            'updated_by' => optional($this->updatedBy)->id,
         ]);
         $this->article->syncTags($this->tags);
 
