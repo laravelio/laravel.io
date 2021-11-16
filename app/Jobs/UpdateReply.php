@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Http\Requests\UpdateReplyRequest;
 use App\Models\Reply;
 use App\Models\User;
 
@@ -34,7 +33,7 @@ final class UpdateReply
     {
         $this->reply->update([
             'updated_by' => $this->updatedBy->id,
-            'body' => $this->body
+            'body' => $this->body,
         ]);
     }
 }
