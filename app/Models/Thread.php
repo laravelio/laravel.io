@@ -224,7 +224,18 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
                     ->where('replies.replyable_type', static::TABLE);
             })
             ->orderBy('latest_creation', 'DESC')
-            ->groupBy('threads.id')
+            ->groupBy(
+                'threads.id',
+                'threads.author_id',
+                'threads.subject',
+                'threads.body',
+                'threads.slug',
+                'threads.created_at',
+                'threads.updated_at',
+                'threads.solution_reply_id',
+                'threads.resolved_by',
+
+            )
             ->select('threads.*', DB::raw('
                 CASE WHEN COALESCE(MAX(replies.created_at), 0) > threads.created_at
                 THEN COALESCE(MAX(replies.created_at), 0)
