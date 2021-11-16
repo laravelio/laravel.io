@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Http\Requests\UpdateReplyRequest;
 use App\Models\Reply;
+use App\Models\User;
 
 final class UpdateReply
 {
@@ -13,21 +14,27 @@ final class UpdateReply
     private $reply;
 
     /**
-     * @var array
+     * @var User
      */
-    private $attributes;
+    private $updatedBy;
 
-    public function __construct(Reply $reply, UpdateReplyRequest $request)
+    /**
+     * @var string
+     */
+    private $body;
+
+    public function __construct(Reply $reply, User $updatedBy, string $body)
     {
         $this->reply = $reply;
-        $this->attributes = [
-            'body' => $request->body,
-            'updated_by' => $request->user()->id,
-        ];
+        $this->updatedBy = $updatedBy;
+        $this->body = $body;
     }
 
     public function handle()
     {
-        $this->reply->update($this->attributes);
+        $this->reply->update([
+            'updated_by' => $this->updatedBy->id,
+            'body' => $this->body
+        ]);
     }
 }
