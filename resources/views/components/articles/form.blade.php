@@ -1,6 +1,6 @@
 @props([
-    'article' => null, 
-    'route', 
+    'article' => null,
+    'route',
     'method' => 'POST',
     'tags',
     'selectedTags' => []
@@ -18,13 +18,11 @@
             </h2>
 
             <x-forms.info class="px-0">
-                Submit your article to the Laravel.io portal. Every article that gets approved will be shared with our 45.000 users and wil be
-                tweeted out on our <a href="https://twitter.com/laravelio" class="text-lio-700 underline">Twitter account</a> which has over 45.000 followers. Feel free to submit as many articles as you like. You can
-                even cross-reference an article on your blog with a canonical url.
-                </br>
-                </br>
-                After submission for approval, articles are reviewed before being published. No notification of declined articles will be
-                provided. Instead, we encourage to also cross-post articles on your own channel as well.
+                Submit your article to the Laravel.io portal. Every article that gets approved will be shared with our 45.000 users and wil be tweeted out on our <a href="https://twitter.com/laravelio" class="text-lio-700 underline">Twitter account</a> which has over 45.000 followers. Feel free to submit as many articles as you like. You can even cross-reference an article on your blog with the original url.
+            </x-forms.info>
+
+            <x-forms.info class="px-0">
+                After submission for approval, articles are reviewed before being published. No notification of declined articles will be provided. Instead, we encourage to also cross-post articles on your own channel as well.
             </x-forms.info>
 
             <x-rules-banner />
@@ -48,7 +46,7 @@
                     <x-forms.label for="body">Body</x-forms.label>
 
                     <livewire:editor :body="$article?->body()"/>
-                
+
                     @error('body')
                 </div>
             </div>
@@ -89,28 +87,28 @@
                     </a>
 
                     @if (isset($article) && $article->isSubmitted())
-                        <button 
-                            type="submit" 
-                            name="submitted" 
-                            value="1" 
+                        <button
+                            type="submit"
+                            name="submitted"
+                            value="1"
                             class="button button-primary"
                         >
                             Save changes
                         </button>
                     @else
                         <span class="relative z-0 inline-flex shadow-sm" x-data="{ showDropdown: false }" @click.away="showDropdown = false">
-                            <button 
-                                type="submit" 
-                                name="submitted" 
-                                value="0" 
+                            <button
+                                type="submit"
+                                name="submitted"
+                                value="0"
                                 class="button button-primary button-dropdown-left relative inline-flex items-center focus:outline-none"
                             >
                                 Save draft
                             </button>
                             <span class="-ml-px relative block">
-                                <button 
-                                    @click="showDropdown = !showDropdown" 
-                                    type="button" 
+                                <button
+                                    @click="showDropdown = !showDropdown"
+                                    type="button"
                                     class="button button-primary h-full button-dropdown-right relative inline-flex items-center focus:outline-none"
                                 >
                                     <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
@@ -120,10 +118,10 @@
                                 <div class="origin-top-right absolute right-0 mt-2 w-60 rounded-md shadow-lg" x-show="showDropdown" x-cloak>
                                     <div class="rounded-md bg-white ring-1 ring-black ring-opacity-5">
                                         <div class="py-1">
-                                            <button 
-                                                type="submit" 
-                                                name="submitted" 
-                                                value="1" 
+                                            <button
+                                                type="submit"
+                                                name="submitted"
+                                                value="1"
                                                 class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 w-full text-left"
                                             >
                                                 Save and submit for approval
@@ -138,8 +136,8 @@
 
                 @unless (Auth::user()->twitter())
                     <span class="text-gray-600 text-sm mt-4 block">
-                        Articles will be shared on Twitter. 
-                        <a href="{{ route('settings.profile') }}" class="text-green-darker">Add your Twitter handle</a> 
+                        Articles will be shared on Twitter.
+                        <a href="{{ route('settings.profile') }}" class="text-green-darker">Add your Twitter handle</a>
                         and we'll include that too.
                     </span>
                 @endunless

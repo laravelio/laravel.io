@@ -1,5 +1,5 @@
 @props([
-    'thread' => null, 
+    'thread' => null,
     'route',
     'method' => 'POST',
     'tags',
@@ -34,10 +34,12 @@
 
             <div class="flex-grow space-y-6">
                 <div class="space-y-1">
-                    <x-forms.label for="tags">Tags</x-forms.label>
+                    <x-forms.label for="tags">
+                        Tags
+                    </x-forms.label>
 
                     <select name="tags[]" id="create-thread" multiple x-data="{}" x-init="function () { choices($el) }">
-                        @foreach($tags as $tag)
+                        @foreach ($tags as $tag)
                             <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>{{ $tag->name }}</option>
                         @endforeach
                     </select>
@@ -48,8 +50,8 @@
                 <div class="space-y-1">
                     <x-forms.label for="body">Compose your question</x-forms.label>
 
-                    <livewire:editor 
-                        :body="$thread?->body()" 
+                    <livewire:editor
+                        :body="$thread?->body()"
                         placeholder="Compose your thread..."
                         hasButton
                         :buttonLabel="$thread ? 'Update thread' : 'Create thread'"
