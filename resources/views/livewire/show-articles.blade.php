@@ -1,13 +1,9 @@
-<div>    
+<div>
     <div class="flex justify-between items-center lg:block">
         <div class="flex justify-between items-center">
             <h1 class="text-4xl text-gray-900 font-bold">
                 Articles
             </h1>
-
-            <x-buttons.primary-button href="{{ route('articles.create') }}" class="hidden lg:block">
-                Create Article
-            </x-buttons.primary-button>
         </div>
 
         <div class="flex items-center justify-between lg:mt-6">

@@ -18,10 +18,6 @@
         <div class="lg:grid lg:gap-x-5">
             <div class="sm:px-6 lg:px-0 lg:col-span-9">
                 <x-articles.form :route="['articles.store']" :tags="$tags"/>
-
-                <x-forms.info>
-                    After submission for approval, articles are reviewed before being published. No notification of declined articles will be provided. Instead, we encourage to also cross-post articles on your own channel as well.
-                </x-forms.info>
             </div>
         </div>
     </main>
