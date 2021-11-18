@@ -12,7 +12,7 @@
             >
                 <span class="flex items-center gap-x-2">
                     <x-heroicon-o-pencil class="w-5 h-5" title="Edit" />
-                    <span x-show="hovered === 'edit'" class="leading-5">Edit article</span>
+                    <span x-cloak x-show="hovered === 'edit'" class="leading-5">Edit article</span>
                 </span>
             </x-buttons.primary-menu-button>
         @endif
@@ -21,14 +21,14 @@
             @can(App\Policies\ArticlePolicy::APPROVE, $article)
                 <x-buttons.secondary-button
                     tag="button"
-                    @click.prevent="activeModal = 'approveArticle'"
+                    @click.prevent="$dispatch('open-modal', 'approveArticle')"
                     @mouseover="hovered = 'publish'"
                     @mouseleave="hovered = false"
                     class="w-full"
                 >
                     <span class="flex items-center gap-x-2">
                         <x-heroicon-s-check class="w-5 h-5" title="Publish"/>
-                        <span x-show="hovered === 'publish'" class="leading-5">Publish article</span>
+                        <span x-cloak x-show="hovered === 'publish'" class="leading-5">Publish article</span>
                     </span>
                 </x-buttons.secondary-button>
             @endcan
@@ -36,14 +36,14 @@
             @can(App\Policies\ArticlePolicy::DECLINE, $article)
                 <x-buttons.secondary-button
                     tag="button"
-                    @click.prevent="activeModal = 'declineArticle'"
+                    @click.prevent="$dispatch('open-modal', 'declineArticle')"
                     @mouseover="hovered = 'decline'"
                     @mouseleave="hovered = false"
                     class="w-full"
                 >
                     <span class="flex items-center gap-x-2">
                         <x-heroicon-s-x class="w-5 h-5" title="Decline"/>
-                        <span x-show="hovered === 'decline'" class="leading-5">Decline article</span>
+                        <span x-cloak x-show="hovered === 'decline'" class="leading-5">Decline article</span>
                     </span>
                 </x-buttons.secondary-button>
             @endcan
@@ -51,14 +51,14 @@
             @can(App\Policies\ArticlePolicy::DISAPPROVE, $article)
                 <x-buttons.secondary-button
                     tag="button"
-                    @click.prevent="activeModal = 'disapproveArticle'"
+                    @click.prevent="$dispatch('open-modal', 'disapproveArticle')"
                     @mouseover="hovered = 'unpublish'"
                     @mouseleave="hovered = false"
                     class="w-full"
                 >
                     <span class="flex items-center gap-x-2">
                         <x-heroicon-o-eye-off class="w-5 h-5" title="Unpublish"/>
-                        <span x-show="hovered === 'unpublish'" class="leading-5">Unpublish article</span>
+                        <span x-cloak x-show="hovered === 'unpublish'" class="leading-5">Unpublish article</span>
                     </span>
                 </x-buttons.secondary-button>
             @endcan
@@ -67,7 +67,7 @@
         @can(App\Policies\ArticlePolicy::PINNED, $article)
             <x-buttons.secondary-button
                 tag="button"
-                @click.prevent="activeModal = 'togglePinnedStatus'"
+                @click.prevent="$dispatch('open-modal', 'togglePinnedStatus')"
                 @mouseover="hovered = 'pin'"
                 @mouseleave="hovered = false"
                 :selected="$article->isPinned()"
@@ -75,7 +75,7 @@
             >
                 <span class="flex items-center gap-x-2">
                     <x-icon-pin class="w-5 h-5" title="{{ $article->isPinned() ? 'Unpin' : 'Pin' }}"/>
-                    <span x-show="hovered === 'pin'" class="leading-5">{{ $article->isPinned() ? 'Unpin article' : 'Pin article' }}</span>
+                    <span x-cloak x-show="hovered === 'pin'" class="leading-5">{{ $article->isPinned() ? 'Unpin article' : 'Pin article' }}</span>
                 </span>
             </x-buttons.secondary-button>
         @endcan
@@ -84,14 +84,14 @@
     @can(App\Policies\ArticlePolicy::DELETE, $article)
         <x-buttons.danger-button
             tag="button"
-            @click.prevent="activeModal = 'deleteArticle'"
+            @click.prevent="$dispatch('open-modal', 'deleteArticle')"
             @mouseover="hovered = 'delete'"
             @mouseleave="hovered = false"
             class="w-full"
         >
             <span class="flex items-center gap-x-2">
                 <x-heroicon-o-trash class="w-5 h-5" title="Delete"/>
-                <span x-show="hovered === 'delete'" class="leading-5">Delete article</span>
+                <span x-cloak x-show="hovered === 'delete'" class="leading-5">Delete article</span>
             </span>
         </x-buttons.danger-button>
     @endcan
