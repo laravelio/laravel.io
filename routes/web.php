@@ -116,15 +116,15 @@ Route::prefix('articles')->group(function () {
 
 // Admin
 Route::prefix('admin')->name('admin')->group(function () {
-    Route::get('/', [UsersController::class, 'index']);
+    Route::get('/', [AdminArticlesController::class, 'index']);
 
     // Users
+    Route::get('users', [UsersController::class, 'index'])->name('.users');
     Route::put('users/{username}/ban', [UsersController::class, 'ban'])->name('.users.ban');
     Route::put('users/{username}/unban', [UsersController::class, 'unban'])->name('.users.unban');
     Route::delete('users/{username}', [UsersController::class, 'delete'])->name('.users.delete');
 
     // Articles
-    Route::get('articles', [AdminArticlesController::class, 'index'])->name('.articles');
     Route::put('articles/{article}/approve', [AdminArticlesController::class, 'approve'])->name('.articles.approve');
     Route::put('articles/{article}/disapprove', [AdminArticlesController::class, 'disapprove'])->name('.articles.disapprove');
     Route::put('articles/{article}/decline', [AdminArticlesController::class, 'decline'])->name('.articles.decline');

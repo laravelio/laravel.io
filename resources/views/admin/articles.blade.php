@@ -5,7 +5,7 @@
 @section('content')
     <div class="container mx-auto px-4 pt-6">
         @include('admin.partials._navigation', [
-            'query' => route('admin.articles'),
+            'query' => route('admin'),
             'search' => $adminSearch,
             'placeholder' => 'Search for articles...',
         ])

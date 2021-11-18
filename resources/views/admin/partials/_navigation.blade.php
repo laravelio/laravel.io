@@ -7,11 +7,11 @@
 
             <div class="mt-4 sm:mt-0 sm:ml-10">
                 <nav class="-mb-px flex space-x-8">
-                    <a href="{{ route('admin') }}" class="{{ is_active('admin') ? 'border-lio-500 text-lio-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm" aria-current="page">
+                    <a href="{{ route('admin.users') }}" class="{{ is_active('admin.users') ? 'border-lio-500 text-lio-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm" aria-current="page">
                         Users
                     </a>
 
-                    <a href="{{ route('admin.articles') }}" class="{{ is_active('admin.articles') ? 'border-lio-500 text-lio-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
+                    <a href="{{ route('admin') }}" class="{{ is_active('admin') ? 'border-lio-500 text-lio-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300' }} whitespace-nowrap pb-4 px-1 border-b-2 font-medium text-sm">
                         Articles
                     </a>
                 </nav>
