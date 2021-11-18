@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="w-full pt-4 lg:w-4/5 lg:pt-10">
-                    @if(!$article->isDeclined() || $article->isAuthoredBy(Auth::user()))
+                    @if (! $article->isDeclined() || $article->isAuthoredBy(Auth::user()))
                         <x-articles.actions :article="$article" />
                     @endif
 
