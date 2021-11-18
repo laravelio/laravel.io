@@ -15,7 +15,7 @@
                     </div>
 
                     <span class="font-mono text-gray-700 mt-1 lg:mt-0">
-                        {{ $thread->createdAt()->format('j M, Y \a\t h:i') }}
+                        {{ $thread->createdAt()->diffForHumans() }}
                     </span>
                 </div>
             </div>

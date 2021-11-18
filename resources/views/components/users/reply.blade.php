@@ -13,7 +13,7 @@
                 </div>
 
                 <span class="font-mono text-gray-700 mt-1 lg:mt-0">
-                    {{ $reply->createdAt()->format('j M, Y \a\t h:i') }}
+                    {{ $reply->createdAt()->diffForHumans() }}
                 </span>
             </div>
         </div>
