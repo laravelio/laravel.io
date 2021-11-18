@@ -121,7 +121,7 @@ test('admins can list submitted articles', function () {
 
     $this->loginAsAdmin();
 
-    $this->get('admin/articles')
+    $this->get('admin')
         ->see($submittedArticle->title())
         ->dontSee($draftArticle->title())
         ->dontSee($liveArticle->title());
@@ -134,7 +134,7 @@ test('moderators can list submitted articles', function () {
 
     $this->loginAsModerator();
 
-    $this->get('admin/articles')
+    $this->get('admin')
         ->see($submittedArticle->title())
         ->dontSee($draftArticle->title())
         ->dontSee($liveArticle->title());
@@ -143,12 +143,12 @@ test('moderators can list submitted articles', function () {
 test('users cannot list submitted articles', function () {
     $this->login();
 
-    $this->get('admin/articles')
+    $this->get('admin')
         ->assertForbidden();
 });
 
 test('guests cannot list submitted articles', function () {
-    $this->get('admin/articles')
+    $this->get('admin')
         ->assertRedirectedTo('login');
 });
 
@@ -335,7 +335,7 @@ function assertCanSeeTheUserOverview()
     User::factory()->create(['name' => 'Freek Murze']);
     User::factory()->create(['name' => 'Frederick Vanbrabant']);
 
-    test()->visit('/admin')
+    test()->visit('/admin/users')
         ->see('Freek Murze')
         ->see('Frederick Vanbrabant');
 }
