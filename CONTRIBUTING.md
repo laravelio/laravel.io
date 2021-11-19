@@ -19,6 +19,7 @@ We very much appreciate any help with [open issues labeled with "help wanted"](h
 - All pull requests should follow the [coding standards](#coding-standards)
 - Pull requests will be merged after being reviewed by [the maintainers](README.md#maintainers)
 - Please be respectful to other contributors and hold to [The Code Manifesto](http://codemanifesto.com/)
+- Please post screenshots if you make any changes to the UI
 
 ## Coding Standards
 
