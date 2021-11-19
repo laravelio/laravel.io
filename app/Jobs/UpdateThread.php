@@ -31,7 +31,7 @@ final class UpdateThread
             'body' => $request->body(),
             'slug' => $request->subject(),
             'tags' => $request->tags(),
-            'updated_by' => $request->user()->id,
+            'updated_by' => $request->author()->id,
         ]);
     }
 
