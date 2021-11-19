@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Models\Thread;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TagSeeder extends Seeder
 {
@@ -74,22 +75,20 @@ class TagSeeder extends Seeder
             ['name' => 'Octane', 'slug' => 'octane'],
         ]));
 
-        Article::all()->each(function ($article) use ($tags) {
-            $article->syncTags(
-                $tags->random(rand(0, $tags->count()))
-                    ->take(3)
-                    ->pluck('id')
-                    ->toArray(),
-            );
-        });
+        $tagIds = array_flip($tags->pluck('id')->toArray());
+        $articles = Article::all();
+        $threads = Thread::all();
 
-        Thread::all()->each(function ($article) use ($tags) {
-            $article->syncTags(
-                $tags->random(rand(0, $tags->count()))
-                    ->take(3)
-                    ->pluck('id')
-                    ->toArray(),
-            );
-        });
+        DB::beginTransaction();
+        foreach ($articles as $article) {
+            $article->syncTags(array_rand($tagIds, 3));
+        }
+        DB::commit();
+
+        DB::beginTransaction();
+        foreach ($threads as $thread) {
+            $thread->syncTags(array_rand($tagIds, 3));
+        }
+        DB::commit();
     }
 }
