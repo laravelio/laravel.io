@@ -28,14 +28,14 @@ final class NewReplyEmail extends Mailable
     /**
      * @var \App\Models\User
      */
-    public $user;
+    public $receiver;
 
-    public function __construct(Thread $thread, Reply $reply, Subscription $subscription, User $user)
+    public function __construct(Reply $reply, Subscription $subscription, User $receiver)
     {
-        $this->thread = $thread;
+        $this->thread = $reply->replyAble();
         $this->reply = $reply;
         $this->subscription = $subscription;
-        $this->user = $user;
+        $this->receiver = $receiver;
     }
 
     public function build()

@@ -17,7 +17,7 @@ final class SendNewReplyNotification
 
         foreach ($thread->subscriptions() as $subscription) {
             if ($this->replyAuthorDoesNotMatchSubscriber($event->reply->author(), $subscription)) {
-                $subscription->user()->notify(new NewReplyNotification($thread, $event->reply, $subscription));
+                $subscription->user()->notify(new NewReplyNotification($event->reply, $subscription));
             }
         }
     }
