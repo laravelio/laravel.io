@@ -1,6 +1,5 @@
 <?php
 
-use App\Jobs\BanUser;
 use App\Mail\NewReplyEmail;
 use App\Models\Reply;
 use App\Models\Subscription;

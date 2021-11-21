@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\Models\Reply;
 use App\Models\Subscription;
-use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Mail\Mailable;
 
