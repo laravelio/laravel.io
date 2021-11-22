@@ -88,7 +88,7 @@
 
                     @if ($article->isUpdated())
                         <div class="text-sm text-gray-900 py-6">
-                            Last updated on {{ $article->updated_at->format('j M, Y') }}.
+                            Last updated {{ $article->updated_at->diffForHumans() }}.
                         </div>
                     @endif
 

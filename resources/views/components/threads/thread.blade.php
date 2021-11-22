@@ -67,7 +67,7 @@
                 </a>
             @endif
 
-            on {{ $thread->updated_at->format('j M, Y') }}.
+            {{ $thread->updated_at->diffForHumans() }}.
         </div>
     @endif
 

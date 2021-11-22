@@ -41,7 +41,7 @@
                 </a>
             @endif
 
-            on {{ $reply->updated_at->format('j M, Y') }}.
+            {{ $reply->updated_at->diffForHumans() }}.
         </div>
     @endif
 
