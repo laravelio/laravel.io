@@ -16,7 +16,7 @@
         {{ $attributes->merge(['class' => 'rounded-full text-gray-500']) }}
     />
 @else
-    <div {{ $attributes->merge(['class' => 'bg-gray-100 rounded-full text-gray-500 relative flex items-center justify-center']) }}>
+    <div {{ $attributes->merge(['class' => 'bg-gray-50 rounded-full text-gray-500 relative flex items-center justify-center']) }}>
         <img
             src="{{ asset('images/laravelio-icon.svg') }}"
             alt="{{ $user->name() }}"
