@@ -32,7 +32,7 @@
 
         <div x-show="mode === 'write'">
             <div class="flex flex-col relative">
-                <div x-text="body" class="invisible whitespace-pre-line p-5 min-h-[5rem]"></div>
+                <div x-text="body + '\n'" class="invisible whitespace-pre-line border-none p-5 min-h-[5rem]"></div>
                 <textarea 
                     class="w-full h-full absolute left-0 top-0 right-0 bottom-0 overflow-y-hidden resize-none border-none p-5 focus:border focus:border-lio-300 focus:ring focus:ring-lio-200 focus:ring-opacity-50"
                     id="body"
