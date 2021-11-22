@@ -8,7 +8,7 @@ use App\Models\User;
 final class UpdateReply
 {
     /**
-     * @var \App\Models\Reply
+     * @var Reply
      */
     private $reply;
 
@@ -31,9 +31,8 @@ final class UpdateReply
 
     public function handle()
     {
-        $this->reply->update([
-            'updated_by' => $this->updatedBy->id,
-            'body' => $this->body,
-        ]);
+        $this->reply->body = $this->body;
+        $this->reply->updatedByRelation()->associate($this->updatedBy);
+        $this->reply->save();
     }
 }

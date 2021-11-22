@@ -184,7 +184,7 @@ final class Article extends Model
         return $minutes == 0 ? 1 : $minutes;
     }
 
-    public function isEdited(): bool
+    public function isUpdated(): bool
     {
         return $this->updated_at->gt($this->created_at);
     }

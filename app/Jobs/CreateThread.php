@@ -43,7 +43,7 @@ final class CreateThread
         return new static(
             $request->subject(),
             $request->body(),
-            $request->author(),
+            $request->user(),
             $request->tags()
         );
     }

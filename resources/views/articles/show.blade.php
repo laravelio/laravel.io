@@ -84,9 +84,9 @@
                         <x-buk-markdown>{!! $article->body() !!}</x-buk-markdown>
                     </div>
 
-                    @if($article->isEdited())
+                    @if ($article->isUpdated())
                         <div class="text-sm text-gray-900 py-6">
-                            Last edit on {{ $article->updated_at->format('j M, Y') }}.
+                            Last updated on {{ $article->updated_at->format('j M, Y') }}.
                         </div>
                     @endif
 

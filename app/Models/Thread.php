@@ -7,7 +7,6 @@ use App\Concerns\HasLikes;
 use App\Concerns\HasSlug;
 use App\Concerns\HasTags;
 use App\Concerns\HasTimestamps;
-use App\Concerns\HasUpdatedBy;
 use App\Concerns\PreparesSearch;
 use App\Concerns\ProvidesSubscriptions;
 use App\Concerns\ReceivesReplies;
@@ -39,7 +38,6 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     use ProvidesSubscriptions;
     use ReceivesReplies;
     use Searchable;
-    use HasUpdatedBy;
 
     const TABLE = 'threads';
 
@@ -57,7 +55,6 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         'body',
         'slug',
         'subject',
-        'updated_by',
     ];
 
     /**
@@ -89,6 +86,21 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     public function excerpt(int $limit = 100): string
     {
         return Str::limit(strip_tags(md_to_html($this->body())), $limit);
+    }
+
+    public function updatedBy(): ?User
+    {
+        return $this->updatedByRelation;
+    }
+
+    public function updatedByRelation(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function isUpdated(): bool
+    {
+        return $this->updated_at->gt($this->created_at);
     }
 
     public function solutionReply(): ?Reply
