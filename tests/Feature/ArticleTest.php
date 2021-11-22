@@ -400,3 +400,28 @@ test('user do not see tip if they have set the twitter handle', function () {
         ->dontSeeLink('Twitter handle')
         ->dontSee('so we can link to your profile when we tweet out your article.');
 });
+
+test('loading page with invalid sort parameter defaults to recent', function () {
+    Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
+
+    $this->get('/articles?filter=invalid')
+        ->see('<link rel="canonical" href="http://localhost/articles?filter=recent" />');
+
+});
+
+test('can filter articles by tag', function () {
+    $articleOne = Article::factory()->create(['title' => 'My First Article', 'slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
+    $tagOne = Tag::factory()->create(['slug' => 'one']);
+    $articleOne->syncTags([$tagOne->id]);
+    
+    $articleTwo = Article::factory()->create(['title' => 'My Second Article', 'slug' => 'my-second-article', 'submitted_at' => now(), 'approved_at' => now()]);
+    $tagTwo = Tag::factory()->create(['slug' => 'two']);
+    $articleTwo->syncTags([$tagTwo->id]);
+
+
+    $this->get('/articles?tag=one')
+        ->see('My First Article')
+        ->dontSee('My Second Article');
+});
+
+

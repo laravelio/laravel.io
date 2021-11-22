@@ -117,7 +117,7 @@
                     </div>
 
                     <div class="mt-10">
-                        {{ $articles->onEachSide(1)->links() }}
+                        {{ $articles->appends(Request::only('filter', 'tag'))->onEachSide(1)->links() }}
                     </div>
                 </section>
 

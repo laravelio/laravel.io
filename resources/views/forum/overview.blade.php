@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="mt-10">
-                        {{ $threads->onEachSide(1)->links() }}
+                        {{ $threads->appends(Request::only('filter'))->onEachSide(1)->links() }}
                     </div>
                 </section>
             </div>
