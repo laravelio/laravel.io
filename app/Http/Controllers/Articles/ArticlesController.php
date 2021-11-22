@@ -45,7 +45,7 @@ class ArticlesController extends Controller
             $query->published();
         })->orderBy('name')->get();
 
-        if ($activeTag = Tag::where('name', $request->tag)->first()) {
+        if ($activeTag = Tag::where('slug', $request->tag)->first()) {
             $articles->forTag($activeTag->slug());
         }
 

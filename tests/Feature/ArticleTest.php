@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Livewire\ShowArticles;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Notifications\ArticleApprovedNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Notification;
-use Livewire\Livewire;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
@@ -304,39 +302,6 @@ test('draft articles cannot be viewed by logged in users', function () {
 
     $this->get('/articles/my-first-article')
         ->assertResponseStatus(404);
-});
-
-test('sort parameters are set correctly', function () {
-    Livewire::test(ShowArticles::class)
-        ->assertSet('sortBy', 'recent')
-        ->call('sortBy', 'popular')
-        ->assertSet('sortBy', 'popular')
-        ->call('sortBy', 'trending')
-        ->assertSet('sortBy', 'trending')
-        ->call('sortBy', 'recent')
-        ->assertSet('sortBy', 'recent');
-});
-
-test('tags can be toggled', function () {
-    $tag = Tag::factory()->create();
-
-    Livewire::test(ShowArticles::class)
-        ->call('toggleTag', $tag->slug)
-        ->assertSet('tag', $tag->slug)
-        ->call('toggleTag', $tag->slug)
-        ->assertSet('tag', null);
-});
-
-test('loading page with invalid sort parameter defaults to recent', function () {
-    Livewire::withQueryParams(['sortBy' => 'something-invalid'])
-        ->test(ShowArticles::class)
-        ->assertSet('sortBy', 'recent');
-});
-
-test('invalid sort parameter defaults to recent', function () {
-    Livewire::test(ShowArticles::class)
-        ->call('sortBy', 'something-invalid')
-        ->assertSet('sortBy', 'recent');
 });
 
 test('a user can view their articles', function () {
