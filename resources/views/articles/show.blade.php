@@ -158,52 +158,65 @@
 
     @can(App\Policies\ArticlePolicy::APPROVE, $article)
         @if ($article->isAwaitingApproval())
-            @include('_partials._update_modal', [
-                'identifier' => 'approveArticle',
-                'route' => ['admin.articles.approve', $article->slug()],
-                'title' => "Approve article",
-                'body' => '<p>Are you sure you want to approve this article?</p>',
-            ])
+            <x-modal 
+                identifier="approveArticle"
+                :action="route('admin.articles.approve', $article->slug())"
+                title="Approve article"
+                type="update"
+            >
+                <p>Are you sure you want to approve this article?</p>
+            </x-modal>
         @endif
     @endcan
 
     @can(App\Policies\ArticlePolicy::DISAPPROVE, $article)
         @if ($article->isPublished())
-            @include('_partials._update_modal', [
-                'identifier' => 'disapproveArticle',
-                'route' => ['admin.articles.disapprove', $article->slug()],
-                'title' => "Disapprove article",
-                'body' => '<p>Are you sure you want to disapprove this article? Doing so will mean it is no longer live on the site.</p>',
-            ])
+            <x-modal 
+                identifier="unpublishArticle"
+                :action="route('admin.articles.disapprove', $article->slug())"
+                title="Unpublish article"
+                type="update"
+            >
+                <p>Are you sure you want to unpublish this article? Doing so will mean it is no longer live on the site.</p>
+            </x-modal>
         @endif
     @endcan
 
     @can(App\Policies\ArticlePolicy::DECLINE, $article)
         @if ($article->isNotDeclined())
-            @include('_partials._update_modal', [
-                'identifier' => 'declineArticle',
-                'route' => ['admin.articles.decline', $article->slug()],
-                'title' => "Decline article",
-                'body' => '<p>Are you sure you want to decline this article? Doing so will permanently remove it from the review queue.</p>',
-            ])
+            <x-modal 
+                identifier="declineArticle"
+                :action="route('admin.articles.decline', $article->slug())"
+                title="Decline article"
+                type="update"
+            >
+                <p>Are you sure you want to decline this article? Doing so will permanently remove it from the review queue.</p>
+            </x-modal>
         @endif
     @endcan
 
     @can(App\Policies\ArticlePolicy::DELETE, $article)
-        @include('_partials._delete_modal', [
-            'identifier' => 'deleteArticle',
-            'route' => ['articles.delete', $article->slug()],
-            'title' => "Delete article",
-            'body' => '<p>Are you sure you want to delete this article? Doing so will mean it is permanently removed from the site.</p>',
-        ])
+        <x-modal 
+            identifier="deleteArticle"
+            :action="route('articles.delete', $article->slug())"
+            title="Delete article"
+        >
+            <p>Are you sure you want to delete this article? Doing so will mean it is permanently removed from the site.</p>
+        </x-modal>
     @endcan
 
     @can(App\Policies\ArticlePolicy::PINNED, $article)
-        @include('_partials._update_modal', [
-            'identifier' => 'togglePinnedStatus',
-            'route' => ['admin.articles.pinned', $article->slug()],
-            'title' => $article->isPinned() ? "Unpin article" : "Pin article",
-            'body' => $article->isPinned() ? '<p>Are you sure you want to unpin this article?</p>' : '<p>Are you sure you want to pin this article?</p>',
-        ])
+        <x-modal 
+            identifier="togglePinnedStatus"
+            :action="route('admin.articles.pinned', $article->slug())"
+            :title="$article->isPinned() ? 'Unpin article' : 'Pin article'"
+            type="update"
+        >
+            @if ($article->isPinned())
+                <p>Are you sure you want to unpin this article?</p>
+            @else
+                <p>Are you sure you want to pin this article?</p>
+            @endif
+        </x-modal>
     @endcan
 @endsection

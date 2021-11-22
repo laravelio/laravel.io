@@ -5,7 +5,7 @@
         class="w-full flex justify-center font-medium rounded-l px-5 py-2 border {{ $selectedFilter === 'recent' ? 'bg-gray-900 text-white  border-gray-900 hover:bg-gray-800' : 'bg-white text-gray-800 border-gray-200 hover:bg-gray-100' }}"
     >
         Recent
-    </button>
+    </a>
 
     <a
         href="{{ route('articles', ['filter' => 'popular', 'tag' => $activeTag?->name()]) . '#articles' }}"
@@ -13,7 +13,7 @@
         class="w-full flex justify-center font-medium px-5 py-2 border-t border-b {{ $selectedFilter === 'popular' ? 'bg-gray-900 text-white  border-gray-900 hover:bg-gray-800' : 'bg-white text-gray-800 border-gray-200 hover:bg-gray-100' }}"
     >
         Popular
-    </button>
+    </a>
 
     <a
         href="{{ route('articles', ['filter' => 'trending', 'tag' => $activeTag?->name()]) . '#articles' }}"
@@ -22,5 +22,5 @@
     >
         Trending
         <x-heroicon-o-fire class="w-5 h-5" />
-    </button>
+    </a>
 </div>

@@ -176,28 +176,33 @@
 
     @can(App\Policies\UserPolicy::BAN, $user)
         @if ($user->isBanned())
-            @include('_partials._update_modal', [
-                'identifier' => 'unbanUser',
-                'route' => ['admin.users.unban', $user->username()],
-                'title' => "Unban {$user->username()}",
-                'body' => '<p>Unbanning this user will allow them to login again and post content.</p>',
-            ])
+            <x-modal
+                identifier="unbanUser"
+                :action="route('admin.users.unban', $user->username())"
+                title="Unban {{ $user->username() }}"
+                type="update"
+            >
+                <p>Unbanning this user will allow them to login again and post content.</p>
+            </x-modal>
         @else
-            @include('_partials._update_modal', [
-                'identifier' => 'banUser',
-                'route' => ['admin.users.ban', $user->username()],
-                'title' => "Ban {$user->username()}",
-                'body' => '<p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>',
-            ])
+            <x-modal
+                identifier="banUser"
+                :action="route('admin.users.ban', $user->username())"
+                title="Ban {{ $user->username() }}"
+                type="update"
+            >
+                <p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>
+            </x-modal>
         @endif
     @endcan
 
     @can(App\Policies\UserPolicy::DELETE, $user)
-        @include('_partials._delete_modal', [
-            'identifier' => 'deleteUser',
-            'route' => ['admin.users.delete', $user->username()],
-            'title' => "Delete {$user->username()}",
-            'body' => '<p>Deleting this user will remove their account and any related content like threads & replies. This cannot be undone.</p>',
-        ])
+        <x-modal
+            identifier="deleteUser"
+            :action="route('admin.users.delete', $user->username())"
+            title="Delete {{ $user->username() }}"
+        >
+            <p>Deleting this user will remove their account and any related content like threads & replies. This cannot be undone.</p>
+        </x-modal>
     @endcan
 @endsection
