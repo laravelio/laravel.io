@@ -27,6 +27,7 @@ class ArticleSubmitted extends Notification implements ShouldQueue
     public function toTelegram($notifiable)
     {
         $url = route('articles.show', $this->article->slug());
+
         return TelegramMessage::create()
             ->to(env('TELEGRAM_LARAVELIO_CHANNEL'))
             ->content($this->content())
