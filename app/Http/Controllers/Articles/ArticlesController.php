@@ -36,7 +36,7 @@ class ArticlesController extends Controller
             ->latest('submitted_at')
             ->take(4)
             ->get();
-        
+
         $articles = Article::published()
             ->notPinned()
             ->{$filter}();
