@@ -5,7 +5,7 @@ namespace App\View\Components;
 use Illuminate\View\Component;
 
 class Modal extends Component
-{    
+{
     public $identifier;
 
     public $title;
