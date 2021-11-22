@@ -245,14 +245,11 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
      */
     public static function feedQuery(): Builder
     {
-        return static::with([
-            'solutionReplyRelation',
-            'likesRelation',
-            'repliesRelation',
-            'repliesRelation.authorRelation',
+        return static::withOnly([
             'tagsRelation',
             'authorRelation',
         ])
+        ->withCount(['repliesRelation as reply_count', 'likesRelation as like_count'])
         ->latest('last_active_at');
     }
 
