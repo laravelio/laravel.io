@@ -18,7 +18,7 @@
 @else
     <div {{ $attributes->merge(['class' => 'bg-gray-100 rounded-full text-gray-500 relative flex items-center justify-center']) }}>
         <img
-            src="{{ asset('images/laravel.png') }}"
+            src="{{ asset('images/laravelio-icon.svg') }}"
             alt="{{ $user->name() }}"
             class="filter grayscale"
         />
