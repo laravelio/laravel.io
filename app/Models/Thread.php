@@ -65,6 +65,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         'likesRelation',
         'repliesRelation',
         'tagsRelation',
+        'updatedByRelation',
     ];
 
     public function id(): int
@@ -85,6 +86,21 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     public function excerpt(int $limit = 100): string
     {
         return Str::limit(strip_tags(md_to_html($this->body())), $limit);
+    }
+
+    public function updatedBy(): ?User
+    {
+        return $this->updatedByRelation;
+    }
+
+    public function updatedByRelation(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function isUpdated(): bool
+    {
+        return $this->updated_at->gt($this->created_at);
     }
 
     public function solutionReply(): ?Reply

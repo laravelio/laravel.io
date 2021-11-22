@@ -44,7 +44,7 @@ class ReplyController extends Controller
     {
         $this->authorize(ReplyPolicy::UPDATE, $reply);
 
-        $this->dispatchNow(new UpdateReply($reply, $request->body()));
+        $this->dispatchNow(new UpdateReply($reply, $request->user(), $request->body()));
 
         $this->success('replies.updated');
 

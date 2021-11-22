@@ -86,7 +86,7 @@ In order to index your existing threads, run the following command:
 php artisan scout:import App\\Models\\Thread
 ```
 
-New threads will be automatically added to the index and threads which get edited will be automatically updated. If you need to flush your index and start again, you can run the following command:
+New threads will be automatically added to the index and threads which get updated will be automatically synced. If you need to flush your index and start again, you can run the following command:
 
 ```bash
 php artisan scout:flush App\\Models\\Thread

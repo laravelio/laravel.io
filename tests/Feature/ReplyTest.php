@@ -30,7 +30,7 @@ test('users can edit a reply', function () {
     $this->loginAs($user);
 
     $this->put('/replies/1', [
-        'body' => 'The edited reply',
+        'body' => 'The updated reply',
     ])
         ->assertRedirectedTo('/forum/the-first-thread')
         ->assertSessionHas('success', 'Reply successfully updated!');

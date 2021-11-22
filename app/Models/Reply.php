@@ -8,6 +8,7 @@ use App\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
@@ -38,6 +39,7 @@ final class Reply extends Model
      */
     protected $with = [
         'likesRelation',
+        'updatedByRelation',
     ];
 
     public function solutionTo(): HasOne
@@ -68,6 +70,21 @@ final class Reply extends Model
     public function replyAble(): ReplyAble
     {
         return $this->replyAbleRelation;
+    }
+
+    public function updatedBy(): ?User
+    {
+        return $this->updatedByRelation;
+    }
+
+    public function updatedByRelation(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function isUpdated(): bool
+    {
+        return $this->updated_at->gt($this->created_at);
     }
 
     /**

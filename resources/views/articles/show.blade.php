@@ -86,6 +86,12 @@
                         <x-buk-markdown>{!! $article->body() !!}</x-buk-markdown>
                     </div>
 
+                    @if ($article->isUpdated())
+                        <div class="text-sm text-gray-900 py-6">
+                            Last updated on {{ $article->updated_at->format('j M, Y') }}.
+                        </div>
+                    @endif
+
                     <div class="flex items-center gap-x-6 pt-6 pb-10">
                         <livewire:like-article :article="$article" :isSidebar="false" />
 

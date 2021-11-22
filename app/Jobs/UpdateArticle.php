@@ -52,6 +52,7 @@ final class UpdateArticle
             'slug' => $this->title,
             'submitted_at' => $this->shouldUpdateSubmittedAt() ? now() : $this->article->submittedAt(),
         ]);
+
         $this->article->syncTags($this->tags);
 
         return $this->article;
