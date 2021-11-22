@@ -27,7 +27,7 @@ class LikeSeeder extends Seeder
                 $likes[] = [
                     'likeable_id' => $article->id,
                     'likeable_type' => 'articles',
-                    'user_id' => $user->id
+                    'user_id' => $user->id,
                 ];
             }
         }
@@ -37,7 +37,7 @@ class LikeSeeder extends Seeder
                 $likes[] = [
                     'likeable_id' => $reply->id,
                     'likeable_type' => 'replies',
-                    'user_id' => $user->id
+                    'user_id' => $user->id,
                 ];
             }
         }
@@ -47,7 +47,7 @@ class LikeSeeder extends Seeder
                 $likes[] = [
                     'likeable_id' => $thread->id,
                     'likeable_type' => 'threads',
-                    'user_id' => $user->id
+                    'user_id' => $user->id,
                 ];
             }
         }

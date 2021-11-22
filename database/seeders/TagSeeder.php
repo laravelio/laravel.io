@@ -85,7 +85,7 @@ class TagSeeder extends Seeder
                 $taggables[] = [
                     'taggable_id' => $article->id,
                     'taggable_type' => 'articles',
-                    'tag_id' => $tagId
+                    'tag_id' => $tagId,
                 ];
             }
         }
@@ -95,7 +95,7 @@ class TagSeeder extends Seeder
                 $taggables[] = [
                     'taggable_id' => $thread->id,
                     'taggable_type' => 'threads',
-                    'tag_id' => $tagId
+                    'tag_id' => $tagId,
                 ];
             }
         }
