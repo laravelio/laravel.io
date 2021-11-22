@@ -94,7 +94,7 @@ test('users see the default Laravel avatar', function () {
     ]);
 
     $this->visit('/settings')
-        ->see('<img src="http://localhost/images/laravel.png" alt="John Doe" class="filter grayscale">');
+        ->see('<img src="http://localhost/images/laravelio-icon.svg" alt="John Doe" class="filter grayscale">');
 });
 
 test('users cannot update their password when it has been compromised in data leaks', function () {
