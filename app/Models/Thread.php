@@ -70,10 +70,10 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     ];
 
     /**
-    * {@inheritdoc}
+     * {@inheritdoc}
      */
     protected $dates = [
-        'last_active_at'
+        'last_active_at',
     ];
 
     public function id(): int

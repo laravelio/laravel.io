@@ -1,8 +1,5 @@
 <?php
 
-use App\Events\ReplyWasCreated;
-use Illuminate\Support\Facades\Event;
-use App\Listeners\UpdateReplyableActivity;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
@@ -101,7 +98,7 @@ test('unverified users cannot see the reply input', function () {
         );
 });
 
-test('replyable activity is updated when reply is created', function () {    
+test('replyable activity is updated when reply is created', function () {
     $thread = Thread::factory()->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
 
     $this->login();

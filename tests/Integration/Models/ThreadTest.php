@@ -82,7 +82,6 @@ it('can retrieve the latest threads in a correct order', function () {
     $this->assertTrue($threadFromTwoDaysAgo->is($threads->last()), 'Last thread is incorrect');
 });
 
-
 it('bumps threads when a reply is added', function () {
     $threadUpdatedYesterday = createThreadFromYesterday();
     $threadFromToday = createThreadFromToday();
@@ -95,7 +94,6 @@ it('bumps threads when a reply is added', function () {
     $this->assertTrue($threadFromToday->is($threads->slice(1)->first()), 'Second thread is incorrect');
     $this->assertTrue($threadUpdatedYesterday->is($threads->last()), 'Last thread is incorrect');
 });
-
 
 it('can retrieve only resolved threads', function () {
     createThreadFromToday();
