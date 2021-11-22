@@ -69,6 +69,13 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         'updatedByRelation',
     ];
 
+    /**
+    * {@inheritdoc}
+     */
+    protected $dates = [
+        'last_active_at'
+    ];
+
     public function id(): int
     {
         return $this->id;
@@ -87,6 +94,16 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     public function excerpt(int $limit = 100): string
     {
         return Str::limit(strip_tags(md_to_html($this->body())), $limit);
+    }
+
+    public function lastActiveAt(): ?Carbon
+    {
+        return $this->last_active_at;
+    }
+
+    public function touchActivity()
+    {
+        $this->update(['last_active_at' => now()]);
     }
 
     public function updatedBy(): ?User

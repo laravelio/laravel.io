@@ -7,6 +7,7 @@ use App\Events\ReplyWasCreated;
 use App\Listeners\SendArticleApprovedNotification;
 use App\Listeners\SendNewReplyNotification;
 use App\Listeners\StoreTweetIdentifier;
+use App\Listeners\UpdateReplyableActivity;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Notifications\Events\NotificationSent;
 
@@ -20,6 +21,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         ReplyWasCreated::class => [
             SendNewReplyNotification::class,
+            UpdateReplyableActivity::class,
         ],
         ArticleWasApproved::class => [
             SendArticleApprovedNotification::class,

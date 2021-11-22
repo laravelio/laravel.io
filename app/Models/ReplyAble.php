@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
@@ -10,6 +11,10 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 interface ReplyAble
 {
     public function subject(): string;
+
+    public function lastActiveAt(): ?Carbon;
+
+    public function touchActivity();
 
     /**
      * @return \App\Models\Reply[]
