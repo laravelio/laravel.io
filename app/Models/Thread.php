@@ -253,18 +253,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
             'tagsRelation',
             'authorRelation',
         ])
-            ->leftJoin('replies', function ($join) {
-                $join->on('threads.id', 'replies.replyable_id')
-                    ->where('replies.replyable_type', static::TABLE);
-            })
-            ->orderBy('latest_creation', 'DESC')
-            ->groupBy('threads.id')
-            ->select('threads.*', DB::raw('
-                CASE WHEN COALESCE(MAX(replies.created_at), 0) > threads.created_at
-                THEN COALESCE(MAX(replies.created_at), 0)
-                ELSE threads.created_at
-                END AS latest_creation
-            '));
+        ->latest('last_active_at');
     }
 
     /**

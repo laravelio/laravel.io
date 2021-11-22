@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\CreateReply;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
@@ -81,6 +82,21 @@ it('can retrieve the latest threads in a correct order', function () {
     $this->assertTrue($threadFromTwoDaysAgo->is($threads->last()), 'Last thread is incorrect');
 });
 
+
+it('bumps threads when a reply is added', function () {
+    $threadUpdatedYesterday = createThreadFromYesterday();
+    $threadFromToday = createThreadFromToday();
+    $threadFromTwoDaysAgo = createThreadFromTwoDaysAgo();
+    dispatch_sync(new CreateReply('Hello world', User::factory()->create(), $threadFromTwoDaysAgo));
+
+    $threads = Thread::feed();
+
+    $this->assertTrue($threadFromTwoDaysAgo->is($threads->first()), 'First thread is incorrect');
+    $this->assertTrue($threadFromToday->is($threads->slice(1)->first()), 'Second thread is incorrect');
+    $this->assertTrue($threadUpdatedYesterday->is($threads->last()), 'Last thread is incorrect');
+});
+
+
 it('can retrieve only resolved threads', function () {
     createThreadFromToday();
     $resolvedThread = createResolvedThread();
@@ -126,21 +142,21 @@ function createThreadFromToday(): Thread
 {
     $today = Carbon::now();
 
-    return Thread::factory()->create(['created_at' => $today]);
+    return Thread::factory()->create(['created_at' => $today, 'last_active_at' => $today]);
 }
 
 function createThreadFromYesterday(): Thread
 {
     $yesterday = Carbon::yesterday();
 
-    return Thread::factory()->create(['created_at' => $yesterday]);
+    return Thread::factory()->create(['created_at' => $yesterday, 'last_active_at' => $yesterday]);
 }
 
 function createThreadFromTwoDaysAgo(): Thread
 {
     $twoDaysAgo = Carbon::now()->subDay(2);
 
-    return Thread::factory()->create(['created_at' => $twoDaysAgo]);
+    return Thread::factory()->create(['created_at' => $twoDaysAgo, 'last_active_at' => $twoDaysAgo]);
 }
 
 function createResolvedThread()
