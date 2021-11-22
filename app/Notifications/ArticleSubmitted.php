@@ -28,7 +28,7 @@ class ArticleSubmitted extends Notification implements ShouldQueue
     {
         $url = route('articles.show', $this->article->slug());
         return TelegramMessage::create()
-            ->to(env("TELEGRAM_LARAVELIO_CHANNEL"))
+            ->to(env('TELEGRAM_LARAVELIO_CHANNEL'))
             ->content($this->content())
             ->button('View article', $url);
     }
