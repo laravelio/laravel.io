@@ -55,6 +55,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         'body',
         'slug',
         'subject',
+        'last_active_at',
     ];
 
     /**
