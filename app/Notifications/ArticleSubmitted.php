@@ -16,7 +16,7 @@ class ArticleSubmitted extends Notification implements ShouldQueue
 
     public function __construct(Article $article)
     {
-        $this->article = $article;        
+        $this->article = $article;
     }
 
     public function via($notifiable)
@@ -36,8 +36,8 @@ class ArticleSubmitted extends Notification implements ShouldQueue
     private function content(): string
     {
         $content = "*New article submitted!*\n\n";
-        $content .= "Title: " . $this->article->title() . "\n";
-        $content .= "By: [@" . $this->article->author()->username() . "](" . route('profile', $this->article->author()->username()) . ")";
+        $content .= 'Title: '.$this->article->title()."\n";
+        $content .= 'By: [@'.$this->article->author()->username().']('.route('profile', $this->article->author()->username()).')';
 
         return $content;
     }

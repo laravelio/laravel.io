@@ -59,7 +59,7 @@ final class CreateArticle
         $article->authoredBy($this->author);
         $article->syncTags($this->tags);
 
-        if (App::environment() !== 'testing'){
+        if (App::environment() !== 'testing') {
             (new AnonymousNotifiable())->notify(new ArticleSubmitted($article));
         }
 
