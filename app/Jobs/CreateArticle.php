@@ -2,11 +2,10 @@
 
 namespace App\Jobs;
 
+use App\Events\ArticleWasCreated;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\User;
-use App\Notifications\ArticleSubmitted;
-use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\App;
 
 final class CreateArticle
@@ -60,7 +59,7 @@ final class CreateArticle
         $article->syncTags($this->tags);
 
         if (App::environment() !== 'testing') {
-            (new AnonymousNotifiable())->notify(new ArticleSubmitted($article));
+            event(new ArticleWasCreated($article));
         }
 
         return $article;
