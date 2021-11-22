@@ -12,7 +12,7 @@ class TagSeeder extends Seeder
 {
     public function run()
     {
-        $tags = collect(Tag::factory()->createManyQuietly([
+        DB::table('tags')->insert([
             ['name' => 'Installation', 'slug' => 'installation'],
             ['name' => 'Configuration', 'slug' => 'configuration'],
             ['name' => 'Authentication', 'slug' => 'authentication'],
@@ -73,22 +73,33 @@ class TagSeeder extends Seeder
             ['name' => 'Alpine.js', 'slug' => 'alpinejs'],
             ['name' => 'API', 'slug' => 'api'],
             ['name' => 'Octane', 'slug' => 'octane'],
-        ]));
+        ]);
 
-        $tagIds = array_flip($tags->pluck('id')->toArray());
+        $tagIds = array_flip(Tag::all()->pluck('id')->toArray());
         $articles = Article::all();
         $threads = Thread::all();
+        $taggables = [];
 
-        DB::beginTransaction();
         foreach ($articles as $article) {
-            $article->syncTags(array_rand($tagIds, 3));
+            foreach (array_rand($tagIds, 3) as $tagId) {
+                $taggables[] = [
+                    'taggable_id' => $article->id,
+                    'taggable_type' => 'articles',
+                    'tag_id' => $tagId
+                ];
+            }
         }
-        DB::commit();
 
-        DB::beginTransaction();
         foreach ($threads as $thread) {
-            $thread->syncTags(array_rand($tagIds, 3));
+            foreach (array_rand($tagIds, 3) as $tagId) {
+                $taggables[] = [
+                    'taggable_id' => $thread->id,
+                    'taggable_type' => 'threads',
+                    'tag_id' => $tagId
+                ];
+            }
         }
-        DB::commit();
+
+        DB::table('taggables')->insert($taggables);
     }
 }
