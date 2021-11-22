@@ -5,6 +5,9 @@ namespace App\Jobs;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\User;
+use App\Notifications\ArticleSubmitted;
+use Illuminate\Notifications\AnonymousNotifiable;
+use Illuminate\Support\Facades\App;
 
 final class CreateArticle
 {
@@ -55,6 +58,10 @@ final class CreateArticle
         ]);
         $article->authoredBy($this->author);
         $article->syncTags($this->tags);
+
+        if (App::environment() !== 'testing'){
+            (new AnonymousNotifiable())->notify(new ArticleSubmitted($article));
+        }
 
         return $article;
     }
