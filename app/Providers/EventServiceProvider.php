@@ -8,7 +8,6 @@ use App\Listeners\MarkLastActivity;
 use App\Listeners\SendArticleApprovedNotification;
 use App\Listeners\SendNewReplyNotification;
 use App\Listeners\StoreTweetIdentifier;
-use App\Listeners\UpdateReplyableActivity;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Notifications\Events\NotificationSent;
 
