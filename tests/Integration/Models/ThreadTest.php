@@ -140,21 +140,21 @@ function createThreadFromToday(): Thread
 {
     $today = Carbon::now();
 
-    return Thread::factory()->create(['created_at' => $today, 'last_active_at' => $today]);
+    return Thread::factory()->create(['created_at' => $today, 'last_activity_at' => $today]);
 }
 
 function createThreadFromYesterday(): Thread
 {
     $yesterday = Carbon::yesterday();
 
-    return Thread::factory()->create(['created_at' => $yesterday, 'last_active_at' => $yesterday]);
+    return Thread::factory()->create(['created_at' => $yesterday, 'last_activity_at' => $yesterday]);
 }
 
 function createThreadFromTwoDaysAgo(): Thread
 {
     $twoDaysAgo = Carbon::now()->subDay(2);
 
-    return Thread::factory()->create(['created_at' => $twoDaysAgo, 'last_active_at' => $twoDaysAgo]);
+    return Thread::factory()->create(['created_at' => $twoDaysAgo, 'last_activity_at' => $twoDaysAgo]);
 }
 
 function createResolvedThread()

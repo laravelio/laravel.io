@@ -109,5 +109,5 @@ test('replyable activity is updated when reply is created', function () {
         'replyable_type' => Thread::TABLE,
     ]);
 
-    $this->assertNotNull($thread->fresh()->lastActiveAt());
+    $this->assertNotNull($thread->fresh()->last_activity_at);
 });

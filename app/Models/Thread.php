@@ -55,7 +55,6 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         'body',
         'slug',
         'subject',
-        'last_active_at',
     ];
 
     /**
@@ -73,7 +72,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
      * {@inheritdoc}
      */
     protected $dates = [
-        'last_active_at',
+        'last_activity_at',
     ];
 
     public function id(): int
@@ -94,16 +93,6 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
     public function excerpt(int $limit = 100): string
     {
         return Str::limit(strip_tags(md_to_html($this->body())), $limit);
-    }
-
-    public function lastActiveAt(): ?Carbon
-    {
-        return $this->last_active_at;
-    }
-
-    public function touchActivity()
-    {
-        $this->update(['last_active_at' => now()]);
     }
 
     public function updatedBy(): ?User
@@ -250,7 +239,7 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
             'authorRelation',
         ])
         ->withCount(['repliesRelation as reply_count', 'likesRelation as like_count'])
-        ->latest('last_active_at');
+        ->latest('last_activity_at');
     }
 
     /**

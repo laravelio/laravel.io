@@ -6,10 +6,12 @@ namespace App\Listeners;
 
 use App\Events\ReplyWasCreated;
 
-final class UpdateReplyableActivity
+final class MarkLastActivity
 {
     public function handle(ReplyWasCreated $event): void
     {
-        $event->reply->replyAble()->touchActivity();
+        $replyAble = $event->reply->replyAble();
+        $replyAble->last_activity_at = now();
+        $replyAble->save();
     }
 }
