@@ -8,8 +8,12 @@ use Illuminate\Notifications\AnonymousNotifiable;
 
 final class SendTelegramNewArticleNotification
 {
+    public function __construct(
+        private AnonymousNotifiable $notifiable
+    ) {}
+
     public function handle(ArticleWasCreated $event): void
     {
-        (new AnonymousNotifiable())->notify(new ArticleSubmitted($event->article));
+        $this->notifiable->notify(new ArticleSubmitted($event->article));
     }
 }
