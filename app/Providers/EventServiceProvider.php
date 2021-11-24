@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
-use App\Events\ArticleWasApproved;
 use App\Events\ReplyWasCreated;
+use App\Events\ArticleWasApproved;
 use App\Listeners\MarkLastActivity;
-use App\Listeners\SendArticleApprovedNotification;
-use App\Listeners\SendNewReplyNotification;
 use App\Listeners\StoreTweetIdentifier;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use App\Listeners\SendNewReplyNotification;
+use App\Listeners\SendArticleApprovedNotification;
 use Illuminate\Notifications\Events\NotificationSent;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -20,8 +20,8 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         ReplyWasCreated::class => [
-            SendNewReplyNotification::class,
             MarkLastActivity::class,
+            SendNewReplyNotification::class,
         ],
         ArticleWasApproved::class => [
             SendArticleApprovedNotification::class,
