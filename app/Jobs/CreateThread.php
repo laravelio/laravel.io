@@ -54,6 +54,7 @@ final class CreateThread
             'subject' => $this->subject,
             'body' => $this->body,
             'slug' => $this->subject,
+            'last_activity_at' => now(),
         ]);
         $thread->authoredBy($this->author);
         $thread->syncTags($this->tags);

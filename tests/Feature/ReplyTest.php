@@ -97,3 +97,17 @@ test('unverified users cannot see the reply input', function () {
             'You\'ll need to verify your account before participating in this thread.',
         );
 });
+
+test('replyable activity is updated when reply is created', function () {
+    $thread = Thread::factory()->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
+
+    $this->login();
+
+    $this->post('/replies', [
+        'body' => 'The first reply',
+        'replyable_id' => $thread->id,
+        'replyable_type' => Thread::TABLE,
+    ]);
+
+    $this->assertNotNull($thread->fresh()->last_activity_at);
+});

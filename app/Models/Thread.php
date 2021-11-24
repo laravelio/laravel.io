@@ -68,6 +68,13 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
         'updatedByRelation',
     ];
 
+    /**
+     * {@inheritdoc}
+     */
+    protected $dates = [
+        'last_activity_at',
+    ];
+
     public function id(): int
     {
         return $this->id;
@@ -227,26 +234,12 @@ final class Thread extends Model implements ReplyAble, SubscriptionAble, Feedabl
      */
     public static function feedQuery(): Builder
     {
-        return static::with([
-            'solutionReplyRelation',
-            'likesRelation',
-            'repliesRelation',
-            'repliesRelation.authorRelation',
+        return static::withOnly([
             'tagsRelation',
             'authorRelation',
         ])
-            ->leftJoin('replies', function ($join) {
-                $join->on('threads.id', 'replies.replyable_id')
-                    ->where('replies.replyable_type', static::TABLE);
-            })
-            ->orderBy('latest_creation', 'DESC')
-            ->groupBy('threads.id')
-            ->select('threads.*', DB::raw('
-                CASE WHEN COALESCE(MAX(replies.created_at), 0) > threads.created_at
-                THEN COALESCE(MAX(replies.created_at), 0)
-                ELSE threads.created_at
-                END AS latest_creation
-            '));
+        ->withCount(['repliesRelation as reply_count', 'likesRelation as like_count'])
+        ->latest('last_activity_at');
     }
 
     /**
