@@ -16,6 +16,7 @@ class ReplySeeder extends Seeder
         $threads = Thread::all();
 
         DB::beginTransaction();
+
         // Create 5 replies for each thread from random users.
         foreach ($threads as $thread) {
             Reply::factory()
@@ -28,13 +29,16 @@ class ReplySeeder extends Seeder
                 ))
                 ->createQuietly();
         }
+
         DB::commit();
 
         DB::beginTransaction();
+
         // Give 10 random threads a solution.
         foreach ($threads->random(20) as $thread) {
             $thread->markSolution($thread->repliesRelation()->get()->load('replyAbleRelation')->random(), $thread->author());
         }
+
         DB::commit();
     }
 }

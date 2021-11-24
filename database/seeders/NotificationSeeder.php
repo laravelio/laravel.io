@@ -18,6 +18,7 @@ class NotificationSeeder extends Seeder
         $replies = Reply::with(['authorRelation.notifications', 'replyAbleRelation'])->get();
 
         DB::beginTransaction();
+
         foreach ($replies as $reply) {
             $reply->author()->notifications()->create([
                 'id' => Uuid::uuid4()->toString(),
@@ -33,6 +34,7 @@ class NotificationSeeder extends Seeder
                 'updated_at' => $reply->createdAt(),
             ]);
         }
+
         DB::commit();
     }
 }

@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::beginTransaction();
+
         User::factory()
             ->count(100)
             ->has(Thread::factory()->count(2), 'threadsRelation')
@@ -42,6 +43,7 @@ class UserSeeder extends Seeder
                     ),
             )
             ->createQuietly();
+
         DB::commit();
 
         Article::published()
