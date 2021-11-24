@@ -2386,16 +2386,16 @@
         },
         {
             "name": "laravel-notification-channels/telegram",
-            "version": "0.8.0",
+            "version": "0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-notification-channels/telegram.git",
-                "reference": "dd7cee42b1da9a5528abd298a93c309e25a8306f"
+                "reference": "a941130a555908dc16b119b4f8c99b5f3605bf25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-notification-channels/telegram/zipball/dd7cee42b1da9a5528abd298a93c309e25a8306f",
-                "reference": "dd7cee42b1da9a5528abd298a93c309e25a8306f",
+                "url": "https://api.github.com/repos/laravel-notification-channels/telegram/zipball/a941130a555908dc16b119b4f8c99b5f3605bf25",
+                "reference": "a941130a555908dc16b119b4f8c99b5f3605bf25",
                 "shasum": ""
             },
             "require": {
@@ -2446,9 +2446,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel-notification-channels/telegram/issues",
-                "source": "https://github.com/laravel-notification-channels/telegram/tree/0.8.0"
+                "source": "https://github.com/laravel-notification-channels/telegram/tree/0.9.0"
             },
-            "time": "2021-11-14T01:06:40+00:00"
+            "time": "2021-11-24T12:19:23+00:00"
         },
         {
             "name": "laravel-notification-channels/twitter",
