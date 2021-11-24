@@ -6,6 +6,7 @@ use App\Models\Reply;
 use App\Notifications\NewReplyNotification;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
 class NotificationSeeder extends Seeder
@@ -14,7 +15,11 @@ class NotificationSeeder extends Seeder
 
     public function run()
     {
-        Reply::all()->each(function (Reply $reply) {
+        $replies = Reply::with(['authorRelation.notifications', 'replyAbleRelation'])->get();
+
+        DB::beginTransaction();
+
+        foreach ($replies as $reply) {
             $reply->author()->notifications()->create([
                 'id' => Uuid::uuid4()->toString(),
                 'type' => NewReplyNotification::class,
@@ -28,6 +33,8 @@ class NotificationSeeder extends Seeder
                 'created_at' => $reply->createdAt(),
                 'updated_at' => $reply->createdAt(),
             ]);
-        });
+        }
+
+        DB::commit();
     }
 }

@@ -6,12 +6,13 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Models\Thread;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TagSeeder extends Seeder
 {
     public function run()
     {
-        $tags = collect(Tag::factory()->createManyQuietly([
+        DB::table('tags')->insert([
             ['name' => 'Installation', 'slug' => 'installation'],
             ['name' => 'Configuration', 'slug' => 'configuration'],
             ['name' => 'Authentication', 'slug' => 'authentication'],
@@ -72,24 +73,33 @@ class TagSeeder extends Seeder
             ['name' => 'Alpine.js', 'slug' => 'alpinejs'],
             ['name' => 'API', 'slug' => 'api'],
             ['name' => 'Octane', 'slug' => 'octane'],
-        ]));
+        ]);
 
-        Article::all()->each(function ($article) use ($tags) {
-            $article->syncTags(
-                $tags->random(rand(0, $tags->count()))
-                    ->take(3)
-                    ->pluck('id')
-                    ->toArray(),
-            );
-        });
+        $tagIds = array_flip(Tag::all()->pluck('id')->toArray());
+        $articles = Article::all();
+        $threads = Thread::all();
+        $taggables = [];
 
-        Thread::all()->each(function ($article) use ($tags) {
-            $article->syncTags(
-                $tags->random(rand(0, $tags->count()))
-                    ->take(3)
-                    ->pluck('id')
-                    ->toArray(),
-            );
-        });
+        foreach ($articles as $article) {
+            foreach (array_rand($tagIds, 3) as $tagId) {
+                $taggables[] = [
+                    'taggable_id' => $article->id,
+                    'taggable_type' => 'articles',
+                    'tag_id' => $tagId,
+                ];
+            }
+        }
+
+        foreach ($threads as $thread) {
+            foreach (array_rand($tagIds, 3) as $tagId) {
+                $taggables[] = [
+                    'taggable_id' => $thread->id,
+                    'taggable_type' => 'threads',
+                    'tag_id' => $tagId,
+                ];
+            }
+        }
+
+        DB::table('taggables')->insert($taggables);
     }
 }
