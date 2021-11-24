@@ -1,12 +1,10 @@
 <?php
 
-use App\Http\Livewire\ShowArticles;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Notifications\ArticleApprovedNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Notification;
-use Livewire\Livewire;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
@@ -306,39 +304,6 @@ test('draft articles cannot be viewed by logged in users', function () {
         ->assertResponseStatus(404);
 });
 
-test('sort parameters are set correctly', function () {
-    Livewire::test(ShowArticles::class)
-        ->assertSet('sortBy', 'recent')
-        ->call('sortBy', 'popular')
-        ->assertSet('sortBy', 'popular')
-        ->call('sortBy', 'trending')
-        ->assertSet('sortBy', 'trending')
-        ->call('sortBy', 'recent')
-        ->assertSet('sortBy', 'recent');
-});
-
-test('tags can be toggled', function () {
-    $tag = Tag::factory()->create();
-
-    Livewire::test(ShowArticles::class)
-        ->call('toggleTag', $tag->slug)
-        ->assertSet('tag', $tag->slug)
-        ->call('toggleTag', $tag->slug)
-        ->assertSet('tag', null);
-});
-
-test('loading page with invalid sort parameter defaults to recent', function () {
-    Livewire::withQueryParams(['sortBy' => 'something-invalid'])
-        ->test(ShowArticles::class)
-        ->assertSet('sortBy', 'recent');
-});
-
-test('invalid sort parameter defaults to recent', function () {
-    Livewire::test(ShowArticles::class)
-        ->call('sortBy', 'something-invalid')
-        ->assertSet('sortBy', 'recent');
-});
-
 test('a user can view their articles', function () {
     $user = $this->createUser();
 
@@ -434,4 +399,25 @@ test('user do not see tip if they have set the twitter handle', function () {
     $this->get('/articles/authored')
         ->dontSeeLink('Twitter handle')
         ->dontSee('so we can link to your profile when we tweet out your article.');
+});
+
+test('loading page with invalid sort parameter defaults to recent', function () {
+    Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
+
+    $this->get('/articles?filter=invalid')
+        ->see('<link rel="canonical" href="http://localhost/articles?filter=recent" />');
+});
+
+test('can filter articles by tag', function () {
+    $articleOne = Article::factory()->create(['title' => 'My First Article', 'slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
+    $tagOne = Tag::factory()->create(['slug' => 'one']);
+    $articleOne->syncTags([$tagOne->id]);
+
+    $articleTwo = Article::factory()->create(['title' => 'My Second Article', 'slug' => 'my-second-article', 'submitted_at' => now(), 'approved_at' => now()]);
+    $tagTwo = Tag::factory()->create(['slug' => 'two']);
+    $articleTwo->syncTags([$tagTwo->id]);
+
+    $this->get('/articles?tag=one')
+        ->see('My First Article')
+        ->dontSee('My Second Article');
 });

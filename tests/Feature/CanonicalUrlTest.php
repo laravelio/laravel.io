@@ -41,10 +41,10 @@ test('non allowed params are not included in the canonical url', function () {
 });
 
 test('query_params_are_always_in_the_same_order', function () {
-    Tag::factory()->create(['name' => 'Laravel']);
+    Tag::factory()->create(['name' => 'Laravel', 'slug' => 'laravel']);
 
-    $this->get('articles?utm_source=twitter&utm_medium=social&utm_term=abc123&sortBy=trending&page=2&tag=Laravel')
-        ->see('<link rel="canonical" href="http://localhost/articles?page=2&amp;sortBy=trending&amp;tag=Laravel" />');
+    $this->get('articles?utm_source=twitter&utm_medium=social&utm_term=abc123&filter=trending&page=2&tag=laravel')
+        ->see('<link rel="canonical" href="http://localhost/articles?filter=trending&amp;page=2&amp;tag=laravel" />');
 });
 
 test('standard pages always remove query params from canonical url', function () {

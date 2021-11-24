@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Articles;
 
+use App\Concerns\UsesFilters;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
 use App\Http\Requests\ArticleRequest;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Cache;
 
 class ArticlesController extends Controller
 {
+    use UsesFilters;
+
     public function __construct()
     {
         $this->middleware([Authenticate::class, EnsureEmailIsVerified::class], ['except' => ['index', 'show']]);
@@ -26,21 +29,41 @@ class ArticlesController extends Controller
 
     public function index(Request $request)
     {
+        $filter = $this->getFilter(['recent', 'popular', 'trending']);
+
         $pinnedArticles = Article::published()
             ->pinned()
             ->latest('submitted_at')
             ->take(4)
             ->get();
+
+        $articles = Article::published()
+            ->notPinned()
+            ->{$filter}();
+
+        $tags = Tag::whereHas('articles', function ($query) {
+            $query->published();
+        })->orderBy('name')->get();
+
+        if ($activeTag = Tag::where('slug', $request->tag)->first()) {
+            $articles->forTag($activeTag->slug());
+        }
+
         $moderators = Cache::remember('moderators', now()->addMinutes(30), function () {
             return User::moderators()->get();
         });
-        $canonical = canonical('articles', $request->only('sortBy', 'tag'));
+
+        $canonical = canonical('articles', ['filter' => $filter, 'tag' => $activeTag?->slug()]);
         $topAuthors = Cache::remember('topAuthors', now()->addMinutes(30), function () {
             return User::mostSubmissionsInLastDays(365)->take(5)->get();
         });
 
-        return view('articles.index', [
+        return view('articles.overview', [
             'pinnedArticles' => $pinnedArticles,
+            'articles' => $articles->paginate(10),
+            'tags' => $tags,
+            'activeTag' => $activeTag,
+            'filter' => $filter,
             'moderators' => $moderators,
             'canonical' => $canonical,
             'topAuthors' => $topAuthors,
@@ -74,7 +97,7 @@ class ArticlesController extends Controller
     {
         return view('articles.create', [
             'tags' => Tag::all(),
-            'selectedTags' => old('tags', []),
+            'activeTags' => old('tags', []),
         ]);
     }
 
@@ -94,7 +117,7 @@ class ArticlesController extends Controller
         return view('articles.edit', [
             'article' => $article,
             'tags' => Tag::all(),
-            'selectedTags' => old('tags', $article->tags()->pluck('id')->toArray()),
+            'activeTags' => old('tags', $article->tags()->pluck('id')->toArray()),
         ]);
     }
 

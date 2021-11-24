@@ -6,10 +6,10 @@ namespace App\Concerns;
 
 trait UsesFilters
 {
-    public function getFilter(string $default = 'recent'): string
+    public function getFilter(array $options = ['recent', 'resolved', 'unresolved'], string $default = 'recent'): string
     {
         $filter = (string) request('filter');
 
-        return in_array($filter, ['recent', 'resolved', 'unresolved']) ? $filter : $default;
+        return in_array($filter, $options) ? $filter : $default;
     }
 }

@@ -1,7 +1,10 @@
 @props([
     'activeTag', 
     'tags', 
-    'filter'
+    'filter',
+    'route' => 'forum.tag',
+    'cancelRoute' => 'forum',
+    'jumpTo' => null
 ])
 
 <div 
@@ -44,7 +47,7 @@
         <div class="flex flex-col text-lg p-4">
             @foreach ($tags as $tag)
                 <a 
-                    href="{{ route('forum.tag', [$tag->slug(), 'filter' => $filter]) }}" 
+                    href="{{ route($route, ['tag' => $tag->slug(), 'filter' => $filter]) }}{{ $jumpTo ? '#'.$jumpTo : '' }}" 
                     class="flex items-center py-3.5 hover:text-lio-500"
                     :class="{ 'text-lio-500': '{{ $tag->id() }}' === activeTag }"  
                     x-show="isFiltered('{{ $tag->name() }}')"
@@ -65,7 +68,7 @@
             Cancel
         </x-buttons.secondary-button>
 
-        <x-buttons.secondary-button href="{{ route('forum') }}" x-show="activeTag">
+        <x-buttons.secondary-button href="{{ route($cancelRoute) }}" x-show="activeTag">
             Remove filter
         </x-buttons.secondary-button>
     </div>
