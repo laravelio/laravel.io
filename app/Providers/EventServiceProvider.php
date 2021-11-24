@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
-use App\Events\ReplyWasCreated;
 use App\Events\ArticleWasApproved;
+use App\Events\ReplyWasCreated;
 use App\Listeners\MarkLastActivity;
-use App\Listeners\StoreTweetIdentifier;
-use App\Listeners\SendNewReplyNotification;
 use App\Listeners\SendArticleApprovedNotification;
-use Illuminate\Notifications\Events\NotificationSent;
+use App\Listeners\SendNewReplyNotification;
+use App\Listeners\StoreTweetIdentifier;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Notifications\Events\NotificationSent;
 
 class EventServiceProvider extends ServiceProvider
 {
