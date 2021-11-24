@@ -25,5 +25,7 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SCOUT_DRIVER" value="null"/>
+        <env name="TELEGRAM_BOT_TOKEN" value="null"/>
+        <env name="TELEGRAM_CHANNEL" value="null"/>
     </php>
 </phpunit>

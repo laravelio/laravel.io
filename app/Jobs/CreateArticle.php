@@ -6,7 +6,6 @@ use App\Events\ArticleWasCreated;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\User;
-use Illuminate\Support\Facades\App;
 
 final class CreateArticle
 {
@@ -58,9 +57,7 @@ final class CreateArticle
         $article->authoredBy($this->author);
         $article->syncTags($this->tags);
 
-        if (App::environment() !== 'testing') {
-            event(new ArticleWasCreated($article));
-        }
+        event(new ArticleWasCreated($article));
 
         return $article;
     }
