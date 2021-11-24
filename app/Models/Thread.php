@@ -2,29 +2,29 @@
 
 namespace App\Models;
 
-use App\Concerns\HasAuthor;
-use App\Concerns\HasLikes;
+use Exception;
 use App\Concerns\HasSlug;
 use App\Concerns\HasTags;
-use App\Concerns\HasTimestamps;
-use App\Concerns\PreparesSearch;
-use App\Concerns\ProvidesSubscriptions;
-use App\Concerns\ReceivesReplies;
-use App\Exceptions\CouldNotMarkReplyAsSolution;
-use Exception;
-use Illuminate\Contracts\Pagination\Paginator;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Collection as SupportCollection;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use Laravel\Scout\Searchable;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
+use App\Concerns\HasLikes;
+use App\Concerns\HasAuthor;
+use Illuminate\Support\Str;
+use Laravel\Scout\Searchable;
+use Illuminate\Support\Carbon;
+use App\Concerns\HasTimestamps;
+use App\Concerns\PreparesSearch;
+use App\Concerns\ReceivesReplies;
+use Illuminate\Support\Facades\DB;
+use App\Concerns\ProvidesSubscriptions;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\Paginator;
+use App\Exceptions\CouldNotMarkReplyAsSolution;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Collection as SupportCollection;
 
 final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAble
 {
@@ -277,6 +277,15 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
             'body' => $this->body(),
             'slug' => $this->slug(),
         ];
+    }
+
+    public function searchIndexShouldBeUpdated()
+    {
+        return $this->isDirty([
+            'subject',
+            'body',
+            'slug',
+        ]);
     }
 
     public function splitBody($value)
