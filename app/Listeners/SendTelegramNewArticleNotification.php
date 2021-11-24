@@ -10,7 +10,8 @@ final class SendTelegramNewArticleNotification
 {
     public function __construct(
         private AnonymousNotifiable $notifiable
-    ) {}
+    ) {
+    }
 
     public function handle(ArticleWasCreated $event): void
     {
