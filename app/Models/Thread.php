@@ -279,6 +279,15 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
         ];
     }
 
+    public function searchIndexShouldBeUpdated()
+    {
+        return $this->isDirty([
+            'subject',
+            'body',
+            'slug',
+        ]);
+    }
+
     public function splitBody($value)
     {
         return $this->split($value);
