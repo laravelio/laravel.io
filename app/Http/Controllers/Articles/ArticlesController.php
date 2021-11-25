@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Articles;
 
-use App\Concerns\UsesFilters;
-use App\Http\Controllers\Controller;
-use App\Http\Middleware\Authenticate;
-use App\Http\Requests\ArticleRequest;
+use App\Models\Tag;
+use App\Models\User;
+use App\Models\Article;
 use App\Jobs\CreateArticle;
 use App\Jobs\DeleteArticle;
 use App\Jobs\UpdateArticle;
-use App\Models\Article;
-use App\Models\Tag;
-use App\Models\User;
-use App\Policies\ArticlePolicy;
-use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
+use App\Concerns\UsesFilters;
+use App\Policies\ArticlePolicy;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware\Authenticate;
+use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 
 class ArticlesController extends Controller
 {
@@ -97,7 +97,7 @@ class ArticlesController extends Controller
     {
         return view('articles.create', [
             'tags' => Tag::all(),
-            'activeTags' => old('tags', []),
+            'selectedTags' => old('tags', []),
         ]);
     }
 
@@ -117,7 +117,7 @@ class ArticlesController extends Controller
         return view('articles.edit', [
             'article' => $article,
             'tags' => Tag::all(),
-            'activeTags' => old('tags', $article->tags()->pluck('id')->toArray()),
+            'selectedTags' => old('tags', $article->tags()->pluck('id')->toArray()),
         ]);
     }
 

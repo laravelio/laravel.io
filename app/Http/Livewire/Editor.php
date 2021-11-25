@@ -22,6 +22,8 @@ class Editor extends Component
 
     public function render()
     {
+        $this->body = old('body', $this->body);
+
         return view('livewire.editor');
     }
 
