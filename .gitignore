@@ -8,5 +8,6 @@
 /public/sitemap.xml
 /storage/*.key
 /vendor
+/.vscode
 .env
 .phpunit.result.cache
