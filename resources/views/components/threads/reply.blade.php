@@ -26,7 +26,7 @@
     <div
         class="prose prose-lio max-w-none p-6 break-words"
         x-data="{}"
-        x-init="function () { highlightCode($el); }"
+        x-init="$nextTick(function () { highlightCode($el); })"
         x-html="{{ json_encode(replace_links(md_to_html($reply->body()))) }}"
     >
     </div>

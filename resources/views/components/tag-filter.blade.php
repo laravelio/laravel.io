@@ -17,7 +17,7 @@
             <div class="flex justify-between items-center mb-2" x-cloak>
                 <h3 class="text-3xl font-semibold">Filter tag</h3>
 
-                <button @click="$dispatch('close-modal')">
+                <button @click="activeModal = false">
                     <x-heroicon-o-x class="w-6 h-6" />
                 </button>
             </div>
@@ -64,7 +64,7 @@
     </div>
 
     <div class="flex gap-x-2 justify-end p-4">
-        <x-buttons.secondary-button @click="$dispatch('close-modal')">
+        <x-buttons.secondary-button @click="activeModal = false">
             Cancel
         </x-buttons.secondary-button>
 

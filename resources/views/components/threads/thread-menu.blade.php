@@ -2,7 +2,7 @@
 
 @canany([App\Policies\ThreadPolicy::UPDATE, App\Policies\ThreadPolicy::DELETE], $thread)
     <div class="flex items-center gap-x-3">
-        <div class="relative -mr-3" x-data="{ open: false }" @click.away="open = false">
+        <div class="relative -mr-3" x-data="{ open: false }" @click.outside="open = false">
             
             <button 
                 class="p-2 rounded hover:bg-gray-100" 
@@ -25,7 +25,7 @@
                 @endcan
 
                 @can(App\Policies\ThreadPolicy::DELETE, $thread)
-                    <button class="flex gap-x-2 p-3 rounded hover:bg-gray-100" @click="$dispatch('open-modal', 'delete-thread')">
+                    <button class="flex gap-x-2 p-3 rounded hover:bg-gray-100" @click="activeModal = 'deleteThread'">
                         <x-heroicon-o-trash class="w-6 h-6 text-red-500"/>
                         Delete
                     </button>
@@ -34,10 +34,11 @@
         </div>
     </div>
 
-    @include('_partials._delete_modal', [
-        'identifier' => 'delete-thread',
-        'route' => ['threads.delete', $thread->slug()],
-        'title' => 'Delete Thread',
-        'body' => '<p>Are you sure you want to delete this thread and its replies? This cannot be undone.</p>',
-    ])
+    <x-modal
+        identifier="deleteThread"
+        :action="route('threads.delete', $thread->slug())"
+        title="Delete Thread"
+    >
+        <p>Are you sure you want to delete this thread and its replies? This cannot be undone.</p>
+    </x-modal>
 @endcanany

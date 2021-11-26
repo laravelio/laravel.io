@@ -11,7 +11,7 @@
             </div>
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <span class="inline-flex rounded-md shadow-sm">
-                    <x-buttons.danger-button @click.prevent="activeModal = 'delete-user'">
+                    <x-buttons.danger-button @click.prevent="activeModal = 'deleteAccount'">
                         Delete Account
                     </x-buttons.danger-button>
                 </span>
@@ -19,11 +19,12 @@
         </div>
     </section>
 
-    @include('_partials._delete_modal', [
-        'identifier' => 'delete-user',
-        'route' => ['settings.profile.delete'],
-        'title' => 'Delete Account',
-        'submit' => 'Confirm',
-        'body' => '<p>Deleting your account will remove any related content like threads & replies. This cannot be undone.</p>',
-    ])
+    <x-modal
+        identifier="deleteAccount"
+        :action="route('settings.profile.delete')"
+        title="Delete Account"
+        submitLabel="Confirm"
+    >
+        <p>Deleting your account will remove any related content like threads & replies. This cannot be undone.</p>
+    </x-modal>
 @endunless

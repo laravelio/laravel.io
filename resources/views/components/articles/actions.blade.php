@@ -21,7 +21,7 @@
             @can(App\Policies\ArticlePolicy::APPROVE, $article)
                 <x-buttons.secondary-button
                     tag="button"
-                    @click.prevent="$dispatch('open-modal', 'approveArticle')"
+                    @click.prevent="activeModal = 'approveArticle'"
                     @mouseover="hovered = 'publish'"
                     @mouseleave="hovered = false"
                     class="w-full"
@@ -36,7 +36,7 @@
             @can(App\Policies\ArticlePolicy::DECLINE, $article)
                 <x-buttons.secondary-button
                     tag="button"
-                    @click.prevent="$dispatch('open-modal', 'declineArticle')"
+                    @click.prevent="activeModal = 'declineArticle'"
                     @mouseover="hovered = 'decline'"
                     @mouseleave="hovered = false"
                     class="w-full"
@@ -51,7 +51,7 @@
             @can(App\Policies\ArticlePolicy::DISAPPROVE, $article)
                 <x-buttons.secondary-button
                     tag="button"
-                    @click.prevent="$dispatch('open-modal', 'disapproveArticle')"
+                    @click.prevent="activeModal = 'unpublishArticle'"
                     @mouseover="hovered = 'unpublish'"
                     @mouseleave="hovered = false"
                     class="w-full"
@@ -67,7 +67,7 @@
         @can(App\Policies\ArticlePolicy::PINNED, $article)
             <x-buttons.secondary-button
                 tag="button"
-                @click.prevent="$dispatch('open-modal', 'togglePinnedStatus')"
+                @click.prevent="activeModal = 'togglePinnedStatus'"
                 @mouseover="hovered = 'pin'"
                 @mouseleave="hovered = false"
                 :selected="$article->isPinned()"
@@ -84,7 +84,7 @@
     @can(App\Policies\ArticlePolicy::DELETE, $article)
         <x-buttons.danger-button
             tag="button"
-            @click.prevent="$dispatch('open-modal', 'deleteArticle')"
+            @click.prevent="activeModal = 'deleteArticle'"
             @mouseover="hovered = 'delete'"
             @mouseleave="hovered = false"
             class="w-full"
