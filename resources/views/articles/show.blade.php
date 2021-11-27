@@ -139,22 +139,24 @@
         </div>
     </article>
 
-    <section>
-        <div class="container mx-auto py-6 px-4 lg:py-24 lg:px-0">
-            <h2 class="text-4xl text-gray-900 font-bold">
-                Other articles you might like
-            </h2>
+    @if($trendingArticles->isNotEmpty())
+        <section>
+            <div class="container mx-auto py-6 px-4 lg:py-24 lg:px-0">
+                <h2 class="text-4xl text-gray-900 font-bold">
+                    Other articles you might like
+                </h2>
 
-            <div class="flex flex-col gap-y-4 gap-x-6 mt-6 lg:flex-row lg:mt-12">
-                @foreach ($trendingArticles as $trendingArticle)
-                    <x-articles.summary
-                        :article="$trendingArticle"
-                        is-featured
-                    />
-                @endforeach
+                <div class="flex flex-col gap-y-4 gap-x-6 mt-6 lg:flex-row lg:mt-12">
+                    @foreach ($trendingArticles as $trendingArticle)
+                        <x-articles.summary
+                            :article="$trendingArticle"
+                            is-featured
+                        />
+                    @endforeach
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     @can(App\Policies\ArticlePolicy::APPROVE, $article)
         @if ($article->isAwaitingApproval())
