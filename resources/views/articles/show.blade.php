@@ -105,8 +105,10 @@
 
                     <div class="border-t-2 border-gray-200 py-8 lg:pt-14 lg:pb-16">
                         <div class="flex flex-col items-center justify-center gap-y-4 lg:flex-row lg:justify-between">
-                            <div class="flex items-center gap-x-4">
-                                <x-avatar :user="$article->author()" class="hidden w-16 h-16 lg:block" />
+                            <div class="flex items-start gap-x-4">
+                                <div class="flex-shrink-0">
+                                    <x-avatar :user="$article->author()" class="hidden w-16 h-16 lg:block" />
+                                </div>
 
                                 <div class="flex flex-col items-center text-gray-900 text-xl font-semibold lg:items-start">
                                     <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
@@ -158,7 +160,7 @@
 
     @can(App\Policies\ArticlePolicy::APPROVE, $article)
         @if ($article->isAwaitingApproval())
-            <x-modal 
+            <x-modal
                 identifier="approveArticle"
                 :action="route('admin.articles.approve', $article->slug())"
                 title="Approve article"
@@ -171,7 +173,7 @@
 
     @can(App\Policies\ArticlePolicy::DISAPPROVE, $article)
         @if ($article->isPublished())
-            <x-modal 
+            <x-modal
                 identifier="unpublishArticle"
                 :action="route('admin.articles.disapprove', $article->slug())"
                 title="Unpublish article"
@@ -184,7 +186,7 @@
 
     @can(App\Policies\ArticlePolicy::DECLINE, $article)
         @if ($article->isNotDeclined())
-            <x-modal 
+            <x-modal
                 identifier="declineArticle"
                 :action="route('admin.articles.decline', $article->slug())"
                 title="Decline article"
@@ -196,7 +198,7 @@
     @endcan
 
     @can(App\Policies\ArticlePolicy::DELETE, $article)
-        <x-modal 
+        <x-modal
             identifier="deleteArticle"
             :action="route('articles.delete', $article->slug())"
             title="Delete article"
@@ -206,7 +208,7 @@
     @endcan
 
     @can(App\Policies\ArticlePolicy::PINNED, $article)
-        <x-modal 
+        <x-modal
             identifier="togglePinnedStatus"
             :action="route('admin.articles.pinned', $article->slug())"
             :title="$article->isPinned() ? 'Unpin article' : 'Pin article'"
