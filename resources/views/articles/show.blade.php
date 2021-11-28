@@ -139,7 +139,7 @@
         </div>
     </article>
 
-    @if($trendingArticles->isNotEmpty())
+    @if ($trendingArticles->isNotEmpty())
         <section>
             <div class="container mx-auto py-6 px-4 lg:py-24 lg:px-0">
                 <h2 class="text-4xl text-gray-900 font-bold">
