@@ -1,9 +1,11 @@
 <?php
 
+use App\Events\ArticleWasSubmittedForApproval;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Notifications\ArticleApprovedNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Tests\Feature\BrowserKitTestCase;
 
@@ -58,6 +60,19 @@ test('users can submit an article for approval', function () {
         ->see('Awaiting approval');
 });
 
+test('articles submitted for approval send telegram notification', function () {
+    Event::fake();
+    $this->login();
+
+    $this->post('/articles', [
+        'title' => 'Using database migrations',
+        'body' => 'This article will go into depth on working with database migrations.',
+        'submitted' => '1',
+    ]);
+
+    Event::assertDispatched(ArticleWasSubmittedForApproval::class);
+});
+
 test('users can create a draft article', function () {
     $this->login();
 
@@ -69,6 +84,19 @@ test('users can create a draft article', function () {
         ->assertRedirectedTo('/articles/using-database-migrations')
         ->followRedirects()
         ->see('Draft');
+});
+
+test('draft articles do not send telegram notification', function () {
+    Event::fake();
+    $this->login();
+
+    $this->post('/articles', [
+        'title' => 'Using database migrations',
+        'body' => 'This article will go into depth on working with database migrations.',
+        'submitted' => '0',
+    ]);
+
+    Event::assertNotDispatched(ArticleWasSubmittedForApproval::class);
 });
 
 test('users cannot create an article with a title that is too long', function () {
@@ -132,6 +160,28 @@ test('users can edit an article', function () {
         ->assertSessionHas('success', 'Article successfully updated!');
 });
 
+test('editing a draft article does not send telegram notification', function () {
+    Event::fake();
+    $user = $this->createUser();
+    $tag = Tag::factory()->create(['name' => 'Test Tag']);
+
+    Article::factory()->create([
+        'author_id' => $user->id(),
+        'slug' => 'my-first-article',
+    ]);
+
+    $this->loginAs($user);
+
+    $this->put('/articles/my-first-article', [
+        'title' => 'Using database migrations',
+        'body' => 'This article will go into depth on working with database migrations.',
+        'tags' => [$tag->id()],
+        'submitted' => '0',
+    ]);
+
+    Event::assertNotDispatched(ArticleWasSubmittedForApproval::class);
+});
+
 test('user gets submitted message when submitting existing article for approval', function () {
     $user = $this->createUser();
 
@@ -171,6 +221,27 @@ test('users can submit an existing article for approval', function () {
         ->assertRedirectedTo('/articles/using-database-migrations')
         ->followRedirects()
         ->dontSee('Draft');
+});
+
+test('notification is sent to telegram when existing article is submitted for approval', function () {
+    Event::fake();
+    $user = $this->createUser();
+
+    Article::factory()->create([
+        'author_id' => $user->id(),
+        'slug' => 'my-first-article',
+    ]);
+
+    $this->loginAs($user);
+
+    $this->put('/articles/my-first-article', [
+        'title' => 'Using database migrations',
+        'body' => 'This article will go into depth on working with database migrations.',
+        'tags' => [],
+        'submitted' => '1',
+    ]);
+
+    Event::assertDispatched(ArticleWasSubmittedForApproval::class);
 });
 
 test('users cannot edit an article with a title that is too long', function () {

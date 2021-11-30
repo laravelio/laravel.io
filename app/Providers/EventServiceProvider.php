@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events\ArticleWasApproved;
 use App\Events\ArticleWasCreated;
+use App\Events\ArticleWasSubmittedForApproval;
 use App\Events\ReplyWasCreated;
 use App\Listeners\MarkLastActivity;
 use App\Listeners\SendArticleApprovedNotification;
@@ -25,7 +26,7 @@ class EventServiceProvider extends ServiceProvider
             MarkLastActivity::class,
             SendNewReplyNotification::class,
         ],
-        ArticleWasCreated::class => [
+        ArticleWasSubmittedForApproval::class => [
             SendTelegramNewArticleNotification::class,
         ],
         ArticleWasApproved::class => [
