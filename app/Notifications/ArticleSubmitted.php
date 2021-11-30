@@ -31,12 +31,12 @@ class ArticleSubmitted extends Notification implements ShouldQueue
         return TelegramMessage::create()
             ->to(config('services.telegram-bot-api.channel'))
             ->content($this->content())
-            ->button('View article', $url);
+            ->button('View Article', $url);
     }
 
     private function content(): string
     {
-        $content = "*New article submitted!*\n\n";
+        $content = "*New Article Submitted!*\n\n";
         $content .= 'Title: '.$this->article->title()."\n";
         $content .= 'By: [@'.$this->article->author()->username().']('.route('profile', $this->article->author()->username()).')';
 
