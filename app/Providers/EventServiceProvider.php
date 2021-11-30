@@ -8,7 +8,7 @@ use App\Events\ReplyWasCreated;
 use App\Listeners\MarkLastActivity;
 use App\Listeners\SendArticleApprovedNotification;
 use App\Listeners\SendNewReplyNotification;
-use App\Listeners\SendTelegramNewArticleNotification;
+use App\Listeners\SendNewArticleNotification;
 use App\Listeners\StoreTweetIdentifier;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Notifications\Events\NotificationSent;
@@ -26,7 +26,7 @@ class EventServiceProvider extends ServiceProvider
             SendNewReplyNotification::class,
         ],
         ArticleWasCreated::class => [
-            SendTelegramNewArticleNotification::class,
+            SendNewArticleNotification::class,
         ],
         ArticleWasApproved::class => [
             SendArticleApprovedNotification::class,

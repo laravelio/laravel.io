@@ -6,7 +6,7 @@ use App\Events\ArticleWasCreated;
 use App\Notifications\ArticleSubmitted;
 use Illuminate\Notifications\AnonymousNotifiable;
 
-final class SendTelegramNewArticleNotification
+final class SendNewArticleNotification
 {
     public function __construct(
         private AnonymousNotifiable $notifiable
