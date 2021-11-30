@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Events\ArticleWasApproved;
-use App\Events\ArticleWasCreated;
 use App\Events\ArticleWasSubmittedForApproval;
 use App\Events\ReplyWasCreated;
 use App\Listeners\MarkLastActivity;

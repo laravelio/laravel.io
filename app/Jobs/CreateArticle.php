@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Events\ArticleWasCreated;
 use App\Events\ArticleWasSubmittedForApproval;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
@@ -58,7 +57,7 @@ final class CreateArticle
         $article->authoredBy($this->author);
         $article->syncTags($this->tags);
 
-        if($article->isAwaitingApproval()) {
+        if ($article->isAwaitingApproval()) {
             event(new ArticleWasSubmittedForApproval($article));
         }
 
