@@ -32,7 +32,7 @@ class Modal extends Component
 
     public function method()
     {
-        return match($this->type) {
+        return match ($this->type) {
             'delete' => 'delete',
             'update' => 'put',
             default => 'post',

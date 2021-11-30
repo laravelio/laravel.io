@@ -25,7 +25,7 @@ class CreateReplyRequest extends Request
 
     private function findReplyAble(int $id, string $type): ReplyAble
     {
-        return match($type) {
+        return match ($type) {
             Thread::TABLE => Thread::find($id),
         };
 
