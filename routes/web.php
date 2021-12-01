@@ -20,6 +20,7 @@ use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController as ProfileSettingsController;
 use App\Http\Controllers\SocialImageController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 Route::feeds();
@@ -65,7 +66,7 @@ Route::redirect('/dashboard', '/user');
 Route::get('user/{username?}', [ProfileController::class, 'show'])->name('profile');
 
 // Notifications
-Route::view('notifications', 'users.notifications')->name('notifications');
+Route::view('notifications', 'users.notifications')->name('notifications')->middleware(Authenticate::class);
 
 // Settings
 Route::get('settings', [ProfileSettingsController::class, 'edit'])->name('settings.profile');
