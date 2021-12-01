@@ -32,13 +32,10 @@ class Modal extends Component
 
     public function method()
     {
-        switch ($this->type) {
-            case 'delete':
-                return 'delete';
-            case 'update':
-                return 'put';
-            default:
-                return 'post';
-        }
+        return match ($this->type) {
+            'delete' => 'delete',
+            'update' => 'put',
+            default => 'post',
+        };
     }
 }
