@@ -51,4 +51,9 @@ return [
         'access_secret' => env('TWITTER_ACCESS_SECRET'),
     ],
 
+    'telegram-bot-api' => [
+        'token' => env('TELEGRAM_BOT_TOKEN'),
+        'channel' => env('TELEGRAM_CHANNEL'),
+    ],
+
 ];

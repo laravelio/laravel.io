@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\ArticleWasSubmittedForApproval;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 
@@ -50,8 +51,14 @@ final class UpdateArticle
             'body' => $this->body,
             'original_url' => $this->originalUrl,
             'slug' => $this->title,
-            'submitted_at' => $this->shouldUpdateSubmittedAt() ? now() : $this->article->submittedAt(),
         ]);
+
+        if ($this->shouldUpdateSubmittedAt()) {
+            $this->article->submitted_at = now();
+            $this->article->save();
+
+            event(new ArticleWasSubmittedForApproval($this->article));
+        }
 
         $this->article->syncTags($this->tags);
 
