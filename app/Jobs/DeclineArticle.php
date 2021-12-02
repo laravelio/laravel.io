@@ -6,11 +6,9 @@ use App\Models\Article;
 
 final class DeclineArticle
 {
-    private Article $article;
-
-    public function __construct(Article $article)
-    {
-        $this->article = $article;
+    public function __construct(
+        private Article $article
+    ) {
     }
 
     public function handle(): void

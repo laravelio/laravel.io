@@ -7,20 +7,10 @@ use App\Models\User;
 
 final class UnlikeThread
 {
-    /**
-     * @var \App\Models\Thread
-     */
-    private $thread;
-
-    /**
-     * @var \App\Models\User
-     */
-    private $user;
-
-    public function __construct(Thread $thread, User $user)
-    {
-        $this->thread = $thread;
-        $this->user = $user;
+    public function __construct(
+        private Thread $thread,
+        private User $user
+    ) {
     }
 
     public function handle(): void

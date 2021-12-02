@@ -7,13 +7,11 @@ use Illuminate\Mail\Mailable;
 
 final class ArticleApprovedEmail extends Mailable
 {
-    public $article;
-
     public $subscription;
 
-    public function __construct(Article $article)
-    {
-        $this->article = $article;
+    public function __construct(
+        public Article $article
+    ) {
     }
 
     public function build()

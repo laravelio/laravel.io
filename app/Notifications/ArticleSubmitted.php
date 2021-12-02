@@ -12,11 +12,9 @@ class ArticleSubmitted extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private Article $article;
-
-    public function __construct(Article $article)
-    {
-        $this->article = $article;
+    public function __construct(
+        private Article $article
+    ) {
     }
 
     public function via($notifiable)

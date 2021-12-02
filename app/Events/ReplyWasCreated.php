@@ -9,13 +9,8 @@ final class ReplyWasCreated
 {
     use SerializesModels;
 
-    /**
-     * @var \App\Models\Reply
-     */
-    public $reply;
-
-    public function __construct(Reply $reply)
-    {
-        $this->reply = $reply;
+    public function __construct(
+        public Reply $reply
+    ) {
     }
 }

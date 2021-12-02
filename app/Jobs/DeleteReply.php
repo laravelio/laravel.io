@@ -6,14 +6,9 @@ use App\Models\Reply;
 
 final class DeleteReply
 {
-    /**
-     * @var \App\Models\Reply
-     */
-    private $reply;
-
-    public function __construct(Reply $reply)
-    {
-        $this->reply = $reply;
+    public function __construct(
+        private Reply $reply
+    ) {
     }
 
     public function handle()

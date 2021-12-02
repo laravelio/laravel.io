@@ -13,11 +13,9 @@ final class ArticleApprovedNotification extends Notification implements ShouldQu
 {
     use Queueable;
 
-    public $article;
-
-    public function __construct(Article $article)
-    {
-        $this->article = $article;
+    public function __construct(
+        public Article $article
+    ) {
     }
 
     public function via(User $user)

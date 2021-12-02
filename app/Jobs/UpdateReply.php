@@ -7,26 +7,11 @@ use App\Models\User;
 
 final class UpdateReply
 {
-    /**
-     * @var Reply
-     */
-    private $reply;
-
-    /**
-     * @var User
-     */
-    private $updatedBy;
-
-    /**
-     * @var string
-     */
-    private $body;
-
-    public function __construct(Reply $reply, User $updatedBy, string $body)
-    {
-        $this->reply = $reply;
-        $this->updatedBy = $updatedBy;
-        $this->body = $body;
+    public function __construct(
+        private Reply $reply,
+        private User $updatedBy,
+        private string $body
+    ) {
     }
 
     public function handle()

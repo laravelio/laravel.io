@@ -7,14 +7,9 @@ use Carbon\Carbon;
 
 final class BanUser
 {
-    /**
-     * @var \App\Models\User
-     */
-    private $user;
-
-    public function __construct(User $user)
-    {
-        $this->user = $user;
+    public function __construct(
+        private User $user
+    ) {
     }
 
     public function handle(): User

@@ -8,20 +8,10 @@ use App\Models\User;
 
 final class LikeArticle
 {
-    /**
-     * @var \App\Models\Article
-     */
-    private $article;
-
-    /**
-     * @var \App\Models\User
-     */
-    private $user;
-
-    public function __construct(Article $article, User $user)
-    {
-        $this->article = $article;
-        $this->user = $user;
+    public function __construct(
+        private Article $article,
+        private User $user
+    ) {
     }
 
     /**
