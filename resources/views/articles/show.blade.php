@@ -10,7 +10,7 @@
             <div class="container mx-auto">
                 <div class="px-4 lg:px-0 lg:mx-48">
                     <div class="flex items-center justify-between pt-6 mb-28">
-                        <a href="{{ route('articles') }}" class="hidden flex items-center text-base text-white hover:underline lg:flex">
+                        <a href="{{ route('articles') }}" class="hidden items-center text-base text-white hover:underline lg:flex">
                             <x-heroicon-s-arrow-left class="w-4 h-4 fill-current" />
                             <span class="text-white ml-1 hover:text-gray-100">Back to articles</span>
                         </a>

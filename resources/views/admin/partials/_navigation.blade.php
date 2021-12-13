@@ -1,6 +1,6 @@
 <div class="border-b border-gray-200">
-    <div class="sm:flex sm:items-center sm:justify-between sm:items-baseline">
-        <div class="sm:flex sm:items-center sm:justify-between sm:items-baseline">
+    <div class="sm:flex sm:justify-between sm:items-baseline">
+        <div class="sm:flex sm:justify-between sm:items-baseline">
             <h3 class="text-lg leading-6 font-medium text-gray-900">
                 Admin
             </h3>
