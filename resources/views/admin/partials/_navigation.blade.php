@@ -23,7 +23,7 @@
                 <label for="adminSearch" class="sr-only">Search</label>
 
                 <div class="flex rounded-md shadow-sm">
-                    <div class="relative flex-grow">
+                    <div class="relative grow">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <x-heroicon-s-search class="h-5 w-5 text-gray-400" />
                         </div>

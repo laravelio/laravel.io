@@ -30,7 +30,7 @@
                                     <tr>
                                         <x-tables.table-data>
                                             <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-10 w-10">
+                                                <div class="shrink-0 h-10 w-10">
                                                     <x-avatar :user="$user" class="h-10 w-10 rounded-full" />
                                                 </div>
 

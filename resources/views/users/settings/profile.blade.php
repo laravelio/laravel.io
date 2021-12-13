@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="flex flex-col space-y-6 lg:flex-row lg:space-y-0 lg:space-x-6">
-                    <div class="flex-grow space-y-6">
+                    <div class="grow space-y-6">
                         <div class="space-y-1">
                             <x-forms.label for="name"/>
 
@@ -34,13 +34,13 @@
                         </div>
                     </div>
 
-                    <div class="flex-grow space-y-1 lg:flex-grow-0 lg:flex-shrink-0">
+                    <div class="grow space-y-1 lg:grow-0 lg:shrink-0">
                         <p class="block text-sm leading-5 font-medium text-gray-700" aria-hidden="true">
                             Profile Image
                         </p>
 
                         <div class="flex items-center mt-2">
-                            <div class="flex-shrink-0 inline-block overflow-hidden" aria-hidden="true">
+                            <div class="shrink-0 inline-block overflow-hidden" aria-hidden="true">
                                 <x-avatar :user="Auth::user()" class="h-32 w-32 mt-4" unlinked />
 
                                 <span class="mt-4 inline-block text-sm text-gray-500">

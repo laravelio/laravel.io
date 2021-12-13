@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="lg:w-full lg:flex lg:justify-between">
-                    <div class="flex-grow mb-6 lg:mb-0">
+                    <div class="grow mb-6 lg:mb-0">
                         <h6 class="text-lg mb-4 lg:mb-6">
                             Laravel.io
                         </h6>
@@ -37,7 +37,7 @@
                         </div>
                     </div>
 
-                    <div class="flex-grow mb-6 lg:mb-0">
+                    <div class="grow mb-6 lg:mb-0">
                         <h6 class="text-lg mb-4 lg:mb-6">
                             Socials
                         </h6>
@@ -55,7 +55,7 @@
                         </div>
                     </div>
 
-                    <div class="flex-grow">
+                    <div class="grow">
                         <h6 class="text-lg mb-6">
                             The community
                         </h6>

@@ -18,7 +18,7 @@
                     Share your article with <a href="https://twitter.com/laravelio" class="text-lio-500 hover:text-lio-600 hover:underline">our 45,000 Twitter followers</a>.
                 </span>
             </h2>
-            <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+            <div class="mt-8 flex lg:mt-0 lg:shrink-0">
                 <div class="inline-flex rounded-md shadow">
                     <x-buttons.primary-button href="{{ route('articles.create') }}" class="px-5 py-3 text-base font-medium">
                         Share Your Article
@@ -46,7 +46,7 @@
                         <div class="hidden lg:flex gap-x-2">
                             <x-articles.filter :selectedFilter="$filter" :activeTag="$activeTag" />
 
-                            <div class="flex-shrink-0">
+                            <div class="shrink-0">
                                 <x-buttons.secondary-button class="flex items-center gap-x-2" @click="activeModal = 'tag-filter'">
                                     <x-heroicon-o-filter class="w-5 h-5" />
                                     Tag filter

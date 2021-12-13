@@ -2,7 +2,7 @@
     <div class="container mx-auto text-gray-800 lg:block lg:py-8" x-data="{ nav: false, search: false, community: false, chat: false, settings: false }" @click.outside="nav = false">
         <div class="block bg-white 2xl:-mx-10">
             <div class="lg:px-4 lg:flex">
-                <div class="block lg:flex lg:items-center lg:flex-shrink-0">
+                <div class="block lg:flex lg:items-center lg:shrink-0">
                     <div class="flex justify-between items-center p-4 lg:p-0">
                         <a href="{{ route('home') }}" class="mr-4">
                             <img class="h-6 w-auto lg:h-8" src="{{ asset('images/laravelio-logo.svg') }}" alt="" />
@@ -149,7 +149,7 @@
                         @else
                             <li class="relative p-4 lg:p-0" x-data="{ settings: false }">
                                 <div class="flex items-center justify-center gap-3">
-                                    <a href="{{ route('notifications') }}" class="hidden flex-shrink-0 rounded-full lg:block">
+                                    <a href="{{ route('notifications') }}" class="hidden shrink-0 rounded-full lg:block">
                                         <span class="block relative">
                                             <x-heroicon-o-bell  class="h-5 w-5 hover:fill-current hover:text-lio-500"/>
 
