@@ -197,9 +197,9 @@
                                         @endcan
 
                                         <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                            <a href="{{ route('logout') }}" class="inline-block w-full lg:px-4 lg:py-3">
+                                            <x-buk-logout class="inline-block w-full text-left lg:px-4 lg:py-3">
                                                 Sign out
-                                            </a>
+                                            </x-buk-logout>
                                         </li>
                                     </ul>
                                 </div>

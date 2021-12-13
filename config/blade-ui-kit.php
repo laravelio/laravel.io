@@ -32,7 +32,7 @@ return [
         // 'html' => Components\Layouts\Html::class,
         'input' => Components\Forms\Inputs\Input::class,
         'label' => Components\Forms\Label::class,
-        // 'logout' => Components\Buttons\Logout::class,
+        'logout' => Components\Buttons\Logout::class,
         // 'mapbox' => Components\Maps\Mapbox::class,
         'markdown' => Components\Markdown\Markdown::class,
         'password' => Components\Forms\Inputs\Password::class,

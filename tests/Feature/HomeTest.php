@@ -16,14 +16,14 @@ test('users can see a login and registration link when logged out', function () 
     $this->visit('/')
         ->seeLink('Login')
         ->seeLink('Register')
-        ->dontSeeLink('Sign out');
+        ->dontSee('Sign out');
 });
 
 test('users can see a logout button when logged in', function () {
     $this->login();
 
     $this->visit('/')
-        ->seeLink('Sign out')
+        ->see('Sign out')
         ->dontSeeLink('Login')
         ->dontSeeLink('Register')
         ->seeLink('Profile', '/user');

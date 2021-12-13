@@ -126,7 +126,8 @@ test('users can logout', function () {
 
     assertLoggedIn();
 
-    $this->visit('/logout')
+    $this->visit('/')
+        ->press('Sign out')
         ->seePageIs('/');
 
     assertLoggedOut();
@@ -153,7 +154,7 @@ test('users can reset their password', function () {
         ->type('QFq^$cz#P@MZa5z7', 'password_confirmation')
         ->press('Reset Password')
         ->seePageIs('/user/johndoe')
-        ->visit('/logout')
+        ->press('Sign out')
         ->visit('/login')
         ->type('johndoe', 'username')
         ->type('QFq^$cz#P@MZa5z7', 'password')
