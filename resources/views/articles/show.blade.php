@@ -106,7 +106,7 @@
                     <div class="border-t-2 border-gray-200 py-8 lg:pt-14 lg:pb-16">
                         <div class="flex flex-col items-center justify-center gap-y-4 lg:flex-row lg:justify-between">
                             <div class="flex items-start gap-x-4">
-                                <div class="flex-shrink-0">
+                                <div class="shrink-0">
                                     <x-avatar :user="$article->author()" class="hidden w-16 h-16 lg:block" />
                                 </div>
 
