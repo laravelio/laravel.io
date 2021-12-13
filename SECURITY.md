@@ -1,3 +1,5 @@
-## Reporting a Vulnerability
+# Reporting a Vulnerability
 
-If you discover any security related issues, please email security@laravel.io instead of using the issue tracker.
+**PLEASE DON'T DISCLOSE SECURITY-RELATED ISSUES PUBLICLY.**
+
+If you discover any security related issues, please email hello@laravel.io instead of using the issue tracker.
