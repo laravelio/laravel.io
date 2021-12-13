@@ -19,7 +19,7 @@
         "intervention/imagecache": "^2.5",
         "laravel-notification-channels/telegram": "^0.9.0",
         "laravel-notification-channels/twitter": "^5.0",
-        "laravel/framework": "8.66.0",
+        "laravel/framework": "8.75.0",
         "laravel/horizon": "^5.2",
         "laravel/slack-notification-channel": "^2.3",
         "laravel/socialite": "^5.0",
