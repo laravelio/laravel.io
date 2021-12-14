@@ -9,38 +9,13 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 final class RegisterUser
 {
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $email;
-
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $githubId;
-
-    /**
-     * @var string
-     */
-    private $githubUsername;
-
-    public function __construct(string $name, string $email, string $username, string $githubId, string $githubUsername)
-    {
-        $this->name = $name;
-        $this->email = $email;
-        $this->username = $username;
-        $this->githubId = $githubId;
-        $this->githubUsername = $githubUsername;
+    public function __construct(
+        private string $name,
+        private string $email,
+        private string $username,
+        private string $githubId,
+        private string $githubUsername
+    ) {
     }
 
     public static function fromRequest(RegisterRequest $request): self

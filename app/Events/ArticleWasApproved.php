@@ -9,10 +9,8 @@ final class ArticleWasApproved
 {
     use SerializesModels;
 
-    public $article;
-
-    public function __construct(Article $article)
-    {
-        $this->article = $article;
+    public function __construct(
+        public Article $article
+    ) {
     }
 }

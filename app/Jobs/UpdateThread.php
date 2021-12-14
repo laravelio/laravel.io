@@ -9,25 +9,13 @@ use Illuminate\Support\Arr;
 
 final class UpdateThread
 {
-    /**
-     * @var Thread
-     */
-    private $thread;
+    private array $attributes;
 
-    /**
-     * @var User
-     */
-    private $updatedBy;
-
-    /**
-     * @var array
-     */
-    private $attributes;
-
-    public function __construct(Thread $thread, User $updatedBy, array $attributes = [])
-    {
-        $this->thread = $thread;
-        $this->updatedBy = $updatedBy;
+    public function __construct(
+        private Thread $thread,
+        private User $updatedBy,
+        array $attributes = []
+    ) {
         $this->attributes = Arr::only($attributes, ['subject', 'body', 'slug', 'tags']);
     }
 

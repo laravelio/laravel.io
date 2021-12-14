@@ -10,32 +10,12 @@ use Ramsey\Uuid\Uuid;
 
 final class CreateThread
 {
-    /**
-     * @var string
-     */
-    private $subject;
-
-    /**
-     * @var string
-     */
-    private $body;
-
-    /**
-     * @var \App\Models\User
-     */
-    private $author;
-
-    /**
-     * @var array
-     */
-    private $tags;
-
-    public function __construct(string $subject, string $body, User $author, array $tags = [])
-    {
-        $this->subject = $subject;
-        $this->body = $body;
-        $this->author = $author;
-        $this->tags = $tags;
+    public function __construct(
+        private string $subject,
+        private string $body,
+        private User $author,
+        private array $tags = []
+    ) {
     }
 
     public static function fromRequest(ThreadRequest $request): self

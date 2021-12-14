@@ -6,14 +6,9 @@ use App\Models\Article;
 
 final class DisapproveArticle
 {
-    /**
-     * @var \App\Models\Article
-     */
-    private $article;
-
-    public function __construct(Article $article)
-    {
-        $this->article = $article;
+    public function __construct(
+        private Article $article
+    ) {
     }
 
     public function handle(): Article

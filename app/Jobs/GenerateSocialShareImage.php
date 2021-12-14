@@ -7,11 +7,6 @@ use Intervention\Image\ImageManager;
 
 final class GenerateSocialShareImage
 {
-    /**
-     * @var \App\Models\Thread
-     */
-    private $article;
-
     const TEXT_X_POSITION = 50;
 
     const TEXT_Y_POSITION = 100;
@@ -28,9 +23,9 @@ final class GenerateSocialShareImage
 
     const CACHE_LIFETIME = 43200;
 
-    public function __construct(Article $article)
-    {
-        $this->article = $article;
+    public function __construct(
+        private Article $article
+    ) {
     }
 
     public function handle(ImageManager $image)

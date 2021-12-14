@@ -9,19 +9,12 @@ use Illuminate\Support\Arr;
 
 final class UpdateProfile
 {
-    /**
-     * @var \App\Models\User
-     */
-    private $user;
+    private array $attributes;
 
-    /**
-     * @var array
-     */
-    private $attributes;
-
-    public function __construct(User $user, array $attributes = [])
-    {
-        $this->user = $user;
+    public function __construct(
+        private User $user,
+        array $attributes = []
+    ) {
         $this->attributes = Arr::only($attributes, ['name', 'email', 'username', 'github_username', 'bio', 'twitter']);
     }
 

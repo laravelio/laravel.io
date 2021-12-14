@@ -9,24 +9,17 @@ use App\Models\User;
 
 final class CreateArticle
 {
-    private $title;
-
-    private $body;
-
-    private $author;
-
-    private $shouldBeSubmitted;
-
     private $originalUrl;
 
     private $tags;
 
-    public function __construct(string $title, string $body, User $author, bool $shouldBeSubmitted, array $options = [])
-    {
-        $this->title = $title;
-        $this->body = $body;
-        $this->author = $author;
-        $this->shouldBeSubmitted = $shouldBeSubmitted;
+    public function __construct(
+        private string $title,
+        private string $body,
+        private User $author,
+        private bool $shouldBeSubmitted,
+        array $options = []
+    ) {
         $this->originalUrl = $options['original_url'] ?? null;
         $this->tags = $options['tags'] ?? [];
     }

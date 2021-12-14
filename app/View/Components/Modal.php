@@ -6,22 +6,15 @@ use Illuminate\View\Component;
 
 class Modal extends Component
 {
-    public $identifier;
-
-    public $title;
-
-    public $action;
-
-    public $type;
-
     public $submitLabel;
 
-    public function __construct(string $identifier, string $title, string $action, string $type = 'delete', string $submitLabel = null)
-    {
-        $this->identifier = $identifier;
-        $this->title = $title;
-        $this->action = $action;
-        $this->type = $type;
+    public function __construct(
+        public string $identifier,
+        public string $title,
+        public string $action,
+        public string $type = 'delete',
+        string $submitLabel = null
+    ) {
         $this->submitLabel = $submitLabel ?: $this->title;
     }
 
