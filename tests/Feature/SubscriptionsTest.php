@@ -74,7 +74,7 @@ test('users can manually subscribe to threads', function () {
     $this->login();
 
     $this->visit("/forum/$slug")
-        ->click('Subscribe')
+        ->press('Subscribe')
         ->seePageIs("/forum/$slug")
         ->see("You're now subscribed to this thread.");
 });
@@ -87,7 +87,7 @@ test('users can unsubscribe from threads', function () {
     $this->loginAs($user);
 
     $this->visit("/forum/$slug")
-        ->click('Unsubscribe')
+        ->press('Unsubscribe')
         ->seePageIs("/forum/$slug")
         ->see("You're now unsubscribed from this thread.");
 });

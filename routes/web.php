@@ -86,8 +86,8 @@ Route::prefix('forum')->group(function () {
     Route::delete('{thread}', [ThreadsController::class, 'delete'])->name('threads.delete');
     Route::put('{thread}/mark-solution/{reply}', [ThreadsController::class, 'markSolution'])->name('threads.solution.mark');
     Route::put('{thread}/unmark-solution', [ThreadsController::class, 'unmarkSolution'])->name('threads.solution.unmark');
-    Route::get('{thread}/subscribe', [ThreadsController::class, 'subscribe'])->name('threads.subscribe');
-    Route::get('{thread}/unsubscribe', [ThreadsController::class, 'unsubscribe'])->name('threads.unsubscribe');
+    Route::post('{thread}/subscribe', [ThreadsController::class, 'subscribe'])->name('threads.subscribe');
+    Route::post('{thread}/unsubscribe', [ThreadsController::class, 'unsubscribe'])->name('threads.unsubscribe');
 
     Route::get('tags/{tag}', [TagsController::class, 'show'])->name('forum.tag');
 });
