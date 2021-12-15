@@ -1,0 +1,2 @@
+Contact: mailto:hello@laravel.io
+Policy: https://github.com/laravelio/laravel.io/security/policy
