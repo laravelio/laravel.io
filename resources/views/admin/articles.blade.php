@@ -73,7 +73,7 @@
                     </div>
                 </div>
             @else
-                <x-empty-state title="No articles has been posted yet" icon="heroicon-o-document-text" />
+                <x-empty-state title="No articles have been posted yet" icon="heroicon-o-document-text" />
             @endif
         </div>
 
