@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $githubUsername = is_array(session('githubData')) ? session('githubData')['username'] : '';
 

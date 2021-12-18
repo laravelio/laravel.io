@@ -57,19 +57,17 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      */
     protected function create(array $data): User
-
-    {  
+    {
         try {
             $user = User::findByGithubId($data['github_id']);
             if ($user instanceof User) {
 
-                $this->error('errors.github_account_exists'); 
+                $this->error('errors.github_account_exists');
 
                 return redirect()->route('login');
-            } 
+            }
         } catch (ModelNotFoundException $exception) {
             return $this->dispatchNow(RegisterUser::fromRequest(app(RegisterRequest::class)));
-        }
-        
-    } 
+        } 
+    }
 }
