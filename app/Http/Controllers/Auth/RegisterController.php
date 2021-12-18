@@ -61,13 +61,12 @@ class RegisterController extends Controller
         try {
             $user = User::findByGithubId($data['github_id']);
             if ($user instanceof User) {
-
                 $this->error('errors.github_account_exists');
 
                 return redirect()->route('login');
             }
         } catch (ModelNotFoundException $exception) {
             return $this->dispatchNow(RegisterUser::fromRequest(app(RegisterRequest::class)));
-        } 
+        }
     }
 }
