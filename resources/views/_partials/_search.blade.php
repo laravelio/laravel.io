@@ -8,7 +8,7 @@
 
         <input 
             @click.outside="results = false" 
-            @keyup="search(event).then(function({ results: hits }) { results = true; threads = hits[0].hits; articles = hits[1].hits; })" 
+            @keyup="window.search(event).then(function({ results: hits }) { results = true; threads = hits[0].hits; articles = hits[1].hits; })" 
             type="search" 
             name="search" 
             id="search" 
