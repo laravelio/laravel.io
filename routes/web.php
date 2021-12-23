@@ -16,6 +16,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\Settings\ApiTokenController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController as ProfileSettingsController;
 use App\Http\Controllers\SocialImageController;
@@ -73,6 +74,8 @@ Route::get('settings', [ProfileSettingsController::class, 'edit'])->name('settin
 Route::put('settings', [ProfileSettingsController::class, 'update'])->name('settings.profile.update');
 Route::delete('settings', [ProfileSettingsController::class, 'destroy'])->name('settings.profile.delete');
 Route::put('settings/password', [PasswordController::class, 'update'])->name('settings.password.update');
+Route::post('settings/api-tokens', [ApiTokenController::class, 'store'])->name('settings.api-tokens.store');
+Route::delete('settings/api-tokens', [ApiTokenController::class, 'destroy'])->name('settings.api-tokens.delete');
 
 // Forum
 Route::prefix('forum')->group(function () {

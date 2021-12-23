@@ -21,6 +21,7 @@
         "laravel-notification-channels/twitter": "^5.0",
         "laravel/framework": "8.75.0",
         "laravel/horizon": "^5.2",
+        "laravel/sanctum": "^2.13",
         "laravel/slack-notification-channel": "^2.3",
         "laravel/socialite": "^5.0",
         "laravel/ui": "^3.0",

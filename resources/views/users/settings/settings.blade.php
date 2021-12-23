@@ -17,6 +17,7 @@
                 <div class="sm:px-6 lg:px-0 lg:col-span-9">
                     @include('users.settings.profile')
                     @include('users.settings.password')
+                    @include('users.settings.api_tokens')
                     @include('users.settings.remove')
                 </div>
             </div>
