@@ -1,8 +1,8 @@
 <?php
 
-// use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Route;
-//
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-// });
+// Articles
+use App\Http\Controllers\Articles\ArticlesController;
+
+Route::prefix('articles')->group(function () {
+    Route::post('/', [ArticlesController::class, 'store'])->name('api.articles.store');
+});

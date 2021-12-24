@@ -6,6 +6,7 @@ use App\Concerns\UsesFilters;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Resources\ArticleResource;
 use App\Jobs\CreateArticle;
 use App\Jobs\DeleteArticle;
 use App\Jobs\UpdateArticle;
@@ -101,11 +102,13 @@ class ArticlesController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        $article = $this->dispatchNow(CreateArticle::fromRequest($request));
+        $article = $this->dispatchSync(CreateArticle::fromRequest($request));
 
         $this->success($request->shouldBeSubmitted() ? 'articles.submitted' : 'articles.created');
 
-        return redirect()->route('articles.show', $article->slug());
+        return $request->expectsJson()
+            ? ArticleResource::make($article)
+            : redirect()->route('articles.show', $article->slug());
     }
 
     public function edit(Article $article)
