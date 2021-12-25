@@ -9,7 +9,6 @@ use App\Jobs\RegisterUser;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
 
@@ -58,15 +57,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        try {
-            $user = User::findByGithubId($data['github_id']);
-            if ($user instanceof User) {
-                $this->error('errors.github_account_exists');
-
-                return redirect()->route('login');
-            }
-        } catch (ModelNotFoundException $exception) {
-            return $this->dispatchNow(RegisterUser::fromRequest(app(RegisterRequest::class)));
-        }
+        return $this->dispatchNow(RegisterUser::fromRequest(app(RegisterRequest::class)));
     }
 }

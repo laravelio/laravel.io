@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\PasswordBroker;
@@ -59,6 +60,24 @@ test('registration fails with non alpha dash username', function () {
         ->press('Register')
         ->seePageIs('/register')
         ->see('The username must only contain letters, numbers, dashes and underscores.');
+});
+
+test('registration fails with a duplicate github id', function () {
+    User::factory()->create(['github_id' => 123, 'github_username' => 'johndoe']);
+
+    session(['githubData' => ['id' => 123, 'username' => 'johndoe']]);
+
+    $this->visit('/register')
+        ->type('John Doe', 'name')
+        ->type('john.doe@example.com', 'email')
+        ->type('johndoe', 'username')
+        ->type('123', 'github_id')
+        ->type('johndoe', 'github_username')
+        ->check('rules')
+        ->check('terms')
+        ->press('Register')
+        ->seePageIs('/register')
+        ->see('We already found a user with the given GitHub account (@johndoe). Would you like to <a href="http://localhost/login">login</a> instead?');
 });
 
 test('users can resend the email verification', function () {
