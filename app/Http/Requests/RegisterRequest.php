@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueGitHubUser;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
@@ -19,7 +20,7 @@ class RegisterRequest extends FormRequest
             'username' => 'required|alpha_dash|max:40|unique:users',
             'rules' => 'accepted',
             'terms' => 'accepted',
-            'github_id' => 'required',
+            'github_id' => ['required', new UniqueGitHubUser],
         ];
     }
 
