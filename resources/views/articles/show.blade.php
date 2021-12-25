@@ -142,7 +142,7 @@
     </article>
 
     <section>
-        <div class="container mx-auto py-6 px-4 lg:py-24 lg:px-0">
+        <div class="container mx-auto py-6 px-4 lg:py-24">
             <h2 class="text-4xl text-gray-900 font-bold">
                 Other articles you might like
             </h2>

@@ -119,7 +119,7 @@
                 </p>
             </div>
 
-            <div class="flex gap-4 mb-4 -mx-4 p-4 overflow-x-scroll lg:mb-10 lg:gap-8">
+            <div class="flex gap-4 mb-4 -mx-4 p-4 overflow-x-auto lg:mb-10 lg:gap-8">
                 @foreach ($latestThreads as $thread)
                     <div class="flex-shrink-0 w-11/12 lg:w-1/3 lg:flex-shrink">
                         <x-threads.summary :thread="$thread" />

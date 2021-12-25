@@ -79,13 +79,11 @@ class ArticlesController extends Controller
             404,
         );
 
-        $trendingArticles = Cache::remember('trendingArticles', now()->addHour(), function () use ($article) {
-            return Article::published()
-                ->trending()
-                ->whereKeyNot($article->id)
-                ->limit(3)
-                ->get();
-        });
+        $trendingArticles = Article::published()
+            ->trending()
+            ->whereKeyNot($article->id)
+            ->limit(3)
+            ->get();
 
         return view('articles.show', [
             'article' => $article,

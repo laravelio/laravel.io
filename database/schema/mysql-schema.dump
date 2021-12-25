@@ -141,6 +141,7 @@ CREATE TABLE `replies` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `replyable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `updated_by` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `replies_author_id_index` (`author_id`),
   KEY `replies_replyable_id_index` (`replyable_id`),
@@ -204,16 +205,19 @@ CREATE TABLE `threads` (
   `subject` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity_at` timestamp NULL DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `solution_reply_id` int unsigned DEFAULT NULL,
   `resolved_by` int unsigned DEFAULT NULL,
+  `updated_by` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `threads_slug_unique` (`slug`),
   KEY `threads_author_id_index` (`author_id`),
   KEY `threads_slug_index` (`slug`),
   KEY `threads_solution_reply_id_index` (`solution_reply_id`),
   KEY `threads_resolved_by_foreign` (`resolved_by`),
+  KEY `threads_last_activity_at_index` (`last_activity_at`),
   CONSTRAINT `threads_author_id_foreign` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `threads_resolved_by_foreign` FOREIGN KEY (`resolved_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
   CONSTRAINT `threads_solution_reply_id_foreign` FOREIGN KEY (`solution_reply_id`) REFERENCES `replies` (`id`) ON DELETE SET NULL
@@ -317,3 +321,5 @@ INSERT INTO `migrations` VALUES (61,'2021_07_23_110409_update_articles_table_add
 INSERT INTO `migrations` VALUES (62,'2021_07_31_183222_unique_github_ids',1);
 INSERT INTO `migrations` VALUES (63,'2021_09_12_220452_add_resolved_by_to_threads_table',2);
 INSERT INTO `migrations` VALUES (64,'2021_10_31_143501_add_declined_at_column_to_articles_table',3);
+INSERT INTO `migrations` VALUES (65,'2021_11_15_213258_add_updated_by_to_threads_and_replies_table',4);
+INSERT INTO `migrations` VALUES (66,'2021_11_22_093555_migrate_thread_feed_to_timestamp',4);
