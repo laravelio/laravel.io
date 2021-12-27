@@ -19,7 +19,6 @@ This is the repository for the [Laravel.io](http://laravel.io) community portal.
 
 We'd like to thank these **amazing companies** for sponsoring us. If you are interested in becoming a sponsor, please visit <a href="https://github.com/sponsors/laravelio">the Laravel.io Github Sponsors page</a>.
 
-- **[Devsquad](https://devsquad.com)**
 - **[LaraJobs](https://larajobs.com)**
 - **[Cloudways](https://www.cloudways.com/en/?id=972670)**
 - [Forge](https://forge.laravel.com)
@@ -29,7 +28,6 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Tinkerwell](https://tinkerwell.app)
 - [Akaunting](https://akaunting.com/developers?utm_source=Laravelio&utm_medium=Banner&utm_campaign=Developers)
 - [Scout APM](https://ter.li/o1adaj)
-- [red-amber.green](https://red-amber.green)
 
 ## Requirements
 
