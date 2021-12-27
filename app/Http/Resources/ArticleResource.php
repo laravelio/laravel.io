@@ -20,6 +20,7 @@ class ArticleResource extends JsonResource
             'author' => AuthorResource::make($this->author()),
             'tags' => TagResource::collection($this->tags()),
             'is_submitted' => $this->isSubmitted(),
+            'submitted_at' => $this->submittedAt(),
             'created_at' => $this->createdAt(),
             'updated_at' => $this->updatedAt(),
         ];
