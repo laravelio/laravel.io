@@ -4,13 +4,9 @@
             We'd like to thank these <x-accent-text>amazing companies</x-accent-text> for supporting us
         </p>
 
-        <div class="mt-6 grid grid-cols-2 gap-y-8 lg:grid-cols-4">
+        <div class="mt-6 grid grid-cols-2 gap-y-8 lg:grid-cols-3">
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://beyondco.de" logo="{{ asset('images/sponsors/beyondcode.png') }}" company="Beyond Code" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://devsquad.com" logo="{{ asset('images/sponsors/devsquad.png') }}" company="DevSquad" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
@@ -43,10 +39,6 @@
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://www.cloudways.com/en/?id=972670" logo="{{ asset('images/sponsors/cloudways.png') }}" company="Cloudways" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://red-amber.green" logo="{{ asset('images/sponsors/red-amber.green.svg') }}" company="red-amber.green" />
             </div>
         </div>
 
