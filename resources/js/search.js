@@ -8,14 +8,14 @@ window.searchConfig = () => {
         threads: {
             total: 0,
             formattedTotal: function () {
-                return `${this.total} ${this.total === 1 ? 'Result' : 'Results'}`
+                return `${this.total} ${this.total === 1 ? 'Result' : 'Results'}`;
             },
             threads: [],
         },
         articles: {
             total: 0,
             formattedTotal: function () {
-                return `${this.total} ${this.total === 1 ? 'Result' : 'Results'}`
+                return `${this.total} ${this.total === 1 ? 'Result' : 'Results'}`;
             },
             articles: [],
         },
@@ -50,6 +50,6 @@ window.searchConfig = () => {
             this.threads.threads = results[0].hits;
             this.articles.total = results[1].nbHits;
             this.articles.articles = results[1].hits;
-        }
+        },
     };
-}
+};
