@@ -42,7 +42,7 @@
                     <x-info-panel class="flex justify-between gap-x-16">
                         <p>The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.</p>
 
-                        <x-buttons.arrow-button href="{{ route('threads.create') }}" class="flex-shrink-0">
+                        <x-buttons.arrow-button href="{{ route('threads.create') }}" class="shrink-0">
                             Create thread
                         </x-buttons.arrow-button>
                     </x-info-panel>
@@ -83,7 +83,7 @@
 
                         <form action="{{ route('verification.resend') }}" method="POST" class="block">
                             @csrf
-                            <x-buttons.arrow-button type="submit" class="flex-shrink-0">
+                            <x-buttons.arrow-button type="submit" class="shrink-0">
                                 Click here to resend the verification link.
                             </x-buttons.arrow-button>
                         </form>

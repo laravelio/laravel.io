@@ -1,8 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    mode: 'jit',
-    purge: [
+    content: [
         './resources/**/*.blade.php',
         './resources/**/*.js',
         './resources/macros/blade.php',
@@ -85,6 +84,5 @@ module.exports = {
             }),
         },
     },
-    variants: {},
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };

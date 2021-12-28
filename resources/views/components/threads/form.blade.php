@@ -20,7 +20,7 @@
         </div>
 
         <div class="flex flex-col space-y-6">
-            <div class="flex-grow space-y-6">
+            <div class="grow space-y-6">
                 <div class="space-y-1">
                     <x-forms.label for="subject"/>
 
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class="flex-grow space-y-6">
+            <div class="grow space-y-6">
                 <div class="space-y-1">
                     <x-forms.label for="tags">
                         Tags
@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div class="flex-grow space-y-6">
+            <div class="grow space-y-6">
                 <div class="space-y-1">
                     <x-forms.label for="body">Compose your question</x-forms.label>
 

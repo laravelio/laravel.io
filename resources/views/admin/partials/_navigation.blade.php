@@ -1,6 +1,6 @@
 <div class="border-b border-gray-200">
-    <div class="sm:flex sm:items-center sm:justify-between sm:items-baseline">
-        <div class="sm:flex sm:items-center sm:justify-between sm:items-baseline">
+    <div class="sm:flex sm:justify-between sm:items-baseline">
+        <div class="sm:flex sm:justify-between sm:items-baseline">
             <h3 class="text-lg leading-6 font-medium text-gray-900">
                 Admin
             </h3>
@@ -23,7 +23,7 @@
                 <label for="adminSearch" class="sr-only">Search</label>
 
                 <div class="flex rounded-md shadow-sm">
-                    <div class="relative flex-grow">
+                    <div class="relative grow">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <x-heroicon-s-search class="h-5 w-5 text-gray-400" />
                         </div>

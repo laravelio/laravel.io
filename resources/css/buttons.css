@@ -7,7 +7,7 @@
 }
 
 .button-primary {
-    @apply text-white bg-lio-500;
+    @apply text-white bg-lio-500 !important;
 }
 
 .button-primary:hover {

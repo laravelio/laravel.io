@@ -27,7 +27,7 @@
                         <div class="hidden lg:flex gap-x-2">
                             <x-threads.filter :filter="$filter" />
 
-                            <div class="flex-shrink-0">
+                            <div class="shrink-0">
                                 <x-buttons.secondary-button class="flex items-center gap-x-2" @click="activeModal = 'tag-filter'">
                                     <x-heroicon-o-filter class="w-5 h-5" />
                                     Tag filter

@@ -7,7 +7,7 @@
                 </h2>
             </a>
 
-            <div class="md:flex-shrink-0 md:self-center md:flex mt-2 md:mt-0">
+            <div class="md:shrink-0 md:self-center md:flex mt-2 md:mt-0">
                 @if (count($tags = $thread->tags()))
                     <div class="flex text-sm space-x-2">
                         @foreach ($tags as $tag)
@@ -30,7 +30,7 @@
 
         <div class="mt-4 flex justify-between space-x-8">
             <div class="flex space-x-3">
-                <div class="flex-shrink-0">
+                <div class="shrink-0">
                     <x-avatar :user="$thread->author()" class="h-10 w-10 sm:h-5 sm:w-5 rounded-full" />
                 </div>
 
