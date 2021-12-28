@@ -29,18 +29,14 @@
         @endunless
 
         <div class="flex flex-col gap-y-4">
-            @foreach ($articles as $article)
+            @forelse($articles as $article)
                 <x-articles.overview-summary :article="$article" :mode="'edit'"/>
-            @endforeach
+            @empty
+                <p class="text-gray-600 text-base">
+                    You haven't created any articles yet
+                </p>
+            @endforelse
         </div>
-
-        @forelse($articles as $article)
-            
-        @empty
-            <p class="text-gray-600 text-base">
-                You haven't created any articles yet
-            </p>
-        @endforelse
 
         {{ $articles->links() }}
     </div>
