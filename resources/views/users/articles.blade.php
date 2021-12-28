@@ -67,7 +67,7 @@
 
                 <div class="flex items-center justify-between mt-6">
                     <div class="flex items-center">
-                        <div class="flex-shrink-0">
+                        <div class="shrink-0">
                             <x-avatar :user="$article->author()" class="h-10 w-10 rounded-full"/>
                         </div>
 

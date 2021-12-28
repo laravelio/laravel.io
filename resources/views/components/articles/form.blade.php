@@ -29,7 +29,7 @@
         </div>
 
         <div class="flex flex-col space-y-6">
-            <div class="flex-grow space-y-6">
+            <div class="grow space-y-6">
                 <div class="space-y-1">
                     <x-forms.label for="title">Title</x-forms.label>
 
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="flex-grow space-y-6">
+            <div class="grow space-y-6">
                 <div class="space-y-1">
                     <x-forms.label for="body">Body</x-forms.label>
 
@@ -51,8 +51,8 @@
                 </div>
             </div>
 
-            <div class="flex-grow space-y-6">
-                <div class="flex-grow space-y-6">
+            <div class="grow space-y-6">
+                <div class="grow space-y-6">
                     <div class="space-y-1">
                         <x-forms.label for="original_url">Original URL</x-forms.label>
 
@@ -64,7 +64,7 @@
                     </div>
                 </div>
 
-                <div class="flex-grow space-y-6">
+                <div class="grow space-y-6">
                     <div class="space-y-1">
                         <x-forms.label for="tags">Tags</x-forms.label>
 

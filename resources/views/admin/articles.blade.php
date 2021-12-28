@@ -31,7 +31,7 @@
                                         <tr>
                                             <x-tables.table-data>
                                                 <div class="flex items-center">
-                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                    <div class="shrink-0 h-10 w-10">
                                                         <x-avatar :user="$article->author()" class="h-10 w-10 rounded-full"/>
                                                     </div>
                                                     <div class="ml-4">

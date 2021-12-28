@@ -10,20 +10,17 @@
     "production": "mix --production"
   },
   "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.2.0",
+    "@tailwindcss/forms": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.0",
+    "autoprefixer": "^10.4.0",
     "axios": "^0.21.4",
     "highlight.js": "^10.5.0",
     "laravel-mix": "^6.0.23",
-    "vue-template-compiler": "^2.6.12"
-  },
-  "dependencies": {
-    "@tailwindcss/aspect-ratio": "^0.2.0",
-    "@tailwindcss/forms": "^0.2.1",
-    "@tailwindcss/typography": "^0.4.0",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.2",
     "algoliasearch": "^4.8.4",
     "alpinejs": "^3.0",
-    "autoprefixer": "^10.2.4",
-    "choices.js": "^9.0.1",
-    "postcss": "^8.2.10",
-    "tailwindcss": "^2.0.2"
+    "choices.js": "^9.0.1"
   }
 }
