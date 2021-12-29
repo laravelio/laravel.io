@@ -107,7 +107,7 @@ class ArticlesController extends Controller
 
         $this->success($request->shouldBeSubmitted() ? 'articles.submitted' : 'articles.created');
 
-        return $request->expectsJson()
+        return $request->wantsJson()
             ? ArticleResource::make($article)
             : redirect()->route('articles.show', $article->slug());
     }
