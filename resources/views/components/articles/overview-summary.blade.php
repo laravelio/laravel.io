@@ -37,14 +37,8 @@
                     </div>
 
                     @if(isset($mode) && $mode == 'edit')
-                        <div class="flex">
-                            <a href="{{ route('articles.show', $article->slug()) }}" class="button mr-2">
-                                View
-                            </a>
-                            <x-buttons.primary-button href="{{ route('articles.edit', $article->slug()) }}">
-                                Edit
-                            </x-buttons.primary-button>
-                        </div>
+
+                        <x-articles.article-menu :article="$article" />
                     @endif
                 </div>
                 @if(isset($mode) && $mode == 'edit')
