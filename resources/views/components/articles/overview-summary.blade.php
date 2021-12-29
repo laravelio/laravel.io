@@ -37,7 +37,6 @@
                     </div>
 
                     @if(isset($mode) && $mode == 'edit')
-
                         <x-articles.article-menu :article="$article" />
                     @endif
                 </div>

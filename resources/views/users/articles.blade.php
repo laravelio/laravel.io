@@ -28,7 +28,7 @@
             </div>
         @endunless
 
-        <div class="flex flex-col gap-y-4">
+        <div class="flex flex-col gap-y-4 mb-4">
             @forelse($articles as $article)
                 <x-articles.overview-summary :article="$article" :mode="'edit'"/>
             @empty
