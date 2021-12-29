@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DeleteApiTokenRequest extends FormRequest
 {
-
     public function rules(): array
     {
         return [
@@ -18,5 +17,4 @@ class DeleteApiTokenRequest extends FormRequest
     {
         return (string) $this->get('id');
     }
-
 }

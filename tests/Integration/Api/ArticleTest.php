@@ -135,5 +135,5 @@ it('does not allow a user to delete another user\'s article', function () {
 dataset('article API responses', [
     'default' => [[], []],
     'submitted for publishing' => [['submitted' => true], ['is_submitted' => true]],
-    'no tags' => [['tags' => []], ['tags' => []]]
+    'no tags' => [['tags' => []], ['tags' => []]],
 ]);

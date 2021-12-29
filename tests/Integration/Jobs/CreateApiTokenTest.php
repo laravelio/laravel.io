@@ -1,7 +1,6 @@
 <?php
 
 use App\Jobs\CreateApiToken;
-use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

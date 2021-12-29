@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class TagResource extends JsonResource
 {
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      */
     public function toArray($request): array
     {

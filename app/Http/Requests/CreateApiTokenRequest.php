@@ -6,11 +6,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CreateApiTokenRequest extends FormRequest
 {
-
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255']
+            'name' => ['required', 'string', 'max:255'],
         ];
     }
 
@@ -18,5 +17,4 @@ class CreateApiTokenRequest extends FormRequest
     {
         return (string) $this->get('name');
     }
-
 }
