@@ -4,7 +4,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "algolia/scout-extended": "^1.10",
         "blade-ui-kit/blade-heroicons": "^1.0",
         "blade-ui-kit/blade-icons": "^1.0",
