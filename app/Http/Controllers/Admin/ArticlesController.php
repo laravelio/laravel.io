@@ -34,7 +34,7 @@ class ArticlesController extends Controller
 
     public function approve(Article $article)
     {
-        $this->authorize(ArticlePolicy::APPROVE, $article);
+        $this->authorize(ArticlePolicy::APPROVE->value, $article);
 
         $this->dispatchNow(new ApproveArticle($article));
 
@@ -45,7 +45,7 @@ class ArticlesController extends Controller
 
     public function disapprove(Article $article)
     {
-        $this->authorize(ArticlePolicy::DISAPPROVE, $article);
+        $this->authorize(ArticlePolicy::DISAPPROVE->value, $article);
 
         $this->dispatchNow(new DisapproveArticle($article));
 
@@ -56,7 +56,7 @@ class ArticlesController extends Controller
 
     public function decline(Article $article)
     {
-        $this->authorize(ArticlePolicy::DECLINE, $article);
+        $this->authorize(ArticlePolicy::DECLINE->value, $article);
 
         $this->dispatchNow(new DeclineArticle($article));
 
@@ -67,7 +67,7 @@ class ArticlesController extends Controller
 
     public function togglePinnedStatus(Article $article)
     {
-        $this->authorize(ArticlePolicy::PINNED, $article);
+        $this->authorize(ArticlePolicy::PINNED->value, $article);
 
         $article->is_pinned = ! $article->isPinned();
         $article->save();

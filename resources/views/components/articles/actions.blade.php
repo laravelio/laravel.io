@@ -18,7 +18,7 @@
         @endif
 
         @if ($article->isNotPublished() && $article->isAwaitingApproval())
-            @can(App\Policies\ArticlePolicy::APPROVE, $article)
+            @can(App\Policies\ArticlePolicy::APPROVE->value, $article)
                 <x-buttons.secondary-button
                     tag="button"
                     @click.prevent="activeModal = 'approveArticle'"
@@ -33,7 +33,7 @@
                 </x-buttons.secondary-button>
             @endcan
 
-            @can(App\Policies\ArticlePolicy::DECLINE, $article)
+            @can(App\Policies\ArticlePolicy::DECLINE->value, $article)
                 <x-buttons.secondary-button
                     tag="button"
                     @click.prevent="activeModal = 'declineArticle'"
@@ -48,7 +48,7 @@
                 </x-buttons.secondary-button>
             @endcan
         @else
-            @can(App\Policies\ArticlePolicy::DISAPPROVE, $article)
+            @can(App\Policies\ArticlePolicy::DISAPPROVE->value, $article)
                 <x-buttons.secondary-button
                     tag="button"
                     @click.prevent="activeModal = 'unpublishArticle'"
@@ -64,7 +64,7 @@
             @endcan
         @endif
 
-        @can(App\Policies\ArticlePolicy::PINNED, $article)
+        @can(App\Policies\ArticlePolicy::PINNED->value, $article)
             <x-buttons.secondary-button
                 tag="button"
                 @click.prevent="activeModal = 'togglePinnedStatus'"
@@ -81,7 +81,7 @@
         @endcan
     </div>
 
-    @can(App\Policies\ArticlePolicy::DELETE, $article)
+    @can(App\Policies\ArticlePolicy::DELETE->value, $article)
         <x-buttons.danger-button
             tag="button"
             @click.prevent="activeModal = 'deleteArticle'"

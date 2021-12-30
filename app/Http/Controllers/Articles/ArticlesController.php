@@ -110,7 +110,7 @@ class ArticlesController extends Controller
 
     public function edit(Article $article)
     {
-        $this->authorize(ArticlePolicy::UPDATE, $article);
+        $this->authorize(ArticlePolicy::UPDATE->value, $article);
 
         return view('articles.edit', [
             'article' => $article,
@@ -121,7 +121,7 @@ class ArticlesController extends Controller
 
     public function update(ArticleRequest $request, Article $article)
     {
-        $this->authorize(ArticlePolicy::UPDATE, $article);
+        $this->authorize(ArticlePolicy::UPDATE->value, $article);
 
         $wasNotPreviouslySubmitted = $article->isNotSubmitted();
 
@@ -138,7 +138,7 @@ class ArticlesController extends Controller
 
     public function delete(Article $article)
     {
-        $this->authorize(ArticlePolicy::DELETE, $article);
+        $this->authorize(ArticlePolicy::DELETE->value, $article);
 
         $this->dispatchNow(new DeleteArticle($article));
 

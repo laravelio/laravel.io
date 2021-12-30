@@ -158,7 +158,7 @@
         </div>
     </section>
 
-    @can(App\Policies\ArticlePolicy::APPROVE, $article)
+    @can(App\Policies\ArticlePolicy::APPROVE->value, $article)
         @if ($article->isAwaitingApproval())
             <x-modal
                 identifier="approveArticle"
@@ -171,7 +171,7 @@
         @endif
     @endcan
 
-    @can(App\Policies\ArticlePolicy::DISAPPROVE, $article)
+    @can(App\Policies\ArticlePolicy::DISAPPROVE->value, $article)
         @if ($article->isPublished())
             <x-modal
                 identifier="unpublishArticle"
@@ -184,7 +184,7 @@
         @endif
     @endcan
 
-    @can(App\Policies\ArticlePolicy::DECLINE, $article)
+    @can(App\Policies\ArticlePolicy::DECLINE->value, $article)
         @if ($article->isNotDeclined())
             <x-modal
                 identifier="declineArticle"
@@ -197,7 +197,7 @@
         @endif
     @endcan
 
-    @can(App\Policies\ArticlePolicy::DELETE, $article)
+    @can(App\Policies\ArticlePolicy::DELETE->value, $article)
         <x-modal
             identifier="deleteArticle"
             :action="route('articles.delete', $article->slug())"
@@ -207,7 +207,7 @@
         </x-modal>
     @endcan
 
-    @can(App\Policies\ArticlePolicy::PINNED, $article)
+    @can(App\Policies\ArticlePolicy::PINNED->value, $article)
         <x-modal
             identifier="togglePinnedStatus"
             :action="route('admin.articles.pinned', $article->slug())"

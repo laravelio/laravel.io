@@ -2,17 +2,18 @@
 
 namespace App\Policies;
 
+use App\Enums\ArticlePolicyAction;
 use App\Models\Article;
 use App\Models\User;
 
 final class ArticlePolicy
 {
-    const UPDATE = 'update';
-    const DELETE = 'delete';
-    const APPROVE = 'approve';
-    const DISAPPROVE = 'disapprove';
-    const DECLINE = 'decline';
-    const PINNED = 'togglePinnedStatus';
+    const UPDATE = ArticlePolicyAction::UPDATE;
+    const DELETE = ArticlePolicyAction::DELETE;
+    const APPROVE = ArticlePolicyAction::APPROVE;
+    const DISAPPROVE = ArticlePolicyAction::DISAPPROVE;
+    const DECLINE = ArticlePolicyAction::DECLINE;
+    const PINNED = ArticlePolicyAction::PINNED;
 
     public function update(User $user, Article $article): bool
     {
