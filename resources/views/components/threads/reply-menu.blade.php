@@ -7,7 +7,7 @@
         </span>
     @endif
 
-    @can(App\Policies\ThreadPolicy::UPDATE, $thread)
+    @can(App\Policies\ThreadPolicy::UPDATE->value, $thread)
         @if ($thread->isSolutionReply($reply))
             <button
                 class="flex items-center gap-x-2 font-medium text-lio-500 hover:text-gray-300"

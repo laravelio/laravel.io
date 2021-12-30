@@ -93,7 +93,7 @@ class ThreadsController extends Controller
 
     public function edit(Thread $thread)
     {
-        $this->authorize(ThreadPolicy::UPDATE, $thread);
+        $this->authorize(ThreadPolicy::UPDATE->value, $thread);
         $selectedTags = $thread->tags()->pluck('id')->toArray();
 
         return view('forum.threads.edit', ['thread' => $thread, 'tags' => Tag::all(), 'selectedTags' => $selectedTags]);
@@ -101,7 +101,7 @@ class ThreadsController extends Controller
 
     public function update(ThreadRequest $request, Thread $thread)
     {
-        $this->authorize(ThreadPolicy::UPDATE, $thread);
+        $this->authorize(ThreadPolicy::UPDATE->value, $thread);
 
         $thread = $this->dispatchNow(UpdateThread::fromRequest($thread, $request));
 
@@ -112,7 +112,7 @@ class ThreadsController extends Controller
 
     public function delete(Thread $thread)
     {
-        $this->authorize(ThreadPolicy::DELETE, $thread);
+        $this->authorize(ThreadPolicy::DELETE->value, $thread);
 
         $this->dispatchNow(new DeleteThread($thread));
 
@@ -123,7 +123,7 @@ class ThreadsController extends Controller
 
     public function markSolution(Thread $thread, Reply $reply)
     {
-        $this->authorize(ThreadPolicy::UPDATE, $thread);
+        $this->authorize(ThreadPolicy::UPDATE->value, $thread);
 
         $this->dispatchNow(new MarkThreadSolution($thread, $reply, Auth::user()));
 
@@ -132,7 +132,7 @@ class ThreadsController extends Controller
 
     public function unmarkSolution(Thread $thread)
     {
-        $this->authorize(ThreadPolicy::UPDATE, $thread);
+        $this->authorize(ThreadPolicy::UPDATE->value, $thread);
 
         $this->dispatchNow(new UnmarkThreadSolution($thread));
 
@@ -141,7 +141,7 @@ class ThreadsController extends Controller
 
     public function subscribe(Request $request, Thread $thread)
     {
-        $this->authorize(ThreadPolicy::SUBSCRIBE, $thread);
+        $this->authorize(ThreadPolicy::SUBSCRIBE->value, $thread);
 
         $this->dispatchNow(new SubscribeToSubscriptionAble($request->user(), $thread));
 
@@ -152,7 +152,7 @@ class ThreadsController extends Controller
 
     public function unsubscribe(Request $request, Thread $thread)
     {
-        $this->authorize(ThreadPolicy::UNSUBSCRIBE, $thread);
+        $this->authorize(ThreadPolicy::UNSUBSCRIBE->value, $thread);
 
         $this->dispatchNow(new UnsubscribeFromSubscriptionAble($request->user(), $thread));
 

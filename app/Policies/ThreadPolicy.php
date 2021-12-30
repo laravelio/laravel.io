@@ -2,15 +2,16 @@
 
 namespace App\Policies;
 
+use App\Enums\ThreadPolicyAction;
 use App\Models\Thread;
 use App\Models\User;
 
 final class ThreadPolicy
 {
-    const UPDATE = 'update';
-    const DELETE = 'delete';
-    const SUBSCRIBE = 'subscribe';
-    const UNSUBSCRIBE = 'unsubscribe';
+    const UPDATE = ThreadPolicyAction::UPDATE;
+    const DELETE = ThreadPolicyAction::DELETE;
+    const SUBSCRIBE = ThreadPolicyAction::SUBSCRIBE;
+    const UNSUBSCRIBE = ThreadPolicyAction::UNSUBSCRIBE;
 
     public function update(User $user, Thread $thread): bool
     {

@@ -4,7 +4,7 @@
     <div class="flex flex-col p-5">
         <h3 class="text-xl font-semibold">Notifications</h3>
 
-        @can(App\Policies\ThreadPolicy::UNSUBSCRIBE, $thread)
+        @can(App\Policies\ThreadPolicy::UNSUBSCRIBE->value, $thread)
             <x-buttons.secondary-cta action="{{ route('threads.unsubscribe', $thread->slug()) }}" class="w-full mt-3">
                 <span class="flex items-center justify-center gap-x-2">
                     <x-heroicon-o-volume-off class="w-6 h-6" />
@@ -15,7 +15,7 @@
             <p class="text-gray-600 mt-4">
                 You are currently receiving notifications of updates from this thread.
             </p>
-        @elsecan(App\Policies\ThreadPolicy::SUBSCRIBE, $thread)
+        @elsecan(App\Policies\ThreadPolicy::SUBSCRIBE->value, $thread)
             <x-buttons.secondary-cta action="{{ route('threads.subscribe', $thread->slug()) }}" class="w-full mt-3">
                 <span class="flex items-center justify-center gap-x-2">
                     <x-heroicon-o-volume-up class="w-6 h-6" />
