@@ -7,7 +7,7 @@ use Illuminate\Notifications\DatabaseNotification;
 
 final class NotificationPolicy
 {
-    const MARK_AS_READ = 'markAsRead';
+    const MARK_AS_READ = NotificationPolicyAction::MARK_AS_READ;
 
     /**
      * Determine if the given notification can be marked as read by the user.

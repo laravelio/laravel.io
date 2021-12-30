@@ -38,7 +38,7 @@ final class Notifications extends Component
     {
         $this->notificationId = $notificationId;
 
-        $this->authorize(NotificationPolicy::MARK_AS_READ, $this->notification);
+        $this->authorize(NotificationPolicy::MARK_AS_READ->value, $this->notification);
 
         $this->notification->markAsRead();
 
