@@ -13,7 +13,7 @@ class VerifyAdmins
 {
     public function handle(Request $request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->user()->can(UserPolicy::ADMIN, User::class)) {
+        if (Auth::guard($guard)->user()->can(UserPolicy::ADMIN->value, User::class)) {
             return $next($request);
         }
 

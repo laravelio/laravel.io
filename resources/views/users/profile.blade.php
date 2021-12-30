@@ -63,7 +63,7 @@
                             </x-buttons.secondary-button>
                         @endif
 
-                        @can(App\Policies\UserPolicy::BAN, $user)
+                        @can(App\Policies\UserPolicy::BAN->value, $user)
                             @if ($user->isBanned())
                                 <x-buttons.secondary-button class="w-full" @click.prevent="activeModal = 'unbanUser'">
                                     <span class="flex items-center gap-x-2">
@@ -82,7 +82,7 @@
                         @endcan
 
                         @if (Auth::check() && Auth::user()->isAdmin())
-                            @can(App\Policies\UserPolicy::DELETE, $user)
+                            @can(App\Policies\UserPolicy::DELETE->value, $user)
                                 <x-buttons.danger-button class="w-full" @click.prevent="activeModal = 'deleteUser'">
                                     <span class="flex items-center gap-x-2">
                                         <x-heroicon-o-trash class="w-5 h-5" />
@@ -174,7 +174,7 @@
         </div>
     </section>
 
-    @can(App\Policies\UserPolicy::BAN, $user)
+    @can(App\Policies\UserPolicy::BAN->value, $user)
         @if ($user->isBanned())
             <x-modal
                 identifier="unbanUser"
@@ -196,7 +196,7 @@
         @endif
     @endcan
 
-    @can(App\Policies\UserPolicy::DELETE, $user)
+    @can(App\Policies\UserPolicy::DELETE->value, $user)
         <x-modal
             identifier="deleteUser"
             :action="route('admin.users.delete', $user->username())"

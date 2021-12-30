@@ -34,7 +34,7 @@ class ProfileController extends Controller
 
     public function destroy(Request $request)
     {
-        $this->authorize(UserPolicy::DELETE, $user = $request->user());
+        $this->authorize(UserPolicy::DELETE->value, $user = $request->user());
 
         $this->dispatchNow(new DeleteUser($user));
 

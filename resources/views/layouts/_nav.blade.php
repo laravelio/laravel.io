@@ -188,7 +188,7 @@
                                             </a>
                                         </li>
 
-                                        @can(App\Policies\UserPolicy::ADMIN, App\Models\User::class)
+                                        @can(App\Policies\UserPolicy::ADMIN->value, App\Models\User::class)
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:border-t lg:border-b">
                                                 <a href="{{ route('admin') }}" class="inline-block w-full lg:px-4 lg:py-3">
                                                     Admin

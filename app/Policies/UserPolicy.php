@@ -2,13 +2,14 @@
 
 namespace App\Policies;
 
+use App\Enums\UserPolicyAction;
 use App\Models\User;
 
 final class UserPolicy
 {
-    const ADMIN = 'admin';
-    const BAN = 'ban';
-    const DELETE = 'delete';
+    const ADMIN = UserPolicyAction::ADMIN;
+    const BAN = UserPolicyAction::BAN;
+    const DELETE = UserPolicyAction::DELETE;
 
     public function admin(User $user): bool
     {

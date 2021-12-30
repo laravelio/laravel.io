@@ -32,7 +32,7 @@ class UsersController extends Controller
 
     public function ban(User $user)
     {
-        $this->authorize(UserPolicy::BAN, $user);
+        $this->authorize(UserPolicy::BAN->value, $user);
 
         $this->dispatchNow(new BanUser($user));
 
@@ -43,7 +43,7 @@ class UsersController extends Controller
 
     public function unban(User $user)
     {
-        $this->authorize(UserPolicy::BAN, $user);
+        $this->authorize(UserPolicy::BAN->value, $user);
 
         $this->dispatchNow(new UnbanUser($user));
 
@@ -54,7 +54,7 @@ class UsersController extends Controller
 
     public function delete(User $user)
     {
-        $this->authorize(UserPolicy::DELETE, $user);
+        $this->authorize(UserPolicy::DELETE->value, $user);
 
         $this->dispatchNow(new DeleteUser($user));
 
