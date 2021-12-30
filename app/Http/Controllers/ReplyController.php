@@ -24,7 +24,7 @@ class ReplyController extends Controller
 
     public function store(CreateReplyRequest $request)
     {
-        $this->authorize(ReplyPolicy::CREATE, Reply::class);
+        $this->authorize(ReplyPolicy::CREATE->value, Reply::class);
 
         $reply = $this->dispatchNow(CreateReply::fromRequest($request));
 
@@ -35,14 +35,14 @@ class ReplyController extends Controller
 
     public function edit(Reply $reply)
     {
-        $this->authorize(ReplyPolicy::UPDATE, $reply);
+        $this->authorize(ReplyPolicy::UPDATE->value, $reply);
 
         return view('replies.edit', compact('reply'));
     }
 
     public function update(UpdateReplyRequest $request, Reply $reply)
     {
-        $this->authorize(ReplyPolicy::UPDATE, $reply);
+        $this->authorize(ReplyPolicy::UPDATE->value, $reply);
 
         $this->dispatchNow(new UpdateReply($reply, $request->user(), $request->body()));
 
@@ -53,7 +53,7 @@ class ReplyController extends Controller
 
     public function delete(Reply $reply)
     {
-        $this->authorize(ReplyPolicy::DELETE, $reply);
+        $this->authorize(ReplyPolicy::DELETE->value, $reply);
 
         $this->dispatchNow(new DeleteReply($reply));
 

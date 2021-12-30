@@ -52,7 +52,7 @@
         @endif
     @endcan
 
-    @can(App\Policies\ReplyPolicy::UPDATE, $reply)
+    @can(App\Policies\ReplyPolicy::UPDATE->value, $reply)
         <div class="relative -mr-3" x-data="{ open: false }" @click.outside="open = false">
 
             <button

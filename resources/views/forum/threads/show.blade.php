@@ -37,7 +37,7 @@
                 <div class="absolute h-full border-l border-lio-500 ml-8 z-10 inset-y-0 left-0 lg:ml-16"></div>
             </div>
 
-            @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
+            @can(App\Policies\ReplyPolicy::CREATE->value, App\Models\Reply::class)
                 @if ($thread->isConversationOld())
                     <x-info-panel class="flex justify-between gap-x-16">
                         <p>The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.</p>

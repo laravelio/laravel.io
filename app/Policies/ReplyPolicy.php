@@ -2,14 +2,15 @@
 
 namespace App\Policies;
 
+use App\Enums\ReplyPolicyAction;
 use App\Models\Reply;
 use App\Models\User;
 
 final class ReplyPolicy
 {
-    const CREATE = 'create';
-    const UPDATE = 'update';
-    const DELETE = 'delete';
+    const CREATE = ReplyPolicyAction::CREATE;
+    const UPDATE = ReplyPolicyAction::UPDATE;
+    const DELETE = ReplyPolicyAction::DELETE;
 
     /**
      * Determine if replies can be created by the user.
