@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\NotificationPolicyAction;
 use App\Models\User;
 use Illuminate\Notifications\DatabaseNotification;
 
