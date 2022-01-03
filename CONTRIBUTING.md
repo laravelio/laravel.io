@@ -14,7 +14,7 @@ discussions.
 
 We very much appreciate any help with [open issues labeled with "help wanted"](https://github.com/laravelio/laravel.io/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
 
-- **Feature requests** first need to be discussed and accepted [through an issue](https://github.com/laravelio/laravel.io/issues/new) before sending in a pull request
+- **Feature requests** we're welcoming pull requests for new features (although we might not accept every single one). You can also first, discuss new feature requests [through an issue](https://github.com/laravelio/laravel.io/issues/new) before sending in a pull request
 - **Bug fixes** should contain regression tests
 - All pull requests should follow the [coding standards](#coding-standards)
 - Pull requests will be merged after being reviewed by [the maintainers](README.md#maintainers)
