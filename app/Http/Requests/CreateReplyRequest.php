@@ -23,9 +23,9 @@ class CreateReplyRequest extends Request
         $replyable = $this->findReplyAble($this->get('replyable_id'), $this->get('replyable_type'));
 
         abort_if(
-            $replyable->isConversationOld(), 
-            403, 
-            'Last activity is too old'
+            $replyable->isConversationOld(),
+            403,
+            'Last activity is too old',
         );
 
         return $replyable;
