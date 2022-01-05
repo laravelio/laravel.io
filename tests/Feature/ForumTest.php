@@ -228,3 +228,15 @@ test('an invalid filter on tag view defaults to the most recent threads', functi
     $this->visit("/forum/tags/{$tag->slug}?filter=something-invalid")
         ->see('href="http://localhost/forum/tags/'.$tag->slug.'?filter=recent" aria-current="page"');
 });
+
+test('thread activity is set when a new thread is created', function () {
+    $this->login();
+
+    $this->post('/forum/create-thread', [
+        'subject' => 'How to work with Eloquent?',
+        'body' => 'This text explains how to work with Eloquent.',
+        'tags' => [],
+    ]);
+
+    $this->assertNotNull(Thread::latest('id')->first()->last_activity_at);
+});
