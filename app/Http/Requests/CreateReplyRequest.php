@@ -20,7 +20,15 @@ class CreateReplyRequest extends Request
 
     public function replyAble(): ReplyAble
     {
-        return $this->findReplyAble($this->get('replyable_id'), $this->get('replyable_type'));
+        $replyable = $this->findReplyAble($this->get('replyable_id'), $this->get('replyable_type'));
+
+        abort_if(
+            $replyable->isConversationOld(), 
+            403, 
+            'Last activity is too old'
+        );
+
+        return $replyable;
     }
 
     private function findReplyAble(int $id, string $type): ReplyAble

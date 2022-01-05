@@ -65,7 +65,7 @@ test('users cannot mark a reply as the solution of the thread if they do not own
         ->assertForbidden();
 });
 
-test('users cannot reply to a thread if the last reply is older than six months', function () {
+test('users cannot see the option to reply if the latest activity is older than six months', function () {
     $thread = Thread::factory()->old()->create();
 
     $this->login();
@@ -75,6 +75,18 @@ test('users cannot reply to a thread if the last reply is older than six months'
         ->seeText(
             'The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.',
         );
+});
+
+test('users cannot reply to a thread if the latest activity is older than six months', function () {
+    $thread = Thread::factory()->old()->create();
+
+    $this->login();
+
+    $this->post('/replies', [
+        'body' => 'The first reply',
+        'replyable_id' => $thread->id,
+        'replyable_type' => Thread::TABLE,
+    ])->assertForbidden();
 });
 
 test('verified users can see the reply input', function () {
