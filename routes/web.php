@@ -87,6 +87,7 @@ Route::prefix('forum')->group(function () {
     Route::get('{thread}/edit', [ThreadsController::class, 'edit'])->name('threads.edit');
     Route::put('{thread}', [ThreadsController::class, 'update'])->name('threads.update');
     Route::delete('{thread}', [ThreadsController::class, 'delete'])->name('threads.delete');
+    Route::post('{thread}/lock', [ThreadsController::class, 'lock'])->name('threads.lock');
     Route::put('{thread}/mark-solution/{reply}', [ThreadsController::class, 'markSolution'])->name('threads.solution.mark');
     Route::put('{thread}/unmark-solution', [ThreadsController::class, 'unmarkSolution'])->name('threads.solution.unmark');
     Route::post('{thread}/subscribe', [ThreadsController::class, 'subscribe'])->name('threads.subscribe');

@@ -28,7 +28,7 @@ return [
         'email' => Components\Forms\Inputs\Email::class,
         // 'error' => Components\Forms\Error::class,
         'form' => Components\Forms\Form::class,
-        // 'form-button' => Components\Buttons\FormButton::class,
+        'form-button' => Components\Buttons\FormButton::class,
         // 'html' => Components\Layouts\Html::class,
         'input' => Components\Forms\Inputs\Input::class,
         'label' => Components\Forms\Label::class,

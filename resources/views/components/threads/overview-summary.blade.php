@@ -34,11 +34,16 @@
     </div>
 
     <div class="mt-3 break-words">
-        <a href="{{ route('thread', $thread->slug()) }}" class="hover:underline">
-            <h3 class="text-xl text-gray-900 font-semibold">
-                {{ $thread->subject() }}
-            </h3>
-        </a>
+        <h3 class="text-xl text-gray-900 font-semibold">
+            <a
+                href="{{ route('thread', $thread->slug()) }}"
+                class="hover:underline"
+            >{{ $thread->subject() }}</a>
+
+            @if ($thread->isLocked())
+                <x-heroicon-o-lock-closed class="w-4 h-4 mb-1 inline-block" />
+            @endif
+        </h3>
 
         <p class="text-gray-800 leading-7 mt-1">
             {!! $thread->excerpt() !!}

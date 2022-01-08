@@ -56,6 +56,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
         'slug',
         'subject',
         'last_activity_at',
+        'locked_by',
     ];
 
     /**
@@ -74,6 +75,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
      */
     protected $casts = [
         'last_activity_at' => 'datetime',
+        'locked_at' => 'datetime',
     ];
 
     public function id(): int
@@ -172,6 +174,31 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
         }
 
         return false;
+    }
+
+    public function isLocked(): bool
+    {
+        return ! is_null($this->locked_at);
+    }
+
+    public function isUnlocked(): bool
+    {
+        return ! $this->isLocked();
+    }
+
+    public function lockedBy(): ?User
+    {
+        return $this->lockedByRelation;
+    }
+
+    public function lockedByRelation(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'locked_by');
+    }
+
+    public function isLockedBy(User $user): bool
+    {
+        return $user->is($this->lockedBy());
     }
 
     public function delete()
@@ -307,5 +334,10 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
     public function scopeActive(Builder $query): Builder
     {
         return $query->has('repliesRelation');
+    }
+
+    public function scopeUnlocked(Builder $query): Builder
+    {
+        return $query->whereNull('locked_at');
     }
 }
