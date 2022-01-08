@@ -178,7 +178,12 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
 
     public function isLocked(): bool
     {
-        return ! is_null($this->locked_by);
+        return ! is_null($this->locked_at);
+    }
+
+    public function isUnlocked(): bool
+    {
+        return ! $this->isLocked();
     }
 
     public function lockedBy(): ?User
@@ -194,11 +199,6 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
     public function isLockedBy(User $user): bool
     {
         return $user->is($this->lockedBy());
-    }
-
-    public function isUnlocked(): bool
-    {
-        return ! $this->isLocked();
     }
 
     public function delete()
@@ -266,7 +266,6 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
             'tagsRelation',
             'authorRelation',
         ])
-            ->unlocked()
             ->withCount(['repliesRelation as reply_count', 'likesRelation as like_count'])
             ->latest('last_activity_at');
     }

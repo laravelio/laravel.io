@@ -9,8 +9,11 @@
             <a href="{{ route('forum') }}" class="text-gray-400 hover:underline">Forum</a>
             <x-heroicon-o-chevron-right class="w-6 h-6" />
             <span class="break-all">{{ $title }}</span>
+
+            @if ($thread->isLocked())
+                <x-heroicon-o-lock-closed class="w-5 h-5" />
+            @endif
         </h1>
-        <livewire:lock-thread :thread="$thread" />
     </section>
 @endsection
 
@@ -38,16 +41,31 @@
                 <div class="absolute h-full border-l border-lio-500 ml-8 z-10 inset-y-0 left-0 lg:ml-16"></div>
             </div>
 
+            @if ($thread->isLocked())
+                <x-info-panel class="flex justify-between gap-x-16">
+                    <p class="text-sm">
+                        @php($lockedBy = $thread->lockedBy())
+
+                        This thread was locked by
+
+                        <a
+                            class="text-lio-500 hover:text-lio-600"
+                            href="{{ route('profile', $lockedBy->username()) }}"
+                        >{{ $lockedBy->name() }}</a>.
+                    </p>
+                </x-info-panel>
+            @endif
+
             @can(App\Policies\ReplyPolicy::CREATE, App\Models\Reply::class)
-                @if($thread->isUnlocked() || Auth::user()->isModerator() || Auth::user()->isAdmin())
+                @if ($thread->isUnlocked() || Auth::user()->isModerator() || Auth::user()->isAdmin())
                     @if ($thread->isConversationOld())
                         <x-info-panel class="flex justify-between gap-x-16">
                             <p>The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.</p>
 
-                        <x-buttons.arrow-button href="{{ route('threads.create') }}" class="shrink-0">
-                            Create thread
-                        </x-buttons.arrow-button>
-                    </x-info-panel>
+                            <x-buttons.arrow-button href="{{ route('threads.create') }}" class="shrink-0">
+                                Create thread
+                            </x-buttons.arrow-button>
+                        </x-info-panel>
                     @else
                         <div class="my-8">
                             <form action="{{ route('replies.store') }}" method="POST">
@@ -74,10 +92,6 @@
                             </form>
                         </div>
                     @endif
-                @else
-                    <x-info-panel class="flex justify-between gap-x-16">
-                        <p>This thread is locked.</p>
-                    </x-info-panel>
                 @endif
             @else
                 @guest

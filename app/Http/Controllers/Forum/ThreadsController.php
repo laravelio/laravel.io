@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreadRequest;
 use App\Jobs\CreateThread;
 use App\Jobs\DeleteThread;
+use App\Jobs\LockThread;
 use App\Jobs\MarkThreadSolution;
 use App\Jobs\SubscribeToSubscriptionAble;
+use App\Jobs\UnlockThread;
 use App\Jobs\UnmarkThreadSolution;
 use App\Jobs\UnsubscribeFromSubscriptionAble;
 use App\Jobs\UpdateThread;
@@ -119,6 +121,23 @@ class ThreadsController extends Controller
         $this->success('forum.threads.deleted');
 
         return redirect()->route('forum');
+    }
+
+    public function lock(Request $request, Thread $thread)
+    {
+        $this->authorize(ThreadPolicy::LOCK, $thread);
+
+        if ($thread->isLocked()) {
+            $this->dispatchNow(new UnlockThread($thread));
+
+            $this->success('forum.threads.unlocked');
+        } else {
+            $this->dispatchNow(new LockThread($request->user(), $thread));
+
+            $this->success('forum.threads.locked');
+        }
+
+        return redirect()->route('thread', $thread->slug());
     }
 
     public function markSolution(Thread $thread, Reply $reply)
