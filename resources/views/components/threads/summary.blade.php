@@ -25,10 +25,6 @@
                 <a href="{{ route('thread', $thread->slug()) }}">
                     {{ $thread->subject() }}
                 </a>
-
-                @if ($thread->isLocked())
-                    <x-heroicon-o-lock-closed class="w-5 h-5" />
-                @endif
             </h3>
 
             <p class="text-gray-800 text-base leading-7 mb-3">
