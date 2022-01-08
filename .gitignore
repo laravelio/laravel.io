@@ -6,6 +6,7 @@
 /public/hot
 /public/mix-manifest.json
 /public/sitemap.xml
+/public/.htaccess
 /storage/*.key
 /vendor
 /.vscode
