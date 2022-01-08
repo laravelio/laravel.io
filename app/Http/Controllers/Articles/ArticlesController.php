@@ -6,6 +6,7 @@ use App\Concerns\UsesFilters;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Resources\ArticleResource;
 use App\Jobs\CreateArticle;
 use App\Jobs\DeleteArticle;
 use App\Jobs\UpdateArticle;
@@ -17,6 +18,7 @@ use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Symfony\Component\HttpFoundation\Response;
 
 class ArticlesController extends Controller
 {
@@ -101,11 +103,13 @@ class ArticlesController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        $article = $this->dispatchNow(CreateArticle::fromRequest($request));
+        $article = $this->dispatchSync(CreateArticle::fromRequest($request));
 
         $this->success($request->shouldBeSubmitted() ? 'articles.submitted' : 'articles.created');
 
-        return redirect()->route('articles.show', $article->slug());
+        return $request->wantsJson()
+            ? ArticleResource::make($article)
+            : redirect()->route('articles.show', $article->slug());
     }
 
     public function edit(Article $article)
@@ -125,7 +129,7 @@ class ArticlesController extends Controller
 
         $wasNotPreviouslySubmitted = $article->isNotSubmitted();
 
-        $article = $this->dispatchNow(UpdateArticle::fromRequest($article, $request));
+        $article = $this->dispatchSync(UpdateArticle::fromRequest($article, $request));
 
         if ($wasNotPreviouslySubmitted && $request->shouldBeSubmitted()) {
             $this->success('articles.submitted');
@@ -133,17 +137,21 @@ class ArticlesController extends Controller
             $this->success('articles.updated');
         }
 
-        return redirect()->route('articles.show', $article->slug());
+        return $request->wantsJson()
+            ? ArticleResource::make($article)
+            : redirect()->route('articles.show', $article->slug());
     }
 
-    public function delete(Article $article)
+    public function delete(Request $request, Article $article)
     {
         $this->authorize(ArticlePolicy::DELETE, $article);
 
-        $this->dispatchNow(new DeleteArticle($article));
+        $this->dispatchSync(new DeleteArticle($article));
 
         $this->success('articles.deleted');
 
-        return redirect()->route('articles');
+        return $request->wantsJson()
+            ? response()->json([], Response::HTTP_NO_CONTENT)
+            : redirect()->route('articles');
     }
 }

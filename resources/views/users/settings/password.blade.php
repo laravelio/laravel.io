@@ -23,13 +23,13 @@
                     @endif
 
                     <div class="col-span-12">
-                        <x-forms.label for="password">New Password</x-label>
+                        <x-forms.label for="password">New Password</x-forms.label>
 
                         <x-forms.inputs.password name="password" required />
                     </div>
 
                     <div class="col-span-12">
-                        <x-forms.label for="password_confirmation">Confirm New Password</x-label>
+                        <x-forms.label for="password_confirmation">Confirm New Password</x-forms.label>
 
                         <x-forms.inputs.password name="password_confirmation" required />
                     </div>

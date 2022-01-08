@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -127,6 +128,52 @@ test('twitter is optional', function () {
         ->dontSee('freektwitter');
 
     expect($user->fresh()->twitter())->toBeEmpty();
+});
+
+test('users can generate API tokens', function () {
+    $user = $this->createUser();
+
+    $this->loginAs($user);
+
+    $this->visit('/settings')
+        ->submitForm('Generate New Token', [
+            'name' => 'My API Token',
+        ])
+        ->seePageIs('/settings');
+
+    expect($user->refresh()->tokens)->toHaveCount(1);
+});
+
+test('users can delete API tokens', function () {
+    $user = $this->createUser();
+    $token = $user->createToken('My API Token');
+
+    $this->loginAs($user);
+
+    $this->visit('/settings')
+        ->submitForm('Delete Token', [
+            'id' => $token->accessToken->getKey(),
+        ])
+        ->seePageIs('/settings');
+
+    expect($user->refresh()->tokens)->toBeEmpty();
+});
+
+test('a user cannot delete another user\'s API token', function () {
+    $joe = UserFactory::new()->create();
+    $token = $joe->createToken('Joe\'s API Token');
+
+    $adam = $this->createUser();
+    $adam->createToken('Adam\'s API Token');
+    $this->loginAs($adam);
+
+    $this->visit('/settings')
+        ->submitForm('Delete Token', [
+            'id' => $token->accessToken->getKey(),
+        ])
+        ->seePageIs('/settings');
+
+    expect($joe->refresh()->tokens)->toHaveCount(1);
 });
 
 // Helpers
