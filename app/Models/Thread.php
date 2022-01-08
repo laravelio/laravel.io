@@ -198,7 +198,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
 
     public function isUnlocked(): bool
     {
-        return is_null($this->locked_by);
+        return ! $this->isLocked();
     }
 
     public function delete()
