@@ -13,10 +13,8 @@ class CreateApiToken implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public function __construct(
-        private User $user,
-        private string $name,
-    ) {
+    public function __construct(private User $user, private string $name)
+    {
     }
 
     public function handle(): void
