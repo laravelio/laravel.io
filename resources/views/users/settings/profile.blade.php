@@ -41,7 +41,7 @@
 
                         <div class="flex items-center mt-2">
                             <div class="shrink-0 inline-block overflow-hidden" aria-hidden="true">
-                                <x-avatar :user="Auth::user()" class="h-32 w-32 mt-4 {{ !Auth::user()->githubUsername() ? 'px-8' : '' }}" unlinked />
+                                <x-avatar :user="Auth::user()" class="h-32 w-32 mt-4" unlinked />
 
                                 <span class="mt-4 inline-block text-sm text-gray-500">
                                     Change your avatar for

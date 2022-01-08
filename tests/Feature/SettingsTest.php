@@ -81,22 +81,6 @@ test('users can update their password', function () {
     assertPasswordWasHashedAndSaved();
 });
 
-test('users see the their avatar', function () {
-    $this->login();
-
-    $this->visit('/settings')
-        ->see('<img src="https://unavatar.now.sh/github/johndoe?fallback=http%3A%2F%2Flocalhost%2Fimages%2Fuser.svg" alt="John Doe" class="rounded-full text-gray-500 h-32 w-32 mt-4">');
-});
-
-test('users see the default Laravel avatar', function () {
-    $this->login([
-        'github_username' => null,
-    ]);
-
-    $this->visit('/settings')
-        ->see('<img src="http://localhost/images/laravelio-icon.svg" alt="John Doe" class="filter grayscale">');
-});
-
 test('users cannot update their password when it has been compromised in data leaks', function () {
     $this->login();
 
