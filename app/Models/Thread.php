@@ -338,6 +338,6 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
 
     public function scopeUnlocked(Builder $query): Builder
     {
-        return $query->whereNull('locked_by');
+        return $query->whereNull('locked_at');
     }
 }
