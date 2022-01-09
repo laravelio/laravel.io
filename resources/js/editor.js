@@ -73,20 +73,69 @@ window.editorConfig = (body) => {
         submit: function (event) {
             event.target.closest('form').submit();
         },
-        updateCursorPosition: function (event) {
-            const coordinates = getCaretCoordinates(event.target);
-            this.cursorTop = coordinates.top+20+'px';
-            this.cursorLeft = coordinates.left+20+'px';
+        updateCursorPosition: function (element, position) {
+            const coordinates = getCaretCoordinates(element, position);
+            this.cursorTop = coordinates.top + 25 + 'px';
+            this.cursorLeft = coordinates.left + 'px';
         },
         updateSearch: function (event) {
-            if(this.showMentions) {
-                this.search += event.key
-                this.$wire.getUsers(this.search)
-            } else {
-                this.search = '';
+            const element = event.target;
+            const content = element.value;
+            const cursorPosition = element.selectionEnd;
+            const matches = event.target.value.match(/@[\w\d]+/g)
+
+            if (!matches) {
+                return this.resetSearch();
             }
 
-            console.log(this.search)
+            const shouldSearch = matches.some(match => {
+                const startPosition = content.search(match)
+                const endPosition = startPosition + match.length
+
+                if (cursorPosition >= startPosition && cursorPosition <= endPosition) {
+                    console.log(this.$wire.users.length);
+                    this.updateCursorPosition(event.target, startPosition)
+                    this.showMentions = true;
+                    this.search = match.slice(1)
+                    this.$wire.getUsers(this.search)
+                    return true;
+                }
+
+                return false;
+            })
+
+            if (!shouldSearch) {
+                this.resetSearch()
+            }
+        },
+        resetSearch: function () {
+            console.log('Resetting');
+            this.showMentions = false;
+            this.search = '';
+        },
+        showUserSelect: function () {
+            console.log({ show: this.showMentions, total: this.$wire.users.length })
+            return this.showMentions && this.$wire.users.length > 0
+        },
+        selectUser: function (username) {
+            let content = this.$refs.editor.value
+            const cursorPosition = this.$refs.editor.selectionEnd
+            const matches = content.match(/@[\w\d]+/g)
+
+            if (!matches) {
+                return;
+            }
+
+            matches.forEach(match => {
+                const startPosition = content.search(match)
+                const endPosition = startPosition + match.length
+
+                if (cursorPosition >= startPosition && cursorPosition <= endPosition) {
+                    this.body = content.substring(0, startPosition) + '@' + username + content.substring(endPosition) + ' ';
+                    this.$refs.editor.focus()
+                    this.resetSearch()
+                }
+            })
         }
     };
 };

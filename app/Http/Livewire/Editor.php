@@ -39,7 +39,7 @@ class Editor extends Component
     public function getUsers($search)
     {
         if (! $search) {
-            return;
+            return $this->users = collect();
         }
 
         $search = Str::after($search, '@');

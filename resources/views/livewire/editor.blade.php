@@ -40,17 +40,27 @@
                     placeholder="{{ $placeholder }}"
                     x-model=body
                     required
+                    x-ref="editor"
                     @keydown.cmd.enter="submit($event)"
                     @keydown.ctrl.enter="submit($event)"
-                    @keydown.@="updateCursorPosition($event); showMentions = true;"
                     @keydown.space="showMentions = false"
                     @click.away="showMentions = false"
-                    @keydown.debounce="updateSearch($event)"
+                    @keydown.debounce.500ms="updateSearch($event)"
                 ></textarea>
 
-                <ul x-cloak x-show="showMentions && $wire.users.length > 0" class="absolute flex flex-col gap-y-2 bg-white p-2 rounded shadow" x-ref="users" :style="`top: ${cursorTop}; left: ${cursorLeft}`  ">
+                @if ($users->count())
+                <ul 
+                    x-cloak 
+                    x-show="showUserSelect()" 
+                    class="absolute flex flex-col gap-y-2 bg-white p-2 rounded shadow" 
+                    x-ref="users" 
+                    :style="`top: ${cursorTop}; left: ${cursorLeft}`" 
+                >
                     @foreach ($users as $user)
-                        <li class="flex items-center gap-x-2">
+                        <li 
+                            class="flex items-center gap-x-2 cursor-pointer focus:bg-red" 
+                            @click.prevent="selectUser('{{ $user->username() }}')"
+                        >
                             <x-avatar :user="$user" class="w-5 h-5" />
 
                             <span class="text-gray-900">
@@ -59,6 +69,7 @@
                         </li>
                     @endforeach
                 </ul>
+                @endif
             </div>            
 
             <div class="flex flex-col items-center justify-end gap-y-4 gap-x-5 p-5 md:flex-row">
