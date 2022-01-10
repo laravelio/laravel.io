@@ -35,6 +35,8 @@ test('users can see when a thread is resolved', function () {
 });
 
 test('users can see a single thread', function () {
+    $this->login();
+
     Thread::factory()->create([
         'subject' => 'The first thread',
         'slug' => 'the-first-thread',
@@ -193,6 +195,8 @@ test('a logged out user cannot toggle a like on a reply', function () {
 });
 
 test('user can see standalone links in reply', function () {
+    $this->login();
+
     $thread = Thread::factory()->create(['slug' => 'the-first-thread']);
     Reply::factory()->create([
         'body' => 'https://github.com/laravelio/laravel.io check this cool project',
@@ -204,6 +208,8 @@ test('user can see standalone links in reply', function () {
 });
 
 test('user can see standalone links in thread', function () {
+    $this->login();
+
     $thread = Thread::factory()->create([
         'slug' => 'the-first-thread',
         'body' => 'https://github.com/laravelio/laravel.io check this cool project',
