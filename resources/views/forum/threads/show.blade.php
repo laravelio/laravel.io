@@ -22,10 +22,9 @@
         <div class="w-full lg:w-3/4">
             @auth
                 @if (! $thread->isSolved() && $thread->isAuthoredBy(Auth::user()))
-                    <div class="bg-lio-500 shadow rounded px-4 py-3 mb-4 text-white text-xs sm:text-sm flex">
-                        <x-heroicon-o-badge-check class="h-4 w-4 inline-block self-center mr-1" />
+                    <x-primary-info-panel icon="heroicon-o-badge-check">
                         Please make sure to mark the correct reply as the solution when your question gets answered.
-                    </div>
+                    </x-primary-info-panel>
                 @endif
             @endauth
 

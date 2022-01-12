@@ -14,7 +14,7 @@
                     <x-heroicon-o-pencil class="w-5 h-5" title="Edit" />
                     <span x-cloak x-show="hovered === 'edit'" class="leading-5">Edit article</span>
                 </span>
-            </x-buttons.primary-menu-button>
+            </x-buttons.secondary-button>
         @endif
 
         @if ($article->isNotPublished() && $article->isAwaitingApproval())

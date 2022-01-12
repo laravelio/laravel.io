@@ -1,5 +1,6 @@
 @props([
     'article',
+    'mode',
 ])
 
 <div class="h-full rounded-lg shadow-lg bg-white lg:p-5">
@@ -12,21 +13,46 @@
             </div>
         </a>
 
-        <div class="flex flex-col gap-y-3 p-4 lg:p-0 lg:gap-y-3.5">
+        <div class="flex flex-col gap-y-3 p-4 lg:p-0 lg:gap-y-3.5 w-full">
             <div>
-                <div class="flex flex-col gap-y-2 lg:flex-row lg:items-center">
-                    <div class="flex">
-                        <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-3" />
-
-                        <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
-                            <span class="text-gray-900 mr-5">{{ $article->author()->username() }}</span>
-                        </a>
+                <div class="flex flex-col gap-y-2 justify-between lg:flex-row lg:items-center">
+                    <div class="flex items-center">
+                        <div class="flex">
+                            <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-3" />
+    
+                            <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
+                                <span class="text-gray-900 mr-5">{{ $article->author()->username() }}</span>
+                            </a>
+                        </div>
+    
+                        <span class="font-mono text-gray-700 lg:mt-0">
+                            {{ $article->createdAt()->format('j M, Y') }}
+                        </span>
                     </div>
 
-                    <span class="font-mono text-gray-700 mt-1 lg:mt-0">
-                        {{ $article->createdAt()->format('j M, Y') }}
-                    </span>
+                    @if(isset($mode) && $mode == 'edit')
+                        <x-articles.article-menu :article="$article" />
+                    @endif
                 </div>
+                @if(isset($mode) && $mode == 'edit')
+                    <div class="flex text-sm leading-5 text-gray-500">
+                        @if ($article->isPublished())
+                            <time datetime="{{ $article->submittedAt()->format('Y-m-d') }}">
+                                Published {{ $article->submittedAt()->format('j M, Y') }}
+                            </time>
+                        @else
+                            @if ($article->isAwaitingApproval())
+                                <span>
+                                    Awaiting Approval
+                                </span>
+                            @else
+                                <time datetime="{{ $article->updatedAt()->format('Y-m-d') }}">
+                                    Drafted {{ $article->updatedAt()->format('j M, Y') }}
+                                </time>
+                            @endif
+                        @endif
+                    </div>
+                @endif
             </div>
 
             <div class="break-words">
@@ -41,7 +67,7 @@
                 </p>
             </div>
 
-            <div class="flex flex-col gap-y-3 lg:flex-row lg:items-center lg:justify-between lg:flex-row-reverse">
+            <div class="flex flex-col gap-y-3 lg:items-center lg:justify-between lg:flex-row-reverse">
                 <div>
                     @if (count($tags = $article->tags()))
                         <div class="flex flex-wrap gap-2 lg:gap-x-4">
