@@ -20,14 +20,14 @@
 @section('content')
     <section class="pt-5 pb-10 px-4 container mx-auto flex flex-col gap-x-12 lg:flex-row lg:pt-10 lg:pb-0">
         <div class="w-full lg:w-3/4">
-            @unless ($thread->isSolved())
-                @if($thread->isAuthoredBy(Auth::user()))
+            @auth
+                @if (! $thread->isSolved() && $thread->isAuthoredBy(Auth::user()))
                     <div class="bg-lio-500 shadow rounded px-4 py-3 mb-4 text-white text-xs sm:text-sm flex">
                         <x-heroicon-o-badge-check class="h-4 w-4 inline-block self-center mr-1" />
                         Please make sure to mark the correct reply as the solution when your question gets answered.
                     </div>
                 @endif
-            @endunless
+            @endauth
 
             <div class="relative">
                 <div class="relative flex flex-col gap-y-6 z-20">

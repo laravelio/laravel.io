@@ -93,8 +93,6 @@ test('users can unsubscribe from threads', function () {
 });
 
 test('users can unsubscribe through a token link', function () {
-    $this->login();
-
     $subscription = Subscription::factory()->create();
     $thread = $subscription->subscriptionAble();
 
