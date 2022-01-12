@@ -60,8 +60,6 @@ class ArticlesController extends Controller
 
         $this->dispatchNow(new DeclineArticle($article));
 
-        $this->success('admin.articles.declined', $article->title());
-
         return redirect()->route('articles.show', $article->slug());
     }
 
