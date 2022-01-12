@@ -20,13 +20,13 @@
 @section('content')
     <section class="pt-5 pb-10 px-4 container mx-auto flex flex-col gap-x-12 lg:flex-row lg:pt-10 lg:pb-0">
         <div class="w-full lg:w-3/4">
-            @unless ($thread->isSolved())
-                @can(App\Policies\ThreadPolicy::UPDATE, $thread)
+            @auth
+                @if (! $thread->isSolved() && $thread->isAuthoredBy(Auth::user()))
                     <x-primary-info-panel icon="heroicon-o-badge-check">
                         Please make sure to mark the correct reply as the solution when your question gets answered.
                     </x-primary-info-panel>
-                @endcan
-            @endunless
+                @endif
+            @endauth
 
             <div class="relative">
                 <div class="relative flex flex-col gap-y-6 z-20">
