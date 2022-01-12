@@ -28,12 +28,6 @@
                         <span class="font-mono text-gray-700 lg:mt-0">
                             {{ $article->createdAt()->format('j M, Y') }}
                         </span>
-
-                        @if ($article->isNotPublished())
-                            <span class="label ml-4">
-                                Draft
-                            </span>
-                        @endif
                     </div>
 
                     @if(isset($mode) && $mode == 'edit')
