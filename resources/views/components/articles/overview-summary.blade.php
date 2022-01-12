@@ -16,7 +16,7 @@
         <div class="flex flex-col gap-y-3 p-4 lg:p-0 lg:gap-y-3.5 w-full">
             <div>
                 <div class="flex flex-col gap-y-2 justify-between lg:flex-row lg:items-center">
-                    <div class="flex">
+                    <div class="flex items-center">
                         <div class="flex">
                             <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-3" />
     
@@ -25,7 +25,7 @@
                             </a>
                         </div>
     
-                        <span class="font-mono text-gray-700 mt-1 lg:mt-0">
+                        <span class="font-mono text-gray-700 lg:mt-0">
                             {{ $article->createdAt()->format('j M, Y') }}
                         </span>
 
