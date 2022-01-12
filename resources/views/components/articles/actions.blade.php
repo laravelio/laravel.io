@@ -1,5 +1,5 @@
 <div
-    class="flex flex-col gap-x-4 gap-y-3 lg:flex-row lg:justify-between"
+    class="flex flex-col gap-x-4 gap-y-3 lg:flex-row lg:justify-between mb-10"
     x-data="{ hovered: false }"
 >
     <div class="flex flex-col gap-x-4 gap-y-3 lg:flex-row">
