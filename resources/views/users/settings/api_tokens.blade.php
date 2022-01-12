@@ -14,12 +14,13 @@
 
             <ul class="space-y-3">
                 @foreach(Auth::user()->tokens as $token)
-                    <li>
-                        <span class="block font-bold">{{ $token->name }}</span>
-                        <time datetime="{{ $token->created_at }}" class="block mb-2 text-sm w-full text-gray-700">
-                            {{ $token->created_at->diffForHumans() }}
-                        </time>
-                        <span class="inline-block p-2 bg-gray-200 rounded text-gray-800 max-w-full truncate">{{ $token->token }}</span>
+                    <li class="md:flex justify-between md:space-x-2">
+                        <div>
+                            <span class="block font-bold">{{ $token->name }}</span>
+                            <time datetime="{{ $token->created_at }}" class="block mb-2 text-sm w-full text-gray-700">
+                                {{ $token->created_at->diffForHumans() }}
+                            </time>
+                        </div>
                         <x-buk-form method="DELETE" :action="route('settings.api-tokens.delete')">
                             <input type="hidden" name="id" value="{{ $token->getKey() }}">
                             <x-buttons.danger-button>

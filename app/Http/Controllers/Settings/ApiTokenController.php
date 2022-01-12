@@ -19,7 +19,9 @@ class ApiTokenController extends Controller
 
     public function store(CreateApiTokenRequest $request)
     {
-        $this->dispatchSync(new CreateApiToken(Auth::user(), $request->name()));
+        $token = $this->dispatchSync(new CreateApiToken(Auth::user(), $request->name()));
+
+        $this->success('settings.api_token.created', ['token' => $token->plainTextToken]);
 
         return redirect()->route('settings.profile');
     }
@@ -27,6 +29,8 @@ class ApiTokenController extends Controller
     public function destroy(DeleteApiTokenRequest $request)
     {
         $this->dispatchSync(new DeleteApiToken(Auth::user(), $request->id()));
+
+        $this->success('settings.api_token.deleted');
 
         return redirect()->route('settings.profile');
     }

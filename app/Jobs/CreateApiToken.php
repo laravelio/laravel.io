@@ -3,22 +3,16 @@
 namespace App\Jobs;
 
 use App\Models\User;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
+use Laravel\Sanctum\NewAccessToken;
 
-class CreateApiToken implements ShouldQueue
+final class CreateApiToken
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
     public function __construct(private User $user, private string $name)
     {
     }
 
-    public function handle(): void
+    public function handle(): NewAccessToken
     {
-        $this->user->createToken($this->name);
+        return $this->user->createToken($this->name);
     }
 }
