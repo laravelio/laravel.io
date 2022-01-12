@@ -15,7 +15,7 @@
 }
 
 .button-danger {
-    @apply text-white bg-red-600;
+    @apply text-white bg-red-600 !important;
 }
 
 .button-danger:hover {
