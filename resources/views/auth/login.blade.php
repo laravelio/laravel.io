@@ -3,17 +3,17 @@
 @extends('layouts.small')
 
 @section('small-content')
-    <x-buk-form method="POST" action="{{ route('login.post') }}" class="space-y-6">
+    <x-buk-form action="{{ route('login.post') }}" method="POST" class="space-y-6">
         <div>
             <x-forms.label for="username" />
 
-            <x-forms.inputs.input name="username" required />
+            <x-forms.inputs.input name="username" id="username" required />
         </div>
 
         <div>
             <x-forms.label for="password" />
 
-            <x-forms.inputs.password name="password" required />
+            <x-forms.inputs.password name="password" id="password" required />
         </div>
 
         <div class="flex items-center justify-between">
@@ -29,7 +29,7 @@
         </div>
 
         <div class="w-full">
-            <x-buttons.primary-button fullWidth>
+            <x-buttons.primary-button type="submit" fullWidth>
                 Sign in
             </x-buttons.primary-button>
         </div>

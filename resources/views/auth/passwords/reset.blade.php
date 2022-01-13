@@ -9,22 +9,22 @@
         <div>
             <x-forms.label for="email" />
 
-            <x-forms.inputs.email name="email" required />
+            <x-forms.inputs.email name="email" id="email" required />
         </div>
 
         <div>
             <x-forms.label for="password" />
 
-            <x-forms.inputs.password name="password" required />
+            <x-forms.inputs.password name="password" id="password" required />
         </div>
 
         <div>
             <x-forms.label for="password_confirmation" />
 
-            <x-forms.inputs.password name="password_confirmation" required />
+            <x-forms.inputs.password name="password_confirmation" id="password_confirmation" required />
         </div>
 
-        <x-buttons.primary-button fullWidth>
+        <x-buttons.primary-button type="submit" fullWidth>
             Reset Password
         </x-buttons.primary-button>
     </x-buk-form>

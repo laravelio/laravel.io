@@ -9,10 +9,10 @@
         <div>
             <x-forms.label for="email" />
 
-            <x-forms.inputs.email name="email" required />
+            <x-forms.inputs.email name="email" id="email" required />
         </div>
 
-        <x-buttons.primary-button fullWidth>
+        <x-buttons.primary-button type="submit" fullWidth>
             Send Password Reset Link
         </x-buttons.primary-button>
     </x-buk-form>
