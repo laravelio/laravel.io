@@ -1,6 +1,6 @@
 @title('Edit your thread')
 
-@extends('layouts.default', ['isTailwindUi' => true])
+@extends('layouts.default')
 
 @section('subnav')
     <div class="bg-white border-b">

@@ -2,7 +2,7 @@
 @title('Forum' . (isset($subTitle) ? ' > ' . $subTitle : ''))
 @canonical($canonical)
 
-@extends('layouts.default', ['hasShadow' => true, 'isTailwindUi' => true])
+@extends('layouts.default', ['hasShadow' => true])
 
 @section('content')
     <div class="pt-5 pb-10 lg:pt-10 lg:pb-0">

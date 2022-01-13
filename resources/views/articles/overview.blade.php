@@ -1,7 +1,7 @@
 @title('Community Articles')
 @canonical($canonical)
 
-@extends('layouts.default', ['isTailwindUi' => true])
+@extends('layouts.default')
 
 @section('content')
     <div class="bg-white pt-5 lg:pt-2">
