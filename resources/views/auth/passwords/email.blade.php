@@ -5,15 +5,15 @@
 @section('small-content')
     <p class="mb-4">{{ Session::get('status', 'Please fill in your email address below.') }}</p>
 
-    <form action="{{ route('password.forgot.post') }}" method="POST" class="w-full">
-        @csrf
+    <x-buk-form action="{{ route('password.forgot.post') }}" method="POST" class="space-y-6">
+        <div>
+            <x-forms.label for="email" />
 
-        @formGroup('email')
-            <label for="email" name="email">Email</label>
-            <input type="email" id="email" name="email" class="form-control" required />
-            @error('email')
-        @endFormGroup
+            <x-forms.inputs.email name="email" required />
+        </div>
 
-        <button type="submit" class="w-full button button-primary">Send Password Reset Link</button>
-    </form>
+        <x-buttons.primary-button fullWidth>
+            Send Password Reset Link
+        </x-buttons.primary-button>
+    </x-buk-form>
 @endsection
