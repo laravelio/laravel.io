@@ -1,7 +1,7 @@
 @title($thread->subject())
 @canonical(route('thread', $thread->slug()))
 
-@extends('layouts.default', ['hasShadow' => true, 'isTailwindUi' => true])
+@extends('layouts.default', ['hasShadow' => true])
 
 @section('subnav')
     <section class="container flex justify-between mx-auto bg-white pb-4 px-4 lg:pb-10">

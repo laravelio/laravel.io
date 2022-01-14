@@ -103,7 +103,7 @@ test('users can login', function () {
     $this->visit('/login')
         ->type('johndoe', 'username')
         ->type('password', 'password')
-        ->press('Login')
+        ->press('Sign in')
         ->seePageIs('/user/johndoe')
         ->see('John Doe');
 });
@@ -112,7 +112,7 @@ test('login fails when a required field is not filled in', function () {
     $this->createUser();
 
     $this->visit('/login')
-        ->press('Login')
+        ->press('Sign in')
         ->seePageIs('/login')
         ->see('The username field is required.')
         ->see('The password field is required.');
@@ -124,7 +124,7 @@ test('login fails when password is incorrect', function () {
     $this->visit('/login')
         ->type('johndoe', 'username')
         ->type('invalidpass', 'password')
-        ->press('Login')
+        ->press('Sign in')
         ->seePageIs('/login')
         ->see('These credentials do not match our records.');
 });
@@ -135,7 +135,7 @@ test('login fails when user is banned', function () {
     $this->visit('/login')
         ->type('johndoe', 'username')
         ->type('password', 'password')
-        ->press('Login')
+        ->press('Sign in')
         ->seePageIs('/')
         ->see('This account is banned.');
 });
@@ -177,7 +177,7 @@ test('users can reset their password', function () {
         ->visit('/login')
         ->type('johndoe', 'username')
         ->type('QFq^$cz#P@MZa5z7', 'password')
-        ->press('Login')
+        ->press('Sign in')
         ->seePageIs('/user/johndoe');
 });
 

@@ -4,54 +4,52 @@
 
 @section('small-content')
     @if (! session()->has('githubData'))
-        <p class="mb-4">To register, we require you to login with your Github account. After login you can choose your password in the settings screen.</p>
+        <p class="mb-8">To register, we require you to login with your GitHub account. After login you can choose your password in the settings screen.</p>
 
-        <a href="{{ route('login.github') }}" class="button button-dark">
-            <span class="flex items-center justify-center">
-                <x-icon-github class="inline h-5 w-5 mr-2" />
-                Github
+        <x-buttons.secondary-button href="{{ route('login.github') }}" fullWidth>
+            <span class="flex items-center gap-x-2">
+                <x-icon-github class="h-5 w-5 text-gray-500" />
+                <span>Sign in with GitHub</span>
             </span>
-        </a>
+        </x-buttons.secondary-button>
     @else
-        <form action="{{ route('register.post') }}" method="POST" class="w-full">
-            @csrf
-        
-            @formGroup('name')
-                <label for="name">Name</label>
-                <input type="text" name="name" value="{{ session('githubData.name') }}" class="form-control" required placeholder="John Doe" />
-                @error('name')
-            @endFormGroup
+        <x-buk-form action="{{ route('register.post') }}" method="POST" class="space-y-6">
+            <div>
+                <x-forms.label for="name" />
 
-            @formGroup('email')
-                <label for="email">Email</label>
-                <input type="email" name="email" value="{{ session('githubData.email') }}" class="form-control" required placeholder="john@example.com" />
-                @error('email')
-            @endFormGroup
+                <x-forms.inputs.input name="name" value="{{ session('githubData.name') }}" placeholder="John Doe" required />
+            </div>
 
-            @formGroup('username')
-                <label for="username">Username</label>
-                <input type="text" name="username" value="{{ session('githubData.username') }}" class="form-control" required placeholder="johndoe" />
-                @error('username')
-            @endFormGroup
+            <div>
+                <x-forms.label for="email" />
 
-            @formGroup('rules')
-                <label>
-                    <input type="checkbox" name="rules" value="1" />
-                    &nbsp; I agree to <a href="{{ route('rules') }}" target="_blank">the rules of the portal</a>
-                </label>
-                @error('rules')
+                <x-forms.inputs.email name="email" id="email" value="{{ session('githubData.email') }}" placeholder="john@example.com" required />
+            </div>
 
-                <label>
-                    <input type="checkbox" name="terms" value="1" />
-                    &nbsp; I agree to <a href="{{ route('terms') }}" target="_blank">Terms & Conditions</a> and <a href="{{ route('privacy') }}" target="_blank">Privacy Policy</a>.
-                </label>
-                @error('terms')
-            @endFormGroup
+            <div>
+                <x-forms.label for="username" />
+
+                <x-forms.inputs.input name="username" id="username" value="{{ session('githubData.username') }}" placeholder="johndoe" required />
+            </div>
+
+            <div class="flex items-center">
+                <x-forms.inputs.checkbox name="rules" id="rules">
+                    I agree to <a href="{{ route('rules') }}" class="text-lio-700" target="_blank">the rules of the portal</a>
+                </x-forms.inputs.checkbox>
+            </div>
+
+            <div class="flex items-center">
+                <x-forms.inputs.checkbox name="terms" id="terms">
+                    I agree to <a href="{{ route('terms') }}" class="text-lio-700" target="_blank">Terms & Conditions</a> and <a href="{{ route('privacy') }}" class="text-lio-700" target="_blank">Privacy Policy</a>
+                </x-forms.inputs.checkbox>
+            </div>
 
             <input type="hidden" name="github_id" value="{{ session('githubData.id') }}" />
             <input type="hidden" name="github_username" value="{{ session('githubData.username') }}" />
 
-            <button type="submit" class="w-full button button-primary">Register</button>
-        </form>
+            <x-buttons.primary-button type="submit" fullWidth>
+                Register
+            </x-buttons.primary-button>
+        </x-buk-form>
     @endif
 @endsection

@@ -3,27 +3,29 @@
 @extends('layouts.small')
 
 @section('small-content')
-    <form action="{{ route('password.reset.post') }}" method="POST" class="w-full">
-        @csrf
+    <x-buk-form action="{{ route('password.reset.post') }}" method="POST" class="space-y-6">
         <input type="hidden" name="token" value="{{ $token }}" />
 
-        @formGroup('email')
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" class="form-control" required />
-            @error('email')
-        @endFormGroup
+        <div>
+            <x-forms.label for="email" />
 
-        @formGroup('password')
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control" required />
-            @error('password')
-        @endFormGroup
-
-        <div class="form-group">
-            <label for="password_confirmation">Password Confirmation</label>
-            <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required />
+            <x-forms.inputs.email name="email" id="email" required />
         </div>
 
-        <input type="submit" class="w-full button button-primary" value="Reset Password"/>
-    </form>
+        <div>
+            <x-forms.label for="password" />
+
+            <x-forms.inputs.password name="password" id="password" required />
+        </div>
+
+        <div>
+            <x-forms.label for="password_confirmation" />
+
+            <x-forms.inputs.password name="password_confirmation" id="password_confirmation" required />
+        </div>
+
+        <x-buttons.primary-button type="submit" fullWidth>
+            Reset Password
+        </x-buttons.primary-button>
+    </x-buk-form>
 @endsection

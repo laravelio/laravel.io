@@ -1,15 +1,18 @@
 @extends('layouts.base')
 
 @section('body')
-    <div class="flex items-center justify-center py-8 md:py-20 bg-gray-50">
-        <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
-            <h1 class="text-4xl text-gray-700 text-center mb-2 font-bold break-all">{{ $title }}</h1>
-            <div class="p-8 md:border-2 md:rounded md:bg-gray-100">
+    <div class="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-gray-100">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                {{ $title }}
+            </h2>
+        </div>
+
+        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 @include('layouts._alerts')
 
                 @yield('small-content')
-
-                @yield('small-content-after')
             </div>
         </div>
     </div>

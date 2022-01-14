@@ -1,6 +1,6 @@
 @title('Write your article')
 
-@extends('layouts.default', ['isTailwindUi' => true])
+@extends('layouts.default')
 
 @section('subnav')
     <div class="bg-white border-b">
