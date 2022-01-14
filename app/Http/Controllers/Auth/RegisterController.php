@@ -8,9 +8,9 @@ use App\Http\Requests\RegisterRequest;
 use App\Jobs\RegisterUser;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
 
 class RegisterController extends Controller
 {
@@ -45,11 +45,20 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Handle a registration request for the application.
+     *
+     * @param  RegisterRequest  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
-    protected function validator(array $data): ValidatorContract
+    public function register(RegisterRequest $request)
     {
-        return Validator::make($data, app(RegisterRequest::class)->rules());
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
     }
 
     /**
