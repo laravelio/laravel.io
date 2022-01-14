@@ -44,9 +44,6 @@
                 </x-forms.inputs.checkbox>
             </div>
 
-            <input type="hidden" name="github_id" value="{{ session('githubData.id') }}" />
-            <input type="hidden" name="github_username" value="{{ session('githubData.username') }}" />
-
             <x-buttons.primary-button type="submit" fullWidth>
                 Register
             </x-buttons.primary-button>

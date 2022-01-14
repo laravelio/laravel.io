@@ -12,6 +12,14 @@ class RegisterRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'github_id' => $this->session->get('githubData.id'),
+            'github_username' => $this->session->get('githubData.username'),
+        ]);
+    }
+
     public function rules()
     {
         return [
