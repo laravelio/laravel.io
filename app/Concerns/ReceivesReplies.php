@@ -26,10 +26,10 @@ trait ReceivesReplies
             'replyable_id',
             'id',
             'id',
-            'author_id'
+            'author_id',
         )->where(
-            'replyable_type', 
-            array_search(static::class, Relation::morphMap())
+            'replyable_type',
+            array_search(static::class, Relation::morphMap()),
         );
     }
 

@@ -82,30 +82,30 @@ window.editorConfig = (body) => {
             const element = event.target;
             const content = element.value;
             const cursorPosition = element.selectionEnd;
-            const matches = event.target.value.match(/@[\w\d]*/g)
+            const matches = event.target.value.match(/@[\w\d]*/g);
 
             if (!matches) {
                 return this.resetSearch();
             }
 
-            const shouldSearch = matches.some(match => {
-                const startPosition = content.search(match)
-                const endPosition = startPosition + match.length
+            const shouldSearch = matches.some((match) => {
+                const startPosition = content.search(match);
+                const endPosition = startPosition + match.length;
 
                 if (cursorPosition >= startPosition && cursorPosition <= endPosition) {
                     console.log(this.$wire.users.length);
-                    this.updateCursorPosition(event.target, startPosition)
+                    this.updateCursorPosition(event.target, startPosition);
                     this.showMentions = true;
-                    this.search = match.slice(1)
-                    this.$wire.getUsers(this.search)
+                    this.search = match.slice(1);
+                    this.$wire.getUsers(this.search);
                     return true;
                 }
 
                 return false;
-            })
+            });
 
             if (!shouldSearch) {
-                this.resetSearch()
+                this.resetSearch();
             }
         },
         resetSearch: function () {
@@ -114,29 +114,30 @@ window.editorConfig = (body) => {
             this.search = '';
         },
         showUserSelect: function () {
-            console.log({ show: this.showMentions, total: this.$wire.users.length })
-            return this.showMentions && this.$wire.users.length > 0
+            console.log({ show: this.showMentions, total: this.$wire.users.length });
+            return this.showMentions && this.$wire.users.length > 0;
         },
         selectUser: function (username) {
-            let content = this.$refs.editor.value
-            const cursorPosition = this.$refs.editor.selectionEnd
-            const matches = content.match(/@[\w\d]*/g)
+            let content = this.$refs.editor.value;
+            const cursorPosition = this.$refs.editor.selectionEnd;
+            const matches = content.match(/@[\w\d]*/g);
 
             if (!matches) {
                 return;
             }
 
-            matches.forEach(match => {
-                const startPosition = content.search(match)
-                const endPosition = startPosition + match.length
+            matches.forEach((match) => {
+                const startPosition = content.search(match);
+                const endPosition = startPosition + match.length;
 
                 if (cursorPosition >= startPosition && cursorPosition <= endPosition) {
-                    this.body = content.substring(0, startPosition) + '@' + username + content.substring(endPosition) + ' ';
-                    this.$refs.editor.focus()
-                    this.resetSearch()
+                    this.body =
+                        content.substring(0, startPosition) + '@' + username + content.substring(endPosition) + ' ';
+                    this.$refs.editor.focus();
+                    this.resetSearch();
                 }
-            })
-        }
+            });
+        },
     };
 };
 
