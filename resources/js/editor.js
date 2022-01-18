@@ -82,7 +82,7 @@ window.editorConfig = (body) => {
             const element = event.target;
             const content = element.value;
             const cursorPosition = element.selectionEnd;
-            const matches = event.target.value.match(/@[\w\d]+/g)
+            const matches = event.target.value.match(/@[\w\d]*/g)
 
             if (!matches) {
                 return this.resetSearch();
@@ -120,7 +120,7 @@ window.editorConfig = (body) => {
         selectUser: function (username) {
             let content = this.$refs.editor.value
             const cursorPosition = this.$refs.editor.selectionEnd
-            const matches = content.match(/@[\w\d]+/g)
+            const matches = content.match(/@[\w\d]*/g)
 
             if (!matches) {
                 return;

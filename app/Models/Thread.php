@@ -340,4 +340,12 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
     {
         return $query->whereNull('locked_at');
     }
+
+    public function participants(): SupportCollection
+    {
+        return $this->replyAuthors()
+            ->get()
+            ->prepend($this->author())
+            ->unique();
+    }
 }

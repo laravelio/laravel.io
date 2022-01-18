@@ -3,7 +3,10 @@
 namespace App\Concerns;
 
 use App\Models\Reply;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 trait ReceivesReplies
 {
@@ -13,6 +16,21 @@ trait ReceivesReplies
     public function replies()
     {
         return $this->repliesRelation;
+    }
+
+    public function replyAuthors(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            User::class,
+            Reply::class,
+            'replyable_id',
+            'id',
+            'id',
+            'author_id'
+        )->where(
+            'replyable_type', 
+            array_search(static::class, Relation::morphMap())
+        );
     }
 
     /**

@@ -24,6 +24,8 @@ class Editor extends Component
 
     public $users;
 
+    public $participants;
+
     public function mount()
     {
         $this->users = collect();
@@ -39,12 +41,18 @@ class Editor extends Component
     public function getUsers($search)
     {
         if (! $search) {
-            return $this->users = collect();
+            return $this->users = $this->participants;
         }
 
         $search = Str::after($search, '@');
+        $users = User::where('username', 'like', "{$search}%")->take(5)->get();
+        $users = $this->participants->filter(function ($participant) use ($search) {
+            return Str::startsWith($participant->username, $search);
+        })
+            ->merge($users)
+            ->unique('id');
 
-        return $this->users = User::where('username', 'like', "{$search}%")->take(5)->get();
+        return $this->users = $users;
     }
 
     public function getPreviewProperty()
