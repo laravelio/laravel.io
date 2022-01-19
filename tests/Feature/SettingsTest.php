@@ -139,7 +139,8 @@ test('users can generate API tokens', function () {
         ->submitForm('Generate New Token', [
             'name' => 'My API Token',
         ])
-        ->seePageIs('/settings');
+        ->seePageIs('/settings')
+        ->see('API token created! Please copy the following token as it will not be shown again: ');
 
     expect($user->refresh()->tokens)->toHaveCount(1);
 });
@@ -154,7 +155,8 @@ test('users can delete API tokens', function () {
         ->submitForm('Delete Token', [
             'id' => $token->accessToken->getKey(),
         ])
-        ->seePageIs('/settings');
+        ->seePageIs('/settings')
+        ->see('API token successfully removed.');
 
     expect($user->refresh()->tokens)->toBeEmpty();
 });
