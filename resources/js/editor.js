@@ -133,8 +133,7 @@ window.editorConfig = (body) => {
 
             mentions.forEach(({ start, end }) => {
                 if (this.isAtCursor(start, end)) {
-                    this.body =
-                        this.body.substring(0, start) + '@' + username + this.body.substring(end) + ' ';
+                    this.body = this.body.substring(0, start) + '@' + username + this.body.substring(end) + ' ';
                     this.$refs.editor.focus();
                     this.resetUserSearch();
                 }
@@ -143,15 +142,15 @@ window.editorConfig = (body) => {
 
         // Extracts all the mentions from the input along with their start and end position in the string.
         extractMentions: function () {
-            const mentionRegex = /@[\w\d]*/g
+            const mentionRegex = /@[\w\d]*/g;
             let mention;
             let mentions = [];
             while ((mention = mentionRegex.exec(this.body)) !== null) {
                 mentions.push({
                     mention: mention[0],
                     start: mention.index,
-                    end: mention.index + mention[0].length
-                })
+                    end: mention.index + mention[0].length,
+                });
             }
 
             return mentions;
@@ -159,9 +158,9 @@ window.editorConfig = (body) => {
 
         // Detects whether or not the provided start and end position overlap the current cursor position.
         isAtCursor: function (start, end) {
-            return this.cursorPosition() >= start && this.cursorPosition() <= end
-        }
-    }
+            return this.cursorPosition() >= start && this.cursorPosition() <= end;
+        },
+    };
 };
 
 Livewire.on('previewRequested', () => {
