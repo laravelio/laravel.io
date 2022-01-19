@@ -45,30 +45,29 @@
                     @keydown.ctrl.enter="submit($event)"
                     @keydown.space="showMentions = false"
                     @click.away="showMentions = false"
-                    @keydown.debounce.500ms="updateSearch($event)"
+                    @keydown.debounce.500ms="updateUserSearch($event)"
                 ></textarea>
 
                 @if ($users->count())
-                <ul 
-                    x-cloak 
-                    x-show="showUserSelect()" 
-                    class="absolute flex flex-col gap-y-2 bg-white p-2 rounded shadow" 
-                    x-ref="users" 
-                    :style="`top: ${cursorTop}; left: ${cursorLeft}`" 
-                >
-                    @foreach ($users as $user)
-                        <li 
-                            class="flex items-center gap-x-2 cursor-pointer focus:bg-red" 
-                            @click.prevent="selectUser('{{ $user->username() }}')"
-                        >
-                            <x-avatar :user="$user" class="w-5 h-5" />
+                    <ul 
+                        x-cloak 
+                        x-show="showUserListbox()" 
+                        class="absolute flex flex-col gap-y-2 bg-white p-2 rounded shadow" 
+                        :style="`top: ${cursorTop}; left: ${cursorLeft}; display:none`" 
+                    >
+                        @foreach ($users as $user)
+                            <li 
+                                class="flex items-center gap-x-2 cursor-pointer focus:bg-red" 
+                                @click.prevent="selectUser('{{ $user->username() }}')"
+                            >
+                                <x-avatar :user="$user" class="w-5 h-5" />
 
-                            <span class="text-gray-900">
-                                {{ $user->username() }}
-                            </span>
-                        </li>
-                    @endforeach
-                </ul>
+                                <span class="text-gray-900">
+                                    {{ $user->username() }}
+                                </span>
+                            </li>
+                        @endforeach
+                    </ul>
                 @endif
             </div>            
 

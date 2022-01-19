@@ -65,38 +65,41 @@ window.editorConfig = (body) => {
         },
         cursorTop: 0,
         cursorLeft: 0,
-        cursorPosition: 0,
         body: body,
         mode: 'write',
         showMentions: false,
         search: '',
-        submit: function (event) {
-            event.target.closest('form').submit();
+
+        // Gets the current cursor position.
+        cursorPosition: function () {
+            return this.$refs.editor.selectionEnd;
         },
-        updateCursorPosition: function (element, position) {
+
+        // Submits the form enclosing the editor.
+        submit: function () {
+            this.$refs.editor.closest('form').submit();
+        },
+
+        // Updates the position of the listbox by calculating the caret position and applying an offset.
+        updateListboxPosition: function (element, position) {
             const coordinates = getCaretCoordinates(element, position);
             this.cursorTop = coordinates.top + 25 + 'px';
             this.cursorLeft = coordinates.left + 'px';
         },
-        updateSearch: function (event) {
-            const element = event.target;
-            const content = element.value;
-            const cursorPosition = element.selectionEnd;
-            const matches = event.target.value.match(/@[\w\d]*/g);
 
-            if (!matches) {
-                return this.resetSearch();
+        // Takes the user input, determines if a mention is active and initiates the search.
+        updateUserSearch: function () {
+            const mentions = this.extractMentions();
+
+            if (!mentions) {
+                return this.resetUserSearch();
             }
 
-            const shouldSearch = matches.some((match) => {
-                const startPosition = content.search(match);
-                const endPosition = startPosition + match.length;
-
-                if (cursorPosition >= startPosition && cursorPosition <= endPosition) {
-                    console.log(this.$wire.users.length);
-                    this.updateCursorPosition(event.target, startPosition);
+            const shouldSearch = mentions.some(({ mention, start, end }) => {
+                if (this.isAtCursor(start, end)) {
+                    this.updateListboxPosition(this.$refs.editor, start);
                     this.showMentions = true;
-                    this.search = match.slice(1);
+                    this.search = mention.slice(1);
                     this.$wire.getUsers(this.search);
                     return true;
                 }
@@ -105,40 +108,60 @@ window.editorConfig = (body) => {
             });
 
             if (!shouldSearch) {
-                this.resetSearch();
+                this.resetUserSearch();
             }
         },
-        resetSearch: function () {
-            console.log('Resetting');
+
+        // Resets the user search parameters.
+        resetUserSearch: function () {
             this.showMentions = false;
             this.search = '';
         },
-        showUserSelect: function () {
-            console.log({ show: this.showMentions, total: this.$wire.users.length });
+
+        // Determines whether or not the user listbox should be rendered.
+        showUserListbox: function () {
             return this.showMentions && this.$wire.users.length > 0;
         },
-        selectUser: function (username) {
-            let content = this.$refs.editor.value;
-            const cursorPosition = this.$refs.editor.selectionEnd;
-            const matches = content.match(/@[\w\d]*/g);
 
-            if (!matches) {
+        // Takes the selected user from the listbox and populates the value in the correct place in the editor.
+        selectUser: function (username) {
+            const mentions = this.extractMentions();
+
+            if (!mentions) {
                 return;
             }
 
-            matches.forEach((match) => {
-                const startPosition = content.search(match);
-                const endPosition = startPosition + match.length;
-
-                if (cursorPosition >= startPosition && cursorPosition <= endPosition) {
+            mentions.forEach(({ start, end }) => {
+                if (this.isAtCursor(start, end)) {
                     this.body =
-                        content.substring(0, startPosition) + '@' + username + content.substring(endPosition) + ' ';
+                        this.body.substring(0, start) + '@' + username + this.body.substring(end) + ' ';
                     this.$refs.editor.focus();
-                    this.resetSearch();
+                    this.resetUserSearch();
                 }
             });
         },
-    };
+
+        // Extracts all the mentions from the input along with their start and end position in the string.
+        extractMentions: function () {
+            const mentionRegex = /@[\w\d]*/g
+            let mention;
+            let mentions = [];
+            while ((mention = mentionRegex.exec(this.body)) !== null) {
+                mentions.push({
+                    mention: mention[0],
+                    start: mention.index,
+                    end: mention.index + mention[0].length
+                })
+            }
+
+            return mentions;
+        },
+
+        // Detects whether or not the provided start and end position overlap the current cursor position.
+        isAtCursor: function (start, end) {
+            return this.cursorPosition() >= start && this.cursorPosition() <= end
+        }
+    }
 };
 
 Livewire.on('previewRequested', () => {
