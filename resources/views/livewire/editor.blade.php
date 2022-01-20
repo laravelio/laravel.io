@@ -1,4 +1,4 @@
-<div>
+<div class="editor">
     @if ($label)
         <span class="text-xl text-gray-900 font-semibold mb-4 block">
             {{ $label }}
@@ -44,6 +44,9 @@
                     @keydown.cmd.enter="submit($event)"
                     @keydown.ctrl.enter="submit($event)"
                     @keydown.space="showMentions = false"
+                    @keydown.down="highlightNextUser(event)"
+                    @keydown.up="highlightPreviousUser(event)"
+                    @keydown.enter="selectHighlightedUser(event)"
                     @click.away="showMentions = false"
                     @keydown.debounce.500ms="updateUserSearch($event)"
                 ></textarea>
@@ -51,20 +54,26 @@
                 @if ($users->count())
                     <ul 
                         x-cloak 
-                        x-show="showUserListbox()" 
-                        class="absolute flex flex-col gap-y-2 bg-white p-2 rounded shadow" 
-                        :style="`top: ${cursorTop}; left: ${cursorLeft}; display:none`" 
+                        x-show="showUserListbox()"
+                        x-ref="users"
+                        class="absolute flex flex-col gap-y-2 bg-white rounded shadow" 
+                        :style="`top: ${cursorTop}; left: ${cursorLeft}; display: ${showUserListbox() ? 'block' : 'none'}`"
+                        tabindex="-1"
+                        role="listbox"
                     >
                         @foreach ($users as $user)
-                            <li 
-                                class="flex items-center gap-x-2 cursor-pointer focus:bg-red" 
+                            <li
                                 @click.prevent="selectUser('{{ $user->username() }}')"
+                                role="option"
+                                class="flex items-center gap-x-2 p-2 cursor-pointer hover:bg-lio-100"
+                                data-username="{{ $user->username() }}"
+                                aria-selected="{{ $loop->first ? 'true' : 'false' }}"
                             >
-                                <x-avatar :user="$user" class="w-5 h-5" />
+                                    <x-avatar :user="$user" unlinked="true" class="w-5 h-5" />
 
-                                <span class="text-gray-900">
-                                    {{ $user->username() }}
-                                </span>
+                                    <span class="text-gray-900">
+                                        {{ $user->username() }}
+                                    </span>
                             </li>
                         @endforeach
                     </ul>

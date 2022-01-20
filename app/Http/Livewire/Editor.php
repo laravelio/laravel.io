@@ -26,9 +26,10 @@ class Editor extends Component
 
     public $participants;
 
-    public function mount()
+    public function mount($participants = null)
     {
         $this->users = collect();
+        $this->participants = $participants ?: collect();
     }
 
     public function render()
@@ -40,7 +41,7 @@ class Editor extends Component
 
     public function getUsers($search)
     {
-        if (! $search) {
+        if (! $search && $this->participants->isNotEmpty()) {
             return $this->users = $this->participants;
         }
 

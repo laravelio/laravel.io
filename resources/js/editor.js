@@ -88,7 +88,11 @@ window.editorConfig = (body) => {
         },
 
         // Takes the user input, determines if a mention is active and initiates the search.
-        updateUserSearch: function () {
+        updateUserSearch: function (event) {
+            if (this.isArrowKey(event.keyCode)) {
+                return;
+            }
+
             const mentions = this.extractMentions();
 
             if (!mentions) {
@@ -123,6 +127,70 @@ window.editorConfig = (body) => {
             return this.showMentions && this.$wire.users.length > 0;
         },
 
+        // Get the currently highlighted user in the listbox.
+        getHighlightedUser: function () {
+            if (!this.showUserListbox()) {
+                return false;
+            }
+
+            const highlighted = this.$refs.users.querySelectorAll('li[aria-selected=true]');
+
+            return highlighted[0] ? highlighted[0] : false;
+        },
+
+        // Highlight the next user in the listbox.
+        highlightNextUser: function (event) {
+            const highlighted = this.getHighlightedUser();
+
+            if (!highlighted) {
+                return;
+            }
+
+            const next = highlighted.nextElementSibling;
+
+            if (!next) {
+                return;
+            }
+
+            event.preventDefault();
+
+            highlighted.setAttribute('aria-selected', false)
+            next.setAttribute('aria-selected', true)
+        },
+
+        // Highlight the previous user in the listbox.
+        highlightPreviousUser: function (event) {
+            const highlighted = this.getHighlightedUser();
+
+            if (!highlighted) {
+                return;
+            }
+
+            const previous = highlighted.previousElementSibling;
+
+            if (!previous) {
+                return;
+            }
+
+            event.preventDefault();
+
+            highlighted.setAttribute('aria-selected', false)
+            previous.setAttribute('aria-selected', true)
+        },
+
+        // Take the selected user and put the name into the editor.
+        selectHighlightedUser: function (event) {
+            const highlighted = this.getHighlightedUser();
+
+            if (!highlighted) {
+                return;
+            }
+
+            event.preventDefault();
+
+            this.selectUser(highlighted.dataset.username);
+        },
+
         // Takes the selected user from the listbox and populates the value in the correct place in the editor.
         selectUser: function (username) {
             const mentions = this.extractMentions();
@@ -130,12 +198,16 @@ window.editorConfig = (body) => {
             if (!mentions) {
                 return;
             }
+            const editor = this.$refs.editor;
 
             mentions.forEach(({ start, end }) => {
                 if (this.isAtCursor(start, end)) {
                     this.body = this.body.substring(0, start) + '@' + username + this.body.substring(end) + ' ';
-                    this.$refs.editor.focus();
                     this.resetUserSearch();
+                    this.$nextTick(() => {
+                        editor.focus();
+                        editor.setSelectionRange(start + username.length + 2, start + username.length + 2);
+                    })
                 }
             });
         },
@@ -160,6 +232,10 @@ window.editorConfig = (body) => {
         isAtCursor: function (start, end) {
             return this.cursorPosition() >= start && this.cursorPosition() <= end;
         },
+
+        isArrowKey: function (code) {
+            return code == 38 || code == 40;
+        }
     };
 };
 
