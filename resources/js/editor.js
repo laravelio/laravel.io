@@ -154,8 +154,8 @@ window.editorConfig = (body) => {
 
             event.preventDefault();
 
-            highlighted.setAttribute('aria-selected', false)
-            next.setAttribute('aria-selected', true)
+            highlighted.setAttribute('aria-selected', false);
+            next.setAttribute('aria-selected', true);
         },
 
         // Highlight the previous user in the listbox.
@@ -174,8 +174,8 @@ window.editorConfig = (body) => {
 
             event.preventDefault();
 
-            highlighted.setAttribute('aria-selected', false)
-            previous.setAttribute('aria-selected', true)
+            highlighted.setAttribute('aria-selected', false);
+            previous.setAttribute('aria-selected', true);
         },
 
         // Take the selected user and put the name into the editor.
@@ -207,7 +207,7 @@ window.editorConfig = (body) => {
                     this.$nextTick(() => {
                         editor.focus();
                         editor.setSelectionRange(start + username.length + 2, start + username.length + 2);
-                    })
+                    });
                 }
             });
         },
@@ -235,7 +235,7 @@ window.editorConfig = (body) => {
 
         isArrowKey: function (code) {
             return code == 38 || code == 40;
-        }
+        },
     };
 };
 

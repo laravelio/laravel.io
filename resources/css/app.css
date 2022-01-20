@@ -145,6 +145,6 @@ svg .secondary {
     @apply rounded-none border-b-2 border-gray-300 !important;
 }
 
-.editor li[aria-selected="true"] {
+.editor li[aria-selected='true'] {
     @apply bg-lio-100;
 }
