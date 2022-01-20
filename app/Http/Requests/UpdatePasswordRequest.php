@@ -9,10 +9,15 @@ class UpdatePasswordRequest extends Request
 {
     public function rules()
     {
-        return [
-            'current_password' => ['sometimes', 'required', new PasscheckRule()],
+        $rules = [
             'password' => ['required', 'confirmed', Password::min(8)->uncompromised()],
         ];
+
+        if ($this->user()->hasPassword()) {
+            $rules['current_password'] = ['required', new PasscheckRule()];
+        }
+
+        return $rules;
     }
 
     public function newPassword(): string

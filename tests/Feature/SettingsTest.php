@@ -82,6 +82,19 @@ test('users can update their password', function () {
     assertPasswordWasHashedAndSaved();
 });
 
+test('current password is required when updating your password', function () {
+    $this->login();
+
+    $this->visit('/settings')
+        ->submitForm('Update Password', [
+            'password' => 'QFq^$cz#P@MZa5z7',
+            'password_confirmation' => 'QFq^$cz#P@MZa5z7',
+        ])
+        ->seePageIs('/settings')
+        ->see('Something went wrong. Please review the fields below.')
+        ->see('The current password field is required.');
+});
+
 test('users cannot update their password when it has been compromised in data leaks', function () {
     $this->login();
 
