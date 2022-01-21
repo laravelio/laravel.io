@@ -8,6 +8,6 @@
     <img class="md:hidden mx-auto w-full" style="max-width:300px" src="{{ asset("/images/showcase/{$banner['image']}-small.png") }}" alt="{{ $banner['alt'] }}">
 </a>
 
-<x-ads.cta primary class="mt-4 md:mt-12">
+<x-ads.cta primary class="mt-4">
     Your banner here too?
 </x-ads.cta>

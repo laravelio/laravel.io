@@ -1,8 +1,8 @@
-<section class="mb-14 lg:mb-40">
+<section class="mt-12 lg:mt-40">
     @include('layouts._sponsors')
 </section>
 
-<div class="bg-gray-900 text-white">
+<div class="bg-gray-900 text-white mt-14 lg:mt-40">
     <div class="container mx-auto pt-7 pb-8 lg:pt-20 lg:px-16">
         <div class="mx-4 md:mx-0">
             <div class="flex flex-col pb-8 mb-8 border-b lg:pb-16 border-gray-800 lg:flex-row">

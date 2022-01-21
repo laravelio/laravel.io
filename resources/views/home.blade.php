@@ -53,15 +53,36 @@
     <!-- /Head section -->
 
     <!-- Banner ad -->
-    <section class="container mx-auto mt-10 lg:mt-40 lg:px-16">
+    <section class="container mx-auto mt-12 lg:mt-24 lg:px-16">
         <div class="px-4 lg:px-10">
             @include('layouts._ads._footer')
         </div>
     </section>
     <!-- /Banner ad -->
 
+    <!-- Popular articles -->
+    <section class="mt-12 container mx-auto px-4 lg:mt-24 lg:px-16">
+        <div class="flex flex-col items-center mb-8 lg:flex-row lg:mb-16">
+            <h2 class="w-full text-3xl font-bold text-gray-900 mb-2 lg:text-4xl lg:w-1/2 lg:mb-0">
+                Popular articles
+            </h2>
+            <p class="w-full text-gray-800 text-lg lg:w-1/2">
+                Have a look a the latest shared articles by our community members
+            </p>
+        </div>
+
+        <x-articles.featured :articles="$latestArticles" />
+
+        <div class="flex justify-center">
+            <x-buttons.primary-cta href="{{ route('articles') }}" class="w-full lg:w-auto">
+                View all articles
+            </x-buttons.primary-cta>
+        </div>
+    </section>
+    <!-- /Popular articles -->
+
     <!-- Search -->
-    <section class="mt-10 lg:mt-16">
+    <section class="mt-12 lg:mt-24">
         <div class="bg-lio-500 text-white -skew-y-1">
             <div class="container mx-auto skew-y-1">
                 <div class="flex flex-col items-center py-10 text-center lg:py-20">
@@ -108,7 +129,7 @@
     <!-- /Search -->
 
     <!-- Help others -->
-    <section class="mt-14 container mx-auto lg:mt-36 lg:px-16">
+    <section class="mt-12 container mx-auto lg:mt-24 lg:px-16">
         <div class="px-4 lg:px-0">
             <div class="flex flex-col lg:flex-row items-center mb-4 lg:mb-12">
                 <h2 class="w-full text-3xl font-bold text-gray-900 lg:w-1/2 lg:text-4xl">
@@ -157,25 +178,4 @@
         </div>
     </section>
     <!-- /Laravel.io in numbers -->
-
-    <!-- Popular articles -->
-    <section class="my-12 container mx-auto px-4 lg:my-40 lg:px-16">
-        <div class="flex flex-col items-center mb-8 lg:flex-row lg:mb-16">
-            <h2 class="w-full text-3xl font-bold text-gray-900 mb-2 lg:text-4xl lg:w-1/2 lg:mb-0">
-                Popular articles
-            </h2>
-            <p class="w-full text-gray-800 text-lg lg:w-1/2">
-                Have a look a the latest shared articles by our community members
-            </p>
-        </div>
-
-        <x-articles.featured :articles="$latestArticles" />
-
-        <div class="flex justify-center">
-            <x-buttons.primary-cta href="{{ route('articles') }}" class="w-full lg:w-auto">
-                View all articles
-            </x-buttons.primary-cta>
-        </div>
-    </section>
-    <!-- /Popular articles -->
 @endsection
