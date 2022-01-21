@@ -47,8 +47,8 @@ class Editor extends Component
 
         $search = Str::after($search, '@');
         $users = User::where('username', 'like', "{$search}%")->take(5)->get();
-        
-        if($this->participants->isNotEmpty()) {
+
+        if ($this->participants->isNotEmpty()) {
             $users = $this->participants->filter(function ($participant) use ($search) {
                 return Str::startsWith($participant->username(), $search);
             })

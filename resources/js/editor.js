@@ -245,7 +245,7 @@ window.editorConfig = (body) => {
         // Detects whether or not the given key code is they escape key.
         isEscapeKey: function (code) {
             return code == 27;
-        }
+        },
     };
 };
 
