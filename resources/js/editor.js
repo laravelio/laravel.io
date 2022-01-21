@@ -89,6 +89,10 @@ window.editorConfig = (body) => {
 
         // Takes the user input, determines if a mention is active and initiates the search.
         updateUserSearch: function (event) {
+            if (this.isEscapeKey(event.keyCode)) {
+                return;
+            }
+
             if (this.isArrowKey(event.keyCode)) {
                 return;
             }
@@ -233,9 +237,15 @@ window.editorConfig = (body) => {
             return this.cursorPosition() >= start && this.cursorPosition() <= end;
         },
 
+        // Detects whether or not the given key code is an up or down arrow.
         isArrowKey: function (code) {
             return code == 38 || code == 40;
         },
+
+        // Detects whether or not the given key code is they escape key.
+        isEscapeKey: function (code) {
+            return code == 27;
+        }
     };
 };
 

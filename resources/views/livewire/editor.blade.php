@@ -47,6 +47,7 @@
                     @keydown.down="highlightNextUser(event)"
                     @keydown.up="highlightPreviousUser(event)"
                     @keydown.enter="selectHighlightedUser(event)"
+                    @keydown.escape="showMentions = false"
                     @click.away="showMentions = false"
                     @keydown.debounce.500ms="updateUserSearch($event)"
                 ></textarea>
