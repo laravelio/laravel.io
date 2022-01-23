@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -41,22 +42,22 @@ class Editor extends Component
         return view('livewire.editor');
     }
 
-    public function getUsers($search)
+    public function getUsers($query): Collection
     {
         if (! $this->hasMentions) {
             return $this->users;
         }
-        
-        if (! $search) {
+
+        if (! $query) {
             return $this->users = $this->participants;
         }
 
-        $search = Str::after($search, '@');
-        $users = User::where('username', 'like', "{$search}%")->take(5)->get();
+        $query = Str::after($query, '@');
+        $users = User::where('username', 'like', "{$query}%")->take(5)->get();
 
         if ($this->participants->isNotEmpty()) {
-            $users = $this->participants->filter(function ($participant) use ($search) {
-                return Str::startsWith($participant->username(), $search);
+            $users = $this->participants->filter(function ($participant) use ($query) {
+                return Str::startsWith($participant->username(), $query);
             })
                 ->merge($users)
                 ->unique('id');
@@ -65,12 +66,12 @@ class Editor extends Component
         return $this->users = $users;
     }
 
-    public function getPreviewProperty()
+    public function getPreviewProperty(): string
     {
         return replace_links(md_to_html($this->body ?: ''));
     }
 
-    public function preview()
+    public function preview(): void
     {
         $this->emit('previewRequested');
     }
