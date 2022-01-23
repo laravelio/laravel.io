@@ -212,6 +212,9 @@
             title="Delete article"
         >
             <p>Are you sure you want to delete this article? Doing so will mean it is permanently removed from the site.</p>
+            @if (auth()->user()->isAdmin() || auth()->user()->isModerator())
+                <input type="text" id="message" placeholder="input optional message to the author" name="message"><br>
+            @endif
         </x-modal>
     @endcan
 
