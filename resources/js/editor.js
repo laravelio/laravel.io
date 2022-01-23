@@ -67,8 +67,9 @@ window.editorConfig = (body, hasMentions) => {
         cursorLeft: 0,
         body: body,
         hasMentions: hasMentions,
-        mode: 'write',
         showMentions: false,
+        mentionRegex: /@[a-z\d]*(?:[a-z\d]|-(?=[a-z\d])){0,38}(?!\w)/g,
+        mode: 'write',
         search: '',
 
         // Gets the current cursor position.
@@ -223,10 +224,9 @@ window.editorConfig = (body, hasMentions) => {
 
         // Extracts all the mentions from the input along with their start and end position in the string.
         extractMentions: function () {
-            const mentionRegex = /@[\w\d]*/g;
             let mention;
             let mentions = [];
-            while ((mention = mentionRegex.exec(this.body)) !== null) {
+            while ((mention = this.mentionRegex.exec(this.body)) !== null) {
                 mentions.push({
                     mention: mention[0],
                     start: mention.index,
