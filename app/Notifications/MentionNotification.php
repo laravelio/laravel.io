@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use App\Mail\MentionEmail;
-use App\Mail\NewReplyEmail;
 use App\Models\MentionAble;
 use App\Models\User;
 use Illuminate\Bus\Queueable;

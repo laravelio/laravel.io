@@ -46,11 +46,11 @@ final class CreateThread
         $subscription->uuid = Uuid::uuid4()->toString();
         $subscription->userRelation()->associate($this->author);
         $subscription->subscriptionAbleRelation()->associate($thread);
-        
+
         $thread->subscriptionsRelation()->save($subscription);
-        
+
         event(new ThreadWasCreated($thread));
-        
+
         return $thread;
     }
 }

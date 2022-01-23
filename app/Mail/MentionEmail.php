@@ -12,7 +12,6 @@ final class MentionEmail extends Mailable
         public MentionAble $mentionAble,
         public User $receiver
     ) {
-
     }
 
     public function build()
