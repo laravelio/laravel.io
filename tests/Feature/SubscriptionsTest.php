@@ -102,3 +102,15 @@ test('users can unsubscribe through a token link', function () {
 
     $this->notSeeInDatabase('subscriptions', ['uuid' => $subscription->uuid()]);
 });
+
+test('users are subscribed to a thread when mentioned', function () {
+    $this->markTestIncomplete(
+        'This test has not been implemented yet.'
+    );
+});
+
+test('users are subscribed to a thread when mentioned in a reply', function () {
+    $this->markTestIncomplete(
+        'This test has not been implemented yet.'
+    );
+});
