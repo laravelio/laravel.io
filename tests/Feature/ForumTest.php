@@ -10,7 +10,6 @@ use App\Models\User;
 use App\Notifications\MentionNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 use Tests\Feature\BrowserKitTestCase;
@@ -284,6 +283,6 @@ test('users provided with a UI notification when mentioned in a thread body', fu
 
 test('users are not notified when mentioned in and edited thread', function () {
     $this->markTestIncomplete(
-        'This test has not been implemented yet.'
+        'This test has not been implemented yet.',
     );
 });

@@ -140,18 +140,18 @@ test('replyable updated_at timestamp is not touched when reply is created', func
 
 test('users are notified by email when mentioned in a reply body', function () {
     $this->markTestIncomplete(
-        'This test has not been implemented yet.'
+        'This test has not been implemented yet.',
     );
 });
 
 test('users provided with a UI notification when mentioned in a reply body', function () {
     $this->markTestIncomplete(
-        'This test has not been implemented yet.'
+        'This test has not been implemented yet.',
     );
 });
 
 test('users are not notified when mentioned in an edited reply', function () {
     $this->markTestIncomplete(
-        'This test has not been implemented yet.'
+        'This test has not been implemented yet.',
     );
 });

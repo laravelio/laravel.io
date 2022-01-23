@@ -18,7 +18,7 @@ final class SubscribeUsersMentionedInReply
                 return;
             }
 
-            if($replyAble->hasSubscriber($user)) {
+            if ($replyAble->hasSubscriber($user)) {
                 return;
             }
 
