@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Concerns\HasAuthor;
 use App\Concerns\HasLikes;
+use App\Concerns\HasMentions;
 use App\Concerns\HasSlug;
 use App\Concerns\HasTags;
 use App\Concerns\HasTimestamps;
@@ -26,7 +27,7 @@ use Laravel\Scout\Searchable;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
-final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAble
+final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAble, MentionAble
 {
     use HasFactory;
     use HasAuthor;
@@ -34,6 +35,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
     use HasSlug;
     use HasTags;
     use HasTimestamps;
+    use HasMentions;
     use PreparesSearch;
     use ProvidesSubscriptions;
     use ReceivesReplies;
@@ -347,5 +349,12 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
             ->get()
             ->prepend($this->author())
             ->unique();
+    }
+
+    public function getMentionedUsers(): SupportCollection
+    {
+        preg_match_all('/@([a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}(?!\w))/', $this->body, $matches);
+
+        return User::whereIn('username', $matches[1])->get();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Concerns\HasAuthor;
 use App\Concerns\HasLikes;
+use App\Concerns\HasMentions;
 use App\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,12 +14,13 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
 
-final class Reply extends Model
+final class Reply extends Model implements MentionAble
 {
     use HasFactory;
     use HasAuthor;
     use HasLikes;
     use HasTimestamps;
+    use HasMentions;
 
     const TABLE = 'replies';
 
