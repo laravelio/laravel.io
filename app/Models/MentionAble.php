@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Collection;
+
 interface MentionAble
 {
     public function body(): string;
@@ -10,5 +12,7 @@ interface MentionAble
 
     public function author(): User;
 
-    public function mentionedOn(): ReplyAble;
+    public function mentionedIn(): ReplyAble;
+
+    public function getMentionedUsers(): Collection;
 }

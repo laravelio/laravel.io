@@ -350,11 +350,4 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
             ->prepend($this->author())
             ->unique();
     }
-
-    public function getMentionedUsers(): SupportCollection
-    {
-        preg_match_all('/@([a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}(?!\w))/', $this->body, $matches);
-
-        return User::whereIn('username', $matches[1])->get();
-    }
 }

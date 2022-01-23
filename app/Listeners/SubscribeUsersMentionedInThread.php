@@ -5,14 +5,17 @@ declare(strict_types=1);
 namespace App\Listeners;
 
 use App\Events\ThreadWasCreated;
-use App\Notifications\MentionNotification;
 
-final class NotifyMentionedUsers
+final class SubscribeUsersMentionedInThread
 {
     public function handle(ThreadWasCreated $event): void
     {
         $event->thread->getMentionedUsers()->each(function ($user) use ($event) {
-            $user->notify(new MentionNotification($event->thread));
+            if($event->thread->hasSubscriber($user)) {
+                return;
+            }
+
+            $event->thread->subscribe($user);
         });
     }
 }
