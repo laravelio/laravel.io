@@ -53,6 +53,7 @@
                     <livewire:editor
                         :body="$thread?->body()"
                         placeholder="Compose your thread..."
+                        hasMentions
                         hasButton
                         :buttonLabel="$thread ? 'Update thread' : 'Create thread'"
                         buttonIcon="heroicon-o-arrow-right"

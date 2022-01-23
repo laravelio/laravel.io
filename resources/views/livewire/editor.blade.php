@@ -5,7 +5,7 @@
         </span>
     @endif
 
-    <div x-data="editorConfig($wire.entangle('body').defer)" @editor-control-clicked.window="handleClick($event.detail, $root)" class="bg-white rounded-md shadow-md">
+    <div x-data="editorConfig($wire.entangle('body').defer, {{ $hasMentions }})" @editor-control-clicked.window="handleClick($event.detail, $root)" class="bg-white rounded-md shadow-md">
 
         <ul class="flex p-5 gap-x-4">
             <li>

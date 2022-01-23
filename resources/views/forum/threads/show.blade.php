@@ -71,6 +71,7 @@
                                 @csrf
 
                                 <livewire:editor
+                                    hasMentions
                                     hasButton
                                     buttonLabel="Reply"
                                     buttonIcon="send"

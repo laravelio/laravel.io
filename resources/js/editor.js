@@ -33,7 +33,7 @@ const insertCharactersAtPosition = (string, character, position) => {
 };
 
 // Configuration object for the text editor.
-window.editorConfig = (body) => {
+window.editorConfig = (body, hasMentions) => {
     return {
         styles: {
             header: {
@@ -66,6 +66,7 @@ window.editorConfig = (body) => {
         cursorTop: 0,
         cursorLeft: 0,
         body: body,
+        hasMentions: hasMentions,
         mode: 'write',
         showMentions: false,
         search: '',
@@ -89,6 +90,10 @@ window.editorConfig = (body) => {
 
         // Takes the user input, determines if a mention is active and initiates the search.
         updateUserSearch: function (event) {
+            if (!this.hasMentions) {
+                return;
+            }
+
             if (this.isEscapeKey(event.keyCode)) {
                 return;
             }

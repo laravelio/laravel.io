@@ -22,6 +22,8 @@ class Editor extends Component
 
     public $buttonIcon;
 
+    public $hasMentions = false;
+
     public $users;
 
     public $participants;
@@ -41,6 +43,10 @@ class Editor extends Component
 
     public function getUsers($search)
     {
+        if (! $this->hasMentions) {
+            return $this->users;
+        }
+        
         if (! $search) {
             return $this->users = $this->participants;
         }
