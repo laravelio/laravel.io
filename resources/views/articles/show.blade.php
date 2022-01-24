@@ -211,8 +211,9 @@
             :action="route('articles.delete', $article->slug())"
             title="Delete article"
         >
-            <p>Are you sure you want to delete this article? Doing so will mean it is permanently removed from the site.</p>
+            <p>Are you sure you want to delete this article? Doing so will mean it is permanently removed from the site.</p><br>
             @if (auth()->user()->isAdmin() || auth()->user()->isModerator())
+                <p>Add optional reason why the article is deleted to the author!</p><br>
                 <input type="text" id="message" placeholder="input optional message to the author" name="message"><br>
             @endif
         </x-modal>
