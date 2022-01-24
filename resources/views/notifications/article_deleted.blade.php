@@ -8,7 +8,7 @@
             </svg>
 
             <div>
-                Your article: {{ $data['article_title'] }} has been deleted! check your mail for a reason from the Admin.
+                Your article: <b>{{ $data['article_title'] }}</b> has been deleted! please check your mail for more details from the Moderator.
             </div>
         </div>
     </td>

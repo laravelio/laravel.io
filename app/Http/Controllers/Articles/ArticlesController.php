@@ -144,11 +144,9 @@ class ArticlesController extends Controller
 
     public function delete(Request $request, Article $article)
     {
-        //dd($request->get('messagedd'));
-        // TODO: dispatch job to send message to the author of the post his post was deleted.
         $this->authorize(ArticlePolicy::DELETE, $article);
 
-        $this->dispatchSync(new DeleteArticle($article, $request->get('message')));
+        $this->dispatchSync(new DeleteArticle($article, $request->get('body')));
 
         $this->success('articles.deleted');
 
