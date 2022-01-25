@@ -6,6 +6,7 @@ use App\Models\Thread;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\HtmlString;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
@@ -327,6 +328,24 @@ test('guests cannot unpin articles', function () {
     $this->put("/admin/articles/{$article->slug()}/pinned");
 
     expect($article->fresh()->isPinned())->toBeTrue();
+});
+
+test('admins can delete an article with a message to the author', function () {
+    $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now(),]);
+
+    $user = $article->author();
+    $title = $article->title();
+
+    $this->loginAsAdmin();
+
+    $this->delete("articles/{$article->slug()}", [
+            'body' => 'This article violates our policies'
+    ]);
+
+    $this->loginAs($user);
+
+    $this->get("notifications")
+        ->see("Your article: <b>$title</b> has been deleted! please check your mail for more details from the Moderator.");
 });
 
 // Helpers

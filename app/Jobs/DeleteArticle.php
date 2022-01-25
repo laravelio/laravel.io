@@ -9,7 +9,7 @@ final class DeleteArticle
 {
     public function __construct(
         private Article $article,
-        private $message
+        private $message = null
     ) {
     }
 
