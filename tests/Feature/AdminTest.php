@@ -338,7 +338,7 @@ test('admins can delete an article with a message to the author', function () {
     $this->loginAsAdmin();
 
     $this->delete("articles/{$article->slug()}", [
-        'body' => 'This article violates our policies'
+        'body' => 'This article violates our policies',
     ]);
 
     $this->loginAs($user);
