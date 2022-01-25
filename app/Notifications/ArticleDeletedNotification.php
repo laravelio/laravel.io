@@ -2,12 +2,10 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
 use App\Mail\ArticleDeletedEmail;
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class ArticleDeletedNotification extends Notification
@@ -17,7 +15,7 @@ class ArticleDeletedNotification extends Notification
     public function __construct(
         private Article $article,
         private $message
-    ){
+    ) {
     }
 
     public function via(User $user)

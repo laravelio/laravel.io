@@ -15,7 +15,7 @@ final class DeleteArticle
 
     public function handle()
     {
-        if($this->message){
+        if ($this->message) {
             $this->article->author()->notify(new ArticleDeletedNotification($this->article, $this->message));
         }
         $this->article->delete();

@@ -6,7 +6,6 @@ use App\Models\Thread;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\HtmlString;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
@@ -331,7 +330,7 @@ test('guests cannot unpin articles', function () {
 });
 
 test('admins can delete an article with a message to the author', function () {
-    $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now(),]);
+    $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
     $user = $article->author();
     $title = $article->title();
@@ -339,12 +338,12 @@ test('admins can delete an article with a message to the author', function () {
     $this->loginAsAdmin();
 
     $this->delete("articles/{$article->slug()}", [
-            'body' => 'This article violates our policies'
+        'body' => 'This article violates our policies'
     ]);
 
     $this->loginAs($user);
 
-    $this->get("notifications")
+    $this->get('notifications')
         ->see("Your article: <b>$title</b> has been deleted! please check your mail for more details from the Moderator.");
 });
 
