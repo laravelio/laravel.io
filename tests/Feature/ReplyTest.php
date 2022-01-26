@@ -123,3 +123,17 @@ test('replyable activity is updated when reply is created', function () {
 
     $this->assertNotNull($thread->fresh()->last_activity_at);
 });
+
+test('replyable updated_at timestamp is not touched when reply is created', function () {
+    $thread = Thread::factory()->create(['subject' => 'The first thread', 'slug' => 'the-first-thread', 'updated_at' => '1970-01-01']);
+
+    $this->login();
+
+    $this->post('/replies', [
+        'body' => 'The first reply',
+        'replyable_id' => $thread->id,
+        'replyable_type' => Thread::TABLE,
+    ]);
+
+    $this->assertSame('1970-01-01', $thread->fresh()->updated_at->format('Y-m-d'));
+});

@@ -12,6 +12,7 @@ final class MarkLastActivity
     {
         $replyAble = $event->reply->replyAble();
         $replyAble->last_activity_at = now();
+        $replyAble->timestamps = false;
         $replyAble->save();
     }
 }
