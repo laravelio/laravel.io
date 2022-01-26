@@ -282,7 +282,21 @@ test('users provided with a UI notification when mentioned in a thread body', fu
 });
 
 test('users are not notified when mentioned in and edited thread', function () {
-    $this->markTestIncomplete(
-        'This test has not been implemented yet.',
-    );
+    Notification::fake();
+    $user = $this->createUser();
+    $tag = Tag::factory()->create(['name' => 'Test Tag']);
+    Thread::factory()->create([
+        'author_id' => $user->id(),
+        'slug' => 'my-first-thread',
+    ]);
+
+    $this->loginAs($user);
+
+    $this->put('/forum/my-first-thread', [
+        'subject' => 'How to work with Eloquent?',
+        'body' => 'This text explains how to work with Eloquent.',
+        'tags' => [$tag->id()],
+    ]);
+    
+    Notification::assertNothingSent();
 });

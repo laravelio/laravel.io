@@ -104,13 +104,30 @@ test('users can unsubscribe through a token link', function () {
 });
 
 test('users are subscribed to a thread when mentioned', function () {
-    $this->markTestIncomplete(
-        'This test has not been implemented yet.',
-    );
+    $user = User::factory()->create(['username' => 'janedoe', 'email' => 'janedoe@example.com']);
+
+    $this->login();
+
+    $this->post('/forum/create-thread', [
+        'subject' => 'How to work with Eloquent?',
+        'body' => 'Hey @janedoe',
+        'tags' => [],
+    ]);
+
+    $this->seeInDatabase('subscriptions', ['user_id' => $user->id()]);
 });
 
 test('users are subscribed to a thread when mentioned in a reply', function () {
-    $this->markTestIncomplete(
-        'This test has not been implemented yet.',
-    );
+    $user = User::factory()->create(['username' => 'janedoe', 'email' => 'janedoe@example.com']);
+    $thread = Thread::factory()->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
+
+    $this->login();
+
+    $this->post('/replies', [
+        'body' => 'Hey @janedoe',
+        'replyable_id' => $thread->id,
+        'replyable_type' => Thread::TABLE,
+    ]);
+
+    $this->seeInDatabase('subscriptions', ['user_id' => $user->id()]);
 });

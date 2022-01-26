@@ -57,7 +57,7 @@ class Editor extends Component
 
         if ($this->participants->isNotEmpty()) {
             $users = $this->participants->filter(function ($participant) use ($query) {
-                return Str::startsWith($participant->username(), $query);
+                return Str::startsWith($participant['username'], $query);
             })
                 ->merge($users)
                 ->unique('id');
