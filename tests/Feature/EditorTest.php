@@ -23,7 +23,7 @@ test('participants are rendered when mentions are invoked', function () {
 test('users are returned when a query is made for mentions', function () {
     $userOne = User::factory()->create(['username' => 'joedixon']);
     $userTwo = User::factory()->create(['username' => 'driesvints']);
-    
+
     Livewire::test(Editor::class, ['hasMentions' => true])
         ->call('getUsers', 'jo')
         ->assertSee($userOne->username())

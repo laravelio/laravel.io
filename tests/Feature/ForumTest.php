@@ -297,6 +297,6 @@ test('users are not notified when mentioned in and edited thread', function () {
         'body' => 'This text explains how to work with Eloquent.',
         'tags' => [$tag->id()],
     ]);
-    
+
     Notification::assertNothingSent();
 });
