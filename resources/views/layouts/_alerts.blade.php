@@ -17,7 +17,7 @@
 
 @if (session()->has('success'))
     <div class="w-full text-white bg-lio-500 p-4" x-data="{}">
-        <div class="flex items-center justify-between container mx-auto px-4">
+        <div class="flex items-center flex-wrap justify-between container mx-auto px-4">
             {!! session()->pull('success') !!}
             <button
                 type="button"

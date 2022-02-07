@@ -6,6 +6,7 @@ module.exports = {
         './resources/**/*.js',
         './resources/macros/blade.php',
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './resources/lang/en/settings.php'
     ],
     theme: {
         container: {
