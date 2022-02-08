@@ -18,7 +18,14 @@
 @if (session()->has('success'))
     <div class="w-full text-white bg-lio-500 p-4" x-data="{}">
         <div class="flex items-center flex-wrap justify-between container mx-auto px-4">
-            {!! session()->pull('success') !!}
+            {!! session()->get('success') !!}
+
+            @if(strpos(request()->session()->pull('success'), "API token created!") !== false && session()->has('token'))
+             <x-api-field :token="session()->pull('token')" />
+            @endif
+        
+            
+
             <button
                 type="button"
                 class="text-xl"
