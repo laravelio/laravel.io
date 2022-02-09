@@ -23,7 +23,7 @@ class ApiTokenController extends Controller
 
         $this->success('settings.api_token.created');
 
-        return redirect()->route('settings.profile')->with('token', ['token' => $token->plainTextToken]);
+        return redirect()->route('settings.profile')->with('api_token', $token->plainTextToken);
     }
 
     public function destroy(DeleteApiTokenRequest $request)

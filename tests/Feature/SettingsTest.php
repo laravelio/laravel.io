@@ -153,7 +153,7 @@ test('users can generate API tokens', function () {
             'name' => 'My API Token',
         ])
         ->seePageIs('/settings')
-        ->see('API token created! Please copy the following token as it will not be shown again: ');
+        ->see('API token created! Please copy the following token as it will not be shown again:');
 
     expect($user->refresh()->tokens)->toHaveCount(1);
 });
