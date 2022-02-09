@@ -13,9 +13,9 @@
                         </a>
                     </div>
 
-                    <span class="font-mono text-gray-700 mt-1 lg:mt-0">
+                    <a href="#{{ $reply->id() }}" class="font-mono text-gray-700 mt-1 lg:mt-0">
                         {{ $reply->createdAt()->diffForHumans() }}
-                    </span>
+                    </a>
                 </div>
             </div>
 
