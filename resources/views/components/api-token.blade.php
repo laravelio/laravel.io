@@ -1,7 +1,8 @@
 <div>
     <div x-data="{ showApi: false, copyToast: false }" class="flex justify-end items-center">
         <input
-            x-bind:type="!showApi ? 'password' : 'text'" name="apikey" readonly="readonly" value="{{ $token }}"
+            x-bind:type="!showApi ? 'password' : 'text'"
+            name="apikey" readonly="readonly" value="{{ $token }}"
             class="bg-white mr-2 text-gray-800 px-2 py-1 rounded-md"
         />
 

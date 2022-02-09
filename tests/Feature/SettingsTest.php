@@ -150,7 +150,7 @@ test('users can generate API tokens', function () {
 
     $this->visit('/settings')
         ->submitForm('Generate New Token', [
-            'name' => 'My API Token',
+            'token_name' => 'My API Token',
         ])
         ->seePageIs('/settings')
         ->see('API token created! Please copy the following token as it will not be shown again:');
