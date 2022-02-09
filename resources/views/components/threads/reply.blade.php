@@ -13,7 +13,10 @@
                         </a>
                     </div>
 
-                    <a href="#{{ $reply->id() }}" class="font-mono text-gray-700 mt-1 lg:mt-0">
+                    <a
+                        href="#{{ $reply->id() }}"
+                        class="font-mono text-gray-700 hover:text-lio-500 hover:underline mt-1 lg:mt-0"
+                    >
                         {{ $reply->createdAt()->diffForHumans() }}
                     </a>
                 </div>
