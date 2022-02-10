@@ -1,67 +1,43 @@
 import getCaretCoordinates from 'textarea-caret';
 
-// Handle the click event of the style buttons inside the editor.
-window.handleClick = (style, element) => {
-    const { styles } = editorConfig();
-    const input = element.querySelectorAll('textarea')[0];
-
-    // Get the start and end positions of the current selection.
-    const selectionStart = input.selectionStart;
-    const selectionEnd = input.selectionEnd;
-
-    // Find the style in the configuration.
-    const styleFormat = styles[style];
-
-    // Get any prefix and/or suffix characters from the selected style.
-    const prefix = styleFormat.before ? styleFormat.before : '';
-    const suffix = styleFormat.after ? styleFormat.after : '';
-
-    // Insert the prefix at the relevant position.
-    input.value = insertCharactersAtPosition(input.value, prefix, selectionStart);
-
-    // Insert the suffix at the relevant position.
-    input.value = insertCharactersAtPosition(input.value, suffix, selectionEnd + prefix.length);
-
-    // Reselect the selection and focus the input.
-    input.setSelectionRange(selectionStart + prefix.length, selectionEnd + prefix.length);
-    input.focus();
-};
-
-// Insert provided characters at the desired place in a string.
-const insertCharactersAtPosition = (string, character, position) => {
-    return [string.slice(0, position), character, string.slice(position)].join('');
-};
-
 // Configuration object for the text editor.
 window.editorConfig = (body, hasMentions) => {
     return {
         styles: {
-            header: {
-                before: '### ',
+            singleLine: {
+                header: {
+                    before: '### ',
+                },
+                bold: {
+                    before: '**',
+                    after: '**',
+                },
+                italic: {
+                    before: '_',
+                    after: '_',
+                },
+                quote: {
+                    before: '> ',
+                },
+                code: {
+                    before: '`',
+                    after: '`',
+                },
+                link: {
+                    before: '[](',
+                    after: ')',
+                },
+                image: {
+                    before: '![](',
+                    after: ')',
+                },
             },
-            bold: {
-                before: '**',
-                after: '**',
-            },
-            italic: {
-                before: '_',
-                after: '_',
-            },
-            quote: {
-                before: '> ',
-            },
-            code: {
-                before: '`',
-                after: '`',
-            },
-            link: {
-                before: '[](',
-                after: ')',
-            },
-            image: {
-                before: '![](',
-                after: ')',
-            },
+            multipleLines: {
+                code: {
+                    before: '```\n',
+                    after: '\n```',
+                },
+            }
         },
         cursorTop: 0,
         cursorLeft: 0,
@@ -251,6 +227,49 @@ window.editorConfig = (body, hasMentions) => {
         isEscapeKey: function (code) {
             return code == 27;
         },
+
+        // Handle the click event of the style buttons inside the editor.
+        handleClick: function (style) {
+            const editor = this.$refs.editor;
+            let value = editor.value;
+            let styleFormat;
+
+            // Get the start and end positions of the current selection.
+            const selectionStart = editor.selectionStart;
+            const selectionEnd = editor.selectionEnd;
+            const selectedText = value.slice(selectionStart, selectionEnd);
+            const hasMultipleLines = new RegExp(/\n/g).test(selectedText);
+
+            // Find the style in the configuration.
+            if (hasMultipleLines && this.styles['multipleLines'][style]) {
+                styleFormat = this.styles['multipleLines'][style]
+            } else {
+                styleFormat = this.styles['singleLine'][style]
+            }
+
+            // Get any prefix and/or suffix characters from the selected style.
+            const prefix = styleFormat.before ? styleFormat.before : '';
+            const suffix = styleFormat.after ? styleFormat.after : '';
+
+            // Insert the prefix at the relevant position.
+            value = this.insertCharactersAtPosition(value, prefix, selectionStart);
+
+            // Insert the suffix at the relevant position.
+            value = this.insertCharactersAtPosition(value, suffix, selectionEnd + prefix.length);
+
+            this.body = value;
+
+            // Reselect the selection and focus the input.
+            this.$nextTick(() => {
+                this.$refs.editor.focus();
+                this.$refs.editor.setSelectionRange(selectionStart + prefix.length, selectionEnd + prefix.length);
+            });
+        },
+
+        // Insert provided characters at the desired place in a string.
+        insertCharactersAtPosition: (string, character, position) => {
+            return [string.slice(0, position), character, string.slice(position)].join('');
+        }
     };
 };
 
