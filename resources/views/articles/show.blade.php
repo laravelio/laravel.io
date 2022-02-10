@@ -46,7 +46,7 @@
                         </div>
                     @endif
 
-                    <h1 class="text-white text-5xl font-bold mb-4 break-all">
+                    <h1 class="text-white text-5xl font-bold mb-4 break-words">
                         {{ $article->title() }}
                     </h1>
 
