@@ -37,7 +37,7 @@ window.editorConfig = (body, hasMentions) => {
                     before: '```\n',
                     after: '\n```',
                 },
-            }
+            },
         },
         cursorTop: 0,
         cursorLeft: 0,
@@ -242,9 +242,9 @@ window.editorConfig = (body, hasMentions) => {
 
             // Find the style in the configuration.
             if (hasMultipleLines && this.styles['multipleLines'][style]) {
-                styleFormat = this.styles['multipleLines'][style]
+                styleFormat = this.styles['multipleLines'][style];
             } else {
-                styleFormat = this.styles['singleLine'][style]
+                styleFormat = this.styles['singleLine'][style];
             }
 
             // Get any prefix and/or suffix characters from the selected style.
@@ -269,7 +269,7 @@ window.editorConfig = (body, hasMentions) => {
         // Insert provided characters at the desired place in a string.
         insertCharactersAtPosition: (string, character, position) => {
             return [string.slice(0, position), character, string.slice(position)].join('');
-        }
+        },
     };
 };
 
