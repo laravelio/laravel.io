@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Concerns\HasAuthor;
 use App\Concerns\HasLikes;
+use App\Concerns\HasMentions;
 use App\Concerns\HasSlug;
 use App\Concerns\HasTags;
 use App\Concerns\HasTimestamps;
@@ -26,11 +27,12 @@ use Laravel\Scout\Searchable;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
-final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAble
+final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAble, MentionAble
 {
-    use HasFactory;
     use HasAuthor;
+    use HasFactory;
     use HasLikes;
+    use HasMentions;
     use HasSlug;
     use HasTags;
     use HasTimestamps;
@@ -339,5 +341,13 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
     public function scopeUnlocked(Builder $query): Builder
     {
         return $query->whereNull('locked_at');
+    }
+
+    public function participants(): SupportCollection
+    {
+        return $this->replyAuthors()
+            ->get()
+            ->prepend($this->author())
+            ->unique();
     }
 }

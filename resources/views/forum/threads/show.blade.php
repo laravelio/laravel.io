@@ -71,10 +71,12 @@
                                 @csrf
 
                                 <livewire:editor
+                                    hasMentions
                                     hasButton
                                     buttonLabel="Reply"
                                     buttonIcon="send"
                                     label="Write a reply"
+                                    :participants="$thread->participants()"
                                 />
 
                                 @error('body')

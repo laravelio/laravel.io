@@ -5,6 +5,7 @@ namespace App\Concerns;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Ramsey\Uuid\Uuid;
 
 trait ProvidesSubscriptions
 {
@@ -37,5 +38,15 @@ trait ProvidesSubscriptions
         return $this->subscriptionsRelation()
             ->where('user_id', $user->id())
             ->exists();
+    }
+
+    public function subscribe(User $user): Subscription
+    {
+        $subscription = new Subscription();
+        $subscription->uuid = Uuid::uuid4()->toString();
+        $subscription->userRelation()->associate($user);
+        $subscription->subscriptionAbleRelation()->associate($this);
+
+        return $this->subscriptionsRelation()->save($subscription);
     }
 }

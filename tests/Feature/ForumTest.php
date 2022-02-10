@@ -2,10 +2,15 @@
 
 use App\Http\Livewire\LikeReply;
 use App\Http\Livewire\LikeThread;
+use App\Mail\MentionEmail;
 use App\Models\Reply;
 use App\Models\Tag;
 use App\Models\Thread;
+use App\Models\User;
+use App\Notifications\MentionNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 use Tests\Feature\BrowserKitTestCase;
 
@@ -239,4 +244,59 @@ test('thread activity is set when a new thread is created', function () {
     ]);
 
     $this->assertNotNull(Thread::latest('id')->first()->last_activity_at);
+});
+
+test('users are notified by email when mentioned in a thread body', function () {
+    Notification::fake();
+    $user = User::factory()->create(['username' => 'janedoe', 'email' => 'janedoe@example.com']);
+
+    $this->login();
+
+    $this->post('/forum/create-thread', [
+        'subject' => 'How to work with Eloquent?',
+        'body' => 'Hey @janedoe',
+        'tags' => [],
+    ]);
+
+    Notification::assertSentTo($user, MentionNotification::class, function ($notification) use ($user) {
+        return $notification->toMail($user) instanceof MentionEmail;
+    });
+});
+
+test('users provided with a UI notification when mentioned in a thread body', function () {
+    $user = User::factory()->create(['username' => 'janedoe']);
+
+    $this->login();
+
+    $this->post('/forum/create-thread', [
+        'subject' => 'How to work with Eloquent?',
+        'body' => 'Hey @janedoe',
+        'tags' => [],
+    ]);
+
+    $notification = DatabaseNotification::first();
+    $this->assertSame($user->id, (int) $notification->notifiable_id);
+    $this->assertSame('users', $notification->notifiable_type);
+    $this->assertSame('mention', $notification->data['type']);
+    $this->assertSame('How to work with Eloquent?', $notification->data['replyable_subject']);
+});
+
+test('users are not notified when mentioned in and edited thread', function () {
+    Notification::fake();
+    $user = $this->createUser();
+    $tag = Tag::factory()->create(['name' => 'Test Tag']);
+    Thread::factory()->create([
+        'author_id' => $user->id(),
+        'slug' => 'my-first-thread',
+    ]);
+
+    $this->loginAs($user);
+
+    $this->put('/forum/my-first-thread', [
+        'subject' => 'How to work with Eloquent?',
+        'body' => 'This text explains how to work with Eloquent.',
+        'tags' => [$tag->id()],
+    ]);
+
+    Notification::assertNothingSent();
 });

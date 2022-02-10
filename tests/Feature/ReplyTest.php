@@ -1,9 +1,13 @@
 <?php
 
+use App\Mail\MentionEmail;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
+use App\Notifications\MentionNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Support\Facades\Notification;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
@@ -136,4 +140,57 @@ test('replyable updated_at timestamp is not touched when reply is created', func
     ]);
 
     $this->assertSame('1970-01-01', $thread->fresh()->updated_at->format('Y-m-d'));
+});
+
+test('users are notified by email when mentioned in a reply body', function () {
+    Notification::fake();
+    $user = User::factory()->create(['username' => 'janedoe']);
+    $thread = Thread::factory()->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
+
+    $this->login();
+
+    $this->post('/replies', [
+        'body' => 'Hey @janedoe',
+        'replyable_id' => $thread->id,
+        'replyable_type' => Thread::TABLE,
+    ]);
+
+    Notification::assertSentTo($user, MentionNotification::class, function ($notification) use ($user) {
+        return $notification->toMail($user) instanceof MentionEmail;
+    });
+});
+
+test('users provided with a UI notification when mentioned in a reply body', function () {
+    $user = User::factory()->create(['username' => 'janedoe']);
+    $thread = Thread::factory()->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
+
+    $this->login();
+
+    $this->post('/replies', [
+        'body' => 'Hey @janedoe',
+        'replyable_id' => $thread->id,
+        'replyable_type' => Thread::TABLE,
+    ]);
+
+    $notification = DatabaseNotification::first();
+    $this->assertSame($user->id, (int) $notification->notifiable_id);
+    $this->assertSame('users', $notification->notifiable_type);
+    $this->assertSame('mention', $notification->data['type']);
+    $this->assertSame('The first thread', $notification->data['replyable_subject']);
+});
+
+test('users are not notified when mentioned in an edited reply', function () {
+    Notification::fake();
+
+    $user = $this->createUser();
+    $thread = Thread::factory()->create(['slug' => 'the-first-thread']);
+    Reply::factory()->create(['author_id' => $user->id(), 'replyable_id' => $thread->id()]);
+
+    $this->loginAs($user);
+
+    $this->put('/replies/1', [
+        'body' => 'The updated reply',
+    ]);
+
+    Notification::assertNothingSent();
 });

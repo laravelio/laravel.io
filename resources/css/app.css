@@ -144,3 +144,7 @@ svg .secondary {
 .choices[data-type*='select-one'] .choices__input {
     @apply rounded-none border-b-2 border-gray-300 !important;
 }
+
+.editor li[aria-selected='true'] {
+    @apply bg-lio-100;
+}

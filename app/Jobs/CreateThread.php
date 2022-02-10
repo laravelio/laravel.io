@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\ThreadWasCreated;
 use App\Http\Requests\ThreadRequest;
 use App\Models\Subscription;
 use App\Models\Thread;
@@ -47,6 +48,8 @@ final class CreateThread
         $subscription->subscriptionAbleRelation()->associate($thread);
 
         $thread->subscriptionsRelation()->save($subscription);
+
+        event(new ThreadWasCreated($thread));
 
         return $thread;
     }
