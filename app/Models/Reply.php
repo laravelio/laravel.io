@@ -16,11 +16,11 @@ use Illuminate\Support\Str;
 
 final class Reply extends Model implements MentionAble
 {
-    use HasFactory;
     use HasAuthor;
+    use HasFactory;
     use HasLikes;
-    use HasTimestamps;
     use HasMentions;
+    use HasTimestamps;
 
     const TABLE = 'replies';
 

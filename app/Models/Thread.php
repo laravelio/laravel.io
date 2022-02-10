@@ -29,13 +29,13 @@ use Spatie\Feed\FeedItem;
 
 final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAble, MentionAble
 {
-    use HasFactory;
     use HasAuthor;
+    use HasFactory;
     use HasLikes;
+    use HasMentions;
     use HasSlug;
     use HasTags;
     use HasTimestamps;
-    use HasMentions;
     use PreparesSearch;
     use ProvidesSubscriptions;
     use ReceivesReplies;

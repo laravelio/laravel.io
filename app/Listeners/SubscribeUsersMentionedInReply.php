@@ -14,15 +14,9 @@ final class SubscribeUsersMentionedInReply
         $event->reply->getMentionedUsers()->each(function ($user) use ($event) {
             $replyAble = $event->reply->mentionedIn();
 
-            if (! $replyAble instanceof Thread) {
-                return;
+            if ($replyAble instanceof Thread && ! $replyAble->hasSubscriber($user)) {
+                $replyAble->subscribe($user);
             }
-
-            if ($replyAble->hasSubscriber($user)) {
-                return;
-            }
-
-            $replyAble->subscribe($user);
         });
     }
 }

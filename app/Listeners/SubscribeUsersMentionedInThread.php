@@ -11,11 +11,9 @@ final class SubscribeUsersMentionedInThread
     public function handle(ThreadWasCreated $event): void
     {
         $event->thread->getMentionedUsers()->each(function ($user) use ($event) {
-            if ($event->thread->hasSubscriber($user)) {
-                return;
+            if (!$event->thread->hasSubscriber($user)) {
+                $event->thread->subscribe($user);
             }
-
-            $event->thread->subscribe($user);
         });
     }
 }
