@@ -15,7 +15,7 @@ final class SendNewArticleNotification
 
     public function handle(ArticleWasSubmittedForApproval $event): void
     {
-        if (!empty(config('services.telegram-bot-api.token')) && !empty(config('services.telegram-bot-api.channel'))) {
+        if (! empty(config('services.telegram-bot-api.token')) && ! empty(config('services.telegram-bot-api.channel'))) {
             $this->notifiable->notify(new ArticleSubmitted($event->article));
         }
     }
