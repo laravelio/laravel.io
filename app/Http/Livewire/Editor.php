@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -25,14 +26,13 @@ class Editor extends Component
 
     public $hasMentions = false;
 
-    public $users;
+    public $users = [];
 
-    public $participants;
+    public $participants = [];
 
-    public function mount($participants = null)
+    public function mount(EloquentCollection $participants = null)
     {
-        $this->users = collect();
-        $this->participants = $participants ?: collect();
+        $this->participants = $participants ? $participants->toArray() : [];
     }
 
     public function render()
@@ -42,10 +42,10 @@ class Editor extends Component
         return view('livewire.editor');
     }
 
-    public function getUsers($query): Collection
+    public function getUsers($query): array
     {
         if (! $this->hasMentions) {
-            return $this->users;
+            return [];
         }
 
         if (! $query) {
@@ -55,15 +55,15 @@ class Editor extends Component
         $query = Str::after($query, '@');
         $users = User::where('username', 'like', "{$query}%")->take(5)->get();
 
-        if ($this->participants->isNotEmpty()) {
-            $users = $this->participants->filter(function ($participant) use ($query) {
+        if (count($this->participants) > 0) {
+            $users = collect($this->participants)->filter(function ($participant) use ($query) {
                 return Str::startsWith($participant['username'], $query);
             })
                 ->merge($users)
                 ->unique('id');
         }
 
-        return $this->users = $users;
+        return $this->users = $users->toArray();
     }
 
     public function getPreviewProperty(): string
