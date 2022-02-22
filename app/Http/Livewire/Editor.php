@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
