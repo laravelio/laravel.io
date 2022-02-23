@@ -25,6 +25,8 @@ class Editor extends Component
 
     public $hasMentions = false;
 
+    public $hasShadow = true;
+
     public $users = [];
 
     public $participants = [];

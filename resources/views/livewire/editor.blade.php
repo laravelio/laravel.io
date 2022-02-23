@@ -5,7 +5,7 @@
         </span>
     @endif
 
-    <div x-data="editorConfig($wire.entangle('body').defer, {{ $hasMentions }})" class="bg-white rounded-md shadow-md">
+    <div x-data="editorConfig($wire.entangle('body').defer, {{ $hasMentions }})" class="bg-white rounded-md {{ $hasShadow ? 'shadow-md' : '' }}">
 
         <ul class="flex p-5 gap-x-4">
             <li>
@@ -70,13 +70,13 @@
                                 data-username="{{ $user['username'] }}"
                                 aria-selected="{{ $loop->first ? 'true' : 'false' }}"
                             >
-                                    <span class="text-gray-900 font-medium">
-                                        {{ $user['username'] }}
-                                    </span>
+                                <span class="text-gray-900 font-medium">
+                                    {{ $user['username'] }}
+                                </span>
 
-                                    <small class="text-gray-900 text-sm text-gray-500">
-                                        {{ $user['name'] }}
-                                    </small>
+                                <small class="text-gray-900 text-sm text-gray-500">
+                                    {{ $user['name'] }}
+                                </small>
                             </li>
                         @endforeach
                     </ul>
@@ -108,4 +108,10 @@
             </div>
         </div>
     </div>
+
+    @if ($errors->has('body'))
+        @foreach ($errors->get('body') as $error)
+            <p class="mt-2 text-sm text-red-600">{{ $error }}</p>
+        @endforeach
+    @endif
 </div>

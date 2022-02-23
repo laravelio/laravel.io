@@ -1,6 +1,6 @@
 @props(['thread', 'reply'])
 
-<div class="bg-white shadow rounded @if ($thread->isSolutionReply($reply)) border-2 border-lio-400 @endif" id="{{ $reply->id() }}">
+<div class="bg-white shadow rounded @if ($thread->isSolutionReply($reply)) border-2 border-lio-400 @endif" id="{{ $reply->id() }}" x-data="{ edit: false }">
     <div class="border-b">
         <div class="flex flex-row justify-between items-center px-6 py-2.5">
             <div>
@@ -26,13 +26,17 @@
         </div>
     </div>
 
-    <div
-        class="prose prose-lio max-w-none p-6 break-words"
-        x-data="{}"
-        x-init="$nextTick(function () { highlightCode($el); })"
-        x-html="{{ json_encode(replace_links(md_to_html($reply->body()))) }}"
-    >
-    </div>
+    @can(App\Policies\ReplyPolicy::UPDATE, $reply)
+        <livewire:edit-reply :reply="$reply">
+    @else
+        <div
+            class="prose prose-lio max-w-none p-6 break-words"
+            x-data="{}"
+            x-init="$nextTick(function () { highlightCode($el); })"
+            x-html="{{ json_encode(replace_links(md_to_html($reply->body()))) }}"
+        >
+        </div>
+    @endif
 
     @if ($reply->isUpdated())
         <div class="text-sm text-gray-900 p-6">
