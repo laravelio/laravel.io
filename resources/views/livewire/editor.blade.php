@@ -52,29 +52,31 @@
                     @keydown.debounce.500ms="updateUserSearch($event)"
                 ></textarea>
 
-                @if ($users->count())
+                @if (count($users) > 0)
                     <ul 
                         x-cloak 
                         x-show="showUserListbox()"
                         x-ref="users"
-                        class="absolute flex flex-col gap-y-2 bg-white rounded shadow" 
+                        class="absolute flex flex-col bg-white rounded shadow" 
                         :style="`top: ${cursorTop}; left: ${cursorLeft}; display: ${showUserListbox() ? 'block' : 'none'}`"
                         tabindex="-1"
                         role="listbox"
                     >
                         @foreach ($users as $user)
                             <li
-                                @click.prevent="selectUser('{{ $user->username() }}')"
+                                @click.prevent="selectUser('{{ $user['username'] }}')"
                                 role="option"
                                 class="flex items-center gap-x-2 p-2 cursor-pointer hover:bg-lio-100"
-                                data-username="{{ $user->username() }}"
+                                data-username="{{ $user['username'] }}"
                                 aria-selected="{{ $loop->first ? 'true' : 'false' }}"
                             >
-                                    <x-avatar :user="$user" unlinked="true" class="w-5 h-5" />
-
-                                    <span class="text-gray-900">
-                                        {{ $user->username() }}
+                                    <span class="text-gray-900 font-medium">
+                                        {{ $user['username'] }}
                                     </span>
+
+                                    <small class="text-gray-900 text-sm text-gray-500">
+                                        {{ $user['name'] }}
+                                    </small>
                             </li>
                         @endforeach
                     </ul>
