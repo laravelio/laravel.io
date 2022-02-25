@@ -64,7 +64,7 @@
     <section class="mt-12 container mx-auto px-4 lg:mt-24 lg:px-16">
         <div class="flex flex-col items-center mb-8 lg:flex-row lg:mb-16">
             <h2 class="w-full text-3xl font-bold text-gray-900 mb-2 lg:text-4xl lg:w-1/2 lg:mb-0">
-                Popular articles
+                Latest articles
             </h2>
             <p class="w-full text-gray-800 text-lg lg:w-1/2">
                 Have a look a the latest shared articles by our community members
