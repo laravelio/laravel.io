@@ -72,9 +72,15 @@
                     @if (count($tags = $article->tags()))
                         <div class="flex flex-wrap gap-2 lg:gap-x-4">
                             @foreach ($tags as $tag)
-                                <x-tag>
-                                    {{ $tag->name() }}
-                                </x-tag>
+                                @if($tag->isSpecial())
+                                    <x-special-tag>
+                                        {{ $tag->name() }}
+                                    </x-special-tag>
+                                @else
+                                    <x-tag>
+                                        {{ $tag->name() }}
+                                    </x-tag>
+                                @endif
                             @endforeach
                         </div>
                     @endif

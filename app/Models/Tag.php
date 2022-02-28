@@ -22,6 +22,10 @@ final class Tag extends Model
      */
     public $timestamps = false;
 
+    private array $specialTags = [
+        'Laravel.io',
+    ];
+
     public function id(): int
     {
         return $this->id;
@@ -40,5 +44,10 @@ final class Tag extends Model
     public function articles(): MorphToMany
     {
         return $this->morphedByMany(Article::class, 'taggable');
+    }
+
+    public function isSpecial(): bool
+    {
+        return in_array($this->name(), $this->specialTags);
     }
 }
