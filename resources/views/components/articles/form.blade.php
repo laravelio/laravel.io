@@ -70,6 +70,7 @@
 
                         <select name="tags[]" id="create-article" multiple x-data="{}" x-init="$nextTick(function () { choices($el) })">
                             @foreach($tags as $tag)
+                                @continue($tag->isSpecial() && !auth()->user()->isAdmin())
                                 <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>{{ $tag->name }}</option>
                             @endforeach
                         </select>
