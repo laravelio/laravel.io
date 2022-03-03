@@ -60,8 +60,10 @@ class HomeController extends Controller
         ]);
     }
 
-    public function pastebin(string $hash = '')
+    public function pastebin(string $paste = '')
     {
-        return redirect()->away("https://paste.laravel.io/$hash");
+        $paste = str_replace(PHP_EOL, '', $paste);
+
+        return redirect()->away("https://paste.laravel.io/$paste");
     }
 }
