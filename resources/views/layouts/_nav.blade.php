@@ -1,5 +1,5 @@
 <nav class="{{ isset($hasShadow) ? 'shadow mb-1' : '' }}">
-    <div class="container mx-auto text-gray-800 lg:block lg:py-8" x-data="{ nav: false, search: false, community: false, chat: false, settings: false }" @click.outside="nav = false">
+    <div class="container mx-auto text-gray-800 lg:block lg:py-8" x-data="{ nav: false, searchVisible: false, searchQuery: '', community: false, chat: false, settings: false }" @click.outside="nav = false">
         <div class="block bg-white 2xl:-mx-10">
             <div class="lg:px-4 lg:flex">
                 <div class="block lg:flex lg:items-center lg:shrink-0">
@@ -9,7 +9,7 @@
                         </a>
 
                         <div class="flex lg:hidden">
-                            <button @click="search = !search" :class="{ 'text-lio-500': search }">
+                            <button @click="searchVisible = true">
                                 <x-heroicon-o-search class="w-6 h-6 mr-4" />
                             </button>
 
@@ -120,7 +120,10 @@
                 </div>
 
                 <div class="w-full block gap-x-4 lg:flex lg:items-center lg:justify-end">
-                    <div class="lg:block" x-cloak :class="{ 'block': search, 'hidden': !search }" @click.outside="search = false">
+                    <div class="flex items-center">
+                        <button @click="searchVisible = true" @keyup.window.slash="searchVisible = true" class="hover:text-lio-500">
+                            <x-heroicon-o-search class="h-5 w-5 hidden lg:block" />
+                        </button>
                         @include('_partials._search')
                     </div>
 

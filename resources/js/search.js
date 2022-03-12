@@ -4,7 +4,6 @@ const client = algoliasearch(process.env.MIX_ALGOLIA_APP_ID, process.env.MIX_ALG
 
 window.searchConfig = () => {
     return {
-        show: false,
         threads: {
             total: 0,
             formattedTotal: function () {
@@ -19,9 +18,17 @@ window.searchConfig = () => {
             },
             articles: [],
         },
-        search: async function (query) {
+        toggle() {
+            this.searchQuery = '';
+            this.lockScroll = this.searchVisible;
+
+            if (this.searchVisible)
+                this.$nextTick(() => this.$refs.search.focus());
+
+        },
+        search: async function () {
             // If the input is empty, return no results.
-            if (query.length === 0) {
+            if (this.searchQuery.length === 0) {
                 return Promise.resolve({ hits: [] });
             }
 
@@ -29,7 +36,7 @@ window.searchConfig = () => {
             const { results } = await client.multipleQueries([
                 {
                     indexName: process.env.MIX_ALGOLIA_THREADS_INDEX,
-                    query: query,
+                    query: this.searchQuery,
                     params: {
                         hitsPerPage: 5,
                         attributesToSnippet: ['body:10'],
@@ -37,7 +44,7 @@ window.searchConfig = () => {
                 },
                 {
                     indexName: process.env.MIX_ALGOLIA_ARTICLES_INDEX,
-                    query: query,
+                    query: this.searchQuery,
                     params: {
                         hitsPerPage: 5,
                         attributesToSnippet: ['body:10'],
@@ -45,7 +52,6 @@ window.searchConfig = () => {
                 },
             ]);
 
-            this.show = true;
             this.threads.total = results[0].nbHits;
             this.threads.threads = results[0].hits;
             this.articles.total = results[1].nbHits;
