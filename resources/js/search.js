@@ -22,9 +22,7 @@ window.searchConfig = () => {
             this.searchQuery = '';
             this.lockScroll = this.searchVisible;
 
-            if (this.searchVisible)
-                this.$nextTick(() => this.$refs.search.focus());
-
+            if (this.searchVisible) this.$nextTick(() => this.$refs.search.focus());
         },
         search: async function () {
             // If the input is empty, return no results.
