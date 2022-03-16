@@ -93,10 +93,16 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $tags = Tag::query();
+
+        if (! $request->user()->isAdmin()) {
+            $tags = $tags->public();
+        }
+
         return view('articles.create', [
-            'tags' => Tag::all(),
+            'tags' => $tags->get(),
             'selectedTags' => old('tags', []),
         ]);
     }
@@ -116,9 +122,15 @@ class ArticlesController extends Controller
     {
         $this->authorize(ArticlePolicy::UPDATE, $article);
 
+        $tags = Tag::query();
+
+        if (! $request->user()->isAdmin()) {
+            $tags = $tags->public();
+        }
+
         return view('articles.edit', [
             'article' => $article,
-            'tags' => Tag::all(),
+            'tags' => $tags->get(),
             'selectedTags' => old('tags', $article->tags()->pluck('id')->toArray()),
         ]);
     }
