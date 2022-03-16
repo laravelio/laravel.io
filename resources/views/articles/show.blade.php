@@ -39,9 +39,11 @@
                     @if (count($tags = $article->tags()))
                         <div class="flex flex-wrap gap-2 lg:gap-x-4 mb-4">
                             @foreach ($tags as $tag)
-                                <x-light-tag>
-                                    {{ $tag->name() }}
-                                </x-light-tag>
+                                <a href="{{ route('articles', ['tag' => $tag->slug()]) }}">
+                                    <x-light-tag class="hover:underline">
+                                        {{ $tag->name() }}
+                                    </x-light-tag>
+                                </a>
                             @endforeach
                         </div>
                     @endif
