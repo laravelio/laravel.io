@@ -69,8 +69,7 @@
                         <x-forms.label for="tags">Tags</x-forms.label>
 
                         <select name="tags[]" id="create-article" multiple x-data="{}" x-init="$nextTick(function () { choices($el) })">
-                            @foreach($tags as $tag)
-                                @continue($tag->isSpecial() && !auth()->user()->isAdmin())
+                            @foreach ($tags as $tag)
                                 <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>{{ $tag->name }}</option>
                             @endforeach
                         </select>
@@ -98,10 +97,10 @@
                         </button>
                     @else
                         <span class="relative z-0 inline-flex shadow-sm" x-data="{ showDropdown: false }" @click.outside="showDropdown = false">
-                            <button 
-                                type="submit" 
-                                name="submitted" 
-                                value="0" 
+                            <button
+                                type="submit"
+                                name="submitted"
+                                value="0"
                                 class="button button-primary button-dropdown-left relative inline-flex items-center focus:outline-none"
                             >
                                 Save draft

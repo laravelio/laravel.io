@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Concerns\HasSlug;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -21,10 +22,6 @@ final class Tag extends Model
      * {@inheritdoc}
      */
     public $timestamps = false;
-
-    private array $specialTags = [
-        'Laravel.io',
-    ];
 
     public function id(): int
     {
@@ -46,8 +43,8 @@ final class Tag extends Model
         return $this->morphedByMany(Article::class, 'taggable');
     }
 
-    public function isSpecial(): bool
+    public function scopePublic(Builder $query): Builder
     {
-        return in_array($this->name(), $this->specialTags);
+        return $query->where('slug', '!=', 'laravelio');
     }
 }
