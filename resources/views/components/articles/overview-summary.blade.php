@@ -19,22 +19,23 @@
                     <div class="flex items-center">
                         <div class="flex">
                             <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-3" />
-    
+
                             <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
                                 <span class="text-gray-900 mr-5">{{ $article->author()->username() }}</span>
                             </a>
                         </div>
-    
+
                         <span class="font-mono text-gray-700 lg:mt-0">
                             {{ $article->createdAt()->format('j M, Y') }}
                         </span>
                     </div>
 
-                    @if(isset($mode) && $mode == 'edit')
+                    @if (isset($mode) && $mode == 'edit')
                         <x-articles.article-menu :article="$article" />
                     @endif
                 </div>
-                @if(isset($mode) && $mode == 'edit')
+
+                @if (isset($mode) && $mode == 'edit')
                     <div class="flex text-sm leading-5 text-gray-500">
                         @if ($article->isPublished())
                             <time datetime="{{ $article->submittedAt()->format('Y-m-d') }}">
@@ -72,9 +73,11 @@
                     @if (count($tags = $article->tags()))
                         <div class="flex flex-wrap gap-2 lg:gap-x-4">
                             @foreach ($tags as $tag)
-                                <x-tag>
-                                    {{ $tag->name() }}
-                                </x-tag>
+                                <a href="{{ route('articles', ['tag' => $tag->slug()]) }}" class="hover:underline">
+                                    <x-tag>
+                                        {{ $tag->name() }}
+                                    </x-tag>
+                                </a>
                             @endforeach
                         </div>
                     @endif
