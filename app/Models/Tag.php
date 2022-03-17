@@ -47,4 +47,9 @@ final class Tag extends Model
     {
         return $query->where('slug', '!=', 'laravelio');
     }
+
+    public function isAnnouncement(): bool
+    {
+        return $this->slug === 'laravelio';
+    }
 }

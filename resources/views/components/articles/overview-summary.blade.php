@@ -74,7 +74,7 @@
                         <div class="flex flex-wrap gap-2 lg:gap-x-4">
                             @foreach ($tags as $tag)
                                 <a href="{{ route('articles', ['tag' => $tag->slug()]) }}" class="hover:underline">
-                                    <x-tag>
+                                    <x-tag :tag="$tag">
                                         {{ $tag->name() }}
                                     </x-tag>
                                 </a>
