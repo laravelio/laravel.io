@@ -15,21 +15,25 @@ class EditReply extends Component
 
     public $body;
 
+
     public function render()
     {
         return view('livewire.edit-reply');
     }
 
-    public function update($data)
+    public function update($body)
     {
+        $this->body = $body;
         $this->authorize(ReplyPolicy::UPDATE, $this->reply);
-        $this->body = $data['body'];
 
-        
         $this->validate((new UpdateReplyRequest())->rules());
 
         $this->reply->update([
             'body' => $this->body,
         ]);
+
+        session()->flash('message', 'Reply successfully updated.');
+
+        return true;
     }
 }

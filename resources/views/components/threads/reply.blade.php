@@ -26,33 +26,9 @@
         </div>
     </div>
 
-    @can(App\Policies\ReplyPolicy::UPDATE, $reply)
-        <livewire:edit-reply :reply="$reply">
-    @else
-        <div
-            class="prose prose-lio max-w-none p-6 break-words"
-            x-data="{}"
-            x-init="$nextTick(function () { highlightCode($el); })"
-            x-html="{{ json_encode(replace_links(md_to_html($reply->body()))) }}"
-        >
-        </div>
-    @endif
+    <livewire:edit-reply :reply="$reply">
 
-    @if ($reply->isUpdated())
-        <div class="text-sm text-gray-900 p-6">
-            Last updated
-
-            @if ($updatedBy = $reply->updatedBy())
-                by <a href="{{ route('profile', $updatedBy->username()) }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">
-                    {{ '@'.$reply->updatedBy()->username() }}
-                </a>
-            @endif
-
-            {{ $reply->updated_at->diffForHumans() }}.
-        </div>
-    @endif
-
-    <div class="flex justify-between">
+    <div class="flex justify-between" x-show="!edit">
         <div class="px-6 pb-6">
             <livewire:like-reply :reply="$reply"/>
         </div>
