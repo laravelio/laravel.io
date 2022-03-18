@@ -107,6 +107,15 @@ TWITTER_ACCESS_SECRET=
 
 Approved articles are shared in the order they were submitted for approval. Articles are shared twice per day at 14:00 and 18:00 UTC. Once an article has been shared, it will not be shared again.
 
+### Telegram Notifications (optional)
+
+Laravel.io can notify maintainers of newly submitted articles through Telegram. For this to work, you'll need to [set up a Telegram bot](https://core.telegram.org/bots) and obtain a token. Then, configure the channel you want to send new article messages to.
+
+```
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHANNEL=
+```
+
 ## Commands
 
 Command | Description
