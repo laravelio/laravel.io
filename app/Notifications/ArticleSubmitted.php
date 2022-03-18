@@ -19,7 +19,14 @@ class ArticleSubmitted extends Notification implements ShouldQueue
 
     public function via($notifiable)
     {
-        return ['telegram'];
+        if (
+            ! empty(config('services.telegram-bot-api.token')) &&
+            ! empty(config('services.telegram-bot-api.channel'))
+        ) {
+            return ['telegram'];
+        }
+
+        return [];
     }
 
     public function toTelegram($notifiable)
