@@ -15,7 +15,6 @@ window.navConfig = () => {
             }
 
             this.searchVisible = true;
-        }
-    }
-
-}
+        },
+    };
+};
