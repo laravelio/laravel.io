@@ -1,5 +1,5 @@
 <nav class="{{ isset($hasShadow) ? 'shadow mb-1' : '' }}">
-    <div class="container mx-auto text-gray-800 lg:block lg:py-8" x-data="{ nav: false, searchVisible: false, searchQuery: '', community: false, chat: false, settings: false }" @click.outside="nav = false">
+    <div class="container mx-auto text-gray-800 lg:block lg:py-8" x-data="navConfig()" @click.outside="nav = false">
         <div class="block bg-white 2xl:-mx-10">
             <div class="lg:px-4 lg:flex">
                 <div class="block lg:flex lg:items-center lg:shrink-0">
@@ -9,7 +9,7 @@
                         </a>
 
                         <div class="flex lg:hidden">
-                            <button @click="searchVisible = true">
+                            <button @click="showSearch($event)">
                                 <x-heroicon-o-search class="w-6 h-6 mr-4" />
                             </button>
 
@@ -71,7 +71,7 @@
                             </li>
 
                             <li class="rounded lg:mb-0 lg:hover:bg-gray-100">
-                                <div @click.outside="community = false" class="relative" x-data="{ community: false }">
+                                <div @click.outside="community = false" class="relative">
                                     <button @click="community = !community" class="flex items-center lg:mb-0 py-1 px-2">
                                         Community
                                         <x-heroicon-s-chevron-down x-show="!community" class="w-4 h-4 ml-1"/>
@@ -121,7 +121,7 @@
 
                 <div class="w-full block gap-x-4 lg:flex lg:items-center lg:justify-end">
                     <div class="flex items-center">
-                        <button @click="searchVisible = true" @keyup.window.slash="searchVisible = true" class="hover:text-lio-500">
+                        <button @click="showSearch($event)" @keyup.window.slash="showSearch($event)" class="hover:text-lio-500">
                             <x-heroicon-o-search class="h-5 w-5 hidden lg:block" />
                         </button>
                         @include('_partials._search')
@@ -150,7 +150,7 @@
                                 </a>
                             </li>
                         @else
-                            <li class="relative p-4 lg:p-0" x-data="{ settings: false }">
+                            <li class="relative p-4 lg:p-0">
                                 <div class="flex items-center justify-center gap-3">
                                     <a href="{{ route('notifications') }}" class="hidden shrink-0 rounded-full lg:block">
                                         <span class="block relative">
