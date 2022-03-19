@@ -2,7 +2,7 @@
     class="fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-gray-700 bg-opacity-50 transition-opacity" aria-hidden="true"></div>
 
-    <div @click.outside="searchVisible = false" @keyup.window.escape="searchVisible = false"
+    <div @click.outside="searchVisible = false"
         class="mx-auto max-w-xl transform overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
         <div class="relative">
             <label for="search" class="sr-only">Search</label>
@@ -13,11 +13,12 @@
                     d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                     clip-rule="evenodd" />
             </svg>
-            <input x-model="searchQuery" x-init="$watch('searchQuery', value => search())" x-ref="search" type="text"
-                name="search" id="search"
+            <input x-model="searchQuery" @input.debounce.100ms="search" x-ref="search" type="text" name="search"
+                id="search"
                 class="h-12 w-full border-0 bg-transparent px-11 pr-4 text-gray-800 placeholder-gray-400 focus:ring-0 sm:text-sm"
                 placeholder="Search..." role="combobox" aria-expanded="false" aria-controls="options">
-            <kbd class="absolute top-3.5 right-4 text-xs rounded bg-gray-100 text-gray-500 px-2 py-1">ESC</kbd>
+            <kbd @keyup.window.escape="searchVisible = false" @click="searchVisible = false"
+                class="absolute top-3.5 right-4 text-xs rounded bg-gray-100 text-gray-500 px-2 py-1 cursor-pointer">ESC</kbd>
         </div>
 
         <div x-show="!searchQuery.length" x-cloak
@@ -89,57 +90,3 @@
 
     </div>
 </div>
-
-{{-- <div x-show="show" x-cloak
-            class="search absolute md:origin-top-right md:right-0 md:rounded md:shadow-lg bg-white md:mt-2 z-50">
-            <div class="flex flex-col md:flex-row">
-                <div class="w-full flex-none border-r border-b md:w-1/2">
-                    <div class="flex text-lg font-medium border-b p-4">
-                        <span class="text-gray-900 mr-3">Threads</span>
-
-                        <span class="text-gray-300" x-text="threads.formattedTotal()"></span>
-                    </div>
-
-                    <div class="max-h-72 overflow-y-scroll">
-                        <template x-for="thread in threads.threads">
-                            <a :href="'/forum/'+thread.slug" class="flex flex-col px-4 py-2 hover:bg-lio-100">
-                                <span class="text-black-900 text-lg font-medium break-all"
-                                    x-html="thread._highlightResult.subject.value"></span>
-                                <span class="text-black-900 break-all" x-html="thread._snippetResult.body.value"></span>
-                            </a>
-                        </template>
-                    </div>
-
-                    <span x-show="threads.length === 0" x-cloak class="p-4 text-gray-500 block">
-                        No threads found
-                    </span>
-                </div>
-
-                <div class="w-full flex-none border-b md:w-1/2">
-                    <div class="flex text-lg font-medium border-b p-4">
-                        <span class="text-gray-900 mr-3">Articles</span>
-
-                        <span class="text-gray-300" x-text="articles.formattedTotal()"></span>
-                    </div>
-
-                    <div class="max-h-72 overflow-y-scroll">
-                        <template x-for="article in articles.articles">
-                            <a :href="'/articles/'+article.slug" class="flex flex-col px-4 py-2 hover:bg-lio-100">
-                                <span class="text-black-900 text-lg font-medium break-all"
-                                    x-html="article._highlightResult.title.value"></span>
-                                <span class="text-black-900 break-all"
-                                    x-html="article._snippetResult.body.value"></span>
-                            </a>
-                        </template>
-                    </div>
-
-                    <span x-show="articles.length === 0" x-cloak class="p-4 text-gray-500 block">
-                        No articles found
-                    </span>
-                </div>
-            </div>
-
-            <a href="https://algolia.com" class="flex justify-end px-4 py-2">
-                <img src="{{ asset('images/algolia.svg') }}" class="h-4 mx-4 my-2" />
-            </a>
-        </div> --}}
