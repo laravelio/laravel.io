@@ -5,6 +5,7 @@ import Choices from 'choices.js';
 import 'choices.js/public/assets/styles/choices.css';
 
 require('./bootstrap');
+require('./nav');
 require('./search');
 require('./editor');
 
