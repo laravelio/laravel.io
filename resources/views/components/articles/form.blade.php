@@ -79,8 +79,10 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-end">
-
+            <div class="flex items-center justify-between">
+                <x-forms.info class="px-0">
+                    <span class="font-bold">Note: </span>You can't edit an article anymore after it's been published.
+                </x-forms.info>
                 <div class="flex justify-end items-center">
                     <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('user.articles') }}" class="text-lio-700 mr-4">
                         Cancel
