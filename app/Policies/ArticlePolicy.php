@@ -16,7 +16,7 @@ final class ArticlePolicy
 
     public function update(User $user, Article $article): bool
     {
-        return ($article->isAuthoredBy($user) && $article->isNotPublished()) || $user->isModerator() || $user->isAdmin();
+        return ($article->isAuthoredBy($user) && $article->isNotPublished()) || ( $article->isPublished() && ($user->isModerator() || $user->isAdmin()));
     }
 
     public function delete(User $user, Article $article): bool
