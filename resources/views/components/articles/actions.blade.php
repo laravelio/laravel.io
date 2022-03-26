@@ -3,7 +3,7 @@
     x-data="{ hovered: false }"
 >
     <div class="flex flex-col gap-x-4 gap-y-3 lg:flex-row">
-        @if (Auth::check() && $article->isAuthoredBy(Auth::user()))
+        @if (Auth::check() && ($article->isAuthoredBy(Auth::user()) && $article->isNotPublished() || auth()->user()->isAdmin() && $article->isPublished()))
             <x-buttons.secondary-button
                 href="{{ route('articles.edit', $article->slug()) }}"
                 @mouseover="hovered = 'edit'"
