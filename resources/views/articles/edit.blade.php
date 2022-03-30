@@ -14,20 +14,16 @@
 @endsection
 
 @section('content')
-    <main class="max-w-4xl mx-auto pt-10 pb-12 px-4 lg:pb-16">        
+    <main class="max-w-4xl mx-auto pt-10 pb-12 px-4 lg:pb-16">
         <div class="lg:grid lg:gap-x-5">
             <div class="sm:px-6 lg:px-0 lg:col-span-9">
-                <x-articles.form 
-                    :route="['articles.update', $article->slug()]" 
+                <x-articles.form
+                    :route="['articles.update', $article->slug()]"
                     method="PUT"
                     :article="$article"
                     :tags="$tags"
                     :selectedTags="$selectedTags"
                 />
-
-                <x-forms.info>
-                    After submission for approval, articles are reviewed before being published. No notification of declined articles will be provided. Instead, we encourage to also cross-post articles on your own channel as well.
-                </x-forms.info>
             </div>
         </div>
     </main>

@@ -22,7 +22,7 @@
             </x-forms.info>
 
             <x-forms.info class="px-0">
-                After submission for approval, articles are reviewed before being published. No notification of declined articles will be provided. Instead, we encourage to also cross-post articles on your own channel as well.
+                After submission for approval, articles are reviewed before being published. No notification of declined articles will be provided. Instead, we encourage to also cross-post articles on your own channel as well. <strong>After being published, you cannot edit your article anymore so please review it thoroughly before submitting for approval.</strong>
             </x-forms.info>
 
             <x-rules-banner />
@@ -79,10 +79,12 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-between">
+            <div class="md:flex md:items-center md:justify-between">
                 <x-forms.info class="px-0">
-                    <span class="font-bold">Note: </span>You can't edit an article anymore after it's been published.
+                    <span class="font-bold">Note: </span>
+                    You can't edit an article anymore after it's been published.
                 </x-forms.info>
+
                 <div class="flex justify-end items-center">
                     <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('user.articles') }}" class="text-lio-700 mr-4">
                         Cancel
