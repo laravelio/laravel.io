@@ -33,24 +33,6 @@ class ReplyController extends Controller
         return $this->redirectToReplyAble($reply->replyAble());
     }
 
-    public function edit(Reply $reply)
-    {
-        $this->authorize(ReplyPolicy::UPDATE, $reply);
-
-        return view('replies.edit', compact('reply'));
-    }
-
-    public function update(UpdateReplyRequest $request, Reply $reply)
-    {
-        $this->authorize(ReplyPolicy::UPDATE, $reply);
-
-        $this->dispatchNow(new UpdateReply($reply, $request->user(), $request->body()));
-
-        $this->success('replies.updated');
-
-        return $this->redirectToReplyAble($reply->replyAble());
-    }
-
     public function delete(Reply $reply)
     {
         $this->authorize(ReplyPolicy::DELETE, $reply);
