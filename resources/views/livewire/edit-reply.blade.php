@@ -11,7 +11,7 @@
     </div>
 
     @can(App\Policies\ReplyPolicy::UPDATE, $reply)
-        <x-buk-form x-show="edit" @submit.prevent="$wire.update(Object.fromEntries(new FormData(event.target)).body).then(function (result) { if (result) { edit = false } })" action="#">
+        <x-buk-form x-show="edit" action="#">
             <livewire:editor 
                 x-cloak
                 :hasShadow="false"
@@ -19,7 +19,7 @@
                 hasMentions
                 hasButton
                 buttonLabel="Update reply"
-                buttonIcon="heroicon-o-arrow-right"    
+                buttonIcon="heroicon-o-arrow-right"
             />
 
             @if ($errors->has('body'))
@@ -27,12 +27,18 @@
                     <x-forms.error class="px-6">{{ $error }}</x-forms.error>
                 @endforeach
             @endif
-
         </x-buk-form>
     @endcan
 
     @if (session()->has('message'))
-        <x-forms.success class="px-6 pb-4" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 3000)">{{ session('message') }}</x-forms.success>
+        <x-forms.success 
+            class="px-6 pb-4" 
+            x-data="{ show: true }" 
+            x-show="show" 
+            x-init="setTimeout(() => { show = false; edit = false; }, 3000)"
+        >
+            {{ session('message') }}
+        </x-forms.success>
     @endif
 
     @if ($reply->isUpdated())

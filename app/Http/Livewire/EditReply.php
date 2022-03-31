@@ -21,7 +21,9 @@ class EditReply extends Component
         return view('livewire.edit-reply');
     }
 
-    public function update($body)
+    protected $listeners = ['editorSubmitted' => 'updateReply'];
+
+    public function updateReply($body)
     {
         $this->body = $body;
         $this->authorize(ReplyPolicy::UPDATE, $this->reply);
@@ -33,7 +35,5 @@ class EditReply extends Component
         ]);
 
         session()->flash('message', 'Reply successfully updated.');
-
-        return true;
     }
 }

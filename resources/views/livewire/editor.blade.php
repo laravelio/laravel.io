@@ -87,7 +87,7 @@
                 <x-forms.editor.controls />
 
                 @if ($hasButton)
-                    <x-buttons.primary-cta type="{{ $buttonType }}" class="w-full md:w-auto">
+                    <x-buttons.primary-cta type="{{ $buttonType }}" class="w-full md:w-auto" @click.prevent="submit">
                         <span class="flex items-center">
                             {{ $buttonLabel }}
 
