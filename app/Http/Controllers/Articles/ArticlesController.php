@@ -118,7 +118,7 @@ class ArticlesController extends Controller
             : redirect()->route('articles.show', $article->slug());
     }
 
-    public function edit(Article $article)
+    public function edit(Request $request, Article $article)
     {
         $this->authorize(ArticlePolicy::UPDATE, $article);
 
