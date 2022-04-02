@@ -205,7 +205,7 @@ test('user can see standalone links in reply', function () {
     ]);
 
     $this->visit("/forum/{$thread->slug}")
-        ->see('&lt;a href=\\"https:\\/\\/github.com\\/laravelio\\/laravel.io\\" rel=\\"nofollow\\" target=\\"_blank\\"&gt;https:\\/\\/github.com\\/laravelio\\/laravel.io&lt;\\/a&gt;');
+        ->see('<a href="https://github.com/laravelio/laravel.io" rel="nofollow" target="_blank">https://github.com/laravelio/laravel.io</a>');
 });
 
 test('user can see standalone links in thread', function () {
