@@ -4,10 +4,8 @@
         x-data
         x-init="$nextTick(function () { highlightCode($el); }); $watch('edit', function () { highlightCode($el); });"
         class="prose prose-lio max-w-none p-6 break-words"
+        x-html="{{ json_encode(replace_links(md_to_html($reply->body()))) }}"
     >
-        <x-buk-markdown>
-            {!! replace_links(md_to_html($reply->body())) !!}
-        </x-buk-markdown>
     </div>
 
     @can(App\Policies\ReplyPolicy::UPDATE, $reply)
