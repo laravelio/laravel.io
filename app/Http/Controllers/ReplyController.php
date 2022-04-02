@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateReplyRequest;
-use App\Http\Requests\UpdateReplyRequest;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
-use App\Jobs\UpdateReply;
 use App\Models\Reply;
 use App\Models\ReplyAble;
 use App\Models\Thread;

@@ -15,7 +15,6 @@ class EditReply extends Component
 
     public $body;
 
-
     public function render()
     {
         return view('livewire.edit-reply');
