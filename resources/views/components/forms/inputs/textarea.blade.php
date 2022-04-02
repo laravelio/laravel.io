@@ -16,7 +16,7 @@
 
     @if ($errors->has($name))
         @foreach ($errors->get($name) as $error)
-            <>
+            <x-forms.error>
                 {{ $error }}
             </x-forms.error>
         @endforeach
