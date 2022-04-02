@@ -1,17 +1,17 @@
 <div>
     <div
         x-show="!edit"
-        x-data="{}"
-        x-init="$nextTick(function () { highlightCode($el); })"
+        x-data
+        x-init="$nextTick(function () { highlightCode($el); }); $watch('edit', function () { highlightCode($el); });"
         class="prose prose-lio max-w-none p-6 break-words"
     >
         <x-buk-markdown>
-            {{ $reply->body() }}
+            {!! replace_links(md_to_html($reply->body())) !!}
         </x-buk-markdown>
     </div>
 
     @can(App\Policies\ReplyPolicy::UPDATE, $reply)
-        <x-buk-form x-show="edit" action="#">
+        <div x-show="edit">
             <livewire:editor 
                 x-cloak
                 :hasShadow="false"
@@ -27,7 +27,7 @@
                     <x-forms.error class="px-6">{{ $error }}</x-forms.error>
                 @endforeach
             @endif
-        </x-buk-form>
+        </div>
     @endcan
 
     @if (session()->has('message'))
@@ -42,7 +42,7 @@
     @endif
 
     @if ($reply->isUpdated())
-        <div class="text-sm text-gray-900 p-6" x-show="!edit">
+        <div class="text-sm text-gray-900 px-6 pb-6" x-show="!edit">
             Last updated
 
             @if ($updatedBy = $reply->updatedBy())

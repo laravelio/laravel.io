@@ -9,8 +9,8 @@
 <x-buk-form 
     action="{{ route(...$route) }}" 
     :method="$method" 
-    x-data 
-    @editorSubmitted="function (event) { event.target.closest('form').submit() }"
+    x-data="{}"
+    @submitted="$event.currentTarget.submit()"
 >
     <div class="bg-gray-100 py-6 px-4 space-y-6 sm:p-6">
         <div>

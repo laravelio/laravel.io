@@ -21,7 +21,7 @@ class EditReply extends Component
         return view('livewire.edit-reply');
     }
 
-    protected $listeners = ['editorSubmitted' => 'updateReply'];
+    protected $listeners = ['submitted' => 'updateReply'];
 
     public function updateReply($body)
     {

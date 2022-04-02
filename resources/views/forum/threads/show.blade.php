@@ -70,7 +70,7 @@
                             <form 
                                 action="{{ route('replies.store') }}" 
                                 method="POST"
-                                @editorSubmitted="function (event) { event.target.closest('form').submit() }"
+                                @submitted="$event.currentTarget.submit()"
                             >
                                 @csrf
 
