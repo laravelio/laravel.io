@@ -98,8 +98,6 @@ Route::prefix('forum')->group(function () {
 
 // Replies
 Route::post('replies', [ReplyController::class, 'store'])->name('replies.store');
-Route::get('replies/{reply}/edit', [ReplyController::class, 'edit'])->name('replies.edit');
-Route::put('replies/{reply}', [ReplyController::class, 'update'])->name('replies.update');
 Route::delete('replies/{reply}', [ReplyController::class, 'delete'])->name('replies.delete');
 Route::get('replyable/{id}/{type}', [ReplyAbleController::class, 'redirect'])->name('replyable');
 

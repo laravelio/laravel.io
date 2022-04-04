@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateReplyRequest;
-use App\Http\Requests\UpdateReplyRequest;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
-use App\Jobs\UpdateReply;
 use App\Models\Reply;
 use App\Models\ReplyAble;
 use App\Models\Thread;
@@ -29,24 +27,6 @@ class ReplyController extends Controller
         $reply = $this->dispatchNow(CreateReply::fromRequest($request));
 
         $this->success('replies.created');
-
-        return $this->redirectToReplyAble($reply->replyAble());
-    }
-
-    public function edit(Reply $reply)
-    {
-        $this->authorize(ReplyPolicy::UPDATE, $reply);
-
-        return view('replies.edit', compact('reply'));
-    }
-
-    public function update(UpdateReplyRequest $request, Reply $reply)
-    {
-        $this->authorize(ReplyPolicy::UPDATE, $reply);
-
-        $this->dispatchNow(new UpdateReply($reply, $request->user(), $request->body()));
-
-        $this->success('replies.updated');
 
         return $this->redirectToReplyAble($reply->replyAble());
     }

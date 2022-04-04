@@ -65,13 +65,13 @@
             <div
                 x-cloak
                 x-show="open"
-                class="absolute top-12 right-1 flex flex-col bg-white rounded shadow w-48"
+                class="absolute top-12 right-1 flex flex-col bg-white rounded shadow w-48 z-10"
             >
 
-                <a class="flex gap-x-2 p-3 rounded hover:bg-gray-100" href="{{ route('replies.edit', $reply->id()) }}">
+                <button class="flex gap-x-2 p-3 rounded hover:bg-gray-100" @click="edit = !edit; open = false;">
                     <x-heroicon-o-pencil class="w-6 h-6"/>
-                    Edit
-                </a>
+                    <span x-text="edit ? 'Cancel editing' : 'Edit'"></span>
+                </button>
 
                 <button class="flex gap-x-2 p-3 rounded hover:bg-gray-100" @click="activeModal = 'deleteReply-{{ $reply->id }}'">
                     <x-heroicon-o-trash class="w-6 h-6 text-red-500"/>

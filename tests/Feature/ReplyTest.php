@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\EditReply;
 use App\Mail\MentionEmail;
 use App\Models\Reply;
 use App\Models\Thread;
@@ -8,6 +9,7 @@ use App\Notifications\MentionNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Notification;
+use Livewire\Livewire;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
@@ -26,26 +28,47 @@ test('users can add a reply to a thread', function () {
         ->assertSessionHas('success', 'Reply successfully added!');
 });
 
-test('users can edit a reply', function () {
+test('edit reply component is present on the page', function () {
     $user = $this->createUser();
     $thread = Thread::factory()->create(['slug' => 'the-first-thread']);
     Reply::factory()->create(['author_id' => $user->id(), 'replyable_id' => $thread->id()]);
 
     $this->loginAs($user);
 
-    $this->put('/replies/1', [
-        'body' => 'The updated reply',
-    ])
-        ->assertRedirectedTo('/forum/the-first-thread')
-        ->assertSessionHas('success', 'Reply successfully updated!');
+    $this->visit("/forum/{$thread->slug()}")
+        ->see('Update reply');
 });
 
-test('users cannot edit a reply they do not own', function () {
-    Reply::factory()->create();
+test('edit reply component is not present on the page when not owned by user', function () {
+    $thread = Thread::factory()->create(['slug' => 'the-first-thread']);
+    Reply::factory()->create(['replyable_id' => $thread->id()]);
 
     $this->login();
 
-    $this->get('/replies/1/edit')
+    $this->visit("/forum/{$thread->slug()}")
+        ->dontSee('Update reply');
+});
+
+test('users can edit a reply', function () {
+    $user = $this->createUser();
+    $thread = Thread::factory()->create(['slug' => 'the-first-thread']);
+    $reply = Reply::factory()->create(['author_id' => $user->id(), 'replyable_id' => $thread->id()]);
+
+    $this->actingAs($user);
+
+    Livewire::test(EditReply::class, ['reply' => $reply])
+        ->call('updateReply', 'Hope this helps!');
+
+    $this->assertSame('Hope this helps!', $reply->fresh()->body());
+});
+
+test('users cannot edit a reply they do not own', function () {
+    $reply = Reply::factory()->create();
+
+    $this->login();
+
+    Livewire::test(EditReply::class, ['reply' => $reply])
+        ->call('updateReply', 'Hope this helps!')
         ->assertForbidden();
 });
 

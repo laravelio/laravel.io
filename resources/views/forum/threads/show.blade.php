@@ -67,7 +67,11 @@
                         </x-info-panel>
                     @else
                         <div class="my-8">
-                            <form action="{{ route('replies.store') }}" method="POST">
+                            <form 
+                                action="{{ route('replies.store') }}" 
+                                method="POST"
+                                @submitted="$event.currentTarget.submit()"
+                            >
                                 @csrf
 
                                 <livewire:editor

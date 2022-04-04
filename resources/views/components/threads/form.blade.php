@@ -6,7 +6,12 @@
     'selectedTags' => []
 ])
 
-<x-buk-form action="{{ route(...$route) }}" :method="$method">
+<x-buk-form 
+    action="{{ route(...$route) }}" 
+    :method="$method" 
+    x-data="{}"
+    @submitted="$event.currentTarget.submit()"
+>
     <div class="bg-gray-100 py-6 px-4 space-y-6 sm:p-6">
         <div>
             <h2 id="create_thread_heading" class="text-lg leading-6 font-medium text-gray-900">

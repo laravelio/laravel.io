@@ -16,7 +16,9 @@
 
     @if ($errors->has($name))
         @foreach ($errors->get($name) as $error)
-            <p class="mt-2 text-sm text-red-600">{{ $error }}</p>
+            <x-forms.error>
+                {{ $error }}
+            </x-forms.error>
         @endforeach
     @endif
 </div>

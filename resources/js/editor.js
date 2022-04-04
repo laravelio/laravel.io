@@ -55,7 +55,8 @@ window.editorConfig = (body, hasMentions) => {
 
         // Submits the form enclosing the editor.
         submit: function () {
-            this.$refs.editor.closest('form').submit();
+            this.$dispatch('submitted', this.body);
+            this.$wire.emitUp('submitted', this.body);
         },
 
         // Updates the position of the listbox by calculating the caret position and applying an offset.
