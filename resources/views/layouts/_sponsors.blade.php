@@ -4,8 +4,8 @@
             We'd like to thank these <x-accent-text>amazing companies</x-accent-text> for supporting us
         </p>
 
-        <div class="mt-6 grid grid-cols-2 gap-y-8 lg:grid-cols-3">
-            <div class="col-span-2 flex justify-center lg:col-span-1">
+        <div class="mt-6 grid grid-cols-2 gap-y-8 lg:grid-cols-4">
+            <div class="col-span-3 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://beyondco.de" logo="{{ asset('images/sponsors/beyondcode.png') }}" company="Beyond Code" />
             </div>
 
@@ -19,10 +19,6 @@
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://envoyer.io/" logo="{{ asset('images/sponsors/envoyer.png') }}" company="Envoyer" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://blackfire.io/" logo="{{ asset('images/sponsors/blackfire-io.png') }}" company="Blackfire.io" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
