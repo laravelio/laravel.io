@@ -33,6 +33,6 @@ class EditReply extends Component
             'body' => $this->body,
         ]);
 
-        session()->flash('message', 'Reply successfully updated.');
+        $this->emit('replyEdited');
     }
 }

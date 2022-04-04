@@ -22,22 +22,21 @@
 
             @if ($errors->has('body'))
                 @foreach ($errors->get('body') as $error)
-                    <x-forms.error class="px-6">{{ $error }}</x-forms.error>
+                    <x-forms.error class="px-6 pb-4">{{ $error }}</x-forms.error>
                 @endforeach
             @endif
         </div>
     @endcan
 
-    @if (session()->has('message'))
-        <x-forms.success 
-            class="px-6 pb-4" 
-            x-data="{ show: true }" 
-            x-show="show" 
-            x-init="setTimeout(() => { show = false; edit = false; }, 3000)"
-        >
-            {{ session('message') }}
-        </x-forms.success>
-    @endif
+    <x-forms.success 
+        class="px-6 pb-4" 
+        x-data="{ show: false }"
+        x-show="show"
+        x-cloak
+        x-init="$wire.on('replyEdited', function () { show = true; edit = false; setTimeout(function () { show = false; }, 3000) })"
+    >
+        Reply successfully updated.
+    </x-forms.success>
 
     @if ($reply->isUpdated())
         <div class="text-sm text-gray-900 px-6 pb-6" x-show="!edit">

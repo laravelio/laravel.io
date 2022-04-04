@@ -270,7 +270,7 @@ window.editorConfig = (body, hasMentions) => {
         // Insert provided characters at the desired place in a string.
         insertCharactersAtPosition: (string, character, position) => {
             return [string.slice(0, position), character, string.slice(position)].join('');
-        },
+        }
     };
 };
 
