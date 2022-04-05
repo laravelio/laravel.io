@@ -9,6 +9,6 @@ class SocialImageController extends Controller
 {
     public function __invoke(Article $article)
     {
-        return $this->dispatchNow(new GenerateSocialShareImage($article));
+        return $this->dispatchSync(new GenerateSocialShareImage($article));
     }
 }

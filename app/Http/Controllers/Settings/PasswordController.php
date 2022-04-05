@@ -17,7 +17,7 @@ class PasswordController extends Controller
 
     public function update(UpdatePasswordRequest $request)
     {
-        $this->dispatchNow(new UpdatePassword(Auth::user(), $request->newPassword()));
+        $this->dispatchSync(new UpdatePassword(Auth::user(), $request->newPassword()));
 
         $this->success('settings.password.updated');
 

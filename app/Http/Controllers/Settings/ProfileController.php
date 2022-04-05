@@ -25,7 +25,7 @@ class ProfileController extends Controller
 
     public function update(UpdateProfileRequest $request)
     {
-        $this->dispatchNow(UpdateProfile::fromRequest(Auth::user(), $request));
+        $this->dispatchSync(UpdateProfile::fromRequest(Auth::user(), $request));
 
         $this->success('settings.updated');
 
@@ -36,7 +36,7 @@ class ProfileController extends Controller
     {
         $this->authorize(UserPolicy::DELETE, $user = $request->user());
 
-        $this->dispatchNow(new DeleteUser($user));
+        $this->dispatchSync(new DeleteUser($user));
 
         $this->success('settings.deleted');
 

@@ -24,7 +24,7 @@ class ReplyController extends Controller
     {
         $this->authorize(ReplyPolicy::CREATE, Reply::class);
 
-        $reply = $this->dispatchNow(CreateReply::fromRequest($request));
+        $reply = $this->dispatchSync(CreateReply::fromRequest($request));
 
         $this->success('replies.created');
 
@@ -35,7 +35,7 @@ class ReplyController extends Controller
     {
         $this->authorize(ReplyPolicy::DELETE, $reply);
 
-        $this->dispatchNow(new DeleteReply($reply));
+        $this->dispatchSync(new DeleteReply($reply));
 
         $this->success('replies.deleted');
 

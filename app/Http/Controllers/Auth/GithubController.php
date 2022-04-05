@@ -52,7 +52,7 @@ class GithubController extends Controller
 
     private function userFound(User $user, SocialiteUser $socialiteUser): RedirectResponse
     {
-        $this->dispatchNow(new UpdateProfile($user, ['github_username' => $socialiteUser->getNickname()]));
+        $this->dispatchSync(new UpdateProfile($user, ['github_username' => $socialiteUser->getNickname()]));
 
         Auth::login($user, true);
 
