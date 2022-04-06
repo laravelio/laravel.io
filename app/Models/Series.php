@@ -16,7 +16,7 @@ class Series extends Model
     use HasSlug;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $fillable = [
         'title',

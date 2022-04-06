@@ -14,7 +14,7 @@ final class Subscription extends Model
     use HasUuid;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $table = 'subscriptions';
 

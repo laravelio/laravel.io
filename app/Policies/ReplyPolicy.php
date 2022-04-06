@@ -8,7 +8,9 @@ use App\Models\User;
 final class ReplyPolicy
 {
     const CREATE = 'create';
+
     const UPDATE = 'update';
+
     const DELETE = 'delete';
 
     /**

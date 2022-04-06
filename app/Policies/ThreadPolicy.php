@@ -8,9 +8,13 @@ use App\Models\User;
 final class ThreadPolicy
 {
     const UPDATE = 'update';
+
     const DELETE = 'delete';
+
     const SUBSCRIBE = 'subscribe';
+
     const UNSUBSCRIBE = 'unsubscribe';
+
     const LOCK = 'lock';
 
     public function update(User $user, Thread $thread): bool
