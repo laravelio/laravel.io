@@ -12,6 +12,7 @@ use App\Policies\ReplyPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Str;
 
 class ReplyController extends Controller
 {
@@ -24,7 +25,11 @@ class ReplyController extends Controller
     {
         $this->authorize(ReplyPolicy::CREATE, Reply::class);
 
-        $reply = $this->dispatchSync(CreateReply::fromRequest($request));
+        $uuid = Str::uuid();
+
+        $this->dispatchSync(CreateReply::fromRequest($request, $uuid));
+
+        $reply = Reply::findByUuidOrFail($uuid);
 
         $this->success('replies.created');
 

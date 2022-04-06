@@ -6,6 +6,7 @@ use App\Concerns\HasAuthor;
 use App\Concerns\HasLikes;
 use App\Concerns\HasMentions;
 use App\Concerns\HasTimestamps;
+use App\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,7 @@ final class Reply extends Model implements MentionAble
     use HasLikes;
     use HasMentions;
     use HasTimestamps;
+    use HasUuid;
 
     const TABLE = 'replies';
 
@@ -33,6 +35,7 @@ final class Reply extends Model implements MentionAble
      * @inheritdoc
      */
     protected $fillable = [
+        'uuid',
         'body',
     ];
 
@@ -43,6 +46,16 @@ final class Reply extends Model implements MentionAble
         'likesRelation',
         'updatedByRelation',
     ];
+
+    public function getKeyName(): string
+        {
+            return 'id';
+        }
+
+    public function getIncrementing(): bool
+    {
+        return true;
+    }
 
     public function solutionTo(): HasOne
     {
