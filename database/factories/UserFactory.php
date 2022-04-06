@@ -15,17 +15,17 @@ class UserFactory extends Factory
         static $password;
 
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
-            'username' => $this->faker->unique()->userName,
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'username' => $this->faker->unique()->userName(),
             'password' => $password ?: $password = bcrypt('secret'),
             'remember_token' => Str::random(10),
             'github_id' => $this->faker->unique()->numberBetween(10000, 99999),
-            'github_username' => $this->faker->unique()->userName,
-            'twitter' => $this->faker->unique()->userName,
+            'github_username' => $this->faker->unique()->userName(),
+            'twitter' => $this->faker->unique()->userName(),
             'banned_at' => null,
             'type' => User::DEFAULT,
-            'bio' => $this->faker->sentence,
+            'bio' => $this->faker->sentence(),
             'email_verified_at' => now()->subDay(),
         ];
     }
