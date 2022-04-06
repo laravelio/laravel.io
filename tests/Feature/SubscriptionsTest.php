@@ -24,7 +24,7 @@ test('users receive notifications for new replies to threads where they are subs
     Subscription::factory()->create(['user_id' => $userOne->id(), 'subscriptionable_id' => $thread->id()]);
     Subscription::factory()->create(['user_id' => $userTwo->id(), 'subscriptionable_id' => $thread->id()]);
 
-    $this->dispatch(new CreateReply($this->faker->text(), $author, $thread));
+    $this->dispatch(new CreateReply(Str::uuid(), $this->faker->text(), $author, $thread));
 
     Notification::assertNotSentTo($author, NewReplyNotification::class);
     Notification::assertSentTo([$userOne, $userTwo], NewReplyNotification::class);
@@ -59,7 +59,7 @@ test('reply authors do not receive a notification for a thread they are subscrib
     $author = User::factory()->create();
     Subscription::factory()->create(['user_id' => $author->id(), 'subscriptionable_id' => $thread->id()]);
 
-    $this->dispatch(new CreateReply($this->faker->text(), $author, $thread));
+    $this->dispatch(new CreateReply(Str::uuid(), $this->faker->text(), $author, $thread));
 
     Notification::assertNotSentTo($author, NewReplyNotification::class);
 });
@@ -68,7 +68,7 @@ test('users are automatically subscribed to a thread after replying to it', func
     $user = $this->createUser();
     $thread = Thread::factory()->create();
 
-    $this->dispatch(new CreateReply($this->faker->text(), $user, $thread));
+    $this->dispatch(new CreateReply(Str::uuid(), $this->faker->text(), $user, $thread));
 
     expect($thread->hasSubscriber($user))->toBeTrue();
 });
