@@ -9,6 +9,7 @@ use App\Jobs\CreateApiToken;
 use App\Jobs\DeleteApiToken;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\Sanctum;
 
 class ApiTokenController extends Controller
 {
@@ -19,7 +20,9 @@ class ApiTokenController extends Controller
 
     public function store(CreateApiTokenRequest $request)
     {
-        $token = $this->dispatchSync(new CreateApiToken(Auth::user(), $request->name()));
+        $this->dispatchSync(new CreateApiToken(Auth::user(), $request->name()));
+
+        $token = Sanctum::$personalAccessTokenModel::whereName($request->name())->first();
 
         $this->success('settings.api_token.created');
 
