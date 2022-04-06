@@ -11,7 +11,7 @@ final class DeleteThread
     ) {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->thread->delete();
     }

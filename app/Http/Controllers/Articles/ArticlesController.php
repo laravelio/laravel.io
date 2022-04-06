@@ -18,6 +18,7 @@ use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 class ArticlesController extends Controller
@@ -109,7 +110,11 @@ class ArticlesController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        $article = $this->dispatchSync(CreateArticle::fromRequest($request));
+        $uuid = Str::uuid();
+
+        $this->dispatchSync(CreateArticle::fromRequest($request, $uuid));
+
+        $article = Article::findByUuidOrFail($uuid);
 
         $this->success($request->shouldBeSubmitted() ? 'articles.submitted' : 'articles.created');
 
@@ -141,7 +146,9 @@ class ArticlesController extends Controller
 
         $wasNotPreviouslySubmitted = $article->isNotSubmitted();
 
-        $article = $this->dispatchSync(UpdateArticle::fromRequest($article, $request));
+        $this->dispatchSync(UpdateArticle::fromRequest($article, $request));
+
+        $article = $article->fresh();
 
         if ($wasNotPreviouslySubmitted && $request->shouldBeSubmitted()) {
             $this->success('articles.submitted');

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\Actions\CreateApiToken;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateApiTokenRequest;
 use App\Http\Requests\DeleteApiTokenRequest;
-use App\Jobs\CreateApiToken;
 use App\Jobs\DeleteApiToken;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +17,9 @@ class ApiTokenController extends Controller
         $this->middleware(Authenticate::class);
     }
 
-    public function store(CreateApiTokenRequest $request)
+    public function store(CreateApiTokenRequest $request, CreateApiToken $apiToken)
     {
-        $token = $this->dispatchSync(new CreateApiToken(Auth::user(), $request->name()));
+        $token = $apiToken->create(Auth::user(), $request->name());
 
         $this->success('settings.api_token.created');
 

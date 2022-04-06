@@ -11,7 +11,7 @@ final class UnmarkThreadSolution
     ) {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->thread->unmarkSolution();
     }

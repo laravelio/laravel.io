@@ -12,6 +12,7 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
+            'uuid' => $this->faker->uuid(),
             'author_id' => User::factory(),
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraphs(3, true),

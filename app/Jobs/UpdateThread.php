@@ -29,7 +29,7 @@ final class UpdateThread
         ]);
     }
 
-    public function handle(): Thread
+    public function handle(): void
     {
         $this->thread->update($this->attributes);
 
@@ -40,7 +40,5 @@ final class UpdateThread
         $this->thread->updatedByRelation()->associate($this->updatedBy);
 
         $this->thread->save();
-
-        return $this->thread;
     }
 }

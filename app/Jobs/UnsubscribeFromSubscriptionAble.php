@@ -13,7 +13,7 @@ final class UnsubscribeFromSubscriptionAble
     ) {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->subscriptionAble->subscriptionsRelation()
             ->where('user_id', $this->user->id())

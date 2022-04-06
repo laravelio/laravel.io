@@ -11,7 +11,7 @@ final class DeleteUser
     ) {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->user->delete();
     }

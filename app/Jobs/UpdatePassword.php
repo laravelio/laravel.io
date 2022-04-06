@@ -13,7 +13,7 @@ final class UpdatePassword
     ) {
     }
 
-    public function handle(Hasher $hasher)
+    public function handle(Hasher $hasher): void
     {
         $this->user->update(['password' => $hasher->make($this->newPassword)]);
     }

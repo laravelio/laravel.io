@@ -10,7 +10,9 @@ uses(DatabaseMigrations::class);
 it('can ban a user', function () {
     $user = $this->createUser(['banned_at' => null]);
 
-    $bannedUser = $this->dispatch(new BanUser($user));
+    $this->dispatch(new BanUser($user));
+
+    $bannedUser = $user->fresh();
 
     expect($bannedUser->isBanned())->toBeTrue();
 });

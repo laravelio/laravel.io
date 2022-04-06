@@ -14,7 +14,9 @@ test('we can update a user profile', function () {
 
     Event::fake();
 
-    $updatedUser = $this->dispatch(new UpdateProfile($user, ['bio' => 'my bio', 'name' => 'John Doe Junior']));
+    $this->dispatch(new UpdateProfile($user, ['bio' => 'my bio', 'name' => 'John Doe Junior']));
+
+    $updatedUser = $user->fresh();
 
     expect($updatedUser->bio())->toEqual('my bio');
     expect($updatedUser->name())->toEqual('John Doe Junior');
