@@ -3,20 +3,18 @@
 namespace App\Markdown;
 
 use Illuminate\Support\ServiceProvider;
-use League\CommonMark\CommonMarkConverter;
-use League\CommonMark\Environment;
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\Mention\MentionExtension;
+use League\CommonMark\MarkdownConverter;
 
 class MarkdownServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->bind(Converter::class, function () {
-            $environment = Environment::createCommonMarkEnvironment();
-
-            $environment->addExtension(new MentionExtension);
-
-            $environment->mergeConfig([
+        $this->app->singleton(Converter::class, function () {
+            $environment = new Environment([
+                'html_input' => 'escape',
                 'mentions' => [
                     'username' => [
                         'prefix' => '@',
@@ -26,7 +24,10 @@ class MarkdownServiceProvider extends ServiceProvider
                 ],
             ]);
 
-            return new LeagueConverter(new CommonMarkConverter(['html_input' => 'escape'], $environment));
+            $environment->addExtension(new CommonMarkCoreExtension);
+            $environment->addExtension(new MentionExtension);
+
+            return new LeagueConverter(new MarkdownConverter($environment));
         });
     }
 }
