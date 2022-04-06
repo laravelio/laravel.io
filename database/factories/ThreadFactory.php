@@ -12,6 +12,7 @@ class ThreadFactory extends Factory
     public function definition(): array
     {
         return [
+            'uuid' => $this->faker->uuid(),
             'subject' => $this->faker->text(20),
             'body' => $this->faker->text(),
             'slug' => $this->faker->unique()->slug(),

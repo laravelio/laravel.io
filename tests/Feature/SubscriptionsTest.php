@@ -9,6 +9,7 @@ use App\Notifications\NewReplyNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Str;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
@@ -32,7 +33,11 @@ test('users receive notifications for new replies to threads where they are subs
 test('users are automatically subscribed to a thread after creating it', function () {
     $user = $this->createUser();
 
-    $thread = $this->dispatch(new CreateThread($this->faker->sentence(), $this->faker->text(), $user));
+    $uuid = Str::uuid();
+
+    $this->dispatch(new CreateThread($uuid, $this->faker->sentence(), $this->faker->text(), $user));
+
+    $thread = Thread::findByUuidOrFail($uuid);
 
     expect($thread->hasSubscriber($user))->toBeTrue();
 });
@@ -42,7 +47,7 @@ test('thread authors do not receive a notification for a thread they create', fu
 
     $author = $this->createUser();
 
-    $this->dispatch(new CreateThread($this->faker->sentence(), $this->faker->text(), $author));
+    $this->dispatch(new CreateThread(Str::uuid(), $this->faker->sentence(), $this->faker->text(), $author));
 
     Notification::assertNotSentTo($author, NewReplyNotification::class);
 });

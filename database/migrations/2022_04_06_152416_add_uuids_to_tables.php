@@ -9,7 +9,7 @@ return new class extends Migration {
 
     private const MODEL_CLASSES = [
         \App\Models\Article::class,
-//        \App\Models\Thread::class,
+        \App\Models\Thread::class,
 //        \App\Models\Reply::class,
     ];
 
