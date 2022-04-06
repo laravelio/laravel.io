@@ -48,10 +48,10 @@ final class Article extends Model
     /**
      * @inheritdoc
      */
-    protected $dates = [
-        'submitted_at',
-        'approved_at',
-        'shared_at',
+    protected $casts = [
+        'submitted_at' => 'datetime',
+        'approved_at' => 'datetime',
+        'shared_at' => 'datetime',
     ];
 
     /**
