@@ -221,7 +221,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
             ->summary($this->body)
             ->updated($updatedAt)
             ->link(route('thread', $this->slug))
-            ->author($this->author()->name);
+            ->authorName($this->author()->name);
     }
 
     /**
