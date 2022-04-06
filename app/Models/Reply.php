@@ -48,9 +48,9 @@ final class Reply extends Model implements MentionAble
     ];
 
     public function getKeyName(): string
-        {
-            return 'id';
-        }
+    {
+        return 'id';
+    }
 
     public function getIncrementing(): bool
     {
