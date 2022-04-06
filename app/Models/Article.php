@@ -7,6 +7,7 @@ use App\Concerns\HasLikes;
 use App\Concerns\HasSlug;
 use App\Concerns\HasTags;
 use App\Concerns\HasTimestamps;
+use App\Concerns\HasUuid;
 use App\Concerns\PreparesSearch;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,6 +24,7 @@ final class Article extends Model
     use HasLikes;
     use HasTimestamps;
     use HasTags;
+    use HasUuid;
     use PreparesSearch;
     use Searchable;
 
@@ -32,6 +34,7 @@ final class Article extends Model
      * @inheritdoc
      */
     protected $fillable = [
+        'uuid',
         'title',
         'body',
         'original_url',
@@ -62,6 +65,16 @@ final class Article extends Model
         'likesRelation',
         'tagsRelation',
     ];
+
+    public function getKeyName(): string
+    {
+        return 'id';
+    }
+
+    public function getIncrementing(): bool
+    {
+        return true;
+    }
 
     public function id(): int
     {

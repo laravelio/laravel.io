@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\User;
 use App\Rules\HttpImageRule;
 use Illuminate\Http\Concerns\InteractsWithInput;
+use Ramsey\Uuid\UuidInterface;
 
 class ArticleRequest extends Request
 {

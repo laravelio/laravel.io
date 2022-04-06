@@ -6,6 +6,7 @@ use App\Events\ArticleWasSubmittedForApproval;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\User;
+use Ramsey\Uuid\UuidInterface;
 
 final class CreateArticle
 {
@@ -14,6 +15,7 @@ final class CreateArticle
     private $tags;
 
     public function __construct(
+        private UuidInterface $uuid,
         private string $title,
         private string $body,
         private User $author,
@@ -24,9 +26,10 @@ final class CreateArticle
         $this->tags = $options['tags'] ?? [];
     }
 
-    public static function fromRequest(ArticleRequest $request): self
+    public static function fromRequest(ArticleRequest $request, UuidInterface $uuid): self
     {
         return new static(
+            $uuid,
             $request->title(),
             $request->body(),
             $request->author(),
@@ -41,6 +44,7 @@ final class CreateArticle
     public function handle(): Article
     {
         $article = new Article([
+            'uuid' => $this->uuid->toString(),
             'title' => $this->title,
             'body' => $this->body,
             'original_url' => $this->originalUrl,

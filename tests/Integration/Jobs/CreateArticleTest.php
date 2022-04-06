@@ -1,7 +1,9 @@
 <?php
 
 use App\Jobs\CreateArticle;
+use App\Models\Article;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 uses(TestCase::class);
@@ -10,9 +12,13 @@ uses(DatabaseMigrations::class);
 test('we can create a draft article', function () {
     $user = $this->createUser();
 
-    $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, false, [
+    $uuid = Str::uuid();
+
+    $this->dispatch(new CreateArticle($uuid, 'Title', 'Body', $user, false, [
         'original_url' => 'https://laravel.io',
     ]));
+
+    $article = Article::findByUuidOrFail($uuid);
 
     expect($article->title())->toEqual('Title');
     expect($article->body())->toEqual('Body');
@@ -24,9 +30,13 @@ test('we can create a draft article', function () {
 test('we can create an article and submit it for approval', function () {
     $user = $this->createUser();
 
-    $article = $this->dispatch(new CreateArticle('Title', 'Body', $user, true, [
+    $uuid = Str::uuid();
+
+    $this->dispatch(new CreateArticle($uuid, 'Title', 'Body', $user, true, [
         'original_url' => 'https://laravel.io',
     ]));
+
+    $article = Article::findByUuidOrFail($uuid);
 
     $this->assertNotNull($article->submittedAt());
 });
