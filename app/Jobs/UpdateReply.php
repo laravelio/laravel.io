@@ -14,7 +14,7 @@ final class UpdateReply
     ) {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->reply->body = $this->body;
         $this->reply->updatedByRelation()->associate($this->updatedBy);

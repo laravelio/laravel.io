@@ -11,7 +11,7 @@ final class DeleteReply
     ) {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->reply->delete();
     }

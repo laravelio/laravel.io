@@ -12,11 +12,9 @@ final class BanUser
     ) {
     }
 
-    public function handle(): User
+    public function handle(): void
     {
         $this->user->banned_at = Carbon::now();
         $this->user->save();
-
-        return $this->user;
     }
 }

@@ -11,7 +11,7 @@ final class DeleteArticle
     ) {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->article->delete();
     }

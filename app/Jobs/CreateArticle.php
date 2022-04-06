@@ -41,7 +41,7 @@ final class CreateArticle
         );
     }
 
-    public function handle(): Article
+    public function handle(): void
     {
         $article = new Article([
             'uuid' => $this->uuid->toString(),
@@ -57,7 +57,5 @@ final class CreateArticle
         if ($article->isAwaitingApproval()) {
             event(new ArticleWasSubmittedForApproval($article));
         }
-
-        return $article;
     }
 }

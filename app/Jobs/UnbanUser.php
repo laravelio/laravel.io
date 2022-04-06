@@ -11,11 +11,9 @@ final class UnbanUser
     ) {
     }
 
-    public function handle(): User
+    public function handle(): void
     {
         $this->user->banned_at = null;
         $this->user->save();
-
-        return $this->user;
     }
 }

@@ -15,7 +15,7 @@ final class MarkThreadSolution
     ) {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->thread->markSolution($this->solution, $this->user);
     }

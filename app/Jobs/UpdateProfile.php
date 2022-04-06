@@ -29,7 +29,7 @@ final class UpdateProfile
         ]);
     }
 
-    public function handle(): User
+    public function handle(): void
     {
         $emailAddress = $this->user->emailAddress();
 
@@ -41,7 +41,5 @@ final class UpdateProfile
 
             event(new EmailAddressWasChanged($this->user));
         }
-
-        return $this->user;
     }
 }

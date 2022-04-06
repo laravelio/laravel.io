@@ -15,7 +15,7 @@ final class SubscribeToSubscriptionAble
     ) {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $subscription = new Subscription();
         $subscription->uuid = Uuid::uuid4()->toString();

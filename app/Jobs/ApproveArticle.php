@@ -13,13 +13,11 @@ final class ApproveArticle
     ) {
     }
 
-    public function handle(): Article
+    public function handle(): void
     {
         $this->article->approved_at = Carbon::now();
         $this->article->save();
 
         event(new ArticleWasApproved($this->article));
-
-        return $this->article;
     }
 }
