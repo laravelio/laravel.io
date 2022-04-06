@@ -28,9 +28,9 @@ final class LikeThread extends Component
         }
 
         if ($this->thread->isLikedBy(Auth::user())) {
-            $this->dispatchNow(new UnlikeThreadJob($this->thread, Auth::user()));
+            $this->dispatchSync(new UnlikeThreadJob($this->thread, Auth::user()));
         } else {
-            $this->dispatchNow(new LikeThreadJob($this->thread, Auth::user()));
+            $this->dispatchSync(new LikeThreadJob($this->thread, Auth::user()));
         }
     }
 }

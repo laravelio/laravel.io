@@ -28,9 +28,9 @@ final class LikeReply extends Component
         }
 
         if ($this->reply->isLikedBy(Auth::user())) {
-            $this->dispatchNow(new UnlikeReplyJob($this->reply, Auth::user()));
+            $this->dispatchSync(new UnlikeReplyJob($this->reply, Auth::user()));
         } else {
-            $this->dispatchNow(new LikeReplyJob($this->reply, Auth::user()));
+            $this->dispatchSync(new LikeReplyJob($this->reply, Auth::user()));
         }
     }
 }

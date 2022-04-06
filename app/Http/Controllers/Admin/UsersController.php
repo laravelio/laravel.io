@@ -34,7 +34,7 @@ class UsersController extends Controller
     {
         $this->authorize(UserPolicy::BAN, $user);
 
-        $this->dispatchNow(new BanUser($user));
+        $this->dispatchSync(new BanUser($user));
 
         $this->success('admin.users.banned', $user->name());
 
@@ -45,7 +45,7 @@ class UsersController extends Controller
     {
         $this->authorize(UserPolicy::BAN, $user);
 
-        $this->dispatchNow(new UnbanUser($user));
+        $this->dispatchSync(new UnbanUser($user));
 
         $this->success('admin.users.unbanned', $user->name());
 
@@ -56,7 +56,7 @@ class UsersController extends Controller
     {
         $this->authorize(UserPolicy::DELETE, $user);
 
-        $this->dispatchNow(new DeleteUser($user));
+        $this->dispatchSync(new DeleteUser($user));
 
         $this->success('admin.users.deleted', $user->name());
 

@@ -66,6 +66,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data): User
     {
-        return $this->dispatchNow(RegisterUser::fromRequest(app(RegisterRequest::class)));
+        return $this->dispatchSync(RegisterUser::fromRequest(app(RegisterRequest::class)));
     }
 }

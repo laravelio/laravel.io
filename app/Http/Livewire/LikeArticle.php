@@ -31,9 +31,9 @@ final class LikeArticle extends Component
         }
 
         if ($this->article->isLikedBy(Auth::user())) {
-            $this->dispatchNow(new UnlikeArticleJob($this->article, Auth::user()));
+            $this->dispatchSync(new UnlikeArticleJob($this->article, Auth::user()));
         } else {
-            $this->dispatchNow(new LikeArticleJob($this->article, Auth::user()));
+            $this->dispatchSync(new LikeArticleJob($this->article, Auth::user()));
         }
 
         $this->emit('likeToggled');

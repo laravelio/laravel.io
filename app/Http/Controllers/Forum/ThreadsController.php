@@ -86,7 +86,7 @@ class ThreadsController extends Controller
 
     public function store(ThreadRequest $request)
     {
-        $thread = $this->dispatchNow(CreateThread::fromRequest($request));
+        $thread = $this->dispatchSync(CreateThread::fromRequest($request));
 
         $this->success('forum.threads.created');
 
@@ -105,7 +105,7 @@ class ThreadsController extends Controller
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
 
-        $thread = $this->dispatchNow(UpdateThread::fromRequest($thread, $request));
+        $thread = $this->dispatchSync(UpdateThread::fromRequest($thread, $request));
 
         $this->success('forum.threads.updated');
 
@@ -116,7 +116,7 @@ class ThreadsController extends Controller
     {
         $this->authorize(ThreadPolicy::DELETE, $thread);
 
-        $this->dispatchNow(new DeleteThread($thread));
+        $this->dispatchSync(new DeleteThread($thread));
 
         $this->success('forum.threads.deleted');
 
@@ -128,11 +128,11 @@ class ThreadsController extends Controller
         $this->authorize(ThreadPolicy::LOCK, $thread);
 
         if ($thread->isLocked()) {
-            $this->dispatchNow(new UnlockThread($thread));
+            $this->dispatchSync(new UnlockThread($thread));
 
             $this->success('forum.threads.unlocked');
         } else {
-            $this->dispatchNow(new LockThread($request->user(), $thread));
+            $this->dispatchSync(new LockThread($request->user(), $thread));
 
             $this->success('forum.threads.locked');
         }
@@ -144,7 +144,7 @@ class ThreadsController extends Controller
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
 
-        $this->dispatchNow(new MarkThreadSolution($thread, $reply, Auth::user()));
+        $this->dispatchSync(new MarkThreadSolution($thread, $reply, Auth::user()));
 
         return redirect()->route('thread', $thread->slug());
     }
@@ -153,7 +153,7 @@ class ThreadsController extends Controller
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
 
-        $this->dispatchNow(new UnmarkThreadSolution($thread));
+        $this->dispatchSync(new UnmarkThreadSolution($thread));
 
         return redirect()->route('thread', $thread->slug());
     }
@@ -162,7 +162,7 @@ class ThreadsController extends Controller
     {
         $this->authorize(ThreadPolicy::SUBSCRIBE, $thread);
 
-        $this->dispatchNow(new SubscribeToSubscriptionAble($request->user(), $thread));
+        $this->dispatchSync(new SubscribeToSubscriptionAble($request->user(), $thread));
 
         $this->success("You're now subscribed to this thread.");
 
@@ -173,7 +173,7 @@ class ThreadsController extends Controller
     {
         $this->authorize(ThreadPolicy::UNSUBSCRIBE, $thread);
 
-        $this->dispatchNow(new UnsubscribeFromSubscriptionAble($request->user(), $thread));
+        $this->dispatchSync(new UnsubscribeFromSubscriptionAble($request->user(), $thread));
 
         $this->success("You're now unsubscribed from this thread.");
 
