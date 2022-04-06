@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class NextVersion extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -200,4 +200,4 @@ class NextVersion extends Migration
         Schema::drop('role_user');
         Schema::drop('roles');
     }
-}
+};

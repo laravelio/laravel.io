@@ -25,19 +25,19 @@ final class Reply extends Model implements MentionAble
     const TABLE = 'replies';
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $table = self::TABLE;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $fillable = [
         'body',
     ];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $with = [
         'likesRelation',

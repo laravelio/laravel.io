@@ -14,12 +14,12 @@ final class Tag extends Model
     use HasSlug;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $table = 'tags';
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public $timestamps = false;
 

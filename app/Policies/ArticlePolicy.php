@@ -8,10 +8,15 @@ use App\Models\User;
 final class ArticlePolicy
 {
     const UPDATE = 'update';
+
     const DELETE = 'delete';
+
     const APPROVE = 'approve';
+
     const DISAPPROVE = 'disapprove';
+
     const DECLINE = 'decline';
+
     const PINNED = 'togglePinnedStatus';
 
     public function update(User $user, Article $article): bool

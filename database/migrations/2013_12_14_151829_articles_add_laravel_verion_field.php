@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ArticlesAddLaravelVerionField extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -12,4 +12,4 @@ class ArticlesAddLaravelVerionField extends Migration
             $table->integer('laravel_version')->default(0);
         });
     }
-}
+};

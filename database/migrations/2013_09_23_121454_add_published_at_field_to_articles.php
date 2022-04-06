@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPublishedAtFieldToArticles extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -13,4 +13,4 @@ class AddPublishedAtFieldToArticles extends Migration
             $table->dateTime('published_at')->nullable();
         });
     }
-}
+};

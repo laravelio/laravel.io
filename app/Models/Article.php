@@ -29,7 +29,7 @@ final class Article extends Model
     const TABLE = 'articles';
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $fillable = [
         'title',
@@ -46,16 +46,16 @@ final class Article extends Model
     ];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
-    protected $dates = [
-        'submitted_at',
-        'approved_at',
-        'shared_at',
+    protected $casts = [
+        'submitted_at' => 'datetime',
+        'approved_at' => 'datetime',
+        'shared_at' => 'datetime',
     ];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $with = [
         'authorRelation',

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoleUserTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -15,4 +15,4 @@ class CreateRoleUserTable extends Migration
             $table->index('user_id');
         });
     }
-}
+};
