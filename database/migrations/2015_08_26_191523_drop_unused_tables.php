@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-class DropUnusedTables extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -11,4 +11,4 @@ class DropUnusedTables extends Migration
         Schema::dropIfExists('forum_thread_visitations');
         Schema::dropIfExists('sessions');
     }
-}
+};

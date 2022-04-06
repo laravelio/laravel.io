@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSpamCounterToUsersTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -12,4 +12,4 @@ class AddSpamCounterToUsersTable extends Migration
             $table->tinyInteger('spam_count')->default(0);
         });
     }
-}
+};

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUpdatedByToThreadsAndRepliesTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -16,4 +16,4 @@ class AddUpdatedByToThreadsAndRepliesTable extends Migration
             $table->foreignId('updated_by')->nullable();
         });
     }
-}
+};

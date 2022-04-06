@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddLockedByColumnToThreadsTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -18,4 +18,4 @@ class AddLockedByColumnToThreadsTable extends Migration
                 ->onDelete('SET NULL');
         });
     }
-}
+};

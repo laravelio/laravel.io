@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSessionTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -14,4 +14,4 @@ class CreateSessionTable extends Migration
             $table->integer('last_activity');
         });
     }
-}
+};

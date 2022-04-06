@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEmailVerifiedAtColumnToUsers extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -15,4 +15,4 @@ class AddEmailVerifiedAtColumnToUsers extends Migration
             $table->dropColumn(['confirmed', 'confirmation_code']);
         });
     }
-}
+};

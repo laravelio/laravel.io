@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserBioColumn extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -11,4 +11,4 @@ class AddUserBioColumn extends Migration
             $table->string('bio', 160)->default('');
         });
     }
-}
+};
