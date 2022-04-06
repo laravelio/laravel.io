@@ -11,7 +11,9 @@ uses(DatabaseMigrations::class);
 it('can unban a user', function () {
     $user = $this->createUser(['banned_at' => Carbon::yesterday()]);
 
-    $unbannedUser = $this->dispatch(new UnbanUser($user));
+    $this->dispatch(new UnbanUser($user));
+
+    $unbannedUser = $user->fresh();
 
     expect($unbannedUser->isBanned())->toBeFalse();
 });

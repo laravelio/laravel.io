@@ -2,6 +2,7 @@
 
 use App\Exceptions\CannotCreateUser;
 use App\Jobs\RegisterUser;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -9,9 +10,11 @@ uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
 test('we can create a user', function () {
-    $user = $this->dispatch(
+    $this->dispatch(
         new RegisterUser('John Doe', 'john@example.com', 'johndoe', 'password', '123', 'johndoe'),
     );
+
+    $user = User::findByEmailAddress('john@example.com');
 
     expect($user->name())->toEqual('John Doe');
 });
