@@ -1,6 +1,6 @@
 <?php
 
-use App\Actions\CreateApiToken;
+use App\Jobs\CreateApiToken;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -10,9 +10,7 @@ uses(DatabaseMigrations::class);
 it('creates an API token for the given user', function () {
     $user = $this->createUser();
 
-    $action = new CreateApiToken;
-
-    $action->create($user, 'Foo Bar');
+    $this->dispatch(new CreateApiToken($user, 'Foo Bar'));
 
     expect($user->refresh()->tokens)
         ->toHaveCount(1)

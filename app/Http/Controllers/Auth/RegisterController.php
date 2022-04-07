@@ -52,16 +52,19 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $this->dispatchSync(RegisterUser::fromRequest($request));
-
-        $user = User::findByEmailAddress($request->emailAddress());
-
-        event(new Registered($user));
+        event(new Registered($user = $this->create($request)));
 
         $this->guard()->login($user);
 
         return $request->wantsJson()
             ? new JsonResponse([], 201)
             : redirect($this->redirectPath());
+    }
+
+    protected function create(RegisterRequest $request): User
+    {
+        $this->dispatchSync(RegisterUser::fromRequest($request));
+
+        return User::findByEmailAddress($request->emailAddress());
     }
 }

@@ -6,35 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public const MODEL_CLASSES = [
-        \App\Models\Article::class,
-        \App\Models\Thread::class,
-        \App\Models\Reply::class,
+    public const TABLES = [
+        'articles',
+        'threads',
+        'replies'
     ];
 
     public function up(): void
     {
-        foreach (static::MODEL_CLASSES as $classname) {
-            $model = new $classname;
-
-            Schema::table($model->getTable(), function (Blueprint $table) use ($model) {
+        foreach (static::TABLES as $tableName) {
+            Schema::table($tableName, function (Blueprint $table) use ($tableName) {
                 $columnName = 'uuid';
 
                 $table->uuid($columnName)
                     ->after('id')
-                    ->index("{$model->getTable()}_{$columnName}_index")
+                    ->index("{$tableName}_{$columnName}_index")
                     ->nullable();
-            });
-        }
-    }
-
-    public function down(): void
-    {
-        foreach (static::MODEL_CLASSES as $classname) {
-            $model = new $classname;
-
-            Schema::table($model->getTable(), function (Blueprint $table) {
-                $table->dropColumn('uuid');
             });
         }
     }

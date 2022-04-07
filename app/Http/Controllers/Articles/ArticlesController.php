@@ -110,9 +110,7 @@ class ArticlesController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        $uuid = Str::uuid();
-
-        $this->dispatchSync(CreateArticle::fromRequest($request, $uuid));
+        $this->dispatchSync(CreateArticle::fromRequest($request, $uuid = Str::uuid()));
 
         $article = Article::findByUuidOrFail($uuid);
 

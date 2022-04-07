@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Settings;
 
-use App\Actions\CreateApiToken;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateApiTokenRequest;
 use App\Http\Requests\DeleteApiTokenRequest;
+use App\Jobs\CreateApiToken;
 use App\Jobs\DeleteApiToken;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\Sanctum;
 
 class ApiTokenController extends Controller
 {
@@ -17,9 +18,11 @@ class ApiTokenController extends Controller
         $this->middleware(Authenticate::class);
     }
 
-    public function store(CreateApiTokenRequest $request, CreateApiToken $apiToken)
+    public function store(CreateApiTokenRequest $request)
     {
-        $token = $apiToken->create(Auth::user(), $request->name());
+        $this->dispatchSync(new CreateApiToken($user = Auth::user(), $request->name()));
+
+        $token = $user->tokens()->where('name', $request->name())->first();
 
         $this->success('settings.api_token.created');
 

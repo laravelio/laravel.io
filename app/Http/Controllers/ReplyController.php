@@ -25,9 +25,7 @@ class ReplyController extends Controller
     {
         $this->authorize(ReplyPolicy::CREATE, Reply::class);
 
-        $uuid = Str::uuid();
-
-        $this->dispatchSync(CreateReply::fromRequest($request, $uuid));
+        $this->dispatchSync(CreateReply::fromRequest($request, $uuid = Str::uuid()));
 
         $reply = Reply::findByUuidOrFail($uuid);
 

@@ -87,9 +87,7 @@ class ThreadsController extends Controller
 
     public function store(ThreadRequest $request)
     {
-        $uuid = Str::uuid();
-
-        $this->dispatchSync(CreateThread::fromRequest($request, $uuid));
+        $this->dispatchSync(CreateThread::fromRequest($request, $uuid = Str::uuid()));
 
         $thread = Thread::findByUuidOrFail($uuid);
 
