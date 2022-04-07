@@ -9,7 +9,6 @@ use App\Jobs\CreateApiToken;
 use App\Jobs\DeleteApiToken;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Sanctum\Sanctum;
 
 class ApiTokenController extends Controller
 {

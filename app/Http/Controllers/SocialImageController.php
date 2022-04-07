@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class SocialImageController extends Controller
 {
-    public function __invoke(Article $article, )
+    public function __invoke(Article $article)
     {
         $this->dispatchSync(new GenerateSocialShareImage($article, $uuid = Str::uuid()));
 

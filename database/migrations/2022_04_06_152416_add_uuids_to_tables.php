@@ -9,7 +9,7 @@ return new class extends Migration
     public const TABLES = [
         'articles',
         'threads',
-        'replies'
+        'replies',
     ];
 
     public function up(): void
