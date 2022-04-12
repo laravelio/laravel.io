@@ -12,10 +12,13 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 
-final class Article extends Model
+final class Article extends Model implements Feedable
 {
     use HasFactory;
     use HasAuthor;
@@ -27,6 +30,8 @@ final class Article extends Model
     use Searchable;
 
     const TABLE = 'articles';
+
+    const FEED_PAGE_SIZE = 20;
 
     /**
      * @inheritdoc
@@ -318,5 +323,22 @@ final class Article extends Model
             ->published()
             ->orderBy('submitted_at', 'asc')
             ->first();
+    }
+
+    public static function getFeedItems(): Collection
+    {
+        return self::paginate(self::FEED_PAGE_SIZE)
+            ->getCollection();
+    }
+
+    public function toFeedItem(): FeedItem
+    {
+        return FeedItem::create()
+            ->id($this->id())
+            ->title($this->title())
+            ->summary($this->excerpt())
+            ->updated($this->updatedAt())
+            ->link(route('articles', $this->slug()))
+            ->authorName($this->author()->name());
     }
 }
