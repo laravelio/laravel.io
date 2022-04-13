@@ -164,7 +164,7 @@
                 </div>
 
                 <div class="hidden lg:block mt-6">
-                    <x-buttons.dark-cta class="w-full">
+                    <x-buttons.dark-cta class="w-full" href="{{ url('/forum/feed') }}">
                         <x-heroicon-s-rss class="w-6 h-6 mr-2" />
                         RSS Feed
                     </x-buttons.dark-cta>
