@@ -338,7 +338,7 @@ final class Article extends Model implements Feedable
             ->title($this->title())
             ->summary($this->excerpt())
             ->updated($this->updatedAt())
-            ->link(route('articles', $this->slug()))
+            ->link(route('articles.show', $this->slug()))
             ->authorName($this->author()->name());
     }
 }
