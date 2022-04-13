@@ -15,7 +15,9 @@ final class UpdateProfile
         private User $user,
         array $attributes = []
     ) {
-        $this->attributes = Arr::only($attributes, ['name', 'email', 'username', 'github_username', 'bio', 'twitter']);
+        $this->attributes = Arr::only($attributes, [
+            'name', 'email', 'username', 'github_username', 'bio', 'twitter',
+        ]);
     }
 
     public static function fromRequest(User $user, UpdateProfileRequest $request): self
