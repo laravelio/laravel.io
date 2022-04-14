@@ -68,7 +68,7 @@ test('pinned articles are returned first', function () {
 
     $recentArticles = Article::recent()->get();
 
-    expect($recentArticles[0]->title)->toEqual($articleThree->title);
-    expect($recentArticles[1]->title)->toEqual($articleOne->title);
-    expect($recentArticles[2]->title)->toEqual($articleTwo->title);
+    expect($recentArticles[0]->title)->toEqual($articleOne->title);
+    expect($recentArticles[1]->title)->toEqual($articleTwo->title);
+    expect($recentArticles[2]->title)->toEqual($articleThree->title);
 });

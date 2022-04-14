@@ -270,8 +270,7 @@ final class Article extends Model implements Feedable
 
     public function scopeRecent(Builder $query): Builder
     {
-        return $query->orderBy('is_pinned', 'desc')
-            ->orderBy('submitted_at', 'desc');
+        return $query->orderBy('submitted_at', 'desc');
     }
 
     public function scopePopular(Builder $query): Builder
