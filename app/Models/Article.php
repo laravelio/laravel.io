@@ -327,7 +327,8 @@ final class Article extends Model implements Feedable
 
     public static function getFeedItems(): Collection
     {
-        return self::paginate(self::FEED_PAGE_SIZE)
+        return self::published()
+            ->paginate(self::FEED_PAGE_SIZE)
             ->getCollection();
     }
 
@@ -338,7 +339,7 @@ final class Article extends Model implements Feedable
             ->title($this->title())
             ->summary($this->excerpt())
             ->updated($this->updatedAt())
-            ->link(route('articles', $this->slug()))
+            ->link(route('articles.show', $this->slug()))
             ->authorName($this->author()->name());
     }
 }
