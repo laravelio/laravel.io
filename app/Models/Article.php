@@ -327,6 +327,7 @@ final class Article extends Model implements Feedable
     public static function getFeedItems(): Collection
     {
         return self::published()
+            ->recent()
             ->paginate(self::FEED_PAGE_SIZE)
             ->getCollection();
     }
