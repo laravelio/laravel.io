@@ -12,6 +12,7 @@ return [
             'alt' => 'Cloudways',
             'goal' => '4KV6VZZ6',
         ],
+        ['url' => 'https://loadforge.com', 'image' => 'loadforge', 'alt' => 'LoadForge', 'goal' => '5KTDAJ04'],
     ],
 
     'horizon' => [
