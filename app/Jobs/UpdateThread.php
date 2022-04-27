@@ -11,11 +11,8 @@ final class UpdateThread
 {
     private array $attributes;
 
-    public function __construct(
-        private Thread $thread,
-        private User $updatedBy,
-        array $attributes = []
-    ) {
+    public function __construct(private Thread $thread, private User $updatedBy, array $attributes = [])
+    {
         $this->attributes = Arr::only($attributes, ['subject', 'body', 'slug', 'tags']);
     }
 

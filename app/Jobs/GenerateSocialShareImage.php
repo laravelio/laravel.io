@@ -26,10 +26,8 @@ final class GenerateSocialShareImage
 
     const CACHE_LIFETIME = 43200;
 
-    public function __construct(
-        private Article $article,
-        private UuidInterface $uuid
-    ) {
+    public function __construct(private Article $article, private UuidInterface $uuid)
+    {
     }
 
     public function handle(ImageManager $image): void

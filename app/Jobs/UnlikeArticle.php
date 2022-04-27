@@ -7,10 +7,8 @@ use App\Models\User;
 
 final class UnlikeArticle
 {
-    public function __construct(
-        private Article $article,
-        private User $user
-    ) {
+    public function __construct(private Article $article, private User $user)
+    {
     }
 
     public function handle(): void

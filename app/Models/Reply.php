@@ -47,16 +47,6 @@ final class Reply extends Model implements MentionAble
         'updatedByRelation',
     ];
 
-    public function getKeyName(): string
-    {
-        return 'id';
-    }
-
-    public function getIncrementing(): bool
-    {
-        return true;
-    }
-
     public function solutionTo(): HasOne
     {
         return $this->hasOne(Thread::class, 'solution_reply_id');

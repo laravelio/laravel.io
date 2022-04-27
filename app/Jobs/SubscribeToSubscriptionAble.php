@@ -9,10 +9,8 @@ use Ramsey\Uuid\Uuid;
 
 final class SubscribeToSubscriptionAble
 {
-    public function __construct(
-        private User $user,
-        private SubscriptionAble $subscriptionAble
-    ) {
+    public function __construct(private User $user, private SubscriptionAble $subscriptionAble)
+    {
     }
 
     public function handle(): void

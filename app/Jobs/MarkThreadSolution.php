@@ -8,11 +8,8 @@ use App\Models\User;
 
 final class MarkThreadSolution
 {
-    public function __construct(
-        private Thread $thread,
-        private Reply $solution,
-        private User $user
-    ) {
+    public function __construct(private Thread $thread, private Reply $solution, private User $user)
+    {
     }
 
     public function handle(): void

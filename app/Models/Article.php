@@ -66,16 +66,6 @@ final class Article extends Model
         'tagsRelation',
     ];
 
-    public function getKeyName(): string
-    {
-        return 'id';
-    }
-
-    public function getIncrementing(): bool
-    {
-        return true;
-    }
-
     public function id(): int
     {
         return $this->id;

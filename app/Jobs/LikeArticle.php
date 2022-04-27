@@ -8,10 +8,8 @@ use App\Models\User;
 
 final class LikeArticle
 {
-    public function __construct(
-        private Article $article,
-        private User $user
-    ) {
+    public function __construct(private Article $article, private User $user)
+    {
     }
 
     /**

@@ -83,16 +83,6 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
         'locked_at' => 'datetime',
     ];
 
-    public function getKeyName(): string
-    {
-        return 'id';
-    }
-
-    public function getIncrementing(): bool
-    {
-        return true;
-    }
-
     public function id(): int
     {
         return $this->id;

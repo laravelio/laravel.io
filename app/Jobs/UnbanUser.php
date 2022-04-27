@@ -6,9 +6,8 @@ use App\Models\User;
 
 final class UnbanUser
 {
-    public function __construct(
-        private User $user
-    ) {
+    public function __construct(private User $user)
+    {
     }
 
     public function handle(): void

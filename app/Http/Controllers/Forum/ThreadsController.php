@@ -99,6 +99,7 @@ class ThreadsController extends Controller
     public function edit(Thread $thread)
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
+
         $selectedTags = $thread->tags()->pluck('id')->toArray();
 
         return view('forum.threads.edit', ['thread' => $thread, 'tags' => Tag::all(), 'selectedTags' => $selectedTags]);
