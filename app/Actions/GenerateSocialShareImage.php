@@ -1,12 +1,9 @@
 <?php
 
-namespace App\Jobs;
+namespace App\Actions;
 
 use App\Models\Article;
-use Illuminate\Support\Facades\Cache;
 use Intervention\Image\ImageManager;
-use Ramsey\Uuid\UuidInterface;
-use function resource_path;
 
 final class GenerateSocialShareImage
 {
@@ -26,15 +23,15 @@ final class GenerateSocialShareImage
 
     const CACHE_LIFETIME = 43200;
 
-    public function __construct(private Article $article, private UuidInterface $uuid)
+    public function __construct(private ImageManager $image)
     {
     }
 
-    public function handle(ImageManager $image): void
+    public function __invoke(Article $article): mixed
     {
-        $text = wordwrap($this->article->title(), self::CHARACTERS_PER_LINE);
+        $text = wordwrap($article->title(), self::CHARACTERS_PER_LINE);
 
-        $storedImage = $image->cache(function ($image) use ($text) {
+        return $this->image->cache(function ($image) use ($text) {
             $image->make(resource_path('images/'.self::TEMPLATE))
                 ->text($text, self::TEXT_X_POSITION, self::TEXT_Y_POSITION, function ($font) {
                     $font->file(resource_path('fonts/'.self::FONT));
@@ -42,7 +39,5 @@ final class GenerateSocialShareImage
                     $font->color(self::TEXT_COLOUR);
                 });
         }, self::CACHE_LIFETIME, true)->response('png');
-
-        Cache::put($this->uuid, $storedImage);
     }
 }
