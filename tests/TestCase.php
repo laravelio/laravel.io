@@ -10,8 +10,8 @@ class TestCase extends IlluminateTestCase
     use CreatesUsers;
     use HttpAssertions;
 
-    protected function dispatch($job)
+    protected function dispatch($job): void
     {
-        return $job->handle();
+        $job->handle();
     }
 }

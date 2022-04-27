@@ -18,6 +18,16 @@ final class Subscription extends Model
      */
     protected $table = 'subscriptions';
 
+    public function getKeyName()
+    {
+        return 'uuid';
+    }
+
+    public function getIncrementing()
+    {
+        return false;
+    }
+
     public function user(): User
     {
         return $this->userRelation;

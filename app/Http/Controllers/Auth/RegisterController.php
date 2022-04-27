@@ -52,7 +52,7 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        event(new Registered($user = $this->create($request->all())));
+        event(new Registered($user = $this->create($request)));
 
         $this->guard()->login($user);
 
@@ -61,11 +61,10 @@ class RegisterController extends Controller
             : redirect($this->redirectPath());
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     */
-    protected function create(array $data): User
+    protected function create(RegisterRequest $request): User
     {
-        return $this->dispatchSync(RegisterUser::fromRequest(app(RegisterRequest::class)));
+        $this->dispatchSync(RegisterUser::fromRequest($request));
+
+        return User::findByEmailAddress($request->emailAddress());
     }
 }

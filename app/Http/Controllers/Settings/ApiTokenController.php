@@ -19,7 +19,9 @@ class ApiTokenController extends Controller
 
     public function store(CreateApiTokenRequest $request)
     {
-        $token = $this->dispatchSync(new CreateApiToken(Auth::user(), $request->name()));
+        $this->dispatchSync(new CreateApiToken($user = Auth::user(), $request->name()));
+
+        $token = $user->tokens()->where('name', $request->name())->first();
 
         $this->success('settings.api_token.created');
 

@@ -6,12 +6,11 @@ use App\Models\Article;
 
 final class DeleteArticle
 {
-    public function __construct(
-        private Article $article
-    ) {
+    public function __construct(private Article $article)
+    {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->article->delete();
     }

@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Models\User;
-use Laravel\Sanctum\NewAccessToken;
 
 final class CreateApiToken
 {
@@ -11,8 +10,8 @@ final class CreateApiToken
     {
     }
 
-    public function handle(): NewAccessToken
+    public function handle(): void
     {
-        return $this->user->createToken($this->name);
+        $this->user->createToken($this->name);
     }
 }

@@ -13,6 +13,7 @@ class ReplyFactory extends Factory
     public function definition(): array
     {
         return [
+            'uuid' => $this->faker->uuid(),
             'body' => $this->faker->text(),
             'author_id' => User::factory(),
             'replyable_id' => Thread::factory(),

@@ -6,12 +6,11 @@ use App\Models\Thread;
 
 final class UnmarkThreadSolution
 {
-    public function __construct(
-        private Thread $thread
-    ) {
+    public function __construct(private Thread $thread)
+    {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->thread->unmarkSolution();
     }

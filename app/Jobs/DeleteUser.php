@@ -6,12 +6,11 @@ use App\Models\User;
 
 final class DeleteUser
 {
-    public function __construct(
-        private User $user
-    ) {
+    public function __construct(private User $user)
+    {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->user->delete();
     }

@@ -8,10 +8,12 @@ use App\Models\Subscription;
 use App\Models\Thread;
 use App\Models\User;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 final class CreateThread
 {
     public function __construct(
+        private UuidInterface $uuid,
         private string $subject,
         private string $body,
         private User $author,
@@ -19,9 +21,10 @@ final class CreateThread
     ) {
     }
 
-    public static function fromRequest(ThreadRequest $request): self
+    public static function fromRequest(ThreadRequest $request, UuidInterface $uuid): self
     {
         return new static(
+            $uuid,
             $request->subject(),
             $request->body(),
             $request->user(),
@@ -29,9 +32,10 @@ final class CreateThread
         );
     }
 
-    public function handle(): Thread
+    public function handle(): void
     {
         $thread = new Thread([
+            'uuid' => $this->uuid->toString(),
             'subject' => $this->subject,
             'body' => $this->body,
             'slug' => $this->subject,
@@ -50,7 +54,5 @@ final class CreateThread
         $thread->subscriptionsRelation()->save($subscription);
 
         event(new ThreadWasCreated($thread));
-
-        return $thread;
     }
 }

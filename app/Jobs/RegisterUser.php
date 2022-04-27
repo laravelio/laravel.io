@@ -29,7 +29,7 @@ final class RegisterUser
         );
     }
 
-    public function handle(): User
+    public function handle(): void
     {
         $this->assertEmailAddressIsUnique($this->email);
         $this->assertUsernameIsUnique($this->username);
@@ -46,8 +46,6 @@ final class RegisterUser
             'remember_token' => '',
         ]);
         $user->save();
-
-        return $user;
     }
 
     private function assertEmailAddressIsUnique(string $emailAddress)

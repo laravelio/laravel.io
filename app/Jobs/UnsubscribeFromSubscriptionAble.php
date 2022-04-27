@@ -7,13 +7,11 @@ use App\Models\User;
 
 final class UnsubscribeFromSubscriptionAble
 {
-    public function __construct(
-        private User $user,
-        private SubscriptionAble $subscriptionAble
-    ) {
+    public function __construct(private User $user, private SubscriptionAble $subscriptionAble)
+    {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->subscriptionAble->subscriptionsRelation()
             ->where('user_id', $this->user->id())

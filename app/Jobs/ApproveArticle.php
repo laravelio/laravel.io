@@ -8,18 +8,15 @@ use Carbon\Carbon;
 
 final class ApproveArticle
 {
-    public function __construct(
-        private Article $article
-    ) {
+    public function __construct(private Article $article)
+    {
     }
 
-    public function handle(): Article
+    public function handle(): void
     {
         $this->article->approved_at = Carbon::now();
         $this->article->save();
 
         event(new ArticleWasApproved($this->article));
-
-        return $this->article;
     }
 }

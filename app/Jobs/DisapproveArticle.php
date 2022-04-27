@@ -6,9 +6,8 @@ use App\Models\Article;
 
 final class DisapproveArticle
 {
-    public function __construct(
-        private Article $article
-    ) {
+    public function __construct(private Article $article)
+    {
     }
 
     public function handle(): Article

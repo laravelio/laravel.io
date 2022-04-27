@@ -8,6 +8,7 @@ use App\Concerns\HasMentions;
 use App\Concerns\HasSlug;
 use App\Concerns\HasTags;
 use App\Concerns\HasTimestamps;
+use App\Concerns\HasUuid;
 use App\Concerns\PreparesSearch;
 use App\Concerns\ProvidesSubscriptions;
 use App\Concerns\ReceivesReplies;
@@ -36,6 +37,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
     use HasSlug;
     use HasTags;
     use HasTimestamps;
+    use HasUuid;
     use PreparesSearch;
     use ProvidesSubscriptions;
     use ReceivesReplies;
@@ -54,6 +56,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
      * @inheritdoc
      */
     protected $fillable = [
+        'uuid',
         'body',
         'slug',
         'subject',

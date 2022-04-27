@@ -7,14 +7,11 @@ use App\Models\User;
 
 final class UpdateReply
 {
-    public function __construct(
-        private Reply $reply,
-        private User $updatedBy,
-        private string $body
-    ) {
+    public function __construct(private Reply $reply, private User $updatedBy, private string $body)
+    {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->reply->body = $this->body;
         $this->reply->updatedByRelation()->associate($this->updatedBy);

@@ -24,6 +24,7 @@ use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class ThreadsController extends Controller
 {
@@ -86,7 +87,9 @@ class ThreadsController extends Controller
 
     public function store(ThreadRequest $request)
     {
-        $thread = $this->dispatchSync(CreateThread::fromRequest($request));
+        $this->dispatchSync(CreateThread::fromRequest($request, $uuid = Str::uuid()));
+
+        $thread = Thread::findByUuidOrFail($uuid);
 
         $this->success('forum.threads.created');
 
@@ -96,6 +99,7 @@ class ThreadsController extends Controller
     public function edit(Thread $thread)
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
+
         $selectedTags = $thread->tags()->pluck('id')->toArray();
 
         return view('forum.threads.edit', ['thread' => $thread, 'tags' => Tag::all(), 'selectedTags' => $selectedTags]);
@@ -105,7 +109,9 @@ class ThreadsController extends Controller
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
 
-        $thread = $this->dispatchSync(UpdateThread::fromRequest($thread, $request));
+        $this->dispatchSync(UpdateThread::fromRequest($thread, $request));
+
+        $thread = $thread->fresh();
 
         $this->success('forum.threads.updated');
 

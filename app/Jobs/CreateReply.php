@@ -10,24 +10,34 @@ use App\Models\Subscription;
 use App\Models\SubscriptionAble;
 use App\Models\User;
 use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 final class CreateReply
 {
     public function __construct(
+        private UuidInterface $uuid,
         private string $body,
         private User $author,
         private ReplyAble $replyAble
     ) {
     }
 
-    public static function fromRequest(CreateReplyRequest $request): self
+    public static function fromRequest(CreateReplyRequest $request, UuidInterface $uuid): self
     {
-        return new static($request->body(), $request->author(), $request->replyAble());
+        return new static(
+            $uuid,
+            $request->body(),
+            $request->author(),
+            $request->replyAble()
+        );
     }
 
-    public function handle(): Reply
+    public function handle(): void
     {
-        $reply = new Reply(['body' => $this->body]);
+        $reply = new Reply([
+            'uuid' => $this->uuid->toString(),
+            'body' => $this->body,
+        ]);
         $reply->authoredBy($this->author);
         $reply->to($this->replyAble);
         $reply->save();
@@ -42,7 +52,5 @@ final class CreateReply
 
             $this->replyAble->subscriptionsRelation()->save($subscription);
         }
-
-        return $reply;
     }
 }

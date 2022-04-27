@@ -6,6 +6,7 @@ use App\Models\Thread;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 uses(TestCase::class);
@@ -86,7 +87,7 @@ it('bumps threads when a reply is added', function () {
     $threadUpdatedYesterday = createThreadFromYesterday();
     $threadFromToday = createThreadFromToday();
     $threadFromTwoDaysAgo = createThreadFromTwoDaysAgo();
-    dispatch_sync(new CreateReply('Hello world', User::factory()->create(), $threadFromTwoDaysAgo));
+    dispatch_sync(new CreateReply(Str::uuid(), 'Hello world', User::factory()->create(), $threadFromTwoDaysAgo));
 
     $threads = Thread::feed();
 

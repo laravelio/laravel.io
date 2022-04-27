@@ -7,10 +7,8 @@ use App\Models\User;
 
 final class UnlikeReply
 {
-    public function __construct(
-        private Reply $reply,
-        private User $user
-    ) {
+    public function __construct(private Reply $reply, private User $user)
+    {
     }
 
     public function handle(): void

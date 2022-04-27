@@ -7,6 +7,7 @@ use App\Concerns\HasLikes;
 use App\Concerns\HasSlug;
 use App\Concerns\HasTags;
 use App\Concerns\HasTimestamps;
+use App\Concerns\HasUuid;
 use App\Concerns\PreparesSearch;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -26,6 +27,7 @@ final class Article extends Model implements Feedable
     use HasLikes;
     use HasTimestamps;
     use HasTags;
+    use HasUuid;
     use PreparesSearch;
     use Searchable;
 
@@ -37,6 +39,7 @@ final class Article extends Model implements Feedable
      * @inheritdoc
      */
     protected $fillable = [
+        'uuid',
         'title',
         'body',
         'original_url',

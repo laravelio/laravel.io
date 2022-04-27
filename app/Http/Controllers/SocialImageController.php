@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\GenerateSocialShareImage;
+use App\Actions\GenerateSocialShareImage;
 use App\Models\Article;
 
 class SocialImageController extends Controller
 {
-    public function __invoke(Article $article)
+    public function __invoke(GenerateSocialShareImage $generateImage, Article $article)
     {
-        return $this->dispatchSync(new GenerateSocialShareImage($article));
+        return $generateImage($article);
     }
 }
