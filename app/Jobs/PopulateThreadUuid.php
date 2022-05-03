@@ -2,18 +2,19 @@
 
 namespace App\Jobs;
 
-use App\Models\Thread;
+use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
 class PopulateThreadUuid
 {
-    public function __construct(private Thread $thread)
+    public function __construct(private int $thread_id)
     {
     }
 
     public function handle(): void
     {
-        $this->thread->uuid = Uuid::uuid4()->toString();
-        $this->thread->save();
+        DB::table('threads')
+            ->where('id', $this->thread_id)
+            ->update(['uuid' => Uuid::uuid4()->toString()]);
     }
 }

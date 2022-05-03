@@ -2,18 +2,19 @@
 
 namespace App\Jobs;
 
-use App\Models\Article;
+use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
 class PopulateArticleUuid
 {
-    public function __construct(private Article $article)
+    public function __construct(private int $article_id)
     {
     }
 
     public function handle(): void
     {
-        $this->article->uuid = Uuid::uuid4()->toString();
-        $this->article->save();
+        DB::table('articles')
+            ->where('id', $this->article_id)
+            ->update(['uuid' => Uuid::uuid4()->toString()]);
     }
 }
