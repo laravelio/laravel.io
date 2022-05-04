@@ -2,18 +2,24 @@
 
 namespace App\Jobs;
 
-use App\Models\Reply;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
-class PopulateReplyUuid
+class PopulateReplyUuid implements ShouldQueue
 {
-    public function __construct(private Reply $reply)
+    use InteractsWithQueue, Queueable;
+
+    public function __construct(private int $reply_id)
     {
     }
 
     public function handle(): void
     {
-        $this->reply->uuid = Uuid::uuid4()->toString();
-        $this->reply->save();
+        DB::table('replies')
+            ->where('id', $this->reply_id)
+            ->update(['uuid' => Uuid::uuid4()->toString()]);
     }
 }

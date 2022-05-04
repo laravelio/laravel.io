@@ -5,11 +5,9 @@ namespace App\Console\Commands;
 use App\Jobs\PopulateArticleUuid;
 use App\Jobs\PopulateReplyUuid;
 use App\Jobs\PopulateThreadUuid;
-use App\Models\Article;
-use App\Models\Reply;
-use App\Models\Thread;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Support\Facades\DB;
 
 class PopulateAllUuids extends Command
 {
@@ -21,16 +19,16 @@ class PopulateAllUuids extends Command
 
     public function handle()
     {
-        foreach (Article::where('uuid', null)->lazyById() as $article) {
-            $this->dispatch(new PopulateArticleUuid($article));
-        }
+        DB::table('articles')->select('id')->whereNull('uuid')->lazyById()->each(function ($article) {
+            $this->dispatch(new PopulateArticleUuid($article->id));
+        });
 
-        foreach (Thread::where('uuid', null)->lazyById() as $thread) {
-            $this->dispatch(new PopulateThreadUuid($thread));
-        }
+        DB::table('threads')->select('id')->whereNull('uuid')->lazyById()->each(function ($thread) {
+            $this->dispatch(new PopulateThreadUuid($thread->id));
+        });
 
-        foreach (Reply::where('uuid', null)->lazyById() as $reply) {
-            $this->dispatch(new PopulateReplyUuid($reply));
-        }
+        DB::table('replies')->select('id')->whereNull('uuid')->lazyById()->each(function ($reply) {
+            $this->dispatch(new PopulateReplyUuid($reply->id));
+        });
     }
 }

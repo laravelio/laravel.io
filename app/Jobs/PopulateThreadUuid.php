@@ -2,18 +2,24 @@
 
 namespace App\Jobs;
 
-use App\Models\Thread;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
-class PopulateThreadUuid
+class PopulateThreadUuid implements ShouldQueue
 {
-    public function __construct(private Thread $thread)
+    use InteractsWithQueue, Queueable;
+
+    public function __construct(private int $thread_id)
     {
     }
 
     public function handle(): void
     {
-        $this->thread->uuid = Uuid::uuid4()->toString();
-        $this->thread->save();
+        DB::table('threads')
+            ->where('id', $this->thread_id)
+            ->update(['uuid' => Uuid::uuid4()->toString()]);
     }
 }
