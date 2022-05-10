@@ -16,7 +16,7 @@ return new class extends Migration
     {
         foreach (static::TABLES as $tableName) {
             Schema::table($tableName, function (Blueprint $table) use ($tableName) {
-                $table->dropIndex($tableName . '_uuid_index');
+                $table->dropIndex($tableName.'_uuid_index');
 
                 $table->uuid('uuid')
                     ->nullable(false)
