@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS `articles`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `articles` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:guid)',
   `author_id` int unsigned NOT NULL,
   `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -25,6 +26,7 @@ CREATE TABLE `articles` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `articles_slug_unique` (`slug`),
+  UNIQUE KEY `articles_uuid_unique` (`uuid`),
   KEY `articles_author_id_foreign` (`author_id`),
   CONSTRAINT `articles_author_id_foreign` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -135,11 +137,11 @@ DROP TABLE IF EXISTS `personal_access_tokens`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `personal_access_tokens` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -153,6 +155,7 @@ DROP TABLE IF EXISTS `replies`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `replies` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:guid)',
   `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `author_id` int unsigned NOT NULL,
   `replyable_id` int NOT NULL,
@@ -161,6 +164,7 @@ CREATE TABLE `replies` (
   `replyable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `updated_by` bigint unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `replies_uuid_unique` (`uuid`),
   KEY `replies_author_id_index` (`author_id`),
   KEY `replies_replyable_id_index` (`replyable_id`),
   KEY `replies_replyable_type_index` (`replyable_type`),
@@ -219,6 +223,7 @@ DROP TABLE IF EXISTS `threads`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `threads` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `uuid` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '(DC2Type:guid)',
   `author_id` int unsigned NOT NULL,
   `subject` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `body` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -233,6 +238,7 @@ CREATE TABLE `threads` (
   `locked_by` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `threads_slug_unique` (`slug`),
+  UNIQUE KEY `threads_uuid_unique` (`uuid`),
   KEY `threads_author_id_index` (`author_id`),
   KEY `threads_slug_index` (`slug`),
   KEY `threads_solution_reply_id_index` (`solution_reply_id`),
@@ -347,3 +353,5 @@ INSERT INTO `migrations` VALUES (65,'2021_11_15_213258_add_updated_by_to_threads
 INSERT INTO `migrations` VALUES (66,'2021_11_22_093555_migrate_thread_feed_to_timestamp',4);
 INSERT INTO `migrations` VALUES (67,'2021_10_12_170118_add_locked_by_column_to_threads_table',5);
 INSERT INTO `migrations` VALUES (68,'2019_12_14_000001_create_personal_access_tokens_table',6);
+INSERT INTO `migrations` VALUES (69,'2022_04_06_152416_add_uuids_to_tables',7);
+INSERT INTO `migrations` VALUES (70,'2022_05_10_180922_make_uuids_non_nullable',7);
