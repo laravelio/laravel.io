@@ -28,7 +28,7 @@ final class CreateThread
             $request->subject(),
             $request->body(),
             $request->user(),
-            $request->tags()
+            $request->tags(),
         );
     }
 

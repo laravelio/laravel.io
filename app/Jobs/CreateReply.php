@@ -28,7 +28,7 @@ final class CreateReply
             $uuid,
             $request->body(),
             $request->author(),
-            $request->replyAble()
+            $request->replyAble(),
         );
     }
 

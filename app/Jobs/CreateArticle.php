@@ -37,7 +37,7 @@ final class CreateArticle
             [
                 'original_url' => $request->originalUrl(),
                 'tags' => $request->tags(),
-            ]
+            ],
         );
     }
 

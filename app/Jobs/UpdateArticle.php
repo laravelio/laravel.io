@@ -33,7 +33,7 @@ final class UpdateArticle
             [
                 'original_url' => $request->originalUrl(),
                 'tags' => $request->tags(),
-            ]
+            ],
         );
     }
 
