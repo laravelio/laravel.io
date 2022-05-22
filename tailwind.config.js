@@ -42,6 +42,7 @@ module.exports = {
                     900: '#343636',
                 },
                 twitter: '#00aaec',
+                discord: '#7289da',
                 facebook: '#4267b2',
                 linkedin: '#2977c9',
             },

@@ -10,6 +10,7 @@
         "blade-ui-kit/blade-icons": "^1.2",
         "blade-ui-kit/blade-ui-kit": "^0.3",
         "blade-ui-kit/blade-zondicons": "^1.3",
+        "codeat3/blade-simple-icons": "^1.39",
         "doctrine/dbal": "^3.3",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",

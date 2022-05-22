@@ -55,15 +55,24 @@
                                     <div x-show="chat" x-cloak>
                                         <ul class="ml-4 lg:absolute lg:flex lg:flex-col lg:ml-0 lg:mt-2 lg:w-36 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
                                             <li class="my-4 lg:hover:bg-gray-100 lg:my-0">
-                                                <a href="https://discord.gg/KxwQuKb" class="inline-block w-full lg:px-4 lg:py-3">Discord</a>
+                                                <a href="https://discord.gg/KxwQuKb" class="inline-block w-full lg:px-4 lg:py-3">
+                                                    <x-si-discord class="w-4 h-4 inline text-discord" />
+                                                    Discord
+                                                </a>
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                                <a href="https://larachat.co" class="inline-block w-full lg:px-4 lg:py-3">Larachat</a>
+                                                <a href="https://larachat.co" class="inline-block w-full lg:px-4 lg:py-3">
+                                                    <x-si-slack class="w-4 h-4 inline text-red-400" />
+                                                    Larachat
+                                                </a>
                                             </li>
 
                                             <li class="hover:bg-gray-100">
-                                                <a href="https://web.libera.chat/?nick=laravelnewbie&channels=#laravel" class="inline-block w-full lg:px-4 lg:py-3">IRC</a>
+                                                <a href="https://web.libera.chat/?nick=laravelnewbie&channels=#laravel" class="inline-block w-full lg:px-4 lg:py-3">
+                                                    <x-heroicon-s-chat class="w-4 h-4 inline text-green-500" />
+                                                    IRC
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -79,37 +88,61 @@
                                     </button>
 
                                     <div x-show="community" x-cloak>
-                                        <ul class="ml-4 lg:absolute lg:flex lg:flex-col lg:ml-0 lg:mt-2 lg:w-36 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
+                                        <ul class="ml-4 lg:absolute lg:flex lg:flex-col lg:ml-0 lg:mt-2 lg:w-48 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
                                             <li class="my-4 lg:hover:bg-gray-100 lg:my-0">
-                                                <a href="https://github.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">Github</a>
+                                                <a href="https://github.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">
+                                                    <x-icon-github class="w-4 h-4 inline"/>
+                                                    Github
+                                                </a>
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                                <a href="https://twitter.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">Twitter</a>
+                                                <a href="https://twitter.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">
+                                                    <x-icon-twitter class="w-4 h-4 inline text-twitter"/>
+                                                    Twitter
+                                                </a>
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                                <a href="https://laravel.com" class="inline-block w-full lg:px-4 lg:py-3">Laravel</a>
+                                                <a href="https://laravel.com" class="inline-block w-full lg:px-4 lg:py-3">
+                                                    <img src="{{ asset('images/laravel.png') }}" alt="Laravel" class="w-4 h-4 inline" />
+                                                    Laravel
+                                                </a>
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                                <a href="https://laracasts.com" class="inline-block w-full lg:px-4 lg:py-3">Laracasts</a>
+                                                <a href="https://laracasts.com" class="inline-block w-full lg:px-4 lg:py-3">
+                                                    <img src="{{ asset('images/laracasts.png') }}" alt="Laracasts" class="w-4 h-4 inline" />
+                                                    Laracasts
+                                                </a>
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                                <a href="https://laravel-news.com" class="inline-block w-full lg:px-4 lg:py-3">Laravel News</a>
+                                                <a href="https://laravel-news.com" class="inline-block w-full lg:px-4 lg:py-3">
+                                                    <img src="{{ asset('images/laravel-news.png') }}" alt="Laravel News" class="w-4 h-4 inline" />
+                                                    Laravel News
+                                                </a>
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                                <a href="https://laravelevents.com" class="inline-block w-full lg:px-4 lg:py-3">Laravel Events</a>
+                                                <a href="https://laravelevents.com" class="inline-block w-full lg:px-4 lg:py-3">
+                                                    <img src="{{ asset('images/laravel.png') }}" alt="Laravel" class="w-4 h-4 inline" />
+                                                    Laravel Events
+                                                </a>
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                                <a href="https://www.laravelpodcast.com" class="inline-block w-full lg:px-4 lg:py-3">Podcast</a>
+                                                <a href="https://www.laravelpodcast.com" class="inline-block w-full lg:px-4 lg:py-3">
+                                                    <img src="{{ asset('images/podcast.png') }}" alt="Laravel Podcast" class="w-4 h-4 inline" />
+                                                    Podcast
+                                                </a>
                                             </li>
 
                                             <li class="hover:bg-gray-100">
-                                                <a href="https://ecosystem.laravel.io" class="inline-block w-full lg:px-4 lg:py-3">Ecosystem</a>
+                                                <a href="https://ecosystem.laravel.io" class="inline-block w-full lg:px-4 lg:py-3">
+                                                    <img src="{{ asset('images/laravelio-icon.svg') }}" alt="Laravel Podcast" class="w-4 h-4 inline" />
+                                                    Ecosystem
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
