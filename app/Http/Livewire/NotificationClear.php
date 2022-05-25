@@ -35,7 +35,7 @@ class NotificationClear extends Component
 
         $user->unreadNotifications()->get()->markAsRead();
 
-        $this->emitTo('notifications', 'resetNotifications');
+        $this->emitTo(Notifications::getName(), 'resetNotifications');
         $this->emit('NotificationMarkedAsRead', $user->unreadNotifications()->count());
     }
 }
