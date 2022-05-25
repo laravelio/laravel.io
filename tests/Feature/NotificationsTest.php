@@ -6,6 +6,7 @@ use App\Http\Livewire\NotificationCount;
 use App\Http\Livewire\Notifications;
 use App\Models\Reply;
 use App\Models\Thread;
+use App\Http\Livewire\NotificationClear;
 use App\Notifications\NewReplyNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\HtmlString;
@@ -157,5 +158,80 @@ class NotificationsTest extends BrowserKitTestCase
 
         Livewire::test(NotificationCount::class)
             ->assertSee('10');
+    }
+
+    /** @test */
+    public function users_can_see_clear_all_button_with_a_notification()
+    {
+        $userOne = $this->createUser();
+
+        $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
+        $reply = Reply::factory()->create([
+                'author_id' => $userOne->id(),
+                'replyable_id' => $thread->id()
+            ]);
+
+        $userOne->notifications()->create([
+                'id' => Str::random(),
+                'type' => NewReplyNotification::class,
+                'data' => [
+                    'type' => 'new_reply',
+                    'reply' => $reply->id(),
+                    'replyable_id' => $reply->replyable_id,
+                    'replyable_type' => $reply->replyable_type,
+                    'replyable_subject' => $reply->replyAble()->replyAbleSubject(),
+                ],
+            ]);
+
+        $this->loginAs($userOne);
+
+        Livewire::test(NotificationClear::class)
+            ->assertSee('Clear All');
+    }
+
+    /** @test */
+    public function users_cannot_see_clear_all_button_without_any_notifications()
+    {
+        $userOne = $this->createUser();
+
+        $this->loginAs($userOne);
+
+        Livewire::test(NotificationClear::class)
+            ->assertDontSee('Clear All');
+    }
+
+    /** @test */
+    public function users_cannot_see_clear_all_button_after_clicking_clear_all_button()
+    {
+        $userOne = $this->createUser();
+
+        $thread = Thread::factory()->create(['author_id' => $userOne->id()]);
+        $reply = Reply::factory()->create([
+                'author_id' => $userOne->id(),
+                'replyable_id' => $thread->id(),
+            ]);
+
+        for($i = 0; $i < 3; $i++){
+        $userOne->notifications()->create([
+                'id' => Str::random(),
+                'type' => NewReplyNotification::class,
+                'data' => [
+                    'type' => 'new_reply',
+                    'reply' => $reply->id(),
+                    'replyable_id' => $reply->replyable_id,
+                    'replyable_type' => $reply->replyable_type,
+                    'replyable_subject' => $reply->replyAble()->replyAbleSubject()
+                ],
+            ]);
+        }
+
+        $this->loginAs($userOne);
+
+        Livewire::test(NotificationClear::class)
+            ->assertSee('Clear All')
+            ->call('clearAllNotifications')
+            ->assertDontSee('Clear All')
+            ->assertEmittedTo(Notifications::getName(), 'resetNotifications')
+            ->assertEmitted('NotificationMarkedAsRead', 0);
     }
 }
