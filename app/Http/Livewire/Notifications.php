@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Log;
 use App\Policies\NotificationPolicy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Notifications\DatabaseNotification;
@@ -16,6 +17,8 @@ final class Notifications extends Component
     use WithPagination;
 
     public $notificationId;
+
+    protected $listeners = ['resetNotifications'];
 
     public function render(): View
     {
@@ -43,5 +46,10 @@ final class Notifications extends Component
         $this->notification->markAsRead();
 
         $this->emit('NotificationMarkedAsRead', Auth::user()->unreadNotifications()->count());
+    }
+
+    public function resetNotifications()
+    {
+        $this->resetPage();
     }
 }

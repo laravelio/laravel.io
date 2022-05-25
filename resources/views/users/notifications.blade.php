@@ -12,6 +12,7 @@
                         <livewire:notification-count/>
                     </h1>
                 </div>
+                <livewire:notification-clear/>
             </div>
         </div>
 
