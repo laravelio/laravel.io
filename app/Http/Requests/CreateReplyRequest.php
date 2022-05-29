@@ -6,9 +6,12 @@ use App\Models\ReplyAble;
 use App\Models\Thread;
 use App\Models\User;
 use App\Rules\HttpImageRule;
+use App\Concerns\HasMentions;
 
 class CreateReplyRequest extends Request
 {
+    use HasMentions;
+
     public function rules()
     {
         return [
@@ -47,6 +50,6 @@ class CreateReplyRequest extends Request
 
     public function body(): string
     {
-        return $this->get('body');
+        return $this->repositionMention($this->get('body'));
     }
 }

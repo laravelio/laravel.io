@@ -3,12 +3,15 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use App\Concerns\HasMentions;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Editor extends Component
 {
+    use HasMentions;
+
     public $label;
 
     public $placeholder = 'Write a reply...';
@@ -74,6 +77,7 @@ class Editor extends Component
 
     public function preview(): void
     {
+        $this->body = $this->repositionMention($this->body);
         $this->emit('previewRequested');
     }
 }

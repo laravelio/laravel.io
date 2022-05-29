@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Concerns\HasMentions;
 use App\Http\Requests\UpdateReplyRequest;
 use App\Policies\ReplyPolicy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -10,6 +11,7 @@ use Livewire\Component;
 class EditReply extends Component
 {
     use AuthorizesRequests;
+    use HasMentions;
 
     public $reply;
 
@@ -24,7 +26,7 @@ class EditReply extends Component
 
     public function updateReply($body)
     {
-        $this->body = $body;
+        $this->body = $this->repositionMention($body);
         $this->authorize(ReplyPolicy::UPDATE, $this->reply);
 
         $this->validate((new UpdateReplyRequest())->rules());
