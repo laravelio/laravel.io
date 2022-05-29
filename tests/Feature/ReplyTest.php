@@ -217,3 +217,67 @@ test('users are not notified when mentioned in an edited reply', function () {
 
     Notification::assertNothingSent();
 });
+
+test('mention tag is repositioned if a new reply body starts with `<`', function (){
+    $thread = Thread::factory()->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
+
+    $this->login();
+
+    $this->post('/replies', [
+        'body' => "<html> @wadakatu",
+        'replyable_id' => $thread->id,
+        'replyable_type' => Thread::TABLE,
+    ]);
+
+    $reply = Reply::first();
+
+    $this->assertSame('@wadakatu <html>', $reply->body);
+});
+
+test('mention tag is repositioned if a edit reply starts with `<`', function () {
+    $user = $this->createUser();
+    $thread = Thread::factory()->create(['slug' => 'the-first-thread']);
+    $reply = Reply::factory()->create(['author_id' => $user->id(), 'replyable_id' => $thread->id()]);
+
+    $this->actingAs($user);
+
+    Livewire::test(EditReply::class, ['reply' => $reply])
+        ->call('updateReply', '<html> @wadakatu');
+
+    $this->assertSame('@wadakatu <html>', $reply->fresh()->body());
+});
+
+test('users are notified by email when mentioned in a repositioned new reply', function () {
+    Notification::fake();
+    $user = User::factory()->create(['username' => 'wadakatu']);
+    $thread = Thread::factory()->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
+
+    $this->login();
+
+    $this->post('/replies', [
+        'body' => '<html> @wadakatu',
+        'replyable_id' => $thread->id,
+        'replyable_type' => Thread::TABLE,
+    ]);
+
+    Notification::assertSentTo($user, MentionNotification::class, function ($notification) use ($user) {
+        return $notification->toMail($user) instanceof MentionEmail;
+    });
+});
+
+test('users are not notified when mentioned in a repositioned edit reply', function () {
+    Notification::fake();
+
+    $user = $this->createUser();
+    User::factory()->create(['username' => 'wadakatu']);
+    $thread = Thread::factory()->create(['slug' => 'the-first-thread']);
+    Reply::factory()->create(['author_id' => $user->id(), 'replyable_id' => $thread->id()]);
+
+    $this->loginAs($user);
+
+    $this->put('/replies/1', [
+        'body' => '<html> @wadakatu',
+    ]);
+
+    Notification::assertNothingSent();
+});

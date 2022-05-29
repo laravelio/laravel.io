@@ -73,3 +73,9 @@ test('no users are returned when query returns no results', function () {
         ->assertDontSee($users->first()->username())
         ->assertDontSee($users->get(1)->username());
 });
+
+test('mention is repositioned in the body which starts with `<` when users click preview button', function (){
+    Livewire::test(Editor::class, ['body' => '<html> @wadakatu'])
+        ->call('preview')
+        ->assertSeeHtml('<p><a href="http://laravel.io.test/user/wadakatu">@wadakatu</a> &lt;html&gt;</p>');
+});
