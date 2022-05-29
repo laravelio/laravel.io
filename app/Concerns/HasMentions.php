@@ -26,7 +26,7 @@ trait HasMentions
         return User::whereIn('username', $matches[1])->get();
     }
 
-    public function repositionMention(string $body): string
+    public function repositionMention(?string $body): string
     {
         $body = Str::of($body);
 
