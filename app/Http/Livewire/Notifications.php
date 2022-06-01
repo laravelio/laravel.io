@@ -15,7 +15,7 @@ final class Notifications extends Component
     use AuthorizesRequests;
     use WithPagination;
 
-    public $notificationId;
+    public $notificationCount = 0;
 
     public function render(): View
     {
@@ -27,21 +27,20 @@ final class Notifications extends Component
     public function mount(): void
     {
         abort_if(Auth::guest(), 403);
-    }
 
-    public function getNotificationProperty(): DatabaseNotification
-    {
-        return DatabaseNotification::findOrFail($this->notificationId);
+        $this->notificationCount = Auth::user()->unreadNotifications()->count();
     }
 
     public function markAsRead(string $notificationId): void
     {
-        $this->notificationId = $notificationId;
+        $notification = DatabaseNotification::findOrFail($notificationId);
 
-        $this->authorize(NotificationPolicy::MARK_AS_READ, $this->notification);
+        $this->authorize(NotificationPolicy::MARK_AS_READ, $notification);
 
-        $this->notification->markAsRead();
+        $notification->markAsRead();
 
-        $this->emit('NotificationMarkedAsRead', Auth::user()->unreadNotifications()->count());
+        $this->notificationCount--;
+
+        $this->emit('NotificationMarkedAsRead', $this->notificationCount);
     }
 }

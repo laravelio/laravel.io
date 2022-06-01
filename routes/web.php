@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Forum\TagsController;
 use App\Http\Controllers\Forum\ThreadsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MarkNotificationsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\ReplyController;
@@ -68,6 +69,7 @@ Route::get('user/{username?}', [ProfileController::class, 'show'])->name('profil
 
 // Notifications
 Route::view('notifications', 'users.notifications')->name('notifications')->middleware(Authenticate::class);
+Route::post('notifications/mark-as-read', MarkNotificationsController::class)->name('notifications.mark-as-read');
 
 // Settings
 Route::get('settings', [ProfileSettingsController::class, 'edit'])->name('settings.profile');
