@@ -10,7 +10,7 @@ it('can detect mention links', function () {
 
     $html = $converter->toHtml('Hello @johndoe');
 
-    expect($html)->toBe('<p>Hello <a href="http://laravel.io.test/user/johndoe">@johndoe</a></p>'.PHP_EOL);
+    expect($html)->toBe('<p>Hello <a href="http://localhost/user/johndoe">@johndoe</a></p>'.PHP_EOL);
 });
 
 it('does not render mentions when the block starts with HTML', function () {
