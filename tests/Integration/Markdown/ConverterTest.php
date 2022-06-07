@@ -13,10 +13,10 @@ it('can detect mention links', function () {
     expect($html)->toBe('<p>Hello <a href="http://laravel.io.test/user/johndoe">@johndoe</a></p>'.PHP_EOL);
 });
 
-it('can detect mention links with html', function () {
+it('does not render mentions when the block starts with HTML', function () {
     $converter = app()->make(Converter::class);
 
     $html = $converter->toHtml('<form></form> Hello @johndoe');
 
-    expect($html)->toBe('&lt;form&gt;&lt;/form&gt; Hello <a href="http://laravel.io.test/user/johndoe">@johndoe</a>'.PHP_EOL);
+    expect($html)->toBe('&lt;form&gt;&lt;/form&gt; Hello @johndoe'.PHP_EOL);
 });
