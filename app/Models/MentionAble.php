@@ -14,5 +14,5 @@ interface MentionAble
 
     public function mentionedIn(): ReplyAble;
 
-    public function getMentionedUsers(): Collection;
+    public function mentionedUsers(): Collection;
 }

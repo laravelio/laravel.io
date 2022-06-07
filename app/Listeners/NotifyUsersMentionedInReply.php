@@ -11,7 +11,7 @@ final class NotifyUsersMentionedInReply
 {
     public function handle(ReplyWasCreated $event): void
     {
-        $event->reply->getMentionedUsers()->each(function ($user) use ($event) {
+        $event->reply->mentionedUsers()->each(function ($user) use ($event) {
             $user->notify(new MentionNotification($event->reply));
         });
     }

@@ -11,7 +11,7 @@ final class NotifyUsersMentionedInThread
 {
     public function handle(ThreadWasCreated $event): void
     {
-        $event->thread->getMentionedUsers()->each(function ($user) use ($event) {
+        $event->thread->mentionedUsers()->each(function ($user) use ($event) {
             $user->notify(new MentionNotification($event->thread));
         });
     }
