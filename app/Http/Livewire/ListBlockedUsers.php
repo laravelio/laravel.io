@@ -36,7 +36,7 @@ class ListBlockedUsers extends Component
             'blockedUsername' => [
                 'required',
                 Rule::exists('users', 'username')
-                    ->whereNotIn('id', [$this->userId])
+                    ->whereNotIn('id', [$this->userId]),
             ],
         ]);
 
