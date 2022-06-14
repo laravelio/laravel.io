@@ -196,6 +196,12 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Reply::class, 'author_id');
     }
 
+    public function threadsMarkedAsSpammed()
+    {
+        return $this->belongsToMany(Thread::class, 'spam_markers')
+            ->withTimestamps();
+    }
+
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class, 'author_id');
