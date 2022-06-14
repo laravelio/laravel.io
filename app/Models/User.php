@@ -100,6 +100,11 @@ final class User extends Authenticatable implements MustVerifyEmail
 		return $this->ban_message;
 	}
 
+	public function hasBanMessage(): bool
+	{
+		return ! is_null($this->ban_message);
+	}
+
     public function isBanned(): bool
     {
         return ! is_null($this->banned_at);

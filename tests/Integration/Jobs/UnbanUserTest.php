@@ -9,11 +9,12 @@ uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
 it('can unban a user', function () {
-    $user = $this->createUser(['banned_at' => Carbon::yesterday()]);
+    $user = $this->createUser(['banned_at' => Carbon::yesterday(), 'ban_message' => 'test']);
 
     $this->dispatch(new UnbanUser($user));
 
     $unbannedUser = $user->fresh();
 
-    expect($unbannedUser->isBanned())->toBeFalse();
+    expect($unbannedUser->isBanned())->toBeFalse()
+	->and($unbannedUser->hasBanMessage())->toBeFalse();
 });
