@@ -195,14 +195,4 @@
             </x-modal>
         @endif
     @endcan
-
-    @can(App\Policies\UserPolicy::DELETE, $user)
-        <x-modal
-            identifier="deleteUser"
-            :action="route('admin.users.delete', $user->username())"
-            title="Delete {{ $user->username() }}"
-        >
-            <p>Deleting this user will remove their account and any related content like threads & replies. This cannot be undone.</p>
-        </x-modal>
-    @endcan
 @endsection
