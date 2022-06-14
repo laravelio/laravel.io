@@ -118,6 +118,16 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
         return $this->updated_at->gt($this->created_at);
     }
 
+    public function usersMarkingAsSpam()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'spam_markers',
+            'thread_id',
+            'user_id'
+        )->withTimestamps();
+    }
+
     public function solutionReply(): ?Reply
     {
         return $this->solutionReplyRelation;
