@@ -306,4 +306,18 @@ final class User extends Authenticatable implements MustVerifyEmail
             self::MODERATOR,
         ]);
     }
+
+    public function scopeWithUsersWhoDoesntBlock(Builder $query, User $user)
+    {
+        return $query->whereDoesntHave('blockedUsers', function ($query) use ($user) {
+            $query->where('blocked_user_id', $user->getKey());
+        });
+    }
+
+    public function scopeWithUsersWhoArentBlockedBy(Builder $query, User $user)
+    {
+        return $query->whereDoesntHave('blockedUsers', function ($query) use ($user) {
+            $query->where('user_id', $user->getKey());
+        });
+    }
 }
