@@ -40,6 +40,13 @@
                         Delete
                     </button>
                 @endcan
+				
+				@can(App\Policies\ThreadPolicy::MARKASSPAM, $thread)
+                    <button class="flex gap-x-2 p-3 rounded hover:bg-gray-100" @click="activeModal = 'markAsSpam'">
+                        <x-heroicon-o-exclamation class="w-6 h-6 text-red-500"/>
+                        Mark as spam
+                    </button>
+                @endcan
             </div>
         </div>
     </div>
@@ -59,4 +66,15 @@
             @endunless
         </x-modal>
     @endcan
+
+	@can(App\Policies\ThreadPolicy::REPORT_SPAM, $thread)
+		<x-modal
+			identifier="markAsSpam"
+			:action="route('threads.spam.mark', $thread->slug())"
+			title="Mark as spam"
+			type="post"
+		>
+			<p>Are you sure this thread is a spam?</p>
+		</x-modal>
+	@endcan
 @endcanany
