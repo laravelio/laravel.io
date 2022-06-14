@@ -47,6 +47,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'type',
         'remember_token',
         'bio',
+		'ban_message'
     ];
 
     /**
@@ -93,6 +94,11 @@ final class User extends Authenticatable implements MustVerifyEmail
     {
         return ! empty($this->twitter());
     }
+
+	public function banMessage(): ?string
+	{
+		return $this->ban_message;
+	}
 
     public function isBanned(): bool
     {

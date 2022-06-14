@@ -38,6 +38,18 @@
                             {{ $user->bio() }}
                         </span>
                     </div>
+                    @if(auth()->user()->isAdmin() && $user->isBanned())
+                        <div class="mt-4">
+                        <span class="text-red-600">
+                            This user is banned. Reason:
+                        </span>
+                        </div>
+                        <div class="mt-1">
+                            <span class="text-gray-900">
+                                {{$user->ban_message}}
+                            </span>
+                        </div>
+                    @endif
 
                     <div class="mt-4 mb-6 flex items-center gap-x-3">
                         @if ($user->githubUsername())
@@ -192,6 +204,11 @@
                 type="update"
             >
                 <p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>
+
+                <div class="mt-2">
+                    <x-forms.label for="ban_message">Ban Message</x-forms.label>
+                    <x-forms.inputs.textarea id="ban_message" name="ban_message" required />
+                </div>
             </x-modal>
         @endif
     @endcan

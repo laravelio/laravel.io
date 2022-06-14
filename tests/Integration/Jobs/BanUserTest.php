@@ -8,11 +8,12 @@ uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
 it('can ban a user', function () {
-    $user = $this->createUser(['banned_at' => null]);
+    $user = $this->createUser(['banned_at' => null, 'ban_message' => null]);
 
-    $this->dispatch(new BanUser($user));
+    $this->dispatch(new BanUser($user, ban_message: 'test'));
 
     $bannedUser = $user->fresh();
 
-    expect($bannedUser->isBanned())->toBeTrue();
+    expect($bannedUser->isBanned())->toBeTrue()
+		->and($bannedUser->banMessage())->toEqual('test');
 });
