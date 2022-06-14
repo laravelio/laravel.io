@@ -5,11 +5,8 @@ use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\ThreadMarkedAsSpamNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
-
-use function Pest\Laravel\actingAs;
 
 uses(TestCase::class);
 uses(RefreshDatabase::class);
