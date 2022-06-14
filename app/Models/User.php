@@ -196,6 +196,11 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Reply::class, 'author_id');
     }
 
+    public function blockedUsers()
+    {
+        return $this->belongsToMany(User::class, 'blocked_users', 'user_id', 'blocked_user_id');
+    }
+
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class, 'author_id');
