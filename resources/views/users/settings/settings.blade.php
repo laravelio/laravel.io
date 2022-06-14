@@ -19,6 +19,7 @@
                     @include('users.settings.password')
                     @include('users.settings.api_tokens')
                     @include('users.settings.remove')
+                    <livewire:list-blocked-users :user="Auth::user()" />
                 </div>
             </div>
         </main>
