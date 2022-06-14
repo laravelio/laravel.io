@@ -50,5 +50,6 @@
         title="Delete Thread"
     >
         <p>Are you sure you want to delete this thread and its replies? This cannot be undone.</p>
+		<x-forms.inputs.textarea name="reason" label="Reason" placeholder="Reason... (Optional)" />
     </x-modal>
 @endcanany
