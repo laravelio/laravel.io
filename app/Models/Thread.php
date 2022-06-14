@@ -124,7 +124,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
             User::class,
             'spam_markers',
             'thread_id',
-            'user_id'
+            'user_id',
         )->withTimestamps();
     }
 
