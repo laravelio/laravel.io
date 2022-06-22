@@ -44,7 +44,7 @@
             <div class="hidden col-span-2 sm:flex justify-center lg:col-span-1"></div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://www.skynettechnologies.com/hire-laravel-developer" logo="{{ asset('images/sponsors/skynet-technologies.png') }}" company="Skynet Technologies" />
+                <x-sponsor-logo url="https://www.skynettechnologies.com/hire-laravel-developer" logo="{{ asset('images/sponsors/skynet-technologies.jpg') }}" company="Skynet Technologies" />
             </div>
         </div>
 
