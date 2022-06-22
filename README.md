@@ -74,9 +74,9 @@ SCOUT_QUEUE=true
 ALGOLIA_APP_ID=
 ALGOLIA_SECRET="Use the Write API Key"
 
-MIX_ALGOLIA_APP_ID="${ALGOLIA_APP_ID}"
-MIX_ALGOLIA_SECRET="Use the Search API Key"
-MIX_ALGOLIA_INDEX=threads
+VITE_ALGOLIA_APP_ID="${ALGOLIA_APP_ID}"
+VITE_ALGOLIA_SECRET="Use the Search API Key"
+VITE_ALGOLIA_INDEX=threads
 ```
 
 In order to index your existing threads, run the following command:
@@ -117,9 +117,9 @@ TELEGRAM_CHANNEL=
 
 Command | Description
 --- | ---
-**`php artisan test --parallel`** | Run the tests
+**`php artisan pest -p`** | Run the tests with parallel execution
 `php artisan migrate:fresh --seed` | Reset the database
-`npm run watch` | Watch for changes in CSS and JS files
+`npm run dev` | Build and watch for changes in CSS and JS files
 
 ## Maintainers
 
