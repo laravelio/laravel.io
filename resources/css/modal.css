@@ -12,11 +12,11 @@
 }
 
 .modal-title {
-    @apply text-2xl mb-8 border-b pb-4;
+    @apply text-2xl mb-4 border-b pb-4;
 }
 
 .modal-body {
-    @apply text-gray-700 text-lg mb-8 overflow-auto;
+    @apply text-gray-700 text-lg mb-4 overflow-auto;
 }
 
 .modal-footer {
