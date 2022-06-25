@@ -80,17 +80,6 @@
                                 </x-buttons.danger-button>
                             @endif
                         @endcan
-
-                        @if (Auth::check() && Auth::user()->isAdmin())
-                            @can(App\Policies\UserPolicy::DELETE, $user)
-                                <x-buttons.danger-button class="w-full" @click.prevent="activeModal = 'deleteUser'">
-                                    <span class="flex items-center gap-x-2">
-                                        <x-heroicon-o-trash class="w-5 h-5" />
-                                        Delete User
-                                    </span>
-                                </x-buttons.danger-button>
-                            @endcan
-                        @endif
                     </div>
                 </div>
 
@@ -194,15 +183,5 @@
                 <p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>
             </x-modal>
         @endif
-    @endcan
-
-    @can(App\Policies\UserPolicy::DELETE, $user)
-        <x-modal
-            identifier="deleteUser"
-            :action="route('admin.users.delete', $user->username())"
-            title="Delete {{ $user->username() }}"
-        >
-            <p>Deleting this user will remove their account and any related content like threads & replies. This cannot be undone.</p>
-        </x-modal>
     @endcan
 @endsection

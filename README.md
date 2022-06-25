@@ -51,7 +51,7 @@ The following tools are required in order to start the installation.
 6. Run `valet link` to link the site to a testing web address
 7. Configure the (optional) features from below
 
-You can now visit the app in your browser by visiting [http://laravel.io.test](http://laravel.io.test). If you seeded the database you can login into a test account with **`johndoe`** & **`password`**.
+You can now visit the app in your browser by visiting [http://laravel.io.test](http://laravel.io.test). If you seeded the database you can login into a test account with **`testing`** & **`password`**.
 
 ### Github Authentication (optional)
 

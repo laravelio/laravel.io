@@ -86,7 +86,7 @@ test('admins can delete a user', function () {
     $this->loginAsAdmin();
 
     $this->delete('/admin/users/'.$user->username())
-        ->assertRedirectedTo('/admin');
+        ->assertRedirectedTo('/admin/users');
 
     $this->notSeeInDatabase('users', ['name' => 'Freek Murze']);
 
