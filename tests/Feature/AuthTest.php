@@ -2,12 +2,10 @@
 
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Tests\Feature\BrowserKitTestCase;
 
