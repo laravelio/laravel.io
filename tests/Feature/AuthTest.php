@@ -3,17 +3,19 @@
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Notification;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
 uses(DatabaseMigrations::class);
 
 test('users can register', function () {
-    Event::fake();
+    Notification::fake();
 
     session(['githubData' => ['id' => 123, 'username' => 'johndoe']]);
 
@@ -29,7 +31,9 @@ test('users can register', function () {
 
     assertLoggedIn();
 
-    Event::assertDispatched(Registered::class);
+    $this->assertSessionMissing('githubData');
+
+    Notification::assertSentTo(Auth::user(), VerifyEmail::class);
 });
 
 test('registration fails when a required field is not filled in', function () {

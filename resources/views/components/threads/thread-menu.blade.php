@@ -44,12 +44,19 @@
         </div>
     </div>
 
-    <x-modal
-        identifier="deleteThread"
-        :action="route('threads.delete', $thread->slug())"
-        title="Delete Thread"
-    >
-        <p>Are you sure you want to delete this thread and its replies? This cannot be undone.</p>
-		<x-forms.inputs.textarea name="reason" label="Reason" placeholder="Reason... (Optional)" />
-    </x-modal>
+    @can(App\Policies\ThreadPolicy::DELETE, $thread)
+        <x-modal
+            identifier="deleteThread"
+            :action="route('threads.delete', $thread->slug())"
+            title="Delete Thread"
+        >
+            <p>Are you sure you want to delete this thread and its replies? This cannot be undone.</p>
+
+            @unless ($thread->isAuthoredBy(Auth::user()))
+                <div class="mt-4">
+                    <x-forms.inputs.textarea name="reason" label="Reason" placeholder="Optional reason that will be mailed to the author..." />
+                </div>
+            @endunless
+        </x-modal>
+    @endcan
 @endcanany

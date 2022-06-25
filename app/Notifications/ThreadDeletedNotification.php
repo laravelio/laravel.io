@@ -2,19 +2,18 @@
 
 namespace App\Notifications;
 
+use App\Mail\ThreadDeletedEmail;
 use App\Models\Thread;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class ThreadDeletedNotification extends Notification
 {
     use Queueable;
 
-    public function __construct(
-        public Thread $thread,
-        public ?string $reason = null,
-    ) {
+    public function __construct(public Thread $thread, public ?string $reason = null)
+    {
     }
 
     public function via($notifiable)
@@ -22,12 +21,9 @@ class ThreadDeletedNotification extends Notification
         return ['mail'];
     }
 
-    public function toMail($notifiable)
+    public function toMail(User $user)
     {
-        return (new MailMessage)
-                    ->line("The thread '{$this->thread->subject()}' #{$this->thread->getKey()} was deleted by the moderator")
-                    ->line('with the following reasons:')
-                    ->line($this->reason)
-                    ->line('Thank you');
+        return (new ThreadDeletedEmail($this->thread, $this->reason))
+            ->to($user->emailAddress(), $user->name());
     }
 }

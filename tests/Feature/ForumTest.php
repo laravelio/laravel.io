@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\MentionNotification;
+use App\Notifications\ThreadDeletedNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Notification;
@@ -109,6 +110,16 @@ test('users cannot edit a thread they do not own', function () {
         ->assertForbidden();
 });
 
+test('users can delete their own thread', function () {
+    $thread = Thread::factory()->create(['slug' => 'my-first-thread']);
+
+    $this->loginAs($thread->author());
+
+    $this->delete('/forum/my-first-thread')
+        ->assertRedirectedTo('/forum')
+        ->assertSessionHas('success', 'Thread successfully deleted!');
+});
+
 test('users cannot delete a thread they do not own', function () {
     Thread::factory()->create(['slug' => 'my-first-thread']);
 
@@ -116,6 +127,21 @@ test('users cannot delete a thread they do not own', function () {
 
     $this->delete('/forum/my-first-thread')
         ->assertForbidden();
+});
+
+test('moderators can give a reason when deleting threads', function () {
+    $thread = Thread::factory()->create(['slug' => 'my-first-thread']);
+    $moderator = User::factory()->moderator()->create();
+
+    $this->loginAs($moderator);
+
+    Notification::fake();
+
+    $this->delete('/forum/my-first-thread', ['reason' => 'Please do not spam.'])
+        ->assertRedirectedTo('/forum')
+        ->assertSessionHas('success', 'Thread successfully deleted!');
+
+    Notification::assertSentTo($thread->author(), ThreadDeletedNotification::class);
 });
 
 test('users cannot create a thread with a subject that is too long', function () {
@@ -216,7 +242,7 @@ test('user can see standalone links in thread', function () {
     Reply::factory()->create(['replyable_id' => $thread->id()]);
 
     $this->visit("/forum/{$thread->slug()}")
-        ->see('&lt;a href=\\"https:\\/\\/github.com\\/laravelio\\/laravel.io\\" rel=\\"nofollow\\" target=\\"_blank\\"&gt;https:\\/\\/github.com\\/laravelio\\/laravel.io&lt;\\/a&gt;');
+        ->see('<a href=\&quot;https:\/\/github.com\/laravelio\/laravel.io\&quot; rel=\&quot;nofollow\&quot; target=\&quot;_blank\&quot;>https:\/\/github.com\/laravelio\/laravel.io<\/a>');
 });
 
 test('an invalid filter defaults to the most recent threads', function () {

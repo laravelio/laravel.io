@@ -112,24 +112,22 @@ class ThreadsController extends Controller
 
         $this->dispatchSync(UpdateThread::fromRequest($thread, $request));
 
-        $thread = $thread->fresh();
-
         $this->success('forum.threads.updated');
 
-        return redirect()->route('thread', $thread->slug());
+        return redirect()->route('thread', $thread->fresh()->slug());
     }
 
-    public function delete(Thread $thread)
+    public function delete(Request $request, Thread $thread)
     {
         $this->authorize(ThreadPolicy::DELETE, $thread);
 
-        request()->whenFilled('reason', function () use ($thread) {
+        $this->dispatchSync(new DeleteThread($thread));
+
+        $request->whenFilled('reason', function () use ($thread) {
             $thread->author()?->notify(
                 new ThreadDeletedNotification($thread, request('reason')),
             );
         });
-
-        $this->dispatchSync(new DeleteThread($thread));
 
         $this->success('forum.threads.deleted');
 
