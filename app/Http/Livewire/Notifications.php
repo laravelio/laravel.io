@@ -34,7 +34,7 @@ final class Notifications extends Component
         $this->notificationCount = Auth::user()->unreadNotifications()->count();
     }
 
-    public function markAsRead(string $notificationId)
+    public function markAsRead(string $notificationId): void
     {
         $notification = DatabaseNotification::findOrFail($notificationId);
 
