@@ -18,8 +18,7 @@ test('admin buttons are not shown to logged out users', function () {
 
     $this->visit('/user/johndoe')
         ->dontSee('Ban user')
-        ->dontSee('Unban user')
-        ->dontSee('Delete user');
+        ->dontSee('Unban user');
 });
 
 test('admin buttons are not shown to non admin users', function () {
@@ -27,8 +26,7 @@ test('admin buttons are not shown to non admin users', function () {
 
     $this->visit('/user/johndoe')
         ->dontSee('Ban user')
-        ->dontSee('Unban user')
-        ->dontSee('Delete user');
+        ->dontSee('Unban user');
 });
 
 test('admin buttons are shown to admin users', function () {
@@ -39,18 +37,5 @@ test('admin buttons are shown to admin users', function () {
     $this->loginAsAdmin();
 
     $this->visit('/user/janedoe')
-        ->see('Ban user')
-        ->see('Delete user');
-});
-
-test('delete button is not shown to moderators', function () {
-    $this->createUser([
-        'username' => 'janedoe',
-        'email' => 'jane@example.com',
-    ]);
-    $this->loginAsModerator();
-
-    $this->visit('/user/janedoe')
-        ->see('Ban user')
-        ->dontSee('Delete user');
+        ->see('Ban user');
 });

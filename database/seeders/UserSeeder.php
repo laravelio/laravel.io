@@ -14,9 +14,9 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory()->createQuietly([
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'username' => 'johndoe',
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'username' => 'testing',
             'github_username' => 'driesvints',
             'password' => bcrypt('password'),
             'type' => User::ADMIN,

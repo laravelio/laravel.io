@@ -80,17 +80,6 @@
                                 </x-buttons.danger-button>
                             @endif
                         @endcan
-
-                        @if (Auth::check() && Auth::user()->isAdmin())
-                            @can(App\Policies\UserPolicy::DELETE, $user)
-                                <x-buttons.danger-button class="w-full" @click.prevent="activeModal = 'deleteUser'">
-                                    <span class="flex items-center gap-x-2">
-                                        <x-heroicon-o-trash class="w-5 h-5" />
-                                        Delete User
-                                    </span>
-                                </x-buttons.danger-button>
-                            @endcan
-                        @endif
                     </div>
                 </div>
 
