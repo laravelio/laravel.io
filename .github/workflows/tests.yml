@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Compile assets
-        run: npm run production
+        run: npm run build
 
       - name: Execute tests
         run: vendor/bin/pest

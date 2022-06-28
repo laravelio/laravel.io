@@ -1,6 +1,6 @@
 import algoliasearch from 'algoliasearch/lite';
 
-const client = algoliasearch(process.env.MIX_ALGOLIA_APP_ID, process.env.MIX_ALGOLIA_SECRET);
+const client = algoliasearch(process.env.VITE_ALGOLIA_APP_ID, process.env.VITE_ALGOLIA_SECRET);
 
 window.searchConfig = () => {
     return {
@@ -33,7 +33,7 @@ window.searchConfig = () => {
             // Perform the search using the provided input.
             const { results } = await client.multipleQueries([
                 {
-                    indexName: process.env.MIX_ALGOLIA_THREADS_INDEX,
+                    indexName: process.env.VITE_ALGOLIA_THREADS_INDEX,
                     query: this.searchQuery,
                     params: {
                         hitsPerPage: 5,
@@ -41,7 +41,7 @@ window.searchConfig = () => {
                     },
                 },
                 {
-                    indexName: process.env.MIX_ALGOLIA_ARTICLES_INDEX,
+                    indexName: process.env.VITE_ALGOLIA_ARTICLES_INDEX,
                     query: this.searchQuery,
                     params: {
                         hitsPerPage: 5,
