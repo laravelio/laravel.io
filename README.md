@@ -117,7 +117,7 @@ TELEGRAM_CHANNEL=
 
 Command | Description
 --- | ---
-**`php artisan test -p`** | Run the tests with parallel execution
+**`vendor/bin/pest -p`** | Run the tests with parallel execution
 `php artisan migrate:fresh --seed` | Reset the database
 `npm run dev` | Build and watch for changes in CSS and JS files
 
