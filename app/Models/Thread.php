@@ -121,6 +121,16 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
         return $this->updated_at->gt($this->created_at);
     }
 
+    public function spammers()
+    {
+        return $this->belongsToMany(
+            User::class,
+            'spam',
+            'thread_id',
+            'user_id',
+        )->withTimestamps();
+    }
+
     public function solutionReply(): ?Reply
     {
         return $this->solutionReplyRelation;

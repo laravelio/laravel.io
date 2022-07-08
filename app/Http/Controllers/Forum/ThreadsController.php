@@ -9,6 +9,7 @@ use App\Jobs\CreateThread;
 use App\Jobs\DeleteThread;
 use App\Jobs\LockThread;
 use App\Jobs\MarkThreadSolution;
+use App\Jobs\ReportSpam;
 use App\Jobs\SubscribeToSubscriptionAble;
 use App\Jobs\UnlockThread;
 use App\Jobs\UnmarkThreadSolution;
@@ -187,6 +188,17 @@ class ThreadsController extends Controller
         $this->dispatchSync(new UnsubscribeFromSubscriptionAble($request->user(), $thread));
 
         $this->success("You're now unsubscribed from this thread.");
+
+        return redirect()->route('thread', $thread->slug());
+    }
+
+    public function markAsSpam(Request $request, Thread $thread)
+    {
+        $this->authorize(ThreadPolicy::REPORT_SPAM, $thread);
+
+        $this->dispatchSync(new ReportSpam($request->user(), $thread));
+
+        $this->success("You've marked this thread as a spam.");
 
         return redirect()->route('thread', $thread->slug());
     }

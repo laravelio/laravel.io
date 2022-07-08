@@ -17,6 +17,8 @@ final class ThreadPolicy
 
     const LOCK = 'lock';
 
+    const REPORT_SPAM = 'reportSpam';
+
     public function update(User $user, Thread $thread): bool
     {
         return $thread->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
@@ -40,5 +42,10 @@ final class ThreadPolicy
     public function lock(User $user): bool
     {
         return $user->isAdmin() || $user->isModerator();
+    }
+
+    public function markAsSpam(User $user, Thread $thread): bool
+    {
+        return $thread->spammers->doesntContain($user);
     }
 }
