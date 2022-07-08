@@ -40,9 +40,9 @@
                     </div>
                     @if(auth()->user()->isAdmin() && $user->isBanned())
                         <div class="mt-4">
-                        <span class="text-red-600">
-                            This user is banned. Reason:
-                        </span>
+                            <span class="text-red-600">
+                                This user is banned. Reason:
+                            </span>
                         </div>
                         <div class="mt-1">
                             <span class="text-gray-900">
