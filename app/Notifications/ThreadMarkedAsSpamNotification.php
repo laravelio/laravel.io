@@ -11,9 +11,8 @@ class ThreadMarkedAsSpamNotification extends Notification
 {
     use Queueable;
 
-    public function __construct(
-        private Thread $thread
-    ) {
+    public function __construct(private Thread $thread)
+    {
     }
 
     public function via()
