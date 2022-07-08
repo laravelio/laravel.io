@@ -1,6 +1,6 @@
 <?php
 
-use App\Jobs\MarkThreadAsSpam;
+use App\Jobs\ReportSpam;
 use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\ThreadMarkedAsSpamNotification;
@@ -15,12 +15,12 @@ it('can mark thread solution', function () {
     $user = $this->login();
     $thread = Thread::factory()->create();
 
-    $this->dispatch(new MarkThreadAsSpam($user, $thread));
+    $this->dispatch(new ReportSpam($user, $thread));
 
     $thread->refresh();
 
-    expect($thread->usersMarkingAsSpam()->count())->toBe(1);
-    expect($thread->usersMarkingAsSpam->contains($user))->toBeTrue();
+    expect($thread->spammers()->count())->toBe(1);
+    expect($thread->spammers->contains($user))->toBeTrue();
 });
 
 it('can notify moderators if a thread is marked three times', function () {
@@ -30,7 +30,7 @@ it('can notify moderators if a thread is marked three times', function () {
     $moderator = User::factory()->create(['type' => User::MODERATOR]);
 
     $users->each(function ($user, $index) use ($thread, $moderator) {
-        $this->dispatch(new MarkThreadAsSpam($user, $thread));
+        $this->dispatch(new ReportSpam($user, $thread));
         match ($index) {
             2 => Notification::assertSentTo($moderator, ThreadMarkedAsSpamNotification::class),
             default => Notification::assertNotSentTo($moderator, ThreadMarkedAsSpamNotification::class),
