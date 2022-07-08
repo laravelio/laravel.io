@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('ban_message')->after('bio')->nullable();
+            $table->text('banned_reason')->after('banned_at')->nullable();
         });
     }
 
