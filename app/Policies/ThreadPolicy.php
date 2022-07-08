@@ -17,7 +17,7 @@ final class ThreadPolicy
 
     const LOCK = 'lock';
 
-    const MARKASSPAM = 'markAsSpam';
+    const REPORT_SPAM = 'reportSpam';
 
     public function update(User $user, Thread $thread): bool
     {
