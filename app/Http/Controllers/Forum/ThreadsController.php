@@ -8,7 +8,6 @@ use App\Http\Requests\ThreadRequest;
 use App\Jobs\CreateThread;
 use App\Jobs\DeleteThread;
 use App\Jobs\LockThread;
-use App\Jobs\MarkThreadAsSpam;
 use App\Jobs\MarkThreadSolution;
 use App\Jobs\ReportSpam;
 use App\Jobs\SubscribeToSubscriptionAble;
