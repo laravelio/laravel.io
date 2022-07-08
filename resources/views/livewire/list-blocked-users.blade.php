@@ -39,9 +39,11 @@
                             @endforeach
                         </datalist>
                     </div>
+
                     @if ($errors->has('blockedUsername'))
                         <span class="text-red-500">{{ $errors->first('blockedUsername') }}</span>
                     @endif
+
                     <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                         <x-buttons.primary-button wire:click="addBlockedUser">
                             Add to the blocked list
