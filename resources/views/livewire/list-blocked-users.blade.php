@@ -16,10 +16,15 @@
                 <ul class="space-y-3">
                     @foreach ($this->blockedUsers as $user)
                         <li class="md:flex justify-between items-center md:space-x-2">
-                            <div>
-                                <span class="block font-bold">
-                                    {{ $user->username() }}
-                                </span>
+							<div class="flex items-center">
+								<div class="shrink-0 h-10 w-10">
+									<x-avatar :user="$user" class="h-10 w-10 rounded-full" />
+								</div>
+                                <div class="text-sm text-gray-500">
+									<a href="{{ route('profile', $user->username()) }}">
+										{{ $user->username() }}
+									</a>
+								</div>
                             </div>
 
                             <x-buttons.danger-button wire:click="removeBlockedUser('{{ $user->username() }}')">
