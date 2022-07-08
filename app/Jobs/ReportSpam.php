@@ -12,7 +12,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Notification;
 
-class MarkThreadAsSpam implements ShouldQueue
+class ReportSpam implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -24,8 +24,7 @@ class MarkThreadAsSpam implements ShouldQueue
 
     public function handle()
     {
-        $this->user->threadsMarkedAsSpammed()
-            ->attach($this->thread->getKey());
+        $this->user->spamming()->attach($this->thread->getKey());
 
         if ($this->shouldNotifyModerators()) {
             Notification::send(
@@ -37,6 +36,6 @@ class MarkThreadAsSpam implements ShouldQueue
 
     private function shouldNotifyModerators()
     {
-        return $this->thread->usersMarkingAsSpam()->count() >= 3;
+        return $this->thread->spammers()->count() >= 3;
     }
 }
