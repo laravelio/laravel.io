@@ -198,7 +198,7 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     public function spamming()
     {
-        return $this->belongsToMany(Thread::class, 'spam_markers')
+        return $this->belongsToMany(Thread::class, 'spam')
             ->withTimestamps();
     }
 

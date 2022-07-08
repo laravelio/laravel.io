@@ -122,7 +122,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
     {
         return $this->belongsToMany(
             User::class,
-            'spam_markers',
+            'spam',
             'thread_id',
             'user_id',
         )->withTimestamps();
