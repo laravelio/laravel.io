@@ -8,9 +8,11 @@
                         Adding these users will result in them being blocked from your account.
                     </p>
                 </div>
+
                 @empty($this->blockedUsers)
                     <div>No Blocked users</div>
                 @endempty
+
                 <ul class="space-y-3">
                     @foreach ($this->blockedUsers as $user)
                         <li class="md:flex justify-between items-center md:space-x-2">
