@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('spam_markers', function (Blueprint $table) {
+        Schema::create('spam', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
