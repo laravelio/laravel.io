@@ -16,9 +16,4 @@ return new class extends Migration
             $table->foreign('blocked_user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
-
-    public function down()
-    {
-        Schema::dropIfExists('blocked_users');
-    }
 };
