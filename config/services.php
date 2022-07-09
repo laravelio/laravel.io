@@ -57,4 +57,9 @@ return [
         'channel' => env('TELEGRAM_CHANNEL'),
     ],
 
+    'fathom' => [
+        'site_id' => env('FATHOM_SITE_ID'),
+        'token' => env('FATHOM_TOKEN'),
+    ],
+
 ];
