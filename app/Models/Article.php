@@ -193,6 +193,11 @@ final class Article extends Model implements Feedable
         return $minutes == 0 ? 1 : $minutes;
     }
 
+    public function viewCount()
+    {
+        return number_format($this->view_count);
+    }
+
     public function isUpdated(): bool
     {
         return $this->updated_at->gt($this->created_at);

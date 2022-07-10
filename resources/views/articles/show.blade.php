@@ -65,14 +65,20 @@
                             </a>
                         </div>
 
-                        <div class="flex items-center">
-                            <span class="font-mono text-sm mr-6 lg:mt-0">
+                        <div class="flex items-center gap-x-6">
+                            <span class="font-mono lg:mt-0">
                                 {{ $article->createdAt()->format('j M, Y') }}
                             </span>
 
                             <span class="text-sm">
                                 {{ $article->readTime() }} min read
                             </span>
+
+                            @unless($article->viewCount() < 10)
+                                <span class="text-sm">
+                                    {{ $article->viewCount() }} views
+                                </span>
+                            @endunless
                         </div>
                     </div>
                 </div>
