@@ -9,7 +9,7 @@ use Illuminate\Notifications\AnonymousNotifiable;
 
 final class PostArticleToTwitter extends Command
 {
-    protected $signature = 'post-article-to-twitter';
+    protected $signature = 'lio:post-article-to-twitter';
 
     protected $description = 'Posts the latest unshared article to Twitter';
 

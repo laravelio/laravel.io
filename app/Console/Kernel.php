@@ -16,9 +16,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('schedule-monitor:sync')->dailyAt('04:56');
         $schedule->command('model:prune', ['--model' => MonitoredScheduledTaskLogItem::class])->daily();
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
-        $schedule->command('post-article-to-twitter')->twiceDaily(14, 18);
-        $schedule->command('sitemap:generate')->daily()->graceTimeInMinutes(25);
-        $schedule->command('update-article-view-counts')->twiceDaily();
+        $schedule->command('lio:post-article-to-twitter')->twiceDaily(14, 18);
+        $schedule->command('lio:generate-sitemap')->daily()->graceTimeInMinutes(25);
+        $schedule->command('lio:update-article-view-counts')->twiceDaily();
     }
 
     /**

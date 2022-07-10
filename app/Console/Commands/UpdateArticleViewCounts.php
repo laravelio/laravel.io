@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 final class UpdateArticleViewCounts extends Command
 {
-    protected $signature = 'update-article-view-counts';
+    protected $signature = 'lio:update-article-view-counts';
 
     protected $description = 'Queries the Fathom Analytics API to update the view counts for all articles';
 
