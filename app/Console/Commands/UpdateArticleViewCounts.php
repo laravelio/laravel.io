@@ -45,7 +45,7 @@ final class UpdateArticleViewCounts extends Command
     {
         $response = Http::withToken($this->token)
             ->get('https://api.usefathom.com/v1/aggregations', [
-                'date_from' => '2021-03-01 00:00:00', // Fathom data aggregations not accurate before this date.
+                'date_from' => '2021-03-01 00:00:00', // Fathom data aggregations not accurate prior to this date.
                 'field_grouping' => 'pathname',
                 'entity' => 'pageview',
                 'aggregates' => 'pageviews,visits,uniques',
