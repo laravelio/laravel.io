@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('horizon:snapshot')->everyFiveMinutes();
         $schedule->command('post-article-to-twitter')->twiceDaily(14, 18);
         $schedule->command('sitemap:generate')->daily()->graceTimeInMinutes(25);
+        $schedule->command('update-article-view-counts')->twiceDaily();
     }
 
     /**
