@@ -42,5 +42,5 @@
                 </x-buttons.primary-button>
             </div>
         </div>
-    </x-form>
+    </x-buk-form>
 </section>

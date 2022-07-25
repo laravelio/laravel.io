@@ -6,9 +6,9 @@
     'selectedTags' => []
 ])
 
-<x-buk-form 
-    action="{{ route(...$route) }}" 
-    :method="$method" 
+<x-buk-form
+    action="{{ route(...$route) }}"
+    :method="$method"
     x-data="{}"
     @submitted="$event.currentTarget.submit()"
 >
@@ -45,7 +45,7 @@
 
                     <select name="tags[]" id="create-thread" multiple x-data="{}" x-init="$nextTick(function () { choices($el) })">
                         @foreach($tags as $tag)
-                            <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>{{ $tag->name }}</option>
+                            <option value="{{ $tag->id }}"{{ in_array($tag->id, $selectedTags) ? ' selected' : '' }}>{{ $tag->name }}</option>
                         @endforeach
                     </select>
                 </div>
