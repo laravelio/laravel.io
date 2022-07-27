@@ -46,7 +46,7 @@
                         </div>
                         <div class="mt-1">
                             <span class="text-gray-900">
-                                {{$user->ban_message}}
+                                {{$user->banned_reason}}
                             </span>
                         </div>
                     @endif
@@ -206,8 +206,8 @@
                 <p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>
 
                 <div class="mt-2">
-                    <x-forms.label for="ban_message">Ban Message</x-forms.label>
-                    <x-forms.inputs.textarea id="ban_message" name="ban_message" required />
+                    <x-forms.label for="banned_reason">Ban Message</x-forms.label>
+                    <x-forms.inputs.textarea id="banned_reason" name="banned_reason" required />
                 </div>
             </x-modal>
         @endif

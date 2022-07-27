@@ -24,7 +24,7 @@ class UserBanRequest extends FormRequest
     public function rules()
     {
         return [
-            'ban_message' => ['required', 'string']
+            'banned_reason' => ['required', 'string']
         ];
     }
 }

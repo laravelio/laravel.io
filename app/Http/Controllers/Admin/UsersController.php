@@ -35,7 +35,7 @@ class UsersController extends Controller
     {
         $this->authorize(UserPolicy::BAN, $user);
 
-        $this->dispatchSync(new BanUser($user, $userBanRequest->ban_message));
+        $this->dispatchSync(new BanUser($user, $userBanRequest->banned_reason));
 
         $this->success('admin.users.banned', $user->name());
 

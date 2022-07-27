@@ -342,12 +342,12 @@ function assertCanSeeTheUserOverview()
 
 function assertCanBanUsers()
 {
-    $user = User::factory()->create(['name' => 'Freek Murze']);
-
-    test()->put('/admin/users/'.$user->username().'/ban')
+    test()->put('/admin/users/'.$user->username().'/ban', [
+        'banned_reason' => 'test',
+    ])
         ->assertRedirectedTo('/user/'.$user->username());
 
-    test()->notSeeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
+    test()->notSeeInDatabase('users', ['id' => $user->id(), 'banned_reason' => null, 'banned_at' => null]);
 }
 
 function assertCanUnbanUsers()
@@ -357,7 +357,7 @@ function assertCanUnbanUsers()
     test()->put('/admin/users/'.$user->username().'/unban')
         ->assertRedirectedTo('/user/'.$user->username());
 
-    test()->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
+    test()->seeInDatabase('users', ['id' => $user->id(), 'banned_reason' => null, 'banned_at' => null]);
 }
 
 function assertCannotBanAdmins()
@@ -374,6 +374,8 @@ function assertCannotBanUsersByType(int $type)
 {
     $user = User::factory()->create(['type' => $type]);
 
-    test()->put('/admin/users/'.$user->username().'/ban')
+    test()->put('/admin/users/'.$user->username().'/ban', [
+        'banned_reason' => 'test',
+    ])
         ->assertForbidden();
 }
