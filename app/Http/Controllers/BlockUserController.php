@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Jobs\BlockUser;
 use App\Models\User;
 use App\Policies\UserPolicy;
