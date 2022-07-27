@@ -10,7 +10,6 @@ final class BanUser
 
     public function __construct(private User $user, private string $banned_reason)
     {
-
     }
 
     public function handle(): void
