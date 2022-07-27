@@ -18,8 +18,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\Settings\ApiTokenController;
+use App\Http\Controllers\Settings\BlockUserController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController as ProfileSettingsController;
+use App\Http\Controllers\Settings\UnblockUserController;
 use App\Http\Controllers\SocialImageController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Middleware\Authenticate;
@@ -73,6 +75,8 @@ Route::get('settings', [ProfileSettingsController::class, 'edit'])->name('settin
 Route::put('settings', [ProfileSettingsController::class, 'update'])->name('settings.profile.update');
 Route::delete('settings', [ProfileSettingsController::class, 'destroy'])->name('settings.profile.delete');
 Route::put('settings/password', [PasswordController::class, 'update'])->name('settings.password.update');
+Route::put('settings/users/{username}/block', BlockUserController::class)->name('settings.users.block');
+Route::put('settings/users/{username}/unblock', UnblockUserController::class)->name('settings.users.unblock');
 Route::post('settings/api-tokens', [ApiTokenController::class, 'store'])->name('settings.api-tokens.store');
 Route::delete('settings/api-tokens', [ApiTokenController::class, 'destroy'])->name('settings.api-tokens.delete');
 

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Jobs\UpdatePassword;
 use Illuminate\Auth\Middleware\Authenticate;
-use Illuminate\Support\Facades\Auth;
 
 class PasswordController extends Controller
 {
@@ -17,7 +16,7 @@ class PasswordController extends Controller
 
     public function update(UpdatePasswordRequest $request)
     {
-        $this->dispatchSync(new UpdatePassword(Auth::user(), $request->newPassword()));
+        $this->dispatchSync(new UpdatePassword($request->user(), $request->newPassword()));
 
         $this->success('settings.password.updated');
 

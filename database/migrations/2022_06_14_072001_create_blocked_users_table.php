@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('blocked_users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->unsignedInteger('blocked_user_id')->nullable();
+            $table->unsignedInteger('blocked_user_id');
             $table->foreign('blocked_user_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }

@@ -3,7 +3,9 @@
         <div class="shadow sm:rounded-md sm:overflow-hidden">
             <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
                 <div>
-                    <h2 id="remove_account_heading" class="text-lg leading-6 font-medium text-red-500 uppercase">Danger Zone</h2>
+                    <h2 id="remove_account_heading" class="text-lg leading-6 font-medium text-red-500 uppercase">
+                        Danger Zone
+                    </h2>
                     <p class="mt-1 text-sm leading-5 text-gray-500">
                         Please be aware that deleting your account will also remove all of your data, including your threads and replies. This cannot be undone.
                     </p>
