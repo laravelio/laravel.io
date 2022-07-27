@@ -184,7 +184,7 @@
                             </li>
                         @else
                             <li class="relative p-4 lg:p-0">
-                                <div class="flex items-center justify-center gap-3">
+                                <div class="flex items-center justify-center">
                                     <a href="{{ route('notifications') }}" class="hidden shrink-0 rounded-full lg:block">
                                         <span class="block relative">
                                             <x-heroicon-o-bell  class="h-5 w-5 hover:fill-current hover:text-lio-500"/>
@@ -193,9 +193,9 @@
                                         </span>
                                     </a>
 
-                                    <x-avatar :user="Auth::user()" class="h-8 w-8" />
+                                    <x-avatar :user="Auth::user()" class="h-8 w-8 ml-5" />
 
-                                    <div @click.outside="settings = false">
+                                    <div class="ml-2" @click.outside="settings = false">
                                         <button @click="settings = !settings" class="flex items-center">
                                             {{ Auth::user()->username() }}
                                             <x-heroicon-s-chevron-down x-show="!settings" class="w-4 h-4 ml-1"/>
