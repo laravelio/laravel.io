@@ -13,10 +13,10 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        User::factory()->createQuietly([
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'username' => 'johndoe',
+        $admin = User::factory()->createQuietly([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'username' => 'testing',
             'github_username' => 'driesvints',
             'password' => bcrypt('password'),
             'type' => User::ADMIN,
@@ -59,5 +59,8 @@ class UserSeeder extends Seeder
             ->inRandomOrder()
             ->take(4)
             ->update(['is_pinned' => true]);
+
+        // Block some users...
+        $admin->blockedUsers()->sync(range(20, 24));
     }
 }

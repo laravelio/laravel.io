@@ -19,8 +19,11 @@ final class Notifications extends Component
 
     public function render(): View
     {
+        $notifications = Auth::user()->unreadNotifications()->paginate(10);
+        $lastPage = count($notifications) == 0 ? $notifications->lastPage() : null;
+
         return view('livewire.notifications', [
-            'notifications' => Auth::user()->unreadNotifications()->paginate(10),
+            'notifications' => Auth::user()->unreadNotifications()->paginate(10, ['*'], 'page', $lastPage),
         ]);
     }
 

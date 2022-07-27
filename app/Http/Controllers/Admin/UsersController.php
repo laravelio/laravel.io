@@ -61,6 +61,6 @@ class UsersController extends Controller
 
         $this->success('admin.users.deleted', $user->name());
 
-        return redirect()->route('admin');
+        return redirect()->route('admin.users');
     }
 }

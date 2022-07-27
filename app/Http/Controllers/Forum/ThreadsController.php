@@ -18,6 +18,7 @@ use App\Models\Reply;
 use App\Models\Tag;
 use App\Models\Thread;
 use App\Models\User;
+use App\Notifications\ThreadDeletedNotification;
 use App\Policies\ThreadPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
@@ -111,18 +112,22 @@ class ThreadsController extends Controller
 
         $this->dispatchSync(UpdateThread::fromRequest($thread, $request));
 
-        $thread = $thread->fresh();
-
         $this->success('forum.threads.updated');
 
-        return redirect()->route('thread', $thread->slug());
+        return redirect()->route('thread', $thread->fresh()->slug());
     }
 
-    public function delete(Thread $thread)
+    public function delete(Request $request, Thread $thread)
     {
         $this->authorize(ThreadPolicy::DELETE, $thread);
 
         $this->dispatchSync(new DeleteThread($thread));
+
+        $request->whenFilled('reason', function () use ($thread) {
+            $thread->author()?->notify(
+                new ThreadDeletedNotification($thread, request('reason')),
+            );
+        });
 
         $this->success('forum.threads.deleted');
 

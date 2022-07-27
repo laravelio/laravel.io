@@ -67,8 +67,8 @@
                         </x-info-panel>
                     @else
                         <div class="my-8">
-                            <form 
-                                action="{{ route('replies.store') }}" 
+                            <form
+                                action="{{ route('replies.store') }}"
                                 method="POST"
                                 @submitted="$event.currentTarget.submit()"
                             >
@@ -104,7 +104,7 @@
                         <a href="{{ route('login') }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">Sign in</a> to participate in this thread!
                     </p>
                 @else
-                    <x-info-panel class="flex justify-between gap-x-16">
+                    <x-info-panel>
                         <p>You'll need to verify your account before participating in this thread.</p>
 
                         <form action="{{ route('verification.resend') }}" method="POST" class="block">

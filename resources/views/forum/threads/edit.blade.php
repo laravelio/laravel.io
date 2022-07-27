@@ -14,13 +14,13 @@
 @endsection
 
 @section('content')
-    <main class="max-w-4xl mx-auto pt-10 pb-12 px-4 lg:pb-16">        
+    <main class="max-w-4xl mx-auto pt-10 pb-12 px-4 lg:pb-16">
         <div class="lg:grid lg:gap-x-5">
             <div class="sm:px-6 lg:px-0 lg:col-span-9">
-                <x-threads.form 
+                <x-threads.form
                     :route="['threads.update', $thread->slug()]"
-                    method="PUT" 
-                    :thread="$thread" 
+                    method="PUT"
+                    :thread="$thread"
                     :tags="$tags"
                     :selectedTags="$selectedTags"
                  />
@@ -30,5 +30,5 @@
                 </x-forms.info>
             </div>
         </div>
-    </div>
+    </main>
 @endsection

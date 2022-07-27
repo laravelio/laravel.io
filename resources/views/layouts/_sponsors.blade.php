@@ -40,6 +40,13 @@
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://loadforge.com" logo="{{ asset('images/sponsors/loadforge.svg') }}" company="LoadForge" />
             </div>
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo url="https://www.skynettechnologies.com/hire-laravel-developer" logo="{{ asset('images/sponsors/skynet-technologies.jpg') }}" company="Skynet Technologies" />
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo url="https://www.lightflows.co.uk/laravel-development-agency/" logo="{{ asset('images/sponsors/lightflows.png') }}" company="Lightflows" />
+            </div>
         </div>
 
         <x-ads.cta primary class="mt-8 md:mt-12">

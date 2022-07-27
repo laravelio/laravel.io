@@ -33,9 +33,14 @@ class UserFactory extends Factory
     public function passwordless(): self
     {
         return $this->state(function () {
-            return [
-                'password' => '',
-            ];
+            return ['password' => ''];
+        });
+    }
+
+    public function moderator(): self
+    {
+        return $this->state(function () {
+            return ['type' => User::MODERATOR];
         });
     }
 }

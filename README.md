@@ -28,6 +28,8 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Tinkerwell](https://tinkerwell.app)
 - [Akaunting](https://akaunting.com/developers?utm_source=Laravelio&utm_medium=Banner&utm_campaign=Developers)
 - [Scout APM](https://ter.li/o1adaj)
+- [Skynet Technologies](https://www.skynettechnologies.com/hire-laravel-developer)
+- [Lightflows](https://www.lightflows.co.uk/laravel-development-agency/)
 
 ## Requirements
 
@@ -50,7 +52,7 @@ The following tools are required in order to start the installation.
 6. Run `valet link` to link the site to a testing web address
 7. Configure the (optional) features from below
 
-You can now visit the app in your browser by visiting [http://laravel.io.test](http://laravel.io.test). If you seeded the database you can login into a test account with **`johndoe`** & **`password`**.
+You can now visit the app in your browser by visiting [http://laravel.io.test](http://laravel.io.test). If you seeded the database you can login into a test account with **`testing`** & **`password`**.
 
 ### Github Authentication (optional)
 
@@ -73,9 +75,9 @@ SCOUT_QUEUE=true
 ALGOLIA_APP_ID=
 ALGOLIA_SECRET="Use the Write API Key"
 
-MIX_ALGOLIA_APP_ID="${ALGOLIA_APP_ID}"
-MIX_ALGOLIA_SECRET="Use the Search API Key"
-MIX_ALGOLIA_INDEX=threads
+VITE_ALGOLIA_APP_ID="${ALGOLIA_APP_ID}"
+VITE_ALGOLIA_SECRET="Use the Search API Key"
+VITE_ALGOLIA_INDEX=threads
 ```
 
 In order to index your existing threads, run the following command:
@@ -116,9 +118,9 @@ TELEGRAM_CHANNEL=
 
 Command | Description
 --- | ---
-**`php artisan test --parallel`** | Run the tests
+**`vendor/bin/pest -p`** | Run the tests with parallel execution
 `php artisan migrate:fresh --seed` | Reset the database
-`npm run watch` | Watch for changes in CSS and JS files
+`npm run dev` | Build and watch for changes in CSS and JS files
 
 ## Maintainers
 

@@ -6,8 +6,8 @@
     'selectedTags' => []
 ])
 
-<x-buk-form 
-    action="{{ route(...$route) }}" 
+<x-buk-form
+    action="{{ route(...$route) }}"
     :method="$method"
 >
     <div class="bg-gray-100 py-6 px-4 space-y-6 sm:p-6">
@@ -73,7 +73,7 @@
 
                         <select name="tags[]" id="create-article" multiple x-data="{}" x-init="$nextTick(function () { choices($el) })">
                             @foreach ($tags as $tag)
-                                <option value="{{ $tag->id }}" @if(in_array($tag->id, $selectedTags)) selected @endif>{{ $tag->name }}</option>
+                                <option value="{{ $tag->id }}" {{ in_array($tag->id, $selectedTags) ? 'selected' : '' }}>{{ $tag->name }}</option>
                             @endforeach
                         </select>
 
