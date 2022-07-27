@@ -12,18 +12,19 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Forum\TagsController;
 use App\Http\Controllers\Forum\ThreadsController;
+use App\Http\Controllers\BlockUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MarkNotificationsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\Settings\ApiTokenController;
-use App\Http\Controllers\Settings\BlockUserController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController as ProfileSettingsController;
-use App\Http\Controllers\Settings\UnblockUserController;
+use App\Http\Controllers\Settings\UnblockUserController as UnblockUserSettingsController;
 use App\Http\Controllers\SocialImageController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\UnblockUserController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +66,8 @@ Route::get('auth/github', [GithubController::class, 'handleProviderCallback']);
 // Users
 Route::redirect('/dashboard', '/user');
 Route::get('user/{username?}', [ProfileController::class, 'show'])->name('profile');
+Route::put('users/{username}/block', BlockUserController::class)->name('users.block');
+Route::put('users/{username}/unblockblock', UnblockUserController::class)->name('users.unblock');
 
 // Notifications
 Route::view('notifications', 'users.notifications')->name('notifications')->middleware(Authenticate::class);
@@ -75,8 +78,7 @@ Route::get('settings', [ProfileSettingsController::class, 'edit'])->name('settin
 Route::put('settings', [ProfileSettingsController::class, 'update'])->name('settings.profile.update');
 Route::delete('settings', [ProfileSettingsController::class, 'destroy'])->name('settings.profile.delete');
 Route::put('settings/password', [PasswordController::class, 'update'])->name('settings.password.update');
-Route::put('settings/users/{username}/block', BlockUserController::class)->name('settings.users.block');
-Route::put('settings/users/{username}/unblock', UnblockUserController::class)->name('settings.users.unblock');
+Route::put('settings/users/{username}/unblock', UnblockUserSettingsController::class)->name('settings.users.unblock');
 Route::post('settings/api-tokens', [ApiTokenController::class, 'store'])->name('settings.api-tokens.store');
 Route::delete('settings/api-tokens', [ApiTokenController::class, 'destroy'])->name('settings.api-tokens.delete');
 

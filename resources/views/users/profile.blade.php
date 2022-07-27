@@ -63,6 +63,24 @@
                             </x-buttons.secondary-button>
                         @endif
 
+                        @can(App\Policies\UserPolicy::BLOCK, $user)
+                            @if (Auth::user()->hasBlocked($user))
+                                <x-buttons.secondary-button class="w-full" @click.prevent="activeModal = 'unblockUser'">
+                                    <span class="flex items-center gap-x-2">
+                                        <x-heroicon-o-check class="w-5 h-5" />
+                                        Unblock User
+                                    </span>
+                                </x-buttons.secondary-button>
+                            @else
+                                <x-buttons.danger-button class="w-full" @click.prevent="activeModal = 'blockUser'">
+                                    <span class="flex items-center gap-x-2">
+                                        <x-heroicon-o-x class="w-5 h-5" />
+                                        Block User
+                                    </span>
+                                </x-buttons.danger-button>
+                            @endif
+                        @endcan
+
                         @can(App\Policies\UserPolicy::BAN, $user)
                             @if ($user->isBanned())
                                 <x-buttons.secondary-button class="w-full" @click.prevent="activeModal = 'unbanUser'">
@@ -162,6 +180,28 @@
             </div>
         </div>
     </section>
+
+    @can(App\Policies\UserPolicy::BLOCK, $user)
+        @if (Auth::user()->hasBlocked($user))
+            <x-modal
+                identifier="unblockUser"
+                :action="route('users.unblock', $user->username())"
+                title="Unblock {{ $user->username() }}"
+                type="update"
+            >
+                <p>Unblocking this user will allow them to mention you again in threads and replies.</p>
+            </x-modal>
+        @else
+            <x-modal
+                identifier="blockUser"
+                :action="route('users.block', $user->username())"
+                title="Block {{ $user->username() }}"
+                type="update"
+            >
+                <p>Blocking this user will prevent them from mentioning you in threads and replies. The user will not be notified that you blocked them.</p>
+            </x-modal>
+        @endif
+    @endcan
 
     @can(App\Policies\UserPolicy::BAN, $user)
         @if ($user->isBanned())

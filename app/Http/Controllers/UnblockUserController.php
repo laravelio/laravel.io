@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Settings;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\UnblockUser;
@@ -24,6 +24,6 @@ class UnblockUserController extends Controller
 
         $this->success('settings.user.unblocked');
 
-        return redirect()->route('settings.profile');
+        return redirect()->route('profile', $user->username());
     }
 }
