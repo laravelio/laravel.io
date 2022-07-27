@@ -1,10 +1,11 @@
 /node_modules
+/public/build
 /public/css
-/public/js
 /public/fonts
-/public/storage
 /public/hot
+/public/js
 /public/mix-manifest.json
+/public/storage
 /public/sitemap.xml
 /public/.htaccess
 /storage/*.key

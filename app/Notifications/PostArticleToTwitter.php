@@ -12,9 +12,8 @@ class PostArticleToTwitter extends Notification
 {
     use Queueable;
 
-    public function __construct(
-        private Article $article
-    ) {
+    public function __construct(private Article $article)
+    {
     }
 
     public function via($notifiable)

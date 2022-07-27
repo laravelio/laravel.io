@@ -207,6 +207,11 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Reply::class, 'author_id');
     }
 
+    public function blockedUsers()
+    {
+        return $this->belongsToMany(User::class, 'blocked_users', 'user_id', 'blocked_user_id');
+    }
+
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class, 'author_id');
@@ -311,5 +316,24 @@ final class User extends Authenticatable implements MustVerifyEmail
             self::ADMIN,
             self::MODERATOR,
         ]);
+    }
+
+    public function hasBlocked(User $user): bool
+    {
+        return $this->blockedUsers()->where('blocked_user_id', $user->getKey())->exists();
+    }
+
+    public function scopeWithUsersWhoDoesntBlock(Builder $query, User $user)
+    {
+        return $query->whereDoesntHave('blockedUsers', function ($query) use ($user) {
+            $query->where('blocked_user_id', $user->getKey());
+        });
+    }
+
+    public function scopeWithUsersWhoArentBlockedBy(Builder $query, User $user)
+    {
+        return $query->whereDoesntHave('blockedUsers', function ($query) use ($user) {
+            $query->where('user_id', $user->getKey());
+        });
     }
 }

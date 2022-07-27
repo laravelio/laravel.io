@@ -4,10 +4,10 @@ import Choices from 'choices.js';
 
 import 'choices.js/public/assets/styles/choices.css';
 
-require('./bootstrap');
-require('./nav');
-require('./search');
-require('./editor');
+import './bootstrap';
+import './nav';
+import './search';
+import './editor';
 
 window.Alpine = Alpine;
 

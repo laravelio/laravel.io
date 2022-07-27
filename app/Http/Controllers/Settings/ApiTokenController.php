@@ -8,7 +8,6 @@ use App\Http\Requests\DeleteApiTokenRequest;
 use App\Jobs\CreateApiToken;
 use App\Jobs\DeleteApiToken;
 use Illuminate\Auth\Middleware\Authenticate;
-use Illuminate\Support\Facades\Auth;
 
 class ApiTokenController extends Controller
 {
@@ -19,7 +18,7 @@ class ApiTokenController extends Controller
 
     public function store(CreateApiTokenRequest $request)
     {
-        $this->dispatchSync(new CreateApiToken($user = Auth::user(), $request->name()));
+        $this->dispatchSync(new CreateApiToken($user = $request->user(), $request->name()));
 
         $token = $user->tokens()->where('name', $request->name())->first();
 
@@ -30,7 +29,7 @@ class ApiTokenController extends Controller
 
     public function destroy(DeleteApiTokenRequest $request)
     {
-        $this->dispatchSync(new DeleteApiToken(Auth::user(), $request->id()));
+        $this->dispatchSync(new DeleteApiToken($request->user(), $request->id()));
 
         $this->success('settings.api_token.deleted');
 

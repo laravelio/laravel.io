@@ -26,11 +26,11 @@
         </div>
     </div>
 
-    <livewire:edit-reply :reply="$reply">
+    <livewire:edit-reply :reply="$reply" />
 
     <div class="flex justify-between" x-show="!edit">
         <div class="px-6 pb-6">
-            <livewire:like-reply :reply="$reply"/>
+            <livewire:like-reply :reply="$reply" />
         </div>
 
         @if ($thread->isSolutionReply($reply) && $resolvedBy = $thread->resolvedBy())

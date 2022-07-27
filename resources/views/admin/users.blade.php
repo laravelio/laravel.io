@@ -69,12 +69,19 @@
                                         </x-tables.table-data>
 
                                         <x-tables.table-data class="text-center w-10">
-                                            <a
-                                                href="{{ route('profile', $user->username()) }}"
-                                                class="text-lio-600 hover:text-lio-800"
-                                            >
+                                            <a href="{{ route('profile', $user->username()) }}" class="text-lio-600 hover:text-lio-800">
                                                 <x-heroicon-o-user-circle class="w-5 h-5 inline" />
                                             </a>
+
+                                            @can(App\Policies\UserPolicy::DELETE, $user)
+                                                <button @click="activeModal = 'deleteUser{{ $user->getKey() }}'" class="text-red-600 hover:text-red-800">
+                                                    <x-heroicon-o-trash class="w-5 h-5 inline" />
+                                                </button>
+
+                                                <x-modal identifier="deleteUser{{ $user->getKey() }}" :action="route('admin.users.delete', $user->username())" title="Delete {{ $user->username() }}">
+                                                    <p>Deleting this user will remove their account and any related content like threads & replies. This cannot be undone.</p>
+                                                </x-modal>
+                                            @endcan
                                         </x-tables.table-data>
                                     </tr>
                                 @endforeach

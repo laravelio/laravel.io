@@ -47,12 +47,14 @@ class RegisterController extends Controller
     /**
      * Handle a registration request for the application.
      *
-     * @param  RegisterRequest  $request
+     * @param  \App\Http\Requests\RegisterRequest  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     public function register(RegisterRequest $request)
     {
         event(new Registered($user = $this->create($request)));
+
+        session()->forget('githubData');
 
         $this->guard()->login($user);
 

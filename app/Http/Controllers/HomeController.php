@@ -45,7 +45,7 @@ class HomeController extends Controller
 
         $latestArticles = Cache::remember('latestArticles', now()->addHour(), function () {
             return Article::published()
-                ->trending()
+                ->recent()
                 ->limit(4)
                 ->get();
         });
