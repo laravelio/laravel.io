@@ -9,13 +9,13 @@ uses(RefreshDatabase::class);
 
 test('cannot block user when not logged in', function () {
     $user = $this->createUser();
-    
+
     $this->put("/users/{$user->username}/block")->assertRedirectedTo('login');
 });
 
 test('cannot unblock user when not logged in', function () {
     $user = $this->createUser();
-    
+
     $this->put("/users/{$user->username}/unblockblock")->assertRedirectedTo('login');
 });
 
@@ -23,7 +23,7 @@ test('cannot block self', function () {
     $user = $this->createUser();
 
     $this->loginAs($user);
-    
+
     $this->put("/users/{$user->username}/block")->assertForbidden();
 });
 
@@ -32,11 +32,11 @@ test('cannot block moderator', function () {
     $moderator = $this->createUser([
         'username' => 'moderator',
         'email' => 'moderator@example.com',
-        'type' => User::MODERATOR
+        'type' => User::MODERATOR,
     ]);
 
     $this->loginAs($user);
-    
+
     $this->put("/users/{$moderator->username}/block")->assertForbidden();
 });
 
@@ -48,7 +48,7 @@ test('can block other user', function () {
     ]);
 
     $this->loginAs($blocker);
-    
+
     $this->put("/users/{$blocked->username}/block")->assertSessionHas('success', trans('settings.user.blocked'));
 });
 
@@ -60,6 +60,6 @@ test('can unblock other user', function () {
     ]);
 
     $this->loginAs($unblocker);
-    
+
     $this->put("/users/{$unblocked->username}/unblockblock")->assertSessionHas('success', trans('settings.user.unblocked'));
 });
