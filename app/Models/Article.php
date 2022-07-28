@@ -46,6 +46,7 @@ final class Article extends Model implements Feedable
         'slug',
         'hero_image',
         'is_pinned',
+        'view_count',
         'tweet_id',
         'submitted_at',
         'approved_at',
@@ -190,6 +191,11 @@ final class Article extends Model implements Feedable
         $minutes = round(str_word_count($this->body()) / 200);
 
         return $minutes == 0 ? 1 : $minutes;
+    }
+
+    public function viewCount()
+    {
+        return number_format($this->view_count);
     }
 
     public function isUpdated(): bool

@@ -114,6 +114,15 @@ TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHANNEL=
 ```
 
+### Fathom Analytics (optional)
+
+To enable view counts on articles, you'll need to register a [Fathom Analytics](https://app.usefathom.com/register) account and [install](https://usefathom.com/docs/start/install) it on the site. You will then need to create an API token and find your site ID before updating the below environment variables in your `.env` file.
+
+```
+FATHOM_SITE_ID=
+FATHOM_TOKEN=
+```
+
 ## Commands
 
 Command | Description

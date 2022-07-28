@@ -10,7 +10,7 @@ use Spatie\Sitemap\Tags\Url;
 
 class GenerateSitemap extends Command
 {
-    protected $signature = 'sitemap:generate';
+    protected $signature = 'lio:generate-sitemap';
 
     protected $description = 'Crawl the site to generate a sitemap.xml file';
 

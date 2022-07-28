@@ -492,3 +492,17 @@ test('can filter articles by tag', function () {
         ->see('My First Article')
         ->dontSee('My Second Article');
 });
+
+test('only articles with ten or more views render a view count', function () {
+    $article = Article::factory()->create(['title' => 'My First Article', 'slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now(), 'view_count' => 9]);
+
+    $this->get("/articles/{$article->slug()}")
+        ->see('My First Article')
+        ->dontSee('9 views');
+
+    $article->update(['view_count' => 10]);
+
+    $this->get("/articles/{$article->slug()}")
+        ->see('My First Article')
+        ->see('10 views');
+});
