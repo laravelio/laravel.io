@@ -13,6 +13,7 @@ class UpdateProfileRequest extends Request
             'email' => 'required|email|max:255|unique:users,email,'.Auth::id(),
             'username' => 'required|alpha_dash|max:255|unique:users,username,'.Auth::id(),
             'twitter' => 'max:255|nullable|unique:users,twitter,'.Auth::id(),
+            'website' => 'max:255|nullable|url',
             'bio' => 'max:160',
         ];
     }
@@ -40,5 +41,10 @@ class UpdateProfileRequest extends Request
     public function twitter(): ?string
     {
         return $this->get('twitter');
+    }
+
+    public function website(): ?string
+    {
+        return $this->get('website');
     }
 }
