@@ -16,7 +16,7 @@ test('cannot block user when not logged in', function () {
 test('cannot unblock user when not logged in', function () {
     $user = $this->createUser();
 
-    $this->put("/users/{$user->username}/unblockblock")->assertRedirectedTo('login');
+    $this->put("/users/{$user->username}/unblock")->assertRedirectedTo('login');
 });
 
 test('cannot block self', function () {
@@ -61,5 +61,5 @@ test('can unblock other user', function () {
 
     $this->loginAs($unblocker);
 
-    $this->put("/users/{$unblocked->username}/unblockblock")->assertSessionHas('success', trans('settings.user.unblocked'));
+    $this->put("/users/{$unblocked->username}/unblock")->assertSessionHas('success', trans('settings.user.unblocked'));
 });
