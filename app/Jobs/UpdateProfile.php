@@ -16,7 +16,7 @@ final class UpdateProfile
         array $attributes = []
     ) {
         $this->attributes = Arr::only($attributes, [
-            'name', 'email', 'username', 'github_username', 'bio', 'twitter', 'website'
+            'name', 'email', 'username', 'github_username', 'bio', 'twitter', 'website',
         ]);
     }
 
