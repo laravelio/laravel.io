@@ -67,7 +67,7 @@ Route::get('auth/github', [GithubController::class, 'handleProviderCallback']);
 Route::redirect('/dashboard', '/user');
 Route::get('user/{username?}', [ProfileController::class, 'show'])->name('profile');
 Route::put('users/{username}/block', BlockUserController::class)->name('users.block');
-Route::put('users/{username}/unblockblock', UnblockUserController::class)->name('users.unblock');
+Route::put('users/{username}/unblock', UnblockUserController::class)->name('users.unblock');
 
 // Notifications
 Route::view('notifications', 'users.notifications')->name('notifications')->middleware(Authenticate::class);
