@@ -28,6 +28,9 @@
                 <x-forms.info>
                     Please search for your question before posting your thread by using the search box in the navigation bar.
                 </x-forms.info>
+                <x-forms.info>
+                    Want to share large code snippets? Share them through our <a href="{{ route('pastebin') }}" class="text-lio-700 underline">pastebin</a>.
+                </x-forms.info>
             </div>
         </div>
     </main>

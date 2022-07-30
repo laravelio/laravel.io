@@ -35,7 +35,7 @@ Route::get('/', [HomeController::class, 'show'])->name('home');
 Route::view('rules', 'rules')->name('rules');
 Route::view('terms', 'terms')->name('terms');
 Route::view('privacy', 'privacy')->name('privacy');
-Route::get('bin/{paste?}', [HomeController::class, 'pastebin']);
+Route::get('bin/{paste?}', [HomeController::class, 'pastebin'])->name('pastebin');
 
 Route::get('articles/{article}/social.png', SocialImageController::class)->name('articles.image');
 
