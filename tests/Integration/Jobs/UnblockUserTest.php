@@ -7,7 +7,7 @@ use Tests\TestCase;
 uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
-it('can block a user', function () {
+it('can unblock a user', function () {
     $unblocker = $this->createUser();
     $unblocked = $this->createUser([
         'username' => 'unblocked',
