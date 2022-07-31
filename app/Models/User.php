@@ -323,6 +323,11 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->blockedUsers()->where('blocked_user_id', $user->getKey())->exists();
     }
 
+    public function hasUnblocked(User $user): bool
+    {
+        return ! $this->hasBlocked($user);
+    }
+
     public function scopeWithUsersWhoDoesntBlock(Builder $query, User $user)
     {
         return $query->whereDoesntHave('blockedUsers', function ($query) use ($user) {
