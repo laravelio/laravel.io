@@ -51,6 +51,12 @@
                                 <x-icon-twitter class="w-6 h-6" />
                             </a>
                         @endif
+
+                        @if ($user->hasWebsite())
+                            <a href="{{ $user->website() }}">
+                                <x-heroicon-o-globe-alt class="w-6 h-6" />
+                            </a>
+                        @endif
                     </div>
 
                     <div class="flex flex-col gap-y-4">

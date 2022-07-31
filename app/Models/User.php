@@ -39,6 +39,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'twitter',
+        'website',
         'username',
         'password',
         'ip',
@@ -89,9 +90,19 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->twitter;
     }
 
+    public function website(): ?string
+    {
+        return $this->website;
+    }
+
     public function hasTwitterAccount(): bool
     {
         return ! empty($this->twitter());
+    }
+
+    public function hasWebsite(): bool
+    {
+        return ! empty($this->website());
     }
 
     public function isBanned(): bool

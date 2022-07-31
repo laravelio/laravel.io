@@ -16,7 +16,7 @@ final class UpdateProfile
         array $attributes = []
     ) {
         $this->attributes = Arr::only($attributes, [
-            'name', 'email', 'username', 'github_username', 'bio', 'twitter',
+            'name', 'email', 'username', 'github_username', 'bio', 'twitter', 'website',
         ]);
     }
 
@@ -28,6 +28,7 @@ final class UpdateProfile
             'username' => strtolower($request->username()),
             'bio' => trim(strip_tags($request->bio())),
             'twitter' => $request->twitter(),
+            'website' => $request->website(),
         ]);
     }
 

@@ -23,6 +23,7 @@ class UserFactory extends Factory
             'github_id' => $this->faker->unique()->numberBetween(10000, 99999),
             'github_username' => $this->faker->unique()->userName(),
             'twitter' => $this->faker->unique()->userName(),
+            'website' => 'https://laravel.io',
             'banned_at' => null,
             'type' => User::DEFAULT,
             'bio' => $this->faker->sentence(),

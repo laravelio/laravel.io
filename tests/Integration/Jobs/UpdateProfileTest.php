@@ -14,12 +14,13 @@ test('we can update a user profile', function () {
 
     Event::fake();
 
-    $this->dispatch(new UpdateProfile($user, ['bio' => 'my bio', 'name' => 'John Doe Junior']));
+    $this->dispatch(new UpdateProfile($user, ['bio' => 'my bio', 'name' => 'John Doe Junior', 'website' => 'https://laravel.io']));
 
     $updatedUser = $user->fresh();
 
     expect($updatedUser->bio())->toEqual('my bio');
     expect($updatedUser->name())->toEqual('John Doe Junior');
+    expect($updatedUser->website())->toEqual('https://laravel.io');
     $this->assertDatabaseMissing('users', ['id' => $user->id, 'email_verified_at' => null]);
 
     Event::assertNotDispatched(EmailAddressWasChanged::class);

@@ -24,6 +24,7 @@ test('users can update their profile', function () {
             'email' => 'freek@example.com',
             'username' => 'freekmurze',
             'twitter' => 'freektwitter',
+            'website' => 'https://laravel.io',
             'bio' => 'My bio',
         ])
         ->seePageIs('/settings')
@@ -141,6 +142,25 @@ test('twitter is optional', function () {
         ->dontSee('freektwitter');
 
     expect($user->fresh()->twitter())->toBeEmpty();
+});
+
+test('website is optional', function () {
+    $user = $this->createUser(['email' => 'freek@example.com', 'username' => 'freekmurze', 'twitter' => 'freektwitter', 'website' => 'https://laravel.io']);
+
+    $this->loginAs($user);
+
+    $this->visit('/settings')
+        ->submitForm('Update Profile', [
+            'name' => 'Freek Murze',
+            'email' => 'freek@example.com',
+            'username' => 'freekmurze',
+            'twitter' => 'freektwitter',
+            'website' => '',
+        ])
+        ->seePageIs('/settings')
+        ->dontSee('https://laravel.io');
+
+    expect($user->fresh()->website())->toBeEmpty();
 });
 
 test('users can generate API tokens', function () {
