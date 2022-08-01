@@ -57,7 +57,7 @@ it('only returns approved articles for a user', function () {
     expect($user->countArticles())->toBe(1);
 });
 
-it('exclude author solutions from mostSolutions count', function () {
+it('excludes author solutions from mostSolutions count', function () {
     $user = $this->login();
     $thread = Thread::factory()->create([
         'author_id' => $user->id(),
@@ -67,12 +67,12 @@ it('exclude author solutions from mostSolutions count', function () {
     ]);
 
     $this->dispatch(new MarkThreadSolution($thread, $reply, $user));
-    expect($user->MostSolutions()->find($user->id())->solutions_count)->toBe(0);
+    expect($user->mostSolutions()->find($user->id())->solutions_count)->toBe(0);
 
     $otherThread = Thread::factory()->create();
 
     $this->dispatch(new MarkThreadSolution($otherThread, $reply, $user));
-    expect($user->MostSolutions()->find($user->id())->solutions_count)->toBe(1);
+    expect($user->mostSolutions()->find($user->id())->solutions_count)->toBe(1);
 });
 
 // Helpers
