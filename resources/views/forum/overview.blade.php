@@ -155,7 +155,7 @@
                     </ul>
 
                     <p class="px-5 pt-3 pb-5 text-center text-xs text-gray-700">
-                        Solutions given in the past year.
+                        Solutions given in the past year. Excluding solutions from thread authors.
                     </p>
                 </div>
 

@@ -259,7 +259,10 @@ final class User extends Authenticatable implements MustVerifyEmail
     {
         return $query->withCount(['replyAble as solutions_count' => function ($query) use ($inLastDays) {
             $query->where('replyable_type', 'threads')
-                ->join('threads', 'threads.solution_reply_id', '=', 'replies.id');
+                ->join('threads', function($join) {
+                    $join->on('threads.solution_reply_id', '=', 'replies.id')
+                        ->on('threads.author_id', '!=', 'replies.author_id');
+                });
 
             if ($inLastDays) {
                 $query->where('replies.created_at', '>', now()->subDays($inLastDays));
