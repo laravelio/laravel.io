@@ -21,7 +21,7 @@
 
                 <x-forms.info>
                     Please search for your question before posting your thread by using the search box in the navigation bar.<br>
-                    Want to share large code snippets? Share them through <a href="{{ route('pastebin') }}" class="text-lio-700 underline">our pastebin</a>.
+                    Want to share large code snippets? Share them through <a href="https://paste.laravel.io" class="text-lio-700 underline">our pastebin</a>.
                 </x-forms.info>
             </div>
         </div>
