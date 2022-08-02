@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Article;
 use App\Models\Tag;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -50,4 +51,18 @@ test('query_params_are_always_in_the_same_order', function () {
 test('standard pages always remove query params from canonical url', function () {
     $this->get('?utm_source=twitter&utm_medium=social&utm_term=abc123')
         ->see('<link rel="canonical" href="http://localhost" />');
+});
+
+test('canonical tracking is turned off when using external url', function () {
+    Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now(), 'original_url' => 'https://example.com/external-path']);
+
+    $this->get('/articles/my-first-article')
+        ->see('data-canonical="false"');
+});
+
+test('canonical tracking is turned on when using external url', function () {
+    Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
+
+    $this->get('/articles/my-first-article')
+        ->dontSee('data-canonical="false"');
 });
