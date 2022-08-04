@@ -123,11 +123,10 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
 
     public function spammers()
     {
-        return $this->belongsToMany(
+        return $this->morphToMany(
             User::class,
+            'spammable',
             'spam',
-            'thread_id',
-            'user_id',
         )->withTimestamps();
     }
 
