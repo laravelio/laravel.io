@@ -47,7 +47,7 @@ class ReplyController extends Controller
         return $this->redirectToReplyAble($reply->replyAble());
     }
 
-	public function markAsSpam(Reply $reply)
+    public function markAsSpam(Reply $reply)
     {
         $this->authorize(ReplyPolicy::REPORT_SPAM, $reply);
 
@@ -55,9 +55,7 @@ class ReplyController extends Controller
 
         $this->success("You've marked this reply as a spam.");
 
-        return redirect()
-			->route('thread', $reply->thread)
-			->withFragment($reply->getKey());
+        return redirect()->route('thread', $reply->thread)->withFragment($reply->getKey());
     }
 
     private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse
