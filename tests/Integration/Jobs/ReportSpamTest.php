@@ -11,7 +11,7 @@ use Tests\TestCase;
 uses(TestCase::class);
 uses(RefreshDatabase::class);
 
-it('can mark thread solution', function () {
+it('can mark a thread as spam', function () {
     $user = $this->login();
     $thread = Thread::factory()->create();
 
