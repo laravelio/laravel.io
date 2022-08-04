@@ -44,8 +44,7 @@ class MarkedAsSpamNotification extends Notification
         $url = route('thread', ['thread' => $this->spammable]);
         if ($this->spammable instanceof Reply) {
             $url = route('thread', ['thread' => $this->spammable->thread])
-                . '#'
-                . $this->spammable->getKey();
+                ."#{$this->spammable->getKey()}";
         }
         return TelegramMessage::create()
             ->to(config('services.telegram-bot-api.channel'))
