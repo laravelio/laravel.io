@@ -4,10 +4,18 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\App;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
 uses(DatabaseMigrations::class);
+
+function inProduction()
+{
+    App::detectEnvironment(fn () => 'production');
+}
+
+afterEach(fn () => App::detectEnvironment(fn () => 'testing'));
 
 test('pages without a canonical url explicitly set fall back to the current url', function () {
     $this->get('/register')
@@ -58,11 +66,13 @@ test('canonical tracking is turned off when using external url', function () {
 
     $this->get('/articles/my-first-article')
         ->see('data-canonical="false"');
-});
+})->inProduction();
 
 test('canonical tracking is turned on when using external url', function () {
+    App::detectEnvironment(fn () => 'production');
+
     Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
 
     $this->get('/articles/my-first-article')
         ->dontSee('data-canonical="false"');
-});
+})->inProduction();
