@@ -46,6 +46,10 @@ final class ThreadPolicy
 
     public function markAsSpam(User $user, Thread $thread): bool
     {
+        if ($thread->author->isModerator() || $thread->author->isAdmin()) {
+            return false;
+        }
+
         return $thread->spammers->doesntContain($user);
     }
 }
