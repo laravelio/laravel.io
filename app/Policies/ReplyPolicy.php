@@ -13,7 +13,7 @@ final class ReplyPolicy
 
     const DELETE = 'delete';
 
-	const REPORT_SPAM = 'markAsSpam';
+    const REPORT_SPAM = 'markAsSpam';
 
     /**
      * Determine if replies can be created by the user.
