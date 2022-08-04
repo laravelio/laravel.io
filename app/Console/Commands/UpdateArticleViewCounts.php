@@ -34,9 +34,9 @@ final class UpdateArticleViewCounts extends Command
 
         Article::published()->chunk(100, function ($articles) {
             $articles->each(function ($article) {
-                $article->update([
-                    'view_count' => $this->getViewCountFor($article),
-                ]);
+                $article->timestamps = false;
+                $article->view_count = $this->getViewCountFor($article);
+                $article->save();
             });
         });
     }

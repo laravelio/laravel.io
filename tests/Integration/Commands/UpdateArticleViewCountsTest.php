@@ -28,6 +28,28 @@ test('article view counts can be updated', function () {
     expect($article->fresh()->view_count)->toBe(1234);
 });
 
+test('article updated timestamp is not touched when view counts are updated', function () {
+    Http::fake(function () {
+        return Http::response([[
+            'pageviews' => 1234,
+        ]]);
+    });
+
+    $article = Article::factory()->create([
+        'title' => 'My First Article',
+        'slug' => 'my-first-article',
+        'submitted_at' => now(),
+        'approved_at' => now(),
+        'created_at' => '2022-08-03 12:00:00',
+        'updated_at' => '2022-08-03 12:00:00',
+    ]);
+
+    (new UpdateArticleViewCounts)->handle();
+
+    expect($article->fresh()->view_count)->toBe(1234);
+    expect($article->fresh()->updated_at->toDateTimeString())->toBe('2022-08-03 12:00:00');
+});
+
 test('article view counts are not updated when API returns null', function () {
     Http::fake(function () {
         return Http::response([[
