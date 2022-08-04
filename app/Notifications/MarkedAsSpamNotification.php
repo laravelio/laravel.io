@@ -43,12 +43,14 @@ class MarkedAsSpamNotification extends Notification
         $model = str($alias)->singular();
         $url = route('thread', ['thread' => $this->spammable]);
         if ($this->spammable instanceof Reply) {
-            $url = route('thread', ['thread' => $this->spammable->thread]) . '#' . $this->spammable->getKey();
+            $url = route('thread', ['thread' => $this->spammable->thread])
+                . '#'
+                . $this->spammable->getKey();
         }
         return TelegramMessage::create()
             ->to(config('services.telegram-bot-api.channel'))
             ->content(
-                "There's a {$model} that may need your moderation as it is marked as spam by a few people"
+                "There's a {$model} that may need your moderation as it is marked as spam by a few people",
             )
             ->button("View {$model}", $url);
     }

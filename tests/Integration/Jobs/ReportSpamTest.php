@@ -4,7 +4,6 @@ use App\Jobs\ReportSpam;
 use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\MarkedAsSpamNotification;
-use App\Notifications\ThreadMarkedAsSpamNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
