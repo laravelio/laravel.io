@@ -218,6 +218,18 @@ final class User extends Authenticatable implements MustVerifyEmail
             ->withTimestamps();
     }
 
+    public function threadSpamming()
+    {
+        return $this->morphedByMany(Thread::class, 'spammable')
+            ->withTimestamps();
+    }
+
+    public function replySpamming()
+    {
+        return $this->morphedByMany(Reply::class, 'spammable')
+            ->withTimestamps();
+    }
+
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class, 'author_id');
