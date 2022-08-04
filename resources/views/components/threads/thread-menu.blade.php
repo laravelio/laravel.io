@@ -1,6 +1,6 @@
 @props(['thread'])
 
-@canany([App\Policies\ThreadPolicy::LOCK, App\Policies\ThreadPolicy::UPDATE, App\Policies\ThreadPolicy::DELETE, \App\Policies\ThreadPolicy::REPORT_SPAM], $thread)
+@canany([App\Policies\ThreadPolicy::LOCK, App\Policies\ThreadPolicy::UPDATE, App\Policies\ThreadPolicy::DELETE, App\Policies\ThreadPolicy::REPORT_SPAM], $thread)
     <div class="relative flex items-center -mr-3" x-data="{ open: false }" @click.outside="open = false">
         <button
             class="inline-block p-2 rounded hover:bg-gray-100"
