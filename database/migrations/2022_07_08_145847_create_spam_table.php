@@ -12,8 +12,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->unsignedInteger('thread_id')->nullable();
-            $table->foreign('thread_id')->references('id')->on('threads')->cascadeOnDelete();
+            $table->nullableMorphs('spammable');
             $table->timestamps();
         });
     }
