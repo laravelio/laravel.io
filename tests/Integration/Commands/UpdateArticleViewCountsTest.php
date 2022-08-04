@@ -28,6 +28,25 @@ test('article view counts can be updated', function () {
     expect($article->fresh()->view_count)->toBe(1234);
 });
 
+test('article view counts are not updated when API returns null', function () {
+    Http::fake(function () {
+        return Http::response([[
+            'pageviews' => null,
+        ]]);
+    });
+
+    $article = Article::factory()->create([
+        'title' => 'My First Article',
+        'slug' => 'my-first-article',
+        'submitted_at' => now(),
+        'approved_at' => now(),
+    ]);
+
+    (new UpdateArticleViewCounts)->handle();
+
+    expect($article->fresh()->view_count)->toBeNull();
+});
+
 test('article view counts can be merged with original url', function () {
     Http::fake(function () {
         return Http::response([[

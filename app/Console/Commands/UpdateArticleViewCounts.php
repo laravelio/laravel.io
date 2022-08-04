@@ -88,6 +88,6 @@ final class UpdateArticleViewCounts extends Command
             return 0;
         }
 
-        return $response->json('0.pageviews');
+        return (int) $response->json('0.pageviews');
     }
 }
