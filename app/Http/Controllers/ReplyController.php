@@ -6,6 +6,7 @@ use App\Contracts\ReplyAble;
 use App\Http\Requests\CreateReplyRequest;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
+use App\Jobs\ReportSpam;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Policies\ReplyPolicy;
@@ -44,6 +45,19 @@ class ReplyController extends Controller
         $this->success('replies.deleted');
 
         return $this->redirectToReplyAble($reply->replyAble());
+    }
+
+	public function markAsSpam(Reply $reply)
+    {
+        $this->authorize(ReplyPolicy::REPORT_SPAM, $reply);
+
+        $this->dispatchSync(new ReportSpam(auth()->user(), $reply));
+
+        $this->success("You've marked this reply as a spam.");
+
+        return redirect()
+			->route('thread', $reply->thread)
+			->withFragment($reply->getKey());
     }
 
     private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse
