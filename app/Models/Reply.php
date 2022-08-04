@@ -136,6 +136,20 @@ final class Reply extends Model implements MentionAble
         return $this->morphTo('replyAbleRelation', 'replyable_type', 'replyable_id');
     }
 
+    public function spammers()
+    {
+        return $this->morphToMany(
+            User::class,
+            'spammable',
+            'spam',
+        )->withTimestamps();
+    }
+
+    public function thread()
+    {
+        return $this->belongsTo(Thread::class);
+    }
+
     public function scopeIsSolution(Builder $builder): Builder
     {
         return $builder->has('solutionTo');
