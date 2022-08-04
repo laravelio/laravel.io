@@ -3,6 +3,7 @@
 use App\Jobs\ReportSpam;
 use App\Models\Thread;
 use App\Models\User;
+use App\Notifications\MarkedAsSpamNotification;
 use App\Notifications\ThreadMarkedAsSpamNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
@@ -32,8 +33,8 @@ it('can notify moderators if a thread is marked three times', function () {
     $users->each(function ($user, $index) use ($thread, $moderator) {
         $this->dispatch(new ReportSpam($user, $thread));
         match ($index) {
-            2 => Notification::assertSentTo($moderator, ThreadMarkedAsSpamNotification::class),
-            default => Notification::assertNotSentTo($moderator, ThreadMarkedAsSpamNotification::class),
+            2 => Notification::assertSentTo($moderator, MarkedAsSpamNotification::class),
+            default => Notification::assertNotSentTo($moderator, MarkedAsSpamNotification::class),
         };
     });
 });
