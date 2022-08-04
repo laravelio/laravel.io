@@ -1,6 +1,6 @@
 @props(['thread'])
 
-@canany([App\Policies\ThreadPolicy::UPDATE, App\Policies\ThreadPolicy::DELETE, \App\Policies\ThreadPolicy::REPORT_SPAM], $thread)
+@canany([App\Policies\ThreadPolicy::UPDATE, App\Policies\ThreadPolicy::DELETE, App\Policies\ThreadPolicy::REPORT_SPAM], $thread)
     <div class="flex items-center gap-x-3">
         <div class="relative -mr-3" x-data="{ open: false }" @click.outside="open = false">
             <button
