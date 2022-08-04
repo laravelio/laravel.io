@@ -74,7 +74,7 @@
                                 {{ $article->readTime() }} min read
                             </span>
 
-                            @unless($article->viewCount() < 10)
+                            @unless($article->view_count < 10)
                                 <span class="text-sm">
                                     {{ $article->viewCount() }} views
                                 </span>
