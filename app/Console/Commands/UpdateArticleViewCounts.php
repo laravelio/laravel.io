@@ -43,6 +43,26 @@ final class UpdateArticleViewCounts extends Command
 
     protected function getViewCountFor(Article $article): ?int
     {
+        $viewCount = $this->getViewCountForUrl(route('articles.show', $article->slug));
+        $canonicalViewCount = ($url = $article->originalUrl()) ? $this->getViewCountForUrl($url) : 0;
+
+        return ($total = $viewCount + $canonicalViewCount) > 0 ? $total : null;
+    }
+
+    protected function getViewCountForUrl(string $url): int
+    {
+        if (! $url = parse_url($url)) {
+            return 0;
+        }
+
+        $scheme = $url['scheme'] ?? null;
+        $host = $url['host'] ?? null;
+        $path = $url['path'] ?? null;
+
+        if (! $scheme || ! $host || ! $path) {
+            return 0;
+        }
+
         $response = Http::withToken($this->token)
             ->get('https://api.usefathom.com/v1/aggregations', [
                 'date_from' => '2021-03-01 00:00:00', // Fathom data aggregations not accurate prior to this date.
@@ -54,13 +74,18 @@ final class UpdateArticleViewCounts extends Command
                     [
                         'property' => 'pathname',
                         'operator' => 'is',
-                        'value' => "/articles/{$article->slug()}",
+                        'value' => $path,
+                    ],
+                    [
+                        'property' => 'hostname',
+                        'operator' => 'is',
+                        'value' => "{$scheme}://{$host}",
                     ],
                 ]),
             ]);
 
         if ($response->failed()) {
-            return null;
+            return 0;
         }
 
         return $response->json('0.pageviews');

@@ -1,12 +1,21 @@
 <?php
 
+use App\Models\Article;
 use App\Models\Tag;
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\App;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
 uses(DatabaseMigrations::class);
+
+function inProduction()
+{
+    App::detectEnvironment(fn () => 'production');
+}
+
+afterEach(fn () => App::detectEnvironment(fn () => 'testing'));
 
 test('pages without a canonical url explicitly set fall back to the current url', function () {
     $this->get('/register')
@@ -51,3 +60,19 @@ test('standard pages always remove query params from canonical url', function ()
     $this->get('?utm_source=twitter&utm_medium=social&utm_term=abc123')
         ->see('<link rel="canonical" href="http://localhost" />');
 });
+
+test('canonical tracking is turned off when using external url', function () {
+    Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now(), 'original_url' => 'https://example.com/external-path']);
+
+    $this->get('/articles/my-first-article')
+        ->see('data-canonical="false"');
+})->inProduction();
+
+test('canonical tracking is turned on when using external url', function () {
+    App::detectEnvironment(fn () => 'production');
+
+    Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
+
+    $this->get('/articles/my-first-article')
+        ->dontSee('data-canonical="false"');
+})->inProduction();
