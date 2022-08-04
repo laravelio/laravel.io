@@ -36,4 +36,13 @@ final class ReplyPolicy
     {
         return $reply->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
     }
+
+    public function markAsSpam(User $user, Reply $reply): bool
+    {
+        if ($reply->author->isModerator() || $reply->author->isAdmin()) {
+            return false;
+        }
+
+        return $reply->spammers->doesntContain($user);
+    }
 }
