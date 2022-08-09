@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\MarkThreadSolution;
 use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
@@ -54,6 +55,24 @@ it('only returns approved articles for a user', function () {
 
     expect($user->latestArticles())->toHaveCount(1);
     expect($user->countArticles())->toBe(1);
+});
+
+it('excludes author solutions from mostSolutions count', function () {
+    $user = $this->login();
+    $thread = Thread::factory()->create([
+        'author_id' => $user->id(),
+    ]);
+    $reply = Reply::factory()->create([
+        'author_id' => $user->id(),
+    ]);
+
+    $this->dispatch(new MarkThreadSolution($thread, $reply, $user));
+    expect($user->mostSolutions()->find($user->id())->solutions_count)->toBe(0);
+
+    $otherThread = Thread::factory()->create();
+
+    $this->dispatch(new MarkThreadSolution($otherThread, $reply, $user));
+    expect($user->mostSolutions()->find($user->id())->solutions_count)->toBe(1);
 });
 
 // Helpers
