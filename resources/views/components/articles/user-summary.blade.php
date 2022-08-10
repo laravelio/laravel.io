@@ -6,7 +6,7 @@
     <div class="flex flex-col h-full gap-x-8">
         <a href="{{ route('articles.show', $article->slug()) }}" class="block">
             <div
-                class="w-full h-32 rounded-t-lg bg-center bg-cover bg-gray-900 lg:h-40"
+                class="w-full h-32 rounded-t-lg bg-center {{ $article->hasHeroImage() ? 'bg-cover' : '' }} bg-gray-800 lg:h-40"
                 style="background-image: url({{ $article->heroImage() }});"
             >
             </div>
