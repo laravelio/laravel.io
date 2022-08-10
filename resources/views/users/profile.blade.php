@@ -6,8 +6,8 @@
 @section('content')
     <section class="bg-white">
         <div
-            class="bg-gray-900 bg-contain h-60 w-full"
-            style="background-image: url('{{ asset('images/profile-background.svg') }}')"
+            class="w-full bg-center bg-gray-800 h-60"
+            style="background-image: url('{{ asset('images/default-background.svg') }}')"
         ></div>
 
         <div class="container mx-auto">

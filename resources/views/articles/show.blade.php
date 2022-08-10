@@ -18,7 +18,10 @@
             @endif
         @endauth
 
-        <div class="w-full bg-center bg-cover bg-gray-900" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url({{ $article->heroImage(2000, 384) }});">
+        <div
+            class="w-full bg-center {{ $article->hasHeroImage() ? 'bg-cover' : '' }} bg-gray-800"
+            style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url({{ $article->heroImage(2000, 384) }});"
+        >
             <div class="container mx-auto">
                 <div class="px-4 lg:px-0 lg:mx-48">
                     <div class="flex items-center justify-between pt-6 mb-28">

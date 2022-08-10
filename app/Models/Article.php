@@ -92,6 +92,11 @@ final class Article extends Model implements Feedable
         return Str::limit(strip_tags(md_to_html($this->body())), $limit);
     }
 
+    public function hasHeroImage(): bool
+    {
+        return $this->hero_image !== null;
+    }
+
     public function heroImage($width = 400, $height = 300): string
     {
         if ($this->hero_image) {
