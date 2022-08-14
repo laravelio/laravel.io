@@ -1,30 +1,15 @@
 <?php
 
-use App\Http\Controllers\Admin\ArticlesController as AdminArticlesController;
 use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Articles\ArticlesController;
-use App\Http\Controllers\Articles\AuthoredArticles;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\GithubController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\Admin\ArticlesController as AdminArticlesController;
+use App\Http\Controllers\Articles\{ArticlesController, AuthoredArticles};
+use App\Http\Controllers\Auth\{ForgotPasswordController, GithubController, LoginController, RegisterController, ResetPasswordController, VerificationController};
 use App\Http\Controllers\BlockUserController;
-use App\Http\Controllers\Forum\TagsController;
-use App\Http\Controllers\Forum\ThreadsController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MarkNotificationsController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReplyAbleController;
-use App\Http\Controllers\ReplyController;
-use App\Http\Controllers\Settings\ApiTokenController;
-use App\Http\Controllers\Settings\PasswordController;
-use App\Http\Controllers\Settings\ProfileController as ProfileSettingsController;
-use App\Http\Controllers\Settings\UnblockUserController as UnblockUserSettingsController;
-use App\Http\Controllers\SocialImageController;
-use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\UnblockUserController;
+use App\Http\Controllers\Forum\{TagsController, ThreadsController};
+use App\Http\Controllers\{HomeController, MarkNotificationsController, ProfileController, ReplyAbleController, ReplyController};
+use App\Http\Controllers\Settings\{ApiTokenController, PasswordController};
+use App\Http\Controllers\Settings\{ProfileController as ProfileSettingsController, UnblockUserController as UnblockUserSettingsController};
+use App\Http\Controllers\{SocialImageController, SubscriptionController, UnblockUserController};
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
