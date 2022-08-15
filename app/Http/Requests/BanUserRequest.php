@@ -13,5 +13,5 @@ class BanUserRequest extends Request
         return [
             'msg' => ['max:100'],
         ];
-    } 
+    }
 }
