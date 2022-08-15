@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Policies\UserPolicy;
 use App\Queries\SearchUsers;
 use Illuminate\Auth\Middleware\Authenticate;
+use App\Http\Requests\BanUserRequest;
 
 class UsersController extends Controller
 {
@@ -30,11 +31,11 @@ class UsersController extends Controller
         return view('admin.users', compact('users', 'adminSearch'));
     }
 
-    public function ban(User $user)
+    public function ban(BanUserRequest $request,User $user)
     {
         $this->authorize(UserPolicy::BAN, $user);
 
-        $this->dispatchSync(new BanUser($user));
+        $this->dispatchSync(new BanUser($user, isset($request->msg) ? $request->msg : '' ));
 
         $this->success('admin.users.banned', $user->name());
 

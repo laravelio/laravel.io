@@ -95,6 +95,13 @@
                                         Unban User
                                     </span>
                                 </x-buttons.secondary-button>
+
+                                <div class="mt-1">
+                                    <h5><strong>Ban Message:</strong></h5>
+                                    <span class="text-gray-900">
+                                        {{$user->ban_msg}}
+                                    </span>
+                                </div>                        
                             @else
                                 <x-buttons.danger-button class="w-full" @click.prevent="activeModal = 'banUser'">
                                     <span class="flex items-center gap-x-2">
@@ -218,6 +225,9 @@
                 type="update"
             >
                 <p>Unbanning this user will allow them to login again and post content.</p>
+                
+               
+
             </x-modal>
         @else
             <x-modal
@@ -227,6 +237,10 @@
                 type="update"
             >
                 <p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>
+                <div class="mt-2">
+                    <x-forms.label for="msg">Ban Message</x-forms.label>
+                    <x-forms.inputs.textarea id="msg" name="msg" required />
+                </div>
             </x-modal>
         @endif
     @endcan
