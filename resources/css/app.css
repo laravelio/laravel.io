@@ -14,6 +14,8 @@
 @import 'tables.css';
 @import 'tags.css';
 
+@import './fonts/inter.css';
+
 .number-block {
     box-shadow: 20px 0 40px 5px #e6f6f3 inset, -20px 0 10px 5px #e6f6f3 inset;
 }
