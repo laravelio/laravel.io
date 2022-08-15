@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
-use App\Rules\HttpImageRule;
 use Illuminate\Http\Concerns\InteractsWithInput;
 
 class BanUserRequest extends Request
@@ -15,5 +13,5 @@ class BanUserRequest extends Request
         return [
             'msg' => ['max:100'],
         ];
-    }    
+    } 
 }
