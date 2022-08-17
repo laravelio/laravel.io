@@ -19,13 +19,11 @@ class ReportSpam implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public function __construct(
-        private User $user,
-        private Model $spammable
-    ) {
+    public function __construct(private User $user, private Model $spammable)
+    {
     }
 
-    public function handle()
+    public function handle(): void
     {
         $this->spammable->spammers()->attach($this->user);
 
@@ -37,7 +35,7 @@ class ReportSpam implements ShouldQueue
         }
     }
 
-    private function shouldNotifyModerators()
+    private function shouldNotifyModerators(): bool
     {
         return $this->spammable->spammers()->count() >= 3;
     }
