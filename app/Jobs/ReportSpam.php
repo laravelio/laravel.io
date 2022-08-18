@@ -2,11 +2,11 @@
 
 namespace App\Jobs;
 
+use App\Models\SpamAble;
 use App\Models\User;
 use App\Notifications\MarkedAsSpamNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -19,7 +19,7 @@ class ReportSpam implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public function __construct(private User $user, private Model $spammable)
+    public function __construct(private User $user, private SpamAble $spammable)
     {
     }
 

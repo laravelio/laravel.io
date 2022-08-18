@@ -3,8 +3,8 @@
 namespace App\Notifications;
 
 use App\Models\Reply;
+use App\Models\SpamAble;
 use Illuminate\Bus\Queueable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramMessage;
 
@@ -12,7 +12,7 @@ class MarkedAsSpamNotification extends Notification
 {
     use Queueable;
 
-    public function __construct(protected Model $spammable)
+    public function __construct(protected SpamAble $spammable)
     {
         //
     }
