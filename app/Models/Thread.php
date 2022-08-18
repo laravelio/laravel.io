@@ -31,7 +31,7 @@ use Laravel\Scout\Searchable;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
-final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAble, MentionAble
+class Thread extends Model implements Feedable, ReplyAble, SubscriptionAble, MentionAble, SpamAble
 {
     use HasAuthor;
     use HasFactory;
