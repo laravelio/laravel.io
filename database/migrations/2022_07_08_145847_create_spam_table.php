@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('spam', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->nullableMorphs('spammable');
             $table->timestamps();
