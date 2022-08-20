@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\MentionAble;
+use App\Contracts\MentionAble;
 use App\Models\User;
 use Illuminate\Mail\Mailable;
 

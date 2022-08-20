@@ -2,12 +2,12 @@
 
 namespace App\Jobs;
 
+use App\Contracts\ReplyAble;
+use App\Contracts\SubscriptionAble;
 use App\Events\ReplyWasCreated;
 use App\Http\Requests\CreateReplyRequest;
 use App\Models\Reply;
-use App\Models\ReplyAble;
 use App\Models\Subscription;
-use App\Models\SubscriptionAble;
 use App\Models\User;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
