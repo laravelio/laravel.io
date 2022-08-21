@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 final class Reply extends Model implements MentionAble
@@ -25,6 +26,7 @@ final class Reply extends Model implements MentionAble
     use HasMentions;
     use HasTimestamps;
     use HasUuid;
+    use SoftDeletes;
 
     const TABLE = 'replies';
 
