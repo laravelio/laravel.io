@@ -73,4 +73,13 @@ trait ReceivesReplies
 
         return $this->createdAt()->lt($sixMonthsAgo);
     }
+
+    public static function boot()
+    {
+      parent::boot();
+
+      static::deleting(function($replyable) {
+        $replyable->repliesRelation()->forceDelete();
+      });
+    }
 }
