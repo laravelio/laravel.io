@@ -12,6 +12,9 @@ final class DeleteReply
 
     public function handle(): void
     {
-        $this->reply->delete();
+        $this->reply->update([
+            'deleted_at' => now(),
+            'deleted_by' => auth()->id(),
+        ]);
     }
 }

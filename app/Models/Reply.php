@@ -39,6 +39,8 @@ final class Reply extends Model implements MentionAble
     protected $fillable = [
         'uuid',
         'body',
+        'deleted_at',
+        'deleted_by',
     ];
 
     /**
@@ -84,9 +86,24 @@ final class Reply extends Model implements MentionAble
         return $this->updatedByRelation;
     }
 
+    public function deletedBy(): ?User
+    {
+        return $this->deletedByRelation;
+    }
+
     public function updatedByRelation(): BelongsTo
     {
         return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function deletedByRelation(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'deleted_by');
+    }
+
+    public function isDeletedBy(User $user): bool
+    {
+        return $user->is($this->deletedBy());
     }
 
     public function isUpdated(): bool
