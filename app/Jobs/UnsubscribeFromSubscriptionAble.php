@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\SubscriptionAble;
+use App\Contracts\SubscriptionAble;
 use App\Models\User;
 
 final class UnsubscribeFromSubscriptionAble

@@ -2,7 +2,7 @@
 
 namespace App\Concerns;
 
-use App\Models\ReplyAble;
+use App\Contracts\ReplyAble;
 use App\Models\User;
 use Illuminate\Support\Collection;
 

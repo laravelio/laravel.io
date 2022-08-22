@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\ReplyAble;
 use App\Http\Requests\CreateReplyRequest;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
 use App\Models\Reply;
-use App\Models\ReplyAble;
 use App\Models\Thread;
 use App\Policies\ReplyPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
