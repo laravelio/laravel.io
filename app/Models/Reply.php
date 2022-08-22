@@ -41,6 +41,7 @@ final class Reply extends Model implements MentionAble
         'body',
         'deleted_at',
         'deleted_by',
+        'deleted_reason',
     ];
 
     /**

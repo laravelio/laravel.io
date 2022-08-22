@@ -85,7 +85,16 @@
                 :action="route('replies.delete', $reply->id())"
                 title="Delete Reply"
             >
-            <p>Are you sure you want to delete this reply? This cannot be undone.</p>
+            @if ($reply->author()->is(auth()->user()))
+                <p>Are you sure you want to delete this reply? This cannot be undone.</p>
+            @else
+                <textarea 
+                    class="w-full resize-none border-none p-5 focus:border focus:border-lio-300 focus:ring focus:ring-lio-200 focus:ring-opacity-50"
+                    name="delete_reason"
+                    placeholder="Reason"
+                    required
+                ></textarea>
+            @endif
         </x-modal>
     @endcan
 </div>
