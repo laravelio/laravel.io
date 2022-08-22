@@ -4,18 +4,21 @@ namespace App\Concerns;
 
 use App\Models\Reply;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 trait ReceivesReplies
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function replies()
+    public function replies(): Collection
     {
         return $this->repliesRelation;
+    }
+
+    public function repliesWithTrashed(): Collection
+    {
+        return $this->repliesRelationWithTrashed;
     }
 
     public function replyAuthors(): HasManyThrough
@@ -61,6 +64,11 @@ trait ReceivesReplies
     public function repliesRelation(): MorphMany
     {
         return $this->morphMany(Reply::class, 'repliesRelation', 'replyable_type', 'replyable_id');
+    }
+
+    public function repliesRelationWithTrashed(): MorphMany
+    {
+        return $this->morphMany(Reply::class, 'repliesRelation', 'replyable_type', 'replyable_id')->withTrashed();
     }
 
     public function isConversationOld(): bool
