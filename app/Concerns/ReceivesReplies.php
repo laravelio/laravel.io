@@ -78,7 +78,7 @@ trait ReceivesReplies
     {
         parent::boot();
 
-        static::deleting(function($replyable) {
+        static::deleting(function ($replyable) {
             $replyable->repliesRelation()->forceDelete();
         });
     }
