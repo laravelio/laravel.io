@@ -344,4 +344,13 @@ final class User extends Authenticatable implements MustVerifyEmail
             $query->where('user_id', $user->getKey());
         });
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($user) {
+            $user->replyAble()->forceDelete();
+        });
+    }
 }
