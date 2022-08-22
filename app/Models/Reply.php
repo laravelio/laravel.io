@@ -7,6 +7,7 @@ use App\Concerns\HasLikes;
 use App\Concerns\HasMentions;
 use App\Concerns\HasTimestamps;
 use App\Concerns\HasUuid;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -100,6 +101,16 @@ final class Reply extends Model implements MentionAble
     public function deletedByRelation(): BelongsTo
     {
         return $this->belongsTo(User::class, 'deleted_by');
+    }
+
+    public function deletedAt(): Carbon
+    {
+        return $this->deleted_at;
+    }
+
+    public function remover(): User
+    {
+        return $this->deletedByRelation;
     }
 
     public function isDeletedBy(User $user): bool
