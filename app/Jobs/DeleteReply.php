@@ -12,7 +12,7 @@ final class DeleteReply
 
     public function handle(): void
     {
-        if (!$this->reply->isAuthoredBy(auth()->user())) {
+        if (! $this->reply->isAuthoredBy(auth()->user())) {
             $this->reply->update([
                 'deleted_at' => now(),
                 'deleted_by' => auth()->id(),

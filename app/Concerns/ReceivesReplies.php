@@ -76,10 +76,10 @@ trait ReceivesReplies
 
     public static function boot()
     {
-      parent::boot();
+        parent::boot();
 
-      static::deleting(function($replyable) {
-        $replyable->repliesRelation()->forceDelete();
-      });
+        static::deleting(function($replyable) {
+            $replyable->repliesRelation()->forceDelete();
+        });
     }
 }

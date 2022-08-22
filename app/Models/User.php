@@ -349,7 +349,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     {
         parent::boot();
 
-        static::deleting(function($user) {
+        static::deleting(function ($user) {
             $user->replyAble()->forceDelete();
         });
     }

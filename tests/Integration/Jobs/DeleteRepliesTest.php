@@ -12,7 +12,7 @@ uses(DatabaseMigrations::class);
 test('reply authors can force delete their replies', function () {
     $user = $this->createUser();
     $thread = Thread::factory()->create();
-    $reply = Reply::factory()->create(['author_id' => $user->id(),'replyable_id' => $thread->id()]);
+    $reply = Reply::factory()->create(['author_id' => $user->id(), 'replyable_id' => $thread->id()]);
 
     $this->loginAs($user);
     $this->dispatch(new DeleteReply($reply));
@@ -33,5 +33,5 @@ test('admins can soft delete replies', function () {
     expect($reply->isDeletedBy(auth()->user()))->toBeTrue();
     expect($reply->deleted_at)->not()->toBeNull();
     expect($reply->deleted_reason)->not()->toBeNull();
-    // expect($reply->deleted_reason)->is($reason);
+    expect($reply->deleted_reason)->toBe($reason);
 });
