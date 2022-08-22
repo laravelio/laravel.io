@@ -9,14 +9,25 @@ use Tests\TestCase;
 uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
-test('we can delete a thread replies', function () {
+test('reply authors can force delete their replies', function () {
+    $user = $this->createUser();
+    $thread = Thread::factory()->create();
+    $reply = Reply::factory()->create(['author_id' => $user->id(),'replyable_id' => $thread->id()]);
+
+    $this->loginAs($user);
+    $this->dispatch(new DeleteReply($reply));
+
+    $this->assertDatabaseMissing('replies', ['id' => $reply->id()]);
+});
+
+test('admins can soft delete replies', function () {
     $thread = Thread::factory()->create();
     $reply = Reply::factory()->create(['replyable_id' => $thread->id()]);
 
-    $this->login();
+    $this->loginAsAdmin();
     $this->dispatch(new DeleteReply($reply));
 
-    $this->assertSoftDeleted('replies', ['replyable_type' => 'threads', 'replyable_id' => $thread->id()]);
+    $this->assertSoftDeleted('replies', ['id' => $reply->id()]);
 
     expect($reply->isDeletedBy(auth()->user()))->toBeTrue();
     expect($reply->deleted_at)->not()->toBeNull();
