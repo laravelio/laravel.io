@@ -7,6 +7,8 @@ use App\Concerns\HasLikes;
 use App\Concerns\HasMentions;
 use App\Concerns\HasTimestamps;
 use App\Concerns\HasUuid;
+use App\Contracts\MentionAble;
+use App\Contracts\ReplyAble;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

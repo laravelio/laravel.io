@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Contracts\SubscriptionAble;
 use App\Models\Subscription;
-use App\Models\SubscriptionAble;
 use App\Models\User;
 use Ramsey\Uuid\Uuid;
 

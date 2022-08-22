@@ -2,8 +2,8 @@
 
 namespace App\Notifications;
 
+use App\Contracts\MentionAble;
 use App\Mail\MentionEmail;
-use App\Models\MentionAble;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
