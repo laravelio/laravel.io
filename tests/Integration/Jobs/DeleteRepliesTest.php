@@ -23,12 +23,15 @@ test('reply authors can force delete their replies', function () {
 test('admins can soft delete replies', function () {
     $thread = Thread::factory()->create();
     $reply = Reply::factory()->create(['replyable_id' => $thread->id()]);
+    $reason = 'Reason';
 
     $this->loginAsAdmin();
-    $this->dispatch(new DeleteReply($reply));
+    $this->dispatch(new DeleteReply($reply, $reason));
 
     $this->assertSoftDeleted('replies', ['id' => $reply->id()]);
 
     expect($reply->isDeletedBy(auth()->user()))->toBeTrue();
     expect($reply->deleted_at)->not()->toBeNull();
+    expect($reply->deleted_reason)->not()->toBeNull();
+    // expect($reply->deleted_reason)->is($reason);
 });
