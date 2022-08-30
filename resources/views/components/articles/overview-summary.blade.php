@@ -88,7 +88,7 @@
                         {{ $article->readTime() }} min read
                     </span>
 
-                    @if ($article->isAuthoredBy(auth()->user()))
+                    @if (auth()->check() && $article->isAuthoredBy(auth()->user()))
                         <span class="text-gray-500 text-sm">
                             {{ $article->viewCount() }} views
                         </span>
