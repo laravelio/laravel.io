@@ -29,7 +29,7 @@
             @endauth
 
             <div class="relative">
-                <div class="relative flex flex-col gap-y-6 z-20">
+                <div class="relative flex flex-col gap-y-4 z-20">
                     <x-threads.thread :thread="$thread" />
 
                     @foreach ($thread->repliesWithTrashed() as $reply)

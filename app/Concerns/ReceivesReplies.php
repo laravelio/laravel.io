@@ -36,10 +36,7 @@ trait ReceivesReplies
         );
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function latestReplies(int $amount = 5)
+    public function latestReplies(int $amount = 5): Collection
     {
         return $this->repliesRelation()->latest()->limit($amount)->get();
     }
@@ -82,10 +79,8 @@ trait ReceivesReplies
         return $this->createdAt()->lt($sixMonthsAgo);
     }
 
-    public static function boot()
+    public static function bootReceivesReplies(): void
     {
-        parent::boot();
-
         static::deleting(function ($replyable) {
             $replyable->repliesRelation()->forceDelete();
         });

@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="flex items-center gap-x-6">
-                            <span class="font-mono lg:mt-0">
+                            <span class="text-sm lg:mt-0">
                                 {{ $article->createdAt()->format('j M, Y') }}
                             </span>
 

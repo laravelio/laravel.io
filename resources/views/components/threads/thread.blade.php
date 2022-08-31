@@ -2,19 +2,21 @@
 
 <div class="thread bg-white shadow rounded">
     <div class="border-b">
-        <div class="px-6 pt-4 pb-0 lg:py-4">
+        <div class="px-6 pt-4 pb-0 lg:py-2">
             <div class="flex flex-row justify-between items-start lg:items-center">
                 <div>
-                    <div class="flex flex-col lg:flex-row lg:items-center">
+                    <div class="flex flex-wrap items-center space-x-1 text-sm">
                         <div class="flex items-center">
-                            <x-avatar :user="$thread->author()" class="w-6 h-6 rounded-full mr-3" />
+                            <x-avatar :user="$thread->author()" class="w-6 h-6 rounded-full mr-2" />
 
                             <a href="{{ route('profile', $thread->author()->username()) }}" class="hover:underline">
-                                <span class="text-gray-900 mr-5">{{ $thread->author()->username() }}</span>
+                                <span class="text-gray-900 font-semibold">{{ $thread->author()->username() }}</span>
                             </a>
                         </div>
 
-                        <span class="font-mono text-gray-700 mt-1 lg:mt-0">
+                        <span class="text-gray-700">posted</span>
+
+                        <span class="text-gray-700">
                             {{ $thread->createdAt()->diffForHumans() }}
                         </span>
                     </div>
