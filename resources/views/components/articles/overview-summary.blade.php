@@ -17,18 +17,28 @@
         <div class="flex flex-col gap-y-3 p-4 lg:p-0 lg:gap-y-3.5 w-full">
             <div>
                 <div class="flex flex-col gap-y-2 justify-between lg:flex-row lg:items-center">
-                    <div class="flex items-center">
-                        <div class="flex">
-                            <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-3" />
+                    <div class="flex flex-wrap items-center space-x-1 text-sm">
+                        <div class="flex items-center">
+                            <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-2" />
 
                             <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
-                                <span class="text-gray-900 mr-5">{{ $article->author()->username() }}</span>
+                                <span class="text-gray-900 font-semibold">{{ $article->author()->username() }}</span>
                             </a>
                         </div>
 
-                        <span class="font-mono text-gray-700 lg:mt-0">
-                            {{ $article->createdAt()->format('j M, Y') }}
-                        </span>
+                        @if ($article->isApproved())
+                            <span class="text-gray-700">published on</span>
+
+                            <span class="text-gray-700">
+                                {{ $article->approvedAt()->format('j M, Y') }}
+                            </span>
+                        @else
+                            <span class="text-gray-700">authored on</span>
+
+                            <span class="text-gray-700">
+                                {{ $article->createdAt()->format('j M, Y') }}
+                            </span>
+                        @endif
                     </div>
 
                     @if (isset($mode) && $mode == 'edit')

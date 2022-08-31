@@ -86,6 +86,12 @@
                 title="Delete Reply"
             >
             <p>Are you sure you want to delete this reply? This cannot be undone.</p>
+
+            @unless ($reply->isAuthoredBy(Auth::user()))
+                <div class="mt-4">
+                    <x-forms.inputs.textarea name="delete_reason" label="Reason" placeholder="Optional reason that will saved in the back-end..." />
+                </div>
+            @endunless
         </x-modal>
     @endcan
 </div>

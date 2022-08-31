@@ -19,7 +19,7 @@ test('we can delete a thread and its replies', function () {
     $this->dispatch(new DeleteThread($thread));
 
     $this->assertDatabaseMissing('threads', ['id' => $thread->id()]);
-    $this->assertDatabaseMissing('replies', ['replyable_id' => $thread->id()]);
+    $this->assertDatabaseMissing('replies', ['replyable_type' => 'threads', 'replyable_id' => $thread->id()]);
     $this->assertDatabaseMissing('likes', ['likeable_type' => 'threads', 'likeable_id' => $thread->id()]);
     $this->assertDatabaseMissing('likes', ['likeable_type' => 'replies', 'likeable_id' => $reply->id()]);
 });

@@ -12,6 +12,7 @@ use App\Policies\ReplyPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ReplyController extends Controller
@@ -34,11 +35,11 @@ class ReplyController extends Controller
         return $this->redirectToReplyAble($reply->replyAble());
     }
 
-    public function delete(Reply $reply)
+    public function delete(Request $request, Reply $reply)
     {
         $this->authorize(ReplyPolicy::DELETE, $reply);
 
-        $this->dispatchSync(new DeleteReply($reply));
+        $this->dispatchSync(new DeleteReply($reply, $request->delete_reason));
 
         $this->success('replies.deleted');
 

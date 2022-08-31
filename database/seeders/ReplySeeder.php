@@ -25,6 +25,9 @@ class ReplySeeder extends Seeder
                     fn () => [
                         'author_id' => array_rand($userIds),
                         'replyable_id' => $thread->id,
+                        'deleted_at' => ($deleted = rand(0, 3)) === 3 ? now()->subDay() : null,
+                        'deleted_by' => $deleted === 3 ? 1 : null,
+                        'deleted_reason' => $deleted === 3 ? 'spam' : null,
                     ],
                 ))
                 ->createQuietly();

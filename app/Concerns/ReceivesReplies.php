@@ -4,18 +4,21 @@ namespace App\Concerns;
 
 use App\Models\Reply;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 trait ReceivesReplies
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function replies()
+    public function replies(): Collection
     {
         return $this->repliesRelation;
+    }
+
+    public function repliesWithTrashed(): Collection
+    {
+        return $this->repliesRelationWithTrashed;
     }
 
     public function replyAuthors(): HasManyThrough
@@ -33,10 +36,7 @@ trait ReceivesReplies
         );
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function latestReplies(int $amount = 5)
+    public function latestReplies(int $amount = 5): Collection
     {
         return $this->repliesRelation()->latest()->limit($amount)->get();
     }
@@ -63,6 +63,11 @@ trait ReceivesReplies
         return $this->morphMany(Reply::class, 'repliesRelation', 'replyable_type', 'replyable_id');
     }
 
+    public function repliesRelationWithTrashed(): MorphMany
+    {
+        return $this->morphMany(Reply::class, 'repliesRelation', 'replyable_type', 'replyable_id')->withTrashed();
+    }
+
     public function isConversationOld(): bool
     {
         $sixMonthsAgo = now()->subMonths(6);
@@ -72,5 +77,12 @@ trait ReceivesReplies
         }
 
         return $this->createdAt()->lt($sixMonthsAgo);
+    }
+
+    public static function bootReceivesReplies(): void
+    {
+        static::deleting(function ($replyable) {
+            $replyable->repliesRelation()->forceDelete();
+        });
     }
 }

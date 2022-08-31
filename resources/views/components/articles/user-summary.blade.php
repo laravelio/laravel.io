@@ -14,15 +14,17 @@
 
         <div class="flex flex-col h-full gap-y-3 p-4">
             <div>
-                <div class="flex flex-col gap-y-2">
-                    <div class="flex">
-                        <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-3" unlinked />
+                <div class="flex flex-wrap items-center space-x-1 text-sm">
+                    <div class="flex items-center">
+                        <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-2" unlinked />
 
-                        <span class="text-gray-900 mr-5">{{ $article->author()->username() }}</span>
+                        <span class="text-gray-900">{{ $article->author()->username() }}</span>
                     </div>
 
-                    <span class="font-mono text-gray-700 mt-1">
-                        {{ $article->createdAt()->format('j M, Y') }}
+                    <span class="text-gray-700">published on</span>
+
+                    <span class="text-gray-700">
+                        {{ $article->approvedAt()->format('j M, Y') }}
                     </span>
                 </div>
             </div>
