@@ -1,6 +1,7 @@
 @props([
     'article',
     'mode',
+    'showViewCount' => false,
 ])
 
 <div class="h-full rounded-lg shadow-lg bg-white lg:p-5">
@@ -88,7 +89,7 @@
                         {{ $article->readTime() }} min read
                     </span>
 
-                    @if (auth()->check() && $article->isAuthoredBy(auth()->user()))
+                    @if ($showViewCount)
                         <span class="text-gray-500 text-sm">
                             {{ $article->viewCount() }} views
                         </span>

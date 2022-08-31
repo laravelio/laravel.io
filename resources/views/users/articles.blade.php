@@ -28,7 +28,7 @@
 
         <div class="flex flex-col gap-y-4 mb-4">
             @forelse($articles as $article)
-                <x-articles.overview-summary :article="$article" :mode="'edit'"/>
+                <x-articles.overview-summary :article="$article" :mode="'edit'" :showViewCount="true"/>
             @empty
                 <p class="text-gray-600 text-base">
                     You haven't created any articles yet

@@ -17,6 +17,7 @@ class ArticleFactory extends Factory
             'title' => $this->faker->sentence(),
             'body' => $this->faker->paragraphs(3, true),
             'slug' => $this->faker->unique()->slug(),
+            'view_count' => $this->faker->numberBetween(0, 1000),
         ];
     }
 
