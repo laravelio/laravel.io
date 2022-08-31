@@ -1,6 +1,7 @@
 @props([
     'article',
     'mode',
+    'showViewCount' => false,
 ])
 
 <div class="h-full rounded-lg shadow-lg bg-white lg:p-5">
@@ -87,6 +88,12 @@
                     <span class="text-gray-500 text-sm">
                         {{ $article->readTime() }} min read
                     </span>
+
+                    @if ($showViewCount)
+                        <span class="text-gray-500 text-sm">
+                            {{ $article->viewCount() }} views
+                        </span>
+                    @endif
 
                     <span class="flex items-center gap-x-2">
                         <x-heroicon-o-thumb-up class="w-6 h-6" />

@@ -53,6 +53,8 @@ class UserSeeder extends Seeder
             )
             ->createQuietly();
 
+        Article::factory()->count(10)->createQuietly(['author_id' => $admin->id]);
+
         DB::commit();
 
         Article::published()
