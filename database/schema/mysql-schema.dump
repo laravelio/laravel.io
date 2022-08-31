@@ -17,6 +17,7 @@ CREATE TABLE `articles` (
   `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `hero_image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_pinned` tinyint(1) NOT NULL DEFAULT '0',
+  `view_count` bigint DEFAULT NULL,
   `tweet_id` bigint unsigned DEFAULT NULL,
   `submitted_at` timestamp NULL DEFAULT NULL,
   `approved_at` timestamp NULL DEFAULT NULL,
@@ -274,6 +275,7 @@ CREATE TABLE `users` (
   `github_username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '',
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `twitter` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -370,3 +372,5 @@ INSERT INTO `migrations` VALUES (68,'2019_12_14_000001_create_personal_access_to
 INSERT INTO `migrations` VALUES (69,'2022_04_06_152416_add_uuids_to_tables',7);
 INSERT INTO `migrations` VALUES (70,'2022_05_10_180922_make_uuids_non_nullable',7);
 INSERT INTO `migrations` VALUES (71,'2022_06_14_072001_create_blocked_users_table',8);
+INSERT INTO `migrations` VALUES (72,'2022_07_09_191433_update_articles_table_add_view_count',9);
+INSERT INTO `migrations` VALUES (73,'2022_07_29_135113_add__website_to_users_table',9);
