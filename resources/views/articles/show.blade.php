@@ -156,6 +156,12 @@
                                         <x-icon-twitter class="w-6 h-6" />
                                     </a>
                                 @endif
+
+                                @if ($article->author()->hasWebsite())
+                                    <a href="{{ $article->author()->website() }}">
+                                        <x-heroicon-o-globe-alt class="w-6 h-6" />
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>
