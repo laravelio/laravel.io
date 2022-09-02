@@ -21,7 +21,7 @@
             </h2>
 
             <x-forms.info class="px-0">
-                Submit your article to the Laravel.io portal. Every article that gets approved will be shared with our 45.000 users and wil be tweeted out on our <a href="https://twitter.com/laravelio" class="text-lio-700 underline">Twitter account</a> which has over 45,000 followers. Feel free to submit as many articles as you like. You can even cross-reference an article on your blog with the original url.
+                Submit your article to the Laravel.io portal. Every article that gets approved will be shared with our 50.000 users and wil be tweeted out on our <a href="https://twitter.com/laravelio" class="text-lio-700 underline">Twitter account</a> which has over 45,000 followers. Feel free to submit as many articles as you like. You can even cross-reference an article on your blog with the original url.
             </x-forms.info>
 
             <x-forms.info class="px-0">
