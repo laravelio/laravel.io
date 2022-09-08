@@ -42,7 +42,7 @@
                     class="w-full"
                 >
                     <span class="flex items-center gap-x-2">
-                        <x-heroicon-s-x class="w-5 h-5" title="Decline"/>
+                        <x-heroicon-s-x-mark class="w-5 h-5" title="Decline"/>
                         <span x-cloak x-show="hovered === 'decline'" class="leading-5">Decline article</span>
                     </span>
                 </x-buttons.secondary-button>
@@ -57,7 +57,7 @@
                     class="w-full"
                 >
                     <span class="flex items-center gap-x-2">
-                        <x-heroicon-o-eye-off class="w-5 h-5" title="Unpublish"/>
+                        <x-heroicon-o-eye-slash class="w-5 h-5" title="Unpublish"/>
                         <span x-cloak x-show="hovered === 'unpublish'" class="leading-5">Unpublish article</span>
                     </span>
                 </x-buttons.secondary-button>

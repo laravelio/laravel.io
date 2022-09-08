@@ -14,7 +14,7 @@
 
         <x-heroicon-o-eye aria-label="Show Api Key" x-show="!showApi" @@click="showApi = true" class="mr-2 h-6 w-6 text-white hover:cursor-pointer" />
 
-        <x-heroicon-o-eye-off aria-label="Hide API Key" x-show="showApi" @@click="showApi = false" class="mr-2 h-6 w-6 text-white hover:cursor-pointer" />
+        <x-heroicon-o-eye-slash aria-label="Hide API Key" x-show="showApi" @@click="showApi = false" class="mr-2 h-6 w-6 text-white hover:cursor-pointer" />
 
         <div x-show="copyToast" x-transition class="fixed bottom-20 left-0 z-10 right-0 flex justify-center items-center">
             <span class="text-white z-[99999] bg-gray-800 px-5 py-4 rounded-md text-md">

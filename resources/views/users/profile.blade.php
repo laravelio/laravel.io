@@ -80,7 +80,7 @@
                             @else
                                 <x-buttons.danger-button class="w-full" @click.prevent="activeModal = 'blockUser'">
                                     <span class="flex items-center gap-x-2">
-                                        <x-heroicon-o-x class="w-5 h-5" />
+                                        <x-heroicon-o-x-mark class="w-5 h-5" />
                                         Block User
                                     </span>
                                 </x-buttons.danger-button>

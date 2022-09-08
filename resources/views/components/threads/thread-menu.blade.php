@@ -7,7 +7,7 @@
                 class="p-2 rounded hover:bg-gray-100"
                 @click="open = !open"
             >
-                <x-heroicon-o-dots-horizontal class="w-6 h-6" />
+                <x-heroicon-o-ellipsis-horizontal class="w-6 h-6" />
             </button>
 
             <div

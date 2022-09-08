@@ -28,7 +28,7 @@
                         </div>
 
                         <x-buk-form-button action="{{ route('settings.users.unblock', $user->username()) }}" method="PUT">
-                            <x-heroicon-s-x class="h-4 w-4 text-gray-500 hover:text-red-500" />
+                            <x-heroicon-s-x-mark class="h-4 w-4 text-gray-500 hover:text-red-500" />
                         </x-buk-form-button>
                     </li>
                 @empty

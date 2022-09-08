@@ -13,7 +13,7 @@
                 class="flex items-center gap-x-2 font-medium text-lio-500 hover:text-gray-300"
                 @click="activeModal = 'unmarkSolution-{{ $thread->id }}'"
             >
-                <x-heroicon-o-badge-check class="w-6 h-6" />
+                <x-heroicon-o-check-badge class="w-6 h-6" />
                 <span class="hidden lg:block">Unmark Solution</span>
             </button>
 
@@ -30,7 +30,7 @@
                 class="flex items-center gap-x-2 font-medium text-gray-300 hover:text-lio-500"
                 @click="activeModal = 'markSolution-{{ $reply->id }}'"
             >
-                <x-heroicon-o-badge-check class="w-6 h-6" />
+                <x-heroicon-o-check-badge class="w-6 h-6" />
                 <span class="hidden lg:block">Mark Solution</span>
             </button>
 
@@ -46,7 +46,7 @@
     @else
         @if ($thread->isSolutionReply($reply))
             <span class="flex items-center gap-x-2 font-medium text-lio-500">
-                <x-heroicon-o-badge-check class="w-6 h-6" />
+                <x-heroicon-o-check-badge class="w-6 h-6" />
                 <span>Solution</span>
             </span>
         @endif
@@ -59,7 +59,7 @@
                 class="p-2 rounded hover:bg-gray-100"
                 @click="open = !open"
             >
-                <x-heroicon-o-dots-horizontal class="w-6 h-6" />
+                <x-heroicon-o-ellipsis-horizontal class="w-6 h-6" />
             </button>
 
             <div

@@ -99,7 +99,7 @@
                         <div class="mb-10">
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <x-heroicon-o-search class="w-4 h-4 text-gray-900" />
+                                    <x-heroicon-o-magnifying-glass class="w-4 h-4 text-gray-900" />
                                 </div>
 
                                 <form action="{{ route('forum') }}" method="GET">

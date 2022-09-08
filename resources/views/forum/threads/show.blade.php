@@ -22,7 +22,7 @@
         <div class="w-full lg:w-3/4">
             @auth
                 @if (! $thread->isSolved() && $thread->isAuthoredBy(Auth::user()))
-                    <x-primary-info-panel icon="heroicon-o-badge-check">
+                    <x-primary-info-panel icon="heroicon-o-check-badge">
                         Please make sure to mark the correct reply as the solution when your question gets answered.
                     </x-primary-info-panel>
                 @endif

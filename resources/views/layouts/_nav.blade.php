@@ -10,15 +10,15 @@
 
                         <div class="flex lg:hidden">
                             <button @click="showSearch($event)">
-                                <x-heroicon-o-search class="w-6 h-6 mr-4" />
+                                <x-heroicon-o-magnifying-glass class="w-6 h-6 mr-4" />
                             </button>
 
                             <button @click="nav = !nav">
-                                <x-heroicon-o-menu-alt-1 x-show="!nav" class="w-6 h-6" />
+                                <x-heroicon-m-bars-3-center-left x-show="!nav" class="w-6 h-6" />
                             </button>
 
                             <button @click="nav = !nav" x-cloak>
-                                <x-heroicon-o-x x-show="nav" class="w-6 h-6" />
+                                <x-heroicon-o-x-mark x-show="nav" class="w-6 h-6" />
                             </button>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
 
                                             <li class="hover:bg-gray-100">
                                                 <a href="https://web.libera.chat/?nick=laravelnewbie&channels=#laravel" class="inline-block w-full lg:px-4 lg:py-3">
-                                                    <x-heroicon-s-chat class="w-4 h-4 inline text-green-500" />
+                                                    <x-heroicon-s-chat-bubble-oval-left-ellipsis class="w-4 h-4 inline text-green-500" />
                                                     IRC
                                                 </a>
                                             </li>
@@ -155,7 +155,7 @@
                 <div class="w-full block gap-x-4 lg:flex lg:items-center lg:justify-end">
                     <div class="flex items-center">
                         <button @click="showSearch($event)" @keyup.window.slash="showSearch($event)" class="hover:text-lio-500">
-                            <x-heroicon-o-search class="h-5 w-5 hidden lg:block" />
+                            <x-heroicon-o-magnifying-glass class="h-5 w-5 hidden lg:block" />
                         </button>
                         @include('_partials._search')
                     </div>

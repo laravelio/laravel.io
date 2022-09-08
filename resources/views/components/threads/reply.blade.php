@@ -12,7 +12,7 @@
                 @if ($reply->trashed())
                     <div>
                         <div class="bg-white border border-gray-200 rounded-full h-8 w-8 -ml-2 lg:ml-6 mr-2 flex justify-center items-center">
-                            @svg('heroicon-s-x', 'h-4 w-4 text-gray-700')
+                            @svg('heroicon-s-x-mark', 'h-4 w-4 text-gray-700')
                         </div>
                     </div>
                 @endif
