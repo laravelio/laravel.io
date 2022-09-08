@@ -6,7 +6,14 @@ use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
+use App\Notifications\SlowQueryLogged;
+use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Database\Events\QueryExecuted;
+use Illuminate\Notifications\AnonymousNotifiable;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Horizon\Horizon;
 
@@ -17,6 +24,17 @@ class AppServiceProvider extends ServiceProvider
         $this->bootEloquentMorphs();
         $this->bootMacros();
         $this->bootHorizon();
+
+        DB::whenQueryingForLongerThan(500, function (Connection $connection, QueryExecuted $event) {
+            Notification::send(
+                new AnonymousNotifiable,
+                new SlowQueryLogged(
+                    $event->sql,
+                    $event->time,
+                    Request::url()
+                )
+            );
+        });
     }
 
     private function bootEloquentMorphs()
