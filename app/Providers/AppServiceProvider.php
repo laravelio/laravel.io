@@ -31,8 +31,8 @@ class AppServiceProvider extends ServiceProvider
                 new SlowQueryLogged(
                     $event->sql,
                     $event->time,
-                    Request::url()
-                )
+                    Request::url(),
+                ),
             );
         });
     }
