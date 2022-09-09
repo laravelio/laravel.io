@@ -14,7 +14,7 @@
                             </button>
 
                             <button @click="nav = !nav">
-                                <x-heroicon-m-bars-3-center-left x-show="!nav" class="w-6 h-6" />
+                                <x-heroicon-o-bars-3-center-left x-show="!nav" class="w-6 h-6" />
                             </button>
 
                             <button @click="nav = !nav" x-cloak>
