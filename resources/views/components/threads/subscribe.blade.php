@@ -7,7 +7,7 @@
         @can(App\Policies\ThreadPolicy::UNSUBSCRIBE, $thread)
             <x-buttons.secondary-cta action="{{ route('threads.unsubscribe', $thread->slug()) }}" class="w-full mt-3">
                 <span class="flex items-center justify-center gap-x-2">
-                    <x-heroicon-o-volume-off class="w-6 h-6" />
+                    <x-heroicon-o-speaker-x-mark class="w-6 h-6" />
                     Unsubscribe
                 </span>
             </x-buttons.secondary-cta>
@@ -18,7 +18,7 @@
         @elsecan(App\Policies\ThreadPolicy::SUBSCRIBE, $thread)
             <x-buttons.secondary-cta action="{{ route('threads.subscribe', $thread->slug()) }}" class="w-full mt-3">
                 <span class="flex items-center justify-center gap-x-2">
-                    <x-heroicon-o-volume-up class="w-6 h-6" />
+                    <x-heroicon-o-speaker-wave class="w-6 h-6" />
                     Subscribe
                 </span>
             </x-buttons.secondary-cta>

@@ -18,7 +18,7 @@
                 <h3 class="text-3xl font-semibold">Filter tag</h3>
 
                 <button @click="activeModal = false">
-                    <x-heroicon-o-x class="w-6 h-6" />
+                    <x-heroicon-o-x-mark class="w-6 h-6" />
                 </button>
             </div>
 
@@ -28,7 +28,7 @@
 
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <x-heroicon-o-search class="h-5 w-5 text-gray-800"/>
+                    <x-heroicon-o-magnifying-glass class="h-5 w-5 text-gray-800"/>
                 </div>
 
                 <input 

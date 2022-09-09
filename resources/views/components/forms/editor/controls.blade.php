@@ -16,7 +16,7 @@
     </li>
 
     <li class="flex">
-        <x-forms.editor.control-button title="Code sample" icon="heroicon-o-code" control="code" />
+        <x-forms.editor.control-button title="Code sample" icon="heroicon-o-code-bracket" control="code" />
     </li>
 
     <li class="flex">
@@ -24,6 +24,6 @@
     </li>
 
     <li class="flex">
-        <x-forms.editor.control-button title="Image" icon="heroicon-o-photograph" control="image" />
+        <x-forms.editor.control-button title="Image" icon="heroicon-o-photo" control="image" />
     </li>
 </ul>
