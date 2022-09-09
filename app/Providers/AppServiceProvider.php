@@ -24,17 +24,7 @@ class AppServiceProvider extends ServiceProvider
         $this->bootEloquentMorphs();
         $this->bootMacros();
         $this->bootHorizon();
-
-        DB::whenQueryingForLongerThan(500, function (Connection $connection, QueryExecuted $event) {
-            Notification::send(
-                new AnonymousNotifiable,
-                new SlowQueryLogged(
-                    $event->sql,
-                    $event->time,
-                    Request::url(),
-                ),
-            );
-        });
+        $this->bootSlowQueryLogging();
     }
 
     private function bootEloquentMorphs()
@@ -59,6 +49,20 @@ class AppServiceProvider extends ServiceProvider
 
         Horizon::auth(function ($request) {
             return auth()->check() && auth()->user()->isAdmin();
+        });
+    }
+
+    private function bootSlowQueryLogging()
+    {
+        DB::whenQueryingForLongerThan(500, function (Connection $connection, QueryExecuted $event) {
+            Notification::send(
+                new AnonymousNotifiable,
+                new SlowQueryLogged(
+                    $event->sql,
+                    $event->time,
+                    Request::url()
+                )
+            );
         });
     }
 }
