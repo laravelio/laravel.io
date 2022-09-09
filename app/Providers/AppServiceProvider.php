@@ -54,7 +54,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function bootSlowQueryLogging()
     {
-        DB::whenQueryingForLongerThan(500, function (Connection $connection, QueryExecuted $event) {
+        DB::whenQueryingForLongerThan(300000, function (Connection $connection, QueryExecuted $event) {
             Notification::send(
                 new AnonymousNotifiable,
                 new SlowQueryLogged(
