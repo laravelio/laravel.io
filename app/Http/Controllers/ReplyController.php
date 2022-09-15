@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\ReplyAble;
 use App\Http\Requests\CreateReplyRequest;
-use App\Http\Requests\Request;
+use Illuminate\Http\Request;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
 use App\Jobs\ReportSpam;
