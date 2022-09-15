@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\ReplyAble;
 use App\Http\Requests\CreateReplyRequest;
+use App\Http\Requests\Request;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
 use App\Jobs\ReportSpam;
@@ -47,11 +48,11 @@ class ReplyController extends Controller
         return $this->redirectToReplyAble($reply->replyAble());
     }
 
-    public function markAsSpam(Reply $reply)
+    public function markAsSpam(Reply $reply, Request $request)
     {
         $this->authorize(ReplyPolicy::REPORT_SPAM, $reply);
 
-        $this->dispatchSync(new ReportSpam(auth()->user(), $reply));
+        $this->dispatchSync(new ReportSpam($request->user(), $reply));
 
         $this->success("You've marked this reply as a spam.");
 
