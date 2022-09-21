@@ -1,6 +1,6 @@
 @props(['thread'])
 
-@canany([App\Policies\ThreadPolicy::UPDATE, App\Policies\ThreadPolicy::DELETE, App\Policies\ThreadPolicy::REPORT_SPAM], $thread)
+@canany([App\Policies\ThreadPolicy::LOCK, App\Policies\ThreadPolicy::UPDATE, App\Policies\ThreadPolicy::DELETE, App\Policies\ThreadPolicy::REPORT_SPAM], $thread)
     <div class="flex items-center gap-x-3">
         <div class="relative -mr-3" x-data="{ open: false }" @click.outside="open = false">
             <button
@@ -43,7 +43,7 @@
 
 				@can(App\Policies\ThreadPolicy::REPORT_SPAM, $thread)
 					<button class="flex gap-x-2 p-3 rounded hover:bg-gray-100" @click="activeModal = 'markAsSpam'">
-						<x-heroicon-o-exclamation class="w-6 h-6 text-red-500"/>
+						<x-heroicon-o-exclamation-triangle class="w-6 h-6 text-red-500"/>
 						Mark as spam
 					</button>
 				@endcan
@@ -74,7 +74,7 @@
 			title="Mark as spam"
 			type="post"
 		>
-			<p>Are you sure this thread is a spam?</p>
+			<p>Are you sure this thread is spam? We'll report this to our moderators.</p>
 		</x-modal>
 	@endcan
 @endcanany

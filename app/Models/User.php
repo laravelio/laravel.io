@@ -11,6 +11,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 final class User extends Authenticatable implements MustVerifyEmail
 {
@@ -207,27 +209,9 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Reply::class, 'author_id');
     }
 
-    public function blockedUsers()
+    public function blockedUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'blocked_users', 'user_id', 'blocked_user_id');
-    }
-
-    public function spamming()
-    {
-        return $this->belongsToMany(Thread::class, 'spam')
-            ->withTimestamps();
-    }
-
-    public function threadSpamming()
-    {
-        return $this->morphedByMany(Thread::class, 'spammable')
-            ->withTimestamps();
-    }
-
-    public function replySpamming()
-    {
-        return $this->morphedByMany(Reply::class, 'spammable')
-            ->withTimestamps();
     }
 
     public function articles(): HasMany

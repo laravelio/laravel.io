@@ -2,14 +2,13 @@
 
 namespace App\Jobs;
 
-use App\Models\SpamAble;
+use App\Contracts\Spam;
+use App\Events\SpamWasReported;
 use App\Models\User;
-use App\Notifications\MarkedAsSpamNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Notification;
 
 class ReportSpam implements ShouldQueue
 {
@@ -17,26 +16,14 @@ class ReportSpam implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public function __construct(private User $user, private SpamAble $spammable)
+    public function __construct(private User $user, private Spam $spam)
     {
     }
 
     public function handle(): void
     {
-        $this->spammable->spammers()->attach($this->user);
+        $this->spam->spamReporters()->attach($this->user);
 
-        if ($this->shouldNotifyModerators()) {
-            Notification::send(
-                User::moderators()->get(),
-                new MarkedAsSpamNotification($this->spammable),
-            );
-        }
-    }
-
-    private function shouldNotifyModerators(): bool
-    {
-        $spamReportCount = $this->spammable->spammers()->count();
-
-        return $spamReportCount > 0 && $spamReportCount % 3 == 0;
+        event(new SpamWasReported($this->spam));
     }
 }

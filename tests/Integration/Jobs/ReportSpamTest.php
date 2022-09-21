@@ -19,18 +19,20 @@ it('can mark a thread as spam', function () {
 
     $thread->refresh();
 
-    expect($thread->spammers()->count())->toBe(1);
-    expect($thread->spammers->contains($user))->toBeTrue();
+    expect($thread->spamReporters()->count())->toBe(1);
+    expect($thread->spamReporters->contains($user))->toBeTrue();
 });
 
 it('can notify moderators if a thread is marked three times', function () {
     Notification::fake();
+
     $thread = Thread::factory()->create();
     $users = User::factory(3)->create();
     $moderator = User::factory()->create(['type' => User::MODERATOR]);
 
     $users->each(function ($user, $index) use ($thread, $moderator) {
         $this->dispatch(new ReportSpam($user, $thread));
+
         match ($index) {
             2 => Notification::assertSentTo($moderator, MarkedAsSpamNotification::class),
             default => Notification::assertNotSentTo($moderator, MarkedAsSpamNotification::class),

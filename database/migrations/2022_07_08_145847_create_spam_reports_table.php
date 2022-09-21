@@ -8,11 +8,11 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('spam', function (Blueprint $table) {
+        Schema::create('spam_reports', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->nullableMorphs('spammable');
+            $table->unsignedInteger('reporter_id');
+            $table->foreign('reporter_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->nullableMorphs('spam');
             $table->timestamps();
         });
     }

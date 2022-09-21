@@ -2,19 +2,20 @@
 
 namespace App\Notifications;
 
+use App\Contracts\Spam;
 use App\Models\Reply;
-use App\Models\SpamAble;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Str;
 use NotificationChannels\Telegram\TelegramMessage;
 
-class MarkedAsSpamNotification extends Notification
+class MarkedAsSpamNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(protected SpamAble $spammable)
+    public function __construct(protected Spam $spam)
     {
-        //
     }
 
     /**
@@ -37,18 +38,19 @@ class MarkedAsSpamNotification extends Notification
 
     public function toTelegram($notifiable)
     {
-        $alias = $this->spammable->getMorphClass();
-        $model = str($alias)->singular();
-        $url = route('thread', ['thread' => $this->spammable]);
-        if ($this->spammable instanceof Reply) {
-            $url = route('thread', ['thread' => $this->spammable->thread])
-                ."#{$this->spammable->getKey()}";
+        $model = Str::singular($this->spam->getMorphClass());
+
+        if ($this->spam instanceof Reply) {
+            $url = route('thread', ['thread' => $this->spam->thread])
+                ."#{$this->spam->getKey()}";
+        } else {
+            $url = route('thread', ['thread' => $this->spam]);
         }
 
         return TelegramMessage::create()
             ->to(config('services.telegram-bot-api.channel'))
             ->content(
-                "There's a {$model} that may need your moderation as it is marked as spam by a few people",
+                "There's a {$model} that was reported as spam by multiple users.",
             )
             ->button("View {$model}", $url);
     }
