@@ -14,6 +14,7 @@ use App\Concerns\ProvidesSubscriptions;
 use App\Concerns\ReceivesReplies;
 use App\Contracts\MentionAble;
 use App\Contracts\ReplyAble;
+use App\Contracts\Spam;
 use App\Contracts\SubscriptionAble;
 use App\Exceptions\CouldNotMarkReplyAsSolution;
 use Exception;
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +33,7 @@ use Laravel\Scout\Searchable;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 
-class Thread extends Model implements Feedable, ReplyAble, SubscriptionAble, MentionAble, SpamAble
+final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAble, MentionAble, Spam
 {
     use HasAuthor;
     use HasFactory;
@@ -121,12 +123,14 @@ class Thread extends Model implements Feedable, ReplyAble, SubscriptionAble, Men
         return $this->updated_at->gt($this->created_at);
     }
 
-    public function spammers()
+    public function spamReporters(): MorphToMany
     {
         return $this->morphToMany(
             User::class,
-            'spammable',
             'spam',
+            'spam_reports',
+            null,
+            'reporter_id',
         )->withTimestamps();
     }
 

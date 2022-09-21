@@ -44,12 +44,12 @@ final class ThreadPolicy
         return $user->isAdmin() || $user->isModerator();
     }
 
-    public function markAsSpam(User $user, Thread $thread): bool
+    public function reportSpam(User $user, Thread $thread): bool
     {
-        if ($thread->author->isModerator() || $thread->author->isAdmin()) {
+        if ($thread->author()->isModerator() || $thread->author()->isAdmin()) {
             return false;
         }
 
-        return $thread->spammers->doesntContain($user);
+        return $thread->author()->isNot($user);
     }
 }

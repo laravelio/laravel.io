@@ -23,6 +23,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Notifications\Events\NotificationSent;
+use App\Events\SpamWasReported;
+use App\Listeners\SendNewSpamNotification;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -56,6 +58,9 @@ class EventServiceProvider extends ServiceProvider
         ThreadWasCreated::class => [
             SubscribeUsersMentionedInThread::class,
             NotifyUsersMentionedInThread::class,
+        ],
+        SpamWasReported::class => [
+            SendNewSpamNotification::class,
         ],
     ];
 

@@ -13,7 +13,7 @@ final class ReplyPolicy
 
     const DELETE = 'delete';
 
-    const REPORT_SPAM = 'markAsSpam';
+    const REPORT_SPAM = 'reportSpam';
 
     /**
      * Determine if replies can be created by the user.
@@ -39,12 +39,12 @@ final class ReplyPolicy
         return $reply->isAuthoredBy($user) || $user->isModerator() || $user->isAdmin();
     }
 
-    public function markAsSpam(User $user, Reply $reply): bool
+    public function reportSpam(User $user, Reply $reply): bool
     {
-        if ($reply->author->isModerator() || $reply->author->isAdmin()) {
+        if ($reply->author()->isModerator() || $reply->author()->isAdmin()) {
             return false;
         }
 
-        return $reply->spammers->doesntContain($user);
+        return $reply->author()->isNot($user);
     }
 }
