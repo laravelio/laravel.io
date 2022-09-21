@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
-class Reply extends Model implements MentionAble, SpamAble
+final class Reply extends Model implements MentionAble, SpamAble
 {
     use HasAuthor;
     use HasFactory;

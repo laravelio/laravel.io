@@ -47,7 +47,7 @@ class ReplyController extends Controller
         return $this->redirectToReplyAble($reply->replyAble());
     }
 
-    public function markAsSpam(Reply $reply, Request $request)
+    public function markAsSpam(Request $request, Reply $reply)
     {
         $this->authorize(ReplyPolicy::REPORT_SPAM, $reply);
 

@@ -7,14 +7,12 @@ use App\Models\User;
 use App\Notifications\MarkedAsSpamNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Notification;
 
 class ReportSpam implements ShouldQueue
 {
-    use Dispatchable;
     use InteractsWithQueue;
     use Queueable;
     use SerializesModels;
@@ -37,6 +35,8 @@ class ReportSpam implements ShouldQueue
 
     private function shouldNotifyModerators(): bool
     {
-        return $this->spammable->spammers()->count() >= 3;
+        $spamReportCount = $this->spammable->spammers()->count();
+
+        return $spamReportCount > 0 && $spamReportCount % 3 == 0;
     }
 }
