@@ -63,7 +63,7 @@ final class UpdateArticleViewCounts extends Command
             return 0;
         }
 
-        $response = Http::withToken($this->token)
+        $response = Http::retry(3, 100, null, false)->withToken($this->token)
             ->get('https://api.usefathom.com/v1/aggregations', [
                 'date_from' => '2021-03-01 00:00:00', // Fathom data aggregations not accurate prior to this date.
                 'field_grouping' => 'pathname',

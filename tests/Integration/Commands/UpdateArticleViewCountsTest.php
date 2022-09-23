@@ -123,6 +123,8 @@ test('article view counts are not updated if API call fails', function () {
 
     (new UpdateArticleViewCounts)->handle();
 
+    Http::assertSentCount(3);
+
     expect($article->fresh()->view_count)->toBeNull();
 });
 
