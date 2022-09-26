@@ -178,12 +178,17 @@ CREATE TABLE `replies` (
   `updated_at` datetime DEFAULT NULL,
   `replyable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `updated_by` bigint unsigned DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted_by` int unsigned DEFAULT NULL,
+  `deleted_reason` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `replies_uuid_unique` (`uuid`),
   KEY `replies_author_id_index` (`author_id`),
   KEY `replies_replyable_id_index` (`replyable_id`),
   KEY `replies_replyable_type_index` (`replyable_type`),
-  CONSTRAINT `replies_author_id_foreign` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+  KEY `replies_deleted_by_foreign` (`deleted_by`),
+  CONSTRAINT `replies_author_id_foreign` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `replies_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `subscriptions`;
@@ -275,7 +280,7 @@ CREATE TABLE `users` (
   `github_username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '',
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `twitter` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `website` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `website` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -374,3 +379,4 @@ INSERT INTO `migrations` VALUES (70,'2022_05_10_180922_make_uuids_non_nullable',
 INSERT INTO `migrations` VALUES (71,'2022_06_14_072001_create_blocked_users_table',8);
 INSERT INTO `migrations` VALUES (72,'2022_07_09_191433_update_articles_table_add_view_count',9);
 INSERT INTO `migrations` VALUES (73,'2022_07_29_135113_add__website_to_users_table',9);
+INSERT INTO `migrations` VALUES (74,'2022_08_21_215918_add_soft_delete_columns_to_replies_table',10);
