@@ -2,7 +2,7 @@
 
 <div class="thread bg-white shadow rounded">
     <div class="border-b">
-        <div class="px-6 pt-4 pb-0 lg:py-2">
+        <div class="px-4 pt-4 pb-1 lg:px-6 lg:py-2">
             <div class="flex flex-row justify-between items-start lg:items-center">
                 <div>
                     <div class="flex flex-wrap items-center space-x-1 text-sm">
