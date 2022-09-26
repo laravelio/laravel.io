@@ -60,7 +60,7 @@ class LoginController extends Controller
     {
         $credentials = $request->only($this->username(), 'password');
 
-        if ( str_contains($credentials[$this->username()], '@')) {
+        if (str_contains($credentials[$this->username()], '@')) {
             $credentials['email'] = $credentials[$this->username()];
             unset($credentials[$this->username()]);
         }
