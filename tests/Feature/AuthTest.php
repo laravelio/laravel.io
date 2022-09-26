@@ -93,11 +93,22 @@ test('users do not need to verify their email address twice', function () {
         ->seePageIs('/user/johndoe');
 });
 
-test('users can login', function () {
+test('users can login with their username', function () {
     $this->createUser();
 
     $this->visit('/login')
         ->type('johndoe', 'username')
+        ->type('password', 'password')
+        ->press('Sign in')
+        ->seePageIs('/user/johndoe')
+        ->see('John Doe');
+});
+
+test('users can login with their email address', function () {
+    $this->createUser();
+
+    $this->visit('/login')
+        ->type('john@example.com', 'username')
         ->type('password', 'password')
         ->press('Sign in')
         ->seePageIs('/user/johndoe')
