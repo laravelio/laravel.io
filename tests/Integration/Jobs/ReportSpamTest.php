@@ -1,13 +1,13 @@
 <?php
 
 use App\Jobs\ReportSpam;
+use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\MarkedAsSpamNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
-use App\Models\Reply;
 
 uses(TestCase::class);
 uses(RefreshDatabase::class);

@@ -2,8 +2,8 @@
 
 namespace App\Events;
 
-use Illuminate\Queue\SerializesModels;
 use App\Contracts\Spam;
+use Illuminate\Queue\SerializesModels;
 
 final class SpamWasReported
 {

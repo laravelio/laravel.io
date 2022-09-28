@@ -2,8 +2,8 @@
 
 namespace App\Contracts;
 
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 interface Spam
 {

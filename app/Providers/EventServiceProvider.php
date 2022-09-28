@@ -6,6 +6,7 @@ use App\Events\ArticleWasApproved;
 use App\Events\ArticleWasSubmittedForApproval;
 use App\Events\EmailAddressWasChanged;
 use App\Events\ReplyWasCreated;
+use App\Events\SpamWasReported;
 use App\Events\ThreadWasCreated;
 use App\Listeners\MarkLastActivity;
 use App\Listeners\NotifyUsersMentionedInReply;
@@ -14,6 +15,7 @@ use App\Listeners\RenewEmailVerificationNotification;
 use App\Listeners\SendArticleApprovedNotification;
 use App\Listeners\SendNewArticleNotification;
 use App\Listeners\SendNewReplyNotification;
+use App\Listeners\SendNewSpamNotification;
 use App\Listeners\StoreTweetIdentifier;
 use App\Listeners\SubscribeUsersMentionedInReply;
 use App\Listeners\SubscribeUsersMentionedInThread;
@@ -23,8 +25,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Notifications\Events\NotificationSent;
-use App\Events\SpamWasReported;
-use App\Listeners\SendNewSpamNotification;
 
 class EventServiceProvider extends ServiceProvider
 {

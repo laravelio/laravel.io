@@ -2,10 +2,10 @@
 
 namespace App\Listeners;
 
-use Illuminate\Notifications\AnonymousNotifiable;
+use App\Contracts\Spam;
 use App\Events\SpamWasReported;
 use App\Notifications\MarkedAsSpamNotification;
-use App\Contracts\Spam;
+use Illuminate\Notifications\AnonymousNotifiable;
 
 final class SendNewSpamNotification
 {
