@@ -123,7 +123,12 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
         return $this->updated_at->gt($this->created_at);
     }
 
-    public function spamReporters(): MorphToMany
+    public function spamReporters(): Collection
+    {
+        return $this->spamReportersRelation;
+    }
+
+    public function spamReportersRelation(): MorphToMany
     {
         return $this->morphToMany(
             User::class,

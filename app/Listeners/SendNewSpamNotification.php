@@ -22,7 +22,7 @@ final class SendNewSpamNotification
 
     private function shouldNotifyModerators(Spam $spam): bool
     {
-        $spamReportCount = $spam->spamReporters()->count();
+        $spamReportCount = $spam->spamReportersRelation()->count();
 
         return $spamReportCount > 0 && $spamReportCount % 3 == 0;
     }

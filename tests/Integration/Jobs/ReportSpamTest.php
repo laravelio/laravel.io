@@ -19,8 +19,8 @@ it('can mark a thread as spam', function () {
 
     $thread->refresh();
 
-    expect($thread->spamReporters()->count())->toBe(1);
-    expect($thread->spamReporters->contains($user))->toBeTrue();
+    expect($thread->spamReportersRelation()->count())->toBe(1);
+    expect($thread->spamReporters()->contains($user))->toBeTrue();
 });
 
 it('can notify moderators if a thread is marked three times', function () {

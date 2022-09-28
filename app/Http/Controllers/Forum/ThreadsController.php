@@ -198,7 +198,7 @@ class ThreadsController extends Controller
 
         $this->dispatchSync(new ReportSpam($request->user(), $thread));
 
-        $this->success("You've marked this thread as a spam.");
+        $this->success("We've received your spam report. Thanks for helping us keep the forum clean!");
 
         return redirect()->route('thread', $thread->slug());
     }

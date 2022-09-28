@@ -105,6 +105,7 @@ Route::prefix('forum')->group(function () {
 // Replies
 Route::post('replies', [ReplyController::class, 'store'])->name('replies.store');
 Route::delete('replies/{reply}', [ReplyController::class, 'delete'])->name('replies.delete');
+Route::post('replies/{reply}/mark-as-spam', [ReplyController::class, 'markAsSpam'])->name('replies.spam.mark');
 Route::get('replyable/{id}/{type}', [ReplyAbleController::class, 'redirect'])->name('replyable');
 
 // Subscriptions

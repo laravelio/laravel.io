@@ -65,14 +65,14 @@
         </x-modal>
     @endcan
 
-	@can(App\Policies\ThreadPolicy::REPORT_SPAM, $thread)
-		<x-modal
-			identifier="markAsSpam"
-			:action="route('threads.spam.mark', $thread->slug())"
-			title="Mark as spam"
-			type="post"
-		>
-			<p>Are you sure this thread is spam? We'll report this to our moderators.</p>
-		</x-modal>
-	@endcan
+    @can(App\Policies\ThreadPolicy::REPORT_SPAM, $thread)
+        <x-modal
+            identifier="markAsSpam"
+            :action="route('threads.spam.mark', $thread->slug())"
+            title="Mark as spam"
+            type="post"
+        >
+            <p>Are you sure this thread is spam? We'll report this to our moderators.</p>
+        </x-modal>
+    @endcan
 @endcanany

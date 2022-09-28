@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Collection;
 
 final class Reply extends Model implements MentionAble, Spam
 {
@@ -138,7 +139,12 @@ final class Reply extends Model implements MentionAble, Spam
         return $this->morphTo('replyAbleRelation', 'replyable_type', 'replyable_id');
     }
 
-    public function spamReporters(): MorphToMany
+    public function spamReporters(): Collection
+    {
+        return $this->spamReportersRelation;
+    }
+
+    public function spamReportersRelation(): MorphToMany
     {
         return $this->morphToMany(
             User::class,

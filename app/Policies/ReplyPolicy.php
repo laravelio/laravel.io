@@ -45,6 +45,7 @@ final class ReplyPolicy
             return false;
         }
 
-        return $reply->author()->isNot($user);
+        return ! $reply->spamReportersRelation()->where('reporter_id', $user->id)->count() &&
+            $reply->author()->isNot($user);
     }
 }

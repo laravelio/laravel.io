@@ -50,6 +50,7 @@ final class ThreadPolicy
             return false;
         }
 
-        return $thread->author()->isNot($user);
+        return ! $thread->spamReportersRelation()->where('reporter_id', $user->id)->count() &&
+            $thread->author()->isNot($user);
     }
 }

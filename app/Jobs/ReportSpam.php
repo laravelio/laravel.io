@@ -22,7 +22,7 @@ class ReportSpam implements ShouldQueue
 
     public function handle(): void
     {
-        $this->spam->spamReporters()->attach($this->user);
+        $this->spam->spamReportersRelation()->attach($this->user);
 
         event(new SpamWasReported($this->spam));
     }

@@ -14,6 +14,8 @@ return new class extends Migration
             $table->foreign('reporter_id')->references('id')->on('users')->cascadeOnDelete();
             $table->nullableMorphs('spam');
             $table->timestamps();
+
+            $table->unique(['reporter_id', 'spam_id', 'spam_type']);
         });
     }
 };

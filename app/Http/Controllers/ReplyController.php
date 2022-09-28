@@ -53,9 +53,9 @@ class ReplyController extends Controller
 
         $this->dispatchSync(new ReportSpam($request->user(), $reply));
 
-        $this->success("You've marked this reply as a spam.");
+        $this->success("We've received your spam report. Thanks for helping us keep the forum clean!");
 
-        return redirect()->route('thread', $reply->thread)->withFragment($reply->getKey());
+        return $this->redirectToReplyAble($reply->replyAble());
     }
 
     private function redirectToReplyAble(ReplyAble $replyAble): RedirectResponse
