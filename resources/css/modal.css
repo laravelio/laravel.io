@@ -8,7 +8,7 @@
 }
 
 .modal-content {
-    @apply w-full h-screen bg-white flex relative p-4 h-full justify-between;
+    @apply w-full h-auto bg-white flex relative p-4 justify-between;
 }
 
 .modal-title {
@@ -29,6 +29,6 @@
 
 @screen md {
     .modal-content {
-        @apply w-1/3 h-auto rounded;
+        @apply w-1/3 rounded;
     }
 }
