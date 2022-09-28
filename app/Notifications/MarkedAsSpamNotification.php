@@ -41,10 +41,10 @@ class MarkedAsSpamNotification extends Notification implements ShouldQueue
         $model = Str::singular($this->spam->getMorphClass());
 
         if ($this->spam instanceof Reply) {
-            $url = route('thread', ['thread' => $this->spam->thread])
+            $url = route('thread', ['thread' => $this->spam->slug()])
                 ."#{$this->spam->getKey()}";
         } else {
-            $url = route('thread', ['thread' => $this->spam]);
+            $url = route('thread', ['thread' => $this->spam->slug()]);
         }
 
         return TelegramMessage::create()
