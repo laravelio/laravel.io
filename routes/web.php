@@ -97,6 +97,7 @@ Route::prefix('forum')->group(function () {
     Route::put('{thread}/unmark-solution', [ThreadsController::class, 'unmarkSolution'])->name('threads.solution.unmark');
     Route::post('{thread}/subscribe', [ThreadsController::class, 'subscribe'])->name('threads.subscribe');
     Route::post('{thread}/unsubscribe', [ThreadsController::class, 'unsubscribe'])->name('threads.unsubscribe');
+    Route::post('{thread}/mark-as-spam', [ThreadsController::class, 'markAsSpam'])->name('threads.spam.mark');
 
     Route::get('tags/{tag}', [TagsController::class, 'show'])->name('forum.tag');
 });
@@ -104,6 +105,7 @@ Route::prefix('forum')->group(function () {
 // Replies
 Route::post('replies', [ReplyController::class, 'store'])->name('replies.store');
 Route::delete('replies/{reply}', [ReplyController::class, 'delete'])->name('replies.delete');
+Route::post('replies/{reply}/mark-as-spam', [ReplyController::class, 'markAsSpam'])->name('replies.spam.mark');
 Route::get('replyable/{id}/{type}', [ReplyAbleController::class, 'redirect'])->name('replyable');
 
 // Subscriptions

@@ -6,6 +6,7 @@ use App\Contracts\ReplyAble;
 use App\Http\Requests\CreateReplyRequest;
 use App\Jobs\CreateReply;
 use App\Jobs\DeleteReply;
+use App\Jobs\ReportSpam;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Policies\ReplyPolicy;
@@ -42,6 +43,17 @@ class ReplyController extends Controller
         $this->dispatchSync(new DeleteReply($reply, $request->delete_reason));
 
         $this->success('replies.deleted');
+
+        return $this->redirectToReplyAble($reply->replyAble());
+    }
+
+    public function markAsSpam(Request $request, Reply $reply)
+    {
+        $this->authorize(ReplyPolicy::REPORT_SPAM, $reply);
+
+        $this->dispatchSync(new ReportSpam($request->user(), $reply));
+
+        $this->success("We've received your spam report. Thanks for helping us keep the forum clean!");
 
         return $this->redirectToReplyAble($reply->replyAble());
     }

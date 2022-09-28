@@ -9,8 +9,7 @@ final class ThreadWasCreated
 {
     use SerializesModels;
 
-    public function __construct(
-        public Thread $thread
-    ) {
+    public function __construct(public Thread $thread)
+    {
     }
 }

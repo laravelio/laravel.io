@@ -1,6 +1,6 @@
 @props(['thread'])
 
-@canany([App\Policies\ThreadPolicy::LOCK, App\Policies\ThreadPolicy::UPDATE, App\Policies\ThreadPolicy::DELETE], $thread)
+@canany([App\Policies\ThreadPolicy::LOCK, App\Policies\ThreadPolicy::UPDATE, App\Policies\ThreadPolicy::DELETE, App\Policies\ThreadPolicy::REPORT_SPAM], $thread)
     <div class="relative flex items-center -mr-3" x-data="{ open: false }" @click.outside="open = false">
         <button
             class="inline-block p-2 rounded hover:bg-gray-100"
@@ -39,6 +39,13 @@
                     Delete
                 </button>
             @endcan
+
+            @can(App\Policies\ThreadPolicy::REPORT_SPAM, $thread)
+                <button class="flex gap-x-2 p-3 rounded hover:bg-gray-100" @click="activeModal = 'markAsSpam'">
+                    <x-heroicon-o-exclamation-triangle class="w-6 h-6 text-red-500"/>
+                    Mark as spam
+                </button>
+            @endcan
         </div>
     </div>
 
@@ -55,6 +62,17 @@
                     <x-forms.inputs.textarea name="reason" label="Reason" placeholder="Optional reason that will be mailed to the author..." />
                 </div>
             @endunless
+        </x-modal>
+    @endcan
+
+    @can(App\Policies\ThreadPolicy::REPORT_SPAM, $thread)
+        <x-modal
+            identifier="markAsSpam"
+            :action="route('threads.spam.mark', $thread->slug())"
+            title="Mark as spam"
+            type="post"
+        >
+            <p>Are you sure this thread is spam? We'll report this to our moderators.</p>
         </x-modal>
     @endcan
 @endcanany

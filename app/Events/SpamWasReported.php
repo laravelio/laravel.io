@@ -2,14 +2,14 @@
 
 namespace App\Events;
 
-use App\Models\Article;
+use App\Contracts\Spam;
 use Illuminate\Queue\SerializesModels;
 
-final class ArticleWasApproved
+final class SpamWasReported
 {
     use SerializesModels;
 
-    public function __construct(public Article $article)
+    public function __construct(public Spam $spam)
     {
     }
 }

@@ -6,6 +6,7 @@ use App\Events\ArticleWasApproved;
 use App\Events\ArticleWasSubmittedForApproval;
 use App\Events\EmailAddressWasChanged;
 use App\Events\ReplyWasCreated;
+use App\Events\SpamWasReported;
 use App\Events\ThreadWasCreated;
 use App\Listeners\MarkLastActivity;
 use App\Listeners\NotifyUsersMentionedInReply;
@@ -14,6 +15,7 @@ use App\Listeners\RenewEmailVerificationNotification;
 use App\Listeners\SendArticleApprovedNotification;
 use App\Listeners\SendNewArticleNotification;
 use App\Listeners\SendNewReplyNotification;
+use App\Listeners\SendNewSpamNotification;
 use App\Listeners\StoreTweetIdentifier;
 use App\Listeners\SubscribeUsersMentionedInReply;
 use App\Listeners\SubscribeUsersMentionedInThread;
@@ -56,6 +58,9 @@ class EventServiceProvider extends ServiceProvider
         ThreadWasCreated::class => [
             SubscribeUsersMentionedInThread::class,
             NotifyUsersMentionedInThread::class,
+        ],
+        SpamWasReported::class => [
+            SendNewSpamNotification::class,
         ],
     ];
 
