@@ -7,6 +7,7 @@ use App\Notifications\MarkedAsSpamNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
+use App\Models\Reply;
 
 uses(TestCase::class);
 uses(RefreshDatabase::class);
@@ -23,19 +24,28 @@ it('can mark a thread as spam', function () {
     expect($thread->spamReporters()->contains($user))->toBeTrue();
 });
 
+it('can mark a reply as spam', function () {
+    $user = $this->login();
+    $reply = Reply::factory()->create();
+
+    $this->dispatch(new ReportSpam($user, $reply));
+
+    $reply->refresh();
+
+    expect($reply->spamReportersRelation()->count())->toBe(1);
+    expect($reply->spamReporters()->contains($user))->toBeTrue();
+});
+
 it('can notify moderators if a thread is marked three times', function () {
     Notification::fake();
 
     $thread = Thread::factory()->create();
-    $users = User::factory(3)->create();
-    $moderator = User::factory()->create(['type' => User::MODERATOR]);
+    $users = User::factory(7)->create();
+    User::factory()->create(['type' => User::MODERATOR]);
 
-    $users->each(function ($user, $index) use ($thread, $moderator) {
+    $users->each(function ($user, $index) use ($thread) {
         $this->dispatch(new ReportSpam($user, $thread));
-
-        match ($index) {
-            2 => Notification::assertSentTo($moderator, MarkedAsSpamNotification::class),
-            default => Notification::assertNotSentTo($moderator, MarkedAsSpamNotification::class),
-        };
     });
+
+    Notification::assertSentOnDemandTimes(MarkedAsSpamNotification::class, 2);
 });
