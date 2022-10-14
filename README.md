@@ -56,6 +56,16 @@ The following tools are required in order to start the installation.
 
 You can now visit the app in your browser by visiting [http://laravel.io.test](http://laravel.io.test). If you seeded the database you can login into a test account with **`testing`** & **`password`**.
 
+### Performance
+
+The package uses blade-ui-kit. Blade Icons can slow down your app tremendously. To solve this issue, Blade Icons ships with caching support. To enable icon caching you can run the following command:
+
+    php artisan icons:cache
+    
+When you want to add new icons, you need to clear your icons cache.
+
+For more details see https://github.com/blade-ui-kit/blade-icons#caching     
+
 ### Github Authentication (optional)
 
 To get Github authentication to work locally, you'll need to [register a new OAuth application on Github](https://github.com/settings/applications/new). Use `http://laravel.io.test` for the homepage url and `http://laravel.io.test/auth/github` for the callback url. When you've created the app, fill in the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with Github.
