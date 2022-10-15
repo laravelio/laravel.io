@@ -95,6 +95,9 @@
                                         Unban User
                                     </span>
                                 </x-buttons.secondary-button>
+                                @if ($user->bannedReason())
+                                    <p>Ban reason: {{ $user->banned_reason }}</p>
+                                @endif
                             @else
                                 <x-buttons.danger-button class="w-full" @click.prevent="activeModal = 'banUser'">
                                     <span class="flex items-center gap-x-2">
@@ -227,6 +230,8 @@
                 type="update"
             >
                 <p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>
+                <p class="mt-6">You must provide a reason for this ban:</p>
+                <x-forms.inputs.textarea name="reason" rows="3" maxlength="255" required></x-forms.inputs.textarea>
             </x-modal>
         @endif
     @endcan

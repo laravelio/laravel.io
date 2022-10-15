@@ -77,6 +77,28 @@ test('moderators cannot ban other moderators', function () {
     assertCannotBanModerators();
 });
 
+test('admins cannot ban a user without a reason', function () {
+    $user = User::factory()->create(['name' => 'Freek Murze']);
+
+    $this->loginAsAdmin();
+
+    $this->put('/admin/users/'.$user->username().'/ban')
+        ->assertRedirectedTo('/');
+
+    test()->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null, 'banned_reason' => null]);
+});
+
+test('moderators cannot ban a user without a reason', function () {
+    $user = User::factory()->create(['name' => 'Freek Murze']);
+
+    $this->loginAsModerator();
+
+    $this->put('/admin/users/'.$user->username().'/ban')
+        ->assertRedirectedTo('/');
+
+    test()->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null, 'banned_reason' => null]);
+});
+
 test('admins can delete a user', function () {
     $user = User::factory()->create(['name' => 'Freek Murze']);
     $thread = Thread::factory()->create(['author_id' => $user->id()]);
@@ -344,10 +366,11 @@ function assertCanBanUsers()
 {
     $user = User::factory()->create(['name' => 'Freek Murze']);
 
-    test()->put('/admin/users/'.$user->username().'/ban')
+    test()->put('/admin/users/'.$user->username().'/ban', ['reason' => 'A good reason'])
         ->assertRedirectedTo('/user/'.$user->username());
 
     test()->notSeeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
+    test()->seeInDatabase('users', ['id' => $user->id(), 'banned_reason' => 'A good reason']);
 }
 
 function assertCanUnbanUsers()
@@ -357,7 +380,7 @@ function assertCanUnbanUsers()
     test()->put('/admin/users/'.$user->username().'/unban')
         ->assertRedirectedTo('/user/'.$user->username());
 
-    test()->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
+    test()->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null, 'banned_reason' => null]);
 }
 
 function assertCannotBanAdmins()
@@ -374,6 +397,6 @@ function assertCannotBanUsersByType(int $type)
 {
     $user = User::factory()->create(['type' => $type]);
 
-    test()->put('/admin/users/'.$user->username().'/ban')
+    test()->put('/admin/users/'.$user->username().'/ban', ['reason' => 'A good reason'])
         ->assertForbidden();
 }

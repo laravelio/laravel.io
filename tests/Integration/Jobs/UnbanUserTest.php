@@ -16,4 +16,5 @@ it('can unban a user', function () {
     $unbannedUser = $user->fresh();
 
     expect($unbannedUser->isBanned())->toBeFalse();
+    expect($unbannedUser->bannedReason())->toBeNull();
 });
