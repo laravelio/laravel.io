@@ -17,3 +17,4 @@ return new class extends Migration
             $table->string('banned_reason')->after('banned_at')->nullable();
         });
     }
+};
