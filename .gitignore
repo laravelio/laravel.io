@@ -11,6 +11,5 @@
 /storage/*.key
 /vendor
 /.vscode
-/.idea
 .env
 .phpunit.result.cache

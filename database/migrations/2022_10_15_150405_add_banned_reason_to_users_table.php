@@ -6,15 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('banned_reason')->after('banned_at')->nullable();
+            $table->text('banned_reason')->after('banned_at')->nullable();
         });
     }
 };

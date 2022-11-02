@@ -24,7 +24,7 @@
                         <div class="space-y-1">
                             <x-forms.label for="bio"/>
 
-                            <x-forms.inputs.textarea name="bio" rows="3" maxlength="160">
+                            <x-forms.inputs.textarea name="bio" maxlength="160">
                                 {{ Auth::user()->bio() }}
                             </x-forms.inputs.textarea>
 

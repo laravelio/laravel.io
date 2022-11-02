@@ -31,7 +31,7 @@ class UsersController extends Controller
         return view('admin.users', compact('users', 'adminSearch'));
     }
 
-    public function ban(User $user, BanRequest $request)
+    public function ban(BanRequest $request, User $user)
     {
         $this->authorize(UserPolicy::BAN, $user);
 
