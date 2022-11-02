@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\VerifyAdmins;
+use App\Http\Requests\BanRequest;
 use App\Jobs\BanUser;
 use App\Jobs\DeleteUser;
 use App\Jobs\UnbanUser;
@@ -30,11 +31,11 @@ class UsersController extends Controller
         return view('admin.users', compact('users', 'adminSearch'));
     }
 
-    public function ban(User $user)
+    public function ban(BanRequest $request, User $user)
     {
         $this->authorize(UserPolicy::BAN, $user);
 
-        $this->dispatchSync(new BanUser($user));
+        $this->dispatchSync(new BanUser($user, $request->get('reason')));
 
         $this->success('admin.users.banned', $user->name());
 

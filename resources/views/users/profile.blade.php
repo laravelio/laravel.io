@@ -104,6 +104,17 @@
                                 </x-buttons.danger-button>
                             @endif
                         @endcan
+
+                        @if ($user->bannedReason())
+                            @can(App\Policies\UserPolicy::BAN, $user)
+                                <div class="mt-2 bg-red-100 text-sm px-4 py-3 border border-red-200 rounded shadow">
+                                    <p class="font-semibold">Banned reason:</p>
+                                    <span class="text-gray-900">
+                                        {{ $user->bannedReason() }}
+                                    </span>
+                                </div>
+                            @endcan
+                        @endif
                     </div>
                 </div>
 
@@ -227,6 +238,9 @@
                 type="update"
             >
                 <p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>
+                <div class="mt-4">
+                    <x-forms.inputs.textarea name="reason" placeholder="Provide a reason for banning this user..." required />
+                </div>
             </x-modal>
         @endif
     @endcan

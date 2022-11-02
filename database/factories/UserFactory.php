@@ -25,6 +25,7 @@ class UserFactory extends Factory
             'twitter' => $this->faker->unique()->userName(),
             'website' => 'https://laravel.io',
             'banned_at' => null,
+            'banned_reason' => null,
             'type' => User::DEFAULT,
             'bio' => $this->faker->sentence(),
             'email_verified_at' => now()->subDay(),
