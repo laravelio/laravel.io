@@ -7,11 +7,7 @@ return [
         ['url' => 'https://fullstackeurope.com/2023?utm_source=Laravel.io&utm_campaign=fseu23&utm_medium=advertisement', 'image' => 'fseu', 'alt' => 'Full Stack Europe', 'goal' => 'SRIK2PEE'],
         [
             'url' => 'https://www.cloudways.com/en/php-hosting.php?id=972670',
-<<<<<<< Updated upstream
-            'long-url' => 'https://www.cloudways.com/en/bfcm-prepathon.php?id=972670',
-=======
             'long-url' => 'https://www.cloudways.com/en/speedup-challenge.php?id=972670',
->>>>>>> Stashed changes
             'image' => 'cloudways',
             'alt' => 'Cloudways',
             'goal' => '4KV6VZZ6',
