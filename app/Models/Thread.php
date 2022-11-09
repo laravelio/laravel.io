@@ -53,12 +53,12 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
     const FEED_PAGE_SIZE = 20;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $table = self::TABLE;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $fillable = [
         'uuid',
@@ -70,7 +70,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $with = [
         'authorRelation',
@@ -81,7 +81,7 @@ final class Thread extends Model implements Feedable, ReplyAble, SubscriptionAbl
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $casts = [
         'last_activity_at' => 'datetime',
