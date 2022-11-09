@@ -35,12 +35,12 @@ final class Reply extends Model implements MentionAble, Spam
     const TABLE = 'replies';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $table = self::TABLE;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $fillable = [
         'uuid',
@@ -51,7 +51,7 @@ final class Reply extends Model implements MentionAble, Spam
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $with = [
         'likesRelation',

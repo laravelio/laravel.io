@@ -29,12 +29,12 @@ final class User extends Authenticatable implements MustVerifyEmail
     const ADMIN = 3;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $table = 'users';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $fillable = [
         'name',
@@ -53,7 +53,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $hidden = ['password', 'remember_token'];
 

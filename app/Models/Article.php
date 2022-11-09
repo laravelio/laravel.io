@@ -36,7 +36,7 @@ final class Article extends Model implements Feedable
     const FEED_PAGE_SIZE = 20;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $fillable = [
         'uuid',
@@ -55,7 +55,7 @@ final class Article extends Model implements Feedable
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $casts = [
         'submitted_at' => 'datetime',
@@ -64,7 +64,7 @@ final class Article extends Model implements Feedable
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected $with = [
         'authorRelation',

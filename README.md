@@ -6,8 +6,8 @@
     <a href="https://github.com/laravelio/laravel.io/actions?query=workflow%3ATests">
         <img src="https://github.com/laravelio/laravel.io/workflows/Tests/badge.svg" alt="Tests" />
     </a>
-    <a href="https://github.styleci.io/repos/12895187">
-        <img src="https://github.styleci.io/repos/12895187/shield?style=flat" alt="Code Style">
+    <a href="https://github.com/laravelio/laravel.io/actions/workflows/coding-standards.yml">
+        <img src="https://github.com/laravelio/laravel.io/actions/workflows/coding-standards.yml/badge.svg" alt="Coding Standards" />
     </a>
 </p>
 
