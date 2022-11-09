@@ -1,8 +1,0 @@
-php:
-  preset: laravel
-  version: 8
-  enabled:
-    - heredoc_indentation
-    - trailing_comma_in_multiline_call
-css: true
-js: true
