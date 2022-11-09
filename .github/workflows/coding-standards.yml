@@ -1,4 +1,4 @@
-name: fix code styling
+name: Coding Standards
 
 on: [push]
 
