@@ -6,8 +6,8 @@ return [
         ['url' => 'https://larajobs.com', 'image' => 'larajobs', 'alt' => 'LaraJobs', 'goal' => '9C3CAYKR'],
         ['url' => 'https://fullstackeurope.com/2023?utm_source=Laravel.io&utm_campaign=fseu23&utm_medium=advertisement', 'image' => 'fseu', 'alt' => 'Full Stack Europe', 'goal' => 'SRIK2PEE'],
         [
-            'url' => 'https://www.cloudways.com/en/php-hosting.php?id=972670',
-            'long-url' => 'https://www.cloudways.com/en/speedup-challenge.php?id=972670',
+            'url' => 'https://www.cloudways.com/en/?id=972670',
+            'long-url' => 'https://www.cloudways.com/en/?id=972670',
             'image' => 'cloudways',
             'alt' => 'Cloudways',
             'goal' => '4KV6VZZ6',
