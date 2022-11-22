@@ -18,9 +18,9 @@
 
                 <div class="lg:w-full lg:flex lg:justify-between">
                     <div class="grow mb-6 lg:mb-0">
-                        <h6 class="text-lg mb-4 lg:mb-6">
+                        <p class="text-lg mb-4 lg:mb-6">
                             Laravel.io
-                        </h6>
+                        </p>
 
                         <div class="flex flex-wrap lg:flex-col lg:flex-no-wrap">
                             <a href="{{ route('forum') }}" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6">
@@ -38,9 +38,9 @@
                     </div>
 
                     <div class="grow mb-6 lg:mb-0">
-                        <h6 class="text-lg mb-4 lg:mb-6">
+                        <p class="text-lg mb-4 lg:mb-6">
                             Socials
-                        </h6>
+                        </p>
 
                         <div class="flex flex-wrap lg:flex-col lg:flex-no-wrap">
                             <a href="https://twitter.com/laravelio" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6">
@@ -56,9 +56,9 @@
                     </div>
 
                     <div class="grow">
-                        <h6 class="text-lg mb-6">
+                        <p class="text-lg mb-6">
                             The community
-                        </h6>
+                        </p>
 
                         <div class="flex flex-col flex-nowrap">
                             <div class="flex mb-4 lg:mb-6">
