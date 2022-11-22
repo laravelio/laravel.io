@@ -84,7 +84,7 @@
 
         <div class="flex flex-wrap justify-end items-center bg-gray-50 py-2.5 px-4 text-xs text-gray-700">
             <a href="https://algolia.com">
-                <img src="{{ asset('images/algolia.svg') }}" class="h-4" />
+                <img loading="lazy" src="{{ asset('images/algolia.svg') }}" class="h-4" />
             </a>
         </div>
 

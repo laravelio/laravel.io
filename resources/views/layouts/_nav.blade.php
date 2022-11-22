@@ -5,7 +5,7 @@
                 <div class="block lg:flex lg:items-center lg:shrink-0">
                     <div class="flex justify-between items-center p-4 lg:p-0">
                         <a href="{{ route('home') }}" class="mr-4">
-                            <img class="h-6 w-auto lg:h-8" src="{{ asset('images/laravelio-logo.svg') }}" alt="" />
+                            <img loading="lazy" class="h-6 w-auto lg:h-8" src="{{ asset('images/laravelio-logo.svg') }}" alt="" />
                         </a>
 
                         <div class="flex lg:hidden">
@@ -105,42 +105,42 @@
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://laravel.com" class="inline-block w-full lg:px-4 lg:py-3">
-                                                    <img src="{{ asset('images/laravel.png') }}" alt="Laravel" class="w-4 h-4 inline" />
+                                                    <img loading="lazy" src="{{ asset('images/laravel.png') }}" alt="Laravel" class="w-4 h-4 inline" />
                                                     Laravel
                                                 </a>
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://laracasts.com" class="inline-block w-full lg:px-4 lg:py-3">
-                                                    <img src="{{ asset('images/laracasts.png') }}" alt="Laracasts" class="w-4 h-4 inline" />
+                                                    <img loading="lazy" src="{{ asset('images/laracasts.png') }}" alt="Laracasts" class="w-4 h-4 inline" />
                                                     Laracasts
                                                 </a>
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://laravel-news.com" class="inline-block w-full lg:px-4 lg:py-3">
-                                                    <img src="{{ asset('images/laravel-news.png') }}" alt="Laravel News" class="w-4 h-4 inline" />
+                                                    <img loading="lazy" src="{{ asset('images/laravel-news.png') }}" alt="Laravel News" class="w-4 h-4 inline" />
                                                     Laravel News
                                                 </a>
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://laravelevents.com" class="inline-block w-full lg:px-4 lg:py-3">
-                                                    <img src="{{ asset('images/laravel.png') }}" alt="Laravel" class="w-4 h-4 inline" />
+                                                    <img loading="lazy" src="{{ asset('images/laravel.png') }}" alt="Laravel" class="w-4 h-4 inline" />
                                                     Laravel Events
                                                 </a>
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://www.laravelpodcast.com" class="inline-block w-full lg:px-4 lg:py-3">
-                                                    <img src="{{ asset('images/podcast.png') }}" alt="Laravel Podcast" class="w-4 h-4 inline" />
+                                                    <img loading="lazy" src="{{ asset('images/podcast.png') }}" alt="Laravel Podcast" class="w-4 h-4 inline" />
                                                     Podcast
                                                 </a>
                                             </li>
 
                                             <li class="hover:bg-gray-100">
                                                 <a href="https://ecosystem.laravel.io" class="inline-block w-full lg:px-4 lg:py-3">
-                                                    <img src="{{ asset('images/laravelio-icon.svg') }}" alt="Laravel Podcast" class="w-4 h-4 inline" />
+                                                    <img loading="lazy" src="{{ asset('images/laravelio-icon.svg') }}" alt="Laravel Podcast" class="w-4 h-4 inline" />
                                                     Ecosystem
                                                 </a>
                                             </li>
