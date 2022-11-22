@@ -18,7 +18,7 @@
 @else
     <img loading="lazy"
         src="{{ asset('https://laravel.io/images/laravelio-icon-gray.svg') }}"
-        {{-- alt="{{ $user->name() }}" --}}
+        alt="{{ $user->name() }}"
         {{ $attributes->merge(['class' => 'bg-gray-50 rounded-full']) }}
     />
 @endif
