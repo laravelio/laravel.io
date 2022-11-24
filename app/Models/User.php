@@ -31,7 +31,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     /**
      * {@inheritdoc}
      */
-    protected $table = 'users';
+    protected $table = self::TABLE;
 
     /**
      * {@inheritdoc}
