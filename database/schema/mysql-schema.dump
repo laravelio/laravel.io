@@ -158,6 +158,7 @@ CREATE TABLE `personal_access_tokens` (
   `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -197,7 +198,7 @@ DROP TABLE IF EXISTS `spam_reports`;
 CREATE TABLE `spam_reports` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `reporter_id` int unsigned NOT NULL,
-  `spam_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `spam_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `spam_id` bigint unsigned DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -306,7 +307,7 @@ CREATE TABLE `users` (
   `type` smallint unsigned NOT NULL DEFAULT '1',
   `bio` varchar(160) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `banned_at` datetime DEFAULT NULL,
-  `banned_reason` text COLLATE utf8mb4_unicode_ci,
+  `banned_reason` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
@@ -399,3 +400,4 @@ INSERT INTO `migrations` VALUES (73,'2022_07_29_135113_add__website_to_users_tab
 INSERT INTO `migrations` VALUES (74,'2022_08_21_215918_add_soft_delete_columns_to_replies_table',10);
 INSERT INTO `migrations` VALUES (75,'2022_07_08_145847_create_spam_reports_table',11);
 INSERT INTO `migrations` VALUES (76,'2022_10_15_150405_add_banned_reason_to_users_table',11);
+INSERT INTO `migrations` VALUES (77,'2022_12_11_145605_add_expires_at_column_sanctum',12);
