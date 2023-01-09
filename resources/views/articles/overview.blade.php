@@ -180,10 +180,6 @@
                     </ul>
                 </div>
 
-                <div class="mt-6">
-                    <x-moderators :moderators="$moderators" />
-                </div>
-
                 <div class="hidden lg:block mt-6">
                     <x-buttons.dark-cta class="w-full" href="{{ url('/articles/feed') }}">
                         <x-heroicon-s-rss class="w-6 h-6 mr-2" />
