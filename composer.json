@@ -74,16 +74,15 @@
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
-        ],
-        "post-update-cmd": [
-            "@php artisan horizon:publish --ansi",
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "setup": [
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
@@ -102,6 +101,6 @@
             "pestphp/pest-plugin": true
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
