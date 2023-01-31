@@ -31,8 +31,8 @@ enum NotificationTypes: string
     public static function getTypes(): array
     {
         return [
-          self::MENTION->value => self::MENTION->label(),
-          self::REPLY->value => self::REPLY->label(),
+          self::MENTION->value => self::MENTION,
+          self::REPLY->value => self::REPLY,
         ];
     }
 }

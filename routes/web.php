@@ -27,6 +27,7 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UnblockUserController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Settings\NotificationSettingsController;
 
 Route::feeds();
 
@@ -81,6 +82,7 @@ Route::put('settings/password', [PasswordController::class, 'update'])->name('se
 Route::put('settings/users/{username}/unblock', UnblockUserSettingsController::class)->name('settings.users.unblock');
 Route::post('settings/api-tokens', [ApiTokenController::class, 'store'])->name('settings.api-tokens.store');
 Route::delete('settings/api-tokens', [ApiTokenController::class, 'destroy'])->name('settings.api-tokens.delete');
+Route::post('settings/notifications', [NotificationSettingsController::class, 'store'])->name('settings.notifications.store');
 
 // Forum
 Route::prefix('forum')->group(function () {

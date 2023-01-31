@@ -12,6 +12,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
+use App\Enums\NotificationTypes;
+use Illuminate\Support\Arr;
 
 final class User extends Authenticatable implements MustVerifyEmail
 {
@@ -50,6 +52,10 @@ final class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
         'bio',
         'banned_reason',
+    ];
+
+    protected $casts = [
+      'notifications' => 'array'
     ];
 
     /**
@@ -350,5 +356,17 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $query->whereDoesntHave('blockedUsers', function ($query) use ($user) {
             $query->where('user_id', $user->getKey());
         });
+    }
+
+    public function isNotificationAllowed(string $notification_class): bool
+    {
+        if (!empty($this->notifications)) {
+            foreach (Arr::collapse($this->notifications) as $notification_type => $value) {
+                if (NotificationTypes::from($notification_type)->getClass() == $notification_class) {
+                    return FALSE;
+                }
+            }
+        }
+        return TRUE;
     }
 }
