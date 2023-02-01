@@ -19,6 +19,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\Settings\ApiTokenController;
+use App\Http\Controllers\Settings\NotificationSettingsController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController as ProfileSettingsController;
 use App\Http\Controllers\Settings\UnblockUserController as UnblockUserSettingsController;
@@ -27,7 +28,6 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UnblockUserController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Settings\NotificationSettingsController;
 
 Route::feeds();
 

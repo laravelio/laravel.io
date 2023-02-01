@@ -2,8 +2,8 @@
 
 namespace App\Enums;
 
-use App\Notifications\NewReplyNotification;
 use App\Notifications\MentionNotification;
+use App\Notifications\NewReplyNotification;
 
 enum NotificationTypes: string
 {
@@ -12,8 +12,7 @@ enum NotificationTypes: string
 
     public function getClass(): string
     {
-        return match($this)
-        {
+        return match ($this) {
             self::MENTION => MentionNotification::class,
             self::REPLY => NewReplyNotification::class,
         };
@@ -21,8 +20,7 @@ enum NotificationTypes: string
 
     public function label(): string
     {
-        return match($this)
-        {
+        return match ($this) {
             self::MENTION => "Mention",
             self::REPLY => "Reply",
         };
@@ -31,8 +29,8 @@ enum NotificationTypes: string
     public static function getTypes(): array
     {
         return [
-          self::MENTION->value => self::MENTION,
-          self::REPLY->value => self::REPLY,
+            self::MENTION->value => self::MENTION,
+            self::REPLY->value => self::REPLY,
         ];
     }
 }

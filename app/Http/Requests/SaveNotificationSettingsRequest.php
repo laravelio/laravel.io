@@ -9,7 +9,7 @@ class SaveNotificationSettingsRequest extends FormRequest
     public function rules(): array
     {
         return [
-          'notification_types.*' => 'string'
+            'notification_types.*' => 'string'
         ];
     }
 }

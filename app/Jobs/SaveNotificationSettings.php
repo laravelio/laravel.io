@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Models\User;
 use App\Enums\NotificationTypes;
+use App\Models\User;
 
 final class SaveNotificationSettings
 {
@@ -14,18 +14,18 @@ final class SaveNotificationSettings
     public function handle(): void
     {
         $types = NotificationTypes::getTypes();
+
         $not_allowed_notifications = array_diff(array_keys($types), $this->allowedNotifications);
+
+        $notifications = null;
         if (!empty($not_allowed_notifications)) {
             $notifications = [];
             foreach ($not_allowed_notifications as $type) {
                 $notifications[] = [$type => false];
             }
-            $this->user->notifications = $notifications;
-            $this->user->save();
         }
-        else {
-            $this->user->notifications = NULL;
-            $this->user->save();
-        }
+
+        $this->user->notifications = $notifications;
+        $this->user->save();
     }
 }
