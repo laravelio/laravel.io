@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Concerns\HasTimestamps;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Notifications\Dispatcher;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -368,5 +369,12 @@ final class User extends Authenticatable implements MustVerifyEmail
             }
         }
         return TRUE;
+    }
+
+    public function notify($instance)
+    {
+        if ($this->isNotificationAllowed($instance::class)) {
+            app(Dispatcher::class)->send($this, $instance);
+        }
     }
 }
