@@ -20,7 +20,6 @@ This is the repository for the [Laravel.io](http://laravel.io) community portal.
 We'd like to thank these **amazing companies** for sponsoring us. If you are interested in becoming a sponsor, please visit <a href="https://github.com/sponsors/laravelio">the Laravel.io Github Sponsors page</a>.
 
 - **[LaraJobs](https://larajobs.com)**
-- **[Cloudways](https://www.cloudways.com/en/?id=972670)**
 - **[LoadForge](https://loadforge.com/)**
 - [Forge](https://forge.laravel.com)
 - [Envoyer](https://envoyer.io)

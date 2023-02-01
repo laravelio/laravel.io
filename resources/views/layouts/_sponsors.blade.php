@@ -34,10 +34,6 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://www.cloudways.com/en/?id=972670" logo="{{ asset('images/sponsors/cloudways.png') }}" company="Cloudways" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://loadforge.com" logo="{{ asset('images/sponsors/loadforge.svg') }}" company="LoadForge" />
             </div>
 
