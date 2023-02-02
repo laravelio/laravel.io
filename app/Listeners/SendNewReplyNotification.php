@@ -16,7 +16,7 @@ final class SendNewReplyNotification
         $thread = $event->reply->replyAble();
 
         foreach ($thread->subscriptions() as $subscription) {
-            if ($this->replyAuthorDoesNotMatchSubscriber($event->reply->author(), $subscription)) {
+            if ($subscription->user()->isNotificationAllowed(NewReplyNotification::class) && $this->replyAuthorDoesNotMatchSubscriber($event->reply->author(), $subscription)) {
                 $subscription->user()->notify(new NewReplyNotification($event->reply, $subscription));
             }
         }

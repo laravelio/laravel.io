@@ -371,11 +371,4 @@ final class User extends Authenticatable implements MustVerifyEmail
 
         return true;
     }
-
-    public function notify($instance)
-    {
-        if ($this->isNotificationAllowed($instance::class)) {
-            app(Dispatcher::class)->send($this, $instance);
-        }
-    }
 }

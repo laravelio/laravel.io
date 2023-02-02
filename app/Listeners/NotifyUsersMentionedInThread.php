@@ -12,7 +12,7 @@ final class NotifyUsersMentionedInThread
     public function handle(ThreadWasCreated $event): void
     {
         $event->thread->mentionedUsers()->each(function ($user) use ($event) {
-            if (! $user->hasBlocked($event->thread->author())) {
+            if ($user->isNotificationAllowed(MentionNotification::class) && ! $user->hasBlocked($event->thread->author())) {
                 $user->notify(new MentionNotification($event->thread));
             }
         });
