@@ -11,4 +11,5 @@ return [
         'created' => 'API token created! Please copy the following token as it will not be shown again:',
         'deleted' => 'API token successfully removed.',
     ],
+    'notifications.updated' => 'Notification settings were successfully updated.'
 ];

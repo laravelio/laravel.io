@@ -17,6 +17,9 @@ class NotificationSettingsController extends Controller
     public function store(SaveNotificationSettingsRequest $request)
     {
         $this->dispatchSync(new SaveNotificationSettings($user = $request->user(), (array) $request->validated('notification_types')));
+
+        $this->success('settings.notifications.updated');
+
         return redirect()->route('settings.profile');
     }
 }
