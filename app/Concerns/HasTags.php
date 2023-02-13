@@ -2,8 +2,8 @@
 
 namespace App\Concerns;
 
-use Illuminate\Database\Eloquent\Collection;
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait HasTags

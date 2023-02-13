@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Settings;
 
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Jobs\UpdatePassword;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\RedirectResponse;
 
 class PasswordController extends Controller
 {

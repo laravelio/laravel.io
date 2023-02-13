@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
 use App\Jobs\UnsubscribeFromSubscriptionAble;
 use App\Models\Subscription;
+use Illuminate\Http\RedirectResponse;
 
 class SubscriptionController extends Controller
 {

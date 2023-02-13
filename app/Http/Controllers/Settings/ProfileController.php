@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Settings;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Jobs\DeleteUser;
 use App\Jobs\UpdateProfile;
 use App\Policies\UserPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {

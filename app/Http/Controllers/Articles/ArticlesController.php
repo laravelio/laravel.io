@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Articles;
 
-use Illuminate\View\View;
 use App\Concerns\UsesFilters;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
@@ -20,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response;
 
 class ArticlesController extends Controller

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
 use App\Http\Middleware\Authenticate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class MarkNotificationsController extends Controller

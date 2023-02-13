@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Settings;
 
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Jobs\UnblockUser;
 use App\Models\User;
 use App\Policies\UserPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class UnblockUserController extends Controller

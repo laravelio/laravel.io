@@ -2,9 +2,9 @@
 
 namespace App\Concerns;
 
-use Illuminate\Database\Eloquent\Collection;
 use App\Models\Subscription;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Ramsey\Uuid\Uuid;
 

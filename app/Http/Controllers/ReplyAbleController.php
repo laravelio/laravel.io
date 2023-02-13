@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
 use App\Models\Reply;
+use Illuminate\Http\RedirectResponse;
 
 class ReplyAbleController extends Controller
 {

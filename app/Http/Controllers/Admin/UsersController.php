@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\VerifyAdmins;
 use App\Http\Requests\BanRequest;
@@ -14,6 +12,8 @@ use App\Models\User;
 use App\Policies\UserPolicy;
 use App\Queries\SearchUsers;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class UsersController extends Controller
 {

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Forum;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App\Concerns\UsesFilters;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreadRequest;
@@ -25,10 +23,12 @@ use App\Notifications\ThreadDeletedNotification;
 use App\Policies\ThreadPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class ThreadsController extends Controller
 {

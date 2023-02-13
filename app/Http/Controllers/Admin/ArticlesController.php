@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\VerifyAdmins;
 use App\Jobs\ApproveArticle;
@@ -13,6 +11,8 @@ use App\Models\Article;
 use App\Policies\ArticlePolicy;
 use App\Queries\SearchArticles;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ArticlesController extends Controller
 {
