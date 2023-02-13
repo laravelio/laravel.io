@@ -9,9 +9,6 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait HasLikes
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
     public function likes(): Collection
     {
         return $this->likesRelation;

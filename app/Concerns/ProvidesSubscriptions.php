@@ -10,9 +10,6 @@ use Ramsey\Uuid\Uuid;
 
 trait ProvidesSubscriptions
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
     public function subscriptions(): Collection
     {
         return $this->subscriptionsRelation;

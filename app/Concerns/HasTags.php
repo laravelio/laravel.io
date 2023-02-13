@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait HasTags
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
     public function tags(): Collection
     {
         return $this->tagsRelation;
