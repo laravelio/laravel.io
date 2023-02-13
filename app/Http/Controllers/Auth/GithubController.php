@@ -64,7 +64,7 @@ class GithubController extends Controller
         if ($user->isTooYoung()) {
             $this->error('errors.github_account_too_young');
 
-            return redirect()->home();
+            return redirect()->route('home');
         }
 
         return $this->redirectUserToRegistrationPage($user);

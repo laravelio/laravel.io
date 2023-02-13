@@ -17,7 +17,7 @@ class RedirectIfBanned
 
             Auth::logout();
 
-            return redirect()->home();
+            return redirect()->route('home');
         }
 
         return $next($request);
