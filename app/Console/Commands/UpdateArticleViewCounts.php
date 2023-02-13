@@ -24,7 +24,7 @@ final class UpdateArticleViewCounts extends Command
         $this->token = config('services.fathom.token');
     }
 
-    public function handle()
+    public function handle(): void
     {
         if (! $this->siteId || ! $this->token) {
             $this->error('Fathom site ID and token must be configured');

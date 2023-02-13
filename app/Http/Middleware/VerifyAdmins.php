@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
 use App\Policies\UserPolicy;
 use Closure;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class VerifyAdmins
 {
-    public function handle(Request $request, Closure $next, $guard = null)
+    public function handle(Request $request, Closure $next, $guard = null): Response
     {
         if (Auth::guard($guard)->user()->can(UserPolicy::ADMIN, User::class)) {
             return $next($request);

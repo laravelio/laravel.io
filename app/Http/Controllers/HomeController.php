@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
@@ -60,7 +61,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function pastebin(string $paste = '')
+    public function pastebin(string $paste = ''): RedirectResponse
     {
         $paste = str_replace(PHP_EOL, '', $paste);
 

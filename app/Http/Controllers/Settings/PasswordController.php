@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Settings;
 
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Jobs\UpdatePassword;
@@ -14,7 +15,7 @@ class PasswordController extends Controller
         $this->middleware(Authenticate::class);
     }
 
-    public function update(UpdatePasswordRequest $request)
+    public function update(UpdatePasswordRequest $request): RedirectResponse
     {
         $this->dispatchSync(new UpdatePassword($request->user(), $request->newPassword()));
 

@@ -24,7 +24,7 @@ class MarkedAsSpamNotification extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         if (
             ! empty(config('services.telegram-bot-api.token')) &&

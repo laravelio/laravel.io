@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Articles;
 
+use Illuminate\View\View;
 use App\Concerns\UsesFilters;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
@@ -73,7 +74,7 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function show(Article $article)
+    public function show(Article $article): View
     {
         $user = Auth::user();
 
@@ -94,7 +95,7 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create(Request $request): View
     {
         $tags = Tag::query();
 
@@ -121,7 +122,7 @@ class ArticlesController extends Controller
             : redirect()->route('articles.show', $article->slug());
     }
 
-    public function edit(Request $request, Article $article)
+    public function edit(Request $request, Article $article): View
     {
         $this->authorize(ArticlePolicy::UPDATE, $article);
 

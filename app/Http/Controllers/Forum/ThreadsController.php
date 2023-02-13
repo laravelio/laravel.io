@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Forum;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Concerns\UsesFilters;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreadRequest;
@@ -79,7 +81,7 @@ class ThreadsController extends Controller
         return view('forum.threads.show', compact('thread', 'moderators'));
     }
 
-    public function create()
+    public function create(): View
     {
         $tags = Tag::all();
         $selectedTags = old('tags') ?: [];
@@ -87,7 +89,7 @@ class ThreadsController extends Controller
         return view('forum.threads.create', ['tags' => $tags, 'selectedTags' => $selectedTags]);
     }
 
-    public function store(ThreadRequest $request)
+    public function store(ThreadRequest $request): RedirectResponse
     {
         $this->dispatchSync(CreateThread::fromRequest($request, $uuid = Str::uuid()));
 
@@ -98,7 +100,7 @@ class ThreadsController extends Controller
         return redirect()->route('thread', $thread->slug());
     }
 
-    public function edit(Thread $thread)
+    public function edit(Thread $thread): View
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
 
@@ -107,7 +109,7 @@ class ThreadsController extends Controller
         return view('forum.threads.edit', ['thread' => $thread, 'tags' => Tag::all(), 'selectedTags' => $selectedTags]);
     }
 
-    public function update(ThreadRequest $request, Thread $thread)
+    public function update(ThreadRequest $request, Thread $thread): RedirectResponse
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
 
@@ -118,7 +120,7 @@ class ThreadsController extends Controller
         return redirect()->route('thread', $thread->fresh()->slug());
     }
 
-    public function delete(Request $request, Thread $thread)
+    public function delete(Request $request, Thread $thread): RedirectResponse
     {
         $this->authorize(ThreadPolicy::DELETE, $thread);
 
@@ -135,7 +137,7 @@ class ThreadsController extends Controller
         return redirect()->route('forum');
     }
 
-    public function lock(Request $request, Thread $thread)
+    public function lock(Request $request, Thread $thread): RedirectResponse
     {
         $this->authorize(ThreadPolicy::LOCK, $thread);
 
@@ -152,7 +154,7 @@ class ThreadsController extends Controller
         return redirect()->route('thread', $thread->slug());
     }
 
-    public function markSolution(Thread $thread, Reply $reply)
+    public function markSolution(Thread $thread, Reply $reply): RedirectResponse
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
 
@@ -161,7 +163,7 @@ class ThreadsController extends Controller
         return redirect()->route('thread', $thread->slug());
     }
 
-    public function unmarkSolution(Thread $thread)
+    public function unmarkSolution(Thread $thread): RedirectResponse
     {
         $this->authorize(ThreadPolicy::UPDATE, $thread);
 
@@ -170,7 +172,7 @@ class ThreadsController extends Controller
         return redirect()->route('thread', $thread->slug());
     }
 
-    public function subscribe(Request $request, Thread $thread)
+    public function subscribe(Request $request, Thread $thread): RedirectResponse
     {
         $this->authorize(ThreadPolicy::SUBSCRIBE, $thread);
 
@@ -181,7 +183,7 @@ class ThreadsController extends Controller
         return redirect()->route('thread', $thread->slug());
     }
 
-    public function unsubscribe(Request $request, Thread $thread)
+    public function unsubscribe(Request $request, Thread $thread): RedirectResponse
     {
         $this->authorize(ThreadPolicy::UNSUBSCRIBE, $thread);
 
@@ -192,7 +194,7 @@ class ThreadsController extends Controller
         return redirect()->route('thread', $thread->slug());
     }
 
-    public function markAsSpam(Request $request, Thread $thread)
+    public function markAsSpam(Request $request, Thread $thread): RedirectResponse
     {
         $this->authorize(ThreadPolicy::REPORT_SPAM, $thread);
 

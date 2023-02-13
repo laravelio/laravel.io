@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class ReplySeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $userIds = array_flip(DB::table('users')->pluck('id')->toArray());
         $threads = Thread::all();

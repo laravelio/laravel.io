@@ -2,6 +2,7 @@
 
 namespace App\Concerns;
 
+use Illuminate\Database\Eloquent\Collection;
 use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -12,7 +13,7 @@ trait ProvidesSubscriptions
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function subscriptions()
+    public function subscriptions(): Collection
     {
         return $this->subscriptionsRelation;
     }

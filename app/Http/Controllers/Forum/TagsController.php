@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Forum;
 
+use Illuminate\View\View;
 use App\Concerns\UsesFilters;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
@@ -12,7 +13,7 @@ class TagsController extends Controller
 {
     use UsesFilters;
 
-    public function show(Tag $tag)
+    public function show(Tag $tag): View
     {
         $threads = [];
         $filter = $this->getFilter();

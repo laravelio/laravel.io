@@ -12,7 +12,7 @@ return new class extends Migration
         'replies',
     ];
 
-    public function up()
+    public function up(): void
     {
         foreach (static::TABLES as $tableName) {
             Schema::table($tableName, function (Blueprint $table) use ($tableName) {

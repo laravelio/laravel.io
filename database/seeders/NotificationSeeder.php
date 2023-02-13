@@ -13,7 +13,7 @@ class NotificationSeeder extends Seeder
 {
     use WithFaker;
 
-    public function run()
+    public function run(): void
     {
         $replies = Reply::with(['authorRelation.notifications', 'replyAbleRelation'])->get();
 

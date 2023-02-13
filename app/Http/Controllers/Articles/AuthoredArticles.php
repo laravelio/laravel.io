@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Articles;
 
+use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
@@ -14,7 +15,7 @@ class AuthoredArticles extends Controller
         $this->middleware([Authenticate::class, EnsureEmailIsVerified::class]);
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): View
     {
         return view('users.articles', [
             'articles' => $request->user()

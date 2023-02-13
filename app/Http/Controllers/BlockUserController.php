@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use App\Jobs\BlockUser;
 use App\Models\User;
 use App\Policies\UserPolicy;
@@ -15,7 +16,7 @@ class BlockUserController extends Controller
         $this->middleware(Authenticate::class);
     }
 
-    public function __invoke(Request $request, User $user)
+    public function __invoke(Request $request, User $user): RedirectResponse
     {
         $this->authorize(UserPolicy::BLOCK, $user);
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\VerifyAdmins;
 use App\Http\Requests\BanRequest;
@@ -20,7 +22,7 @@ class UsersController extends Controller
         $this->middleware([Authenticate::class, VerifyAdmins::class]);
     }
 
-    public function index()
+    public function index(): View
     {
         if ($adminSearch = request('admin_search')) {
             $users = SearchUsers::get($adminSearch)->appends(['admin_search' => $adminSearch]);
@@ -31,7 +33,7 @@ class UsersController extends Controller
         return view('admin.users', compact('users', 'adminSearch'));
     }
 
-    public function ban(BanRequest $request, User $user)
+    public function ban(BanRequest $request, User $user): RedirectResponse
     {
         $this->authorize(UserPolicy::BAN, $user);
 
@@ -42,7 +44,7 @@ class UsersController extends Controller
         return redirect()->route('profile', $user->username());
     }
 
-    public function unban(User $user)
+    public function unban(User $user): RedirectResponse
     {
         $this->authorize(UserPolicy::BAN, $user);
 
@@ -53,7 +55,7 @@ class UsersController extends Controller
         return redirect()->route('profile', $user->username());
     }
 
-    public function delete(User $user)
+    public function delete(User $user): RedirectResponse
     {
         $this->authorize(UserPolicy::DELETE, $user);
 

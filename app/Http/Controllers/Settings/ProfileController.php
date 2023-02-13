@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Settings;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Jobs\DeleteUser;
@@ -17,12 +19,12 @@ class ProfileController extends Controller
         $this->middleware(Authenticate::class);
     }
 
-    public function edit()
+    public function edit(): View
     {
         return view('users.settings.settings');
     }
 
-    public function update(UpdateProfileRequest $request)
+    public function update(UpdateProfileRequest $request): RedirectResponse
     {
         $this->dispatchSync(UpdateProfile::fromRequest($request->user(), $request));
 
@@ -31,7 +33,7 @@ class ProfileController extends Controller
         return redirect()->route('settings.profile');
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request): RedirectResponse
     {
         $this->authorize(UserPolicy::DELETE, $user = $request->user());
 

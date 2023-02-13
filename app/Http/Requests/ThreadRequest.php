@@ -7,7 +7,7 @@ use App\Rules\HttpImageRule;
 
 class ThreadRequest extends Request
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'subject' => ['required', 'max:60', new DoesNotContainUrlRule()],
