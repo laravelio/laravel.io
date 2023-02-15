@@ -25,8 +25,6 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Envoyer](https://envoyer.io)
 - [Fathom](https://usefathom.com)
 - [Tinkerwell](https://tinkerwell.app)
-- [Akaunting](https://akaunting.com/developers?utm_source=Laravelio&utm_medium=Banner&utm_campaign=Developers)
-- [Scout APM](https://ter.li/o1adaj)
 - [Skynet Technologies](https://www.skynettechnologies.com/hire-laravel-developer)
 - [Lightflows](https://www.lightflows.co.uk/laravel-development-agency/)
 - [Backpack for Laravel](https://backpackforlaravel.com/?ref=laravelio)
