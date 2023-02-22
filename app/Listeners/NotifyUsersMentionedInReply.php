@@ -12,7 +12,7 @@ final class NotifyUsersMentionedInReply
     public function handle(ReplyWasCreated $event): void
     {
         $event->reply->mentionedUsers()->each(function ($user) use ($event) {
-            if ($user->isNotificationAllowed(MentionNotification::class) && ! $user->hasBlocked($event->reply->author())) {
+            if ($user->isNotificationAllowed(MentionNotification::class) && ! $user->hasBlocked($event->reply->author()) && ! $event->reply->replyAble()->participants()->contains($user)) {
                 $user->notify(new MentionNotification($event->reply));
             }
         });
