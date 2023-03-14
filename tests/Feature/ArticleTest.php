@@ -523,7 +523,7 @@ test('pinned articles are included with the non-pinned article if there are more
                     $pinned[0]->id,
                     $pinned[1]->id,
                     $pinned[2]->id,
-                    $pinned[3]->id
+                    $pinned[3]->id,
                 ];
         })
         ->assertViewHas('articles', function (LengthAwarePaginator $articles) use ($nonPinned, $pinned): bool {
@@ -534,7 +534,7 @@ test('pinned articles are included with the non-pinned article if there are more
                     $nonPinned[1]->id,
                     $nonPinned[2]->id,
                     $nonPinned[3]->id,
-                    $nonPinned[4]->id
+                    $nonPinned[4]->id,
                 ];
         })
         ->see('6 articles')
