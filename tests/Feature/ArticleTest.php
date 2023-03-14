@@ -4,7 +4,9 @@ use App\Events\ArticleWasSubmittedForApproval;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Notifications\ArticleApprovedNotification;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Tests\Feature\BrowserKitTestCase;
@@ -505,4 +507,45 @@ test('only articles with ten or more views render a view count', function () {
     $this->get("/articles/{$article->slug()}")
         ->see('My First Article')
         ->see('10 views');
+});
+
+test('pinned articles are included with the non-pinned article if there are more than 4 pinned articles', function () {
+    // Create 5 pinned, approved articles.
+    $pinned = Article::factory()->count(5)->create(['is_pinned' => true, 'submitted_at' => now(), 'approved_at' => now()]);
+
+    // Create 5 non-pinned, approved articles.
+    $nonPinned = Article::factory()->count(5)->create(['is_pinned' => false, 'submitted_at' => now(), 'approved_at' => now()]);
+
+    $this->visit('/articles')
+        ->assertViewHas('pinnedArticles', function (Collection $articles) use ($pinned): bool {
+            return $articles->pluck('id')->toArray()
+                === [
+                    $pinned[0]->id,
+                    $pinned[1]->id,
+                    $pinned[2]->id,
+                    $pinned[3]->id
+                ];
+        })
+        ->assertViewHas('articles', function (LengthAwarePaginator $articles) use ($nonPinned, $pinned): bool {
+            return $articles->pluck('id')->toArray()
+                === [
+                    $pinned[4]->id,
+                    $nonPinned[0]->id,
+                    $nonPinned[1]->id,
+                    $nonPinned[2]->id,
+                    $nonPinned[3]->id,
+                    $nonPinned[4]->id
+                ];
+        })
+        ->see('6 articles')
+        ->see($pinned[0]->title())
+        ->see($pinned[1]->title())
+        ->see($pinned[2]->title())
+        ->see($pinned[3]->title())
+        ->see($pinned[4]->title())
+        ->see($nonPinned[0]->title())
+        ->see($nonPinned[1]->title())
+        ->see($nonPinned[2]->title())
+        ->see($nonPinned[3]->title())
+        ->see($nonPinned[4]->title());
 });

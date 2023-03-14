@@ -15,6 +15,7 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Policies\ArticlePolicy;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -40,8 +41,15 @@ class ArticlesController extends Controller
             ->take(4)
             ->get();
 
+        // Grab any articles that are not pinned, or are pinned but not
+        // in the pinned articles collection.
         $articles = Article::published()
-            ->notPinned()
+            ->where(function (Builder $query) use ($pinnedArticles): void {
+                $query->notPinned()
+                    ->orWhere(
+                        fn (Builder $query): Builder => $query->pinned()->whereKeyNot($pinnedArticles->pluck('id'))
+                    );
+            })
             ->{$filter}();
 
         $tags = Tag::whereHas('articles', function ($query) {
