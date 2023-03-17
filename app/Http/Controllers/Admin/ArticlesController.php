@@ -69,14 +69,14 @@ class ArticlesController extends Controller
         $this->authorize(ArticlePolicy::PINNED, $article);
 
         $article = DB::transaction(function () use ($article): Article {
-            if (!$article->isPinned()) {
+            if (! $article->isPinned()) {
                 Article::pinned()
                     ->oldest()
                     ->take(1)
                     ->update(['is_pinned' => false]);
             }
 
-            $article->is_pinned = !$article->isPinned();
+            $article->is_pinned = ! $article->isPinned();
             $article->save();
 
             return $article;

@@ -327,7 +327,6 @@ test('admin can pin articles if there are already 4 pinned articles', function (
     expect($pinnedArticles[1]->fresh()->isPinned())->toBeTrue();
     expect($pinnedArticles[2]->fresh()->isPinned())->toBeTrue();
     expect($pinnedArticles[3]->fresh()->isPinned())->toBeTrue();
-
 });
 
 test('admins can unpin articles', function () {
