@@ -264,7 +264,9 @@ test('admins can pin articles', function () {
 
     $this->loginAsAdmin();
 
-    $this->put("/admin/articles/{$article->slug()}/pinned");
+    $response = $this->put("/admin/articles/{$article->slug()}/pinned");
+    $response->assertSessionHas('success');
+    $response->assertSessionMissing('error');
 
     expect($article->fresh()->isPinned())->toBeTrue();
 });
@@ -293,6 +295,26 @@ test('guests cannot pin articles', function () {
     $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
     $this->put("/admin/articles/{$article->slug()}/pinned");
+
+    expect($article->fresh()->isPinned())->toBeFalse();
+});
+
+test('admin cannot pin article if there are already four pinned articles', function () {
+    Article::factory()
+        ->count(4)
+        ->create([
+            'submitted_at' => now(),
+            'approved_at' => now(),
+            'is_pinned' => true,
+        ]);
+
+    $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
+
+    $this->loginAsAdmin();
+
+    $response = $this->put("/admin/articles/{$article->slug()}/pinned");
+    $response->assertSessionMissing('success');
+    $response->assertSessionHas('error');
 
     expect($article->fresh()->isPinned())->toBeFalse();
 });
