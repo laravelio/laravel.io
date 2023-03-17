@@ -356,12 +356,4 @@ final class Article extends Model implements Feedable
             ->link(route('articles.show', $this->slug()))
             ->authorName($this->author()->name());
     }
-
-    /**
-     * Check whether the article can be pinned. Only 4 articles can be pinned at a time.
-     */
-    public function canBePinned(): bool
-    {
-        return $this->pinned()->count() < 4;
-    }
 }
