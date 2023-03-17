@@ -67,6 +67,12 @@ class ArticlesController extends Controller
     {
         $this->authorize(ArticlePolicy::PINNED, $article);
 
+        if (!$article->isPinned() && !$article->canBePinned()) {
+            $this->error('errors.article_pinned_limit_exceeded');
+
+            return redirect()->route('articles.show', $article->slug());
+        }
+
         $article->is_pinned = ! $article->isPinned();
         $article->save();
 
