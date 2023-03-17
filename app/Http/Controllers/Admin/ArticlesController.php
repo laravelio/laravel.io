@@ -11,6 +11,7 @@ use App\Models\Article;
 use App\Policies\ArticlePolicy;
 use App\Queries\SearchArticles;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Support\Facades\DB;
 
 class ArticlesController extends Controller
 {
@@ -67,14 +68,19 @@ class ArticlesController extends Controller
     {
         $this->authorize(ArticlePolicy::PINNED, $article);
 
-        if (! $article->isPinned() && ! $article->canBePinned()) {
-            $this->error('errors.article_pinned_limit_exceeded');
+        $article = DB::transaction(function () use ($article): Article {
+            if (!$article->isPinned()) {
+                Article::pinned()
+                    ->oldest()
+                    ->take(1)
+                    ->update(['is_pinned' => false]);
+            }
 
-            return redirect()->route('articles.show', $article->slug());
-        }
+            $article->is_pinned = !$article->isPinned();
+            $article->save();
 
-        $article->is_pinned = ! $article->isPinned();
-        $article->save();
+            return $article;
+        });
 
         $this->success($article->isPinned() ? 'admin.articles.pinned' : 'admin.articles.unpinned');
 

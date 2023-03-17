@@ -264,9 +264,7 @@ test('admins can pin articles', function () {
 
     $this->loginAsAdmin();
 
-    $response = $this->put("/admin/articles/{$article->slug()}/pinned");
-    $response->assertSessionHas('success');
-    $response->assertSessionMissing('error');
+    $this->put("/admin/articles/{$article->slug()}/pinned");
 
     expect($article->fresh()->isPinned())->toBeTrue();
 });
@@ -299,9 +297,15 @@ test('guests cannot pin articles', function () {
     expect($article->fresh()->isPinned())->toBeFalse();
 });
 
-test('admin cannot pin article if there are already four pinned articles', function () {
-    Article::factory()
+test('admin can pin articles if there are already 4 pinned articles', function () {
+    $pinnedArticles = Article::factory()
         ->count(4)
+        ->sequence(
+            ['created_at' => now()->subDays(3)],
+            ['created_at' => now()->subDays(2)],
+            ['created_at' => now()->subDays(1)],
+            ['created_at' => now()],
+        )
         ->create([
             'submitted_at' => now(),
             'approved_at' => now(),
@@ -312,11 +316,18 @@ test('admin cannot pin article if there are already four pinned articles', funct
 
     $this->loginAsAdmin();
 
-    $response = $this->put("/admin/articles/{$article->slug()}/pinned");
-    $response->assertSessionMissing('success');
-    $response->assertSessionHas('error');
+    $this->put("/admin/articles/{$article->slug()}/pinned");
 
-    expect($article->fresh()->isPinned())->toBeFalse();
+    expect($article->fresh()->isPinned())->toBeTrue();
+
+    // Assert the oldest pinned article is no longer pinned
+    expect($pinnedArticles[0]->fresh()->isPinned())->toBeFalse();
+
+    // Assert the other pinned articles are still pinned
+    expect($pinnedArticles[1]->fresh()->isPinned())->toBeTrue();
+    expect($pinnedArticles[2]->fresh()->isPinned())->toBeTrue();
+    expect($pinnedArticles[3]->fresh()->isPinned())->toBeTrue();
+
 });
 
 test('admins can unpin articles', function () {

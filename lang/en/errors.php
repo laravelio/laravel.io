@@ -6,5 +6,4 @@ return [
     'github_invalid_state' => 'The request timed out. Please try again.',
     'github_account_too_young' => 'Your Github account needs to be older than 2 weeks in order to register.',
     'github_account_exists' => 'We already found a user with the given GitHub account (:username). Would you like to <a href=":login">login</a> instead?',
-    'article_pinned_limit_exceeded' => 'There are already 4 pinned articles. Please unpin one before pinning another.',
 ];
