@@ -359,8 +359,6 @@ final class Article extends Model implements Feedable
 
     /**
      * Check whether the article can be pinned. Only 4 articles can be pinned at a time.
-     *
-     * @return bool
      */
     public function canBePinned(): bool
     {
