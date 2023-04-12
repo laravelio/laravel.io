@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticlesController as AdminArticlesController;
-use App\Http\Controllers\Admin\ThreadsController as AdminThreadsController;
+use App\Http\Controllers\Admin\PostsController as AdminPostsController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Articles\ArticlesController;
 use App\Http\Controllers\Articles\AuthoredArticles;
@@ -128,7 +128,7 @@ Route::prefix('articles')->group(function () {
 // Admin
 Route::prefix('admin')->name('admin')->group(function () {
     Route::get('/', [AdminArticlesController::class, 'index']);
-    Route::get('posts', [AdminThreadsController::class, 'index'])->name('.threads');
+    Route::get('posts', [AdminPostsController::class, 'index'])->name('.posts');
 
     // Users
     Route::get('users', [UsersController::class, 'index'])->name('.users');

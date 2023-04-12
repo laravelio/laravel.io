@@ -2,19 +2,18 @@
 
 namespace App\Queries;
 
-use App\Models\Thread;
+use App\Models\Reply;
 use Illuminate\Contracts\Pagination\Paginator;
 
-final class SearchThreads
+final class SearchReplies
 {
     /**
-     * @return \App\Models\Thread[]
+     * @return \App\Models\Reply[]
      */
     public static function get(string $keyword, int $perPage = 20): Paginator
     {
-        return Thread::where('subject', 'like', "%$keyword%")
-            ->orWhere('body', 'like', "%$keyword%")
-            ->orWhere('slug', 'like', "%$keyword%")
+        return Reply::with('replyAbleRelation')
+            ->where('body', 'like', "%$keyword%")
             ->orderByDesc('updated_at')
             ->paginate($perPage);
     }
