@@ -6,13 +6,14 @@ use App\Contracts\ReplyAble;
 use App\Models\Thread;
 use App\Models\User;
 use App\Rules\HttpImageRule;
+use App\Rules\InvalidMentionRule;
 
 class CreateReplyRequest extends Request
 {
     public function rules()
     {
         return [
-            'body' => ['required', new HttpImageRule()],
+            'body' => ['required', new HttpImageRule(), new InvalidMentionRule()],
             'replyable_id' => 'required',
             'replyable_type' => 'required|in:'.Thread::TABLE,
         ];

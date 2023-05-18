@@ -6,6 +6,7 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\MentionNotification;
+use App\Rules\InvalidMentionRule;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Notification;
@@ -216,4 +217,31 @@ test('users are not notified when mentioned in an edited reply', function () {
     ]);
 
     Notification::assertNothingSent();
+});
+
+test('cannot fake a mention when creating a reply', function () {
+    $thread = Thread::factory()->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);
+
+    $this->login();
+
+    $response = $this->post('/replies', [
+        'body' => 'Hey [@joedixon](https://somethingnasty.com)',
+        'replyable_id' => $thread->id,
+        'replyable_type' => Thread::TABLE,
+    ]);
+    
+    $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
+    $response->assertSessionHasErrors(['body' => 'The body field contains an invalid mention.']);
+});
+
+test('users cannot edit a reply with a fake mention', function () {
+    $user = $this->createUser();
+    $thread = Thread::factory()->create(['slug' => 'the-first-thread']);
+    $reply = Reply::factory()->create(['author_id' => $user->id(), 'replyable_id' => $thread->id()]);
+
+    $this->actingAs($user);
+
+    Livewire::test(EditReply::class, ['reply' => $reply])
+        ->call('updateReply', 'Hey [@joedixon](https://somethingnasty.com)')
+        ->assertHasErrors(['body' => InvalidMentionRule::class]);
 });
