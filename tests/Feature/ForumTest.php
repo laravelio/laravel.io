@@ -335,7 +335,7 @@ test('cannot fake a mention', function () {
         'body' => 'Hey [@joedixon](https://somethingnasty.com)',
         'tags' => [],
     ]);
-    
+
     $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
     $response->assertSessionHasErrors(['body' => 'The body field contains an invalid mention.']);
 });

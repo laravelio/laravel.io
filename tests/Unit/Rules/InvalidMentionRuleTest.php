@@ -1,12 +1,11 @@
 <?php
 
-use App\Rules\HttpImageRule;
 use App\Rules\InvalidMentionRule;
 
 it('passes when no invalid mentions are detected', function ($body) {
     expect((new InvalidMentionRule())->passes('body', $body))->toBeTrue();
 })->with([
-    'Hello, I\'m looking for some help', 
+    'Hello, I\'m looking for some help',
     'I\'ve seen [this link](https://example.com), is it legit?',
     "### Help needed!
     \n
@@ -24,13 +23,13 @@ it('passes when no invalid mentions are detected', function ($body) {
     \n
     [link](https://example.com)
     \n
-    ![image](https://example.com/image.png)"
+    ![image](https://example.com/image.png)",
 ]);
 
 it('fails when invalid mentions are detected', function ($body) {
     expect((new InvalidMentionRule())->passes('body', $body))->toBeFalse();
 })->with([
-    '[@driesvints](https://somethingnasty.com)', 
+    '[@driesvints](https://somethingnasty.com)',
     'Hey [@joedixon](https://somethingnasty.com), is it legit?',
     "### Help needed!
     \n
@@ -48,5 +47,5 @@ it('fails when invalid mentions are detected', function ($body) {
     \n
     [link](https://example.com)
     \n
-    ![image](https://example.com/image.png)"
+    ![image](https://example.com/image.png)",
 ]);

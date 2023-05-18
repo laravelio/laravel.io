@@ -229,7 +229,7 @@ test('cannot fake a mention when creating a reply', function () {
         'replyable_id' => $thread->id,
         'replyable_type' => Thread::TABLE,
     ]);
-    
+
     $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
     $response->assertSessionHasErrors(['body' => 'The body field contains an invalid mention.']);
 });
