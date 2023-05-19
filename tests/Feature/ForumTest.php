@@ -326,3 +326,16 @@ test('users are not notified when mentioned in and edited thread', function () {
 
     Notification::assertNothingSent();
 });
+
+test('cannot fake a mention', function () {
+    $this->login();
+
+    $response = $this->post('/forum/create-thread', [
+        'subject' => 'How to work with Eloquent?',
+        'body' => 'Hey [@joedixon](https://somethingnasty.com)',
+        'tags' => [],
+    ]);
+
+    $response->assertSessionHas('error', 'Something went wrong. Please review the fields below.');
+    $response->assertSessionHasErrors(['body' => 'The body field contains an invalid mention.']);
+});
