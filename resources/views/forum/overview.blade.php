@@ -99,6 +99,8 @@
 
                 <section class="mt-8 mb-5 lg:mb-32">
                     <div class="flex flex-col gap-y-4">
+                        <x-ads.top-text />
+
                         @foreach ($threads as $thread)
                             <x-threads.overview-summary :thread="$thread" />
                         @endforeach

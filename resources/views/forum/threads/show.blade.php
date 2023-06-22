@@ -28,8 +28,11 @@
                 @endif
             @endauth
 
+
             <div class="relative">
                 <div class="relative flex flex-col gap-y-4 z-20">
+                    <x-ads.top-text />
+
                     <x-threads.thread :thread="$thread" />
 
                     @foreach ($thread->repliesWithTrashed() as $reply)
