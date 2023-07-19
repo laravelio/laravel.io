@@ -9,8 +9,8 @@
         </div>
 
         <div class="mt-8 flex justify-center">
-            <div class="col-span-2 flex justify-center lg:col-span-1 mr-4">
-                <x-sponsor-logo size="medium" url="https://beyondco.de" logo="{{ asset('images/sponsors/beyondcode.png') }}" company="Beyond Code" />
+            <div class="col-span-2 flex justify-center lg:col-span-1 mr-6">
+                <x-sponsor-logo size="medium" url="https://larajobs.com" logo="{{ asset('images/sponsors/larajobs.svg') }}" company="LaraJobs" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
@@ -32,7 +32,7 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://larajobs.com" logo="{{ asset('images/sponsors/larajobs.svg') }}" company="LaraJobs" />
+                <x-sponsor-logo size="medium" url="https://beyondco.de" logo="{{ asset('images/sponsors/beyondcode.png') }}" company="Beyond Code" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
