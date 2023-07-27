@@ -9,10 +9,6 @@
         </div>
 
         <div class="mt-8 flex justify-center">
-            <div class="col-span-2 flex justify-center lg:col-span-1 mr-6">
-                <x-sponsor-logo size="medium" url="https://larajobs.com" logo="{{ asset('images/sponsors/larajobs.svg') }}" company="LaraJobs" />
-            </div>
-
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo size="medium" url="https://loadforge.com" logo="{{ asset('images/sponsors/loadforge.svg') }}" company="LoadForge" />
             </div>
