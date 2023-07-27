@@ -125,13 +125,6 @@
                                             </li>
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                                <a href="https://laravelevents.com" class="inline-block w-full lg:px-4 lg:py-3">
-                                                    <img loading="lazy" src="{{ asset('images/laravel.png') }}" alt="Laravel" class="w-4 h-4 inline" />
-                                                    Laravel Events
-                                                </a>
-                                            </li>
-
-                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://www.laravelpodcast.com" class="inline-block w-full lg:px-4 lg:py-3">
                                                     <img loading="lazy" src="{{ asset('images/podcast.png') }}" alt="Laravel Podcast" class="w-4 h-4 inline" />
                                                     Podcast
