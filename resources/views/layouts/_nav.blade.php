@@ -200,21 +200,21 @@
                                 <div x-show="settings" x-cloak class="mt-4 lg:mt-0">
                                     <ul class="flex flex-col items-center lg:absolute lg:items-stretch lg:ml-0 lg:mt-2 lg:w-40 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
                                          <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                             <a href="{{ route('profile') }}" class="flex items-center w-full lg:px-4 lg:py-3">
+                                             <a href="{{ route('profile') }}" class="flex items-center w-full lg:px-3 lg:py-2">
                                                 <x-heroicon-o-user class="w-4 h-4 mr-2" />
                                                 Your Profile
                                             </a>
                                         </li>
 
                                         <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                            <a href="{{ route('user.articles') }}" class="flex items-center w-full lg:px-4 lg:py-3">
+                                            <a href="{{ route('user.articles') }}" class="flex items-center w-full lg:px-3 lg:py-2">
                                                 <x-heroicon-o-document-text class="w-4 h-4 mr-2" />
                                                 Your Articles
                                             </a>
                                         </li>
 
                                         <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                            <a href="{{ route('settings.profile') }}" class="flex items-center w-full lg:px-4 lg:py-3">
+                                            <a href="{{ route('settings.profile') }}" class="flex items-center w-full lg:px-3 lg:py-2">
                                                 <x-heroicon-o-cog-6-tooth class="w-4 h-4 mr-2" />
                                                 Settings
                                             </a>
@@ -222,15 +222,15 @@
 
                                         @can(App\Policies\UserPolicy::ADMIN, App\Models\User::class)
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:border-t lg:border-b">
-                                                <a href="{{ route('admin') }}" class="flex items-center w-full lg:px-4 lg:py-3">
-                                                    <x-heroicon-o-building-library class="w-4 h-4 mr-2" />
+                                                <a href="{{ route('admin') }}" class="flex items-center w-full lg:px-3 lg:py-2">
+                                                    <x-heroicon-o-shield-check class="w-4 h-4 mr-2" />
                                                     Admin
                                                 </a>
                                             </li>
                                         @endcan
 
                                         <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                            <x-buk-logout class="flex items-center w-full text-left lg:px-4 lg:py-3">
+                                            <x-buk-logout class="flex items-center w-full text-left lg:px-3 lg:py-2">
                                                 <x-heroicon-o-arrow-left-on-rectangle class="w-4 h-4 mr-2" />
                                                 Sign out
                                             </x-buk-logout>
