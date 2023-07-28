@@ -29,7 +29,7 @@
             </x-forms.info>
 
             <x-forms.info class="px-0">
-                After submission for approval, articles are reviewed before being published. No notification of declined articles will be provided. Instead, we encourage to also cross-post articles on your own channel as well. <strong>After being published, you cannot edit your article anymore so please review it thoroughly before submitting for approval. Submitting the same article twice or posting spam will result in the banning of your account.</strong>
+                After submission for approval, articles are reviewed before being published. No notification of declined articles will be provided. Instead, we encourage to also cross-post articles on your own channel as well. <strong>After being published, you cannot edit your article anymore so please review it thoroughly before submitting for approval.</strong> Submitting the same article twice or posting spam will result in the banning of your account.
             </x-forms.info>
 
             <x-rules-banner />
