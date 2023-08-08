@@ -46,6 +46,10 @@
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://ohdear.app/?via=dries" logo="{{ asset('images/sponsors/oh-dear.svg') }}" company="Oh Dear" />
             </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo url="https://steadfastcollective.com/uk-laravel-agency" logo="{{ asset('images/sponsors/steadfast.svg') }}" company="Steadfast Collective" />
+            </div>
         </div>
 
         <x-ads.cta primary class="mt-8 md:mt-12">
