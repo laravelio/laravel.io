@@ -21,12 +21,12 @@ use Spatie\Feed\FeedItem;
 
 final class Article extends Model implements Feedable
 {
-    use HasFactory;
     use HasAuthor;
-    use HasSlug;
+    use HasFactory;
     use HasLikes;
-    use HasTimestamps;
+    use HasSlug;
     use HasTags;
+    use HasTimestamps;
     use HasUuid;
     use PreparesSearch;
     use Searchable;
