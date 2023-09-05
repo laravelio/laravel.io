@@ -7,7 +7,6 @@ use App\Models\Article;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 final class ArticleApprovedNotification extends Notification implements ShouldQueue
@@ -23,7 +22,7 @@ final class ArticleApprovedNotification extends Notification implements ShouldQu
         return ['mail', 'database'];
     }
 
-    public function toMail(User $user): MailMessage
+    public function toMail(User $user): ArticleApprovedEmail
     {
         return (new ArticleApprovedEmail($this->article))
             ->to($user->emailAddress(), $user->name());

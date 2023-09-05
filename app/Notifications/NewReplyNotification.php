@@ -8,7 +8,6 @@ use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 final class NewReplyNotification extends Notification implements ShouldQueue
@@ -24,7 +23,7 @@ final class NewReplyNotification extends Notification implements ShouldQueue
         return ['mail', 'database'];
     }
 
-    public function toMail(User $user): MailMessage
+    public function toMail(User $user): NewReplyEmail
     {
         return (new NewReplyEmail($this->reply, $this->subscription, $user))
             ->to($user->emailAddress(), $user->name());

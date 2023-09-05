@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 final class MentionNotification extends Notification implements ShouldQueue
@@ -24,7 +23,7 @@ final class MentionNotification extends Notification implements ShouldQueue
         return ['mail', 'database'];
     }
 
-    public function toMail(User $user): MailMessage
+    public function toMail(User $user): MentionEmail
     {
         return (new MentionEmail($this->mentionAble, $user))
             ->to($user->emailAddress(), $user->name());
