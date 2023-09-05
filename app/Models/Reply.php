@@ -155,11 +155,6 @@ final class Reply extends Model implements MentionAble, Spam
         )->withTimestamps();
     }
 
-    public function thread(): BelongsTo
-    {
-        return $this->belongsTo(Thread::class);
-    }
-
     public function scopeIsSolution(Builder $builder): Builder
     {
         return $builder->has('solutionTo');

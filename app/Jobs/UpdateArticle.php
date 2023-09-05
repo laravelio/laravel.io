@@ -25,7 +25,7 @@ final class UpdateArticle
 
     public static function fromRequest(Article $article, ArticleRequest $request): self
     {
-        return new static(
+        return new self(
             $article,
             $request->title(),
             $request->body(),

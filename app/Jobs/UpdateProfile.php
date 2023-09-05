@@ -22,7 +22,7 @@ final class UpdateProfile
 
     public static function fromRequest(User $user, UpdateProfileRequest $request): self
     {
-        return new static($user, [
+        return new self($user, [
             'name' => $request->name(),
             'email' => $request->email(),
             'username' => strtolower($request->username()),

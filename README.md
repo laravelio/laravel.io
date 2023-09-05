@@ -19,17 +19,17 @@ This is the repository for the [Laravel.io](http://laravel.io) community portal.
 
 We'd like to thank these **amazing companies** for sponsoring us. If you are interested in becoming a sponsor, please visit <a href="https://github.com/sponsors/laravelio">the Laravel.io Github Sponsors page</a>.
 
-- **[LaraJobs](https://larajobs.com)**
+- **[JetBrains](https://www.jetbrains.com/phpstorm/laravel/?utm_source=github.com&utm_medium=cpc&utm_campaign=phpstorm&utm_content=laravel.io)**
 - **[LoadForge](https://loadforge.com/)**
 - [Forge](https://forge.laravel.com)
 - [Envoyer](https://envoyer.io)
 - [Fathom](https://usefathom.com)
 - [Tinkerwell](https://tinkerwell.app)
-- [Akaunting](https://akaunting.com/developers?utm_source=Laravelio&utm_medium=Banner&utm_campaign=Developers)
-- [Scout APM](https://ter.li/o1adaj)
 - [Skynet Technologies](https://www.skynettechnologies.com/hire-laravel-developer)
 - [Lightflows](https://www.lightflows.co.uk/laravel-development-agency/)
 - [Backpack for Laravel](https://backpackforlaravel.com/?ref=laravelio)
+- [Localazy](https://localazy.com/laravel?utm_source=laravel.io&utm_medium=sponsorships&utm_campaign=brand_awareness&utm_content=logo)
+- [Steadfast Collective](https://steadfastcollective.com/uk-laravel-agency)
 
 ## Requirements
 

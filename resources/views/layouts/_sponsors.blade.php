@@ -4,11 +4,17 @@
             We'd like to thank these <x-accent-text>amazing companies</x-accent-text> for supporting us
         </p>
 
-        <div class="mt-6 grid grid-cols-2 gap-y-8 lg:grid-cols-3">
-            <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://beyondco.de" logo="{{ asset('images/sponsors/beyondcode.png') }}" company="Beyond Code" />
-            </div>
+        <div class="mt-6 flex justify-center">
+            <x-sponsor-logo size="large" url="https://www.jetbrains.com/phpstorm/laravel/?utm_source=laravel.io&utm_medium=cpc&utm_campaign=phpstorm&utm_content=footer_logo" logo="{{ asset('images/sponsors/phpstorm.svg') }}" company="PhpStorm by Jetbrains" />
+        </div>
 
+        <div class="mt-8 flex justify-center">
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo size="medium" url="https://loadforge.com" logo="{{ asset('images/sponsors/loadforge.svg') }}" company="LoadForge" />
+            </div>
+        </div>
+
+        <div class="mt-12 grid grid-cols-2 gap-y-8 lg:grid-cols-3">
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://usefathom.com/ref/7A8QGC" logo="{{ asset('images/sponsors/fathom.png') }}" company="Fathom" />
             </div>
@@ -22,19 +28,7 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://akaunting.com/developers?utm_source=Laravelio&utm_medium=Banner&utm_campaign=Developers" logo="{{ asset('images/sponsors/akaunting.png') }}" company="Akaunting" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://larajobs.com" logo="{{ asset('images/sponsors/larajobs.svg') }}" company="LaraJobs" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://ter.li/vj4bxb" logo="{{ asset('images/sponsors/scout-apm.jpg') }}" company="Scout APM" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://loadforge.com" logo="{{ asset('images/sponsors/loadforge.svg') }}" company="LoadForge" />
+                <x-sponsor-logo size="medium" url="https://beyondco.de" logo="{{ asset('images/sponsors/beyondcode.png') }}" company="Beyond Code" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
@@ -46,7 +40,11 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://backpackforlaravel.com/?ref=laravelio" logo="{{ asset('images/sponsors/backpack.png') }}" company="Backpack for Laravel" />
+                <x-sponsor-logo url="https://localazy.com/laravel?utm_source=laravel.io&utm_medium=sponsorships&utm_campaign=brand_awareness&utm_content=logo" logo="{{ asset('images/sponsors/localazy.svg') }}" company="Localazy" />
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo url="https://steadfastcollective.com/uk-laravel-agency" logo="{{ asset('images/sponsors/steadfast.svg') }}" company="Steadfast Collective" />
             </div>
         </div>
 

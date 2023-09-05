@@ -18,7 +18,7 @@ final class UpdateThread
 
     public static function fromRequest(Thread $thread, ThreadRequest $request): self
     {
-        return new static($thread, $request->user(), [
+        return new self($thread, $request->user(), [
             'subject' => $request->subject(),
             'body' => $request->body(),
             'slug' => $request->subject(),

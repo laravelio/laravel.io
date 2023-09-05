@@ -15,7 +15,7 @@
             <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 md:text-3xl">
                 <span class="block">Got some knowledge to share?</span>
                 <span class="block">
-                    Share your article with <a href="https://twitter.com/laravelio" class="text-lio-500 hover:text-lio-600 hover:underline">our 45,000 Twitter followers</a>.
+                    Share your article with <a href="https://twitter.com/laravelio" class="text-lio-500 hover:text-lio-600 hover:underline">our 45,000+ Twitter followers</a>.
                 </span>
             </h2>
             <div class="mt-8 flex lg:mt-0 lg:shrink-0">

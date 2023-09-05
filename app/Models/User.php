@@ -236,17 +236,17 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     public static function findByUsername(string $username): self
     {
-        return static::where('username', $username)->firstOrFail();
+        return self::where('username', $username)->firstOrFail();
     }
 
     public static function findByEmailAddress(string $emailAddress): self
     {
-        return static::where('email', $emailAddress)->firstOrFail();
+        return self::where('email', $emailAddress)->firstOrFail();
     }
 
     public static function findByGithubId(string $githubId): self
     {
-        return static::where('github_id', $githubId)->firstOrFail();
+        return self::where('github_id', $githubId)->firstOrFail();
     }
 
     public function delete()
