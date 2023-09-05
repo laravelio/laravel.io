@@ -14,7 +14,7 @@ uses(DatabaseMigrations::class);
 
 test('we can create a reply', function () {
     Event::fake();
-    
+
     $user = $this->createUser();
     $thread = Thread::factory()->create();
 
