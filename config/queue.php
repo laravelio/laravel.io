@@ -88,7 +88,7 @@ return [
         'database' => env('DB_CONNECTION', 'mysql'),
         'table' => 'job_batches',
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Failed Queue Jobs
