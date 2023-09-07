@@ -10,7 +10,7 @@ use League\CommonMark\MarkdownConverter;
 
 class MarkdownServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         $this->app->singleton(Converter::class, function () {
             $environment = new Environment([

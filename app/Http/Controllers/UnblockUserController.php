@@ -6,6 +6,7 @@ use App\Jobs\UnblockUser;
 use App\Models\User;
 use App\Policies\UserPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class UnblockUserController extends Controller
@@ -15,7 +16,7 @@ class UnblockUserController extends Controller
         $this->middleware(Authenticate::class);
     }
 
-    public function __invoke(Request $request, User $user)
+    public function __invoke(Request $request, User $user): RedirectResponse
     {
         $this->authorize(UserPolicy::BLOCK, $user);
 

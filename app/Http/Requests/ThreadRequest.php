@@ -8,7 +8,7 @@ use App\Rules\InvalidMentionRule;
 
 class ThreadRequest extends Request
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'subject' => ['required', 'max:60', new DoesNotContainUrlRule()],

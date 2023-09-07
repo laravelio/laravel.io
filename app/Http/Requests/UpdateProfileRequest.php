@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UpdateProfileRequest extends Request
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|max:255',

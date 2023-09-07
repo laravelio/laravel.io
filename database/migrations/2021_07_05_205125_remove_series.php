@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         if (DB::getDriverName() != 'sqlite') {
             Schema::table('articles', function (Blueprint $table) {

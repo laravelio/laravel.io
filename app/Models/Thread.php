@@ -151,7 +151,7 @@ final class Thread extends Model implements Feedable, MentionAble, ReplyAble, Sp
 
     public function isSolved(): bool
     {
-        return null !== $this->solution_reply_id;
+        return $this->solution_reply_id !== null;
     }
 
     public function isSolutionReply(Reply $reply): bool

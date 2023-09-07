@@ -7,7 +7,7 @@ use App\Rules\InvalidMentionRule;
 
 class UpdateReplyRequest extends Request
 {
-    public function rules()
+    public function rules(): array
     {
         return [
             'body' => ['required', new HttpImageRule(), new InvalidMentionRule()],

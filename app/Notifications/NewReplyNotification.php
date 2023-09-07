@@ -18,12 +18,12 @@ final class NewReplyNotification extends Notification implements ShouldQueue
     {
     }
 
-    public function via(User $user)
+    public function via(User $user): array
     {
         return ['mail', 'database'];
     }
 
-    public function toMail(User $user)
+    public function toMail(User $user): NewReplyEmail
     {
         return (new NewReplyEmail($this->reply, $this->subscription, $user))
             ->to($user->emailAddress(), $user->name());
