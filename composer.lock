@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af19ff8fcd0b0b7e9c00a49476f93933",
+    "content-hash": "0fb8cc3db81a9e0a151d8d50ea3197e8",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -2567,16 +2567,16 @@
         },
         {
             "name": "laravel-notification-channels/twitter",
-            "version": "dev-master",
+            "version": "v8.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-notification-channels/twitter.git",
-                "reference": "717e024759afa9cb28d7201692b3b67997ef90e7"
+                "reference": "33d6b06b222103d9802ad1d61a6ef8cdcc72d14d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-notification-channels/twitter/zipball/717e024759afa9cb28d7201692b3b67997ef90e7",
-                "reference": "717e024759afa9cb28d7201692b3b67997ef90e7",
+                "url": "https://api.github.com/repos/laravel-notification-channels/twitter/zipball/33d6b06b222103d9802ad1d61a6ef8cdcc72d14d",
+                "reference": "33d6b06b222103d9802ad1d61a6ef8cdcc72d14d",
                 "shasum": ""
             },
             "require": {
@@ -2593,7 +2593,6 @@
                 "orchestra/testbench": "^8.0",
                 "phpunit/phpunit": "^9.3"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -2623,9 +2622,9 @@
             "homepage": "https://github.com/laravel-notification-channels/twitter",
             "support": {
                 "issues": "https://github.com/laravel-notification-channels/twitter/issues",
-                "source": "https://github.com/laravel-notification-channels/twitter/tree/master"
+                "source": "https://github.com/laravel-notification-channels/twitter/tree/v8.0.0"
             },
-            "time": "2023-08-21T09:06:32+00:00"
+            "time": "2023-07-15T06:35:07+00:00"
         },
         {
             "name": "laravel/framework",
@@ -13281,9 +13280,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "laravel-notification-channels/twitter": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
