@@ -16,7 +16,6 @@ use App\Listeners\SendArticleApprovedNotification;
 use App\Listeners\SendNewArticleNotification;
 use App\Listeners\SendNewReplyNotification;
 use App\Listeners\SendNewSpamNotification;
-use App\Listeners\StoreTweetIdentifier;
 use App\Listeners\SubscribeUsersMentionedInReply;
 use App\Listeners\SubscribeUsersMentionedInThread;
 use App\Models\User;
@@ -24,7 +23,6 @@ use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Notifications\Events\NotificationSent;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -42,9 +40,6 @@ class EventServiceProvider extends ServiceProvider
         ],
         EmailAddressWasChanged::class => [
             RenewEmailVerificationNotification::class,
-        ],
-        NotificationSent::class => [
-            StoreTweetIdentifier::class,
         ],
         Registered::class => [
             SendEmailVerificationNotification::class,
