@@ -8,11 +8,11 @@
             <x-sponsor-logo size="large" url="https://www.jetbrains.com/phpstorm/laravel/?utm_source=laravel.io&utm_medium=cpc&utm_campaign=phpstorm&utm_content=footer_logo" logo="{{ asset('images/sponsors/phpstorm.svg') }}" company="PhpStorm by Jetbrains" />
         </div>
 
-        <div class="mt-8 flex justify-center">
+        {{-- <div class="mt-8 flex justify-center">
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo size="medium" url="https://loadforge.com" logo="{{ asset('images/sponsors/loadforge.svg') }}" company="LoadForge" />
             </div>
-        </div>
+        </div> --}}
 
         <div class="mt-12 grid grid-cols-2 gap-y-8 lg:grid-cols-3">
             <div class="col-span-2 flex justify-center lg:col-span-1">
