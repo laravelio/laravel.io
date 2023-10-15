@@ -17,12 +17,12 @@ final class ArticleApprovedNotification extends Notification implements ShouldQu
     {
     }
 
-    public function via(User $user)
+    public function via(User $user): array
     {
         return ['mail', 'database'];
     }
 
-    public function toMail(User $user)
+    public function toMail(User $user): ArticleApprovedEmail
     {
         return (new ArticleApprovedEmail($this->article))
             ->to($user->emailAddress(), $user->name());

@@ -23,7 +23,7 @@ final class CreateThread
 
     public static function fromRequest(ThreadRequest $request, UuidInterface $uuid): self
     {
-        return new static(
+        return new self(
             $uuid,
             $request->subject(),
             $request->body(),

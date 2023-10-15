@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->timestamp('declined_at')->nullable()->after('shared_at');

@@ -3,13 +3,17 @@
 namespace App\Http\Livewire;
 
 use App\Http\Requests\UpdateReplyRequest;
+use App\Jobs\UpdateReply;
 use App\Policies\ReplyPolicy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class EditReply extends Component
 {
     use AuthorizesRequests;
+    use DispatchesJobs;
 
     public $reply;
 
@@ -29,9 +33,7 @@ class EditReply extends Component
 
         $this->validate((new UpdateReplyRequest())->rules());
 
-        $this->reply->update([
-            'body' => $this->body,
-        ]);
+        $this->dispatchSync(new UpdateReply($this->reply, Auth::user(), $this->body));
 
         $this->emit('replyEdited');
     }

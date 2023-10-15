@@ -19,7 +19,7 @@ use Laravel\Horizon\Horizon;
 
 class AppServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->bootEloquentMorphs();
         $this->bootMacros();

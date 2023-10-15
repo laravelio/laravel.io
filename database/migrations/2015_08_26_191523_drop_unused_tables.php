@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::dropIfExists('activity');
         Schema::dropIfExists('forum_thread_visitations');

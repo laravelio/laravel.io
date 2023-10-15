@@ -3,13 +3,14 @@
 namespace App\Http\Requests;
 
 use App\Rules\HttpImageRule;
+use App\Rules\InvalidMentionRule;
 
 class UpdateReplyRequest extends Request
 {
-    public function rules()
+    public function rules(): array
     {
         return [
-            'body' => ['required', new HttpImageRule()],
+            'body' => ['required', new HttpImageRule(), new InvalidMentionRule()],
         ];
     }
 

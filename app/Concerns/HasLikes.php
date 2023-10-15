@@ -4,14 +4,12 @@ namespace App\Concerns;
 
 use App\Models\Like;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait HasLikes
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function likes()
+    public function likes(): Collection
     {
         return $this->likesRelation;
     }

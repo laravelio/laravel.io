@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::table('subscriptions', function (Blueprint $table) {
             if (DB::getDriverName() != 'sqlite') {

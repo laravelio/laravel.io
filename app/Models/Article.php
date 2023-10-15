@@ -21,12 +21,12 @@ use Spatie\Feed\FeedItem;
 
 final class Article extends Model implements Feedable
 {
-    use HasFactory;
     use HasAuthor;
-    use HasSlug;
+    use HasFactory;
     use HasLikes;
-    use HasTimestamps;
+    use HasSlug;
     use HasTags;
+    use HasTimestamps;
     use HasUuid;
     use PreparesSearch;
     use Searchable;
@@ -260,9 +260,9 @@ final class Article extends Model implements Feedable
         return $query->where('is_pinned', true);
     }
 
-    public function scopeNotPinned(Builder $query): Builder
+    public function scopeNotPinned(Builder $query, Collection $pinnedArticles): Builder
     {
-        return $query->where('is_pinned', false);
+        return $query->whereNotIn('id', $pinnedArticles->pluck('id'));
     }
 
     public function scopeShared(Builder $query): Builder

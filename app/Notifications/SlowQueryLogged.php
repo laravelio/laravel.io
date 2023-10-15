@@ -11,11 +11,11 @@ class SlowQueryLogged extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(private string $query, private float|null $duration, private string $url)
+    public function __construct(private string $query, private ?float $duration, private string $url)
     {
     }
 
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         if (
             ! empty(config('services.telegram-bot-api.token')) &&

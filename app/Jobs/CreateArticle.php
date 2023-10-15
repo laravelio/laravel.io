@@ -28,7 +28,7 @@ final class CreateArticle
 
     public static function fromRequest(ArticleRequest $request, UuidInterface $uuid): self
     {
-        return new static(
+        return new self(
             $uuid,
             $request->title(),
             $request->body(),

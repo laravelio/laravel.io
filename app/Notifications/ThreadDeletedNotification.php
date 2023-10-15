@@ -17,12 +17,12 @@ class ThreadDeletedNotification extends Notification implements ShouldQueue
     {
     }
 
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail'];
     }
 
-    public function toMail(User $user)
+    public function toMail(User $user): ThreadDeletedEmail
     {
         return (new ThreadDeletedEmail($this->thread, $this->reason))
             ->to($user->emailAddress(), $user->name());

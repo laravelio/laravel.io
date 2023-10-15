@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticlesController as AdminArticlesController;
+use App\Http\Controllers\Admin\RepliesController as AdminRepliesController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Articles\ArticlesController;
 use App\Http\Controllers\Articles\AuthoredArticles;
@@ -129,6 +130,7 @@ Route::prefix('articles')->group(function () {
 // Admin
 Route::prefix('admin')->name('admin')->group(function () {
     Route::get('/', [AdminArticlesController::class, 'index']);
+    Route::get('replies', [AdminRepliesController::class, 'index'])->name('.replies');
 
     // Users
     Route::get('users', [UsersController::class, 'index'])->name('.users');

@@ -8,6 +8,7 @@ use App\Http\Requests\DeleteApiTokenRequest;
 use App\Jobs\CreateApiToken;
 use App\Jobs\DeleteApiToken;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\RedirectResponse;
 
 class ApiTokenController extends Controller
 {
@@ -16,7 +17,7 @@ class ApiTokenController extends Controller
         $this->middleware(Authenticate::class);
     }
 
-    public function store(CreateApiTokenRequest $request)
+    public function store(CreateApiTokenRequest $request): RedirectResponse
     {
         $this->dispatchSync(new CreateApiToken($user = $request->user(), $request->name()));
 
@@ -27,7 +28,7 @@ class ApiTokenController extends Controller
         return redirect()->route('settings.profile')->with('api_token', $token->plainTextToken);
     }
 
-    public function destroy(DeleteApiTokenRequest $request)
+    public function destroy(DeleteApiTokenRequest $request): RedirectResponse
     {
         $this->dispatchSync(new DeleteApiToken($request->user(), $request->id()));
 

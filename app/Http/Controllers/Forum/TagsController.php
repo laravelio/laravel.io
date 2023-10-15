@@ -7,12 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use App\Models\Thread;
 use App\Models\User;
+use Illuminate\View\View;
 
 class TagsController extends Controller
 {
     use UsesFilters;
 
-    public function show(Tag $tag)
+    public function show(Tag $tag): View
     {
         $threads = [];
         $filter = $this->getFilter();

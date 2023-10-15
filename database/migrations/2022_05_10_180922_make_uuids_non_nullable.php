@@ -12,9 +12,9 @@ return new class extends Migration
         'replies',
     ];
 
-    public function up()
+    public function up(): void
     {
-        foreach (static::TABLES as $tableName) {
+        foreach (self::TABLES as $tableName) {
             Schema::table($tableName, function (Blueprint $table) use ($tableName) {
                 $table->dropIndex($tableName.'_uuid_index');
 

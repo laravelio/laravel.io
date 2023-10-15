@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response;
 
 class ArticlesController extends Controller
@@ -41,7 +42,7 @@ class ArticlesController extends Controller
             ->get();
 
         $articles = Article::published()
-            ->notPinned()
+            ->notPinned($pinnedArticles)
             ->{$filter}();
 
         $tags = Tag::whereHas('articles', function ($query) {
@@ -73,7 +74,7 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function show(Article $article)
+    public function show(Article $article): View
     {
         $user = Auth::user();
 
@@ -94,7 +95,7 @@ class ArticlesController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create(Request $request): View
     {
         $tags = Tag::query();
 
@@ -121,7 +122,7 @@ class ArticlesController extends Controller
             : redirect()->route('articles.show', $article->slug());
     }
 
-    public function edit(Request $request, Article $article)
+    public function edit(Request $request, Article $article): View
     {
         $this->authorize(ArticlePolicy::UPDATE, $article);
 

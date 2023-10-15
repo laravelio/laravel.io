@@ -24,7 +24,7 @@ final class CreateReply
 
     public static function fromRequest(CreateReplyRequest $request, UuidInterface $uuid): self
     {
-        return new static(
+        return new self(
             $uuid,
             $request->body(),
             $request->author(),
