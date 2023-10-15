@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
 {
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -20,7 +20,7 @@ class RegisterRequest extends FormRequest
         ]);
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required|max:255',

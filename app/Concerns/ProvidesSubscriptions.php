@@ -4,15 +4,13 @@ namespace App\Concerns;
 
 use App\Models\Subscription;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Ramsey\Uuid\Uuid;
 
 trait ProvidesSubscriptions
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function subscriptions()
+    public function subscriptions(): Collection
     {
         return $this->subscriptionsRelation;
     }

@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
@@ -60,7 +61,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function pastebin(string $paste = '')
+    public function pastebin(string $paste = ''): RedirectResponse
     {
         $paste = str_replace(PHP_EOL, '', $paste);
 

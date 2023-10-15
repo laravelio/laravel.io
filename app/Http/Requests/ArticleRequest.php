@@ -10,7 +10,7 @@ class ArticleRequest extends Request
 {
     use InteractsWithInput;
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'title' => ['required', 'max:100'],

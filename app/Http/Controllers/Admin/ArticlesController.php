@@ -11,7 +11,9 @@ use App\Models\Article;
 use App\Policies\ArticlePolicy;
 use App\Queries\SearchArticles;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class ArticlesController extends Controller
 {
@@ -20,7 +22,7 @@ class ArticlesController extends Controller
         $this->middleware([Authenticate::class, VerifyAdmins::class]);
     }
 
-    public function index()
+    public function index(): View
     {
         if ($adminSearch = request('admin_search')) {
             $articles = SearchArticles::get($adminSearch)->appends(['admin_search' => $adminSearch]);
@@ -33,7 +35,7 @@ class ArticlesController extends Controller
         return view('admin.articles', compact('articles', 'adminSearch'));
     }
 
-    public function approve(Article $article)
+    public function approve(Article $article): RedirectResponse
     {
         $this->authorize(ArticlePolicy::APPROVE, $article);
 
@@ -44,7 +46,7 @@ class ArticlesController extends Controller
         return redirect()->route('articles.show', $article->slug());
     }
 
-    public function disapprove(Article $article)
+    public function disapprove(Article $article): RedirectResponse
     {
         $this->authorize(ArticlePolicy::DISAPPROVE, $article);
 
@@ -55,7 +57,7 @@ class ArticlesController extends Controller
         return redirect()->route('articles.show', $article->slug());
     }
 
-    public function decline(Article $article)
+    public function decline(Article $article): RedirectResponse
     {
         $this->authorize(ArticlePolicy::DECLINE, $article);
 
@@ -64,7 +66,7 @@ class ArticlesController extends Controller
         return redirect()->route('articles.show', $article->slug());
     }
 
-    public function togglePinnedStatus(Article $article)
+    public function togglePinnedStatus(Article $article): RedirectResponse
     {
         $this->authorize(ArticlePolicy::PINNED, $article);
 

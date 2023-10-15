@@ -14,7 +14,7 @@ class LikeSeeder extends Seeder
 {
     use WithFaker;
 
-    public function run()
+    public function run(): void
     {
         $users = User::all();
         $articles = Article::all()->random(100);

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class TagSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         DB::table('tags')->insert([
             ['name' => 'Installation', 'slug' => 'installation'],

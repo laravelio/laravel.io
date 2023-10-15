@@ -3,14 +3,12 @@
 namespace App\Concerns;
 
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait HasTags
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function tags()
+    public function tags(): Collection
     {
         return $this->tagsRelation;
     }

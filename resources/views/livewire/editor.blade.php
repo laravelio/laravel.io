@@ -6,12 +6,11 @@
     @endif
 
     <div x-data="editorConfig($wire.entangle('body').defer, {{ $hasMentions }})" class="bg-white rounded-md {{ $hasShadow ? 'shadow-md' : '' }}">
-
         <ul class="flex p-5 gap-x-4">
             <li>
-                <button 
-                    type="button" 
-                    @click="mode = 'write'" 
+                <button
+                    type="button"
+                    @click="mode = 'write'"
                     :class="{ 'text-lio-500 border-lio-500 border-b-2': mode === 'write' }"
                 >
                     Write
@@ -19,10 +18,10 @@
             </li>
 
             <li>
-                <button 
-                    type="button" 
-                    @click="mode = 'preview'" 
-                    wire:click="preview" 
+                <button
+                    type="button"
+                    @click="mode = 'preview'"
+                    wire:click="preview"
                     :class="{ 'text-lio-500 border-lio-500 border-b-2': mode === 'preview' }"
                 >
                     Preview
@@ -33,7 +32,7 @@
         <div x-show="mode === 'write'">
             <div class="flex flex-col relative">
                 <div x-text="body + '\n'" class="invisible whitespace-pre-line border-none p-5 min-h-[5rem]"></div>
-                <textarea 
+                <textarea
                     class="w-full h-full absolute left-0 top-0 right-0 bottom-0 overflow-y-hidden resize-none border-none p-5 focus:border focus:border-lio-300 focus:ring focus:ring-lio-200 focus:ring-opacity-50"
                     id="body"
                     name="body"
@@ -53,11 +52,11 @@
                 ></textarea>
 
                 @if (count($users) > 0)
-                    <ul 
-                        x-cloak 
+                    <ul
+                        x-cloak
                         x-show="showUserListbox()"
                         x-ref="users"
-                        class="absolute flex flex-col bg-white rounded shadow" 
+                        class="absolute flex flex-col bg-white rounded shadow"
                         :style="`top: ${cursorTop}; left: ${cursorLeft}; display: ${showUserListbox() ? 'block' : 'none'}`"
                         tabindex="-1"
                         role="listbox"
@@ -81,7 +80,7 @@
                         @endforeach
                     </ul>
                 @endif
-            </div>            
+            </div>
 
             <div class="flex flex-col items-center justify-end gap-y-4 gap-x-5 p-5 md:flex-row">
                 <x-forms.editor.controls />

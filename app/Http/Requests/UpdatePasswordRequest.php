@@ -7,7 +7,7 @@ use Illuminate\Validation\Rules\Password;
 
 class UpdatePasswordRequest extends Request
 {
-    public function rules()
+    public function rules(): array
     {
         $rules = [
             'password' => ['required', 'confirmed', Password::min(8)->uncompromised()],

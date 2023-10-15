@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         $admin = User::factory()->createQuietly([
             'name' => 'Test User',
