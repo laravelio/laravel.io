@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Reply;
 use App\Queries\SearchReplies;
 
-class PostsController extends Controller
+class RepliesController extends Controller
 {
     public function index()
     {
@@ -16,6 +16,6 @@ class PostsController extends Controller
             $replies = Reply::with('replyAbleRelation')->orderByDesc('updated_at')->paginate();
         }
 
-        return view('admin.posts', compact('replies', 'adminSearch'));
+        return view('admin.replies', compact('replies', 'adminSearch'));
     }
 }

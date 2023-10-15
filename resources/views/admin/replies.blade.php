@@ -1,13 +1,13 @@
-@title('Posts')
+@title('Replies')
 
 @extends('layouts.default')
 
 @section('content')
     <div class="container mx-auto px-4 pt-6">
         @include('admin.partials._navigation', [
-            'query' => route('admin.posts'),
+            'query' => route('admin.replies'),
             'search' => $adminSearch,
-            'placeholder' => 'Search for posts...',
+            'placeholder' => 'Search for replies...',
         ])
     </div>
 
@@ -21,6 +21,7 @@
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <x-tables.table-head>Author</x-tables.table-head>
+                                        <x-tables.table-head>Thread</x-tables.table-head>
                                         <x-tables.table-head>Content</x-tables.table-head>
                                         <x-tables.table-head>Updated</x-tables.table-head>
                                         <x-tables.table-head class="text-center">View</x-tables.table-head>
@@ -47,6 +48,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </x-tables.table-data>
+
+                                            <x-tables.table-data>
+                                                {{ $reply->replyAble()->subject() }}
                                             </x-tables.table-data>
 
                                             <x-tables.table-data>
