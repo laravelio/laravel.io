@@ -12,7 +12,6 @@ use App\Policies\ArticlePolicy;
 use App\Queries\SearchArticles;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class ArticlesController extends Controller
@@ -70,19 +69,8 @@ class ArticlesController extends Controller
     {
         $this->authorize(ArticlePolicy::PINNED, $article);
 
-        $article = DB::transaction(function () use ($article): Article {
-            if (! $article->isPinned()) {
-                Article::pinned()
-                    ->oldest()
-                    ->take(1)
-                    ->update(['is_pinned' => false]);
-            }
-
-            $article->is_pinned = ! $article->isPinned();
-            $article->save();
-
-            return $article;
-        });
+        $article->is_pinned = ! $article->isPinned();
+        $article->save();
 
         $this->success($article->isPinned() ? 'admin.articles.pinned' : 'admin.articles.unpinned');
 

@@ -260,9 +260,9 @@ final class Article extends Model implements Feedable
         return $query->where('is_pinned', true);
     }
 
-    public function scopeNotPinned(Builder $query): Builder
+    public function scopeNotPinned(Builder $query, Collection $pinnedArticles): Builder
     {
-        return $query->where('is_pinned', false);
+        return $query->whereNotIn('id', $pinnedArticles->pluck('id'));
     }
 
     public function scopeShared(Builder $query): Builder

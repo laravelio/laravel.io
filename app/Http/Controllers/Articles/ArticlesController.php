@@ -42,7 +42,7 @@ class ArticlesController extends Controller
             ->get();
 
         $articles = Article::published()
-            ->notPinned()
+            ->notPinned($pinnedArticles)
             ->{$filter}();
 
         $tags = Tag::whereHas('articles', function ($query) {
