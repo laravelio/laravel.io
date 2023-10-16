@@ -42,7 +42,7 @@
 
                         <div class="flex flex-wrap lg:flex-col lg:flex-no-wrap">
                             <a href="https://twitter.com/laravelio" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6">
-                                <x-icon-twitter class="text-white w-4 h-4 inline mr-3.5"/>
+                                <x-si-x class="text-white w-4 h-4 inline mr-3.5"/>
                                 Twitter
                             </a>
 

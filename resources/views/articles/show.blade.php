@@ -153,7 +153,7 @@
 
                                 @if ($article->author()->hasTwitterAccount())
                                     <a href="https://twitter.com/{{ $article->author()->twitter() }}" class="text-twitter">
-                                        <x-icon-twitter class="w-6 h-6" />
+                                        <x-si-x class="w-6 h-6" />
                                     </a>
                                 @endif
 
