@@ -1,11 +1,11 @@
 @title('Notification settings')
 
-<section aria-labelledby="notification_settings_heading" class="mt-6">
+<section class="mt-6">
     <div class="shadow sm:rounded-md sm:overflow-hidden">
-        <x-buk-form id="notification_settings_form" method="POST" action="{{ route('settings.notifications.store') }}">
+        <x-buk-form action="{{ route('settings.notifications.store') }}">
             <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
                 <div>
-                    <h2 id="notification_settings_heading" class="text-lg leading-6 font-medium text-gray-900">
+                    <h2 class="text-lg leading-6 font-medium text-gray-900">
                         Notification settings
                     </h2>
 
@@ -15,18 +15,17 @@
                 </div>
 
                 <ul class="space-y-3">
-                    @foreach (\App\Enums\NotificationTypes::getTypes() as $notification_type)
+                    @foreach (\App\Enums\NotificationType::getTypes() as $notificationType)
                         <li>
                             <div>
                                 <div class="col-span-12">
                                     <x-forms.inputs.checkbox
-                                            name="notification_types[]"
-                                            value="{{ $notification_type->value }}"
-                                            form="notification_settings_form"
-                                            id="{{ $notification_type->value }}"
-                                            :checked="auth()->user()->isNotificationAllowed($notification_type->getClass())"
+                                        name="allowed_notifications[]"
+                                        value="{{ $notificationType->value }}"
+                                        id="{{ $notificationType->value }}"
+                                        @if ($user->isNotificationAllowed($notificationType->getClass())) checked @endif
                                     >
-                                        {{ $notification_type->label() }}
+                                        {{ $notificationType->label() }}
                                     </x-forms.inputs.checkbox>
                                 </div>
                             </div>

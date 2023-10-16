@@ -5,7 +5,7 @@ namespace App\Enums;
 use App\Notifications\MentionNotification;
 use App\Notifications\NewReplyNotification;
 
-enum NotificationTypes: string
+enum NotificationType: string
 {
     case MENTION = 'mention';
     case REPLY = 'reply';
@@ -21,8 +21,8 @@ enum NotificationTypes: string
     public function label(): string
     {
         return match ($this) {
-            self::MENTION => "Mention",
-            self::REPLY => "Reply",
+            self::MENTION => 'Mention',
+            self::REPLY => 'Reply',
         };
     }
 

@@ -9,8 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->json('notifications')
-                ->nullable();
+            $table->json('allowed_notifications')->nullable();
         });
     }
 };

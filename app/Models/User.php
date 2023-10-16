@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Concerns\HasTimestamps;
-use App\Enums\NotificationTypes;
+use App\Enums\NotificationType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Notifications\Dispatcher;
 use Illuminate\Database\Eloquent\Builder;
@@ -55,8 +55,11 @@ final class User extends Authenticatable implements MustVerifyEmail
         'banned_reason',
     ];
 
+    /**
+     * {@inheritdoc}
+     */
     protected $casts = [
-        'notifications' => 'array'
+        'allowed_notifications' => 'array',
     ];
 
     /**
@@ -359,16 +362,11 @@ final class User extends Authenticatable implements MustVerifyEmail
         });
     }
 
-    public function isNotificationAllowed(string $notification_class): bool
+    public function isNotificationAllowed(string $notification): bool
     {
-        if (!empty($this->notifications)) {
-            foreach (Arr::collapse($this->notifications) as $notification_type => $value) {
-                if (NotificationTypes::from($notification_type)->getClass() == $notification_class) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
+        return collect(Arr::collapse($this->allowed_notifications))
+            ->first(function ($value, $notificactionType) use ($notification) {
+                return NotificationType::from($notificactionType)->getClass() === $notification;
+            });
     }
 }
