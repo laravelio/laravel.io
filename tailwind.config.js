@@ -41,7 +41,7 @@ module.exports = {
                     800: '#484a4a',
                     900: '#343636',
                 },
-                twitter: '#00aaec',
+                twitter: '#000000',
                 discord: '#7289da',
                 facebook: '#4267b2',
                 linkedin: '#2977c9',

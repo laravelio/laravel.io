@@ -98,7 +98,7 @@
 
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://twitter.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">
-                                                    <x-icon-twitter class="w-4 h-4 inline text-twitter"/>
+                                                    <x-si-x class="w-4 h-4 inline text-twitter"/>
                                                     Twitter
                                                 </a>
                                             </li>

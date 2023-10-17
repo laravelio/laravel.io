@@ -24,7 +24,7 @@
 
             @if ($user->hasTwitterAccount())
                 <a href="https://twitter.com/{{ $user->twitter() }}" class="text-twitter">
-                    <x-icon-twitter class="w-6 h-6" />
+                    <x-si-x class="w-6 h-6" />
                 </a>
             @endif
 
