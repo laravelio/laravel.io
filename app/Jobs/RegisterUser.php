@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Enums\NotificationType;
 use App\Exceptions\CannotCreateUser;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
@@ -44,6 +45,10 @@ final class RegisterUser
             'type' => User::DEFAULT,
             'bio' => '',
             'remember_token' => '',
+            'allowed_notifications' => [
+                NotificationType::MENTION,
+                NotificationType::REPLY,
+            ],
         ]);
         $user->save();
     }

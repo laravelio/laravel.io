@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Contracts\MentionAble;
+use App\Enums\NotificationType;
 use App\Mail\MentionEmail;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
@@ -34,7 +35,7 @@ final class MentionNotification extends Notification implements ShouldQueue
         $replyAble = $this->mentionAble->mentionedIn();
 
         return [
-            'type' => 'mention',
+            'type' => NotificationType::MENTION,
             'replyable_id' => $replyAble->id,
             'replyable_type' => array_search(get_class($replyAble), Relation::morphMap()),
             'replyable_subject' => $this->mentionAble->mentionedIn()->subject(),
