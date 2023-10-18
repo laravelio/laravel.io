@@ -4,9 +4,9 @@
             We'd like to thank these <x-accent-text>amazing companies</x-accent-text> for supporting us
         </p>
 
-        <div class="mt-6 flex justify-center">
+        {{-- <div class="mt-6 flex justify-center">
             <x-sponsor-logo size="large" url="https://www.jetbrains.com/phpstorm/laravel/?utm_source=laravel.io&utm_medium=cpc&utm_campaign=phpstorm&utm_content=footer_logo" logo="{{ asset('images/sponsors/phpstorm.svg') }}" company="PhpStorm by Jetbrains" />
-        </div>
+        </div> --}}
 
         {{-- <div class="mt-8 flex justify-center">
             <div class="col-span-2 flex justify-center lg:col-span-1">
