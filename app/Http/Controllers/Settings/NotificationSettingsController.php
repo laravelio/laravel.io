@@ -23,8 +23,6 @@ class NotificationSettingsController extends Controller
 
         $this->success('settings.notifications.updated');
 
-        return redirect()->route('settings.profile', [
-            'user' => $request->user(),
-        ]);
+        return redirect()->route('settings.profile');
     }
 }

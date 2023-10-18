@@ -364,9 +364,9 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     public function isNotificationAllowed(string $notification): bool
     {
-        return collect(Arr::collapse($this->allowed_notifications))
-            ->first(function ($value, $notificactionType) use ($notification) {
-                return NotificationType::from($notificactionType)->getClass() === $notification;
+        return collect($this->allowed_notifications ?? [])
+            ->contains(function ($notificationType) use ($notification) {
+                return NotificationType::from($notificationType)->getClass() === $notification;
             });
     }
 }

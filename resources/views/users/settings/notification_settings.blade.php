@@ -10,20 +10,22 @@
                     </h2>
 
                     <p class="mt-1 text-sm leading-5 text-gray-500">
-                        By checking or checking out and checkboxes below you can switch on or off according notifications
+                        Enable or disable specific notification types.
                     </p>
                 </div>
 
                 <ul class="space-y-3">
-                    @foreach (\App\Enums\NotificationType::getTypes() as $notificationType)
+                    @foreach (App\Enums\NotificationType::getTypes() as $notificationType)
                         <li>
                             <div>
                                 <div class="col-span-12">
+                                    @php($checked = auth()->user()->isNotificationAllowed($notificationType->getClass()))
+
                                     <x-forms.inputs.checkbox
                                         name="allowed_notifications[]"
                                         value="{{ $notificationType->value }}"
                                         id="{{ $notificationType->value }}"
-                                        @if ($user->isNotificationAllowed($notificationType->getClass())) checked @endif
+                                        :checked="$checked"
                                     >
                                         {{ $notificationType->label() }}
                                     </x-forms.inputs.checkbox>

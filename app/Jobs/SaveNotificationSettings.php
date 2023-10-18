@@ -12,7 +12,7 @@ final class SaveNotificationSettings
 
     public function handle(): void
     {
-        $this->user->notifications = $this->allowedNotifications;
+        $this->user->allowed_notifications = $this->allowedNotifications;
         $this->user->save();
     }
 }

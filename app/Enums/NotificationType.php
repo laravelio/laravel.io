@@ -21,8 +21,8 @@ enum NotificationType: string
     public function label(): string
     {
         return match ($this) {
-            self::MENTION => 'Mention',
-            self::REPLY => 'Reply',
+            self::MENTION => 'Mentions',
+            self::REPLY => 'Replies',
         };
     }
 
