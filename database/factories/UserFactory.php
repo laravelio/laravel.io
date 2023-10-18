@@ -29,6 +29,10 @@ class UserFactory extends Factory
             'type' => User::DEFAULT,
             'bio' => $this->faker->sentence(),
             'email_verified_at' => now()->subDay(),
+            'allowed_notifications' => [
+                'mention',
+                'reply',
+            ],
         ];
     }
 
