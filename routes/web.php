@@ -20,6 +20,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReplyAbleController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\Settings\ApiTokenController;
+use App\Http\Controllers\Settings\NotificationSettingsController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ProfileController as ProfileSettingsController;
 use App\Http\Controllers\Settings\UnblockUserController as UnblockUserSettingsController;
@@ -82,6 +83,7 @@ Route::put('settings/password', [PasswordController::class, 'update'])->name('se
 Route::put('settings/users/{username}/unblock', UnblockUserSettingsController::class)->name('settings.users.unblock');
 Route::post('settings/api-tokens', [ApiTokenController::class, 'store'])->name('settings.api-tokens.store');
 Route::delete('settings/api-tokens', [ApiTokenController::class, 'destroy'])->name('settings.api-tokens.delete');
+Route::post('settings/notifications', [NotificationSettingsController::class, 'store'])->name('settings.notifications.store');
 
 // Forum
 Route::prefix('forum')->group(function () {

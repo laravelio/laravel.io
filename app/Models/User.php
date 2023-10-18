@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use App\Concerns\HasTimestamps;
+use App\Enums\NotificationType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Notifications\Dispatcher;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -50,6 +53,13 @@ final class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
         'bio',
         'banned_reason',
+    ];
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $casts = [
+        'allowed_notifications' => 'array',
     ];
 
     /**
@@ -350,5 +360,13 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $query->whereDoesntHave('blockedUsers', function ($query) use ($user) {
             $query->where('user_id', $user->getKey());
         });
+    }
+
+    public function isNotificationAllowed(string $notification): bool
+    {
+        return collect($this->allowed_notifications ?? [])
+            ->contains(function ($notificationType) use ($notification) {
+                return NotificationType::from($notificationType)->getClass() === $notification;
+            });
     }
 }

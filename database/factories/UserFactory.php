@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Enums\NotificationType;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -29,6 +30,10 @@ class UserFactory extends Factory
             'type' => User::DEFAULT,
             'bio' => $this->faker->sentence(),
             'email_verified_at' => now()->subDay(),
+            'allowed_notifications' => [
+                NotificationType::MENTION,
+                NotificationType::REPLY,
+            ],
         ];
     }
 

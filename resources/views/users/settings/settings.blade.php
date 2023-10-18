@@ -46,6 +46,7 @@
                     @include('users.settings.profile')
                     @include('users.settings.password')
                     @include('users.settings.api_tokens')
+                    @include('users.settings.notification_settings')
                     @include('users.settings.blocked')
                     @include('users.settings.remove')
                 </div>
