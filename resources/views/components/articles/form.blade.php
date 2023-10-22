@@ -20,17 +20,17 @@
                 @endif
             </h2>
 
-            <x-forms.info class="px-0">
+            <x-info class="mt-4">
                 Submit your article to the Laravel.io portal. We're looking for high quality articles revolving around Laravel, PHP, JavaScript, CSS, and related topics. Articles can't be promotional in nature and should be educational and informative. We reserve the right to decline articles that don't meet our quality standards.
-            </x-forms.info>
+            </x-info>
 
-            <x-forms.info class="px-0">
+            <x-info class="mt-4">
                 Every article that gets approved will be shared with our 50.000 users and wil be tweeted out on our <a href="https://twitter.com/laravelio" class="text-lio-700 underline">Twitter account</a> which has over 49,000 followers. Feel free to submit as many articles as you like. You can even cross-reference an article on your blog with the original url.
-            </x-forms.info>
+            </x-info>
 
-            <x-forms.info class="px-0">
+            <x-info class="mt-4">
                 After submission for approval, articles are reviewed before being published. No notification of declined articles will be provided. Instead, we encourage to also cross-post articles on your own channel as well. <strong>After being published, you cannot edit your article anymore so please review it thoroughly before submitting for approval.</strong> Submitting the same article twice or posting spam will result in the banning of your account.
-            </x-forms.info>
+            </x-info>
 
             <x-rules-banner />
         </div>
@@ -87,10 +87,10 @@
             </div>
 
             <div class="md:flex md:items-center md:justify-between">
-                <x-forms.info class="px-0">
-                    <span class="font-bold">Note: </span>
+                <x-info>
+                    <span class="font-bold">Note:</span>
                     You can't edit an article anymore after it's been published.
-                </x-forms.info>
+                </x-info>
 
                 <div class="flex justify-end items-center">
                     <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('user.articles') }}" class="text-lio-700 mr-4">

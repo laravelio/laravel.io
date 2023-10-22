@@ -23,10 +23,10 @@
             </h2>
             <x-rules-banner />
 
-            <x-forms.info class="p-0 mt-2">
+            <x-info class="mt-4">
                 Please search for your question before posting your thread by using the search box in the navigation bar.<br>
                 Want to share large code snippets? Share them through <a href="https://paste.laravel.io" class="text-lio-700 underline">our pastebin</a>.
-            </x-forms.info>
+            </x-info>
         </div>
 
         <div class="flex flex-col space-y-6">
