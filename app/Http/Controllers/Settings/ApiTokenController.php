@@ -19,13 +19,11 @@ class ApiTokenController extends Controller
 
     public function store(CreateApiTokenRequest $request): RedirectResponse
     {
-        $this->dispatchSync(new CreateApiToken($user = $request->user(), $request->name()));
-
-        $token = $user->tokens()->where('name', $request->name())->first();
+        $plainTextToken = $this->dispatchSync(new CreateApiToken($request->user(), $request->name()));
 
         $this->success('settings.api_token.created');
 
-        return redirect()->route('settings.profile')->with('api_token', $token->plainTextToken);
+        return redirect()->route('settings.profile')->with('api_token', $plainTextToken);
     }
 
     public function destroy(DeleteApiTokenRequest $request): RedirectResponse
