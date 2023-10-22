@@ -10,7 +10,7 @@
 
     @can(App\Policies\ReplyPolicy::UPDATE, $reply)
         <div x-show="edit">
-            <livewire:editor 
+            <livewire:editor
                 x-cloak
                 :hasShadow="false"
                 :body="$reply->body()"
@@ -18,6 +18,7 @@
                 hasButton
                 buttonLabel="Update reply"
                 buttonIcon="heroicon-o-arrow-right"
+                cancelAction='@click="edit = false; open = false;"'
             />
 
             @if ($errors->has('body'))

@@ -15,13 +15,17 @@ class Editor extends Component
 
     public $body;
 
-    public $hasButton;
+    public $hasButton = false;
 
     public $buttonType = 'submit';
 
     public $buttonLabel = 'Submit';
 
     public $buttonIcon;
+
+    public $cancelLink = null;
+
+    public $cancelAction = null;
 
     public $hasMentions = false;
 

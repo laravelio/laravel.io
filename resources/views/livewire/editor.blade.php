@@ -85,6 +85,22 @@
             <div class="flex flex-col items-center justify-end gap-y-4 gap-x-5 p-5 md:flex-row">
                 <x-forms.editor.controls />
 
+                @isset($cancelLink)
+                    <span class="text-gray-500">|</span>
+
+                    <a href="{{ $cancelLink }}" class="text-lio-700">
+                        Cancel
+                    </a>
+                @endisset
+
+                @isset($cancelAction)
+                    <span class="text-gray-500">|</span>
+
+                    <button class="text-lio-700" {!! $cancelAction !!}>
+                        Cancel
+                    </button>
+                @endisset
+
                 @if ($hasButton)
                     <x-buttons.primary-cta type="{{ $buttonType }}" class="w-full md:w-auto" @click.prevent="submit">
                         <span class="flex items-center">

@@ -67,6 +67,7 @@
                         hasButton
                         :buttonLabel="$thread ? 'Update thread' : 'Create thread'"
                         buttonIcon="heroicon-o-arrow-right"
+                        :cancelLink="$thread ? route('thread', $thread->slug()) : route('forum')"
                     />
                 </div>
             </div>

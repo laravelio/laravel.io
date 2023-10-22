@@ -1,7 +1,4 @@
-@props([
-    'action' => null,
-])
-
+@props(['action' => null])
 
 <span class="inline-flex rounded shadow {{ $attributes->get('class') }}">
     @if ($attributes->has('href'))

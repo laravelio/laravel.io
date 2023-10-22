@@ -67,9 +67,9 @@
                 class="absolute top-12 right-1 flex flex-col bg-white rounded shadow w-48 z-10"
             >
                 @can(App\Policies\ReplyPolicy::UPDATE, $reply)
-                    <button class="flex gap-x-2 p-3 rounded hover:bg-gray-100" @click="edit = !edit; open = false;">
+                    <button x-show="! edit" class="flex gap-x-2 p-3 rounded hover:bg-gray-100" @click="edit = true; open = false;">
                         <x-heroicon-o-pencil class="w-6 h-6"/>
-                        <span x-text="edit ? 'Cancel editing' : 'Edit'"></span>
+                        <span>Edit</span>
                     </button>
                 @endcan
 
