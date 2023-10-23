@@ -10,8 +10,8 @@ final class CreateApiToken
     {
     }
 
-    public function handle(): void
+    public function handle(): string
     {
-        $this->user->createToken($this->name);
+        return $this->user->createToken($this->name)->plainTextToken;
     }
 }
