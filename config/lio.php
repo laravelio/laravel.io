@@ -2,7 +2,7 @@
 
 return [
     'ads' => [
-        ['url' => 'https://fullstackeurope.com/2023?utm_source=Laravel.io&utm_campaign=fseu23&utm_medium=advertisement', 'image' => 'fseu', 'alt' => 'Full Stack Europe', 'goal' => 'SRIK2PEE'],
+        ['url' => 'https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement', 'image' => 'eventy', 'alt' => 'Eventy', 'goal' => 'PSA8VL6S'],
     ],
 
     'horizon' => [
