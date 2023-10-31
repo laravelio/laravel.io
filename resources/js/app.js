@@ -1,4 +1,3 @@
-import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.esm';
 import hljs from 'highlight.js';
 import Choices from 'choices.js';
 
@@ -8,10 +7,6 @@ import './bootstrap';
 import './nav';
 import './search';
 import './editor';
-
-window.Alpine = Alpine;
-
-Livewire.start();
 
 // Create a multiselect element.
 window.choices = (element) => {
