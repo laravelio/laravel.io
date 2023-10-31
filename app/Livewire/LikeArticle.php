@@ -5,14 +5,11 @@ namespace App\Livewire;
 use App\Jobs\LikeArticle as LikeArticleJob;
 use App\Jobs\UnlikeArticle as UnlikeArticleJob;
 use App\Models\Article;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 final class LikeArticle extends Component
 {
-    use DispatchesJobs;
-
     public $article;
 
     public $isSidebar = true;
@@ -31,9 +28,9 @@ final class LikeArticle extends Component
         }
 
         if ($this->article->isLikedBy(Auth::user())) {
-            $this->dispatchSync(new UnlikeArticleJob($this->article, Auth::user()));
+            dispatch_sync(new UnlikeArticleJob($this->article, Auth::user()));
         } else {
-            $this->dispatchSync(new LikeArticleJob($this->article, Auth::user()));
+            dispatch_sync(new LikeArticleJob($this->article, Auth::user()));
         }
 
         $this->dispatch('likeToggled');

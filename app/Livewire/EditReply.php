@@ -13,7 +13,6 @@ use Livewire\Component;
 class EditReply extends Component
 {
     use AuthorizesRequests;
-    use DispatchesJobs;
 
     public $reply;
 
@@ -33,7 +32,7 @@ class EditReply extends Component
 
         $this->validate((new UpdateReplyRequest())->rules());
 
-        $this->dispatchSync(new UpdateReply($this->reply, Auth::user(), $this->body));
+        dispatch_sync(new UpdateReply($this->reply, Auth::user(), $this->body));
 
         $this->dispatch('replyEdited');
     }
