@@ -11,8 +11,6 @@ use Livewire\Component;
 
 final class LikeThread extends Component
 {
-    use DispatchesJobs;
-
     /** @var \App\Models\Thread */
     public $thread;
 
@@ -28,9 +26,9 @@ final class LikeThread extends Component
         }
 
         if ($this->thread->isLikedBy(Auth::user())) {
-            $this->dispatchSync(new UnlikeThreadJob($this->thread, Auth::user()));
+            dispatch_sync(new UnlikeThreadJob($this->thread, Auth::user()));
         } else {
-            $this->dispatchSync(new LikeThreadJob($this->thread, Auth::user()));
+            dispatch_sync(new LikeThreadJob($this->thread, Auth::user()));
         }
     }
 }

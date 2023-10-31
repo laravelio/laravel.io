@@ -11,8 +11,6 @@ use Livewire\Component;
 
 final class LikeReply extends Component
 {
-    use DispatchesJobs;
-
     /** @var \App\Models\Reply */
     public $reply;
 
@@ -28,9 +26,9 @@ final class LikeReply extends Component
         }
 
         if ($this->reply->isLikedBy(Auth::user())) {
-            $this->dispatchSync(new UnlikeReplyJob($this->reply, Auth::user()));
+            dispatch_sync(new UnlikeReplyJob($this->reply, Auth::user()));
         } else {
-            $this->dispatchSync(new LikeReplyJob($this->reply, Auth::user()));
+            dispatch_sync(new LikeReplyJob($this->reply, Auth::user()));
         }
     }
 }

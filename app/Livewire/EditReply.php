@@ -6,7 +6,6 @@ use App\Http\Requests\UpdateReplyRequest;
 use App\Jobs\UpdateReply;
 use App\Policies\ReplyPolicy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
