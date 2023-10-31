@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Jobs\LikeThread as LikeThreadJob;
 use App\Jobs\UnlikeThread as UnlikeThreadJob;

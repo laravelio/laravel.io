@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Jobs\LikeArticle as LikeArticleJob;
 use App\Jobs\UnlikeArticle as UnlikeArticleJob;

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\NotificationIndicator;
+use App\Livewire\NotificationIndicator;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Notifications\NewReplyNotification;

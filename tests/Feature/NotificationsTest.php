@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\Notifications;
+use App\Livewire\Notifications;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Notifications\NewReplyNotification;

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\Editor;
+use App\Livewire\Editor;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

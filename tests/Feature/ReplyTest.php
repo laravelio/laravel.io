@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\EditReply;
+use App\Livewire\EditReply;
 use App\Mail\MentionEmail;
 use App\Models\Reply;
 use App\Models\Thread;
