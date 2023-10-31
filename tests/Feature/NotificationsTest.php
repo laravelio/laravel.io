@@ -73,7 +73,7 @@ test('users_can_mark_notifications_as_read', function () {
         ->assertDontSee(new HtmlString(
             "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-lio-700\">\"{$thread->subject()}\"</a>.",
         ))
-        ->assertEmitted('NotificationMarkedAsRead');
+        ->assertDispatched('NotificationMarkedAsRead');
 });
 
 test('a_non_logged_in_user_cannot_access_notifications', function () {

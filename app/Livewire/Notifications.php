@@ -44,6 +44,6 @@ final class Notifications extends Component
 
         $this->notificationCount--;
 
-        $this->emit('NotificationMarkedAsRead', $this->notificationCount);
+        $this->dispatch('NotificationMarkedAsRead', $this->notificationCount);
     }
 }

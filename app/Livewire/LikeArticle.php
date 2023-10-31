@@ -36,7 +36,7 @@ final class LikeArticle extends Component
             $this->dispatchSync(new LikeArticleJob($this->article, Auth::user()));
         }
 
-        $this->emit('likeToggled');
+        $this->dispatch('likeToggled');
     }
 
     public function likeToggled()

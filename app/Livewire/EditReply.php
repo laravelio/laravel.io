@@ -35,6 +35,6 @@ class EditReply extends Component
 
         $this->dispatchSync(new UpdateReply($this->reply, Auth::user(), $this->body));
 
-        $this->emit('replyEdited');
+        $this->dispatch('replyEdited');
     }
 }

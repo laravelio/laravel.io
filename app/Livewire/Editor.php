@@ -78,6 +78,6 @@ class Editor extends Component
 
     public function preview(): void
     {
-        $this->emit('previewRequested');
+        $this->dispatch('previewRequested');
     }
 }
