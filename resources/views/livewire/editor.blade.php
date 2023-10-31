@@ -5,7 +5,7 @@
         </span>
     @endif
 
-    <div x-data="editorConfig($wire.entangle('body').defer, {{ $hasMentions }})" class="bg-white rounded-md {{ $hasShadow ? 'shadow-md' : '' }}">
+    <div x-data="editorConfig(@entangle('body'), {{ $hasMentions }})" class="bg-white rounded-md {{ $hasShadow ? 'shadow-md' : '' }}">
         <ul class="flex p-5 gap-x-4">
             <li>
                 <button
