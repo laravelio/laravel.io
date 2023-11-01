@@ -40,8 +40,8 @@
                     x-model=body
                     required
                     x-ref="editor"
-                    @keydown.cmd.enter="submit($event)"
-                    @keydown.ctrl.enter="submit($event)"
+                    @keydown.cmd.enter="submit"
+                    @keydown.ctrl.enter="submit"
                     @keydown.space="showMentions = false"
                     @keydown.down="highlightNextUser(event)"
                     @keydown.up="highlightPreviousUser(event)"
