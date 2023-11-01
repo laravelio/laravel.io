@@ -73,7 +73,7 @@
                             <form
                                 action="{{ route('replies.store') }}"
                                 method="POST"
-                                @submitted="$event.currentTarget.submit()"
+                                @submitted.stop="$event.currentTarget.submit()"
                             >
                                 @csrf
 
