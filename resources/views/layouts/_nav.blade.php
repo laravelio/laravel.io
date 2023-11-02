@@ -147,7 +147,7 @@
 
                 <div class="w-full block gap-x-4 lg:flex lg:items-center lg:justify-end">
                     <div class="flex items-center">
-                        <button @click="showSearch($event)" @keyup.window.slash="showSearch($event)" class="hover:text-lio-500">
+                        <button @keydown.window.prevent.ctrl.k="showSearch($event)" @keydown.window.prevent.cmd.k="showSearch($event)" @click="showSearch($event)" @keyup.window.slash="showSearch($event)" class="hover:text-lio-500">
                             <x-heroicon-o-magnifying-glass class="h-5 w-5 hidden lg:block" />
                         </button>
                         @include('_partials._search')
