@@ -89,20 +89,6 @@
 
                                     <div x-show="community" x-cloak>
                                         <ul class="ml-4 lg:absolute lg:flex lg:flex-col lg:ml-0 lg:mt-2 lg:w-48 lg:rounded-md lg:shadow-lg lg:z-50 lg:bg-white">
-                                            <li class="my-4 lg:hover:bg-gray-100 lg:my-0">
-                                                <a href="https://github.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">
-                                                    <x-icon-github class="w-4 h-4 inline"/>
-                                                    Github
-                                                </a>
-                                            </li>
-
-                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                                <a href="https://twitter.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">
-                                                    <x-si-x class="w-4 h-4 inline text-twitter"/>
-                                                    Twitter
-                                                </a>
-                                            </li>
-
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
                                                 <a href="https://laravel.com" class="inline-block w-full lg:px-4 lg:py-3">
                                                     <img loading="lazy" src="{{ asset('images/laravel.png') }}" alt="Laravel" class="w-4 h-4 inline" />
@@ -146,7 +132,16 @@
                 </div>
 
                 <div class="w-full block gap-x-4 lg:flex lg:items-center lg:justify-end">
-                    <div class="flex items-center">
+                    <div class="flex items-center space-x-3">
+                        <a href="https://github.com/laravelio">
+                            <x-icon-github class="w-4 h-4 inline" />
+                            <span class="sr-only">Github</span>
+                        </a>
+
+                        <a href="https://twitter.com/laravelio" class="inline-block w-full lg:px-4 lg:py-3">
+                            <x-si-x class="w-4 h-4 inline text-twitter" />
+                            <span class="sr-only">X (Formerly Twitter)</span>
+                        </a>
                         <button @click="showSearch($event)" @keyup.window.slash="showSearch($event)" class="hover:text-lio-500">
                             <x-heroicon-o-magnifying-glass class="h-5 w-5 hidden lg:block" />
                         </button>
