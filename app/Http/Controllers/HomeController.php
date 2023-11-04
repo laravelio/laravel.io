@@ -24,7 +24,7 @@ class HomeController extends Controller
         });
 
         $totalUsers = Cache::remember('totalUsers', now()->addDay(), function () {
-            return number_format(User::count());
+            return number_format(User::notBanned()->count());
         });
 
         $totalThreads = Cache::remember('totalThreads', now()->addDay(), function () {
