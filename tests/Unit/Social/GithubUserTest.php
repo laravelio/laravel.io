@@ -15,7 +15,7 @@ it('can determine if the user is younger than two weeks', function () {
     expect($user->isTooYoung())->toBeTrue();
 });
 
-it('can determine if the user has public repositories', function (int $num_repos, bool $expected) {
+it('can determine if the user has public repositories', function (int $numberOfRepos, bool $expected) {
     $user = new GithubUser(['public_repos' => $num_repos]);
 
     expect($user->hasPublicRepositories())->toBe($expected);
