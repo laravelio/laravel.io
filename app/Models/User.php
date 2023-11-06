@@ -336,6 +336,11 @@ final class User extends Authenticatable implements MustVerifyEmail
         ]);
     }
 
+    public function scopeNotBanned(Builder $query)
+    {
+        return $query->whereNull('banned_at');
+    }
+
     public function hasBlocked(User $user): bool
     {
         return $this->blockedUsers()->where('blocked_user_id', $user->getKey())->exists();

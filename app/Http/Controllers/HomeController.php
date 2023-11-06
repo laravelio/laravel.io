@@ -16,7 +16,7 @@ class HomeController extends Controller
         $communityMembers = Cache::remember('communityMembers', now()->addMinutes(5), function () {
             return User::withCounts()
                 ->hasActivity()
-                ->whereNull('banned_at')
+                ->notBanned()
                 ->inRandomOrder()
                 ->take(100)
                 ->get()
@@ -24,7 +24,7 @@ class HomeController extends Controller
         });
 
         $totalUsers = Cache::remember('totalUsers', now()->addDay(), function () {
-            return number_format(User::count());
+            return number_format(User::notBanned()->count());
         });
 
         $totalThreads = Cache::remember('totalThreads', now()->addDay(), function () {
