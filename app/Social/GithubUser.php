@@ -13,6 +13,11 @@ final class GithubUser implements Arrayable
     ) {
     }
 
+    public function hasPublicRepositories(): bool
+    {
+        return $this->get('public_repos') > 0;
+    }
+
     public function isTooYoung(): bool
     {
         return $this->createdAt() > $this->twoWeeksAgo();
