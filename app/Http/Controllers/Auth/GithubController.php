@@ -67,6 +67,12 @@ class GithubController extends Controller
             return redirect()->route('home');
         }
 
+        if (! $user->hasPublicRepositories()) {
+            $this->error('errors.github_account_no_repositories');
+
+            return redirect()->route('home');
+        }
+
         return $this->redirectUserToRegistrationPage($user);
     }
 
