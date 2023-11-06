@@ -7,8 +7,8 @@ use App\Models\Article;
 
 class SocialImageController extends Controller
 {
-    public function __invoke(GenerateSocialShareImage $generateImage, Article $article)
+    public function __invoke(Article $article)
     {
-        return $this->dispatchSync(new $generateImage($article));
+        return $this->dispatchSync(new GenerateSocialShareImage($article));
     }
 }
