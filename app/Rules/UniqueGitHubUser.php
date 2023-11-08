@@ -16,7 +16,7 @@ final class UniqueGitHubUser implements Rule
     public function passes($attribute, $value): bool
     {
         try {
-            $this->user = User::findByGithubId($value);
+            $this->user = User::findByGitHubId($value);
         } catch (ModelNotFoundException) {
             return true;
         }
