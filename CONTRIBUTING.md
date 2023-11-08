@@ -25,7 +25,7 @@ We very much appreciate any help with [open issues labeled with "help wanted"](h
 
 - It's a good practice to write tests for your contribution
 - Write the full namespace in DocBlocks for `@param`, `@var` or `@return` tags
-- The rest of the coding standards will automatically fixed by [Github Actions](https://github.com/laravelio/laravel.io/actions)
+- The rest of the coding standards will automatically be fixed by [GitHub Actions](https://github.com/laravelio/laravel.io/actions)
 
 ## Testing
 

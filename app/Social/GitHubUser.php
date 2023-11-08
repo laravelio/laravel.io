@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 
-final class GithubUser implements Arrayable
+final class GitHubUser implements Arrayable
 {
     public function __construct(
         private array $attributes

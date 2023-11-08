@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Jobs\UpdateProfile;
 use App\Models\User;
-use App\Social\GithubUser;
+use App\Social\GitHubUser;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +13,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\User as SocialiteUser;
 
-class GithubController extends Controller
+class GitHubController extends Controller
 {
     /**
      * Redirect the user to the GitHub authentication page.
@@ -37,9 +37,9 @@ class GithubController extends Controller
         }
 
         try {
-            $user = User::findByGithubId($socialiteUser->getId());
+            $user = User::findByGitHubId($socialiteUser->getId());
         } catch (ModelNotFoundException $exception) {
-            return $this->userNotFound(new GithubUser($socialiteUser->getRaw()));
+            return $this->userNotFound(new GitHubUser($socialiteUser->getRaw()));
         }
 
         return $this->userFound($user, $socialiteUser);
@@ -59,7 +59,7 @@ class GithubController extends Controller
         return redirect()->route('profile');
     }
 
-    private function userNotFound(GithubUser $user): RedirectResponse
+    private function userNotFound(GitHubUser $user): RedirectResponse
     {
         if ($user->isTooYoung()) {
             $this->error('errors.github_account_too_young');
@@ -76,7 +76,7 @@ class GithubController extends Controller
         return $this->redirectUserToRegistrationPage($user);
     }
 
-    private function redirectUserToRegistrationPage(GithubUser $user): RedirectResponse
+    private function redirectUserToRegistrationPage(GitHubUser $user): RedirectResponse
     {
         session(['githubData' => $user->toArray()]);
 
