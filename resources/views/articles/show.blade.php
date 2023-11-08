@@ -127,7 +127,7 @@
                     </div>
 
                     <div class="border-t-2 border-gray-200 py-8 lg:pt-14 lg:pb-16">
-                        <div class="flex flex-col items-center justify-center gap-y-4 lg:flex-row lg:justify-between">
+                        <div class="flex flex-col items-center justify-center gap-y-4 gap-x-6 lg:flex-row lg:justify-between">
                             <div class="flex items-start gap-x-4">
                                 <div class="shrink-0">
                                     <x-avatar :user="$article->author()" class="hidden w-16 h-16 lg:block" />
@@ -144,7 +144,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex items-center gap-x-6">
+                            <div class="flex items-center gap-x-4">
                                 @if ($article->author()->githubUsername())
                                     <a href="https://github.com/{{ $article->author()->githubUsername() }}">
                                         <x-icon-github class="w-6 h-6" />
