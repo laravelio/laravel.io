@@ -17,7 +17,7 @@ This is the repository for the [Laravel.io](http://laravel.io) community portal.
 
 ## Sponsors
 
-We'd like to thank these **amazing companies** for sponsoring us. If you are interested in becoming a sponsor, please visit <a href="https://github.com/sponsors/laravelio">the Laravel.io Github Sponsors page</a>.
+We'd like to thank these **amazing companies** for sponsoring us. If you are interested in becoming a sponsor, please visit <a href="https://github.com/sponsors/laravelio">the Laravel.io GitHub Sponsors page</a>.
 
 - **[Eventy](https://https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement)**
 - [Forge](https://forge.laravel.com)
@@ -54,9 +54,9 @@ The following tools are required in order to start the installation.
 
 You can now visit the app in your browser by visiting [http://laravel.io.test](http://laravel.io.test). If you seeded the database you can login into a test account with **`testing`** & **`password`**.
 
-### Github Authentication (optional)
+### GitHub Authentication (optional)
 
-To get Github authentication to work locally, you'll need to [register a new OAuth application on Github](https://github.com/settings/applications/new). Use `http://laravel.io.test` for the homepage url and `http://laravel.io.test/auth/github` for the callback url. When you've created the app, fill in the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with Github.
+To get GitHub authentication to work locally, you'll need to [register a new OAuth application on GitHub](https://github.com/settings/applications/new). Use `http://laravel.io.test` for the homepage url and `http://laravel.io.test/auth/github` for the callback url. When you've created the app, fill in the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with GitHub.
 
 ```
 GITHUB_ID=
@@ -66,7 +66,7 @@ GITHUB_URL=http://laravel.io.test/auth/github
 
 ### Algolia Search (optional)
 
-To get Algolia search running locally, you'll need to [register for a new account](https://www.algolia.com/users/sign_up) and create an index called `threads`. Algolia has a free tier that satisfies all of the requirements needed for a development environment. Now update the below variables in your `.env` file. The App ID and secret keys can be found in the `API Keys` section of the Algoila UI. 
+To get Algolia search running locally, you'll need to [register for a new account](https://www.algolia.com/users/sign_up) and create an index called `threads`. Algolia has a free tier that satisfies all of the requirements needed for a development environment. Now update the below variables in your `.env` file. The App ID and secret keys can be found in the `API Keys` section of the Algoila UI.
 
 ```
 SCOUT_DRIVER=algolia
@@ -94,7 +94,7 @@ php artisan scout:flush App\\Models\\Thread
 
 ### Twitter Sharing (optional)
 
-To enable published articles to be automatically shared on Twitter, you'll need to [create a Twitter app](https://developer.twitter.com/apps/). Once the app has been created, update the below variables in your `.env` file. The consumer key and secret and access token and secret can be found in the `Keys and tokens` section of the Twitter developers UI. 
+To enable published articles to be automatically shared on Twitter, you'll need to [create a Twitter app](https://developer.twitter.com/apps/). Once the app has been created, update the below variables in your `.env` file. The consumer key and secret and access token and secret can be found in the `Keys and tokens` section of the Twitter developers UI.
 
 ```
 TWITTER_CONSUMER_KEY=

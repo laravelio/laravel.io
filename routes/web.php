@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Articles\ArticlesController;
 use App\Http\Controllers\Articles\AuthoredArticles;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Auth\GithubController;
+use App\Http\Controllers\Auth\GitHubController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -62,8 +62,8 @@ Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify']
 Route::post('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
 // Social authentication
-Route::get('login/github', [GithubController::class, 'redirectToProvider'])->name('login.github');
-Route::get('auth/github', [GithubController::class, 'handleProviderCallback']);
+Route::get('login/github', [GitHubController::class, 'redirectToProvider'])->name('login.github');
+Route::get('auth/github', [GitHubController::class, 'handleProviderCallback']);
 
 // Users
 Route::redirect('/dashboard', '/user');
