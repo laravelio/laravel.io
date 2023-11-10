@@ -11,7 +11,7 @@
         "algoliasearch": "^4.8.4",
         "alpinejs": "^3.0",
         "autoprefixer": "^10.4.0",
-        "axios": "^0.25",
+        "axios": "^1.6",
         "choices.js": "^9.0.1",
         "highlight.js": "^10.5.0",
         "laravel-vite-plugin": "^0.2.2",
