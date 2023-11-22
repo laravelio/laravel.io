@@ -136,12 +136,15 @@
                         <a href="https://github.com/laravelio" class="inline-block w-full">
                             <x-icon-github class="w-4 h-4 inline"/>
                         </a>
+
                         <a href="https://twitter.com/laravelio" class="inline-block w-full">
                             <x-si-x class="w-4 h-4 inline text-twitter"/>
                         </a>
+
                         <button @keydown.window.prevent.ctrl.k="showSearch($event)" @keydown.window.prevent.cmd.k="showSearch($event)" @click="showSearch($event)" @keyup.window.slash="showSearch($event)" class="hover:text-lio-500">
                             <x-heroicon-o-magnifying-glass class="h-5 w-5 hidden lg:block" />
                         </button>
+
                         @include('_partials._search')
                     </div>
 
