@@ -9,8 +9,11 @@
         </div> --}}
 
         <div class="mt-8 flex justify-center">
-            <div class="col-span-2 flex justify-center lg:col-span-1">
+            <div class="col-span-2 flex justify-center lg:col-span-1 mr-10">
                 <x-sponsor-logo size="medium" url="https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement" logo="{{ asset('images/sponsors/eventy.svg') }}" company="Eventy" />
+            </div>
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo size="large" url="https://bit.ly/49GlsSV" logo="{{ asset('images/sponsors/cloudways.png') }}" company="Cloudways" />
             </div>
         </div>
 

@@ -9,7 +9,7 @@
 {{-- Show the banner on bigger displays. --}}
 <div class="hidden md:block w-full">
     <a href="{{ $long['url'] }}" target="_blank" rel="noopener noreferrer" onclick="fathom.trackGoal('{{ $long['goal'] }}', 0);">
-        <img class="block mx-auto w-full" style="max-width:1200px" src="{{ asset("/images/showcase/{$long['image']}-long.png") }}" alt="{{ $long['alt'] }}">
+        <img class="block mx-auto" style="max-width:1200px" src="{{ asset("/images/showcase/{$long['image']}-long.png") }}" alt="{{ $long['alt'] }}">
     </a>
 </div>
 
