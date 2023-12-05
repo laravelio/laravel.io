@@ -18,6 +18,13 @@ window.searchConfig = () => {
             },
             articles: [],
         },
+        users: {
+            total: 0,
+            formattedTotal: function () {
+                return `${this.total} ${this.total === 1 ? 'Result' : 'Results'}`;
+            },
+            users: [],
+        },
         toggle() {
             this.searchQuery = '';
             this.lockScroll = this.searchVisible;
@@ -48,12 +55,22 @@ window.searchConfig = () => {
                         attributesToSnippet: ['body:10'],
                     },
                 },
+                {
+                    indexName: import.meta.env.VITE_ALGOLIA_USERS_INDEX,
+                    query: this.searchQuery,
+                    params: {
+                        hitsPerPage: 5,
+                        attributesToSnippet: ['bio:10'],
+                    },
+                },
             ]);
 
             this.threads.total = results[0].nbHits;
             this.threads.threads = results[0].hits;
             this.articles.total = results[1].nbHits;
             this.articles.articles = results[1].hits;
+            this.users.total = results[1].nbHits;
+            this.users.users = results[1].hits;
         },
     };
 };
