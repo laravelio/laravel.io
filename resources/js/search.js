@@ -69,8 +69,8 @@ window.searchConfig = () => {
             this.threads.threads = results[0].hits;
             this.articles.total = results[1].nbHits;
             this.articles.articles = results[1].hits;
-            this.users.total = results[1].nbHits;
-            this.users.users = results[1].hits;
+            this.users.total = results[2].nbHits;
+            this.users.users = results[2].hits;
         },
     };
 };

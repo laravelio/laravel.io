@@ -69,9 +69,27 @@
                     </template>
                 </ul>
             </li>
+            <li>
+                <h2 class="bg-gray-100 py-2.5 px-4 font-semibold text-gray-900">
+                    Users <span x-text="users.formattedTotal()" class="ml-2 text-sm text-gray-500"></span>
+                </h2>
+                <ul class="mt-2 text-sm text-gray-800">
+                    <template x-for="user in users.users">
+                        <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${user.id}`"
+                            role="option" tabindex="-1">
+                            <a :href="'/user/'+user.username" class="flex flex-col">
+                                <span class="text-black-900 font-medium break-all"
+                                      x-html="user._highlightResult.username.value"></span>
+                                <span class="text-black-900 break-all"
+                                      x-html="user._highlightResult.name.value"></span>
+                            </a>
+                        </li>
+                    </template>
+                </ul>
+            </li>
         </ul>
 
-        <div x-show="searchQuery.length && !threads.total && !articles.total" x-cloak
+        <div x-show="searchQuery.length && !threads.total && !articles.total && !users.total" x-cloak
             class="border-t border-gray-100 py-14 px-6 text-center text-sm sm:px-14">
             <svg class="mx-auto h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
