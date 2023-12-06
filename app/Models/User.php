@@ -270,7 +270,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->replyAble()->isSolution()->count();
     }
 
-    public function scopeMostSolutions(Builder $query, int $inLastDays = null)
+    public function scopeMostSolutions(Builder $query, ?int $inLastDays = null)
     {
         return $query->withCount(['replyAble as solutions_count' => function ($query) use ($inLastDays) {
             $query->where('replyable_type', 'threads')
@@ -287,7 +287,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         }])->orderBy('solutions_count', 'desc');
     }
 
-    public function scopeMostSubmissions(Builder $query, int $inLastDays = null)
+    public function scopeMostSubmissions(Builder $query, ?int $inLastDays = null)
     {
         return $query->withCount(['articles as articles_count' => function ($query) use ($inLastDays) {
             if ($inLastDays) {

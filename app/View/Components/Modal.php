@@ -13,7 +13,7 @@ class Modal extends Component
         public string $title,
         public string $action,
         public string $type = 'delete',
-        string $submitLabel = null
+        ?string $submitLabel = null
     ) {
         $this->submitLabel = $submitLabel ?: $this->title;
     }

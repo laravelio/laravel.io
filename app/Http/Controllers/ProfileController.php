@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function show(Request $request, User $user = null)
+    public function show(Request $request, ?User $user = null)
     {
         if ($user) {
             $articles = $user->latestArticles(3);
