@@ -74,3 +74,15 @@ window.searchConfig = () => {
         },
     };
 };
+
+window.tabConfig = () => {
+    return {
+        activeTab: 'threads',
+        setActiveTab: function (tab) {
+            this.activeTab = tab;
+        },
+        currentTab: function (tab) {
+            return this.activeTab === tab ? 'bg-white rounded-lg shadow text-indigo-900' : '';
+        }
+    };
+}
