@@ -8,9 +8,17 @@
                             <img loading="lazy" class="h-6 w-auto lg:h-8" src="{{ asset('images/laravelio-logo.svg') }}" width="330" height="78" alt="{{ config('app.name') }}" />
                         </a>
 
-                        <div class="flex lg:hidden">
+                        <div class="flex gap-x-3 lg:hidden">
+                            <a href="https://github.com/laravelio" class="inline-block">
+                                <x-icon-github class="w-6 h-6 inline"/>
+                            </a>
+
+                            <a href="https://twitter.com/laravelio" class="inline-block">
+                                <x-si-x class="w-6 h-6 inline text-twitter"/>
+                            </a>
+
                             <button @click="showSearch($event)">
-                                <x-heroicon-o-magnifying-glass class="w-6 h-6 mr-4" />
+                                <x-heroicon-o-magnifying-glass class="w-6 h-6" />
                             </button>
 
                             <button @click="nav = !nav">
@@ -133,12 +141,12 @@
 
                 <div class="w-full block gap-x-4 lg:flex lg:items-center lg:justify-end">
                     <div class="flex items-center gap-x-4">
-                        <a href="https://github.com/laravelio" class="inline-block w-full">
-                            <x-icon-github class="w-4 h-4 inline"/>
+                        <a href="https://github.com/laravelio" class="hidden lg:inline-block">
+                            <x-icon-github class="w-5 h-5 inline"/>
                         </a>
 
-                        <a href="https://twitter.com/laravelio" class="inline-block w-full">
-                            <x-si-x class="w-4 h-4 inline text-twitter"/>
+                        <a href="https://twitter.com/laravelio" class="hidden lg:inline-block">
+                            <x-si-x class="w-5 h-5 inline text-twitter"/>
                         </a>
 
                         <button @keydown.window.prevent.ctrl.k="showSearch($event)" @keydown.window.prevent.cmd.k="showSearch($event)" @click="showSearch($event)" @keyup.window.slash="showSearch($event)" class="hover:text-lio-500">
