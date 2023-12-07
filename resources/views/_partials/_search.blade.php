@@ -108,6 +108,5 @@
                 <img loading="lazy" src="{{ asset('images/algolia.svg') }}" alt="Magnifying glass icon" class="h-4" />
             </a>
         </div>
-
     </div>
 </div>
