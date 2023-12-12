@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Policies\NotificationPolicy;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -44,6 +44,6 @@ final class Notifications extends Component
 
         $this->notificationCount--;
 
-        $this->emit('NotificationMarkedAsRead', $this->notificationCount);
+        $this->dispatch('NotificationMarkedAsRead', $this->notificationCount);
     }
 }

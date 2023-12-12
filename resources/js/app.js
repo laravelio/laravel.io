@@ -1,4 +1,3 @@
-import Alpine from 'alpinejs';
 import hljs from 'highlight.js';
 import Choices from 'choices.js';
 
@@ -8,10 +7,6 @@ import './bootstrap';
 import './nav';
 import './search';
 import './editor';
-
-window.Alpine = Alpine;
-
-Alpine.start();
 
 // Create a multiselect element.
 window.choices = (element) => {
