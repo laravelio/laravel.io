@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Jobs\LikeThread as LikeThreadJob;
 use App\Jobs\UnlikeThread as UnlikeThreadJob;
 use App\Models\Thread;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
