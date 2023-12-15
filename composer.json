@@ -41,15 +41,12 @@
         "yarri/link-finder": "^2.5"
     },
     "require-dev": {
-        "brianium/paratest": "^6.4",
         "fakerphp/faker": "^1.10",
-        "laravel/browser-kit-testing": "^6.4",
+        "laravel/browser-kit-testing": "^7.0",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
-        "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-laravel": "^1.4",
-        "pestphp/pest-plugin-parallel": "^1.0",
-        "phpunit/phpunit": "^9.5.10"
+        "nunomaduro/collision": "^7.0",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0"
     },
     "autoload": {
         "files": [
