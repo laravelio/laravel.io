@@ -26,7 +26,6 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Fathom](https://usefathom.com)
 - [Tinkerwell](https://tinkerwell.app)
 - [Skynet Technologies](https://www.skynettechnologies.com/hire-laravel-developer)
-- [Lightflows](https://www.lightflows.co.uk/laravel-development-agency/)
 - [Backpack for Laravel](https://backpackforlaravel.com/?ref=laravelio)
 - [Localazy](https://localazy.com/laravel?utm_source=laravel.io&utm_medium=sponsorships&utm_campaign=brand_awareness&utm_content=logo)
 - [Steadfast Collective](https://steadfastcollective.com/uk-laravel-agency)
