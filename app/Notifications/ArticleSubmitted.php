@@ -18,18 +18,15 @@ class ArticleSubmitted extends Notification implements ShouldQueue
 
     public function via($notifiable): array
     {
-        if (
-            ! empty(config('services.telegram-bot-api.token')) &&
-            ! empty(config('services.telegram-bot-api.channel'))
-        ) {
-            return ['telegram'];
-        }
-
-        return [];
+        return ['telegram'];
     }
 
     public function toTelegram($notifiable)
     {
+        if (is_null(config('services.telegram-bot-api.channel'))) {
+            return;
+        }
+
         $url = route('articles.show', $this->article->slug());
 
         return TelegramMessage::create()
