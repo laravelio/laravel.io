@@ -25,18 +25,15 @@ class MarkedAsSpamNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable): array
     {
-        if (
-            ! empty(config('services.telegram-bot-api.token')) &&
-            ! empty(config('services.telegram-bot-api.channel'))
-        ) {
-            return ['telegram'];
-        }
-
-        return [];
+        return ['telegram'];
     }
 
     public function toTelegram($notifiable)
     {
+        if (is_null(config('services.telegram-bot-api.channel'))) {
+            return;
+        }
+
         $model = Str::singular($this->spam->getMorphClass());
 
         if ($this->spam instanceof Reply) {

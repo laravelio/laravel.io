@@ -17,7 +17,7 @@
         "intervention/imagecache": "^2.5",
         "laravel-notification-channels/telegram": "^4.0",
         "laravel-notification-channels/twitter": "^8.0",
-        "laravel/framework": "~10.32.0",
+        "laravel/framework": "^10.0",
         "laravel/horizon": "^5.12",
         "laravel/sanctum": "^3.2",
         "laravel/slack-notification-channel": "^2.5",

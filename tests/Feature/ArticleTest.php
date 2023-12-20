@@ -4,6 +4,7 @@ use App\Events\ArticleWasSubmittedForApproval;
 use App\Models\Article;
 use App\Models\Tag;
 use App\Notifications\ArticleApprovedNotification;
+use App\Notifications\ArticleSubmitted;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
@@ -34,6 +35,8 @@ test('users can create an article', function () {
 });
 
 test('user gets submitted message when submitting new article for approval', function () {
+    Event::fake();
+
     $this->login();
 
     $this->post('/articles', [
@@ -44,9 +47,13 @@ test('user gets submitted message when submitting new article for approval', fun
     ])
         ->assertRedirectedTo('/articles/using-database-migrations')
         ->assertSessionHas('success', 'Thank you for submitting, unfortunately we can\'t accept every submission. You\'ll only hear back from us when we accept your article.');
+
+    Event::assertDispatched(ArticleWasSubmittedForApproval::class);
 });
 
 test('users can submit an article for approval', function () {
+    Event::fake();
+
     $this->login();
 
     $this->post('/articles', [
@@ -58,10 +65,13 @@ test('users can submit an article for approval', function () {
         ->followRedirects()
         ->dontSee('Draft')
         ->see('Awaiting approval');
+
+    Event::assertDispatched(ArticleWasSubmittedForApproval::class);
 });
 
-test('articles submitted for approval send telegram notification', function () {
-    Event::fake();
+test('articles submitted for approval sends a telegram notification for review', function () {
+    Notification::fake();
+
     $this->login();
 
     $this->post('/articles', [
@@ -70,7 +80,7 @@ test('articles submitted for approval send telegram notification', function () {
         'submitted' => '1',
     ]);
 
-    Event::assertDispatched(ArticleWasSubmittedForApproval::class);
+    Notification::assertSentOnDemand(ArticleSubmitted::class);
 });
 
 test('users can create a draft article', function () {
@@ -87,7 +97,8 @@ test('users can create a draft article', function () {
 });
 
 test('draft articles do not send telegram notification', function () {
-    Event::fake();
+    Notification::fake();
+
     $this->login();
 
     $this->post('/articles', [
@@ -96,7 +107,7 @@ test('draft articles do not send telegram notification', function () {
         'submitted' => '0',
     ]);
 
-    Event::assertNotDispatched(ArticleWasSubmittedForApproval::class);
+    Notification::assertNothingSent();
 });
 
 test('users cannot create an article with a title that is too long', function () {
@@ -161,7 +172,8 @@ test('users can edit an article', function () {
 });
 
 test('editing a draft article does not send telegram notification', function () {
-    Event::fake();
+    Notification::fake();
+
     $user = $this->createUser();
     $tag = Tag::factory()->create(['name' => 'Test Tag']);
 
@@ -179,10 +191,12 @@ test('editing a draft article does not send telegram notification', function () 
         'submitted' => '0',
     ]);
 
-    Event::assertNotDispatched(ArticleWasSubmittedForApproval::class);
+    Notification::assertNothingSent();
 });
 
 test('user gets submitted message when submitting existing article for approval', function () {
+    Event::fake();
+
     $user = $this->createUser();
 
     Article::factory()->create([
@@ -200,9 +214,13 @@ test('user gets submitted message when submitting existing article for approval'
     ])
         ->assertRedirectedTo('/articles/using-database-migrations')
         ->assertSessionHas('success', 'Thank you for submitting, unfortunately we can\'t accept every submission. You\'ll only hear back from us when we accept your article.');
+
+    Event::assertDispatched(ArticleWasSubmittedForApproval::class);
 });
 
 test('users can submit an existing article for approval', function () {
+    Event::fake();
+
     $user = $this->createUser();
 
     Article::factory()->create([
@@ -221,10 +239,13 @@ test('users can submit an existing article for approval', function () {
         ->assertRedirectedTo('/articles/using-database-migrations')
         ->followRedirects()
         ->dontSee('Draft');
+
+    Event::assertDispatched(ArticleWasSubmittedForApproval::class);
 });
 
 test('notification is sent to telegram when existing article is submitted for approval', function () {
-    Event::fake();
+    Notification::fake();
+
     $user = $this->createUser();
 
     Article::factory()->create([
@@ -241,7 +262,7 @@ test('notification is sent to telegram when existing article is submitted for ap
         'submitted' => '1',
     ]);
 
-    Event::assertDispatched(ArticleWasSubmittedForApproval::class);
+    Notification::assertSentOnDemand(ArticleSubmitted::class);
 });
 
 test('users cannot edit an article with a title that is too long', function () {

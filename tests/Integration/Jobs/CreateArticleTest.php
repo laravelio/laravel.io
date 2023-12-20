@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\ArticleWasSubmittedForApproval;
 use App\Jobs\CreateArticle;
 use App\Models\Article;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -28,6 +29,8 @@ test('we can create a draft article', function () {
 });
 
 test('we can create an article and submit it for approval', function () {
+    Event::fake();
+
     $user = $this->createUser();
 
     $uuid = Str::uuid();
@@ -39,4 +42,6 @@ test('we can create an article and submit it for approval', function () {
     $article = Article::findByUuidOrFail($uuid);
 
     $this->assertNotNull($article->submittedAt());
+
+    Event::assertDispatched(ArticleWasSubmittedForApproval::class);
 });
