@@ -32,12 +32,14 @@ final class UpdateArticleViewCounts extends Command
             return;
         }
 
-        Article::published()->chunk(100, function ($articles) {
+        Article::published()->chunk(10, function ($articles) {
             $articles->each(function ($article) {
                 $article->timestamps = false;
                 $article->view_count = $this->getViewCountFor($article);
                 $article->save();
             });
+
+            sleep(60);
         });
     }
 
@@ -85,6 +87,11 @@ final class UpdateArticleViewCounts extends Command
             ]);
 
         if ($response->failed()) {
+            logger()->error('Failed to get view count for URL', [
+                'url' => $url,
+                'response' => $response->json(),
+            ]);
+
             return 0;
         }
 
