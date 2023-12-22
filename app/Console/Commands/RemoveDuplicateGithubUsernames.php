@@ -64,6 +64,10 @@ class RemoveDuplicateGithubUsernames extends Command
             });
     }
 
+    /**
+     * @param User $user
+     * @return object|null
+     */
     private function fetchFromGithub(User $user): ?object
     {
         $response = Http::get("https://api.github.com/user/{$user->github_id}");
@@ -75,6 +79,9 @@ class RemoveDuplicateGithubUsernames extends Command
         return $response->object();
     }
 
+    /**
+     * @return Collection
+     */
     private function duplicates(): Collection
     {
         return User::whereIn('github_username', function ($query) {

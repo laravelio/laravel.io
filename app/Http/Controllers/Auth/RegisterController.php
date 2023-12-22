@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Requests\RegisterRequest;
 use App\Jobs\RegisterUser;
+use App\Jobs\UpdateGithubUsername;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -52,6 +53,10 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
         event(new Registered($user = $this->create($request)));
+
+        $this->dispatchSync(
+            new UpdateGithubUsername($user, $request->githubUsername())
+        );
 
         session()->forget('githubData');
 
