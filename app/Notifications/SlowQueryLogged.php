@@ -17,18 +17,15 @@ class SlowQueryLogged extends Notification implements ShouldQueue
 
     public function via($notifiable): array
     {
-        if (
-            ! empty(config('services.telegram-bot-api.token')) &&
-            ! empty(config('services.telegram-bot-api.channel'))
-        ) {
-            return ['telegram'];
-        }
-
-        return [];
+        return ['telegram'];
     }
 
     public function toTelegram($notifiable)
     {
+        if (is_null(config('services.telegram-bot-api.channel'))) {
+            return;
+        }
+
         return TelegramMessage::create()
             ->to(config('services.telegram-bot-api.channel'))
             ->content($this->content());

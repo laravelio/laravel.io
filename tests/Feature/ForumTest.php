@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Livewire\LikeReply;
-use App\Http\Livewire\LikeThread;
+use App\Livewire\LikeReply;
+use App\Livewire\LikeThread;
 use App\Mail\MentionEmail;
 use App\Models\Reply;
 use App\Models\Tag;

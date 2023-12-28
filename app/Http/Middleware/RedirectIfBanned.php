@@ -12,7 +12,7 @@ class RedirectIfBanned
 {
     use SendsAlerts;
 
-    public function handle(Request $request, Closure $next, string $guard = null): Response
+    public function handle(Request $request, Closure $next, ?string $guard = null): Response
     {
         if (Auth::check() && Auth::user()->isBanned()) {
             $this->error('errors.banned');

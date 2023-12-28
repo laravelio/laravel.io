@@ -9,7 +9,7 @@
     </div>
 
     @can(App\Policies\ReplyPolicy::UPDATE, $reply)
-        <div x-show="edit">
+        <div x-show="edit" @submitted.stop="$wire.updateReply($event.detail.body)">
             <livewire:editor
                 x-cloak
                 :hasShadow="false"

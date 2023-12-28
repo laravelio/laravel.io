@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
@@ -35,7 +35,7 @@ class Editor extends Component
 
     public $participants = [];
 
-    public function mount(EloquentCollection $participants = null)
+    public function mount(?EloquentCollection $participants = null)
     {
         $this->participants = $participants ? $participants->toArray() : [];
     }
@@ -78,6 +78,6 @@ class Editor extends Component
 
     public function preview(): void
     {
-        $this->emit('previewRequested');
+        $this->dispatch('previewRequested');
     }
 }

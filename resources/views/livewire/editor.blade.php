@@ -5,7 +5,7 @@
         </span>
     @endif
 
-    <div x-data="editorConfig($wire.entangle('body').defer, {{ $hasMentions }})" class="bg-white rounded-md {{ $hasShadow ? 'shadow-md' : '' }}">
+    <div x-data="editorConfig(@entangle('body'), {{ $hasMentions }})" class="bg-white rounded-md {{ $hasShadow ? 'shadow-md' : '' }}">
         <ul class="flex p-5 gap-x-4">
             <li>
                 <button
@@ -40,8 +40,8 @@
                     x-model=body
                     required
                     x-ref="editor"
-                    @keydown.cmd.enter="submit($event)"
-                    @keydown.ctrl.enter="submit($event)"
+                    @keydown.cmd.enter="submit"
+                    @keydown.ctrl.enter="submit"
                     @keydown.space="showMentions = false"
                     @keydown.down="highlightNextUser(event)"
                     @keydown.up="highlightPreviousUser(event)"
