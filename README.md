@@ -78,7 +78,10 @@ ALGOLIA_SECRET="Use the Write API Key"
 
 VITE_ALGOLIA_APP_ID="${ALGOLIA_APP_ID}"
 VITE_ALGOLIA_SECRET="Use the Search API Key"
-VITE_ALGOLIA_INDEX=threads
+
+VITE_ALGOLIA_THREADS_INDEX=threads
+VITE_ALGOLIA_ARTICLES_INDEX=articles
+VITE_ALGOLIA_USERS_INDEX=users
 ```
 
 In order to index your existing threads, run the following command:
