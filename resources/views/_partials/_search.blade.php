@@ -28,50 +28,71 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <p class="mt-4 font-semibold text-gray-900">Search for threads and articles</p>
+            <p class="mt-4 font-semibold text-gray-900">Search for threads, articles and users</p>
             <p class="mt-2 text-gray-500">Quickly access threads and articles by running a global search.</p>
         </div>
 
-        <ul x-show="searchQuery.length && (threads.total || articles.total)" x-cloak
-            class="max-h-fit scroll-pt-11 scroll-pb-2 space-y-2 overflow-y-auto pb-2" id="options" role="listbox">
-            <li>
-                <h2 class="bg-gray-100 py-2.5 px-4 font-semibold text-gray-900">
-                    Threads <span x-text="threads.formattedTotal()" class="ml-2 text-sm text-gray-500"></span>
-                </h2>
-                <ul class="mt-2 text-sm text-gray-800">
+        <div
+            x-show="searchQuery.length && (threads.total || articles.total || users.total)"
+            x-data="tabConfig()"
+            x-init="$watch('activeTab', value => setActiveTab(value))"
+            x-cloak
+        >
+            <ul class="grid grid-flow-col text-center text-gray-500 bg-gray-100 rounded-lg p-1">
+                <li>
+                    <a href="javascript:void(0)" @click="activeTab = 'threads'" class="flex justify-center py-4" :class="currentTab('threads')">
+                        <span class="font-bold">Threads</span>
+                        <span x-text="threads.formattedTotal()" class="ml-2 text-sm text-gray-500 leading-6"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" @click="activeTab = 'articles'" class="flex justify-center py-4" :class="currentTab('articles')">
+                        <span class="font-bold">Articles</span>
+                        <span x-text="articles.formattedTotal()" class="ml-2 text-sm text-gray-500 leading-6"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" @click="activeTab = 'users'" class="flex justify-center py-4" :class="currentTab('users')">
+                        <span class="font-bold">Users</span>
+                        <span x-text="users.formattedTotal()" class="ml-2 text-sm text-gray-500 leading-6"></span>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li x-show="activeTab === 'threads'" class="mt-2 text-sm text-gray-800">
                     <template x-for="thread in threads.threads">
-                        <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${thread.id}`"
-                            role="option" tabindex="-1">
+                        <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${thread.id}`" role="option" tabindex="-1">
                             <a :href="'/forum/'+thread.slug" class="flex flex-col">
-                                <span class="text-black-900 font-medium break-all"
-                                    x-html="thread._highlightResult.subject.value"></span>
+                                <span class="text-black-900 font-medium break-all" x-html="thread._highlightResult.subject.value"></span>
                                 <span class="text-black-900 break-all" x-html="thread._snippetResult.body.value"></span>
                             </a>
                         </li>
                     </template>
-                </ul>
-            </li>
-            <li>
-                <h2 class="bg-gray-100 py-2.5 px-4 font-semibold text-gray-900">
-                    Articles <span x-text="articles.formattedTotal()" class="ml-2 text-sm text-gray-500"></span>
-                </h2>
-                <ul class="mt-2 text-sm text-gray-800">
+                </li>
+                <li x-show="activeTab === 'articles'" class="mt-2 text-sm text-gray-800">
                     <template x-for="article in articles.articles">
-                        <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${article.id}`"
-                            role="option" tabindex="-1">
+                        <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${article.id}`" role="option" tabindex="-1">
                             <a :href="'/articles/'+article.slug" class="flex flex-col">
-                                <span class="text-black-900 font-medium break-all"
-                                    x-html="article._highlightResult.title.value"></span>
-                                <span class="text-black-900 break-all"
-                                    x-html="article._snippetResult.body.value"></span>
+                                <span class="text-black-900 font-medium break-all" x-html="article._highlightResult.title.value"></span>
+                                <span class="text-black-900 break-all" x-html="article._snippetResult.body.value"></span>
                             </a>
                         </li>
                     </template>
-                </ul>
-            </li>
-        </ul>
+                </li>
+                <li x-show="activeTab === 'users'" class="mt-2 text-sm text-gray-800">
+                    <template x-for="user in users.users">
+                        <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${user.id}`" role="option" tabindex="-1">
+                            <a :href="'/user/'+user.username" class="flex flex-col">
+                                <span class="text-black-900 font-medium break-all" x-html="user._highlightResult.username.value"></span>
+                                <span class="text-black-900 break-all" x-html="user._highlightResult.name.value"></span>
+                            </a>
+                        </li>
+                    </template>
+                </li>
+            </ul>
+        </div>
 
-        <div x-show="searchQuery.length && !threads.total && !articles.total" x-cloak
+        <div x-show="searchQuery.length && !threads.total && !articles.total && !users.total" x-cloak
             class="border-t border-gray-100 py-14 px-6 text-center text-sm sm:px-14">
             <svg class="mx-auto h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -87,6 +108,5 @@
                 <img loading="lazy" src="{{ asset('images/algolia.svg') }}" alt="Magnifying glass icon" class="h-4" />
             </a>
         </div>
-
     </div>
 </div>

@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'searchableAttributes' => ['title', 'body', 'slug'],
+    'searchableAttributes' => ['name', 'username'],
 
     /*
     |--------------------------------------------------------------------------
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'disableTypoToleranceOnAttributes' => ['slug'],
+    'disableTypoToleranceOnAttributes' => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -142,8 +142,8 @@ return [
     | Example(attributeForDistinct): 'slug'
     */
 
-    'distinct' => null,
-    'attributeForDistinct' => 'slug',
+    'distinct' => true,
+    'attributeForDistinct' => 'username',
 
     /*
     |--------------------------------------------------------------------------
