@@ -85,6 +85,11 @@ final class UpdateArticleViewCounts extends Command
             ]);
 
         if ($response->failed()) {
+            logger()->error('Failed to get view count for URL', [
+                'url' => $url,
+                'response' => $response->json(),
+            ]);
+
             return 0;
         }
 
