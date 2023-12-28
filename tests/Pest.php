@@ -10,9 +10,6 @@
 | need to change it using the "uses()" function to bind a different classes or traits.
 |
 */
-uses(
-    Tests\TestCase::class,
-)->in('Unit');
 
 /** @link https://pestphp.com/docs/underlying-test-case */
 

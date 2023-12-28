@@ -22,8 +22,8 @@ final class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     use HasTimestamps;
     use Notifiable;
-    use Searchable;
     use PreparesSearch;
+    use Searchable;
 
     const TABLE = 'users';
 
@@ -312,23 +312,18 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $query->mostSubmissions($days);
     }
 
+    public function shouldBeSearchable()
+    {
+        return true;
+    }
+
     public function toSearchableArray(): array
     {
         return [
             'id' => $this->id(),
             'name' => $this->name(),
             'username' => $this->username(),
-            'email' => $this->emailAddress(),
         ];
-    }
-
-    public function searchIndexShouldBeUpdated(): bool
-    {
-        return $this->isDirty([
-            'name',
-            'username',
-            'email',
-        ]);
     }
 
     public function scopeWithCounts(Builder $query)

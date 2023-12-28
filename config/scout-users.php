@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Searchable Attributes
@@ -15,7 +16,7 @@ return [
     |
     */
 
-    'searchableAttributes' => ['name', 'username', 'email'],
+    'searchableAttributes' => ['name', 'username'],
 
     /*
     |--------------------------------------------------------------------------
@@ -154,4 +155,5 @@ return [
     | configuration, just use the command `scout:sync` to get remote settings in this file.
     |
     */
+
 ];
