@@ -6,14 +6,16 @@ use App\Models\Thread;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\Feature\BrowserKitTestCase;
+use Tests\TestCase;
+// use Tests\Feature\BrowserKitTestCase;
 
-uses(BrowserKitTestCase::class);
+// uses(BrowserKitTestCase::class);
+uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
 test('requires login', function () {
-    $this->visit('/admin')
-        ->seePageIs('/login');
+    $this->get('/admin')
+        ->assertRedirect('/login');
 });
 
 test('normal users cannot visit the admin section', function () {
@@ -83,9 +85,9 @@ test('admins cannot ban a user without a reason', function () {
     $this->loginAsAdmin();
 
     $this->put('/admin/users/'.$user->username().'/ban')
-        ->assertRedirectedTo('/');
+        ->assertRedirectToRoute('home');
 
-    test()->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null, 'banned_reason' => null]);
+    test()->assertDatabaseHas('users', ['id' => $user->id(), 'banned_at' => null, 'banned_reason' => null]);
 });
 
 test('moderators cannot ban a user without a reason', function () {
@@ -94,9 +96,9 @@ test('moderators cannot ban a user without a reason', function () {
     $this->loginAsModerator();
 
     $this->put('/admin/users/'.$user->username().'/ban')
-        ->assertRedirectedTo('/');
+        ->assertRedirectToRoute('home');
 
-    test()->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null, 'banned_reason' => null]);
+    test()->assertDatabaseHas('users', ['id' => $user->id(), 'banned_at' => null, 'banned_reason' => null]);
 });
 
 test('admins can delete a user', function () {
@@ -108,14 +110,14 @@ test('admins can delete a user', function () {
     $this->loginAsAdmin();
 
     $this->delete('/admin/users/'.$user->username())
-        ->assertRedirectedTo('/admin/users');
+        ->assertRedirectToRoute('admin.users');
 
-    $this->notSeeInDatabase('users', ['name' => 'Freek Murze']);
+    $this->assertDatabaseMissing('users', ['name' => 'Freek Murze']);
 
     // Make sure associated content is deleted.
-    $this->notSeeInDatabase('threads', ['author_id' => $user->id()]);
-    $this->notSeeInDatabase('replies', ['replyable_id' => $thread->id()]);
-    $this->notSeeInDatabase('replies', ['author_id' => $user->id()]);
+    $this->assertDatabaseMissing('threads', ['author_id' => $user->id()]);
+    $this->assertDatabaseMissing('replies', ['replyable_id' => $thread->id()]);
+    $this->assertDatabaseMissing('replies', ['author_id' => $user->id()]);
 });
 
 test('admins cannot delete other admins', function () {
@@ -144,9 +146,9 @@ test('admins can list submitted articles', function () {
     $this->loginAsAdmin();
 
     $this->get('admin')
-        ->see($submittedArticle->title())
-        ->dontSee($draftArticle->title())
-        ->dontSee($liveArticle->title());
+        ->assertSee($submittedArticle->title())
+        ->assertDontSee($draftArticle->title())
+        ->assertDontSee($liveArticle->title());
 });
 
 test('moderators can list submitted articles', function () {
@@ -157,9 +159,9 @@ test('moderators can list submitted articles', function () {
     $this->loginAsModerator();
 
     $this->get('admin')
-        ->see($submittedArticle->title())
-        ->dontSee($draftArticle->title())
-        ->dontSee($liveArticle->title());
+        ->assertSee($submittedArticle->title())
+        ->assertDontSee($draftArticle->title())
+        ->assertDontSee($liveArticle->title());
 });
 
 test('users cannot list submitted articles', function () {
@@ -171,7 +173,7 @@ test('users cannot list submitted articles', function () {
 
 test('guests cannot list submitted articles', function () {
     $this->get('admin')
-        ->assertRedirectedTo('login');
+        ->assertRedirectToRoute('login');
 });
 
 test('admins can view submitted articles', function () {
@@ -180,7 +182,7 @@ test('admins can view submitted articles', function () {
     $this->loginAsAdmin();
 
     $this->get("articles/{$article->slug()}")
-        ->see('Awaiting Approval');
+        ->assertSee('Awaiting Approval');
 });
 
 test('admins can approve articles', function () {
@@ -216,7 +218,7 @@ test('guests cannot approve articles', function () {
     $article = Article::factory()->create(['submitted_at' => now()]);
 
     $this->put("/admin/articles/{$article->slug()}/approve")
-        ->assertRedirectedTo('/login');
+        ->assertRedirectToRoute('login');
 
     expect($article->fresh()->approvedAt())->toBeNull();
 });
@@ -254,7 +256,7 @@ test('guests cannot disapprove articles', function () {
     $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
     $this->put("/admin/articles/{$article->slug()}/disapprove")
-        ->assertRedirectedTo('/login');
+        ->assertRedirectToRoute('login');
 
     $this->assertNotNull($article->fresh()->approvedAt());
 });
@@ -357,9 +359,9 @@ function assertCanSeeTheUserOverview()
     User::factory()->create(['name' => 'Freek Murze']);
     User::factory()->create(['name' => 'Frederick Vanbrabant']);
 
-    test()->visit('/admin/users')
-        ->see('Freek Murze')
-        ->see('Frederick Vanbrabant');
+    test()->get('/admin/users')
+        ->assertSee('Freek Murze')
+        ->assertSee('Frederick Vanbrabant');
 }
 
 function assertCanBanUsers()
@@ -367,10 +369,10 @@ function assertCanBanUsers()
     $user = User::factory()->create(['name' => 'Freek Murze']);
 
     test()->put('/admin/users/'.$user->username().'/ban', ['reason' => 'A good reason'])
-        ->assertRedirectedTo('/user/'.$user->username());
+        ->assertRedirectToRoute('profile', $user->username());
 
-    test()->notSeeInDatabase('users', ['id' => $user->id(), 'banned_at' => null]);
-    test()->seeInDatabase('users', ['id' => $user->id(), 'banned_reason' => 'A good reason']);
+    test()->assertDatabaseMissing('users', ['id' => $user->id(), 'banned_at' => null]);
+    test()->assertDatabaseHas('users', ['id' => $user->id(), 'banned_reason' => 'A good reason']);
 }
 
 function assertCanUnbanUsers()
@@ -378,9 +380,9 @@ function assertCanUnbanUsers()
     $user = User::factory()->create(['name' => 'Freek Murze', 'banned_at' => Carbon::now()]);
 
     test()->put('/admin/users/'.$user->username().'/unban')
-        ->assertRedirectedTo('/user/'.$user->username());
+        ->assertRedirectToRoute('profile', $user->username());
 
-    test()->seeInDatabase('users', ['id' => $user->id(), 'banned_at' => null, 'banned_reason' => null]);
+    test()->assertDatabaseHas('users', ['id' => $user->id(), 'banned_at' => null, 'banned_reason' => null]);
 }
 
 function assertCannotBanAdmins()
