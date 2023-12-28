@@ -150,7 +150,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function hasPassword(): bool
-    {
+{
         $password = $this->getAuthPassword();
 
         return $password !== '' && $password !== null;
