@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Concerns\HasTimestamps;
+use App\Concerns\PreparesSearch;
 use App\Enums\NotificationType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,7 +15,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
-use App\Concerns\PreparesSearch;
 
 final class User extends Authenticatable implements MustVerifyEmail
 {
@@ -150,7 +150,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function hasPassword(): bool
-{
+    {
         $password = $this->getAuthPassword();
 
         return $password !== '' && $password !== null;
