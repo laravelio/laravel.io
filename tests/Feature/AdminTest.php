@@ -85,7 +85,7 @@ test('admins cannot ban a user without a reason', function () {
     $this->loginAsAdmin();
 
     $this->put('/admin/users/'.$user->username().'/ban')
-        ->assertRedirectToRoute('home');
+        ->assertRedirect('/');
 
     test()->assertDatabaseHas('users', ['id' => $user->id(), 'banned_at' => null, 'banned_reason' => null]);
 });
@@ -96,7 +96,7 @@ test('moderators cannot ban a user without a reason', function () {
     $this->loginAsModerator();
 
     $this->put('/admin/users/'.$user->username().'/ban')
-        ->assertRedirectToRoute('home');
+        ->assertRedirect('/');
 
     test()->assertDatabaseHas('users', ['id' => $user->id(), 'banned_at' => null, 'banned_reason' => null]);
 });
@@ -110,7 +110,7 @@ test('admins can delete a user', function () {
     $this->loginAsAdmin();
 
     $this->delete('/admin/users/'.$user->username())
-        ->assertRedirectToRoute('admin.users');
+        ->assertRedirect('/admin/users');
 
     $this->assertDatabaseMissing('users', ['name' => 'Freek Murze']);
 
@@ -173,7 +173,7 @@ test('users cannot list submitted articles', function () {
 
 test('guests cannot list submitted articles', function () {
     $this->get('admin')
-        ->assertRedirectToRoute('login');
+        ->assertRedirect('/login');
 });
 
 test('admins can view submitted articles', function () {
@@ -218,7 +218,7 @@ test('guests cannot approve articles', function () {
     $article = Article::factory()->create(['submitted_at' => now()]);
 
     $this->put("/admin/articles/{$article->slug()}/approve")
-        ->assertRedirectToRoute('login');
+        ->assertRedirect('/login');
 
     expect($article->fresh()->approvedAt())->toBeNull();
 });
@@ -256,7 +256,7 @@ test('guests cannot disapprove articles', function () {
     $article = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
 
     $this->put("/admin/articles/{$article->slug()}/disapprove")
-        ->assertRedirectToRoute('login');
+        ->assertRedirect('/login');
 
     $this->assertNotNull($article->fresh()->approvedAt());
 });
@@ -369,7 +369,7 @@ function assertCanBanUsers()
     $user = User::factory()->create(['name' => 'Freek Murze']);
 
     test()->put('/admin/users/'.$user->username().'/ban', ['reason' => 'A good reason'])
-        ->assertRedirectToRoute('profile', $user->username());
+        ->assertRedirect('/user/'.$user->username());
 
     test()->assertDatabaseMissing('users', ['id' => $user->id(), 'banned_at' => null]);
     test()->assertDatabaseHas('users', ['id' => $user->id(), 'banned_reason' => 'A good reason']);
@@ -380,7 +380,7 @@ function assertCanUnbanUsers()
     $user = User::factory()->create(['name' => 'Freek Murze', 'banned_at' => Carbon::now()]);
 
     test()->put('/admin/users/'.$user->username().'/unban')
-        ->assertRedirectToRoute('profile', $user->username());
+        ->assertRedirect('/user/'.$user->username());
 
     test()->assertDatabaseHas('users', ['id' => $user->id(), 'banned_at' => null, 'banned_reason' => null]);
 }
