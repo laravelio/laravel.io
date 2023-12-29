@@ -7,9 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-// use Tests\Feature\BrowserKitTestCase;
 
-// uses(BrowserKitTestCase::class);
 uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
