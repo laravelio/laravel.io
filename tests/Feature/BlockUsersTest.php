@@ -2,21 +2,21 @@
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\Feature\BrowserKitTestCase;
+use Tests\TestCase;
 
-uses(BrowserKitTestCase::class);
+uses(TestCase::class);
 uses(RefreshDatabase::class);
 
 test('cannot block user when not logged in', function () {
     $user = $this->createUser();
 
-    $this->put("/users/{$user->username}/block")->assertRedirectedTo('login');
+    $this->put("/users/{$user->username}/block")->assertRedirect('login');
 });
 
 test('cannot unblock user when not logged in', function () {
     $user = $this->createUser();
 
-    $this->put("/users/{$user->username}/unblock")->assertRedirectedTo('login');
+    $this->put("/users/{$user->username}/unblock")->assertRedirect('login');
 });
 
 test('cannot block self', function () {
