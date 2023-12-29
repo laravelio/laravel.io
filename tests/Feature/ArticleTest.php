@@ -8,14 +8,15 @@ use App\Notifications\ArticleSubmitted;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
-use Tests\Feature\BrowserKitTestCase;
+use Illuminate\Support\HtmlString;
+use Tests\TestCase;
 
-uses(BrowserKitTestCase::class);
+uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
 test('users cannot create an article when not logged in', function () {
-    $this->visit('/articles/create')
-        ->seePageIs('/login');
+    $this->get('/articles/create')
+        ->assertRedirect('/login');
 });
 
 test('users can create an article', function () {
@@ -30,7 +31,7 @@ test('users can create an article', function () {
         'tags' => [$tag->id()],
         'submitted' => '0',
     ])
-        ->assertRedirectedTo('/articles/using-database-migrations')
+        ->assertRedirect('/articles/using-database-migrations')
         ->assertSessionHas('success', 'Article successfully created!');
 });
 
@@ -45,7 +46,7 @@ test('user gets submitted message when submitting new article for approval', fun
         'tags' => [],
         'submitted' => '1',
     ])
-        ->assertRedirectedTo('/articles/using-database-migrations')
+        ->assertRedirect('/articles/using-database-migrations')
         ->assertSessionHas('success', 'Thank you for submitting, unfortunately we can\'t accept every submission. You\'ll only hear back from us when we accept your article.');
 
     Event::assertDispatched(ArticleWasSubmittedForApproval::class);
@@ -56,15 +57,16 @@ test('users can submit an article for approval', function () {
 
     $this->login();
 
-    $this->post('/articles', [
+    $response = $this->post('/articles', [
         'title' => 'Using database migrations',
         'body' => 'This article will go into depth on working with database migrations.',
         'submitted' => '1',
     ])
-        ->assertRedirectedTo('/articles/using-database-migrations')
-        ->followRedirects()
-        ->dontSee('Draft')
-        ->see('Awaiting approval');
+        ->assertRedirect('/articles/using-database-migrations');
+
+    $this->followRedirects($response)
+        ->assertDontSee('Draft')
+        ->assertSee('Awaiting Approval');
 
     Event::assertDispatched(ArticleWasSubmittedForApproval::class);
 });
@@ -86,14 +88,15 @@ test('articles submitted for approval sends a telegram notification for review',
 test('users can create a draft article', function () {
     $this->login();
 
-    $this->post('/articles', [
+    $response = $this->post('/articles', [
         'title' => 'Using database migrations',
         'body' => 'This article will go into depth on working with database migrations.',
         'submitted' => '0',
     ])
-        ->assertRedirectedTo('/articles/using-database-migrations')
-        ->followRedirects()
-        ->see('Draft');
+        ->assertRedirect('/articles/using-database-migrations');
+
+    $this->followRedirects($response)
+        ->assertSee('Draft');
 });
 
 test('draft articles do not send telegram notification', function () {
@@ -138,7 +141,7 @@ test('guests can view an article', function () {
     $article = Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
 
     $this->get('/articles/my-first-article')
-        ->see($article->title());
+        ->assertSee($article->title());
 });
 
 test('logged in users can view an article', function () {
@@ -147,7 +150,7 @@ test('logged in users can view an article', function () {
     $this->login();
 
     $this->get('/articles/my-first-article')
-        ->see($article->title());
+        ->assertSee($article->title());
 });
 
 test('users can edit an article', function () {
@@ -167,7 +170,7 @@ test('users can edit an article', function () {
         'tags' => [$tag->id()],
         'submitted' => '0',
     ])
-        ->assertRedirectedTo('/articles/using-database-migrations')
+        ->assertRedirect('/articles/using-database-migrations')
         ->assertSessionHas('success', 'Article successfully updated!');
 });
 
@@ -212,7 +215,7 @@ test('user gets submitted message when submitting existing article for approval'
         'tags' => [],
         'submitted' => '1',
     ])
-        ->assertRedirectedTo('/articles/using-database-migrations')
+        ->assertRedirect('/articles/using-database-migrations')
         ->assertSessionHas('success', 'Thank you for submitting, unfortunately we can\'t accept every submission. You\'ll only hear back from us when we accept your article.');
 
     Event::assertDispatched(ArticleWasSubmittedForApproval::class);
@@ -231,14 +234,15 @@ test('users can submit an existing article for approval', function () {
 
     $this->loginAs($user);
 
-    $this->put('/articles/my-first-article', [
+    $response = $this->put('/articles/my-first-article', [
         'title' => 'Using database migrations',
         'body' => 'This article will go into depth on working with database migrations.',
         'submitted' => '1',
     ])
-        ->assertRedirectedTo('/articles/using-database-migrations')
-        ->followRedirects()
-        ->dontSee('Draft');
+        ->assertRedirect('/articles/using-database-migrations');
+
+    $this->followRedirects($response)
+        ->assertDontSee('Draft');
 
     Event::assertDispatched(ArticleWasSubmittedForApproval::class);
 });
@@ -330,7 +334,7 @@ test('users can delete their own articles', function () {
     $this->loginAs($user);
 
     $this->delete('/articles/my-first-article')
-        ->assertRedirectedTo('/articles')
+        ->assertRedirect('/articles')
         ->assertSessionHas('success', 'Article successfully deleted!');
 });
 
@@ -346,8 +350,10 @@ test('users cannot delete an article they do not own', function () {
 test('canonical urls are rendered', function () {
     Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
 
+    $expectedHtml = new HtmlString('<link rel="canonical" href="http://localhost/articles/my-first-article" />');
+
     $this->get('/articles/my-first-article')
-        ->see('<link rel="canonical" href="http://localhost/articles/my-first-article" />');
+        ->assertSee($expectedHtml);
 });
 
 test('custom canonical urls are rendered', function () {
@@ -358,15 +364,17 @@ test('custom canonical urls are rendered', function () {
         'approved_at' => now(),
     ]);
 
+    $expectedHtml = new HtmlString('<link rel="canonical" href="https://joedixon.co.uk/my-first-article" />');
+
     $this->get('/articles/my-first-article')
-        ->see('<link rel="canonical" href="https://joedixon.co.uk/my-first-article" />');
+        ->assertSee($expectedHtml);
 });
 
 test('draft articles cannot be viewed by guests', function () {
     Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => null]);
 
     $this->get('/articles/my-first-article')
-        ->assertResponseStatus(404);
+        ->assertStatus(404);
 });
 
 test('draft articles can be viewed by the article owner', function () {
@@ -380,8 +388,8 @@ test('draft articles can be viewed by the article owner', function () {
     $this->loginAs($user);
 
     $this->get('/articles/my-first-article')
-        ->assertResponseStatus(200)
-        ->see('Draft');
+        ->assertStatus(200)
+        ->assertSee('Draft');
 });
 
 test('draft articles cannot be viewed by logged in users', function () {
@@ -393,7 +401,7 @@ test('draft articles cannot be viewed by logged in users', function () {
     $this->login();
 
     $this->get('/articles/my-first-article')
-        ->assertResponseStatus(404);
+        ->assertStatus(404);
 });
 
 test('a user can view their articles', function () {
@@ -405,10 +413,10 @@ test('a user can view their articles', function () {
 
     $this->loginAs($user);
 
-    $this->visit('/articles/authored')
-        ->see($articles[0]->title())
-        ->see($articles[1]->title())
-        ->see($articles[2]->title());
+    $this->get('/articles/authored')
+        ->assertSee($articles[0]->title())
+        ->assertSee($articles[1]->title())
+        ->assertSee($articles[2]->title());
 });
 
 test('a user can another users articles', function () {
@@ -416,15 +424,15 @@ test('a user can another users articles', function () {
 
     $this->login();
 
-    $this->visit('/articles/authored')
-        ->dontSee($articles[0]->title())
-        ->dontSee($articles[1]->title())
-        ->dontSee($articles[2]->title());
+    $this->get('/articles/authored')
+        ->assertDontSee($articles[0]->title())
+        ->assertDontSee($articles[1]->title())
+        ->assertDontSee($articles[2]->title());
 });
 
 test('a guest cannot see articles', function () {
-    $this->visit('/articles/authored')
-        ->seePageIs('/login');
+    $this->get('/articles/authored')
+        ->assertRedirect('/login');
 });
 
 test('users get a mail notification when their article is approved', function () {
@@ -456,7 +464,7 @@ test('tags are not rendered for unpublished articles', function () {
     $article->syncTags([$tag->id]);
 
     $this->get('/articles')
-        ->dontSee('Test Tag');
+        ->assertDontSee('Test Tag');
 });
 
 test('share image url is rendered correctly', function () {
@@ -467,37 +475,39 @@ test('share image url is rendered correctly', function () {
     ]);
 
     $this->get('/articles/my-first-article')
-        ->see('articles/my-first-article/social.png')
-        ->dontSee('images/laravelio-share.png');
+        ->assertSee('articles/my-first-article/social.png')
+        ->assertDontSee('images/laravelio-share.png');
 });
 
 test('default share image is used on non article pages', function () {
     $this->get('/')
-        ->see('images/laravelio-share.png')
-        ->dontSee('articles/my-first-article/social.png');
+        ->assertSee('images/laravelio-share.png')
+        ->assertDontSee('articles/my-first-article/social.png');
 });
 
 test('user see a tip if they have not set the twitter handle', function () {
     $this->login(['twitter' => null]);
 
     $this->get('/articles/authored')
-        ->seeLink('Twitter handle')
-        ->see('so we can link to your profile when we tweet out your article.');
+        ->assertSeeText('Twitter handle', '<a>')
+        ->assertSee('so we can link to your profile when we tweet out your article.');
 });
 
 test('user do not see tip if they have set the twitter handle', function () {
     $this->login();
 
     $this->get('/articles/authored')
-        ->dontSeeLink('Twitter handle')
-        ->dontSee('so we can link to your profile when we tweet out your article.');
+        ->assertDontSeeText('Twitter handle', '<a>')
+        ->assertDontSee('so we can link to your profile when we tweet out your article.');
 });
 
 test('loading page with invalid sort parameter defaults to recent', function () {
     Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
 
+    $expectedHtml = new HtmlString('<link rel="canonical" href="http://localhost/articles?filter=recent" />');
+
     $this->get('/articles?filter=invalid')
-        ->see('<link rel="canonical" href="http://localhost/articles?filter=recent" />');
+        ->assertSee($expectedHtml);
 });
 
 test('can filter articles by tag', function () {
@@ -510,20 +520,20 @@ test('can filter articles by tag', function () {
     $articleTwo->syncTags([$tagTwo->id]);
 
     $this->get('/articles?tag=one')
-        ->see('My First Article')
-        ->dontSee('My Second Article');
+        ->assertSee('My First Article')
+        ->assertDontSee('My Second Article');
 });
 
 test('only articles with ten or more views render a view count', function () {
     $article = Article::factory()->create(['title' => 'My First Article', 'slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now(), 'view_count' => 9]);
 
     $this->get("/articles/{$article->slug()}")
-        ->see('My First Article')
-        ->dontSee('9 views');
+        ->assertSee('My First Article')
+        ->assertDontSee('9 views');
 
     $article->update(['view_count' => 10]);
 
     $this->get("/articles/{$article->slug()}")
-        ->see('My First Article')
-        ->see('10 views');
+        ->assertSee('My First Article')
+        ->assertSee('10 views');
 });
