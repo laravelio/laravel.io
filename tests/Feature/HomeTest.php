@@ -1,30 +1,30 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\Feature\BrowserKitTestCase;
+use Tests\TestCase;
 
-uses(BrowserKitTestCase::class);
+uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
 test('users can see the homepage', function () {
-    $this->visit('/')
-        ->see('Laravel.io')
-        ->see('The Laravel Community Portal');
+    $this->get('/')
+        ->assertSee('Laravel.io')
+        ->assertSee('The Laravel Community Portal');
 });
 
 test('users can see a login and registration link when logged out', function () {
-    $this->visit('/')
-        ->seeLink('Login')
-        ->seeLink('Register')
-        ->dontSee('Sign out');
+    $this->get('/')
+        ->assertSeeText('Login', '<a>')
+        ->assertSeeText('Register', '<a>')
+        ->assertDontSee('Sign out');
 });
 
 test('users can see a logout button when logged in', function () {
     $this->login();
 
-    $this->visit('/')
-        ->see('Sign out')
-        ->dontSeeLink('Login')
-        ->dontSeeLink('Register')
-        ->seeLink('Profile', '/user');
+    $this->get('/')
+        ->assertSee('Sign out')
+        ->assertDontSeeText('Login', '<a>')
+        ->assertDontSeeText('Register', '<a>')
+        ->assertSee('Profile', '/user');
 });
