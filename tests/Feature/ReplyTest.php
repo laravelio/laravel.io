@@ -10,10 +10,11 @@ use App\Rules\InvalidMentionRule;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\HtmlString;
 use Livewire\Livewire;
-use Tests\Feature\BrowserKitTestCase;
+use Tests\TestCase;
 
-uses(BrowserKitTestCase::class);
+uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
 test('users can add a reply to a thread', function () {
@@ -36,8 +37,8 @@ test('edit reply component is present on the page', function () {
 
     $this->loginAs($user);
 
-    $this->visit("/forum/{$thread->slug()}")
-        ->see('Update reply');
+    $this->get("/forum/{$thread->slug()}")
+        ->assertSee('Update reply');
 });
 
 test('edit reply component is not present on the page when not owned by user', function () {
@@ -46,8 +47,8 @@ test('edit reply component is not present on the page when not owned by user', f
 
     $this->login();
 
-    $this->visit("/forum/{$thread->slug()}")
-        ->dontSee('Update reply');
+    $this->get("/forum/{$thread->slug()}")
+        ->assertDontSee('Update reply');
 });
 
 test('users can edit a reply', function () {
@@ -98,9 +99,9 @@ test('users cannot see the option to reply if the latest activity is older than 
 
     $this->login();
 
-    $this->visit("/forum/{$thread->slug}")
-        ->dontSee('value="Reply"')
-        ->seeText(
+    $this->get("/forum/{$thread->slug}")
+        ->assertDontSee('value="Reply"')
+        ->assertSeeText(
             'The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.',
         );
 });
@@ -122,8 +123,10 @@ test('verified users can see the reply input', function () {
 
     $this->login();
 
-    $this->visit("/forum/{$thread->slug}")
-        ->see('name="body"');
+    $this->get("/forum/{$thread->slug}")
+        ->assertSee(new HtmlString(
+            'name="body"'
+        ));
 });
 
 test('unverified users cannot see the reply input', function () {
@@ -131,11 +134,13 @@ test('unverified users cannot see the reply input', function () {
 
     $this->login(['email_verified_at' => null]);
 
-    $this->visit("/forum/{$thread->slug}")
-        ->dontSee('name="body"')
-        ->seeText(
-            'You\'ll need to verify your account before participating in this thread.',
-        );
+    $this->get("/forum/{$thread->slug}")
+        ->assertDontSee(new HtmlString(
+            'name="body"'
+        ))
+        ->assertSeeText(new HtmlString(
+            'You\'ll need to verify your account before participating in this thread.'
+        ));
 });
 
 test('replyable activity is updated when reply is created', function () {
