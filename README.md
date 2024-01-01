@@ -35,7 +35,7 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 
 The following tools are required in order to start the installation.
 
-- PHP 8.2
+- PHP 8.3
 - [Composer](https://getcomposer.org/download/)
 - [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - [Valet](https://laravel.com/docs/valet#installation)
