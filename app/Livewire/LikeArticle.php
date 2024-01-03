@@ -18,7 +18,7 @@ final class LikeArticle extends Component
 
     private $likersLimit = 10;
 
-    public $likers = "";
+    public $likers = '';
 
     protected $listeners = ['likeToggled', 'toggleLikers'];
 
