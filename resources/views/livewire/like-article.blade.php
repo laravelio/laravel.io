@@ -1,6 +1,6 @@
 <div class="relative">
     @if ($showLikers)
-        <div class="absolute bottom-16 -left-3 text-white bg-gray-900 rounded-lg w-96 px-4 py-2">
+        <div class="absolute bottom-16 -left-3 text-white text-xs bg-gray-900 rounded-lg w-96 px-4 py-2">
             <div class="absolute -bottom-1 left-5 w-2 h-2 bg-gray-900 rotate-45"></div>
             {{ $likers }} liked this article
         </div>
