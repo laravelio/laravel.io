@@ -37,6 +37,16 @@ trait HasLikes
         $this->unsetRelation('likesRelation');
     }
 
+    public function likers()
+    {
+        return $this->likersRelation;
+    }
+
+    public function likersRelation()
+    {
+        return $this->belongsToMany(User::class, Like::class, 'likeable_id');
+    }
+
     /**
      * It's important to name the relationship the same as the method because otherwise
      * eager loading of the polymorphic relationship will fail on queued jobs.
