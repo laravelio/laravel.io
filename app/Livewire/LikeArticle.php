@@ -14,13 +14,13 @@ final class LikeArticle extends Component
 
     public $isSidebar = true;
 
-    public $showLikers = true;
+    public $showLikers = false;
 
     private $likersLimit = 10;
 
-    public $likers = [];
+    public $likers = "";
 
-    protected $listeners = ['likeToggled'];
+    protected $listeners = ['likeToggled', 'toggleLikers'];
 
     public function mount(Article $article): void
     {
@@ -52,6 +52,13 @@ final class LikeArticle extends Component
     public function likeToggled()
     {
         return $this->article;
+    }
+
+    public function toggleLikers(): void
+    {
+        if (strlen($this->likers)) {
+            $this->showLikers = ! $this->showLikers;
+        }
     }
 
     public function getLikers(): array
