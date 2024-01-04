@@ -42,10 +42,10 @@ final class Like extends Component
     public function getLikers(): array
     {
         $likers = $this->likable->likers()->pluck('username')->toArray();
-        
+
         if (auth()->check() && in_array($authUsername = auth()->user()->username, $likers)) {
             $likers = array_diff($likers, [$authUsername]);
-            array_unshift($likers, "you");
+            array_unshift($likers, 'you');
         }
 
         return $likers;
