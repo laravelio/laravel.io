@@ -10,6 +10,8 @@ final class Like extends Component
 
     public $likable;
 
+    public $type;
+
     public $showLikers = false;
 
     private $likersLimit = 10;
