@@ -62,7 +62,7 @@
 
             <span class="flex items-center gap-x-2">
                 <x-heroicon-o-chat-bubble-left-right class="w-6 h-6" />
-                <span>{{ $thread->reply_count }}</span>
+                <span>{{ count($thread->replies()) }}</span>
                 <span class="sr-only">Replies</span>
             </span>
         </div>
