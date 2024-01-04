@@ -6,6 +6,7 @@ use App\Models\Like;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 trait HasLikes
 {
@@ -44,7 +45,10 @@ trait HasLikes
 
     public function likersRelation()
     {
-        return $this->belongsToMany(User::class, Like::class, 'likeable_id');
+        return $this->belongsToMany(User::class, Like::class, 'likeable_id')
+            ->where('likeable_type',
+                array_search(static::class, Relation::morphMap()) ?: static::class
+            );
     }
 
     /**
