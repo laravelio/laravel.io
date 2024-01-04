@@ -27,7 +27,7 @@ final class LikeArticle extends Component
         $this->article = $article;
 
         $likers = $this->getLikers();
-        $this->likers = implode(', ', $likers);
+        $this->likers = implode(', ', array_slice($likers, 0, $this->likersLimit));
 
         if (count($likers) > $this->likersLimit) {
             $this->likers .= ' and more';
