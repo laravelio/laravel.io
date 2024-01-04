@@ -1,4 +1,4 @@
-<div class="relative">
+<div>
     @guest
         <div class="flex items-center text-gray-900 gap-x-4 gap-y-2.5 {{ $isSidebar ? 'flex-col' : 'flex-row' }}">
             <livewire:like :likable="$this->article" :isSidebar="$isSidebar" />

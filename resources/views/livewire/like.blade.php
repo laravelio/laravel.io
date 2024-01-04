@@ -1,4 +1,4 @@
-<div>
+<div class="relative">
     @if ($showLikers)
         <x-tooltip>{{ $likers }} liked this article</x-tooltip>
     @endif
