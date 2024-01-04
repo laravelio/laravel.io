@@ -14,24 +14,11 @@ final class LikeArticle extends Component
 
     public $isSidebar = true;
 
-    public $showLikers = false;
-
-    private $likersLimit = 10;
-
-    public $likers = '';
-
-    protected $listeners = ['likeToggled', 'toggleLikers'];
+    protected $listeners = ['likeToggled'];
 
     public function mount(Article $article): void
     {
         $this->article = $article;
-
-        $likers = $this->getLikers();
-        $this->likers = implode(', ', array_slice($likers, 0, $this->likersLimit));
-
-        if (count($likers) > $this->likersLimit) {
-            $this->likers .= ' and more';
-        }
     }
 
     public function toggleLike(): void
@@ -52,17 +39,5 @@ final class LikeArticle extends Component
     public function likeToggled()
     {
         return $this->article;
-    }
-
-    public function toggleLikers(): void
-    {
-        if (strlen($this->likers)) {
-            $this->showLikers = ! $this->showLikers;
-        }
-    }
-
-    public function getLikers(): array
-    {
-        return $this->article->likers()->pluck('username')->toArray();
     }
 }
