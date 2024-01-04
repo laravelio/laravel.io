@@ -43,7 +43,7 @@ final class Like extends Component
     {
         $likers = $this->likable->likers()->pluck('username')->toArray();
         
-        if (in_array($authUsername = auth()->user()->username, $likers)) {
+        if (auth()->check() && in_array($authUsername = auth()->user()->username, $likers)) {
             $likers = array_diff($likers, [$authUsername]);
             array_unshift($likers, "you");
         }
