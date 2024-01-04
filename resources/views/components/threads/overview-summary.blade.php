@@ -56,7 +56,7 @@
         <div class="flex gap-x-5">
             <span class="flex items-center gap-x-2">
                 <livewire:like :likable="$thread" type="thread"/>
-                <span>{{ $thread->like_count }}</span>
+                <span>{{ count($thread->likes()) }}</span>
                 <span class="sr-only">Likes</span>
             </span>
 
