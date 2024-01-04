@@ -41,6 +41,13 @@ final class Like extends Component
 
     public function getLikers(): array
     {
-        return $this->likable->likers()->pluck('username')->toArray();
+        $likers = $this->likable->likers()->pluck('username')->toArray();
+        
+        if (in_array($authUsername = auth()->user()->username, $likers)) {
+            $likers = array_diff($likers, [$authUsername]);
+            array_unshift($likers, "you");
+        }
+
+        return $likers;
     }
 }
