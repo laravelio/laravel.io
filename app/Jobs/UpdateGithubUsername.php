@@ -10,6 +10,7 @@ final readonly class UpdateGithubUsername
         private string $githubUsername,
     ) {
     }
+    
     public function handle(): void
     {
         $this->user->github_username = $this->githubUsername;
