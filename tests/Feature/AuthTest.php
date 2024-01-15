@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\HtmlString;
 use Tests\TestCase;
-use App\Providers\RouteServiceProvider;
 
 uses(TestCase::class);
 uses(DatabaseMigrations::class);
