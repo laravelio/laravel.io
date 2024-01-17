@@ -5,8 +5,8 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "@tailwindcss/aspect-ratio": "^0.2.0",
-        "@tailwindcss/forms": "^0.4.0",
+        "@tailwindcss/aspect-ratio": "^0.4.2",
+        "@tailwindcss/forms": "^0.5.7",
         "@tailwindcss/typography": "^0.5.0",
         "algoliasearch": "^4.8.4",
         "autoprefixer": "^10.4.0",
