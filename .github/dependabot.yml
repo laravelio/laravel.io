@@ -1,0 +1,41 @@
+version: 2
+updates:
+  - package-ecosystem: composer
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: wednesday
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+        - "minor"
+        - "patch"
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+        - "minor"
+        - "patch"
+    allow:
+      - dependency-type: direct
+    versioning-strategy: increase-if-necessary
+
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: wednesday
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+        - "minor"
+        - "patch"
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+        - "minor"
+        - "patch"
+    allow:
+      - dependency-type: direct
+    versioning-strategy: increase-if-necessary
