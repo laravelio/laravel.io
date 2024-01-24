@@ -29,7 +29,7 @@
         "ohdearapp/ohdear-php-sdk": "^3.4",
         "predis/predis": "^2.0",
         "ramsey/uuid": "^4.3",
-        "sentry/sentry-laravel": "^3.4",
+        "sentry/sentry-laravel": "^4.1",
         "spatie/laravel-feed": "^4.2",
         "spatie/laravel-ignition": "^2.0",
         "spatie/laravel-robots-middleware": "^1.3",
