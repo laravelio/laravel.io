@@ -6,12 +6,12 @@ updates:
       interval: weekly
       day: wednesday
     groups:
-      production-dependencies:
+      php-production-dependencies:
         dependency-type: "production"
         update-types:
         - "minor"
         - "patch"
-      dev-dependencies:
+      php-dev-dependencies:
         dependency-type: "development"
         update-types:
         - "minor"
@@ -26,12 +26,12 @@ updates:
       interval: weekly
       day: wednesday
     groups:
-      production-dependencies:
+      js-production-dependencies:
         dependency-type: "production"
         update-types:
         - "minor"
         - "patch"
-      dev-dependencies:
+      js-dev-dependencies:
         dependency-type: "development"
         update-types:
         - "minor"
