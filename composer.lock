@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd0a3740021616a4d45eac150dfc90f1",
+    "content-hash": "a974cfa6e5d7baa6bb1330a4421065a9",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -859,16 +859,16 @@
         },
         {
             "name": "codeat3/blade-simple-icons",
-            "version": "1.95.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeat3/blade-simple-icons.git",
-                "reference": "91406c49727aed9b0474394fa62f8bc95d0446f1"
+                "reference": "b3974fb2dfbf30f1f0ac80ef6d0e0959bc1549f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeat3/blade-simple-icons/zipball/91406c49727aed9b0474394fa62f8bc95d0446f1",
-                "reference": "91406c49727aed9b0474394fa62f8bc95d0446f1",
+                "url": "https://api.github.com/repos/codeat3/blade-simple-icons/zipball/b3974fb2dfbf30f1f0ac80ef6d0e0959bc1549f9",
+                "reference": "b3974fb2dfbf30f1f0ac80ef6d0e0959bc1549f9",
                 "shasum": ""
             },
             "require": {
@@ -918,7 +918,7 @@
             ],
             "support": {
                 "issues": "https://github.com/codeat3/blade-simple-icons/issues",
-                "source": "https://github.com/codeat3/blade-simple-icons/tree/1.95.0"
+                "source": "https://github.com/codeat3/blade-simple-icons/tree/3.2.0"
             },
             "funding": [
                 {
@@ -926,7 +926,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-21T13:56:22+00:00"
+            "time": "2024-01-22T17:28:58+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -13476,5 +13476,5 @@
         "php": "8.3.*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
