@@ -20,7 +20,7 @@
         "laravel/framework": "^10.0",
         "laravel/horizon": "^5.12",
         "laravel/sanctum": "^3.2",
-        "laravel/slack-notification-channel": "^2.5",
+        "laravel/slack-notification-channel": "^3.2",
         "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
