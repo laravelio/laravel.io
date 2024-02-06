@@ -50,6 +50,10 @@
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://laradir.com/?ref=laravel.io" logo="{{ asset('images/sponsors/laradir.png') }}" company="Laradir" />
             </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo url="https://www.remotely.works/sponsoring-open-source-projects" logo="{{ asset('images/sponsors/remotely.png') }}" company="Remotely Works" />
+            </div>
         </div>
 
         <x-ads.cta primary class="mt-8 md:mt-12">

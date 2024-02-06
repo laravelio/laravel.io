@@ -30,6 +30,7 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Steadfast Collective](https://steadfastcollective.com/uk-laravel-agency)
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
 - [Laradir](https://laradir.com/?ref=laravel.io)
+- [Remotely Works](https://www.remotely.works/sponsoring-open-source-projects)
 
 ## Requirements
 
