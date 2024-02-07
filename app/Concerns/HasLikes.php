@@ -6,6 +6,7 @@ use App\Models\Like;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 trait HasLikes
 {
@@ -35,6 +36,19 @@ trait HasLikes
         optional($this->likesRelation()->where('user_id', $user->id())->first())->delete();
 
         $this->unsetRelation('likesRelation');
+    }
+
+    public function likers()
+    {
+        return $this->likersRelation;
+    }
+
+    public function likersRelation()
+    {
+        return $this->belongsToMany(User::class, Like::class, 'likeable_id')
+            ->where('likeable_type',
+                array_search(static::class, Relation::morphMap()) ?: static::class
+            );
     }
 
     /**
