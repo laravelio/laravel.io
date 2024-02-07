@@ -60,11 +60,7 @@
                     </span>
 
                     <span class="flex items-center gap-x-2">
-<<<<<<< HEAD
-                        <livewire:like :likable="$article" type="article"/>
-=======
                         <livewire:likes :subject="$article" type="article" />
->>>>>>> show-likers
                         <span>{{ count($article->likes()) }}</span>
                         <span class="sr-only">Likes</span>
                     </span>
