@@ -5,17 +5,13 @@ namespace App\Concerns;
 use App\Models\Like;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 trait HasLikes
 {
-    public function likes(): Collection
-    {
-        return $this->likesRelation;
-    }
-
-    protected static function bootHasLikes()
+    protected static function bootHasLikes(): void
     {
         static::deleting(function ($model) {
             $model->likesRelation()->delete();
@@ -24,31 +20,33 @@ trait HasLikes
         });
     }
 
-    public function likedBy(User $user)
+    public function likes(): Collection
+    {
+        return $this->likesRelation;
+    }
+
+    public function likers(): Collection
+    {
+        return $this->likersRelation;
+    }
+
+    public function likedBy(User $user): void
     {
         $this->likesRelation()->create(['user_id' => $user->id()]);
 
         $this->unsetRelation('likesRelation');
     }
 
-    public function dislikedBy(User $user)
+    public function dislikedBy(User $user): void
     {
         optional($this->likesRelation()->where('user_id', $user->id())->first())->delete();
 
         $this->unsetRelation('likesRelation');
     }
 
-    public function likers()
+    public function isLikedBy(User $user): bool
     {
-        return $this->likersRelation;
-    }
-
-    public function likersRelation()
-    {
-        return $this->belongsToMany(User::class, Like::class, 'likeable_id')
-            ->where('likeable_type',
-                array_search(static::class, Relation::morphMap()) ?: static::class
-            );
+        return $this->likesRelation()->where('user_id', $user->id())->exists();
     }
 
     /**
@@ -62,8 +60,9 @@ trait HasLikes
         return $this->morphMany(Like::class, 'likesRelation', 'likeable_type', 'likeable_id');
     }
 
-    public function isLikedBy(User $user): bool
+    public function likersRelation(): BelongsToMany
     {
-        return $this->likesRelation()->where('user_id', $user->id())->exists();
+        return $this->belongsToMany(User::class, Like::class, 'likeable_id')
+            ->where('likeable_type', array_search(static::class, Relation::morphMap()) ?: static::class);
     }
 }

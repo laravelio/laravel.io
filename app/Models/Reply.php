@@ -55,6 +55,7 @@ final class Reply extends Model implements MentionAble, Spam
      */
     protected $with = [
         'likesRelation',
+        'likersRelation',
         'updatedByRelation',
     ];
 

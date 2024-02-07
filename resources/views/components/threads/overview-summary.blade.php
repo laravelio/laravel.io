@@ -55,7 +55,7 @@
     <div class="flex justify-between items-center mt-4">
         <div class="flex gap-x-5">
             <span class="flex items-center gap-x-2">
-                <livewire:like :likable="$thread" type="thread"/>
+                <livewire:likes :subject="$thread" type="thread"/>
                 <span>{{ count($thread->likes()) }}</span>
                 <span class="sr-only">Likes</span>
             </span>
