@@ -69,6 +69,7 @@ final class Article extends Model implements Feedable
     protected $with = [
         'authorRelation',
         'likesRelation',
+        'likersRelation',
         'tagsRelation',
     ];
 
