@@ -55,14 +55,14 @@
     <div class="flex justify-between items-center mt-4">
         <div class="flex gap-x-5">
             <span class="flex items-center gap-x-2">
-                <x-heroicon-o-hand-thumb-up class="w-6 h-6" />
-                <span>{{ $thread->like_count }}</span>
+                <livewire:likes :subject="$thread" type="thread"/>
+                <span>{{ count($thread->likes()) }}</span>
                 <span class="sr-only">Likes</span>
             </span>
 
             <span class="flex items-center gap-x-2">
                 <x-heroicon-o-chat-bubble-left-right class="w-6 h-6" />
-                <span>{{ $thread->reply_count }}</span>
+                <span>{{ count($thread->replies()) }}</span>
                 <span class="sr-only">Replies</span>
             </span>
         </div>
