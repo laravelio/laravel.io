@@ -1,6 +1,9 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+import defaultTheme from 'tailwindcss/defaultTheme';
+import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography';
 
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
     darkMode: 'class',
     content: [
         './resources/**/*.blade.php',
@@ -86,5 +89,5 @@ module.exports = {
             }),
         },
     },
-    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+    plugins: [forms, typography],
 };
