@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Laravel\Pulse\Support\PulseMigration;
 
@@ -11,7 +12,7 @@ return new class extends PulseMigration
      */
     public function up(): void
     {
-        if (! $this->shouldRun()) {
+        if (! $this->shouldRun() || ! Config::get('pulse.enabled')) {
             return;
         }
 
@@ -77,6 +78,10 @@ return new class extends PulseMigration
      */
     public function down(): void
     {
+        if (! $this->shouldRun() || ! Config::get('pulse.enabled')) {
+            return;
+        }
+
         Schema::dropIfExists('pulse_values');
         Schema::dropIfExists('pulse_entries');
         Schema::dropIfExists('pulse_aggregates');
