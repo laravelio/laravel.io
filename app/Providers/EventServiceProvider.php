@@ -18,6 +18,7 @@ use App\Listeners\SendNewReplyNotification;
 use App\Listeners\SendNewSpamNotification;
 use App\Listeners\SubscribeUsersMentionedInReply;
 use App\Listeners\SubscribeUsersMentionedInThread;
+use App\Listeners\FixDuplicateGithubUsername;
 use App\Models\User;
 use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
@@ -43,6 +44,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         Registered::class => [
             SendEmailVerificationNotification::class,
+            FixDuplicateGithubUsername::class
         ],
         ReplyWasCreated::class => [
             MarkLastActivity::class,
