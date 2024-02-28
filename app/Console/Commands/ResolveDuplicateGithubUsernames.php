@@ -14,9 +14,8 @@ class ResolveDuplicateGithubUsernames extends Command
 
     protected $description = 'Resolve duplicate GitHub usernames from the database';
 
-    public function __construct(
-        private readonly GithubUserApi $github
-    ){
+    public function __construct(private GithubUserApi $github)
+    {
         parent::__construct();
     }
 
@@ -24,30 +23,16 @@ class ResolveDuplicateGithubUsernames extends Command
     {
         $this->info('Resolving duplicate Github usernames...');
 
-        $this->resolveDuplicates();
-
-        $this->info('Duplicate Github usernames resolved!');
-    }
-
-    /**
-     * Resolve duplicate github_username
-     */
-    private function resolveDuplicates(): void
-    {
-        $this
-            ->duplicates()
+        $this->duplicates()
             ->groupBy('github_username')
             ->each(function (Collection $users) {
-
                 $uniqueUsernames = [];
 
-                // order from the latest user to the oldest
+                // Order from the latest user to the oldest
                 $users = $users->sortByDesc('created_at');
 
-                // resolve each user with the same github_username
-                foreach($users as $user) {
-
-                    // fetch the user from GitHub API
+                // Resolve each user with the same github_username
+                foreach ($users as $user) {
                     try {
                         $githubUser = $this->github->find($user->github_id);
                     } catch (Exception $e) {
@@ -56,38 +41,35 @@ class ResolveDuplicateGithubUsernames extends Command
                         continue;
                     }
 
-                    // if the user doesn't exist on GitHub
-                    if (! $githubUser || ! $githubUser->login) {
+                    // If the user doesn't exist on GitHub
+                    if (! $githubUser || ! $githubUser->login()) {
                         $user->update(['github_username' => null]);
                         continue;
                     }
 
-                    // if the user's github_username marked as unique
-                    if (in_array($githubUser->login, $uniqueUsernames)) {
+                    // If the user's github_username marked as unique
+                    if (in_array($githubUser->login(), $uniqueUsernames)) {
                         $user->update(['github_username' => null]);
                         continue;
                     }
 
-                    // if the user exists on GitHub, update the user's github_username
-                    $user->update(['github_username' => $githubUser->login]);
+                    // If the user exists on GitHub, update the user's github_username
+                    $user->update(['github_username' => $githubUser->login()]);
 
-                    $this->info("Updated user: {$user->id} with github_username: {$githubUser->login}");
+                    $this->info("Updated user: {$user->id} with github_username: {$githubUser->login()}");
 
-                    // mark the user's github_username as unique
-                    $uniqueUsernames[] = $githubUser->login;
+                    // Mark the user's github_username as unique
+                    $uniqueUsernames[] = $githubUser->login();
                 }
             });
+
+        $this->info('Duplicate Github usernames resolved!');
     }
 
-    /**
-     * Get all users with duplicate github_username
-     * @return Collection
-     */
     private function duplicates(): Collection
     {
         return User::whereIn('github_username', function ($query) {
-            $query
-                ->select('github_username')
+            $query->select('github_username')
                 ->from('users')
                 ->whereNotNull('github_username')
                 ->where('github_username', '!=', '')
