@@ -12,6 +12,7 @@ use App\Listeners\MarkLastActivity;
 use App\Listeners\NotifyUsersMentionedInReply;
 use App\Listeners\NotifyUsersMentionedInThread;
 use App\Listeners\RenewEmailVerificationNotification;
+use App\Listeners\ResolveDuplicateGitHubUsername;
 use App\Listeners\SendArticleApprovedNotification;
 use App\Listeners\SendNewArticleNotification;
 use App\Listeners\SendNewReplyNotification;
@@ -42,6 +43,7 @@ class EventServiceProvider extends ServiceProvider
             RenewEmailVerificationNotification::class,
         ],
         Registered::class => [
+            ResolveDuplicateGitHubUsername::class,
             SendEmailVerificationNotification::class,
         ],
         ReplyWasCreated::class => [
