@@ -36,7 +36,7 @@
     <div class="flex justify-between items-center mt-4">
         <div class="flex gap-x-5">
             <span class="flex items-center gap-x-2">
-                <x-heroicon-o-hand-thumb-up class="w-6 h-6" />
+                <livewire:likes :subject="$reply" type="reply" />
                 <span>{{ count($reply->likes()) }}</span>
                 <span class="sr-only">Likes</span>
             </span>

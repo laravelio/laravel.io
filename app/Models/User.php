@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Concerns\HasTimestamps;
+use App\Concerns\PreparesSearch;
 use App\Enums\NotificationType;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
@@ -13,6 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Scout\Searchable;
 
 final class User extends Authenticatable implements MustVerifyEmail
 {
@@ -20,6 +22,8 @@ final class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     use HasTimestamps;
     use Notifiable;
+    use PreparesSearch;
+    use Searchable;
 
     const TABLE = 'users';
 
@@ -306,6 +310,20 @@ final class User extends Authenticatable implements MustVerifyEmail
     public function scopeMostSubmissionsInLastDays(Builder $query, int $days)
     {
         return $query->mostSubmissions($days);
+    }
+
+    public function shouldBeSearchable()
+    {
+        return true;
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id(),
+            'name' => $this->name(),
+            'username' => $this->username(),
+        ];
     }
 
     public function scopeWithCounts(Builder $query)

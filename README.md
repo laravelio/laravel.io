@@ -20,24 +20,22 @@ This is the repository for the [Laravel.io](http://laravel.io) community portal.
 We'd like to thank these **amazing companies** for sponsoring us. If you are interested in becoming a sponsor, please visit <a href="https://github.com/sponsors/laravelio">the Laravel.io GitHub Sponsors page</a>.
 
 - **[Eventy](https://https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement)**
-- **[Cloudways](https://bit.ly/49GlsSV)**
 - [Forge](https://forge.laravel.com)
 - [Envoyer](https://envoyer.io)
 - [Fathom](https://usefathom.com)
 - [Tinkerwell](https://tinkerwell.app)
 - [Skynet Technologies](https://www.skynettechnologies.com/hire-laravel-developer)
-- [Lightflows](https://www.lightflows.co.uk/laravel-development-agency/)
 - [Backpack for Laravel](https://backpackforlaravel.com/?ref=laravelio)
 - [Localazy](https://localazy.com/laravel?utm_source=laravel.io&utm_medium=sponsorships&utm_campaign=brand_awareness&utm_content=logo)
-- [Steadfast Collective](https://steadfastcollective.com/uk-laravel-agency)
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
 - [Laradir](https://laradir.com/?ref=laravel.io)
+- [Remotely Works](https://www.remotely.works/sponsoring-open-source-projects)
 
 ## Requirements
 
 The following tools are required in order to start the installation.
 
-- PHP 8.2
+- PHP 8.3
 - [Composer](https://getcomposer.org/download/)
 - [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 - [Valet](https://laravel.com/docs/valet#installation)
@@ -79,7 +77,10 @@ ALGOLIA_SECRET="Use the Write API Key"
 
 VITE_ALGOLIA_APP_ID="${ALGOLIA_APP_ID}"
 VITE_ALGOLIA_SECRET="Use the Search API Key"
-VITE_ALGOLIA_INDEX=threads
+
+VITE_ALGOLIA_THREADS_INDEX=threads
+VITE_ALGOLIA_ARTICLES_INDEX=articles
+VITE_ALGOLIA_USERS_INDEX=users
 ```
 
 In order to index your existing threads, run the following command:

@@ -12,9 +12,6 @@
             <div class="col-span-2 flex justify-center lg:col-span-1 mr-10">
                 <x-sponsor-logo size="medium" url="https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement" logo="{{ asset('images/sponsors/eventy.svg') }}" company="Eventy" />
             </div>
-            <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo size="large" url="https://bit.ly/49GlsSV" logo="{{ asset('images/sponsors/cloudways.png') }}" company="Cloudways" />
-            </div>
         </div>
 
         <div class="mt-12 grid grid-cols-2 gap-y-8 lg:grid-cols-3">
@@ -39,15 +36,7 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://www.lightflows.co.uk/laravel-development-agency/" logo="{{ asset('images/sponsors/lightflows.png') }}" company="Lightflows" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://localazy.com/laravel?utm_source=laravel.io&utm_medium=sponsorships&utm_campaign=brand_awareness&utm_content=logo" logo="{{ asset('images/sponsors/localazy.svg') }}" company="Localazy" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://steadfastcollective.com/uk-laravel-agency" logo="{{ asset('images/sponsors/steadfast.svg') }}" company="Steadfast Collective" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
@@ -56,6 +45,10 @@
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://laradir.com/?ref=laravel.io" logo="{{ asset('images/sponsors/laradir.png') }}" company="Laradir" />
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo url="https://www.remotely.works/sponsoring-open-source-projects" logo="{{ asset('images/sponsors/remotely.png') }}" company="Remotely Works" />
             </div>
         </div>
 

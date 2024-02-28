@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\ArticleWasSubmittedForApproval;
 use App\Models\Article;
 use Database\Factories\ArticleFactory;
 use Database\Factories\TagFactory;
@@ -11,6 +12,8 @@ use Tests\TestCase;
 uses(TestCase::class, CreatesUsers::class, DatabaseMigrations::class);
 
 it('can store an article over the API', function (array $body, array $response) {
+    Event::fake();
+
     $tag = TagFactory::new()->create();
     $user = $this->createUser();
 
@@ -43,9 +46,17 @@ it('can store an article over the API', function (array $body, array $response) 
     ], $response)]);
 
     expect(Article::query()->count())->toBe(1);
+
+    if ($body['submitted'] ?? false) {
+        Event::assertDispatched(ArticleWasSubmittedForApproval::class);
+    } else {
+        Event::assertNotDispatched(ArticleWasSubmittedForApproval::class);
+    }
 })->with('article API responses');
 
 it('can update an article over the API', function (array $body, array $response) {
+    Event::fake();
+
     $tag = TagFactory::new()->create();
     $user = $this->createUser();
 
@@ -80,6 +91,12 @@ it('can update an article over the API', function (array $body, array $response)
     ], $response)]);
 
     expect(Article::query()->count())->toBe(1);
+
+    if ($body['submitted'] ?? false) {
+        Event::assertDispatched(ArticleWasSubmittedForApproval::class);
+    } else {
+        Event::assertNotDispatched(ArticleWasSubmittedForApproval::class);
+    }
 })->with('article API responses');
 
 it('can delete an article over the API', function () {

@@ -75,6 +75,7 @@ final class Thread extends Model implements Feedable, MentionAble, ReplyAble, Sp
     protected $with = [
         'authorRelation',
         'likesRelation',
+        'likersRelation',
         'repliesRelation',
         'tagsRelation',
         'updatedByRelation',

@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
     public function bootHorizon()
     {
         Horizon::routeMailNotificationsTo($horizonEmail = config('lio.horizon.email'));
-        Horizon::routeSlackNotificationsTo(config('lio.horizon.webhook'));
+        // Horizon::routeSlackNotificationsTo(config('lio.horizon.webhook'));
 
         Horizon::auth(function ($request) {
             return auth()->check() && auth()->user()->isAdmin();

@@ -16,6 +16,6 @@ window.choices = (element) => {
 // Syntax highlight code blocks.
 window.highlightCode = (element) => {
     element.querySelectorAll('pre code').forEach((block) => {
-        hljs.highlightBlock(block);
+        hljs.highlightElement(block);
     });
 };

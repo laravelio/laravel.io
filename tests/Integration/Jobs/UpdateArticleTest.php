@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\ArticleWasSubmittedForApproval;
 use App\Jobs\UpdateArticle;
 use App\Models\Article;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -21,6 +22,8 @@ test('we can update an article', function () {
 });
 
 test('we can submit an existing article for approval', function () {
+    Event::fake();
+
     $user = $this->createUser();
     $article = Article::factory()->create(['author_id' => $user->id()]);
 
@@ -29,6 +32,8 @@ test('we can submit an existing article for approval', function () {
     $article = $article->fresh();
 
     $this->assertNotNull($article->submittedAt());
+
+    Event::assertDispatched(ArticleWasSubmittedForApproval::class);
 });
 
 test('we cannot update the submission time when saving changes', function () {
