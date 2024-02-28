@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
 use App\Social\GithubUserApi;
 use Exception;
+use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Collection;
 
 class ResolveDuplicateGithubUsernames extends Command
 {
@@ -38,18 +38,21 @@ class ResolveDuplicateGithubUsernames extends Command
                     } catch (Exception $e) {
                         $message = $e->getCode() === 404 ? "Error 404: github_id - $user->github_id" : $e->getMessage();
                         $this->error($message);
+
                         continue;
                     }
 
                     // If the user doesn't exist on GitHub
                     if (! $githubUser || ! $githubUser->login()) {
                         $user->update(['github_username' => null]);
+
                         continue;
                     }
 
                     // If the user's github_username marked as unique
                     if (in_array($githubUser->login(), $uniqueUsernames)) {
                         $user->update(['github_username' => null]);
+
                         continue;
                     }
 
