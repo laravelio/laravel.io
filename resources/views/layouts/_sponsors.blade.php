@@ -40,6 +40,10 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo url="https://steadfastcollective.com/uk-laravel-agency" logo="{{ asset('images/sponsors/steadfast.svg') }}" company="Steadfast Collective" />
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://www.bairesdev.com/sponsoring-open-source-projects/" logo="{{ asset('images/sponsors/bairesdev.png') }}" company="BairesDev" />
             </div>
 
