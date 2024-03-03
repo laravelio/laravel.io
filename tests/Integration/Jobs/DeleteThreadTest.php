@@ -4,11 +4,11 @@ use App\Jobs\DeleteThread;
 use App\Models\Like;
 use App\Models\Reply;
 use App\Models\Thread;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 test('we can delete a thread and its replies', function () {
     $thread = Thread::factory()->create();

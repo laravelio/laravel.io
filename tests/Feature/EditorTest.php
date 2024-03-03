@@ -3,12 +3,12 @@
 use App\Livewire\Editor;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 test('participants are rendered when mentions are invoked', function () {
     $participants = User::factory()->count(3)->create();

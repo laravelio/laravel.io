@@ -2,11 +2,11 @@
 
 use App\Jobs\DeleteApiToken;
 use Database\Factories\UserFactory;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 it('deletes the specified API token for the given user', function () {
     $user = $this->createUser();

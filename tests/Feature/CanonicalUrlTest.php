@@ -3,12 +3,12 @@
 use App\Models\Article;
 use App\Models\Tag;
 use App\Models\Thread;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\App;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 function inProduction()
 {

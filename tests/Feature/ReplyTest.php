@@ -7,14 +7,14 @@ use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\MentionNotification;
 use App\Rules\InvalidMentionRule;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Livewire;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 test('users can add a reply to a thread', function () {
     $thread = Thread::factory()->create(['subject' => 'The first thread', 'slug' => 'the-first-thread']);

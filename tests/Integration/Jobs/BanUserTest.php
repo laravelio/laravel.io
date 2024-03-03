@@ -1,11 +1,11 @@
 <?php
 
 use App\Jobs\BanUser;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 it('can ban a user', function () {
     $user = $this->createUser(['banned_at' => null]);

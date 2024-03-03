@@ -4,11 +4,11 @@ use App\Jobs\DeleteUser;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 test('we can delete a user with replies', function () {
     $user = User::factory()->create();

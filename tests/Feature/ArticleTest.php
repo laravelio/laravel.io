@@ -5,13 +5,13 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Notifications\ArticleApprovedNotification;
 use App\Notifications\ArticleSubmitted;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 test('users cannot create an article when not logged in', function () {
     $this->visit('/articles/create')

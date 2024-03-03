@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 test('users can see the homepage', function () {
     $this->visit('/')

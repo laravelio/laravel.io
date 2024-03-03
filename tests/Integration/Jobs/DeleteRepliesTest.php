@@ -3,11 +3,11 @@
 use App\Jobs\DeleteReply;
 use App\Models\Reply;
 use App\Models\Thread;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 test('reply authors can force delete their replies', function () {
     $user = $this->createUser();

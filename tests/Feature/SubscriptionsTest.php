@@ -6,14 +6,14 @@ use App\Models\Subscription;
 use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\NewReplyNotification;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 uses(WithFaker::class);
 
 test('users receive notifications for new replies to threads where they are subscribed to', function () {

@@ -2,12 +2,12 @@
 
 use App\Events\EmailAddressWasChanged;
 use App\Jobs\UpdateProfile;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 test('we can update a user profile', function () {
     $user = $this->createUser();

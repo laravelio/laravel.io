@@ -4,13 +4,13 @@ use App\Livewire\NotificationIndicator;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Notifications\NewReplyNotification;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
 use Tests\Feature\BrowserKitTestCase;
 
 uses(BrowserKitTestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 test('a user sees the correct number of notifications', function () {
     $userOne = $this->createUser();

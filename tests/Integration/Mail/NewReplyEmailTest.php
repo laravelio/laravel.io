@@ -4,11 +4,11 @@ use App\Mail\NewReplyEmail;
 use App\Models\Reply;
 use App\Models\Subscription;
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 it('contains a note about solutions when the receiver is the thread author', function () {
     $reply = Reply::factory()->create();

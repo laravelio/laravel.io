@@ -3,14 +3,14 @@
 use App\Console\Commands\PostArticleToTwitter;
 use App\Models\Article;
 use App\Notifications\PostArticleToTwitter as PostArticleToTwitterNotification;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 beforeEach(function () {
     Notification::fake();

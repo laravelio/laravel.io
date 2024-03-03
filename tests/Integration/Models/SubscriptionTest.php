@@ -1,11 +1,11 @@
 <?php
 
 use App\Models\Subscription;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 it('can get a subscription by its uuid', function () {
     $uuid = Subscription::factory()->create()->uuid();

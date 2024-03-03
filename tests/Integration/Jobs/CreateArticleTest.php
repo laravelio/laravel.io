@@ -3,12 +3,12 @@
 use App\Events\ArticleWasSubmittedForApproval;
 use App\Jobs\CreateArticle;
 use App\Models\Article;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(LazilyRefreshDatabase::class);
 
 test('we can create a draft article', function () {
     $user = $this->createUser();

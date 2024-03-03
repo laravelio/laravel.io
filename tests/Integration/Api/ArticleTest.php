@@ -4,12 +4,12 @@ use App\Events\ArticleWasSubmittedForApproval;
 use App\Models\Article;
 use Database\Factories\ArticleFactory;
 use Database\Factories\TagFactory;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\CreatesUsers;
 use Tests\TestCase;
 
-uses(TestCase::class, CreatesUsers::class, DatabaseMigrations::class);
+uses(TestCase::class, CreatesUsers::class, LazilyRefreshDatabase::class);
 
 it('can store an article over the API', function (array $body, array $response) {
     Event::fake();
