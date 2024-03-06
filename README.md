@@ -29,7 +29,6 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Localazy](https://localazy.com/laravel?utm_source=laravel.io&utm_medium=sponsorships&utm_campaign=brand_awareness&utm_content=logo)
 - [Steadfast Collective](https://steadfastcollective.com/uk-laravel-agency)
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
-- [Laradir](https://laradir.com/?ref=laravel.io)
 - [Remotely Works](https://www.remotely.works/sponsoring-open-source-projects)
 
 ## Requirements
