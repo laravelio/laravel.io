@@ -253,8 +253,10 @@ test('an invalid filter defaults to the most recent threads', function () {
     Thread::factory()->create(['subject' => 'The second thread']);
 
     $this->get('/forum?filter=something-invalid')
-        ->assertSee(new HtmlString('href="http://localhost/forum?filter=recent"'));
-        // ->assertSee('<a href="http://localhost/forum?filter=recent" aria-current="page"');
+        ->assertSeeInOrder([
+            new HtmlString('href="http://localhost/forum?filter=recent"'),
+            new HtmlString('aria-current="page"'),
+        ]);
 
 });
 
@@ -262,8 +264,10 @@ test('an invalid filter on tag view defaults to the most recent threads', functi
     $tag = Tag::factory()->create();
 
     $this->get("/forum/tags/{$tag->slug}?filter=something-invalid")
-        ->assertSee(new HtmlString('href="http://localhost/forum/tags/'.$tag->slug.''));
-        // ->assertSee('href="http://localhost/forum/tags/'.$tag->slug.'?filter=recent" aria-current="page"');
+        ->assertSeeInOrder([
+            new HtmlString('href="http://localhost/forum/tags/'.$tag->slug.'?filter=recent'),
+            new HtmlString('aria-current="page"')
+        ]);
 
 });
 
