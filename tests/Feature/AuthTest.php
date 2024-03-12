@@ -41,8 +41,8 @@ test('registration fails when a required field is not filled in', function () {
         ->assertInvalid([
             'name' => 'The name field is required.',
             'email' => 'The email field is required.',
-            'username'=> 'The username field is required.',
-            'rules'=> 'The rules must be accepted.',
+            'username' => 'The username field is required.',
+            'rules' => 'The rules must be accepted.',
         ]);
 });
 
@@ -56,7 +56,7 @@ test('registration fails with non alpha dash username', function () {
             'terms' => true,
         ])
         ->assertInvalid([
-            'username' => 'The username must only contain letters, numbers, dashes and underscores.'
+            'username' => 'The username must only contain letters, numbers, dashes and underscores.',
         ]);
 });
 
@@ -65,17 +65,17 @@ test('registration fails with a duplicate github id', function () {
 
     $response = $this->withSession(['githubData' => ['id' => 123, 'username' => 'johndoe']])
         ->post('/register', [
-            'name'=> 'John Doe',
+            'name' => 'John Doe',
             'email' => 'john.doe@example.com',
             'username' => 'johndoe',
             'rules' => true,
-            'terms' => true
+            'terms' => true,
         ]);
 
     $this->followRedirects($response)
         ->assertSee(new HtmlString(
             'We already found a user with the given GitHub account (@johndoe). Would you like to <a href="http://localhost/login">login</a> instead?'
-            )
+        )
         );
 });
 
@@ -100,9 +100,9 @@ test('users can login with their username', function () {
     $this->createUser();
 
     $this->post('login', [
-            'username' => 'johndoe',
-            'password' => 'password'
-        ]);
+        'username' => 'johndoe',
+        'password' => 'password',
+    ]);
 
     $this->assertAuthenticated();
 });
@@ -125,7 +125,7 @@ test('login fails when a required field is not filled in', function () {
 
     $response->assertInvalid([
         'username' => 'The username field is required.',
-        'password' => 'The password field is required.'
+        'password' => 'The password field is required.',
     ]);
 });
 
@@ -134,11 +134,11 @@ test('login fails when password is incorrect', function () {
 
     $response = $this->post('login', [
         'username' => 'johndoe',
-        'password' => 'invalidpass'
+        'password' => 'invalidpass',
     ]);
 
     $response->assertInvalid([
-        'username' => 'These credentials do not match our records.'
+        'username' => 'These credentials do not match our records.',
     ]);
 });
 
@@ -148,7 +148,7 @@ test('login fails when user is banned', function () {
     $response = $this->actingAs($user)
         ->post('/login', [
             'username' => 'johndoe',
-            'password' => 'password'
+            'password' => 'password',
         ])
         ->assertRedirect('/');
 
@@ -172,9 +172,9 @@ test('users can request a password reset link', function () {
     $this->createUser();
 
     $this->post('password/email', [
-        'email' => 'john@example.com'
+        'email' => 'john@example.com',
     ])
-    ->assertSessionHas('status', 'We have emailed your password reset link!');
+        ->assertSessionHas('status', 'We have emailed your password reset link!');
 });
 
 test('users can reset their password', function () {
@@ -184,21 +184,21 @@ test('users can reset their password', function () {
     $token = $this->app[PasswordBroker::class]->getRepository()->create($user);
 
     $this->post('/password/reset', [
-            'token' => $token,
-            'email' => 'john@example.com',
-            'password' => 'QFq^$cz#P@MZa5z7',
-            'password_confirmation' => 'QFq^$cz#P@MZa5z7'
-        ])
+        'token' => $token,
+        'email' => 'john@example.com',
+        'password' => 'QFq^$cz#P@MZa5z7',
+        'password_confirmation' => 'QFq^$cz#P@MZa5z7',
+    ])
         ->assertRedirect();
 
     $this->actingAs($user)
         ->post('logout');
-    
+
     assertLoggedOut();
 
     $this->post('login', [
         'username' => 'johndoe',
-        'password' => 'QFq^$cz#P@MZa5z7'
+        'password' => 'QFq^$cz#P@MZa5z7',
     ]);
 
     assertLoggedIn();
@@ -214,11 +214,11 @@ test('users cannot reset their password when it has been compromised in data lea
         'token' => $token,
         'email' => 'john@example.com',
         'password' => 'password',
-        'password_confirmation' => 'password'
+        'password_confirmation' => 'password',
     ]);
 
     $response->assertSessionHasErrors([
-        'password' => 'The given password has appeared in a data leak. Please choose a different password.'
+        'password' => 'The given password has appeared in a data leak. Please choose a different password.',
     ]);
 });
 

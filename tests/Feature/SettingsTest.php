@@ -116,7 +116,7 @@ test('users cannot update their password when it has been compromised in data le
             'password_confirmation' => 'newpassword',
         ])
         ->assertInvalid([
-            'password' => 'The given password has appeared in a data leak. Please choose a different password.'
+            'password' => 'The given password has appeared in a data leak. Please choose a different password.',
         ]);
 
     $this->followRedirects($response)
@@ -211,7 +211,7 @@ test('users can delete API tokens', function () {
         ])
         ->assertRedirect('/settings');
 
-    $this->followRedirects($response) 
+    $this->followRedirects($response)
         ->assertSee('API token successfully removed.');
 
     expect($user->refresh()->tokens)->toBeEmpty();

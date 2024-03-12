@@ -98,8 +98,8 @@ test('users can edit a thread', function () {
         'body' => 'This text explains how to work with Eloquent.',
         'tags' => [$tag->id()],
     ])
-    ->assertRedirect('/forum/how-to-work-with-eloquent')
-    ->assertSessionHas('success', 'Thread successfully updated!');
+        ->assertRedirect('/forum/how-to-work-with-eloquent')
+        ->assertSessionHas('success', 'Thread successfully updated!');
 });
 
 test('users cannot edit a thread they do not own', function () {
@@ -266,7 +266,7 @@ test('an invalid filter on tag view defaults to the most recent threads', functi
     $this->get("/forum/tags/{$tag->slug}?filter=something-invalid")
         ->assertSeeInOrder([
             new HtmlString('href="http://localhost/forum/tags/'.$tag->slug.'?filter=recent'),
-            new HtmlString('aria-current="page"')
+            new HtmlString('aria-current="page"'),
         ]);
 
 });
