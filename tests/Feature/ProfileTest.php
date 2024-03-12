@@ -1,32 +1,32 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\Feature\BrowserKitTestCase;
+use Tests\TestCase;
 
-uses(BrowserKitTestCase::class);
+uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
 test('anyone can see a user profile', function () {
     $this->createUser();
 
-    $this->visit('/user/johndoe')
-        ->see('John Doe');
+    $this->get('/user/johndoe')
+        ->assertSee('John Doe');
 });
 
 test('admin buttons are not shown to logged out users', function () {
     $this->createUser();
 
-    $this->visit('/user/johndoe')
-        ->dontSee('Ban user')
-        ->dontSee('Unban user');
+    $this->get('/user/johndoe')
+        ->assertDontSee('Ban user')
+        ->assertDontSee('Unban user');
 });
 
 test('admin buttons are not shown to non admin users', function () {
     $this->login();
 
-    $this->visit('/user/johndoe')
-        ->dontSee('Ban user')
-        ->dontSee('Unban user');
+    $this->get('/user/johndoe')
+        ->assertDontSee('Ban user')
+        ->assertDontSee('Unban user');
 });
 
 test('admin buttons are shown to admin users', function () {
@@ -36,6 +36,6 @@ test('admin buttons are shown to admin users', function () {
     ]);
     $this->loginAsAdmin();
 
-    $this->visit('/user/janedoe')
-        ->see('Ban user');
+    $this->get('/user/janedoe')
+        ->assertSee('Ban User');
 });

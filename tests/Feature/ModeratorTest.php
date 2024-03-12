@@ -2,9 +2,9 @@
 
 use App\Models\Thread;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\Feature\BrowserKitTestCase;
+use Tests\TestCase;
 
-uses(BrowserKitTestCase::class);
+uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
 test('moderators can edit any thread', function () {
@@ -12,8 +12,8 @@ test('moderators can edit any thread', function () {
 
     $this->loginAsModerator();
 
-    $this->visit('/forum/'.$thread->slug().'/edit')
-        ->assertResponseOk();
+    $this->get('/forum/'.$thread->slug().'/edit')
+        ->assertSuccessful();
 });
 
 test('moderators can delete any thread', function () {
@@ -22,5 +22,5 @@ test('moderators can delete any thread', function () {
     $this->loginAsModerator();
 
     $this->delete('/forum/'.$thread->slug())
-        ->assertRedirectedTo('/forum');
+        ->assertRedirect('/forum');
 });

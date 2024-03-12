@@ -8,11 +8,11 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
-use Tests\Feature\BrowserKitTestCase;
+use Tests\TestCase;
 
 use function Pest\Laravel\post;
 
-uses(BrowserKitTestCase::class);
+uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
 test('users_can_see_notifications', function () {

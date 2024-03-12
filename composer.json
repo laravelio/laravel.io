@@ -41,7 +41,6 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.10",
-        "laravel/browser-kit-testing": "^7.0",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
         "pestphp/pest": "^2.0",
