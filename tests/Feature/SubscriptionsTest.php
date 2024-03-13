@@ -9,10 +9,11 @@ use App\Notifications\NewReplyNotification;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
-use Tests\Feature\BrowserKitTestCase;
+use Tests\TestCase;
 
-uses(BrowserKitTestCase::class);
+uses(TestCase::class);
 uses(DatabaseMigrations::class);
 uses(WithFaker::class);
 
@@ -74,38 +75,42 @@ test('users are automatically subscribed to a thread after replying to it', func
 });
 
 test('users can manually subscribe to threads', function () {
-    Thread::factory()->create(['slug' => $slug = $this->faker->slug()]);
+    $thread = Thread::factory()->create();
 
     $this->login();
 
-    $this->visit("/forum/$slug")
-        ->press('Subscribe')
-        ->seePageIs("/forum/$slug")
-        ->see("You're now subscribed to this thread.");
+    $response = $this->post("/forum/$thread->slug/subscribe")
+        ->assertRedirect("/forum/$thread->slug");
+
+    $this->followRedirects($response)
+        ->assertSee(new HtmlString("You're now subscribed to this thread."));
 });
 
 test('users can unsubscribe from threads', function () {
     $user = $this->createUser();
-    $thread = Thread::factory()->create(['slug' => $slug = $this->faker->slug()]);
+    $thread = Thread::factory()->create();
     Subscription::factory()->create(['user_id' => $user->id(), 'subscriptionable_id' => $thread->id()]);
 
     $this->loginAs($user);
 
-    $this->visit("/forum/$slug")
-        ->press('Unsubscribe')
-        ->seePageIs("/forum/$slug")
-        ->see("You're now unsubscribed from this thread.");
+    $response = $this->post("/forum/$thread->slug/unsubscribe")
+        ->assertRedirect("/forum/$thread->slug");
+
+    $this->followRedirects($response)
+        ->assertSee(new HtmlString("You're now unsubscribed from this thread."));
 });
 
 test('users can unsubscribe through a token link', function () {
     $subscription = Subscription::factory()->create();
     $thread = $subscription->subscriptionAble();
 
-    $this->visit("/subscriptions/{$subscription->uuid()}/unsubscribe")
-        ->seePageIs("/forum/{$thread->slug()}")
-        ->see("You're now unsubscribed from this thread.");
+    $response = $this->get("/subscriptions/{$subscription->uuid()}/unsubscribe")
+        ->assertRedirect("/forum/{$thread->slug()}");
 
-    $this->notSeeInDatabase('subscriptions', ['uuid' => $subscription->uuid()]);
+    $this->followRedirects($response)
+        ->assertDontSee("You're now unsubscribed from this thread.");
+
+    $this->assertDatabaseMissing('subscriptions', ['uuid' => $subscription->uuid()]);
 });
 
 test('users are subscribed to a thread when mentioned', function () {
@@ -119,7 +124,7 @@ test('users are subscribed to a thread when mentioned', function () {
         'tags' => [],
     ]);
 
-    $this->seeInDatabase('subscriptions', ['user_id' => $user->id()]);
+    $this->assertDatabaseHas('subscriptions', ['user_id' => $user->id()]);
 });
 
 test('users are subscribed to a thread when mentioned in a reply', function () {
@@ -134,5 +139,5 @@ test('users are subscribed to a thread when mentioned in a reply', function () {
         'replyable_type' => Thread::TABLE,
     ]);
 
-    $this->seeInDatabase('subscriptions', ['user_id' => $user->id()]);
+    $this->assertDatabaseHas('subscriptions', ['user_id' => $user->id()]);
 });
