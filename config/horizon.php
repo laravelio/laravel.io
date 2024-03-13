@@ -105,8 +105,8 @@ return [
         'pending' => 60,
         'completed' => 60 * 24,
         'recent_failed' => 60 * 24 * 7,
-        'failed' =>  60 * 24 * 7,
-        'monitored' =>  60 * 24 * 7,
+        'failed' => 60 * 24 * 7,
+        'monitored' => 60 * 24 * 7,
     ],
 
     /*
