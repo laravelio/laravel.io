@@ -36,10 +36,6 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://localazy.com/laravel?utm_source=laravel.io&utm_medium=sponsorships&utm_campaign=brand_awareness&utm_content=logo" logo="{{ asset('images/sponsors/localazy.svg') }}" company="Localazy" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://steadfastcollective.com/uk-laravel-agency" logo="{{ asset('images/sponsors/steadfast.svg') }}" company="Steadfast Collective" />
             </div>
 
