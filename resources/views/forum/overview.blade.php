@@ -129,8 +129,8 @@
                                     <div class="flex items-center gap-x-5">
                                         <x-avatar :user="$member" class="w-10 h-10" />
 
-                                        <span class="flex flex-col">
-                                            <a href="{{ route('profile', $member->username()) }}" class="hover:underline">
+                                        <span class="flex flex-col flex-1 min-w-0">
+                                            <a href="{{ route('profile', $member->username()) }}" class="truncate hover:underline">
                                                 <span class="text-gray-900 font-medium">
                                                     {{ $member->username() }}
                                                 </span>
