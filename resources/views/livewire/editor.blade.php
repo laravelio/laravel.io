@@ -1,79 +1,53 @@
 <div class="editor">
     @if ($label)
-        <span class="text-xl text-gray-900 font-semibold mb-4 block">
+        <span class="mb-4 block text-xl font-semibold text-gray-900">
             {{ $label }}
         </span>
     @endif
 
-    <div x-data="editorConfig(@entangle('body'), {{ $hasMentions }})" class="bg-white rounded-md {{ $hasShadow ? 'shadow-md' : '' }}">
-        <ul class="flex p-5 gap-x-4">
+    <div x-data="editorConfig(@entangle('body'), {{ $hasMentions }})" class="{{ $hasShadow ? 'shadow-md' : '' }} rounded-md bg-white">
+        <ul class="flex gap-x-4 p-5">
             <li>
-                <button
-                    type="button"
-                    @click="mode = 'write'"
-                    :class="{ 'text-lio-500 border-lio-500 border-b-2': mode === 'write' }"
-                >
+                <button type="button" @click="mode = 'write'"
+                    :class="{ 'text-lio-500 border-lio-500 border-b-2': mode === 'write' }">
                     Write
                 </button>
             </li>
 
             <li>
-                <button
-                    type="button"
-                    @click="mode = 'preview'"
-                    wire:click="preview"
-                    :class="{ 'text-lio-500 border-lio-500 border-b-2': mode === 'preview' }"
-                >
+                <button type="button" @click="mode = 'preview'" wire:click="preview"
+                    :class="{ 'text-lio-500 border-lio-500 border-b-2': mode === 'preview' }">
                     Preview
                 </button>
             </li>
         </ul>
 
         <div x-show="mode === 'write'">
-            <div class="flex flex-col relative">
-                <div x-text="body + '\n'" class="invisible whitespace-pre-line border-none p-5 min-h-[5rem]"></div>
+            <div class="relative flex flex-col">
+                <div x-text="body + '\n'" class="invisible min-h-[5rem] whitespace-pre-line border-none p-5"></div>
                 <textarea
-                    class="w-full h-full absolute left-0 top-0 right-0 bottom-0 overflow-y-hidden resize-none border-none p-5 focus:border focus:border-lio-300 focus:ring focus:ring-lio-200 focus:ring-opacity-50"
-                    id="body"
-                    name="body"
-                    placeholder="{{ $placeholder }}"
-                    x-model=body
-                    required
-                    x-ref="editor"
-                    @keydown.cmd.enter="submit"
-                    @keydown.ctrl.enter="submit"
-                    @keydown.space="showMentions = false"
-                    @keydown.down="highlightNextUser(event)"
-                    @keydown.up="highlightPreviousUser(event)"
-                    @keydown.enter="selectHighlightedUser(event)"
-                    @keydown.escape="showMentions = false"
-                    @click.away="showMentions = false"
-                    @keydown.debounce.500ms="updateUserSearch($event)"
-                ></textarea>
+                    class="absolute bottom-0 left-0 right-0 top-0 h-full w-full resize-none overflow-y-hidden border-none p-5 focus:border focus:border-lio-300 focus:ring focus:ring-lio-200 focus:ring-opacity-50"
+                    id="body" name="body" placeholder="{{ $placeholder }}" x-model=body required x-ref="editor"
+                    @keydown.cmd.enter="submit" @keydown.ctrl.enter="submit" @keydown.space="showMentions = false"
+                    @keydown.down="highlightNextUser(event)" @keydown.up="highlightPreviousUser(event)"
+                    @keydown.enter="selectHighlightedUser(event)" @keydown.escape="showMentions = false"
+                    @click.away="showMentions = false" @keydown.debounce.500ms="updateUserSearch($event)"></textarea>
 
                 @if (count($users) > 0)
-                    <ul
-                        x-cloak
-                        x-show="showUserListbox()"
-                        x-ref="users"
-                        class="absolute flex flex-col bg-white rounded shadow"
+                    <ul x-cloak x-show="showUserListbox()" x-ref="users"
+                        class="absolute flex flex-col rounded bg-white shadow"
                         :style="`top: ${cursorTop}; left: ${cursorLeft}; display: ${showUserListbox() ? 'block' : 'none'}`"
-                        tabindex="-1"
-                        role="listbox"
-                    >
+                        tabindex="-1" role="listbox">
                         @foreach ($users as $user)
-                            <li
-                                @click.prevent="selectUser('{{ $user['username'] }}')"
-                                role="option"
-                                class="flex items-center gap-x-2 p-2 cursor-pointer hover:bg-lio-100"
+                            <li @click.prevent="selectUser('{{ $user['username'] }}')" role="option"
+                                class="flex cursor-pointer items-center gap-x-2 p-2 hover:bg-lio-100"
                                 data-username="{{ $user['username'] }}"
-                                aria-selected="{{ $loop->first ? 'true' : 'false' }}"
-                            >
-                                <span class="text-gray-900 font-medium">
+                                aria-selected="{{ $loop->first ? 'true' : 'false' }}">
+                                <span class="font-medium text-gray-900">
                                     {{ $user['username'] }}
                                 </span>
 
-                                <small class="text-gray-900 text-sm text-gray-500">
+                                <small class="text-sm text-gray-500 text-gray-900">
                                     {{ $user['name'] }}
                                 </small>
                             </li>
@@ -82,7 +56,7 @@
                 @endif
             </div>
 
-            <div class="flex flex-col items-center justify-end gap-y-4 gap-x-5 p-5 md:flex-row">
+            <div class="flex flex-col items-center justify-end gap-x-5 gap-y-4 p-5 md:flex-row">
                 <x-forms.editor.controls />
 
                 @isset($cancelLink)
@@ -118,7 +92,7 @@
         </div>
 
         <div x-show="mode === 'preview'" x-cloak>
-            <div class="prose prose-lio max-w-none p-5 break-words" id="editor-preview">
+            <div class="prose-lio prose max-w-none break-words p-5" id="editor-preview">
                 {!! $this->preview !!}
             </div>
         </div>

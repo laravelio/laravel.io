@@ -1,6 +1,6 @@
-<div class="container mx-auto flex justify-center mt-14">
-    <div class="w-full mx-4 text-center">
-        <p class="text-base mb-6 md:text-lg md:mb-12">
+<div class="container mx-auto mt-14 flex justify-center">
+    <div class="mx-4 w-full text-center">
+        <p class="mb-6 text-base md:mb-12 md:text-lg">
             We'd like to thank these <x-accent-text>amazing companies</x-accent-text> for supporting us
         </p>
 
@@ -9,42 +9,52 @@
         </div> --}}
 
         <div class="mt-8 flex justify-center">
-            <div class="col-span-2 flex justify-center lg:col-span-1 mr-10">
-                <x-sponsor-logo size="medium" url="https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement" logo="{{ asset('images/sponsors/eventy.svg') }}" company="Eventy" />
+            <div class="col-span-2 mr-10 flex justify-center lg:col-span-1">
+                <x-sponsor-logo size="medium"
+                    url="https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement"
+                    logo="{{ asset('images/sponsors/eventy.svg') }}" company="Eventy" />
             </div>
         </div>
 
         <div class="mt-12 grid grid-cols-2 gap-y-8 lg:grid-cols-3">
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://usefathom.com/ref/7A8QGC" logo="{{ asset('images/sponsors/fathom.png') }}" company="Fathom" />
+                <x-sponsor-logo url="https://usefathom.com/ref/7A8QGC" logo="{{ asset('images/sponsors/fathom.png') }}"
+                    company="Fathom" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://forge.laravel.com/" logo="{{ asset('images/sponsors/forge.png') }}" company="Forge" />
+                <x-sponsor-logo url="https://forge.laravel.com/" logo="{{ asset('images/sponsors/forge.png') }}"
+                    company="Forge" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://envoyer.io/" logo="{{ asset('images/sponsors/envoyer.png') }}" company="Envoyer" />
+                <x-sponsor-logo url="https://envoyer.io/" logo="{{ asset('images/sponsors/envoyer.png') }}"
+                    company="Envoyer" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo size="medium" url="https://beyondco.de" logo="{{ asset('images/sponsors/beyondcode.png') }}" company="Beyond Code" />
+                <x-sponsor-logo size="medium" url="https://beyondco.de"
+                    logo="{{ asset('images/sponsors/beyondcode.png') }}" company="Beyond Code" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://www.skynettechnologies.com/hire-laravel-developer" logo="{{ asset('images/sponsors/skynet-technologies.jpg') }}" company="Skynet Technologies" />
+                <x-sponsor-logo url="https://www.skynettechnologies.com/hire-laravel-developer"
+                    logo="{{ asset('images/sponsors/skynet-technologies.jpg') }}" company="Skynet Technologies" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://steadfastcollective.com/uk-laravel-agency" logo="{{ asset('images/sponsors/steadfast.svg') }}" company="Steadfast Collective" />
+                <x-sponsor-logo url="https://steadfastcollective.com/uk-laravel-agency"
+                    logo="{{ asset('images/sponsors/steadfast.svg') }}" company="Steadfast Collective" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://www.bairesdev.com/sponsoring-open-source-projects/" logo="{{ asset('images/sponsors/bairesdev.png') }}" company="BairesDev" />
+                <x-sponsor-logo url="https://www.bairesdev.com/sponsoring-open-source-projects/"
+                    logo="{{ asset('images/sponsors/bairesdev.png') }}" company="BairesDev" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://www.remotely.works/sponsoring-open-source-projects" logo="{{ asset('images/sponsors/remotely.png') }}" company="Remotely Works" />
+                <x-sponsor-logo url="https://www.remotely.works/sponsoring-open-source-projects"
+                    logo="{{ asset('images/sponsors/remotely.png') }}" company="Remotely Works" />
             </div>
         </div>
 

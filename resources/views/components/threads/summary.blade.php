@@ -1,13 +1,11 @@
-@props([
-    'thread',
-])
+@props(['thread'])
 
-<div class="h-full rounded shadow-lg p-5">
-    <div class="h-full flex flex-col place-content-between">
+<div class="h-full rounded p-5 shadow-lg">
+    <div class="flex h-full flex-col place-content-between">
         <div class="break-words">
-            <div class="flex items-center justify-between mb-2.5">
+            <div class="mb-2.5 flex items-center justify-between">
                 <div class="flex items-center">
-                    <x-avatar :user="$thread->author()" class="w-8 h-8 rounded-full mr-2" />
+                    <x-avatar :user="$thread->author()" class="mr-2 h-8 w-8 rounded-full" />
 
                     <a href="{{ route('profile', $thread->author()->username()) }}">
                         <span class="font-heading text-sm text-black">{{ $thread->author()->username() }}</span>
@@ -21,13 +19,13 @@
                 </div>
             </div>
 
-            <h3 class="text-gray-900 text-2xl mb-2 leading-8">
+            <h3 class="mb-2 text-2xl leading-8 text-gray-900">
                 <a href="{{ route('thread', $thread->slug()) }}">
                     {{ $thread->subject() }}
                 </a>
             </h3>
 
-            <p class="text-gray-800 text-base leading-7 mb-3">
+            <p class="mb-3 text-base leading-7 text-gray-800">
                 {!! $thread->excerpt() !!}
             </p>
         </div>

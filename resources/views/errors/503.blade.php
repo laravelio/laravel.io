@@ -4,7 +4,8 @@
     <title>Be right back.</title>
 
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
         }
 

@@ -3,7 +3,7 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="container mx-auto px-4 py-10 prose">
+    <div class="container prose mx-auto px-4 py-10">
         <h1>Privacy Policy of <strong>Laravel.io</strong></h1>
 
         <p>This Website collects some Personal Data from its Users.</p><br>
@@ -14,7 +14,6 @@
         </h2>
         <p>Dries Vints</p>
         <p><strong>Owner contact email:</strong> hello@laravel.io</p>
-
 
         <h2>
             Types of Data collected
@@ -36,7 +35,6 @@
             third-party services used by this Website serves the purpose of providing the Service required by the User, in
             addition to any other purposes described in the present document and in the Cookie Policy.</p>
         <p>Users are responsible for any third-party Personal Data obtained, published or shared through this Website.</p>
-
 
         <h2>Mode and place of processing the Data</h2>
         <h3>
@@ -67,8 +65,6 @@
             by the purpose they have been collected for and may be retained for longer due to applicable legal obligation or
             based on the Users’ consent.</p>
 
-
-
         <h2>The purposes of processing</h2>
         <p>
             The Data concerning the User is collected to allow the Owner to provide its Service, comply with its legal
@@ -81,7 +77,6 @@
         <p>For specific information about the Personal Data used for each purpose, the User may refer to the section
             “Detailed information on the processing of Personal Data”.</p>
 
-
         <h2>Detailed information on the processing of Personal Data</h2>
         <p>Personal Data is collected for the following purposes and using the following services:</p>
 
@@ -93,7 +88,6 @@
             Some of these services work through geographically distributed servers, making it difficult to determine the
             actual location where the Personal Data are stored.</p>
 
-
         <h4>
             DigitalOcean (DigitalOcean Inc.)
         </h4>
@@ -101,10 +95,8 @@
 
         <p>Personal Data processed: various types of Data as specified in the privacy policy of the service.</p>
 
-
         <p>Place of processing: US – <a href="https://www.digitalocean.com/legal/privacy/" target="_blank"
                 rel="noopener noreferrer">Privacy Policy</a>. </p>
-
 
         <h3>
             Managing contacts and sending messages
@@ -114,7 +106,6 @@
             These services may also collect data concerning the date and time when the message was viewed by the User, as
             well as when the User interacted with it, such as by clicking on links included in the message.</p>
 
-
         <h4>
             Mailgun (Mailgun Technologies, Inc.)
         </h4>
@@ -122,10 +113,8 @@
 
         <p>Personal Data processed: email address.</p>
 
-
         <p>Place of processing: United States – <a href="https://www.mailgun.com/privacy-policy" target="_blank"
                 rel="noopener noreferrer">Privacy Policy</a>. </p>
-
 
         <h3>
             Registration and authentication
@@ -136,7 +125,6 @@
             this case, this Website will be able to access some Data, stored by these third-party services, for registration
             or identification purposes.</p>
 
-
         <h4>
             GitHub OAuth (GitHub Inc.)
         </h4>
@@ -145,10 +133,8 @@
 
         <p>Personal Data processed: various types of Data as specified in the privacy policy of the service.</p>
 
-
         <p>Place of processing: US – <a href="https://help.github.com/articles/github-terms-of-service#b-api-terms"
                 target="_blank" rel="noopener noreferrer">Privacy Policy</a>. </p>
-
 
         <h3>
             Registration and authentication provided directly by this Website
@@ -157,7 +143,6 @@
             services. The Personal Data is collected and stored for registration or identification purposes only. The Data
             collected are only those necessary for the provision of the service requested by the Users.</p>
 
-
         <h4>
             Direct registration (this Website)
         </h4>
@@ -165,8 +150,6 @@
         </p>
 
         <p>Personal Data processed: email address; password; username.</p>
-
-
 
         <h3>
             Traffic optimization and distribution
@@ -178,7 +161,6 @@
             Considering the widespread distribution of this system, it is difficult to determine the locations to which the
             contents that may contain Personal Information of the User are transferred.</p>
 
-
         <h4>
             Cloudflare (Cloudflare)
         </h4>
@@ -189,19 +171,15 @@
 
         <p>Personal Data processed: Cookies; various types of Data as specified in the privacy policy of the service.</p>
 
-
         <p>Place of processing: US – <a href="https://www.cloudflare.com/security-policy/" target="_blank"
                 rel="noopener noreferrer">Privacy Policy</a>. </p>
-
 
         <h2>Cookie Policy</h2>
         <p>This Website uses Trackers.</p>
 
-
         <h2>
             Further Information for Users
         </h2>
-
 
         <h3>
             Legal basis of processing
@@ -220,7 +198,6 @@
         <p>In any case, the Owner will gladly help to clarify the specific legal basis that applies to the processing, and
             in particular whether the provision of Personal Data is a statutory or contractual requirement, or a requirement
             necessary to enter into a contract. </p>
-
 
         <h3>
             Further information about retention time
@@ -243,7 +220,6 @@
             Once the retention period expires, Personal Data shall be deleted. Therefore, the right of access, the right to
             erasure, the right to rectification and the right to data portability cannot be enforced after expiration of the
             retention period.</p>
-
 
         <h3>The rights of Users based on the General Data Protection Regulation (GDPR)</h3>
         <p>Users may exercise certain rights regarding their Data processed by the Owner.</p>
@@ -301,7 +277,6 @@
             Personal Data has been disclosed unless this proves impossible or involves disproportionate effort. At the
             Users’ request, the Owner will inform them about those recipients.</p>
 
-
         <h2>Additional information about Data collection and processing</h2>
         <h3>
             Legal action
@@ -334,9 +309,6 @@
             referring to the date of the last modification listed at the bottom. <br><br>
             Should the changes affect processing activities performed on the basis of the User’s consent, the Owner shall
             collect new consent from the User, where required.</p>
-
-
-
 
         <h3>
             Definitions and legal references

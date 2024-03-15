@@ -42,7 +42,7 @@
             </div>
 
             <div class="relative flex justify-center text-sm">
-                <span class="px-2 bg-white text-gray-500">
+                <span class="bg-white px-2 text-gray-500">
                     Or continue with
                 </span>
             </div>

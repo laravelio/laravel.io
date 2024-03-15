@@ -9,12 +9,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>
-        {{ isset($title) ? $title.' | ' : '' }}
+        {{ isset($title) ? $title . ' | ' : '' }}
         {{ config('app.name') }}
         {{ is_active('home') ? '- The Laravel Community Portal' : '' }}
     </title>
 
-    <meta name="description" content="The Laravel portal for problem solving, knowledge sharing and community building." />
+    <meta name="description"
+        content="The Laravel portal for problem solving, knowledge sharing and community building." />
     <link rel="canonical" href="{{ $canonical ?? Request::url() }}" />
 
     @vite(['resources/css/app.css'])
@@ -33,20 +34,21 @@
     @livewireStyles
 </head>
 
-<body class="{{ $bodyClass ?? '' }} font-sans bg-white antialiased" :class="{ 'overflow-hidden': lockScroll }" x-data="{ lockScroll: false, activeModal: false }" @keyup.escape="activeModal = false">
+<body class="{{ $bodyClass ?? '' }} bg-white font-sans antialiased" :class="{ 'overflow-hidden': lockScroll }"
+    x-data="{ lockScroll: false, activeModal: false }" @keyup.escape="activeModal = false">
 
-@include('layouts._ads._banner')
-@include('layouts._nav')
+    @include('layouts._ads._banner')
+    @include('layouts._nav')
 
-@yield('body')
+    @yield('body')
 
-@include('layouts._footer')
+    @include('layouts._footer')
 
-@stack('modals')
+    @stack('modals')
 
-@vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js'])
 
-@livewireScripts
+    @livewireScripts
 
 </body>
 </html>

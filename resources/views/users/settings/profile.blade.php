@@ -2,10 +2,10 @@
 
 <section aria-labelledby="profile_settings_heading">
     <x-buk-form method="PUT" action="{{ route('settings.profile.update') }}">
-        <div class="shadow sm:rounded-md sm:overflow-hidden">
-            <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
+        <div class="shadow sm:overflow-hidden sm:rounded-md">
+            <div class="space-y-6 bg-white px-4 py-6 sm:p-6">
                 <div>
-                    <h2 id="profile_settings_heading" class="text-lg leading-6 font-medium text-gray-900">
+                    <h2 id="profile_settings_heading" class="text-lg font-medium leading-6 text-gray-900">
                         Profile
                     </h2>
                     <p class="mt-1 text-sm leading-5 text-gray-500">
@@ -13,16 +13,16 @@
                     </p>
                 </div>
 
-                <div class="flex flex-col space-y-6 lg:flex-row lg:space-y-0 lg:space-x-6">
+                <div class="flex flex-col space-y-6 lg:flex-row lg:space-x-6 lg:space-y-0">
                     <div class="grow space-y-6">
                         <div class="space-y-1">
-                            <x-forms.label for="name"/>
+                            <x-forms.label for="name" />
 
                             <x-forms.inputs.input name="name" :value="Auth::user()->name()" required />
                         </div>
 
                         <div class="space-y-1">
-                            <x-forms.label for="bio"/>
+                            <x-forms.label for="bio" />
 
                             <x-forms.inputs.textarea name="bio" maxlength="160">
                                 {{ Auth::user()->bio() }}
@@ -34,19 +34,20 @@
                         </div>
                     </div>
 
-                    <div class="grow space-y-1 lg:grow-0 lg:shrink-0">
-                        <p class="block text-sm leading-5 font-medium text-gray-700" aria-hidden="true">
+                    <div class="grow space-y-1 lg:shrink-0 lg:grow-0">
+                        <p class="block text-sm font-medium leading-5 text-gray-700" aria-hidden="true">
                             Profile Image
                         </p>
 
-                        <div class="flex items-center mt-2">
-                            <div class="shrink-0 inline-block overflow-hidden" aria-hidden="true">
-                                <x-avatar :user="Auth::user()" class="h-32 w-32 mt-4" unlinked />
+                        <div class="mt-2 flex items-center">
+                            <div class="inline-block shrink-0 overflow-hidden" aria-hidden="true">
+                                <x-avatar :user="Auth::user()" class="mt-4 h-32 w-32" unlinked />
 
                                 <span class="mt-4 inline-block text-sm text-gray-500">
                                     Change your avatar for
 
-                                    <a href="https://github.com/{{ Auth::user()->githubUsername() }}" class="text-lio-700">
+                                    <a href="https://github.com/{{ Auth::user()->githubUsername() }}"
+                                        class="text-lio-700">
                                         your GitHub profile
                                     </a>.
                                 </span>
@@ -61,7 +62,7 @@
 
                         <x-forms.inputs.email name="email" :value="Auth::user()->emailAddress()" required />
 
-                        @unless(Auth::user()->hasVerifiedEmail())
+                        @unless (Auth::user()->hasVerifiedEmail())
                             <span class="mt-2 text-sm text-gray-500">
                                 This email address is not verified yet.
 
@@ -87,7 +88,8 @@
                     <div class="col-span-12 sm:col-span-6">
                         <x-forms.label for="twitter">Twitter handle</x-forms.label>
 
-                        <x-forms.inputs.input name="twitter" :value="Auth::user()->twitter()" prefix-icon="heroicon-o-at-symbol" class="nav-search" />
+                        <x-forms.inputs.input name="twitter" :value="Auth::user()->twitter()" prefix-icon="heroicon-o-at-symbol"
+                            class="nav-search" />
 
                         <span class="mt-2 text-sm text-gray-500">
                             Enter your Twitter handle without the leading @ symbol
@@ -96,7 +98,7 @@
                 </div>
             </div>
 
-            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                 <span class="inline-flex rounded-md shadow-sm">
                     <x-buttons.primary-button type="submit">
                         Update Profile
