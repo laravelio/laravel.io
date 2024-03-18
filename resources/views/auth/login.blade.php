@@ -3,7 +3,11 @@
 @extends('layouts.small')
 
 @section('small-content')
-    <x-buk-form action="{{ route('login.post') }}" method="POST" class="space-y-6">
+    <x-buk-form
+        action="{{ route('login.post') }}"
+        method="POST"
+        class="space-y-6"
+    >
         <div>
             <x-forms.label for="username" />
 
@@ -22,7 +26,10 @@
             </x-forms.inputs.checkbox>
 
             <div class="text-sm">
-                <a href="{{ route('password.forgot') }}" class="font-medium text-lio-600 hover:text-lio-500">
+                <a
+                    href="{{ route('password.forgot') }}"
+                    class="font-medium text-lio-600 hover:text-lio-500"
+                >
                     Forgot your password?
                 </a>
             </div>
@@ -42,7 +49,7 @@
             </div>
 
             <div class="relative flex justify-center text-sm">
-                <span class="px-2 bg-white text-gray-500">
+                <span class="bg-white px-2 text-gray-500">
                     Or continue with
                 </span>
             </div>
@@ -50,7 +57,10 @@
 
         <div class="mt-6">
             <div>
-                <x-buttons.secondary-button href="{{ route('login.github') }}" fullWidth>
+                <x-buttons.secondary-button
+                    href="{{ route('login.github') }}"
+                    fullWidth
+                >
                     <span class="flex items-center gap-x-2">
                         <x-icon-github class="h-5 w-5 text-gray-500" />
                         <span>Sign in with GitHub</span>

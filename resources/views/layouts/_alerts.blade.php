@@ -1,6 +1,6 @@
 @if (session()->has('error'))
-    <div class="w-full text-white p-4 bg-red-500" x-data="{}">
-        <div class="flex items-center justify-between container mx-auto px-4">
+    <div class="w-full bg-red-500 p-4 text-white" x-data="{}">
+        <div class="container mx-auto flex items-center justify-between px-4">
             {!! session()->pull('error') !!}
             <button
                 type="button"
@@ -16,8 +16,10 @@
 @endif
 
 @if (session()->has('success'))
-    <div class="w-full text-white bg-lio-500 p-4" x-data="{}">
-        <div class="flex items-center flex-wrap justify-between container mx-auto px-4">
+    <div class="w-full bg-lio-500 p-4 text-white" x-data="{}">
+        <div
+            class="container mx-auto flex flex-wrap items-center justify-between px-4"
+        >
             {!! session()->pull('success') !!}
 
             @if (session()->has('api_token'))
