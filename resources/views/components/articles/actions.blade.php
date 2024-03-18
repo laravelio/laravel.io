@@ -1,5 +1,5 @@
 <div
-    class="flex flex-col gap-x-4 gap-y-3 lg:flex-row lg:justify-between mb-10"
+    class="mb-10 flex flex-col gap-x-4 gap-y-3 lg:flex-row lg:justify-between"
     x-data="{ hovered: false }"
 >
     <div class="flex flex-col gap-x-4 gap-y-3 lg:flex-row">
@@ -11,8 +11,14 @@
                 class="w-full"
             >
                 <span class="flex items-center gap-x-2">
-                    <x-heroicon-o-pencil class="w-5 h-5" title="Edit" />
-                    <span x-cloak x-show="hovered === 'edit'" class="leading-5">Edit article</span>
+                    <x-heroicon-o-pencil class="h-5 w-5" title="Edit" />
+                    <span
+                        x-cloak
+                        x-show="hovered === 'edit'"
+                        class="leading-5"
+                    >
+                        Edit article
+                    </span>
                 </span>
             </x-buttons.secondary-button>
         @endcan
@@ -27,8 +33,14 @@
                     class="w-full"
                 >
                     <span class="flex items-center gap-x-2">
-                        <x-heroicon-s-check class="w-5 h-5" title="Publish"/>
-                        <span x-cloak x-show="hovered === 'publish'" class="leading-5">Publish article</span>
+                        <x-heroicon-s-check class="h-5 w-5" title="Publish" />
+                        <span
+                            x-cloak
+                            x-show="hovered === 'publish'"
+                            class="leading-5"
+                        >
+                            Publish article
+                        </span>
                     </span>
                 </x-buttons.secondary-button>
             @endcan
@@ -42,8 +54,14 @@
                     class="w-full"
                 >
                     <span class="flex items-center gap-x-2">
-                        <x-heroicon-s-x-mark class="w-5 h-5" title="Decline"/>
-                        <span x-cloak x-show="hovered === 'decline'" class="leading-5">Decline article</span>
+                        <x-heroicon-s-x-mark class="h-5 w-5" title="Decline" />
+                        <span
+                            x-cloak
+                            x-show="hovered === 'decline'"
+                            class="leading-5"
+                        >
+                            Decline article
+                        </span>
                     </span>
                 </x-buttons.secondary-button>
             @endcan
@@ -57,8 +75,17 @@
                     class="w-full"
                 >
                     <span class="flex items-center gap-x-2">
-                        <x-heroicon-o-eye-slash class="w-5 h-5" title="Unpublish"/>
-                        <span x-cloak x-show="hovered === 'unpublish'" class="leading-5">Unpublish article</span>
+                        <x-heroicon-o-eye-slash
+                            class="h-5 w-5"
+                            title="Unpublish"
+                        />
+                        <span
+                            x-cloak
+                            x-show="hovered === 'unpublish'"
+                            class="leading-5"
+                        >
+                            Unpublish article
+                        </span>
                     </span>
                 </x-buttons.secondary-button>
             @endcan
@@ -74,8 +101,17 @@
                 class="w-full"
             >
                 <span class="flex items-center gap-x-2">
-                    <x-icon-pin class="w-5 h-5" title="{{ $article->isPinned() ? 'Unpin' : 'Pin' }}"/>
-                    <span x-cloak x-show="hovered === 'pin'" class="leading-5">{{ $article->isPinned() ? 'Unpin article' : 'Pin article' }}</span>
+                    <x-icon-pin
+                        class="h-5 w-5"
+                        title="{{ $article->isPinned() ? 'Unpin' : 'Pin' }}"
+                    />
+                    <span
+                        x-cloak
+                        x-show="hovered === 'pin'"
+                        class="leading-5"
+                    >
+                        {{ $article->isPinned() ? 'Unpin article' : 'Pin article' }}
+                    </span>
                 </span>
             </x-buttons.secondary-button>
         @endcan
@@ -90,10 +126,15 @@
             class="w-full"
         >
             <span class="flex items-center gap-x-2">
-                <x-heroicon-o-trash class="w-5 h-5" title="Delete"/>
-                <span x-cloak x-show="hovered === 'delete'" class="leading-5">Delete article</span>
+                <x-heroicon-o-trash class="h-5 w-5" title="Delete" />
+                <span
+                    x-cloak
+                    x-show="hovered === 'delete'"
+                    class="leading-5"
+                >
+                    Delete article
+                </span>
             </span>
         </x-buttons.danger-button>
     @endcan
 </div>
-

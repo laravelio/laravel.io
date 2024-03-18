@@ -1,11 +1,11 @@
 @title('Notification settings')
 
 <section class="mt-6">
-    <div class="shadow sm:rounded-md sm:overflow-hidden">
+    <div class="shadow sm:overflow-hidden sm:rounded-md">
         <x-buk-form action="{{ route('settings.notifications.store') }}">
-            <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
+            <div class="space-y-6 bg-white px-4 py-6 sm:p-6">
                 <div>
-                    <h2 class="text-lg leading-6 font-medium text-gray-900">
+                    <h2 class="text-lg font-medium leading-6 text-gray-900">
                         Notification settings
                     </h2>
 
@@ -19,7 +19,7 @@
                         <li>
                             <div>
                                 <div class="col-span-12">
-                                    @php($checked = auth()->user()->isNotificationAllowed($notificationType->getClass()))
+                                    @php(($checked = auth()->user()->isNotificationAllowed($notificationType->getClass())))
 
                                     <x-forms.inputs.checkbox
                                         name="allowed_notifications[]"
@@ -36,7 +36,7 @@
                 </ul>
             </div>
 
-            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                 <x-buttons.primary-button type="submit">
                     Save notification settings
                 </x-buttons.primary-button>
