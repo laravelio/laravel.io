@@ -2,12 +2,10 @@
 
 <section aria-labelledby="password_settings_heading" class="mt-6">
     <x-buk-form method="PUT" action="{{ route('settings.password.update') }}">
-        <div class="shadow sm:rounded-md sm:overflow-hidden">
-            <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
+        <div class="shadow sm:overflow-hidden sm:rounded-md">
+            <div class="space-y-6 bg-white px-4 py-6 sm:p-6">
                 <div>
-                    <h2 id="password_settings_heading" class="text-lg leading-6 font-medium text-gray-900">
-                        Password
-                    </h2>
+                    <h2 id="password_settings_heading" class="text-lg font-medium leading-6 text-gray-900">Password</h2>
                     <p class="mt-1 text-sm leading-5 text-gray-500">
                         Update the password used for logging into your account.
                     </p>
@@ -36,10 +34,8 @@
                 </div>
             </div>
 
-            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                <x-buttons.primary-button type="submit">
-                    Update Password
-                </x-buttons.primary-button>
+            <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                <x-buttons.primary-button type="submit">Update Password</x-buttons.primary-button>
             </div>
         </div>
     </x-buk-form>

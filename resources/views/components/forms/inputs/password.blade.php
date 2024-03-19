@@ -1,5 +1,1 @@
-<x-forms.inputs.input
-    type="password"
-    name="{{ $name }}"
-    {{ $attributes }}
-/>
+<x-forms.inputs.input type="password" name="{{ $name }}" {{ $attributes }} />

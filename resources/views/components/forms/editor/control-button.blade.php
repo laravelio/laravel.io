@@ -1,8 +1,8 @@
-<button 
+<button
     title="{{ $title }}"
-    type="button" 
-    class="text-gray-900 cursor-pointer"
+    type="button"
+    class="cursor-pointer text-gray-900"
     @click="handleClick('{{ $control }}')"
 >
-    @svg($icon, 'w-5 h-5 md:w-6 md:h-6')
+    @svg($icon, 'h-5 w-5 md:h-6 md:w-6')
 </button>
