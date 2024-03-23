@@ -60,7 +60,10 @@
                         "
                     >
                         @foreach ($tags as $tag)
-                            <option value="{{ $tag->id }}" {{ in_array($tag->id, $selectedTags) ? ' selected' : '' }}>
+                            <option
+                                value="{{ $tag->id }}"
+                                {{ in_array($tag->id, $selectedTags) ? ' selected' : '' }}
+                            >
                                 {{ $tag->name }}
                             </option>
                         @endforeach

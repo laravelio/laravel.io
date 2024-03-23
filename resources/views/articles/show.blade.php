@@ -215,7 +215,10 @@
                 title="Unpublish article"
                 type="update"
             >
-                <p>Are you sure you want to unpublish this article? Doing so will mean it is no longer live on the site.</p>
+                <p>
+                    Are you sure you want to unpublish this article? Doing so will mean it is no longer live on the
+                    site.
+                </p>
             </x-modal>
         @endif
     @endcan
@@ -228,7 +231,10 @@
                 title="Decline article"
                 type="update"
             >
-                <p>Are you sure you want to decline this article? Doing so will permanently remove it from the review queue.</p>
+                <p>
+                    Are you sure you want to decline this article? Doing so will permanently remove it from the review
+                    queue.
+                </p>
             </x-modal>
         @endif
     @endcan
@@ -239,7 +245,10 @@
             :action="route('articles.delete', $article->slug())"
             title="Delete article"
         >
-            <p>Are you sure you want to delete this article? Doing so will mean it is permanently removed from the site.</p>
+            <p>
+                Are you sure you want to delete this article? Doing so will mean it is permanently removed from the
+                site.
+            </p>
         </x-modal>
     @endcan
 

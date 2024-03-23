@@ -220,7 +220,10 @@
                 title="Block {{ $user->username() }}"
                 type="update"
             >
-                <p>Blocking this user will prevent them from mentioning you in threads and replies. The user will not be notified that you blocked them.</p>
+                <p>
+                    Blocking this user will prevent them from mentioning you in threads and replies. The user will not
+                    be notified that you blocked them.
+                </p>
             </x-modal>
         @endif
     @endcan

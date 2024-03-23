@@ -44,15 +44,11 @@
                         :class="{ 'block': nav, 'hidden': !nav }"
                     >
                         <ul class="mb-2 flex flex-col gap-y-2 px-4 lg:mb-0 lg:flex-row lg:gap-6">
-                            <li
-                                class="@if(is_active(['forum', 'threads*', 'thread'])) bg-gray-100 @endif rounded lg:mb-0 lg:hover:bg-gray-100"
-                            >
+                            <li class="@if(is_active(['forum', 'threads*', 'thread'])) bg-gray-100 @endif rounded lg:mb-0 lg:hover:bg-gray-100">
                                 <a href="{{ route('forum') }}" class="inline-block w-full px-2 py-1">Forum</a>
                             </li>
 
-                            <li
-                                class="@if(is_active(['articles', 'articles*'])) bg-gray-100 @endif rounded lg:mb-0 lg:hover:bg-gray-100"
-                            >
+                            <li class="@if(is_active(['articles', 'articles*'])) bg-gray-100 @endif rounded lg:mb-0 lg:hover:bg-gray-100">
                                 <a href="{{ route('articles') }}" class="inline-block w-full px-2 py-1">Articles</a>
                             </li>
 

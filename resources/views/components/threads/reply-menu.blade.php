@@ -21,7 +21,11 @@
                 title="Unmark As Solution"
                 type="update"
             >
-                <p>Confirm to unmark this reply as the solution for <strong>"{{ $thread->subject() }}"</strong> .</p>
+                <p>
+                    Confirm to unmark this reply as the solution for
+                    <strong>"{{ $thread->subject() }}"</strong>
+                    .
+                </p>
             </x-modal>
         @else
             <button
@@ -38,7 +42,11 @@
                 title="Mark As Solution"
                 type="update"
             >
-                <p>Confirm to mark this reply as the solution for <strong>"{{ $thread->subject() }}"</strong> .</p>
+                <p>
+                    Confirm to mark this reply as the solution for
+                    <strong>"{{ $thread->subject() }}"</strong>
+                    .
+                </p>
             </x-modal>
         @endif
     @else

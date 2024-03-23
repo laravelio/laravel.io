@@ -111,7 +111,13 @@
                         </div>
 
                         <div class="text-lg">
-                            <p>Can't find what you're looking for? <br class="sm:hidden" /> <a href="{{ route('threads.create') }}" class="border-b border-white pb-1"> Create a new thread </a></p>
+                            <p>
+                                Can't find what you're looking for?
+                                <br class="sm:hidden" />
+                                <a href="{{ route('threads.create') }}" class="border-b border-white pb-1">
+                                    Create a new thread
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>

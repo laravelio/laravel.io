@@ -64,7 +64,10 @@
                 @if ($thread->isUnlocked() || Auth::user()->isModerator() || Auth::user()->isAdmin())
                     @if ($thread->isConversationOld())
                         <x-info-panel class="flex justify-between gap-x-16">
-                            <p>The last reply to this thread was more than six months ago. Please consider opening a new thread if you have a similar question.</p>
+                            <p>
+                                The last reply to this thread was more than six months ago. Please consider opening a
+                                new thread if you have a similar question.
+                            </p>
 
                             <x-buttons.arrow-button href="{{ route('threads.create') }}" class="shrink-0">
                                 Create thread
@@ -95,7 +98,16 @@
                                 <input type="hidden" name="replyable_type" value="threads" />
 
                                 <div class="mt-4 flex items-start justify-between gap-x-8 lg:items-center">
-                                    <p>Please make sure you've read our <a href="{{ route('rules') }}" class="border-b-2 border-lio-100 pb-0.5 text-lio-500 hover:text-lio-600" > rules </a> before replying to this thread.</p>
+                                    <p>
+                                        Please make sure you've read our
+                                        <a
+                                            href="{{ route('rules') }}"
+                                            class="border-b-2 border-lio-100 pb-0.5 text-lio-500 hover:text-lio-600"
+                                        >
+                                            rules
+                                        </a>
+                                        before replying to this thread.
+                                    </p>
                                 </div>
                             </form>
                         </div>
