@@ -9,8 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>
-        {{ isset($title) ? $title.' | ' : '' }} {{ config('app.name') }}
-        {{ is_active('home') ? '- The Laravel Community Portal' : '' }}
+        {{ isset($title) ? $title.' | ' : '' }} {{ config('app.name') }} {{ is_active('home') ? '- The Laravel Community Portal' : '' }}
     </title>
 
     <meta name="description" content="The Laravel portal for problem solving, knowledge sharing and community building." />

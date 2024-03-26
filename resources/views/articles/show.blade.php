@@ -98,11 +98,15 @@
                         <x-articles.actions :article="$article" />
                     @endif
 
-                    <div x-data="{}" x-init="
-                        $nextTick(function () {
-                            highlightCode($el)
-                        })
-                    " class="prose-lio prose prose-lg text-gray-800">
+                    <div
+                        x-data="{}"
+                        x-init="
+                            $nextTick(function () {
+                                highlightCode($el)
+                            })
+                        "
+                        class="prose-lio prose prose-lg text-gray-800"
+                    >
                         <x-buk-markdown>{!! $article->body() !!}</x-buk-markdown>
                     </div>
 

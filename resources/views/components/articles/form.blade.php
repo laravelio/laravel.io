@@ -80,11 +80,17 @@
                     <div class="space-y-1">
                         <x-forms.label for="tags">Tags</x-forms.label>
 
-                        <select name="tags[]" id="create-article" multiple x-data="{}" x-init="
-                            $nextTick(function () {
-                                choices($el)
-                            })
-                        ">
+                        <select
+                            name="tags[]"
+                            id="create-article"
+                            multiple
+                            x-data="{}"
+                            x-init="
+                                $nextTick(function () {
+                                    choices($el)
+                                })
+                            "
+                        >
                             @foreach ($tags as $tag)
                                 <option value="{{ $tag->id }}" {{ in_array($tag->id, $selectedTags) ? 'selected' : '' }}>
                                     {{ $tag->name }}
