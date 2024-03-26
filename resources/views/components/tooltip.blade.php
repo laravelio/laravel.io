@@ -1,4 +1,4 @@
-<div class="absolute bottom-12 -left-3 text-white text-xs bg-gray-900 rounded-lg w-max max-w-sm px-2 py-2">
-    <div class="absolute -bottom-1 left-5 w-2 h-2 bg-gray-900 rotate-45"></div>
+<div class="absolute -left-3 bottom-12 w-max max-w-sm rounded-lg bg-gray-900 px-2 py-2 text-xs text-white">
+    <div class="absolute -bottom-1 left-5 h-2 w-2 rotate-45 bg-gray-900"></div>
     <p class="w-full">{{ $slot }}</p>
 </div>

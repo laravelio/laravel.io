@@ -1,14 +1,9 @@
-<div class="shrink-0 w-14 h-14 md:w-20 md:h-20 mr-8 my-2 cursor-pointer">
-    <x-stat-popout
-        x-cloak
-        x-show="active == '{{ $member->id }}'"
-        class="w-64 absolute -mt-40 -ml-20"
-        :user="$member"
-    />
+<div class="my-2 mr-8 h-14 w-14 shrink-0 cursor-pointer md:h-20 md:w-20">
+    <x-stat-popout x-cloak x-show="active == '{{ $member->id }}'" class="absolute -ml-20 -mt-40 w-64" :user="$member" />
 
     <x-avatar
         :user="$member"
-        class="inset-0 w-14 h-14 md:w-20 md:h-20"
+        class="inset-0 h-14 w-14 md:h-20 md:w-20"
         x-on:mouseover="active = {{ $member->id }}"
         x-on:mouseout="active = false"
     />

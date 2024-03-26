@@ -2,8 +2,19 @@
     <div
         x-show="!edit"
         x-data
-        x-init="$nextTick(function () { highlightCode($el); }); $watch('edit', function () { highlightCode($el); }); $wire.on('replyEdited', function () { show = true; edit = false; });"
-        class="prose prose-lio max-w-none p-6 break-words"
+        x-init="
+            $nextTick(function () {
+                highlightCode($el)
+            })
+            $watch('edit', function () {
+                highlightCode($el)
+            })
+            $wire.on('replyEdited', function () {
+                show = true
+                edit = false
+            })
+        "
+        class="prose-lio prose max-w-none break-words p-6"
     >
         {!! replace_links(md_to_html($reply->body())) !!}
     </div>
@@ -30,11 +41,12 @@
     @endcan
 
     @if ($reply->isUpdated())
-        <div class="text-sm text-gray-900 px-6 pb-6" x-show="!edit">
+        <div class="px-6 pb-6 text-sm text-gray-900" x-show="!edit">
             Last updated
 
             @if ($updatedBy = $reply->updatedBy())
-                by <a href="{{ route('profile', $updatedBy->username()) }}" class="text-lio-500 border-b-2 pb-0.5 border-lio-100 hover:text-lio-600">
+                by
+                <a href="{{ route('profile', $updatedBy->username()) }}" class="border-b-2 border-lio-100 pb-0.5 text-lio-500 hover:text-lio-600">
                     {{ '@'.$reply->updatedBy()->username() }}
                 </a>
             @endif

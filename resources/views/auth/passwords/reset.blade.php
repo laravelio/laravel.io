@@ -24,8 +24,6 @@
             <x-forms.inputs.password name="password_confirmation" id="password_confirmation" required />
         </div>
 
-        <x-buttons.primary-button type="submit" fullWidth>
-            Reset Password
-        </x-buttons.primary-button>
+        <x-buttons.primary-button type="submit" fullWidth>Reset Password</x-buttons.primary-button>
     </x-buk-form>
 @endsection
