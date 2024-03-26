@@ -17,21 +17,15 @@
         </div>
 
         <div class="flex items-center justify-between">
-            <x-forms.inputs.checkbox name="remember" id="remember">
-                Remember me
-            </x-forms.inputs.checkbox>
+            <x-forms.inputs.checkbox name="remember" id="remember">Remember me</x-forms.inputs.checkbox>
 
             <div class="text-sm">
-                <a href="{{ route('password.forgot') }}" class="font-medium text-lio-600 hover:text-lio-500">
-                    Forgot your password?
-                </a>
+                <a href="{{ route('password.forgot') }}" class="font-medium text-lio-600 hover:text-lio-500">Forgot your password?</a>
             </div>
         </div>
 
         <div class="w-full">
-            <x-buttons.primary-button type="submit" fullWidth>
-                Sign in
-            </x-buttons.primary-button>
+            <x-buttons.primary-button type="submit" fullWidth>Sign in</x-buttons.primary-button>
         </div>
     </x-buk-form>
 
@@ -42,9 +36,7 @@
             </div>
 
             <div class="relative flex justify-center text-sm">
-                <span class="px-2 bg-white text-gray-500">
-                    Or continue with
-                </span>
+                <span class="bg-white px-2 text-gray-500">Or continue with</span>
             </div>
         </div>
 

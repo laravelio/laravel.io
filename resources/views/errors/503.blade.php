@@ -4,7 +4,8 @@
     <title>Be right back.</title>
 
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
         }
 
@@ -12,10 +13,10 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            color: #B0BEC5;
+            color: #b0bec5;
             display: table;
             font-weight: 100;
-            font-family: system-ui, "Times New Roman", Times, serif;
+            font-family: system-ui, 'Times New Roman', Times, serif;
         }
 
         .container {
