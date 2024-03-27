@@ -26,7 +26,7 @@ final class UniqueGitHubUser implements Rule
 
     public function message()
     {
-        $this->error('errors.github_account_exists', [
+        $this->error('We already found a user with the given GitHub account (:username). Would you like to <a href=":login">login</a> instead?', [
             'username' => '@'.$this->user->githubUsername(),
             'login' => route('login'),
         ]);

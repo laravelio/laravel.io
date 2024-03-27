@@ -115,7 +115,11 @@ class ArticlesController extends Controller
 
         $article = Article::findByUuidOrFail($uuid);
 
-        $this->success($request->shouldBeSubmitted() ? 'articles.submitted' : 'articles.created');
+        $this->success(
+            $request->shouldBeSubmitted()
+                ? 'Thank you for submitting, unfortunately we can\'t accept every submission. You\'ll only hear back from us when we accept your article.'
+                : 'Article successfully created!'
+        );
 
         return $request->wantsJson()
             ? ArticleResource::make($article)
@@ -150,9 +154,9 @@ class ArticlesController extends Controller
         $article = $article->fresh();
 
         if ($wasNotPreviouslySubmitted && $request->shouldBeSubmitted()) {
-            $this->success('articles.submitted');
+            $this->success('Thank you for submitting, unfortunately we can\'t accept every submission. You\'ll only hear back from us when we accept your article.');
         } else {
-            $this->success('articles.updated');
+            $this->success('Article successfully updated!');
         }
 
         return $request->wantsJson()
@@ -166,7 +170,7 @@ class ArticlesController extends Controller
 
         $this->dispatchSync(new DeleteArticle($article));
 
-        $this->success('articles.deleted');
+        $this->success('Article successfully deleted!');
 
         return $request->wantsJson()
             ? response()->json([], Response::HTTP_NO_CONTENT)
