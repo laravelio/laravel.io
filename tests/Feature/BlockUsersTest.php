@@ -61,5 +61,5 @@ test('can unblock other user', function () {
 
     $this->loginAs($unblocker);
 
-    $this->put("/users/{$unblocked->username}/unblock")->assertSessionHas('success', trans('settings.user.unblocked'));
+    $this->put("/users/{$unblocked->username}/unblock")->assertSessionHas('success', __('settings.user.unblocked'));
 });
