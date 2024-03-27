@@ -39,7 +39,7 @@ class UsersController extends Controller
 
         $this->dispatchSync(new BanUser($user, $request->get('reason')));
 
-        $this->success($user->name() . ' was banned!');
+        $this->success($user->name().' was banned!');
 
         return redirect()->route('profile', $user->username());
     }
@@ -50,7 +50,7 @@ class UsersController extends Controller
 
         $this->dispatchSync(new UnbanUser($user));
 
-        $this->success($user->name() . ' was unbanned!');
+        $this->success($user->name().' was unbanned!');
 
         return redirect()->route('profile', $user->username());
     }
@@ -61,7 +61,7 @@ class UsersController extends Controller
 
         $this->dispatchSync(new DeleteUser($user));
 
-        $this->success($user->name() . ' was deleted and all of their content was removed!');
+        $this->success($user->name().' was deleted and all of their content was removed!');
 
         return redirect()->route('admin.users');
     }
