@@ -174,7 +174,7 @@ test('users can request a password reset link', function () {
     $this->post('password/email', [
         'email' => 'john@example.com',
     ])
-        ->assertSessionHas('status', 'We have emailed your password reset link!');
+        ->assertSessionHas('status', 'We have emailed your password reset link.');
 });
 
 test('users can reset their password', function () {
