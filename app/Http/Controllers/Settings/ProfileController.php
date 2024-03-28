@@ -28,7 +28,7 @@ class ProfileController extends Controller
     {
         $this->dispatchSync(UpdateProfile::fromRequest($request->user(), $request));
 
-        $this->success('settings.updated');
+        $this->success('Settings successfully saved! If you changed your email address you\'ll receive an email address to re-confirm it.');
 
         return redirect()->route('settings.profile');
     }
@@ -39,7 +39,7 @@ class ProfileController extends Controller
 
         $this->dispatchSync(new DeleteUser($user));
 
-        $this->success('settings.deleted');
+        $this->success('Account was successfully removed.');
 
         return redirect()->route('home');
     }

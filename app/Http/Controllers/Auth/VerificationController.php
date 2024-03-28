@@ -50,9 +50,9 @@ class VerificationController extends Controller
         $response = $this->traitVerify($request);
 
         if ($response->getSession()->has('verified')) {
-            $this->success('auth.verification.success');
+            $this->success('Your email address was successfully verified.');
         } else {
-            $this->error('auth.verification.no_match');
+            $this->error('We could not verify your email address. The given email address and code did not match.');
         }
 
         return $response;
@@ -64,9 +64,9 @@ class VerificationController extends Controller
         $response = $this->traitResend($request);
 
         if ($response->getSession()->has('resent')) {
-            $this->success('auth.verification.sent', $request->user()->emailAddress());
+            $this->success('Email verification sent to :0. You can change your email address in your profile settings.', $request->user()->emailAddress());
         } else {
-            $this->error('auth.verification.already_verified');
+            $this->error('Your email address is already verified.');
         }
 
         return $response;

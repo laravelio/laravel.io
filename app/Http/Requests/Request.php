@@ -12,7 +12,7 @@ abstract class Request extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        $this->error('errors.fields');
+        $this->error('Something went wrong. Please review the fields below.');
 
         parent::failedValidation($validator);
     }

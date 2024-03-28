@@ -15,7 +15,7 @@ class RedirectIfBanned
     public function handle(Request $request, Closure $next, ?string $guard = null): Response
     {
         if (Auth::check() && Auth::user()->isBanned()) {
-            $this->error('errors.banned');
+            $this->error('This account is banned.');
 
             Auth::logout();
 

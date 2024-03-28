@@ -31,7 +31,7 @@ class GitHubController extends Controller
         try {
             $socialiteUser = $this->getSocialiteUser();
         } catch (InvalidStateException $exception) {
-            $this->error('errors.github_invalid_state');
+            $this->error('The request timed out. Please try again.');
 
             return redirect()->route('login');
         }
@@ -62,13 +62,13 @@ class GitHubController extends Controller
     private function userNotFound(GitHubUser $user): RedirectResponse
     {
         if ($user->isTooYoung()) {
-            $this->error('errors.github_account_too_young');
+            $this->error('Your GitHub account needs to be older than 2 weeks in order to register.');
 
             return redirect()->route('home');
         }
 
         if (! $user->hasPublicRepositories()) {
-            $this->error('errors.github_account_no_repositories');
+            $this->error('Your GitHub account needs to have at least 1 public repository in order to register.');
 
             return redirect()->route('home');
         }

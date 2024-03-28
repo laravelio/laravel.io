@@ -22,7 +22,7 @@ class BlockUserController extends Controller
 
         $this->dispatchSync(new BlockUser($request->user(), $user));
 
-        $this->success('settings.user.blocked');
+        $this->success('User successfully blocked.');
 
         return redirect()->route('profile', $user->username());
     }

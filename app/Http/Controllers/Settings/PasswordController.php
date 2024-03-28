@@ -19,7 +19,7 @@ class PasswordController extends Controller
     {
         $this->dispatchSync(new UpdatePassword($request->user(), $request->newPassword()));
 
-        $this->success('settings.password.updated');
+        $this->success('Password successfully changed!');
 
         return redirect()->route('settings.profile');
     }

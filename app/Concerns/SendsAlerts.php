@@ -16,6 +16,6 @@ trait SendsAlerts
 
     private function sendAlert(string $type, ?string $id = null, $parameters = [])
     {
-        session([$type => trans($id, (array) $parameters)]);
+        session([$type => __($id, (array) $parameters)]);
     }
 }

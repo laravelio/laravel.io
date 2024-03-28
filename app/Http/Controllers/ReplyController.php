@@ -31,7 +31,7 @@ class ReplyController extends Controller
 
         $reply = Reply::findByUuidOrFail($uuid);
 
-        $this->success('replies.created');
+        $this->success('Reply successfully added!');
 
         return $this->redirectToReplyAble($reply->replyAble());
     }
@@ -42,7 +42,7 @@ class ReplyController extends Controller
 
         $this->dispatchSync(new DeleteReply($reply, $request->delete_reason));
 
-        $this->success('replies.deleted');
+        $this->success('Reply successfully deleted!');
 
         return $this->redirectToReplyAble($reply->replyAble());
     }

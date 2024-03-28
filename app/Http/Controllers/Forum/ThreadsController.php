@@ -95,7 +95,7 @@ class ThreadsController extends Controller
 
         $thread = Thread::findByUuidOrFail($uuid);
 
-        $this->success('forum.threads.created');
+        $this->success('Thread successfully created!');
 
         return redirect()->route('thread', $thread->slug());
     }
@@ -115,7 +115,7 @@ class ThreadsController extends Controller
 
         $this->dispatchSync(UpdateThread::fromRequest($thread, $request));
 
-        $this->success('forum.threads.updated');
+        $this->success('Thread successfully updated!');
 
         return redirect()->route('thread', $thread->fresh()->slug());
     }
@@ -132,7 +132,7 @@ class ThreadsController extends Controller
             );
         });
 
-        $this->success('forum.threads.deleted');
+        $this->success('Thread successfully deleted!');
 
         return redirect()->route('forum');
     }
@@ -144,11 +144,11 @@ class ThreadsController extends Controller
         if ($thread->isLocked()) {
             $this->dispatchSync(new UnlockThread($thread));
 
-            $this->success('forum.threads.unlocked');
+            $this->success('Thread successfully unlocked!');
         } else {
             $this->dispatchSync(new LockThread($request->user(), $thread));
 
-            $this->success('forum.threads.locked');
+            $this->success('Thread successfully locked!');
         }
 
         return redirect()->route('thread', $thread->slug());

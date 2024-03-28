@@ -21,7 +21,7 @@ class ApiTokenController extends Controller
     {
         $plainTextToken = $this->dispatchSync(new CreateApiToken($request->user(), $request->name()));
 
-        $this->success('settings.api_token.created');
+        $this->success('API token created! Please copy the following token as it will not be shown again:');
 
         return redirect()->route('settings.profile')->with('api_token', $plainTextToken);
     }
@@ -30,7 +30,7 @@ class ApiTokenController extends Controller
     {
         $this->dispatchSync(new DeleteApiToken($request->user(), $request->id()));
 
-        $this->success('settings.api_token.deleted');
+        $this->success('API token successfully removed.');
 
         return redirect()->route('settings.profile');
     }

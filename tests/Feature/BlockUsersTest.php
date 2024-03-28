@@ -49,7 +49,7 @@ test('can block other user', function () {
 
     $this->loginAs($blocker);
 
-    $this->put("/users/{$blocked->username}/block")->assertSessionHas('success', trans('settings.user.blocked'));
+    $this->put("/users/{$blocked->username}/block")->assertSessionHas('success', trans('User successfully blocked.'));
 });
 
 test('can unblock other user', function () {
@@ -61,5 +61,5 @@ test('can unblock other user', function () {
 
     $this->loginAs($unblocker);
 
-    $this->put("/users/{$unblocked->username}/unblock")->assertSessionHas('success', trans('settings.user.unblocked'));
+    $this->put("/users/{$unblocked->username}/unblock")->assertSessionHas('success', __('User successfully unblocked.'));
 });
