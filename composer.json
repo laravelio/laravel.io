@@ -5,7 +5,6 @@
     "type": "project",
     "require": {
         "php": "8.3.*",
-        "abraham/twitteroauth": "<7.0",
         "algolia/scout-extended": "^3.0",
         "blade-ui-kit/blade-heroicons": "^2.1",
         "blade-ui-kit/blade-icons": "^1.5",
@@ -17,7 +16,7 @@
         "intervention/image": "^2.7",
         "intervention/imagecache": "^2.5",
         "laravel-notification-channels/telegram": "^5.0",
-        "laravel-notification-channels/twitter": "^8.0",
+        "laravel-notification-channels/twitter": "^8.1.1",
         "laravel/framework": "^10.0",
         "laravel/horizon": "^5.12",
         "laravel/sanctum": "^3.2",
