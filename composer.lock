@@ -4,33 +4,33 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d86a29c3674b5b5655c69fd38d6dbd55",
+    "content-hash": "5b5fe0dcc556736f7d80ffc2d32f6817",
     "packages": [
         {
             "name": "abraham/twitteroauth",
-            "version": "7.0.0",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/abraham/twitteroauth.git",
-                "reference": "a8622680f954d0c4f54fd80bedebe00c756ed7aa"
+                "reference": "6a68a5e53f72fbb31d4d304dc4752d3adefe0d10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/abraham/twitteroauth/zipball/a8622680f954d0c4f54fd80bedebe00c756ed7aa",
-                "reference": "a8622680f954d0c4f54fd80bedebe00c756ed7aa",
+                "url": "https://api.github.com/repos/abraham/twitteroauth/zipball/6a68a5e53f72fbb31d4d304dc4752d3adefe0d10",
+                "reference": "6a68a5e53f72fbb31d4d304dc4752d3adefe0d10",
                 "shasum": ""
             },
             "require": {
                 "composer/ca-bundle": "^1.2",
                 "ext-curl": "*",
-                "php": "8.*"
+                "php": "^8.0 || ^8.1"
             },
             "require-dev": {
                 "php-vcr/php-vcr": "^1",
                 "php-vcr/phpunit-testlistener-vcr": "dev-php8",
                 "phpmd/phpmd": "^2",
                 "phpunit/phpunit": "^9",
-                "rector/rector": "^0.15.7",
+                "rector/rector": "^0.14.0",
                 "squizlabs/php_codesniffer": "^3"
             },
             "type": "library",
@@ -66,7 +66,7 @@
                 "issues": "https://github.com/abraham/twitteroauth/issues",
                 "source": "https://github.com/abraham/twitteroauth"
             },
-            "time": "2024-02-11T18:58:08+00:00"
+            "time": "2023-01-17T01:10:54+00:00"
         },
         {
             "name": "algolia/algoliasearch-client-php",

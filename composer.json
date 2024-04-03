@@ -5,6 +5,7 @@
     "type": "project",
     "require": {
         "php": "8.3.*",
+        "abraham/twitteroauth": "<7.0",
         "algolia/scout-extended": "^3.0",
         "blade-ui-kit/blade-heroicons": "^2.1",
         "blade-ui-kit/blade-icons": "^1.5",
