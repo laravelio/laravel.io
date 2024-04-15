@@ -40,13 +40,12 @@
 
             <div class="flex items-center">
                 <x-forms.inputs.checkbox name="terms" id="terms">
-                    I agree to <a href="{{ route('terms') }}" class="text-lio-700" target="_blank">Terms & Conditions</a> and <a href="{{ route('privacy') }}" class="text-lio-700" target="_blank">Privacy Policy</a>
+                    I agree to <a href="{{ route('terms') }}" class="text-lio-700" target="_blank">Terms & Conditions</a> and
+                    <a href="{{ route('privacy') }}" class="text-lio-700" target="_blank">Privacy Policy</a>
                 </x-forms.inputs.checkbox>
             </div>
 
-            <x-buttons.primary-button type="submit" fullWidth>
-                Register
-            </x-buttons.primary-button>
+            <x-buttons.primary-button type="submit" fullWidth>Register</x-buttons.primary-button>
         </x-buk-form>
     @endif
 @endsection

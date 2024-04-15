@@ -1,6 +1,6 @@
 <!-- Twitter sharing -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="{{ isset($title) ? $title.' | ' : '' }}{{ config('app.name') }}">
+<meta name="twitter:title" content="{{ isset($title) ? $title.' | ' : '' }}{{ config('app.name') }}" />
 <meta name="twitter:creator" content="@laravelio" />
 <!-- /Twitter sharing -->
 

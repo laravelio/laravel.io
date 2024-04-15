@@ -3,16 +3,13 @@
     'route',
     'method' => 'POST',
     'tags',
-    'selectedTags' => []
+    'selectedTags' => [],
 ])
 
-<x-buk-form
-    action="{{ route(...$route) }}"
-    :method="$method"
->
-    <div class="bg-gray-100 py-6 px-4 space-y-6 sm:p-6">
+<x-buk-form action="{{ route(...$route) }}" :method="$method">
+    <div class="space-y-6 bg-gray-100 px-4 py-6 sm:p-6">
         <div>
-            <h2 id="create_thread_heading" class="text-lg leading-6 font-medium text-gray-900">
+            <h2 id="create_thread_heading" class="text-lg font-medium leading-6 text-gray-900">
                 @if ($article)
                     Update article
                 @else
@@ -21,15 +18,26 @@
             </h2>
 
             <x-info class="mt-4">
-                Submit your article to the Laravel.io portal. We're looking for high quality articles revolving around Laravel, PHP, JavaScript, CSS, and related topics. Articles can't be promotional in nature and should be educational and informative. We reserve the right to decline articles that don't meet our quality standards.
+                Submit your article to the Laravel.io portal. We're looking for high quality articles revolving around Laravel, PHP, JavaScript, CSS,
+                and related topics. Articles can't be promotional in nature and should be educational and informative. We reserve the right to decline
+                articles that don't meet our quality standards.
             </x-info>
 
             <x-info class="mt-4">
-                Every article that gets approved will be shared with our 50.000 users and wil be tweeted out on our <a href="https://twitter.com/laravelio" class="text-lio-700 underline">Twitter account</a> which has over 50,000 followers. Feel free to submit as many articles as you like. You can even cross-reference an article on your blog with the original url.
+                Every article that gets approved will be shared with our 50.000 users and wil be tweeted out on our
+                <a href="https://twitter.com/laravelio" class="text-lio-700 underline">Twitter account</a> which has over 50,000 followers. Feel free
+                to submit as many articles as you like. You can even cross-reference an article on your blog with the original url.
             </x-info>
 
             <x-info class="mt-4">
-                After submission for approval, articles are reviewed before being published. No notification of declined articles will be provided. Instead, we encourage to also cross-post articles on your own channel as well. <strong>After being published, you cannot edit your article anymore so please review it thoroughly before submitting for approval.</strong> Submitting the same article twice or posting spam will result in the banning of your account. We do not accept email requests for guest articles. Any such request will be ignored.
+                After submission for approval, articles are reviewed before being published. No notification of declined articles will be provided.
+                Instead, we encourage to also cross-post articles on your own channel as well.
+                <strong
+                    >After being published, you cannot edit your article anymore so please review it thoroughly before submitting for
+                    approval.</strong
+                >
+                Submitting the same article twice or posting spam will result in the banning of your account. We do not accept email requests for
+                guest articles. Any such request will be ignored.
             </x-info>
 
             <x-rules-banner />
@@ -42,9 +50,7 @@
 
                     <x-forms.inputs.input name="title" :value="old('title', $article?->title())" required maxlength="100" />
 
-                    <span class="mt-2 text-sm text-gray-500">
-                        Maximum 100 characters.
-                    </span>
+                    <span class="mt-2 text-sm text-gray-500"> Maximum 100 characters. </span>
                 </div>
             </div>
 
@@ -52,7 +58,7 @@
                 <div class="space-y-1">
                     <x-forms.label for="body">Body</x-forms.label>
 
-                    <livewire:editor :body="$article?->body()"/>
+                    <livewire:editor :body="$article?->body()" />
 
                     @error('body')
                 </div>
@@ -75,9 +81,15 @@
                     <div class="space-y-1">
                         <x-forms.label for="tags">Tags</x-forms.label>
 
-                        <select name="tags[]" id="create-article" multiple x-data="{}" x-init="$nextTick(function () { choices($el) })">
+                        <select name="tags[]" id="create-article" multiple x-data="{}" x-init="
+                            $nextTick(function () {
+                                choices($el)
+                            })
+                        ">
                             @foreach ($tags as $tag)
-                                <option value="{{ $tag->id }}" {{ in_array($tag->id, $selectedTags) ? 'selected' : '' }}>{{ $tag->name }}</option>
+                                <option value="{{ $tag->id }}" {{ in_array($tag->id, $selectedTags) ? 'selected' : '' }}>
+                                    {{ $tag->name }}
+                                </option>
                             @endforeach
                         </select>
 
@@ -92,20 +104,13 @@
                     You can't edit an article anymore after it's been published.
                 </x-info>
 
-                <div class="flex justify-end items-center">
-                    <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('user.articles') }}" class="text-lio-700 mr-4">
+                <div class="flex items-center justify-end">
+                    <a href="{{ isset($article) ? route('articles.show', $article->slug()) : route('user.articles') }}" class="mr-4 text-lio-700">
                         Cancel
                     </a>
 
                     @if (isset($article) && $article->isSubmitted())
-                        <button
-                            type="submit"
-                            name="submitted"
-                            value="1"
-                            class="button button-primary"
-                        >
-                            Save changes
-                        </button>
+                        <button type="submit" name="submitted" value="1" class="button button-primary">Save changes</button>
                     @else
                         <span class="relative z-0 inline-flex shadow-sm" x-data="{ showDropdown: false }" @click.outside="showDropdown = false">
                             <button
@@ -116,24 +121,24 @@
                             >
                                 Save draft
                             </button>
-                            <span class="-ml-px relative block">
+                            <span class="relative -ml-px block">
                                 <button
                                     @click="showDropdown = !showDropdown"
                                     type="button"
-                                    class="button button-primary h-full button-dropdown-right relative inline-flex items-center focus:outline-none"
+                                    class="button button-primary button-dropdown-right relative inline-flex h-full items-center focus:outline-none"
                                 >
                                     <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                     </svg>
                                 </button>
-                                <div class="origin-top-right absolute right-0 mt-2 w-60 rounded-md shadow-lg" x-show="showDropdown" x-cloak>
+                                <div class="absolute right-0 mt-2 w-60 origin-top-right rounded-md shadow-lg" x-show="showDropdown" x-cloak>
                                     <div class="rounded-md bg-white ring-1 ring-black ring-opacity-5">
                                         <div class="py-1">
                                             <button
                                                 type="submit"
                                                 name="submitted"
                                                 value="1"
-                                                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 w-full text-left"
+                                                class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none"
                                             >
                                                 Save and submit for approval
                                             </button>
@@ -147,7 +152,7 @@
             </div>
 
             @unless (Auth::user()->twitter())
-                <span class="text-gray-600 text-sm mt-4 block">
+                <span class="mt-4 block text-sm text-gray-600">
                     Articles will be shared on Twitter.
                     <a href="{{ route('settings.profile') }}" class="text-green-darker">Add your Twitter handle</a>
                     and we'll include that too.

@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ App::getLocale() }}">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>
-        {{ isset($title) ? $title.' | ' : '' }}
-        {{ config('app.name') }}
+        {{ isset($title) ? $title.' | ' : '' }} {{ config('app.name') }}
         {{ is_active('home') ? '- The Laravel Community Portal' : '' }}
     </title>
 
@@ -22,7 +21,7 @@
     @stack('meta')
 
     <script>
-        window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
+        window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!}
     </script>
 
     @include('feed::links')
@@ -33,20 +32,23 @@
     @livewireStyles
 </head>
 
-<body class="{{ $bodyClass ?? '' }} font-sans bg-white antialiased" :class="{ 'overflow-hidden': lockScroll }" x-data="{ lockScroll: false, activeModal: false }" @keyup.escape="activeModal = false">
+<body
+    class="{{ $bodyClass ?? '' }} bg-white font-sans antialiased"
+    :class="{ 'overflow-hidden': lockScroll }"
+    x-data="{ lockScroll: false, activeModal: false }"
+    @keyup.escape="activeModal = false"
+>
+    @include('layouts._ads._banner')
+    @include('layouts._nav')
 
-@include('layouts._ads._banner')
-@include('layouts._nav')
+    @yield('body')
 
-@yield('body')
+    @include('layouts._footer')
 
-@include('layouts._footer')
+    @stack('modals')
 
-@stack('modals')
+    @vite(['resources/js/app.js'])
 
-@vite(['resources/js/app.js'])
-
-@livewireScripts
-
+    @livewireScripts
 </body>
 </html>

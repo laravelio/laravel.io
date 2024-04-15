@@ -11,11 +11,11 @@
         ])
     </div>
 
-    <main class="container mx-auto pb-10 lg:py-6 sm:px-4">
+    <main class="container mx-auto pb-10 sm:px-4 lg:py-6">
         <div class="flex flex-col">
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                    <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
@@ -25,12 +25,12 @@
                                     <x-tables.table-head class="text-center">Profile</x-tables.table-head>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
+                            <tbody class="divide-y divide-gray-200 bg-white">
                                 @foreach ($users as $user)
                                     <tr>
                                         <x-tables.table-data>
                                             <div class="flex items-center">
-                                                <div class="shrink-0 h-10 w-10">
+                                                <div class="h-10 w-10 shrink-0">
                                                     <x-avatar :user="$user" class="h-10 w-10 rounded-full" />
                                                 </div>
 
@@ -51,7 +51,7 @@
                                         </x-tables.table-data>
 
                                         <x-tables.table-data>
-                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                            <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
                                                 @if ($user->isBanned())
                                                     banned
                                                 @elseif ($user->isAdmin())
@@ -68,17 +68,24 @@
                                             {{ $user->createdAt()->format('j M Y H:i:s') }}
                                         </x-tables.table-data>
 
-                                        <x-tables.table-data class="text-center w-10">
+                                        <x-tables.table-data class="w-10 text-center">
                                             <a href="{{ route('profile', $user->username()) }}" class="text-lio-600 hover:text-lio-800">
-                                                <x-heroicon-o-user-circle class="w-5 h-5 inline" />
+                                                <x-heroicon-o-user-circle class="inline h-5 w-5" />
                                             </a>
 
                                             @can(App\Policies\UserPolicy::DELETE, $user)
-                                                <button @click="activeModal = 'deleteUser{{ $user->getKey() }}'" class="text-red-600 hover:text-red-800">
-                                                    <x-heroicon-o-trash class="w-5 h-5 inline" />
+                                                <button
+                                                    @click="activeModal = 'deleteUser{{ $user->getKey() }}'"
+                                                    class="text-red-600 hover:text-red-800"
+                                                >
+                                                    <x-heroicon-o-trash class="inline h-5 w-5" />
                                                 </button>
 
-                                                <x-modal identifier="deleteUser{{ $user->getKey() }}" :action="route('admin.users.delete', $user->username())" title="Delete {{ $user->username() }}">
+                                                <x-modal
+                                                    identifier="deleteUser{{ $user->getKey() }}"
+                                                    :action="route('admin.users.delete', $user->username())"
+                                                    title="Delete {{ $user->username() }}"
+                                                >
                                                     <p>Deleting this user will remove their account and any related content like threads & replies. This cannot be undone.</p>
                                                 </x-modal>
                                             @endcan
