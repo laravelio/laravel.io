@@ -37,13 +37,13 @@ class ArticlesController extends Controller
 
         $pinnedArticles = Article::published()
             ->pinned()
-            ->latest('submitted_at')
+            ->latest('approved_at')
             ->take(4)
             ->get();
 
         $articles = Article::published()
             ->notPinned($pinnedArticles)
-            ->latest('submitted_at')
+            ->latest('approved_at')
             ->{$filter}();
 
         $tags = Tag::whereHas('articles', function ($query) {
