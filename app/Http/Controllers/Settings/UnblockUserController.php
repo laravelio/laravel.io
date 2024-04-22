@@ -23,7 +23,7 @@ class UnblockUserController extends Controller
 
         $this->dispatchSync(new UnblockUser($request->user(), $user));
 
-        $this->success('settings.user.unblocked');
+        $this->success('User successfully unblocked.');
 
         return redirect()->route('settings.profile');
     }

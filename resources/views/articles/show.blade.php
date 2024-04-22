@@ -9,7 +9,7 @@
         @auth
             @if ($article->isDeclined() && (Auth::user()->isAdmin() || Auth::user()->isModerator()))
                 <x-info-banner>
-                    {{ __('admin.articles.declined') }}
+                    {{ __('The article has been declined and will only be shown to the user.') }}
                 </x-info-banner>
             @elseif ($article->isPublished() && $article->isAuthoredBy(Auth::user()))
                 <x-info-banner>
