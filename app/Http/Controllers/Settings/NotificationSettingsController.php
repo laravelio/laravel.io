@@ -21,7 +21,7 @@ class NotificationSettingsController extends Controller
             (array) $request->validated('allowed_notifications')
         ));
 
-        $this->success('settings.notifications.updated');
+        $this->success('Notification settings were successfully updated.');
 
         return redirect()->route('settings.profile');
     }

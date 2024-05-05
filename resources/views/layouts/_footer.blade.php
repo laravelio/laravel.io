@@ -41,13 +41,13 @@
                         </p>
 
                         <div class="flex flex-wrap lg:flex-col lg:flex-no-wrap">
-                            <a href="https://twitter.com/laravelio" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6">
-                                <x-si-x class="text-white w-4 h-4 inline mr-3.5"/>
+                            <a href="https://twitter.com/laravelio" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6 whitespace-nowrap">
+                                <x-si-x class="text-white w-4 h-4 inline mr-2"/>
                                 Twitter
                             </a>
 
-                            <a href="https://github.com/laravelio" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6">
-                                <x-icon-github class="text-white w-4 h-4 inline mr-3.5"/>
+                            <a href="https://github.com/laravelio" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6 whitespace-nowrap">
+                                <x-icon-github class="text-white w-4 h-4 inline mr-2"/>
                                 GitHub
                             </a>
                         </div>

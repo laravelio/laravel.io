@@ -25,7 +25,6 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Fathom](https://usefathom.com)
 - [Tinkerwell](https://tinkerwell.app)
 - [Skynet Technologies](https://www.skynettechnologies.com/hire-laravel-developer)
-- [Backpack for Laravel](https://backpackforlaravel.com/?ref=laravelio)
 - [Steadfast Collective](https://steadfastcollective.com/uk-laravel-agency)
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
 - [Remotely Works](https://www.remotely.works/sponsoring-open-source-projects)

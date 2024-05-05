@@ -40,7 +40,7 @@ class ArticlesController extends Controller
 
         $this->dispatchSync(new ApproveArticle($article));
 
-        $this->success('admin.articles.approved', $article->title());
+        $this->success('The article has been approved and is live on the site.', $article->title());
 
         return redirect()->route('articles.show', $article->slug());
     }
@@ -51,7 +51,7 @@ class ArticlesController extends Controller
 
         $this->dispatchSync(new DisapproveArticle($article));
 
-        $this->success('admin.articles.disapproved', $article->title());
+        $this->success('The article has been disapproved and removed from the site.', $article->title());
 
         return redirect()->route('articles.show', $article->slug());
     }
@@ -72,7 +72,7 @@ class ArticlesController extends Controller
         $article->is_pinned = ! $article->isPinned();
         $article->save();
 
-        $this->success($article->isPinned() ? 'admin.articles.pinned' : 'admin.articles.unpinned');
+        $this->success($article->isPinned() ? 'Article successfully pinned!' : 'Article successfully unpinned!');
 
         return redirect()->route('articles.show', $article->slug());
     }
