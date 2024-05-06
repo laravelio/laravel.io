@@ -54,6 +54,20 @@ if (! function_exists('replace_links')) {
     }
 }
 
+if (! function_exists('md_to_safe_html')) {
+    /**
+     * Converts Markdown to a safe HTML string.
+     */
+    function md_to_safe_html(string $markdown): string
+    {
+        return str($markdown)->markdown([
+            'html_input' => 'escape',
+            'max_nesting_level' => 10,
+            'allow_unsafe_links' => false,
+        ])->toString();
+    }
+}
+
 if (! function_exists('canonical')) {
     /**
      * Generate a canonical URL to the given route and allowed list of query params.
