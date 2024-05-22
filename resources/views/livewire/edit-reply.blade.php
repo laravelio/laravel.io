@@ -5,7 +5,7 @@
         x-init="$nextTick(function () { highlightCode($el); }); $watch('edit', function () { highlightCode($el); }); $wire.on('replyEdited', function () { show = true; edit = false; });"
         class="prose prose-lio max-w-none p-6 break-words"
     >
-        {!! replace_links(md_to_html($reply->body())) !!}
+        {!! md_to_html($reply->body()) !!}
     </div>
 
     @can(App\Policies\ReplyPolicy::UPDATE, $reply)

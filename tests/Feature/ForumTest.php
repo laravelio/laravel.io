@@ -233,7 +233,7 @@ test('user can see standalone links in reply', function () {
 
     $this->get("/forum/{$thread->slug}")
         ->assertSee(new HtmlString(
-            '<a href="https://github.com/laravelio/laravel.io" rel="nofollow" target="_blank">https://github.com/laravelio/laravel.io</a>'
+            '<a rel="nofollow noopener noreferrer" target="_blank" href="https://github.com/laravelio/laravel.io">https://github.com/laravelio/laravel.io</a>'
         ));
 });
 
@@ -245,7 +245,7 @@ test('user can see standalone links in thread', function () {
     Reply::factory()->create(['replyable_id' => $thread->id()]);
 
     $this->get("/forum/{$thread->slug()}")
-        ->assertSee(new HtmlString('&quot;&lt;p&gt;&lt;a href=\&quot;https:\/\/github.com\/laravelio\/laravel.io\&quot; rel=\&quot;nofollow\&quot; target=\&quot;_blank\&quot;&gt;https:\/\/github.com\/laravelio\/laravel.io&lt;\/a&gt;'));
+        ->assertSee(new HtmlString('&quot;&lt;p&gt;&lt;a rel=\&quot;nofollow noopener noreferrer\&quot; target=\&quot;_blank\&quot; href=\&quot;https:\/\/github.com\/laravelio\/laravel.io\&quot;&gt;https:\/\/github.com\/laravelio\/laravel.io&lt;\/a&gt;'));
 });
 
 test('an invalid filter defaults to the most recent threads', function () {
