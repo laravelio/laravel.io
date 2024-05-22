@@ -55,9 +55,8 @@
         class="prose prose-lio max-w-none p-6 break-words"
         x-data="{}"
         x-init="$nextTick(function () { highlightCode($el); })"
-        x-html="{{ json_encode(replace_links(md_to_html($thread->body()))) }}"
-    >
-    </div>
+        x-html="{{ json_encode(md_to_html($thread->body())) }}"
+    ></div>
 
     @if ($thread->isUpdated())
         <div class="text-sm text-gray-900 p-6">

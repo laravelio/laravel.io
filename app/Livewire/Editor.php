@@ -73,7 +73,7 @@ class Editor extends Component
 
     public function getPreviewProperty(): string
     {
-        return replace_links(md_to_html($this->body ?: ''));
+        return md_to_html($this->body ?: '');
     }
 
     public function preview(): void

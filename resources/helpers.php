@@ -22,7 +22,7 @@ if (! function_exists('is_active')) {
 
 if (! function_exists('md_to_html')) {
     /**
-     * Convert Markdown to HTML.
+     * Converts Markdown to a safe HTML string.
      */
     function md_to_html(string $markdown): string
     {
@@ -39,18 +39,6 @@ if (! function_exists('route_to_reply_able')) {
         if ($replyAble instanceof App\Models\Thread) {
             return route('thread', $replyAble->slug());
         }
-    }
-}
-
-if (! function_exists('replace_links')) {
-    /**
-     * Convert Standalone Urls to HTML.
-     */
-    function replace_links(string $markdown): string
-    {
-        return (new LinkFinder([
-            'attrs' => ['target' => '_blank', 'rel' => 'nofollow'],
-        ]))->processHtml($markdown);
     }
 }
 
