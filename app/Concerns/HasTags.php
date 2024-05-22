@@ -19,7 +19,7 @@ trait HasTags
     public function syncTags(array $tags)
     {
         try {
-        $this->save();
+            $this->save();
         } catch (\Exception $e) {
             dd($e);
         }
