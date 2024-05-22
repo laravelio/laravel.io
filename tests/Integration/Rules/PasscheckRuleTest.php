@@ -11,16 +11,12 @@ it('passes when the password is correct', function () {
     $this->login(['password' => bcrypt('foo')]);
     $rule = new PasscheckRule();
 
-    $result = $rule->passes('password', 'foo');
-
-    expect($result)->toBeTrue();
-});
+    $rule->validate('password', 'foo', fn () => throw new Exception());
+})->throwsNoExceptions();
 
 it('fails when the password is incorrect', function () {
     $this->login();
     $rule = new PasscheckRule();
 
-    $result = $rule->passes('password', 'foo');
-
-    expect($result)->toBeFalse();
-});
+    $rule->validate('password', 'foo', fn () => throw new Exception());
+})->throws(Exception::class);

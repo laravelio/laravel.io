@@ -5,14 +5,11 @@ namespace App\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Livewire\Component;
+use Livewire\Attributes\On; 
 
 final class NotificationIndicator extends Component
 {
     public $hasNotification;
-
-    protected $listeners = [
-        'NotificationMarkedAsRead' => 'setHasNotification',
-    ];
 
     public function render(): View
     {
@@ -25,6 +22,7 @@ final class NotificationIndicator extends Component
         ]);
     }
 
+    #[On('NotificationMarkedAsRead')] 
     public function setHasNotification(int $count): bool
     {
         return $count > 0;

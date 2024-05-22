@@ -82,12 +82,17 @@ final class Thread extends Model implements Feedable, MentionAble, ReplyAble, Sp
     ];
 
     /**
-     * {@inheritdoc}
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
      */
-    protected $casts = [
-        'last_activity_at' => 'datetime',
-        'locked_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'last_activity_at' => 'datetime',
+            'locked_at' => 'datetime',
+        ];
+    }
 
     public function id(): int
     {

@@ -21,8 +21,6 @@ final class GenerateSocialShareImage
 
     const TEMPLATE = 'social-share-template.png';
 
-    const CACHE_LIFETIME = 43200;
-
     public function __construct(private Article $article)
     {
     }
@@ -31,13 +29,12 @@ final class GenerateSocialShareImage
     {
         $text = wordwrap($this->article->title(), self::CHARACTERS_PER_LINE);
 
-        return $image->cache(function ($image) use ($text) {
-            $image->make(resource_path('images/'.self::TEMPLATE))
-                ->text($text, self::TEXT_X_POSITION, self::TEXT_Y_POSITION, function ($font) {
-                    $font->file(resource_path('fonts/'.self::FONT));
-                    $font->size(self::FONT_SIZE);
-                    $font->color(self::TEXT_COLOUR);
-                });
-        }, self::CACHE_LIFETIME, true)->response('png');
+        return $image->make(resource_path('images/'.self::TEMPLATE))
+            ->text($text, self::TEXT_X_POSITION, self::TEXT_Y_POSITION, function ($font) {
+                $font->file(resource_path('fonts/'.self::FONT));
+                $font->size(self::FONT_SIZE);
+                $font->color(self::TEXT_COLOUR);
+            })
+            ->response('png');
     }
 }

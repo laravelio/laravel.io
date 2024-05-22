@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Articles;
 
 use App\Concerns\UsesFilters;
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\Authenticate;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleResource;
 use App\Jobs\CreateArticle;
@@ -14,6 +13,7 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Models\User;
 use App\Policies\ArticlePolicy;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

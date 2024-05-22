@@ -4,30 +4,33 @@ namespace App\Rules;
 
 use App\Concerns\SendsAlerts;
 use App\Models\User;
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-final class UniqueGitHubUser implements Rule
+final class UniqueGitHubUser implements ValidationRule
 {
     use SendsAlerts;
 
-    private User $user;
-
-    public function passes($attribute, $value): bool
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         try {
-            $this->user = User::findByGitHubId($value);
+            $user = User::findByGitHubId($value);
         } catch (ModelNotFoundException) {
-            return true;
+            return;
         }
 
-        return false;
+        $message = $this->message($user);
+
+        $this->error($message);
+
+        $fail($message);
     }
 
-    public function message()
+    public function message(User $user): string
     {
-        $this->error('We already found a user with the given GitHub account (:username). Would you like to <a href=":login">login</a> instead?', [
-            'username' => '@'.$this->user->githubUsername(),
+        return __('We already found a user with the given GitHub account (:username). Would you like to <a href=":login">login</a> instead?', [
+            'username' => '@'.$user->githubUsername(),
             'login' => route('login'),
         ]);
     }

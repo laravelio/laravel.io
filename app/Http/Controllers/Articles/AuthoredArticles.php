@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Articles;
 
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\Authenticate;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
