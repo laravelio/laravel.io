@@ -2,20 +2,18 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 
 /**
  * This rule validates Markdown for non-HTTPS image links.
  */
-final class HttpImageRule implements Rule
+final class HttpImageRule implements ValidationRule
 {
-    public function passes($attribute, $value): bool
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return ! preg_match('/!\[.*\]\(http:\/\/.*\)/', $value);
-    }
-
-    public function message(): string
-    {
-        return 'The :attribute field contains at least one image with an HTTP link.';
+        if (preg_match('/!\[.*\]\(http:\/\/.*\)/', $value)) {
+            $fail('The :attribute field contains at least one image with an HTTP link.');
+        }
     }
 }

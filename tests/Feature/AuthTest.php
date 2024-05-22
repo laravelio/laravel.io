@@ -43,6 +43,7 @@ test('registration fails when a required field is not filled in', function () {
             'email' => 'The email field is required.',
             'username' => 'The username field is required.',
             'rules' => 'The rules must be accepted.',
+            'terms' => 'The terms must be accepted.',
         ]);
 });
 

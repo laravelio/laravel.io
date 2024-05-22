@@ -22,6 +22,13 @@ class ArticleRequest extends Request
         ];
     }
 
+    public function messages(): array
+    {
+        return [
+            'title.max' => 'The :attribute must not be greater than :max characters.',
+        ];
+    }
+
     public function author(): User
     {
         return $this->user();

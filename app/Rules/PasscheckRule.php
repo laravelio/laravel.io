@@ -2,19 +2,17 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-final class PasscheckRule implements Rule
+final class PasscheckRule implements ValidationRule
 {
-    public function passes($attribute, $value): bool
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return Hash::check($value, Auth::user()->getAuthPassword());
-    }
-
-    public function message(): string
-    {
-        return 'Your current password is incorrect.';
+        if (! Hash::check($value, Auth::user()->getAuthPassword())) {
+            $fail('Your current password is incorrect.');
+        }
     }
 }

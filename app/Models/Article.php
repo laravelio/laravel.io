@@ -57,21 +57,26 @@ final class Article extends Model implements Feedable
     /**
      * {@inheritdoc}
      */
-    protected $casts = [
-        'submitted_at' => 'datetime',
-        'approved_at' => 'datetime',
-        'shared_at' => 'datetime',
-    ];
-
-    /**
-     * {@inheritdoc}
-     */
     protected $with = [
         'authorRelation',
         'likesRelation',
         'likersRelation',
         'tagsRelation',
     ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'submitted_at' => 'datetime',
+            'approved_at' => 'datetime',
+            'shared_at' => 'datetime',
+        ];
+    }
 
     public function id(): int
     {

@@ -1,7 +1,7 @@
 <?php
 
-// Articles
 use App\Http\Controllers\Articles\ArticlesController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('articles')->middleware('throttle:api')->group(function () {
     Route::post('/', [ArticlesController::class, 'store'])->name('api.articles.store');

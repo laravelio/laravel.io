@@ -32,6 +32,15 @@ class RegisterRequest extends FormRequest
         ];
     }
 
+    public function messages(): array
+    {
+        return [
+            'username.alpha_dash' => 'The :attribute must only contain letters, numbers, dashes and underscores.',
+            'rules.accepted' => 'The rules must be accepted.',
+            'terms.accepted' => 'The terms must be accepted.',
+        ];
+    }
+
     public function name(): string
     {
         return $this->get('name');
