@@ -18,11 +18,7 @@ trait HasTags
      */
     public function syncTags(array $tags)
     {
-        try {
-            $this->save();
-        } catch (\Exception $e) {
-            dd($e);
-        }
+        $this->save();
         $this->tagsRelation()->sync($tags);
 
         $this->unsetRelation('tagsRelation');
