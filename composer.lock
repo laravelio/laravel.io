@@ -225,16 +225,16 @@
         },
         {
             "name": "aws/aws-crt-php",
-            "version": "v1.2.4",
+            "version": "v1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/awslabs/aws-crt-php.git",
-                "reference": "eb0c6e4e142224a10b08f49ebf87f32611d162b2"
+                "reference": "0ea1f04ec5aa9f049f97e012d1ed63b76834a31b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/awslabs/aws-crt-php/zipball/eb0c6e4e142224a10b08f49ebf87f32611d162b2",
-                "reference": "eb0c6e4e142224a10b08f49ebf87f32611d162b2",
+                "url": "https://api.github.com/repos/awslabs/aws-crt-php/zipball/0ea1f04ec5aa9f049f97e012d1ed63b76834a31b",
+                "reference": "0ea1f04ec5aa9f049f97e012d1ed63b76834a31b",
                 "shasum": ""
             },
             "require": {
@@ -273,22 +273,22 @@
             ],
             "support": {
                 "issues": "https://github.com/awslabs/aws-crt-php/issues",
-                "source": "https://github.com/awslabs/aws-crt-php/tree/v1.2.4"
+                "source": "https://github.com/awslabs/aws-crt-php/tree/v1.2.5"
             },
-            "time": "2023-11-08T00:42:13+00:00"
+            "time": "2024-04-19T21:30:56+00:00"
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.304.1",
+            "version": "3.308.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "6dac9b3257873a807ac73f6dc4418bdc49a5d9db"
+                "reference": "c88e9df7e076b6e2c652a1c87d2c3af0a9ac30b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/6dac9b3257873a807ac73f6dc4418bdc49a5d9db",
-                "reference": "6dac9b3257873a807ac73f6dc4418bdc49a5d9db",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/c88e9df7e076b6e2c652a1c87d2c3af0a9ac30b6",
+                "reference": "c88e9df7e076b6e2c652a1c87d2c3af0a9ac30b6",
                 "shasum": ""
             },
             "require": {
@@ -368,9 +368,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.304.1"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.308.4"
             },
-            "time": "2024-04-09T19:25:27+00:00"
+            "time": "2024-05-28T18:05:38+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -3670,16 +3670,16 @@
         },
         {
             "name": "league/flysystem-aws-s3-v3",
-            "version": "3.27.0",
+            "version": "3.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem-aws-s3-v3.git",
-                "reference": "3e6ce2f972f1470db779f04d29c289dcd2c32837"
+                "reference": "22071ef1604bc776f5ff2468ac27a752514665c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v3/zipball/3e6ce2f972f1470db779f04d29c289dcd2c32837",
-                "reference": "3e6ce2f972f1470db779f04d29c289dcd2c32837",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v3/zipball/22071ef1604bc776f5ff2468ac27a752514665c8",
+                "reference": "22071ef1604bc776f5ff2468ac27a752514665c8",
                 "shasum": ""
             },
             "require": {
@@ -3719,19 +3719,9 @@
                 "storage"
             ],
             "support": {
-                "source": "https://github.com/thephpleague/flysystem-aws-s3-v3/tree/3.27.0"
+                "source": "https://github.com/thephpleague/flysystem-aws-s3-v3/tree/3.28.0"
             },
-            "funding": [
-                {
-                    "url": "https://ecologi.com/frankdejonge",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/frankdejonge",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-04-07T19:16:54+00:00"
+            "time": "2024-05-06T20:05:52+00:00"
         },
         {
             "name": "league/flysystem-local",
@@ -3916,16 +3906,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.4.12",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "54dd265c17f7b5200627eb9690590e7cbbad1027"
+                "reference": "72e900825c560f0e4e620185b26c5441a8914435"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/54dd265c17f7b5200627eb9690590e7cbbad1027",
-                "reference": "54dd265c17f7b5200627eb9690590e7cbbad1027",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/72e900825c560f0e4e620185b26c5441a8914435",
+                "reference": "72e900825c560f0e4e620185b26c5441a8914435",
                 "shasum": ""
             },
             "require": {
@@ -3980,7 +3970,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.4.12"
+                "source": "https://github.com/livewire/livewire/tree/v3.5.0"
             },
             "funding": [
                 {
@@ -3988,7 +3978,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-02T17:10:37+00:00"
+            "time": "2024-05-21T13:39:04+00:00"
         },
         {
             "name": "lorisleiva/cron-translator",
