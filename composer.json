@@ -20,7 +20,6 @@
         "laravel/framework": "^10.0",
         "laravel/horizon": "^5.12",
         "laravel/sanctum": "^3.2",
-        "laravel/scout": "10.x-dev",
         "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
