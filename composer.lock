@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1418618932accf96b6df7ccdb81f517f",
+    "content-hash": "f16ec210efdd76f7444a9719ccc0fd99",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -3060,16 +3060,16 @@
         },
         {
             "name": "laravel/scout",
-            "version": "v10.8.5",
+            "version": "10.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/scout.git",
-                "reference": "db26233becb979d5e2104fa2a931440252a73200"
+                "reference": "dadf49ec06487c3031e1e75dacf29a991f23e1d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/scout/zipball/db26233becb979d5e2104fa2a931440252a73200",
-                "reference": "db26233becb979d5e2104fa2a931440252a73200",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/dadf49ec06487c3031e1e75dacf29a991f23e1d2",
+                "reference": "dadf49ec06487c3031e1e75dacf29a991f23e1d2",
                 "shasum": ""
             },
             "require": {
@@ -3091,13 +3091,14 @@
                 "php-http/guzzle7-adapter": "^1.0",
                 "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^9.3|^10.4",
-                "typesense/typesense-php": "^4.9"
+                "typesense/typesense-php": "^4.9.3"
             },
             "suggest": {
                 "algolia/algoliasearch-client-php": "Required to use the Algolia engine (^3.2).",
                 "meilisearch/meilisearch-php": "Required to use the Meilisearch engine (^1.0).",
                 "typesense/typesense-php": "Required to use the Typesense engine (^4.9)."
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -3134,7 +3135,7 @@
                 "issues": "https://github.com/laravel/scout/issues",
                 "source": "https://github.com/laravel/scout"
             },
-            "time": "2024-04-02T14:33:18+00:00"
+            "time": "2024-06-17T14:15:59+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -12858,7 +12859,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "laravel/scout": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
