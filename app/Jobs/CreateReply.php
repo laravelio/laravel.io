@@ -19,8 +19,7 @@ final class CreateReply
         private string $body,
         private User $author,
         private ReplyAble $replyAble
-    ) {
-    }
+    ) {}
 
     public static function fromRequest(CreateReplyRequest $request, UuidInterface $uuid): self
     {

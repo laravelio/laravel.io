@@ -7,9 +7,7 @@ use Illuminate\Mail\Mailable;
 
 final class ThreadDeletedEmail extends Mailable
 {
-    public function __construct(public Thread $thread, public string $reason)
-    {
-    }
+    public function __construct(public Thread $thread, public string $reason) {}
 
     public function build()
     {

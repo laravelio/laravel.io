@@ -8,9 +8,7 @@ use App\Models\User;
 
 final class LikeThread
 {
-    public function __construct(private Thread $thread, private User $user)
-    {
-    }
+    public function __construct(private Thread $thread, private User $user) {}
 
     /**
      * @throws \App\Exceptions\CannotLikeItem

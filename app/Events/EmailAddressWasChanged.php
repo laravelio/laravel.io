@@ -9,7 +9,5 @@ class EmailAddressWasChanged
 {
     use SerializesModels;
 
-    public function __construct(public User $user)
-    {
-    }
+    public function __construct(public User $user) {}
 }

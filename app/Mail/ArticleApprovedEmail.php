@@ -7,9 +7,7 @@ use Illuminate\Mail\Mailable;
 
 final class ArticleApprovedEmail extends Mailable
 {
-    public function __construct(public Article $article)
-    {
-    }
+    public function __construct(public Article $article) {}
 
     public function build()
     {
