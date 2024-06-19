@@ -6,9 +6,7 @@ use App\Models\User;
 
 final class CreateApiToken
 {
-    public function __construct(private User $user, private string $name)
-    {
-    }
+    public function __construct(private User $user, private string $name) {}
 
     public function handle(): string
     {

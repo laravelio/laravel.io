@@ -9,9 +9,7 @@ use Illuminate\Notifications\AnonymousNotifiable;
 
 final class SendNewSpamNotification
 {
-    public function __construct(private AnonymousNotifiable $notifiable)
-    {
-    }
+    public function __construct(private AnonymousNotifiable $notifiable) {}
 
     public function handle(SpamWasReported $event): void
     {

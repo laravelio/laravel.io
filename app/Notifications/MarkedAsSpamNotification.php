@@ -14,9 +14,7 @@ class MarkedAsSpamNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(protected Spam $spam)
-    {
-    }
+    public function __construct(protected Spam $spam) {}
 
     /**
      * Get the notification's delivery channels.

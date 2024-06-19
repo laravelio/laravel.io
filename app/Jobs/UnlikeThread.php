@@ -7,9 +7,7 @@ use App\Models\User;
 
 final class UnlikeThread
 {
-    public function __construct(private Thread $thread, private User $user)
-    {
-    }
+    public function __construct(private Thread $thread, private User $user) {}
 
     public function handle(): void
     {
