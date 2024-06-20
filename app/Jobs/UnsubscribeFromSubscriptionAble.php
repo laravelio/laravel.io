@@ -7,9 +7,7 @@ use App\Models\User;
 
 final class UnsubscribeFromSubscriptionAble
 {
-    public function __construct(private User $user, private SubscriptionAble $subscriptionAble)
-    {
-    }
+    public function __construct(private User $user, private SubscriptionAble $subscriptionAble) {}
 
     public function handle(): void
     {

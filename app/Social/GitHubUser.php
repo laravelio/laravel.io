@@ -8,9 +8,7 @@ use Illuminate\Support\Arr;
 
 final class GitHubUser implements Arrayable
 {
-    public function __construct(private array $attributes)
-    {
-    }
+    public function __construct(private array $attributes) {}
 
     public function login(): string
     {

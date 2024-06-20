@@ -18,8 +18,7 @@ final class CreateThread
         private string $body,
         private User $author,
         private array $tags = []
-    ) {
-    }
+    ) {}
 
     public static function fromRequest(ThreadRequest $request, UuidInterface $uuid): self
     {

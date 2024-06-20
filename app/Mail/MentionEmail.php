@@ -11,8 +11,7 @@ final class MentionEmail extends Mailable
     public function __construct(
         public MentionAble $mentionAble,
         public User $receiver
-    ) {
-    }
+    ) {}
 
     public function build()
     {

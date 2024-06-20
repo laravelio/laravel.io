@@ -13,9 +13,7 @@ class DeleteApiToken implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public function __construct(private User $user, private int $tokenId)
-    {
-    }
+    public function __construct(private User $user, private int $tokenId) {}
 
     public function handle(): void
     {

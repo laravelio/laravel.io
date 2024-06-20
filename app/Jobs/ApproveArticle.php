@@ -8,9 +8,7 @@ use Carbon\Carbon;
 
 final class ApproveArticle
 {
-    public function __construct(private Article $article)
-    {
-    }
+    public function __construct(private Article $article) {}
 
     public function handle(): void
     {

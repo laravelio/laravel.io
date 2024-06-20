@@ -15,9 +15,7 @@ final class MentionNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public MentionAble $mentionAble)
-    {
-    }
+    public function __construct(public MentionAble $mentionAble) {}
 
     public function via(User $user): array
     {

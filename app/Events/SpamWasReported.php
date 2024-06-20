@@ -9,7 +9,5 @@ final class SpamWasReported
 {
     use SerializesModels;
 
-    public function __construct(public Spam $spam)
-    {
-    }
+    public function __construct(public Spam $spam) {}
 }

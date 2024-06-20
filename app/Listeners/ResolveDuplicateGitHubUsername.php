@@ -10,9 +10,7 @@ use Illuminate\Auth\Events\Registered;
 
 final class ResolveDuplicateGitHubUsername
 {
-    public function __construct(private readonly GithubUserApi $github)
-    {
-    }
+    public function __construct(private readonly GithubUserApi $github) {}
 
     public function handle(Registered $event): void
     {

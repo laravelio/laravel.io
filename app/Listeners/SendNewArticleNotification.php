@@ -8,9 +8,7 @@ use Illuminate\Notifications\AnonymousNotifiable;
 
 final class SendNewArticleNotification
 {
-    public function __construct(private AnonymousNotifiable $notifiable)
-    {
-    }
+    public function __construct(private AnonymousNotifiable $notifiable) {}
 
     public function handle(ArticleWasSubmittedForApproval $event): void
     {

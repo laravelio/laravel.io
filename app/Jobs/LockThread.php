@@ -7,9 +7,7 @@ use App\Models\User;
 
 final class LockThread
 {
-    public function __construct(private User $user, private Thread $thread)
-    {
-    }
+    public function __construct(private User $user, private Thread $thread) {}
 
     public function handle(): void
     {

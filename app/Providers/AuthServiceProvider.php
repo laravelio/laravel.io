@@ -24,7 +24,5 @@ class AuthServiceProvider extends ServiceProvider
         Article::class => ArticlePolicy::class,
     ];
 
-    public function boot(): void
-    {
-    }
+    public function boot(): void {}
 }
