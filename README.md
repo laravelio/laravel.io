@@ -28,6 +28,7 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Steadfast Collective](https://steadfastcollective.com/uk-laravel-agency)
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
 - [Remotely Works](https://www.remotely.works/sponsoring-open-source-projects)
+- [Zunction](https://zunction.io)
 
 ## Requirements
 

@@ -46,6 +46,10 @@
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://www.remotely.works/sponsoring-open-source-projects" logo="{{ asset('images/sponsors/remotely.png') }}" company="Remotely Works" />
             </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo url="https://zunction.io" logo="{{ asset('images/sponsors/zunction.png') }}" company="Zunction" />
+            </div>
         </div>
 
         <x-ads.cta primary class="mt-8 md:mt-12">
