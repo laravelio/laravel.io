@@ -3,7 +3,7 @@
 use App\Rules\InvalidMentionRule;
 
 it('passes when no invalid mentions are detected', function ($body) {
-    expect((new InvalidMentionRule())->passes('body', $body))->toBeTrue();
+    expect((new InvalidMentionRule)->passes('body', $body))->toBeTrue();
 })->with([
     'Hello, I\'m looking for some help',
     'I\'ve seen [this link](https://example.com), is it legit?',
@@ -27,7 +27,7 @@ it('passes when no invalid mentions are detected', function ($body) {
 ]);
 
 it('fails when invalid mentions are detected', function ($body) {
-    expect((new InvalidMentionRule())->passes('body', $body))->toBeFalse();
+    expect((new InvalidMentionRule)->passes('body', $body))->toBeFalse();
 })->with([
     '[@driesvints](https://somethingnasty.com)',
     'Hey [@joedixon](https://somethingnasty.com), is it legit?',

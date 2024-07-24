@@ -14,7 +14,7 @@ class UpdatePasswordRequest extends Request
         ];
 
         if ($this->user()->hasPassword()) {
-            $rules['current_password'] = ['required', new PasscheckRule()];
+            $rules['current_password'] = ['required', new PasscheckRule];
         }
 
         return $rules;
