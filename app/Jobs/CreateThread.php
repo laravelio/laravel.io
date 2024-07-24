@@ -45,7 +45,7 @@ final class CreateThread
         $thread->save();
 
         // Subscribe author to the thread.
-        $subscription = new Subscription();
+        $subscription = new Subscription;
         $subscription->uuid = Uuid::uuid4()->toString();
         $subscription->userRelation()->associate($this->author);
         $subscription->subscriptionAbleRelation()->associate($thread);

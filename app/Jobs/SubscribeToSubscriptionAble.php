@@ -13,7 +13,7 @@ final class SubscribeToSubscriptionAble
 
     public function handle(): void
     {
-        $subscription = new Subscription();
+        $subscription = new Subscription;
         $subscription->uuid = Uuid::uuid4()->toString();
         $subscription->userRelation()->associate($this->user);
         $this->subscriptionAble->subscriptionsRelation()->save($subscription);
