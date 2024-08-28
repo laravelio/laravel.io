@@ -7,7 +7,6 @@ use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\MentionNotification;
 use App\Rules\InvalidMentionRule;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Notification;
@@ -201,7 +200,7 @@ test('users provided with a UI notification when mentioned in a reply body', fun
         'replyable_id' => $thread->id,
         'replyable_type' => Thread::TABLE,
     ]);
-    
+
     $notification = DatabaseNotification::first();
     $this->assertSame($user->id, (int) $notification->notifiable_id);
     $this->assertSame('users', $notification->notifiable_type);
