@@ -10,7 +10,7 @@
         "blade-ui-kit/blade-icons": "^1.6",
         "blade-ui-kit/blade-ui-kit": "^0.6",
         "blade-ui-kit/blade-zondicons": "^1.5",
-        "codeat3/blade-simple-icons": "^3.3",
+        "codeat3/blade-simple-icons": "^5.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "laravel-notification-channels/telegram": "^5.0",

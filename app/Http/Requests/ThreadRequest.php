@@ -11,8 +11,8 @@ class ThreadRequest extends Request
     public function rules(): array
     {
         return [
-            'subject' => ['required', 'max:60', new DoesNotContainUrlRule()],
-            'body' => ['required', new HttpImageRule(), new InvalidMentionRule()],
+            'subject' => ['required', 'max:60', new DoesNotContainUrlRule],
+            'body' => ['required', new HttpImageRule, new InvalidMentionRule],
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',
         ];

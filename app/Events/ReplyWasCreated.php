@@ -9,7 +9,5 @@ final class ReplyWasCreated
 {
     use SerializesModels;
 
-    public function __construct(public Reply $reply)
-    {
-    }
+    public function __construct(public Reply $reply) {}
 }

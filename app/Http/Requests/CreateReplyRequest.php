@@ -13,7 +13,7 @@ class CreateReplyRequest extends Request
     public function rules(): array
     {
         return [
-            'body' => ['required', new HttpImageRule(), new InvalidMentionRule()],
+            'body' => ['required', new HttpImageRule, new InvalidMentionRule],
             'replyable_id' => 'required',
             'replyable_type' => 'required|in:'.Thread::TABLE,
         ];

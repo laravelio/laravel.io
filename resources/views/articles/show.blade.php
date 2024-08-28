@@ -106,7 +106,7 @@
                         x-init="$nextTick(function () { highlightCode($el); })"
                         class="prose prose-lg text-gray-800 prose-lio"
                     >
-                        <x-buk-markdown>{!! md_to_html($article->body()) !!}</x-buk-markdown>
+                        {!! md_to_html($article->body()) !!}
                     </div>
 
                     @if ($article->isUpdated())

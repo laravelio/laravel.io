@@ -16,8 +16,7 @@ final class RegisterUser
         private string $username,
         private string $githubId,
         private string $githubUsername
-    ) {
-    }
+    ) {}
 
     public static function fromRequest(RegisterRequest $request): self
     {

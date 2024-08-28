@@ -23,10 +23,10 @@ test('published articles can be shared on twitter', function () {
         'approved_at' => now(),
     ]);
 
-    (new PostArticleToTwitter())->handle(new AnonymousNotifiable());
+    (new PostArticleToTwitter)->handle(new AnonymousNotifiable);
 
     Notification::assertSentTo(
-        new AnonymousNotifiable(),
+        new AnonymousNotifiable,
         PostArticleToTwitterNotification::class,
         function ($notification, $channels, $notifiable) use ($article) {
             $tweet = $notification->generateTweet();
@@ -51,10 +51,10 @@ test('articles are shared with twitter handle', function () {
         'approved_at' => now(),
     ]);
 
-    (new PostArticleToTwitter())->handle(new AnonymousNotifiable());
+    (new PostArticleToTwitter)->handle(new AnonymousNotifiable);
 
     Notification::assertSentTo(
-        new AnonymousNotifiable(),
+        new AnonymousNotifiable,
         PostArticleToTwitterNotification::class,
         function ($notification, $channels, $notifiable) {
             return Str::contains($notification->generateTweet(), '@_joedixon');
@@ -74,10 +74,10 @@ test('articles are shared with name when no twitter handle', function () {
         'approved_at' => now(),
     ]);
 
-    (new PostArticleToTwitter())->handle(new AnonymousNotifiable());
+    (new PostArticleToTwitter)->handle(new AnonymousNotifiable);
 
     Notification::assertSentTo(
-        new AnonymousNotifiable(),
+        new AnonymousNotifiable,
         PostArticleToTwitterNotification::class,
         function ($notification, $channels, $notifiable) {
             return Str::contains($notification->generateTweet(), 'Joe Dixon');
@@ -92,7 +92,7 @@ test('already shared articles are not shared again', function () {
         'shared_at' => now(),
     ]);
 
-    (new PostArticleToTwitter())->handle(new AnonymousNotifiable());
+    (new PostArticleToTwitter)->handle(new AnonymousNotifiable);
 
     Notification::assertNothingSent();
 });
@@ -102,7 +102,7 @@ test('unapproved articles are not shared', function () {
         'submitted_at' => now(),
     ]);
 
-    (new PostArticleToTwitter())->handle(new AnonymousNotifiable());
+    (new PostArticleToTwitter)->handle(new AnonymousNotifiable);
 
     Notification::assertNothingSent();
 });
@@ -110,7 +110,7 @@ test('unapproved articles are not shared', function () {
 test('unsubmitted articles are not shared', function () {
     Article::factory()->create();
 
-    (new PostArticleToTwitter())->handle(new AnonymousNotifiable());
+    (new PostArticleToTwitter)->handle(new AnonymousNotifiable);
 
     Notification::assertNothingSent();
 });

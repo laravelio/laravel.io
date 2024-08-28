@@ -7,9 +7,7 @@ use Carbon\Carbon;
 
 final class BanUser
 {
-    public function __construct(private User $user, private $reason)
-    {
-    }
+    public function __construct(private User $user, private $reason) {}
 
     public function handle(): void
     {

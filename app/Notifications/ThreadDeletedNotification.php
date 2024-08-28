@@ -13,9 +13,7 @@ class ThreadDeletedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public Thread $thread, public ?string $reason = null)
-    {
-    }
+    public function __construct(public Thread $thread, public ?string $reason = null) {}
 
     public function via($notifiable): array
     {

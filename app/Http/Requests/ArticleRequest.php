@@ -14,7 +14,7 @@ class ArticleRequest extends Request
     {
         return [
             'title' => ['required', 'max:100'],
-            'body' => ['required', new HttpImageRule()],
+            'body' => ['required', new HttpImageRule],
             'tags' => 'array|nullable',
             'tags.*' => 'exists:tags,id',
             'original_url' => 'url|nullable',

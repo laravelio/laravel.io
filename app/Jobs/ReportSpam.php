@@ -16,9 +16,7 @@ class ReportSpam implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public function __construct(private User $user, private Spam $spam)
-    {
-    }
+    public function __construct(private User $user, private Spam $spam) {}
 
     public function handle(): void
     {

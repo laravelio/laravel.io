@@ -18,8 +18,7 @@ final class CreateThread
         private string $body,
         private User $author,
         private array $tags = []
-    ) {
-    }
+    ) {}
 
     public static function fromRequest(ThreadRequest $request, UuidInterface $uuid): self
     {
@@ -46,7 +45,7 @@ final class CreateThread
         $thread->save();
 
         // Subscribe author to the thread.
-        $subscription = new Subscription();
+        $subscription = new Subscription;
         $subscription->uuid = Uuid::uuid4()->toString();
         $subscription->userRelation()->associate($this->author);
         $subscription->subscriptionAbleRelation()->associate($thread);

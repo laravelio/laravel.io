@@ -40,7 +40,7 @@ trait ProvidesSubscriptions
 
     public function subscribe(User $user): Subscription
     {
-        $subscription = new Subscription();
+        $subscription = new Subscription;
         $subscription->uuid = Uuid::uuid4()->toString();
         $subscription->userRelation()->associate($user);
         $subscription->subscriptionAbleRelation()->associate($this);

@@ -21,9 +21,7 @@ final class GenerateSocialShareImage
 
     const TEMPLATE = 'social-share-template.png';
 
-    public function __construct(private Article $article)
-    {
-    }
+    public function __construct(private Article $article) {}
 
     public function handle(ImageManager $image): mixed
     {
