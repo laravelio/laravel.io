@@ -8,13 +8,16 @@ use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\SlowQueryLogged;
 use App\Observers\UserObserver;
+use App\Policies\NotificationPolicy;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\AnonymousNotifiable;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Request as RequestFacade;
@@ -41,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->bootEvent();
         $this->bootRoute();
+        $this->bootPolicies();
     }
 
     private function bootEloquentMorphs()
@@ -102,6 +106,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         require base_path('routes/bindings.php');
+    }
 
+    public function bootPolicies(): void
+    {
+        Gate::policy(DatabaseNotification::class, NotificationPolicy::class);
     }
 }

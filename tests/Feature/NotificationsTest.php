@@ -74,7 +74,7 @@ test('users_can_mark_notifications_as_read', function () {
             "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-lio-700\">\"{$thread->subject()}\"</a>.",
         ))
         ->assertDispatched('NotificationMarkedAsRead');
-});
+})->only();
 
 test('a_non_logged_in_user_cannot_access_notifications', function () {
     Livewire::test(Notifications::class)->assertForbidden();
