@@ -201,11 +201,20 @@ test('users provided with a UI notification when mentioned in a reply body', fun
         'replyable_type' => Thread::TABLE,
     ]);
 
-    $notification = DatabaseNotification::first();
-    $this->assertSame($user->id, (int) $notification->notifiable_id);
-    $this->assertSame('users', $notification->notifiable_type);
-    $this->assertSame('mention', $notification->data['type']);
-    $this->assertSame('The first thread', $notification->data['replyable_subject']);
+    $tested = false;
+
+    foreach (DatabaseNotification::all() as $notification) {
+        if ($notification->type === MentionNotification::class) {
+            $this->assertSame($user->id, (int) $notification->notifiable_id);
+            $this->assertSame('users', $notification->notifiable_type);
+            $this->assertSame('mention', $notification->data['type']);
+            $this->assertSame('The first thread', $notification->data['replyable_subject']);
+
+            $tested = true;
+        }
+    }
+
+    $this->assertTrue($tested);
 })->only();
 
 test('users are not notified when mentioned in an edited reply', function () {

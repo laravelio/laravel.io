@@ -10,7 +10,7 @@ use App\Notifications\MentionNotification;
 final class NotifyUsersMentionedInThread
 {
     public function handle(ThreadWasCreated $event): void
-    {
+    {dd('test');
         $event->thread->mentionedUsers()->each(function ($user) use ($event) {
             if (! $user->isNotificationAllowed(MentionNotification::class)) {
                 return;
