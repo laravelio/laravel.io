@@ -87,6 +87,9 @@ it('bumps threads when a reply is added', function () {
     $threadUpdatedYesterday = createThreadFromYesterday();
     $threadFromToday = createThreadFromToday();
     $threadFromTwoDaysAgo = createThreadFromTwoDaysAgo();
+
+    sleep(1);
+
     dispatch_sync(new CreateReply(Str::uuid(), 'Hello world', User::factory()->create(), $threadFromTwoDaysAgo));
 
     $threads = Thread::feed();

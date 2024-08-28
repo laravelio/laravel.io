@@ -6,9 +6,19 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: laravel
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -28,6 +38,10 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/pest
+        env:
+          DB_CONNECTION: mysql
+          DB_COLLATION: utf8mb4_unicode_ci
+          DB_DATABASE: laravel
 
       - name: Deploy
         if: github.repository == 'laravelio/laravel.io' && github.ref_name == 'main'

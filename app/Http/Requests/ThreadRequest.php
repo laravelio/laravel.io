@@ -18,6 +18,13 @@ class ThreadRequest extends Request
         ];
     }
 
+    public function messages(): array
+    {
+        return [
+            'subject.max' => 'The :attribute must not be greater than :max characters.',
+        ];
+    }
+
     public function subject(): string
     {
         return $this->get('subject');

@@ -2,22 +2,22 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Validation\Concerns\ValidatesAttributes;
 
-final class DoesNotContainUrlRule implements Rule
+final class DoesNotContainUrlRule implements ValidationRule
 {
     use ValidatesAttributes;
 
-    public function passes($attribute, $value): bool
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return ! collect(explode(' ', $value))->contains(function ($word) {
+        $fails = collect(explode(' ', $value))->contains(function ($word) {
             return $this->validateRequired('word', $word) && $this->validateUrl('word', $word);
         });
-    }
 
-    public function message(): string
-    {
-        return 'The :attribute field cannot contain an url.';
+        if ($fails) {
+            $fail('The :attribute field cannot contain an url.');
+        }
     }
 }

@@ -2,20 +2,18 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 
 /**
  * This rule validates links are not diguised as mentions.
  */
-final class InvalidMentionRule implements Rule
+final class InvalidMentionRule implements ValidationRule
 {
-    public function passes($attribute, $value): bool
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return ! preg_match('/\[@.*\]\(http.*\)/', $value);
-    }
-
-    public function message(): string
-    {
-        return 'The :attribute field contains an invalid mention.';
+        if (preg_match('/\[@.*\]\(http.*\)/', $value)) {
+            $fail('The :attribute field contains an invalid mention.');
+        }
     }
 }

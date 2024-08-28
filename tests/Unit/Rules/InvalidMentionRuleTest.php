@@ -3,7 +3,7 @@
 use App\Rules\InvalidMentionRule;
 
 it('passes when no invalid mentions are detected', function ($body) {
-    expect((new InvalidMentionRule)->passes('body', $body))->toBeTrue();
+    expect((new InvalidMentionRule)->validate('body', $body, fn () => throw new Exception));
 })->with([
     'Hello, I\'m looking for some help',
     'I\'ve seen [this link](https://example.com), is it legit?',
@@ -24,10 +24,10 @@ it('passes when no invalid mentions are detected', function ($body) {
     [link](https://example.com)
     \n
     ![image](https://example.com/image.png)",
-]);
+])->throwsNoExceptions();
 
 it('fails when invalid mentions are detected', function ($body) {
-    expect((new InvalidMentionRule)->passes('body', $body))->toBeFalse();
+    expect((new InvalidMentionRule)->validate('body', $body, fn () => throw new Exception));
 })->with([
     '[@driesvints](https://somethingnasty.com)',
     'Hey [@joedixon](https://somethingnasty.com), is it legit?',
@@ -48,4 +48,4 @@ it('fails when invalid mentions are detected', function ($body) {
     [link](https://example.com)
     \n
     ![image](https://example.com/image.png)",
-]);
+])->throws(Exception::class);

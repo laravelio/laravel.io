@@ -27,7 +27,7 @@ use App\Http\Controllers\Settings\UnblockUserController as UnblockUserSettingsCo
 use App\Http\Controllers\SocialImageController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UnblockUserController;
-use App\Http\Middleware\Authenticate;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 Route::feeds();

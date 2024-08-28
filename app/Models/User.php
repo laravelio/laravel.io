@@ -60,14 +60,19 @@ final class User extends Authenticatable implements MustVerifyEmail
     /**
      * {@inheritdoc}
      */
-    protected $casts = [
-        'allowed_notifications' => 'array',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
-     * {@inheritdoc}
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected function casts(): array
+    {
+        return [
+            'allowed_notifications' => 'array',
+        ];
+    }
 
     public function id(): int
     {
