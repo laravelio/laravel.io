@@ -86,14 +86,6 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
-
     public function bootEvent(): void
     {
         User::observe(UserObserver::class);
@@ -111,5 +103,13 @@ class AppServiceProvider extends ServiceProvider
     public function bootPolicies(): void
     {
         Gate::policy(DatabaseNotification::class, NotificationPolicy::class);
+    }
+
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
     }
 }
