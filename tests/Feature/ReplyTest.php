@@ -215,7 +215,7 @@ test('users provided with a UI notification when mentioned in a reply body', fun
     }
 
     $this->assertTrue($tested);
-})->only();
+});
 
 test('users are not notified when mentioned in an edited reply', function () {
     Notification::fake();
