@@ -18,13 +18,13 @@
             @endif
         @endauth
 
-        <div
-            class="w-full bg-center {{ $article->hasHeroImage() ? 'bg-cover' : '' }} bg-gray-800"
-            style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url({{ $article->heroImage(2000, 384) }});"
-        >
-            <div class="container mx-auto">
-                <div class="px-4 lg:px-0 lg:mx-48">
-                    <div class="flex items-center justify-between pt-6 mb-28">
+        <div class="container mx-auto">
+            <div class="px-4 lg:px-0 lg:mx-48">
+                <div
+                    class="w-full bg-center {{ $article->hasHeroImage() ? 'bg-cover' : '' }} bg-gray-800 px-6 py-8 lg:py-6"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url({{ $article->heroImage(2000,384) }});"
+                >
+                    <div class="hidden items-center justify-between pt-6 mb-28 lg:flex">
                         <a href="{{ route('articles') }}" class="hidden items-center text-base text-white hover:underline lg:flex">
                             <x-heroicon-s-arrow-left class="w-4 h-4 fill-current" />
                             <span class="text-white ml-1 hover:text-gray-100">Back to articles</span>
