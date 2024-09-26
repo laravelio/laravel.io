@@ -18,19 +18,19 @@
             @endif
         @endauth
 
-        <div
-            class="w-full bg-center {{ $article->hasHeroImage() ? 'bg-cover' : '' }} bg-gray-800"
-            style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url({{ $article->heroImage(2000, 384) }});"
-        >
-            <div class="container mx-auto">
-                <div class="px-4 lg:px-0 lg:mx-48">
-                    <div class="flex items-center justify-between pt-6 mb-28">
-                        <a href="{{ route('articles') }}" class="hidden items-center text-base text-white hover:underline lg:flex">
+        <div class="container mx-auto">
+            <div class="px-4 lg:px-0 lg:mx-48">
+                <div
+                    class="w-full bg-center {{ $article->hasHeroImage() ? 'bg-cover' : '' }} bg-gray-800 p-6 lg:p-8"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url({{ $article->heroImage(2000,384) }});"
+                >
+                    <div class="flex items-center justify-between mb-28 text-sm lg:text-base">
+                        <a href="{{ route('articles') }}" class="flex items-center text-white hover:underline">
                             <x-heroicon-s-arrow-left class="w-4 h-4 fill-current" />
                             <span class="text-white ml-1 hover:text-gray-100">Back to articles</span>
                         </a>
 
-                        <div class="hidden lg:flex">
+                        <div>
                             @if ($article->isNotPublished())
                                 <x-light-tag>
                                     @if ($article->isAwaitingApproval())
@@ -59,7 +59,7 @@
                         {{ $article->title() }}
                     </h1>
 
-                    <div class="flex flex-col gap-y-2 text-white pb-4 lg:pb-12 lg:flex-row lg:items-center">
+                    <div class="flex flex-col gap-y-2 text-white lg:flex-row lg:items-center">
                         <div class="flex items-center">
                             <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-3" />
 

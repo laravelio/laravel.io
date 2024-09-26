@@ -6,7 +6,7 @@
 @section('content')
     <section class="bg-white">
         <div
-            class="w-full bg-center bg-gray-800 h-60"
+            class="w-full bg-center bg-gray-800 h-60 container mx-auto"
             style="background-image: url('{{ asset('images/default-background.svg') }}')"
         ></div>
 
