@@ -24,13 +24,13 @@
                     class="w-full bg-center {{ $article->hasHeroImage() ? 'bg-cover' : '' }} bg-gray-800 p-6 lg:p-8"
                     style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url({{ $article->heroImage(2000,384) }});"
                 >
-                    <div class="hidden items-center justify-between mb-28 lg:flex">
-                        <a href="{{ route('articles') }}" class="hidden items-center text-base text-white hover:underline lg:flex">
+                    <div class="flex items-center justify-between mb-28 text-sm lg:text-base">
+                        <a href="{{ route('articles') }}" class="flex items-center text-white hover:underline">
                             <x-heroicon-s-arrow-left class="w-4 h-4 fill-current" />
                             <span class="text-white ml-1 hover:text-gray-100">Back to articles</span>
                         </a>
 
-                        <div class="hidden lg:flex">
+                        <div>
                             @if ($article->isNotPublished())
                                 <x-light-tag>
                                     @if ($article->isAwaitingApproval())
