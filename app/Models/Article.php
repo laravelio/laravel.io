@@ -45,6 +45,7 @@ final class Article extends Model implements Feedable
         'original_url',
         'slug',
         'hero_image',
+        'hero_image_url',
         'is_pinned',
         'view_count',
         'tweet_id',
@@ -105,7 +106,7 @@ final class Article extends Model implements Feedable
 
     public function heroImage($width = 400, $height = 300): string
     {
-        if ($this->hero_image) {
+        if ($this->hero_image_url) {
             return "{$this->hero_image_url}&fit=clip&w={$width}&h={$height}";
         }
 
