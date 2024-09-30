@@ -37,4 +37,4 @@ test('hero image url is not updated for published articles with no hero image', 
     $article->refresh();
 
     expect($article->hero_image_url)->toBe(null);
-})->only();
+});
