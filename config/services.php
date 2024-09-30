@@ -41,7 +41,7 @@ return [
     ],
 
     'unsplash' => [
-        'acccess_key' => env('UNSPLASH_ACCESS_KEY'),
+        'access_key' => env('UNSPLASH_ACCESS_KEY'),
     ],
 
 ];

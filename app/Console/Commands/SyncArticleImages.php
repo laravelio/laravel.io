@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Article;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
 
 final class SyncArticleImages extends Command
 {
@@ -30,10 +31,28 @@ final class SyncArticleImages extends Command
 
         Article::published()->chunk(100, function ($articles) {
             $articles->each(function ($article) {
-                if (! $article->hero_image) {
-                    // Update Unsplash image URL
+                if ($article->hasHeroImage()) {
+                    $article->hero_image_url = $this->getUnsplashImageUrlFromStringId($article->hero_image);
+                    $article->save();
                 }
             });
         });
+    }
+
+    protected function getUnsplashImageUrlFromStringId(string $imageId): ?string
+    {
+        $response = Http::retry(3, 100, null, false)->withToken($this->accessKey, 'Client-ID')
+            ->get("https://api.unsplash.com/photos/{$imageId}");
+
+        if ($response->failed()) {
+            logger()->error('Failed to get raw image url from unsplash for', [
+                'imageId' => $imageId,
+                'response' => $response->json(),
+            ]);
+
+            return null;
+        }
+
+        return (string) $response->json('urls.raw');
     }
 }
