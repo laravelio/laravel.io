@@ -10,7 +10,6 @@ uses(DatabaseMigrations::class);
 
 
 test('hero image url is updated for published articles with hero image', function () {
-
     $article = Article::factory()->create([
         'hero_image' => 'sxiSod0tyYQ',
         'submitted_at' => now(),
@@ -26,7 +25,6 @@ test('hero image url is updated for published articles with hero image', functio
 });
 
 test('hero image url is not updated for published articles with no hero image', function () {
-
     $article = Article::factory()->create([
         'submitted_at' => now(),
         'approved_at' => now(),
