@@ -3,6 +3,7 @@
 use App\Console\Commands\SyncArticleImages;
 use App\Models\Article;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 uses(TestCase::class);
@@ -10,6 +11,14 @@ uses(DatabaseMigrations::class);
 
 
 test('hero image url is updated for published articles with hero image', function () {
+    Http::fake(function () {
+        return [
+            'urls' => [
+                'raw' => 'https://images.unsplash.com/photo-1584824486509-112e4181ff6b?ixid=M3w2NTgwOTl8MHwxfGFsbHx8fHx8fHx8fDE3Mjc2ODMzMzZ8&ixlib=rb-4.0.3'
+            ]
+        ];
+    });
+
     $article = Article::factory()->create([
         'hero_image' => 'sxiSod0tyYQ',
         'submitted_at' => now(),
