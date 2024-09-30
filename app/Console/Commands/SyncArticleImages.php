@@ -32,14 +32,14 @@ final class SyncArticleImages extends Command
         Article::published()->chunk(100, function ($articles) {
             $articles->each(function ($article) {
                 if ($article->hasHeroImage()) {
-                    $article->hero_image_url = $this->generateUnsplashImageUrlFromStringId($article->hero_image);
+                    $article->hero_image_url = $this->generateUnsplashImageUrlFromId($article->hero_image);
                     $article->save();
                 }
             });
         });
     }
 
-    protected function generateUnsplashImageUrlFromStringId(string $imageId): ?string
+    protected function generateUnsplashImageUrlFromId(string $imageId): ?string
     {
         $response = Http::retry(3, 100, null, false)->withToken($this->accessKey, 'Client-ID')
             ->get("https://api.unsplash.com/photos/{$imageId}");
