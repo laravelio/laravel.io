@@ -106,7 +106,7 @@ final class Article extends Model implements Feedable
     public function heroImage($width = 400, $height = 300): string
     {
         if ($this->hero_image) {
-            return "https://source.unsplash.com/{$this->hero_image}/{$width}x{$height}";
+            return "{$this->hero_image_url}&fit=clip&w={$width}&h={$height}";
         }
 
         return asset('images/default-background.svg');
