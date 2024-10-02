@@ -46,6 +46,8 @@ final class Article extends Model implements Feedable
         'slug',
         'hero_image',
         'hero_image_url',
+        'hero_image_author_name',
+        'hero_image_author_url',
         'is_pinned',
         'view_count',
         'tweet_id',
