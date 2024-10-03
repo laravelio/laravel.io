@@ -47,11 +47,7 @@ final class SyncArticleImages extends Command
 
     protected function shouldBeSynced(Article $article): bool
     {
-        if (!$article->hero_image) {
-            return false;
-        }
-
-        if ($article->hero_image && $article->hasHeroImage()) {
+        if (!$article->hero_image || $article->hasHeroImage()) {
             return false;
         }
 
