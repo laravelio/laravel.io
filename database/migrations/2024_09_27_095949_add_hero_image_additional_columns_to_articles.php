@@ -18,19 +18,9 @@ return new class extends Migration
                 $table->string('hero_image_author_url')->nullable();
             });
         });
-    }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
         Schema::table('articles', function (Blueprint $table) {
-            $table->dropColumn([
-                'hero_image_url',
-                'hero_image_author_name',
-                'hero_image_author_url',
-            ]);
+            $table->renameColumn('hero_image', 'hero_image_id');
         });
     }
 };

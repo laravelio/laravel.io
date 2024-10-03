@@ -10,53 +10,34 @@ final class SyncArticleImages extends Command
 {
     protected $signature = 'lio:sync-article-images';
 
-    protected $description = 'Updates the Unsplash image for all articles';
-
-    protected $accessKey;
-
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->accessKey = config('services.unsplash.access_key');
-    }
+    protected $description = 'Updates the Unsplash image for all unsynced articles';
 
     public function handle(): void
     {
-        if (! $this->accessKey) {
+        if (! config('services.unsplash.access_key')) {
             $this->error('Unsplash access key must be configured');
 
             return;
         }
 
-        Article::published()->chunk(100, function ($articles) {
+        Article::unsyncedImages()->chunk(100, function ($articles) {
             $articles->each(function ($article) {
-                if ($this->checkShouldArticleBeSynced($article)) {
-                    $imageData = $this->fetchUnsplashImageDataFromId($article->hero_image_id);
+                $imageData = $this->fetchUnsplashImageDataFromId($article->hero_image_id);
 
-                    if (!is_null($imageData)) {
-                        $article->hero_image_url = $imageData['image_url'];
-                        $article->hero_image_author_name = $imageData['author_name'];
-                        $article->hero_image_author_url = $imageData['author_url'];
-                        $article->save();
-                    }
+                if (! is_null($imageData)) {
+                    $article->hero_image_url = $imageData['image_url'];
+                    $article->hero_image_author_name = $imageData['author_name'];
+                    $article->hero_image_author_url = $imageData['author_url'];
+                    $article->save();
                 }
             });
         });
     }
 
-    protected function checkShouldArticleBeSynced(Article $article): bool
-    {
-        if (!$article->hero_image_id || $article->hasHeroImage()) {
-            return false;
-        }
-
-        return true;
-    }
-
     protected function fetchUnsplashImageDataFromId(string $imageId): ?array
     {
-        $response = Http::retry(3, 100, null, false)->withToken($this->accessKey, 'Client-ID')
+        $response = Http::retry(3, 100, throw: false)
+            ->withToken(config('services.unsplash.access_key'), 'Client-ID')
             ->get("https://api.unsplash.com/photos/{$imageId}");
 
         if ($response->failed()) {

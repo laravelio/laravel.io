@@ -318,6 +318,12 @@ final class Article extends Model implements Feedable
             ->orderBy('submitted_at', 'desc');
     }
 
+    public function scopeUnsyncedImages(Builder $query): Builder
+    {
+        return $query->whereNotNull('hero_image_id')
+            ->whereNull('hero_image_url');
+    }
+
     public function shouldBeSearchable()
     {
         return $this->isPublished();
