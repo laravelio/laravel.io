@@ -3,6 +3,7 @@
 use App\Console\Commands\SyncArticleImages;
 use App\Models\Article;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
@@ -11,6 +12,8 @@ uses(DatabaseMigrations::class);
 
 
 test('hero image url and author information is updated for published articles with hero image', function () {
+    Config::set('services.unsplash.access_key', 'test');
+
     Http::fake(function () {
         return [
             'urls' => [
@@ -41,6 +44,8 @@ test('hero image url and author information is updated for published articles wi
 });
 
 test('hero image url and author information is not updated for published articles with no hero image', function () {
+    Config::set('services.unsplash.access_key', 'test');
+    
     $article = Article::factory()->create([
         'submitted_at' => now(),
         'approved_at' => now(),
