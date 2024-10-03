@@ -114,7 +114,7 @@ final class Article extends Model implements Feedable
 
     public function heroImage($width = 400, $height = 300): string
     {
-        if ($this->hero_image_url) {
+        if ($this->hasHeroImage()) {
             return "{$this->hero_image_url}&fit=clip&w={$width}&h={$height}";
         }
 
