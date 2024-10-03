@@ -31,7 +31,7 @@ final class SyncArticleImages extends Command
 
         Article::published()->chunk(100, function ($articles) {
             $articles->each(function ($article) {
-                if ($article->hasHeroImage()) {
+                if ($this->shouldBeSynced($article)) {
                     $imageData = $this->fetchUnsplashImageDataFromId($article->hero_image);
 
                     if (!is_null($imageData)) {
@@ -43,6 +43,15 @@ final class SyncArticleImages extends Command
                 }
             });
         });
+    }
+
+    protected function shouldBeSynced(Article $article): bool
+    {
+        if ($article->hero_image && ! $article->hasHeroImage()) {
+            return false;
+        }
+
+        return true;
     }
 
     protected function fetchUnsplashImageDataFromId(string $imageId): ?array

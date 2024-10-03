@@ -103,7 +103,13 @@ final class Article extends Model implements Feedable
 
     public function hasHeroImage(): bool
     {
-        return $this->hero_image !== null;
+        return $this->hero_image_url !== null;
+    }
+
+    public function hasHeroImageAuthor(): bool
+    {
+        return $this->hero_image_author_name !==  null &&
+            $this->hero_image_author_url !== null;
     }
 
     public function heroImage($width = 400, $height = 300): string
