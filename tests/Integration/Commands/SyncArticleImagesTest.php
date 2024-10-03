@@ -26,7 +26,7 @@ test('hero image url and author information is updated for published articles wi
     });
 
     $article = Article::factory()->create([
-        'hero_image' => 'sxiSod0tyYQ',
+        'hero_image_id' => 'sxiSod0tyYQ',
         'submitted_at' => now(),
         'approved_at' => now(),
     ]);

@@ -32,7 +32,7 @@ final class SyncArticleImages extends Command
         Article::published()->chunk(100, function ($articles) {
             $articles->each(function ($article) {
                 if ($this->checkShouldArticleBeSynced($article)) {
-                    $imageData = $this->fetchUnsplashImageDataFromId($article->hero_image);
+                    $imageData = $this->fetchUnsplashImageDataFromId($article->hero_image_id);
 
                     if (!is_null($imageData)) {
                         $article->hero_image_url = $imageData['image_url'];
@@ -47,7 +47,7 @@ final class SyncArticleImages extends Command
 
     protected function checkShouldArticleBeSynced(Article $article): bool
     {
-        if (!$article->hero_image || $article->hasHeroImage()) {
+        if (!$article->hero_image_id || $article->hasHeroImage()) {
             return false;
         }
 
