@@ -53,4 +53,4 @@ test('hero image url and author information is not updated for published article
     expect($article->hero_image_url)->toBe(null);
     expect($article->hero_image_author_name)->toBe(null);
     expect($article->hero_image_author_url)->toBe(null);
-})->only();
+});
