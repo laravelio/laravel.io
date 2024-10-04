@@ -3,13 +3,13 @@
 use App\Models\Article;
 use App\Models\Tag;
 use App\Models\Thread;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\HtmlString;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(DatabaseTransactions::class);
 
 function inProduction()
 {

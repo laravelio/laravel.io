@@ -14,3 +14,5 @@
 .env
 .phpunit.result.cache
 !database/schema/*.sql
+.ddev/
+.env.testing

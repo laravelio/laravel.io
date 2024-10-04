@@ -3,11 +3,11 @@
 use App\Exceptions\CannotCreateUser;
 use App\Jobs\RegisterUser;
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(DatabaseTransactions::class);
 
 test('we can create a user', function () {
     $this->dispatch(

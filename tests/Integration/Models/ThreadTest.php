@@ -5,12 +5,12 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(DatabaseTransactions::class);
 
 it('can find by slug', function () {
     Thread::factory()->create(['slug' => 'foo']);

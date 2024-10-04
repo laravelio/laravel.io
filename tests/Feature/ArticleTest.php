@@ -5,14 +5,14 @@ use App\Models\Article;
 use App\Models\Tag;
 use App\Notifications\ArticleApprovedNotification;
 use App\Notifications\ArticleSubmitted;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\HtmlString;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(DatabaseTransactions::class);
 
 test('users cannot create an article when not logged in', function () {
     $this->get('/articles/create')

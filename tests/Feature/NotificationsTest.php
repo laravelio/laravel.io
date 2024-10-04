@@ -4,7 +4,7 @@ use App\Livewire\Notifications;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Notifications\NewReplyNotification;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 use Livewire\Livewire;
@@ -13,7 +13,7 @@ use Tests\TestCase;
 use function Pest\Laravel\post;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(DatabaseTransactions::class);
 
 test('users_can_see_notifications', function () {
     $userOne = $this->createUser();

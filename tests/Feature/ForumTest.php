@@ -9,7 +9,7 @@ use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\MentionNotification;
 use App\Notifications\ThreadDeletedNotification;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\HtmlString;
@@ -17,7 +17,7 @@ use Livewire\Livewire;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(DatabaseTransactions::class);
 
 test('users can see a list of latest threads', function () {
     Thread::factory()->create(['subject' => 'The first thread']);

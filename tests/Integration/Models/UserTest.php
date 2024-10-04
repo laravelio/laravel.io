@@ -5,11 +5,11 @@ use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(DatabaseTransactions::class);
 
 it('can find by username', function () {
     $this->createUser(['username' => 'johndoe']);

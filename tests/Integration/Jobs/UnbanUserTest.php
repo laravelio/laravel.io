@@ -2,11 +2,11 @@
 
 use App\Jobs\UnbanUser;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(DatabaseTransactions::class);
 
 it('can unban a user', function () {
     $user = $this->createUser(['banned_at' => Carbon::yesterday()]);

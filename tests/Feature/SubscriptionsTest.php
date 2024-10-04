@@ -6,7 +6,7 @@ use App\Models\Subscription;
 use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\NewReplyNotification;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\HtmlString;
@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(DatabaseTransactions::class);
 uses(WithFaker::class);
 
 test('users receive notifications for new replies to threads where they are subscribed to', function () {
