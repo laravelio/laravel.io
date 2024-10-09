@@ -40,4 +40,8 @@ return [
         'token' => env('FATHOM_TOKEN'),
     ],
 
+    'unsplash' => [
+        'access_key' => env('UNSPLASH_ACCESS_KEY'),
+    ],
+
 ];

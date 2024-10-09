@@ -85,6 +85,12 @@
                         </div>
                     </div>
                 </div>
+
+                @if ($article->hasHeroImageAuthor())
+                    <p class="text-xs text-black/50 text-center mt-2">
+                        Photo by <a class="underline font-medium" href="{{ $article->hero_image_author_url }}?ref=laravel.io&utm_source=Laravel.io&utm_medium=referral" target="_blank">{{ $article->hero_image_author_name }} </a> on <a class="underline font-medium" href="https://unsplash.com/?ref=laravel.io&utm_source=Laravel.io&utm_medium=referral" target="_blank">Unsplash</a>
+                    </p>
+                @endif
             </div>
         </div>
 

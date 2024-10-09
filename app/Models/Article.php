@@ -44,7 +44,10 @@ final class Article extends Model implements Feedable
         'body',
         'original_url',
         'slug',
-        'hero_image',
+        'hero_image_id',
+        'hero_image_url',
+        'hero_image_author_name',
+        'hero_image_author_url',
         'is_pinned',
         'view_count',
         'tweet_id',
@@ -100,13 +103,19 @@ final class Article extends Model implements Feedable
 
     public function hasHeroImage(): bool
     {
-        return $this->hero_image !== null;
+        return $this->hero_image_url !== null;
+    }
+
+    public function hasHeroImageAuthor(): bool
+    {
+        return $this->hero_image_author_name !==  null &&
+            $this->hero_image_author_url !== null;
     }
 
     public function heroImage($width = 400, $height = 300): string
     {
-        if ($this->hero_image) {
-            return "https://source.unsplash.com/{$this->hero_image}/{$width}x{$height}";
+        if ($this->hasHeroImage()) {
+            return "{$this->hero_image_url}&fit=clip&w={$width}&h={$height}&utm_source=Laravel.io&utm_medium=referral";
         }
 
         return asset('images/default-background.svg');
@@ -307,6 +316,12 @@ final class Article extends Model implements Feedable
         }])
             ->orderBy('likes_relation_count', 'desc')
             ->orderBy('submitted_at', 'desc');
+    }
+
+    public function scopeUnsyncedImages(Builder $query): Builder
+    {
+        return $query->whereNotNull('hero_image_id')
+            ->whereNull('hero_image_url');
     }
 
     public function shouldBeSearchable()
