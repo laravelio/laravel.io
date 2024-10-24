@@ -51,6 +51,11 @@ final class SyncArticleImages extends Command
 
         $response = $response->json();
 
+        // Trigger as download...
+        Http::retry(3, 100, throw: false)
+            ->withToken(config('services.unsplash.access_key'), 'Client-ID')
+            ->get($response['links']['download_location']);
+
         return [
             'image_url' => $response['urls']['raw'],
             'author_name' => $response['user']['name'],
