@@ -91,6 +91,25 @@ class ThreadsController extends Controller
 
     public function store(ThreadRequest $request): RedirectResponse
     {
+        $userId = Auth::id(); // Get the authenticated user's ID
+        $midnight = now()->endOfDay();
+        $remainingSeconds = $midnight->diffInSeconds(now());
+
+        // Count the threads posted by the user today
+        $cacheKey = "user_threads_count_{$userId}";
+        $threadCount = Cache::remember($cacheKey, $remainingSeconds, function () use ($userId) {
+            return Thread::where('author_id', $userId)
+                ->where('created_at', '>=', now()->startOfDay())
+                ->count();
+        });
+
+        // Check if the user has reached the limit
+        if ($threadCount >= getenv('APP_MAX_THREAD_COUNT')) {
+            $this->error('You can only post a maximum of 5 threads per day.');
+            return redirect()->route('forum');
+        }
+
+
         $this->dispatchSync(CreateThread::fromRequest($request, $uuid = Str::uuid()));
 
         $thread = Thread::findByUuidOrFail($uuid);
