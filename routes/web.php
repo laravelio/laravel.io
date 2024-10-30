@@ -138,6 +138,8 @@ Route::prefix('admin')->name('admin')->group(function () {
     Route::put('users/{username}/unban', [UsersController::class, 'unban'])->name('.users.unban');
     Route::delete('users/{username}', [UsersController::class, 'delete'])->name('.users.delete');
 
+    Route::delete('users/{username}/threads', [UsersController::class, 'deleteThreads'])->name('.users.threads.delete');
+
     // Articles
     Route::put('articles/{article}/approve', [AdminArticlesController::class, 'approve'])->name('.articles.approve');
     Route::put('articles/{article}/disapprove', [AdminArticlesController::class, 'disapprove'])->name('.articles.disapprove');
