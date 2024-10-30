@@ -15,6 +15,7 @@ class BanRequest extends FormRequest
     {
         return [
             'reason' => 'required|string',
+            'delete_threads' => 'required|boolean',
         ];
     }
 
