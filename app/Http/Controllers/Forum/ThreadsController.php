@@ -81,30 +81,27 @@ class ThreadsController extends Controller
         return view('forum.threads.show', compact('thread', 'moderators'));
     }
 
-    public function create(): View
+    public function create()
     {
         $tags = Tag::all();
         $selectedTags = old('tags') ?: [];
+
+        $threadCount = Auth::user()->threadsCountToday();
+        if ($threadCount >= 5) {
+            $this->error('You can only post a maximum of 5 threads per day.');
+            return redirect()->route('forum');
+        }
 
         return view('forum.threads.create', ['tags' => $tags, 'selectedTags' => $selectedTags]);
     }
 
     public function store(ThreadRequest $request): RedirectResponse
     {
-        $userId = Auth::id(); // Get the authenticated user's ID
-        $midnight = now()->endOfDay();
-        $remainingSeconds = $midnight->diffInSeconds(now());
 
-        // Count the threads posted by the user today
-        $cacheKey = "user_threads_count_{$userId}";
-        $threadCount = Cache::remember($cacheKey, $remainingSeconds, function () use ($userId) {
-            return Thread::where('author_id', $userId)
-                ->where('created_at', '>=', now()->startOfDay())
-                ->count();
-        });
+        $threadCount = Auth::user()->threadsCountToday();
 
         // Check if the user has reached the limit
-        if ($threadCount >= getenv('APP_MAX_THREAD_COUNT')) {
+        if ($threadCount >= 5) {
             $this->error('You can only post a maximum of 5 threads per day.');
             return redirect()->route('forum');
         }

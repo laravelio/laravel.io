@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Concerns\HasTimestamps;
 use App\Concerns\PreparesSearch;
 use App\Enums\NotificationType;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -194,6 +195,14 @@ final class User extends Authenticatable implements MustVerifyEmail
     public function countThreads(): int
     {
         return $this->threadsRelation()->count();
+    }
+
+
+    public function threadsCountToday(): int
+    {
+        return $this->threadsRelation()
+            ->whereDate('created_at', Carbon::today())
+            ->count();
     }
 
     /**
