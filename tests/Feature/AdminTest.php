@@ -41,10 +41,22 @@ test('admins can ban a user', function () {
     assertCanBanUsers();
 });
 
+test('admins can ban a user and delete their threads', function () {
+    $this->loginAsAdmin();
+
+    assertCanBanUsersAndDeleteThreads();
+});
+
 test('moderators can ban a user', function () {
     $this->loginAsModerator();
 
     assertCanBanUsers();
+});
+
+test('moderators can ban a user and delete their threads', function () {
+    $this->loginAsModerator();
+
+    assertCanBanUsersAndDeleteThreads();
 });
 
 test('admins can unban a user', function () {
@@ -366,11 +378,23 @@ function assertCanBanUsers()
 {
     $user = User::factory()->create(['name' => 'Freek Murze']);
 
-    test()->put('/admin/users/'.$user->username().'/ban', ['reason' => 'A good reason'])
+    test()->put('/admin/users/'.$user->username().'/ban', ['reason' => 'A good reason', 'delete_threads' => false])
         ->assertRedirect('/user/'.$user->username());
 
     test()->assertDatabaseMissing('users', ['id' => $user->id(), 'banned_at' => null]);
     test()->assertDatabaseHas('users', ['id' => $user->id(), 'banned_reason' => 'A good reason']);
+}
+
+function assertCanBanUsersAndDeleteThreads()
+{
+    $user = User::factory()->create(['name' => 'Freek Murze']);
+
+    test()->put('/admin/users/'.$user->username().'/ban', ['reason' => 'A good reason', 'delete_threads' => true])
+        ->assertRedirect('/user/'.$user->username());
+
+    test()->assertDatabaseMissing('users', ['id' => $user->id(), 'banned_at' => null]);
+    test()->assertDatabaseHas('users', ['id' => $user->id(), 'banned_reason' => 'A good reason']);
+    test()->assertDatabaseMissing('threads', ['author_id' => $user->id()]);
 }
 
 function assertCanUnbanUsers()
@@ -397,6 +421,6 @@ function assertCannotBanUsersByType(int $type)
 {
     $user = User::factory()->create(['type' => $type]);
 
-    test()->put('/admin/users/'.$user->username().'/ban', ['reason' => 'A good reason'])
+    test()->put('/admin/users/'.$user->username().'/ban', ['reason' => 'A good reason', 'delete_threads' => fake()->boolean()])
         ->assertForbidden();
 }
