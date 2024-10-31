@@ -23,7 +23,7 @@
         <env name="AUTH_PASSWORD_RESET_TOKEN_TABLE" value="password_resets"/>
         <env name="CACHE_STORE" value="array"/>
         <env name="DB_CONNECTION" value="mysql"/>
-        <env name="DB_DATABASE" value="testing"/>
+        <env name="DB_DATABASE" value="laravelio_testing"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
@@ -32,5 +32,6 @@
         <env name="TELEGRAM_CHANNEL" value="null"/>
         <env name="FATHOM_SITE_ID" value="1234"/>
         <env name="FATHOM_TOKEN" value="5678"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
     </php>
 </phpunit>
