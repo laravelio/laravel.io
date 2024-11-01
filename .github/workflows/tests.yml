@@ -37,7 +37,7 @@ jobs:
         run: npm run build
 
       - name: Execute tests
-        run: vendor/bin/pest
+        run: vendor/bin/pest -p
         env:
           DB_CONNECTION: mysql
           DB_COLLATION: utf8mb4_unicode_ci

@@ -1,0 +1,5 @@
+integrations:
+  forge:
+    laravel.io:
+      server-id: 537422
+      site-id: 1574327

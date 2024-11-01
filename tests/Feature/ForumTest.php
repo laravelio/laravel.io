@@ -83,6 +83,22 @@ test('users can create a thread', function () {
         ->assertSessionHas('success', 'Thread successfully created!');
 });
 
+test('users cannot create more than 5 threads per day', function () {
+    $tag = Tag::factory()->create(['name' => 'Test Tag']);
+
+    $user = $this->login();
+
+    Thread::factory()->count(5)->create(['author_id' => $user->id(), 'created_at' => now()]);
+
+    $this->post('/forum/create-thread', [
+        'subject' => 'How to work with Eloquent?',
+        'body' => 'This text explains how to work with Eloquent.',
+        'tags' => [$tag->id()],
+    ])
+        ->assertRedirect('/forum')
+        ->assertSessionHas('error', 'You can only post a maximum of 5 threads per day.');
+})->only();
+
 test('users can edit a thread', function () {
     $user = $this->createUser();
     $tag = Tag::factory()->create(['name' => 'Test Tag']);

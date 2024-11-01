@@ -27,7 +27,6 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Skynet Technologies](https://www.skynettechnologies.com/hire-laravel-developer)
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
 - [Remotely Works](https://www.remotely.works/sponsoring-open-source-projects)
-- [Zunction](https://zunction.io)
 - [Dotcom-monitor](https://www.dotcom-monitor.com/sponsoring-open-source-projects/)
 
 ## Requirements
