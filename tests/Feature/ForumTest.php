@@ -97,7 +97,7 @@ test('users cannot create more than 5 threads per day', function () {
     ])
         ->assertRedirect('/forum')
         ->assertSessionHas('error', 'You can only post a maximum of 5 threads per day.');
-})->only();
+});
 
 test('users can edit a thread', function () {
     $user = $this->createUser();
