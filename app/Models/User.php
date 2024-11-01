@@ -197,12 +197,18 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->threadsRelation()->count();
     }
 
-
-    public function threadsCountToday(): int
+    public function countThreadsFromToday(): int
     {
+        $today = Carbon::today();
+
         return $this->threadsRelation()
-            ->whereDate('created_at', Carbon::today())
+            ->whereBetween('created_at', [$today, $today->copy()->endOfDay()])
             ->count();
+    }
+
+    public function hasTooManyThreadsToday(): bool
+    {
+        return $this->countThreadsFromToday() >= 5;
     }
 
     /**
