@@ -10,7 +10,6 @@ use Tests\TestCase;
 uses(TestCase::class);
 uses(DatabaseMigrations::class);
 
-
 test('hero image url and author information is updated for published articles with hero image', function () {
     Config::set('services.unsplash.access_key', 'test');
 
