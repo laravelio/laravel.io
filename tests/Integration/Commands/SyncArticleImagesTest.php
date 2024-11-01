@@ -15,6 +15,9 @@ test('hero image url and author information is updated for published articles wi
 
     Http::fake(function () {
         return [
+            'links' => [
+                'download_location' => 'https://example.com',
+            ],
             'urls' => [
                 'raw' => 'https://images.unsplash.com/photo-1584824486509-112e4181ff6b?ixid=M3w2NTgwOTl8MHwxfGFsbHx8fHx8fHx8fDE3Mjc2ODMzMzZ8&ixlib=rb-4.0.3',
             ],
