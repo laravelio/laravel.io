@@ -28,14 +28,8 @@ final class SyncArticleImages extends Command
                     $article->hero_image_url = $imageData['image_url'];
                     $article->hero_image_author_name = $imageData['author_name'];
                     $article->hero_image_author_url = $imageData['author_url'];
-                } else {
-                    $article->hero_image_id = null;
-                    $article->hero_image_url = null;
-                    $article->hero_image_author_name = null;
-                    $article->hero_image_author_url = null;
+                    $article->save();
                 }
-
-                $article->save();
             });
         });
     }
