@@ -81,7 +81,7 @@ class ThreadsController extends Controller
         return view('forum.threads.show', compact('thread', 'moderators'));
     }
 
-    public function create()
+    public function create(): RedirectResponse|View
     {
         if (Auth::user()->hasTooManyThreadsToday()) {
             $this->error('You can only post a maximum of 5 threads per day.');
