@@ -7,6 +7,7 @@ use App\Http\Middleware\VerifyAdmins;
 use App\Http\Requests\BanRequest;
 use App\Jobs\BanUser;
 use App\Jobs\DeleteUser;
+use App\Jobs\DeleteUserThreads;
 use App\Jobs\UnbanUser;
 use App\Models\User;
 use App\Policies\UserPolicy;
@@ -39,6 +40,10 @@ class UsersController extends Controller
 
         $this->dispatchSync(new BanUser($user, $request->get('reason')));
 
+        if ($request->get('delete_threads')) {
+            $this->dispatchSync(new DeleteUserThreads($user));
+        }
+
         $this->success($user->name().' was banned!');
 
         return redirect()->route('profile', $user->username());
@@ -65,4 +70,17 @@ class UsersController extends Controller
 
         return redirect()->route('admin.users');
     }
+
+    public function deleteThreads(User $user): RedirectResponse
+    {
+        $this->authorize(UserPolicy::DELETE, $user);
+
+        $this->dispatchSync(new DeleteUserThreads($user));
+
+        $this->success($user->name().' threads were deleted!');
+
+        return redirect()->route('admin.users');
+    }
+
+    
 }

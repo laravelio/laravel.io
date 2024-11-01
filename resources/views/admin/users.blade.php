@@ -68,7 +68,7 @@
                                             {{ $user->createdAt()->format('j M Y H:i:s') }}
                                         </x-tables.table-data>
 
-                                        <x-tables.table-data class="text-center w-10">
+                                        <x-tables.table-data class="text-center w-32">
                                             <a href="{{ route('profile', $user->username()) }}" class="text-lio-600 hover:text-lio-800">
                                                 <x-heroicon-o-user-circle class="w-5 h-5 inline" />
                                             </a>
@@ -80,6 +80,14 @@
 
                                                 <x-modal identifier="deleteUser{{ $user->getKey() }}" :action="route('admin.users.delete', $user->username())" title="Delete {{ $user->username() }}">
                                                     <p>Deleting this user will remove their account and any related content like threads & replies. This cannot be undone.</p>
+                                                </x-modal>
+
+                                                <button title="Delete {{ $user->name() }} threads." @click="activeModal = 'deleteUserThreads{{ $user->getKey() }}'" class="text-red-600 hover:text-red-800">
+                                                    <x-heroicon-o-chat-bubble-oval-left class="w-5 h-5 inline" />
+                                                </button>
+
+                                                <x-modal identifier="deleteUserThreads{{ $user->getKey() }}" :action="route('admin.users.threads.delete', $user->username())" title="Delete {{ $user->username() }} threads">
+                                                    <p>All the threads from this user will be deleted. This cannot be undone.</p>
                                                 </x-modal>
                                             @endcan
                                         </x-tables.table-data>
