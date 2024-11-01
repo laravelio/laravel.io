@@ -59,7 +59,7 @@ final class SyncArticleImages extends Command
         return [
             'image_url' => $response['urls']['raw'],
             'author_name' => $response['user']['name'],
-            'author_url' => $response['user']['links']['html']
+            'author_url' => $response['user']['links']['html'],
         ];
     }
 }

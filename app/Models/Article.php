@@ -108,7 +108,7 @@ final class Article extends Model implements Feedable
 
     public function hasHeroImageAuthor(): bool
     {
-        return $this->hero_image_author_name !==  null &&
+        return $this->hero_image_author_name !== null &&
             $this->hero_image_author_url !== null;
     }
 

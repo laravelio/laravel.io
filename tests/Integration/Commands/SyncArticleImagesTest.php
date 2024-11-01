@@ -16,13 +16,13 @@ test('hero image url and author information is updated for published articles wi
     Http::fake(function () {
         return [
             'urls' => [
-                'raw' => 'https://images.unsplash.com/photo-1584824486509-112e4181ff6b?ixid=M3w2NTgwOTl8MHwxfGFsbHx8fHx8fHx8fDE3Mjc2ODMzMzZ8&ixlib=rb-4.0.3'
+                'raw' => 'https://images.unsplash.com/photo-1584824486509-112e4181ff6b?ixid=M3w2NTgwOTl8MHwxfGFsbHx8fHx8fHx8fDE3Mjc2ODMzMzZ8&ixlib=rb-4.0.3',
             ],
             'user' => [
                 'name' => 'Erik Mclean',
                 'links' => [
                     'html' => 'https://unsplash.com/@introspectivedsgn',
-                ]
+                ],
             ],
         ];
     });
@@ -44,7 +44,7 @@ test('hero image url and author information is updated for published articles wi
 
 test('hero image url and author information is not updated for published articles with no hero image', function () {
     Config::set('services.unsplash.access_key', 'test');
-    
+
     $article = Article::factory()->create([
         'submitted_at' => now(),
         'approved_at' => now(),
