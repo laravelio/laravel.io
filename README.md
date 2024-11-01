@@ -125,6 +125,20 @@ FATHOM_SITE_ID=
 FATHOM_TOKEN=
 ```
 
+### Unsplash (optional)
+
+To make sure article and user header images get synced into the database we'll need to setup an access key from [Unsplash](https://unsplash.com/developers). Please note that your Unsplash app requires production access.
+
+```
+UNSPLASH_ACCESS_KEY=
+```
+
+After that you can add an Unsplash photo ID to any article row in the `hero_image_id` column and run the sync command to fetch the image url and author data:
+
+```bash
+php artisan lio:sync-article-images
+```
+
 ## Commands
 
 Command | Description
