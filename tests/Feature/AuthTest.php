@@ -6,6 +6,7 @@ use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\HtmlString;
 use Tests\TestCase;
@@ -210,6 +211,10 @@ test('users cannot reset their password when it has been compromised in data lea
 
     // Insert a password reset token into the database.
     $token = $this->app[PasswordBroker::class]->getRepository()->create($user);
+
+    // Http::fake([
+    //     'api.pwnedpasswords.com/*' => Http::response('password:3600895'),
+    // ]);
 
     $response = $this->post('/password/reset', [
         'token' => $token,

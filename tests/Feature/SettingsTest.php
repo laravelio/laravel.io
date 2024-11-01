@@ -5,6 +5,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 uses(TestCase::class);
@@ -108,6 +109,10 @@ test('current password is required when updating your password', function () {
 
 test('users cannot update their password when it has been compromised in data leaks', function () {
     $user = $this->login();
+
+    // Http::fake([
+    //     'api.pwnedpasswords.com/*' => Http::response('newpassword:3600895'),
+    // ]);
 
     $response = $this->actingAs($user)
         ->put('settings/password', [
