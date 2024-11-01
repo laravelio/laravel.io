@@ -32,5 +32,6 @@
         <env name="TELEGRAM_CHANNEL" value="null"/>
         <env name="FATHOM_SITE_ID" value="1234"/>
         <env name="FATHOM_TOKEN" value="5678"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
     </php>
 </phpunit>
