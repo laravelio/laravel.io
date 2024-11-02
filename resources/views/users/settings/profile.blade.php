@@ -85,12 +85,12 @@
                     </div>
 
                     <div class="col-span-12 sm:col-span-6">
-                        <x-forms.label for="twitter">Twitter handle</x-forms.label>
+                        <x-forms.label for="twitter">X (Twitter) handle</x-forms.label>
 
                         <x-forms.inputs.input name="twitter" :value="Auth::user()->twitter()" prefix-icon="heroicon-o-at-symbol" class="nav-search" />
 
                         <span class="mt-2 text-sm text-gray-500">
-                            Enter your Twitter handle without the leading @ symbol
+                            Enter your X (Twitter) handle without the leading @ symbol
                         </span>
                     </div>
                 </div>

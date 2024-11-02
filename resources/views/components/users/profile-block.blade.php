@@ -23,7 +23,7 @@
             @endif
 
             @if ($user->hasTwitterAccount())
-                <a href="https://twitter.com/{{ $user->twitter() }}" class="text-twitter">
+                <a href="https://x.com/{{ $user->twitter() }}" class="text-twitter">
                     <x-si-x class="w-6 h-6" />
                 </a>
             @endif
