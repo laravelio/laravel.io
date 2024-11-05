@@ -46,6 +46,10 @@
             <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://www.dotcom-monitor.com/sponsoring-open-source-projects/" logo="{{ asset('images/sponsors/dotcom-monitor.png') }}" company="Dotcom-monitor" />
             </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo url="https://www.n-ix.com/" logo="{{ asset('images/sponsors/n-ix.png') }}" company="N-iX" />
+            </div>
         </div>
 
         <x-ads.cta primary class="mt-8 md:mt-12">
