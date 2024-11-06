@@ -4,7 +4,7 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
-      day: wednesday
+      day: friday
     groups:
       php-dependencies:
         update-types:
@@ -18,7 +18,7 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
-      day: wednesday
+      day: friday
     groups:
       js-dependencies:
         update-types:
