@@ -26,8 +26,8 @@
                          src="{{ $article->heroImage(2000,384) }}"
                          alt="Article Hero Image"
                          onerror="
-                            this.onerror=null;
-                            this.src='images/default-background.svg';"
+                            this.onerror=null
+                            this.src='{{ asset('images/default-background.svg') }}'"
                     >
                     <div class="flex items-center justify-between mb-28 text-sm lg:text-base">
                         <a href="{{ route('articles') }}" class="flex items-center text-white hover:underline">

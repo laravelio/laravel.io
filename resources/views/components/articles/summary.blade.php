@@ -12,7 +12,7 @@
                      alt="Article Hero Image"
                      onerror="
                         this.onerror=null;
-                        this.src='images/default-background.svg';"
+                        this.src='{{ asset('images/default-background.svg') }}'"
                 >
             </a>
         @endif
