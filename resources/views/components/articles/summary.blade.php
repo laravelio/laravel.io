@@ -11,8 +11,8 @@
                      src="{{ $article->heroImage() }}"
                      alt="Example image"
                      onerror="
-                          this.onerror=null;
-                          this.src='images/default-background.svg';
+                        this.onerror=null;
+                        this.src='images/default-background.svg';"
                 >
             </a>
         @endif
