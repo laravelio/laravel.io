@@ -13,7 +13,6 @@
                      onerror="
                           this.onerror=null;
                           this.src='images/default-background.svg';
-                          this.classList.add('image-error');"
                 >
             </a>
         @endif
