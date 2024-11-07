@@ -24,10 +24,10 @@
                     <img class="absolute w-full h-full left-0 top-0 object-cover -z-10"
                          style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4))"
                          src="{{ $article->heroImage(2000,384) }}"
-                         alt="Example image"
+                         alt="Article Hero Image"
                          onerror="
-                        this.onerror=null;
-                        this.src='images/default-background.svg';"
+                            this.onerror=null;
+                            this.src='images/default-background.svg';"
                     >
                     <div class="flex items-center justify-between mb-28 text-sm lg:text-base">
                         <a href="{{ route('articles') }}" class="flex items-center text-white hover:underline">

@@ -9,7 +9,7 @@
             <a href="{{ route('articles.show', $article->slug()) }}">
                 <img class="w-full h-72 mb-6 rounded-lg bg-center bg-gray-800"
                      src="{{ $article->heroImage() }}"
-                     alt="Example image"
+                     alt="Article Hero Image"
                      onerror="
                         this.onerror=null;
                         this.src='images/default-background.svg';"
