@@ -5,11 +5,13 @@
 <div class="h-full rounded-lg shadow-lg bg-white">
     <div class="flex flex-col h-full gap-x-8">
         <a href="{{ route('articles.show', $article->slug()) }}" class="block">
-            <div
-                class="w-full h-32 rounded-t-lg bg-center {{ $article->hasHeroImage() ? 'bg-cover' : '' }} bg-gray-800 lg:h-40"
-                style="background-image: url({{ $article->heroImage() }});"
+            <img class="w-full h-32 rounded-t-lg bg-center bg-gray-800 lg:h-40 object-cover"
+                 src="{{ $article->heroImage() }}"
+                 alt="Article Hero Image"
+                 onerror="
+                    this.onerror=null;
+                    this.src='{{ asset('images/default-background.svg') }}'"
             >
-            </div>
         </a>
 
         <div class="flex flex-col h-full gap-y-3 p-4">
