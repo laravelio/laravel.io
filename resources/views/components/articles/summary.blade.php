@@ -7,7 +7,7 @@
     <div class="break-words">
         @if ($isFeatured)
             <a href="{{ route('articles.show', $article->slug()) }}">
-                <img class="w-full h-72 mb-6 rounded-lg bg-center bg-gray-800"
+                <img class="w-full h-72 mb-6 rounded-lg bg-center bg-gray-800 object-cover"
                      src="{{ $article->heroImage() }}"
                      alt="Article Hero Image"
                      onerror="
