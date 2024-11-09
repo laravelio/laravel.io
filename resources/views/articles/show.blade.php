@@ -21,14 +21,16 @@
         <div class="container mx-auto">
             <div class="px-4 lg:px-0 lg:mx-48">
                 <div class="relative w-full bg-center bg-gray-800 p-6 lg:p-8 z-10">
-                    <img class="absolute w-full h-full left-0 top-0 object-cover -z-10"
-                         style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4))"
-                         src="{{ $article->heroImage(2000,384) }}"
-                         alt="Article Hero Image"
-                         onerror="
-                            this.onerror=null
-                            this.src='{{ asset('images/default-background.svg') }}'"
-                    >
+                    <div class="-z-10">
+                        <img class="absolute w-full h-full left-0 top-0 object-cover"
+                             src="{{ $article->heroImage(2000,384) }}"
+                             alt="Article Hero Image"
+                             onerror="
+                                this.onerror=null
+                                this.src='{{ asset('images/default-background.svg') }}'"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/40"></div>
+                    </div>
                     <div class="flex items-center justify-between mb-28 text-sm lg:text-base">
                         <a href="{{ route('articles') }}" class="flex items-center text-white hover:underline">
                             <x-heroicon-s-arrow-left class="w-4 h-4 fill-current" />
