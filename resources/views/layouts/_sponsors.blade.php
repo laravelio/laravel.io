@@ -40,10 +40,6 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://www.remotely.works/sponsoring-open-source-projects" logo="{{ asset('images/sponsors/remotely.png') }}" company="Remotely Works" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://www.dotcom-monitor.com/sponsoring-open-source-projects/" logo="{{ asset('images/sponsors/dotcom-monitor.png') }}" company="Dotcom-monitor" />
             </div>
 
