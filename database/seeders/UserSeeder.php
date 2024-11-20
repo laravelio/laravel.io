@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
                             [
                                 'submitted_at' => now(),
                                 'approved_at' => now(),
-                                'hero_image' => 'sxiSod0tyYQ',
+                                'hero_image_id' => 'sxiSod0tyYQ',
                             ],
                             ['submitted_at' => now(), 'approved_at' => now()],
                             ['submitted_at' => now()],

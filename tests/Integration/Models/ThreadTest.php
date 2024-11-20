@@ -88,7 +88,7 @@ it('bumps threads when a reply is added', function () {
     $threadFromToday = createThreadFromToday();
     $threadFromTwoDaysAgo = createThreadFromTwoDaysAgo();
 
-    sleep(1);
+    $this->travelTo(Carbon::now()->addSecond());
 
     dispatch_sync(new CreateReply(Str::uuid(), 'Hello world', User::factory()->create(), $threadFromTwoDaysAgo));
 

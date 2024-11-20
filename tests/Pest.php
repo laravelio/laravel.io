@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -12,6 +14,10 @@
 */
 
 /** @link https://pestphp.com/docs/underlying-test-case */
+
+// pest()->beforeEach(function () {
+//     Http::preventStrayRequests();
+// })->in('Feature', 'Integration');
 
 /*
 |--------------------------------------------------------------------------

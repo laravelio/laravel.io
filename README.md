@@ -26,8 +26,8 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Tinkerwell](https://tinkerwell.app)
 - [Skynet Technologies](https://www.skynettechnologies.com/hire-laravel-developer)
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
-- [Remotely Works](https://www.remotely.works/sponsoring-open-source-projects)
 - [Dotcom-monitor](https://www.dotcom-monitor.com/sponsoring-open-source-projects/)
+- [N-iX](https://www.n-ix.com/)
 
 ## Requirements
 
@@ -123,6 +123,20 @@ To enable view counts on articles, you'll need to register a [Fathom Analytics](
 ```
 FATHOM_SITE_ID=
 FATHOM_TOKEN=
+```
+
+### Unsplash (optional)
+
+To make sure article and user header images get synced into the database we'll need to setup an access key from [Unsplash](https://unsplash.com/developers). Please note that your Unsplash app requires production access.
+
+```
+UNSPLASH_ACCESS_KEY=
+```
+
+After that you can add an Unsplash photo ID to any article row in the `hero_image_id` column and run the sync command to fetch the image url and author data:
+
+```bash
+php artisan lio:sync-article-images
 ```
 
 ## Commands

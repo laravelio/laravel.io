@@ -81,8 +81,14 @@ class ThreadsController extends Controller
         return view('forum.threads.show', compact('thread', 'moderators'));
     }
 
-    public function create(): View
+    public function create(): RedirectResponse|View
     {
+        if (Auth::user()->hasTooManyThreadsToday()) {
+            $this->error('You can only post a maximum of 5 threads per day.');
+
+            return redirect()->route('forum');
+        }
+
         $tags = Tag::all();
         $selectedTags = old('tags') ?: [];
 
@@ -91,6 +97,12 @@ class ThreadsController extends Controller
 
     public function store(ThreadRequest $request): RedirectResponse
     {
+        if (Auth::user()->hasTooManyThreadsToday()) {
+            $this->error('You can only post a maximum of 5 threads per day.');
+
+            return redirect()->route('forum');
+        }
+
         $this->dispatchSync(CreateThread::fromRequest($request, $uuid = Str::uuid()));
 
         $thread = Thread::findByUuidOrFail($uuid);
