@@ -238,8 +238,11 @@
                 type="update"
             >
                 <p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>
-                <div class="mt-4">
+                <div class="mt-4 space-y-4">
                     <x-forms.inputs.textarea name="reason" placeholder="Provide a reason for banning this user..." required />
+                    <x-forms.inputs.checkbox name="delete_threads" id="delete_threads">
+                        Delete threads
+                    </x-forms.inputs.checkbox>
                 </div>
             </x-modal>
         @endif
