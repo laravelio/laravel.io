@@ -40,7 +40,7 @@ class UsersController extends Controller
 
         $this->dispatchSync(new BanUser($user, $request->get('reason')));
 
-        if ($request->get('delete_threads')) {
+        if ($request->willDeleteThreads()) {
             $this->dispatchSync(new DeleteUserThreads($user));
         }
 
@@ -81,6 +81,4 @@ class UsersController extends Controller
 
         return redirect()->route('admin.users');
     }
-
-    
 }
