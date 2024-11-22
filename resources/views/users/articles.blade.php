@@ -22,7 +22,7 @@
     <div class="container mx-auto px-4 py-8">
         @unless(Auth::user()->hasTwitterAccount())
             <x-primary-info-panel icon="heroicon-s-information-circle">
-                Set your <a href="{{ route('settings.profile') }}" class="underline">Twitter handle</a> so we can link to your profile when we tweet out your article.
+                Set your <a href="{{ route('settings.profile') }}" class="underline">X (Twitter) handle</a> so we can link to your profile when we tweet out your article.
             </x-primary-info-panel>
         @endunless
 

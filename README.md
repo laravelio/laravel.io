@@ -93,9 +93,9 @@ New threads will be automatically added to the index and threads which get updat
 php artisan scout:flush App\\Models\\Thread
 ```
 
-### Twitter Sharing (optional)
+### X (Twitter) Sharing (optional)
 
-To enable published articles to be automatically shared on Twitter, you'll need to [create a Twitter app](https://developer.twitter.com/apps/). Once the app has been created, update the below variables in your `.env` file. The consumer key and secret and access token and secret can be found in the `Keys and tokens` section of the Twitter developers UI.
+To enable published articles to be automatically shared on X, you'll need to [create an app](https://developer.x.com/apps/). Once the app has been created, update the below variables in your `.env` file. The consumer key and secret and access token and secret can be found in the `Keys and tokens` section of the X developers UI.
 
 ```
 TWITTER_CONSUMER_KEY=

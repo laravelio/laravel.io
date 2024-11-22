@@ -25,7 +25,7 @@
             </x-info>
 
             <x-info class="mt-4">
-                Every article that gets approved will be shared with our 50.000 users and wil be tweeted out on our <a href="https://twitter.com/laravelio" class="text-lio-700 underline">Twitter account</a> which has over 50,000 followers. Feel free to submit as many articles as you like. You can even cross-reference an article on your blog with the original url.
+                Every article that gets approved will be shared with our 50.000 users and wil be tweeted out on our <a href="https://x.com/laravelio" class="text-lio-700 underline">X (Twitter) account</a> which has over 50,000 followers. Feel free to submit as many articles as you like. You can even cross-reference an article on your blog with the original url.
             </x-info>
 
             <x-info class="mt-4">
@@ -38,7 +38,7 @@
         <div class="flex flex-col space-y-6">
             <div class="grow space-y-6">
                 <div class="space-y-1">
-                    <x-forms.label for="title">Title</x-forms.label>
+                    <x-forms.label for="title" />
 
                     <x-forms.inputs.input name="title" :value="old('title', $article?->title())" required maxlength="100" />
 
@@ -50,7 +50,7 @@
 
             <div class="grow space-y-6">
                 <div class="space-y-1">
-                    <x-forms.label for="body">Body</x-forms.label>
+                    <x-forms.label for="body" />
 
                     <livewire:editor :body="$article?->body()"/>
 
@@ -73,7 +73,7 @@
 
                 <div class="grow space-y-6">
                     <div class="space-y-1">
-                        <x-forms.label for="tags">Tags</x-forms.label>
+                        <x-forms.label for="tags" />
 
                         <select name="tags[]" id="create-article" multiple x-data="{}" x-init="$nextTick(function () { choices($el) })">
                             @foreach ($tags as $tag)
@@ -148,9 +148,8 @@
 
             @unless (Auth::user()->twitter())
                 <span class="text-gray-600 text-sm mt-4 block">
-                    Articles will be shared on Twitter.
-                    <a href="{{ route('settings.profile') }}" class="text-green-darker">Add your Twitter handle</a>
-                    and we'll include that too.
+                    Articles will be shared on X (Twitter).
+                    <a href="{{ route('settings.profile') }}" class="text-green-darker">Add your X (Twitter) handle</a> and we'll include that too.
                 </span>
             @endunless
         </div>

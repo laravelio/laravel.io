@@ -158,7 +158,7 @@
                                 @endif
 
                                 @if ($article->author()->hasTwitterAccount())
-                                    <a href="https://twitter.com/{{ $article->author()->twitter() }}" class="text-twitter">
+                                    <a href="https://x.com/{{ $article->author()->twitter() }}" class="text-twitter">
                                         <x-si-x class="w-6 h-6" />
                                     </a>
                                 @endif
