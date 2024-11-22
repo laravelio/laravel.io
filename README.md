@@ -24,7 +24,6 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Envoyer](https://envoyer.io)
 - [Fathom](https://usefathom.com)
 - [Tinkerwell](https://tinkerwell.app)
-- [Skynet Technologies](https://www.skynettechnologies.com/hire-laravel-developer)
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
 - [Dotcom-monitor](https://www.dotcom-monitor.com/sponsoring-open-source-projects/)
 - [N-iX](https://www.n-ix.com/)
