@@ -489,7 +489,7 @@ test('user see a tip if they have not set the twitter handle', function () {
     $this->login(['twitter' => null]);
 
     $this->get('/articles/authored')
-        ->assertSeeText('Twitter handle', '<a>')
+        ->assertSeeText('X (Twitter) handle', '<a>')
         ->assertSee('so we can link to your profile when we tweet out your article.');
 });
 
@@ -497,7 +497,7 @@ test('user do not see tip if they have set the twitter handle', function () {
     $this->login();
 
     $this->get('/articles/authored')
-        ->assertDontSeeText('Twitter handle', '<a>')
+        ->assertDontSeeText('X (Twitter) handle', '<a>')
         ->assertDontSee('so we can link to your profile when we tweet out your article.');
 });
 
