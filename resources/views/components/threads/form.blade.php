@@ -32,7 +32,7 @@
         <div class="flex flex-col space-y-6">
             <div class="grow space-y-6">
                 <div class="space-y-1">
-                    <x-forms.label for="subject"/>
+                    <x-forms.label for="subject" />
 
                     <x-forms.inputs.input name="subject" :value="$thread?->subject()" required maxlength="60" />
 
@@ -44,9 +44,7 @@
 
             <div class="grow space-y-6">
                 <div class="space-y-1">
-                    <x-forms.label for="tags">
-                        Tags
-                    </x-forms.label>
+                    <x-forms.label for="tags" />
 
                     <select name="tags[]" id="create-thread" multiple x-data="{}" x-init="$nextTick(function () { choices($el) })">
                         @foreach($tags as $tag)
@@ -58,7 +56,9 @@
 
             <div class="grow space-y-6">
                 <div class="space-y-1">
-                    <x-forms.label for="body">Compose your question</x-forms.label>
+                    <x-forms.label for="body">
+                        Compose your question
+                    </x-forms.label>
 
                     <livewire:editor
                         :body="$thread?->body()"

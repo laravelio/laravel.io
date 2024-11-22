@@ -16,13 +16,13 @@
                 <div class="flex flex-col space-y-6 lg:flex-row lg:space-y-0 lg:space-x-6">
                     <div class="grow space-y-6">
                         <div class="space-y-1">
-                            <x-forms.label for="name"/>
+                            <x-forms.label for="name" />
 
                             <x-forms.inputs.input name="name" :value="Auth::user()->name()" required />
                         </div>
 
                         <div class="space-y-1">
-                            <x-forms.label for="bio"/>
+                            <x-forms.label for="bio" />
 
                             <x-forms.inputs.textarea name="bio" maxlength="160">
                                 {{ Auth::user()->bio() }}
@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="col-span-12 sm:col-span-6">
-                        <x-forms.label for="website">Website</x-forms.label>
+                        <x-forms.label for="website" />
 
                         <x-forms.inputs.input name="website" :value="Auth::user()->website()" prefix-icon="heroicon-o-globe-alt" />
                     </div>

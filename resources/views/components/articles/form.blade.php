@@ -38,7 +38,7 @@
         <div class="flex flex-col space-y-6">
             <div class="grow space-y-6">
                 <div class="space-y-1">
-                    <x-forms.label for="title">Title</x-forms.label>
+                    <x-forms.label for="title" />
 
                     <x-forms.inputs.input name="title" :value="old('title', $article?->title())" required maxlength="100" />
 
@@ -50,7 +50,7 @@
 
             <div class="grow space-y-6">
                 <div class="space-y-1">
-                    <x-forms.label for="body">Body</x-forms.label>
+                    <x-forms.label for="body" />
 
                     <livewire:editor :body="$article?->body()"/>
 
@@ -73,7 +73,7 @@
 
                 <div class="grow space-y-6">
                     <div class="space-y-1">
-                        <x-forms.label for="tags">Tags</x-forms.label>
+                        <x-forms.label for="tags" />
 
                         <select name="tags[]" id="create-article" multiple x-data="{}" x-init="$nextTick(function () { choices($el) })">
                             @foreach ($tags as $tag)

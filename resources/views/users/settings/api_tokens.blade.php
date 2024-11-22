@@ -39,7 +39,7 @@
 
             <div>
                 <div class="col-span-12">
-                    <x-forms.label for="token_name">Token name</x-forms.label>
+                    <x-forms.label for="token_name" />
 
                     <x-forms.inputs.input name="token_name" form="api_token_settings_form" required />
                 </div>
