@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Article;
+use Illuminate\Http\Response;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
@@ -24,7 +25,7 @@ final class GenerateSocialShareImage
 
     public function __construct(private Article $article) {}
 
-    public function handle(): mixed
+    public function handle(): Response
     {
         $image = new ImageManager(new Driver);
         $text = wordwrap($this->article->title(), self::CHARACTERS_PER_LINE);
