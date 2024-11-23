@@ -32,15 +32,7 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://www.skynettechnologies.com/hire-laravel-developer" logo="{{ asset('images/sponsors/skynet-technologies.jpg') }}" company="Skynet Technologies" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
                 <x-sponsor-logo url="https://www.bairesdev.com/sponsoring-open-source-projects/" logo="{{ asset('images/sponsors/bairesdev.png') }}" company="BairesDev" />
-            </div>
-
-            <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://www.remotely.works/sponsoring-open-source-projects" logo="{{ asset('images/sponsors/remotely.png') }}" company="Remotely Works" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">

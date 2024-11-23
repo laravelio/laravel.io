@@ -101,11 +101,6 @@ final class Article extends Model implements Feedable
         return Str::limit(strip_tags(md_to_html($this->body())), $limit);
     }
 
-    public function hasHeroImage(): bool
-    {
-        return $this->hero_image_url !== null;
-    }
-
     public function hasHeroImageAuthor(): bool
     {
         return $this->hero_image_author_name !== null &&
@@ -114,11 +109,7 @@ final class Article extends Model implements Feedable
 
     public function heroImage($width = 400, $height = 300): string
     {
-        if ($this->hasHeroImage()) {
-            return "{$this->hero_image_url}&fit=clip&w={$width}&h={$height}&utm_source=Laravel.io&utm_medium=referral";
-        }
-
-        return asset('images/default-background.svg');
+        return "{$this->hero_image_url}&fit=clip&w={$width}&h={$height}&utm_source=Laravel.io&utm_medium=referral";
     }
 
     public function originalUrl(): ?string

@@ -47,7 +47,7 @@
                         @endif
 
                         @if ($user->hasTwitterAccount())
-                            <a href="https://twitter.com/{{ $user->twitter() }}" class="text-twitter">
+                            <a href="https://x.com/{{ $user->twitter() }}" class="text-twitter">
                                 <x-si-x class="w-6 h-6" />
                             </a>
                         @endif
@@ -238,8 +238,11 @@
                 type="update"
             >
                 <p>Banning this user will prevent them from logging in, posting threads and replying to threads.</p>
-                <div class="mt-4">
+                <div class="mt-4 space-y-4">
                     <x-forms.inputs.textarea name="reason" placeholder="Provide a reason for banning this user..." required />
+                    <x-forms.inputs.checkbox name="delete_threads" id="delete_threads">
+                        Delete threads
+                    </x-forms.inputs.checkbox>
                 </div>
             </x-modal>
         @endif

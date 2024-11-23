@@ -6,7 +6,7 @@
             <span class="uppercase text-gray-500">Share</span>
 
             <a class="text-gray-300 hover:text-twitter" target="_blank" rel="noopener" aria-label="Share on Twitter"
-                href="http://twitter.com/share?text={{ urlencode('"'.$article->title().'" by '. ($article->author()->twitter() ? '@'.$article->author()->twitter() : $article->author()->name()) . ' - ') }}&url={{ urlencode(route('articles.show', $article->slug())) }}">
+                href="http://x.com/share?text={{ urlencode('"'.$article->title().'" by '. ($article->author()->twitter() ? '@'.$article->author()->twitter() : $article->author()->name()) . ' - ') }}&url={{ urlencode(route('articles.show', $article->slug())) }}">
                 <x-si-x class="w-6 h-6" />
             </a>
 

@@ -24,9 +24,7 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Envoyer](https://envoyer.io)
 - [Fathom](https://usefathom.com)
 - [Tinkerwell](https://tinkerwell.app)
-- [Skynet Technologies](https://www.skynettechnologies.com/hire-laravel-developer)
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
-- [Remotely Works](https://www.remotely.works/sponsoring-open-source-projects)
 - [Dotcom-monitor](https://www.dotcom-monitor.com/sponsoring-open-source-projects/)
 - [N-iX](https://www.n-ix.com/)
 
@@ -95,9 +93,9 @@ New threads will be automatically added to the index and threads which get updat
 php artisan scout:flush App\\Models\\Thread
 ```
 
-### Twitter Sharing (optional)
+### X (Twitter) Sharing (optional)
 
-To enable published articles to be automatically shared on Twitter, you'll need to [create a Twitter app](https://developer.twitter.com/apps/). Once the app has been created, update the below variables in your `.env` file. The consumer key and secret and access token and secret can be found in the `Keys and tokens` section of the Twitter developers UI.
+To enable published articles to be automatically shared on X, you'll need to [create an app](https://developer.x.com/apps/). Once the app has been created, update the below variables in your `.env` file. The consumer key and secret and access token and secret can be found in the `Keys and tokens` section of the X developers UI.
 
 ```
 TWITTER_CONSUMER_KEY=

@@ -13,7 +13,7 @@
                                 <x-icon-github class="w-6 h-6 inline"/>
                             </a>
 
-                            <a href="https://twitter.com/laravelio" class="inline-block">
+                            <a href="https://x.com/laravelio" class="inline-block">
                                 <x-si-x class="w-6 h-6 inline text-twitter"/>
                             </a>
 
@@ -145,7 +145,7 @@
                             <x-icon-github class="w-5 h-5 inline"/>
                         </a>
 
-                        <a href="https://twitter.com/laravelio" class="hidden lg:inline-block">
+                        <a href="https://x.com/laravelio" class="hidden lg:inline-block">
                             <x-si-x class="w-5 h-5 inline text-twitter"/>
                         </a>
 

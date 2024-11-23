@@ -13,13 +13,13 @@
         </div>
 
         <div>
-            <x-forms.label for="password" />
+            <x-forms.label for="password">New Password</x-forms.label>
 
             <x-forms.inputs.password name="password" id="password" required />
         </div>
 
         <div>
-            <x-forms.label for="password_confirmation" />
+            <x-forms.label for="password_confirmation">Confirm New Password</x-forms.label>
 
             <x-forms.inputs.password name="password_confirmation" id="password_confirmation" required />
         </div>

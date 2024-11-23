@@ -15,11 +15,17 @@ class BanRequest extends FormRequest
     {
         return [
             'reason' => 'required|string',
+            'delete_threads' => 'boolean',
         ];
     }
 
     public function reason(): string
     {
         return $this->get('reason');
+    }
+
+    public function willDeleteThreads(): bool
+    {
+        return $this->boolean('delete_threads');
     }
 }

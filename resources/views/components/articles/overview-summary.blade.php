@@ -6,12 +6,14 @@
 
 <div class="h-full rounded-lg shadow-lg bg-white lg:p-5">
     <div class="flex flex-col gap-x-8 lg:flex-row">
-        <a href="{{ route('articles.show', $article->slug()) }}" class="block">
-            <div
-                class="w-full h-32 rounded-t-lg bg-center {{ $article->hasHeroImage() ? 'bg-cover' : '' }} bg-gray-800 lg:w-48 lg:h-full lg:rounded-lg"
-                style="background-image: url({{ $article->heroImage() }});"
+        <a href="{{ route('articles.show', $article->slug()) }}" class="block lg:aspect-video">
+            <img class="w-full h-32 rounded-t-lg bg-center bg-gray-800 lg:h-full lg:w-48 lg:rounded-lg object-none max-w-none"
+                 src="{{ $article->heroImage() }}"
+                 alt="Article Hero Image"
+                 onerror="
+                    this.onerror=null;
+                    this.src='images/default-background.svg';"
             >
-            </div>
         </a>
 
         <div class="flex flex-col gap-y-3 p-4 lg:p-0 lg:gap-y-3.5 w-full">

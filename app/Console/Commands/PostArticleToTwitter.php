@@ -11,7 +11,7 @@ final class PostArticleToTwitter extends Command
 {
     protected $signature = 'lio:post-article-to-twitter';
 
-    protected $description = 'Posts the latest unshared article to Twitter';
+    protected $description = 'Posts the latest unshared article to X';
 
     public function handle(AnonymousNotifiable $notifiable): void
     {
