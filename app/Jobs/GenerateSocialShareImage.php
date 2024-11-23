@@ -3,13 +3,14 @@
 namespace App\Jobs;
 
 use App\Models\Article;
+use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
 final class GenerateSocialShareImage
 {
     const TEXT_X_POSITION = 50;
 
-    const TEXT_Y_POSITION = 100;
+    const TEXT_Y_POSITION = 150;
 
     const TEXT_COLOUR = '#161e2e';
 
@@ -23,16 +24,19 @@ final class GenerateSocialShareImage
 
     public function __construct(private Article $article) {}
 
-    public function handle(ImageManager $image): mixed
+    public function handle(): mixed
     {
+        $image = new ImageManager(new Driver);
         $text = wordwrap($this->article->title(), self::CHARACTERS_PER_LINE);
 
-        return $image->make(resource_path('images/'.self::TEMPLATE))
-            ->text($text, self::TEXT_X_POSITION, self::TEXT_Y_POSITION, function ($font) {
-                $font->file(resource_path('fonts/'.self::FONT));
-                $font->size(self::FONT_SIZE);
-                $font->color(self::TEXT_COLOUR);
-            })
-            ->response('png');
+        return response(
+            $image->read(resource_path('images/' . self::TEMPLATE))
+                ->text($text, self::TEXT_X_POSITION, self::TEXT_Y_POSITION, function ($font) {
+                    $font->file(resource_path('fonts/' . self::FONT));
+                    $font->size(self::FONT_SIZE);
+                    $font->color(self::TEXT_COLOUR);
+                })
+                ->toPng()
+        )->header('Content-Type', 'image/png');
     }
 }
