@@ -3,6 +3,7 @@
 use App\Jobs\GenerateSocialShareImage;
 use App\Models\Article;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Spatie\Pixelmatch\Pixelmatch;
 use Tests\TestCase;
 
 uses(TestCase::class);
@@ -21,16 +22,11 @@ test('social image is generated for articles', function () {
     );
 
     expect(
-        hash_file(
-            'sha256',
-            $generatedSocialShareImagePath
-        )
-    )->toBe(
-        hash_file(
-            'sha256',
+        Pixelmatch::new(
+            $generatedSocialShareImagePath,
             $this->getStub('generate_social_share_image.png')
-        )
-    );
+        )->matches()
+    )->toBeTrue();
 
     unlink($generatedSocialShareImagePath);
 });

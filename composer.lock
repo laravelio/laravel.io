@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92dab107954454a36edef5b6de743fb3",
+    "content-hash": "172077fec6a85c17ec3c3f9fd9566ccb",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -6642,6 +6642,72 @@
                 }
             ],
             "time": "2024-05-21T12:31:34+00:00"
+        },
+        {
+            "name": "spatie/pixelmatch-php",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/pixelmatch-php.git",
+                "reference": "1b60aef329ef5b50663fb441fcf42f09ef165b91"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/pixelmatch-php/zipball/1b60aef329ef5b50663fb441fcf42f09ef165b91",
+                "reference": "1b60aef329ef5b50663fb441fcf42f09ef165b91",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "symfony/process": "^6.3|^7.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.13",
+                "pestphp/pest": "^2.0",
+                "phpstan/phpstan": "^1.10",
+                "spatie/ray": "^1.28"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Pixelmatch\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Niels Vanpachtenbeke",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Compare images using PHP",
+            "homepage": "https://github.com/spatie/pixelmatch-php",
+            "keywords": [
+                "Pixelmatch",
+                "images",
+                "pixelmatch-php",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/pixelmatch-php/issues",
+                "source": "https://github.com/spatie/pixelmatch-php/tree/1.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-04-12T06:20:57+00:00"
         },
         {
             "name": "spatie/robots-txt",

@@ -32,6 +32,7 @@
         "spatie/laravel-ignition": "^2.4",
         "spatie/laravel-schedule-monitor": "^3.7",
         "spatie/laravel-sitemap": "^7.2",
+        "spatie/pixelmatch-php": "^1.1",
         "symfony/http-client": "^7.0",
         "symfony/mailgun-mailer": "^7.0"
     },
