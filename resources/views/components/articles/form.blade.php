@@ -146,10 +146,10 @@
                 </div>
             </div>
 
-            @unless (Auth::user()->twitter())
+            @unless (Auth::user()->hasTwitterAccount() && Auth::user()->hasBlueskyAccount())
                 <span class="text-gray-600 text-sm mt-4 block">
                     Articles will be shared on X (Twitter).
-                    <a href="{{ route('settings.profile') }}" class="text-green-darker">Add your X (Twitter) handle</a> and we'll include that too.
+                    <a href="{{ route('settings.profile') }}" class="text-green-darker">Add your X (Twitter) and/or Bluesky handles</a> and we'll include that too.
                 </span>
             @endunless
         </div>

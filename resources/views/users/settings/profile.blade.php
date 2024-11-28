@@ -93,6 +93,16 @@
                             Enter your X (Twitter) handle without the leading @ symbol
                         </span>
                     </div>
+
+                    <div class="col-span-12 sm:col-span-6">
+                        <x-forms.label for="bluesky">Bluesky handle</x-forms.label>
+
+                        <x-forms.inputs.input name="bluesky" :value="Auth::user()->bluesky()" prefix-icon="heroicon-o-at-symbol" class="nav-search" placeholder="johndoe.bsky.social" />
+
+                        <span class="mt-2 text-sm text-gray-500">
+                            Enter your Bluesky handle without the leading @ symbol
+                        </span>
+                    </div>
                 </div>
             </div>
 

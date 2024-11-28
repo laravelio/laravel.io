@@ -5,10 +5,10 @@ namespace App\Notifications;
 use App\Models\Article;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Twitter\TwitterChannel;
-use NotificationChannels\Twitter\TwitterStatusUpdate;
+use NotificationChannels\Bluesky\BlueskyChannel;
+use NotificationChannels\Bluesky\BlueskyPost;
 
-class PostArticleToTwitter extends Notification
+class PostArticleToBluesky extends Notification
 {
     use Queueable;
 
@@ -16,20 +16,21 @@ class PostArticleToTwitter extends Notification
 
     public function via($notifiable): array
     {
-        return [TwitterChannel::class];
+        return [BlueskyChannel::class];
     }
 
-    public function toTwitter($notifiable)
+    public function toBluesky($notifiable)
     {
-        return new TwitterStatusUpdate($this->generateTweet());
+        return BlueskyPost::make()
+            ->text($this->generatePost());
     }
 
-    public function generateTweet(): string
+    public function generatePost(): string
     {
         $title = $this->article->title();
         $url = route('articles.show', $this->article->slug());
         $author = $this->article->author();
-        $author = $author->twitter() ? "@{$author->twitter()}" : $author->name();
+        $author = $author->bluesky() ? "@{$author->bluesky()}" : $author->name();
 
         return "{$title} by {$author}\n\n{$url}";
     }

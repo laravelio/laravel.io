@@ -489,16 +489,24 @@ test('user see a tip if they have not set the twitter handle', function () {
     $this->login(['twitter' => null]);
 
     $this->get('/articles/authored')
-        ->assertSeeText('X (Twitter) handle', '<a>')
-        ->assertSee('so we can link to your profile when we tweet out your article.');
+        ->assertSeeText('X (Twitter) and/or Bluesky handles', '<a>')
+        ->assertSee('so we can link to your profiles when we tweet out your article.');
+});
+
+test('user see a tip if they have not set the bluesky handle', function () {
+    $this->login(['bluesky' => null]);
+
+    $this->get('/articles/authored')
+        ->assertSeeText('X (Twitter) and/or Bluesky handles', '<a>')
+        ->assertSee('so we can link to your profiles when we tweet out your article.');
 });
 
 test('user do not see tip if they have set the twitter handle', function () {
     $this->login();
 
     $this->get('/articles/authored')
-        ->assertDontSeeText('X (Twitter) handle', '<a>')
-        ->assertDontSee('so we can link to your profile when we tweet out your article.');
+        ->assertDontSeeText('X (Twitter) and/or Bluesky handles', '<a>')
+        ->assertDontSee('so we can link to your profiles when we tweet out your article.');
 });
 
 test('loading page with invalid sort parameter defaults to recent', function () {

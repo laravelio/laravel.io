@@ -46,6 +46,11 @@
                                 (Twitter)
                             </a>
 
+                            <a href="https://bsky.app/profile/laravel.io" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6 whitespace-nowrap">
+                                <x-icon-bluesky class="text-white w-4 h-4 inline mr-2"/>
+                                Bluesky
+                            </a>
+
                             <a href="https://github.com/laravelio" class="w-1/2 text-gray-400 mb-4 hover:text-gray-200 lg:mb-6 whitespace-nowrap">
                                 <x-icon-github class="text-white w-4 h-4 inline mr-2"/>
                                 GitHub

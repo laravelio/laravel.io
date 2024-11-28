@@ -35,6 +35,7 @@ it('can store an article over the API', function (array $body, array $response) 
             'name' => $user->name(),
             'bio' => $user->bio(),
             'twitter_handle' => $user->twitter(),
+            'bluesky_handle' => $user->bluesky(),
             'github_username' => $user->githubUsername(),
         ],
         'tags' => [[
@@ -80,6 +81,7 @@ it('can update an article over the API', function (array $body, array $response)
             'name' => $user->name(),
             'bio' => $user->bio(),
             'twitter_handle' => $user->twitter(),
+            'bluesky_handle' => $user->bluesky(),
             'github_username' => $user->githubUsername(),
         ],
         'tags' => [[
