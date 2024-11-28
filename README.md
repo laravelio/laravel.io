@@ -25,7 +25,6 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Fathom](https://usefathom.com)
 - [Tinkerwell](https://tinkerwell.app)
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
-- [Dotcom-monitor](https://www.dotcom-monitor.com/sponsoring-open-source-projects/)
 - [N-iX](https://www.n-ix.com/)
 
 ## Requirements
