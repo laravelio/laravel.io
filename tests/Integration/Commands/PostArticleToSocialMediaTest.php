@@ -1,8 +1,9 @@
 <?php
 
-use App\Console\Commands\PostArticleToTwitter;
+use App\Console\Commands\PostArticleToSocialMedia;
 use App\Models\Article;
-use App\Notifications\PostArticleToTwitter as PostArticleToTwitterNotification;
+use App\Notifications\PostArticleToBluesky;
+use App\Notifications\PostArticleToTwitter;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
@@ -23,11 +24,23 @@ test('published articles can be shared on twitter', function () {
         'approved_at' => now(),
     ]);
 
-    (new PostArticleToTwitter)->handle(new AnonymousNotifiable);
+    (new PostArticleToSocialMedia)->handle(new AnonymousNotifiable);
 
     Notification::assertSentTo(
         new AnonymousNotifiable,
-        PostArticleToTwitterNotification::class,
+        PostArticleToBluesky::class,
+        function ($notification, $channels, $notifiable) use ($article) {
+            $post = $notification->generatePost();
+
+            return
+                Str::contains($post, 'My First Article') &&
+                Str::contains($post, route('articles.show', $article->slug()));
+        },
+    );
+
+    Notification::assertSentTo(
+        new AnonymousNotifiable,
+        PostArticleToTwitter::class,
         function ($notification, $channels, $notifiable) use ($article) {
             $tweet = $notification->generateTweet();
 
@@ -40,8 +53,9 @@ test('published articles can be shared on twitter', function () {
     expect($article->fresh()->isShared())->toBeTrue();
 });
 
-test('articles are shared with twitter handle', function () {
+test('articles are shared with twitter and bluesky handles', function () {
     $user = $this->createUser([
+        'bluesky' => 'driesvints.com',
         'twitter' => '_joedixon',
     ]);
 
@@ -51,20 +65,28 @@ test('articles are shared with twitter handle', function () {
         'approved_at' => now(),
     ]);
 
-    (new PostArticleToTwitter)->handle(new AnonymousNotifiable);
+    (new PostArticleToSocialMedia)->handle(new AnonymousNotifiable);
 
     Notification::assertSentTo(
         new AnonymousNotifiable,
-        PostArticleToTwitterNotification::class,
+        PostArticleToBluesky::class,
+        function ($notification, $channels, $notifiable) {
+            return Str::contains($notification->generatePost(), '@driesvints.com');
+        },
+    );
+    Notification::assertSentTo(
+        new AnonymousNotifiable,
+        PostArticleToTwitter::class,
         function ($notification, $channels, $notifiable) {
             return Str::contains($notification->generateTweet(), '@_joedixon');
         },
     );
 });
 
-test('articles are shared with name when no twitter handle', function () {
+test('articles are shared with name when no twitter or bluesky handles', function () {
     $user = $this->createUser([
         'name' => 'Joe Dixon',
+        'bluesky' => null,
         'twitter' => null,
     ]);
 
@@ -74,11 +96,18 @@ test('articles are shared with name when no twitter handle', function () {
         'approved_at' => now(),
     ]);
 
-    (new PostArticleToTwitter)->handle(new AnonymousNotifiable);
+    (new PostArticleToSocialMedia)->handle(new AnonymousNotifiable);
 
     Notification::assertSentTo(
         new AnonymousNotifiable,
-        PostArticleToTwitterNotification::class,
+        PostArticleToBluesky::class,
+        function ($notification, $channels, $notifiable) {
+            return Str::contains($notification->generatePost(), 'Joe Dixon');
+        },
+    );
+    Notification::assertSentTo(
+        new AnonymousNotifiable,
+        PostArticleToTwitter::class,
         function ($notification, $channels, $notifiable) {
             return Str::contains($notification->generateTweet(), 'Joe Dixon');
         },
@@ -92,7 +121,7 @@ test('already shared articles are not shared again', function () {
         'shared_at' => now(),
     ]);
 
-    (new PostArticleToTwitter)->handle(new AnonymousNotifiable);
+    (new PostArticleToSocialMedia)->handle(new AnonymousNotifiable);
 
     Notification::assertNothingSent();
 });
@@ -102,7 +131,7 @@ test('unapproved articles are not shared', function () {
         'submitted_at' => now(),
     ]);
 
-    (new PostArticleToTwitter)->handle(new AnonymousNotifiable);
+    (new PostArticleToSocialMedia)->handle(new AnonymousNotifiable);
 
     Notification::assertNothingSent();
 });
@@ -110,7 +139,7 @@ test('unapproved articles are not shared', function () {
 test('unsubmitted articles are not shared', function () {
     Article::factory()->create();
 
-    (new PostArticleToTwitter)->handle(new AnonymousNotifiable);
+    (new PostArticleToSocialMedia)->handle(new AnonymousNotifiable);
 
     Notification::assertNothingSent();
 });

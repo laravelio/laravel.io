@@ -30,6 +30,11 @@ return [
         'access_secret' => env('TWITTER_ACCESS_SECRET'),
     ],
 
+    'bluesky' => [
+      'username' => env('BLUESKY_USERNAME'),
+      'password' => env('BLUESKY_PASSWORD'),
+    ],
+
     'telegram-bot-api' => [
         'token' => env('TELEGRAM_BOT_TOKEN'),
         'channel' => env('TELEGRAM_CHANNEL'),

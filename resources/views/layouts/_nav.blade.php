@@ -9,14 +9,6 @@
                         </a>
 
                         <div class="flex gap-x-3 lg:hidden">
-                            <a href="https://github.com/laravelio" class="inline-block">
-                                <x-icon-github class="w-6 h-6 inline"/>
-                            </a>
-
-                            <a href="https://x.com/laravelio" class="inline-block">
-                                <x-si-x class="w-6 h-6 inline text-twitter"/>
-                            </a>
-
                             <button @click="showSearch($event)">
                                 <x-heroicon-o-magnifying-glass class="w-6 h-6" />
                             </button>
@@ -141,14 +133,6 @@
 
                 <div class="w-full block gap-x-4 lg:flex lg:items-center lg:justify-end">
                     <div class="flex items-center gap-x-4">
-                        <a href="https://github.com/laravelio" class="hidden lg:inline-block">
-                            <x-icon-github class="w-5 h-5 inline"/>
-                        </a>
-
-                        <a href="https://x.com/laravelio" class="hidden lg:inline-block">
-                            <x-si-x class="w-5 h-5 inline text-twitter"/>
-                        </a>
-
                         <button @keydown.window.prevent.ctrl.k="showSearch($event)" @keydown.window.prevent.cmd.k="showSearch($event)" @click="showSearch($event)" @keyup.window.slash="showSearch($event)" class="hover:text-lio-500">
                             <x-heroicon-o-magnifying-glass class="h-5 w-5 hidden lg:block" />
                         </button>

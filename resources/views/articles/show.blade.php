@@ -172,6 +172,12 @@
                                     </a>
                                 @endif
 
+                                @if ($article->author()->hasBlueskyAccount())
+                                    <a href="https://bsky.app/profile/{{ $article->author()->bluesky() }}" class="text-twitter">
+                                        <x-icon-bluesky class="w-6 h-6" />
+                                    </a>
+                                @endif
+
                                 @if ($article->author()->hasWebsite())
                                     <a href="{{ $article->author()->website() }}">
                                         <x-heroicon-o-globe-alt class="w-6 h-6" />
