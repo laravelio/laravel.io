@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\Article;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
@@ -30,14 +31,21 @@ final class GenerateSocialShareImage
         $image = new ImageManager(new Driver);
         $text = wordwrap($this->article->title(), self::CHARACTERS_PER_LINE);
 
-        return response(
-            $image->read(resource_path('images/' . self::TEMPLATE))
-                ->text($text, self::TEXT_X_POSITION, self::TEXT_Y_POSITION, function ($font) {
-                    $font->file(resource_path('fonts/' . self::FONT));
-                    $font->size(self::FONT_SIZE);
-                    $font->color(self::TEXT_COLOUR);
-                })
-                ->toPng()
-        )->header('Content-Type', 'image/png');
+        return Cache::remember(
+            'articleSocialImage-' . $this->article->id,
+            now()->addDay(),
+            function () use ($image, $text) {
+                return response(
+                    $image->read(resource_path('images/' . self::TEMPLATE))
+                        ->text($text, self::TEXT_X_POSITION, self::TEXT_Y_POSITION, function ($font) {
+                            $font->file(resource_path('fonts/' . self::FONT));
+                            $font->size(self::FONT_SIZE);
+                            $font->color(self::TEXT_COLOUR);
+                        })
+                        ->toPng()
+                )->header('Content-Type', 'image/png')
+                ->header('Cache-Control', 'max-age=86400, public');
+            }
+        );
     }
 }
