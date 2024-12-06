@@ -28,6 +28,12 @@
                 </a>
             @endif
 
+            @if ($user->hasBlueskyAccount())
+                <a href="https://bsky.app/{{ $user->bluesky() }}" class="text-twitter">
+                    <x-icon-bluesky class="w-6 h-6" />
+                </a>
+            @endif
+
             @if ($user->hasWebsite())
                 <a href="{{ $user->website() }}">
                     <x-heroicon-o-globe-alt class="w-6 h-6" />

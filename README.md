@@ -25,7 +25,6 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Fathom](https://usefathom.com)
 - [Tinkerwell](https://tinkerwell.app)
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
-- [Dotcom-monitor](https://www.dotcom-monitor.com/sponsoring-open-source-projects/)
 - [N-iX](https://www.n-ix.com/)
 
 ## Requirements
@@ -93,7 +92,7 @@ New threads will be automatically added to the index and threads which get updat
 php artisan scout:flush App\\Models\\Thread
 ```
 
-### X (Twitter) Sharing (optional)
+### Social Media Sharing (optional)
 
 To enable published articles to be automatically shared on X, you'll need to [create an app](https://developer.x.com/apps/). Once the app has been created, update the below variables in your `.env` file. The consumer key and secret and access token and secret can be found in the `Keys and tokens` section of the X developers UI.
 
@@ -102,6 +101,13 @@ TWITTER_CONSUMER_KEY=
 TWITTER_CONSUMER_SECRET=
 TWITTER_ACCESS_TOKEN=
 TWITTER_ACCESS_SECRET=
+```
+
+To do the same for Bluesky you simply need to set up the app keys with your login and password:
+
+```
+BLUESKY_USERNAME=
+BLUESKY_PASSWORD=
 ```
 
 Approved articles are shared in the order they were submitted for approval. Articles are shared twice per day at 14:00 and 18:00 UTC. Once an article has been shared, it will not be shared again.

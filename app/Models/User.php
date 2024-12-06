@@ -46,6 +46,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'twitter',
+        'bluesky',
         'website',
         'username',
         'password',
@@ -110,6 +111,11 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->twitter;
     }
 
+    public function bluesky(): ?string
+    {
+        return $this->bluesky;
+    }
+
     public function website(): ?string
     {
         return $this->website;
@@ -118,6 +124,11 @@ final class User extends Authenticatable implements MustVerifyEmail
     public function hasTwitterAccount(): bool
     {
         return ! empty($this->twitter());
+    }
+
+    public function hasBlueskyAccount(): bool
+    {
+        return ! empty($this->bluesky());
     }
 
     public function hasWebsite(): bool

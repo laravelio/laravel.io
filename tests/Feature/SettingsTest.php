@@ -25,6 +25,7 @@ test('users can update their profile', function () {
             'email' => 'freek@example.com',
             'username' => 'freekmurze',
             'twitter' => 'freektwitter',
+            'bluesky' => 'driesbsky',
             'website' => 'https://laravel.io',
             'bio' => 'My bio',
         ])
@@ -34,6 +35,7 @@ test('users can update their profile', function () {
         ->assertSee('Freek Murze')
         ->assertSee('freekmurze')
         ->assertSee('freektwitter')
+        ->assertSee('driesbsky')
         ->assertSee('Settings successfully saved!')
         ->assertSee('My bio');
 });
@@ -147,7 +149,11 @@ test('users can set their password when they have none set yet', function () {
 });
 
 test('twitter is optional', function () {
-    $user = $this->createUser(['email' => 'freek@example.com', 'username' => 'freekmurze', 'twitter' => 'freektwitter']);
+    $user = $this->createUser([
+        'email' => 'freek@example.com',
+        'username' => 'freekmurze',
+        'twitter' => 'freektwitter',
+    ]);
 
     $this->loginAs($user);
 
@@ -164,6 +170,30 @@ test('twitter is optional', function () {
         ->assertDontSee('freektwitter');
 
     expect($user->fresh()->twitter())->toBeEmpty();
+});
+
+test('bluesky is optional', function () {
+    $user = $this->createUser([
+        'email' => 'freek@example.com',
+        'username' => 'freekmurze',
+        'bluesky' => 'driesbsky',
+    ]);
+
+    $this->loginAs($user);
+
+    $response = $this->actingAs($user)
+        ->put('/settings', [
+            'name' => 'Freek Murze',
+            'email' => 'freek@example.com',
+            'username' => 'freekmurze',
+            'bluesky' => '',
+        ])
+        ->assertRedirect('/settings');
+
+    $this->followRedirects($response)
+        ->assertDontSee('driesbsky');
+
+    expect($user->fresh()->bluesky())->toBeEmpty();
 });
 
 test('website is optional', function () {

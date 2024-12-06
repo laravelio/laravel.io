@@ -18,6 +18,7 @@ class AuthorResource extends JsonResource
             'name' => $this->name(),
             'bio' => $this->bio(),
             'twitter_handle' => $this->twitter(),
+            'bluesky_handle' => $this->bluesky(),
             'github_username' => $this->githubUsername(),
         ];
     }
