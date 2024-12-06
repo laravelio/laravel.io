@@ -34,8 +34,8 @@ final class GenerateSocialShareImage
         return Cache::remember(
             'articleSocialImage-' . $this->article->id,
             now()->addDay(),
-            function () use ($image, $text) {
-                return response(
+            fn () =>
+                 response(
                     $image->read(resource_path('images/' . self::TEMPLATE))
                         ->text($text, self::TEXT_X_POSITION, self::TEXT_Y_POSITION, function ($font) {
                             $font->file(resource_path('fonts/' . self::FONT));
@@ -44,8 +44,7 @@ final class GenerateSocialShareImage
                         })
                         ->toPng()
                 )->header('Content-Type', 'image/png')
-                ->header('Cache-Control', 'max-age=86400, public');
-            }
+                ->header('Cache-Control', 'max-age=86400, public')
         );
     }
 }
