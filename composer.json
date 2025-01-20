@@ -10,7 +10,7 @@
         "blade-ui-kit/blade-icons": "^1.6",
         "blade-ui-kit/blade-ui-kit": "^0.6.3",
         "blade-ui-kit/blade-zondicons": "^1.5",
-        "codeat3/blade-simple-icons": "^5.0",
+        "codeat3/blade-simple-icons": "^6.2",
         "guzzlehttp/guzzle": "^7.2",
         "innocenzi/bluesky-notification-channel": "^0.2.0",
         "intervention/image": "^2.7",
