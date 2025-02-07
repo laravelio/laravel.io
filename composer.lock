@@ -1842,16 +1842,16 @@
         },
         {
             "name": "guzzlehttp/uri-template",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/uri-template.git",
-                "reference": "ecea8feef63bd4fef1f037ecb288386999ecc11c"
+                "reference": "30e286560c137526eccd4ce21b2de477ab0676d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/uri-template/zipball/ecea8feef63bd4fef1f037ecb288386999ecc11c",
-                "reference": "ecea8feef63bd4fef1f037ecb288386999ecc11c",
+                "url": "https://api.github.com/repos/guzzle/uri-template/zipball/30e286560c137526eccd4ce21b2de477ab0676d2",
+                "reference": "30e286560c137526eccd4ce21b2de477ab0676d2",
                 "shasum": ""
             },
             "require": {
@@ -1908,7 +1908,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/uri-template/issues",
-                "source": "https://github.com/guzzle/uri-template/tree/v1.0.3"
+                "source": "https://github.com/guzzle/uri-template/tree/v1.0.4"
             },
             "funding": [
                 {
@@ -1924,7 +1924,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-03T19:50:20+00:00"
+            "time": "2025-02-03T10:55:03+00:00"
         },
         {
             "name": "innocenzi/bluesky-notification-channel",
@@ -5930,16 +5930,16 @@
         },
         {
             "name": "sentry/sentry-laravel",
-            "version": "4.11.0",
+            "version": "4.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-laravel.git",
-                "reference": "ad7d59652f6fb2934b54ef9d469abeaaf5f4eb96"
+                "reference": "da1ee3417dfb3576a6aaa0f8b25892ebdb98fdb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-laravel/zipball/ad7d59652f6fb2934b54ef9d469abeaaf5f4eb96",
-                "reference": "ad7d59652f6fb2934b54ef9d469abeaaf5f4eb96",
+                "url": "https://api.github.com/repos/getsentry/sentry-laravel/zipball/da1ee3417dfb3576a6aaa0f8b25892ebdb98fdb0",
+                "reference": "da1ee3417dfb3576a6aaa0f8b25892ebdb98fdb0",
                 "shasum": ""
             },
             "require": {
@@ -6003,7 +6003,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-laravel/issues",
-                "source": "https://github.com/getsentry/sentry-laravel/tree/4.11.0"
+                "source": "https://github.com/getsentry/sentry-laravel/tree/4.12.0"
             },
             "funding": [
                 {
@@ -6015,7 +6015,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2025-01-23T12:35:37+00:00"
+            "time": "2025-02-05T13:13:03+00:00"
         },
         {
             "name": "spatie/backtrace",
@@ -6627,27 +6627,27 @@
         },
         {
             "name": "spatie/laravel-package-tools",
-            "version": "1.18.3",
+            "version": "1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-package-tools.git",
-                "reference": "ba67eee37d86ed775dab7dad58a7cbaf9a6cfe78"
+                "reference": "1c9c30ac6a6576b8d15c6c37b6cf23d748df2faa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/ba67eee37d86ed775dab7dad58a7cbaf9a6cfe78",
-                "reference": "ba67eee37d86ed775dab7dad58a7cbaf9a6cfe78",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/1c9c30ac6a6576b8d15c6c37b6cf23d748df2faa",
+                "reference": "1c9c30ac6a6576b8d15c6c37b6cf23d748df2faa",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "^9.28|^10.0|^11.0",
+                "illuminate/contracts": "^9.28|^10.0|^11.0|^12.0",
                 "php": "^8.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.5",
-                "orchestra/testbench": "^7.7|^8.0|^9.0",
-                "pestphp/pest": "^1.22|^2",
-                "phpunit/phpunit": "^9.5.24|^10.5",
+                "orchestra/testbench": "^7.7|^8.0|^9.0|^10.0",
+                "pestphp/pest": "^1.23|^2.1|^3.1",
+                "phpunit/phpunit": "^9.5.24|^10.5|^11.5",
                 "spatie/pest-plugin-test-time": "^1.1|^2.2"
             },
             "type": "library",
@@ -6675,7 +6675,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-package-tools/issues",
-                "source": "https://github.com/spatie/laravel-package-tools/tree/1.18.3"
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.19.0"
             },
             "funding": [
                 {
@@ -6683,20 +6683,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-22T08:51:18+00:00"
+            "time": "2025-02-06T14:58:20+00:00"
         },
         {
             "name": "spatie/laravel-schedule-monitor",
-            "version": "3.9.2",
+            "version": "3.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-schedule-monitor.git",
-                "reference": "9af9b59b419e16f2466c851623efe8f84a9535cf"
+                "reference": "36855a55de727acf51918c1e66be2296449047da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-schedule-monitor/zipball/9af9b59b419e16f2466c851623efe8f84a9535cf",
-                "reference": "9af9b59b419e16f2466c851623efe8f84a9535cf",
+                "url": "https://api.github.com/repos/spatie/laravel-schedule-monitor/zipball/36855a55de727acf51918c1e66be2296449047da",
+                "reference": "36855a55de727acf51918c1e66be2296449047da",
                 "shasum": ""
             },
             "require": {
@@ -6754,7 +6754,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-schedule-monitor/issues",
-                "source": "https://github.com/spatie/laravel-schedule-monitor/tree/3.9.2"
+                "source": "https://github.com/spatie/laravel-schedule-monitor/tree/3.10.0"
             },
             "funding": [
                 {
@@ -6762,20 +6762,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-17T09:27:05+00:00"
+            "time": "2025-02-05T08:20:03+00:00"
         },
         {
             "name": "spatie/laravel-sitemap",
-            "version": "7.3.3",
+            "version": "7.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-sitemap.git",
-                "reference": "9423e3bb82d9e83fa8969a2a30dcea309d802e7e"
+                "reference": "5606b9e7b1cb2785218999a6f2ee11e0dbdcfb56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/9423e3bb82d9e83fa8969a2a30dcea309d802e7e",
-                "reference": "9423e3bb82d9e83fa8969a2a30dcea309d802e7e",
+                "url": "https://api.github.com/repos/spatie/laravel-sitemap/zipball/5606b9e7b1cb2785218999a6f2ee11e0dbdcfb56",
+                "reference": "5606b9e7b1cb2785218999a6f2ee11e0dbdcfb56",
                 "shasum": ""
             },
             "require": {
@@ -6827,7 +6827,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-sitemap/tree/7.3.3"
+                "source": "https://github.com/spatie/laravel-sitemap/tree/7.3.4"
             },
             "funding": [
                 {
@@ -6835,20 +6835,20 @@
                     "type": "custom"
                 }
             ],
-            "time": "2025-01-27T09:44:53+00:00"
+            "time": "2025-01-31T08:53:45+00:00"
         },
         {
             "name": "spatie/robots-txt",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/robots-txt.git",
-                "reference": "acc7f4438813989d0427624f7901232084916170"
+                "reference": "58ed7b61c2a59e72f57b46e4d025967dd5f16000"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/robots-txt/zipball/acc7f4438813989d0427624f7901232084916170",
-                "reference": "acc7f4438813989d0427624f7901232084916170",
+                "url": "https://api.github.com/repos/spatie/robots-txt/zipball/58ed7b61c2a59e72f57b46e4d025967dd5f16000",
+                "reference": "58ed7b61c2a59e72f57b46e4d025967dd5f16000",
                 "shasum": ""
             },
             "require": {
@@ -6883,7 +6883,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/robots-txt/issues",
-                "source": "https://github.com/spatie/robots-txt/tree/2.3.0"
+                "source": "https://github.com/spatie/robots-txt/tree/2.3.1"
             },
             "funding": [
                 {
@@ -6895,7 +6895,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-27T10:15:34+00:00"
+            "time": "2025-01-31T09:33:25+00:00"
         },
         {
             "name": "spatie/temporary-directory",
