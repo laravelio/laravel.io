@@ -34,11 +34,10 @@ class CreateReplyRequest extends Request
 
     private function findReplyAble(int $id, string $type): ReplyAble
     {
-        $result = match ($type) {
-            Thread::TABLE => Thread::find($id),
+        return match ($type) {
+            Thread::TABLE => Thread::findOrFail($id),
+            default => abort(404),
         };
-
-        return $result ?? abort(404);
     }
 
     public function author(): User
