@@ -47,7 +47,7 @@ class GitHubController extends Controller
         return $this->userFound($user, $socialiteUser);
     }
 
-    private function getSocialiteUser(): SocialiteUser
+    private function getSocialiteUser(): SocialiteUser|RedirectResponse
     {
         try {
             return Socialite::driver('github')->user();
