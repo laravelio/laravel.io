@@ -8,5 +8,5 @@ Schedule::command('model:prune', ['--model' => MonitoredScheduledTaskLogItem::cl
 Schedule::command('horizon:snapshot')->everyFiveMinutes();
 Schedule::command('lio:post-article-to-social-media')->twiceDaily(14, 18);
 Schedule::command('lio:generate-sitemap')->daily()->graceTimeInMinutes(25);
-Schedule::command('lio:sync-article-images')->everyFiveMinutes()->between('7:00', '23:00');
+Schedule::command('lio:sync-article-images')->cron('*/5 7-23 * * *');
 Schedule::command('lio:update-article-view-counts')->twiceDaily();
