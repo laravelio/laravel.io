@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Jobs\UpdateProfile;
 use App\Models\User;
 use App\Social\GitHubUser;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ServerException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -45,9 +47,15 @@ class GitHubController extends Controller
         return $this->userFound($user, $socialiteUser);
     }
 
-    private function getSocialiteUser(): SocialiteUser
+    private function getSocialiteUser(): SocialiteUser|RedirectResponse
     {
-        return Socialite::driver('github')->user();
+        try {
+            return Socialite::driver('github')->user();
+        } catch (ClientException|ServerException $e) {
+            $this->error('An error occurred while trying to log in with GitHub. Please try again.');
+
+            return redirect()->route('login');
+        }
     }
 
     private function userFound(User $user, SocialiteUser $socialiteUser): RedirectResponse
