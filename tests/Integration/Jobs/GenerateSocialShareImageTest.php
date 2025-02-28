@@ -11,10 +11,10 @@ uses(DatabaseMigrations::class);
 
 test('social image is generated for articles', function () {
     $article = Article::factory()->create([
-        'title' => 'This is an article to test social share image generation'
+        'title' => 'This is an article to test social share image generation',
     ]);
 
-    $generatedSocialShareImagePath = sys_get_temp_dir() . '/generated_social_share_temporary_image.png';
+    $generatedSocialShareImagePath = sys_get_temp_dir().'/generated_social_share_temporary_image.png';
 
     file_put_contents(
         $generatedSocialShareImagePath,
@@ -24,7 +24,7 @@ test('social image is generated for articles', function () {
     expect(
         Pixelmatch::new(
             $generatedSocialShareImagePath,
-            __DIR__ . "/stubs/generate_social_share_image.png"
+            __DIR__.'/stubs/generate_social_share_image.png'
         )->matches()
     )->toBeTrue();
 

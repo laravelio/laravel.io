@@ -32,18 +32,17 @@ final class GenerateSocialShareImage
         $text = wordwrap($this->article->title(), self::CHARACTERS_PER_LINE);
 
         return Cache::remember(
-            'articleSocialImage-' . $this->article->id,
+            'articleSocialImage-'.$this->article->id,
             now()->addDay(),
-            fn () =>
-                 response(
-                    $image->read(resource_path('images/' . self::TEMPLATE))
-                        ->text($text, self::TEXT_X_POSITION, self::TEXT_Y_POSITION, function ($font) {
-                            $font->file(resource_path('fonts/' . self::FONT));
-                            $font->size(self::FONT_SIZE);
-                            $font->color(self::TEXT_COLOUR);
-                        })
-                        ->toPng()
-                )->header('Content-Type', 'image/png')
+            fn () => response(
+                $image->read(resource_path('images/'.self::TEMPLATE))
+                    ->text($text, self::TEXT_X_POSITION, self::TEXT_Y_POSITION, function ($font) {
+                        $font->file(resource_path('fonts/'.self::FONT));
+                        $font->size(self::FONT_SIZE);
+                        $font->color(self::TEXT_COLOUR);
+                    })
+                    ->toPng()
+            )->header('Content-Type', 'image/png')
                 ->header('Cache-Control', 'max-age=86400, public')
         );
     }
