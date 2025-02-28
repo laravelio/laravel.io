@@ -24,7 +24,7 @@ test('social image is generated for articles', function () {
     expect(
         Pixelmatch::new(
             $generatedSocialShareImagePath,
-            $this->getStub('generate_social_share_image.png')
+            __DIR__ . "/stubs/generate_social_share_image.png"
         )->matches()
     )->toBeTrue();
 
