@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\User as SocialiteUser;
+use function Pest\Laravel\instance;
 
 class GitHubController extends Controller
 {
@@ -36,6 +37,10 @@ class GitHubController extends Controller
             $this->error('The request timed out. Please try again.');
 
             return redirect()->route('login');
+        }
+
+        if ($socialiteUser instanceof RedirectResponse) {
+            return $socialiteUser;
         }
 
         try {
