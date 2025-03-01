@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\User as SocialiteUser;
-use function Pest\Laravel\instance;
 
 class GitHubController extends Controller
 {
