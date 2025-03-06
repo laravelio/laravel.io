@@ -67,13 +67,43 @@ it('excludes author solutions from mostSolutions count', function () {
     ]);
 
     $this->dispatch(new MarkThreadSolution($thread, $reply, $user));
-    expect($user->mostSolutions()->find($user->id())->solutions_count)->toBe(0);
+
+    expect($user->mostSolutions()->find($user->id()))->toBeNull();
 
     $otherThread = Thread::factory()->create();
 
     $this->dispatch(new MarkThreadSolution($otherThread, $reply, $user));
+
     expect($user->mostSolutions()->find($user->id())->solutions_count)->toBe(1);
-});
+})->group('emeka');
+
+it('only shows users with solutions in the widget', function () {
+    $userWithSolution = User::factory()->create();
+    $userWithoutSolution = User::factory()->create();
+    $anotherUserWithSolution = User::factory()->create();
+
+    $thread1 = Thread::factory()->create();
+    $thread2 = Thread::factory()->create();
+
+    $reply1 = Reply::factory()->create([
+        'author_id' => $userWithSolution->id,
+    ]);
+
+    $reply2 = Reply::factory()->create([
+        'author_id' => $anotherUserWithSolution->id,
+    ]);
+
+    $this->dispatch(new MarkThreadSolution($thread1, $reply1, $userWithSolution));
+    $this->dispatch(new MarkThreadSolution($thread2, $reply2, $anotherUserWithSolution));
+
+    $topMembers = User::mostSolutions(365)->take(5)->get();
+
+    expect($topMembers)->toHaveCount(2)
+        ->and($topMembers->pluck('id'))->toContain($userWithSolution->id)
+        ->and($topMembers->pluck('id'))->toContain($anotherUserWithSolution->id)
+        ->and($topMembers->pluck('id'))->not->toContain($userWithoutSolution->id);
+})->group('widget');
+
 
 // Helpers
 function createTwoSolutionReplies(User $user)
