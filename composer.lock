@@ -798,16 +798,16 @@
         },
         {
             "name": "codeat3/blade-simple-icons",
-            "version": "6.8.0",
+            "version": "6.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeat3/blade-simple-icons.git",
-                "reference": "ae1957f5e9c35c46bdab1c323ddf0f653fda3d87"
+                "reference": "f9b035668bec0644b9ffad5af64d8cba485a7534"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeat3/blade-simple-icons/zipball/ae1957f5e9c35c46bdab1c323ddf0f653fda3d87",
-                "reference": "ae1957f5e9c35c46bdab1c323ddf0f653fda3d87",
+                "url": "https://api.github.com/repos/codeat3/blade-simple-icons/zipball/f9b035668bec0644b9ffad5af64d8cba485a7534",
+                "reference": "f9b035668bec0644b9ffad5af64d8cba485a7534",
                 "shasum": ""
             },
             "require": {
@@ -857,7 +857,7 @@
             ],
             "support": {
                 "issues": "https://github.com/codeat3/blade-simple-icons/issues",
-                "source": "https://github.com/codeat3/blade-simple-icons/tree/6.8.0"
+                "source": "https://github.com/codeat3/blade-simple-icons/tree/6.9.0"
             },
             "funding": [
                 {
@@ -865,7 +865,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-25T07:56:05+00:00"
+            "time": "2025-03-03T17:58:59+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -2068,16 +2068,16 @@
         },
         {
             "name": "intervention/image",
-            "version": "3.11.1",
+            "version": "3.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "0f87254688e480fbb521e2a1ac6c11c784ca41af"
+                "reference": "ebbb711871fb261c064cf4c422f5f3c124fe1842"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/0f87254688e480fbb521e2a1ac6c11c784ca41af",
-                "reference": "0f87254688e480fbb521e2a1ac6c11c784ca41af",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/ebbb711871fb261c064cf4c422f5f3c124fe1842",
+                "reference": "ebbb711871fb261c064cf4c422f5f3c124fe1842",
                 "shasum": ""
             },
             "require": {
@@ -2088,7 +2088,7 @@
             "require-dev": {
                 "mockery/mockery": "^1.6",
                 "phpstan/phpstan": "^2.1",
-                "phpunit/phpunit": "^10.0 || ^11.0",
+                "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0",
                 "slevomat/coding-standard": "~8.0",
                 "squizlabs/php_codesniffer": "^3.8"
             },
@@ -2124,7 +2124,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Intervention/image/issues",
-                "source": "https://github.com/Intervention/image/tree/3.11.1"
+                "source": "https://github.com/Intervention/image/tree/3.11.2"
             },
             "funding": [
                 {
@@ -2140,7 +2140,7 @@
                     "type": "ko_fi"
                 }
             ],
-            "time": "2025-02-01T07:28:26+00:00"
+            "time": "2025-02-27T13:08:55+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
@@ -2591,16 +2591,16 @@
         },
         {
             "name": "laravel/horizon",
-            "version": "v5.30.3",
+            "version": "v5.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/horizon.git",
-                "reference": "7b9ee870bf0e425b956fd0433f616f98fe951f72"
+                "reference": "a21e7d64784b24eaf3bf873f82affbf67707a72a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/horizon/zipball/7b9ee870bf0e425b956fd0433f616f98fe951f72",
-                "reference": "7b9ee870bf0e425b956fd0433f616f98fe951f72",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/a21e7d64784b24eaf3bf873f82affbf67707a72a",
+                "reference": "a21e7d64784b24eaf3bf873f82affbf67707a72a",
                 "shasum": ""
             },
             "require": {
@@ -2665,9 +2665,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/horizon/issues",
-                "source": "https://github.com/laravel/horizon/tree/v5.30.3"
+                "source": "https://github.com/laravel/horizon/tree/v5.31.0"
             },
-            "time": "2025-02-11T13:52:50+00:00"
+            "time": "2025-03-04T14:56:42+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -3819,16 +3819,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.6.0",
+            "version": "v3.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "4c66b569cb729ba9b2f4a3c4e79f50fd8f2b71d1"
+                "reference": "0df0a762698176d714e42e2dfed92b6b9e24b8e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/4c66b569cb729ba9b2f4a3c4e79f50fd8f2b71d1",
-                "reference": "4c66b569cb729ba9b2f4a3c4e79f50fd8f2b71d1",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/0df0a762698176d714e42e2dfed92b6b9e24b8e4",
+                "reference": "0df0a762698176d714e42e2dfed92b6b9e24b8e4",
                 "shasum": ""
             },
             "require": {
@@ -3883,7 +3883,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.6.0"
+                "source": "https://github.com/livewire/livewire/tree/v3.6.1"
             },
             "funding": [
                 {
@@ -3891,7 +3891,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-26T00:57:32+00:00"
+            "time": "2025-03-04T21:48:52+00:00"
         },
         {
             "name": "lorisleiva/cron-translator",
