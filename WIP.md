@@ -1,1 +1,0 @@
-- Only show people with solutions in widget
