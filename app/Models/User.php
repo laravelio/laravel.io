@@ -320,8 +320,8 @@ final class User extends Authenticatable implements MustVerifyEmail
 
             return $query;
         }])
-        ->having('solutions_count', '>', 0)
-        ->orderBy('solutions_count', 'desc');
+            ->having('solutions_count', '>', 0)
+            ->orderBy('solutions_count', 'desc');
     }
 
     public function scopeMostSubmissions(Builder $query, ?int $inLastDays = null)

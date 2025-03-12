@@ -104,7 +104,6 @@ it('only shows users with solutions in the widget', function () {
         ->and($topMembers->pluck('id'))->not->toContain($userWithoutSolution->id);
 })->group('widget');
 
-
 // Helpers
 function createTwoSolutionReplies(User $user)
 {
