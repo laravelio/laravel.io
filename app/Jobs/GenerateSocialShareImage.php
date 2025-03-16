@@ -55,7 +55,9 @@ final class GenerateSocialShareImage
 
     private function calculateTextYPosition(string $text): int
     {
+        $noOfLinesInText = substr_count($text, "\n");
+
         return  self::TEXT_Y_BASE_POSITION
-            + ((self::FONT_SIZE * substr_count($text, "\n")) - substr_count($text, "\n"));
+            + ((self::FONT_SIZE * $noOfLinesInText) - $noOfLinesInText);
     }
 }
