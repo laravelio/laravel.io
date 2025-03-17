@@ -32,16 +32,16 @@ final class GenerateSocialShareImage
         $text = wordwrap($this->article->title(), self::CHARACTERS_PER_LINE);
 
         return Cache::remember(
-            'articleSocialImage-' . $this->article->id,
+            'articleSocialImage-'.$this->article->id,
             now()->addDay(),
-            fn() => response(
-                $image->read(resource_path('images/' . self::TEMPLATE))
+            fn () => response(
+                $image->read(resource_path('images/'.self::TEMPLATE))
                     ->text(
                         $text,
                         self::TEXT_X_POSITION,
                         self::calculateTextYPosition($text),
                         function ($font) {
-                            $font->file(resource_path('fonts/' . self::FONT));
+                            $font->file(resource_path('fonts/'.self::FONT));
                             $font->size(self::FONT_SIZE);
                             $font->color(self::TEXT_COLOUR);
                         }
@@ -57,7 +57,7 @@ final class GenerateSocialShareImage
     {
         $noOfLinesInText = substr_count($text, "\n");
 
-        return  self::TEXT_Y_BASE_POSITION
+        return self::TEXT_Y_BASE_POSITION
             + ((self::FONT_SIZE * $noOfLinesInText) - $noOfLinesInText);
     }
 }
