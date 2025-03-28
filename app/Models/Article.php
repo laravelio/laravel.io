@@ -176,12 +176,12 @@ final class Article extends Model implements Feedable
 
     public function isPinned(): bool
     {
-        return $this->is_pinned;
+        return (bool) $this->is_pinned;
     }
 
     public function isSponsored(): bool
     {
-        return $this->is_sponsored;
+        return (bool) $this->is_sponsored;
     }
 
     public function isNotShared(): bool
