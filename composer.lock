@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b0fd4fec4114ffa4819b435acf5ef889",
+    "content-hash": "41eb5c2f41ce58f979f56a23df8aa224",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -601,71 +601,6 @@
                 }
             ],
             "time": "2025-02-19T08:32:44+00:00"
-        },
-        {
-            "name": "blade-ui-kit/blade-zondicons",
-            "version": "1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/codeat3/blade-zondicons.git",
-                "reference": "7ad98e7a3ec57d929cabe5b57c96d56fe6b84f00"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/codeat3/blade-zondicons/zipball/7ad98e7a3ec57d929cabe5b57c96d56fe6b84f00",
-                "reference": "7ad98e7a3ec57d929cabe5b57c96d56fe6b84f00",
-                "shasum": ""
-            },
-            "require": {
-                "blade-ui-kit/blade-icons": "^1.1",
-                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0",
-                "php": "^7.4|^8.0"
-            },
-            "require-dev": {
-                "codeat3/blade-icon-generation-helpers": "^0.10",
-                "codeat3/phpcs-styles": "^1.0",
-                "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0|^10.0",
-                "phpunit/phpunit": "^9.0|^10.5|^11.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "BladeUI\\Zondicons\\BladeZondiconsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "BladeUI\\Zondicons\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dries Vints",
-                    "homepage": "https://driesvints.com"
-                },
-                {
-                    "name": "Swapnil Sarwe",
-                    "homepage": "https://swapnilsarwe.com"
-                }
-            ],
-            "description": "A package to easily make use of Zondicons in your Laravel Blade views.",
-            "homepage": "https://github.com/codeat3/blade-zondicons",
-            "keywords": [
-                "Zondicons",
-                "blade",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/codeat3/blade-zondicons/issues",
-                "source": "https://github.com/codeat3/blade-zondicons"
-            },
-            "time": "2025-02-26T12:06:57+00:00"
         },
         {
             "name": "brick/math",
@@ -12909,12 +12844,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "8.3.*"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
