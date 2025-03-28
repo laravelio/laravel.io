@@ -22,36 +22,38 @@ final class SyncArticleImages extends Command
 
         Article::unsyncedImages()->chunk(100, function ($articles) {
             $articles->each(function ($article) {
-                $imageData = $this->fetchUnsplashImageDataFromId($article->hero_image_id);
+                $imageData = $this->fetchUnsplashImageDataFromId($article);
 
                 if (! is_null($imageData)) {
                     $article->hero_image_url = $imageData['image_url'];
                     $article->hero_image_author_name = $imageData['author_name'];
                     $article->hero_image_author_url = $imageData['author_url'];
                     $article->save();
+                } else {
+                    $this->warn("Failed to fetch image data for image {$article->hero_image_id}");
                 }
             });
         });
     }
 
-    protected function fetchUnsplashImageDataFromId(string $imageId): ?array
+    protected function fetchUnsplashImageDataFromId(Article $article): ?array
     {
         $response = Http::retry(3, 100, throw: false)
             ->withToken(config('services.unsplash.access_key'), 'Client-ID')
-            ->get("https://api.unsplash.com/photos/{$imageId}");
+            ->get("https://api.unsplash.com/photos/{$article->hero_image_id}");
 
         if ($response->failed()) {
-            logger()->error('Failed to get raw image url from unsplash for', [
-                'imageId' => $imageId,
-                'response' => $response->json(),
-            ]);
+            $article->hero_image_id = null;
+            $article->save();
+
+            $this->warn("Failed to fetch image data for image {$article->hero_image_id}");
 
             return null;
         }
 
         $response = $response->json();
 
-        // Trigger as download...
+        // Trigger as Unsplash download...
         Http::retry(3, 100, throw: false)
             ->withToken(config('services.unsplash.access_key'), 'Client-ID')
             ->get($response['links']['download_location']);
