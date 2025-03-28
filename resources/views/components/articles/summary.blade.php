@@ -19,6 +19,10 @@
 
         <span class="font-mono text-gray-700 leading-6 mb-2 block">
             {{ $article->submittedAt()->format('F jS Y') }}
+
+            @if ($article->isSponsored())
+                <x-tag>Sponsored</x-tag>
+            @endif
         </span>
 
         @if ($isFeatured)

@@ -18,6 +18,7 @@ class ArticleFactory extends Factory
             'body' => $this->faker->paragraphs(3, true),
             'slug' => $this->faker->unique()->slug(),
             'view_count' => $this->faker->numberBetween(0, 1000),
+            'is_sponsored' => $this->faker->boolean(),
         ];
     }
 

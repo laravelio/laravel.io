@@ -41,6 +41,10 @@
                                 {{ $article->createdAt()->format('j M, Y') }}
                             </span>
                         @endif
+
+                        @if ($article->isSponsored())
+                            <x-tag class="ml-5 text-xs">Sponsored</x-tag>
+                        @endif
                     </div>
 
                     @if (isset($mode) && $mode == 'edit')

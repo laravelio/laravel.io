@@ -78,6 +78,8 @@ final class Article extends Model implements Feedable
             'submitted_at' => 'datetime',
             'approved_at' => 'datetime',
             'shared_at' => 'datetime',
+            'is_pinned' => 'boolean',
+            'is_sponsored' => 'boolean',
         ];
     }
 
@@ -174,7 +176,12 @@ final class Article extends Model implements Feedable
 
     public function isPinned(): bool
     {
-        return (bool) $this->is_pinned;
+        return $this->is_pinned;
+    }
+
+    public function isSponsored(): bool
+    {
+        return $this->is_sponsored;
     }
 
     public function isNotShared(): bool
