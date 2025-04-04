@@ -14,7 +14,7 @@
         "innocenzi/bluesky-notification-channel": "^0.2.0",
         "intervention/image": "^3.0",
         "laravel-notification-channels/telegram": "^6.0",
-        "laravel-notification-channels/twitter": "^8.1.1",
+        "laravel-notification-channels/twitter": "8.1.2",
         "laravel/framework": "^11.5",
         "laravel/horizon": "^5.22",
         "laravel/sanctum": "^4.0",
