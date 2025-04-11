@@ -14,7 +14,7 @@ class MarkdownServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(Converter::class, function () {
+        $this->app->singleton(Converter::class, function ($app, array $params = []) {
             $environment = new Environment([
                 'html_input' => 'escape',
                 'max_nesting_level' => 10,
@@ -29,7 +29,9 @@ class MarkdownServiceProvider extends ServiceProvider
                 'external_link' => [
                     'internal_hosts' => config('app.host'),
                     'open_in_new_window' => true,
-                    'nofollow' => 'external',
+                    'nofollow' => ($params['nofollow'] ?? true) ? 'external' : '',
+                    'noreferrer' => ($params['nofollow'] ?? true) ? 'external' : '',
+                    'noopener' => ($params['nofollow'] ?? true) ? 'external' : '',
                 ],
             ]);
 
