@@ -42,7 +42,6 @@ class ArticlesController extends Controller
             ->get();
 
         $articles = Article::published()
-            ->notPinned($pinnedArticles)
             ->latest('approved_at')
             ->{$filter}();
 
