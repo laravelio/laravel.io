@@ -30,8 +30,6 @@ class MarkdownServiceProvider extends ServiceProvider
                     'internal_hosts' => config('app.host'),
                     'open_in_new_window' => true,
                     'nofollow' => ($params['nofollow'] ?? true) ? 'external' : '',
-                    'noreferrer' => ($params['nofollow'] ?? true) ? 'external' : '',
-                    'noopener' => ($params['nofollow'] ?? true) ? 'external' : '',
                 ],
             ]);
 
