@@ -67,7 +67,6 @@ export default {
                             'text-decoration': 'none',
                             color: theme('colors.lio.500'),
                             'border-bottom': `2px solid ${theme('colors.lio.100')}`,
-                            'padding-bottom': theme('padding')['0.5'],
                             '&:hover': {
                                 color: theme('colors.lio.700'),
                             },
@@ -82,7 +81,6 @@ export default {
                             color: '#ec4073',
                             'background-color': 'rgba(236, 64, 115, 0.1)',
                             'border-radius': theme('borderRadius.DEFAULT'),
-                            padding: `${theme('padding')[0.5]}`,
                         },
                     },
                 },
