@@ -29,7 +29,7 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo size="medium" url="https://beyondco.de" logo="{{ asset('images/sponsors/beyondcode.png') }}" company="Beyond Code" />
+                <x-sponsor-logo url="https://beyondco.de" logo="{{ asset('images/sponsors/beyondcode.png') }}" company="Beyond Code" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
@@ -37,11 +37,11 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://www.n-ix.com/" logo="{{ asset('images/sponsors/n-ix.png') }}" company="N-iX" />
+                <x-sponsor-logo url="https://www.n-ix.com/" logo="{{ asset('images/sponsors/n-ix.png') }}" company="N-iX" size="tiny" />
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://litslink.com/" logo="{{ asset('images/sponsors/litslink.png') }}" company="Litslink" size="medium" />
+                <x-sponsor-logo url="https://litslink.com/" logo="{{ asset('images/sponsors/litslink.png') }}" company="Litslink" />
             </div>
         </div>
 

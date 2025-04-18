@@ -1,10 +1,12 @@
+@props(['name', 'id' => null, 'rows' => 3])
+
 <div class="relative">
     <textarea
         name="{{ $name }}"
         id="{{ $id }}"
         rows="{{ $rows }}"
         {{ $attributes->merge([
-            'class' => 'shadow-sm focus:border-lio-300 focus:ring focus:ring-lio-200 focus:ring-opacity-50 mt-1 block w-full sm:text-sm border-gray-300 rounded-md' . ($errors->has($name) ? ' border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : '')
+            'class' => 'shadow-xs focus:border-lio-300 focus:ring-3 focus:ring-lio-200 focus:ring-opacity-50 mt-1 block w-full sm:text-sm border-gray-300 rounded-md' . ($errors->has($name) ? ' border-red-300 text-red-900 placeholder-red-300 focus:outline-hidden focus:ring-red-500 focus:border-red-500' : '')
         ]) }}
     >{{ old($name, $slot) }}</textarea>
 

@@ -4,7 +4,7 @@
     'background'
 ])
 
-<div class="flex flex-col items-center rounded bg-lio-100 py-9 mb-4 md:mb-0">
+<div class="flex flex-col items-center rounded-sm bg-lio-100 py-9 mb-4 md:mb-0">
     <h3 class="uppercase text-lio-500 text-lg font-bold text-center mb-11">
         {{ $title }}
         <span class="text-4xl text-gray-900 block leading-tight">{{ $total }}</span>

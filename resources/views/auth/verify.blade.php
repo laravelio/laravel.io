@@ -7,9 +7,9 @@
 
     <p class="mb-4">If you did not receive the email, click below to request another.</p>
 
-    <x-buk-form action="{{ route('verification.resend') }}" method="POST" class="w-full">
+    <x-forms.form action="{{ route('verification.resend') }}" method="POST" class="w-full">
         <x-buttons.primary-button type="submit" fullWidth>
             Request Another
         </x-buttons.primary-button>
-    </x-buk-form>
+    </x-forms.form>
 @endsection

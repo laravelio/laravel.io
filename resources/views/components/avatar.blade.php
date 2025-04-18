@@ -8,12 +8,12 @@
 @endunless
 
 @if ($user->githubUsername())
-    <x-buk-avatar
-        :search="$user->githubUsername()"
-        provider="github"
-        :fallback="asset('https://laravel.io/images/laravelio-icon-gray.svg')"
-        {{-- :alt="$user->name()" --}}
-        {{ $attributes->merge(['class' => 'bg-gray-50 rounded-full']) }}
+    <flux:avatar
+        circle
+        src="{{ sprintf('https://unavatar.io/github/%s?%s', $user->githubUsername(), http_build_query([
+            'fallback' => asset('https://laravel.io/images/laravelio-icon-gray.svg'),
+        ])) }}"
+        {{ $attributes->merge(['class' => 'bg-gray-50']) }}
     />
 @else
     <img loading="lazy"

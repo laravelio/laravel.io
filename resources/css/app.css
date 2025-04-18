@@ -1,20 +1,41 @@
-@import 'tailwindcss/base';
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
 
-@import 'highlight.js/styles/hybrid.css';
+@import 'highlight.js/styles/hybrid.css' layer(base);
 
-@import 'tailwindcss/components';
+@import './articles.css' layer(utilities);
+@import './buttons.css' layer(utilities);
+@import './labels.css' layer(utilities);
+@import './modal.css' layer(utilities);
+@import './replies.css' layer(utilities);
+@import './tables.css' layer(utilities);
+@import './tags.css' layer(utilities);
 
-@import 'tailwindcss/utilities';
+@config '../../tailwind.config.js';
 
-@import 'articles.css';
-@import 'buttons.css';
-@import 'labels.css';
-@import 'modal.css';
-@import 'replies.css';
-@import 'tables.css';
-@import 'tags.css';
+@custom-variant dark (&:where(.dark, .dark *));
 
-@import url('https://rsms.me/inter/inter.css');
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@theme {
+    --font-sans: Inter, sans-serif;
+}
 
 .number-block {
     box-shadow: 20px 0 40px 5px #e6f6f3 inset, -20px 0 10px 5px #e6f6f3 inset;
@@ -28,7 +49,7 @@ a > span > em {
     @apply w-full;
 }
 
-@screen lg {
+@media (width >= theme(--breakpoint-lg)) {
     .search {
         width: 720px;
     }
@@ -80,7 +101,7 @@ svg .secondary {
 }
 
 .nav .dropdown a:focus {
-    @apply outline-none bg-gray-100;
+    @apply outline-hidden bg-gray-100;
 }
 
 .member:after {
@@ -100,51 +121,51 @@ svg .secondary {
 }
 
 .choices__inner {
-    @apply rounded-md border border-gray-300 w-full bg-white p-2 items-center !important;
+    @apply rounded-md! border! border-gray-300! w-full! bg-white! p-2! items-center!;
 }
 
 .choices__list--dropdown {
-    @apply border border-gray-300 !important;
+    @apply border! border-gray-300!;
 }
 
 .choices__list--single {
-    @apply p-0 !important;
+    @apply p-0!;
 }
 
 .choices__item {
-    @apply text-sm bg-gray-200 text-gray-700 cursor-pointer rounded-md px-2 py-1 my-0 border-0 !important;
+    @apply text-sm! bg-gray-200! text-gray-700! cursor-pointer! rounded-md! px-2! py-1! my-0! border-0!;
 }
 
 .choices__item.choices__item--choice {
-    @apply rounded-none py-2 !important;
+    @apply rounded-none! py-2!;
 }
 
 .choices__item.choices__item--choice.choices__item--selectable {
-    @apply bg-white rounded-none text-gray-700 p-2 !important;
+    @apply bg-white! rounded-none! text-gray-700! p-2!;
 }
 
 .choices__item.choices__item--choice.choices__item--selectable:hover {
-    @apply bg-gray-200 !important;
+    @apply bg-gray-200!;
 }
 
 .choices__item.choices__item--selectable {
-    @apply bg-lio-500 border-lio-500 text-white !important;
+    @apply bg-lio-500! border-lio-500! text-white!;
 }
 
 .choices__list--single > .choices__item.choices__item--selectable {
-    @apply bg-white text-gray-700 !important;
+    @apply bg-white! text-gray-700!;
 }
 
 .choices__item.is-highlighted {
-    @apply bg-lio-600 border-lio-600 text-white !important;
+    @apply bg-lio-600! border-lio-600! text-white!;
 }
 
 .choices[data-type*='select-one']:after {
-    border-color: theme('colors.gray.500') transparent transparent transparent !important;
+    border-color: var(--color-gray-500) transparent transparent transparent !important;
 }
 
 .choices[data-type*='select-one'] .choices__input {
-    @apply rounded-none border-b-2 border-gray-300 !important;
+    @apply rounded-none! border-b-2! border-gray-300!;
 }
 
 .editor li[aria-selected='true'] {

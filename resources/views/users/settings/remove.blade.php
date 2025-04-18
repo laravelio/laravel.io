@@ -1,6 +1,6 @@
 @unless (Auth::user()->isAdmin())
     <section aria-labelledby="remove_account_heading" class="mt-6">
-        <div class="shadow sm:rounded-md sm:overflow-hidden">
+        <div class="shadow-sm sm:rounded-md sm:overflow-hidden">
             <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
                 <div>
                     <h2 id="remove_account_heading" class="text-lg leading-6 font-medium text-red-500 uppercase">
@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                <span class="inline-flex rounded-md shadow-sm">
+                <span class="inline-flex rounded-md shadow-xs">
                     <x-buttons.danger-button @click.prevent="activeModal = 'deleteAccount'">
                         Delete Account
                     </x-buttons.danger-button>

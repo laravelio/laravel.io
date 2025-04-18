@@ -18,7 +18,7 @@
                 class="h-12 w-full border-0 bg-transparent px-11 pr-4 text-gray-800 placeholder-gray-400 focus:ring-0 sm:text-sm"
                 placeholder="Search..." role="combobox" aria-expanded="false" aria-controls="options">
             <kbd @keyup.window.escape="searchVisible = false" @click="searchVisible = false"
-                class="absolute top-3.5 right-4 text-xs rounded bg-gray-100 text-gray-500 px-2 py-1 cursor-pointer">ESC</kbd>
+                class="absolute top-3.5 right-4 text-xs rounded-sm bg-gray-100 text-gray-500 px-2 py-1 cursor-pointer">ESC</kbd>
         </div>
 
         <div x-show="!searchQuery.length" x-cloak

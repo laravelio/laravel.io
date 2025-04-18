@@ -1,7 +1,7 @@
 @props(['thread'])
 
-<div class="thread bg-white shadow rounded">
-    <div class="border-b">
+<div class="thread bg-white shadow-sm rounded-sm">
+    <div class="border-b border-gray-200">
         <div class="px-4 pt-4 pb-1 lg:px-6 lg:py-2">
             <div class="flex flex-row justify-between items-start lg:items-center">
                 <div>

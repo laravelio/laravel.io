@@ -1,7 +1,7 @@
 @title('Password')
 
 <section aria-labelledby="password_settings_heading" class="mt-6">
-    <div class="shadow sm:rounded-md sm:overflow-hidden">
+    <div class="shadow-sm sm:rounded-md sm:overflow-hidden">
         <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
             <div>
                 <h2 id="list_blocked_users" class="text-lg leading-6 font-medium text-gray-900">
@@ -27,9 +27,9 @@
                             </div>
                         </div>
 
-                        <x-buk-form-button action="{{ route('settings.users.unblock', $user->username()) }}" method="PUT">
+                        <x-forms.button action="{{ route('settings.users.unblock', $user->username()) }}" method="PUT">
                             <x-heroicon-s-x-mark class="h-4 w-4 text-gray-500 hover:text-red-500" />
-                        </x-buk-form-button>
+                        </x-forms.button>
                     </li>
                 @empty
                     <p class="mt-1 text-sm leading-5 text-gray-500">

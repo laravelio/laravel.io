@@ -1,8 +1,8 @@
 @title('Notification settings')
 
 <section class="mt-6">
-    <div class="shadow sm:rounded-md sm:overflow-hidden">
-        <x-buk-form action="{{ route('settings.notifications.store') }}">
+    <div class="shadow-sm sm:rounded-md sm:overflow-hidden">
+        <x-forms.form action="{{ route('settings.notifications.store') }}">
             <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
                 <div>
                     <h2 class="text-lg leading-6 font-medium text-gray-900">
@@ -41,6 +41,6 @@
                     Save notification settings
                 </x-buttons.primary-button>
             </div>
-        </x-buk-form>
+        </x-forms.form>
     </div>
 </section>

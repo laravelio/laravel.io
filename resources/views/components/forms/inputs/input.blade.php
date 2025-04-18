@@ -1,3 +1,10 @@
+@props([
+    'name',
+    'id' => null,
+    'type' => 'text',
+    'value' => null,
+])
+
 <div>
     <div class="relative">
         @if ($attributes->get('prefix-icon'))
@@ -10,9 +17,9 @@
             name="{{ $name }}"
             type="{{ $type }}"
             id="{{ $id }}"
-            value="{{ $value ?: '' }}"
+            value="{{ old($name, $value ?? '') }}"
             {{ $attributes->merge([
-                'class' => 'block w-full border-gray-300 rounded-md focus:border-lio-300 focus:ring focus:ring-lio-200 focus:ring-opacity-50 sm:text-sm sm:leading-5 mt-1' . ($attributes->get('prefix-icon') ? ' pl-10' : '') . ($errors->has($name) ? ' border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500' : '')
+                'class' => 'block w-full border-gray-300 rounded-md focus:border-lio-300 focus:ring-3 focus:ring-lio-200 focus:ring-opacity-50 sm:text-sm sm:leading-5 mt-1' . ($attributes->get('prefix-icon') ? ' pl-10' : '') . ($errors->has($name) ? ' border-red-300 text-red-900 placeholder-red-300 focus:outline-hidden focus:ring-red-500 focus:border-red-500' : '')
             ]) }}
         />
 

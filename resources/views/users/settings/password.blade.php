@@ -1,8 +1,8 @@
 @title('Password')
 
 <section aria-labelledby="password_settings_heading" class="mt-6">
-    <x-buk-form method="PUT" action="{{ route('settings.password.update') }}">
-        <div class="shadow sm:rounded-md sm:overflow-hidden">
+    <x-forms.form method="PUT" action="{{ route('settings.password.update') }}">
+        <div class="shadow-sm sm:rounded-md sm:overflow-hidden">
             <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
                 <div>
                     <h2 id="password_settings_heading" class="text-lg leading-6 font-medium text-gray-900">
@@ -42,5 +42,5 @@
                 </x-buttons.primary-button>
             </div>
         </div>
-    </x-buk-form>
+    </x-forms.form>
 </section>

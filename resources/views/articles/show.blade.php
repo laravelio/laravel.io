@@ -32,7 +32,7 @@
                             this.onerror=null
                             this.src=''"
                     >
-                    <div class="absolute inset-0 bg-gradient-to-b from-black/40 to-black/40 -z-10"></div>
+                    <div class="absolute inset-0 bg-linear-to-b from-black/40 to-black/40 -z-10"></div>
                     <div class="flex items-center justify-between mb-28 text-sm lg:text-base">
                         <a href="{{ route('articles') }}" class="flex items-center text-white hover:underline">
                             <x-heroicon-s-arrow-left class="w-4 h-4 fill-current" />

@@ -5,7 +5,7 @@
 @section('small-content')
     <p class="mb-4">{{ Session::get('status', 'Please fill in your email address below.') }}</p>
 
-    <x-buk-form action="{{ route('password.forgot.post') }}" method="POST" class="space-y-6">
+    <x-forms.form action="{{ route('password.forgot.post') }}" method="POST" class="space-y-6">
         <div>
             <x-forms.label for="email" />
 
@@ -15,5 +15,5 @@
         <x-buttons.primary-button type="submit" fullWidth>
             Send Password Reset Link
         </x-buttons.primary-button>
-    </x-buk-form>
+    </x-forms.form>
 @endsection

@@ -2,7 +2,7 @@
 
 <div class="flex items-center lg:gap-x-3">
     @if ($reply->author()->isModerator() || $reply->author()->isAdmin())
-        <span class="text-sm text-lio-500 border border-lio-200 rounded py-1.5 px-3 leading-none">
+        <span class="text-sm text-lio-500 border border-lio-200 rounded-sm py-1.5 px-3 leading-none">
             moderator
         </span>
     @endif
@@ -55,7 +55,7 @@
     @canany([App\Policies\ReplyPolicy::UPDATE, App\Policies\ReplyPolicy::DELETE, App\Policies\ReplyPolicy::REPORT_SPAM], $reply)
         <div class="relative -mr-3" x-data="{ open: false }" @click.outside="open = false">
             <button
-                class="p-2 rounded hover:bg-gray-100"
+                class="p-2 rounded-sm hover:bg-gray-100"
                 @click="open = !open"
             >
                 <x-heroicon-o-ellipsis-horizontal class="w-6 h-6" />
@@ -64,24 +64,24 @@
             <div
                 x-cloak
                 x-show="open"
-                class="absolute top-12 right-1 flex flex-col bg-white rounded shadow w-48 z-10"
+                class="absolute top-12 right-1 flex flex-col bg-white rounded-sm shadow-sm w-48 z-10"
             >
                 @can(App\Policies\ReplyPolicy::UPDATE, $reply)
-                    <button x-show="! edit" class="flex gap-x-2 p-3 rounded hover:bg-gray-100" @click="edit = true; open = false;">
+                    <button x-show="! edit" class="flex gap-x-2 p-3 rounded-sm hover:bg-gray-100" @click="edit = true; open = false;">
                         <x-heroicon-o-pencil class="w-6 h-6"/>
                         <span>Edit</span>
                     </button>
                 @endcan
 
                 @can(App\Policies\ReplyPolicy::DELETE, $reply)
-                    <button class="flex gap-x-2 p-3 rounded hover:bg-gray-100" @click="activeModal = 'deleteReply-{{ $reply->id }}'">
+                    <button class="flex gap-x-2 p-3 rounded-sm hover:bg-gray-100" @click="activeModal = 'deleteReply-{{ $reply->id }}'">
                         <x-heroicon-o-trash class="w-6 h-6 text-red-500"/>
                         Delete
                     </button>
                 @endcan
 
                 @can(App\Policies\ReplyPolicy::REPORT_SPAM, $reply)
-                    <button class="flex gap-x-2 p-3 rounded hover:bg-gray-100" @click="activeModal = 'markAsSpam-{{ $reply->id }}'">
+                    <button class="flex gap-x-2 p-3 rounded-sm hover:bg-gray-100" @click="activeModal = 'markAsSpam-{{ $reply->id }}'">
                         <x-heroicon-o-exclamation-triangle class="w-6 h-6 text-red-500"/>
                         Mark as spam
                     </button>

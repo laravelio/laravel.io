@@ -1,7 +1,7 @@
 @title('API Tokens')
 
 <section aria-labelledby="api_token_settings_heading" class="mt-6">
-    <div class="shadow sm:rounded-md sm:overflow-hidden">
+    <div class="shadow-sm sm:rounded-md sm:overflow-hidden">
         <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
             <div>
                 <h2 id="api_token_settings_heading" class="text-lg leading-6 font-medium text-gray-900">
@@ -26,13 +26,13 @@
                             </time>
                         </div>
 
-                        <x-buk-form method="DELETE" :action="route('settings.api-tokens.delete')">
+                        <x-forms.form method="DELETE" :action="route('settings.api-tokens.delete')">
                             <input type="hidden" name="id" value="{{ $token->getKey() }}" />
 
                             <x-buttons.danger-button>
                                 Delete Token
                             </x-buttons.danger-button>
-                        </x-buk-form>
+                        </x-forms.form>
                     </li>
                 @endforeach
             </ul>
@@ -46,12 +46,12 @@
             </div>
         </div>
 
-        <x-buk-form id="api_token_settings_form" method="POST" action="{{ route('settings.api-tokens.store') }}">
+        <x-forms.form id="api_token_settings_form" method="POST" action="{{ route('settings.api-tokens.store') }}">
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <x-buttons.primary-button type="submit">
                     Generate New Token
                 </x-buttons.primary-button>
             </div>
-        </x-buk-form>
+        </x-forms.form>
     </div>
 </section>

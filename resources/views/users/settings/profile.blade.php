@@ -1,8 +1,8 @@
 @title('Profile')
 
 <section aria-labelledby="profile_settings_heading">
-    <x-buk-form method="PUT" action="{{ route('settings.profile.update') }}">
-        <div class="shadow sm:rounded-md sm:overflow-hidden">
+    <x-forms.form method="PUT" action="{{ route('settings.profile.update') }}">
+        <div class="shadow-sm sm:rounded-md sm:overflow-hidden">
             <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
                 <div>
                     <h2 id="profile_settings_heading" class="text-lg leading-6 font-medium text-gray-900">
@@ -107,12 +107,12 @@
             </div>
 
             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                <span class="inline-flex rounded-md shadow-sm">
+                <span class="inline-flex rounded-md shadow-xs">
                     <x-buttons.primary-button type="submit">
                         Update Profile
                     </x-buttons.primary-button>
                 </span>
             </div>
         </div>
-    </x-buk-form>
+    </x-forms.form>
 </section>

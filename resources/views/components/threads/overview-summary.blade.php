@@ -2,7 +2,7 @@
     'thread',
 ])
 
-<div class="h-full rounded shadow-lg p-5 bg-white">
+<div class="h-full rounded-sm shadow-lg p-5 bg-white">
     <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">
         <div>
             <div class="flex flex-wrap items-center space-x-1 text-sm">

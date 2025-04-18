@@ -1,11 +1,11 @@
 @props(['moderators'])
 
-<div class="bg-white shadow rounded-md p-5 pb-3">
+<div class="bg-white shadow-sm rounded-md p-5 pb-3">
     <h3 class="text-xl font-semibold">Moderators</h3>
 
     <ul>
         @foreach ($moderators as $moderator)
-            <li class="{{ ! $loop->last ? 'border-b ' : '' }}flex items-center gap-x-5 pb-3 pt-5">
+            <li class="{{ ! $loop->last ? 'border-b border-gray-200 ' : '' }}flex items-center gap-x-5 pb-3 pt-5">
                 <x-avatar :user="$moderator" class="w-10 h-10" />
 
                 <span class="flex flex-col">

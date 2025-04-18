@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2e53060aace5c1a6de5990f6582eb8f",
+    "content-hash": "3b102ffa4aba7e3646df184c9da914c8",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -523,84 +523,6 @@
                 }
             ],
             "time": "2025-02-13T20:35:06+00:00"
-        },
-        {
-            "name": "blade-ui-kit/blade-ui-kit",
-            "version": "0.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/blade-ui-kit/blade-ui-kit.git",
-                "reference": "3d6034f5425ea41e54a75130555befd1dfec7690"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/blade-ui-kit/blade-ui-kit/zipball/3d6034f5425ea41e54a75130555befd1dfec7690",
-                "reference": "3d6034f5425ea41e54a75130555befd1dfec7690",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "illuminate/filesystem": "^10.0|^11.0|^12.0",
-                "illuminate/support": "^10.0|^11.0|^12.0",
-                "illuminate/view": "^10.0|^11.0|^12.0",
-                "nesbot/carbon": "^2.38|^3.0",
-                "php": "^8.1"
-            },
-            "require-dev": {
-                "guzzlehttp/guzzle": "^7.4",
-                "league/commonmark": "^1.4|^2.0",
-                "livewire/livewire": "^3.0",
-                "lorisleiva/cron-translator": "^0.1.1|^0.4",
-                "orchestra/testbench": "^8.0|^9.0|^10.0",
-                "orchestra/testbench-dusk": "^8.0|^9.0|^10.0",
-                "pestphp/pest": "^2.34|^3.0",
-                "phpunit/phpunit": "^10.5|^11.0"
-            },
-            "suggest": {
-                "league/commonmark": "Required to use the markdown component (^1.4).",
-                "lorisleiva/cron-translator": "Required to use the cron component (^0.1.1)."
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "BladeUIKit\\BladeUIKitServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "BladeUIKit\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Dries Vints",
-                    "homepage": "https://driesvints.com"
-                }
-            ],
-            "description": "A set of renderless components to utilise in your Laravel Blade views.",
-            "homepage": "https://github.com/blade-ui-kit/blade-ui-kit",
-            "keywords": [
-                "blade",
-                "laravel",
-                "ui"
-            ],
-            "support": {
-                "issues": "https://github.com/blade-ui-kit/blade-ui-kit/issues",
-                "source": "https://github.com/blade-ui-kit/blade-ui-kit"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/sponsors/driesvints",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-02-19T08:32:44+00:00"
         },
         {
             "name": "brick/math",
@@ -3752,6 +3674,69 @@
                 }
             ],
             "time": "2024-12-08T08:18:47+00:00"
+        },
+        {
+            "name": "livewire/flux",
+            "version": "v2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/flux.git",
+                "reference": "3fad9b78f446926b1b851bd8f12ced7649c62368"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire/flux/zipball/3fad9b78f446926b1b851bd8f12ced7649c62368",
+                "reference": "3fad9b78f446926b1b851bd8f12ced7649c62368",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^10.0|^11.0|^12.0",
+                "illuminate/support": "^10.0|^11.0|^12.0",
+                "illuminate/view": "^10.0|^11.0|^12.0",
+                "laravel/prompts": "^0.1|^0.2|^0.3",
+                "livewire/livewire": "^3.5.19",
+                "php": "^8.1",
+                "symfony/console": "^6.0|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Flux": "Flux\\Flux"
+                    },
+                    "providers": [
+                        "Flux\\FluxServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Flux\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "The official UI component library for Livewire.",
+            "keywords": [
+                "components",
+                "flux",
+                "laravel",
+                "livewire",
+                "ui"
+            ],
+            "support": {
+                "issues": "https://github.com/livewire/flux/issues",
+                "source": "https://github.com/livewire/flux/tree/v2.1.2"
+            },
+            "time": "2025-03-31T21:08:37+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -12850,12 +12835,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "8.3.*"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }

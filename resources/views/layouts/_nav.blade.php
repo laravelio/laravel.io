@@ -1,4 +1,4 @@
-<nav class="{{ isset($hasShadow) ? 'shadow mb-1' : '' }}">
+<nav class="{{ isset($hasShadow) ? 'shadow-sm mb-1' : '' }}">
     <div class="container mx-auto text-gray-800 lg:block lg:py-8" x-data="navConfig()" @click.outside="nav = false">
         <div class="block bg-white 2xl:-mx-10">
             <div class="lg:px-4 lg:flex">
@@ -23,27 +23,27 @@
                         </div>
                     </div>
 
-                    <div class="mt-2 border-b lg:block lg:mt-0 lg:border-0" x-cloak :class="{ 'block': nav, 'hidden': !nav }">
+                    <div class="mt-2 border-b border-gray-200 lg:block lg:mt-0 lg:border-0" x-cloak :class="{ 'block': nav, 'hidden': !nav }">
                         <ul class="flex flex-col px-4 mb-2 gap-y-2 lg:flex-row lg:mb-0 lg:gap-6">
-                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100 @if(is_active(['forum', 'threads*', 'thread'])) bg-gray-100 @endif">
+                            <li class="rounded-sm lg:mb-0 lg:hover:bg-gray-100 @if(is_active(['forum', 'threads*', 'thread'])) bg-gray-100 @endif">
                                 <a href="{{ route('forum') }}" class="inline-block w-full px-2 py-1">
                                     Forum
                                 </a>
                             </li>
 
-                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100 @if(is_active(['articles', 'articles*'])) bg-gray-100 @endif">
+                            <li class="rounded-sm lg:mb-0 lg:hover:bg-gray-100 @if(is_active(['articles', 'articles*'])) bg-gray-100 @endif">
                                 <a href="{{ route('articles') }}" class="inline-block w-full px-2 py-1">
                                     Articles
                                 </a>
                             </li>
 
-                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100">
+                            <li class="rounded-sm lg:mb-0 lg:hover:bg-gray-100">
                                 <a href="https://paste.laravel.io" class="inline-block w-full px-2 py-1">
                                     Pastebin
                                 </a>
                             </li>
 
-                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100">
+                            <li class="rounded-sm lg:mb-0 lg:hover:bg-gray-100">
                                 <div @click.outside="chat = false" class="relative">
                                     <div>
                                         <button @click="chat = !chat" class="flex items-center lg:mb-0 py-1 px-2">
@@ -79,7 +79,7 @@
                                 </div>
                             </li>
 
-                            <li class="rounded lg:mb-0 lg:hover:bg-gray-100">
+                            <li class="rounded-sm lg:mb-0 lg:hover:bg-gray-100">
                                 <div @click.outside="community = false" class="relative">
                                     <button @click="community = !community" class="flex items-center lg:mb-0 py-1 px-2">
                                         Community
@@ -142,7 +142,7 @@
 
                     <ul class="block lg:flex lg:items-center gap-x-8" x-cloak :class="{ 'block': nav, 'hidden': !nav }">
                         @if (Auth::guest())
-                            <li class="w-full rounded text-center lg:hover:bg-gray-100">
+                            <li class="w-full rounded-sm text-center lg:hover:bg-gray-100">
                                 <a href="{{ route('register') }}" class="inline-block w-full  p-2.5">
                                     Register
                                 </a>
@@ -208,7 +208,7 @@
                                         </li>
 
                                         @can(App\Policies\UserPolicy::ADMIN, App\Models\User::class)
-                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:border-t lg:border-b">
+                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:border-t lg:border-b border-gray-200">
                                                 <a href="{{ route('admin') }}" class="flex items-center w-full lg:px-3 lg:py-2">
                                                     <x-heroicon-o-shield-check class="w-4 h-4 mr-2" />
                                                     Admin
@@ -217,10 +217,14 @@
                                         @endcan
 
                                         <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                            <x-buk-logout class="flex items-center w-full text-left lg:px-3 lg:py-2">
-                                                <x-heroicon-o-arrow-left-on-rectangle class="w-4 h-4 mr-2" />
-                                                Sign out
-                                            </x-buk-logout>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                            
+                                                <button type="submit" class="flex items-center w-full text-left lg:px-3 lg:py-2">
+                                                    <x-heroicon-o-arrow-left-on-rectangle class="w-4 h-4 mr-2" />
+                                                    Sign out
+                                                </button>
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>

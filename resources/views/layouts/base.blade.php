@@ -16,6 +16,9 @@
 
     <meta name="description" content="The Laravel portal for problem solving, knowledge sharing and community building." />
     <link rel="canonical" href="{{ $canonical ?? Request::url() }}" />
+    
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
 
     @vite(['resources/css/app.css'])
 
@@ -30,6 +33,7 @@
     @include('layouts._social')
     @include('layouts._fathom')
 
+    @fluxAppearance
     @livewireStyles
 </head>
 
@@ -46,6 +50,7 @@
 
 @vite(['resources/js/app.js'])
 
+@fluxScripts
 @livewireScripts
 
 </body>

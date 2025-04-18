@@ -1,6 +1,6 @@
 @props(['thread'])
 
-<div class="bg-white shadow rounded-md">
+<div class="bg-white shadow-sm rounded-md">
     <div class="flex flex-col p-5">
         <h3 class="text-xl font-semibold">Notifications</h3>
 
