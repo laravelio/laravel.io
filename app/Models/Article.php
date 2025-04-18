@@ -100,7 +100,7 @@ final class Article extends Model implements Feedable
 
     public function excerpt(int $limit = 100): string
     {
-        return Str::limit(strip_tags(md_to_html($this->body())), $limit);
+        return Str::limit(strip_tags(md_to_html($this->body(), false)), $limit);
     }
 
     public function hasHeroImageAuthor(): bool
@@ -271,11 +271,6 @@ final class Article extends Model implements Feedable
     public function scopePinned(Builder $query): Builder
     {
         return $query->where('is_pinned', true);
-    }
-
-    public function scopeNotPinned(Builder $query, Collection $pinnedArticles): Builder
-    {
-        return $query->whereNotIn('id', $pinnedArticles->pluck('id'));
     }
 
     public function scopeShared(Builder $query): Builder

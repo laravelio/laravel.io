@@ -144,8 +144,24 @@ test('guests can view an article', function () {
         ->assertSee($article->title());
 });
 
+test('articles with links do not include a nofollow attributes', function () {
+    $article = Article::factory()->approved()->create([
+        'slug' => 'my-first-article',
+        'submitted_at' => now(),
+        'body' => 'This article will go into depth on working with database migrations. Here is [a link](https://example.com).',
+    ]);
+
+    $this->get('/articles/my-first-article')
+        ->assertSee($article->title())
+        ->assertDontSee('nofollow');
+});
+
 test('logged in users can view an article', function () {
-    $article = Article::factory()->create(['slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now()]);
+    $article = Article::factory()->create([
+        'slug' => 'my-first-article',
+        'submitted_at' => now(),
+        'approved_at' => now(),
+    ]);
 
     $this->login();
 
@@ -419,7 +435,7 @@ test('a user can view their articles', function () {
         ->assertSee($articles[2]->title());
 });
 
-test('a user can another users articles', function () {
+test("a user cannot view another user's articles", function () {
     $articles = Article::factory()->count(3)->create();
 
     $this->login();

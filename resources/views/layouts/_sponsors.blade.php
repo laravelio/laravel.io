@@ -9,8 +9,9 @@
         </div> --}}
 
         <div class="mt-8 flex justify-center">
-            <div class="col-span-2 flex justify-center lg:col-span-1 mr-10">
+            <div class="gap-x-12 flex justify-center">
                 <x-sponsor-logo size="medium" url="https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement" logo="{{ asset('images/sponsors/eventy.svg') }}" company="Eventy" />
+                <x-sponsor-logo size="medium" url="https://nativephp.com/mobile?ref=laravel.io" logo="{{ asset('images/sponsors/nativephp.png') }}" company="NativePHP" />
             </div>
         </div>
 
@@ -36,7 +37,11 @@
             </div>
 
             <div class="col-span-2 flex justify-center lg:col-span-1">
-                <x-sponsor-logo url="https://www.n-ix.com/" logo="{{ asset('images/sponsors/n-ix.png') }}" company="N-iX" />
+                <x-sponsor-logo url="https://www.n-ix.com/" logo="{{ asset('images/sponsors/n-ix.png') }}" company="N-iX" size="tiny" />
+            </div>
+
+            <div class="col-span-2 flex justify-center lg:col-span-1">
+                <x-sponsor-logo url="https://litslink.com/" logo="{{ asset('images/sponsors/litslink.png') }}" company="Litslink" />
             </div>
         </div>
 

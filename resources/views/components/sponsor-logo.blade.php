@@ -2,8 +2,9 @@
 
 <?php
     $classes = match ($size) {
-        'small' => 'max-h-10 max-w-14',
-        'medium' => 'max-h-36 max-w-48',
+        'tiny' => 'max-h-20 max-w-28',
+        'small' => 'max-h-36 max-w-42',
+        'medium' => 'max-h-42 max-w-60',
         'large' => 'max-h-48 max-w-60',
     };
 ?>

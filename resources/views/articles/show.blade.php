@@ -121,7 +121,7 @@
                         x-init="$nextTick(function () { highlightCode($el); })"
                         class="prose prose-lg text-gray-800 prose-lio"
                     >
-                        {!! md_to_html($article->body()) !!}
+                        {!! md_to_html($article->body(), false) !!}
                     </div>
 
                     @if ($article->isUpdated())
