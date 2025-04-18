@@ -1,5 +1,5 @@
 .button {
-    @apply bg-gray-300 text-gray-700 rounded px-4 py-2 block text-center cursor-pointer font-sans;
+    @apply bg-gray-300 text-gray-700 rounded-sm px-4 py-2 block text-center cursor-pointer font-sans;
 }
 
 .button:hover {
@@ -7,7 +7,7 @@
 }
 
 .button-primary {
-    @apply text-white bg-lio-500 !important;
+    @apply text-white! bg-lio-500!;
 }
 
 .button-primary:hover {
@@ -15,7 +15,7 @@
 }
 
 .button-danger {
-    @apply text-white bg-red-600 !important;
+    @apply text-white! bg-red-600!;
 }
 
 .button-danger:hover {

@@ -82,7 +82,7 @@ window.tabConfig = () => {
             this.activeTab = tab;
         },
         currentTab: function (tab) {
-            return this.activeTab === tab ? 'bg-white rounded-lg shadow text-indigo-900' : '';
+            return this.activeTab === tab ? 'bg-white rounded-lg shadow-sm text-indigo-900' : '';
         }
     };
 }

@@ -3,7 +3,7 @@
 @extends('layouts.default')
 
 @section('subnav')
-    <div class="bg-white border-b">
+    <div class="bg-white border-b border-gray-200">
         <div class="container mx-auto flex justify-between items-center px-4">
             <h1 class="text-xl py-4 text-gray-900">
                 <a href="{{ route('forum') }}">Forum</a>

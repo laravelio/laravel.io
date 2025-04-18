@@ -1,7 +1,7 @@
 @title('Password')
 
 <section aria-labelledby="password_settings_heading" class="mt-6">
-    <div class="shadow sm:rounded-md sm:overflow-hidden">
+    <div class="shadow-sm sm:rounded-md sm:overflow-hidden">
         <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
             <div>
                 <h2 id="list_blocked_users" class="text-lg leading-6 font-medium text-gray-900">

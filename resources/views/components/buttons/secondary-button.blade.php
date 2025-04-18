@@ -1,12 +1,12 @@
 @props(['fullWidth' => false])
 
-<span class="{{ $fullWidth ? 'flex' : 'inline-flex' }} rounded-md shadow">
+<span class="{{ $fullWidth ? 'flex' : 'inline-flex' }} rounded-md shadow-sm">
     @if ($attributes->has('href'))
-        <a {{ $attributes->merge(['class' => ($fullWidth ? 'w-full ' : '') . 'bg-white border border-gray-200 rounded py-2 px-4 inline-flex justify-center text-base text-gray-900 hover:bg-gray-100 font-medium']) }}>
+        <a {{ $attributes->merge(['class' => ($fullWidth ? 'w-full ' : '') . 'bg-white border border-gray-200 rounded-sm py-2 px-4 inline-flex justify-center text-base text-gray-900 hover:bg-gray-100 font-medium']) }}>
             {{ $slot }}
         </a>
     @else
-        <button {{ $attributes->merge(['class' => ($fullWidth ? 'w-full ' : '') . 'bg-white border border-gray-200 rounded py-2 px-4 inline-flex justify-center text-base text-gray-900 hover:bg-gray-100 font-medium']) }}>
+        <button {{ $attributes->merge(['class' => ($fullWidth ? 'w-full ' : '') . 'bg-white border border-gray-200 rounded-sm py-2 px-4 inline-flex justify-center text-base text-gray-900 hover:bg-gray-100 font-medium']) }}>
             {{ $slot }}
         </button>
     @endif

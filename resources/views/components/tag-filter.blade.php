@@ -8,11 +8,11 @@
 ])
 
 <div 
-    class="flex flex-col bg-white rounded-md shadow max-h-full" 
+    class="flex flex-col bg-white rounded-md shadow-sm max-h-full" 
     x-data="{ activeTag: '{{ $activeTag ? $activeTag->id() : null }}', filter: '', isFiltered(value) { return !this.filter || value.toLowerCase().includes(this.filter.toLowerCase()) } }"
     x-cloak
 >
-    <div class="border-b">
+    <div class="border-b border-gray-200">
         <div class="p-4">
             <div class="flex justify-between items-center mb-2" x-cloak>
                 <h3 class="text-3xl font-semibold">Filter tag</h3>
@@ -35,7 +35,7 @@
                     type="search" 
                     name="filter" 
                     id="search" 
-                    class="border block pl-10 border-gray-300 rounded w-full" 
+                    class="border block pl-10 border-gray-300 rounded-sm w-full" 
                     placeholder="Filter by tag name"
                     x-model="filter"
                 />
@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    <div class="border-b overflow-y-scroll">
+    <div class="border-b border-gray-200 overflow-y-scroll">
         <div class="flex flex-col text-lg p-4">
             @foreach ($tags as $tag)
                 <a 

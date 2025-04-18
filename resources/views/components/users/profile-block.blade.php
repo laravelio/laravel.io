@@ -1,6 +1,6 @@
 @props(['user'])
 
-<div class="flex flex-col rounded-md shadow mt-6">
+<div class="flex flex-col rounded-md shadow-sm mt-6">
     <div class="bg-gray-800 rounded-t-md h-28" style="background-image: url('{{ asset('images/default-background.svg') }}')"></div>
 
     <div class="flex flex-col items-center justify-center bg-white rounded-b-md pb-8">

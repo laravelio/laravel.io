@@ -4,8 +4,8 @@
     <div class="bg-gray-50">
         <div>
 @else
-    <div class="bg-white shadow rounded @if (! $reply->trashed() && $thread->isSolutionReply($reply)) border-2 border-lio-400 @endif" id="{{ $reply->id() }}" x-data="{ edit: false }">
-        <div class="border-b">
+    <div class="bg-white shadow-sm rounded-sm @if (! $reply->trashed() && $thread->isSolutionReply($reply)) border-2 border-lio-400 @endif" id="{{ $reply->id() }}" x-data="{ edit: false }">
+        <div class="border-b border-gray-200">
 @endif
         <div class="flex flex-row justify-between items-center px-6 py-2">
             <div class="flex flex-wrap items-center space-x-1 text-sm">

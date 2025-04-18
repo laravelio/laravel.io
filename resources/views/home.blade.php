@@ -107,7 +107,7 @@
                                         type="search"
                                         name="search"
                                         placeholder="Search here for threads"
-                                        class="p-4 pl-10 text-gray-600 rounded w-full border-gray-100"
+                                        class="p-4 pl-10 text-gray-600 rounded-sm w-full border-gray-100"
                                     />
                                 </form>
                             </div>

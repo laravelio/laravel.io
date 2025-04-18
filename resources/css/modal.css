@@ -12,7 +12,7 @@
 }
 
 .modal-title {
-    @apply text-2xl mb-4 border-b pb-4;
+    @apply text-2xl mb-4 border-b border-gray-200 pb-4;
 }
 
 .modal-body {
@@ -20,15 +20,15 @@
 }
 
 .modal-footer {
-    @apply flex justify-end border-t pt-4;
+    @apply flex justify-end border-t border-gray-200 pt-4;
 }
 
 .modal .close {
     @apply absolute text-2xl right-0 top-0 mx-4 my-2 text-gray-600;
 }
 
-@screen md {
+@media (width >= theme(--breakpoint-md)) {
     .modal-content {
-        @apply w-1/3 rounded;
+        @apply w-1/3 rounded-sm;
     }
 }

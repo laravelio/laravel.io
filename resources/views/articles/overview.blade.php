@@ -19,7 +19,7 @@
                 </span>
             </h2>
             <div class="mt-8 flex lg:mt-0 lg:shrink-0">
-                <div class="inline-flex rounded-md shadow">
+                <div class="inline-flex rounded-md shadow-sm">
                     <x-buttons.primary-button href="{{ route('articles.create') }}" class="px-5 py-3 text-base font-medium">
                         Share Your Article
                     </x-buttons.primary-button>
@@ -56,7 +56,7 @@
                     </div>
 
                     @if ($activeTag)
-                        <div class="hidden lg:flex gap-x-4 items-center mt-4 pt-5 border-t">
+                        <div class="hidden lg:flex gap-x-4 items-center mt-4 pt-5 border-t border-gray-200">
                             Filter applied
                             <x-tag>
                                 <span class="flex items-center gap-x-1">
@@ -140,14 +140,14 @@
                     @include('layouts._ads._forum_sidebar')
                 </div>
 
-                <div class="bg-white shadow rounded-md mt-6">
+                <div class="bg-white shadow-sm rounded-md mt-6">
                     <h3 class="text-xl font-semibold px-5 pt-5">
                         Top authors
                     </h3>
 
                     <ul>
                         @foreach ($topAuthors as $author)
-                            <li class="{{ ! $loop->last ? 'border-b ' : '' }}pb-3 pt-5">
+                            <li class="{{ ! $loop->last ? 'border-b border-gray-200 ' : '' }}pb-3 pt-5">
                                 <div class="flex justify-between items-center px-5">
                                     <div class="flex items-center gap-x-5">
                                         <x-avatar :user="$author" class="w-10 h-10" />

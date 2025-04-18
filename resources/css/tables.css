@@ -1,5 +1,5 @@
 .table {
-    @apply w-full rounded bg-white shadow;
+    @apply w-full rounded-sm bg-white shadow-sm;
 }
 
 .table th,
@@ -12,7 +12,7 @@
 }
 
 .table tr {
-    @apply border-b text-gray-700;
+    @apply border-b border-gray-200 text-gray-700;
 }
 
 .table-striped tr:nth-child(even) {

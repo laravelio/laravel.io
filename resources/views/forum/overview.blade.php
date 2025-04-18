@@ -37,7 +37,7 @@
                     </div>
 
                     @isset ($activeTag)
-                        <div class="hidden lg:flex gap-x-4 items-center mt-4 pt-5 border-t">
+                        <div class="hidden lg:flex gap-x-4 items-center mt-4 pt-5 border-t border-gray-200">
                             Filter applied
                             <x-tag>
                                 <span class="flex items-center gap-x-1">
@@ -117,14 +117,14 @@
                     @include('layouts._ads._forum_sidebar')
                 </div>
 
-                <div class="bg-white shadow rounded-md mt-6">
+                <div class="bg-white shadow-sm rounded-md mt-6">
                     <h3 class="text-xl font-semibold px-5 pt-5">
                         Thanks to our community
                     </h3>
 
                     <ul>
                         @foreach ($topMembers as $member)
-                            <li class="{{ ! $loop->last ? 'border-b ' : '' }}pb-3 pt-5">
+                            <li class="{{ ! $loop->last ? 'border-b border-gray-200 ' : '' }}pb-3 pt-5">
                                 <div class="flex justify-between items-center px-5">
                                     <div class="flex items-center gap-x-5">
                                         <x-avatar :user="$member" class="w-10 h-10" />

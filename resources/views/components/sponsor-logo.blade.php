@@ -3,8 +3,8 @@
 <?php
     $classes = match ($size) {
         'small' => 'max-h-10 max-w-14',
-        'medium' => 'max-h-14 max-w-18',
-        'large' => 'max-h-24 max-w-30',
+        'medium' => 'max-h-36 max-w-48',
+        'large' => 'max-h-48 max-w-60',
     };
 ?>
 

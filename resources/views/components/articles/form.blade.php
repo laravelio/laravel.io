@@ -107,12 +107,12 @@
                             Save changes
                         </button>
                     @else
-                        <span class="relative z-0 inline-flex shadow-sm" x-data="{ showDropdown: false }" @click.outside="showDropdown = false">
+                        <span class="relative z-0 inline-flex shadow-xs" x-data="{ showDropdown: false }" @click.outside="showDropdown = false">
                             <button
                                 type="submit"
                                 name="submitted"
                                 value="0"
-                                class="button button-primary button-dropdown-left relative inline-flex items-center focus:outline-none"
+                                class="button button-primary button-dropdown-left relative inline-flex items-center focus:outline-hidden"
                             >
                                 Save draft
                             </button>
@@ -120,7 +120,7 @@
                                 <button
                                     @click="showDropdown = !showDropdown"
                                     type="button"
-                                    class="button button-primary h-full button-dropdown-right relative inline-flex items-center focus:outline-none"
+                                    class="button button-primary h-full button-dropdown-right relative inline-flex items-center focus:outline-hidden"
                                 >
                                     <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
@@ -133,7 +133,7 @@
                                                 type="submit"
                                                 name="submitted"
                                                 value="1"
-                                                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900 w-full text-left"
+                                                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-hidden focus:bg-gray-100 focus:text-gray-900 w-full text-left"
                                             >
                                                 Save and submit for approval
                                             </button>

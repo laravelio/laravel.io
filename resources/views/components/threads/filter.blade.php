@@ -1,4 +1,4 @@
-<div class="flex w-full rounded shadow">
+<div class="flex w-full rounded-sm shadow-sm">
     <a 
         href="{{ url(request()->url() . '?filter=recent') }}"
         aria-current="{{ $filter === 'recent' ? 'page' : 'false' }}"

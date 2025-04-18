@@ -1,4 +1,4 @@
-<div class="flex w-full rounded shadow">
+<div class="flex w-full rounded-sm shadow-sm">
     <a
         href="{{ route('articles', ['filter' => 'recent', 'tag' => $activeTag?->name()]) . '#articles' }}"
         aria-current="{{ $selectedFilter === 'recent' ? 'page' : 'false' }}"

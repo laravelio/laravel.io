@@ -3,7 +3,7 @@ ul.tags li {
 }
 
 ul.tags li.active {
-    @apply bg-gray-100 rounded font-bold;
+    @apply bg-gray-100 rounded-sm font-bold;
 }
 
 ul.tags li.active button {
@@ -11,7 +11,7 @@ ul.tags li.active button {
 }
 
 ul.tags li button:focus {
-    @apply outline-none;
+    @apply outline-hidden;
 }
 
 .thread-info-tags a:hover {

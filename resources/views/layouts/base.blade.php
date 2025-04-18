@@ -16,6 +16,9 @@
 
     <meta name="description" content="The Laravel portal for problem solving, knowledge sharing and community building." />
     <link rel="canonical" href="{{ $canonical ?? Request::url() }}" />
+    
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
     @vite(['resources/css/app.css'])
 

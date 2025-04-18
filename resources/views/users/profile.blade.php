@@ -22,7 +22,7 @@
                             <h1 class="text-4xl font-bold">{{ $user->name() }}</h1>
 
                             @if ($user->isAdmin() || $user->isModerator())
-                                <span class="border border-lio-500 text-lio-500 rounded px-3 py-1">
+                                <span class="border border-lio-500 text-lio-500 rounded-sm px-3 py-1">
                                     {{ $user->isAdmin() ? 'Admin' : 'Moderator' }}
                                 </span>
                             @endif
@@ -113,7 +113,7 @@
 
                         @if ($user->bannedReason())
                             @can(App\Policies\UserPolicy::BAN, $user)
-                                <div class="mt-2 bg-red-100 text-sm px-4 py-3 border border-red-200 rounded shadow">
+                                <div class="mt-2 bg-red-100 text-sm px-4 py-3 border border-red-200 rounded-sm shadow-sm">
                                     <p class="font-semibold">Banned reason:</p>
                                     <span class="text-gray-900">
                                         {{ $user->bannedReason() }}
@@ -181,10 +181,10 @@
         <div class="mt-16 lg:mt-32" x-data="{ tab: 'threads' }">
             <div class="container mx-auto">
                 <nav class="flex items-center justify-between lg:justify-start">
-                    <button @click="tab = 'threads'" :class="{ 'text-lio-500 border-lio-500 border-b-2': tab === 'threads' }"  class="px-4 whitespace-nowrap py-5 font-medium text-lg text-gray-900 hover:text-lio-500 hover:border-lio-500 focus:outline-none focus:text-lio-500 focus:border-lio-500 lg:w-1/3">
+                    <button @click="tab = 'threads'" :class="{ 'text-lio-500 border-lio-500 border-b-2': tab === 'threads' }"  class="px-4 whitespace-nowrap py-5 font-medium text-lg text-gray-900 hover:text-lio-500 hover:border-lio-500 focus:outline-hidden focus:text-lio-500 focus:border-lio-500 lg:w-1/3">
                         Threads posted
                     </button>
-                    <button @click="tab = 'replies'" :class="{ 'text-lio-500 border-lio-500 border-b-2': tab === 'replies' }"  class="px-4 whitespace-nowrap py-5 font-medium text-lg text-gray-900 hover:text-lio-500 hover:border-lio-500 focus:outline-none focus:text-lio-500 focus:border-lio-500 lg:w-1/3">
+                    <button @click="tab = 'replies'" :class="{ 'text-lio-500 border-lio-500 border-b-2': tab === 'replies' }"  class="px-4 whitespace-nowrap py-5 font-medium text-lg text-gray-900 hover:text-lio-500 hover:border-lio-500 focus:outline-hidden focus:text-lio-500 focus:border-lio-500 lg:w-1/3">
                         Replies posted
                     </button>
                 </nav>

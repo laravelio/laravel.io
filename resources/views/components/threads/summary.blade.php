@@ -2,7 +2,7 @@
     'thread',
 ])
 
-<div class="h-full rounded shadow-lg p-5">
+<div class="h-full rounded-sm shadow-lg p-5">
     <div class="h-full flex flex-col place-content-between">
         <div class="break-words">
             <div class="flex items-center justify-between mb-2.5">
