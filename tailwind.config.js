@@ -1,4 +1,3 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
 
@@ -49,9 +48,6 @@ export default {
                 discord: '#7289da',
                 facebook: '#4267b2',
                 linkedin: '#2977c9',
-            },
-            fontFamily: {
-                sans: ['Inter', ...defaultTheme.fontFamily.sans],
             },
             minWidth: {
                 8: '2rem',
