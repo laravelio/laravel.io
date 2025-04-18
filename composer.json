@@ -8,7 +8,6 @@
         "algolia/scout-extended": "^3.1",
         "blade-ui-kit/blade-heroicons": "^2.3",
         "blade-ui-kit/blade-icons": "^1.6",
-        "blade-ui-kit/blade-ui-kit": "^0.7.0",
         "codeat3/blade-simple-icons": "^6.2",
         "guzzlehttp/guzzle": "^7.2",
         "innocenzi/bluesky-notification-channel": "^0.2.0",
