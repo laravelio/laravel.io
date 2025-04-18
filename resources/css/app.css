@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
 
 @import 'highlight.js/styles/hybrid.css' layer(base);
 
@@ -11,6 +12,8 @@
 @import './tags.css' layer(utilities);
 
 @config '../../tailwind.config.js';
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,

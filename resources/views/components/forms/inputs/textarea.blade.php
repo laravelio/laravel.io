@@ -1,3 +1,5 @@
+@props(['name', 'id' => null, 'rows' => 3])
+
 <div class="relative">
     <textarea
         name="{{ $name }}"

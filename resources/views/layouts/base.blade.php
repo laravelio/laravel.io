@@ -33,6 +33,7 @@
     @include('layouts._social')
     @include('layouts._fathom')
 
+    @fluxAppearance
     @livewireStyles
 </head>
 
@@ -49,6 +50,7 @@
 
 @vite(['resources/js/app.js'])
 
+@fluxScripts
 @livewireScripts
 
 </body>
