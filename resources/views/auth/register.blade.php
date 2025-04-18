@@ -13,7 +13,7 @@
             </span>
         </x-buttons.secondary-button>
     @else
-        <x-buk-form action="{{ route('register.post') }}" method="POST" class="space-y-6">
+        <x-forms.form action="{{ route('register.post') }}" method="POST" class="space-y-6">
             <div>
                 <x-forms.label for="name" />
 
@@ -47,6 +47,6 @@
             <x-buttons.primary-button type="submit" fullWidth>
                 Register
             </x-buttons.primary-button>
-        </x-buk-form>
+        </x-forms.form>
     @endif
 @endsection

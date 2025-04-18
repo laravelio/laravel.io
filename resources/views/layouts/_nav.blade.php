@@ -217,10 +217,14 @@
                                         @endcan
 
                                         <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                            <x-buk-logout class="flex items-center w-full text-left lg:px-3 lg:py-2">
-                                                <x-heroicon-o-arrow-left-on-rectangle class="w-4 h-4 mr-2" />
-                                                Sign out
-                                            </x-buk-logout>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                            
+                                                <button type="submit" class="flex items-center w-full text-left lg:px-3 lg:py-2">
+                                                    <x-heroicon-o-arrow-left-on-rectangle class="w-4 h-4 mr-2" />
+                                                    Sign out
+                                                </button>
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>

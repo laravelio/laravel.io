@@ -3,7 +3,7 @@
 @extends('layouts.small')
 
 @section('small-content')
-    <x-buk-form action="{{ route('password.reset.post') }}" method="POST" class="space-y-6">
+    <x-forms.form action="{{ route('password.reset.post') }}" method="POST" class="space-y-6">
         <input type="hidden" name="token" value="{{ $token }}" />
 
         <div>
@@ -27,5 +27,5 @@
         <x-buttons.primary-button type="submit" fullWidth>
             Reset Password
         </x-buttons.primary-button>
-    </x-buk-form>
+    </x-forms.form>
 @endsection

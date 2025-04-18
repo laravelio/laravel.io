@@ -1,7 +1,7 @@
 @title('Profile')
 
 <section aria-labelledby="profile_settings_heading">
-    <x-buk-form method="PUT" action="{{ route('settings.profile.update') }}">
+    <x-forms.form method="PUT" action="{{ route('settings.profile.update') }}">
         <div class="shadow-sm sm:rounded-md sm:overflow-hidden">
             <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
                 <div>
@@ -114,5 +114,5 @@
                 </span>
             </div>
         </div>
-    </x-buk-form>
+    </x-forms.form>
 </section>

@@ -3,7 +3,7 @@
 @extends('layouts.small')
 
 @section('small-content')
-    <x-buk-form action="{{ route('login.post') }}" method="POST" class="space-y-6">
+    <x-forms.form action="{{ route('login.post') }}" method="POST" class="space-y-6">
         <div>
             <x-forms.label for="username" />
 
@@ -33,7 +33,7 @@
                 Sign in
             </x-buttons.primary-button>
         </div>
-    </x-buk-form>
+    </x-forms.form>
 
     <div class="mt-6">
         <div class="relative">

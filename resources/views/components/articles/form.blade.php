@@ -6,7 +6,7 @@
     'selectedTags' => []
 ])
 
-<x-buk-form
+<x-forms.form
     action="{{ route(...$route) }}"
     :method="$method"
 >
@@ -154,4 +154,4 @@
             @endunless
         </div>
     </div>
-</x-buk-form>
+</x-forms.form>

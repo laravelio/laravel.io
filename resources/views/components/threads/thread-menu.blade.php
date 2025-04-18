@@ -15,7 +15,7 @@
             class="absolute top-12 right-1 flex flex-col bg-white rounded-sm shadow-sm w-48"
         >
             @can(App\Policies\ThreadPolicy::LOCK, $thread)
-                <x-buk-form-button class="flex gap-x-2 p-3 w-full rounded-sm hover:bg-gray-100" action="{{ route('threads.lock', $thread->slug()) }}">
+                <x-forms.button class="flex gap-x-2 p-3 w-full rounded-sm hover:bg-gray-100" action="{{ route('threads.lock', $thread->slug()) }}">
                     @if ($thread->isLocked())
                         <x-heroicon-o-lock-closed class="w-6 h-6"/>
                         Unlock
@@ -23,7 +23,7 @@
                         <x-heroicon-o-lock-open class="w-6 h-6"/>
                         Lock
                     @endif
-                </x-buk-form-button>
+                </x-forms.button>
             @endcan
 
             @can(App\Policies\ThreadPolicy::UPDATE, $thread)
