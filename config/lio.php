@@ -3,9 +3,9 @@
 return [
     'ads' => [
         [
-            'url' => 'https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement',
-            'image' => 'eventy',
-            'alt' => 'Eventy',
+            'url' => 'https://lp.jetbrains.com/phpverse-2025/?utm_source=laravel.io&utm_medium=cpc&utm_campaign=phpverse2025&utm_content=banner',
+            'image' => 'phpverse',
+            'alt' => 'PHPverse',
             'goal' => 'PSA8VL6S',
         ],
     ],
