@@ -11,6 +11,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\Mailer\Exception\HttpTransportException;
 
 class RegisterController extends Controller
 {
@@ -51,7 +52,11 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        event(new Registered($user = $this->create($request)));
+        try {
+            event(new Registered($user = $this->create($request)));
+        } catch (HttpTransportException $e) {
+            // Failed to send email verification...
+        }
 
         session()->forget('githubData');
 
