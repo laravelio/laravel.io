@@ -10,7 +10,7 @@
             <li>Post and reply in English</li>
             <li>Not spam</li>
             <li>Not advertise commercial content, products or services in any way. You <i>may</i> offer your services or suggest products when asked for but you cannot start threads for them.</li>
-            <li>Not recruit for your own or other companies</li>
+            <li>Not recruit for your own or other companies or start threads to look for a job or offer your services.</li>
         </ul>
         <p>Not following these rules may result in the banning or deletion of your profile and/or content.</p>
         <p>Moderators and admins may remove or modify your content at any time they seem necessary without notice.</p>
