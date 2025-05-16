@@ -44,7 +44,7 @@ event. Representation of a project may be further defined and clarified by proje
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at
-dries.vints@gmail.com. The project team will review and investigate all complaints, and will respond in a way that it
+hello@laravel.io. The project team will review and investigate all complaints, and will respond in a way that it
 deems appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the
 reporter of an incident. Further details of specific enforcement policies may be posted separately.
 
