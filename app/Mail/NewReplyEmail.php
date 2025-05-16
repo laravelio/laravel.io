@@ -10,6 +10,8 @@ use Illuminate\Mail\Mailable;
 
 final class NewReplyEmail extends Mailable
 {
+    public bool $deleteWhenMissingModels = true;
+
     public Thread $thread;
 
     public function __construct(

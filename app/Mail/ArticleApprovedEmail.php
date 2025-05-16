@@ -7,6 +7,8 @@ use Illuminate\Mail\Mailable;
 
 final class ArticleApprovedEmail extends Mailable
 {
+    public bool $deleteWhenMissingModels = true;
+
     public function __construct(public Article $article) {}
 
     public function build()
