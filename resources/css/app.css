@@ -3,7 +3,6 @@
 
 @import 'highlight.js/styles/hybrid.css' layer(base);
 
-@import './articles.css' layer(utilities);
 @import './buttons.css' layer(utilities);
 @import './labels.css' layer(utilities);
 @import './modal.css' layer(utilities);
@@ -170,4 +169,14 @@ svg .secondary {
 
 .editor li[aria-selected='true'] {
     @apply bg-lio-100;
+}
+
+article iframe {
+    @apply w-full h-64;
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+    article iframe {
+        @apply h-96;
+    }
 }

@@ -100,7 +100,7 @@ final class Article extends Model implements Feedable
 
     public function excerpt(int $limit = 100): string
     {
-        return Str::limit(strip_tags(md_to_html($this->body(), false)), $limit);
+        return Str::limit(strip_tags(md_to_html($this->body())), $limit);
     }
 
     public function hasHeroImageAuthor(): bool
