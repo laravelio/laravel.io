@@ -20,6 +20,7 @@ This is the repository for the [Laravel.io](http://laravel.io) community portal.
 We'd like to thank these **amazing companies** for sponsoring us. If you are interested in becoming a sponsor, please visit <a href="https://github.com/sponsors/laravelio">the Laravel.io GitHub Sponsors page</a>.
 
 - **[NativePHP for Mobile](https://nativephp.com/mobile?ref=laravel.io)**
+- **[PhpStorm](https://www.jetbrains.com/phpstorm/?utm_source=laravel.io&utm_medium=cpc&utm_campaign=phpstorm&utm_content=readme)**
 - **[Eventy](https://https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement)**
 - [Forge](https://forge.laravel.com)
 - [Envoyer](https://envoyer.io)
