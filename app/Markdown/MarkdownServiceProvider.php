@@ -20,12 +20,12 @@ class MarkdownServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(Converter::class, function ($app, array $params = []) {
-            $client = new CurlClient;
-            $client->setSettings([
-                // 'follow_location' => false,
-            ]);
+            // $client = new CurlClient;
+            // $client->setSettings([
+            //    'follow_location' => false,
+            // ]);
 
-            $embed = new Embed(new Crawler($client));
+            // $embed = new Embed(new Crawler($client));
 
             $environment = new Environment([
                 'html_input' => 'escape',
@@ -44,8 +44,10 @@ class MarkdownServiceProvider extends ServiceProvider
                     'nofollow' => ($params['nofollow'] ?? true) ? 'external' : '',
                 ],
                 'embed' => [
-                    'adapter' => new OscaroteroEmbedAdapter($embed),
-                    'allowed_domains' => ['youtube.com', 'twitter.com', 'x.com'],
+                    'adapter' => new OscaroteroEmbedAdapter,
+                    // 'adapter' => new OscaroteroEmbedAdapter($embed),
+                    'allowed_domains' => ['youtube.com'],
+                    // 'allowed_domains' => ['youtube.com', 'twitter.com', 'x.com'],
                     'fallback' => 'link',
                 ],
             ]);
