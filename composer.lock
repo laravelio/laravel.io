@@ -279,16 +279,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.340.3",
+            "version": "3.343.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "d5ce8f22952710da40be75ad69e2f04d47598a5d"
+                "reference": "eb50d111a09ef39675358e74801260ac129ee346"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/d5ce8f22952710da40be75ad69e2f04d47598a5d",
-                "reference": "d5ce8f22952710da40be75ad69e2f04d47598a5d",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/eb50d111a09ef39675358e74801260ac129ee346",
+                "reference": "eb50d111a09ef39675358e74801260ac129ee346",
                 "shasum": ""
             },
             "require": {
@@ -370,21 +370,21 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.340.3"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.343.13"
             },
-            "time": "2025-02-27T19:11:54+00:00"
+            "time": "2025-05-16T18:24:39+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
             "version": "2.6.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/blade-ui-kit/blade-heroicons.git",
+                "url": "https://github.com/driesvints/blade-heroicons.git",
                 "reference": "4553b2a1f6c76f0ac7f3bc0de4c0cfa06a097d19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/blade-ui-kit/blade-heroicons/zipball/4553b2a1f6c76f0ac7f3bc0de4c0cfa06a097d19",
+                "url": "https://api.github.com/repos/driesvints/blade-heroicons/zipball/4553b2a1f6c76f0ac7f3bc0de4c0cfa06a097d19",
                 "reference": "4553b2a1f6c76f0ac7f3bc0de4c0cfa06a097d19",
                 "shasum": ""
             },
@@ -428,8 +428,8 @@
                 "laravel"
             ],
             "support": {
-                "issues": "https://github.com/blade-ui-kit/blade-heroicons/issues",
-                "source": "https://github.com/blade-ui-kit/blade-heroicons/tree/2.6.0"
+                "issues": "https://github.com/driesvints/blade-heroicons/issues",
+                "source": "https://github.com/driesvints/blade-heroicons/tree/2.6.0"
             },
             "funding": [
                 {
@@ -2824,16 +2824,16 @@
         },
         {
             "name": "laravel/scout",
-            "version": "v10.14.1",
+            "version": "v10.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/scout.git",
-                "reference": "6ae3ec83ceacb554f395df9fe15318a14b79bb39"
+                "reference": "102fe09ae1c045c6f9cf1b3a2234e1fadb2198f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/scout/zipball/6ae3ec83ceacb554f395df9fe15318a14b79bb39",
-                "reference": "6ae3ec83ceacb554f395df9fe15318a14b79bb39",
+                "url": "https://api.github.com/repos/laravel/scout/zipball/102fe09ae1c045c6f9cf1b3a2234e1fadb2198f2",
+                "reference": "102fe09ae1c045c6f9cf1b3a2234e1fadb2198f2",
                 "shasum": ""
             },
             "require": {
@@ -2901,7 +2901,7 @@
                 "issues": "https://github.com/laravel/scout/issues",
                 "source": "https://github.com/laravel/scout"
             },
-            "time": "2025-04-01T14:58:03+00:00"
+            "time": "2025-05-13T13:34:05+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -5800,16 +5800,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.12.7",
+            "version": "v0.12.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "d73fa3c74918ef4522bb8a3bf9cab39161c4b57c"
+                "reference": "85057ceedee50c49d4f6ecaff73ee96adb3b3625"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/d73fa3c74918ef4522bb8a3bf9cab39161c4b57c",
-                "reference": "d73fa3c74918ef4522bb8a3bf9cab39161c4b57c",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/85057ceedee50c49d4f6ecaff73ee96adb3b3625",
+                "reference": "85057ceedee50c49d4f6ecaff73ee96adb3b3625",
                 "shasum": ""
             },
             "require": {
@@ -5873,9 +5873,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.12.7"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.12.8"
             },
-            "time": "2024-12-10T01:58:33+00:00"
+            "time": "2025-03-16T03:05:19+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -6140,16 +6140,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "4.10.0",
+            "version": "4.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "2af937d47d8aadb8dab0b1d7b9557e495dd12856"
+                "reference": "53dc0bcb6a667cac5b760b46f98d5380e63e02ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/2af937d47d8aadb8dab0b1d7b9557e495dd12856",
-                "reference": "2af937d47d8aadb8dab0b1d7b9557e495dd12856",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/53dc0bcb6a667cac5b760b46f98d5380e63e02ca",
+                "reference": "53dc0bcb6a667cac5b760b46f98d5380e63e02ca",
                 "shasum": ""
             },
             "require": {
@@ -6213,7 +6213,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/4.10.0"
+                "source": "https://github.com/getsentry/sentry-php/tree/4.11.1"
             },
             "funding": [
                 {
@@ -6225,7 +6225,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-11-06T07:44:19+00:00"
+            "time": "2025-05-12T11:30:33+00:00"
         },
         {
             "name": "sentry/sentry-laravel",
@@ -6318,16 +6318,16 @@
         },
         {
             "name": "spatie/backtrace",
-            "version": "1.7.1",
+            "version": "1.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/backtrace.git",
-                "reference": "0f2477c520e3729de58e061b8192f161c99f770b"
+                "reference": "cd37a49fce7137359ac30ecc44ef3e16404cccbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/backtrace/zipball/0f2477c520e3729de58e061b8192f161c99f770b",
-                "reference": "0f2477c520e3729de58e061b8192f161c99f770b",
+                "url": "https://api.github.com/repos/spatie/backtrace/zipball/cd37a49fce7137359ac30ecc44ef3e16404cccbe",
+                "reference": "cd37a49fce7137359ac30ecc44ef3e16404cccbe",
                 "shasum": ""
             },
             "require": {
@@ -6365,7 +6365,7 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/backtrace/tree/1.7.1"
+                "source": "https://github.com/spatie/backtrace/tree/1.7.4"
             },
             "funding": [
                 {
@@ -6377,20 +6377,20 @@
                     "type": "other"
                 }
             ],
-            "time": "2024-12-02T13:28:15+00:00"
+            "time": "2025-05-08T15:41:09+00:00"
         },
         {
             "name": "spatie/browsershot",
-            "version": "5.0.8",
+            "version": "5.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/browsershot.git",
-                "reference": "0102971ae974022ec4a7a149e8924ea355b52cc3"
+                "reference": "9e5ae15487b3cdc3eb03318c1c8ac38971f60e58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/browsershot/zipball/0102971ae974022ec4a7a149e8924ea355b52cc3",
-                "reference": "0102971ae974022ec4a7a149e8924ea355b52cc3",
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/9e5ae15487b3cdc3eb03318c1c8ac38971f60e58",
+                "reference": "9e5ae15487b3cdc3eb03318c1c8ac38971f60e58",
                 "shasum": ""
             },
             "require": {
@@ -6437,7 +6437,7 @@
                 "webpage"
             ],
             "support": {
-                "source": "https://github.com/spatie/browsershot/tree/5.0.8"
+                "source": "https://github.com/spatie/browsershot/tree/5.0.10"
             },
             "funding": [
                 {
@@ -6445,7 +6445,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-17T09:56:12+00:00"
+            "time": "2025-05-15T07:10:57+00:00"
         },
         {
             "name": "spatie/crawler",
@@ -10557,20 +10557,20 @@
         },
         {
             "name": "hamcrest/hamcrest-php",
-            "version": "v2.0.1",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hamcrest/hamcrest-php.git",
-                "reference": "8c3d0a3f6af734494ad8f6fbbee0ba92422859f3"
+                "reference": "f8b1c0173b22fa6ec77a81fe63e5b01eba7e6487"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/8c3d0a3f6af734494ad8f6fbbee0ba92422859f3",
-                "reference": "8c3d0a3f6af734494ad8f6fbbee0ba92422859f3",
+                "url": "https://api.github.com/repos/hamcrest/hamcrest-php/zipball/f8b1c0173b22fa6ec77a81fe63e5b01eba7e6487",
+                "reference": "f8b1c0173b22fa6ec77a81fe63e5b01eba7e6487",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3|^7.0|^8.0"
+                "php": "^7.4|^8.0"
             },
             "replace": {
                 "cordoval/hamcrest-php": "*",
@@ -10578,8 +10578,8 @@
                 "kodova/hamcrest-php": "*"
             },
             "require-dev": {
-                "phpunit/php-file-iterator": "^1.4 || ^2.0",
-                "phpunit/phpunit": "^4.8.36 || ^5.7 || ^6.5 || ^7.0"
+                "phpunit/php-file-iterator": "^1.4 || ^2.0 || ^3.0",
+                "phpunit/phpunit": "^4.8.36 || ^5.7 || ^6.5 || ^7.0 || ^8.0 || ^9.0"
             },
             "type": "library",
             "extra": {
@@ -10602,9 +10602,9 @@
             ],
             "support": {
                 "issues": "https://github.com/hamcrest/hamcrest-php/issues",
-                "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.0.1"
+                "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.1.1"
             },
-            "time": "2020-07-09T08:09:16+00:00"
+            "time": "2025-04-30T06:54:44+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -10691,16 +10691,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.13.0",
+            "version": "1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "024473a478be9df5fdaca2c793f2232fe788e414"
+                "reference": "1720ddd719e16cf0db4eb1c6eca108031636d46c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/024473a478be9df5fdaca2c793f2232fe788e414",
-                "reference": "024473a478be9df5fdaca2c793f2232fe788e414",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/1720ddd719e16cf0db4eb1c6eca108031636d46c",
+                "reference": "1720ddd719e16cf0db4eb1c6eca108031636d46c",
                 "shasum": ""
             },
             "require": {
@@ -10739,7 +10739,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.0"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.1"
             },
             "funding": [
                 {
@@ -10747,7 +10747,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-02-12T12:17:51+00:00"
+            "time": "2025-04-29T12:36:36+00:00"
         },
         {
             "name": "nunomaduro/collision",

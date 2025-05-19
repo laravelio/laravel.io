@@ -76,7 +76,7 @@ final class Reply extends Model implements MentionAble, Spam
 
     public function excerpt(int $limit = 100): string
     {
-        return Str::limit(strip_tags(md_to_html($this->body(), ['nofollow' => false])), $limit);
+        return Str::limit(strip_tags(md_to_html($this->body())), $limit);
     }
 
     public function to(ReplyAble $replyAble)
