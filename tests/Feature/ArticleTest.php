@@ -345,6 +345,7 @@ test('users can delete their own articles', function () {
     Article::factory()->create([
         'author_id' => $user->id(),
         'slug' => 'my-first-article',
+        'is_sponsored' => false,
     ]);
 
     $this->loginAs($user);
@@ -358,6 +359,20 @@ test('users cannot delete an article they do not own', function () {
     Article::factory()->create(['slug' => 'my-first-article']);
 
     $this->login();
+
+    $this->delete('/articles/my-first-article')
+        ->assertForbidden();
+});
+
+test('users cannot delete an article that is sponsored', function () {
+    $user = $this->createUser();
+    Article::factory()->create([
+        'author_id' => $user->id(),
+        'slug' => 'my-first-article',
+        'is_sponsored' => true,
+    ]);
+
+    $this->loginAs($user);
 
     $this->delete('/articles/my-first-article')
         ->assertForbidden();
