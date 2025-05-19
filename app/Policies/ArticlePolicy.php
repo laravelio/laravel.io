@@ -28,7 +28,7 @@ final class ArticlePolicy
 
     public function delete(User $user, Article $article): bool
     {
-        return ($article->isAuthoredBy($user) &&  ! $article->isSponsored()) || $user->isModerator() || $user->isAdmin();
+        return ($article->isAuthoredBy($user) && ! $article->isSponsored()) || $user->isModerator() || $user->isAdmin();
     }
 
     public function approve(User $user, Article $article): bool
