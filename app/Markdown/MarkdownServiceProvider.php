@@ -35,7 +35,7 @@ class MarkdownServiceProvider extends ServiceProvider
                 ],
                 'embed' => [
                     'adapter' => new OscaroteroEmbedAdapter,
-                    'allowed_domains' => ['youtube.com', 'twitter.com', 'x.com'],
+                    'allowed_domains' => ['youtube.com'],
                     'fallback' => 'link',
                 ],
             ]);
