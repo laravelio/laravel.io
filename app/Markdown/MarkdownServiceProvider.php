@@ -20,7 +20,7 @@ class MarkdownServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(Converter::class, function ($app, array $params = []) {
-            $client = new CurlClient();
+            $client = new CurlClient;
             $client->setSettings([
                 // 'follow_location' => false,
             ]);
