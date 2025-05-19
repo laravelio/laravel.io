@@ -105,7 +105,7 @@ it('can delete an article over the API', function () {
     $user = $this->createUser();
     Sanctum::actingAs($user);
 
-    $article = ArticleFactory::new()->for($user, 'authorRelation')->create();
+    $article = ArticleFactory::new(['is_sponsored' => false])->for($user, 'authorRelation')->create();
 
     $this->deleteJson(route('api.articles.delete', $article->slug()))
         ->assertNoContent();
