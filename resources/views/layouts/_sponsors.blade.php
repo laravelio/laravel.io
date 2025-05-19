@@ -10,7 +10,10 @@
 
         <div class="mt-8 flex justify-center">
             <div class="gap-x-12 flex justify-center">
-                <x-sponsor-logo size="medium" url="https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement" logo="{{ asset('images/sponsors/eventy.svg') }}" company="Eventy" />
+                <x-sponsor-logo size="medium" url="https://www.jetbrains.com/phpstorm/?utm_source=laravel.io&utm_medium=cpc&utm_campaign=phpstorm&utm_content=readme" logo="{{ asset('images/sponsors/phpstorm.svg') }}" company="PhpStorm" />
+                
+                {{-- <x-sponsor-logo size="medium" url="https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement" logo="{{ asset('images/sponsors/eventy.svg') }}" company="Eventy" /> --}}
+                
                 <x-sponsor-logo size="medium" url="https://nativephp.com/mobile?ref=laravel.io" logo="{{ asset('images/sponsors/nativephp.png') }}" company="NativePHP" />
             </div>
         </div>
