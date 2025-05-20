@@ -14,8 +14,11 @@ use Psr\Http\Message\UriInterface;
 class Crawler extends \Embed\Http\Crawler implements ClientInterface, RequestFactoryInterface, UriFactoryInterface
 {
     protected RequestFactoryInterface $requestFactory;
+
     protected UriFactoryInterface $uriFactory;
+
     protected ClientInterface $client;
+
     protected array $defaultHeaders = [
         'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:73.0) Gecko/20100101 Firefox/73.0',
         'Cache-Control' => 'max-age=0',
@@ -23,7 +26,7 @@ class Crawler extends \Embed\Http\Crawler implements ClientInterface, RequestFac
 
     public function __construct(?ClientInterface $client = null, ?RequestFactoryInterface $requestFactory = null, ?UriFactoryInterface $uriFactory = null)
     {
-        $this->client = $client ?: new CurlClient();
+        $this->client = $client ?: new CurlClient;
         $this->requestFactory = $requestFactory ?: FactoryDiscovery::getRequestFactory();
         $this->uriFactory = $uriFactory ?: FactoryDiscovery::getUriFactory();
     }
@@ -34,7 +37,7 @@ class Crawler extends \Embed\Http\Crawler implements ClientInterface, RequestFac
     }
 
     /**
-     * @param UriInterface|string $uri The URI associated with the request.
+     * @param  UriInterface|string  $uri  The URI associated with the request.
      */
     public function createRequest(string $method, $uri): RequestInterface
     {
