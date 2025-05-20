@@ -5,8 +5,9 @@ namespace App;
 use Embed\Embed as EmbedLib;
 use League\CommonMark\Exception\MissingDependencyException;
 use League\CommonMark\Extension\Embed\Embed;
+use League\CommonMark\Extension\Embed\EmbedAdapterInterface;
 
-class OscaroteroEmbedAdapter extends \League\CommonMark\Extension\Embed\Bridge\OscaroteroEmbedAdapter
+class OscaroteroEmbedAdapter implements EmbedAdapterInterface
 {
     private EmbedLib $embedLib;
 
