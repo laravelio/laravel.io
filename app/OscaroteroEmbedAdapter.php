@@ -17,12 +17,12 @@ class OscaroteroEmbedAdapter extends \League\CommonMark\Extension\Embed\Bridge\O
                 throw new MissingDependencyException('The embed/embed package is not installed. Please install it with Composer to use this adapter.');
             }
 
-            $embed = new EmbedLib();
+            $embed = new EmbedLib;
         }
 
         $this->embedLib = $embed;
     }
-    
+
     /**
      * {@inheritDoc}
      */
