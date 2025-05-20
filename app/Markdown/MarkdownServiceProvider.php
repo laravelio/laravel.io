@@ -2,9 +2,9 @@
 
 namespace App\Markdown;
 
+use App\Crawler;
 use App\OscaroteroEmbedAdapter;
 use Embed\Embed;
-use Embed\Http\Crawler;
 use Embed\Http\CurlClient;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\Environment\Environment;
@@ -22,7 +22,7 @@ class MarkdownServiceProvider extends ServiceProvider
         $this->app->singleton(Converter::class, function ($app, array $params = []) {
             $client = new CurlClient;
             $client->setSettings([
-                'follow_location' => false,
+                // 'follow_location' => false,
                 // 'ignored_errors' => true,
             ]);
 
