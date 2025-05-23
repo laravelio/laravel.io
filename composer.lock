@@ -2323,16 +2323,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v11.44.7",
+            "version": "v11.45.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "00bc6ac91a6d577bf051c18ddaa638c0d221e1c7"
+                "reference": "d0730deb427632004d24801be7ca1ed2c10fbc4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/00bc6ac91a6d577bf051c18ddaa638c0d221e1c7",
-                "reference": "00bc6ac91a6d577bf051c18ddaa638c0d221e1c7",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d0730deb427632004d24801be7ca1ed2c10fbc4e",
+                "reference": "d0730deb427632004d24801be7ca1ed2c10fbc4e",
                 "shasum": ""
             },
             "require": {
@@ -2353,7 +2353,7 @@
                 "guzzlehttp/uri-template": "^1.0",
                 "laravel/prompts": "^0.1.18|^0.2.0|^0.3.0",
                 "laravel/serializable-closure": "^1.3|^2.0",
-                "league/commonmark": "^2.6",
+                "league/commonmark": "^2.7",
                 "league/flysystem": "^3.25.1",
                 "league/flysystem-local": "^3.25.1",
                 "league/uri": "^7.5.1",
@@ -2440,7 +2440,7 @@
                 "league/flysystem-read-only": "^3.25.1",
                 "league/flysystem-sftp-v3": "^3.25.1",
                 "mockery/mockery": "^1.6.10",
-                "orchestra/testbench-core": "^9.11.2",
+                "orchestra/testbench-core": "^9.13.2",
                 "pda/pheanstalk": "^5.0.6",
                 "php-http/discovery": "^1.15",
                 "phpstan/phpstan": "^2.0",
@@ -2534,7 +2534,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-04-25T12:40:47+00:00"
+            "time": "2025-05-20T15:15:58+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -2618,16 +2618,16 @@
         },
         {
             "name": "laravel/nightwatch",
-            "version": "v1.5.0",
+            "version": "v1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/nightwatch.git",
-                "reference": "08844f9b50abd55bccd166c3e2082d57ce8132aa"
+                "reference": "081ef2059413be31b70e7c79657ede232c8c928d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/nightwatch/zipball/08844f9b50abd55bccd166c3e2082d57ce8132aa",
-                "reference": "08844f9b50abd55bccd166c3e2082d57ce8132aa",
+                "url": "https://api.github.com/repos/laravel/nightwatch/zipball/081ef2059413be31b70e7c79657ede232c8c928d",
+                "reference": "081ef2059413be31b70e7c79657ede232c8c928d",
                 "shasum": ""
             },
             "require": {
@@ -2649,13 +2649,10 @@
                 "laravel/pint": "1.21.0",
                 "mockery/mockery": "^1.0",
                 "mongodb/laravel-mongodb": "^5.0",
-                "orchestra/pest-plugin-testbench": "^2.0|^3.0",
                 "orchestra/testbench": "^8.0|^9.0|^10.0",
                 "orchestra/testbench-core": "^8.0|^9.0|^10.0",
-                "pestphp/pest": "^2.0|^3.0",
-                "pestphp/pest-plugin-arch": "^2.0|^3.0",
-                "pestphp/pest-plugin-laravel": "^2.0|^3.0",
                 "phpstan/phpstan": "^1.0",
+                "phpunit/phpunit": "^10.0|^11.0",
                 "ramsey/uuid": "^4.0",
                 "spatie/laravel-ignition": "^2.0",
                 "symfony/mailer": "^6.0|^7.0",
@@ -2697,7 +2694,7 @@
                 "issues": "https://github.com/laravel/nightwatch/issues",
                 "source": "https://github.com/laravel/nightwatch"
             },
-            "time": "2025-05-07T01:32:43+00:00"
+            "time": "2025-05-20T23:46:49+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -13166,12 +13163,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "8.3.*"
     },
-    "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }
