@@ -57,6 +57,8 @@ class MarkdownServiceProvider extends ServiceProvider
             $environment->addExtension(new GithubFlavoredMarkdownExtension);
             $environment->addExtension(new MentionExtension);
             $environment->addExtension(new ExternalLinkExtension);
+            info('EmbedExtension');
+            logger()->error('test');
             $environment->addExtension(new EmbedExtension);
 
             return new LeagueConverter(new MarkdownConverter($environment));
