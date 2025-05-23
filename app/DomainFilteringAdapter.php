@@ -37,7 +37,6 @@ class DomainFilteringAdapter implements EmbedAdapterInterface
      */
     public function updateEmbeds(array $embeds): void
     {
-        info('DomainFilteringAdapter::updateEmbeds');
         $this->decorated->updateEmbeds(\array_values(\array_filter($embeds, function (Embed $embed): bool {
             return \preg_match($this->regex, $embed->getUrl()) === 1;
         })));

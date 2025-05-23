@@ -54,7 +54,7 @@ final class EmbedProcessor
                 $embeds[] = $node;
             }
         }
-        info('EmbedProcessor::__invoke');
+
         $this->adapter->updateEmbeds($embeds);
 
         foreach ($embeds as $embed) {
