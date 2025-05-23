@@ -3,13 +3,13 @@
 namespace App\Markdown;
 
 use App\Crawler;
+use App\EmbedExtension;
 use App\OscaroteroEmbedAdapter;
 use Embed\Embed;
 use Embed\Http\CurlClient;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
-use League\CommonMark\Extension\Embed\EmbedExtension;
 use League\CommonMark\Extension\ExternalLink\ExternalLinkExtension;
 use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
 use League\CommonMark\Extension\Mention\MentionExtension;
