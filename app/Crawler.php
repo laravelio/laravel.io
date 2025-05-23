@@ -69,9 +69,10 @@ class Crawler extends \Embed\Http\Crawler implements ClientInterface, RequestFac
                     $requests
                 ),
             ]);
+
             return $this->client->sendRequests(...$requests);
         }
-        
+
         info('Crawler::sendRequests regular', [
             'requests' => array_map(
                 fn ($request) => $request->getUri(),

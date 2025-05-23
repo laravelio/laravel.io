@@ -24,12 +24,12 @@ class DomainFilteringAdapter implements EmbedAdapterInterface
     private string $regex;
 
     /**
-     * @param string[] $allowedDomains
+     * @param  string[]  $allowedDomains
      */
     public function __construct(EmbedAdapterInterface $decorated, array $allowedDomains)
     {
         $this->decorated = $decorated;
-        $this->regex     = self::createRegex($allowedDomains);
+        $this->regex = self::createRegex($allowedDomains);
     }
 
     /**
@@ -44,7 +44,7 @@ class DomainFilteringAdapter implements EmbedAdapterInterface
     }
 
     /**
-     * @param string[] $allowedDomains
+     * @param  string[]  $allowedDomains
      *
      * @psalm-return non-empty-string
      */
@@ -52,6 +52,6 @@ class DomainFilteringAdapter implements EmbedAdapterInterface
     {
         $allowedDomains = \array_map('preg_quote', $allowedDomains);
 
-        return '/^(?:https?:\/\/)?(?:[^.]+\.)*(' . \implode('|', $allowedDomains) . ')/';
+        return '/^(?:https?:\/\/)?(?:[^.]+\.)*('.\implode('|', $allowedDomains).')/';
     }
 }
