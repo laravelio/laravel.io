@@ -42,7 +42,7 @@ final class EmbedProcessor
         $document = $event->getDocument();
         $embeds = [];
         info('Processing embeds in document');
-        info('Total nodes in document: ' . count(iterator_to_array(new NodeIterator($document))));
+        info('Total nodes in document: '.count(iterator_to_array(new NodeIterator($document))));
         foreach (new NodeIterator($document) as $node) {
             if (! ($node instanceof Embed)) {
                 continue;

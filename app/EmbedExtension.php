@@ -43,7 +43,7 @@ final class EmbedExtension implements ConfigurableExtensionInterface
         if ($allowedDomains !== []) {
             $adapter = new DomainFilteringAdapter($adapter, $allowedDomains);
         }
-        
+
         $environment
             ->addBlockStartParser(new EmbedStartParser, 300)
             ->addEventListener(DocumentParsedEvent::class, new EmbedProcessor($adapter, $environment->getConfiguration()->get('embed.fallback')), 1010)
