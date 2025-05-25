@@ -63,13 +63,6 @@ class Crawler extends \Embed\Http\Crawler implements ClientInterface, RequestFac
     public function sendRequests(RequestInterface ...$requests): array
     {
         if ($this->client instanceof CurlClient) {
-            info('Crawler::sendRequests CurlClient', [
-                'requests' => array_map(
-                    fn ($request) => $request->getUri(),
-                    $requests
-                ),
-            ]);
-
             return $this->client->sendRequests(...$requests);
         }
 
