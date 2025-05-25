@@ -30,7 +30,7 @@ class OscaroteroEmbedAdapter implements EmbedAdapterInterface
     public function updateEmbeds(array $embeds): void
     {
         $urls = \array_map(static fn (Embed $embed) => $embed->getUrl(), $embeds);
-        
+
         $extractors = $this->embedLib->getMulti(...$urls);
 
         foreach ($extractors as $i => $extractor) {
