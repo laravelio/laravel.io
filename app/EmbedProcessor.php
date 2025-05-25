@@ -41,12 +41,13 @@ final class EmbedProcessor
     {
         $document = $event->getDocument();
         $embeds = [];
-        info('Processing embeds in document');
-        info('Total nodes in document: '.count(iterator_to_array(new NodeIterator($document))));
+        
         foreach (new NodeIterator($document) as $node) {
+            info('Processing node of type: ' . get_class($node));
             if (! ($node instanceof Embed)) {
                 continue;
             }
+            info('Node is an embed, processing...');
 
             if ($node->parent() !== $document) {
                 $replacement = new Paragraph;
