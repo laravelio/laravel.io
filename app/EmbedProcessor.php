@@ -41,9 +41,9 @@ final class EmbedProcessor
     {
         $document = $event->getDocument();
         $embeds = [];
-        
+
         foreach (new NodeIterator($document) as $node) {
-            info('Processing node of type: ' . get_class($node));
+            info('Processing node of type: '.get_class($node));
             if (! ($node instanceof Embed)) {
                 continue;
             }
