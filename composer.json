@@ -8,7 +8,7 @@
         "algolia/scout-extended": "^3.1",
         "blade-ui-kit/blade-heroicons": "^2.3",
         "blade-ui-kit/blade-icons": "^1.6",
-        "codeat3/blade-simple-icons": "^6.2",
+        "codeat3/blade-simple-icons": "^7.1",
         "embed/embed": "^4.4",
         "guzzlehttp/guzzle": "^7.2",
         "guzzlehttp/psr7": "^2.7",
