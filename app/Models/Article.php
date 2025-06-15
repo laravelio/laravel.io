@@ -196,7 +196,7 @@ final class Article extends Model implements Feedable
 
     public function isAwaitingApproval(): bool
     {
-        return $this->isSubmitted() && $this->isNotApproved() && $this->isNotDeclined();
+        return $this->isSubmitted() && $this->isNotApproved() && $this->isNotDeclined() && ! $this->author()->verifiedAuthorCanPublishMoreToday();
     }
 
     public function isNotAwaitingApproval(): bool

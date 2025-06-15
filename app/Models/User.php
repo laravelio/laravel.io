@@ -300,6 +300,54 @@ final class User extends Authenticatable implements MustVerifyEmail
         parent::delete();
     }
 
+    // === Verified Author ===
+
+    public function isVerifiedAuthor(): bool
+    {
+        return !is_null($this->verified_author_at);
+    }
+
+    public function isNotVerifiedAuthor(): bool
+    {
+        return !$this->isVerifiedAuthor();
+    }
+
+    public function verifyAuthor(): void
+    {
+        $this->verified_author_at = now();
+        $this->save();
+    }
+
+
+    public function unverifyAuthor(): void
+    {
+        $this->verified_author_at = null;
+        $this->save();
+    }
+
+    /**
+    * Check if the verified author can publish more articles today.
+    *
+    * Verified authors are allowed to publish up to 2 articles per day,
+    * but will start count from the moment they are verified.
+    *
+    * @return bool True if under the daily limit, false otherwise
+    */
+
+    public function verifiedAuthorCanPublishMoreToday(): bool
+    {
+        $limit = 2; // Default limit for verified authors
+        if ($this->isNotVerifiedAuthor()) {
+            return false;
+        }
+        $publishedTodayCount = $this->articles()
+            ->whereDate('submitted_at', today())
+            ->where('submitted_at', '>', $this->verified_author_at)->count(); // to ensure we only count articles published after verify the author
+        return $publishedTodayCount < $limit;
+    }
+
+    // === End Verified Author ===
+
     public function countSolutions(): int
     {
         return $this->replyAble()->isSolution()->count();

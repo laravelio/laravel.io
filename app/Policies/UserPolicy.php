@@ -14,12 +14,21 @@ final class UserPolicy
 
     const DELETE = 'delete';
 
+    const VERIFY_AUTHOR = 'verifyAuthor';
+
+
     public function admin(User $user): bool
     {
         return $user->isAdmin() || $user->isModerator();
     }
 
     public function ban(User $user, User $subject): bool
+    {
+        return ($user->isAdmin() && ! $subject->isAdmin()) ||
+            ($user->isModerator() && ! $subject->isAdmin() && ! $subject->isModerator());
+    }
+
+    public function verifyAuthor(User $user, User $subject): bool
     {
         return ($user->isAdmin() && ! $subject->isAdmin()) ||
             ($user->isModerator() && ! $subject->isAdmin() && ! $subject->isModerator());

@@ -40,4 +40,12 @@ trait CreatesUsers
             'github_username' => 'johndoe',
         ], $attributes));
     }
+
+    protected function createVerifiedAuthor(array $attributes = []): User
+    {
+        return $this->createUser(array_merge($attributes, [
+        'verified_author_at' => now(),
+        ]));
+    }
+
 }
