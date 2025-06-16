@@ -1,6 +1,6 @@
 <div x-data="searchConfig()" x-init="$watch('searchVisible', value => toggle())" x-show="searchVisible" x-cloak
     class="fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20" role="dialog" aria-modal="true">
-    <div class="fixed inset-0 bg-gray-700 bg-opacity-50 transition-opacity" aria-hidden="true"></div>
+    <div class="fixed inset-0 bg-gray-700 opacity-50 transition-opacity -z-10" aria-hidden="true"></div>
 
     <div @click.outside="searchVisible = false"
         class="mx-auto max-w-xl transform overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
