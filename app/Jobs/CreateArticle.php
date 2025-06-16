@@ -50,6 +50,7 @@ final class CreateArticle
             'original_url' => $this->originalUrl,
             'slug' => $this->title,
             'submitted_at' => $this->shouldBeSubmitted ? now() : null,
+            'approved_at' => $this->canBeAutoApproved() ? now() : null,
         ]);
         $article->authoredBy($this->author);
         $article->syncTags($this->tags);
@@ -57,5 +58,10 @@ final class CreateArticle
         if ($article->isAwaitingApproval()) {
             event(new ArticleWasSubmittedForApproval($article));
         }
+    }
+
+    private function canBeAutoApproved(): bool
+    {
+        return $this->shouldBeSubmitted && $this->author->verifiedAuthorCanPublishMoreToday();
     }
 }

@@ -576,3 +576,32 @@ test('only articles with ten or more views render a view count', function () {
         ->assertSee('My First Article')
         ->assertSee('10 views');
 });
+
+test('verified authors can publish two articles per day with no approval needed', function () {
+    $author = $this->createVerifiedAuthor();
+
+    Article::factory()->count(2)->create([
+        'author_id' => $author->id,
+        'submitted_at' => now()->addMinutes(1), // after verification
+    ]);
+
+    expect($author->verifiedAuthorCanPublishMoreToday())->toBeFalse();
+});
+
+test('verified authors skip the approval message when submitting new article', function () {
+
+    $author = $this->createVerifiedAuthor();
+    $this->loginAs($author);
+
+    $response = $this->post('/articles', [
+        'title' => 'Using database migrations',
+        'body' => 'This article will go into depth on working with database migrations.',
+        'tags' => [],
+        'submitted' => '1',
+    ]);
+
+    $response
+    ->assertRedirect('/articles/using-database-migrations')
+    ->assertSessionMissing('success');
+
+});
