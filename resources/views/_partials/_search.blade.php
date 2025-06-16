@@ -1,6 +1,6 @@
 <div x-data="searchConfig()" x-init="$watch('searchVisible', value => toggle())" x-show="searchVisible" x-cloak
     class="fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20" role="dialog" aria-modal="true">
-    <div class="fixed inset-0 bg-gray-700 bg-opacity-50 transition-opacity" aria-hidden="true"></div>
+    <div class="fixed inset-0 bg-gray-700 bg-opacity-50 transition-opacity -z-10" aria-hidden="true"></div>
 
     <div @click.outside="searchVisible = false"
         class="mx-auto max-w-xl transform overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all">
@@ -36,8 +36,7 @@
             x-show="searchQuery.length && (threads.total || articles.total || users.total)"
             x-data="tabConfig()"
             x-init="$watch('activeTab', value => setActiveTab(value))"
-            x-cloak
-        >
+            x-cloak>
             <ul class="grid grid-flow-col text-center text-gray-500 bg-gray-100 rounded-lg p-1">
                 <li>
                     <a href="javascript:void(0)" @click="activeTab = 'threads'" class="flex justify-center py-4" :class="currentTab('threads')">
@@ -61,33 +60,33 @@
             <ul>
                 <li x-show="activeTab === 'threads'" class="mt-2 text-sm text-gray-800">
                     <template x-for="thread in threads.threads">
-                        <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${thread.id}`" role="option" tabindex="-1">
-                            <a :href="'/forum/'+thread.slug" class="flex flex-col">
-                                <span class="text-black-900 font-medium break-all" x-html="thread._highlightResult.subject.value"></span>
-                                <span class="text-black-900 break-all" x-html="thread._snippetResult.body.value"></span>
-                            </a>
-                        </li>
-                    </template>
+                <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${thread.id}`" role="option" tabindex="-1">
+                    <a :href="'/forum/'+thread.slug" class="flex flex-col">
+                        <span class="text-black-900 font-medium break-all" x-html="thread._highlightResult.subject.value"></span>
+                        <span class="text-black-900 break-all" x-html="thread._snippetResult.body.value"></span>
+                    </a>
+                </li>
+                </template>
                 </li>
                 <li x-show="activeTab === 'articles'" class="mt-2 text-sm text-gray-800">
                     <template x-for="article in articles.articles">
-                        <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${article.id}`" role="option" tabindex="-1">
-                            <a :href="'/articles/'+article.slug" class="flex flex-col">
-                                <span class="text-black-900 font-medium break-all" x-html="article._highlightResult.title.value"></span>
-                                <span class="text-black-900 break-all" x-html="article._snippetResult.body.value"></span>
-                            </a>
-                        </li>
-                    </template>
+                <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${article.id}`" role="option" tabindex="-1">
+                    <a :href="'/articles/'+article.slug" class="flex flex-col">
+                        <span class="text-black-900 font-medium break-all" x-html="article._highlightResult.title.value"></span>
+                        <span class="text-black-900 break-all" x-html="article._snippetResult.body.value"></span>
+                    </a>
+                </li>
+                </template>
                 </li>
                 <li x-show="activeTab === 'users'" class="mt-2 text-sm text-gray-800">
                     <template x-for="user in users.users">
-                        <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${user.id}`" role="option" tabindex="-1">
-                            <a :href="'/user/'+user.username" class="flex flex-col">
-                                <span class="text-black-900 font-medium break-all" x-html="user._highlightResult.username.value"></span>
-                                <span class="text-black-900 break-all" x-html="user._highlightResult.name.value"></span>
-                            </a>
-                        </li>
-                    </template>
+                <li class="cursor-default select-none px-4 py-2 hover:bg-lio-100" :id="`option-${user.id}`" role="option" tabindex="-1">
+                    <a :href="'/user/'+user.username" class="flex flex-col">
+                        <span class="text-black-900 font-medium break-all" x-html="user._highlightResult.username.value"></span>
+                        <span class="text-black-900 break-all" x-html="user._highlightResult.name.value"></span>
+                    </a>
+                </li>
+                </template>
                 </li>
             </ul>
         </div>
