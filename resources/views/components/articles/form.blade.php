@@ -25,7 +25,7 @@
             </x-info>
 
             <x-info class="mt-4">
-                Every article that gets approved will be shared with our 50.000 users and wil be tweeted out on our <a href="https://x.com/laravelio" class="text-lio-700 underline">X (Twitter) account</a> which has over 50,000 followers. Feel free to submit as many articles as you like. You can even cross-reference an article on your blog with the original url.
+                Every article that gets approved will be shared with our 50.000 users and wil be tweeted out on our <x-a href="https://x.com/laravelio">X (Twitter) account</x-a> which has over 50,000 followers as well as our <x-a href="https://bsky.app/profile/laravel.io">Bluesky account</x-a>. Feel free to submit as many articles as you like. You can even cross-reference an article on your blog with the original url.
             </x-info>
 
             <x-info class="mt-4">
@@ -40,11 +40,33 @@
                 <div class="space-y-1">
                     <x-forms.label for="title" />
 
-                    <x-forms.inputs.input name="title" :value="old('title', $article?->title())" required maxlength="100" />
+                    <x-forms.inputs.input name="title" :value="old('title', $article?->title())" required maxlength="100" placeholder="My awesome article" />
 
                     <span class="mt-2 text-sm text-gray-500">
                         Maximum 100 characters.
                     </span>
+                </div>
+            </div>
+
+            <div class="grow space-y-6">
+                <div class="space-y-1">
+                    <x-forms.label for="hero_image_id">Hero Image</x-forms.label>
+
+                    <x-forms.inputs.input name="hero_image_id" :value="$article?->hero_image_id" maxlength="20" placeholder="NoiJZhDF4Es" />
+
+                    @if (($article?->author() ?? auth()->user())->isVerifiedAuthor())
+                        <p class="mt-2 text-sm text-gray-600">
+                            Because you're a verified author, you're required to choose an <x-a href="https://unsplash.com/s/photos/hello?orientation=landscape" >Unsplash</x-a> image for your article.
+                        </p>
+                    @else
+                        <p class="mt-2 text-sm text-gray-600">
+                            Optionally, add an <x-a href="https://unsplash.com/s/photos/hello?orientation=landscape">Unsplash</x-a> image.
+                        </p>
+                    @endif
+
+                    <p class="mt-2 text-sm text-gray-600">
+                        Please enter the Unsplash ID of the image you want to use. <strong>You can find the ID in the URL of the image on Unsplash</strong>. Please make sure to <strong>only use landscape images</strong>. For example, if the URL is <code class="whitespace-nowrap">https://unsplash.com/photos/...-NoiJZhDF4Es</code>, then the ID is <code>NoiJZhDF4Es</code>. After saving your article, the image will be automatically fetched and displayed in the article. This might take a few minutes. If you want to change the image later, you can do so by editing the article before submitting it for approval.
+                    </p>
                 </div>
             </div>
 

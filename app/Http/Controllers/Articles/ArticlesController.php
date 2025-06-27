@@ -115,11 +115,13 @@ class ArticlesController extends Controller
 
         $article = Article::findByUuidOrFail($uuid);
 
-        $this->success(
-            $request->shouldBeSubmitted()
-                ? 'Thank you for submitting, unfortunately we can\'t accept every submission. You\'ll only hear back from us when we accept your article.'
-                : 'Article successfully created!'
-        );
+        if ($article->isNotApproved()) {
+            $this->success(
+                $request->shouldBeSubmitted()
+                    ? 'Thank you for submitting, unfortunately we can\'t accept every submission. You\'ll only hear back from us when we accept your article.'
+                    : 'Article successfully created!'
+            );
+        }
 
         return $request->wantsJson()
             ? ArticleResource::make($article)

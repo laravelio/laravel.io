@@ -17,6 +17,7 @@ final class UpdateArticle
         private string $title,
         private string $body,
         private bool $shouldBeSubmitted,
+        private ?string $heroImageId = null,
         array $options = []
     ) {
         $this->originalUrl = $options['original_url'] ?? null;
@@ -30,6 +31,7 @@ final class UpdateArticle
             $request->title(),
             $request->body(),
             $request->shouldBeSubmitted(),
+            $request->heroImageId(),
             [
                 'original_url' => $request->originalUrl(),
                 'tags' => $request->tags(),
@@ -39,9 +41,12 @@ final class UpdateArticle
 
     public function handle(): void
     {
+        $originalImage = $this->article->hero_image_id;
+
         $this->article->update([
             'title' => $this->title,
             'body' => $this->body,
+            'hero_image_id' => $this->heroImageId,
             'original_url' => $this->originalUrl,
             'slug' => $this->title,
         ]);
@@ -54,6 +59,10 @@ final class UpdateArticle
         }
 
         $this->article->syncTags($this->tags);
+
+        if ($this->article->hero_image_id !== $originalImage) {
+            SyncArticleImage::dispatch($this->article);
+        }
     }
 
     private function shouldUpdateSubmittedAt(): bool

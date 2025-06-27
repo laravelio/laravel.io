@@ -51,4 +51,11 @@ class UserFactory extends Factory
             return ['type' => User::MODERATOR];
         });
     }
+
+    public function verifiedAuthor(): self
+    {
+        return $this->state(function () {
+            return ['author_verified_at' => now()];
+        });
+    }
 }

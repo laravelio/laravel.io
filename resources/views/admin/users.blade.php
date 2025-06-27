@@ -90,6 +90,37 @@
                                                     <p>All the threads from this user will be deleted. This cannot be undone.</p>
                                                 </x-modal>
                                             @endcan
+
+                                            {{-- Toggle Verified Author --}}
+                                            @can(App\Policies\UserPolicy::ADMIN, $user)
+                                                @if ($user->isVerifiedAuthor())
+                                                    <button title="Unverify {{ $user->name() }} as author"
+                                                        @click="activeModal = 'unverifyAuthor{{ $user->getKey() }}'"
+                                                        class="text-yellow-600 hover:text-yellow-800">
+                                                        <x-heroicon-o-x-circle class="w-5 h-5 inline" />
+                                                    </button>
+                                                    <x-modal type="update" identifier="unverifyAuthor{{ $user->getKey() }}"
+                                                        :action="route(
+                                                            'admin.users.unverify-author',
+                                                            $user->username(),
+                                                        )" title="Unverify {{ $user->username() }} as Author">
+                                                        <p>This will remove the verified author status from this user.</p>
+                                                    </x-modal>
+                                                @else
+                                                    <button title="Verify {{ $user->name() }} as author"
+                                                        @click="activeModal = 'verifyAuthor{{ $user->getKey() }}'"
+                                                        class="text-green-600 hover:text-green-800">
+                                                        <x-heroicon-o-check-circle class="w-5 h-5 inline" />
+                                                    </button>
+                                                    <x-modal type="update" identifier="verifyAuthor{{ $user->getKey() }}"
+                                                        :action="route(
+                                                            'admin.users.verify-author',
+                                                            $user->username(),
+                                                        )" title="Verify {{ $user->username() }} as Author">
+                                                        <p>This will mark this user as a verified author.</p>
+                                                    </x-modal>
+                                                @endif
+                                            @endcan
                                         </x-tables.table-data>
                                     </tr>
                                 @endforeach

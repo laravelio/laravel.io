@@ -1,11 +1,14 @@
 <?php
 
 use App\Events\ArticleWasSubmittedForApproval;
+use App\Jobs\SyncArticleImage;
 use App\Models\Article;
 use App\Models\Tag;
+use App\Models\User;
 use App\Notifications\ArticleApprovedNotification;
 use App\Notifications\ArticleSubmitted;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\HtmlString;
@@ -564,7 +567,13 @@ test('can filter articles by tag', function () {
 });
 
 test('only articles with ten or more views render a view count', function () {
-    $article = Article::factory()->create(['title' => 'My First Article', 'slug' => 'my-first-article', 'submitted_at' => now(), 'approved_at' => now(), 'view_count' => 9]);
+    $article = Article::factory()->create([
+        'title' => 'My First Article',
+        'slug' => 'my-first-article',
+        'submitted_at' => now(),
+        'approved_at' => now(),
+        'view_count' => 9,
+    ]);
 
     $this->get("/articles/{$article->slug()}")
         ->assertSee('My First Article')
@@ -575,4 +584,38 @@ test('only articles with ten or more views render a view count', function () {
     $this->get("/articles/{$article->slug()}")
         ->assertSee('My First Article')
         ->assertSee('10 views');
+});
+
+test('verified authors can publish two articles per day with no approval needed', function () {
+    $author = $this->createUser(userFactory: User::factory()->verifiedAuthor());
+
+    Article::factory()->count(2)->create([
+        'author_id' => $author->id,
+        'submitted_at' => now()->addMinutes(1), // after verification
+    ]);
+
+    expect($author->canVerifiedAuthorPublishMoreArticleToday())->toBeFalse();
+});
+
+test('verified authors skip the approval message when submitting new article', function () {
+    Bus::fake(SyncArticleImage::class);
+
+    $author = $this->createUser(userFactory: User::factory()->verifiedAuthor());
+    $this->loginAs($author);
+
+    $response = $this->post('/articles', [
+        'title' => 'Using database migrations',
+        'hero_image_id' => 'NoiJZhDF4Es',
+        'body' => 'This article will go into depth on working with database migrations.',
+        'tags' => [],
+        'submitted' => '1',
+    ]);
+
+    $response
+        ->assertRedirect('/articles/using-database-migrations')
+        ->assertSessionMissing('success');
+
+    Bus::assertDispatched(SyncArticleImage::class, function (SyncArticleImage $job) {
+        return $job->article->hero_image_id === 'NoiJZhDF4Es';
+    });
 });

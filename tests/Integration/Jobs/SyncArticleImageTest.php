@@ -1,6 +1,6 @@
 <?php
 
-use App\Console\Commands\SyncArticleImages;
+use App\Jobs\SyncArticleImage;
 use App\Models\Article;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Config;
@@ -36,7 +36,7 @@ test('hero image url and author information is updated for published articles wi
         'approved_at' => now(),
     ]);
 
-    (new SyncArticleImages)->handle();
+    SyncArticleImage::dispatchSync($article);
 
     $article->refresh();
 
@@ -53,7 +53,7 @@ test('hero image url and author information is not updated for published article
         'approved_at' => now(),
     ]);
 
-    (new SyncArticleImages)->handle();
+    SyncArticleImage::dispatchSync($article);
 
     $article->refresh();
 

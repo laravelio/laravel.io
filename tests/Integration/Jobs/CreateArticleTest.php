@@ -15,7 +15,7 @@ test('we can create a draft article', function () {
 
     $uuid = Str::uuid();
 
-    $this->dispatch(new CreateArticle($uuid, 'Title', 'Body', $user, false, [
+    $this->dispatch(new CreateArticle($uuid, 'Title', 'Body', $user, false, null, [
         'original_url' => 'https://laravel.io',
     ]));
 
@@ -35,7 +35,7 @@ test('we can create an article and submit it for approval', function () {
 
     $uuid = Str::uuid();
 
-    $this->dispatch(new CreateArticle($uuid, 'Title', 'Body', $user, true, [
+    $this->dispatch(new CreateArticle($uuid, 'Title', 'Body', $user, true, null, [
         'original_url' => 'https://laravel.io',
     ]));
 

@@ -153,11 +153,19 @@
                                         <x-avatar :user="$author" class="w-10 h-10" />
 
                                         <span class="flex flex-col flex-1 min-w-0">
-                                            <a href="{{ route('profile', $author->username()) }}" class="truncate hover:underline">
-                                                <span class="text-gray-900 font-medium">
-                                                    {{ $author->username() }}
-                                                </span>
-                                            </a>
+                                            <span class="flex items-center gap-x-1">
+                                                <a href="{{ route('profile', $author->username()) }}" class="truncate hover:underline">
+                                                    <span class="text-gray-900 font-medium">
+                                                        {{ $author->username() }}
+                                                    </span>
+                                                </a>
+
+                                                @if ($author->isVerifiedAuthor())
+                                                    <span title="This is a verified author">
+                                                        @svg('heroicon-s-check-badge', 'w-5 h-5 text-lio-500')
+                                                    </span>
+                                                @endif
+                                            </span>
 
                                             <span class="text-gray-700">
                                                 {{ $author->articles_count }} {{ Str::plural('Article', $author->articles_count) }}

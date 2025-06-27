@@ -1,0 +1,1 @@
+<a href="{{ $href }}" class="text-lio-700 underline">{{ $slot }}</a>

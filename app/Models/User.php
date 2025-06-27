@@ -73,6 +73,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     {
         return [
             'allowed_notifications' => 'array',
+            'author_verified_at' => 'datetime',
         ];
     }
 
@@ -149,6 +150,11 @@ final class User extends Authenticatable implements MustVerifyEmail
     public function type(): int
     {
         return (int) $this->type;
+    }
+
+    public function isRegularUser(): bool
+    {
+        return $this->type() === self::DEFAULT;
     }
 
     public function isModerator(): bool
@@ -298,6 +304,28 @@ final class User extends Authenticatable implements MustVerifyEmail
         $this->deleteReplies();
 
         parent::delete();
+    }
+
+    public function isVerifiedAuthor(): bool
+    {
+        return ! is_null($this->author_verified_at) || $this->isAdmin();
+    }
+
+    public function canVerifiedAuthorPublishMoreArticleToday(): bool
+    {
+        if ($this->isAdmin()) {
+            return true;
+        }
+
+        if (! $this->isVerifiedAuthor()) {
+            return false;
+        }
+
+        $publishedTodayCount = $this->articles()
+            ->whereDate('submitted_at', today())
+            ->count();
+
+        return $publishedTodayCount < 2;
     }
 
     public function countSolutions(): int

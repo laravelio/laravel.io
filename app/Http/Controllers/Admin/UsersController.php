@@ -9,6 +9,8 @@ use App\Jobs\BanUser;
 use App\Jobs\DeleteUser;
 use App\Jobs\DeleteUserThreads;
 use App\Jobs\UnbanUser;
+use App\Jobs\UnVerifyAuthor;
+use App\Jobs\VerifyAuthor;
 use App\Models\User;
 use App\Policies\UserPolicy;
 use App\Queries\SearchUsers;
@@ -58,6 +60,28 @@ class UsersController extends Controller
         $this->success($user->name().' was unbanned!');
 
         return redirect()->route('profile', $user->username());
+    }
+
+    public function verifyAuthor(User $user)
+    {
+        $this->authorize(UserPolicy::ADMIN, $user);
+
+        $this->dispatchSync(new VerifyAuthor($user));
+
+        $this->success($user->name() . ' was verified!');
+
+        return redirect()->route('admin.users');
+    }
+
+    public function unverifyAuthor(User $user)
+    {
+        $this->authorize(UserPolicy::ADMIN, $user);
+
+        $this->dispatchSync(new UnverifyAuthor($user));
+
+        $this->success($user->name() . ' was unverified!');
+
+        return redirect()->route('admin.users');
     }
 
     public function delete(User $user): RedirectResponse
