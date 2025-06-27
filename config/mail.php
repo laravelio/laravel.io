@@ -1,13 +1,12 @@
 <?php
 
 return [
-
+  
     'mailers' => [
-        'mailgun' => [
-            'transport' => 'mailgun',
-            // 'client' => [
-            //     'timeout' => 5,
-            // ],
+        'mailcoach' => [
+            'transport' => 'mailcoach',
+            'domain' => env('MAILCOACH_DOMAIN'),
+            'token' => env('MAILCOACH_TOKEN'),
         ],
     ],
 

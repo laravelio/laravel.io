@@ -33,6 +33,7 @@
         "sentry/sentry-laravel": "^4.3",
         "spatie/laravel-feed": "^4.4",
         "spatie/laravel-ignition": "^2.4",
+        "spatie/laravel-mailcoach-mailer": "^1.5",
         "spatie/laravel-schedule-monitor": "^3.7",
         "spatie/laravel-sitemap": "^7.2",
         "symfony/http-client": "^7.0",

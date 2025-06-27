@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db651540267278559ad06b25cc07ff22",
+    "content-hash": "fd53a824d0eb289a65ca8e5ad86e829b",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -6908,6 +6908,80 @@
             "time": "2025-02-20T13:13:55+00:00"
         },
         {
+            "name": "spatie/laravel-mailcoach-mailer",
+            "version": "1.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-mailcoach-mailer.git",
+                "reference": "0779aa2a2a8265de91e4a05221ed838a2fadb64a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-mailcoach-mailer/zipball/0779aa2a2a8265de91e4a05221ed838a2fadb64a",
+                "reference": "0779aa2a2a8265de91e4a05221ed838a2fadb64a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.42|^10.0|^11.0|^12.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.13.7",
+                "spatie/mailcoach-mailer": "^1.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.2.1",
+                "nunomaduro/collision": "^6.3.1|^7.0|^8.0",
+                "orchestra/testbench": "^7.15|^8.0|^9.0|^10.0",
+                "pestphp/pest": "^1.22.2|^2.0|^3.7",
+                "pestphp/pest-plugin-laravel": "^1.3|^2.0|^3.1",
+                "phpstan/extension-installer": "^1.2",
+                "phpstan/phpstan-deprecation-rules": "^1.0|^2.0",
+                "phpstan/phpstan-phpunit": "^1.2.2|^2.0",
+                "spatie/invade": "^1.1.1|^2.1",
+                "spatie/laravel-ray": "^1.31"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "MailcoachMailer": "Spatie\\MailcoachMailer\\Facades\\MailcoachMailer"
+                    },
+                    "providers": [
+                        "Spatie\\MailcoachMailer\\MailcoachMailerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\MailcoachMailer\\": "src",
+                    "Spatie\\MailcoachMailer\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The driver for sending transactional mails using Mailcoach in Laravel",
+            "homepage": "https://github.com/spatie/laravel-mailcoach-mailer",
+            "keywords": [
+                "laravel",
+                "laravel-mailcoach-mailer",
+                "mailcoach",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-mailcoach-mailer/issues",
+                "source": "https://github.com/spatie/laravel-mailcoach-mailer/tree/1.5.3"
+            },
+            "time": "2025-04-08T07:33:25+00:00"
+        },
+        {
             "name": "spatie/laravel-package-tools",
             "version": "1.92.4",
             "source": {
@@ -7119,6 +7193,65 @@
                 }
             ],
             "time": "2025-04-10T12:13:41+00:00"
+        },
+        {
+            "name": "spatie/mailcoach-mailer",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/mailcoach-mailer.git",
+                "reference": "46b9452332d2b127f2565f6a08288a9afb22866f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/mailcoach-mailer/zipball/46b9452332d2b127f2565f6a08288a9afb22866f",
+                "reference": "46b9452332d2b127f2565f6a08288a9afb22866f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "symfony/http-client": "^6.0 || ^7.0",
+                "symfony/mailer": "^6.0 || ^7.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.2",
+                "pestphp/pest": "^1.20",
+                "spatie/ray": "^1.28"
+            },
+            "type": "symfony-mailer-bridge",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\MailcoachMailer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The Mailcoach transport for Symfony Mailer",
+            "homepage": "https://mailcoach.app",
+            "keywords": [
+                "mailcoach-mailer",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/mailcoach-mailer/issues",
+                "source": "https://github.com/spatie/mailcoach-mailer/tree/1.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-12-09T15:05:12+00:00"
         },
         {
             "name": "spatie/robots-txt",
@@ -13155,12 +13288,12 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "8.3.*"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
