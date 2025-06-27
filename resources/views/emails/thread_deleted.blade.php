@@ -1,6 +1,6 @@
 @component('mail::message')
 
-The thread "{{ $thread->subject() }}" was deleted by a moderator for the following reasons:
+The thread "{{ $threadSubject }}" was deleted by a moderator for the following reasons:
 
 @component('mail::panel')
 {{ $reason }}

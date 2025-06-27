@@ -2,14 +2,11 @@
 
 namespace App\Mail;
 
-use App\Models\Thread;
 use Illuminate\Mail\Mailable;
 
 final class ThreadDeletedEmail extends Mailable
 {
-    public bool $deleteWhenMissingModels = true;
-
-    public function __construct(public Thread $thread, public string $reason) {}
+    public function __construct(public string $threadSubject, public string $reason) {}
 
     public function build()
     {

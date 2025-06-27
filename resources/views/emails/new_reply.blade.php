@@ -10,7 +10,7 @@
 Please make sure to mark the correct reply as the solution when your question gets answered.
 @endif
 
-@component('mail::button', ['url' => route('thread', $reply->replyAble()->slug())])
+@component('mail::button', ['url' => route('thread', $thread->slug())])
 View Thread
 @endcomponent
 

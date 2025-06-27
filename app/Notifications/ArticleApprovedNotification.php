@@ -22,7 +22,7 @@ final class ArticleApprovedNotification extends Notification implements ShouldQu
 
     public function toMail(User $user): ArticleApprovedEmail
     {
-        return (new ArticleApprovedEmail($this->article))
+        return (new ArticleApprovedEmail($this->article->title(), $this->article->slug()))
             ->to($user->emailAddress(), $user->name());
     }
 
