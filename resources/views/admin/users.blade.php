@@ -92,7 +92,7 @@
                                             @endcan
 
                                             {{-- Toggle Verified Author --}}
-                                            @can(App\Policies\UserPolicy::VERIFY_AUTHOR, $user)
+                                            @can(App\Policies\UserPolicy::ADMIN, $user)
                                                 @if ($user->isVerifiedAuthor())
                                                     <button title="Unverify {{ $user->name() }} as author"
                                                         @click="activeModal = 'unverifyAuthor{{ $user->getKey() }}'"
