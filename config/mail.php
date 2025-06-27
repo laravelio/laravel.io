@@ -1,7 +1,7 @@
 <?php
 
 return [
-  
+
     'mailers' => [
         'mailcoach' => [
             'transport' => 'mailcoach',
