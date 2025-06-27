@@ -69,6 +69,6 @@ final class CreateArticle
 
     private function canBeAutoApproved(): bool
     {
-        return $this->shouldBeSubmitted && $this->author->verifiedAuthorCanPublishMoreToday();
+        return $this->shouldBeSubmitted && $this->author->canVerifiedAuthorPublishMoreArticleToday();
     }
 }

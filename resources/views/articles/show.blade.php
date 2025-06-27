@@ -149,9 +149,17 @@
                                 </div>
 
                                 <div class="flex flex-col items-center text-gray-900 text-xl font-semibold lg:items-start">
-                                    <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
-                                        {{ $article->author()->username() }} ({{ $article->author()->name() }})
-                                    </a>
+                                    <span class="flex items-center gap-x-1">
+                                        <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
+                                            {{ $article->author()->username() }} ({{ $article->author()->name() }})
+                                        </a>
+
+                                        @if ($article->author()->isVerifiedAuthor())
+                                            <span title="This is a verified author">
+                                                @svg('heroicon-s-check-badge', 'w-6 h-6 text-lio-500')
+                                            </span>
+                                        @endif
+                                    </span>
 
                                     <span class="text-lg text-gray-700 font-medium">
                                         {{ $article->author()->bio() }}

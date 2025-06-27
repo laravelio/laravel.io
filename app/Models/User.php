@@ -73,6 +73,7 @@ final class User extends Authenticatable implements MustVerifyEmail
     {
         return [
             'allowed_notifications' => 'array',
+            'author_verified_at' => 'datetime',
         ];
     }
 
@@ -310,15 +311,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         return ! is_null($this->author_verified_at) || $this->isAdmin();
     }
 
-    /**
-    * Check if the verified author can publish more articles today.
-    *
-    * Verified authors are allowed to publish up to 2 articles per day,
-    * but will start count from the moment they are verified.
-    *
-    * @return bool True if under the daily limit, false otherwise
-    */
-    public function verifiedAuthorCanPublishMoreToday(): bool
+    public function canVerifiedAuthorPublishMoreArticleToday(): bool
     {
         if ($this->isAdmin()) {
             return true;
@@ -330,7 +323,7 @@ final class User extends Authenticatable implements MustVerifyEmail
 
         $publishedTodayCount = $this->articles()
             ->whereDate('submitted_at', today())
-            ->where('submitted_at', '>', $this->author_verified_at)->count(); // to ensure we only count articles published after verify the author
+            ->count();
 
         return $publishedTodayCount < 2;
     }
