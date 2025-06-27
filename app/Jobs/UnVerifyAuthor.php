@@ -23,6 +23,7 @@ class UnVerifyAuthor implements ShouldQueue
      */
     public function handle(): void
     {
-        $this->user->unverifyAuthor();
+        $this->user->author_verified_at = null;
+        $this->user->save();
     }
 }

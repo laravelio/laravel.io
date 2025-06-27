@@ -20,7 +20,6 @@ class UserSeeder extends Seeder
             'github_username' => 'driesvints',
             'password' => bcrypt('password'),
             'type' => User::ADMIN,
-            'author_verified_at' => now(),
         ]);
 
         User::factory()->createQuietly([

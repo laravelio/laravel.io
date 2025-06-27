@@ -4,6 +4,7 @@ use App\Events\ArticleWasSubmittedForApproval;
 use App\Jobs\SyncArticleImage;
 use App\Models\Article;
 use App\Models\Tag;
+use App\Models\User;
 use App\Notifications\ArticleApprovedNotification;
 use App\Notifications\ArticleSubmitted;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -586,7 +587,7 @@ test('only articles with ten or more views render a view count', function () {
 });
 
 test('verified authors can publish two articles per day with no approval needed', function () {
-    $author = $this->createVerifiedAuthor();
+    $author = $this->createUser(userFactory: User::factory()->verifiedAuthor());
 
     Article::factory()->count(2)->create([
         'author_id' => $author->id,
@@ -599,7 +600,7 @@ test('verified authors can publish two articles per day with no approval needed'
 test('verified authors skip the approval message when submitting new article', function () {
     Bus::fake(SyncArticleImage::class);
 
-    $author = $this->createVerifiedAuthor();
+    $author = $this->createUser(userFactory: User::factory()->verifiedAuthor());
     $this->loginAs($author);
 
     $response = $this->post('/articles', [

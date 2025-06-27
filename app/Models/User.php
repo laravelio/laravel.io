@@ -307,25 +307,7 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     public function isVerifiedAuthor(): bool
     {
-        return ! is_null($this->author_verified_at);
-    }
-
-    public function isNotVerifiedAuthor(): bool
-    {
-        return !$this->isVerifiedAuthor();
-    }
-
-    public function verifyAuthor(): void
-    {
-        $this->author_verified_at = now();
-        $this->save();
-    }
-
-
-    public function unverifyAuthor(): void
-    {
-        $this->author_verified_at = null;
-        $this->save();
+        return ! is_null($this->author_verified_at) || $this->isAdmin();
     }
 
     /**
@@ -338,14 +320,19 @@ final class User extends Authenticatable implements MustVerifyEmail
     */
     public function verifiedAuthorCanPublishMoreToday(): bool
     {
-        $limit = 2; // Default limit for verified authors
-        if ($this->isNotVerifiedAuthor()) {
+        if ($this->isAdmin()) {
+            return true;
+        }
+
+        if (! $this->isVerifiedAuthor()) {
             return false;
         }
+
         $publishedTodayCount = $this->articles()
             ->whereDate('submitted_at', today())
             ->where('submitted_at', '>', $this->author_verified_at)->count(); // to ensure we only count articles published after verify the author
-        return $publishedTodayCount < $limit;
+
+        return $publishedTodayCount < 2;
     }
 
     public function countSolutions(): int

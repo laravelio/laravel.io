@@ -115,7 +115,13 @@ class ArticlesController extends Controller
 
         $article = Article::findByUuidOrFail($uuid);
 
-        $this->maybeFlashSuccessMessage($article, $request);
+        if ($article->isNotApproved()) {
+            $this->success(
+                $request->shouldBeSubmitted()
+                    ? 'Thank you for submitting, unfortunately we can\'t accept every submission. You\'ll only hear back from us when we accept your article.'
+                    : 'Article successfully created!'
+            );
+        }
 
         return $request->wantsJson()
             ? ArticleResource::make($article)
@@ -171,16 +177,5 @@ class ArticlesController extends Controller
         return $request->wantsJson()
             ? response()->json([], Response::HTTP_NO_CONTENT)
             : redirect()->route('articles');
-    }
-
-    private function maybeFlashSuccessMessage(Article $article, ArticleRequest $request): void
-    {
-        if ($article->isNotApproved()) {
-            $this->success(
-                $request->shouldBeSubmitted()
-                    ? 'Thank you for submitting, unfortunately we can\'t accept every submission. You\'ll only hear back from us when we accept your article.'
-                    : 'Article successfully created!'
-            );
-        }
     }
 }

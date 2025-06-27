@@ -23,6 +23,7 @@ class VerifyAuthor implements ShouldQueue
      */
     public function handle(): void
     {
-        $this->user->verifyAuthor();
+        $this->user->author_verified_at = now();
+        $this->user->save();
     }
 }

@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Models\User;
+use Database\Factories\UserFactory;
 
 trait CreatesUsers
 {
@@ -30,9 +31,9 @@ trait CreatesUsers
         return $this->login(array_merge($attributes, ['type' => User::ADMIN]));
     }
 
-    protected function createUser(array $attributes = []): User
+    protected function createUser(array $attributes = [], ?UserFactory $userFactory = null): User
     {
-        return User::factory()->create(array_merge([
+        return ($userFactory ?? User::factory())->create(array_merge([
             'name' => 'John Doe',
             'username' => 'johndoe',
             'email' => 'john@example.com',
@@ -40,12 +41,4 @@ trait CreatesUsers
             'github_username' => 'johndoe',
         ], $attributes));
     }
-
-    protected function createVerifiedAuthor(array $attributes = []): User
-    {
-        return $this->createUser(array_merge($attributes, [
-        'author_verified_at' => now(),
-        ]));
-    }
-
 }
