@@ -151,6 +151,11 @@ final class User extends Authenticatable implements MustVerifyEmail
         return (int) $this->type;
     }
 
+    public function isRegularUser(): bool
+    {
+        return $this->type() === self::DEFAULT;
+    }
+
     public function isModerator(): bool
     {
         return $this->type() === self::MODERATOR;
@@ -300,11 +305,9 @@ final class User extends Authenticatable implements MustVerifyEmail
         parent::delete();
     }
 
-    // === Verified Author ===
-
     public function isVerifiedAuthor(): bool
     {
-        return !is_null($this->verified_author_at);
+        return ! is_null($this->author_verified_at);
     }
 
     public function isNotVerifiedAuthor(): bool
@@ -314,14 +317,14 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     public function verifyAuthor(): void
     {
-        $this->verified_author_at = now();
+        $this->author_verified_at = now();
         $this->save();
     }
 
 
     public function unverifyAuthor(): void
     {
-        $this->verified_author_at = null;
+        $this->author_verified_at = null;
         $this->save();
     }
 
@@ -333,7 +336,6 @@ final class User extends Authenticatable implements MustVerifyEmail
     *
     * @return bool True if under the daily limit, false otherwise
     */
-
     public function verifiedAuthorCanPublishMoreToday(): bool
     {
         $limit = 2; // Default limit for verified authors
@@ -342,11 +344,9 @@ final class User extends Authenticatable implements MustVerifyEmail
         }
         $publishedTodayCount = $this->articles()
             ->whereDate('submitted_at', today())
-            ->where('submitted_at', '>', $this->verified_author_at)->count(); // to ensure we only count articles published after verify the author
+            ->where('submitted_at', '>', $this->author_verified_at)->count(); // to ensure we only count articles published after verify the author
         return $publishedTodayCount < $limit;
     }
-
-    // === End Verified Author ===
 
     public function countSolutions(): int
     {

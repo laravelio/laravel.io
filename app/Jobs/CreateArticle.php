@@ -20,6 +20,7 @@ final class CreateArticle
         private string $body,
         private User $author,
         private bool $shouldBeSubmitted,
+        private ?string $heroImageId = null,
         array $options = []
     ) {
         $this->originalUrl = $options['original_url'] ?? null;
@@ -34,6 +35,7 @@ final class CreateArticle
             $request->body(),
             $request->author(),
             $request->shouldBeSubmitted(),
+            $request->heroImageId(),
             [
                 'original_url' => $request->originalUrl(),
                 'tags' => $request->tags(),
@@ -46,6 +48,7 @@ final class CreateArticle
         $article = new Article([
             'uuid' => $this->uuid->toString(),
             'title' => $this->title,
+            'hero_image_id' => $this->heroImageId,
             'body' => $this->body,
             'original_url' => $this->originalUrl,
             'slug' => $this->title,
@@ -54,6 +57,10 @@ final class CreateArticle
         ]);
         $article->authoredBy($this->author);
         $article->syncTags($this->tags);
+
+        if ($article->hero_image_id) {
+            SyncArticleImage::dispatch($article);
+        }
 
         if ($article->isAwaitingApproval()) {
             event(new ArticleWasSubmittedForApproval($article));

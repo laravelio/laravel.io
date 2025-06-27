@@ -64,7 +64,7 @@ class UsersController extends Controller
 
     public function verifyAuthor(User $user)
     {
-        $this->authorize(UserPolicy::VERIFY_AUTHOR, $user);
+        $this->authorize(UserPolicy::ADMIN, $user);
 
         $this->dispatchSync(new VerifyAuthor($user));
 
@@ -74,9 +74,8 @@ class UsersController extends Controller
     }
 
     public function unverifyAuthor(User $user)
-
     {
-        $this->authorize(UserPolicy::VERIFY_AUTHOR, $user);
+        $this->authorize(UserPolicy::ADMIN, $user);
 
         $this->dispatchSync(new UnverifyAuthor($user));
 

@@ -14,9 +14,6 @@ final class UserPolicy
 
     const DELETE = 'delete';
 
-    const VERIFY_AUTHOR = 'verifyAuthor';
-
-
     public function admin(User $user): bool
     {
         return $user->isAdmin() || $user->isModerator();
@@ -24,19 +21,16 @@ final class UserPolicy
 
     public function ban(User $user, User $subject): bool
     {
-        return ($user->isAdmin() && ! $subject->isAdmin()) ||
-            ($user->isModerator() && ! $subject->isAdmin() && ! $subject->isModerator());
-    }
+        if ($subject->isAdmin()) {
+            return false;
+        }
 
-    public function verifyAuthor(User $user, User $subject): bool
-    {
-        return ($user->isAdmin() && ! $subject->isAdmin()) ||
-            ($user->isModerator() && ! $subject->isAdmin() && ! $subject->isModerator());
+        return $user->isAdmin() || ($user->isModerator() && ! $subject->isModerator());
     }
 
     public function block(User $user, User $subject): bool
     {
-        return ! $user->is($subject) && ! $subject->isModerator() && ! $subject->isAdmin();
+        return ! $user->is($subject) && $subject->isRegularUser();
     }
 
     public function delete(User $user, User $subject): bool

@@ -6,26 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->timestamp('verified_author_at')
+            $table->timestamp('author_verified_at')
                 ->nullable()
-                ->after('email_verified_at')
-                ->comment('Indicates if the user is a verified author');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('verified_author_at');
+                ->after('email_verified_at');
         });
     }
 };

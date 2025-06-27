@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\User;
 use App\Rules\HttpImageRule;
 use Illuminate\Http\Concerns\InteractsWithInput;
+use Illuminate\Validation\Rules\RequiredIf;
 
 class ArticleRequest extends Request
 {
@@ -14,6 +15,7 @@ class ArticleRequest extends Request
     {
         return [
             'title' => ['required', 'max:100'],
+            'hero_image_id' => ['nullable', new RequiredIf(auth()->user()->isVerifiedAuthor())],
             'body' => ['required', new HttpImageRule],
             'tags' => 'array|nullable',
             'tags.*' => 'exists:tags,id',
@@ -57,5 +59,10 @@ class ArticleRequest extends Request
     public function shouldBeSubmitted(): bool
     {
         return $this->boolean('submitted');
+    }
+
+    public function heroImageId(): ?string
+    {
+        return $this->get('hero_image_id');
     }
 }

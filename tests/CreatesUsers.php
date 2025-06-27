@@ -44,7 +44,7 @@ trait CreatesUsers
     protected function createVerifiedAuthor(array $attributes = []): User
     {
         return $this->createUser(array_merge($attributes, [
-        'verified_author_at' => now(),
+        'author_verified_at' => now(),
         ]));
     }
 
