@@ -40,7 +40,7 @@ final class SyncArticleImage implements ShouldQueue
         if ($response->failed()) {
             $article->hero_image_id = null;
             $article->save();
-            
+
             return null;
         }
 

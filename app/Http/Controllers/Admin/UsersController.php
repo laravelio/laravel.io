@@ -68,7 +68,7 @@ class UsersController extends Controller
 
         $this->dispatchSync(new VerifyAuthor($user));
 
-        $this->success($user->name() . ' was verified!');
+        $this->success($user->name().' was verified!');
 
         return redirect()->route('admin.users');
     }
@@ -79,7 +79,7 @@ class UsersController extends Controller
 
         $this->dispatchSync(new UnverifyAuthor($user));
 
-        $this->success($user->name() . ' was unverified!');
+        $this->success($user->name().' was unverified!');
 
         return redirect()->route('admin.users');
     }
