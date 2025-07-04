@@ -68,13 +68,19 @@
                         {{ $article->title() }}
                     </h1>
 
-                    <div class="flex flex-col gap-y-2 text-white lg:flex-row lg:items-center">
-                        <div class="flex items-center">
-                            <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-3" />
+                    <div class="flex flex-col gap-y-2 space-x-5 text-white lg:flex-row lg:items-center">
+                        <div class="flex items-center space-x-1">
+                            <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-1" />
 
                             <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
-                                <span class="mr-5">{{ $article->author()->name() }}</span>
+                                <span>{{ $article->author()->name() }}</span>
                             </a>
+
+                            @if ($article->author()->isVerifiedAuthor())
+                                <span title="This is a verified author">
+                                    @svg('heroicon-o-check-badge', 'w-5 h-5 text-white')
+                                </span>
+                            @endif
                         </div>
 
                         <div class="flex items-center gap-x-6">

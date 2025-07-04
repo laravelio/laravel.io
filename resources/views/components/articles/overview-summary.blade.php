@@ -20,12 +20,18 @@
             <div>
                 <div class="flex flex-col gap-y-2 justify-between lg:flex-row lg:items-center">
                     <div class="flex flex-wrap items-center space-x-1 text-sm">
-                        <div class="flex items-center">
-                            <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-2" />
+                        <div class="flex items-center space-x-1">
+                            <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-1" />
 
                             <a href="{{ route('profile', $article->author()->username()) }}" class="hover:underline">
                                 <span class="text-gray-900 font-semibold">{{ $article->author()->username() }}</span>
                             </a>
+
+                            @if ($article->author()->isVerifiedAuthor())
+                                <span title="This is a verified author">
+                                    @svg('heroicon-s-check-badge', 'w-5 h-5 text-lio-500')
+                                </span>
+                            @endif
                         </div>
 
                         @if ($article->isApproved())

@@ -16,17 +16,21 @@
 
         <div class="flex flex-col h-full gap-y-3 p-4">
             <div>
-                <div class="flex flex-wrap items-center space-x-1 text-sm">
-                    <div class="flex items-center">
-                        <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-2" unlinked />
+                <div class="flex flex-wrap items-center space-x-2 text-sm">
+                    <div class="flex items-center space-x-1">
+                        <x-avatar :user="$article->author()" class="w-6 h-6 rounded-full mr-1" unlinked />
 
                         <span class="text-gray-900">{{ $article->author()->username() }}</span>
+
+                        @if ($article->author()->isVerifiedAuthor())
+                            <span title="This is a verified author">
+                                @svg('heroicon-s-check-badge', 'w-5 h-5 text-lio-500')
+                            </span>
+                        @endif
                     </div>
 
-                    <span class="text-gray-700">published on</span>
-
-                    <span class="text-gray-700">
-                        {{ $article->approvedAt()->format('j M, Y') }}
+                    <span class="text-gray-700"></span>
+                        published on {{ $article->approvedAt()->format('j M, Y') }}
                     </span>
                 </div>
             </div>
