@@ -35,9 +35,17 @@ class ArticleSubmitted extends Notification implements ShouldQueue
 
     private function content(): string
     {
+        if ($this->article->author()->isVerifiedAuthor()) {
+            $content = "*New Article Published by verified author!*\n\n";
+            $content .= 'Title: '.$this->article->title()."\n";
+            $content .= 'By: '.$this->article->author()->username();
+
+            return $content;
+        }
+
         $content = "*New Article Submitted!*\n\n";
         $content .= 'Title: '.$this->article->title()."\n";
-        $content .= 'By: @'.$this->article->author()->username();
+        $content .= 'By: '.$this->article->author()->username();
 
         return $content;
     }
