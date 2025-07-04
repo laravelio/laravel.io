@@ -197,7 +197,12 @@ test('bluesky is optional', function () {
 });
 
 test('website is optional', function () {
-    $user = $this->createUser(['email' => 'freek@example.com', 'username' => 'freekmurze', 'twitter' => 'freektwitter', 'website' => 'https://laravel.io']);
+    $user = $this->createUser([
+        'email' => 'freek@example.com',
+        'username' => 'freekmurze',
+        'twitter' => 'freektwitter',
+        'website' => 'https://freek.dev',
+    ]);
 
     $this->loginAs($user);
 
@@ -212,7 +217,7 @@ test('website is optional', function () {
         ->assertRedirect('/settings');
 
     $this->followRedirects($response)
-        ->assertDontSee('https://laravel.io');
+        ->assertDontSee('https://freek.dev');
 
     expect($user->fresh()->website())->toBeEmpty();
 });

@@ -140,7 +140,7 @@ class ThreadsController extends Controller
 
         $request->whenFilled('reason', function () use ($thread) {
             $thread->author()?->notify(
-                new ThreadDeletedNotification($thread, request('reason')),
+                new ThreadDeletedNotification($thread->subject(), request('reason')),
             );
         });
 

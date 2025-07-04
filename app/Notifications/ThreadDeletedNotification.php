@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use App\Mail\ThreadDeletedEmail;
-use App\Models\Thread;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,7 +12,7 @@ class ThreadDeletedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct(public Thread $thread, public ?string $reason = null) {}
+    public function __construct(public string $threadSubject, public ?string $reason = null) {}
 
     public function via($notifiable): array
     {
@@ -22,7 +21,7 @@ class ThreadDeletedNotification extends Notification implements ShouldQueue
 
     public function toMail(User $user): ThreadDeletedEmail
     {
-        return (new ThreadDeletedEmail($this->thread->subject(), $this->reason))
+        return (new ThreadDeletedEmail($this->threadSubject, $this->reason))
             ->to($user->emailAddress(), $user->name());
     }
 }
