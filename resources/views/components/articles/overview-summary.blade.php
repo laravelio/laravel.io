@@ -28,9 +28,7 @@
                             </a>
 
                             @if ($article->author()->isVerifiedAuthor())
-                                <span title="This is a verified author">
-                                    @svg('heroicon-s-check-badge', 'w-5 h-5 text-lio-500')
-                                </span>
+                                <x-badges.verified />
                             @endif
                         </div>
 

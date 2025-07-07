@@ -77,9 +77,7 @@
                             </a>
 
                             @if ($article->author()->isVerifiedAuthor())
-                                <span title="This is a verified author">
-                                    @svg('heroicon-o-check-badge', 'w-5 h-5 text-white')
-                                </span>
+                                <x-badges.verified type="o" color="text-white" />
                             @endif
                         </div>
 
@@ -161,9 +159,7 @@
                                         </a>
 
                                         @if ($article->author()->isVerifiedAuthor())
-                                            <span title="This is a verified author">
-                                                @svg('heroicon-s-check-badge', 'w-6 h-6 text-lio-500')
-                                            </span>
+                                            <x-badges.verified color="text-lio-500" />
                                         @endif
                                     </span>
 
