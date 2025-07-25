@@ -655,16 +655,16 @@
         },
         {
             "name": "codeat3/blade-simple-icons",
-            "version": "7.6.0",
+            "version": "7.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeat3/blade-simple-icons.git",
-                "reference": "3d0d13afb03b8e65738739eb9f7e62c73fb80a07"
+                "reference": "98aeefbc74af8254d5ed448af67d10f50e6bc1a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeat3/blade-simple-icons/zipball/3d0d13afb03b8e65738739eb9f7e62c73fb80a07",
-                "reference": "3d0d13afb03b8e65738739eb9f7e62c73fb80a07",
+                "url": "https://api.github.com/repos/codeat3/blade-simple-icons/zipball/98aeefbc74af8254d5ed448af67d10f50e6bc1a5",
+                "reference": "98aeefbc74af8254d5ed448af67d10f50e6bc1a5",
                 "shasum": ""
             },
             "require": {
@@ -714,7 +714,7 @@
             ],
             "support": {
                 "issues": "https://github.com/codeat3/blade-simple-icons/issues",
-                "source": "https://github.com/codeat3/blade-simple-icons/tree/7.6.0"
+                "source": "https://github.com/codeat3/blade-simple-icons/tree/7.7.0"
             },
             "funding": [
                 {
@@ -722,7 +722,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-15T10:21:11+00:00"
+            "time": "2025-07-22T02:05:16+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -2618,16 +2618,16 @@
         },
         {
             "name": "laravel/nightwatch",
-            "version": "v1.11.3",
+            "version": "v1.11.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/nightwatch.git",
-                "reference": "b807210536dbbb33a0ed730cba6db6bcd5a0c37e"
+                "reference": "a333f9df7f00e125dc2bd79d611dcf924dc7b3e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/nightwatch/zipball/b807210536dbbb33a0ed730cba6db6bcd5a0c37e",
-                "reference": "b807210536dbbb33a0ed730cba6db6bcd5a0c37e",
+                "url": "https://api.github.com/repos/laravel/nightwatch/zipball/a333f9df7f00e125dc2bd79d611dcf924dc7b3e2",
+                "reference": "a333f9df7f00e125dc2bd79d611dcf924dc7b3e2",
                 "shasum": ""
             },
             "require": {
@@ -2700,7 +2700,7 @@
                 "issues": "https://github.com/laravel/nightwatch/issues",
                 "source": "https://github.com/laravel/nightwatch"
             },
-            "time": "2025-07-17T07:22:47+00:00"
+            "time": "2025-07-18T04:00:54+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -2763,16 +2763,16 @@
         },
         {
             "name": "laravel/sanctum",
-            "version": "v4.1.2",
+            "version": "v4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "e4c09e69aecd5a383e0c1b85a6bb501c997d7491"
+                "reference": "fd6df4f79f48a72992e8d29a9c0ee25422a0d677"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/e4c09e69aecd5a383e0c1b85a6bb501c997d7491",
-                "reference": "e4c09e69aecd5a383e0c1b85a6bb501c997d7491",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/fd6df4f79f48a72992e8d29a9c0ee25422a0d677",
+                "reference": "fd6df4f79f48a72992e8d29a9c0ee25422a0d677",
                 "shasum": ""
             },
             "require": {
@@ -2823,7 +2823,7 @@
                 "issues": "https://github.com/laravel/sanctum/issues",
                 "source": "https://github.com/laravel/sanctum"
             },
-            "time": "2025-07-01T15:49:32+00:00"
+            "time": "2025-07-09T19:45:24+00:00"
         },
         {
             "name": "laravel/scout",
@@ -2969,16 +2969,16 @@
         },
         {
             "name": "laravel/socialite",
-            "version": "v5.21.0",
+            "version": "v5.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/socialite.git",
-                "reference": "d83639499ad14985c9a6a9713b70073300ce998d"
+                "reference": "e9e0fc83b9d8d71c8385a5da20e5b95ca6234cf5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/d83639499ad14985c9a6a9713b70073300ce998d",
-                "reference": "d83639499ad14985c9a6a9713b70073300ce998d",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/e9e0fc83b9d8d71c8385a5da20e5b95ca6234cf5",
+                "reference": "e9e0fc83b9d8d71c8385a5da20e5b95ca6234cf5",
                 "shasum": ""
             },
             "require": {
@@ -3037,7 +3037,7 @@
                 "issues": "https://github.com/laravel/socialite/issues",
                 "source": "https://github.com/laravel/socialite"
             },
-            "time": "2025-05-19T12:56:37+00:00"
+            "time": "2025-07-23T14:16:08+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3170,16 +3170,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.7.0",
+            "version": "2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "6fbb36d44824ed4091adbcf4c7d4a3923cdb3405"
+                "reference": "10732241927d3971d28e7ea7b5712721fa2296ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/6fbb36d44824ed4091adbcf4c7d4a3923cdb3405",
-                "reference": "6fbb36d44824ed4091adbcf4c7d4a3923cdb3405",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/10732241927d3971d28e7ea7b5712721fa2296ca",
+                "reference": "10732241927d3971d28e7ea7b5712721fa2296ca",
                 "shasum": ""
             },
             "require": {
@@ -3208,7 +3208,7 @@
                 "symfony/process": "^5.4 | ^6.0 | ^7.0",
                 "symfony/yaml": "^2.3 | ^3.0 | ^4.0 | ^5.0 | ^6.0 | ^7.0",
                 "unleashedtech/php-coding-standard": "^3.1.1",
-                "vimeo/psalm": "^4.24.0 || ^5.0.0"
+                "vimeo/psalm": "^4.24.0 || ^5.0.0 || ^6.0.0"
             },
             "suggest": {
                 "symfony/yaml": "v2.3+ required if using the Front Matter extension"
@@ -3273,7 +3273,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-05T12:20:28+00:00"
+            "time": "2025-07-20T12:47:49+00:00"
         },
         {
             "name": "league/config",
@@ -5218,16 +5218,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.43",
+            "version": "3.0.46",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "709ec107af3cb2f385b9617be72af8cf62441d02"
+                "reference": "56483a7de62a6c2a6635e42e93b8a9e25d4f0ec6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/709ec107af3cb2f385b9617be72af8cf62441d02",
-                "reference": "709ec107af3cb2f385b9617be72af8cf62441d02",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/56483a7de62a6c2a6635e42e93b8a9e25d4f0ec6",
+                "reference": "56483a7de62a6c2a6635e42e93b8a9e25d4f0ec6",
                 "shasum": ""
             },
             "require": {
@@ -5308,7 +5308,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.43"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.46"
             },
             "funding": [
                 {
@@ -5324,7 +5324,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-14T21:12:59+00:00"
+            "time": "2025-06-26T16:29:55+00:00"
         },
         {
             "name": "predis/predis",
