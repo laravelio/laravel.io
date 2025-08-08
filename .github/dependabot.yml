@@ -27,3 +27,9 @@ updates:
     allow:
       - dependency-type: direct
     versioning-strategy: increase-if-necessary
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: friday
