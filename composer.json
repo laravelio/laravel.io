@@ -28,7 +28,7 @@
         "livewire/flux": "^2.1",
         "livewire/livewire": "^3.3",
         "ohdearapp/ohdear-php-sdk": "^3.4",
-        "predis/predis": "^2.0",
+        "predis/predis": "^3.2",
         "ramsey/uuid": "^4.3",
         "sentry/sentry-laravel": "^4.3",
         "spatie/laravel-feed": "^4.4",
