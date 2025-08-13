@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(RefreshDatabase::class);
 
 test('users can see the homepage', function () {
     $this->get('/')

@@ -2,12 +2,12 @@
 
 use App\Console\Commands\UpdateArticleViewCounts;
 use App\Models\Article;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(RefreshDatabase::class);
 
 test('article view counts can be updated', function () {
     Http::fake(function () {

@@ -1,11 +1,11 @@
 <?php
 
 use App\Jobs\CreateApiToken;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(RefreshDatabase::class);
 
 it('creates an API token for the given user', function () {
     $user = $this->createUser();

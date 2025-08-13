@@ -2,12 +2,12 @@
 
 use App\Jobs\GenerateSocialShareImage;
 use App\Models\Article;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Pixelmatch\Pixelmatch;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(RefreshDatabase::class);
 
 test('social image is generated for articles', function () {
     $article = Article::factory()->create([
