@@ -2,13 +2,13 @@
 
 use App\Jobs\SyncArticleImage;
 use App\Models\Article;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(RefreshDatabase::class);
 
 test('hero image url and author information is updated for published articles with hero image', function () {
     Config::set('services.unsplash.access_key', 'test');

@@ -4,14 +4,14 @@ use App\Console\Commands\PostArticleToSocialMedia;
 use App\Models\Article;
 use App\Notifications\PostArticleToBluesky;
 use App\Notifications\PostArticleToTwitter;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(RefreshDatabase::class);
 
 beforeEach(function () {
     Notification::fake();

@@ -1,11 +1,11 @@
 <?php
 
 use App\Models\Thread;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(RefreshDatabase::class);
 
 test('moderators can edit any thread', function () {
     $thread = Thread::factory()->create();

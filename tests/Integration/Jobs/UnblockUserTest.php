@@ -1,11 +1,11 @@
 <?php
 
 use App\Jobs\UnblockUser;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(RefreshDatabase::class);
 
 it('can unblock a user', function () {
     $unblocker = $this->createUser();

@@ -7,7 +7,7 @@ use App\Models\Tag;
 use App\Models\User;
 use App\Notifications\ArticleApprovedNotification;
 use App\Notifications\ArticleSubmitted;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
@@ -15,7 +15,7 @@ use Illuminate\Support\HtmlString;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(RefreshDatabase::class);
 
 test('users cannot create an article when not logged in', function () {
     $this->get('/articles/create')

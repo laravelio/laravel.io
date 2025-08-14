@@ -3,11 +3,11 @@
 use App\Jobs\DeleteUserThreads;
 use App\Models\Thread;
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
-uses(DatabaseMigrations::class);
+uses(RefreshDatabase::class);
 
 test('we can delete an user threads', function () {
     $user = User::factory()->create();
