@@ -102,6 +102,11 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->bio;
     }
 
+    public function githubId(): ?string
+    {
+        return $this->github_id;
+    }
+
     public function githubUsername(): string
     {
         return $this->github_username ?? '';

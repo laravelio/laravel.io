@@ -4,10 +4,8 @@
 ])
 
 <?php
-$src = $user->githubUsername()
-    ? sprintf('https://unavatar.io/github/%s?%s', $user->githubUsername(), http_build_query([
-        'fallback' => asset('https://laravel.io/images/laravelio-icon-gray.svg'),
-    ]))
+$src = $user->githubId()
+    ? sprintf('https://avatars.githubusercontent.com/u/%s', $user->githubId())
     : asset('https://laravel.io/images/laravelio-icon-gray.svg');
 ?>
 
