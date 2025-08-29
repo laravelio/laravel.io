@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd53a824d0eb289a65ca8e5ad86e829b",
+    "content-hash": "6799bea393284415556b1cac793c4fd1",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -3993,16 +3993,16 @@
         },
         {
             "name": "lorisleiva/cron-translator",
-            "version": "v0.4.5",
+            "version": "v0.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lorisleiva/cron-translator.git",
-                "reference": "3c7d8e3984c845a33bc1ae3cdc36c0b38f4783e9"
+                "reference": "082e3cd493de13bd5816bfdda484d07bb2326768"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lorisleiva/cron-translator/zipball/3c7d8e3984c845a33bc1ae3cdc36c0b38f4783e9",
-                "reference": "3c7d8e3984c845a33bc1ae3cdc36c0b38f4783e9",
+                "url": "https://api.github.com/repos/lorisleiva/cron-translator/zipball/082e3cd493de13bd5816bfdda484d07bb2326768",
+                "reference": "082e3cd493de13bd5816bfdda484d07bb2326768",
                 "shasum": ""
             },
             "require": {
@@ -4037,7 +4037,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lorisleiva/cron-translator/issues",
-                "source": "https://github.com/lorisleiva/cron-translator/tree/v0.4.5"
+                "source": "https://github.com/lorisleiva/cron-translator/tree/v0.4.6"
             },
             "funding": [
                 {
@@ -4045,7 +4045,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-02T10:51:56+00:00"
+            "time": "2025-06-23T10:51:20+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -7054,16 +7054,16 @@
         },
         {
             "name": "spatie/laravel-schedule-monitor",
-            "version": "3.10.3",
+            "version": "4.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-schedule-monitor.git",
-                "reference": "8731755b91d5d724a5bd2c7028e3d0c8c930e8a1"
+                "reference": "6ca27d851eaa1a7fc05244f5924b504e3492ad84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-schedule-monitor/zipball/8731755b91d5d724a5bd2c7028e3d0c8c930e8a1",
-                "reference": "8731755b91d5d724a5bd2c7028e3d0c8c930e8a1",
+                "url": "https://api.github.com/repos/spatie/laravel-schedule-monitor/zipball/6ca27d851eaa1a7fc05244f5924b504e3492ad84",
+                "reference": "6ca27d851eaa1a7fc05244f5924b504e3492ad84",
                 "shasum": ""
             },
             "require": {
@@ -7076,7 +7076,6 @@
             },
             "require-dev": {
                 "mockery/mockery": "^1.4",
-                "ohdearapp/ohdear-php-sdk": "^3.0",
                 "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0",
                 "pestphp/pest": "^1.20|^2.34|^3.7",
                 "pestphp/pest-plugin-laravel": "^1.2|^2.3|^3.1",
@@ -7084,15 +7083,15 @@
                 "spatie/phpunit-snapshot-assertions": "^4.2|^5.1",
                 "spatie/test-time": "^1.2"
             },
-            "suggest": {
-                "ohdearapp/ohdear-php-sdk": "Needed to sync your schedule with Oh Dear"
-            },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
                         "Spatie\\ScheduleMonitor\\ScheduleMonitorServiceProvider"
                     ]
+                },
+                "branch-alias": {
+                    "dev-ohdear-monitor": "4.0.x-dev"
                 }
             },
             "autoload": {
@@ -7121,7 +7120,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-schedule-monitor/issues",
-                "source": "https://github.com/spatie/laravel-schedule-monitor/tree/3.10.3"
+                "source": "https://github.com/spatie/laravel-schedule-monitor/tree/4.0.2"
             },
             "funding": [
                 {
@@ -7129,7 +7128,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-21T19:56:48+00:00"
+            "time": "2025-08-27T12:01:19+00:00"
         },
         {
             "name": "spatie/laravel-sitemap",
