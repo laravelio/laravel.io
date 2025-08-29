@@ -3,25 +3,25 @@
     'unlinked' => false,
 ])
 
+<?php
+$src = $user->githubUsername()
+    ? sprintf('https://unavatar.io/github/%s?%s', $user->githubUsername(), http_build_query([
+        'fallback' => asset('https://laravel.io/images/laravelio-icon-gray.svg'),
+    ]))
+    : asset('https://laravel.io/images/laravelio-icon-gray.svg');
+?>
+
 @unless ($unlinked)
     <a href="{{ route('profile', $user->username()) }}">
 @endunless
 
-@if ($user->githubUsername())
-    <flux:avatar
-        circle
-        src="{{ sprintf('https://unavatar.io/github/%s?%s', $user->githubUsername(), http_build_query([
-            'fallback' => asset('https://laravel.io/images/laravelio-icon-gray.svg'),
-        ])) }}"
-        {{ $attributes->merge(['class' => 'bg-gray-50']) }}
-    />
-@else
-    <img loading="lazy"
-        src="{{ asset('https://laravel.io/images/laravelio-icon-gray.svg') }}"
-        alt="{{ $user->name() }}"
-        {{ $attributes->merge(['class' => 'bg-gray-50 rounded-full']) }}
-    />
-@endif
+<flux:avatar
+    circle
+    loading="lazy"
+    src="{{ $src }}"
+    alt="{{ $user->name() }}"
+    {{ $attributes->merge(['class' => 'bg-gray-50']) }}
+/>
 
 @unless ($unlinked)
     </a>
