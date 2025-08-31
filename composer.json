@@ -10,6 +10,7 @@
         "blade-ui-kit/blade-icons": "^1.6",
         "codeat3/blade-simple-icons": "^7.1",
         "embed/embed": "^4.4",
+        "filament/filament": "^4.0",
         "guzzlehttp/guzzle": "^7.2",
         "guzzlehttp/psr7": "^2.7",
         "innocenzi/bluesky-notification-channel": "^0.2.0",
@@ -79,7 +80,8 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "setup": [
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
