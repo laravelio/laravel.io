@@ -45,7 +45,8 @@ class RepliesTable
 
                 IconColumn::make('updated_by')
                     ->label('Updated')
-                    ->boolean(),
+                    ->boolean()
+                    ->default(false),
 
                 TextColumn::make('created_at')
                     ->label('Created on')
