@@ -463,8 +463,6 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
 
     public function canAccessPanel(Panel $panel): bool
     {
-        $guard = Filament::getAuthGuard();
-        
-        return Auth::guard($guard)->user()->can(UserPolicy::ADMIN, User::class);
+        return $this->can(UserPolicy::ADMIN, User::class);
     }
 }
