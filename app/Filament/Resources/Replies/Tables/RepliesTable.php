@@ -31,7 +31,7 @@ class RepliesTable
 
                 TextColumn::make('authorRelation.name')
                     ->label('')
-                    ->description(fn(Reply $record): ?string => $record->authorRelation->username),
+                    ->description(fn(Reply $reply): ?string => $reply->authorRelation->username),
 
                 TextColumn::make('replyAbleRelation.subject')
                     ->label('Thread')
@@ -68,7 +68,7 @@ class RepliesTable
             ])
             ->recordActions([
                 Action::make('view')
-                    ->url(fn(Reply $record): string => route('thread', $record->replyAble()->slug()) . '#' . $record->id())
+                    ->url(fn(Reply $reply): string => route('thread', $reply->replyAble()->slug()) . '#' . $reply->id())
                     ->openUrlInNewTab()
                     ->icon('heroicon-s-eye'),
 
