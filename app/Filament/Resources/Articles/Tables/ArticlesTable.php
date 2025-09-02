@@ -50,9 +50,7 @@ class ArticlesTable
                     ->icon('heroicon-s-eye'),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                //
             ]);
     }
 }
