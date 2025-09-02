@@ -72,6 +72,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogo(asset('images/laravelio-logo.svg'))
             ->unsavedChangesAlerts()
             ->globalSearch(false)
+            ->topNavigation()
             ->spa();
     }
 }
