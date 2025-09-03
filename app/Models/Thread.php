@@ -294,10 +294,7 @@ final class Thread extends Model implements Feedable, MentionAble, ReplyAble, Sp
      */
     public static function feedQuery(): Builder
     {
-        return self::withOnly([
-            'tagsRelation',
-            'authorRelation',
-        ])
+        return self::query()
             ->withCount(['repliesRelation as reply_count', 'likesRelation as like_count'])
             ->latest('last_activity_at');
     }
