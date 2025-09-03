@@ -2,11 +2,15 @@
 
 return [
     'ads' => [
+        // [
+        //     'url' => 'https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement',
+        //     'image' => 'eventy',
+        //     'alt' => 'Eventy',
+        // ],
         [
-            'url' => 'https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement',
-            'image' => 'eventy',
-            'alt' => 'Eventy',
-            'goal' => 'PSA8VL6S',
+            'url' => 'https://nativephp.com/mobile?ref=laravel.io',
+            'image' => 'nativephp',
+            'alt' => 'Native PHP',
         ],
     ],
 

@@ -5,7 +5,7 @@
     $banner = $banner['small'] ?? $banner;
 ?>
 
-<a href="{{ $banner['url'] }}" target="_blank" rel="noopener noreferrer" onclick="fathom.trackGoal('{{ $banner['goal'] }}', 0);">
+<a href="{{ $banner['url'] }}" target="_blank" rel="noopener noreferrer" onclick="fathom.trackEvent('{{ $banner['alt'] }} sidebar ad click');">
     <img loading="lazy" class="my-4 mx-auto w-full" style="max-width:300px" src="{{ asset("/images/showcase/{$banner['image']}-small.png") }}" alt="{{ $banner['alt'] }}">
 </a>
 
