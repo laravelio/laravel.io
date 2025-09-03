@@ -33,7 +33,7 @@ final class Likes extends Component
 
     public function getLikers(): array
     {
-        $likers = $this->subject->likersRelation()->limit($this->limit + 1)->pluck('username')->toArray();
+        $likers = $this->subject->likes()->slice($this->limit + 1)->pluck('username')->toArray();
 
         if (auth()->check() && in_array($authUsername = auth()->user()->username, $likers)) {
             $likers = array_diff($likers, [$authUsername]);
