@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e78f320ff0b64523a34839c1dff8334c",
+    "content-hash": "5e92b2b4f9f381a4649d6f72fee04112",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -13183,6 +13183,72 @@
                 }
             ],
             "time": "2025-04-21T07:40:53+00:00"
+        },
+        {
+            "name": "pestphp/pest-plugin-livewire",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pestphp/pest-plugin-livewire.git",
+                "reference": "e2f2edb0a7d414d6837d87908a0e148256d3bf89"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pestphp/pest-plugin-livewire/zipball/e2f2edb0a7d414d6837d87908a0e148256d3bf89",
+                "reference": "e2f2edb0a7d414d6837d87908a0e148256d3bf89",
+                "shasum": ""
+            },
+            "require": {
+                "livewire/livewire": "^3.5.6",
+                "pestphp/pest": "^3.0.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^9.4.0",
+                "pestphp/pest-dev-tools": "^3.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Autoload.php"
+                ],
+                "psr-4": {
+                    "Pest\\Livewire\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The Pest Livewire Plugin",
+            "keywords": [
+                "framework",
+                "livewire",
+                "pest",
+                "php",
+                "plugin",
+                "test",
+                "testing",
+                "unit"
+            ],
+            "support": {
+                "source": "https://github.com/pestphp/pest-plugin-livewire/tree/v3.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/nunomaduro",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2024-09-09T00:05:59+00:00"
         },
         {
             "name": "pestphp/pest-plugin-mutate",
