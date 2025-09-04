@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b13b361b8d33eebe276f829a9462d60",
+    "content-hash": "94003e630bf49820e3575d9b30c040c4",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -4919,62 +4919,6 @@
                 }
             ],
             "time": "2024-09-09T07:06:30+00:00"
-        },
-        {
-            "name": "ohdearapp/ohdear-php-sdk",
-            "version": "3.10.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ohdearapp/ohdear-php-sdk.git",
-                "reference": "8d9294927b08a70a3d402682b32b51a23eb4cfff"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ohdearapp/ohdear-php-sdk/zipball/8d9294927b08a70a3d402682b32b51a23eb4cfff",
-                "reference": "8d9294927b08a70a3d402682b32b51a23eb4cfff",
-                "shasum": ""
-            },
-            "require": {
-                "guzzlehttp/guzzle": "^6.5.8|^7.8.1",
-                "php": "^8.1"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.15.1",
-                "orchestra/testbench": "^8.0|^9.0",
-                "pestphp/pest": "^2.34.7",
-                "vlucas/phpdotenv": "^5.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "OhDear\\PhpSdk\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "support@ohdear.app",
-                    "homepage": "https://ohdear.app",
-                    "role": "Developer"
-                }
-            ],
-            "description": "An SDK to easily work with the Oh Dear API",
-            "homepage": "https://github.com/ohdearapp/ohdear-php-sdk",
-            "keywords": [
-                "api",
-                "monitoring",
-                "oh dear",
-                "sdk"
-            ],
-            "support": {
-                "issues": "https://github.com/ohdearapp/ohdear-php-sdk/issues",
-                "source": "https://github.com/ohdearapp/ohdear-php-sdk/tree/3.10.3"
-            },
-            "time": "2024-12-18T20:57:38+00:00"
         },
         {
             "name": "oscarotero/html-parser",
