@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b13b361b8d33eebe276f829a9462d60",
+    "content-hash": "ee673835654b1ba1e645da63596df1ae",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -4922,29 +4922,34 @@
         },
         {
             "name": "ohdearapp/ohdear-php-sdk",
-            "version": "3.10.3",
+            "version": "4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ohdearapp/ohdear-php-sdk.git",
-                "reference": "8d9294927b08a70a3d402682b32b51a23eb4cfff"
+                "reference": "a03b738cb75b3ac67c494002b700aa5ed7e38c34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ohdearapp/ohdear-php-sdk/zipball/8d9294927b08a70a3d402682b32b51a23eb4cfff",
-                "reference": "8d9294927b08a70a3d402682b32b51a23eb4cfff",
+                "url": "https://api.github.com/repos/ohdearapp/ohdear-php-sdk/zipball/a03b738cb75b3ac67c494002b700aa5ed7e38c34",
+                "reference": "a03b738cb75b3ac67c494002b700aa5ed7e38c34",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/guzzle": "^6.5.8|^7.8.1",
-                "php": "^8.1"
+                "php": "^8.1",
+                "saloonphp/pagination-plugin": "^2.2",
+                "saloonphp/saloon": "^3.14"
             },
             "require-dev": {
-                "laravel/pint": "^1.15.1",
-                "orchestra/testbench": "^8.0|^9.0",
-                "pestphp/pest": "^2.34.7",
-                "vlucas/phpdotenv": "^5.6"
+                "pestphp/pest": "^2.35|^3.8.2",
+                "phpstan/phpstan": "^2.1",
+                "vlucas/phpdotenv": "^5.6.2"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-monitors": "4.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "OhDear\\PhpSdk\\": "src"
@@ -4972,9 +4977,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ohdearapp/ohdear-php-sdk/issues",
-                "source": "https://github.com/ohdearapp/ohdear-php-sdk/tree/3.10.3"
+                "source": "https://github.com/ohdearapp/ohdear-php-sdk/tree/4.4.0"
             },
-            "time": "2024-12-18T20:57:38+00:00"
+            "time": "2025-08-29T13:49:29+00:00"
         },
         {
             "name": "oscarotero/html-parser",
@@ -6131,6 +6136,141 @@
                 "source": "https://github.com/Riimu/Kit-PHPEncoder/tree/v2.4.2"
             },
             "time": "2022-12-10T18:12:25+00:00"
+        },
+        {
+            "name": "saloonphp/pagination-plugin",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/saloonphp/pagination-plugin.git",
+                "reference": "45d447e832fa6c6f3b58b233bc2c5423bfef0181"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/saloonphp/pagination-plugin/zipball/45d447e832fa6c6f3b58b233bc2c5423bfef0181",
+                "reference": "45d447e832fa6c6f3b58b233bc2c5423bfef0181",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "saloonphp/saloon": "^3.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "illuminate/collections": "^10.9",
+                "pestphp/pest": "^2.6",
+                "phpstan/phpstan": "^1.9",
+                "spatie/invade": "^2.0",
+                "spatie/ray": "^1.33"
+            },
+            "suggest": {
+                "illuminate/collections": "Used to provide LazyCollections via the collect() method on paginators."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Saloon\\PaginationPlugin\\": "src/",
+                    "Saloon\\PaginationPlugin\\Tests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sam Carré",
+                    "email": "29132017+Sammyjo20@users.noreply.github.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Official Pagination Plugin For Saloon v3",
+            "homepage": "https://github.com/saloonphp/pagination-plugin",
+            "support": {
+                "source": "https://github.com/saloonphp/pagination-plugin/tree/v2.2.0"
+            },
+            "time": "2023-12-08T20:04:07+00:00"
+        },
+        {
+            "name": "saloonphp/saloon",
+            "version": "v3.14.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/saloonphp/saloon.git",
+                "reference": "b1868db2d7c2eea57592b78797f24e8cddfb86cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/saloonphp/saloon/zipball/b1868db2d7c2eea57592b78797f24e8cddfb86cc",
+                "reference": "b1868db2d7c2eea57592b78797f24e8cddfb86cc",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.6",
+                "guzzlehttp/promises": "^1.5 || ^2.0",
+                "guzzlehttp/psr7": "^2.0",
+                "php": "^8.1",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.1 || ^2.0"
+            },
+            "conflict": {
+                "sammyjo20/saloon": "*"
+            },
+            "require-dev": {
+                "ext-simplexml": "*",
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "illuminate/collections": "^9.39 || ^10.0",
+                "league/flysystem": "^3.0",
+                "pestphp/pest": "^2.36.0 || ^3.8.2",
+                "phpstan/phpstan": "^2.1.13",
+                "saloonphp/xml-wrangler": "^1.1",
+                "spatie/ray": "^1.33",
+                "symfony/dom-crawler": "^6.0 || ^7.0",
+                "symfony/var-dumper": "^6.3 || ^7.0"
+            },
+            "suggest": {
+                "illuminate/collections": "Required for the response collect() method.",
+                "saloonphp/xml-wrangler": "Required for the response xmlReader() method.",
+                "symfony/dom-crawler": "Required for the response dom() method.",
+                "symfony/var-dumper": "Required for default debugging drivers."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Saloon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sam Carré",
+                    "email": "29132017+Sammyjo20@users.noreply.github.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Build beautiful API integrations and SDKs with Saloon",
+            "homepage": "https://github.com/saloonphp/saloon",
+            "keywords": [
+                "api",
+                "api-integrations",
+                "saloon",
+                "sammyjo20",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/saloonphp/saloon/issues",
+                "source": "https://github.com/saloonphp/saloon/tree/v3.14.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sammyjo20",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-06-21T11:18:37+00:00"
         },
         {
             "name": "sentry/sentry",
