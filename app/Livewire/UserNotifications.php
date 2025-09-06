@@ -10,7 +10,7 @@ use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-final class Notifications extends Component
+final class UserNotifications extends Component
 {
     use AuthorizesRequests;
     use WithPagination;
@@ -22,7 +22,7 @@ final class Notifications extends Component
         $notifications = Auth::user()->unreadNotifications()->paginate(10);
         $lastPage = count($notifications) == 0 ? $notifications->lastPage() : null;
 
-        return view('livewire.notifications', [
+        return view('livewire.user-notifications', [
             'notifications' => Auth::user()->unreadNotifications()->paginate(10, ['*'], 'page', $lastPage),
         ]);
     }
