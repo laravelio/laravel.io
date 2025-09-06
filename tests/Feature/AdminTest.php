@@ -1,5 +1,6 @@
 <?php
 
+use App\Filament\Resources\Users\Pages\ListUsers;
 use App\Models\Article;
 use App\Models\Reply;
 use App\Models\Thread;
@@ -7,13 +8,15 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Filament\Actions\Testing\TestAction;
+use function Pest\Livewire\livewire;
 
 uses(TestCase::class);
 uses(RefreshDatabase::class);
 
 test('requires login', function () {
     $this->get('/admin')
-        ->assertRedirect('/login');
+        ->assertRedirect('/admin/login');
 });
 
 test('normal users cannot visit the admin section', function () {
@@ -119,12 +122,10 @@ test('admins can delete a user', function () {
 
     $this->loginAsAdmin();
 
-    $this->delete('/admin/users/'.$user->username())
-        ->assertRedirect('/admin/users');
+    livewire(ListUsers::class)
+        ->callAction(TestAction::make('delete')->table($user));
 
     $this->assertDatabaseMissing('users', ['name' => 'Freek Murze']);
-
-    // Make sure associated content is deleted.
     $this->assertDatabaseMissing('threads', ['author_id' => $user->id()]);
     $this->assertDatabaseMissing('replies', ['replyable_id' => $thread->id()]);
     $this->assertDatabaseMissing('replies', ['author_id' => $user->id()]);
@@ -135,8 +136,8 @@ test('admins cannot delete other admins', function () {
 
     $this->loginAsAdmin();
 
-    $this->delete('/admin/users/'.$user->username())
-        ->assertForbidden();
+    livewire(ListUsers::class)
+        ->assertActionHidden(TestAction::make('delete')->table($user));
 });
 
 test('moderators cannot delete users', function () {
@@ -144,8 +145,8 @@ test('moderators cannot delete users', function () {
 
     $this->loginAsModerator();
 
-    $this->delete('/admin/users/'.$user->username())
-        ->assertForbidden();
+    livewire(ListUsers::class)
+        ->assertActionHidden(TestAction::make('delete')->table($user));
 });
 
 test('admins can list submitted articles', function () {
@@ -155,7 +156,7 @@ test('admins can list submitted articles', function () {
 
     $this->loginAsAdmin();
 
-    $this->get('admin')
+    $this->get('admin/articles')
         ->assertSee($submittedArticle->title())
         ->assertDontSee($draftArticle->title())
         ->assertDontSee($liveArticle->title());
@@ -168,7 +169,7 @@ test('moderators can list submitted articles', function () {
 
     $this->loginAsModerator();
 
-    $this->get('admin')
+    $this->get('admin/articles')
         ->assertSee($submittedArticle->title())
         ->assertDontSee($draftArticle->title())
         ->assertDontSee($liveArticle->title());
@@ -183,7 +184,7 @@ test('users cannot list submitted articles', function () {
 
 test('guests cannot list submitted articles', function () {
     $this->get('admin')
-        ->assertRedirect('/login');
+        ->assertRedirect('/admin/login');
 });
 
 test('admins can view submitted articles', function () {

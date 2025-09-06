@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\Notifications;
+use App\Livewire\UserNotifications;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Notifications\NewReplyNotification;
@@ -37,7 +37,7 @@ test('users_can_see_notifications', function () {
 
     $this->loginAs($userOne);
 
-    Livewire::test(Notifications::class)
+    Livewire::test(UserNotifications::class)
         ->assertSee(new HtmlString(
             "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-lio-700\">\"{$thread->subject()}\"</a>.",
         ));
@@ -65,7 +65,7 @@ test('users_can_mark_notifications_as_read', function () {
 
     $this->loginAs($userOne);
 
-    Livewire::test(Notifications::class)
+    Livewire::test(UserNotifications::class)
         ->assertSee(new HtmlString(
             "A new reply was added to <a href=\"{$replyAbleRoute}\" class=\"text-lio-700\">\"{$thread->subject()}\"</a>.",
         ))
@@ -77,7 +77,7 @@ test('users_can_mark_notifications_as_read', function () {
 });
 
 test('a_non_logged_in_user_cannot_access_notifications', function () {
-    Livewire::test(Notifications::class)->assertForbidden();
+    Livewire::test(UserNotifications::class)->assertForbidden();
 });
 
 test('a_user_cannot_mark_other_users_notifications_as_read', function () {
@@ -108,7 +108,7 @@ test('a_user_cannot_mark_other_users_notifications_as_read', function () {
 
     $this->loginAs($userTwo);
 
-    Livewire::test(Notifications::class)
+    Livewire::test(UserNotifications::class)
         ->call('markAsRead', $notification->id)
         ->assertForbidden();
 });
@@ -143,7 +143,7 @@ test('a_user_sees_the_correct_number_of_notifications', function () {
 
     $this->loginAs($userOne);
 
-    Livewire::test(Notifications::class)
+    Livewire::test(UserNotifications::class)
         ->assertSee('10');
 });
 
@@ -167,13 +167,13 @@ test('users_can_clear_all_notifications', function () {
 
     $this->loginAs($userOne);
 
-    Livewire::test(Notifications::class)
+    Livewire::test(UserNotifications::class)
         ->assertSee('Clear All')
         ->assertViewHas('notificationCount', 1);
 
     post('/notifications/mark-as-read');
 
-    Livewire::test(Notifications::class)
+    Livewire::test(UserNotifications::class)
         ->assertDontSee('Clear All')
         ->assertViewHas('notificationCount', 0);
 });

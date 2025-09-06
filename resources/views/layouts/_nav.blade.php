@@ -209,7 +209,7 @@
 
                                         @can(App\Policies\UserPolicy::ADMIN, App\Models\User::class)
                                             <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:border-t border-gray-200">
-                                                <a href="{{ route('admin') }}" class="flex items-center w-full lg:px-3 lg:py-2">
+                                                <a href="{{ route('filament.admin.pages.dashboard') }}" class="flex items-center w-full lg:px-3 lg:py-2">
                                                     <x-heroicon-o-shield-check class="w-4 h-4 mr-2" />
                                                     Admin
                                                 </a>
