@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -340,19 +341,23 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     public function scopeMostSolutions(Builder $query, ?int $inLastDays = null)
     {
-        return $query->withCount(['replyAble as solutions_count' => function ($query) use ($inLastDays) {
-            $query->where('replyable_type', 'threads')
-                ->join('threads', function ($join) {
-                    $join->on('threads.solution_reply_id', '=', 'replies.id')
-                        ->on('threads.author_id', '!=', 'replies.author_id');
-                });
+        return $query
+            ->selectRaw('users.*, COUNT(DISTINCT replies.id) AS solutions_count')
+            ->join('replies', 'replies.author_id', '=', 'users.id')
+            ->join('threads', function (JoinClause $join) {
+                $join->on('threads.solution_reply_id', '=', 'replies.id')
+                    ->on('threads.author_id', '!=', 'replies.author_id');
+            })
+            ->where(function ($query) use ($inLastDays) {
+                $query->where('replyable_type', 'threads');
 
-            if ($inLastDays) {
-                $query->where('replies.created_at', '>', now()->subDays($inLastDays));
-            }
+                if ($inLastDays) {
+                    $query->where('replies.created_at', '>', now()->subDays($inLastDays));
+                }
 
-            return $query;
-        }])
+                return $query;
+            })
+            ->groupBy('users.id')
             ->having('solutions_count', '>', 0)
             ->orderBy('solutions_count', 'desc');
     }
