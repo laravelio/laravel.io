@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use App\Models\Thread;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class TagsController extends Controller
@@ -35,8 +36,12 @@ class TagsController extends Controller
         }
 
         $tags = Tag::orderBy('name')->get();
-        $topMembers = User::mostSolutionsInLastDays(365)->take(5)->get();
-        $moderators = User::moderators()->get();
+        $topMembers = Cache::remember('topMembers', now()->addHour(), function () {
+            return User::mostSolutionsInLastDays(365)->take(5)->get();
+        });
+        $moderators = Cache::remember('moderators', now()->addDay(), function () {
+            return User::moderators()->get();
+        });
         $canonical = canonical('forum.tag', [$tag->name, 'filter' => $filter]);
 
         return view('forum.overview', compact('threads', 'filter', 'tags', 'topMembers', 'moderators', 'canonical') + ['activeTag' => $tag]);
