@@ -377,14 +377,6 @@ final class User extends Authenticatable implements MustVerifyEmail
             ->groupBy('users.id')
             ->having('articles_count', '>', 0)
             ->orderBy('articles_count', 'desc');
-
-        // return $query->withCount(['articles as articles_count' => function ($query) use ($inLastDays) {
-        //     if ($inLastDays) {
-        //         $query->where('articles.approved_at', '>', now()->subDays($inLastDays));
-        //     }
-
-        //     return $query;
-        // }])->orderBy('articles_count', 'desc');
     }
 
     public function scopeMostSolutionsInLastDays(Builder $query, int $days)
