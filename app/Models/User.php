@@ -317,7 +317,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         return ! is_null($this->author_verified_at) || $this->isAdmin();
     }
 
-    public function canVerifiedAuthorPublishMoreArticleToday(): bool
+    public function canVerifiedAuthorPublishMoreArticlesToday(): bool
     {
         if ($this->isAdmin()) {
             return true;
@@ -364,13 +364,27 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     public function scopeMostSubmissions(Builder $query, ?int $inLastDays = null)
     {
-        return $query->withCount(['articles as articles_count' => function ($query) use ($inLastDays) {
-            if ($inLastDays) {
-                $query->where('articles.approved_at', '>', now()->subDays($inLastDays));
-            }
+        return $query
+            ->selectRaw('users.*, COUNT(DISTINCT articles.id) AS articles_count')
+            ->join('articles', 'articles.author_id', '=', 'users.id')
+            ->where(function ($query) use ($inLastDays) {
+                if ($inLastDays) {
+                    $query->where('articles.approved_at', '>', now()->subDays($inLastDays));
+                }
 
-            return $query;
-        }])->orderBy('articles_count', 'desc');
+                return $query;
+            })
+            ->groupBy('users.id')
+            ->having('articles_count', '>', 0)
+            ->orderBy('articles_count', 'desc');
+
+        // return $query->withCount(['articles as articles_count' => function ($query) use ($inLastDays) {
+        //     if ($inLastDays) {
+        //         $query->where('articles.approved_at', '>', now()->subDays($inLastDays));
+        //     }
+
+        //     return $query;
+        // }])->orderBy('articles_count', 'desc');
     }
 
     public function scopeMostSolutionsInLastDays(Builder $query, int $days)

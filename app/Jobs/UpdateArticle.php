@@ -53,9 +53,12 @@ final class UpdateArticle
 
         if ($this->shouldUpdateSubmittedAt()) {
             $this->article->submitted_at = now();
+            $this->article->approved_at = $this->canBeAutoApproved() ? now() : null;
             $this->article->save();
 
-            event(new ArticleWasSubmittedForApproval($this->article));
+            if ($this->article->isAwaitingApproval()) {
+                event(new ArticleWasSubmittedForApproval($this->article));
+            }
         }
 
         $this->article->syncTags($this->tags);
@@ -68,5 +71,10 @@ final class UpdateArticle
     private function shouldUpdateSubmittedAt(): bool
     {
         return $this->shouldBeSubmitted && $this->article->isNotSubmitted();
+    }
+
+    private function canBeAutoApproved(): bool
+    {
+        return $this->article->author()->canVerifiedAuthorPublishMoreArticlesToday();
     }
 }
