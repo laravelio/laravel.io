@@ -594,7 +594,7 @@ test('verified authors can publish two articles per day with no approval needed'
         'submitted_at' => now()->addMinutes(1), // after verification
     ]);
 
-    expect($author->canVerifiedAuthorPublishMoreArticleToday())->toBeFalse();
+    expect($author->canVerifiedAuthorPublishMoreArticlesToday())->toBeFalse();
 });
 
 test('verified authors skip the approval message when submitting new article', function () {
