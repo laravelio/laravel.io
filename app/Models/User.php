@@ -397,26 +397,6 @@ final class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    public function scopeWithCounts(Builder $query)
-    {
-        return $query->withCount([
-            'threadsRelation as threads_count',
-            'replyAble as replies_count',
-            'replyAble as solutions_count' => function (Builder $query) {
-                return $query->join('threads', 'threads.solution_reply_id', '=', 'replies.id')
-                    ->where('replyable_type', 'threads');
-            },
-        ]);
-    }
-
-    public function scopeHasActivity(Builder $query)
-    {
-        return $query->where(function ($query) {
-            $query->has('threadsRelation')
-                ->orHas('replyAble');
-        });
-    }
-
     public function scopeModerators(Builder $query)
     {
         return $query->whereIn('type', [
