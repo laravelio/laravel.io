@@ -55,7 +55,7 @@ class ArticlesController extends Controller
 
         $canonical = canonical('articles', ['filter' => $filter, 'tag' => $activeTag?->slug()]);
         $topAuthors = Cache::remember(
-            'topAuthors', 
+            'topAuthors',
             now()->addMinutes(30),
             fn () => User::mostSubmissionsInLastDays(365)->take(5)->get()
         );

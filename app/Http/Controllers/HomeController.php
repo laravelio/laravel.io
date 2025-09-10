@@ -38,7 +38,7 @@ class HomeController extends Controller
 
         $latestArticles = Cache::remember(
             'latestArticles',
-            now()->addHour(), 
+            now()->addHour(),
             fn () => Article::published()->recent()->limit(4)->get()
         );
 
