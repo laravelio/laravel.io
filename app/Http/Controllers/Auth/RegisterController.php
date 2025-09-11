@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Jobs\RegisterUser;
+use App\Jobs\UpdateUserIdenticonStatus;
 use App\Models\User;
 use App\Providers\AppServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -70,6 +71,8 @@ class RegisterController extends Controller
     protected function create(RegisterRequest $request): User
     {
         $this->dispatchSync(RegisterUser::fromRequest($request));
+        $user = User::findByEmailAddress($request->emailAddress());
+        $this->dispatch(new UpdateUserIdenticonStatus($user));
 
         return User::findByEmailAddress($request->emailAddress());
     }

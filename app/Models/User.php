@@ -58,6 +58,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
         'bio',
         'banned_reason',
+        'has_identicon'
     ];
 
     /**
@@ -111,6 +112,11 @@ final class User extends Authenticatable implements MustVerifyEmail
     public function githubUsername(): string
     {
         return $this->github_username ?? '';
+    }
+
+    public function hasIdenticon(): bool
+    {
+        return (bool) $this->has_identicon;
     }
 
     public function twitter(): ?string
