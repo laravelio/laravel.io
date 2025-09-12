@@ -15,42 +15,6 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
-  Force pagination to always use light mode styles
-  This overrides any dark mode classes on pagination components
-  Safe from Laravel updates and requires zero maintenance
-*/
-@layer utilities {
-  nav[role="navigation"][aria-label*="Pagination"] *,
-  nav[aria-label="Pagination Navigation"] * {
-    --tw-bg-opacity: 1 !important;
-    --tw-text-opacity: 1 !important;
-    --tw-border-opacity: 1 !important;
-  }
-  
-  /* Force light backgrounds on pagination elements */
-  nav[role="navigation"][aria-label*="Pagination"] span,
-  nav[role="navigation"][aria-label*="Pagination"] a,
-  nav[aria-label="Pagination Navigation"] span,
-  nav[aria-label="Pagination Navigation"] a {
-    background-color: rgb(255 255 255) !important;
-    border-color: rgb(209 213 219) !important;
-  }
-  
-  /* Force light text colors */
-  nav[role="navigation"][aria-label*="Pagination"] span,
-  nav[role="navigation"][aria-label*="Pagination"] a,
-  nav[aria-label="Pagination Navigation"] span,
-  nav[aria-label="Pagination Navigation"] a {
-    color: rgb(55 65 81) !important;
-  }
-  
-  /* Disabled state colors */
-  nav[role="navigation"][aria-label*="Pagination"] span[aria-disabled="true"],
-  nav[aria-label="Pagination Navigation"] span[aria-disabled="true"] {
-    color: rgb(156 163 175) !important;
-  }
-}
-/*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still
   looks the same as it did with Tailwind CSS v3.
