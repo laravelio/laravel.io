@@ -33,7 +33,6 @@
     @include('layouts._social')
     @include('layouts._fathom')
 
-    @fluxAppearance
     @livewireStyles
 </head>
 
