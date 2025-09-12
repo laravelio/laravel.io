@@ -58,7 +58,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
         'bio',
         'banned_reason',
-        'github_has_identicon'
+        'github_has_identicon',
     ];
 
     /**

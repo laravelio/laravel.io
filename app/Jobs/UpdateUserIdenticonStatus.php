@@ -2,13 +2,13 @@
 
 namespace App\Jobs;
 
+use App\Models\User;
+use App\Social\GithubUserApi;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\User;
-use App\Social\GithubUserApi;
 
 final class UpdateUserIdenticonStatus implements ShouldQueue
 {
