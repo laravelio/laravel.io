@@ -420,7 +420,7 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     public function scopeWithAvatar(Builder $query)
     {
-        return $query->where('github_has_identicon', false);
+        return $query->where('github_has_identicon', false)->whereNotNull('github_id');
     }
 
     public function scopeNotBanned(Builder $query)
