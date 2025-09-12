@@ -30,6 +30,6 @@ final class GithubUserApi
 
         [$width, $height] = $info;
 
-        return ! ($width === 420 && $height === 420);
+        return $width === 420 && $height === 420;
     }
 }

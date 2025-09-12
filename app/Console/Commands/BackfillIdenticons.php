@@ -27,13 +27,19 @@ class BackfillIdenticons extends Command
      */
     public function handle()
     {
+        $i = 0;
+
         User::whereNotNull('github_id')
-            ->chunk(100, function ($users) {
+            ->chunk(100, function ($users) use (&$i) {
                 foreach ($users as $user) {
                     UpdateUserIdenticonStatus::dispatch($user);
+
+                    $i++;
                 }
 
-                sleep(2);
+                $this->info('Dispatched job for '.$i.' users');
             });
+
+        $this->info('Dispatched job for a total of '.$i.' users');
     }
 }
