@@ -5,7 +5,7 @@ namespace App\Social;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 
-class GithubUserApi
+final class GithubUserApi
 {
     public function find(int|string $id): ?GitHubUser
     {
@@ -13,5 +13,23 @@ class GithubUserApi
             ->get("https://api.github.com/user/{$id}");
 
         return $response->failed() ? null : new GitHubUser($response->json());
+    }
+
+    public function hasIdenticon(int|string $id): bool
+    {
+        $response = Http::retry(3, 300, fn ($exception) => $exception instanceof ConnectionException)
+            ->get("https://avatars.githubusercontent.com/u/{$id}?v=4&s=40");
+
+        if ($response->failed()) {
+            return true;
+        }
+
+        if (! $info = getimagesizefromstring($response->body())) {
+            return true;
+        }
+
+        [$width, $height] = $info;
+
+        return ! ($width === 420 && $height === 420);
     }
 }
