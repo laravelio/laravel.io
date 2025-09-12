@@ -20,6 +20,8 @@ final class UpdateUserIdenticonStatus implements ShouldQueue
     {
         $hasIdenticon = $github->hasIdenticon($this->user->githubId());
 
-        $this->user->update(['github_has_identicon' => $hasIdenticon]);
+        User::withoutSyncingToSearch(function () use ($hasIdenticon) {
+            $this->user->update(['github_has_identicon' => $hasIdenticon]);
+        });
     }
 }
