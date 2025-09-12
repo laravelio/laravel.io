@@ -33,6 +33,7 @@ class BackfillIdenticons extends Command
             ->chunk(100, function ($users) use (&$i) {
                 foreach ($users as $user) {
                     UpdateUserIdenticonStatus::dispatch($user);
+                    
                     $i++;
                 }
 
