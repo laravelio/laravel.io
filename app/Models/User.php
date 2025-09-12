@@ -58,7 +58,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
         'bio',
         'banned_reason',
-        'has_identicon'
+        'github_has_identicon'
     ];
 
     /**
@@ -76,6 +76,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         return [
             'allowed_notifications' => 'array',
             'author_verified_at' => 'datetime',
+            'github_has_identicon' => 'boolean',
         ];
     }
 
@@ -116,7 +117,7 @@ final class User extends Authenticatable implements MustVerifyEmail
 
     public function hasIdenticon(): bool
     {
-        return (bool) $this->has_identicon;
+        return (bool) $this->github_has_identicon;
     }
 
     public function twitter(): ?string
@@ -415,6 +416,11 @@ final class User extends Authenticatable implements MustVerifyEmail
             self::ADMIN,
             self::MODERATOR,
         ]);
+    }
+
+    public function scopeWithAvatar(Builder $query)
+    {
+        return $query->where('github_has_identicon', false);
     }
 
     public function scopeNotBanned(Builder $query)

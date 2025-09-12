@@ -4,7 +4,7 @@
 ])
 
 <?php
-$src = $user->githubId() && !$user->hasIdenticon()
+$src = $user->githubId() && ! $user->hasIdenticon()
     ? sprintf('https://avatars.githubusercontent.com/u/%s', $user->githubId())
     : asset('https://laravel.io/images/laravelio-icon-gray.svg');
 ?>

@@ -14,11 +14,12 @@ final class UpdateUserIdenticonStatus implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public function __construct(private User $user) {}
+    public function __construct(protected User $user) {}
 
     public function handle(GithubUserApi $github): void
     {
         $hasIdenticon = $github->hasIdenticon($this->user->githubId());
-        $this->user->update(['has_identicon' => $hasIdenticon]);
+
+        $this->user->update(['github_has_identicon' => $hasIdenticon]);
     }
 }

@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
-class VerifyAuthor implements ShouldQueue
+final class VerifyAuthor implements ShouldQueue
 {
     use Queueable;
 

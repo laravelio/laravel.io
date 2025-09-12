@@ -16,7 +16,7 @@ class HomeController extends Controller
         $communityMembers = Cache::remember(
             'communityMembers',
             now()->addMinutes(5),
-            fn () => User::notBanned()->inRandomOrder()->take(100)->get()->chunk(20)
+            fn () => User::notBanned()->withAvatar()->inRandomOrder()->take(100)->get()->chunk(20)
         );
 
         $totalUsers = Cache::remember('totalUsers', now()->addDay(), fn () => number_format(User::notBanned()->count()));

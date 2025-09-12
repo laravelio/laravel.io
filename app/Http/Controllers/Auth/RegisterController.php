@@ -71,9 +71,11 @@ class RegisterController extends Controller
     protected function create(RegisterRequest $request): User
     {
         $this->dispatchSync(RegisterUser::fromRequest($request));
+
         $user = User::findByEmailAddress($request->emailAddress());
+
         $this->dispatch(new UpdateUserIdenticonStatus($user));
 
-        return User::findByEmailAddress($request->emailAddress());
+        return $user;
     }
 }

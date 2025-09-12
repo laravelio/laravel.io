@@ -9,8 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('has_identicon')->after('bio')->default(false);
+            $table->boolean('github_has_identicon')->after('github_username')->default(false);
         });
     }
-
 };

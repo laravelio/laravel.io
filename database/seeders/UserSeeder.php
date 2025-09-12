@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
         DB::beginTransaction();
 
         User::factory()
-            ->count(100)
+            ->count(300)
             ->has(Thread::factory()->count(2), 'threadsRelation')
             ->has(
                 Article::factory()
