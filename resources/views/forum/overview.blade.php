@@ -8,7 +8,7 @@
     <div class="pt-5 pb-10 lg:pt-10 lg:pb-0">
         <div class="container mx-auto flex flex-col gap-x-12 px-4 lg:flex-row">
             <div class="lg:w-3/4">
-                <div class="flex justify-between items-center lg:block">
+                <div class="md:flex justify-between items-center lg:block">
                     <div class="flex justify-between items-center">
                         <h1 class="text-4xl text-gray-900 font-bold">
                             Forum
@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="flex items-center justify-between lg:mt-6">
-                        <h3 class="text-gray-800 text-xl font-semibold">
+                        <h3 class="text-gray-800 text-base md:text-xl font-semibold">
                             {{ number_format($threads->total()) }} Threads
                         </h3>
 
