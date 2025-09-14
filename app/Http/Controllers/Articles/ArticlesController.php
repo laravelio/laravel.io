@@ -45,22 +45,20 @@ class ArticlesController extends Controller
             ->latest('approved_at')
             ->{$filter}();
 
-        $tags = Tag::whereHas('articles', function ($query) {
-            $query->published();
-        })->orderBy('name')->get();
+        $tags = Tag::whereHas('articles', fn ($query) => $query->published())
+            ->orderBy('name')
+            ->get();
 
         if ($activeTag = Tag::where('slug', $request->tag)->first()) {
             $articles->forTag($activeTag->slug());
         }
 
-        $moderators = Cache::remember('moderators', now()->addMinutes(30), function () {
-            return User::moderators()->get();
-        });
-
         $canonical = canonical('articles', ['filter' => $filter, 'tag' => $activeTag?->slug()]);
-        $topAuthors = Cache::remember('topAuthors', now()->addMinutes(30), function () {
-            return User::mostSubmissionsInLastDays(365)->take(5)->get();
-        });
+        $topAuthors = Cache::remember(
+            'topAuthors',
+            now()->addMinutes(30),
+            fn () => User::mostSubmissionsInLastDays(365)->take(5)->get()
+        );
 
         return view('articles.overview', [
             'pinnedArticles' => $pinnedArticles,
@@ -68,7 +66,6 @@ class ArticlesController extends Controller
             'tags' => $tags,
             'activeTag' => $activeTag,
             'filter' => $filter,
-            'moderators' => $moderators,
             'canonical' => $canonical,
             'topAuthors' => $topAuthors,
         ]);
@@ -155,7 +152,7 @@ class ArticlesController extends Controller
 
         $article = $article->fresh();
 
-        if ($wasNotPreviouslySubmitted && $request->shouldBeSubmitted()) {
+        if ($wasNotPreviouslySubmitted && $request->shouldBeSubmitted() && $article->isNotApproved()) {
             $this->success('Thank you for submitting, unfortunately we can\'t accept every submission. You\'ll only hear back from us when we accept your article.');
         } else {
             $this->success('Article successfully updated!');

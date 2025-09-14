@@ -23,6 +23,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'github_id' => $this->faker->unique()->numberBetween(10000, 99999),
             'github_username' => $this->faker->unique()->userName(),
+            'github_has_identicon' => $this->faker->boolean(),
             'twitter' => $this->faker->unique()->userName(),
             'bluesky' => $this->faker->unique()->userName(),
             'website' => 'https://laravel.io',

@@ -61,10 +61,10 @@ class ThreadsController extends Controller
         }
 
         $tags = Tag::orderBy('name')->get();
-        $topMembers = Cache::remember('topMembers', now()->addMinutes(30), function () {
+        $topMembers = Cache::remember('topMembers', now()->addHour(), function () {
             return User::mostSolutionsInLastDays(365)->take(5)->get();
         });
-        $moderators = Cache::remember('moderators', now()->addMinutes(30), function () {
+        $moderators = Cache::remember('moderators', now()->addDay(), function () {
             return User::moderators()->get();
         });
         $canonical = canonical('forum', ['filter' => $filter]);
@@ -74,7 +74,7 @@ class ThreadsController extends Controller
 
     public function show(Thread $thread)
     {
-        $moderators = Cache::remember('moderators', now()->addMinutes(30), function () {
+        $moderators = Cache::remember('moderators', now()->addDay(), function () {
             return User::moderators()->get();
         });
 

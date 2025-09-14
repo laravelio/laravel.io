@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -61,6 +62,7 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
         'remember_token',
         'bio',
         'banned_reason',
+        'github_has_identicon',
     ];
 
     /**
@@ -78,6 +80,7 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
         return [
             'allowed_notifications' => 'array',
             'author_verified_at' => 'datetime',
+            'github_has_identicon' => 'boolean',
         ];
     }
 
@@ -114,6 +117,11 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
     public function githubUsername(): string
     {
         return $this->github_username ?? '';
+    }
+
+    public function hasIdenticon(): bool
+    {
+        return (bool) $this->github_has_identicon;
     }
 
     public function twitter(): ?string
@@ -320,7 +328,7 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
         return ! is_null($this->author_verified_at) || $this->isAdmin();
     }
 
-    public function canVerifiedAuthorPublishMoreArticleToday(): bool
+    public function canVerifiedAuthorPublishMoreArticlesToday(): bool
     {
         if ($this->isAdmin()) {
             return true;
@@ -344,32 +352,42 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
 
     public function scopeMostSolutions(Builder $query, ?int $inLastDays = null)
     {
-        return $query->withCount(['replyAble as solutions_count' => function ($query) use ($inLastDays) {
-            $query->where('replyable_type', 'threads')
-                ->join('threads', function ($join) {
-                    $join->on('threads.solution_reply_id', '=', 'replies.id')
-                        ->on('threads.author_id', '!=', 'replies.author_id');
-                });
+        return $query
+            ->selectRaw('users.*, COUNT(DISTINCT replies.id) AS solutions_count')
+            ->join('replies', 'replies.author_id', '=', 'users.id')
+            ->join('threads', function (JoinClause $join) {
+                $join->on('threads.solution_reply_id', '=', 'replies.id')
+                    ->on('threads.author_id', '!=', 'replies.author_id');
+            })
+            ->where(function ($query) use ($inLastDays) {
+                $query->where('replyable_type', 'threads');
 
-            if ($inLastDays) {
-                $query->where('replies.created_at', '>', now()->subDays($inLastDays));
-            }
+                if ($inLastDays) {
+                    $query->where('replies.created_at', '>', now()->subDays($inLastDays));
+                }
 
-            return $query;
-        }])
+                return $query;
+            })
+            ->groupBy('users.id')
             ->having('solutions_count', '>', 0)
             ->orderBy('solutions_count', 'desc');
     }
 
     public function scopeMostSubmissions(Builder $query, ?int $inLastDays = null)
     {
-        return $query->withCount(['articles as articles_count' => function ($query) use ($inLastDays) {
-            if ($inLastDays) {
-                $query->where('articles.approved_at', '>', now()->subDays($inLastDays));
-            }
+        return $query
+            ->selectRaw('users.*, COUNT(DISTINCT articles.id) AS articles_count')
+            ->join('articles', 'articles.author_id', '=', 'users.id')
+            ->where(function ($query) use ($inLastDays) {
+                if ($inLastDays) {
+                    $query->where('articles.approved_at', '>', now()->subDays($inLastDays));
+                }
 
-            return $query;
-        }])->orderBy('articles_count', 'desc');
+                return $query;
+            })
+            ->groupBy('users.id')
+            ->having('articles_count', '>', 0)
+            ->orderBy('articles_count', 'desc');
     }
 
     public function scopeMostSolutionsInLastDays(Builder $query, int $days)
@@ -396,32 +414,17 @@ final class User extends Authenticatable implements MustVerifyEmail, FilamentUse
         ];
     }
 
-    public function scopeWithCounts(Builder $query)
-    {
-        return $query->withCount([
-            'threadsRelation as threads_count',
-            'replyAble as replies_count',
-            'replyAble as solutions_count' => function (Builder $query) {
-                return $query->join('threads', 'threads.solution_reply_id', '=', 'replies.id')
-                    ->where('replyable_type', 'threads');
-            },
-        ]);
-    }
-
-    public function scopeHasActivity(Builder $query)
-    {
-        return $query->where(function ($query) {
-            $query->has('threadsRelation')
-                ->orHas('replyAble');
-        });
-    }
-
     public function scopeModerators(Builder $query)
     {
         return $query->whereIn('type', [
             self::ADMIN,
             self::MODERATOR,
         ]);
+    }
+
+    public function scopeWithAvatar(Builder $query)
+    {
+        return $query->where('github_has_identicon', false)->whereNotNull('github_id');
     }
 
     public function scopeNotBanned(Builder $query)

@@ -103,17 +103,6 @@ svg .secondary {
     @apply outline-hidden bg-gray-100;
 }
 
-.member:after {
-    bottom: -1rem;
-    content: ' ';
-    display: block;
-    left: 7rem;
-    position: absolute;
-    border-color: #f9fafb transparent transparent transparent;
-    border-style: solid;
-    border-width: 0.5rem;
-}
-
 /** Choices.js **/
 .choices__input.choices__input--cloned {
     @apply hidden;
