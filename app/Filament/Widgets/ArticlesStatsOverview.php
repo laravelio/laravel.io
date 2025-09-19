@@ -16,30 +16,30 @@ class ArticlesStatsOverview extends BaseWidget
         $cacheTtlSeconds = 300; // 5 minutes
 
         $total = cache()->remember(
-            "widgets:articles:total",
+            'widgets:articles:total',
             now()->addSeconds($cacheTtlSeconds),
-            fn() => Article::query()->count(),
+            fn () => Article::query()->count(),
         );
 
         $publishedTotal = cache()->remember(
-            "widgets:articles:published:total",
+            'widgets:articles:published:total',
             now()->addSeconds($cacheTtlSeconds),
-            fn() => Article::query()->published()->count(),
+            fn () => Article::query()->published()->count(),
         );
 
         $publishedWindow = cache()->remember(
             "widgets:articles:published:{$window}",
             now()->addSeconds($cacheTtlSeconds),
-            fn() => Article::query()
+            fn () => Article::query()
                 ->published()
                 ->where('submitted_at', '>=', now()->subDays($window))
                 ->count(),
         );
 
         $awaiting = cache()->remember(
-            "widgets:articles:awaiting",
+            'widgets:articles:awaiting',
             now()->addSeconds(60),
-            fn() => Article::query()->awaitingApproval()->count(),
+            fn () => Article::query()->awaitingApproval()->count(),
         );
 
         return [

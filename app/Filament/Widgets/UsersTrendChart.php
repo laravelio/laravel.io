@@ -11,6 +11,7 @@ use Flowframe\Trend\TrendValue;
 class UsersTrendChart extends ChartWidget
 {
     protected ?string $heading = 'New Users per Month';
+
     protected ?string $pollingInterval = '30s';
 
     protected function getType(): string
@@ -32,11 +33,11 @@ class UsersTrendChart extends ChartWidget
             'datasets' => [
                 [
                     'label' => 'Submitted',
-                    'data' => $data->map(fn(TrendValue $value) => $value->aggregate),
+                    'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
                     'tension' => 0.35,
                 ],
             ],
-            'labels' => $data->map(fn(TrendValue $value) => Carbon::parse($value->date)->format('M Y')),
+            'labels' => $data->map(fn (TrendValue $value) => Carbon::parse($value->date)->format('M Y')),
         ];
     }
 }

@@ -9,7 +9,7 @@ use Illuminate\Foundation\Queue\Queueable;
 final class UnbanUser implements ShouldQueue
 {
     use Queueable;
-    
+
     public function __construct(private User $user) {}
 
     public function handle(): void

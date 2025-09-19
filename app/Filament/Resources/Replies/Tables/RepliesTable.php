@@ -27,11 +27,11 @@ class RepliesTable
                 ImageColumn::make('authorRelation.github_id')
                     ->label('Author')
                     ->circular()
-                    ->defaultImageUrl(fn(?string $state): string => $state ? sprintf('https://avatars.githubusercontent.com/u/%s', $state) : asset('images/laravelio-icon-gray.svg')),
+                    ->defaultImageUrl(fn (?string $state): string => $state ? sprintf('https://avatars.githubusercontent.com/u/%s', $state) : asset('images/laravelio-icon-gray.svg')),
 
                 TextColumn::make('authorRelation.name')
                     ->label('')
-                    ->description(fn(Reply $reply): ?string => $reply->authorRelation->username),
+                    ->description(fn (Reply $reply): ?string => $reply->authorRelation->username),
 
                 TextColumn::make('replyAbleRelation.subject')
                     ->label('Thread')
@@ -64,11 +64,11 @@ class RepliesTable
 
                 TernaryFilter::make('updated_by')
                     ->label('Updated')
-                    ->nullable()
+                    ->nullable(),
             ])
             ->recordActions([
                 Action::make('view')
-                    ->url(fn(Reply $reply): string => route('thread', $reply->replyAble()->slug()) . '#' . $reply->id())
+                    ->url(fn (Reply $reply): string => route('thread', $reply->replyAble()->slug()).'#'.$reply->id())
                     ->openUrlInNewTab()
                     ->icon('heroicon-s-eye'),
 

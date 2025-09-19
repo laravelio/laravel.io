@@ -19,19 +19,19 @@ class UsersStatsOverview extends BaseWidget
         $total = cache()->remember(
             'widgets:users:total',
             now()->addSeconds($cacheTtlSeconds),
-            fn() => User::query()->count(),
+            fn () => User::query()->count(),
         );
 
         $lastWindow = cache()->remember(
             "widgets:users:new:{$window}",
             now()->addSeconds($cacheTtlSeconds),
-            fn() => User::query()->where('created_at', '>=', now()->subDays($window))->count(),
+            fn () => User::query()->where('created_at', '>=', now()->subDays($window))->count(),
         );
 
         $verified = cache()->remember(
             'widgets:users:verified',
             now()->addSeconds($cacheTtlSeconds),
-            fn() => User::query()->whereNotNull('author_verified_at')->count(),
+            fn () => User::query()->whereNotNull('author_verified_at')->count(),
         );
 
         return [

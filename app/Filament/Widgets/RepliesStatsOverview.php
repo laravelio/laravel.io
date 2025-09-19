@@ -18,19 +18,19 @@ class RepliesStatsOverview extends BaseWidget
         $total = cache()->remember(
             'widgets:replies:total',
             now()->addSeconds($cacheTtlSeconds),
-            fn() => Reply::query()->count(),
+            fn () => Reply::query()->count(),
         );
 
         $lastWindow = cache()->remember(
             "widgets:replies:new:{$window}",
             now()->addSeconds($cacheTtlSeconds),
-            fn() => Reply::query()->where('created_at', '>=', now()->subDays($window))->count(),
+            fn () => Reply::query()->where('created_at', '>=', now()->subDays($window))->count(),
         );
 
         $solutions = cache()->remember(
             'widgets:replies:solutions',
             now()->addSeconds($cacheTtlSeconds),
-            fn() => Reply::query()->isSolution()->count(),
+            fn () => Reply::query()->isSolution()->count(),
         );
 
         return [

@@ -65,7 +65,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->userMenuItems([
                 Action::make('Horizon')
-                    ->url(fn(): string => route('horizon.index'))
+                    ->url(fn (): string => route('horizon.index'))
                     ->icon('heroicon-o-presentation-chart-bar')
                     ->openUrlInNewTab(),
             ])

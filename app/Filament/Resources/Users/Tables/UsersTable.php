@@ -34,13 +34,13 @@ class UsersTable
                     ->label('Name')
                     ->circular()
                     ->width('0%')
-                    ->defaultImageUrl(fn(?string $state): string => $state ? sprintf('https://avatars.githubusercontent.com/u/%s', $state) : asset('images/laravelio-icon-gray.svg')),
+                    ->defaultImageUrl(fn (?string $state): string => $state ? sprintf('https://avatars.githubusercontent.com/u/%s', $state) : asset('images/laravelio-icon-gray.svg')),
 
                 TextColumn::make('username')
                     ->label('')
                     ->searchable()
-                    ->formatStateUsing(fn(User $user): ?string => $user->name)
-                    ->description(fn(User $user): ?string => $user->username),
+                    ->formatStateUsing(fn (User $user): ?string => $user->name)
+                    ->description(fn (User $user): ?string => $user->username),
 
                 TextColumn::make('email')
                     ->searchable()
@@ -49,7 +49,7 @@ class UsersTable
                 TextColumn::make('type')
                     ->label('Role')
                     ->badge()
-                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
                         '1' => 'User',
                         '2' => 'Moderator',
                         '3' => 'Admin',
@@ -63,7 +63,7 @@ class UsersTable
                 TextColumn::make('created_at')
                     ->label('Joined on')
                     ->dateTime()
-                    ->sortable()
+                    ->sortable(),
             ])
             ->filters([
                 SelectFilter::make('type')
@@ -75,11 +75,11 @@ class UsersTable
 
                 TernaryFilter::make('banned_at')
                     ->label('Banned')
-                    ->nullable()
+                    ->nullable(),
             ])
             ->recordActions([
                 Action::make('view')
-                    ->url(fn(User $user): string => route('profile', $user->username))
+                    ->url(fn (User $user): string => route('profile', $user->username))
                     ->openUrlInNewTab()
                     ->icon('heroicon-s-eye'),
 
@@ -89,7 +89,7 @@ class UsersTable
                             VerifyAuthor::dispatchSync($user);
 
                             Notification::make()
-                                ->title($user->name . ' is now a verified author.')
+                                ->title($user->name.' is now a verified author.')
                                 ->success()
                                 ->send();
                         })
@@ -97,14 +97,14 @@ class UsersTable
                         ->color('primary')
                         ->icon('heroicon-s-check-circle')
                         ->requiresConfirmation()
-                        ->visible(fn(User $user): bool => auth()->user()->can(UserPolicy::ADMIN, $user) && ! $user->isVerifiedAuthor()),
+                        ->visible(fn (User $user): bool => auth()->user()->can(UserPolicy::ADMIN, $user) && ! $user->isVerifiedAuthor()),
 
                     Action::make('unverify_author')
                         ->action(function (User $user) {
                             UnVerifyAuthor::dispatchSync($user);
 
                             Notification::make()
-                                ->title($user->name . '\'s threads have been deleted.')
+                                ->title($user->name.'\'s threads have been deleted.')
                                 ->success()
                                 ->send();
                         })
@@ -112,7 +112,7 @@ class UsersTable
                         ->color('danger')
                         ->icon('heroicon-s-x-circle')
                         ->requiresConfirmation()
-                        ->visible(fn(User $user): bool => auth()->user()->can(UserPolicy::ADMIN, $user) && $user->isVerifiedAuthor()),
+                        ->visible(fn (User $user): bool => auth()->user()->can(UserPolicy::ADMIN, $user) && $user->isVerifiedAuthor()),
 
                     Action::make('ban_author')
                         ->schema([
@@ -134,7 +134,7 @@ class UsersTable
 
                             Notification::make()
                                 ->title(
-                                    $user->name . ' is now banned.' . ($data['delete_threads'] ? ' And all his threads are now deleted.' : '')
+                                    $user->name.' is now banned.'.($data['delete_threads'] ? ' And all his threads are now deleted.' : '')
                                 )
                                 ->success()
                                 ->send();
@@ -144,7 +144,7 @@ class UsersTable
                         ->color('danger')
                         ->icon('heroicon-s-check-circle')
                         ->requiresConfirmation()
-                        ->visible(fn(User $user): bool => auth()->user()->can(UserPolicy::BAN, $user) && ! $user->isBanned()),
+                        ->visible(fn (User $user): bool => auth()->user()->can(UserPolicy::BAN, $user) && ! $user->isBanned()),
 
                     Action::make('unban_author')
                         ->action(function (User $user) {
@@ -152,7 +152,7 @@ class UsersTable
                             UnbanUser::dispatchSync($user);
 
                             Notification::make()
-                                ->title($user->name . ' is no longer a banned user.')
+                                ->title($user->name.' is no longer a banned user.')
                                 ->success()
                                 ->send();
                         })
@@ -160,14 +160,14 @@ class UsersTable
                         ->color('primary')
                         ->icon('heroicon-s-x-circle')
                         ->requiresConfirmation()
-                        ->visible(fn(User $user): bool => auth()->user()->can(UserPolicy::BAN, $user) && $user->isBanned()),
+                        ->visible(fn (User $user): bool => auth()->user()->can(UserPolicy::BAN, $user) && $user->isBanned()),
 
                     Action::make('delete_threads')
                         ->action(function (User $user) {
                             DeleteUserThreads::dispatchSync($user);
 
                             Notification::make()
-                                ->title($user->name . '\'s threads have been deleted.')
+                                ->title($user->name.'\'s threads have been deleted.')
                                 ->success()
                                 ->send();
                         })
@@ -175,14 +175,14 @@ class UsersTable
                         ->color('danger')
                         ->icon('heroicon-s-archive-box-x-mark')
                         ->requiresConfirmation()
-                        ->visible(fn(User $user): bool => auth()->user()->can(UserPolicy::DELETE, $user)),
+                        ->visible(fn (User $user): bool => auth()->user()->can(UserPolicy::DELETE, $user)),
 
                     DeleteAction::make()
-                        ->visible(fn(User $user): bool => auth()->user()->can(UserPolicy::DELETE, $user)),
+                        ->visible(fn (User $user): bool => auth()->user()->can(UserPolicy::DELETE, $user)),
                 ]),
             ])
             ->toolbarActions([
-                // 
+                //
             ]);
     }
 }
