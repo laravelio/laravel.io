@@ -655,16 +655,16 @@
         },
         {
             "name": "codeat3/blade-simple-icons",
-            "version": "7.9.0",
+            "version": "7.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeat3/blade-simple-icons.git",
-                "reference": "bc67fef6a05741e0606574219b5942b0e68a0ec3"
+                "reference": "22780d678eb64758f6eed93768edb2c45f4920d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeat3/blade-simple-icons/zipball/bc67fef6a05741e0606574219b5942b0e68a0ec3",
-                "reference": "bc67fef6a05741e0606574219b5942b0e68a0ec3",
+                "url": "https://api.github.com/repos/codeat3/blade-simple-icons/zipball/22780d678eb64758f6eed93768edb2c45f4920d0",
+                "reference": "22780d678eb64758f6eed93768edb2c45f4920d0",
                 "shasum": ""
             },
             "require": {
@@ -714,7 +714,7 @@
             ],
             "support": {
                 "issues": "https://github.com/codeat3/blade-simple-icons/issues",
-                "source": "https://github.com/codeat3/blade-simple-icons/tree/7.9.0"
+                "source": "https://github.com/codeat3/blade-simple-icons/tree/7.15.0"
             },
             "funding": [
                 {
@@ -722,7 +722,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-08-06T09:24:01+00:00"
+            "time": "2025-09-17T10:30:03+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -2537,16 +2537,16 @@
         },
         {
             "name": "laravel/horizon",
-            "version": "v5.33.5",
+            "version": "v5.34.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/horizon.git",
-                "reference": "ef1c74b8134432eddabbd512e6e61a2e84a13d7a"
+                "reference": "c110ff6ed494b57beb6b4102a92bb4bf896bb774"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/horizon/zipball/ef1c74b8134432eddabbd512e6e61a2e84a13d7a",
-                "reference": "ef1c74b8134432eddabbd512e6e61a2e84a13d7a",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/c110ff6ed494b57beb6b4102a92bb4bf896bb774",
+                "reference": "c110ff6ed494b57beb6b4102a92bb4bf896bb774",
                 "shasum": ""
             },
             "require": {
@@ -2611,22 +2611,22 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/horizon/issues",
-                "source": "https://github.com/laravel/horizon/tree/v5.33.5"
+                "source": "https://github.com/laravel/horizon/tree/v5.34.0"
             },
-            "time": "2025-08-31T23:36:14+00:00"
+            "time": "2025-09-12T15:15:45+00:00"
         },
         {
             "name": "laravel/nightwatch",
-            "version": "v1.13.4",
+            "version": "v1.13.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/nightwatch.git",
-                "reference": "43488626f89b6f216abde902180a9daaba69928c"
+                "reference": "0dbf0329e6c99b797a66895f261340ea26c836e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/nightwatch/zipball/43488626f89b6f216abde902180a9daaba69928c",
-                "reference": "43488626f89b6f216abde902180a9daaba69928c",
+                "url": "https://api.github.com/repos/laravel/nightwatch/zipball/0dbf0329e6c99b797a66895f261340ea26c836e8",
+                "reference": "0dbf0329e6c99b797a66895f261340ea26c836e8",
                 "shasum": ""
             },
             "require": {
@@ -2644,6 +2644,7 @@
             },
             "require-dev": {
                 "aws/aws-sdk-php": "^3.349",
+                "ext-pcntl": "*",
                 "ext-pdo": "*",
                 "guzzlehttp/guzzle": "^7.0",
                 "guzzlehttp/psr7": "^2.0",
@@ -2699,7 +2700,7 @@
                 "issues": "https://github.com/laravel/nightwatch/issues",
                 "source": "https://github.com/laravel/nightwatch"
             },
-            "time": "2025-09-11T02:57:15+00:00"
+            "time": "2025-09-16T02:23:53+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -3851,16 +3852,16 @@
         },
         {
             "name": "livewire/flux",
-            "version": "v2.3.2",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/flux.git",
-                "reference": "e0704b125d5f9544aa32e0cfccb11baaf44d77a0"
+                "reference": "8d83f34d64ab0542463e8e3feab4d166e1830ed9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/flux/zipball/e0704b125d5f9544aa32e0cfccb11baaf44d77a0",
-                "reference": "e0704b125d5f9544aa32e0cfccb11baaf44d77a0",
+                "url": "https://api.github.com/repos/livewire/flux/zipball/8d83f34d64ab0542463e8e3feab4d166e1830ed9",
+                "reference": "8d83f34d64ab0542463e8e3feab4d166e1830ed9",
                 "shasum": ""
             },
             "require": {
@@ -3911,9 +3912,9 @@
             ],
             "support": {
                 "issues": "https://github.com/livewire/flux/issues",
-                "source": "https://github.com/livewire/flux/tree/v2.3.2"
+                "source": "https://github.com/livewire/flux/tree/v2.4.0"
             },
-            "time": "2025-09-08T01:11:34+00:00"
+            "time": "2025-09-16T00:20:10+00:00"
         },
         {
             "name": "livewire/livewire",
