@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticlesController as AdminArticlesController;
-use App\Http\Controllers\Admin\RepliesController as AdminRepliesController;
-use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\UsersController as AdminUsersController;
 use App\Http\Controllers\Articles\ArticlesController;
 use App\Http\Controllers\Articles\AuthoredArticles;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -129,18 +128,9 @@ Route::prefix('articles')->group(function () {
 
 // Admin
 Route::prefix('admin')->name('admin')->group(function () {
-    Route::get('/', [AdminArticlesController::class, 'index']);
-    Route::get('replies', [AdminRepliesController::class, 'index'])->name('.replies');
-
     // Users
-    Route::get('users', [UsersController::class, 'index'])->name('.users');
-    Route::put('users/{username}/ban', [UsersController::class, 'ban'])->name('.users.ban');
-    Route::put('users/{username}/unban', [UsersController::class, 'unban'])->name('.users.unban');
-    Route::put('users/{username}/verify-author', [UsersController::class, 'verifyAuthor'])->name('.users.verify-author');
-    Route::put('users/{username}/unverify-author', [UsersController::class, 'unverifyAuthor'])->name('.users.unverify-author');
-    Route::delete('users/{username}', [UsersController::class, 'delete'])->name('.users.delete');
-
-    Route::delete('users/{username}/threads', [UsersController::class, 'deleteThreads'])->name('.users.threads.delete');
+    Route::put('users/{username}/ban', [AdminUsersController::class, 'ban'])->name('.users.ban');
+    Route::put('users/{username}/unban', [AdminUsersController::class, 'unban'])->name('.users.unban');
 
     // Articles
     Route::put('articles/{article}/approve', [AdminArticlesController::class, 'approve'])->name('.articles.approve');
