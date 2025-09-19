@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticlesController as AdminArticlesController;
-use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\UsersController as AdminUsersController;
 use App\Http\Controllers\Articles\ArticlesController;
 use App\Http\Controllers\Articles\AuthoredArticles;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -129,8 +129,8 @@ Route::prefix('articles')->group(function () {
 // Admin
 Route::prefix('admin')->name('admin')->group(function () {
     // Users
-    Route::put('users/{username}/ban', [UsersController::class, 'ban'])->name('.users.ban');
-    Route::put('users/{username}/unban', [UsersController::class, 'unban'])->name('.users.unban');
+    Route::put('users/{username}/ban', [AdminUsersController::class, 'ban'])->name('.users.ban');
+    Route::put('users/{username}/unban', [AdminUsersController::class, 'unban'])->name('.users.unban');
 
     // Articles
     Route::put('articles/{article}/approve', [AdminArticlesController::class, 'approve'])->name('.articles.approve');
