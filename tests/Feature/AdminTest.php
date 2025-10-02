@@ -151,9 +151,9 @@ test('moderators cannot delete users', function () {
 });
 
 test('admins can list submitted articles', function () {
-    $submittedArticle = Article::factory()->create(['submitted_at' => now()]);
-    $draftArticle = Article::factory()->create();
-    $liveArticle = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now()]);
+    $submittedArticle = Article::factory()->create(['submitted_at' => now(), 'title' => 'My submitted article']);
+    $draftArticle = Article::factory()->create(['title' => 'My draft article']);
+    $liveArticle = Article::factory()->create(['submitted_at' => now(), 'approved_at' => now(), 'title' => 'My live article']);
 
     $this->loginAsAdmin();
 

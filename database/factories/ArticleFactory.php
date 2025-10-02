@@ -24,19 +24,15 @@ class ArticleFactory extends Factory
 
     public function approved(): self
     {
-        return $this->state(function (): array {
-            return [
-                'approved_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
-            ];
-        });
+        return $this->state(fn () => [
+            'approved_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+        ]);
     }
 
     public function unapproved(): self
     {
-        return $this->state(function (): array {
-            return [
-                'approved_at' => null,
-            ];
-        });
+        return $this->state(fn () => [
+            'approved_at' => null,
+        ]);
     }
 }
