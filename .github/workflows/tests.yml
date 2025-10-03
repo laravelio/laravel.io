@@ -53,6 +53,7 @@ jobs:
           DB_DATABASE: laravel
     
   dependabot:
+    needs: [tests]
     permissions:
       pull-requests: write
       contents: write
