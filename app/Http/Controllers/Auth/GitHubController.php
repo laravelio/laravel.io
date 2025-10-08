@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\ConnectGitHubAccount;
 use App\Http\Controllers\Controller;
 use App\Jobs\UpdateProfile;
 use App\Models\User;
@@ -28,7 +29,7 @@ class GitHubController extends Controller
     /**
      * Obtain the user information from GitHub.
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(ConnectGitHubAccount $connectGitHubAccount)
     {
         try {
             $socialiteUser = $this->getSocialiteUser();
@@ -40,6 +41,26 @@ class GitHubController extends Controller
 
         if ($socialiteUser instanceof RedirectResponse) {
             return $socialiteUser;
+        }
+
+        $isConnectingAttempt = session()->pull('settings.github.connect.intended', false);
+        if ($isConnectingAttempt) {
+            $currentUser = auth()->user();
+            $githubId = $socialiteUser->getId();
+
+            // Check if the GitHub account is already connected to another user
+            $existingUser = User::where('github_id', $githubId)->where('id', '!=', $currentUser->id)->first();
+            if ($existingUser) {
+                $this->error('This GitHub account is already connected to another user.');
+
+                return redirect(route('settings.profile'));
+            }
+
+            $connectGitHubAccount($currentUser, $socialiteUser);
+
+            $this->success('Your GitHub account has been connected.');
+
+            return redirect(route('settings.profile'));
         }
 
         try {
