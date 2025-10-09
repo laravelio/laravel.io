@@ -26,11 +26,17 @@
                         </a>
                     </div>
 
-                    <x-forms.form method="POST" action="{{ route('settings.github.disconnect') }}">
-                        <x-buttons.danger-button type="submit">
-                            Disconnect GitHub
-                        </x-buttons.danger-button>
-                    </x-forms.form>
+                    @if (Auth::user()->password)
+                        <x-forms.form method="POST" action="{{ route('settings.github.disconnect') }}">
+                            <x-buttons.danger-button type="submit">
+                                Disconnect GitHub
+                            </x-buttons.danger-button>
+                        </x-forms.form>
+                    @else
+                        <p class="text-sm text-red-600 mt-2">
+                            You must set a password before disconnecting your GitHub account, otherwise, you will not be able to log in again.
+                        </p>
+                    @endif
                 </div>
             @else
                 <div class="flex items-center justify-between flex-wrap gap-4">

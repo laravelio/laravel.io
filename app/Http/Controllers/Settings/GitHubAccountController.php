@@ -23,7 +23,15 @@ final class GitHubAccountController extends Controller
 
     public function disconnect(DisconnectGitHubAccount $disconnectGitHubAccount): RedirectResponse
     {
-        $disconnectGitHubAccount(auth()->user());
+        $user = auth()->user();
+
+        if (!$user->password) {
+            $this->error('You must set a password before disconnecting your GitHub account, otherwise, you will not be able to log in again.');
+
+            return redirect(route('settings.profile'));
+        }
+
+        $disconnectGitHubAccount($user);
 
         $this->success('Your GitHub account has been disconnected.');
 
