@@ -70,6 +70,7 @@ class AdminPanelProvider extends PanelProvider
                     ->openUrlInNewTab(),
             ])
             ->brandLogo(asset('images/laravelio-logo.svg'))
+            ->homeUrl('/')
             ->unsavedChangesAlerts()
             ->globalSearch(false)
             ->topNavigation()

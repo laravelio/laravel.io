@@ -51,7 +51,21 @@ jobs:
           DB_CONNECTION: mysql
           DB_COLLATION: utf8mb4_unicode_ci
           DB_DATABASE: laravel
+    
+  dependabot:
+    needs: [tests]
+    permissions:
+      pull-requests: write
+      contents: write
+    uses: driesvints/github-workflows/.github/workflows/dependabot.yml@main
+    secrets:
+      gh_token: ${{ secrets.GITHUB_TOKEN }}
 
+  deploy:
+    needs: [tests]
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Deploy
         if: github.repository == 'laravelio/laravel.io' && github.ref_name == 'main'
         run: curl ${{ secrets.ENVOYER_HOOK }}?sha=${{ github.sha }}
