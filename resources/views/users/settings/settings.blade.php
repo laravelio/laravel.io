@@ -27,7 +27,7 @@
                         </a>
                         <a href="#github_settings_heading"
                             class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 flex items-center px-3 py-2 text-sm font-medium rounded-md">
-                            <x-icon-github-line class="text-gray-400 shrink-0 -ml-1 mr-3 h-6 w-6" />
+                            <x-si-github class="text-gray-400 shrink-0 -ml-1 mr-3 h-6 w-6" />
                             <span class="truncate">GitHub</span>
                         </a>
                         <a href="#api_token_settings_heading"
