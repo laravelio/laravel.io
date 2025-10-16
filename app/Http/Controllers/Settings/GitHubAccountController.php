@@ -25,7 +25,7 @@ final class GitHubAccountController extends Controller
     {
         $user = auth()->user();
 
-        if (!$user->password) {
+        if (! $user->password) {
             $this->error('You must set a password before disconnecting your GitHub account, otherwise, you will not be able to log in again.');
 
             return redirect(route('settings.profile'));

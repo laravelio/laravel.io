@@ -44,6 +44,7 @@ class GitHubController extends Controller
         }
 
         $isConnectingAttempt = session()->pull('settings.github.connect.intended', false);
+        
         if ($isConnectingAttempt) {
             $currentUser = auth()->user();
             $githubId = $socialiteUser->getId();

@@ -9,7 +9,7 @@
                 </h2>
 
                 <p class="mt-1 text-sm leading-5 text-gray-500">
-                    Connect your GitHub account to keep your profile information in sync.
+                    Connect your GitHub account to keep your profile for easy login and avatar sync.
                 </p>
             </div>
 
