@@ -52,7 +52,7 @@ class GitHubController extends Controller
             $existingUser = User::where('github_id', $socialiteUser->getId())
                 ->where('id', '!=', $currentUser->id)
                 ->first();
-            
+
             if ($existingUser) {
                 $this->error('This GitHub account is already connected to another user.');
             } else {

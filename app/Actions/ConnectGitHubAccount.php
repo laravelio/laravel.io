@@ -5,6 +5,7 @@ namespace App\Actions;
 use App\Jobs\UpdateUserIdenticonStatus;
 use App\Models\User;
 use Laravel\Socialite\Two\User as SocialiteUser;
+
 use function dispatch;
 
 final class ConnectGitHubAccount

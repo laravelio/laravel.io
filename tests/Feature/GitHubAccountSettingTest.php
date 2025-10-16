@@ -102,7 +102,7 @@ test('users cannot connect a GitHub account that belongs to another user', funct
 
 function fakeSocialiteUser(string $id, string $nickname): SocialiteUser
 {
-    return tap(new SocialiteUser())
+    return tap(new SocialiteUser)
         ->setRaw([
             'id' => $id,
             'login' => $nickname,
