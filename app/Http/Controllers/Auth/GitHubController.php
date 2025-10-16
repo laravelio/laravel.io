@@ -44,22 +44,22 @@ class GitHubController extends Controller
         }
 
         $isConnectingAttempt = session()->pull('settings.github.connect.intended', false);
-        
+
         if ($isConnectingAttempt) {
             $currentUser = auth()->user();
-            $githubId = $socialiteUser->getId();
 
-            // Check if the GitHub account is already connected to another user
-            $existingUser = User::where('github_id', $githubId)->where('id', '!=', $currentUser->id)->first();
+            // Check if the GitHub account is already connected to another user.
+            $existingUser = User::where('github_id', $socialiteUser->getId())
+                ->where('id', '!=', $currentUser->id)
+                ->first();
+            
             if ($existingUser) {
                 $this->error('This GitHub account is already connected to another user.');
+            } else {
+                $connectGitHubAccount($currentUser, $socialiteUser);
 
-                return redirect(route('settings.profile'));
+                $this->success('Your GitHub account has been connected.');
             }
-
-            $connectGitHubAccount($currentUser, $socialiteUser);
-
-            $this->success('Your GitHub account has been connected.');
 
             return redirect(route('settings.profile'));
         }

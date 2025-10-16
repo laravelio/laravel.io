@@ -48,7 +48,7 @@
             @endif
         </div>
 
-        @if (!Auth::user()->hasConnectedGitHubAccount())
+        @unless (Auth::user()->hasConnectedGitHubAccount())
             <x-forms.form id="github_settings_form" method="POST" action="{{ route('settings.github.connect') }}">
                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                     <x-buttons.primary-button type="submit">
@@ -56,6 +56,6 @@
                     </x-buttons.primary-button>
                 </div>
             </x-forms.form>
-        @endif
+        @endunless
     </div>
 </section>
