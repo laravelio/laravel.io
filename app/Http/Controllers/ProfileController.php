@@ -29,15 +29,15 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        if (!$user->hasConnectedGitHubAccount()) {
+        if (! $user->hasConnectedGitHubAccount()) {
             return back()->with('error', 'You need to connect your GitHub account to refresh your avatar.');
         }
 
         // Rate limiting: 1 request per 1 minute per user
-        $key = 'avatar-refresh:' . $user->id();
+        $key = 'avatar-refresh:'.$user->id();
 
         if (RateLimiter::tooManyAttempts($key, 1)) {
-            return back()->with('error', "Please wait 1 minute(s) before refreshing your avatar again.");
+            return back()->with('error', 'Please wait 1 minute(s) before refreshing your avatar again.');
         }
 
         // Record this attempt for 1 minutes
