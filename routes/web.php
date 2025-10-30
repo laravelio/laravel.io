@@ -70,7 +70,7 @@ Route::redirect('/dashboard', '/user');
 Route::get('user/{username?}', [ProfileController::class, 'show'])->name('profile');
 Route::put('users/{username}/block', BlockUserController::class)->name('users.block');
 Route::put('users/{username}/unblock', UnblockUserController::class)->name('users.unblock');
-Route::post('/avatar/refresh', [ProfileController::class, 'refresh'])->name('avatar.refresh');
+Route::post('avatar/refresh', [ProfileController::class, 'refresh'])->name('avatar.refresh');
 
 // Notifications
 Route::view('notifications', 'users.notifications')->name('notifications')->middleware(Authenticate::class);

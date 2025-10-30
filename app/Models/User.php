@@ -123,7 +123,7 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
         return ! is_null($this->githubId());
     }
 
-    public function hasGithubIdenticon(): bool
+    public function hasGitHubIdenticon(): bool
     {
         return (bool) $this->github_has_identicon;
     }

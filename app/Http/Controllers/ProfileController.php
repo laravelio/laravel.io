@@ -26,7 +26,6 @@ class ProfileController extends Controller
 
     public function refresh(Request $request)
     {
-
         $user = $request->user();
 
         if (! $user->hasConnectedGitHubAccount()) {
@@ -40,7 +39,7 @@ class ProfileController extends Controller
             return back()->with('error', 'Please wait 1 minute(s) before refreshing your avatar again.');
         }
 
-        // Record this attempt for 1 minutes
+        // Record this attempt for 1 minute.
         RateLimiter::hit($key, 60);
 
         UpdateUserIdenticonStatus::dispatchSync($user);
