@@ -12,12 +12,7 @@
 
         <div class="container mx-auto">
             <div class="flex justify-center lg:justify-start">
-                <x-avatar
-                    :user="$user"
-                    class="-mt-24 w-48 h-48 rounded-full border-8 border-white"
-                    unlinked
-                    :show-refresh="$user->isLoggedInUser()"
-                />
+                <x-avatar :user="$user" class="-mt-24 w-48 h-48 rounded-full border-8 border-white" unlinked />
             </div>
 
             <div class="flex flex-col mt-5 p-4 lg:flex-row lg:gap-x-12">
