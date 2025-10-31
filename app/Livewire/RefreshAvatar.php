@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Jobs\UpdateUserIdenticonStatus;
 use App\Concerns\SendsAlerts;
+use App\Jobs\UpdateUserIdenticonStatus;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
@@ -11,6 +11,7 @@ use Livewire\Component;
 final class RefreshAvatar extends Component
 {
     use SendsAlerts;
+
     public $user;
 
     public function mount($user): void
@@ -22,14 +23,16 @@ final class RefreshAvatar extends Component
     {
         if (! $this->user->hasConnectedGitHubAccount()) {
             $this->error('You need to connect your GitHub account to refresh your avatar.');
+
             return Redirect::route('settings.profile');
         }
 
         // Rate limiting: 1 request per 1 minute per user
-        $key = 'avatar-refresh:' . $this->user->id();
+        $key = 'avatar-refresh:'.$this->user->id();
 
         if (RateLimiter::tooManyAttempts($key, 1)) {
             $this->error('Please wait 1 minute before refreshing your avatar again.');
+
             return Redirect::route('settings.profile');
         }
 
@@ -39,7 +42,8 @@ final class RefreshAvatar extends Component
         UpdateUserIdenticonStatus::dispatchSync($this->user);
 
         $this->success('Avatar refreshed successfully!');
-    return Redirect::route('settings.profile');
+
+        return Redirect::route('settings.profile');
     }
 
     public function render()
