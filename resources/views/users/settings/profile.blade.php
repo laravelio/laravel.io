@@ -13,15 +13,15 @@
                     </p>
                 </div>
 
-                <div class="flex flex-col space-y-6 lg:flex-row lg:space-y-0 lg:space-x-6">
-                    <div class="grow space-y-6">
-                        <div class="space-y-1">
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="col-span-12 sm:col-span-6 space-y-6">
+                        <div>
                             <x-forms.label for="name" />
 
                             <x-forms.inputs.input name="name" :value="Auth::user()->name()" required />
                         </div>
 
-                        <div class="space-y-1">
+                        <div>
                             <x-forms.label for="bio" />
 
                             <x-forms.inputs.textarea name="bio" maxlength="160">
@@ -34,17 +34,24 @@
                         </div>
                     </div>
 
-                    <div class="grow space-y-1 lg:grow-0 lg:shrink-0">
+                    <div class="col-span-12 sm:col-span-6">
                         <p class="block text-sm leading-5 font-medium text-gray-700" aria-hidden="true">
                             Profile Image
                         </p>
 
                         <div class="flex items-center mt-2">
                             <div class="shrink-0 inline-block overflow-hidden" aria-hidden="true">
-                                <x-avatar :user="Auth::user()" class="h-32 w-32 mt-4" unlinked />
+                                <div class="flex justify-center lg:justify-start">
+                                    <x-avatar
+                                        :user="Auth::user()"
+                                        class="h-32 w-32 mt-4"
+                                        unlinked
+                                        :show-refresh="Auth::user()->isLoggedInUser()"
+                                    />
+                                </div>
 
                                 <span class="mt-4 inline-block text-sm text-gray-500">
-                                    Change your avatar for
+                                    Change or refresh your avatar for<br>
 
                                     <a href="https://github.com/{{ Auth::user()->githubUsername() }}" class="text-lio-700">
                                         your GitHub profile
