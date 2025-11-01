@@ -13,7 +13,7 @@ final class RefreshAvatar extends Component
 {
     use SendsAlerts;
 
-    public $user;
+    public User $user;
 
     public function mount(User $user): void
     {
