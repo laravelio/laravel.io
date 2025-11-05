@@ -129,12 +129,6 @@
                                                     Admin
                                                 </a>
                                             </li>
-                                            <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0">
-                                                <a href="{{ url('horizon') }}" class="flex items-center w-full lg:px-3 lg:py-2">
-                                                    <x-heroicon-o-queue-list class="w-4 h-4 mr-2" />
-                                                    Horizon
-                                                </a>
-                                            </li>
                                         @endcan
 
                                         <li class="mb-4 lg:hover:bg-gray-100 lg:mb-0 lg:border-t border-gray-200">

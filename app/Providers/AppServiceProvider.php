@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Request as RequestFacade;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Horizon\Horizon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,7 +38,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->bootEloquentMorphs();
         $this->bootMacros();
-        $this->bootHorizon();
         $this->bootSlowQueryLogging();
 
         $this->bootEvent();
@@ -60,16 +58,6 @@ class AppServiceProvider extends ServiceProvider
     public function bootMacros()
     {
         require base_path('resources/macros/blade.php');
-    }
-
-    public function bootHorizon()
-    {
-        Horizon::routeMailNotificationsTo($horizonEmail = config('lio.horizon.email'));
-        // Horizon::routeSlackNotificationsTo(config('lio.horizon.webhook'));
-
-        Horizon::auth(function ($request) {
-            return auth()->check() && auth()->user()->isAdmin();
-        });
     }
 
     private function bootSlowQueryLogging()

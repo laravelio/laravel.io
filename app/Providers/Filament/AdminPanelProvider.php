@@ -63,12 +63,6 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->userMenuItems([
-                Action::make('Horizon')
-                    ->url(fn (): string => route('horizon.index'))
-                    ->icon('heroicon-o-presentation-chart-bar')
-                    ->openUrlInNewTab(),
-            ])
             ->brandLogo(asset('images/laravelio-logo.svg'))
             ->homeUrl('/')
             ->unsavedChangesAlerts()
