@@ -31,26 +31,43 @@ final class GenerateSocialShareImage
         $image = new ImageManager(new Driver);
         $text = wordwrap($this->article->title(), self::CHARACTERS_PER_LINE);
 
-        return Cache::remember(
-            'articleSocialImage-'.$this->article->id,
-            now()->addDay(),
-            fn () => response(
-                $image->read(resource_path('images/'.self::TEMPLATE))
-                    ->text(
-                        $text,
-                        self::TEXT_X_POSITION,
-                        self::calculateTextYPosition($text),
-                        function ($font) {
-                            $font->file(resource_path('fonts/'.self::FONT));
-                            $font->size(self::FONT_SIZE);
-                            $font->color(self::TEXT_COLOUR);
-                        }
-                    )
-                    ->toPng()
-            )
-                ->header('Content-Type', 'image/png')
-                ->header('Cache-Control', 'max-age=86400, public')
-        );
+        return response(
+            $image->read(resource_path('images/'.self::TEMPLATE))
+                ->text(
+                    $text,
+                    self::TEXT_X_POSITION,
+                    self::calculateTextYPosition($text),
+                    function ($font) {
+                        $font->file(resource_path('fonts/'.self::FONT));
+                        $font->size(self::FONT_SIZE);
+                        $font->color(self::TEXT_COLOUR);
+                    }
+                )
+                ->toPng()
+        )
+            ->header('Content-Type', 'image/png')
+            ->header('Cache-Control', 'max-age=86400, public');
+
+        // return Cache::remember(
+        //     'articleSocialImage-'.$this->article->id,
+        //     now()->addDay(),
+        //     fn () => response(
+        //         $image->read(resource_path('images/'.self::TEMPLATE))
+        //             ->text(
+        //                 $text,
+        //                 self::TEXT_X_POSITION,
+        //                 self::calculateTextYPosition($text),
+        //                 function ($font) {
+        //                     $font->file(resource_path('fonts/'.self::FONT));
+        //                     $font->size(self::FONT_SIZE);
+        //                     $font->color(self::TEXT_COLOUR);
+        //                 }
+        //             )
+        //             ->toPng()
+        //     )
+        //         ->header('Content-Type', 'image/png')
+        //         ->header('Cache-Control', 'max-age=86400, public')
+        // );
     }
 
     private function calculateTextYPosition(string $text): int
