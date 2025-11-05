@@ -28,7 +28,6 @@
         "league/flysystem-aws-s3-v3": "^3.0",
         "livewire/flux": "^2.1",
         "livewire/livewire": "^3.3",
-        "predis/predis": "^3.2",
         "ramsey/uuid": "^4.3",
         "sentry/sentry-laravel": "^4.3",
         "spatie/laravel-feed": "^4.4",
