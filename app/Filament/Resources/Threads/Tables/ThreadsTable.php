@@ -3,11 +3,11 @@
 namespace App\Filament\Resources\Threads\Tables;
 
 use App\Models\Thread;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\Action;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class ThreadsTable
@@ -19,11 +19,11 @@ class ThreadsTable
                 ImageColumn::make('authorRelation.github_id')
                     ->label('Author')
                     ->circular()
-                    ->defaultImageUrl(fn(?string $state): string => $state ? sprintf('https://avatars.githubusercontent.com/u/%s', $state) : asset('images/laravelio-icon-gray.svg')),
+                    ->defaultImageUrl(fn (?string $state): string => $state ? sprintf('https://avatars.githubusercontent.com/u/%s', $state) : asset('images/laravelio-icon-gray.svg')),
 
                 TextColumn::make('authorRelation.name')
                     ->label('')
-                    ->description(fn(Thread $thread): ?string => $thread->authorRelation->username)
+                    ->description(fn (Thread $thread): ?string => $thread->authorRelation->username)
                     ->searchable(),
 
                 TextColumn::make('subject')
@@ -49,7 +49,7 @@ class ThreadsTable
             ])
             ->recordActions([
                 Action::make('view')
-                    ->url(fn(Thread $thread): string => route('thread', $thread->slug()))
+                    ->url(fn (Thread $thread): string => route('thread', $thread->slug()))
                     ->openUrlInNewTab()
                     ->icon('heroicon-s-eye'),
 

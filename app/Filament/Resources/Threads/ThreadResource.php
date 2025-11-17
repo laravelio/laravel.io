@@ -2,15 +2,11 @@
 
 namespace App\Filament\Resources\Threads;
 
-use App\Filament\Resources\Threads\Pages\CreateThread;
-use App\Filament\Resources\Threads\Pages\EditThread;
 use App\Filament\Resources\Threads\Pages\ListThreads;
-use App\Filament\Resources\Threads\Schemas\ThreadForm;
 use App\Filament\Resources\Threads\Tables\ThreadsTable;
 use App\Models\Thread;
 use BackedEnum;
 use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
