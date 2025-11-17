@@ -51,7 +51,7 @@
                                 </div>
 
                                 <span class="mt-4 inline-block text-sm text-gray-500">
-                                    Change or refresh your avatar for<br>
+                                    Refresh your avatar for<br>
 
                                     <a href="https://github.com/{{ Auth::user()->githubUsername() }}" class="text-lio-700">
                                         your GitHub profile
