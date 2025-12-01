@@ -14,7 +14,7 @@
 
         <main class="max-w-5xl mx-auto pt-10 pb-12 px-4 lg:pb-16">
             <div class="lg:grid lg:gap-x-5 lg:grid-cols-4">
-                <div class="sm:px-6 lg:px-0 lg:col-span-1">
+                <div class="sm:px-6 lg:px-0 lg:col-span-1 lg:sticky lg:top-0 lg:self-start">
                     <!-- This example requires Tailwind CSS v2.0+ -->
                     <nav class="space-y-1" aria-label="Sidebar">
                         <a href="#profile_settings_heading" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 flex items-center px-3 py-2 text-sm font-medium rounded-md">
