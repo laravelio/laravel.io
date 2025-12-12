@@ -36,7 +36,7 @@
         "spatie/laravel-schedule-monitor": "^4.0",
         "spatie/laravel-sitemap": "^7.2",
         "symfony/http-client": "^7.0",
-        "symfony/mailgun-mailer": "^7.0"
+        "symfony/mailgun-mailer": "^8.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.16",
