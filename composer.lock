@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "545bb7d14cdd25bd7c8df3748f82834d",
+    "content-hash": "4b1689dca2951cf404984f27ab7d2db2",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -880,16 +880,16 @@
         },
         {
             "name": "codeat3/blade-simple-icons",
-            "version": "7.16.0",
+            "version": "8.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/codeat3/blade-simple-icons.git",
-                "reference": "29d269bd0e576deb7b2f026f780f3443c67b2966"
+                "reference": "c52b258ec13e6aed00b9b6349437628f761182c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeat3/blade-simple-icons/zipball/29d269bd0e576deb7b2f026f780f3443c67b2966",
-                "reference": "29d269bd0e576deb7b2f026f780f3443c67b2966",
+                "url": "https://api.github.com/repos/codeat3/blade-simple-icons/zipball/c52b258ec13e6aed00b9b6349437628f761182c1",
+                "reference": "c52b258ec13e6aed00b9b6349437628f761182c1",
                 "shasum": ""
             },
             "require": {
@@ -939,7 +939,7 @@
             ],
             "support": {
                 "issues": "https://github.com/codeat3/blade-simple-icons/issues",
-                "source": "https://github.com/codeat3/blade-simple-icons/tree/7.16.0"
+                "source": "https://github.com/codeat3/blade-simple-icons/tree/8.0.0"
             },
             "funding": [
                 {
@@ -947,7 +947,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-10-12T11:40:22+00:00"
+            "time": "2025-12-06T13:20:52+00:00"
         },
         {
             "name": "composer/ca-bundle",
