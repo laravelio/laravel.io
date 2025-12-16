@@ -1,5 +1,9 @@
 <p align="center">
-    <img src="https://github.com/laravelio/art/blob/main/laravelio-logo-lg.svg" width="400" />
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://github.com/laravelio/art/blob/main/laravelio-logo-lg-white.svg">
+        <source media="(prefers-color-scheme: light)" srcset="https://github.com/laravelio/art/blob/main/laravelio-logo-lg.svg">
+        <img alt="Laravel.io logo" src="https://github.com/laravelio/art/blob/main/laravelio-logo-lg.svg" width="400">
+    </picture>
 </p>
 
 <p align="center">
@@ -27,6 +31,7 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [Tinkerwell](https://tinkerwell.app)
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
 - [N-iX](https://www.n-ix.com/)
+- [PDFinity](https://www.pdfinity.com)
 
 ## Requirements
 
