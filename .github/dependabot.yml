@@ -5,6 +5,7 @@ updates:
     schedule:
       interval: weekly
       day: friday
+      time: "02:00"
     groups:
       php-dependencies:
         update-types:
@@ -19,6 +20,7 @@ updates:
     schedule:
       interval: weekly
       day: friday
+      time: "03:00"
     groups:
       js-dependencies:
         update-types:
