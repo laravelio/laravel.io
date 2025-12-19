@@ -1,4 +1,4 @@
-import algoliasearch from 'algoliasearch/lite';
+import { liteClient as algoliasearch } from "algoliasearch/lite";
 
 const client = algoliasearch(import.meta.env.VITE_ALGOLIA_APP_ID, import.meta.env.VITE_ALGOLIA_SECRET);
 
@@ -38,7 +38,7 @@ window.searchConfig = () => {
             }
 
             // Perform the search using the provided input.
-            const { results } = await client.multipleQueries([
+            const { results } = await client.search([
                 {
                     indexName: import.meta.env.VITE_ALGOLIA_THREADS_INDEX,
                     query: this.searchQuery,
