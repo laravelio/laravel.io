@@ -2,16 +2,10 @@
 
 return [
     'ads' => [
-        // [
-        //     'url' => 'https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement',
-        //     'image' => 'eventy',
-        //     'alt' => 'Eventy',
-        // ],
         [
-            'url' => 'https://nativephp.com/mobile?ref=laravel.io',
-            'image' => 'nativephp',
-            'alt' => 'Native PHP',
+            'url' => 'https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement',
+            'image' => 'eventy',
+            'alt' => 'Eventy',
         ],
     ],
-
 ];
