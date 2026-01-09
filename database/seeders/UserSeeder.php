@@ -47,16 +47,16 @@ class UserSeeder extends Seeder
                                 'hero_image_id' => 'sxiSod0tyYQ',
                             ],
                             [
-                                'submitted_at' => now(), 
+                                'submitted_at' => now(),
                                 'approved_at' => fake()->dateTimeBetween('-1 year', 'now'),
                             ],
                             ['submitted_at' => now()],
                             [
-                                'submitted_at' => now(), 
+                                'submitted_at' => now(),
                                 'approved_at' => fake()->dateTimeBetween('-1 year', 'now'),
                             ],
                             [
-                                'submitted_at' => now(), 
+                                'submitted_at' => now(),
                                 'approved_at' => fake()->dateTimeBetween('-1 year', 'now'),
                             ],
                         ),
