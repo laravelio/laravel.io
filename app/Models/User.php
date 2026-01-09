@@ -216,6 +216,11 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
         return $this->threadsRelation()->latest()->limit($amount)->get();
     }
 
+    public function paginatedThreads(int $perPage = 5)
+    {
+        return $this->threadsRelation()->latest()->paginate($perPage, ['*'], 'threads_page');
+    }
+
     public function deleteThreads()
     {
         // We need to explicitly iterate over the threads and delete them
@@ -265,6 +270,11 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
         return $this->replyAble()->latest()->limit($amount)->get();
     }
 
+    public function paginatedReplies(int $perPage = 5)
+    {
+        return $this->replyAble()->latest()->paginate($perPage, ['*'], 'replies_page');
+    }
+
     public function deleteReplies()
     {
         // We need to explicitly iterate over the replies and delete them
@@ -297,6 +307,11 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
     public function latestArticles(int $amount = 10)
     {
         return $this->articles()->approved()->latest()->limit($amount)->get();
+    }
+
+    public function paginatedArticles(int $perPage = 5)
+    {
+        return $this->articles()->approved()->latest()->paginate($perPage, ['*'], 'articles_page');
     }
 
     public function countArticles(): int

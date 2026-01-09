@@ -35,19 +35,30 @@ class UserSeeder extends Seeder
 
         User::factory()
             ->count(300)
-            ->has(Thread::factory()->count(2), 'threadsRelation')
+            ->has(Thread::factory()->count(rand(0, 5)), 'threadsRelation')
             ->has(
                 Article::factory()
-                    ->count(2)
+                    ->count(5)
                     ->state(
                         new Sequence(
                             [
                                 'submitted_at' => now(),
-                                'approved_at' => now(),
+                                'approved_at' => fake()->dateTimeBetween('-1 year', 'now'),
                                 'hero_image_id' => 'sxiSod0tyYQ',
                             ],
-                            ['submitted_at' => now(), 'approved_at' => now()],
+                            [
+                                'submitted_at' => now(), 
+                                'approved_at' => fake()->dateTimeBetween('-1 year', 'now'),
+                            ],
                             ['submitted_at' => now()],
+                            [
+                                'submitted_at' => now(), 
+                                'approved_at' => fake()->dateTimeBetween('-1 year', 'now'),
+                            ],
+                            [
+                                'submitted_at' => now(), 
+                                'approved_at' => fake()->dateTimeBetween('-1 year', 'now'),
+                            ],
                         ),
                     ),
             )
