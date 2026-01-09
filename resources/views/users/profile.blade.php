@@ -187,10 +187,10 @@
         <div class="mt-16 lg:mt-32" x-data="{ tab: '{{ request('replies_page') ? 'replies' : 'threads' }}' }">
             <div class="container mx-auto">
                 <nav class="flex items-center justify-between lg:justify-start">
-                    <button @click="tab = 'threads'" :class="{ 'text-lio-500 border-lio-500 border-b-2': tab === 'threads' }"  class="px-4 whitespace-nowrap py-5 font-medium text-lg text-gray-900 hover:text-lio-500 hover:border-lio-500 focus:outline-hidden focus:text-lio-500 focus:border-lio-500 lg:w-1/3">
+                    <button @click="tab = 'threads'" :class="{ 'text-lio-500 border-lio-500 border-b-2': tab === 'threads' }"  class="px-4 whitespace-nowrap py-5 font-medium text-lg text-gray-900 hover:text-lio-500 hover:border-lio-500 focus:outline-hidden focus:text-lio-500 focus:border-lio-500 lg:w-1/2">
                         Threads posted
                     </button>
-                    <button @click="tab = 'replies'" :class="{ 'text-lio-500 border-lio-500 border-b-2': tab === 'replies' }"  class="px-4 whitespace-nowrap py-5 font-medium text-lg text-gray-900 hover:text-lio-500 hover:border-lio-500 focus:outline-hidden focus:text-lio-500 focus:border-lio-500 lg:w-1/3">
+                    <button @click="tab = 'replies'" :class="{ 'text-lio-500 border-lio-500 border-b-2': tab === 'replies' }"  class="px-4 whitespace-nowrap py-5 font-medium text-lg text-gray-900 hover:text-lio-500 hover:border-lio-500 focus:outline-hidden focus:text-lio-500 focus:border-lio-500 lg:w-1/2">
                         Replies posted
                     </button>
                 </nav>

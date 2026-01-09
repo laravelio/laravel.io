@@ -10,7 +10,7 @@ class ProfileController extends Controller
     public function show(Request $request, ?User $user = null)
     {
         if ($user) {
-            $articles = $user->paginatedArticles(5);
+            $articles = $user->paginatedArticles(3);
             $threads = $user->paginatedThreads(5);
             $replies = $user->paginatedReplies(5);
 
