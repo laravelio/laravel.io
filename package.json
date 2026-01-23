@@ -14,7 +14,7 @@
         "axios": "^1.6",
         "choices.js": "^11.0.6",
         "highlight.js": "^11.9.0",
-        "laravel-vite-plugin": "^1.0.1",
+        "laravel-vite-plugin": "^2.1.0",
         "pixelmatch": "^7.1.0",
         "tailwindcss": "^4.1.4",
         "textarea-caret": "^3.1.0",
