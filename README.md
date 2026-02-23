@@ -31,7 +31,6 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 - [BairesDev](https://www.bairesdev.com/sponsoring-open-source-projects/)
 - [N-iX](https://www.n-ix.com/)
 - [PDFinity](https://www.pdfinity.com)
-- [Litslink](https://litslink.com/)
 
 ## Requirements
 
