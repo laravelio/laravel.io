@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Jobs\UnsubscribeFromSubscriptionAble;
 use App\Models\Subscription;
+use App\Models\Thread;
 use Illuminate\Http\RedirectResponse;
 
 class SubscriptionController extends Controller
 {
     public function unsubscribe(Subscription $subscription): RedirectResponse
     {
-        /** @var \App\Models\Thread $thread */
+        /** @var Thread $thread */
         $thread = $subscription->subscriptionAble();
 
         $this->dispatch(new UnsubscribeFromSubscriptionAble($subscription->user(), $thread));

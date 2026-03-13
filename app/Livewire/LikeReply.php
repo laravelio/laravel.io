@@ -10,7 +10,7 @@ use Livewire\Component;
 
 final class LikeReply extends Component
 {
-    /** @var \App\Models\Reply */
+    /** @var Reply */
     public $reply;
 
     public function mount(Reply $reply): void

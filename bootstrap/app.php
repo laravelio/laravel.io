@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\DisableFloc;
+use App\Http\Middleware\RedirectIfBanned;
 use App\Providers\AppServiceProvider;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
@@ -26,9 +28,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectUsersTo(AppServiceProvider::HOME);
 
         $middleware->web([
-            \App\Http\Middleware\RedirectIfBanned::class,
+            RedirectIfBanned::class,
         ], [
-            \App\Http\Middleware\DisableFloc::class,
+            DisableFloc::class,
         ]);
 
         $middleware->throttleApi();

@@ -255,7 +255,7 @@ final class Thread extends Model implements Feedable, MentionAble, ReplyAble, Sp
     }
 
     /**
-     * @return \App\Models\Thread[]
+     * @return Thread[]
      */
     public static function feed(int $limit = 20): Collection
     {
@@ -263,7 +263,7 @@ final class Thread extends Model implements Feedable, MentionAble, ReplyAble, Sp
     }
 
     /**
-     * @return \App\Models\Thread[]
+     * @return Thread[]
      */
     public static function feedPaginated(int $perPage = 20): Paginator
     {
@@ -271,7 +271,7 @@ final class Thread extends Model implements Feedable, MentionAble, ReplyAble, Sp
     }
 
     /**
-     * @return \App\Models\Thread[]
+     * @return Thread[]
      */
     public static function feedByTagPaginated(Tag $tag, int $perPage = 20): Paginator
     {

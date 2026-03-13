@@ -11,7 +11,7 @@ final class LikeReply
     public function __construct(private Reply $reply, private User $user) {}
 
     /**
-     * @throws \App\Exceptions\CannotLikeItem
+     * @throws CannotLikeItem
      */
     public function handle(): void
     {

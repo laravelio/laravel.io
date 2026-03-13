@@ -10,7 +10,7 @@ use Livewire\Component;
 
 final class LikeThread extends Component
 {
-    /** @var \App\Models\Thread */
+    /** @var Thread */
     public $thread;
 
     public function mount(Thread $thread): void

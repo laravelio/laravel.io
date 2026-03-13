@@ -2,13 +2,14 @@
 
 namespace App\Contracts;
 
+use App\Models\Subscription;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 interface SubscriptionAble
 {
     /**
-     * @return \App\Models\Subscription[]
+     * @return Subscription[]
      */
     public function subscriptions();
 

@@ -8,7 +8,7 @@ use Illuminate\Contracts\Pagination\Paginator;
 final class SearchReplies
 {
     /**
-     * @return \App\Models\Reply[]
+     * @return Reply[]
      */
     public static function get(string $keyword, int $perPage = 20): Paginator
     {
