@@ -11,6 +11,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -201,7 +202,7 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public function threads()
     {
@@ -209,7 +210,7 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public function latestThreads(int $amount = 5)
     {
@@ -255,7 +256,7 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public function replies()
     {
@@ -263,7 +264,7 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public function latestReplies(int $amount = 10)
     {

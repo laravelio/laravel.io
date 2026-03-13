@@ -1,5 +1,8 @@
 <?php
 
+use App\Markdown\Converter;
+use App\Models\Thread;
+
 if (! function_exists('active')) {
     /**
      * Sets the menu item class for an active route.
@@ -26,7 +29,7 @@ if (! function_exists('md_to_html')) {
      */
     function md_to_html(string $markdown, array $params = []): string
     {
-        return app(App\Markdown\Converter::class, $params)->toHtml($markdown);
+        return app(Converter::class, $params)->toHtml($markdown);
     }
 }
 
@@ -36,7 +39,7 @@ if (! function_exists('route_to_reply_able')) {
      */
     function route_to_reply_able(mixed $replyAble): string
     {
-        if ($replyAble instanceof App\Models\Thread) {
+        if ($replyAble instanceof Thread) {
             return route('thread', $replyAble->slug());
         }
     }

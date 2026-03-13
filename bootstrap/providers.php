@@ -1,7 +1,11 @@
 <?php
 
+use App\Markdown\MarkdownServiceProvider;
+use App\Providers\AppServiceProvider;
+use App\Providers\Filament\AdminPanelProvider;
+
 return [
-    App\Markdown\MarkdownServiceProvider::class,
-    App\Providers\AppServiceProvider::class,
-    App\Providers\Filament\AdminPanelProvider::class,
+    MarkdownServiceProvider::class,
+    AppServiceProvider::class,
+    AdminPanelProvider::class,
 ];

@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Symfony\Component\Mailer\Exception\HttpTransportException;
 
 class RegisterController extends Controller
@@ -49,7 +50,7 @@ class RegisterController extends Controller
     /**
      * Handle a registration request for the application.
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @return RedirectResponse|JsonResponse
      */
     public function register(RegisterRequest $request)
     {
