@@ -2,6 +2,7 @@
 
 namespace App\Contracts;
 
+use App\Models\Reply;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 /**
@@ -12,12 +13,12 @@ interface ReplyAble
     public function subject(): string;
 
     /**
-     * @return \App\Models\Reply[]
+     * @return Reply[]
      */
     public function replies();
 
     /**
-     * @return \App\Models\Reply[]
+     * @return Reply[]
      */
     public function latestReplies(int $amount = 5);
 

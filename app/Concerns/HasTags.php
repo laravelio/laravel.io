@@ -14,7 +14,7 @@ trait HasTags
     }
 
     /**
-     * @param  \App\Models\Tag[]|int[]  $tags
+     * @param  Tag[]|int[]  $tags
      */
     public function syncTags(array $tags)
     {

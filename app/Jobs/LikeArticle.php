@@ -11,7 +11,7 @@ final class LikeArticle
     public function __construct(private Article $article, private User $user) {}
 
     /**
-     * @throws \App\Exceptions\CannotLikeItem
+     * @throws CannotLikeItem
      */
     public function handle(): void
     {

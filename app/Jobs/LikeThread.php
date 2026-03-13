@@ -11,7 +11,7 @@ final class LikeThread
     public function __construct(private Thread $thread, private User $user) {}
 
     /**
-     * @throws \App\Exceptions\CannotLikeItem
+     * @throws CannotLikeItem
      */
     public function handle(): void
     {

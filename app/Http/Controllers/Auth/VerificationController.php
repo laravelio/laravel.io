@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\AppServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class VerificationController extends Controller
@@ -46,7 +47,7 @@ class VerificationController extends Controller
 
     public function verify(Request $request)
     {
-        /** @var \Illuminate\Http\RedirectResponse $response */
+        /** @var RedirectResponse $response */
         $response = $this->traitVerify($request);
 
         if ($response->getSession()->has('verified')) {
@@ -60,7 +61,7 @@ class VerificationController extends Controller
 
     public function resend(Request $request)
     {
-        /** @var \Illuminate\Http\RedirectResponse $response */
+        /** @var RedirectResponse $response */
         $response = $this->traitResend($request);
 
         if ($response->getSession()->has('resent')) {

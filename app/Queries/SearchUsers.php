@@ -8,7 +8,7 @@ use Illuminate\Contracts\Pagination\Paginator;
 final class SearchUsers
 {
     /**
-     * @return \App\Models\User[]
+     * @return User[]
      */
     public static function get(string $keyword, int $perPage = 20): Paginator
     {
