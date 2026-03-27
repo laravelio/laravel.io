@@ -24,7 +24,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/scout": "^10.22",
         "laravel/socialite": "^5.11",
-        "laravel/tinker": "^2.9",
+        "laravel/tinker": "^3.0",
         "laravel/ui": "^4.4",
         "league/commonmark": "^2.2",
         "league/flysystem-aws-s3-v3": "^3.0",
