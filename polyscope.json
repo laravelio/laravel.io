@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "setup": [
+      "herd link --update-env",
+      "herd secure",
+      "herd isolate 8.4"
+    ],
+    "archive": [
+      "herd unsecure",
+      "herd unlink"
+    ]
+  },
+  "preview": {
+    "url": "https://{{folder}}.test"
+  }
+}
