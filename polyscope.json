@@ -22,7 +22,7 @@
       },
       {
         "label": "Tests",
-        "command": "herd composer tests"
+        "command": "herd pest -p"
       }
     ]
   },
