@@ -3,11 +3,27 @@
     "setup": [
       "herd link --update-env",
       "herd secure",
-      "herd isolate 8.4"
+      "herd isolate 8.4",
+      "herd composer install",
+      "herd php artisan migrate",
+      "herd php artisan storage:link --force",
+      "npm install"
     ],
     "archive": [
       "herd unsecure",
       "herd unlink"
+    ],
+    "run": [
+      {
+        "label": "Vite",
+        "command": "npm run dev",
+        "runMode": "replace",
+        "autostart": true
+      },
+      {
+        "label": "Tests",
+        "command": "herd composer tests"
+      }
     ]
   },
   "preview": {
