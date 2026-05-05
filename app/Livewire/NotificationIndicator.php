@@ -9,13 +9,11 @@ use Livewire\Component;
 
 final class NotificationIndicator extends Component
 {
-    public $hasNotification;
+    public bool $hasNotification = false;
 
     public function render(): View
     {
-        $this->hasNotification = $this->setHasNotification(
-            Auth::user()->unreadNotifications()->count(),
-        );
+        $this->hasNotification = Auth::user()?->unreadNotifications()->exists() ?? false;
 
         return view('livewire.notification_indicator', [
             'hasNotification' => $this->hasNotification,
@@ -23,8 +21,8 @@ final class NotificationIndicator extends Component
     }
 
     #[On('NotificationMarkedAsRead')]
-    public function setHasNotification(int $count): bool
+    public function setHasNotification(int $count): void
     {
-        return $count > 0;
+        $this->hasNotification = $count > 0;
     }
 }

@@ -48,3 +48,11 @@ test('a user sees the correct number of notifications', function () {
     Livewire::test(NotificationIndicator::class)
         ->assertSee('rounded-full');
 });
+
+test('notification indicator keeps a root element after notifications are cleared', function () {
+    $this->login();
+
+    Livewire::test(NotificationIndicator::class)
+        ->dispatch('NotificationMarkedAsRead', 0)
+        ->assertSee('hidden');
+});
