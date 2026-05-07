@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Article;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
 final class UpdateArticleViewCounts extends Command
@@ -32,27 +33,117 @@ final class UpdateArticleViewCounts extends Command
             return;
         }
 
-        Article::published()->chunk(100, function ($articles) {
-            $articles->each(function ($article) {
-                $article->timestamps = false;
-                $article->view_count = $this->getViewCountFor($article);
-                $article->save();
-            });
+        $articles = Article::query()
+            ->without(['authorRelation', 'likesRelation', 'likersRelation', 'tagsRelation'])
+            ->published()
+            ->get(['id', 'slug', 'original_url']);
+
+        $viewCounts = $this->getViewCountsFor($articles);
+
+        if ($viewCounts === null) {
+            if ($this->output) {
+                $this->error('Failed to get article view counts from Fathom');
+            }
+
+            return;
+        }
+
+        $articles->each(function (Article $article) use ($viewCounts) {
+            $article->timestamps = false;
+            $article->view_count = $this->getViewCountFor($article, $viewCounts);
+            $article->save();
         });
     }
 
-    protected function getViewCountFor(Article $article): ?int
+    protected function getViewCountFor(Article $article, Collection $viewCounts): ?int
     {
-        $viewCount = $this->getViewCountForUrl(route('articles.show', $article->slug));
-        $canonicalViewCount = ($url = $article->originalUrl()) ? $this->getViewCountForUrl($url) : 0;
+        $viewCount = $viewCounts->get($this->getUrlKey(route('articles.show', $article->slug)), 0);
+        $canonicalViewCount = ($url = $article->originalUrl()) ? $viewCounts->get($this->getUrlKey($url), 0) : 0;
 
         return ($total = $viewCount + $canonicalViewCount) > 0 ? $total : null;
     }
 
-    protected function getViewCountForUrl(string $url): int
+    protected function getViewCountsFor(Collection $articles): ?Collection
+    {
+        $urls = $articles
+            ->flatMap(fn (Article $article) => array_filter([
+                route('articles.show', $article->slug),
+                $article->originalUrl(),
+            ]))
+            ->map(fn (string $url) => $this->parseUrl($url))
+            ->filter()
+            ->unique(fn (array $url) => $this->getUrlKey($url))
+            ->values();
+
+        $viewCounts = collect();
+
+        foreach ($urls->pluck('path')->unique()->chunk(100) as $paths) {
+            $response = $this->getViewCountsForPaths($paths);
+
+            if ($response === null) {
+                return null;
+            }
+
+            foreach ($response as $row) {
+                if (! isset($row['hostname'], $row['pathname'], $row['pageviews'])) {
+                    continue;
+                }
+
+                $key = $this->getUrlKey([
+                    'hostname' => $row['hostname'],
+                    'path' => $row['pathname'],
+                ]);
+
+                $viewCounts->put($key, $viewCounts->get($key, 0) + (int) $row['pageviews']);
+            }
+        }
+
+        return $viewCounts;
+    }
+
+    protected function getViewCountsForPaths(Collection $paths): ?array
+    {
+        $filters = [[
+            'property' => 'pathname',
+            'operator' => 'matching',
+            'value' => '^('.$paths->map(fn (string $path) => preg_quote($path, '/'))->implode('|').')$',
+        ]];
+
+        $response = Http::retry(3, 100, null, false)->acceptJson()->withToken($this->token)
+            ->get('https://api.usefathom.com/v1/aggregations', [
+                'date_from' => '2021-03-01 00:00:00', // Fathom data aggregations not accurate prior to this date.
+                'field_grouping' => 'hostname,pathname',
+                'entity' => 'pageview',
+                'aggregates' => 'pageviews',
+                'entity_id' => $this->siteId,
+                'filters' => json_encode($filters),
+            ]);
+
+        if ($response->failed()) {
+            logger()->error('Failed to get view counts from Fathom', [
+                'paths' => $paths->all(),
+                'response' => $response->json(),
+            ]);
+
+            return null;
+        }
+
+        return $response->json();
+    }
+
+    protected function getUrlKey(null|array|string $url): ?string
+    {
+        if (! $url = is_array($url) ? $url : $this->parseUrl($url)) {
+            return null;
+        }
+
+        return "{$url['hostname']}{$url['path']}";
+    }
+
+    protected function parseUrl(string $url): ?array
     {
         if (! $url = parse_url($url)) {
-            return 0;
+            return null;
         }
 
         $scheme = $url['scheme'] ?? null;
@@ -60,39 +151,12 @@ final class UpdateArticleViewCounts extends Command
         $path = $url['path'] ?? null;
 
         if (! $scheme || ! $host || ! $path) {
-            return 0;
+            return null;
         }
 
-        $response = Http::retry(3, 100, null, false)->withToken($this->token)
-            ->get('https://api.usefathom.com/v1/aggregations', [
-                'date_from' => '2021-03-01 00:00:00', // Fathom data aggregations not accurate prior to this date.
-                'field_grouping' => 'pathname',
-                'entity' => 'pageview',
-                'aggregates' => 'pageviews,visits,uniques',
-                'entity_id' => $this->siteId,
-                'filters' => json_encode([
-                    [
-                        'property' => 'pathname',
-                        'operator' => 'is',
-                        'value' => $path,
-                    ],
-                    [
-                        'property' => 'hostname',
-                        'operator' => 'is',
-                        'value' => "{$scheme}://{$host}",
-                    ],
-                ]),
-            ]);
-
-        if ($response->failed()) {
-            logger()->error('Failed to get view count for URL', [
-                'url' => $url,
-                'response' => $response->json(),
-            ]);
-
-            return 0;
-        }
-
-        return (int) $response->json('0.pageviews');
+        return [
+            'hostname' => "{$scheme}://{$host}",
+            'path' => $path,
+        ];
     }
 }
