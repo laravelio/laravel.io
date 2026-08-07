@@ -1,7 +1,7 @@
 @title('Profile')
 
 <section aria-labelledby="profile_settings_heading">
-    <x-forms.form method="PUT" action="{{ route('settings.profile.update') }}">
+    <x-forms.form method="PUT" action="{{ route('settings.profile.update') }}" enctype="multipart/form-data">
         <div class="shadow-sm sm:rounded-md sm:overflow-hidden">
             <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
                 <div>
@@ -58,6 +58,48 @@
                                     </a>.
                                 </span>
                             </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <x-forms.label for="hero_image">Hero Image</x-forms.label>
+
+                            <div
+                                class="mt-2 h-32 rounded-sm bg-cover bg-center bg-gray-800"
+                                style="background-image: url('{{ Auth::user()->heroImageUrl() }}')"
+                            ></div>
+
+                            <input
+                                id="hero_image"
+                                name="hero_image"
+                                type="file"
+                                accept="image/*"
+                                class="mt-3 block w-full text-sm text-gray-700 file:mr-4 file:rounded-sm file:border-0 file:bg-lio-600 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-lio-700"
+                            />
+
+                            @if ($errors->has('hero_image'))
+                                @foreach ($errors->get('hero_image') as $error)
+                                    <x-forms.error>
+                                        {{ $error }}
+                                    </x-forms.error>
+                                @endforeach
+                            @endif
+
+                            <span class="mt-2 block text-sm text-gray-500">
+                                Upload a landscape image up to 4 MB.
+                            </span>
+
+                            @if (Auth::user()->hasHeroImage())
+                                <label class="mt-3 flex items-center gap-x-2 text-sm text-gray-700">
+                                    <input
+                                        type="checkbox"
+                                        name="delete_hero_image"
+                                        value="1"
+                                        class="rounded-sm border-gray-300 text-lio-600 focus:ring-lio-500"
+                                    />
+
+                                    <span>Remove current hero image</span>
+                                </label>
+                            @endif
                         </div>
                     </div>
                 </div>
