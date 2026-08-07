@@ -138,17 +138,15 @@ FATHOM_TOKEN=
 
 ### Unsplash (optional)
 
-To make sure article and user header images get synced into the database we'll need to setup an access key from [Unsplash](https://unsplash.com/developers). Please note that your Unsplash app requires production access.
+To enable article hero image search and syncing, you'll need to set up an access key from [Unsplash](https://unsplash.com/developers). Please note that your Unsplash app requires production access.
 
 ```
 UNSPLASH_ACCESS_KEY=
 ```
 
-After that you can add an Unsplash photo ID to any article row in the `hero_image_id` column and run the sync command to fetch the image url and author data:
+Authors can search for landscape Unsplash images from the article create/edit form. The selected image is stored as an Unsplash photo ID in the `hero_image_id` column.
 
-```bash
-php artisan lio:sync-article-images
-```
+When an article is created or updated with a hero image, Laravel.io dispatches the `SyncArticleImage` job. This job fetches the photo metadata from Unsplash, stores the raw image URL and photographer attribution data on the article, and calls the Unsplash download endpoint to register the photo usage.
 
 ## Commands
 
