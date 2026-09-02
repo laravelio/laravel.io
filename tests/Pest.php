@@ -44,3 +44,8 @@ use Illuminate\Support\Facades\Http;
 */
 
 /** @link https://pestphp.com/docs/helpers */
+
+function fixture(string $path): array
+{
+    return json_decode(file_get_contents(base_path("tests/Fixtures/{$path}")), true);
+}

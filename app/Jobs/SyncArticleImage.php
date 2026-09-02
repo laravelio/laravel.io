@@ -2,13 +2,14 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\UnsplashRequestFailed;
 use App\Models\Article;
+use App\UnsplashClient;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Http;
 
 final class SyncArticleImage implements ShouldQueue
 {
@@ -19,42 +20,25 @@ final class SyncArticleImage implements ShouldQueue
         //
     }
 
-    public function handle(): void
+    public function handle(UnsplashClient $unsplash): void
     {
-        $imageData = $this->fetchUnsplashImageDataFromId($this->article);
+        if (! $this->article->hero_image_id) {
+            return;
+        }
 
-        if (! is_null($imageData)) {
-            $this->article->hero_image_url = $imageData['image_url'];
-            $this->article->hero_image_author_name = $imageData['author_name'];
-            $this->article->hero_image_author_url = $imageData['author_url'];
+        try {
+            $photo = $unsplash->findPhoto($this->article->hero_image_id);
+            $unsplash->downloadPhoto($photo['links']['download_location']);
+        } catch (UnsplashRequestFailed) {
+            $this->article->hero_image_id = null;
             $this->article->save();
-        }
-    }
 
-    protected function fetchUnsplashImageDataFromId(Article $article): ?array
-    {
-        $response = Http::retry(3, 100, throw: false)
-            ->withToken(config('services.unsplash.access_key'), 'Client-ID')
-            ->get("https://api.unsplash.com/photos/{$article->hero_image_id}");
-
-        if ($response->failed()) {
-            $article->hero_image_id = null;
-            $article->save();
-
-            return null;
+            return;
         }
 
-        $response = $response->json();
-
-        // Trigger as Unsplash download...
-        Http::retry(3, 100, throw: false)
-            ->withToken(config('services.unsplash.access_key'), 'Client-ID')
-            ->get($response['links']['download_location']);
-
-        return [
-            'image_url' => $response['urls']['raw'],
-            'author_name' => $response['user']['name'],
-            'author_url' => $response['user']['links']['html'],
-        ];
+        $this->article->hero_image_url = $photo['urls']['raw'];
+        $this->article->hero_image_author_name = $photo['user']['name'];
+        $this->article->hero_image_author_url = $photo['user']['links']['html'];
+        $this->article->save();
     }
 }

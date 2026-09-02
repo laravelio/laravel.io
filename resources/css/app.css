@@ -32,6 +32,23 @@
   }
 }
 
+@layer utilities {
+    .scroll-fade {
+        --scroll-fade-size: 10px;
+        mask-image: linear-gradient(
+            to bottom,
+            transparent,
+            black var(--scroll-fade-size),
+            black calc(100% - var(--scroll-fade-size)),
+            transparent
+        );
+    }
+
+    .scroll-fade-none {
+        mask-image: none;
+    }
+}
+
 @theme {
     --font-sans: Inter, sans-serif;
 }
