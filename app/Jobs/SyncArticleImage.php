@@ -33,6 +33,10 @@ final class SyncArticleImage implements ShouldQueue
 
     protected function fetchUnsplashImageDataFromId(Article $article): ?array
     {
+        if (! $article->hero_image_id) {
+            return null;
+        }
+
         $response = Http::retry(3, 100, throw: false)
             ->withToken(config('services.unsplash.access_key'), 'Client-ID')
             ->get("https://api.unsplash.com/photos/{$article->hero_image_id}");
@@ -44,17 +48,26 @@ final class SyncArticleImage implements ShouldQueue
             return null;
         }
 
-        $response = $response->json();
+        $downloadLocation = $response->json('links.download_location');
+        $imageUrl = $response->json('urls.raw');
+        $authorName = $response->json('user.name');
+        $authorUrl = $response->json('user.links.html');
+
+        foreach ([$downloadLocation, $imageUrl, $authorName, $authorUrl] as $value) {
+            if (! is_string($value) || trim($value) === '') {
+                return null;
+            }
+        }
 
         // Trigger as Unsplash download...
         Http::retry(3, 100, throw: false)
             ->withToken(config('services.unsplash.access_key'), 'Client-ID')
-            ->get($response['links']['download_location']);
+            ->get($downloadLocation);
 
         return [
-            'image_url' => $response['urls']['raw'],
-            'author_name' => $response['user']['name'],
-            'author_url' => $response['user']['links']['html'],
+            'image_url' => $imageUrl,
+            'author_name' => $authorName,
+            'author_url' => $authorUrl,
         ];
     }
 }

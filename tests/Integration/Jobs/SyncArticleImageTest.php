@@ -47,6 +47,7 @@ test('hero image url and author information is updated for published articles wi
 
 test('hero image url and author information is not updated for published articles with no hero image', function () {
     Config::set('services.unsplash.access_key', 'test');
+    Http::fake();
 
     $article = Article::factory()->create([
         'submitted_at' => now(),
@@ -60,4 +61,45 @@ test('hero image url and author information is not updated for published article
     expect($article->hero_image_url)->toBe(null);
     expect($article->hero_image_author_name)->toBe(null);
     expect($article->hero_image_author_url)->toBe(null);
+
+    Http::assertNothingSent();
 });
+
+test('hero image data is preserved when Unsplash returns an invalid photo response', function ($response) {
+    Config::set('services.unsplash.access_key', 'test');
+
+    Http::fake([
+        'api.unsplash.com/photos/*' => Http::response($response),
+    ]);
+
+    $article = Article::factory()->create([
+        'hero_image_id' => 'invalid-photo-id',
+        'hero_image_url' => 'https://images.unsplash.com/existing-photo',
+        'hero_image_author_name' => 'Existing author',
+        'hero_image_author_url' => 'https://unsplash.com/@existing-author',
+        'submitted_at' => now(),
+        'approved_at' => now(),
+    ]);
+
+    SyncArticleImage::dispatchSync($article);
+
+    expect($article->refresh()->hero_image_id)->toBe('invalid-photo-id');
+    expect($article->hero_image_url)->toBe('https://images.unsplash.com/existing-photo');
+    expect($article->hero_image_author_name)->toBe('Existing author');
+    expect($article->hero_image_author_url)->toBe('https://unsplash.com/@existing-author');
+
+    Http::assertSentCount(1);
+})->with([
+    'missing links' => [['errors' => ['Unable to find the requested photo.']]],
+    'photo list' => [[['id' => 'some-photo']]],
+    'non-JSON response' => ['Service unavailable'],
+    'empty download location' => [[
+        'links' => ['download_location' => ''],
+        'urls' => ['raw' => 'https://images.unsplash.com/photo'],
+        'user' => ['name' => 'Author', 'links' => ['html' => 'https://unsplash.com/@author']],
+    ]],
+    'missing attribution' => [[
+        'links' => ['download_location' => 'https://api.unsplash.com/photos/photo/download'],
+        'urls' => ['raw' => 'https://images.unsplash.com/photo'],
+    ]],
+]);
