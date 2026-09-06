@@ -1,7 +1,7 @@
 @props(['user'])
 
 <div class="flex flex-col rounded-md shadow-sm mt-6">
-    <div class="bg-gray-800 rounded-t-md h-28" style="background-image: url('{{ asset('images/default-background.svg') }}')"></div>
+    <div class="bg-cover bg-center bg-gray-800 rounded-t-md h-28" style="background-image: url('{{ $user->heroImageUrl() }}')"></div>
 
     <div class="flex flex-col items-center justify-center bg-white rounded-b-md pb-8">
         <x-avatar :user="$user" class="w-32 h-32 rounded-full -mt-16 mb-6" />

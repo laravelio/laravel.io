@@ -3,9 +3,11 @@
 use App\Models\User;
 use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 uses(TestCase::class);
@@ -38,6 +40,68 @@ test('users can update their profile', function () {
         ->assertSee('driesbsky')
         ->assertSee('Settings successfully saved!')
         ->assertSee('My bio');
+});
+
+test('users can update their profile hero image', function () {
+    Storage::fake('public');
+
+    $user = $this->login();
+
+    $this->actingAs($user)
+        ->put('/settings', profilePayload($user, [
+            'hero_image' => UploadedFile::fake()->image('hero.jpg', 1600, 400),
+        ]))
+        ->assertRedirect('/settings');
+
+    $heroImagePath = $user->fresh()->heroImagePath();
+
+    expect(str_starts_with($heroImagePath, 'profile-hero-images/'))->toBeTrue();
+    Storage::disk('public')->assertExists($heroImagePath);
+});
+
+test('users can replace their profile hero image', function () {
+    Storage::fake('public');
+    Storage::disk('public')->put('profile-hero-images/old.jpg', 'old image');
+
+    $user = $this->login(['hero_image_path' => 'profile-hero-images/old.jpg']);
+
+    $this->actingAs($user)
+        ->put('/settings', profilePayload($user, [
+            'hero_image' => UploadedFile::fake()->image('hero.jpg', 1600, 400),
+        ]))
+        ->assertRedirect('/settings');
+
+    $heroImagePath = $user->fresh()->heroImagePath();
+
+    expect($heroImagePath)->not->toBe('profile-hero-images/old.jpg');
+    Storage::disk('public')->assertMissing('profile-hero-images/old.jpg');
+    Storage::disk('public')->assertExists($heroImagePath);
+});
+
+test('users can remove their profile hero image', function () {
+    Storage::fake('public');
+    Storage::disk('public')->put('profile-hero-images/old.jpg', 'old image');
+
+    $user = $this->login(['hero_image_path' => 'profile-hero-images/old.jpg']);
+
+    $this->actingAs($user)
+        ->put('/settings', profilePayload($user, [
+            'delete_hero_image' => '1',
+        ]))
+        ->assertRedirect('/settings');
+
+    expect($user->fresh()->heroImagePath())->toBeNull();
+    Storage::disk('public')->assertMissing('profile-hero-images/old.jpg');
+});
+
+test('profile hero image must be an image', function () {
+    $user = $this->login();
+
+    $this->actingAs($user)
+        ->put('/settings', profilePayload($user, [
+            'hero_image' => UploadedFile::fake()->create('hero.txt', 1, 'text/plain'),
+        ]))
+        ->assertInvalid(['hero_image']);
 });
 
 test('users cannot choose duplicate usernames or email addresses', function () {
@@ -275,6 +339,19 @@ test('a user cannot delete another user\'s API token', function () {
 });
 
 // Helpers
+function profilePayload(User $user, array $attributes = []): array
+{
+    return array_merge([
+        'name' => $user->name(),
+        'email' => $user->emailAddress(),
+        'username' => $user->username(),
+        'twitter' => $user->twitter(),
+        'bluesky' => $user->bluesky(),
+        'website' => $user->website(),
+        'bio' => $user->bio(),
+    ], $attributes);
+}
+
 function assertPasswordWasHashedAndSaved(): void
 {
     expect(Hash::check('QFq^$cz#P@MZa5z7', Auth::user()->getAuthPassword()))->toBeTrue();

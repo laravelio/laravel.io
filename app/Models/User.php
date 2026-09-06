@@ -19,6 +19,7 @@ use Illuminate\Database\Query\JoinClause;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
 
@@ -61,6 +62,7 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
         'type',
         'remember_token',
         'bio',
+        'hero_image_path',
         'banned_reason',
         'github_has_identicon',
     ];
@@ -142,6 +144,25 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
     public function website(): ?string
     {
         return $this->website;
+    }
+
+    public function heroImagePath(): ?string
+    {
+        return $this->hero_image_path;
+    }
+
+    public function hasHeroImage(): bool
+    {
+        return ! empty($this->heroImagePath());
+    }
+
+    public function heroImageUrl(): string
+    {
+        if (! $this->hasHeroImage()) {
+            return asset('images/default-background.svg');
+        }
+
+        return Storage::disk(config('lio.profile_hero_images.disk', 'public'))->url($this->heroImagePath());
     }
 
     public function hasTwitterAccount(): bool
