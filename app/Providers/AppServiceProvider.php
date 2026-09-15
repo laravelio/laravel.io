@@ -16,6 +16,7 @@ use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\AnonymousNotifiable;
 use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
@@ -63,6 +64,10 @@ class AppServiceProvider extends ServiceProvider
     private function bootSlowQueryLogging()
     {
         DB::whenQueryingForLongerThan(300000, function (Connection $connection, QueryExecuted $event) {
+            if (! Cache::add('alerts:slow-query', true, now()->addMinutes(5))) {
+                return;
+            }
+
             Notification::send(
                 new AnonymousNotifiable,
                 new SlowQueryLogged(
