@@ -50,14 +50,52 @@
                                     />
                                 </div>
 
-                                <span class="mt-4 inline-block text-sm text-gray-500">
-                                    Refresh your avatar for<br>
+                                @unless (Auth::user()->hasProfilePicture())
+                                    <span class="mt-4 inline-block text-sm text-gray-500">
+                                        Refresh your avatar for<br>
 
-                                    <a href="https://github.com/{{ Auth::user()->githubUsername() }}" class="text-lio-700">
-                                        your GitHub profile
-                                    </a>.
-                                </span>
+                                        <a href="https://github.com/{{ Auth::user()->githubUsername() }}" class="text-lio-700">
+                                            your GitHub profile
+                                        </a>.
+                                    </span>
+                                @endunless
                             </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <input
+                                id="profile_picture"
+                                name="profile_picture"
+                                type="file"
+                                accept="image/*"
+                                aria-label="Profile Image"
+                                class="block w-full text-sm text-gray-700 file:mr-4 file:rounded-sm file:border-0 file:bg-lio-600 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-lio-700"
+                            />
+
+                            @if ($errors->has('profile_picture'))
+                                @foreach ($errors->get('profile_picture') as $error)
+                                    <x-forms.error>
+                                        {{ $error }}
+                                    </x-forms.error>
+                                @endforeach
+                            @endif
+
+                            <span class="mt-2 block text-sm text-gray-500">
+                                Upload a square image up to 2 MB to override your GitHub avatar.
+                            </span>
+
+                            @if (Auth::user()->hasProfilePicture())
+                                <label class="mt-3 flex items-center gap-x-2 text-sm text-gray-700">
+                                    <input
+                                        type="checkbox"
+                                        name="delete_profile_picture"
+                                        value="1"
+                                        class="rounded-sm border-gray-300 text-lio-600 focus:ring-lio-500"
+                                    />
+
+                                    <span>Remove current profile image</span>
+                                </label>
+                            @endif
                         </div>
 
                         <div class="mt-6">

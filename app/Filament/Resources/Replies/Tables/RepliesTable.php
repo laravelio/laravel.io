@@ -24,10 +24,10 @@ class RepliesTable
             ->defaultSort('updated_at', 'desc')
             ->openRecordUrlInNewTab()
             ->columns([
-                ImageColumn::make('authorRelation.github_id')
+                ImageColumn::make('authorRelation.avatar')
                     ->label('Author')
                     ->circular()
-                    ->defaultImageUrl(fn (?string $state): string => $state ? sprintf('https://avatars.githubusercontent.com/u/%s', $state) : asset('images/laravelio-icon-gray.svg')),
+                    ->state(fn (Reply $reply): string => $reply->authorRelation->avatarUrl()),
 
                 TextColumn::make('authorRelation.name')
                     ->label('')

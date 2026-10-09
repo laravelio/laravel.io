@@ -24,6 +24,28 @@ test('a profile displays a custom hero image', function () {
         ->assertSee(Storage::disk('public')->url('profile-hero-images/johndoe.jpg'), false);
 });
 
+test('a profile displays the github avatar by default', function () {
+    $this->createUser(['github_id' => '12345', 'github_has_identicon' => false]);
+
+    $this->get('/user/johndoe')
+        ->assertSee('https://avatars.githubusercontent.com/u/12345', false);
+});
+
+test('a profile displays an uploaded profile picture instead of the github avatar', function () {
+    Storage::fake('public');
+    Storage::disk('public')->put('profile-pictures/johndoe.jpg', 'profile picture');
+
+    $this->createUser([
+        'github_id' => '12345',
+        'github_has_identicon' => false,
+        'profile_picture_path' => 'profile-pictures/johndoe.jpg',
+    ]);
+
+    $this->get('/user/johndoe')
+        ->assertSee(Storage::disk('public')->url('profile-pictures/johndoe.jpg'), false)
+        ->assertDontSee('https://avatars.githubusercontent.com/u/12345', false);
+});
+
 test('admin buttons are not shown to logged out users', function () {
     $this->createUser();
 

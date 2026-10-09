@@ -19,6 +19,8 @@ class UpdateProfileRequest extends Request
             'bio' => 'max:160',
             'hero_image' => 'nullable|image|max:4096',
             'delete_hero_image' => 'nullable|boolean',
+            'profile_picture' => 'nullable|image|max:2048',
+            'delete_profile_picture' => 'nullable|boolean',
         ];
     }
 
@@ -67,5 +69,17 @@ class UpdateProfileRequest extends Request
     public function shouldDeleteHeroImage(): bool
     {
         return $this->boolean('delete_hero_image');
+    }
+
+    public function profilePicture(): ?UploadedFile
+    {
+        $file = $this->file('profile_picture');
+
+        return $file instanceof UploadedFile ? $file : null;
+    }
+
+    public function shouldDeleteProfilePicture(): bool
+    {
+        return $this->boolean('delete_profile_picture');
     }
 }

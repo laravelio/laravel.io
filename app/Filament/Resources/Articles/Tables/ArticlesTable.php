@@ -18,11 +18,11 @@ class ArticlesTable
             ->defaultSort('submitted_at', 'desc')
             ->openRecordUrlInNewTab()
             ->columns([
-                ImageColumn::make('authorRelation.github_id')
+                ImageColumn::make('authorRelation.avatar')
                     ->label('Author')
                     ->circular()
                     ->width('1%')
-                    ->defaultImageUrl(fn (?string $state): string => $state ? sprintf('https://avatars.githubusercontent.com/u/%s', $state) : asset('images/laravelio-icon-gray.svg')),
+                    ->state(fn (Article $article): string => $article->authorRelation->avatarUrl()),
 
                 TextColumn::make('authorRelation.name')
                     ->label('')
