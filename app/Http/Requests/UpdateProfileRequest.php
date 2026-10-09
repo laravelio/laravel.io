@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
 
 class UpdateProfileRequest extends Request
@@ -16,6 +17,8 @@ class UpdateProfileRequest extends Request
             'bluesky' => 'max:255|nullable|unique:users,bluesky,'.Auth::id(),
             'website' => 'max:255|nullable|url',
             'bio' => 'max:160',
+            'hero_image' => 'nullable|image|max:4096',
+            'delete_hero_image' => 'nullable|boolean',
         ];
     }
 
@@ -52,5 +55,17 @@ class UpdateProfileRequest extends Request
     public function website(): ?string
     {
         return $this->get('website');
+    }
+
+    public function heroImage(): ?UploadedFile
+    {
+        $file = $this->file('hero_image');
+
+        return $file instanceof UploadedFile ? $file : null;
+    }
+
+    public function shouldDeleteHeroImage(): bool
+    {
+        return $this->boolean('delete_hero_image');
     }
 }

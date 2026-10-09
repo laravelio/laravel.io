@@ -6,8 +6,8 @@
 @section('content')
     <section class="bg-white">
         <div
-            class="w-full bg-center bg-gray-800 h-60 container mx-auto"
-            style="background-image: url('{{ asset('images/default-background.svg') }}')"
+            class="w-full bg-cover bg-center bg-gray-800 h-60 container mx-auto"
+            style="background-image: url('{{ $user->heroImageUrl() }}')"
         ></div>
 
         <div class="container mx-auto">
