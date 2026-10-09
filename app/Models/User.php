@@ -162,7 +162,7 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
             return asset('images/default-background.svg');
         }
 
-        return Storage::disk(config('lio.profile_hero_images.disk', 'public'))->url($this->heroImagePath());
+        return Storage::disk('public')->url($this->heroImagePath());
     }
 
     public function hasTwitterAccount(): bool

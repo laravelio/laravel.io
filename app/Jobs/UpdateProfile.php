@@ -43,7 +43,7 @@ final class UpdateProfile
         $oldHeroImagePath = $this->user->heroImagePath();
 
         if ($this->heroImage) {
-            $this->attributes['hero_image_path'] = $this->heroImage->store('profile-hero-images', $this->heroImageDisk());
+            $this->attributes['hero_image_path'] = $this->heroImage->store('profile-hero-images', 'public');
         } elseif ($this->deleteHeroImage) {
             $this->attributes['hero_image_path'] = null;
         }
@@ -51,7 +51,7 @@ final class UpdateProfile
         $this->user->update($this->attributes);
 
         if ($oldHeroImagePath && $oldHeroImagePath !== $this->user->heroImagePath()) {
-            Storage::disk($this->heroImageDisk())->delete($oldHeroImagePath);
+            Storage::disk('public')->delete($oldHeroImagePath);
         }
 
         if ($emailAddress !== $this->user->emailAddress()) {
@@ -60,10 +60,5 @@ final class UpdateProfile
 
             event(new EmailAddressWasChanged($this->user));
         }
-    }
-
-    private function heroImageDisk(): string
-    {
-        return config('lio.profile_hero_images.disk', 'public');
     }
 }
