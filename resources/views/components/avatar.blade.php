@@ -4,12 +4,6 @@
     'showRefresh' => false,
 ])
 
-<?php
-$src = $user->githubId() && ! $user->hasGitHubIdenticon()
-    ? sprintf('https://avatars.githubusercontent.com/u/%s', $user->githubId())
-    : asset('https://laravel.io/images/laravelio-icon-gray.svg');
-?>
-
 <div class="relative inline-block">
     @unless ($unlinked)
         <a href="{{ route('profile', $user->username()) }}">
@@ -18,7 +12,7 @@ $src = $user->githubId() && ! $user->hasGitHubIdenticon()
             <flux:avatar
                 circle
                 loading="lazy"
-                src="{{ $src }}"
+                src="{{ $user->avatarUrl() }}"
                 alt="{{ $user->name() }}"
                 {{ $attributes->merge(['class' => 'bg-gray-50']) }} />
 
@@ -26,7 +20,7 @@ $src = $user->githubId() && ! $user->hasGitHubIdenticon()
         </a>
     @endunless
 
-    @if ($showRefresh && $user->hasConnectedGitHubAccount())
+    @if ($showRefresh && $user->hasConnectedGitHubAccount() && ! $user->hasProfilePicture())
         <div class="absolute bottom-0 right-0 transform translate-x-1 translate-y-1">
             <livewire:refresh-avatar :user="$user" />
         </div>

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Users\Tables;
 
 use App\Jobs\BanUser;
+use App\Jobs\DeleteUser;
 use App\Jobs\DeleteUserThreads;
 use App\Jobs\UnbanUser;
 use App\Jobs\UnVerifyAuthor;
@@ -30,11 +31,11 @@ class UsersTable
             ->defaultSort('created_at', 'desc')
             ->openRecordUrlInNewTab()
             ->columns([
-                ImageColumn::make('github_id')
+                ImageColumn::make('avatar')
                     ->label('Name')
                     ->circular()
                     ->width('0%')
-                    ->defaultImageUrl(fn (?string $state): string => $state ? sprintf('https://avatars.githubusercontent.com/u/%s', $state) : asset('images/laravelio-icon-gray.svg')),
+                    ->state(fn (User $user): string => $user->avatarUrl()),
 
                 TextColumn::make('username')
                     ->label('')
@@ -178,6 +179,7 @@ class UsersTable
                         ->visible(fn (User $user): bool => auth()->user()->can(UserPolicy::DELETE, $user)),
 
                     DeleteAction::make()
+                        ->using(fn (User $user) => dispatch_sync(new DeleteUser($user)))
                         ->visible(fn (User $user): bool => auth()->user()->can(UserPolicy::DELETE, $user)),
                 ]),
             ])

@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Filament\Actions\Testing\TestAction;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 use function Pest\Livewire\livewire;
@@ -130,6 +131,37 @@ test('admins can delete a user', function () {
     $this->assertDatabaseMissing('threads', ['author_id' => $user->id()]);
     $this->assertDatabaseMissing('replies', ['replyable_id' => $thread->id()]);
     $this->assertDatabaseMissing('replies', ['author_id' => $user->id()]);
+});
+
+test('deleting a user from the admin removes their uploaded profile images', function () {
+    Storage::fake('public');
+    Storage::disk('public')->put('profile-pictures/avatar.jpg', 'avatar');
+    Storage::disk('public')->put('profile-hero-images/hero.jpg', 'hero');
+
+    $user = User::factory()->create([
+        'profile_picture_path' => 'profile-pictures/avatar.jpg',
+        'hero_image_path' => 'profile-hero-images/hero.jpg',
+    ]);
+
+    $this->loginAsAdmin();
+
+    livewire(ListUsers::class)
+        ->callAction(TestAction::make('delete')->table($user));
+
+    $this->assertDatabaseMissing('users', ['id' => $user->id()]);
+    Storage::disk('public')->assertMissing('profile-pictures/avatar.jpg');
+    Storage::disk('public')->assertMissing('profile-hero-images/hero.jpg');
+});
+
+test('the users overview shows uploaded profile pictures', function () {
+    Storage::fake('public', ['url' => 'https://cdn.laravel.io']);
+
+    $user = User::factory()->create(['profile_picture_path' => 'profile-pictures/avatar.jpg']);
+
+    $this->loginAsAdmin();
+
+    livewire(ListUsers::class)
+        ->assertSee(Storage::disk('public')->url('profile-pictures/avatar.jpg'), false);
 });
 
 test('admins cannot delete other admins', function () {

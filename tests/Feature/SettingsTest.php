@@ -104,6 +104,82 @@ test('profile hero image must be an image', function () {
         ->assertInvalid(['hero_image']);
 });
 
+test('users can upload a profile picture', function () {
+    Storage::fake('public');
+
+    $user = $this->login();
+
+    $this->actingAs($user)
+        ->put('/settings', profilePayload($user, [
+            'profile_picture' => UploadedFile::fake()->image('avatar.jpg', 400, 400),
+        ]))
+        ->assertRedirect('/settings');
+
+    $profilePicturePath = $user->fresh()->profilePicturePath();
+
+    expect(str_starts_with($profilePicturePath, 'profile-pictures/'))->toBeTrue();
+    Storage::disk('public')->assertExists($profilePicturePath);
+});
+
+test('users can replace their profile picture', function () {
+    Storage::fake('public');
+    Storage::disk('public')->put('profile-pictures/old.jpg', 'old image');
+
+    $user = $this->login(['profile_picture_path' => 'profile-pictures/old.jpg']);
+
+    $this->actingAs($user)
+        ->put('/settings', profilePayload($user, [
+            'profile_picture' => UploadedFile::fake()->image('avatar.jpg', 400, 400),
+        ]))
+        ->assertRedirect('/settings');
+
+    $profilePicturePath = $user->fresh()->profilePicturePath();
+
+    expect($profilePicturePath)->not->toBe('profile-pictures/old.jpg');
+    Storage::disk('public')->assertMissing('profile-pictures/old.jpg');
+    Storage::disk('public')->assertExists($profilePicturePath);
+});
+
+test('users can remove their profile picture', function () {
+    Storage::fake('public');
+    Storage::disk('public')->put('profile-pictures/old.jpg', 'old image');
+
+    $user = $this->login(['profile_picture_path' => 'profile-pictures/old.jpg']);
+
+    $this->actingAs($user)
+        ->put('/settings', profilePayload($user, [
+            'delete_profile_picture' => '1',
+        ]))
+        ->assertRedirect('/settings');
+
+    expect($user->fresh()->profilePicturePath())->toBeNull();
+    Storage::disk('public')->assertMissing('profile-pictures/old.jpg');
+});
+
+test('updating the profile without a new picture keeps the current one', function () {
+    Storage::fake('public');
+    Storage::disk('public')->put('profile-pictures/current.jpg', 'current image');
+
+    $user = $this->login(['profile_picture_path' => 'profile-pictures/current.jpg']);
+
+    $this->actingAs($user)
+        ->put('/settings', profilePayload($user, ['bio' => 'Updated bio']))
+        ->assertRedirect('/settings');
+
+    expect($user->fresh()->profilePicturePath())->toBe('profile-pictures/current.jpg');
+    Storage::disk('public')->assertExists('profile-pictures/current.jpg');
+});
+
+test('profile picture must be an image', function () {
+    $user = $this->login();
+
+    $this->actingAs($user)
+        ->put('/settings', profilePayload($user, [
+            'profile_picture' => UploadedFile::fake()->create('avatar.txt', 1, 'text/plain'),
+        ]))
+        ->assertInvalid(['profile_picture']);
+});
+
 test('users cannot choose duplicate usernames or email addresses', function () {
     $this->createUser(['email' => 'freek@example.com', 'username' => 'freekmurze']);
 
@@ -131,6 +207,23 @@ test('users can delete their account', function () {
         ->assertRedirect('/');
 
     $this->assertDatabaseMissing('users', ['name' => 'Freek Murze']);
+});
+
+test('deleting an account removes uploaded profile images', function () {
+    Storage::fake('public');
+    Storage::disk('public')->put('profile-pictures/avatar.jpg', 'avatar');
+    Storage::disk('public')->put('profile-hero-images/hero.jpg', 'hero');
+
+    $this->login([
+        'profile_picture_path' => 'profile-pictures/avatar.jpg',
+        'hero_image_path' => 'profile-hero-images/hero.jpg',
+    ]);
+
+    $this->delete('/settings')
+        ->assertRedirect('/');
+
+    Storage::disk('public')->assertMissing('profile-pictures/avatar.jpg');
+    Storage::disk('public')->assertMissing('profile-hero-images/hero.jpg');
 });
 
 test('users cannot delete their account', function () {

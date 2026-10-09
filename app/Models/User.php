@@ -63,6 +63,7 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
         'remember_token',
         'bio',
         'hero_image_path',
+        'profile_picture_path',
         'banned_reason',
         'github_has_identicon',
     ];
@@ -163,6 +164,29 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
         }
 
         return Storage::disk('public')->url($this->heroImagePath());
+    }
+
+    public function profilePicturePath(): ?string
+    {
+        return $this->profile_picture_path;
+    }
+
+    public function hasProfilePicture(): bool
+    {
+        return ! empty($this->profilePicturePath());
+    }
+
+    public function avatarUrl(): string
+    {
+        if ($this->hasProfilePicture()) {
+            return Storage::disk('public')->url($this->profilePicturePath());
+        }
+
+        if ($this->githubId() && ! $this->hasGitHubIdenticon()) {
+            return sprintf('https://avatars.githubusercontent.com/u/%s', $this->githubId());
+        }
+
+        return asset('images/laravelio-icon-gray.svg');
     }
 
     public function hasTwitterAccount(): bool
@@ -465,7 +489,12 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
 
     public function scopeWithAvatar(Builder $query)
     {
-        return $query->where('github_has_identicon', false)->whereNotNull('github_id');
+        return $query->where(function (Builder $query) {
+            $query->whereNotNull('profile_picture_path')
+                ->orWhere(function (Builder $query) {
+                    $query->where('github_has_identicon', false)->whereNotNull('github_id');
+                });
+        });
     }
 
     public function scopeNotBanned(Builder $query)
