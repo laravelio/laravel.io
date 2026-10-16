@@ -30,7 +30,7 @@
         "livewire/flux": "^2.1",
         "livewire/livewire": "^3.3",
         "ramsey/uuid": "^4.3",
-        "resend/resend-php": "^1.16",
+        "resend/resend-laravel": "^1.6",
         "spatie/laravel-feed": "^4.4",
         "spatie/laravel-ignition": "^2.4",
         "spatie/laravel-mailcoach-mailer": "^1.5",
