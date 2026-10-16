@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "40c9c33eb4cf4057e5bd737283a64cdb",
+    "content-hash": "270f01455dd29e83a4b5dd105b200770",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -6893,6 +6893,65 @@
                 "source": "https://github.com/ramsey/uuid/tree/4.9.3"
             },
             "time": "2026-06-18T03:57:49+00:00"
+        },
+        {
+            "name": "resend/resend-php",
+            "version": "v1.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/resend/resend-php.git",
+                "reference": "9ebdef978287dcd8cd17a399eebc977aa21cb402"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/resend/resend-php/zipball/9ebdef978287dcd8cd17a399eebc977aa21cb402",
+                "reference": "9ebdef978287dcd8cd17a399eebc977aa21cb402",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.8.2 || ^8.0",
+                "guzzlehttp/psr7": "^2.6.3 || ^3.0",
+                "php": "^8.1.0",
+                "psr/http-client": "^1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.13",
+                "mockery/mockery": "^1.6",
+                "pestphp/pest": "^1.0|^2.0|^3.0|^4.0|^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Resend.php"
+                ],
+                "psr-4": {
+                    "Resend\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Resend and contributors",
+                    "homepage": "https://github.com/resend/resend-php/contributors"
+                }
+            ],
+            "description": "Resend PHP library.",
+            "homepage": "https://resend.com/",
+            "keywords": [
+                "api",
+                "client",
+                "php",
+                "resend",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/resend/resend-php/issues",
+                "source": "https://github.com/resend/resend-php/tree/v1.16.0"
+            },
+            "time": "2026-09-25T18:18:55+00:00"
         },
         {
             "name": "riimu/kit-phpencoder",
