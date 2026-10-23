@@ -10,6 +10,15 @@ use Tests\TestCase;
 uses(TestCase::class);
 uses(RefreshDatabase::class);
 
+test('editor previews escape scripts and remove unsafe links', function () {
+    Livewire::test(Editor::class)
+        ->set('body', '<script>alert(document.cookie);</script>'."\n\n".'[unsafe link](javascript:alert(1))')
+        ->call('preview')
+        ->assertSee('&lt;script&gt;alert(document.cookie);&lt;/script&gt;', false)
+        ->assertSee('<a>unsafe link</a>', false)
+        ->assertDontSee('<script>alert(document.cookie);</script>', false);
+});
+
 test('participants are rendered when mentions are invoked', function () {
     $participants = User::factory()->count(3)->create();
 

