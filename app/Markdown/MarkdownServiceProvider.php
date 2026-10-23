@@ -2,11 +2,8 @@
 
 namespace App\Markdown;
 
-use App\Crawler;
 use App\EmbedExtension;
-use App\OscaroteroEmbedAdapter;
-use Embed\Embed;
-use Embed\Http\CurlClient;
+use App\ProviderEmbedAdapter;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
@@ -20,14 +17,6 @@ class MarkdownServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(Converter::class, function ($app, array $params = []) {
-            $client = new CurlClient;
-            $client->setSettings([
-                // 'follow_location' => false,
-                // 'ignored_errors' => true,
-            ]);
-
-            $embed = new Embed(new Crawler($client));
-
             $environment = new Environment([
                 'html_input' => 'escape',
                 'max_nesting_level' => 10,
@@ -45,9 +34,7 @@ class MarkdownServiceProvider extends ServiceProvider
                     'nofollow' => ($params['nofollow'] ?? true) ? 'external' : '',
                 ],
                 'embed' => [
-                    // 'adapter' => new OscaroteroEmbedAdapter,
-                    'adapter' => new OscaroteroEmbedAdapter($embed),
-                    // 'allowed_domains' => ['youtube.com'],
+                    'adapter' => new ProviderEmbedAdapter,
                     'allowed_domains' => ['youtube.com', 'twitter.com', 'x.com'],
                     'fallback' => 'link',
                 ],

@@ -160,12 +160,14 @@ svg .secondary {
     @apply bg-lio-100;
 }
 
-article iframe {
+article iframe,
+.prose-lio iframe {
     @apply w-full h-64;
 }
 
 @media (width >= theme(--breakpoint-sm)) {
-    article iframe {
+    article iframe,
+    .prose-lio iframe {
         @apply h-96;
     }
 }
