@@ -59,4 +59,11 @@
             </div>
         </div>
     </div>
+
+    @env('local')
+        <div class="mt-6 space-y-2 text-center">
+            <x-login-link email="test@example.com" label="Sign in as admin" class="text-sm font-medium text-lio-600 hover:text-lio-500" />
+            <x-login-link email="jane@example.com" label="Sign in as regular user" class="text-sm font-medium text-lio-600 hover:text-lio-500" />
+        </div>
+    @endenv
 @endsection

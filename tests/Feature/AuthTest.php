@@ -9,10 +9,53 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\HtmlString;
+use Spatie\LoginLink\Exceptions\NotAllowedInCurrentEnvironment;
 use Tests\TestCase;
 
 uses(TestCase::class);
 uses(RefreshDatabase::class);
+
+test('developer login links are only shown locally', function (string $environment) {
+    $this->app->instance('env', $environment);
+
+    $response = $this->get('/login')->assertOk();
+
+    if ($environment === 'local') {
+        $response->assertSee('Sign in as admin')
+            ->assertSee('Sign in as regular user');
+    } else {
+        $response->assertDontSee('Sign in as admin')
+            ->assertDontSee('Sign in as regular user');
+    }
+})->with(['local', 'testing', 'staging', 'production']);
+
+test('developer login can authenticate local users on Herd', function (string $email) {
+    $this->app->instance('env', 'local');
+    $user = $this->createUser(['email' => $email]);
+
+    $this->withSession(['_token' => 'developer-login-token'])
+        ->post('http://laravel.io.test/laravel-login-link-login', [
+            '_token' => 'developer-login-token',
+            'email' => $email,
+        ])
+        ->assertRedirect();
+
+    $this->assertAuthenticatedAs($user);
+})->with(['test@example.com', 'jane@example.com']);
+
+test('developer login is rejected outside the local environment', function (string $environment) {
+    $this->app->instance('env', $environment);
+    $this->withoutExceptionHandling();
+
+    expect(fn () => $this->withSession(['_token' => 'developer-login-token'])
+        ->post('/laravel-login-link-login', [
+            '_token' => 'developer-login-token',
+            'email' => 'test@example.com',
+        ]))
+        ->toThrow(NotAllowedInCurrentEnvironment::class);
+
+    $this->assertGuest();
+})->with(['testing', 'staging', 'production']);
 
 test('users can register', function () {
     Notification::fake();
