@@ -3,8 +3,9 @@
 use App\DomainFilteringAdapter;
 use League\CommonMark\Extension\Embed\Embed;
 use League\CommonMark\Extension\Embed\EmbedAdapterInterface;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
-uses(\Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration::class);
+uses(MockeryPHPUnitIntegration::class);
 
 it('only forwards URLs with an allowed parsed host', function (string $url, bool $allowed) {
     $embed = new Embed($url);
