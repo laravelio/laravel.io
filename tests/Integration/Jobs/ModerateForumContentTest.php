@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Laravel\Ai\Prompts\AgentPrompt;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tests\TestCase;
 
 uses(TestCase::class, RefreshDatabase::class);
@@ -113,7 +114,7 @@ test('an already banned author cannot publish even with a stale user instance', 
     $uuid = Str::uuid();
 
     expect(fn () => $this->dispatch(new CreateThread($uuid, 'Subject', 'Body', $author)))
-        ->toThrow(\Symfony\Component\HttpKernel\Exception\HttpException::class);
+        ->toThrow(HttpException::class);
 
     expect(Thread::where('uuid', $uuid)->exists())->toBeFalse()
         ->and($author->fresh()->bannedReason())->toBe('Already banned');
