@@ -9,6 +9,7 @@ use App\Http\Requests\CreateReplyRequest;
 use App\Models\Reply;
 use App\Models\Subscription;
 use App\Models\User;
+use App\Services\ModerateForumContent;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -33,6 +34,8 @@ final class CreateReply
 
     public function handle(): void
     {
+        app(ModerateForumContent::class)->check($this->author, $this->body);
+
         $reply = new Reply([
             'uuid' => $this->uuid->toString(),
             'body' => $this->body,

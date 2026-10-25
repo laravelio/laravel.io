@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Http\Requests\ThreadRequest;
 use App\Models\Thread;
 use App\Models\User;
+use App\Services\ModerateForumContent;
 use Illuminate\Support\Arr;
 
 final class UpdateThread
@@ -28,6 +29,14 @@ final class UpdateThread
 
     public function handle(): void
     {
+        if ($this->shouldModerate()) {
+            app(ModerateForumContent::class)->check(
+                $this->updatedBy,
+                $this->attributes['body'] ?? $this->thread->body(),
+                $this->attributes['subject'] ?? $this->thread->subject(),
+            );
+        }
+
         $this->thread->update($this->attributes);
 
         if (Arr::has($this->attributes, 'tags')) {
@@ -37,5 +46,15 @@ final class UpdateThread
         $this->thread->updatedByRelation()->associate($this->updatedBy);
 
         $this->thread->save();
+    }
+
+    private function shouldModerate(): bool
+    {
+        if (! $this->updatedBy->isRegularUser() || ! $this->thread->isAuthoredBy($this->updatedBy)) {
+            return false;
+        }
+
+        return ($this->attributes['body'] ?? $this->thread->body()) !== $this->thread->body()
+            || ($this->attributes['subject'] ?? $this->thread->subject()) !== $this->thread->subject();
     }
 }

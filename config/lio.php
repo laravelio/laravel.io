@@ -8,4 +8,10 @@ return [
             'alt' => 'Eventy',
         ],
     ],
+
+    'moderation' => [
+        'provider' => env('AI_MODERATION_PROVIDER', 'openai'),
+        'model' => env('AI_MODERATION_MODEL') ?: null,
+        'timeout' => 30,
+    ],
 ];

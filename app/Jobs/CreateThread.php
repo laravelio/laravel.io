@@ -7,6 +7,7 @@ use App\Http\Requests\ThreadRequest;
 use App\Models\Subscription;
 use App\Models\Thread;
 use App\Models\User;
+use App\Services\ModerateForumContent;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -33,6 +34,8 @@ final class CreateThread
 
     public function handle(): void
     {
+        app(ModerateForumContent::class)->check($this->author, $this->body, $this->subject);
+
         $thread = new Thread([
             'uuid' => $this->uuid->toString(),
             'subject' => $this->subject,
