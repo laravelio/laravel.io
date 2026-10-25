@@ -25,6 +25,7 @@ use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -34,6 +35,8 @@ class ThreadsController extends Controller
 {
     use UsesFilters;
 
+    private const PER_PAGE = 20;
+
     public function __construct()
     {
         $this->middleware([Authenticate::class, EnsureEmailIsVerified::class], ['except' => ['overview', 'show']]);
@@ -41,23 +44,26 @@ class ThreadsController extends Controller
 
     public function overview()
     {
+        // Reject pages whose database offset would overflow a PHP integer.
+        abort_if(Paginator::resolveCurrentPage() - 1 > intdiv(PHP_INT_MAX, self::PER_PAGE), 404);
+
         $threads = [];
         $filter = $this->getFilter();
 
         if ($filter === 'recent') {
-            $threads = Thread::feedPaginated();
+            $threads = Thread::feedPaginated(self::PER_PAGE);
         }
 
         if ($filter === 'resolved') {
             $threads = Thread::feedQuery()
                 ->resolved()
-                ->paginate(20);
+                ->paginate(self::PER_PAGE);
         }
 
         if ($filter === 'unresolved') {
             $threads = Thread::feedQuery()
                 ->unresolved()
-                ->paginate(20);
+                ->paginate(self::PER_PAGE);
         }
 
         $tags = Tag::orderBy('name')->get();
