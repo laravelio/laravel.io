@@ -28,6 +28,30 @@ test('users can see a list of latest threads', function () {
         ->assertSee('The second thread');
 });
 
+test('forum pages with overflowing offsets return not found', function ($filter, $page) {
+    Thread::factory()->create();
+    Thread::factory()->create(['solution_reply_id' => Reply::factory()->create()->id()]);
+
+    $this->get('/forum?'.http_build_query(['filter' => $filter, 'page' => $page]))
+        ->assertNotFound();
+})->with(['recent', 'resolved', 'unresolved'])->with([
+    'reported page' => '999999999999999951',
+    'first overflowing offset' => (string) (intdiv(PHP_INT_MAX, 20) + 2),
+    'maximum integer' => (string) PHP_INT_MAX,
+]);
+
+test('users can navigate forum pages', function () {
+    Thread::factory()->count(21)->create();
+
+    $this->get('/forum?page=2')
+        ->assertOk()
+        ->assertViewHas('threads', fn ($threads) => $threads->currentPage() === 2 && $threads->count() === 1);
+
+    $this->get('/forum?page=99')
+        ->assertOk()
+        ->assertViewHas('threads', fn ($threads) => $threads->isEmpty());
+});
+
 test('users can see when a thread is resolved', function () {
     Thread::factory()->create(['subject' => 'The first thread']);
     $thread = Thread::factory()->create(['subject' => 'The second thread']);
