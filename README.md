@@ -37,34 +37,34 @@ We'd like to thank these **amazing companies** for sponsoring us. If you are int
 
 The following tools are required in order to start the installation.
 
-- PHP 8.4
+- PHP 8.5
+- Node.js 24
 - [Composer](https://getcomposer.org/download/)
 - [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- [Valet](https://laravel.com/docs/valet#installation)
 
 ## Installation
 
-> Note that you're free to adjust the `~/Sites/laravel.io` location to any directory you want on your machine. In doing so, be sure to run the `valet link` command inside the desired directory.
+> Note that you're free to adjust the `~/Sites/laravel.io` location to any directory you want on your machine.
 
 1. Clone this repository with `git clone git@github.com:laravelio/laravel.io.git ~/Sites/laravel.io`
 2. Run `composer install` to install the PHP dependencies
 3. Set up a local database called `laravel`
 4. Run `composer setup` to setup the application
 5. Set up a working e-mail driver like [Mailtrap](https://mailtrap.io/)
-6. Run `valet link` to link the site to a testing web address
+6. Run `php artisan serve` to start the local development server
 7. Create a `testing` database in MySQL so you can run the test suite
 8. Configure the (optional) features from below
 
-You can now visit the app in your browser by visiting [http://laravel.io.test](http://laravel.io.test). If you seeded the database you can login into a test account with **`testing`** & **`password`**.
+You can now visit the app in your browser by visiting [http://localhost:8000](http://localhost:8000). If you seeded the database you can login into a test account with **`testing`** & **`password`**.
 
 ### GitHub Authentication (optional)
 
-To get GitHub authentication to work locally, you'll need to [register a new OAuth application on GitHub](https://github.com/settings/applications/new). Use `http://laravel.io.test` for the homepage url and `http://laravel.io.test/auth/github` for the callback url. When you've created the app, fill in the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with GitHub.
+To get GitHub authentication to work locally, you'll need to [register a new OAuth application on GitHub](https://github.com/settings/applications/new). Use `http://localhost:8000` for the homepage url and `http://localhost:8000/auth/github` for the callback url. When you've created the app, fill in the ID and secret in your `.env` file in the env variables below. You should now be able to authentication with GitHub.
 
 ```
 GITHUB_ID=
 GITHUB_SECRET=
-GITHUB_URL=http://laravel.io.test/auth/github
+GITHUB_URL=http://localhost:8000/auth/github
 ```
 
 ### Algolia Search (optional)

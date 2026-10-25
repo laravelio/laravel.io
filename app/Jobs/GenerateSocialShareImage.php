@@ -6,6 +6,7 @@ use App\Models\Article;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Format;
 use Intervention\Image\ImageManager;
 
 final class GenerateSocialShareImage
@@ -32,7 +33,7 @@ final class GenerateSocialShareImage
         $text = wordwrap($this->article->title(), self::CHARACTERS_PER_LINE);
 
         return response(
-            $image->read(resource_path('images/'.self::TEMPLATE))
+            $image->decodePath(resource_path('images/'.self::TEMPLATE))
                 ->text(
                     $text,
                     self::TEXT_X_POSITION,
@@ -43,7 +44,7 @@ final class GenerateSocialShareImage
                         $font->color(self::TEXT_COLOUR);
                     }
                 )
-                ->toPng()
+                ->encodeUsingFormat(Format::PNG)
         )
             ->header('Content-Type', 'image/png')
             ->header('Cache-Control', 'max-age=86400, public');
@@ -52,7 +53,7 @@ final class GenerateSocialShareImage
         //     'articleSocialImage-'.$this->article->id,
         //     now()->addDay(),
         //     fn () => response(
-        //         $image->read(resource_path('images/'.self::TEMPLATE))
+        //         $image->decodePath(resource_path('images/'.self::TEMPLATE))
         //             ->text(
         //                 $text,
         //                 self::TEXT_X_POSITION,
@@ -63,7 +64,7 @@ final class GenerateSocialShareImage
         //                     $font->color(self::TEXT_COLOUR);
         //                 }
         //             )
-        //             ->toPng()
+        //             ->encodeUsingFormat(Format::PNG)
         //     )
         //         ->header('Content-Type', 'image/png')
         //         ->header('Cache-Control', 'max-age=86400, public')

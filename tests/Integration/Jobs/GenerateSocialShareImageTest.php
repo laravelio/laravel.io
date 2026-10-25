@@ -9,6 +9,20 @@ use Tests\TestCase;
 uses(TestCase::class);
 uses(RefreshDatabase::class);
 
+test('social image response contains a valid PNG', function () {
+    $article = new Article(['title' => 'A social image with multiple lines of text']);
+
+    $response = (new GenerateSocialShareImage($article))->handle();
+    $image = getimagesizefromstring($response->getContent());
+    $template = getimagesize(resource_path('images/'.GenerateSocialShareImage::TEMPLATE));
+
+    expect($response->headers->get('Content-Type'))->toBe('image/png')
+        ->and($response->headers->get('Cache-Control'))->toBe('max-age=86400, public')
+        ->and($image[0])->toBe($template[0])
+        ->and($image[1])->toBe($template[1])
+        ->and($image[2])->toBe(IMAGETYPE_PNG);
+});
+
 test('social image is generated for articles', function () {
     $article = Article::factory()->create([
         'title' => 'This is an article to test social share image generation',

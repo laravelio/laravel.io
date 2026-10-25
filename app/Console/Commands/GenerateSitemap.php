@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Psr\Http\Message\UriInterface;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Tags\Url;
 
@@ -24,8 +23,8 @@ class GenerateSitemap extends Command
     public function handle(): void
     {
         SitemapGenerator::create(config('app.url'))
-            ->shouldCrawl(function (UriInterface $url) {
-                return $this->shouldIndex($url->getPath());
+            ->shouldCrawl(function (string $url) {
+                return $this->shouldIndex(parse_url($url, PHP_URL_PATH) ?? '');
             })
             ->hasCrawled(function (Url $url) {
                 if ($this->shouldNotIndex($url->path())) {
