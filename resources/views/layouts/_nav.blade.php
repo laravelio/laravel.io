@@ -23,7 +23,7 @@
                         </div>
                     </div>
 
-                    <div class="mt-2 border-b border-gray-200 lg:block lg:mt-0 lg:border-0" x-cloak :class="{ 'block': nav, 'hidden': !nav }">
+                    <div class="hidden mt-2 border-b border-gray-200 lg:block lg:mt-0 lg:border-0" :class="{ 'block': nav, 'hidden': !nav }">
                         <ul class="flex flex-col px-4 mb-2 gap-y-2 lg:flex-row lg:mb-0 lg:gap-6">
                             <li class="rounded-sm lg:mb-0 lg:hover:bg-gray-100 @if(is_active(['forum', 'threads*', 'thread'])) bg-gray-100 @endif">
                                 <a href="{{ route('forum') }}" class="inline-block w-full px-2 py-1">
@@ -55,7 +55,7 @@
                         @include('_partials._search')
                     </div>
 
-                    <ul class="block lg:flex lg:items-center gap-x-8" x-cloak :class="{ 'block': nav, 'hidden': !nav }">
+                    <ul class="hidden lg:flex lg:items-center gap-x-8" :class="{ 'block': nav, 'hidden': !nav }">
                         @if (Auth::guest())
                             <li class="w-full rounded-sm text-center lg:hover:bg-gray-100">
                                 <a href="{{ route('register') }}" class="inline-block w-full  p-2.5">
