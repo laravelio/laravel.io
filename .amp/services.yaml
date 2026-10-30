@@ -1,0 +1,16 @@
+services:
+  mailpit:
+    command: mailpit --listen "0.0.0.0:$PORT" --smtp 127.0.0.1:1025
+    port: 8025
+    portal:
+      title: Mailpit
+      description: Catches all mail sent by the app.
+  web:
+    command: >-
+      php artisan optimize:clear &&
+      APP_URL="$PUBLIC_URL" ASSET_URL="$PUBLIC_URL"
+      php artisan serve --host=0.0.0.0 --port="$PORT"
+    health: /
+    portal:
+      title: Laravel.io
+      description: 'Seeded login: testing / password. Outgoing mail is captured in the Mailpit portal.'

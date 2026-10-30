@@ -1,0 +1,146 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+TIMEFORMAT='Step finished in %3R seconds'
+
+echo 'Installing missing system packages (PHP 8.5 and MySQL 8.4 LTS)'
+time {
+    if [[ ! -f /etc/apt/sources.list.d/php.list ]]; then
+        keyring=$(mktemp)
+        curl -fsSL https://packages.sury.org/debsuryorg-archive-keyring.deb -o "$keyring"
+        sudo dpkg -i "$keyring"
+        rm "$keyring"
+        echo 'deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ bookworm main' | sudo tee /etc/apt/sources.list.d/php.list > /dev/null
+    fi
+    if [[ ! -f /etc/apt/sources.list.d/mysql.list ]]; then
+        curl -fsSL https://repo.mysql.com/RPM-GPG-KEY-mysql-2025 | sudo tee /usr/share/keyrings/mysql.asc > /dev/null
+        echo 'deb [signed-by=/usr/share/keyrings/mysql.asc] https://repo.mysql.com/apt/debian/ bookworm mysql-8.4-lts' | sudo tee /etc/apt/sources.list.d/mysql.list > /dev/null
+    fi
+
+    packages=(php8.5-cli php8.5-curl php8.5-mbstring php8.5-xml php8.5-zip php8.5-mysql php8.5-sqlite3 php8.5-gd php8.5-intl php8.5-bcmath mysql-community-server mysql-community-client unzip)
+    missing=()
+    for package in "${packages[@]}"; do
+        if [[ $(dpkg-query -W -f='${Status}' "$package" 2>/dev/null || true) != 'install ok installed' ]]; then
+            missing+=("$package")
+        fi
+    done
+    if (( ${#missing[@]} )); then
+        sudo apt-get update -qq
+        sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends "${missing[@]}"
+    fi
+    sudo update-alternatives --set php /usr/bin/php8.5
+}
+
+echo 'Preparing Node 24 and Composer 2'
+time {
+    if [[ ! -x /opt/node24/bin/node ]]; then
+        download=$(mktemp -d)
+        case $(uname -m) in
+            x86_64) arch=x64 ;;
+            aarch64) arch=arm64 ;;
+            *) echo 'Unsupported Node architecture' >&2; exit 1 ;;
+        esac
+        curl -fsSL https://nodejs.org/dist/latest-v24.x/SHASUMS256.txt -o "$download/SHASUMS256.txt"
+        archive=$(awk -v arch="$arch" '$2 ~ "^node-v24\\..*-linux-" arch "\\.tar\\.xz$" {print $2}' "$download/SHASUMS256.txt")
+        curl -fsSL "https://nodejs.org/dist/latest-v24.x/$archive" -o "$download/$archive"
+        (cd "$download" && grep " $archive$" SHASUMS256.txt | sha256sum --check)
+        # Keep bundled npm separate from the base image's npm installation.
+        sudo mkdir -p /opt/node24
+        sudo tar -xJf "$download/$archive" -C /opt/node24 --strip-components=1
+        rm -r "$download"
+    fi
+    sudo ln -sf /opt/node24/bin/node /opt/node24/bin/npm /opt/node24/bin/npx /usr/local/bin/
+    if ! command -v composer > /dev/null; then
+        installer=$(mktemp)
+        curl -fsSL https://getcomposer.org/installer -o "$installer"
+        expected=$(curl -fsSL https://composer.github.io/installer.sig)
+        [[ $(sha384sum "$installer" | cut -d ' ' -f 1) == "$expected" ]]
+        php "$installer" --2 --install-dir=/tmp --filename=composer-orb
+        sudo install -m 755 /tmp/composer-orb /usr/local/bin/composer
+        rm "$installer" /tmp/composer-orb
+    fi
+    php --version | head -1
+    node --version
+    composer --version
+}
+
+echo 'Preparing Mailpit for local email testing'
+time {
+    mailpit_version=v1.32.0
+    if [[ $(mailpit version 2>/dev/null) != *"$mailpit_version"* ]]; then
+        archive=$(mktemp)
+        curl -fsSL "https://github.com/axllent/mailpit/releases/download/$mailpit_version/mailpit-linux-amd64.tar.gz" -o "$archive"
+        echo "4b5993c978e8604c70d43927e2ad103b311bba3b1822fa0cf1d4ee4ec890a93c  $archive" | sha256sum --check
+        sudo tar -xzf "$archive" -C /usr/local/bin mailpit
+        rm "$archive"
+    fi
+}
+
+echo 'Preparing local environment without overwriting existing configuration'
+if [[ ! -f .env ]]; then
+    cp .env.example .env
+    sed -i -e 's/^DB_USERNAME=.*/DB_USERNAME=laravel/' .env
+    cat >> .env <<'EOF'
+
+# Disposable orb services; no external credentials required.
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+QUEUE_CONNECTION=sync
+SCOUT_DRIVER=null
+EOF
+fi
+
+# Update older snapshots too, and disable the template's SMTP credentials.
+sed -i \
+    -e 's|^MAIL_MAILER=.*|MAIL_MAILER=smtp|' \
+    -e 's|^MAIL_HOST=.*|MAIL_HOST=127.0.0.1|' \
+    -e 's|^MAIL_PORT=.*|MAIL_PORT=1025|' \
+    -e 's|^MAIL_USERNAME=.*|MAIL_USERNAME=null|' \
+    -e 's|^MAIL_PASSWORD=.*|MAIL_PASSWORD=null|' .env
+
+echo 'Installing locked PHP dependencies'
+time composer install --prefer-dist --no-interaction --no-progress
+if ! grep -q '^APP_KEY=.' .env; then
+    php artisan key:generate --no-interaction
+fi
+
+echo 'Installing locked frontend dependencies and building assets'
+time npm ci --no-audit --no-fund
+time npm run build
+
+echo 'Preparing the local database and development fixtures'
+time {
+    # These durability settings are only for the disposable, loopback-only orb database.
+    sudo tee /etc/mysql/mysql.conf.d/99-orb.cnf > /dev/null <<'EOF'
+[mysqld]
+bind-address=127.0.0.1
+innodb_flush_log_at_trx_commit=0
+skip-log-bin
+mysqlx=OFF
+EOF
+    sudo systemctl enable --now mysql
+    sudo mysql <<'SQL'
+CREATE DATABASE IF NOT EXISTS laravel CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS testing CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER IF NOT EXISTS 'laravel'@'127.0.0.1' IDENTIFIED BY 'password';
+-- Parallel tests create additional databases on this isolated local server.
+GRANT ALL PRIVILEGES ON *.* TO 'laravel'@'127.0.0.1';
+SQL
+    php artisan migrate --force --no-interaction
+    # The existing seeders insert rather than upsert. Preserve data on warm runs.
+    php -r '
+        require "vendor/autoload.php";
+        $app = require "bootstrap/app.php";
+        $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+        if (! App\Models\User::query()->exists()) {
+            Illuminate\Support\Facades\Artisan::call("db:seed", ["--force" => true, "--no-interaction" => true]);
+            echo Illuminate\Support\Facades\Artisan::output();
+        }
+    '
+    if [[ ! -e public/storage && ! -L public/storage ]]; then
+        php artisan storage:link --no-interaction
+    fi
+}
+
+echo 'Orb ready. Run vendor/bin/pest -p; start the preview with amp orb services ensure.'
