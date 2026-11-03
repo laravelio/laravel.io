@@ -7,6 +7,11 @@ return [
             'image' => 'eventy',
             'alt' => 'Eventy',
         ],
+        [
+            'url' => 'https://moneytrees.app/?utm_source=Laravel.io&utm_campaign=moneytrees&utm_medium=advertisement',
+            'image' => 'moneytrees',
+            'alt' => 'Moneytrees',
+        ],
     ],
 
     'moderation' => [

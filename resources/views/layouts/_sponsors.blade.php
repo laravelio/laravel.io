@@ -9,8 +9,9 @@
         </div> --}}
 
         <div class="mt-8 flex justify-center">
-            <div class="gap-x-12 flex justify-center">
+            <div class="gap-x-12 gap-y-8 flex flex-wrap justify-center">
                 <x-sponsor-logo size="medium" url="https://eventy.io/?utm_source=Laravel.io&utm_campaign=eventy&utm_medium=advertisement" logo="{{ asset('images/sponsors/eventy.svg') }}" company="Eventy" />
+                <x-sponsor-logo size="medium" url="https://moneytrees.app/?utm_source=Laravel.io&utm_campaign=moneytrees&utm_medium=advertisement" logo="{{ asset('images/sponsors/moneytrees.svg') }}" company="Moneytrees" />
             </div>
         </div>
 
