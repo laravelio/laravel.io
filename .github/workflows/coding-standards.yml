@@ -3,8 +3,37 @@ name: Coding Standards
 on: [push]
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   lint:
-    uses: laravel/.github/.github/workflows/coding-standards.yml@main
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      # Credentials are needed for the formatting commit below.
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Preserve the shared workflow's PHP version and standalone Pint install.
+      - name: Setup PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: '8.2'
+          tools: composer:v2, laravel/pint
+          extensions: json, dom, curl, libxml, mbstring
+          coverage: none
+
+      - name: Run Pint
+        run: pint
+
+      - name: Commit linted files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add .
+            git commit -m 'Fix code styling' --author="$GITHUB_ACTOR <$GITHUB_ACTOR_ID+$GITHUB_ACTOR@users.noreply.github.com>"
+            git push
+          fi

@@ -6,6 +6,9 @@ on:
       - main
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -22,22 +25,29 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: 8.5
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd
           coverage: none
 
       - name: Setup Node
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '24.x'
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction
+
+      - name: Require pinned actions
+        run: |
+          php .github/check-action-pins.php
+          python3 -B -m unittest discover -s .github/tests
 
       - name: Install NPM dependencies
         run: npm ci
@@ -54,12 +64,27 @@ jobs:
     
   dependabot:
     needs: [tests]
+    if: github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
     permissions:
       pull-requests: write
       contents: write
-    uses: driesvints/github-workflows/.github/workflows/dependabot.yml@main
-    secrets:
-      gh_token: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Fetch Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Approve and merge the pull request
+        if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr review --approve "$PR_URL"
+          gh pr merge --squash --auto "$PR_URL"
 
   deploy:
     needs: [tests]
@@ -68,4 +93,6 @@ jobs:
     steps:
       - name: Deploy
         if: github.repository == 'laravelio/laravel.io' && github.ref_name == 'main'
-        run: curl -d POST ${{ secrets.DEPLOY_HOOK }}?commit_hash=${{ github.sha }}
+        env:
+          DEPLOY_HOOK: ${{ secrets.DEPLOY_HOOK }}
+        run: curl -d POST "${DEPLOY_HOOK}?commit_hash=${GITHUB_SHA}"
