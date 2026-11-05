@@ -46,7 +46,7 @@
         "fruitcake/laravel-debugbar": "^4.4",
         "mockery/mockery": "^1.6.15",
         "nunomaduro/collision": "^8.9.5",
-        "pestphp/pest": "^5.3.3",
+        "pestphp/pest": "^5.3.5",
         "pestphp/pest-plugin-laravel": "^5.0.1",
         "pestphp/pest-plugin-livewire": "^5.0.0",
         "spatie/pixelmatch-php": "^1.1"
