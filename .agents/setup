@@ -6,17 +6,18 @@ TIMEFORMAT='Step finished in %3R seconds'
 
 echo 'Installing missing system packages (PHP 8.5 and MySQL 8.4 LTS)'
 time {
+    source /etc/os-release
     if [[ ! -f /etc/apt/sources.list.d/php.list ]]; then
         keyring=$(mktemp)
         curl -fsSL https://packages.sury.org/debsuryorg-archive-keyring.deb -o "$keyring"
         sudo dpkg -i "$keyring"
         rm "$keyring"
-        echo 'deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ bookworm main' | sudo tee /etc/apt/sources.list.d/php.list > /dev/null
     fi
+    echo "deb [signed-by=/usr/share/keyrings/debsuryorg-archive-keyring.gpg] https://packages.sury.org/php/ $VERSION_CODENAME main" | sudo tee /etc/apt/sources.list.d/php.list > /dev/null
     if [[ ! -f /etc/apt/sources.list.d/mysql.list ]]; then
         curl -fsSL https://repo.mysql.com/RPM-GPG-KEY-mysql-2025 | sudo tee /usr/share/keyrings/mysql.asc > /dev/null
-        echo 'deb [signed-by=/usr/share/keyrings/mysql.asc] https://repo.mysql.com/apt/debian/ bookworm mysql-8.4-lts' | sudo tee /etc/apt/sources.list.d/mysql.list > /dev/null
     fi
+    echo "deb [signed-by=/usr/share/keyrings/mysql.asc] https://repo.mysql.com/apt/debian/ $VERSION_CODENAME mysql-8.4-lts" | sudo tee /etc/apt/sources.list.d/mysql.list > /dev/null
 
     packages=(php8.5-cli php8.5-curl php8.5-mbstring php8.5-xml php8.5-zip php8.5-mysql php8.5-sqlite3 php8.5-gd php8.5-intl php8.5-bcmath mysql-community-server mysql-community-client unzip)
     missing=()

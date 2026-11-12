@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
 
         User::factory()
             ->count(300)
-            ->has(Thread::factory()->count(rand(0, 5)), 'threadsRelation')
+            ->has(Thread::factory()->count(rand(1, 5)), 'threadsRelation')
             ->has(
                 Article::factory()
                     ->count(5)

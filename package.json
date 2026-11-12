@@ -20,6 +20,11 @@
         "textarea-caret": "^3.1.0",
         "vite": "^8.3.5"
     },
+    "overrides": {
+        "@tailwindcss/typography": {
+            "postcss-selector-parser": "^6.1.5"
+        }
+    },
     "engines": {
         "node": "24.x"
     }
