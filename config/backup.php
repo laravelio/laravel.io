@@ -10,6 +10,7 @@ use Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFoundNotificatio
 use Spatie\Backup\Tasks\Cleanup\Strategies\DefaultStrategy;
 use Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays;
 use Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes;
+use Spatie\DbDumper\Compressors\GzipCompressor;
 
 return [
     'backup' => [
@@ -28,6 +29,7 @@ return [
             'disks' => ['backups'],
         ],
 
+        'database_dump_compressor' => GzipCompressor::class,
         'password' => env('BACKUP_ARCHIVE_PASSWORD'),
         'verify_backup' => true,
     ],
