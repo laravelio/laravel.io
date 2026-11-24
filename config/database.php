@@ -58,12 +58,6 @@ return [
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 (PHP_VERSION_ID >= 80500 ? Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
-            'dump' => [
-                'use_single_transaction' => true,
-                'skip_lock_tables' => true,
-                'use_quick' => true,
-                'add_extra_option' => '--no-tablespaces',
-            ],
         ],
 
         'mariadb' => [

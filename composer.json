@@ -32,7 +32,6 @@
         "livewire/livewire": "^4.4.8",
         "ramsey/uuid": "^4.9.4",
         "resend/resend-laravel": "^1.7.0",
-        "spatie/laravel-backup": "^10.0",
         "spatie/laravel-feed": "^4.4",
         "spatie/laravel-ignition": "^2.12.1",
         "spatie/laravel-login-link": "^1.6",
