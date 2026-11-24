@@ -19,4 +19,8 @@ return [
         'model' => env('AI_MODERATION_MODEL') ?: null,
         'timeout' => 30,
     ],
+
+    'backups' => [
+        'enabled' => env('BACKUP_ENABLED', false),
+    ],
 ];
